@@ -1,0 +1,57 @@
+From 3ebd464bda57b2d2a2c3f866ef6f2e8f6aadbfde Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Wed, 17 Dec 2025 02:28:18 +0200
+Subject: [PATCH 065/112] seedId
+
+---
+ .../Prototypes/Entities/Objects/Consumable/Food/produce.yml   | 4 ++--
+ .../Prototypes/Entities/Structures/Specific/Anomaly/cores.yml | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Resources/Prototypes/Entities/Objects/Consumable/Food/produce.yml b/Resources/Prototypes/Entities/Objects/Consumable/Food/produce.yml
+index b0eaa06895..a1a1e19d0f 100644
+--- a/Resources/Prototypes/Entities/Objects/Consumable/Food/produce.yml
++++ b/Resources/Prototypes/Entities/Objects/Consumable/Food/produce.yml
+@@ -2417,7 +2417,7 @@
+   - type: Extractable
+     grindableSolutionName: food
+   - type: Seed
+-    seedId: bungo
++    plantProtoId: BungoPlants
+   - type: SpaceGarbage
+   - type: BadFood
+ 
+@@ -2720,7 +2720,7 @@
+   - type: Extractable
+     grindableSolutionName: food
+   - type: Seed
+-    seedId: cherry
++    plantProtoId: CherryPlants
+   - type: SpaceGarbage
+   - type: BadFood
+ 
+diff --git a/Resources/Prototypes/Entities/Structures/Specific/Anomaly/cores.yml b/Resources/Prototypes/Entities/Structures/Specific/Anomaly/cores.yml
+index 492ab11f0c..721c1e243a 100644
+--- a/Resources/Prototypes/Entities/Structures/Specific/Anomaly/cores.yml
++++ b/Resources/Prototypes/Entities/Structures/Specific/Anomaly/cores.yml
+@@ -149,7 +149,7 @@
+   suffix: Flora
+   components:
+   - type: Seed
+-    seedId: anomalyBerry
++    plantProtoId: AnomalyBerryPlants
+   - type: Sprite
+     sprite: Structures/Specific/Anomalies/Cores/flora_core.rsi
+   - type: PointLight
+@@ -325,7 +325,7 @@
+   suffix: Flora, Inert
+   components:
+   - type: Seed
+-    seedId: anomalyBerry
++    plantProtoId: AnomalyBerryPlants
+   - type: Sprite
+     sprite: Structures/Specific/Anomalies/Cores/flora_core.rsi
+   - type: PointLight
+-- 
+2.55.0
+

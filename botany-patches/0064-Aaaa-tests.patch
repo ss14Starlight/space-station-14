@@ -1,0 +1,56 @@
+From c0706b8a2c8f2076aa4e859c598c4e6b45195d8c Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Wed, 17 Dec 2025 02:21:00 +0200
+Subject: [PATCH 064/112] Aaaa tests
+
+---
+ Content.Server/Botany/Systems/SeedExtractorSystem.cs | 8 ++------
+ Resources/Prototypes/Hydroponics/plants.yml          | 2 --
+ 2 files changed, 2 insertions(+), 8 deletions(-)
+
+diff --git a/Content.Server/Botany/Systems/SeedExtractorSystem.cs b/Content.Server/Botany/Systems/SeedExtractorSystem.cs
+index 33753e5cfc..9573ebb259 100644
+--- a/Content.Server/Botany/Systems/SeedExtractorSystem.cs
++++ b/Content.Server/Botany/Systems/SeedExtractorSystem.cs
+@@ -32,12 +32,11 @@ private void OnInteractUsing(EntityUid uid, SeedExtractorComponent seedExtractor
+         if (produce.PlantProtoId == null)
+             return;
+ 
+-        var protoId = produce.PlantProtoId;
+         ComponentRegistry? snapshot = null;
+         if (produce.PlantData != null)
+             snapshot = produce.PlantData;
+ 
+-        if (snapshot != null && _botany.TryGetPlantComponent<PlantTraitsComponent>(snapshot, protoId, out var traits) && traits.Seedless)
++        if (_botany.TryGetPlantComponent<PlantTraitsComponent>(snapshot, produce.PlantProtoId, out var traits) && traits.Seedless)
+         {
+             _popup.PopupCursor(Loc.GetString("seed-extractor-component-no-seeds", ("name", args.Used)),
+                 args.User, PopupType.MediumCaution);
+@@ -55,10 +54,7 @@ private void OnInteractUsing(EntityUid uid, SeedExtractorComponent seedExtractor
+ 
+         for (var i = 0; i < amount; i++)
+         {
+-            if (snapshot == null)
+-                _botany.SpawnSeedPacketFromSnapshot(null, protoId.Value, coords, args.User);
+-            else
+-                _botany.SpawnSeedPacketFromSnapshot(snapshot, protoId.Value, coords, args.User);
++            _botany.SpawnSeedPacketFromSnapshot(snapshot, produce.PlantProtoId.Value, coords, args.User);
+         }
+     }
+ }
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index 7db4da83cb..6dd42f1f75 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -1131,8 +1131,6 @@
+     yield: 2
+     potency: 20
+     growthStages: 3
+-    yield: 2
+-    potency: 20
+   - type: BasicGrowth
+     waterConsumption: 0.4
+   - type: AtmosphericGrowth
+-- 
+2.55.0
+

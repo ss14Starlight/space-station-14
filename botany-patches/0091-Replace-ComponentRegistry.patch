@@ -1,0 +1,390 @@
+From 48ce8108238abdaf1aab975148e724401c14b797 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 9 Jul 2026 00:10:04 +0300
+Subject: [PATCH 091/112] Replace ComponentRegistry
+
+---
+ .../Botany/Events/PlantPollinateEvent.cs      |  4 +-
+ .../Items/Components/BotanySwabComponent.cs   |  6 +-
+ .../Items/Components/ProduceComponent.cs      |  6 +-
+ .../Botany/Items/Components/SeedComponent.cs  |  6 +-
+ .../Botany/Items/Systems/BotanySeedSystem.cs  |  6 +-
+ .../Botany/Items/Systems/BotanySwabSystem.cs  |  5 +-
+ .../Botany/Systems/BotanySystem.Seed.cs       | 87 +++++++++++++------
+ .../Botany/Systems/MutationSystem.cs          | 21 +++--
+ .../Botany/Systems/SeedExtractorSystem.cs     |  2 +-
+ 9 files changed, 91 insertions(+), 52 deletions(-)
+
+diff --git a/Content.Shared/Botany/Events/PlantPollinateEvent.cs b/Content.Shared/Botany/Events/PlantPollinateEvent.cs
+index a95ecba307..3ef5ec65c3 100644
+--- a/Content.Shared/Botany/Events/PlantPollinateEvent.cs
++++ b/Content.Shared/Botany/Events/PlantPollinateEvent.cs
+@@ -4,7 +4,7 @@ namespace Content.Shared.Botany.Events;
+ 
+ /// <summary>
+ /// Raised on the target plant entity when a swab cross-pollination happens.
+-/// Carries the pollen component snapshot and the pollen prototype id.
++/// Carries the pollen snapshot entity and the pollen prototype id.
+ /// </summary>
+ [ByRefEvent]
+-public readonly record struct PlantCrossPollinateEvent(ComponentRegistry PollenData, EntProtoId? PollenProtoId);
++public readonly record struct PlantCrossPollinateEvent(EntityUid PollenData, EntProtoId? PollenProtoId);
+diff --git a/Content.Shared/Botany/Items/Components/BotanySwabComponent.cs b/Content.Shared/Botany/Items/Components/BotanySwabComponent.cs
+index 9372b40f09..bb38b80d4c 100644
+--- a/Content.Shared/Botany/Items/Components/BotanySwabComponent.cs
++++ b/Content.Shared/Botany/Items/Components/BotanySwabComponent.cs
+@@ -24,8 +24,8 @@ public sealed partial class BotanySwabComponent : Component
+     public EntProtoId? PlantProtoId;
+ 
+     /// <summary>
+-    /// Serialized snapshot of plant components from the last swabbed plant.
++    /// Hidden entity with cloned plant components from the last swabbed plant.
+     /// </summary>
+-    [DataField]
+-    public ComponentRegistry? PlantData;
++    [DataField, AutoNetworkedField]
++    public EntityUid? PlantData;
+ }
+diff --git a/Content.Shared/Botany/Items/Components/ProduceComponent.cs b/Content.Shared/Botany/Items/Components/ProduceComponent.cs
+index c0838eb182..714c04c67b 100644
+--- a/Content.Shared/Botany/Items/Components/ProduceComponent.cs
++++ b/Content.Shared/Botany/Items/Components/ProduceComponent.cs
+@@ -18,11 +18,11 @@ public sealed partial class ProduceComponent : Component
+     public EntProtoId? PlantProtoId;
+ 
+     /// <summary>
+-    /// Serialized snapshot of plant components.
++    /// Hidden entity with cloned plant components.
+     /// Used to create a <see cref="SeedComponent"/> when this produce has its seeds extracted.
+     /// </summary>
+-    [DataField]
+-    public ComponentRegistry? PlantData;
++    [DataField, AutoNetworkedField]
++    public EntityUid? PlantData;
+ 
+     /// <summary>
+     /// Name of the solution container that holds the produce's contents.
+diff --git a/Content.Shared/Botany/Items/Components/SeedComponent.cs b/Content.Shared/Botany/Items/Components/SeedComponent.cs
+index 084209fa8d..2429bffd05 100644
+--- a/Content.Shared/Botany/Items/Components/SeedComponent.cs
++++ b/Content.Shared/Botany/Items/Components/SeedComponent.cs
+@@ -18,10 +18,10 @@ public sealed partial class SeedComponent : Component
+     public EntProtoId PlantProtoId;
+ 
+     /// <summary>
+-    /// Serialized snapshot of plant components used to override defaults when planting.
++    /// Hidden entity with cloned plant components used to override defaults when planting.
+     /// </summary>
+-    [DataField]
+-    public ComponentRegistry? PlantData;
++    [DataField, AutoNetworkedField]
++    public EntityUid? PlantData;
+ 
+     /// <summary>
+     /// If not null, overrides the plant's initial health. Otherwise, the plant's initial health is set to the Endurance value.
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
+index 1294425eff..74bad48707 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
+@@ -17,10 +17,10 @@ namespace Content.Shared.Botany.Items.Systems;
+ public sealed class BotanySeedSystem : EntitySystem
+ {
+     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
++    [Dependency] private readonly BotanySystem _botany = default!;
+     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+     [Dependency] private readonly PlantTraySystem _plantTray = default!;
+     [Dependency] private readonly SharedPopupSystem _popup = default!;
+-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+ 
+     public override void Initialize()
+     {
+@@ -55,7 +55,9 @@ private void OnPlantingSeedAttempt(Entity<PlantTrayComponent> ent, ref PlantingS
+             return;
+         }
+ 
+-        var plantUid = EntityManager.PredictedSpawn(args.Seed.Comp.PlantProtoId, _transform.GetMapCoordinates(ent.Owner), args.Seed.Comp.PlantData);
++        var plantUid = PredictedSpawnAtPosition(args.Seed.Comp.PlantProtoId, Transform(ent.Owner).Coordinates);
++        _botany.ApplyPlantSnapshotData(args.Seed.Comp.PlantData, plantUid);
++
+         if (!TryComp<PlantDataComponent>(plantUid, out var plantData))
+             return;
+ 
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs
+index dcd718c438..f2ae2e9f01 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs
+@@ -77,10 +77,11 @@ private void OnDoAfter(Entity<BotanySwabComponent> ent, ref BotanySwabDoAfterEve
+         }
+         else
+         {
+-            _mutation.CrossMutations(ent.Comp.PlantData, ent.Comp.PlantProtoId, targetPlant);
++            var pollenData = ent.Comp.PlantData.Value;
++            _mutation.CrossMutations(pollenData, ent.Comp.PlantProtoId, targetPlant);
+ 
+             // Notify growth systems to apply their per-component cross logic.
+-            var crossEv = new PlantCrossPollinateEvent(ent.Comp.PlantData, ent.Comp.PlantProtoId);
++            var crossEv = new PlantCrossPollinateEvent(pollenData, ent.Comp.PlantProtoId);
+             RaiseLocalEvent(targetPlant, ref crossEv);
+ 
+             // Swap: store old target pollen on the swab, apply cross to the target using swab pollen.
+diff --git a/Content.Shared/Botany/Systems/BotanySystem.Seed.cs b/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
+index 06036286fa..5e31f1a20b 100644
+--- a/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
+@@ -7,10 +7,10 @@
+ using Content.Shared.Examine;
+ using Content.Shared.Hands.EntitySystems;
+ using Content.Shared.Random;
++using Robust.Shared.GameStates;
+ using Robust.Shared.Map;
+ using Robust.Shared.Prototypes;
+ using Robust.Shared.Random;
+-using Robust.Shared.Serialization.Manager;
+ 
+ namespace Content.Shared.Botany.Systems;
+ 
+@@ -19,7 +19,6 @@ public sealed partial class BotanySystem : EntitySystem
+     [Dependency] private readonly IComponentFactory _componentFactory = default!;
+     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+     [Dependency] private readonly IRobustRandom _random = default!;
+-    [Dependency] private readonly ISerializationManager _serialization = default!;
+     [Dependency] private readonly MetaDataSystem _metaData = default!;
+     [Dependency] private readonly PlantSystem _plant = default!;
+     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+@@ -27,6 +26,7 @@ public sealed partial class BotanySystem : EntitySystem
+     [Dependency] private readonly SharedCloningSystem _cloning = default!;
+     [Dependency] private readonly SharedHandsSystem _hands = default!;
+     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
++    [Dependency] private readonly SharedPvsOverrideSystem _pvs = default!;
+ 
+     public readonly ProtoId<CloningSettingsPrototype> SettingsId = "PlantClone";
+     public readonly ProtoId<CloningSettingsPrototype> LifecycleSettingsId = "PlantLifecycleClone";
+@@ -37,6 +37,10 @@ public override void Initialize()
+ 
+         SubscribeLocalEvent<SeedComponent, ExaminedEvent>(OnExamined);
+         SubscribeLocalEvent<ProduceComponent, ExaminedEvent>(OnProduceExamined);
++
++        SubscribeLocalEvent<SeedComponent, ComponentShutdown>(OnSeedShutdown);
++        SubscribeLocalEvent<ProduceComponent, ComponentShutdown>(OnProduceShutdown);
++        SubscribeLocalEvent<BotanySwabComponent, ComponentShutdown>(OnSwabShutdown);
+     }
+ 
+     private void OnExamined(EntityUid uid, SeedComponent component, ExaminedEvent args)
+@@ -64,12 +68,12 @@ private void OnExamined(EntityUid uid, SeedComponent component, ExaminedEvent ar
+     /// <param name="plantProtoId">The prototype ID to get the component from.</param>
+     /// <param name="plant">The plant component if found.</param>
+     [PublicAPI]
+-    public bool TryGetPlantComponent<T>(ComponentRegistry? snapshot, EntProtoId? plantProtoId, [NotNullWhen(true)] out T? plant)
++    public bool TryGetPlantComponent<T>(EntityUid? snapshot, EntProtoId? plantProtoId, [NotNullWhen(true)] out T? plant)
+         where T : class, IComponent, new()
+     {
+         plant = null;
+ 
+-        if (snapshot != null && snapshot.TryGetComponent(_componentFactory, out plant))
++        if (snapshot != null && TryComp(snapshot, out plant))
+             return true;
+ 
+         if (plantProtoId == null)
+@@ -87,34 +91,48 @@ public bool TryGetPlantComponent<T>(ComponentRegistry? snapshot, EntProtoId? pla
+     /// <param name="source">The entity to clone the snapshot from.</param>
+     /// <param name="cloneLifecycle">If true, also clone lifecycle state into the snapshot.</param>
+     [PublicAPI]
+-    public ComponentRegistry ClonePlantSnapshotData(EntityUid source, bool cloneLifecycle = false)
++    public EntityUid ClonePlantSnapshotData(EntityUid source, bool cloneLifecycle = false)
+     {
+-        var snap = new ComponentRegistry();
+-
+         var settingsId = cloneLifecycle ? LifecycleSettingsId : SettingsId;
+         if (!_prototypeManager.TryIndex(settingsId, out var settings))
+-            return snap;
++            return EntityUid.Invalid;
+ 
+-        // Create a temporary entity to receive cloned components.
+-        var temp = EntityManager.CreateEntityUninitialized(null);
++        var snapshot = EntityManager.CreateEntityUninitialized(null);
++        _cloning.CloneComponents(source, snapshot, settings);
++        EntityManager.InitializeAndStartEntity(snapshot, doMapInit: false);
++        _pvs.AddGlobalOverride(snapshot);
++        return snapshot;
++    }
+ 
+-        _cloning.CloneComponents(source, temp, settings);
++    /// <summary>
++    /// Deletes a stored plant snapshot, if one exists.
++    /// </summary>
++    [PublicAPI]
++    public void DeletePlantSnapshot(EntityUid? snapshot)
++    {
++        if (snapshot == null)
++            return;
+ 
+-        // Copy the components to the snapshot.
+-        foreach (var comp in EntityManager.GetComponents(temp))
+-        {
+-            if (comp is not Component component)
+-                continue;
++        PredictedQueueDel(snapshot.Value);
++    }
+ 
+-            var compName = _componentFactory.GetComponentName(component.GetType());
+-            var copied = _serialization.CreateCopy(component, notNullableOverride: true);
+-            snap[compName] = new EntityPrototype.ComponentRegistryEntry(copied, []);
+-        }
++    /// <summary>
++    /// Applies the component data stored in a plant snapshot to a target entity.
++    /// </summary>
++    /// <param name="snapshot">The snapshot entity to copy component data from.</param>
++    /// <param name="target">The entity to apply the snapshot data to.</param>
++    /// <param name="cloneLifecycle">If true, also copy lifecycle state.</param>
++    [PublicAPI]
++    public void ApplyPlantSnapshotData(EntityUid? snapshot, EntityUid target, bool cloneLifecycle = false)
++    {
++        if (snapshot == null)
++            return;
+ 
+-        // Delete the temporary entity.
+-        EntityManager.DeleteEntity(temp);
++        var settingsId = cloneLifecycle ? LifecycleSettingsId : SettingsId;
++        if (!_prototypeManager.TryIndex(settingsId, out var settings))
++            return;
+ 
+-        return snap;
++        _cloning.CloneComponents(snapshot.Value, target, settings);
+     }
+ 
+     /// <summary>
+@@ -136,7 +154,7 @@ public EntityUid SpawnSeedPacketFromPlant(EntityUid sourcePlant, EntityCoordinat
+     /// Spawns a seed packet that stores a component snapshot of <paramref name="snapshot"/>.
+     /// </summary>
+     [PublicAPI]
+-    public EntityUid SpawnSeedPacketFromSnapshot(ComponentRegistry? snapshot, EntProtoId plantProtoId, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
++    public EntityUid SpawnSeedPacketFromSnapshot(EntityUid? snapshot, EntProtoId plantProtoId, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
+     {
+         if (!TryGetPlantComponent<PlantDataComponent>(snapshot, plantProtoId, out var plantData))
+             return EntityUid.Invalid;
+@@ -157,7 +175,7 @@ public EntityUid SpawnSeedPacketFromSnapshot(ComponentRegistry? snapshot, EntPro
+     private EntityUid SpawnSeedPacketInternal(
+         PlantDataComponent plantData,
+         EntProtoId plantProtoId,
+-        ComponentRegistry? snapshot,
++        EntityUid? snapshot,
+         EntityCoordinates coords,
+         EntityUid user,
+         float? healthOverride)
+@@ -165,8 +183,8 @@ private EntityUid SpawnSeedPacketInternal(
+         var seedItem = PredictedSpawnAtPosition(plantData.PacketPrototype, coords);
+         var seedComp = EnsureComp<SeedComponent>(seedItem);
+         seedComp.PlantProtoId = plantProtoId;
+-        seedComp.PlantData = snapshot != null
+-            ? _serialization.CreateCopy(snapshot, notNullableOverride: true)
++        seedComp.PlantData = snapshot.HasValue
++            ? ClonePlantSnapshotData(snapshot.Value)
+             : null;
+         seedComp.HealthOverride = healthOverride;
+         Dirty(seedItem, seedComp);
+@@ -178,4 +196,19 @@ private EntityUid SpawnSeedPacketInternal(
+         _hands.TryPickupAnyHand(user, seedItem);
+         return seedItem;
+     }
++
++    private void OnSeedShutdown(Entity<SeedComponent> ent, ref ComponentShutdown args)
++    {
++        DeletePlantSnapshot(ent.Comp.PlantData);
++    }
++
++    private void OnProduceShutdown(Entity<ProduceComponent> ent, ref ComponentShutdown args)
++    {
++        DeletePlantSnapshot(ent.Comp.PlantData);
++    }
++
++    private void OnSwabShutdown(Entity<BotanySwabComponent> ent, ref ComponentShutdown args)
++    {
++        DeletePlantSnapshot(ent.Comp.PlantData);
++    }
+ }
+diff --git a/Content.Shared/Botany/Systems/MutationSystem.cs b/Content.Shared/Botany/Systems/MutationSystem.cs
+index b08e1c714e..6c8f3198ef 100644
+--- a/Content.Shared/Botany/Systems/MutationSystem.cs
++++ b/Content.Shared/Botany/Systems/MutationSystem.cs
+@@ -10,6 +10,7 @@
+ using Robust.Shared.Prototypes;
+ using Robust.Shared.Random;
+ using Robust.Shared.Timing;
++using Robust.Shared.Serialization.Manager;
+ 
+ namespace Content.Shared.Botany.Systems;
+ 
+@@ -21,10 +22,10 @@ public sealed class MutationSystem : EntitySystem
+     [Dependency] private readonly BotanySystem _botany = default!;
+     [Dependency] private readonly IGameTiming _timing = default!;
+     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
++    [Dependency] private readonly ISerializationManager _serialization = default!;
+     [Dependency] private readonly PlantSystem _plant = default!;
+     [Dependency] private readonly PlantTraySystem _plantTray = default!;
+     [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
+-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+     [Dependency] private readonly IComponentFactory _componentFactory = default!;
+ 
+     public override void Initialize()
+@@ -70,7 +71,10 @@ public void SpeciesChange(Entity<PlantDataComponent?> oldPlant, EntProtoId newPl
+ 
+         // Clone state via snapshot and apply to new plant.
+         var snapshot = _botany.ClonePlantSnapshotData(oldPlant.Owner, cloneLifecycle: true);
+-        var newPlantUid = EntityManager.PredictedSpawn(newPlantProto, _transform.GetMapCoordinates(oldPlant.Owner), snapshot);
++        var newPlantUid = PredictedSpawnAtPosition(newPlantProto, Transform(oldPlant.Owner).Coordinates);
++        _botany.ApplyPlantSnapshotData(snapshot, newPlantUid, cloneLifecycle: true);
++        _botany.DeletePlantSnapshot(snapshot);
++
+         ChemicalsSpeciesChange(newPlantUid, newPlantProto);
+ 
+         if (_plant.TryGetTray(oldPlant.Owner, out var trayEnt))
+@@ -106,7 +110,7 @@ private void ChemicalsSpeciesChange(EntityUid plantUid, EntProtoId plantProto)
+     }
+ 
+     [PublicAPI]
+-    public void CrossMutations(ComponentRegistry pollenPlant, EntProtoId? pollenProtoId, EntityUid targetPlant)
++    public void CrossMutations(EntityUid pollenPlant, EntProtoId? pollenProtoId, EntityUid targetPlant)
+     {
+         if (!_botany.TryGetPlantComponent<PlantComponent>(pollenPlant, pollenProtoId, out var pollenCore) ||
+             !TryComp<PlantComponent>(targetPlant, out var targetCore))
+@@ -218,19 +222,18 @@ public void CrossBool(ref bool val, bool other)
+     }
+ 
+     [PublicAPI]
+-    public void CrossTrait(EntityUid val, ComponentRegistry pollenData)
++    public void CrossTrait(EntityUid val, EntityUid pollenData)
+     {
+-        foreach (var (componentName, _) in pollenData)
++        foreach (var component in EntityManager.GetComponents(pollenData))
+         {
+-            var newComponent = _componentFactory.GetComponent(componentName);
+-            if (newComponent is not PlantTraitsComponent)
++            if (component is not PlantTraitsComponent)
+                 continue;
+ 
+-            if (HasComp(val, newComponent.GetType()))
++            if (HasComp(val, component.GetType()))
+                 continue;
+ 
+             if (Random(0.5f))
+-                AddComp(val, newComponent);
++                AddComp(val, _serialization.CreateCopy(component, notNullableOverride: true));
+         }
+     }
+ 
+diff --git a/Content.Shared/Botany/Systems/SeedExtractorSystem.cs b/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
+index 8100bf23ca..b8c6464e63 100644
+--- a/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
++++ b/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
+@@ -35,7 +35,7 @@ private void OnInteractUsing(Entity<SeedExtractorComponent> ent, ref InteractUsi
+         if (produce.PlantProtoId == null)
+             return;
+ 
+-        ComponentRegistry? snapshot = null;
++        EntityUid? snapshot = null;
+         if (produce.PlantData != null)
+             snapshot = produce.PlantData;
+ 
+-- 
+2.55.0
+

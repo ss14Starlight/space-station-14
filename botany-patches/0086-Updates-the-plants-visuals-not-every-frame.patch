@@ -1,0 +1,345 @@
+From 4461946ba5e46a8ba1d592f7400b2e7c2e424fc4 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sun, 1 Mar 2026 17:31:36 +0200
+Subject: [PATCH 086/112] Updates the plants visuals not every frame
+
+---
+ .../Botany/PlantVisualizerSystem.cs           | 53 +++++++++++++------
+ Content.Client/Botany/PotencyVisualsSystem.cs |  3 +-
+ .../Components/AtmosphericGrowthComponent.cs  |  4 +-
+ .../Botany/Components/BasicGrowthComponent.cs |  2 +-
+ .../ConsumeExudeGasGrowthComponent.cs         |  2 +-
+ .../Components/PlantChemicalsComponent.cs     |  4 +-
+ .../Botany/Components/PlantComponent.cs       |  2 +-
+ .../Botany/Components/PlantDataComponent.cs   |  1 -
+ .../Components/PlantHarvestComponent.cs       |  4 +-
+ .../Botany/Components/PlantHolderComponent.cs |  2 +-
+ .../Botany/Components/PlantToxinsComponent.cs |  2 +-
+ .../Components/SeedExtractorComponent.cs      |  5 +-
+ .../Components/WeedPestGrowthComponent.cs     |  3 +-
+ .../Items/Components/BotanyHoeComponent.cs    |  2 +-
+ .../Components/BotanySampleTakerComponent.cs  |  2 +-
+ .../Items/Components/BotanySwabComponent.cs   |  2 +-
+ .../Items/Components/ProduceComponent.cs      |  2 +-
+ .../Botany/Items/Components/SeedComponent.cs  |  2 +-
+ 18 files changed, 60 insertions(+), 37 deletions(-)
+
+diff --git a/Content.Client/Botany/PlantVisualizerSystem.cs b/Content.Client/Botany/PlantVisualizerSystem.cs
+index e86671928e..7c37d15be9 100644
+--- a/Content.Client/Botany/PlantVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantVisualizerSystem.cs
+@@ -16,17 +16,10 @@ public override void Initialize()
+         base.Initialize();
+ 
+         SubscribeLocalEvent<PlantVisualsComponent, ComponentInit>(OnComponentInit);
+-    }
+-
+-    public override void FrameUpdate(float frameTime)
+-    {
+-        base.FrameUpdate(frameTime);
+-
+-        var query = EntityQueryEnumerator<PlantVisualsComponent, PlantComponent, PlantHarvestComponent, SpriteComponent>();
+-        while (query.MoveNext(out var uid, out _, out var plant, out var harvest, out var sprite))
+-        {
+-            UpdateSprite((uid, plant), harvest, sprite);
+-        }
++        SubscribeLocalEvent<PlantVisualsComponent, ComponentStartup>(OnComponentStartup);
++        SubscribeLocalEvent<PlantComponent, AfterAutoHandleStateEvent>(OnPlantState);
++        SubscribeLocalEvent<PlantHarvestComponent, AfterAutoHandleStateEvent>(OnHarvestState);
++        SubscribeLocalEvent<PlantHolderComponent, AfterAutoHandleStateEvent>(OnHolderState);
+     }
+ 
+     private void OnComponentInit(EntityUid uid, PlantVisualsComponent component, ComponentInit args)
+@@ -40,13 +33,40 @@ private void OnComponentInit(EntityUid uid, PlantVisualsComponent component, Com
+         SpriteSystem.LayerSetVisible((uid, sprite), PlantLayers.Plant, false);
+     }
+ 
+-    private void UpdateSprite(Entity<PlantComponent> ent, PlantHarvestComponent harvest, SpriteComponent sprite)
++    private void OnComponentStartup(Entity<PlantVisualsComponent> ent, ref ComponentStartup args)
++    {
++        UpdateSprite(ent.Owner);
++    }
++
++    private void OnPlantState(Entity<PlantComponent> ent, ref AfterAutoHandleStateEvent args)
++    {
++        UpdateSprite(ent.Owner);
++    }
++
++    private void OnHarvestState(Entity<PlantHarvestComponent> ent, ref AfterAutoHandleStateEvent args)
++    {
++        UpdateSprite(ent.Owner);
++    }
++
++    private void OnHolderState(Entity<PlantHolderComponent> ent, ref AfterAutoHandleStateEvent args)
+     {
++        UpdateSprite(ent.Owner);
++    }
++
++    private void UpdateSprite(EntityUid plantUid)
++    {
++        if (!HasComp<PlantVisualsComponent>(plantUid)
++            || !TryComp<PlantHarvestComponent>(plantUid, out var harvest)
++            || !TryComp<SpriteComponent>(plantUid, out var sprite))
++        {
++            return;
++        }
++
+         string state;
+ 
+-        var dead = _plantHolder.IsDead(ent.Owner);
++        var dead = _plantHolder.IsDead(plantUid);
+         var harvestReady = harvest.ReadyForHarvest;
+-        var growthStage = _plantSystem.GetGrowthStageValue(ent.AsNullable());
++        var growthStage = _plantSystem.GetGrowthStageValue(plantUid);
+ 
+         if (dead)
+             state = "dead";
+@@ -55,8 +75,9 @@ private void UpdateSprite(Entity<PlantComponent> ent, PlantHarvestComponent harv
+         else
+             state = $"stage-{growthStage}";
+ 
+-        SpriteSystem.LayerSetVisible((ent.Owner, sprite), PlantLayers.Plant, true);
+-        SpriteSystem.LayerSetRsiState((ent.Owner, sprite), PlantLayers.Plant, state);
++        var layer = SpriteSystem.LayerMapReserve((plantUid, sprite), PlantLayers.Plant);
++        SpriteSystem.LayerSetVisible((plantUid, sprite), layer, true);
++        SpriteSystem.LayerSetRsiState((plantUid, sprite), layer, state);
+     }
+ }
+ 
+diff --git a/Content.Client/Botany/PotencyVisualsSystem.cs b/Content.Client/Botany/PotencyVisualsSystem.cs
+index 93b2b7e7c7..9edc1a5f36 100644
+--- a/Content.Client/Botany/PotencyVisualsSystem.cs
++++ b/Content.Client/Botany/PotencyVisualsSystem.cs
+@@ -14,7 +14,8 @@ protected override void OnAppearanceChange(EntityUid uid, PotencyVisualsComponen
+ 
+         if (AppearanceSystem.TryGetData<float>(uid, ProduceVisuals.Potency, out var potency, args.Component))
+         {
+-            var scale = MathHelper.Lerp(component.MinimumScale, component.MaximumScale, potency / 100);
++            var potencyRatio = Math.Clamp(potency / 100f, 0f, 1f);
++            var scale = MathHelper.Lerp(component.MinimumScale, component.MaximumScale, potencyRatio);
+             SpriteSystem.SetScale((uid, args.Sprite), new Vector2(scale, scale));
+         }
+     }
+diff --git a/Content.Shared/Botany/Components/AtmosphericGrowthComponent.cs b/Content.Shared/Botany/Components/AtmosphericGrowthComponent.cs
+index 70e60a6ebd..e0a28be66f 100644
+--- a/Content.Shared/Botany/Components/AtmosphericGrowthComponent.cs
++++ b/Content.Shared/Botany/Components/AtmosphericGrowthComponent.cs
+@@ -4,9 +4,9 @@
+ namespace Content.Shared.Botany.Components;
+ 
+ /// <summary>
+-/// Atmospheric-related requirements for proper entity growth. Used in botany.
++/// Component for atmospheric-related requirements for proper plant growth.
+ /// </summary>
+-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
++[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
+ [Access(typeof(SharedAtmosphericGrowthSystem))]
+ public sealed partial class AtmosphericGrowthComponent : Component
+ {
+diff --git a/Content.Shared/Botany/Components/BasicGrowthComponent.cs b/Content.Shared/Botany/Components/BasicGrowthComponent.cs
+index cb4c60cd5f..ec2783d9c1 100644
+--- a/Content.Shared/Botany/Components/BasicGrowthComponent.cs
++++ b/Content.Shared/Botany/Components/BasicGrowthComponent.cs
+@@ -4,7 +4,7 @@
+ namespace Content.Shared.Botany.Components;
+ 
+ /// <summary>
+-/// Basic parameters for plant growth.
++/// Component for basic parameters for plant growth.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
+ [Access(typeof(BasicGrowthSystem))]
+diff --git a/Content.Shared/Botany/Components/ConsumeExudeGasGrowthComponent.cs b/Content.Shared/Botany/Components/ConsumeExudeGasGrowthComponent.cs
+index cd23024960..e2f314b1e1 100644
+--- a/Content.Shared/Botany/Components/ConsumeExudeGasGrowthComponent.cs
++++ b/Content.Shared/Botany/Components/ConsumeExudeGasGrowthComponent.cs
+@@ -5,7 +5,7 @@
+ namespace Content.Shared.Botany.Components;
+ 
+ /// <summary>
+-/// Data for gas to consume/exude on plant growth.
++/// Component for gas to consume/exude on plant growth.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
+ [Access(typeof(SharedConsumeExudeGasGrowthSystem))]
+diff --git a/Content.Shared/Botany/Components/PlantChemicalsComponent.cs b/Content.Shared/Botany/Components/PlantChemicalsComponent.cs
+index 37df60d2ab..9d833e0f37 100644
+--- a/Content.Shared/Botany/Components/PlantChemicalsComponent.cs
++++ b/Content.Shared/Botany/Components/PlantChemicalsComponent.cs
+@@ -8,9 +8,9 @@
+ namespace Content.Shared.Botany.Components;
+ 
+ /// <summary>
+-/// Defines what reagents harvested produce will contain for this plant species.
++/// Component for defining what reagents harvested produce will contain for this plant species.
+ /// </summary>
+-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
++[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
+ [Access(typeof(PlantChemicalsSystem))]
+ public sealed partial class PlantChemicalsComponent : Component
+ {
+diff --git a/Content.Shared/Botany/Components/PlantComponent.cs b/Content.Shared/Botany/Components/PlantComponent.cs
+index 7ab108b536..fb0f4bcd46 100644
+--- a/Content.Shared/Botany/Components/PlantComponent.cs
++++ b/Content.Shared/Botany/Components/PlantComponent.cs
+@@ -7,7 +7,7 @@ namespace Content.Shared.Botany.Components;
+ /// <summary>
+ /// Component for storing plant growth data.
+ /// </summary>
+-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
++[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)]
+ [Access(typeof(PlantSystem), typeof(MutationSystem))]
+ public sealed partial class PlantComponent : Component
+ {
+diff --git a/Content.Shared/Botany/Components/PlantDataComponent.cs b/Content.Shared/Botany/Components/PlantDataComponent.cs
+index e5ce325210..2d38d2759c 100644
+--- a/Content.Shared/Botany/Components/PlantDataComponent.cs
++++ b/Content.Shared/Botany/Components/PlantDataComponent.cs
+@@ -1,7 +1,6 @@
+ using Content.Shared.Database;
+ using Robust.Shared.GameStates;
+ using Robust.Shared.Prototypes;
+-using Robust.Shared.Utility;
+ 
+ namespace Content.Shared.Botany.Components;
+ 
+diff --git a/Content.Shared/Botany/Components/PlantHarvestComponent.cs b/Content.Shared/Botany/Components/PlantHarvestComponent.cs
+index 405ce4f02b..abe0d04b06 100644
+--- a/Content.Shared/Botany/Components/PlantHarvestComponent.cs
++++ b/Content.Shared/Botany/Components/PlantHarvestComponent.cs
+@@ -5,9 +5,9 @@
+ namespace Content.Shared.Botany.Components;
+ 
+ /// <summary>
+-/// Data for plant harvesting process.
++/// Component for plant harvesting process.
+ /// </summary>
+-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
++[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)]
+ [Access(typeof(PlantHarvestSystem))]
+ public sealed partial class PlantHarvestComponent : Component
+ {
+diff --git a/Content.Shared/Botany/Components/PlantHolderComponent.cs b/Content.Shared/Botany/Components/PlantHolderComponent.cs
+index 3b5bb9d65f..e27b6286fd 100644
+--- a/Content.Shared/Botany/Components/PlantHolderComponent.cs
++++ b/Content.Shared/Botany/Components/PlantHolderComponent.cs
+@@ -7,7 +7,7 @@ namespace Content.Shared.Botany.Components;
+ /// <summary>
+ /// Runtime plant lifecycle data. This component is attached to the plant entity.
+ /// </summary>
+-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
++[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true), AutoGenerateComponentPause]
+ [Access(typeof(PlantHolderSystem), typeof(PlantSystem))]
+ public sealed partial class PlantHolderComponent : Component
+ {
+diff --git a/Content.Shared/Botany/Components/PlantToxinsComponent.cs b/Content.Shared/Botany/Components/PlantToxinsComponent.cs
+index bcb33169fc..0491d1a630 100644
+--- a/Content.Shared/Botany/Components/PlantToxinsComponent.cs
++++ b/Content.Shared/Botany/Components/PlantToxinsComponent.cs
+@@ -4,7 +4,7 @@
+ namespace Content.Shared.Botany.Components;
+ 
+ /// <summary>
+-/// Data for plant resistance to toxins.
++/// Component for plant resistance to toxins.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
+ [Access(typeof(PlantToxinsSystem))]
+diff --git a/Content.Shared/Botany/Components/SeedExtractorComponent.cs b/Content.Shared/Botany/Components/SeedExtractorComponent.cs
+index 9a39cfe4ed..33d0c146b2 100644
+--- a/Content.Shared/Botany/Components/SeedExtractorComponent.cs
++++ b/Content.Shared/Botany/Components/SeedExtractorComponent.cs
+@@ -3,7 +3,10 @@
+ 
+ namespace Content.Shared.Botany.Components;
+ 
+-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
++/// <summary>
++/// Component for a machine for extracting seeds from plant produce.
++/// </summary>
++[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
+ [Access(typeof(SeedExtractorSystem))]
+ public sealed partial class SeedExtractorComponent : Component
+ {
+diff --git a/Content.Shared/Botany/Components/WeedPestGrowthComponent.cs b/Content.Shared/Botany/Components/WeedPestGrowthComponent.cs
+index 25c473cccc..fb8eeabfb6 100644
+--- a/Content.Shared/Botany/Components/WeedPestGrowthComponent.cs
++++ b/Content.Shared/Botany/Components/WeedPestGrowthComponent.cs
+@@ -4,8 +4,7 @@
+ namespace Content.Shared.Botany.Components;
+ 
+ /// <summary>
+-/// Data for weed and pest problems which can happen to plants - how well plant tolerates them,
+-/// chances to develop them, how big of a problem they will be.
++/// Component for weed and pest problems which can happen to plants - how well plant tolerates them.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
+ [Access(typeof(WeedPestGrowthSystem))]
+diff --git a/Content.Shared/Botany/Items/Components/BotanyHoeComponent.cs b/Content.Shared/Botany/Items/Components/BotanyHoeComponent.cs
+index 00f351d174..8d08cea7b5 100644
+--- a/Content.Shared/Botany/Items/Components/BotanyHoeComponent.cs
++++ b/Content.Shared/Botany/Items/Components/BotanyHoeComponent.cs
+@@ -4,7 +4,7 @@
+ namespace Content.Shared.Botany.Items.Components;
+ 
+ /// <summary>
+-/// Anything that can be used to use a hoe on a plant.
++/// Component for items that can function as a hoe on plants.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent]
+ [Access(typeof(BotanyHoeSystem))]
+diff --git a/Content.Shared/Botany/Items/Components/BotanySampleTakerComponent.cs b/Content.Shared/Botany/Items/Components/BotanySampleTakerComponent.cs
+index e685b6423a..d105043069 100644
+--- a/Content.Shared/Botany/Items/Components/BotanySampleTakerComponent.cs
++++ b/Content.Shared/Botany/Items/Components/BotanySampleTakerComponent.cs
+@@ -4,7 +4,7 @@
+ namespace Content.Shared.Botany.Items.Components;
+ 
+ /// <summary>
+-/// Anything that can be used to take a sample of a plant.
++/// Component for items that can function as a plant sample taker.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent]
+ [Access(typeof(BotanySampleTakerSystem))]
+diff --git a/Content.Shared/Botany/Items/Components/BotanySwabComponent.cs b/Content.Shared/Botany/Items/Components/BotanySwabComponent.cs
+index 442b50ebeb..9372b40f09 100644
+--- a/Content.Shared/Botany/Items/Components/BotanySwabComponent.cs
++++ b/Content.Shared/Botany/Items/Components/BotanySwabComponent.cs
+@@ -5,7 +5,7 @@
+ namespace Content.Shared.Botany.Items.Components;
+ 
+ /// <summary>
+-/// Anything that can be used to cross-pollinate plants.
++/// Component for items that can function as a plant cross-pollination tool.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+ [Access(typeof(BotanySwabSystem))]
+diff --git a/Content.Shared/Botany/Items/Components/ProduceComponent.cs b/Content.Shared/Botany/Items/Components/ProduceComponent.cs
+index 56c94846a1..c0838eb182 100644
+--- a/Content.Shared/Botany/Items/Components/ProduceComponent.cs
++++ b/Content.Shared/Botany/Items/Components/ProduceComponent.cs
+@@ -5,7 +5,7 @@
+ namespace Content.Shared.Botany.Items.Components;
+ 
+ /// <summary>
+-/// Produce-related data for plant and plant growth cycle.
++/// Component that stores produce data for a plant.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+ [Access(typeof(BotanySystem))]
+diff --git a/Content.Shared/Botany/Items/Components/SeedComponent.cs b/Content.Shared/Botany/Items/Components/SeedComponent.cs
+index 5b1dfff675..084209fa8d 100644
+--- a/Content.Shared/Botany/Items/Components/SeedComponent.cs
++++ b/Content.Shared/Botany/Items/Components/SeedComponent.cs
+@@ -5,7 +5,7 @@
+ namespace Content.Shared.Botany.Items.Components;
+ 
+ /// <summary>
+-/// Data container for plant seed. Contains all info (values for components) for new plant to grow from seed.
++/// Component for a container for plant seed. Contains all info (values for components) for new plant to grow from seed.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+ [Access(typeof(BotanySystem))]
+-- 
+2.55.0
+

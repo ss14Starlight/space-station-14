@@ -1,0 +1,38 @@
+From 5c2e0e3b220c87b86d55927cab098f944a66f5ae Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Tue, 6 Jan 2026 04:28:11 +0200
+Subject: [PATCH 082/112] Update PlantToxinsSystem.cs
+
+---
+ Content.Shared/Botany/Systems/PlantToxinsSystem.cs | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/Content.Shared/Botany/Systems/PlantToxinsSystem.cs b/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
+index 70ff3e7e4f..c0ed2b2064 100644
+--- a/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
+@@ -39,11 +39,17 @@ private void OnPlantGrow(Entity<PlantToxinsComponent> ent, ref OnPlantGrowEvent
+ 
+         var toxinUptake = MathF.Max(1, MathF.Round(holder.Toxins / ent.Comp.ToxinUptakeDivisor));
+         if (holder.Toxins > ent.Comp.ToxinsTolerance)
+-            _plantHolder.AdjustsHealth(ent.Owner, -toxinUptake);
++        {
++            // Get minimum value between health left and toxin uptake.
++            var actualUptake = Math.Min(toxinUptake, holder.Health);
+ 
+-        // there is a possibility that it will remove more toxin than amount of damage it took on plant health (and killed it).
+-        // TODO: get min out of health left and toxin uptake - would work better, probably.
+-        _plantHolder.AdjustsToxins(ent.Owner, -toxinUptake);
++            _plantHolder.AdjustsHealth(ent.Owner, -actualUptake);
++            _plantHolder.AdjustsToxins(ent.Owner, -actualUptake);
++        }
++        else
++        {
++            _plantHolder.AdjustsToxins(ent.Owner, -toxinUptake);
++        }
+     }
+ 
+     /// <summary>
+-- 
+2.55.0
+

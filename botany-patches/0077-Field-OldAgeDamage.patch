@@ -1,0 +1,76 @@
+From 82417d77e1312fee304a9a196ab9e03d83de8f76 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Mon, 5 Jan 2026 15:42:45 +0200
+Subject: [PATCH 077/112] Field OldAgeDamage
+
+---
+ Content.Shared/Botany/Components/PlantComponent.cs          | 6 ++++++
+ Content.Shared/Botany/Systems/BasicGrowthSystem.cs          | 1 +
+ Content.Shared/Botany/Systems/PlantSystem.cs                | 6 +-----
+ Resources/Locale/en-US/botany/components/seed-component.ftl | 2 +-
+ 4 files changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/Content.Shared/Botany/Components/PlantComponent.cs b/Content.Shared/Botany/Components/PlantComponent.cs
+index f542536bea..0ed508cb6a 100644
+--- a/Content.Shared/Botany/Components/PlantComponent.cs
++++ b/Content.Shared/Botany/Components/PlantComponent.cs
+@@ -35,6 +35,12 @@ public sealed partial class PlantComponent : Component
+     [DataField, AutoNetworkedField]
+     public float Lifespan;
+ 
++    /// <summary>
++    /// Damage from old age.
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public float OldAgeDamage = 4f;
++
+     /// <summary>
+     /// The number of growth ticks it takes for a plant to reach its final growth stage.
+     /// </summary>
+diff --git a/Content.Shared/Botany/Systems/BasicGrowthSystem.cs b/Content.Shared/Botany/Systems/BasicGrowthSystem.cs
+index 0b7da7d903..4021369966 100644
+--- a/Content.Shared/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Shared/Botany/Systems/BasicGrowthSystem.cs
+@@ -50,6 +50,7 @@ private void OnPlantGrow(Entity<BasicGrowthComponent> ent, ref OnPlantGrowEvent
+         var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(plantUid).Id);
+         var rand = new System.Random(seed);
+ 
++        // TODO: There are too many magic numbers that don't really make sense to add to the component. Balance needs to be reworked
+         // Advance plant age here.
+         if (holder.SkipAging > 0)
+             _plantHolder.AdjustsSkipAging(plantUid, -1);
+diff --git a/Content.Shared/Botany/Systems/PlantSystem.cs b/Content.Shared/Botany/Systems/PlantSystem.cs
+index 6e5a1e680b..483f39318e 100644
+--- a/Content.Shared/Botany/Systems/PlantSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantSystem.cs
+@@ -51,13 +51,9 @@ private void OnPlantGrow(Entity<PlantComponent> ent, ref OnPlantGrowEvent args)
+         if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder))
+             return;
+ 
+-        // TODO: Replace with RandomPredicted once the engine PR is merged
+-        var seed = SharedRandomExtensions.HashCodeCombine((int)_gameTiming.CurTick.Value, GetNetEntity(ent).Id);
+-        var rand = new System.Random(seed);
+-
+         // Check if plant is too old.
+         if (holder.Age > ent.Comp.Lifespan)
+-            _plantHolder.AdjustsHealth(ent.Owner, -rand.Next(3, 5));
++            _plantHolder.AdjustsHealth(ent.Owner, -ent.Comp.OldAgeDamage);
+     }
+ 
+     private void OnExamined(Entity<PlantComponent> ent, ref ExaminedEvent args)
+diff --git a/Resources/Locale/en-US/botany/components/seed-component.ftl b/Resources/Locale/en-US/botany/components/seed-component.ftl
+index dc89733d75..3ba65be680 100644
+--- a/Resources/Locale/en-US/botany/components/seed-component.ftl
++++ b/Resources/Locale/en-US/botany/components/seed-component.ftl
+@@ -2,7 +2,7 @@
+ 
+ seed-component-description = It looks like you can grow [color=yellow]{$seedName}[/color] from these.
+ seed-component-has-variety-tag = It's tagged as variety [color=lightgray]no. {$seedUid}[/color].
+-seed-component-plant-yield-text = Plant Yield:      [color=lightblue]{$seedYield}[/color]
++seed-component-plant-yield-text = Plant Yield:       [color=lightblue]{$seedYield}[/color]
+ seed-component-plant-potency-text = Plant Potency: [color=lightblue]{$seedPotency}[/color]
+ 
+ botany-seed-packet-name = packet of {$seedName} {$seedNoun}
+-- 
+2.55.0
+

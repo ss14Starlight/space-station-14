@@ -1,0 +1,191 @@
+From fa97d2e3203cad73a91599e3a6d6fea7df515754 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Wed, 17 Dec 2025 01:26:40 +0200
+Subject: [PATCH 062/112] YAMLLinter part 2
+
+---
+ .../Botany/Components/BotanySwabComponent.cs  |  2 +-
+ .../Botany/Components/ProduceComponent.cs     |  2 +-
+ .../Botany/Systems/BotanySwabSystem.cs        |  4 +-
+ .../Botany/Systems/BotanySystem.Seed.cs       |  2 +-
+ .../Botany/Systems/SeedExtractorSystem.cs     | 15 ++++---
+ Resources/Prototypes/Hydroponics/plants.yml   | 42 +++++++++----------
+ 6 files changed, 35 insertions(+), 32 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/BotanySwabComponent.cs b/Content.Server/Botany/Components/BotanySwabComponent.cs
+index 97a9eb3504..468f5b420f 100644
+--- a/Content.Server/Botany/Components/BotanySwabComponent.cs
++++ b/Content.Server/Botany/Components/BotanySwabComponent.cs
+@@ -18,7 +18,7 @@ public sealed partial class BotanySwabComponent : Component
+     /// Name of a base plant prototype for the stored pollen snapshot.
+     /// </summary>
+     [DataField]
+-    public EntProtoId PlantProtoId;
++    public EntProtoId? PlantProtoId;
+ 
+     /// <summary>
+     /// Serialized snapshot of plant components from the last swabbed plant.
+diff --git a/Content.Server/Botany/Components/ProduceComponent.cs b/Content.Server/Botany/Components/ProduceComponent.cs
+index 1dee0c8de0..e5c063b090 100644
+--- a/Content.Server/Botany/Components/ProduceComponent.cs
++++ b/Content.Server/Botany/Components/ProduceComponent.cs
+@@ -14,7 +14,7 @@ public sealed partial class ProduceComponent : SharedProduceComponent
+     /// Name of a base plant prototype to spawn when extracting seeds.
+     /// </summary>
+     [DataField]
+-    public EntProtoId PlantProtoId;
++    public EntProtoId? PlantProtoId;
+ 
+     /// <summary>
+     /// Serialized snapshot of plant components.
+diff --git a/Content.Server/Botany/Systems/BotanySwabSystem.cs b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+index fc4e2069dd..2e58b5a451 100644
+--- a/Content.Server/Botany/Systems/BotanySwabSystem.cs
++++ b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+@@ -68,7 +68,7 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+         if (swab.PlantData == null)
+         {
+             // Pick up pollen snapshot.
+-            swab.PlantProtoId = MetaData(targetPlant).EntityPrototype!.ID;
++            swab.PlantProtoId = MetaData(targetPlant).EntityPrototype?.ID;
+             swab.PlantData = _botany.ClonePlantSnapshotData(targetPlant);
+ 
+             _popup.PopupEntity(Loc.GetString("botany-swab-from"), targetPlant, args.Args.User);
+@@ -82,7 +82,7 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+             RaiseLocalEvent(targetPlant, ref crossEv);
+ 
+             // Swap: store old target pollen on the swab, apply cross to the target using swab pollen.
+-            swab.PlantProtoId = MetaData(targetPlant).EntityPrototype!.ID;
++            swab.PlantProtoId = MetaData(targetPlant).EntityPrototype?.ID;
+             swab.PlantData = _botany.ClonePlantSnapshotData(targetPlant);
+ 
+             _popup.PopupEntity(Loc.GetString("botany-swab-to"), targetPlant, args.Args.User);
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Seed.cs b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+index 0657084fe7..a36169d596 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+@@ -164,7 +164,7 @@ public EntityUid SpawnSeedPacketFromPlant(EntityUid sourcePlant, EntityCoordinat
+     /// Spawns a seed packet that stores a component snapshot of <paramref name="snapshot"/>.
+     /// </summary
+     [PublicAPI]
+-    public EntityUid SpawnSeedPacketFromSnapshot(ComponentRegistry snapshot, EntProtoId plantProtoId, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
++    public EntityUid SpawnSeedPacketFromSnapshot(ComponentRegistry? snapshot, EntProtoId plantProtoId, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
+     {
+         if (!TryGetPlantComponent<PlantDataComponent>(snapshot, plantProtoId, out var plantData))
+             return EntityUid.Invalid;
+diff --git a/Content.Server/Botany/Systems/SeedExtractorSystem.cs b/Content.Server/Botany/Systems/SeedExtractorSystem.cs
+index 6f412ecd59..33753e5cfc 100644
+--- a/Content.Server/Botany/Systems/SeedExtractorSystem.cs
++++ b/Content.Server/Botany/Systems/SeedExtractorSystem.cs
+@@ -3,6 +3,7 @@
+ using Content.Server.Power.EntitySystems;
+ using Content.Shared.Interaction;
+ using Content.Shared.Popups;
++using Robust.Shared.Prototypes;
+ using Robust.Shared.Random;
+ 
+ namespace Content.Server.Botany.Systems;
+@@ -28,14 +29,15 @@ private void OnInteractUsing(EntityUid uid, SeedExtractorComponent seedExtractor
+         if (!TryComp<ProduceComponent>(args.Used, out var produce))
+             return;
+ 
+-        if (produce.PlantData == null)
++        if (produce.PlantProtoId == null)
+             return;
+ 
+-        var snapshot = produce.PlantData;
+         var protoId = produce.PlantProtoId;
+-        produce.PlantData = null;
++        ComponentRegistry? snapshot = null;
++        if (produce.PlantData != null)
++            snapshot = produce.PlantData;
+ 
+-        if (_botany.TryGetPlantComponent<PlantTraitsComponent>(snapshot, protoId, out var traits) && traits.Seedless)
++        if (snapshot != null && _botany.TryGetPlantComponent<PlantTraitsComponent>(snapshot, protoId, out var traits) && traits.Seedless)
+         {
+             _popup.PopupCursor(Loc.GetString("seed-extractor-component-no-seeds", ("name", args.Used)),
+                 args.User, PopupType.MediumCaution);
+@@ -53,7 +55,10 @@ private void OnInteractUsing(EntityUid uid, SeedExtractorComponent seedExtractor
+ 
+         for (var i = 0; i < amount; i++)
+         {
+-            _botany.SpawnSeedPacketFromSnapshot(snapshot, protoId, coords, args.User);
++            if (snapshot == null)
++                _botany.SpawnSeedPacketFromSnapshot(null, protoId.Value, coords, args.User);
++            else
++                _botany.SpawnSeedPacketFromSnapshot(snapshot, protoId.Value, coords, args.User);
+         }
+     }
+ }
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index 4d5be22e93..d6436c36c4 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -2123,36 +2123,34 @@
+     productPrototypes: [ FoodBloonion ]
+   - type: Plant
+     lifespan: 25
+-    maturation: 10
+-    production: 7
++    maturation: 15
++    production: 3
+     yield: 3
+-    potency: 20
+-    growthStages: 3
++    potency: 10
++    growthStages: 4
+   - type: PlantHarvest
+     harvestRepeat: Repeat
+   - type: BasicGrowth
+     waterConsumption: 0.6
+     nutrientConsumption: 0.5
+-  - type: AtmosphericGrowth
+-    idealHeat: 288
+   - type: PlantChemicals
+     chemicals:
+-      Nutriment:
+-        min: 1
+-        max: 5
+-        potencyDivisor: 20
+-      Vitamin:
+-        min: 1
+-        max: 4
+-        potencyDivisor: 25
++      Potassium:
++        Min: 1
++        Max: 5
++        PotencyDivisor: 20
++      Phosphorus:
++        Min: 1
++        Max: 5
++        PotencyDivisor: 20
++      Sugar:
++        Min: 1
++        Max: 5
++        PotencyDivisor: 20
+       Allicin:
+-        min: 1
+-        max: 8
+-        potencyDivisor: 25
+-      Helium:
+-        min: 1
+-        max: 6
+-        potencyDivisor: 5
++        Min: 1
++        Max: 10
++        PotencyDivisor: 10
+ 
+ - type: entity
+   id: CannabisPlants
+@@ -2194,7 +2192,7 @@
+   components:
+   - type: PlantData
+     noun: seeds-noun-seeds
+-    displayName: seeds-rainbowcannabis-display-name
++    displayName: seeds-rainbow-cannabis-display-name
+     plantRsi: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+     packetPrototype: RainbowCannabisSeeds
+     productPrototypes: [ LeavesCannabisRainbow ]
+-- 
+2.55.0
+

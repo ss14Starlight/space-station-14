@@ -1,0 +1,123 @@
+From 17bfd0f5fb968d75344e130b00050d49d68735d5 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sat, 2 Aug 2025 22:44:36 +0300
+Subject: [PATCH 023/112] Copy growth components
+
+---
+ .../Botany/Systems/BotanySystem.Seed.cs       | 12 +++---
+ .../Botany/Systems/PlantHolderSystem.cs       | 38 +++++++++++++------
+ 2 files changed, 31 insertions(+), 19 deletions(-)
+
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Seed.cs b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+index 33d9a239ee..b01b1fcd2f 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+@@ -153,9 +153,7 @@ public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates posi
+             if (proto.HarvestLogImpact != null)
+                 _adminLogger.Add(LogType.Botany, proto.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(proto.Name):seed} at Pos:{position}.");
+ 
+-            var yieldMod = Comp<PlantHolderComponent>(plantEntity!.Value).YieldMod;
+-
+-            return GenerateProduct(proto, position, yieldMod);
++            return GenerateProduct(proto, position, plantEntity);
+         }
+ 
+         return Enumerable.Empty<EntityUid>();
+@@ -176,17 +174,16 @@ public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, EntityUid?
+         if (proto.HarvestLogImpact != null)
+             _adminLogger.Add(LogType.Botany, proto.HarvestLogImpact.Value, $"{ToPrettyString(user):player} harvested {Loc.GetString(proto.Name):seed} at Pos:{Transform(user).Coordinates}.");
+ 
+-        var yieldMod = Comp<PlantHolderComponent>(plantEntity!.Value).YieldMod;
+-
+-        return GenerateProduct(proto, Transform(user).Coordinates, yieldMod);
++        return GenerateProduct(proto, Transform(user).Coordinates, plantEntity);
+     }
+ 
+-    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, int yieldMod = 1)
++    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, EntityUid? plantEntity = null)
+     {
+         var traits = GetPlantTraits(proto);
+         if (traits == null)
+             return Enumerable.Empty<EntityUid>();
+ 
++        var yieldMod = Comp<PlantHolderComponent>(plantEntity!.Value).YieldMod;
+         var totalYield = 0;
+ 
+         if (traits.Yield > -1)
+@@ -215,6 +212,7 @@ public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates
+             var produce = EnsureComp<ProduceComponent>(entity);
+ 
+             produce.Seed = proto.Clone();
++
+             ProduceGrown(entity, produce);
+ 
+             _appearance.SetData(entity, ProduceVisuals.Potency, traits.Potency);
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index aea2a2bd65..1ef3cb99fd 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -307,7 +307,7 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+                 return;
+             }
+ 
+-            component.Health -= (_random.Next(3, 5) * 10);
++            component.Health -= _random.Next(3, 5) * 10;
+ 
+             float? healthOverride;
+             if (component.Harvest)
+@@ -319,20 +319,33 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+                 healthOverride = component.Health;
+             }
+             var packetSeed = component.Seed;
+-            var seed = _botany.SpawnSeedPacket(packetSeed, Transform(args.User).Coordinates, args.User, healthOverride);
+-            _randomHelper.RandomOffset(seed, 0.25f);
+-            var displayName = Loc.GetString(component.Seed.DisplayName);
+-            _popup.PopupCursor(Loc.GetString("plant-holder-component-take-sample-message",
+-                ("seedName", displayName)), args.User);
+ 
+-            DoScream(entity.Owner, component.Seed);
++            if (packetSeed != null)
++            {
++                // Copy growth components from the plant to the seed before creating seed packet
++                var plantGrowthComponents = EntityManager.GetComponents<PlantGrowthComponent>(uid).ToList();
++                packetSeed.GrowthComponents?.Clear();
++                foreach (var growthComponent in plantGrowthComponents)
++                {
++                    var newComponent = growthComponent.DupeComponent();
++                    packetSeed.GrowthComponents?.Add(newComponent);
++                }
++
++                var seed = _botany.SpawnSeedPacket(packetSeed, Transform(args.User).Coordinates, args.User, healthOverride);
++                _randomHelper.RandomOffset(seed, 0.25f);
++                var displayName = Loc.GetString(component.Seed.DisplayName);
++                _popup.PopupCursor(Loc.GetString("plant-holder-component-take-sample-message",
++                    ("seedName", displayName)), args.User);
+ 
+-            if (_random.Prob(0.3f))
+-                component.Sampled = true;
++                DoScream(entity.Owner, component.Seed);
+ 
+-            // Just in case.
+-            CheckLevelSanity(uid, component);
+-            ForceUpdateByExternalCause(uid, component);
++                if (_random.Prob(0.3f))
++                    component.Sampled = true;
++
++                // Just in case.
++                CheckLevelSanity(uid, component);
++                ForceUpdateByExternalCause(uid, component);
++            }
+ 
+             return;
+         }
+@@ -527,6 +540,7 @@ public bool DoHarvest(EntityUid plantholder, EntityUid user, PlantHolderComponen
+             }
+ 
+             _botany.Harvest(component.Seed, user, plantholder);
++
+             AfterHarvest(plantholder, component);
+             return true;
+         }
+-- 
+2.55.0
+

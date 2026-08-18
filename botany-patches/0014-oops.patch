@@ -1,0 +1,344 @@
+From 4c3e99d193d61024daaae843ead1f909183a4a29 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Fri, 1 Aug 2025 09:50:52 +0300
+Subject: [PATCH 014/112] oops
+
+---
+ .../Components/AtmosphericGrowthComponent.cs  |  8 +--
+ .../Components/AutoHarvestGrowthComponent.cs  |  2 +-
+ .../Botany/Components/BasicGrowthComponent.cs |  4 +-
+ .../Botany/Components/BotanySwabComponent.cs  |  2 +-
+ .../Components/UnviableGrowthComponent.cs     |  4 +-
+ .../Components/WeedPestGrowthComponent.cs     | 12 ++--
+ .../Botany/Systems/PlantGrowthSystem.cs       |  3 -
+ .../EntityEffects/EntityEffectSystem.cs       | 12 +---
+ .../SharedSolutionContainerSystem.cs          | 55 +++----------------
+ .../EffectConditions/SolutionTemperature.cs   | 18 +-----
+ .../Tools/Components/WelderComponent.cs       |  3 +
+ 11 files changed, 32 insertions(+), 91 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs b/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
+index 21abdc70fd..61ed42cc42 100644
+--- a/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
++++ b/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
+@@ -7,24 +7,24 @@ public sealed partial class AtmosphericGrowthComponent : PlantGrowthComponent
+     /// <summary>
+     /// Ideal temperature for plant growth in Kelvin.
+     /// </summary>
+-    [DataField("idealHeat")]
++    [DataField]
+     public float IdealHeat = 293f;
+ 
+     /// <summary>
+     /// Temperature tolerance range around ideal heat.
+     /// </summary>
+-    [DataField("heatTolerance")]
++    [DataField]
+     public float HeatTolerance = 10f;
+ 
+     /// <summary>
+     /// Minimum pressure tolerance for plant growth.
+     /// </summary>
+-    [DataField("lowPressureTolerance")]
++    [DataField]
+     public float LowPressureTolerance = 81f;
+ 
+     /// <summary>
+     /// Maximum pressure tolerance for plant growth.
+     /// </summary>
+-    [DataField("lighPressureTolerance")]
++    [DataField]
+     public float HighPressureTolerance = 121f;
+ }
+diff --git a/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs b/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
+index 9b5c969075..5a28055c30 100644
+--- a/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
++++ b/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
+@@ -7,6 +7,6 @@ public sealed partial class AutoHarvestGrowthComponent : PlantGrowthComponent
+     /// <summary>
+     /// Chance per tick for the plant to automatically harvest itself.
+     /// </summary>
+-    [DataField("harvestChance")]
++    [DataField]
+     public float HarvestChance = 0.1f;
+ }
+diff --git a/Content.Server/Botany/Components/BasicGrowthComponent.cs b/Content.Server/Botany/Components/BasicGrowthComponent.cs
+index 0b447746aa..bc71608afd 100644
+--- a/Content.Server/Botany/Components/BasicGrowthComponent.cs
++++ b/Content.Server/Botany/Components/BasicGrowthComponent.cs
+@@ -7,12 +7,12 @@ public sealed partial class BasicGrowthComponent : PlantGrowthComponent
+     /// <summary>
+     /// Amount of water consumed per growth tick.
+     /// </summary>
+-    [DataField("waterConsumption")]
++    [DataField]
+     public float WaterConsumption = 0.5f;
+ 
+     /// <summary>
+     /// Amount of nutrients consumed per growth tick.
+     /// </summary>
+-    [DataField("nutrientConsumption")]
++    [DataField]
+     public float NutrientConsumption = 0.75f;
+ }
+diff --git a/Content.Server/Botany/Components/BotanySwabComponent.cs b/Content.Server/Botany/Components/BotanySwabComponent.cs
+index 1f99554cb3..fcedaa036f 100644
+--- a/Content.Server/Botany/Components/BotanySwabComponent.cs
++++ b/Content.Server/Botany/Components/BotanySwabComponent.cs
+@@ -11,7 +11,7 @@ public sealed partial class BotanySwabComponent : Component
+     /// <summary>
+     /// Delay in seconds between swab uses.
+     /// </summary>
+-    [DataField("swabDelay")]
++    [DataField]
+     public float SwabDelay = 2f;
+ 
+     /// <summary>
+diff --git a/Content.Server/Botany/Components/UnviableGrowthComponent.cs b/Content.Server/Botany/Components/UnviableGrowthComponent.cs
+index fb8f823b23..e60b331e03 100644
+--- a/Content.Server/Botany/Components/UnviableGrowthComponent.cs
++++ b/Content.Server/Botany/Components/UnviableGrowthComponent.cs
+@@ -7,12 +7,12 @@ public sealed partial class UnviableGrowthComponent : PlantGrowthComponent
+     /// <summary>
+     /// Chance per tick for the plant to take damage due to being unviable.
+     /// </summary>
+-    [DataField("deathChance")]
++    [DataField]
+     public float DeathChance = 0.1f;
+ 
+     /// <summary>
+     /// Amount of damage dealt to the plant per successful death tick.
+     /// </summary>
+-    [DataField("deathDamage")]
++    [DataField]
+     public float DeathDamage = 6f;
+ }
+diff --git a/Content.Server/Botany/Components/WeedPestGrowthComponent.cs b/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
+index 4b9a4d5f59..592fad6ecb 100644
+--- a/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
++++ b/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
+@@ -7,36 +7,36 @@ public sealed partial class WeedPestGrowthComponent : PlantGrowthComponent
+     /// <summary>
+     /// Maximum weed level the plant can tolerate before taking damage.
+     /// </summary>
+-    [DataField("weedTolerance")]
++    [DataField]
+     public float WeedTolerance = 5f;
+ 
+     /// <summary>
+     /// Maximum pest level the plant can tolerate before taking damage.
+     /// </summary>
+-    [DataField("pestTolerance")]
++    [DataField]
+     public float PestTolerance = 5f;
+ 
+     /// <summary>
+     /// Chance per tick for weeds to grow around this plant.
+     /// </summary>
+-    [DataField("weedGrowthChance")]
++    [DataField]
+     public float WeedGrowthChance = 0.01f;
+ 
+     /// <summary>
+     /// Amount of weed growth per successful weed growth tick.
+     /// </summary>
+-    [DataField("weedGrowthAmount")]
++    [DataField]
+     public float WeedGrowthAmount = 0.5f;
+ 
+     /// <summary>
+     /// Chance per tick for pests to damage this plant.
+     /// </summary>
+-    [DataField("pestDamageChance")]
++    [DataField]
+     public float PestDamageChance = 0.05f;
+ 
+     /// <summary>
+     /// Amount of damage dealt to the plant per successful pest damage tick.
+     /// </summary>
+-    [DataField("pestDamageAmount")]
++    [DataField]
+     public float PestDamageAmount = 1f;
+ }
+diff --git a/Content.Server/Botany/Systems/PlantGrowthSystem.cs b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+index e4b1308679..05084911bc 100644
+--- a/Content.Server/Botany/Systems/PlantGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+@@ -31,18 +31,15 @@ public override void Update(float frameTime)
+         var query = EntityQueryEnumerator<PlantHolderComponent>();
+         while (query.MoveNext(out var uid, out var plantHolder))
+         {
+-            // Only process plants that have seeds and are alive
+             if (plantHolder.Seed == null || plantHolder.Dead)
+                 continue;
+ 
+-            // Check if it's time for this plant to grow
+             if (_gameTiming.CurTime < plantHolder.LastCycle + plantHolder.CycleDelay)
+                 continue;
+ 
+             var plantGrow = new OnPlantGrowEvent();
+             RaiseLocalEvent(uid, ref plantGrow);
+ 
+-            // Update the last cycle time after processing growth
+             plantHolder.LastCycle = _gameTiming.CurTime;
+         }
+ 
+diff --git a/Content.Server/EntityEffects/EntityEffectSystem.cs b/Content.Server/EntityEffects/EntityEffectSystem.cs
+index 87ca854349..b31a39a1f1 100644
+--- a/Content.Server/EntityEffects/EntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/EntityEffectSystem.cs
+@@ -164,16 +164,8 @@ private void OnCheckOrganType(ref CheckEntityEffectConditionEvent<OrganType> arg
+             return;
+         }
+ 
+-        // For non-reagent effects, we need to find the organ entity differently
+-        var metabolizer = EntityManager.GetComponentOrNull<MetabolizerComponent>(args.Args.TargetEntity);
+-        if (metabolizer != null)
+-        {
+-            args.Result = OrganCondition(args.Condition, (args.Args.TargetEntity, metabolizer));
+-            return;
+-        }
+-
+-        // If no metabolizer is found, the condition fails
+-        args.Result = false;
++        // TODO: Someone needs to figure out how to do this for non-reagent effects.
++        throw new NotImplementedException();
+     }
+ 
+     public bool OrganCondition(OrganType condition, Entity<MetabolizerComponent?> metabolizer)
+diff --git a/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs b/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs
+index c1653f9ef9..5cc12a9b69 100644
+--- a/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs
++++ b/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs
+@@ -298,7 +298,7 @@ public FixedPoint2 GetTotalPrototypeQuantity(EntityUid owner, string reagentId)
+ 
+     /// <summary>
+     /// Dirties a solution entity that has been modified and prompts updates to chemical reactions and overflow state.
+-    /// Should be invoked whenever a solution entity is changed.
++    /// Should be invoked whenever a solution entity is modified.
+     /// </summary>
+     /// <remarks>
+     /// 90% of this system is ensuring that this proc is invoked whenever a solution entity is changed. The other 10% <i>is</i> this proc.
+@@ -572,7 +572,12 @@ public bool TryTransferSolution(Entity<SolutionComponent> soln, Solution source,
+         if (quantity == 0)
+             return false;
+ 
+-        return TryDirectTransferReagents(soln, source, quantity);
++        // TODO This should be made into a function that directly transfers reagents.
++        // Currently this is quite inefficient.
++        solution.AddSolution(source.SplitSolution(quantity), PrototypeManager);
++
++        UpdateChemicals(soln);
++        return true;
+     }
+ 
+     /// <summary>
+@@ -810,22 +815,8 @@ private void OnExamineSolution(Entity<ExaminableSolutionComponent> entity, ref E
+             return;
+         }
+ 
+-        var colorHex = primary.SubstanceColor
+-            .ToHexNoAlpha();
+-
+-        // Ensure readability for dark colors by checking contrast
+-        // For very dark colors, use a lighter variant
+-        if (primary.SubstanceColor.R + primary.SubstanceColor.G + primary.SubstanceColor.B < 0.3f * 3)
+-        {
+-            // Create a lighter version of the color
+-            var lighterColor = new Color(
+-                Math.Min(1f, primary.SubstanceColor.R + 0.3f),
+-                Math.Min(1f, primary.SubstanceColor.G + 0.3f),
+-                Math.Min(1f, primary.SubstanceColor.B + 0.3f),
+-                primary.SubstanceColor.A
+-            );
+-            colorHex = lighterColor.ToHexNoAlpha();
+-        }
++        var colorHex = solution.GetColor(PrototypeManager)
++            .ToHexNoAlpha(); //TODO: If the chem has a dark color, the examine text becomes black on a black background, which is unreadable.
+         var messageString = "shared-solution-container-component-on-examine-main-text";
+ 
+         using (args.PushGroup(nameof(ExaminableSolutionComponent)))
+@@ -1242,32 +1233,4 @@ public FixedPoint2 ClampReagentAmountByConcentration(
+             dissolvedReagentAmount += overflow;
+         return dissolvedReagentAmount;
+     }
+-
+-    /// <summary>
+-    /// Directly transfers reagents from one solution to another without creating intermediate solutions.
+-    /// </summary>
+-    public bool TryDirectTransferReagents(Entity<SolutionComponent> targetSoln, Solution source, FixedPoint2 quantity)
+-    {
+-        var (uid, comp) = targetSoln;
+-        var solution = comp.Solution;
+-
+-        if (quantity <= FixedPoint2.Zero || source.Volume <= FixedPoint2.Zero)
+-            return false;
+-
+-        quantity = FixedPoint2.Min(quantity, solution.AvailableVolume, source.Volume);
+-        if (quantity == 0)
+-            return false;
+-
+-        foreach (var (reagentId, amount) in source.Contents)
+-        {
+-            var transferAmount = amount * (quantity / source.Volume);
+-            if (transferAmount > FixedPoint2.Zero)
+-            {
+-                solution.AddReagent(reagentId, transferAmount);
+-            }
+-        }
+-
+-        UpdateChemicals(targetSoln);
+-        return true;
+-    }
+ }
+diff --git a/Content.Shared/EntityEffects/EffectConditions/SolutionTemperature.cs b/Content.Shared/EntityEffects/EffectConditions/SolutionTemperature.cs
+index dccd6b8ed0..e2febd8f48 100644
+--- a/Content.Shared/EntityEffects/EffectConditions/SolutionTemperature.cs
++++ b/Content.Shared/EntityEffects/EffectConditions/SolutionTemperature.cs
+@@ -1,6 +1,4 @@
+-using Content.Shared.EntityEffects;
+ using Robust.Shared.Prototypes;
+-using Content.Shared.Chemistry.Components.SolutionManager;
+ 
+ namespace Content.Shared.EntityEffects.EffectConditions;
+ 
+@@ -25,20 +23,8 @@ public override bool Condition(EntityEffectBaseArgs args)
+                    reagentArgs.Source.Temperature <= Max;
+         }
+ 
+-        // For non-reagent effects, we need to find the solution differently
+-        if (args.EntityManager.TryGetComponent(args.TargetEntity, out SolutionContainerManagerComponent? container) &&
+-            container != null && container.Solutions != null)
+-        {
+-            // Check the first available solution for temperature
+-            foreach (var (name, solution) in container.Solutions)
+-            {
+-                if (solution.Temperature >= Min && solution.Temperature <= Max)
+-                    return true;
+-            }
+-        }
+-
+-        // If no suitable solution is found, the condition fails
+-        return false;
++        // TODO: Someone needs to figure out how to do this for non-reagent effects.
++        throw new NotImplementedException();
+     }
+ 
+     public override string GuidebookExplanation(IPrototypeManager prototype)
+diff --git a/Content.Shared/Tools/Components/WelderComponent.cs b/Content.Shared/Tools/Components/WelderComponent.cs
+index bff55b8e58..a9111c7f53 100644
+--- a/Content.Shared/Tools/Components/WelderComponent.cs
++++ b/Content.Shared/Tools/Components/WelderComponent.cs
+@@ -11,6 +11,9 @@ namespace Content.Shared.Tools.Components;
+ /// <summary>
+ /// Handles fuel consumption for the tool and allows it to explode welding fuel tanks.
+ /// </summary>
++/// <summary>
++/// TODO: De-hardcode welder bombing.
++/// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), AutoGenerateComponentPause]
+ [Access(typeof(SharedToolSystem))]
+ public sealed partial class WelderComponent : Component
+-- 
+2.55.0
+

@@ -1,0 +1,26 @@
+From 2785cc6a6295c723761729b730a24c9ac821047a Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 31 Jul 2025 21:21:42 +0300
+Subject: [PATCH 008/112] Update PlantGrowthComponent.cs
+
+---
+ Content.Server/Botany/Components/PlantGrowthComponent.cs | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Content.Server/Botany/Components/PlantGrowthComponent.cs b/Content.Server/Botany/Components/PlantGrowthComponent.cs
+index 3db30624f3..5511f0eeca 100644
+--- a/Content.Server/Botany/Components/PlantGrowthComponent.cs
++++ b/Content.Server/Botany/Components/PlantGrowthComponent.cs
+@@ -3,7 +3,8 @@
+ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
+-public abstract partial class PlantGrowthComponent : Component {
++[Virtual]
++public partial class PlantGrowthComponent : Component {
+     /// <summary>
+     /// Creates a copy of this component.
+     /// </summary>
+-- 
+2.55.0
+

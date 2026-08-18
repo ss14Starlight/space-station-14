@@ -1,0 +1,50 @@
+From ac2e23d5c85197a07312b9aaf729ee54760bb8b5 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Fri, 17 Oct 2025 11:58:50 +0300
+Subject: [PATCH 037/112] more TODO
+
+---
+ Content.Server/Botany/Components/GrowthComponentsHolder.cs | 7 +++++--
+ Content.Server/Botany/Systems/BasicGrowthSystem.cs         | 1 -
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/GrowthComponentsHolder.cs b/Content.Server/Botany/Components/GrowthComponentsHolder.cs
+index e02f3d066f..1465f7d2fe 100644
+--- a/Content.Server/Botany/Components/GrowthComponentsHolder.cs
++++ b/Content.Server/Botany/Components/GrowthComponentsHolder.cs
+@@ -1,7 +1,10 @@
+ namespace Content.Server.Botany.Components;
+ 
+ /// <summary>
+-/// TODO: Delete after plants transition to entities
++/// TODO: Delete after plants transition to entities.
++/// This is an intentionally evil approach kept only to simplify the
++/// upcoming refactor: plants will become standalone entities that own these components.
++/// Once that happens, this holder is no longer needed.
+ /// </summary>
+ [DataDefinition]
+ public sealed partial class GrowthComponentsHolder
+@@ -40,7 +43,7 @@ public void EnsureGrowthComponents()
+         {
+             if (prop.GetValue(this) == null)
+             {
+-                var instance = System.Activator.CreateInstance(prop.PropertyType);
++                var instance = Activator.CreateInstance(prop.PropertyType);
+                 prop.SetValue(this, instance);
+             }
+         }
+diff --git a/Content.Server/Botany/Systems/BasicGrowthSystem.cs b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+index 3ba8b10ec9..2b710faf06 100644
+--- a/Content.Server/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+@@ -3,7 +3,6 @@
+ using Robust.Shared.Random;
+ 
+ namespace Content.Server.Botany.Systems;
+-// For all the very common stuff all plants are expected to do.
+ 
+ // TODO: make CO2Boost (add potency if the plant can eat an increasing amount of CO2). separate PR post-merge
+ // TODO: make GrowLight (run bonus ticks if theres a grow light nearby). separate PR post-merge.
+-- 
+2.55.0
+

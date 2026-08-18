@@ -1,0 +1,164 @@
+From 3106798861450f2d1b7ce1f282ff2eb84198d0de Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 9 Jul 2026 00:48:49 +0300
+Subject: [PATCH 092/112] unnecessary API
+
+---
+ .../Items/Systems/BotanySampleTakerSystem.cs  |  4 +-
+ .../Botany/Systems/BotanySystem.Produce.cs    |  6 ++-
+ .../Botany/Systems/BotanySystem.Seed.cs       | 42 ++++---------------
+ .../Botany/Systems/SeedExtractorSystem.cs     |  3 +-
+ 4 files changed, 19 insertions(+), 36 deletions(-)
+
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
+index b80fdae706..24fd01fbdb 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
+@@ -74,7 +74,9 @@ private void OnPlantSampleAttempt(Entity<PlantComponent> ent, ref PlantSampleAtt
+ 
+         // Produce a seed packet snapshot.
+         float? healthOverride = harvest.ReadyForHarvest ? null : holder.Health;
+-        _botany.SpawnSeedPacketFromPlant(ent.Owner, Transform(args.User).Coordinates, args.User, healthOverride);
++        var protoId = MetaData(ent.Owner).EntityPrototype!.ID;
++        var snapshot = _botany.ClonePlantSnapshotData(ent.Owner);
++        _botany.SpawnSeedPacket(plantData, protoId, snapshot, Transform(args.User).Coordinates, args.User, healthOverride);
+ 
+         var name = Loc.GetString(plantData.Name);
+         _popup.PopupPredictedCursor(Loc.GetString("plant-sample-component-take-sample-popup", ("seedName", name)), args.User);
+diff --git a/Content.Shared/Botany/Systems/BotanySystem.Produce.cs b/Content.Shared/Botany/Systems/BotanySystem.Produce.cs
+index 5989c1b3bf..7492b424d1 100644
+--- a/Content.Shared/Botany/Systems/BotanySystem.Produce.cs
++++ b/Content.Shared/Botany/Systems/BotanySystem.Produce.cs
+@@ -4,6 +4,7 @@
+ using Content.Shared.EntityEffects;
+ using Content.Shared.Examine;
+ using Content.Shared.FixedPoint;
++using Content.Shared.Random.Helpers;
+ using Robust.Shared.Map;
+ using Robust.Shared.Random;
+ 
+@@ -74,7 +75,10 @@ public void SpawnProduce(Entity<PlantDataComponent?, PlantComponent?> ent, Entit
+         if (!Resolve(ent.Owner, ref ent.Comp1, ref ent.Comp2, false))
+             return;
+ 
+-        var product = _random.Pick(ent.Comp1.ProductPrototypes);
++        // TODO: Replace with RandomPredicted once the engine PR is merged
++        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id);
++        var rand = new System.Random(seed);
++        var product = rand.Pick(ent.Comp1.ProductPrototypes);
+         var entity = PredictedSpawnAtPosition(product, position);
+         _randomHelper.RandomOffset(entity, 0.25f);
+ 
+diff --git a/Content.Shared/Botany/Systems/BotanySystem.Seed.cs b/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
+index 5e31f1a20b..8b696ecb02 100644
+--- a/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
+@@ -11,6 +11,7 @@
+ using Robust.Shared.Map;
+ using Robust.Shared.Prototypes;
+ using Robust.Shared.Random;
++using Robust.Shared.Timing;
+ 
+ namespace Content.Shared.Botany.Systems;
+ 
+@@ -19,6 +20,7 @@ public sealed partial class BotanySystem : EntitySystem
+     [Dependency] private readonly IComponentFactory _componentFactory = default!;
+     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+     [Dependency] private readonly IRobustRandom _random = default!;
++    [Dependency] private readonly IGameTiming _timing = default!;
+     [Dependency] private readonly MetaDataSystem _metaData = default!;
+     [Dependency] private readonly PlantSystem _plant = default!;
+     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+@@ -43,20 +45,20 @@ public override void Initialize()
+         SubscribeLocalEvent<BotanySwabComponent, ComponentShutdown>(OnSwabShutdown);
+     }
+ 
+-    private void OnExamined(EntityUid uid, SeedComponent component, ExaminedEvent args)
++    private void OnExamined(Entity<SeedComponent> ent, ref ExaminedEvent args)
+     {
+         if (!args.IsInDetailsRange)
+             return;
+ 
+-        if (!TryGetPlantComponent<PlantComponent>(component.PlantData, component.PlantProtoId, out var plant)
+-            || !TryGetPlantComponent<PlantDataComponent>(component.PlantData, component.PlantProtoId, out var plantData))
++        if (!TryGetPlantComponent<PlantComponent>(ent.Comp.PlantData, ent.Comp.PlantProtoId, out var plant)
++            || !TryGetPlantComponent<PlantDataComponent>(ent.Comp.PlantData, ent.Comp.PlantProtoId, out var plantData))
+             return;
+ 
+         using (args.PushGroup(nameof(SeedComponent), 1))
+         {
+             var name = Loc.GetString(plantData.Name);
+             args.PushMarkup(Loc.GetString("seed-component-description", ("seedName", name)));
+-            args.PushMarkup(_plant.GetPlantStateMarkup(uid, plant));
++            args.PushMarkup(_plant.GetPlantStateMarkup(ent.Owner, plant));
+         }
+     }
+ 
+@@ -135,33 +137,6 @@ public void ApplyPlantSnapshotData(EntityUid? snapshot, EntityUid target, bool c
+         _cloning.CloneComponents(snapshot.Value, target, settings);
+     }
+ 
+-    /// <summary>
+-    /// Spawns a seed packet that stores a component snapshot of <paramref name="sourcePlant"/>.
+-    /// </summary>
+-    [PublicAPI]
+-    public EntityUid SpawnSeedPacketFromPlant(EntityUid sourcePlant, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
+-    {
+-        if (!TryComp<PlantDataComponent>(sourcePlant, out var plantData))
+-            return EntityUid.Invalid;
+-
+-        var protoId = MetaData(sourcePlant).EntityPrototype!.ID;
+-        var snapshot = ClonePlantSnapshotData(sourcePlant);
+-
+-        return SpawnSeedPacketInternal(plantData, protoId, snapshot, coords, user, healthOverride);
+-    }
+-
+-    /// <summary>
+-    /// Spawns a seed packet that stores a component snapshot of <paramref name="snapshot"/>.
+-    /// </summary>
+-    [PublicAPI]
+-    public EntityUid SpawnSeedPacketFromSnapshot(EntityUid? snapshot, EntProtoId plantProtoId, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
+-    {
+-        if (!TryGetPlantComponent<PlantDataComponent>(snapshot, plantProtoId, out var plantData))
+-            return EntityUid.Invalid;
+-
+-        return SpawnSeedPacketInternal(plantData, plantProtoId, snapshot, coords, user, healthOverride);
+-    }
+-
+     /// <summary>
+     /// Internal method to spawn a seed packet from a plant component.
+     /// </summary>
+@@ -172,13 +147,14 @@ public EntityUid SpawnSeedPacketFromSnapshot(EntityUid? snapshot, EntProtoId pla
+     /// <param name="user">The user who is spawning the seed packet.</param>
+     /// <param name="healthOverride">The health override to store in the seed component.</param>
+     /// <returns>The spawned seed packet entity.</returns>
+-    private EntityUid SpawnSeedPacketInternal(
++    [PublicAPI]
++    public EntityUid SpawnSeedPacket(
+         PlantDataComponent plantData,
+         EntProtoId plantProtoId,
+         EntityUid? snapshot,
+         EntityCoordinates coords,
+         EntityUid user,
+-        float? healthOverride)
++        float? healthOverride = null)
+     {
+         var seedItem = PredictedSpawnAtPosition(plantData.PacketPrototype, coords);
+         var seedComp = EnsureComp<SeedComponent>(seedItem);
+diff --git a/Content.Shared/Botany/Systems/SeedExtractorSystem.cs b/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
+index b8c6464e63..82410c68b5 100644
+--- a/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
++++ b/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
+@@ -63,7 +63,8 @@ private void OnInteractUsing(Entity<SeedExtractorComponent> ent, ref InteractUsi
+ 
+         for (var i = 0; i < amount; i++)
+         {
+-            _botany.SpawnSeedPacketFromSnapshot(snapshot, produce.PlantProtoId.Value, coords, args.User);
++            if (_botany.TryGetPlantComponent<PlantDataComponent>(snapshot, produce.PlantProtoId, out var plantData))
++                _botany.SpawnSeedPacket(plantData, produce.PlantProtoId.Value, snapshot, coords, args.User);
+         }
+     }
+ }
+-- 
+2.55.0
+

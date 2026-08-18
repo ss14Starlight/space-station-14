@@ -1,0 +1,123 @@
+From b7a69725b0fb19f36bfef5a6a8680c6c8da8c9b2 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 30 Jul 2026 10:56:02 +0300
+Subject: [PATCH 105/112] aaaaaaaaa
+
+---
+ Content.Shared/Botany/Systems/BotanySystem.Seed.cs            | 4 ++--
+ Content.Shared/Botany/Systems/MutationSystem.cs               | 3 +++
+ .../Botany/Traits/Components/PlantTraitKudzuComponent.cs      | 2 +-
+ .../Botany/Traits/Components/PlantTraitLigneousComponent.cs   | 2 +-
+ .../Botany/Traits/Components/PlantTraitSampledComponent.cs    | 2 +-
+ .../Botany/Traits/Components/PlantTraitScreamComponent.cs     | 2 +-
+ .../Botany/Traits/Components/PlantTraitSeedlessComponent.cs   | 2 +-
+ .../Botany/Traits/Components/PlantTraitUnviableComponent.cs   | 2 +-
+ 8 files changed, 11 insertions(+), 8 deletions(-)
+
+diff --git a/Content.Shared/Botany/Systems/BotanySystem.Seed.cs b/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
+index 09075d6fd4..670987602b 100644
+--- a/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
+@@ -96,11 +96,11 @@ public bool TryGetPlantComponent<T>(EntityUid? snapshot, EntProtoId? plantProtoI
+     /// <param name="parent">The entity that should own the snapshot, if any.</param>
+     /// <param name="cloneLifecycle">If true, also clone lifecycle state into the snapshot.</param>
+     [PublicAPI]
+-    public EntityUid ClonePlantSnapshotData(EntityUid source, EntityUid? parent = null, bool cloneLifecycle = false)
++    public EntityUid? ClonePlantSnapshotData(EntityUid source, EntityUid? parent = null, bool cloneLifecycle = false)
+     {
+         var settingsId = cloneLifecycle ? LifecycleSettingsId : SettingsId;
+         if (!ProtoMan.TryIndex(settingsId, out var settings))
+-            return EntityUid.Invalid;
++            return null;
+ 
+         var snapshot = EntityManager.CreateEntityUninitialized(null);
+         _cloning.CloneComponents(source, snapshot, settings);
+diff --git a/Content.Shared/Botany/Systems/MutationSystem.cs b/Content.Shared/Botany/Systems/MutationSystem.cs
+index 97e74d2d77..e2ba42c10d 100644
+--- a/Content.Shared/Botany/Systems/MutationSystem.cs
++++ b/Content.Shared/Botany/Systems/MutationSystem.cs
+@@ -71,6 +71,9 @@ public void SpeciesChange(Entity<PlantComponent?> oldPlant, EntProtoId newPlantP
+ 
+         // Clone state via snapshot and apply to new plant.
+         var snapshot = _botany.ClonePlantSnapshotData(oldPlant.Owner, cloneLifecycle: true);
++        if (snapshot == null)
++            return;
++
+         var newPlantUid = PredictedSpawnAtPosition(newPlantProto, Transform(oldPlant.Owner).Coordinates);
+         _botany.ApplyPlantSnapshotData(snapshot, newPlantUid, cloneLifecycle: true);
+         _botany.DeletePlantSnapshot(snapshot);
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
+index 7286a82931..3c4789b85f 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
+@@ -29,6 +29,6 @@ public sealed partial class PlantTraitKudzuComponent : PlantTraitsComponent
+     [DataField, AutoNetworkedField]
+     public float WeedGrowthAmount = 1f;
+ 
+-    [DataField]
++    /// <inheritdoc/>
+     public override LocId? TraitState { get; set; } = "mutation-plant-kudzu";
+ }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
+index 61be9b0900..1c73f88b28 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
+@@ -16,6 +16,6 @@ public sealed partial class PlantTraitLigneousComponent : PlantTraitsComponent
+     [DataField]
+     public ProtoId<ToolQualityPrototype>? HarvestToolQuality = "Sawing";
+ 
+-    [DataField]
++    /// <inheritdoc/>
+     public override LocId? TraitState { get; set; } = "mutation-plant-ligneous";
+ }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
+index 24ac99054c..61dc51f742 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
+@@ -8,6 +8,6 @@ namespace Content.Shared.Botany.Traits.Components;
+ [RegisterComponent, NetworkedComponent]
+ public sealed partial class PlantTraitSampledComponent : PlantTraitsComponent
+ {
+-    [DataField]
++    /// <inheritdoc/>
+     public override LocId? TraitState { get; set; } = "mutation-plant-sampled";
+ }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
+index 35e95db769..0b6d90fca0 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
+@@ -15,6 +15,6 @@ public sealed partial class PlantTraitScreamComponent : PlantTraitsComponent
+     [DataField, AutoNetworkedField]
+     public SoundSpecifier ScreamSound = new SoundCollectionSpecifier("PlantScreams", AudioParams.Default.AddVolume(-10));
+ 
+-    [DataField]
++    /// <inheritdoc/>
+     public override LocId? TraitState { get; set; } = "mutation-plant-scream";
+ }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
+index c4b0a3dc1f..4bca2f57cf 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
+@@ -8,6 +8,6 @@ namespace Content.Shared.Botany.Traits.Components;
+ [RegisterComponent, NetworkedComponent]
+ public sealed partial class PlantTraitSeedlessComponent : PlantTraitsComponent
+ {
+-    [DataField]
++    /// <inheritdoc/>
+     public override LocId? TraitState { get; set; } = "mutation-plant-seedless";
+ }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
+index a853686cb7..18d949a4fe 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
+@@ -15,6 +15,6 @@ public sealed partial class PlantTraitUnviableComponent : PlantTraitsComponent
+     [DataField, AutoNetworkedField]
+     public float UnviableDamage = 6f;
+ 
+-    [DataField]
++    /// <inheritdoc/>
+     public override LocId? TraitState { get; set; } = "mutation-plant-unviable";
+ }
+-- 
+2.55.0
+

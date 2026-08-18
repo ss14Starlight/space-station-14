@@ -1,0 +1,464 @@
+From 059820051a717a3b2dd948c4abdcc9f12e5ac885 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 9 Jul 2026 03:19:25 +0300
+Subject: [PATCH 094/112] build
+
+---
+ .../Botany/PlantTrayVisualizerSystem.cs       | 10 ++++----
+ .../Botany/PlantVisualizerSystem.cs           | 23 ++++++++-----------
+ .../Botany/Items/Systems/BotanyHoeSystem.cs   | 12 +++-------
+ .../Items/Systems/BotanyProduceSystem.cs      | 12 +++-------
+ .../Items/Systems/BotanySampleTakerSystem.cs  | 12 +++-------
+ .../Botany/Items/Systems/BotanySeedSystem.cs  | 12 +++-------
+ .../Items/Systems/BotanyShovelSystem.cs       | 12 +++-------
+ .../Botany/Items/Systems/BotanySwabSystem.cs  | 14 ++++-------
+ .../Traits/Systems/PlantTraitsSystem.Kudzu.cs |  6 +----
+ .../Systems/PlantTraitsSystem.Ligneous.cs     |  8 ++-----
+ .../Systems/PlantTraitsSystem.Sampled.cs      |  6 +----
+ .../Systems/PlantTraitsSystem.Scream.cs       |  6 +----
+ .../Systems/PlantTraitsSystem.Unviable.cs     |  6 +----
+ .../Traits/Systems/PlantTraitsSystem.cs       |  6 +----
+ .../PlantMutateChemicalsEntityEffectSystem.cs |  2 +-
+ 15 files changed, 41 insertions(+), 106 deletions(-)
+
+diff --git a/Content.Client/Botany/PlantTrayVisualizerSystem.cs b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+index f5b844423a..ddc8fcc375 100644
+--- a/Content.Client/Botany/PlantTrayVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+@@ -6,12 +6,12 @@
+ 
+ namespace Content.Client.Botany;
+ 
+-public sealed class PlantTrayVisualizerSystem : VisualizerSystem<PlantTrayVisualsComponent>
++public sealed partial class PlantTrayVisualizerSystem : VisualizerSystem<PlantTrayVisualsComponent>
+ {
+-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+-    [Dependency] private readonly PlantTraySystem _plantTray = default!;
+-    [Dependency] private readonly PlantWeedPestSystem _plantWeedPest = default!;
+-    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private SharedAppearanceSystem _appearance = default!;
++    [Dependency] private PlantTraySystem _plantTray = default!;
++    [Dependency] private PlantWeedPestSystem _plantWeedPest = default!;
++    [Dependency] private PlantHolderSystem _plantHolder = default!;
+ 
+     public override void FrameUpdate(float frameTime)
+     {
+diff --git a/Content.Client/Botany/PlantVisualizerSystem.cs b/Content.Client/Botany/PlantVisualizerSystem.cs
+index 7c37d15be9..84a2f4a611 100644
+--- a/Content.Client/Botany/PlantVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantVisualizerSystem.cs
+@@ -6,22 +6,12 @@
+ 
+ namespace Content.Client.Botany;
+ 
+-public sealed class PlantVisualizerSystem : VisualizerSystem<PlantVisualsComponent>
++public sealed partial class PlantVisualizerSystem : VisualizerSystem<PlantVisualsComponent>
+ {
+-    [Dependency] private readonly PlantSystem _plantSystem = default!;
+-    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+-
+-    public override void Initialize()
+-    {
+-        base.Initialize();
+-
+-        SubscribeLocalEvent<PlantVisualsComponent, ComponentInit>(OnComponentInit);
+-        SubscribeLocalEvent<PlantVisualsComponent, ComponentStartup>(OnComponentStartup);
+-        SubscribeLocalEvent<PlantComponent, AfterAutoHandleStateEvent>(OnPlantState);
+-        SubscribeLocalEvent<PlantHarvestComponent, AfterAutoHandleStateEvent>(OnHarvestState);
+-        SubscribeLocalEvent<PlantHolderComponent, AfterAutoHandleStateEvent>(OnHolderState);
+-    }
++    [Dependency] private PlantSystem _plantSystem = default!;
++    [Dependency] private PlantHolderSystem _plantHolder = default!;
+ 
++    [SubscribeLocalEvent]
+     private void OnComponentInit(EntityUid uid, PlantVisualsComponent component, ComponentInit args)
+     {
+         if (!TryComp<SpriteComponent>(uid, out var sprite))
+@@ -33,26 +23,31 @@ private void OnComponentInit(EntityUid uid, PlantVisualsComponent component, Com
+         SpriteSystem.LayerSetVisible((uid, sprite), PlantLayers.Plant, false);
+     }
+ 
++    [SubscribeLocalEvent]
+     private void OnComponentStartup(Entity<PlantVisualsComponent> ent, ref ComponentStartup args)
+     {
+         UpdateSprite(ent.Owner);
+     }
+ 
++    [SubscribeLocalEvent]
+     private void OnPlantState(Entity<PlantComponent> ent, ref AfterAutoHandleStateEvent args)
+     {
+         UpdateSprite(ent.Owner);
+     }
+ 
++    [SubscribeLocalEvent]
+     private void OnHarvestState(Entity<PlantHarvestComponent> ent, ref AfterAutoHandleStateEvent args)
+     {
+         UpdateSprite(ent.Owner);
+     }
+ 
++    [SubscribeLocalEvent]
+     private void OnHolderState(Entity<PlantHolderComponent> ent, ref AfterAutoHandleStateEvent args)
+     {
+         UpdateSprite(ent.Owner);
+     }
+ 
++    [SubscribeLocalEvent]
+     private void UpdateSprite(EntityUid plantUid)
+     {
+         if (!HasComp<PlantVisualsComponent>(plantUid)
+diff --git a/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs b/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs
+index 0fc935f72c..47272e7d82 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs
+@@ -12,19 +12,12 @@ namespace Content.Shared.Botany.Items.Systems;
+ /// <summary>
+ /// System for taking a sample of a plant.
+ /// </summary>
+-public sealed class BotanyHoeSystem : EntitySystem
++public sealed partial class BotanyHoeSystem : EntitySystem
+ {
+     [Dependency] private PlantTraySystem _plantTray = default!;
+     [Dependency] private SharedPopupSystem _popup = default!;
+ 
+-    public override void Initialize()
+-    {
+-        base.Initialize();
+-
+-        SubscribeLocalEvent<BotanyHoeComponent, AfterInteractEvent>(OnAfterInteract);
+-        SubscribeLocalEvent<PlantTrayComponent, TrayHoeAttemptEvent>(OnTrayHoeAttempt);
+-    }
+-
++    [SubscribeLocalEvent]
+     private void OnAfterInteract(Entity<BotanyHoeComponent> ent, ref AfterInteractEvent args)
+     {
+         if (args.Target == null || args.Handled || !args.CanReach || !HasComp<PlantTrayComponent>(args.Target))
+@@ -36,6 +29,7 @@ private void OnAfterInteract(Entity<BotanyHoeComponent> ent, ref AfterInteractEv
+         args.Handled = true;
+     }
+ 
++    [SubscribeLocalEvent]
+     private void OnTrayHoeAttempt(Entity<PlantTrayComponent> ent, ref TrayHoeAttemptEvent args)
+     {
+         if (args.Cancelled)
+diff --git a/Content.Shared/Botany/Items/Systems/BotanyProduceSystem.cs b/Content.Shared/Botany/Items/Systems/BotanyProduceSystem.cs
+index 58865f7614..55d15f14ce 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanyProduceSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanyProduceSystem.cs
+@@ -14,7 +14,7 @@ namespace Content.Shared.Botany.Items.Systems;
+ /// <summary>
+ /// System for taking a sample of a plant.
+ /// </summary>
+-public sealed class BotanyProduceSystem : EntitySystem
++public sealed partial class BotanyProduceSystem : EntitySystem
+ {
+     [Dependency] private BotanySystem _botany = default!;
+     [Dependency] private PlantSystem _plant = default!;
+@@ -22,14 +22,7 @@ public sealed class BotanyProduceSystem : EntitySystem
+     [Dependency] private SharedPopupSystem _popup = default!;
+     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+ 
+-    public override void Initialize()
+-    {
+-        base.Initialize();
+-
+-        SubscribeLocalEvent<ProduceComponent, AfterInteractEvent>(OnAfterInteract);
+-        SubscribeLocalEvent<PlantTrayComponent, CompostingProduceAttemptEvent>(OnCompostingProduceAttempt);
+-    }
+-
++    [SubscribeLocalEvent]
+     private void OnAfterInteract(Entity<ProduceComponent> ent, ref AfterInteractEvent args)
+     {
+         if (args.Target == null || args.Handled || !args.CanReach || !HasComp<PlantTrayComponent>(args.Target))
+@@ -41,6 +34,7 @@ private void OnAfterInteract(Entity<ProduceComponent> ent, ref AfterInteractEven
+         args.Handled = true;
+     }
+ 
++    [SubscribeLocalEvent]
+     private void OnCompostingProduceAttempt(Entity<PlantTrayComponent> ent, ref CompostingProduceAttemptEvent args)
+     {
+         if (args.Cancelled)
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
+index ce4bb98177..6868ba6ef1 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
+@@ -14,7 +14,7 @@ namespace Content.Shared.Botany.Items.Systems;
+ /// <summary>
+ /// System for taking a sample of a plant.
+ /// </summary>
+-public sealed class BotanySampleTakerSystem : EntitySystem
++public sealed partial class BotanySampleTakerSystem : EntitySystem
+ {
+     [Dependency] private BotanySystem _botany = default!;
+     [Dependency] private IGameTiming _timing = default!;
+@@ -22,14 +22,7 @@ public sealed class BotanySampleTakerSystem : EntitySystem
+     [Dependency] private PlantSystem _plant = default!;
+     [Dependency] private SharedPopupSystem _popup = default!;
+ 
+-    public override void Initialize()
+-    {
+-        base.Initialize();
+-
+-        SubscribeLocalEvent<BotanySampleTakerComponent, AfterInteractEvent>(OnAfterInteract);
+-        SubscribeLocalEvent<PlantComponent, PlantSampleAttemptEvent>(OnPlantSampleAttempt);
+-    }
+-
++    [SubscribeLocalEvent]
+     private void OnAfterInteract(Entity<BotanySampleTakerComponent> ent, ref AfterInteractEvent args)
+     {
+         if (args.Target == null || args.Handled || !args.CanReach || !HasComp<PlantComponent>(args.Target))
+@@ -41,6 +34,7 @@ private void OnAfterInteract(Entity<BotanySampleTakerComponent> ent, ref AfterIn
+         args.Handled = true;
+     }
+ 
++    [SubscribeLocalEvent]
+     private void OnPlantSampleAttempt(Entity<PlantComponent> ent, ref PlantSampleAttemptEvent args)
+     {
+         if (args.Cancelled)
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
+index 1c76c1bcbe..106a3ed456 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
+@@ -14,7 +14,7 @@ namespace Content.Shared.Botany.Items.Systems;
+ /// <summary>
+ /// System for taking a sample of a plant.
+ /// </summary>
+-public sealed class BotanySeedSystem : EntitySystem
++public sealed partial class BotanySeedSystem : EntitySystem
+ {
+     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+     [Dependency] private BotanySystem _botany = default!;
+@@ -22,14 +22,7 @@ public sealed class BotanySeedSystem : EntitySystem
+     [Dependency] private PlantTraySystem _plantTray = default!;
+     [Dependency] private SharedPopupSystem _popup = default!;
+ 
+-    public override void Initialize()
+-    {
+-        base.Initialize();
+-
+-        SubscribeLocalEvent<SeedComponent, AfterInteractEvent>(OnAfterInteract);
+-        SubscribeLocalEvent<PlantTrayComponent, PlantingSeedAttemptEvent>(OnPlantingSeedAttempt);
+-    }
+-
++    [SubscribeLocalEvent]
+     private void OnAfterInteract(Entity<SeedComponent> ent, ref AfterInteractEvent args)
+     {
+         if (args.Handled || !args.CanReach || !HasComp<PlantTrayComponent>(args.Target))
+@@ -41,6 +34,7 @@ private void OnAfterInteract(Entity<SeedComponent> ent, ref AfterInteractEvent a
+         args.Handled = true;
+     }
+ 
++    [SubscribeLocalEvent]
+     private void OnPlantingSeedAttempt(Entity<PlantTrayComponent> ent, ref PlantingSeedAttemptEvent args)
+     {
+         if (args.Cancelled)
+diff --git a/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs b/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs
+index b103f11075..d2f4642553 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs
+@@ -12,20 +12,13 @@ namespace Content.Shared.Botany.Items.Systems;
+ /// <summary>
+ /// System for using a shovel on a plant.
+ /// </summary>
+-public sealed class BotanyShovelSystem : EntitySystem
++public sealed partial class BotanyShovelSystem : EntitySystem
+ {
+     [Dependency] private PlantSystem _plant = default!;
+     [Dependency] private PlantTraySystem _plantTray = default!;
+     [Dependency] private SharedPopupSystem _popup = default!;
+ 
+-    public override void Initialize()
+-    {
+-        base.Initialize();
+-
+-        SubscribeLocalEvent<ShovelComponent, AfterInteractEvent>(OnAfterInteract);
+-        SubscribeLocalEvent<PlantTrayComponent, TrayShovelAttemptEvent>(OnTrayShovelAttempt);
+-    }
+-
++    [SubscribeLocalEvent]
+     private void OnAfterInteract(Entity<ShovelComponent> ent, ref AfterInteractEvent args)
+     {
+         if (args.Target == null || args.Handled || !args.CanReach || !HasComp<PlantTrayComponent>(args.Target))
+@@ -37,6 +30,7 @@ private void OnAfterInteract(Entity<ShovelComponent> ent, ref AfterInteractEvent
+         args.Handled = true;
+     }
+ 
++    [SubscribeLocalEvent]
+     private void OnTrayShovelAttempt(Entity<PlantTrayComponent> ent, ref TrayShovelAttemptEvent args)
+     {
+         if (args.Cancelled)
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs
+index a77e911d73..cdc7d5fbb1 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs
+@@ -10,26 +10,18 @@
+ 
+ namespace Content.Shared.Botany.Items.Systems;
+ 
+-public sealed class BotanySwabSystem : EntitySystem
++public sealed partial class BotanySwabSystem : EntitySystem
+ {
+     [Dependency] private BotanySystem _botany = default!;
+     [Dependency] private MutationSystem _mutation = default!;
+     [Dependency] private SharedDoAfterSystem _doAfter = default!;
+     [Dependency] private SharedPopupSystem _popup = default!;
+ 
+-    public override void Initialize()
+-    {
+-        base.Initialize();
+-
+-        SubscribeLocalEvent<BotanySwabComponent, ExaminedEvent>(OnExamined);
+-        SubscribeLocalEvent<BotanySwabComponent, AfterInteractEvent>(OnAfterInteract);
+-        SubscribeLocalEvent<BotanySwabComponent, BotanySwabDoAfterEvent>(OnDoAfter);
+-    }
+-
+     /// <summary>
+     /// This handles swab examination text
+     /// so you can tell if they are used or not.
+     /// </summary>
++    [SubscribeLocalEvent]
+     private void OnExamined(Entity<BotanySwabComponent> ent, ref ExaminedEvent args)
+     {
+         if (!args.IsInDetailsRange)
+@@ -44,6 +36,7 @@ private void OnExamined(Entity<BotanySwabComponent> ent, ref ExaminedEvent args)
+     /// <summary>
+     /// Handles swabbing a plant.
+     /// </summary>
++    [SubscribeLocalEvent]
+     private void OnAfterInteract(Entity<BotanySwabComponent> ent, ref AfterInteractEvent args)
+     {
+         if (args.Target == null || !args.CanReach || !HasComp<PlantComponent>(args.Target))
+@@ -60,6 +53,7 @@ private void OnAfterInteract(Entity<BotanySwabComponent> ent, ref AfterInteractE
+     /// <summary>
+     /// Save seed data or cross-pollenate.
+     /// </summary>
++    [SubscribeLocalEvent]
+     private void OnDoAfter(Entity<BotanySwabComponent> ent, ref BotanySwabDoAfterEvent args)
+     {
+         if (args.Cancelled || args.Handled || !HasComp<PlantComponent>(args.Args.Target))
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs
+index 5e9b75f51f..298aa012dd 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs
+@@ -12,11 +12,7 @@ public sealed partial class PlantTraitKudzuSystem : EntitySystem
+     [Dependency] private PlantTraySystem _plantTray = default!;
+     [Dependency] private SharedTransformSystem _transform = default!;
+ 
+-    public override void Initialize()
+-    {
+-        SubscribeLocalEvent<PlantTraitKudzuComponent, OnPlantGrowEvent>(OnPlantGrow);
+-    }
+-
++    [SubscribeLocalEvent]
+     private void OnPlantGrow(Entity<PlantTraitKudzuComponent> ent, ref OnPlantGrowEvent args)
+     {
+         var trayUid = GetEntity(args.Tray);
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
+index 7a06157b7b..00bd0f71d8 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
+@@ -16,12 +16,7 @@ public sealed partial class PlantTraitLigneousSystem : EntitySystem
+     [Dependency] private SharedPopupSystem _popup = default!;
+     [Dependency] private SharedToolSystem _tool = default!;
+ 
+-    public override void Initialize()
+-    {
+-        SubscribeLocalEvent<PlantTraitLigneousComponent, InteractUsingEvent>(OnInteractUsing);
+-        SubscribeLocalEvent<PlantTraitLigneousComponent, DoHarvestEvent>(OnDoHarvest);
+-    }
+-
++    [SubscribeLocalEvent]
+     private void OnInteractUsing(Entity<PlantTraitLigneousComponent> ent, ref InteractUsingEvent args)
+     {
+         if (args.Handled)
+@@ -52,6 +47,7 @@ private void OnInteractUsing(Entity<PlantTraitLigneousComponent> ent, ref Intera
+         args.Handled = true;
+     }
+ 
++    [SubscribeLocalEvent]
+     private void OnDoHarvest(Entity<PlantTraitLigneousComponent> ent, ref DoHarvestEvent args)
+     {
+         _popup.PopupPredictedCursor(Loc.GetString("plant-component-ligneous-cant-harvest-message"), args.User);
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
+index 7caa7cbd4c..74ed70e42c 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
+@@ -9,11 +9,7 @@ public sealed partial class PlantTraitSampledSystem : EntitySystem
+ {
+     [Dependency] private SharedPopupSystem _popup = default!;
+ 
+-    public override void Initialize()
+-    {
+-        SubscribeLocalEvent<PlantTraitSampledComponent, PlantSampleAttemptEvent>(OnPlantSampleAttempt);
+-    }
+-
++    [SubscribeLocalEvent]
+     private void OnPlantSampleAttempt(Entity<PlantTraitSampledComponent> ent, ref PlantSampleAttemptEvent args)
+     {
+         _popup.PopupPredictedCursor(Loc.GetString("plant-sample-component-already-sampled-popup"), args.User);
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs
+index 60ddb81715..7cfa9de314 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs
+@@ -9,11 +9,7 @@ public sealed partial class PlantTraitScreamSystem : EntitySystem
+ {
+     [Dependency] private SharedAudioSystem _audio = default!;
+ 
+-    public override void Initialize()
+-    {
+-        SubscribeLocalEvent<PlantTraitScreamComponent, AfterDoHarvestEvent>(OnAfterDoHarvest);
+-    }
+-
++    [SubscribeLocalEvent]
+     private void OnAfterDoHarvest(Entity<PlantTraitScreamComponent> ent, ref AfterDoHarvestEvent args)
+     {
+         _audio.PlayPredicted(ent.Comp.ScreamSound, ent, args.User);
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs
+index 4f6140aa60..9c0e9b42ce 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs
+@@ -10,11 +10,7 @@ public sealed partial class PlantTraitUnviableSystem : EntitySystem
+     [Dependency] private PlantHarvestSystem _plantHarvest = default!;
+     [Dependency] private PlantHolderSystem _plantHolder = default!;
+ 
+-    public override void Initialize()
+-    {
+-        SubscribeLocalEvent<PlantTraitUnviableComponent, OnPlantGrowEvent>(OnPlantGrow);
+-    }
+-
++    [SubscribeLocalEvent]
+     private void OnPlantGrow(Entity<PlantTraitUnviableComponent> ent, ref OnPlantGrowEvent args)
+     {
+         _plantHarvest.AffectGrowth(ent.Owner, -1);
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs
+index 650fb53e7f..4e43ca82c0 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs
+@@ -11,11 +11,7 @@ public sealed partial class PlantTraitsSystem : EntitySystem
+ {
+     [Dependency] private MutationSystem _mutation = default!;
+ 
+-    public override void Initialize()
+-    {
+-        SubscribeLocalEvent<PlantTraitsComponent, PlantCrossPollinateEvent>(OnCrossPollinate);
+-    }
+-
++    [SubscribeLocalEvent]
+     private void OnCrossPollinate(Entity<PlantTraitsComponent> ent, ref PlantCrossPollinateEvent args)
+     {
+         _mutation.CrossTrait(ent.Owner, args.PollenData);
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs
+index b70e98dd4e..aef16c7bb5 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs
+@@ -12,7 +12,7 @@ namespace Content.Shared.EntityEffects.Effects.Botany;
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+ public sealed partial class PlantMutateChemicalsEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantMutateChemicals>
+ {
+-    [Dependency] private readonly PlantChemicalsSystem _plantChemicals = default!;
++    [Dependency] private PlantChemicalsSystem _plantChemicals = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantMutateChemicals> args)
+     {
+-- 
+2.55.0
+

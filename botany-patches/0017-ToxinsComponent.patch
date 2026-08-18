@@ -1,0 +1,198 @@
+From 2e3db2c4c011ed1cc3380f70336348d45aa46c1a Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Fri, 1 Aug 2025 17:58:29 +0300
+Subject: [PATCH 017/112] ToxinsComponent
+
+---
+ .../Botany/Components/ToxinsComponent.cs      | 18 +++++++++
+ Content.Server/Botany/SeedPrototype.cs        |  9 -----
+ .../Botany/Systems/MutationSystem.cs          |  2 -
+ .../Botany/Systems/PlantHolderSystem.cs       | 15 --------
+ Content.Server/Botany/Systems/ToxinsSystem.cs | 38 +++++++++++++++++++
+ Resources/Maps/Salvage/vegan-meatball.yml     |  6 ++-
+ 6 files changed, 60 insertions(+), 28 deletions(-)
+ create mode 100644 Content.Server/Botany/Components/ToxinsComponent.cs
+ create mode 100644 Content.Server/Botany/Systems/ToxinsSystem.cs
+
+diff --git a/Content.Server/Botany/Components/ToxinsComponent.cs b/Content.Server/Botany/Components/ToxinsComponent.cs
+new file mode 100644
+index 0000000000..df45ee2d71
+--- /dev/null
++++ b/Content.Server/Botany/Components/ToxinsComponent.cs
+@@ -0,0 +1,18 @@
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++[DataDefinition]
++public sealed partial class ToxinsComponent : PlantGrowthComponent
++{
++    /// <summary>
++    /// Maximum toxin level the plant can tolerate before taking damage.
++    /// </summary>
++    [DataField]
++    public float ToxinsTolerance = 4f;
++
++    /// <summary>
++    /// Divisor for calculating toxin uptake rate. Higher values mean slower toxin processing.
++    /// </summary>
++    [DataField]
++    public float ToxinUptakeDivisor = 10f;
++}
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index 8543a224be..988e74cc37 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -109,11 +109,6 @@ public partial class SeedData
+ 
+     #endregion
+ 
+-    #region Tolerances
+-    [DataField] public float ToxinsTolerance = 4f;
+-
+-    #endregion
+-
+     #region General traits
+ 
+     [DataField] public float Endurance = 100f;
+@@ -220,8 +215,6 @@ public SeedData Clone()
+             MutationPrototypes = new List<string>(MutationPrototypes),
+             Chemicals = new Dictionary<string, SeedChemQuantity>(Chemicals),
+ 
+-            ToxinsTolerance = ToxinsTolerance,
+-
+             Endurance = Endurance,
+             Yield = Yield,
+             Lifespan = Lifespan,
+@@ -279,8 +272,6 @@ public SeedData SpeciesChange(SeedData other)
+ 
+             Chemicals = new Dictionary<string, SeedChemQuantity>(Chemicals),
+ 
+-            ToxinsTolerance = ToxinsTolerance,
+-
+             Endurance = Endurance,
+             Yield = Yield,
+             Lifespan = Lifespan,
+diff --git a/Content.Server/Botany/Systems/MutationSystem.cs b/Content.Server/Botany/Systems/MutationSystem.cs
+index d6c9f90d4c..fe52648e3d 100644
+--- a/Content.Server/Botany/Systems/MutationSystem.cs
++++ b/Content.Server/Botany/Systems/MutationSystem.cs
+@@ -79,8 +79,6 @@ public SeedData Cross(SeedData a, SeedData b)
+ 
+         CrossChemicals(ref result.Chemicals, a.Chemicals);
+ 
+-        CrossFloat(ref result.ToxinsTolerance, a.ToxinsTolerance);
+-
+         CrossFloat(ref result.Endurance, a.Endurance);
+         CrossInt(ref result.Yield, a.Yield);
+         CrossFloat(ref result.Lifespan, a.Lifespan);
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 57605c1b3a..199c2f1b4d 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -446,21 +446,6 @@ public void Update(EntityUid uid, PlantHolderComponent? component = null)
+             return;
+         }
+ 
+-        // Toxin levels beyond the plant's tolerance cause damage.
+-        // They are, however, slowly reduced over time.
+-        if (component.Toxins > 0)
+-        {
+-            var toxinUptake = MathF.Max(1, MathF.Round(component.Toxins / 10f));
+-            if (component.Toxins > component.Seed.ToxinsTolerance)
+-            {
+-                component.Health -= toxinUptake;
+-            }
+-
+-            component.Toxins -= toxinUptake;
+-            if (component.DrawWarnings)
+-                component.UpdateSpriteAfterUpdate = true;
+-        }
+-
+         CheckHealth(uid, component);
+         CheckLevelSanity(uid, component);
+ 
+diff --git a/Content.Server/Botany/Systems/ToxinsSystem.cs b/Content.Server/Botany/Systems/ToxinsSystem.cs
+new file mode 100644
+index 0000000000..e07ab64c26
+--- /dev/null
++++ b/Content.Server/Botany/Systems/ToxinsSystem.cs
+@@ -0,0 +1,38 @@
++using System;
++using Content.Server.Botany.Components;
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// Handles toxin tolerance and damage for plants.
++/// </summary>
++public sealed class ToxinsSystem : PlantGrowthSystem
++{
++    public override void Initialize()
++    {
++        base.Initialize();
++        SubscribeLocalEvent<ToxinsComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(EntityUid uid, ToxinsComponent component, OnPlantGrowEvent args)
++    {
++        PlantHolderComponent? holder = null;
++        Resolve<PlantHolderComponent>(uid, ref holder);
++
++        if (holder == null || holder.Seed == null || holder.Dead)
++            return;
++
++        if (holder.Toxins > 0)
++        {
++            var toxinUptake = MathF.Max(1, MathF.Round(holder.Toxins / component.ToxinUptakeDivisor));
++            if (holder.Toxins > component.ToxinsTolerance)
++            {
++                holder.Health -= toxinUptake;
++            }
++
++            holder.Toxins -= toxinUptake;
++            if (holder.DrawWarnings)
++                holder.UpdateSpriteAfterUpdate = true;
++        }
++    }
++}
+diff --git a/Resources/Maps/Salvage/vegan-meatball.yml b/Resources/Maps/Salvage/vegan-meatball.yml
+index d5860da20a..c89966623b 100644
+--- a/Resources/Maps/Salvage/vegan-meatball.yml
++++ b/Resources/Maps/Salvage/vegan-meatball.yml
+@@ -488,7 +488,6 @@ entities:
+         splatPrototype: null
+         lifespan: 75
+         endurance: 100
+-        toxinsTolerance: 4
+         growthComponents:
+           - !type:BasicGrowthComponent
+               waterConsumption: 0.4
+@@ -501,6 +500,8 @@ entities:
+           - !type:WeedPestGrowthComponent
+               weedTolerance: 5
+               pestTolerance: 5
++          - !type:ToxinsComponent
++              toxinsTolerance: 4
+         chemicals:
+           THC:
+             Inherent: True
+@@ -560,7 +561,6 @@ entities:
+         splatPrototype: null
+         lifespan: 25
+         endurance: 100
+-        toxinsTolerance: 4
+         growthComponents:
+           - !type:BasicGrowthComponent
+               waterConsumption: 0.6
+@@ -573,6 +573,8 @@ entities:
+           - !type:WeedPestGrowthComponent
+               weedTolerance: 5
+               pestTolerance: 5
++          - !type:ToxinsComponent
++              toxinsTolerance: 4
+         chemicals:
+           Stellibinin:
+             Inherent: True
+-- 
+2.55.0
+

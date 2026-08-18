@@ -1,0 +1,26 @@
+From cc3bd146a6c1fd178f679181ea165f0cb0bc6408 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 25 Dec 2025 21:12:49 +0200
+Subject: [PATCH 074/112] oops 2
+
+---
+ Content.Server/Botany/Systems/PlantHolderSystem.cs | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 91ffc618b5..2e710b1b50 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -22,7 +22,8 @@ public void AdjustsHealth(Entity<PlantHolderComponent?> ent, float amount)
+         if (!TryComp<PlantComponent>(ent.Owner, out var plant))
+             return;
+ 
+-        ent.Comp.Health += MathHelper.Clamp(amount, 0, plant.Endurance);
++        ent.Comp.Health += amount;
++        ent.Comp.Health = MathHelper.Clamp(ent.Comp.Health, 0, plant.Endurance);
+         CheckHealth(ent);
+         _plant.UpdateSprite(ent.Owner);
+     }
+-- 
+2.55.0
+

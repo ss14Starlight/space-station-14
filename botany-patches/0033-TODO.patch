@@ -1,0 +1,112 @@
+From 789f3a02d071170a37d949e0cb0ffa4699472d4d Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 16 Oct 2025 15:15:23 +0300
+Subject: [PATCH 033/112] TODO
+
+---
+ .../Components/GrowthComponentsHolder.cs      |  3 +--
+ Content.Server/Botany/SeedPrototype.cs        |  1 +
+ .../Botany/Systems/PlantHolderSystem.cs       |  1 +
+ .../PlantChangeStatEntityEffectSystem.cs      | 24 ++++++-------------
+ 4 files changed, 10 insertions(+), 19 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/GrowthComponentsHolder.cs b/Content.Server/Botany/Components/GrowthComponentsHolder.cs
+index af3d468482..e02f3d066f 100644
+--- a/Content.Server/Botany/Components/GrowthComponentsHolder.cs
++++ b/Content.Server/Botany/Components/GrowthComponentsHolder.cs
+@@ -1,8 +1,7 @@
+ namespace Content.Server.Botany.Components;
+ 
+ /// <summary>
+-/// Holder for plant growth settings serialized from YAML as a map under "growthComponents".
+-/// Each property corresponds to a concrete growth component type.
++/// TODO: Delete after plants transition to entities
+ /// </summary>
+ [DataDefinition]
+ public sealed partial class GrowthComponentsHolder
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index d8ff2bbd9a..e0f2197bb5 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -151,6 +151,7 @@ public partial class SeedData
+ 
+     /// <summary>
+     /// The growth components used by this seed.
++    /// TODO: Delete after plants transition to entities
+     /// </summary>
+     [DataField]
+     public GrowthComponentsHolder GrowthComponents = new();
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 35d59dc1be..25cc24467d 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -680,6 +680,7 @@ public void ForceUpdateByExternalCause(EntityUid uid, PlantHolderComponent? comp
+ 
+     /// <summary>
+     /// Removes all growth-related components from a plant.
++    /// TODO: Delete after plants transition to entities
+     /// </summary>
+     private void RemoveAllGrowthComponents(EntityUid uid)
+     {
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
+index 07ba8a1118..08e9b554d8 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
+@@ -21,26 +21,16 @@ protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEf
+ 
+         var targetValue = args.Effect.TargetValue;
+ 
+-        // Build the list of the seed's growth components.
+-        var growthHolder = entity.Comp.Seed.GrowthComponents;
+-        growthHolder.EnsureGrowthComponents();
+-
+-        foreach (var prop in typeof(GrowthComponentsHolder).GetProperties())
++        // Scan live plant growth components and mutate the first matching field.
++        foreach (var growthComp in EntityManager.GetComponents<PlantGrowthComponent>(entity.Owner))
+         {
+-            if (prop.GetValue(growthHolder) is not PlantGrowthComponent)
+-                continue;
+-
+-            var componentType = prop.PropertyType;
+-            if (!EntityManager.HasComponent(entity, componentType))
+-                continue;
+-
+-            var component = EntityManager.GetComponent(entity, componentType);
++            var componentType = growthComp.GetType();
+             var field = componentType.GetField(targetValue);
+ 
+             if (field == null)
+                 continue;
+ 
+-            var currentValue = field.GetValue(component);
++            var currentValue = field.GetValue(growthComp);
+             if (currentValue == null)
+                 continue;
+ 
+@@ -48,20 +38,20 @@ protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEf
+             {
+                 var floatVal = (float)currentValue;
+                 MutateFloat(ref floatVal, args.Effect.MinValue, args.Effect.MaxValue, args.Effect.Steps);
+-                field.SetValue(component, floatVal);
++                field.SetValue(growthComp, floatVal);
+                 return;
+             }
+             else if (field.FieldType == typeof(int))
+             {
+                 var intVal = (int)currentValue;
+                 MutateInt(ref intVal, (int)args.Effect.MinValue, (int)args.Effect.MaxValue, args.Effect.Steps);
+-                field.SetValue(component, intVal);
++                field.SetValue(growthComp, intVal);
+                 return;
+             }
+             else if (field.FieldType == typeof(bool))
+             {
+                 var boolVal = (bool)currentValue;
+-                field.SetValue(component, !boolVal);
++                field.SetValue(growthComp, !boolVal);
+                 return;
+             }
+         }
+-- 
+2.55.0
+

@@ -1,0 +1,193 @@
+From bc8a436029301ac56a01094b1d9b1652f1e8155e Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Mon, 4 Aug 2025 17:28:25 +0300
+Subject: [PATCH 026/112] Viable
+
+---
+ .../Botany/Components/PlantTraitsComponent.cs |  6 ++
+ Content.Server/Botany/SeedPrototype.cs        |  8 --
+ .../Botany/Systems/BasicGrowthSystem.cs       |  2 +-
+ .../Botany/Systems/PlantHolderSystem.cs       |  2 +-
+ .../EntityEffects/EntityEffectSystem.cs       | 80 ++++++++++++-------
+ 5 files changed, 58 insertions(+), 40 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/PlantTraitsComponent.cs b/Content.Server/Botany/Components/PlantTraitsComponent.cs
+index 68d1b35bfb..fc7ee2f747 100644
+--- a/Content.Server/Botany/Components/PlantTraitsComponent.cs
++++ b/Content.Server/Botany/Components/PlantTraitsComponent.cs
+@@ -71,4 +71,10 @@ public sealed partial class PlantTraitsComponent : PlantGrowthComponent
+     /// </summary>
+     [DataField]
+     public bool TurnIntoKudzu = false;
++
++    /// <summary>
++    /// If false, rapidly decrease health while growing. Adds a bit of challenge to keep mutated plants alive via Unviable's frequency.
++    /// </summary>
++    [DataField]
++    public bool Viable = true;
+ }
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index 9f20df5877..0c9250b0ae 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -144,12 +144,6 @@ public partial class SeedData
+     [DataField]
+     public List<PlantGrowthComponent> GrowthComponents = new();
+ 
+-    /// <summary>
+-    /// If false, rapidly decrease health while growing. Adds a bit of challenge to keep mutated plants alive via Unviable's frequency.
+-    /// </summary>
+-    [DataField]
+-    public bool Viable = true;
+-
+     /// <summary>
+     /// Log impact for harvest operations.
+     /// </summary>
+@@ -169,7 +163,6 @@ public SeedData Clone()
+         var newSeed = new SeedData
+         {
+             GrowthComponents = new List<PlantGrowthComponent>(),
+-            Viable = Viable,
+             HarvestLogImpact = HarvestLogImpact,
+             PlantLogImpact = PlantLogImpact,
+             Name = Name,
+@@ -210,7 +203,6 @@ public SeedData SpeciesChange(SeedData other)
+         var newSeed = new SeedData
+         {
+             GrowthComponents = new List<PlantGrowthComponent>(),
+-            Viable = other.Viable,
+             HarvestLogImpact = other.HarvestLogImpact,
+             PlantLogImpact = other.PlantLogImpact,
+             Name = other.Name,
+diff --git a/Content.Server/Botany/Systems/BasicGrowthSystem.cs b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+index 4e11c6b0f0..1052105dd6 100644
+--- a/Content.Server/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+@@ -50,7 +50,7 @@ private void OnPlantGrow(EntityUid uid, BasicGrowthComponent component, OnPlantG
+             return;
+ 
+         // Check if the plant is viable
+-        if (holder.Seed.Viable == false)
++        if (TryComp<PlantTraitsComponent>(uid, out var traits) && !traits.Viable)
+         {
+             holder.Health -= _random.Next(5, 10) * PlantGrowthSystem.HydroponicsSpeedMultiplier;
+             if (holder.DrawWarnings)
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 78757555db..5c290e768a 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -136,7 +136,7 @@ private void OnExamine(Entity<PlantHolderComponent> entity, ref ExaminedEvent ar
+                 if (traits.CanScream)
+                     args.PushMarkup(Loc.GetString("mutation-plant-scream"));
+ 
+-                if (component.Seed.Viable == false)
++                if (!traits.Viable)
+                     args.PushMarkup(Loc.GetString("mutation-plant-unviable"));
+             }
+             else
+diff --git a/Content.Server/EntityEffects/EntityEffectSystem.cs b/Content.Server/EntityEffects/EntityEffectSystem.cs
+index 7cf13ff094..568d54cf81 100644
+--- a/Content.Server/EntityEffects/EntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/EntityEffectSystem.cs
+@@ -370,40 +370,59 @@ private void OnExecutePlantChangeStat(ref ExecuteEntityEffectEvent<PlantChangeSt
+         if (plantHolderComp.Seed == null)
+             return;
+ 
+-        // Try to find the field in PlantTraitsComponent first
+-        PlantTraitsComponent? traits = null;
+-        Resolve<PlantTraitsComponent>(args.Args.TargetEntity, ref traits);
++        var targetValue = args.Effect.TargetValue;
++        var entity = args.Args.TargetEntity;
+ 
+-        // Fallback to SeedData for fields that haven't been moved to components yet
+-        var seedMember = plantHolderComp.Seed.GetType().GetField(args.Effect.TargetValue);
+-        if (seedMember == null)
++        // List of component types to check
++        var componentTypes = new[]
+         {
+-            _mutation.Log.Error(args.Effect.GetType().Name + " Error: Member " + args.Effect.TargetValue + " not found on " + plantHolderComp.Seed.GetType().Name + ". Did you misspell it?");
+-            return;
+-        }
++            typeof(PlantTraitsComponent),
++            typeof(BasicGrowthComponent),
++            typeof(AtmosphericGrowthComponent),
++            typeof(ToxinsComponent),
++            typeof(WeedPestGrowthComponent)
++        };
++
++        // Try to find and mutate the field in any component
++        foreach (var componentType in componentTypes)
++        {
++            if (!EntityManager.HasComponent(entity, componentType))
++                continue;
+ 
+-        var currentSeedValObj = seedMember.GetValue(plantHolderComp.Seed);
+-        if (currentSeedValObj == null)
+-            return;
++            var component = EntityManager.GetComponent(entity, componentType);
++            var field = componentType.GetField(targetValue);
+ 
+-        if (seedMember.FieldType == typeof(float))
+-        {
+-            var floatVal = (float)currentSeedValObj;
+-            MutateFloat(ref floatVal, args.Effect.MinValue, args.Effect.MaxValue, args.Effect.Steps);
+-            seedMember.SetValue(plantHolderComp.Seed, floatVal);
+-        }
+-        else if (seedMember.FieldType == typeof(int))
+-        {
+-            var intVal = (int)currentSeedValObj;
+-            MutateInt(ref intVal, (int)args.Effect.MinValue, (int)args.Effect.MaxValue, args.Effect.Steps);
+-            seedMember.SetValue(plantHolderComp.Seed, intVal);
+-        }
+-        else if (seedMember.FieldType == typeof(bool))
+-        {
+-            var boolVal = (bool)currentSeedValObj;
+-            boolVal = !boolVal;
+-            seedMember.SetValue(plantHolderComp.Seed, boolVal);
++            if (field == null)
++                continue;
++
++            var currentValue = field.GetValue(component);
++            if (currentValue == null)
++                continue;
++
++            if (field.FieldType == typeof(float))
++            {
++                var floatVal = (float)currentValue;
++                MutateFloat(ref floatVal, args.Effect.MinValue, args.Effect.MaxValue, args.Effect.Steps);
++                field.SetValue(component, floatVal);
++                return;
++            }
++            else if (field.FieldType == typeof(int))
++            {
++                var intVal = (int)currentValue;
++                MutateInt(ref intVal, (int)args.Effect.MinValue, (int)args.Effect.MaxValue, args.Effect.Steps);
++                field.SetValue(component, intVal);
++                return;
++            }
++            else if (field.FieldType == typeof(bool))
++            {
++                var boolVal = (bool)currentValue;
++                field.SetValue(component, !boolVal);
++                return;
++            }
+         }
++
++        // Field not found in any component
++        _mutation.Log.Error($"{args.Effect.GetType().Name} Error: Field '{targetValue}' not found in any plant component. Did you misspell it?");
+     }
+ 
+     private void OnExecutePlantCryoxadone(ref ExecuteEntityEffectEvent<PlantCryoxadone> args)
+@@ -479,7 +498,8 @@ private void OnExecutePlantPhalanximine(ref ExecuteEntityEffectEvent<PlantPhalan
+         if (!CanMetabolizePlant(args.Args.TargetEntity, out var plantHolderComp, mustHaveMutableSeed: true))
+             return;
+ 
+-        plantHolderComp.Seed!.Viable = true;
++        if (TryComp<PlantTraitsComponent>(args.Args.TargetEntity, out var traits))
++            traits.Viable = true;
+     }
+ 
+     private void OnExecutePlantRestoreSeeds(ref ExecuteEntityEffectEvent<PlantRestoreSeeds> args)
+-- 
+2.55.0
+

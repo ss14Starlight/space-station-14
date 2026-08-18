@@ -1,0 +1,384 @@
+From d592bd42416e9b6ca2b39dae7daaf9b660e0373a Mon Sep 17 00:00:00 2001
+From: "pa.pecherskij" <pa.pecherskij@interfax.ru>
+Date: Sat, 20 Dec 2025 23:51:22 +0300
+Subject: [PATCH 069/112] refactor: changed HasPlantAlive to TryGetAlivePlant,
+ minor cleanup
+
+---
+ .../Botany/Systems/AtmosphericGrowthSystem.cs        |  2 +-
+ .../Botany/Systems/BotanySystem.Produce.cs           |  6 ++----
+ Content.Server/Botany/Systems/MutationSystem.cs      |  4 ++--
+ Content.Server/Botany/Systems/PlantHarvestSystem.cs  |  6 ++----
+ Content.Server/Botany/Systems/PlantTraySystem.cs     | 12 +++++++++---
+ .../PlantAdjustHealthEntityEffectSystem.cs           |  8 +-------
+ .../PlantAdjustMutationLevelEntityEffectSystem.cs    | 10 ++++------
+ .../PlantAdjustMutationModEntityEffectSystem.cs      |  8 +-------
+ .../PlantAdjustPestsEntityEffectSystem.cs            |  5 +----
+ .../PlantAdjustPotencyEntityEffectSystem.cs          |  9 +++------
+ .../PlantAdjustToxinsEntityEffectSystem.cs           |  2 +-
+ .../PlantCryoxadoneEntityEffectSystem.cs             | 10 ++++------
+ .../PlantDestroySeedsEntityEffectSystem.cs           | 12 +++++-------
+ .../PlantDiethylamineEntityEffectSystem.cs           |  7 ++-----
+ .../PlantPhalanximineEntityEffectSystem.cs           |  6 +++---
+ .../PlantRestoreSeedsEntityEffectSystem.cs           |  8 +++-----
+ .../RobustHarvestEntityEffectSystem.cs               |  8 +++-----
+ .../PlantMutateSpeciesChangeEntityEffectSystem.cs    |  7 +++----
+ 18 files changed, 50 insertions(+), 80 deletions(-)
+
+diff --git a/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs b/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
+index 12c53c46bf..dc228743a6 100644
+--- a/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
+@@ -37,7 +37,7 @@ private void OnCrossPollinate(Entity<AtmosphericGrowthComponent> ent, ref PlantC
+     private void OnPlantGrow(Entity<AtmosphericGrowthComponent> ent, ref OnPlantGrowEvent args)
+     {
+         var (plantUid, component) = ent;
+-        var (_, tray) = args.Tray;
++        var tray = args.Tray.Comp;
+ 
+         if (!TryComp<PlantHolderComponent>(plantUid, out var holder))
+             return;
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Produce.cs b/Content.Server/Botany/Systems/BotanySystem.Produce.cs
+index 0181494cca..97c7c2fa29 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Produce.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Produce.cs
+@@ -42,10 +42,8 @@ public void ProduceGrown(EntityUid uid, ProduceComponent produce)
+ 
+     public void OnProduceExamined(EntityUid uid, ProduceComponent comp, ExaminedEvent args)
+     {
+-        if (comp.PlantData == null)
+-            return;
+-
+-        if (!TryGetPlantComponent<PlantComponent>(comp.PlantData, comp.PlantProtoId, out var plant))
++        if (comp.PlantData == null
++            || !TryGetPlantComponent<PlantComponent>(comp.PlantData, comp.PlantProtoId, out var plant))
+             return;
+ 
+         using (args.PushGroup(nameof(ProduceComponent)))
+diff --git a/Content.Server/Botany/Systems/MutationSystem.cs b/Content.Server/Botany/Systems/MutationSystem.cs
+index 770f4bf6bb..66b4af7d75 100644
+--- a/Content.Server/Botany/Systems/MutationSystem.cs
++++ b/Content.Server/Botany/Systems/MutationSystem.cs
+@@ -5,7 +5,6 @@
+ using Content.Shared.Chemistry.Reagent;
+ using Content.Shared.EntityEffects;
+ using Content.Shared.Random;
+-using Robust.Server.GameObjects;
+ using Robust.Shared.Prototypes;
+ using Robust.Shared.Random;
+ 
+@@ -13,13 +12,14 @@ namespace Content.Server.Botany.Systems;
+ 
+ public sealed class MutationSystem : EntitySystem
+ {
++    private static readonly ProtoId<RandomPlantMutationListPrototype> RandomPlantMutations = "RandomPlantMutations";
++
+     [Dependency] private readonly BotanySystem _botany = default!;
+     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+     [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly PlantTraySystem _plantTray = default!;
+     [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
+ 
+-    private static readonly ProtoId<RandomPlantMutationListPrototype> RandomPlantMutations = "RandomPlantMutations";
+     private RandomPlantMutationListPrototype _randomMutations = default!;
+ 
+     public override void Initialize()
+diff --git a/Content.Server/Botany/Systems/PlantHarvestSystem.cs b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+index b832e38d37..9a110427b3 100644
+--- a/Content.Server/Botany/Systems/PlantHarvestSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+@@ -43,10 +43,8 @@ private void OnPlantGrow(Entity<PlantHarvestComponent> ent, ref OnPlantGrowEvent
+         var (trayUid, tray) = args.Tray;
+ 
+         if (!TryComp<PlantHolderComponent>(plantUid, out var holder)
+-            || !TryComp<PlantComponent>(plantUid, out var plant))
+-            return;
+-
+-        if (holder.Dead)
++            || !TryComp<PlantComponent>(plantUid, out var plant)
++            || holder.Dead)
+             return;
+ 
+         // Check if plant is ready for harvest.
+diff --git a/Content.Server/Botany/Systems/PlantTraySystem.cs b/Content.Server/Botany/Systems/PlantTraySystem.cs
+index 2d44a85167..1485d004d6 100644
+--- a/Content.Server/Botany/Systems/PlantTraySystem.cs
++++ b/Content.Server/Botany/Systems/PlantTraySystem.cs
+@@ -593,15 +593,21 @@ public bool TryGetPlant(Entity<PlantTrayComponent?> ent, [NotNullWhen(true)] out
+     /// Checks if the tray contains a living plant entity.
+     /// </summary>
+     [PublicAPI]
+-    public bool HasPlantAlive(Entity<PlantTrayComponent?> ent)
++    public bool TryGetAlivePlant(
++        Entity<PlantTrayComponent?> ent,
++        [NotNullWhen(true)] out EntityUid? plant,
++        [NotNullWhen(true)] out PlantHolderComponent? holder
++    )
+     {
++        plant = null;
++        holder = null;
+         if (!Resolve(ent.Owner, ref ent.Comp))
+             return false;
+ 
+-        if (!TryGetPlant(ent.Owner, out var plant))
++        if (!TryGetPlant(ent.Owner, out plant))
+             return false;
+ 
+-        if (!TryComp<PlantHolderComponent>(plant, out var holder))
++        if (!TryComp(plant, out holder))
+             return false;
+ 
+         if (holder.Dead)
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustHealthEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustHealthEntityEffectSystem.cs
+index 19bde48e63..f7ea5112ae 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustHealthEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustHealthEntityEffectSystem.cs
+@@ -16,13 +16,7 @@ public sealed partial class PlantAdjustHealthEntityEffectSystem : EntityEffectSy
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustHealth> args)
+     {
+-        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant))
+-            return;
+-
+-        if (!TryComp<PlantHolderComponent>(plant, out var plantHolder))
+-            return;
+-
+-        if (plantHolder.Dead)
++        if (!_plantTray.TryGetAlivePlant(entity.AsNullable(), out var plant, out var plantHolder))
+             return;
+ 
+         plantHolder.Health += args.Effect.Amount;
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustMutationLevelEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustMutationLevelEntityEffectSystem.cs
+index 4d2cacb365..3c2eba0a8a 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustMutationLevelEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustMutationLevelEntityEffectSystem.cs
+@@ -12,17 +12,15 @@ namespace Content.Server.EntityEffects.Effects.Botany.PlantAttributes;
+ public sealed partial class PlantAdjustMutationLevelEntityEffectSystem : EntityEffectSystem<PlantTrayComponent, PlantAdjustMutationLevel>
+ {
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantTraySystem _plantTray = default!;
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustMutationLevel> args)
+     {
+-        if (entity.Comp.PlantEntity == null || Deleted(entity.Comp.PlantEntity))
+-            return;
+-
+-        var plantUid = entity.Comp.PlantEntity.Value;
+-        if (!TryComp<PlantHolderComponent>(plantUid, out var plantHolder))
++        if (_plantTray.TryGetPlant(entity.AsNullable(), out var plantUid)
++            || !TryComp<PlantHolderComponent>(plantUid, out var plantHolder))
+             return;
+ 
+         plantHolder.MutationLevel += args.Effect.Amount * plantHolder.MutationMod;
+-        _plantHolder.CheckHealth(plantUid);
++        _plantHolder.CheckHealth(plantUid.Value);
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustMutationModEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustMutationModEntityEffectSystem.cs
+index a4ea900b41..3865311b3a 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustMutationModEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustMutationModEntityEffectSystem.cs
+@@ -15,13 +15,7 @@ public sealed partial class PlantAdjustMutationModEntityEffectSystem : EntityEff
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustMutationMod> args)
+     {
+-        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant))
+-            return;
+-
+-        if (!TryComp<PlantHolderComponent>(plant, out var plantHolder))
+-            return;
+-
+-        if (plantHolder.Dead)
++        if (!_plantTray.TryGetAlivePlant(entity.AsNullable(), out var plant, out var plantHolder))
+             return;
+ 
+         plantHolder.MutationMod += args.Effect.Amount;
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPestsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPestsEntityEffectSystem.cs
+index ad4eb5c25c..f1185fa170 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPestsEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPestsEntityEffectSystem.cs
+@@ -15,10 +15,7 @@ public sealed partial class PlantAdjustPestsEntityEffectSystem : EntityEffectSys
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustPests> args)
+     {
+-        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant))
+-            return;
+-
+-        if (TryComp<PlantHolderComponent>(plant, out var plantHolder) && plantHolder.Dead)
++        if (!_plantTray.TryGetAlivePlant(entity.AsNullable(), out _, out _))
+             return;
+ 
+         entity.Comp.PestLevel += args.Effect.Amount;
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPotencyEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPotencyEntityEffectSystem.cs
+index f3f95e4953..d1d8a9aeeb 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPotencyEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPotencyEntityEffectSystem.cs
+@@ -16,13 +16,10 @@ public sealed partial class PlantAdjustPotencyEntityEffectSystem : EntityEffectS
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustPotency> args)
+     {
+-        if (!_plantTray.HasPlantAlive(entity.AsNullable()))
++        if (!_plantTray.TryGetAlivePlant(entity.AsNullable(), out var plantUid, out _)
++            || !TryComp<PlantComponent>(plantUid, out var plant))
+             return;
+ 
+-        var plantUid = entity.Comp.PlantEntity!.Value;
+-        if (!TryComp<PlantComponent>(plantUid, out var plant))
+-            return;
+-
+-        _plant.AdjustPotency((plantUid, plant), args.Effect.Amount);
++        _plant.AdjustPotency((plantUid.Value, plant), args.Effect.Amount);
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustToxinsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustToxinsEntityEffectSystem.cs
+index 55002fa4ae..ffb78391c0 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustToxinsEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustToxinsEntityEffectSystem.cs
+@@ -15,7 +15,7 @@ public sealed partial class PlantAdjustToxinsEntityEffectSystem : EntityEffectSy
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustToxins> args)
+     {
+-        if (!_plantTray.TryGetPlant(entity.AsNullable(), out _))
++        if (!_plantTray.TryGetAlivePlant(entity.AsNullable(), out _, out _))
+             return;
+ 
+         entity.Comp.Toxins += args.Effect.Amount;
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs
+index 615be9ebec..9dedb9b5cf 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs
+@@ -17,12 +17,10 @@ public sealed partial class PlantCryoxadoneEntityEffectSystem : EntityEffectSyst
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantCryoxadone> args)
+     {
+-        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant))
+-            return;
+-
+-        if (!TryComp<PlantHolderComponent>(plant, out var plantHolder) ||
+-            !TryComp<PlantComponent>(plant, out var plantComp) ||
+-            !TryComp<PlantHarvestComponent>(plant, out var harvest))
++        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant)
++            || !TryComp<PlantHolderComponent>(plant, out var plantHolder)
++            || !TryComp<PlantComponent>(plant, out var plantComp)
++            || !TryComp<PlantHarvestComponent>(plant, out var harvest))
+             return;
+ 
+         var deviation = plantHolder.Age > plantComp.Maturation
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
+index 7f5cad05f7..38364d2075 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
+@@ -18,13 +18,11 @@ public sealed partial class PlantDestroySeedsEntityEffectSystem : EntityEffectSy
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantDestroySeeds> args)
+     {
+-        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant))
+-            return;
+-
+-        if (!TryComp<PlantHolderComponent>(plant, out var plantHolder) || plantHolder.Dead)
+-            return;
+-
+-        if (!TryComp<PlantTraitsComponent>(plant, out var traits) || traits.Seedless)
++        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant)
++            || !TryComp<PlantHolderComponent>(plant, out var plantHolder)
++            || plantHolder.Dead
++            || !TryComp<PlantTraitsComponent>(plant, out var traits)
++            || traits.Seedless)
+             return;
+ 
+         _popup.PopupEntity(
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs
+index 34f8304ed3..02c5d5fb6c 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs
+@@ -17,11 +17,8 @@ public sealed partial class PlantDiethylamineEntityEffectSystem : EntityEffectSy
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantDiethylamine> args)
+     {
+-        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant))
+-            return;
+-
+-
+-        if (!TryComp<PlantComponent>(plant, out var plantComponent))
++        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant)
++            || !TryComp<PlantComponent>(plant, out var plantComponent))
+             return;
+ 
+         if (_random.Prob(0.1f))
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
+index 0ce28974c9..38e728bbef 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
+@@ -15,10 +15,10 @@ public sealed partial class PlantPhalanximineEntityEffectSystem : EntityEffectSy
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantPhalanximine> args)
+     {
+-        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant))
++        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant)
++            || !TryComp<PlantTraitsComponent>(plant, out var traits))
+             return;
+ 
+-        if (TryComp<PlantTraitsComponent>(plant, out var traits))
+-            traits.Viable = true;
++        traits.Viable = true;
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
+index 09a2044fe2..9f993996dc 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
+@@ -17,11 +17,9 @@ public sealed partial class PlantRestoreSeedsEntityEffectSystem : EntityEffectSy
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantRestoreSeeds> args)
+     {
+-        if (!_plantTray.HasPlantAlive(entity.AsNullable()))
+-            return;
+-
+-        var plantUid = entity.Comp.PlantEntity!.Value;
+-        if (!TryComp<PlantTraitsComponent>(plantUid, out var traits) || !traits.Seedless)
++        if (!_plantTray.TryGetAlivePlant(entity.AsNullable(), out var plantUid, out _)
++            || !TryComp<PlantTraitsComponent>(plantUid, out var traits)
++            || !traits.Seedless)
+             return;
+ 
+         _popup.PopupEntity(Loc.GetString("botany-plant-seedsrestored"), entity);
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
+index 3d9ca50521..8866a1a450 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
+@@ -18,11 +18,9 @@ public sealed partial class RobustHarvestEntityEffectSystem : EntityEffectSystem
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<RobustHarvest> args)
+     {
+-        if (!_plantTray.HasPlantAlive(entity.AsNullable()))
+-            return;
+-
+-        var plantUid = entity.Comp.PlantEntity!.Value;
+-        if (!TryComp<PlantComponent>(plantUid, out var plant) || !TryComp<PlantTraitsComponent>(plantUid, out var traits))
++        if (!_plantTray.TryGetAlivePlant(entity.AsNullable(), out var plantUid, out _)
++            || !TryComp<PlantComponent>(plantUid, out var plant)
++            || !TryComp<PlantTraitsComponent>(plantUid, out var traits))
+             return;
+ 
+         if (plant.Potency < args.Effect.PotencyLimit)
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs
+index 9018d22f59..679f191d33 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs
+@@ -19,10 +19,9 @@ public sealed partial class PlantMutateSpeciesChangeEntityEffectSystem : EntityE
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantMutateSpeciesChange> args)
+     {
+-        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant))
+-            return;
+-
+-        if (!TryComp<PlantDataComponent>(plant, out var oldPlantData) || oldPlantData.MutationPrototypes.Count == 0)
++        if (!_plantTray.TryGetPlant(entity.AsNullable(), out var plant)
++            ||!TryComp<PlantDataComponent>(plant, out var oldPlantData)
++            || oldPlantData.MutationPrototypes.Count == 0)
+             return;
+ 
+         var newPlantEnt = _random.Pick(oldPlantData.MutationPrototypes);
+-- 
+2.55.0
+

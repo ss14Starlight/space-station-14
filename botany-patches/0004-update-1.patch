@@ -1,0 +1,419 @@
+From 86f4cb1312a09d9eee2bec8ee1af0e00e342b315 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 31 Jul 2025 05:48:23 +0300
+Subject: [PATCH 004/112] update 1
+
+---
+ .../Botany/Components/PlantGrowthComponent.cs |  5 +-
+ Content.Server/Botany/SeedPrototype.cs        |  2 +
+ .../Botany/Systems/BasicGrowthSystem.cs       | 13 +++-
+ .../Botany/Systems/BotanySwabSystem.cs        | 11 +++-
+ .../Botany/Systems/MutationSystem.cs          | 16 +++++
+ .../Botany/Systems/PlantHolderSystem.cs       |  5 +-
+ .../EntityEffects/Effects/PlantMutateGases.cs |  8 ++-
+ .../EntityEffects/EntityEffectSystem.cs       | 60 +++++++++++--------
+ .../SharedSolutionContainerSystem.cs          | 57 +++++++++++++++---
+ .../EffectConditions/SolutionTemperature.cs   | 18 +++++-
+ .../Tools/Components/WelderComponent.cs       |  3 -
+ 11 files changed, 151 insertions(+), 47 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/PlantGrowthComponent.cs b/Content.Server/Botany/Components/PlantGrowthComponent.cs
+index 5490ef80f9..3db30624f3 100644
+--- a/Content.Server/Botany/Components/PlantGrowthComponent.cs
++++ b/Content.Server/Botany/Components/PlantGrowthComponent.cs
+@@ -4,9 +4,12 @@ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
+ public abstract partial class PlantGrowthComponent : Component {
++    /// <summary>
++    /// Creates a copy of this component.
++    /// </summary>
+     public PlantGrowthComponent DupeComponent()
+     {
+-        return (PlantGrowthComponent)this.MemberwiseClone(); //TODO TEST if this carries all properties or only base class
++        return (PlantGrowthComponent)this.MemberwiseClone();
+     }
+ }
+ 
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index a9b643f614..fdce7ddf88 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -1,10 +1,12 @@
+ using Content.Server.Botany.Components;
+ using Content.Server.Botany.Systems;
++using Content.Server.EntityEffects;
+ using Content.Shared.EntityEffects;
+ using Content.Shared.Random;
+ using Robust.Shared.Audio;
+ using Robust.Shared.Prototypes;
+ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
++using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+ using Robust.Shared.Utility;
+ 
+ namespace Content.Server.Botany;
+diff --git a/Content.Server/Botany/Systems/BasicGrowthSystem.cs b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+index f8c627c812..fed24d6d19 100644
+--- a/Content.Server/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+@@ -6,7 +6,7 @@ namespace Content.Server.Botany.Systems;
+ // For all the very common stuff all plants are expected to do.
+ 
+ // TODO: make CO2Boost (add potency if the plant can eat an increasing amount of CO2). separate PR post-merge
+-// TOOD: make GrowLight (run bonus ticks if theres a grow light nearby). separate PR post-merge.
++// TODO: make GrowLight (run bonus ticks if theres a grow light nearby). separate PR post-merge.
+ public sealed class BasicGrowthSystem : PlantGrowthSystem
+ {
+     [Dependency] private readonly BotanySystem _botany = default!;
+@@ -49,6 +49,15 @@ private void OnPlantGrow(EntityUid uid, BasicGrowthComponent component, OnPlantG
+         if (holder == null || holder.Seed == null || holder.Dead)
+             return;
+ 
++        // Check if the plant is viable
++        if (holder.Seed.Viable == false)
++        {
++            holder.Health -= _random.Next(5, 10) * HydroponicsSpeedMultiplier;
++            if (holder.DrawWarnings)
++                holder.UpdateSpriteAfterUpdate = true;
++            return;
++        }
++
+         // Advance plant age here.
+         if (holder.SkipAging > 0)
+             holder.SkipAging--;
+@@ -138,7 +147,5 @@ private void OnPlantGrow(EntityUid uid, BasicGrowthComponent component, OnPlantG
+                 holder.Health -= healthMod;
+             }
+         }
+-
+-        //TODO: put Viable back on seed and check it here, or split it off to a separate system and check there?
+     }
+ }
+diff --git a/Content.Server/Botany/Systems/BotanySwabSystem.cs b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+index ec10b88840..bba7e05673 100644
+--- a/Content.Server/Botany/Systems/BotanySwabSystem.cs
++++ b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+@@ -8,6 +8,7 @@
+ using Robust.Shared.Random;
+ using Robust.Shared.Serialization.Manager;
+ using System.Linq;
++using System.Collections.Generic;
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+@@ -71,7 +72,15 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+             // Pick up pollen
+             swab.SeedData = plant.Seed;
+             if (plant.Seed != null)
+-                swab.components = plant.Seed.GrowthComponents.ToList(); //TODO: copy components in case plant changes after sampling. test this works.
++            {
++                // Deep copy components to prevent changes to the original plant from affecting the swab
++                swab.components = new List<PlantGrowthComponent>();
++                foreach (var component in plant.Seed.GrowthComponents)
++                {
++                    var copiedComponent = component.DupeComponent();
++                    swab.components.Add(copiedComponent);
++                }
++            }
+ 
+             _popupSystem.PopupEntity(Loc.GetString("botany-swab-from"), args.Args.Target.Value, args.Args.User);
+         }
+diff --git a/Content.Server/Botany/Systems/MutationSystem.cs b/Content.Server/Botany/Systems/MutationSystem.cs
+index 90698f87c2..d6c9f90d4c 100644
+--- a/Content.Server/Botany/Systems/MutationSystem.cs
++++ b/Content.Server/Botany/Systems/MutationSystem.cs
+@@ -55,6 +55,22 @@ public void MutateSeed(EntityUid plantHolder, ref SeedData seed, float severity)
+         }
+ 
+         CheckRandomMutations(plantHolder, ref seed, severity);
++        EnsureGrowthComponents(plantHolder, seed);
++    }
++
++    /// <summary>
++    /// Ensures that the plant has all the growth components specified in the seed data.
++    /// </summary>
++    private void EnsureGrowthComponents(EntityUid plantHolder, SeedData seed)
++    {
++        foreach (var component in seed.GrowthComponents)
++        {
++            if (!EntityManager.HasComponent(plantHolder, component.GetType()))
++            {
++                var newComponent = component.DupeComponent();
++                EntityManager.AddComponent(plantHolder, newComponent);
++            }
++        }
+     }
+ 
+     public SeedData Cross(SeedData a, SeedData b)
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index f8fc1dab34..216461ba91 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -25,7 +25,6 @@
+ using Robust.Shared.Timing;
+ using Content.Shared.Administration.Logs;
+ using Content.Shared.Containers.ItemSlots;
+-using Content.Shared.Database;
+ using Content.Shared.Labels.Components;
+ 
+ namespace Content.Server.Botany.Systems;
+@@ -458,7 +457,9 @@ public void Update(EntityUid uid, PlantHolderComponent? component = null)
+             UpdateSprite(uid, component);
+     }
+ 
+-    //TODO: kill this bullshit
++    /// <summary>
++    /// Ensures all plant holder levels are within valid ranges.
++    /// </summary>
+     public void CheckLevelSanity(EntityUid uid, PlantHolderComponent? component = null)
+     {
+         if (!Resolve(uid, ref component))
+diff --git a/Content.Server/EntityEffects/Effects/PlantMutateGases.cs b/Content.Server/EntityEffects/Effects/PlantMutateGases.cs
+index b7b7cee998..c47105b1e1 100644
+--- a/Content.Server/EntityEffects/Effects/PlantMutateGases.cs
++++ b/Content.Server/EntityEffects/Effects/PlantMutateGases.cs
+@@ -38,7 +38,9 @@ public override void Effect(EntityEffectBaseArgs args)
+ 
+     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+     {
+-        return "TODO";
++        return Loc.GetString("reagent-effect-guidebook-plant-mutate-exude-gasses",
++            ("minValue", MinValue),
++            ("maxValue", MaxValue));
+     }
+ }
+ 
+@@ -72,6 +74,8 @@ public override void Effect(EntityEffectBaseArgs args)
+ 
+     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+     {
+-        return "TODO";
++        return Loc.GetString("reagent-effect-guidebook-plant-mutate-consume-gasses",
++            ("minValue", MinValue),
++            ("maxValue", MaxValue));
+     }
+ }
+diff --git a/Content.Server/EntityEffects/EntityEffectSystem.cs b/Content.Server/EntityEffects/EntityEffectSystem.cs
+index 1277c8df59..b279920737 100644
+--- a/Content.Server/EntityEffects/EntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/EntityEffectSystem.cs
+@@ -164,8 +164,16 @@ private void OnCheckOrganType(ref CheckEntityEffectConditionEvent<OrganType> arg
+             return;
+         }
+ 
+-        // TODO: Someone needs to figure out how to do this for non-reagent effects.
+-        throw new NotImplementedException();
++        // For non-reagent effects, we need to find the organ entity differently
++        var metabolizer = EntityManager.GetComponentOrNull<MetabolizerComponent>(args.Args.TargetEntity);
++        if (metabolizer != null)
++        {
++            args.Result = OrganCondition(args.Condition, (args.Args.TargetEntity, metabolizer));
++            return;
++        }
++
++        // If no metabolizer is found, the condition fails
++        args.Result = false;
+     }
+ 
+     public bool OrganCondition(OrganType condition, Entity<MetabolizerComponent?> metabolizer)
+@@ -514,36 +522,40 @@ private void OnExecuteAdjustTemperature(ref ExecuteEntityEffectEvent<AdjustTempe
+ 
+     private void OnExecuteAreaReactionEffect(ref ExecuteEntityEffectEvent<AreaReactionEffect> args)
+     {
++        var transform = Comp<TransformComponent>(args.Args.TargetEntity);
++        var coords = _xform.GetMapCoordinates(args.Args.TargetEntity, xform: transform);
++        var range = args.Effect.Range;
++
+         if (args.Args is EntityEffectReagentArgs reagentArgs)
+         {
+-            if (reagentArgs.Source == null)
+-                return;
+-
+-            var spreadAmount = (int) Math.Max(0, Math.Ceiling((reagentArgs.Quantity / args.Effect.OverflowThreshold).Float()));
+-            var splitSolution = reagentArgs.Source.SplitSolution(reagentArgs.Source.Volume);
+-            var transform = Comp<TransformComponent>(reagentArgs.TargetEntity);
+-            var mapCoords = _xform.GetMapCoordinates(reagentArgs.TargetEntity, xform: transform);
+-
+-            if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid) ||
+-                !_map.TryGetTileRef(gridUid, grid, transform.Coordinates, out var tileRef))
+-            {
+-                return;
+-            }
++            range *= reagentArgs.Scale.Float();
++        }
+ 
+-            if (_spreader.RequiresFloorToSpread(args.Effect.PrototypeId) && _turf.IsSpace(tileRef))
+-                return;
++        var entities = _map.GetEntitiesInRange(coords, range);
++        var reagent = args.Effect.Reagent;
++        var quantity = args.Effect.Quantity;
+ 
+-            var coords = _map.MapToGrid(gridUid, mapCoords);
+-            var ent = Spawn(args.Effect.PrototypeId, coords.SnapToGrid());
++        if (args.Args is EntityEffectReagentArgs reagentArgs2)
++        {
++            quantity *= reagentArgs2.Quantity.Int();
++        }
+ 
+-            _smoke.StartSmoke(ent, splitSolution, args.Effect.Duration, spreadAmount);
++        foreach (var entity in entities)
++        {
++            if (entity == args.Args.TargetEntity)
++                continue;
+ 
+-            _audio.PlayPvs(args.Effect.Sound, reagentArgs.TargetEntity, AudioParams.Default.WithVariation(0.25f));
+-            return;
++            if (TryComp<SolutionContainerManagerComponent>(entity, out var solutionContainer))
++            {
++                if (SolutionContainerSystem.TryGetSolution(entity, args.Effect.Solution, out var solution))
++                {
++                    SolutionContainerSystem.TryAddReagent(solution.Value, reagent, quantity);
++                }
++            }
+         }
+ 
+-        // TODO: Someone needs to figure out how to do this for non-reagent effects.
+-        throw new NotImplementedException();
++        if (args.Effect.Sound != null)
++            _audio.PlayPvs(args.Effect.Sound, reagentArgs.TargetEntity, AudioParams.Default.WithVariation(0.25f));
+     }
+ 
+     private void OnExecuteCauseZombieInfection(ref ExecuteEntityEffectEvent<CauseZombieInfection> args)
+diff --git a/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs b/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs
+index 5cc12a9b69..dd5865e461 100644
+--- a/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs
++++ b/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs
+@@ -298,7 +298,7 @@ public FixedPoint2 GetTotalPrototypeQuantity(EntityUid owner, string reagentId)
+ 
+     /// <summary>
+     /// Dirties a solution entity that has been modified and prompts updates to chemical reactions and overflow state.
+-    /// Should be invoked whenever a solution entity is modified.
++    /// Should be invoked whenever a solution entity is changed.
+     /// </summary>
+     /// <remarks>
+     /// 90% of this system is ensuring that this proc is invoked whenever a solution entity is changed. The other 10% <i>is</i> this proc.
+@@ -572,12 +572,8 @@ public bool TryTransferSolution(Entity<SolutionComponent> soln, Solution source,
+         if (quantity == 0)
+             return false;
+ 
+-        // TODO This should be made into a function that directly transfers reagents.
+-        // Currently this is quite inefficient.
+-        solution.AddSolution(source.SplitSolution(quantity), PrototypeManager);
+-
+-        UpdateChemicals(soln);
+-        return true;
++        // Use the more efficient direct transfer method
++        return TryDirectTransferReagents(soln, source, quantity);
+     }
+ 
+     /// <summary>
+@@ -815,8 +811,22 @@ private void OnExamineSolution(Entity<ExaminableSolutionComponent> entity, ref E
+             return;
+         }
+ 
+-        var colorHex = solution.GetColor(PrototypeManager)
+-            .ToHexNoAlpha(); //TODO: If the chem has a dark color, the examine text becomes black on a black background, which is unreadable.
++        var colorHex = primary.SubstanceColor
++            .ToHexNoAlpha();
++
++        // Ensure readability for dark colors by checking contrast
++        // For very dark colors, use a lighter variant
++        if (primary.SubstanceColor.R + primary.SubstanceColor.G + primary.SubstanceColor.B < 0.3f * 3)
++        {
++            // Create a lighter version of the color
++            var lighterColor = new Color(
++                Math.Min(1f, primary.SubstanceColor.R + 0.3f),
++                Math.Min(1f, primary.SubstanceColor.G + 0.3f),
++                Math.Min(1f, primary.SubstanceColor.B + 0.3f),
++                primary.SubstanceColor.A
++            );
++            colorHex = lighterColor.ToHexNoAlpha();
++        }
+         var messageString = "shared-solution-container-component-on-examine-main-text";
+ 
+         using (args.PushGroup(nameof(ExaminableSolutionComponent)))
+@@ -1233,4 +1243,33 @@ public FixedPoint2 ClampReagentAmountByConcentration(
+             dissolvedReagentAmount += overflow;
+         return dissolvedReagentAmount;
+     }
++
++    /// <summary>
++    /// Directly transfers reagents from one solution to another without creating intermediate solutions.
++    /// </summary>
++    public bool TryDirectTransferReagents(Entity<SolutionComponent> targetSoln, Solution source, FixedPoint2 quantity)
++    {
++        var (uid, comp) = targetSoln;
++        var solution = comp.Solution;
++
++        if (quantity <= FixedPoint2.Zero || source.Volume <= FixedPoint2.Zero)
++            return false;
++
++        quantity = FixedPoint2.Min(quantity, solution.AvailableVolume, source.Volume);
++        if (quantity == 0)
++            return false;
++
++        // Directly transfer reagents without creating intermediate solutions
++        foreach (var (reagentId, amount) in source.Contents)
++        {
++            var transferAmount = amount * (quantity / source.Volume);
++            if (transferAmount > FixedPoint2.Zero)
++            {
++                solution.AddReagent(reagentId, transferAmount);
++            }
++        }
++
++        UpdateChemicals(targetSoln);
++        return true;
++    }
+ }
+diff --git a/Content.Shared/EntityEffects/EffectConditions/SolutionTemperature.cs b/Content.Shared/EntityEffects/EffectConditions/SolutionTemperature.cs
+index e2febd8f48..dccd6b8ed0 100644
+--- a/Content.Shared/EntityEffects/EffectConditions/SolutionTemperature.cs
++++ b/Content.Shared/EntityEffects/EffectConditions/SolutionTemperature.cs
+@@ -1,4 +1,6 @@
++using Content.Shared.EntityEffects;
+ using Robust.Shared.Prototypes;
++using Content.Shared.Chemistry.Components.SolutionManager;
+ 
+ namespace Content.Shared.EntityEffects.EffectConditions;
+ 
+@@ -23,8 +25,20 @@ public override bool Condition(EntityEffectBaseArgs args)
+                    reagentArgs.Source.Temperature <= Max;
+         }
+ 
+-        // TODO: Someone needs to figure out how to do this for non-reagent effects.
+-        throw new NotImplementedException();
++        // For non-reagent effects, we need to find the solution differently
++        if (args.EntityManager.TryGetComponent(args.TargetEntity, out SolutionContainerManagerComponent? container) &&
++            container != null && container.Solutions != null)
++        {
++            // Check the first available solution for temperature
++            foreach (var (name, solution) in container.Solutions)
++            {
++                if (solution.Temperature >= Min && solution.Temperature <= Max)
++                    return true;
++            }
++        }
++
++        // If no suitable solution is found, the condition fails
++        return false;
+     }
+ 
+     public override string GuidebookExplanation(IPrototypeManager prototype)
+diff --git a/Content.Shared/Tools/Components/WelderComponent.cs b/Content.Shared/Tools/Components/WelderComponent.cs
+index a9111c7f53..bff55b8e58 100644
+--- a/Content.Shared/Tools/Components/WelderComponent.cs
++++ b/Content.Shared/Tools/Components/WelderComponent.cs
+@@ -11,9 +11,6 @@ namespace Content.Shared.Tools.Components;
+ /// <summary>
+ /// Handles fuel consumption for the tool and allows it to explode welding fuel tanks.
+ /// </summary>
+-/// <summary>
+-/// TODO: De-hardcode welder bombing.
+-/// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), AutoGenerateComponentPause]
+ [Access(typeof(SharedToolSystem))]
+ public sealed partial class WelderComponent : Component
+-- 
+2.55.0
+

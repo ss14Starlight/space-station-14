@@ -1,0 +1,609 @@
+From e6434415db178489a658188f9ce4ae1ca2c9450e Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sun, 19 Jul 2026 04:46:49 +0300
+Subject: [PATCH 098/112] fix all
+
+---
+ .../Botany/PlantTrayVisualizerSystem.cs       |  4 +-
+ .../Botany/Components/PlantHolderComponent.cs | 18 -------
+ .../Botany/Components/PlantTrayComponent.cs   | 24 +++++++--
+ .../Botany/Items/Systems/BotanyHoeSystem.cs   | 19 ++++++-
+ .../Items/Systems/BotanyShovelSystem.cs       | 18 ++++++-
+ .../Botany/Systems/MutationSystem.cs          |  2 +-
+ .../Botany/Systems/PlantHolderSystem.cs       | 44 +++--------------
+ Content.Shared/Botany/Systems/PlantSystem.cs  |  8 ++-
+ .../Botany/Systems/PlantToxinsSystem.cs       | 13 +++--
+ .../Botany/Systems/PlantTraySystem.cs         | 49 +++++++++++++++++--
+ .../Botany/Systems/PlantWeedPestSystem.cs     | 13 +++--
+ .../PlantAdjustPestsEntityEffectSystem.cs     | 10 ++--
+ .../PlantAdjustToxinsEntityEffectSystem.cs    | 10 ++--
+ .../PlantAdjustWeedsEntityEffectSystem.cs     |  2 +-
+ .../PlantChangeTraitsEntityEffectSystem.cs    |  2 +-
+ Resources/Prototypes/Hydroponics/plants.yml   | 12 +++++
+ 16 files changed, 153 insertions(+), 95 deletions(-)
+
+diff --git a/Content.Client/Botany/PlantTrayVisualizerSystem.cs b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+index ddc8fcc375..41b4fe765c 100644
+--- a/Content.Client/Botany/PlantTrayVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+@@ -31,7 +31,8 @@ private void UpdateTrayWarnings(Entity<PlantTrayComponent> ent, AppearanceCompon
+ 
+         var water = _plantTray.GetWaterThreshold(ent.Owner);
+         var nutrition = _plantTray.GetNutrientThreshold(ent.Owner);
+-        var alert = _plantTray.GetWeedThreshold(ent.Owner);
++        var alert = _plantTray.GetWeedThreshold(ent.Owner)
++                    || _plantTray.GetToxinThreshold(ent.Owner);
+         var health = false;
+         var harvest = false;
+ 
+@@ -40,7 +41,6 @@ private void UpdateTrayWarnings(Entity<PlantTrayComponent> ent, AppearanceCompon
+             if (TryComp<PlantHolderComponent>(plantUid, out var plantHolder))
+             {
+                 alert |= _plantWeedPest.GetPestThreshold(plantUid.Value)
+-                         || _plantHolder.GetToxinsThreshold(plantUid.Value)
+                          || plantHolder.ImproperHeat
+                          || plantHolder.ImproperPressure
+                          || plantHolder.MissingGas;
+diff --git a/Content.Shared/Botany/Components/PlantHolderComponent.cs b/Content.Shared/Botany/Components/PlantHolderComponent.cs
+index e27b6286fd..0a6c02568b 100644
+--- a/Content.Shared/Botany/Components/PlantHolderComponent.cs
++++ b/Content.Shared/Botany/Components/PlantHolderComponent.cs
+@@ -86,24 +86,6 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField, AutoNetworkedField]
+     public bool ForceUpdate;
+ 
+-    /// <summary>
+-    /// Current pest level in the plant.
+-    /// </summary>
+-    [DataField, AutoNetworkedField]
+-    public float PestLevel;
+-
+-    [DataField, AutoNetworkedField]
+-    public float MaxPestLevel = 10f;
+-
+-    /// <summary>
+-    /// Current toxin level in the plant.
+-    /// </summary>
+-    [DataField, AutoNetworkedField]
+-    public float Toxins;
+-
+-    [DataField, AutoNetworkedField]
+-    public float MaxToxins = 100f;
+-
+     /// <summary>
+     /// True if the plant is losing health due to too high/low temperature.
+     /// </summary>
+diff --git a/Content.Shared/Botany/Components/PlantTrayComponent.cs b/Content.Shared/Botany/Components/PlantTrayComponent.cs
+index 32ab336a62..a28c157cfa 100644
+--- a/Content.Shared/Botany/Components/PlantTrayComponent.cs
++++ b/Content.Shared/Botany/Components/PlantTrayComponent.cs
+@@ -14,7 +14,7 @@ namespace Content.Shared.Botany.Components;
+ public sealed partial class PlantTrayComponent : Component
+ {
+     /// <summary>
+-    /// Current water level in the plant.
++    /// Amount of water available to the plant.
+     /// </summary>
+     [DataField, AutoNetworkedField]
+     public float WaterLevel = 100f;
+@@ -23,7 +23,7 @@ public sealed partial class PlantTrayComponent : Component
+     public float MaxWaterLevel = 100f;
+ 
+     /// <summary>
+-    /// Current nutrient level in the plant.
++    /// Amount of nutrients available to the plant.
+     /// </summary>
+     [DataField, AutoNetworkedField]
+     public float NutritionLevel = 100f;
+@@ -32,7 +32,7 @@ public sealed partial class PlantTrayComponent : Component
+     public float MaxNutritionLevel = 100f;
+ 
+     /// <summary>
+-    /// Current weed level in the plant.
++    /// Amount of weeds growing in the tray.
+     /// </summary>
+     [DataField, AutoNetworkedField]
+     public float WeedLevel;
+@@ -40,6 +40,24 @@ public sealed partial class PlantTrayComponent : Component
+     [DataField, AutoNetworkedField]
+     public float MaxWeedLevel = 10f;
+ 
++    /// <summary>
++    /// Amount of pests in the tray
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public float PestLevel;
++
++    [DataField, AutoNetworkedField]
++    public float MaxPestLevel = 10f;
++
++    /// <summary>
++    /// Amount of toxins in the tray.
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public float ToxinLevel;
++
++    [DataField, AutoNetworkedField]
++    public float MaxToxinLevel = 100f;
++
+     /// <summary>
+     /// Chance per tick for weeds to grow around this tray.
+     /// </summary>
+diff --git a/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs b/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs
+index 3f970b992c..b5591ccd83 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs
+@@ -15,16 +15,31 @@ namespace Content.Shared.Botany.Items.Systems;
+ public sealed partial class BotanyHoeSystem : EntitySystem
+ {
+     [Dependency] private PlantTraySystem _plantTray = default!;
++    [Dependency] private PlantSystem _plant = default!;
+     [Dependency] private SharedPopupSystem _popup = default!;
+ 
+     [SubscribeLocalEvent]
+     private void OnAfterInteract(Entity<BotanyHoeComponent> ent, ref AfterInteractEvent args)
+     {
+-        if (args.Target == null || args.Handled || !args.CanReach || !HasComp<PlantTrayComponent>(args.Target))
++        if (args.Target == null || args.Handled || !args.CanReach)
+             return;
+ 
++        // Allow interacting with either the plant or the tray.
++        var target = args.Target.Value;
++        if (HasComp<PlantComponent>(target))
++        {
++            if (!_plant.TryGetTray(target, out var tray))
++                return;
++
++            target = tray.Owner;
++        }
++        else if (!HasComp<PlantTrayComponent>(target))
++        {
++            return;
++        }
++
+         var ev = new TrayHoeAttemptEvent(ent, args.User);
+-        RaiseLocalEvent(args.Target.Value, ref ev);
++        RaiseLocalEvent(target, ref ev);
+ 
+         args.Handled = true;
+     }
+diff --git a/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs b/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs
+index c31e2a8463..7f91bf65d8 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs
+@@ -21,11 +21,25 @@ public sealed partial class BotanyShovelSystem : EntitySystem
+     [SubscribeLocalEvent]
+     private void OnAfterInteract(Entity<ShovelComponent> ent, ref AfterInteractEvent args)
+     {
+-        if (args.Target == null || args.Handled || !args.CanReach || !HasComp<PlantTrayComponent>(args.Target))
++        if (args.Target == null || args.Handled || !args.CanReach)
+             return;
+ 
++        // Allow interacting with either the plant or the tray.
++        var target = args.Target.Value;
++        if (HasComp<PlantComponent>(target))
++        {
++            if (!_plant.TryGetTray(target, out var tray))
++                return;
++
++            target = tray.Owner;
++        }
++        else if (!HasComp<PlantTrayComponent>(target))
++        {
++            return;
++        }
++
+         var ev = new TrayShovelAttemptEvent(ent, args.User);
+-        RaiseLocalEvent(args.Target.Value, ref ev);
++        RaiseLocalEvent(target, ref ev);
+ 
+         args.Handled = true;
+     }
+diff --git a/Content.Shared/Botany/Systems/MutationSystem.cs b/Content.Shared/Botany/Systems/MutationSystem.cs
+index 46fea938d6..b00a14e5fc 100644
+--- a/Content.Shared/Botany/Systems/MutationSystem.cs
++++ b/Content.Shared/Botany/Systems/MutationSystem.cs
+@@ -74,7 +74,7 @@ public void SpeciesChange(Entity<PlantComponent?> oldPlant, EntProtoId newPlantP
+         ChemicalsSpeciesChange(newPlantUid, newPlantProto);
+ 
+         if (_plant.TryGetTray(oldPlant.Owner, out var trayEnt))
+-            _plantTray.PlantingPlantInTray(trayEnt, newPlantUid);
++            _plantTray.PlantingPlantInTray(trayEnt.AsNullable(), newPlantUid);
+         else
+             _plant.PlantingPlant(newPlantUid);
+ 
+diff --git a/Content.Shared/Botany/Systems/PlantHolderSystem.cs b/Content.Shared/Botany/Systems/PlantHolderSystem.cs
+index a2977c708d..9b019814c9 100644
+--- a/Content.Shared/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantHolderSystem.cs
+@@ -1,4 +1,5 @@
+ using Content.Shared.Botany.Components;
++using Content.Shared.Damage.Systems;
+ using JetBrains.Annotations;
+ 
+ namespace Content.Shared.Botany.Systems;
+@@ -8,6 +9,12 @@ namespace Content.Shared.Botany.Systems;
+ /// </summary>
+ public sealed partial class PlantHolderSystem : EntitySystem
+ {
++    [SubscribeLocalEvent]
++    private void OnDamageDealt(Entity<PlantHolderComponent> ent, ref DamageDealtEvent args)
++    {
++        AdjustsHealth(ent.AsNullable(), -args.Damage.GetTotal().Float());
++    }
++
+     /// <summary>
+     /// Adjusts the health of the plant.
+     /// </summary>
+@@ -55,20 +62,6 @@ public void AdjustsMutationMod(Entity<PlantHolderComponent?> ent, float amount)
+         DirtyField(ent, nameof(ent.Comp.MutationMod));
+     }
+ 
+-    /// <summary>
+-    /// Adjusts the pests of the plant.
+-    /// </summary>
+-    [PublicAPI]
+-    public void AdjustsPests(Entity<PlantHolderComponent?> ent, float amount)
+-    {
+-        if (!Resolve(ent.Owner, ref ent.Comp))
+-            return;
+-
+-        ent.Comp.PestLevel += amount;
+-        ent.Comp.PestLevel = MathHelper.Clamp(ent.Comp.PestLevel, 0f, ent.Comp.MaxPestLevel);
+-        DirtyField(ent, nameof(ent.Comp.PestLevel));
+-    }
+-
+     /// <summary>
+     /// Adjusts the age of the plant.
+     /// </summary>
+@@ -82,20 +75,6 @@ public void AdjustsAge(Entity<PlantHolderComponent?> ent, int amount)
+         DirtyField(ent, nameof(ent.Comp.Age));
+     }
+ 
+-    /// <summary>
+-    /// Adjusts the toxins of the plant.
+-    /// </summary>
+-    [PublicAPI]
+-    public void AdjustsToxins(Entity<PlantHolderComponent?> ent, float amount)
+-    {
+-        if (!Resolve(ent.Owner, ref ent.Comp))
+-            return;
+-
+-        ent.Comp.Toxins += amount;
+-        ent.Comp.Toxins = MathHelper.Clamp(ent.Comp.Toxins, 0f, ent.Comp.MaxToxins);
+-        DirtyField(ent, nameof(ent.Comp.Toxins));
+-    }
+-
+     /// <summary>
+     /// Adjusts the yield mod of the plant.
+     /// </summary>
+@@ -162,15 +141,6 @@ public void KillPlant(Entity<PlantHolderComponent?> ent)
+         Dirty(ent);
+     }
+ 
+-    [PublicAPI]
+-    public bool GetToxinsThreshold(Entity<PlantHolderComponent?> ent)
+-    {
+-        if (!Resolve(ent.Owner, ref ent.Comp, false))
+-            return false;
+-
+-        return ent.Comp.Toxins >= ent.Comp.MaxToxins * 0.5f;
+-    }
+-
+     [PublicAPI]
+     public bool GetHealthThreshold(Entity<PlantHolderComponent?> ent)
+     {
+diff --git a/Content.Shared/Botany/Systems/PlantSystem.cs b/Content.Shared/Botany/Systems/PlantSystem.cs
+index 0e14f83594..b1c962d606 100644
+--- a/Content.Shared/Botany/Systems/PlantSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantSystem.cs
+@@ -175,16 +175,17 @@ public void ForceUpdateByExternalCause(Entity<PlantComponent?> ent)
+     /// Tries to get the tray entity that the plant is in.
+     /// </summary>
+     [PublicAPI]
+-    public bool TryGetTray(Entity<PlantComponent?> ent, out Entity<PlantTrayComponent?> trayEnt)
++    public bool TryGetTray(Entity<PlantComponent?> ent, out Entity<PlantTrayComponent> trayEnt)
+     {
+         trayEnt = default!;
+         if (!Resolve(ent.Owner, ref ent.Comp))
+             return false;
+ 
+         trayEnt.Owner = Transform(ent.Owner).ParentUid;
+-        if (!TryComp(trayEnt.Owner, out trayEnt.Comp))
++        if (!TryComp<PlantTrayComponent>(trayEnt.Owner, out var trayComp))
+             return false;
+ 
++        trayEnt.Comp = trayComp;
+         return true;
+     }
+ 
+@@ -336,9 +337,6 @@ public string GetPlantWarningsMarkup(Entity<PlantHolderComponent?> ent)
+             return string.Empty;
+ 
+         var markup = new List<string>();
+-        if (_plantHolder.GetToxinsThreshold(ent))
+-            markup.Add(Loc.GetString("plant-component-toxins-high-warning"));
+-
+         if (ent.Comp.ImproperHeat)
+             markup.Add(Loc.GetString("plant-component-heat-improper-warning"));
+ 
+diff --git a/Content.Shared/Botany/Systems/PlantToxinsSystem.cs b/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
+index b8b49c431c..3fd76b5f08 100644
+--- a/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
+@@ -13,6 +13,7 @@ public sealed partial class PlantToxinsSystem : EntitySystem
+     [Dependency] private BotanySystem _botany = default!;
+     [Dependency] private MutationSystem _mutation = default!;
+     [Dependency] private PlantHolderSystem _plantHolder = default!;
++    [Dependency] private PlantTraySystem _plantTray = default!;
+ 
+     [SubscribeLocalEvent]
+     private void OnCrossPollinate(Entity<PlantToxinsComponent> ent, ref PlantCrossPollinateEvent args)
+@@ -28,24 +29,26 @@ private void OnCrossPollinate(Entity<PlantToxinsComponent> ent, ref PlantCrossPo
+     [SubscribeLocalEvent]
+     private void OnPlantGrow(Entity<PlantToxinsComponent> ent, ref PlantGrowEvent args)
+     {
+-        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder))
++        var trayUid = GetEntity(args.Tray);
++        if (!TryComp<PlantTrayComponent>(trayUid, out var tray)
++            || !TryComp<PlantHolderComponent>(ent.Owner, out var holder))
+             return;
+ 
+         if (ent.Comp.ToxinUptakeDivisor <= 0)
+             return;
+ 
+-        var toxinUptake = MathF.Max(1, MathF.Round(holder.Toxins / ent.Comp.ToxinUptakeDivisor));
+-        if (holder.Toxins > ent.Comp.ToxinsTolerance)
++        var toxinUptake = MathF.Max(1, MathF.Round(tray.ToxinLevel / ent.Comp.ToxinUptakeDivisor));
++        if (tray.ToxinLevel > ent.Comp.ToxinsTolerance)
+         {
+             // Get minimum value between health left and toxin uptake.
+             var actualUptake = Math.Min(toxinUptake, holder.Health);
+ 
+             _plantHolder.AdjustsHealth(ent.Owner, -actualUptake);
+-            _plantHolder.AdjustsToxins(ent.Owner, -actualUptake);
++            _plantTray.AdjustToxin((trayUid, tray), -actualUptake);
+         }
+         else
+         {
+-            _plantHolder.AdjustsToxins(ent.Owner, -toxinUptake);
++            _plantTray.AdjustToxin((trayUid, tray), -toxinUptake);
+         }
+     }
+ 
+diff --git a/Content.Shared/Botany/Systems/PlantTraySystem.cs b/Content.Shared/Botany/Systems/PlantTraySystem.cs
+index 113e2da09c..c434a5c019 100644
+--- a/Content.Shared/Botany/Systems/PlantTraySystem.cs
++++ b/Content.Shared/Botany/Systems/PlantTraySystem.cs
+@@ -190,8 +190,34 @@ public void AdjustWater(Entity<PlantTrayComponent?> ent, float amount)
+         DirtyField(ent, nameof(ent.Comp.WaterLevel));
+ 
+         // Water dilutes toxins.
+-        if (TryGetPlant(ent, out var plantUid) && amount > 0)
+-            _plantHolder.AdjustsToxins(plantUid.Value, -amount * 4f);
++        if (amount > 0)
++            AdjustToxin(ent, -amount * 4f);
++    }
++
++    /// <summary>
++    /// Adjusts the pest level of the tray.
++    /// </summary>
++    [PublicAPI]
++    public void AdjustPest(Entity<PlantTrayComponent?> ent, float amount)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return;
++
++        ent.Comp.PestLevel = MathHelper.Clamp(ent.Comp.PestLevel + amount, 0f, ent.Comp.MaxPestLevel);
++        DirtyField(ent, nameof(ent.Comp.PestLevel));
++    }
++
++    /// <summary>
++    /// Adjusts the toxin level of the tray.
++    /// </summary>
++    [PublicAPI]
++    public void AdjustToxin(Entity<PlantTrayComponent?> ent, float amount)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return;
++
++        ent.Comp.ToxinLevel = MathHelper.Clamp(ent.Comp.ToxinLevel + amount, 0f, ent.Comp.MaxToxinLevel);
++        DirtyField(ent, nameof(ent.Comp.ToxinLevel));
+     }
+ 
+     /// <summary>
+@@ -208,6 +234,15 @@ public void AdjustWeed(Entity<PlantTrayComponent?> ent, float amount)
+         DirtyField(ent, nameof(ent.Comp.WeedLevel));
+     }
+ 
++    [PublicAPI]
++    public bool GetToxinThreshold(Entity<PlantTrayComponent?> ent)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return false;
++
++        return ent.Comp.ToxinLevel >= ent.Comp.MaxToxinLevel * 0.5f;
++    }
++
+     /// <summary>
+     /// Tries to get the plant entity in the tray.
+     /// </summary>
+@@ -229,6 +264,11 @@ public bool TryGetPlant(Entity<PlantTrayComponent?> ent, [NotNullWhen(true)] out
+         return true;
+     }
+ 
++    public bool TryGetAlivePlant(Entity<PlantTrayComponent?> ent)
++    {
++        return TryGetAlivePlant(ent, out _);
++    }
++
+     /// <summary>
+     /// Tries to get the living plant entity in the tray.
+     /// </summary>
+@@ -242,7 +282,7 @@ public bool TryGetAlivePlant(Entity<PlantTrayComponent?> ent, [NotNullWhen(true)
+         if (!TryGetPlant(ent.Owner, out plant))
+             return false;
+ 
+-        return !_plantHolder.IsDead(ent.Owner);
++        return !_plantHolder.IsDead(plant.Value);
+     }
+ 
+     /// <summary>
+@@ -264,6 +304,9 @@ public string GetTrayWarningsMarkup(Entity<PlantTrayComponent?> ent)
+         if (GetNutrientThreshold(ent))
+             markup.Add(Loc.GetString("tray-component-nutrient-low-warning"));
+ 
++        if (GetToxinThreshold(ent))
++            markup.Add(Loc.GetString("tray-component-toxin-high-level-warning"));
++
+         return string.Join("\n", markup);
+     }
+ 
+diff --git a/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs b/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs
+index 977a4f9abc..7a299e0e4c 100644
+--- a/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs
+@@ -14,7 +14,9 @@ public sealed partial class PlantWeedPestSystem : EntitySystem
+     [Dependency] private BotanySystem _botany = default!;
+     [Dependency] private IRobustRandom _random = default!;
+     [Dependency] private MutationSystem _mutation = default!;
++    [Dependency] private PlantSystem _plant = default!;
+     [Dependency] private PlantHolderSystem _plantHolder = default!;
++    [Dependency] private PlantTraySystem _plantTray = default!;
+ 
+     [SubscribeLocalEvent]
+     private void OnCrossPollinate(Entity<PlantWeedPestComponent> ent, ref PlantCrossPollinateEvent args)
+@@ -30,13 +32,14 @@ private void OnCrossPollinate(Entity<PlantWeedPestComponent> ent, ref PlantCross
+     [SubscribeLocalEvent]
+     private void OnPlantGrow(Entity<PlantWeedPestComponent> ent, ref PlantGrowEvent args)
+     {
+-        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder))
++        var trayUid = GetEntity(args.Tray);
++        if (!TryComp<PlantTrayComponent>(trayUid, out var tray))
+             return;
+ 
+         if (_random.Prob(ent.Comp.PestGrowthChance))
+-            _plantHolder.AdjustsPests(ent.Owner, ent.Comp.PestGrowthAmount);
++            _plantTray.AdjustPest((trayUid, tray), ent.Comp.PestGrowthAmount);
+ 
+-        if (holder.PestLevel > ent.Comp.PestTolerance)
++        if (tray.PestLevel > ent.Comp.PestTolerance)
+             _plantHolder.AdjustsHealth(ent.Owner, -ent.Comp.PestDamageAmount);
+     }
+ 
+@@ -70,9 +73,9 @@ public void AdjustPestTolerance(Entity<PlantWeedPestComponent?> ent, float amoun
+     public bool GetPestThreshold(Entity<PlantWeedPestComponent?> ent)
+     {
+         if (!Resolve(ent.Owner, ref ent.Comp, false)
+-            || !TryComp<PlantHolderComponent>(ent.Owner, out var holder))
++            || !_plant.TryGetTray(ent.Owner, out var tray))
+             return false;
+ 
+-        return holder.PestLevel > ent.Comp.PestTolerance;
++        return tray.Comp.PestLevel > ent.Comp.PestTolerance;
+     }
+ }
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPestsEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPestsEntityEffectSystem.cs
+index 5d1c65ed88..2637133b0f 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPestsEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPestsEntityEffectSystem.cs
+@@ -7,16 +7,16 @@ namespace Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+ /// Entity effect that adjusts the pests of a plant.
+ /// </summary>
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+-public sealed partial class PlantAdjustPestsEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantAdjustPests>
++public sealed partial class PlantAdjustPestsEntityEffectSystem : EntityEffectSystem<PlantTrayComponent, PlantAdjustPests>
+ {
+-    [Dependency] private PlantHolderSystem _plantHolder = default!;
++    [Dependency] private PlantTraySystem _plantTray = default!;
+ 
+-    protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantAdjustPests> args)
++    protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustPests> args)
+     {
+-        if (_plantHolder.IsDead(entity.Owner))
++        if (!_plantTray.TryGetAlivePlant(entity.AsNullable()))
+             return;
+ 
+-        _plantHolder.AdjustsPests(entity.Owner, args.Effect.Amount);
++        _plantTray.AdjustPest(entity.AsNullable(), args.Effect.Amount);
+     }
+ }
+ 
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustToxinsEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustToxinsEntityEffectSystem.cs
+index df65645a5c..6254dcb5a9 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustToxinsEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustToxinsEntityEffectSystem.cs
+@@ -7,16 +7,16 @@ namespace Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+ /// Entity effect that adjusts the toxins of a plant.
+ /// </summary>
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+-public sealed partial class PlantAdjustToxinsEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantAdjustToxins>
++public sealed partial class PlantAdjustToxinsEntityEffectSystem : EntityEffectSystem<PlantTrayComponent, PlantAdjustToxins>
+ {
+-    [Dependency] private PlantHolderSystem _plantHolder = default!;
++    [Dependency] private PlantTraySystem _plantTray = default!;
+ 
+-    protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantAdjustToxins> args)
++    protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustToxins> args)
+     {
+-        if (_plantHolder.IsDead(entity.Owner))
++        if (!_plantTray.TryGetAlivePlant(entity.AsNullable()))
+             return;
+ 
+-        _plantHolder.AdjustsToxins(entity.Owner, args.Effect.Amount);
++        _plantTray.AdjustToxin(entity.AsNullable(), args.Effect.Amount);
+     }
+ }
+ 
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustWeedsEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustWeedsEntityEffectSystem.cs
+index 5a9adbf92b..7c94309631 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustWeedsEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustWeedsEntityEffectSystem.cs
+@@ -13,7 +13,7 @@ public sealed partial class PlantAdjustWeedsEntityEffectSystem : EntityEffectSys
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustWeeds> args)
+     {
+-        if (!_plantTray.TryGetAlivePlant(entity.AsNullable(), out _))
++        if (!_plantTray.TryGetAlivePlant(entity.AsNullable()))
+             return;
+ 
+         _plantTray.AdjustWeed(entity.AsNullable(), args.Effect.Amount);
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs
+index 28fc09c7a7..89ac66a2c1 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs
+@@ -28,7 +28,7 @@ protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEv
+         }
+ 
+         if (args.Effect.Remove)
+-            RemCompDeferred(entity.Owner, traitType);
++            RemCompDeferred(entity.Owner, traitType.GetType());
+         else if (!HasComp(entity.Owner, traitType.GetType()))
+             AddComp(entity.Owner, traitType);
+     }
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index 1c36abba77..12c573c663 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -21,6 +21,18 @@
+   - type: Physics
+   - type: Plant
+   - type: PlantHolder
++  - type: Damageable
++  - type: Injurable
++    damageContainer: Biological
++  - type: Destructible
++    thresholds:
++    - trigger:
++        !type:DamageTrigger
++        damage: 75
++      behaviors:
++      - !type:DoActsBehavior
++        acts: [ "Destruction" ]
++  - type: RequireProjectileTarget
+   - type: PlantHarvest
+   - type: PlantChemicals
+   - type: PlantToxins
+-- 
+2.55.0
+

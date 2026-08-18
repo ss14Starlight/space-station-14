@@ -1,0 +1,92 @@
+From fa285fc72b12d75c33de9b21d50b094cf0ffc1a9 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sun, 14 Dec 2025 20:30:06 +0200
+Subject: [PATCH 053/112] fixing trifles
+
+---
+ Content.Server/Botany/SeedPrototype.cs             | 2 --
+ Content.Server/Botany/Systems/BasicGrowthSystem.cs | 2 +-
+ Content.Server/Botany/Systems/MutationSystem.cs    | 2 --
+ Content.Server/Botany/Systems/PlantHolderSystem.cs | 4 ++--
+ Content.Server/Botany/Systems/PlantToxinsSystem.cs | 2 +-
+ 5 files changed, 4 insertions(+), 8 deletions(-)
+
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index b1cefe60a1..8b58fdec0e 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -153,9 +153,7 @@ public partial class SeedData
+     public SeedData Clone()
+     {
+         if (Immutable)
+-        {
+             return this;
+-        }
+ 
+         var serializationManager = IoCManager.Resolve<ISerializationManager>();
+ 
+diff --git a/Content.Server/Botany/Systems/BasicGrowthSystem.cs b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+index 1f6a29d644..3ef0db6ce1 100644
+--- a/Content.Server/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+@@ -156,7 +156,7 @@ private void OnPlantGrow(Entity<BasicGrowthComponent> ent, ref OnPlantGrowEvent
+     /// </summary>
+     public void AffectGrowth(Entity<PlantHolderComponent> ent, int amount)
+     {
+-        if(amount == 0)
++        if (amount == 0)
+             return;
+ 
+         var (uid, component) = ent;
+diff --git a/Content.Server/Botany/Systems/MutationSystem.cs b/Content.Server/Botany/Systems/MutationSystem.cs
+index ac8269b0f9..6bda05b0ad 100644
+--- a/Content.Server/Botany/Systems/MutationSystem.cs
++++ b/Content.Server/Botany/Systems/MutationSystem.cs
+@@ -79,9 +79,7 @@ private void EnsureGrowthComponents(EntityUid plantHolder, SeedData seed)
+     public SeedData Cross(SeedData a, SeedData b)
+     {
+         if (b.Immutable)
+-        {
+             return b;
+-        }
+ 
+         var result = b.Clone();
+ 
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index ea00617b6f..ba9782eef9 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -575,7 +575,7 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent? component = null)
+             _appearance.SetData(uid, PlantHolderVisuals.HealthLight, false, app);
+             _appearance.SetData(uid, PlantHolderVisuals.HarvestLight, false, app);
+         }
+-        else if(harvest != null && plant != null)
++        else if (harvest != null && plant != null)
+         {
+             if (component.DrawWarnings)
+             {
+@@ -610,7 +610,7 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent? component = null)
+         if (!component.DrawWarnings)
+             return;
+ 
+-        // todo: dehardcode those alert levels.
++        // TODO: dehardcode those alert levels.
+         // Not obvious where they go, as plant holder have alerts, sure, but some plants could have
+         // very different consumption rates so it would make sense to have different thresholds
+         _appearance.SetData(uid, PlantHolderVisuals.WaterLight, component.WaterLevel <= 15, app);
+diff --git a/Content.Server/Botany/Systems/PlantToxinsSystem.cs b/Content.Server/Botany/Systems/PlantToxinsSystem.cs
+index eaca60077d..7c03da028f 100644
+--- a/Content.Server/Botany/Systems/PlantToxinsSystem.cs
++++ b/Content.Server/Botany/Systems/PlantToxinsSystem.cs
+@@ -28,7 +28,7 @@ private void OnPlantGrow(Entity<PlantToxinsComponent> ent, ref OnPlantGrowEvent
+             holder.Health -= toxinUptake;
+ 
+         // there is a possibility that it will remove more toxin than amount of damage it took on plant health (and killed it).
+-        // todo: get min out of health left and toxin uptake - would work better, probably.
++        // TODO: get min out of health left and toxin uptake - would work better, probably.
+         holder.Toxins -= toxinUptake;
+ 
+         if (holder.DrawWarnings)
+-- 
+2.55.0
+

@@ -1,0 +1,69 @@
+From 860e4a83bad1616858c931eb76ce3e7a73cd8031 Mon Sep 17 00:00:00 2001
+From: "pa.pecherskij" <pa.pecherskij@interfax.ru>
+Date: Sun, 7 Dec 2025 22:35:53 +0300
+Subject: [PATCH 042/112] refactor: cleanup after mering master
+
+---
+ .../Botany/Components/AtmosphericGrowthComponent.cs         | 6 ++++--
+ Content.Server/Botany/SeedPrototype.cs                      | 2 +-
+ Content.Server/Botany/Systems/BotanySystem.Produce.cs       | 4 ++--
+ 3 files changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs b/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
+index 61ed42cc42..8eeb72bd23 100644
+--- a/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
++++ b/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
+@@ -1,3 +1,5 @@
++using Content.Shared.Atmos;
++
+ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
+@@ -8,13 +10,13 @@ public sealed partial class AtmosphericGrowthComponent : PlantGrowthComponent
+     /// Ideal temperature for plant growth in Kelvin.
+     /// </summary>
+     [DataField]
+-    public float IdealHeat = 293f;
++    public float IdealHeat = Atmospherics.T20C;
+ 
+     /// <summary>
+     /// Temperature tolerance range around ideal heat.
+     /// </summary>
+     [DataField]
+-    public float HeatTolerance = 10f;
++    public float HeatTolerance = Atmospherics.T0C + 10f;
+ 
+     /// <summary>
+     /// Minimum pressure tolerance for plant growth.
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index bee6443f5a..26901cb0c4 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -1,4 +1,4 @@
+-using Content.Shared.Atmos;
++using Content.Server.Botany.Components;
+ using Content.Shared.Database;
+ using Content.Shared.FixedPoint;
+ using Content.Shared.Random;
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Produce.cs b/Content.Server/Botany/Systems/BotanySystem.Produce.cs
+index 2e97786a95..d0134c7de3 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Produce.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Produce.cs
+@@ -34,12 +34,12 @@ public void ProduceGrown(EntityUid uid, ProduceComponent produce)
+ 
+         foreach (var (chem, quantity) in seed.Chemicals)
+         {
+-            var amount = FixedPoint2.New(quantity.Min);
++            var amount = quantity.Min;
+ 
+             if (quantity.PotencyDivisor > 0 && traits.Potency > 0)
+                 amount += FixedPoint2.New(traits.Potency / quantity.PotencyDivisor);
+ 
+-            amount = FixedPoint2.New(MathHelper.Clamp(amount.Float(), quantity.Min, quantity.Max));
++            amount = FixedPoint2.Clamp(amount, quantity.Min, quantity.Max);
+             solutionContainer.MaxVolume += amount;
+             solutionContainer.AddReagent(chem, amount);
+         }
+-- 
+2.55.0
+

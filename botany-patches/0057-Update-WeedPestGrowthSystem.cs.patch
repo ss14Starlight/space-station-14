@@ -1,0 +1,104 @@
+From a28a6ae63fd8835e0da05568df0aad4df5ee82dc Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Tue, 16 Dec 2025 18:10:39 +0200
+Subject: [PATCH 057/112] Update WeedPestGrowthSystem.cs
+
+---
+ .../Botany/Systems/WeedPestGrowthSystem.cs    | 68 ++++++++++---------
+ 1 file changed, 35 insertions(+), 33 deletions(-)
+
+diff --git a/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+index 693f1fe2d5..1e681b9f3c 100644
+--- a/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+@@ -12,6 +12,7 @@ namespace Content.Server.Botany.Systems;
+ public sealed class WeedPestGrowthSystem : EntitySystem
+ {
+     [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly PlantTraySystem _plantTray = default!;
+     [Dependency] private readonly MutationSystem _mutation = default!;
+     [Dependency] private readonly IRobustRandom _random = default!;
+ 
+@@ -58,45 +59,46 @@ private void OnTrayUpdate(Entity<PlantTrayComponent> ent, ref OnPlantGrowEvent a
+     {
+         var (uid, component) = ent;
+ 
+-        PlantTraitsComponent? traits = null;
+-        WeedPestGrowthComponent? weed = null;
+-        PlantHolderComponent? holder = null;
+-        if (component.PlantEntity != null && !Deleted(component.PlantEntity))
++        if (_plantTray.HasPlant(ent.AsNullable()))
+         {
+-            TryComp(component.PlantEntity.Value, out traits);
+-            TryComp(component.PlantEntity.Value, out weed);
+-            TryComp(component.PlantEntity.Value, out holder);
+-        }
++            var plantUid = component.PlantEntity!.Value;
++            if (!TryComp(plantUid, out PlantTraitsComponent? traits)
++                || !TryComp(plantUid, out WeedPestGrowthComponent? weed)
++                || !TryComp(plantUid, out PlantHolderComponent? holder))
++                return;
+ 
+-        // Weeds like water and nutrients! They may appear even if there's not a seed planted.
+-        if (component is { WaterLevel: > 10, NutritionLevel: > 5 })
+-        {
+-            float chance;
+-            if (component.PlantEntity == null || Deleted(component.PlantEntity))
+-                chance = 0.05f;
+-            else if (traits != null && traits.TurnIntoKudzu)
+-                chance = 1f;
+-            else
+-                chance = 0.01f;
++            // Weeds like water and nutrients! They may appear even if there's not a seed planted.
++            if (component is { WaterLevel: > 10, NutritionLevel: > 5 })
++            {
++                float chance;
++                if (traits.TurnIntoKudzu)
++                    chance = 1f;
++                else
++                    chance = 0.01f;
+ 
+-            if (_random.Prob(chance))
+-                component.WeedLevel += 1 + component.WeedCoefficient * component.TraySpeedMultiplier;
++                if (_random.Prob(chance))
++                    component.WeedLevel += 1 + component.WeedCoefficient * component.TraySpeedMultiplier;
++            }
+ 
+-            if (component.DrawWarnings)
+-                component.UpdateSpriteAfterUpdate = true;
++            // Handle kudzu transformation.
++            if (traits.TurnIntoKudzu
++                && component.WeedLevel >= weed.WeedHighLevelThreshold)
++            {
++                Spawn(traits.KudzuPrototype, Transform(uid).Coordinates.SnapToGrid(EntityManager));
++                traits.TurnIntoKudzu = false;
++                holder.Health = 0;
++            }
+         }
+-
+-        // Handle kudzu transformation.
+-        if (component.PlantEntity != null
+-            && traits != null
+-            && weed != null
+-            && traits.TurnIntoKudzu
+-            && component.WeedLevel >= weed.WeedHighLevelThreshold)
++        else
+         {
+-            Spawn(traits.KudzuPrototype, Transform(uid).Coordinates.SnapToGrid(EntityManager));
+-            traits.TurnIntoKudzu = false;
+-            if (holder != null)
+-                holder.Health = 0;
++            if (component is { WaterLevel: > 10, NutritionLevel: > 5 })
++            {
++                if (_random.Prob(0.05f))
++                    component.WeedLevel += 1 + component.WeedCoefficient * component.TraySpeedMultiplier;
++            }
+         }
++
++        if (component.DrawWarnings)
++            component.UpdateSpriteAfterUpdate = true;
+     }
+ }
+-- 
+2.55.0
+

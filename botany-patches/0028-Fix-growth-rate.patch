@@ -1,0 +1,230 @@
+From 4a8126e42425c6c22e2e08c330e903ff66c37067 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Tue, 5 Aug 2025 01:25:22 +0300
+Subject: [PATCH 028/112] Fix growth rate
+
+---
+ .../Botany/Components/PlantHolderComponent.cs | 12 +++----
+ .../Botany/Systems/HarvestSystem.cs           |  5 +--
+ .../Botany/Systems/PlantGrowthSystem.cs       | 36 ++-----------------
+ .../Botany/Systems/PlantHolderSystem.cs       | 19 +++++-----
+ .../Botany/Systems/PlantTraitsSystem.cs       | 21 -----------
+ 5 files changed, 20 insertions(+), 73 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/PlantHolderComponent.cs b/Content.Server/Botany/Components/PlantHolderComponent.cs
+index ad33fa9ea2..7e033fb96b 100644
+--- a/Content.Server/Botany/Components/PlantHolderComponent.cs
++++ b/Content.Server/Botany/Components/PlantHolderComponent.cs
+@@ -13,12 +13,6 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+     public TimeSpan NextUpdate = TimeSpan.Zero;
+ 
+-    /// <summary>
+-    /// Time between plant reagent consumption updates.
+-    /// </summary>
+-    [DataField]
+-    public TimeSpan UpdateDelay = TimeSpan.FromSeconds(3);
+-
+     /// <summary>
+     /// Age when the plant last produced harvestable items.
+     /// </summary>
+@@ -37,6 +31,12 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField]
+     public TimeSpan CycleDelay = TimeSpan.FromSeconds(15f);
+ 
++    /// <summary>
++    /// Time between plant reagent consumption updates.
++    /// </summary>
++    [DataField]
++    public TimeSpan UpdateDelay = TimeSpan.FromSeconds(3);
++
+     /// <summary>
+     /// Game time when the plant last did a growth update.
+     /// </summary>
+diff --git a/Content.Server/Botany/Systems/HarvestSystem.cs b/Content.Server/Botany/Systems/HarvestSystem.cs
+index 7d52190694..271efe6a20 100644
+--- a/Content.Server/Botany/Systems/HarvestSystem.cs
++++ b/Content.Server/Botany/Systems/HarvestSystem.cs
+@@ -67,7 +67,7 @@ private void OnPlantGrow(EntityUid uid, HarvestComponent component, OnPlantGrowE
+         {
+             // Repeat harvest
+             var timeSinceLastHarvest = plantHolder.Age - component.LastHarvestTime;
+-            if (timeSinceLastHarvest >= traits.Production && !component.ReadyForHarvest)
++            if (timeSinceLastHarvest > traits.Production && !component.ReadyForHarvest)
+             {
+                 component.ReadyForHarvest = true;
+                 plantHolder.UpdateSpriteAfterUpdate = true;
+@@ -76,7 +76,7 @@ private void OnPlantGrow(EntityUid uid, HarvestComponent component, OnPlantGrowE
+         else
+         {
+             // Non-repeat harvest
+-            if (plantHolder.Age >= traits.Production && !component.ReadyForHarvest)
++            if (plantHolder.Age > traits.Production && !component.ReadyForHarvest)
+             {
+                 component.ReadyForHarvest = true;
+                 plantHolder.UpdateSpriteAfterUpdate = true;
+@@ -155,6 +155,7 @@ public void DoHarvest(EntityUid plantUid, EntityUid user, HarvestComponent? harv
+             case HarvestType.SelfHarvest:
+                 harvestComp.ReadyForHarvest = false;
+                 harvestComp.LastHarvestTime = plantHolder.Age;
++                plantHolder.Harvest = false;
+                 break;
+         }
+ 
+diff --git a/Content.Server/Botany/Systems/PlantGrowthSystem.cs b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+index ea0ddbe5f7..03608a9a0c 100644
+--- a/Content.Server/Botany/Systems/PlantGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+@@ -7,38 +7,6 @@ namespace Content.Server.Botany.Systems;
+ [ByRefEvent]
+ public readonly record struct OnPlantGrowEvent;
+ 
+-/// <summary>
+-/// Handles the main growth cycle for all plants.
+-/// </summary>
+-public sealed class PlantGrowthCycleSystem : EntitySystem
+-{
+-    [Dependency] private readonly IRobustRandom _random = default!;
+-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+-
+-    public TimeSpan nextUpdate = TimeSpan.Zero;
+-    public TimeSpan updateDelay = TimeSpan.FromSeconds(15); // PlantHolder has a 15 second delay on cycles
+-
+-    public override void Initialize()
+-    {
+-        base.Initialize();
+-    }
+-
+-    public override void Update(float frameTime)
+-    {
+-        if (nextUpdate > _gameTiming.CurTime)
+-            return;
+-
+-        var query = EntityQueryEnumerator<PlantHolderComponent>();
+-        while (query.MoveNext(out var uid, out var plantHolder))
+-        {
+-            var plantGrow = new OnPlantGrowEvent();
+-            RaiseLocalEvent(uid, ref plantGrow);
+-        }
+-
+-        nextUpdate = _gameTiming.CurTime + updateDelay;
+-    }
+-}
+-
+ /// <summary>
+ /// Base system for plant growth mechanics. Provides common functionality for all plant growth systems.
+ /// </summary>
+@@ -86,14 +54,14 @@ public void AffectGrowth(EntityUid uid, int amount, PlantHolderComponent? compon
+         {
+             if (component.Age < traits.Maturation)
+                 component.Age += amount;
+-            else if (!component.Harvest && traits.Yield > 0f)
++            else if (!component.Harvest && traits.Yield <= 0f)
+                 component.LastProduce -= amount;
+         }
+         else
+         {
+             if (component.Age < traits.Maturation)
+                 component.SkipAging++;
+-            else if (!component.Harvest && traits.Yield > 0f)
++            else if (!component.Harvest && traits.Yield <= 0f)
+                 component.LastProduce += amount;
+         }
+     }
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 86bbf71ea7..0f1cf3e7df 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -345,7 +345,6 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+             return;
+         }
+ 
+-
+         if (TryComp<ProduceComponent>(args.Used, out var produce))
+         {
+             args.Handled = true;
+@@ -590,13 +589,16 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent? component = null)
+         if (!TryComp<AppearanceComponent>(uid, out var app))
+             return;
+ 
+-        TryComp<PlantTraitsComponent>(uid, out var spriteTraits);
++        TryComp<PlantTraitsComponent>(uid, out var traits);
++
++        if (traits == null)
++            return;
+ 
+         if (component.Seed != null)
+         {
+             if (component.DrawWarnings)
+             {
+-                _appearance.SetData(uid, PlantHolderVisuals.HealthLight, component.Health <= (spriteTraits?.Endurance ?? 100f) / 2f);
++                _appearance.SetData(uid, PlantHolderVisuals.HealthLight, component.Health <= traits.Endurance / 2f);
+             }
+ 
+             if (component.Dead)
+@@ -611,10 +613,7 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent? component = null)
+             }
+             else
+             {
+-                if (spriteTraits == null)
+-                    return;
+-
+-                if (component.Age < spriteTraits.Maturation)
++                if (component.Age < traits.Maturation)
+                 {
+                     var growthStage = GetCurrentGrowthStage((uid, component));
+ 
+@@ -625,7 +624,7 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent? component = null)
+                 else
+                 {
+                     _appearance.SetData(uid, PlantHolderVisuals.PlantRsi, component.Seed.PlantRsi.ToString(), app);
+-                    _appearance.SetData(uid, PlantHolderVisuals.PlantState, $"stage-{spriteTraits.GrowthStages}", app);
++                    _appearance.SetData(uid, PlantHolderVisuals.PlantState, $"stage-{traits.GrowthStages}", app);
+                 }
+             }
+         }
+@@ -647,8 +646,8 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent? component = null)
+     }
+ 
+     /// <summary>
+-    ///     Check if the currently contained seed is unique. If it is not, clone it so that we have a unique seed.
+-    ///     Necessary to avoid modifying global seeds.
++    /// Check if the currently contained seed is unique. If it is not, clone it so that we have a unique seed.
++    /// Necessary to avoid modifying global seeds.
+     /// </summary>
+     public void EnsureUniqueSeed(EntityUid uid, PlantHolderComponent? component = null)
+     {
+diff --git a/Content.Server/Botany/Systems/PlantTraitsSystem.cs b/Content.Server/Botany/Systems/PlantTraitsSystem.cs
+index 65bbba3cd0..171cab39db 100644
+--- a/Content.Server/Botany/Systems/PlantTraitsSystem.cs
++++ b/Content.Server/Botany/Systems/PlantTraitsSystem.cs
+@@ -32,26 +32,5 @@ private void OnPlantGrow(EntityUid uid, PlantTraitsComponent component, OnPlantG
+             if (holder.DrawWarnings)
+                 holder.UpdateSpriteAfterUpdate = true;
+         }
+-
+-        // Check if plant is ready for harvest
+-        if (holder.Seed.ProductPrototypes.Count > 0 && TryComp<HarvestComponent>(uid, out var harvestComp))
+-        {
+-            if (holder.Age > component.Production)
+-            {
+-                if (holder.Age - harvestComp.LastHarvestTime > component.Production && !harvestComp.ReadyForHarvest)
+-                {
+-                    harvestComp.ReadyForHarvest = true;
+-                    harvestComp.LastHarvestTime = holder.Age;
+-                }
+-            }
+-            else
+-            {
+-                if (harvestComp.ReadyForHarvest)
+-                {
+-                    harvestComp.ReadyForHarvest = false;
+-                    harvestComp.LastHarvestTime = holder.Age;
+-                }
+-            }
+-        }
+     }
+ }
+-- 
+2.55.0
+

@@ -1,0 +1,44 @@
+From 7115917ab7899430dc9fa17a361dd81cb1f3a884 Mon Sep 17 00:00:00 2001
+From: "pa.pecherskij" <pa.pecherskij@interfax.ru>
+Date: Sun, 14 Dec 2025 21:11:37 +0300
+Subject: [PATCH 052/112] refactor: minor yaml cleanups
+
+---
+ Resources/Prototypes/Hydroponics/seeds.yml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Resources/Prototypes/Hydroponics/seeds.yml b/Resources/Prototypes/Hydroponics/seeds.yml
+index d3d444b981..d90ff84e6d 100644
+--- a/Resources/Prototypes/Hydroponics/seeds.yml
++++ b/Resources/Prototypes/Hydroponics/seeds.yml
+@@ -258,6 +258,8 @@
+   displayName: seeds-lemoon-display-name
+   plantRsi: Objects/Specific/Hydroponics/lemoon.rsi
+   packetPrototype: LemoonSeeds
++  productPrototypes:
++    - FoodLemoon
+   growthComponents:
+     plant:
+       lifespan: 90
+@@ -267,8 +269,6 @@
+       potency: 1
+     harvest:
+       harvestRepeat: Repeat
+-  productPrototypes:
+-    - FoodLemoon
+   chemicals:
+     Vitamin:
+       min: 1
+@@ -1651,8 +1651,8 @@
+       potency: 5
+       growthStages: 4
+     basicGrowth:
+-      waterConsumption: 0.6
+       nutrientConsumption: 0.4
++      waterConsumption: 0.6
+   chemicals:
+     Nutriment:
+       min: 1
+-- 
+2.55.0
+

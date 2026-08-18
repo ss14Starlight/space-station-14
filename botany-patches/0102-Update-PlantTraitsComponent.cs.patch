@@ -1,0 +1,34 @@
+From 20d1dab120ce68a49a84d5f89e5e45edba551581 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Mon, 27 Jul 2026 13:58:26 +0300
+Subject: [PATCH 102/112] Update PlantTraitsComponent.cs
+
+---
+ .../Botany/Traits/Components/PlantTraitsComponent.cs        | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
+index bbc17de792..a510e593e7 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
+@@ -1,15 +1,13 @@
+-using Robust.Shared.GameStates;
+-
+ namespace Content.Shared.Botany.Traits.Components;
+ 
+ /// <summary>
+-/// Base component for plant trait components.
++/// Base class for plant trait components.
+ /// </summary>
+-[RegisterComponent, NetworkedComponent]
+ public abstract partial class PlantTraitsComponent : Component
+ {
+     /// <summary>
+     /// Localization key describing the plant trait state.
+     /// </summary>
++    [DataField]
+     public abstract LocId TraitState { get; set; }
+ }
+-- 
+2.55.0
+

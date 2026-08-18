@@ -1,0 +1,137 @@
+From dc11d5277a90a602843c12586b3ba6927bab841b Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Mon, 27 Jul 2026 14:31:26 +0300
+Subject: [PATCH 103/112] Traits LocId fix
+
+---
+ Content.Shared/Botany/Systems/PlantSystem.cs           |  3 ++-
+ .../Traits/Components/PlantTraitKudzuComponent.cs      |  2 +-
+ .../Traits/Components/PlantTraitLigneousComponent.cs   |  2 +-
+ .../Traits/Components/PlantTraitSampledComponent.cs    |  2 +-
+ .../Traits/Components/PlantTraitScreamComponent.cs     |  2 +-
+ .../Traits/Components/PlantTraitSeedlessComponent.cs   |  2 +-
+ .../Traits/Components/PlantTraitUnviableComponent.cs   |  2 +-
+ .../Botany/Traits/Components/PlantTraitsComponent.cs   | 10 +++++++---
+ Resources/Prototypes/Hydroponics/plants.yml            |  1 +
+ 9 files changed, 16 insertions(+), 10 deletions(-)
+
+diff --git a/Content.Shared/Botany/Systems/PlantSystem.cs b/Content.Shared/Botany/Systems/PlantSystem.cs
+index 8859068898..671c5a0e3a 100644
+--- a/Content.Shared/Botany/Systems/PlantSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantSystem.cs
+@@ -102,7 +102,8 @@ private void OnExamined(Entity<PlantComponent> ent, ref ExaminedEvent args)
+ 
+             foreach (var trait in AllComps<PlantTraitsComponent>(ent.Owner))
+             {
+-                args.PushMarkup(Loc.GetString(trait.TraitState));
++                if (trait.TraitState is { } traitState)
++                    args.PushMarkup(Loc.GetString(traitState));
+             }
+         }
+     }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
+index 92af381cf8..7286a82931 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
+@@ -30,5 +30,5 @@ public sealed partial class PlantTraitKudzuComponent : PlantTraitsComponent
+     public float WeedGrowthAmount = 1f;
+ 
+     [DataField]
+-    public override LocId TraitState { get; set; } = "mutation-plant-kudzu";
++    public override LocId? TraitState { get; set; } = "mutation-plant-kudzu";
+ }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
+index 0562183a0e..61be9b0900 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
+@@ -17,5 +17,5 @@ public sealed partial class PlantTraitLigneousComponent : PlantTraitsComponent
+     public ProtoId<ToolQualityPrototype>? HarvestToolQuality = "Sawing";
+ 
+     [DataField]
+-    public override LocId TraitState { get; set; } = "mutation-plant-ligneous";
++    public override LocId? TraitState { get; set; } = "mutation-plant-ligneous";
+ }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
+index 68a9b910d4..24ac99054c 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
+@@ -9,5 +9,5 @@ namespace Content.Shared.Botany.Traits.Components;
+ public sealed partial class PlantTraitSampledComponent : PlantTraitsComponent
+ {
+     [DataField]
+-    public override LocId TraitState { get; set; } = "mutation-plant-sampled";
++    public override LocId? TraitState { get; set; } = "mutation-plant-sampled";
+ }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
+index b7c36ab777..35e95db769 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
+@@ -16,5 +16,5 @@ public sealed partial class PlantTraitScreamComponent : PlantTraitsComponent
+     public SoundSpecifier ScreamSound = new SoundCollectionSpecifier("PlantScreams", AudioParams.Default.AddVolume(-10));
+ 
+     [DataField]
+-    public override LocId TraitState { get; set; } = "mutation-plant-scream";
++    public override LocId? TraitState { get; set; } = "mutation-plant-scream";
+ }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
+index 11eebe6dc4..c4b0a3dc1f 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
+@@ -9,5 +9,5 @@ namespace Content.Shared.Botany.Traits.Components;
+ public sealed partial class PlantTraitSeedlessComponent : PlantTraitsComponent
+ {
+     [DataField]
+-    public override LocId TraitState { get; set; } = "mutation-plant-seedless";
++    public override LocId? TraitState { get; set; } = "mutation-plant-seedless";
+ }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
+index df33ddafab..a853686cb7 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
+@@ -16,5 +16,5 @@ public sealed partial class PlantTraitUnviableComponent : PlantTraitsComponent
+     public float UnviableDamage = 6f;
+ 
+     [DataField]
+-    public override LocId TraitState { get; set; } = "mutation-plant-unviable";
++    public override LocId? TraitState { get; set; } = "mutation-plant-unviable";
+ }
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
+index a510e593e7..16a8ae0f49 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
+@@ -1,13 +1,17 @@
++using Robust.Shared.GameStates;
++
+ namespace Content.Shared.Botany.Traits.Components;
+ 
+ /// <summary>
+-/// Base class for plant trait components.
++/// Base component for plant trait components.
+ /// </summary>
+-public abstract partial class PlantTraitsComponent : Component
++[RegisterComponent, NetworkedComponent]
++[Virtual]
++public partial class PlantTraitsComponent : Component
+ {
+     /// <summary>
+     /// Localization key describing the plant trait state.
+     /// </summary>
+     [DataField]
+-    public abstract LocId TraitState { get; set; }
++    public virtual LocId? TraitState { get; set; }
+ }
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index 7684944419..69395806eb 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -36,6 +36,7 @@
+   - type: PlantHarvest
+   - type: PlantChemicals
+   - type: PlantToxins
++  - type: PlantTraits
+   - type: PlantVisuals
+   - type: PlantWeedPest
+   - type: PlantAtmospheric
+-- 
+2.55.0
+

@@ -1,0 +1,77 @@
+From 488fab34090adf2ce7331484dabab415cc931369 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Mon, 8 Dec 2025 21:53:46 +0200
+Subject: [PATCH 043/112] Update ConsumeExudeGasGrowthSystem.cs
+
+---
+ .../Systems/ConsumeExudeGasGrowthSystem.cs    | 41 +++++++++++++------
+ 1 file changed, 28 insertions(+), 13 deletions(-)
+
+diff --git a/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs b/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+index bf02a5de50..3ea3d58b19 100644
+--- a/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+@@ -25,32 +25,47 @@ private void OnPlantGrow(Entity<ConsumeExudeGasGrowthComponent> ent, ref OnPlant
+         var component = ent.Comp;
+ 
+         PlantHolderComponent? holder = null;
+-        Resolve(uid, ref holder);
++        PlantTraitsComponent? traits = null;
++        if (!Resolve(uid, ref holder, ref traits))
++            return;
+ 
+-        if (holder == null || holder.Seed == null || holder.Dead)
++        if (holder.Seed == null || holder.Dead)
+             return;
+ 
+         var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
+ 
+-        // Consume Gasses
+-        foreach (var (gas, amount) in component.ConsumeGasses)
++        // Consume Gasses.
++        holder.MissingGas = 0;
++        if (component.ConsumeGasses.Count > 0)
+         {
+-            if (environment.GetMoles(gas) >= amount)
++            foreach (var (gas, amount) in component.ConsumeGasses)
+             {
++                if (environment.GetMoles(gas) < amount)
++                {
++                    holder.MissingGas++;
++                    continue;
++                }
++
+                 environment.AdjustMoles(gas, -amount);
+             }
+-        }
+ 
+-        // Exude Gasses
+-        foreach (var (gas, amount) in component.ExudeGasses)
+-        {
+-            environment.AdjustMoles(gas, amount);
++            if (holder.MissingGas > 0)
++            {
++                holder.Health -= holder.MissingGas * HydroponicsSpeedMultiplier;
++                if (holder.DrawWarnings)
++                    holder.UpdateSpriteAfterUpdate = true;
++            }
+         }
+ 
+-        var containingMixture = _atmosphere.GetContainingMixture(uid, true, true);
+-        if (containingMixture != null)
++        // Exude Gasses.
++        var exudeCount = component.ExudeGasses.Count;
++        if (exudeCount > 0)
+         {
+-            _atmosphere.Merge(containingMixture, environment);
++            foreach (var (gas, amount) in component.ExudeGasses)
++            {
++                environment.AdjustMoles(gas,
++                    MathF.Max(1f, MathF.Round(amount * MathF.Round(traits.Potency) / exudeCount)));
++            }
+         }
+     }
+ }
+-- 
+2.55.0
+

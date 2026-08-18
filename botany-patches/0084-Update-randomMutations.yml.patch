@@ -1,0 +1,25 @@
+From 269d52641e1f61eac55fbfb3d8cbba26e1d14a24 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Wed, 7 Jan 2026 04:29:02 +0200
+Subject: [PATCH 084/112] Update randomMutations.yml
+
+---
+ Resources/Prototypes/Hydroponics/randomMutations.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Resources/Prototypes/Hydroponics/randomMutations.yml b/Resources/Prototypes/Hydroponics/randomMutations.yml
+index cd54e203c0..5357266493 100644
+--- a/Resources/Prototypes/Hydroponics/randomMutations.yml
++++ b/Resources/Prototypes/Hydroponics/randomMutations.yml
+@@ -21,7 +21,7 @@
+       baseOdds: 0.109
+       persists: false
+       effect: !type:PlantChangeTraits
+-        trait: !type:TraitUnviable
++        trait: PlantTraitUnviable
+     - name: ChangeWaterConsumption
+       baseOdds: 0.018
+       persists: false
+-- 
+2.55.0
+

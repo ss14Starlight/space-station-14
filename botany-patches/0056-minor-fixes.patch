@@ -1,0 +1,83 @@
+From 48e255d787241ac74588a88dd120b88883599757 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Tue, 16 Dec 2025 17:57:10 +0200
+Subject: [PATCH 056/112] minor fixes
+
+---
+ Content.Client/Botany/PlantVisualizerSystem.cs        | 11 ++++++-----
+ Content.Server/Botany/Systems/PlantTraySystem.cs      |  6 ++++++
+ .../Botany/PlantMutateChemicalsEntityEffectSystem.cs  |  2 +-
+ 3 files changed, 13 insertions(+), 6 deletions(-)
+
+diff --git a/Content.Client/Botany/PlantVisualizerSystem.cs b/Content.Client/Botany/PlantVisualizerSystem.cs
+index a6471cb8d1..6b204acdda 100644
+--- a/Content.Client/Botany/PlantVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantVisualizerSystem.cs
+@@ -1,6 +1,7 @@
+ using Content.Client.Botany.Components;
+ using Content.Shared.Botany;
+ using Robust.Client.GameObjects;
++using Robust.Shared.Utility;
+ 
+ namespace Content.Client.Botany;
+ 
+@@ -18,8 +19,8 @@ private void OnComponentInit(EntityUid uid, PlantVisualsComponent component, Com
+         if (!TryComp<SpriteComponent>(uid, out var sprite))
+             return;
+ 
+-        sprite.LayerMapReserveBlank(PlantLayers.Plant);
+-        sprite.LayerSetVisible(PlantLayers.Plant, false);
++        SpriteSystem.LayerMapReserve((uid, sprite), PlantLayers.Plant);
++        SpriteSystem.LayerSetVisible((uid, sprite), PlantLayers.Plant, false);
+     }
+ 
+     protected override void OnAppearanceChange(EntityUid uid, PlantVisualsComponent component, ref AppearanceChangeEvent args)
+@@ -32,12 +33,12 @@ protected override void OnAppearanceChange(EntityUid uid, PlantVisualsComponent
+         {
+             var valid = !string.IsNullOrWhiteSpace(state);
+ 
+-            args.Sprite.LayerSetVisible(PlantLayers.Plant, valid);
++            SpriteSystem.LayerSetVisible((uid, args.Sprite), PlantLayers.Plant, valid);
+ 
+             if (valid)
+             {
+-                args.Sprite.LayerSetRSI(PlantLayers.Plant, rsi);
+-                args.Sprite.LayerSetState(PlantLayers.Plant, state);
++                SpriteSystem.LayerSetRsi((uid, args.Sprite), PlantLayers.Plant, new ResPath(rsi));
++                SpriteSystem.LayerSetRsiState((uid, args.Sprite), PlantLayers.Plant, state);
+             }
+         }
+     }
+diff --git a/Content.Server/Botany/Systems/PlantTraySystem.cs b/Content.Server/Botany/Systems/PlantTraySystem.cs
+index 26d2c96f9e..1dab4c523e 100644
+--- a/Content.Server/Botany/Systems/PlantTraySystem.cs
++++ b/Content.Server/Botany/Systems/PlantTraySystem.cs
+@@ -144,6 +144,12 @@ private void OnInteractUsing(Entity<PlantTrayComponent> ent, ref InteractUsingEv
+ 
+                 PlantingPlant(uid, plantUid);
+ 
++                if (TryComp<PlantHolderComponent>(tray.PlantEntity!.Value, out var plantHolder)
++                    && seeds.HealthOverride != null)
++                {
++                    plantHolder.Health = seeds.HealthOverride.Value;
++                }
++
+                 if (TryComp<PaperLabelComponent>(args.Used, out var paperLabel))
+                     _itemSlots.TryEjectToHands(args.Used, paperLabel.LabelSlot, args.User);
+ 
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs
+index 5396b13acf..6770532bf5 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs
+@@ -24,7 +24,7 @@ protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffe
+             return;
+ 
+         var plantUid = entity.Comp.PlantEntity!.Value;
+-        var chemicals = EnsureComp<PlantChemicalsComponent>(plantUid).MutateChemicals;
++        var chemicals = EnsureComp<PlantChemicalsComponent>(plantUid).Chemicals;
+         var randomChems = _proto.Index(args.Effect.RandomPickBotanyReagent).Fills;
+ 
+         // Add a random amount of a random chemical to this set of chemicals.
+-- 
+2.55.0
+

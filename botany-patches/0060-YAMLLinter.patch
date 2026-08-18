@@ -1,0 +1,26 @@
+From 0f36eb4d0e57491adbf3c1977639d310d88656ee Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Tue, 16 Dec 2025 18:35:26 +0200
+Subject: [PATCH 060/112] YAMLLinter
+
+---
+ Resources/Prototypes/Hydroponics/plants.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index a6f500e54f..4d5be22e93 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -965,8 +965,8 @@
+     plantRsi: Objects/Specific/Hydroponics/gatfruit.rsi
+     packetPrototype: GatfruitSeeds
+     productPrototypes: [ FoodGatfruit ]
+-  - type: Plant
+     mutationPrototypes: [ FakeCapfruitPlants, RealCapfruitPlants ]
++  - type: Plant
+     lifespan: 65
+     maturation: 25
+     production: 25
+-- 
+2.55.0
+

@@ -1,0 +1,39 @@
+From fe083627dbb6a1a0070f5e56ad3bfd17d0261ba1 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 9 Jul 2026 03:29:23 +0300
+Subject: [PATCH 095/112] build 2
+
+---
+ Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs | 2 +-
+ Content.Server/Botany/Systems/PlantAtmosphericSystem.cs      | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs b/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+index 2063f7592c..94a0494299 100644
+--- a/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+@@ -6,7 +6,7 @@
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+-public sealed class PlantConsumeExudeGasSystem : SharedPlantConsumeExudeGasSystem
++public sealed partial class PlantConsumeExudeGasSystem : SharedPlantConsumeExudeGasSystem
+ {
+     [Dependency] private AtmosphereSystem _atmosphere = default!;
+     [Dependency] private PlantHolderSystem _plantHolder = default!;
+diff --git a/Content.Server/Botany/Systems/PlantAtmosphericSystem.cs b/Content.Server/Botany/Systems/PlantAtmosphericSystem.cs
+index b12398580d..829932ed24 100644
+--- a/Content.Server/Botany/Systems/PlantAtmosphericSystem.cs
++++ b/Content.Server/Botany/Systems/PlantAtmosphericSystem.cs
+@@ -6,7 +6,7 @@
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+-public sealed class PlantAtmosphericSystem : SharedPlantAtmosphericSystem
++public sealed partial class PlantAtmosphericSystem : SharedPlantAtmosphericSystem
+ {
+     [Dependency] private AtmosphereSystem _atmosphere = default!;
+     [Dependency] private PlantHolderSystem _plantHolder = default!;
+-- 
+2.55.0
+

@@ -1,0 +1,314 @@
+From 07a66e6eb01bde7bdd543d1dbcf9f452502a5675 Mon Sep 17 00:00:00 2001
+From: "pa.pecherskij" <pa.pecherskij@interfax.ru>
+Date: Sun, 14 Dec 2025 00:34:20 +0300
+Subject: [PATCH 050/112] refactor: change Resolve to TryComp where appropriate
+
+---
+ .../Botany/Systems/AtmosphericGrowthSystem.cs |  5 +----
+ .../Botany/Systems/BasicGrowthSystem.cs       | 13 +++++------
+ .../Systems/ConsumeExudeGasGrowthSystem.cs    |  7 ++----
+ Content.Server/Botany/Systems/LogSystem.cs    |  2 +-
+ .../Botany/Systems/PlantHarvestSystem.cs      | 22 +++++++------------
+ .../Botany/Systems/PlantHolderSystem.cs       |  1 -
+ Content.Server/Botany/Systems/PlantSystem.cs  |  5 +----
+ .../Botany/Systems/PlantToxinsSystem.cs       |  5 +----
+ .../Botany/Systems/UnviableGrowthSystem.cs    |  5 +----
+ .../Botany/Systems/WeedPestGrowthSystem.cs    | 10 +++------
+ .../PlantChangeStatEntityEffectSystem.cs      |  1 -
+ 11 files changed, 23 insertions(+), 53 deletions(-)
+
+diff --git a/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs b/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
+index fbecc58e2b..232f9fbe58 100644
+--- a/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
+@@ -16,8 +16,6 @@ public sealed class AtmosphericGrowthSystem : EntitySystem
+ 
+     public override void Initialize()
+     {
+-        base.Initialize();
+-
+         SubscribeLocalEvent<AtmosphericGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
+     }
+ 
+@@ -25,8 +23,7 @@ private void OnPlantGrow(Entity<AtmosphericGrowthComponent> ent, ref OnPlantGrow
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? holder = null;
+-        if (!Resolve(uid, ref holder))
++        if (!TryComp(uid, out PlantHolderComponent? holder))
+             return;
+ 
+         var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
+diff --git a/Content.Server/Botany/Systems/BasicGrowthSystem.cs b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+index a9aae6fb7a..156e9cfe0f 100644
+--- a/Content.Server/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+@@ -27,8 +27,6 @@ public sealed class BasicGrowthSystem : EntitySystem
+ 
+     public override void Initialize()
+     {
+-        base.Initialize();
+-
+         SubscribeLocalEvent<BasicGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
+         SubscribeLocalEvent<BasicGrowthComponent, BotanySwabDoAfterEvent>(OnSwab);
+     }
+@@ -65,15 +63,15 @@ private void OnPlantGrow(Entity<BasicGrowthComponent> ent, ref OnPlantGrowEvent
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? holder = null;
+-        if (!Resolve(uid, ref holder))
++        if (!TryComp(uid, out PlantHolderComponent? holder)
++            || !TryComp<PlantTraitsComponent>(uid, out var traits))
+             return;
+ 
+         if (holder.Seed == null || holder.Dead)
+             return;
+ 
+         // Check if the plant is viable.
+-        if (TryComp<PlantTraitsComponent>(uid, out var traits) && !traits.Viable)
++        if (!traits.Viable)
+         {
+             holder.Health -= _random.Next(5, 10) * HydroponicsSpeedMultiplier;
+             if (holder.DrawWarnings)
+@@ -163,9 +161,8 @@ public void AffectGrowth(Entity<PlantHolderComponent> ent, int amount)
+         if (component.Seed == null)
+             return;
+ 
+-        PlantHarvestComponent? harvest = null;
+-        PlantComponent? plant = null;
+-        if (!Resolve(uid, ref harvest, ref plant))
++        if (!TryComp(uid, out PlantHarvestComponent? harvest)
++            || !TryComp(uid, out PlantComponent? plant))
+             return;
+ 
+         if (amount > 0)
+diff --git a/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs b/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+index f975f52e9b..a98cf83150 100644
+--- a/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+@@ -14,8 +14,6 @@ public sealed class ConsumeExudeGasGrowthSystem : EntitySystem
+ 
+     public override void Initialize()
+     {
+-        base.Initialize();
+-
+         SubscribeLocalEvent<ConsumeExudeGasGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
+     }
+ 
+@@ -23,9 +21,8 @@ private void OnPlantGrow(Entity<ConsumeExudeGasGrowthComponent> ent, ref OnPlant
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? holder = null;
+-        PlantComponent? plant = null;
+-        if (!Resolve(uid, ref holder, ref plant))
++        if (!TryComp(uid, out PlantHolderComponent? holder)
++            || !TryComp(uid, out PlantComponent? plant))
+             return;
+ 
+         var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
+diff --git a/Content.Server/Botany/Systems/LogSystem.cs b/Content.Server/Botany/Systems/LogSystem.cs
+index 7ca77b78d9..08190af708 100644
+--- a/Content.Server/Botany/Systems/LogSystem.cs
++++ b/Content.Server/Botany/Systems/LogSystem.cs
+@@ -25,7 +25,7 @@ private void OnInteractUsing(EntityUid uid, LogComponent component, InteractUsin
+         if (!HasComp<SharpComponent>(args.Used))
+             return;
+ 
+-        // if in some container, try pick up, else just drop to world.
++        // if in some container, try pick up, else just drop to world
+         var inContainer = _containerSystem.IsEntityInContainer(uid);
+         var pos = Transform(uid).Coordinates;
+ 
+diff --git a/Content.Server/Botany/Systems/PlantHarvestSystem.cs b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+index 217c03f754..021af9d916 100644
+--- a/Content.Server/Botany/Systems/PlantHarvestSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+@@ -18,8 +18,6 @@ public sealed class HarvestSystem : EntitySystem
+ 
+     public override void Initialize()
+     {
+-        base.Initialize();
+-
+         SubscribeLocalEvent<PlantHarvestComponent, OnPlantGrowEvent>(OnPlantGrow);
+         SubscribeLocalEvent<PlantHarvestComponent, InteractHandEvent>(OnInteractHand);
+         SubscribeLocalEvent<PlantHarvestComponent, InteractUsingEvent>(OnInteractUsing);
+@@ -29,9 +27,8 @@ private void OnPlantGrow(Entity<PlantHarvestComponent> ent, ref OnPlantGrowEvent
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? holder = null;
+-        PlantComponent? plant = null;
+-        if (!Resolve(uid, ref holder, ref plant))
++        if (!TryComp(uid, out PlantHolderComponent? holder)
++            || !TryComp(uid, out PlantComponent? plant))
+             return;
+ 
+         if (component is { ReadyForHarvest: true, HarvestRepeat: HarvestType.SelfHarvest })
+@@ -51,9 +48,8 @@ private void OnInteractUsing(Entity<PlantHarvestComponent> ent, ref InteractUsin
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? holder = null;
+-        PlantTraitsComponent? traits = null;
+-        if (!Resolve(uid, ref holder, ref traits))
++        if (!TryComp(uid, out PlantHolderComponent? holder)
++            || !TryComp(uid, out PlantTraitsComponent? traits))
+             return;
+ 
+         if (!component.ReadyForHarvest || holder.Dead || holder.Seed == null || !traits.Ligneous)
+@@ -74,9 +70,8 @@ private void OnInteractHand(Entity<PlantHarvestComponent> ent, ref InteractHandE
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? holder = null;
+-        PlantTraitsComponent? traits = null;
+-        if (!Resolve(uid, ref holder, ref traits))
++        if (!TryComp(uid, out PlantHolderComponent? holder)
++            || !TryComp(uid, out PlantTraitsComponent? traits))
+             return;
+ 
+         if (!component.ReadyForHarvest || holder.Dead || holder.Seed == null)
+@@ -97,9 +92,8 @@ public void DoHarvest(Entity<PlantHarvestComponent> ent, EntityUid user)
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? holder = null;
+-        PlantTraitsComponent? traits = null;
+-        if (!Resolve(uid, ref holder, ref traits))
++        if (!TryComp(uid, out PlantHolderComponent? holder)
++            || !TryComp(uid, out PlantTraitsComponent? traits))
+             return;
+ 
+         if (holder.Dead)
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index e55c493c60..7f37611db0 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -50,7 +50,6 @@ public sealed class PlantHolderSystem : EntitySystem
+ 
+     public override void Initialize()
+     {
+-        base.Initialize();
+         SubscribeLocalEvent<PlantHolderComponent, ExaminedEvent>(OnExamine);
+         SubscribeLocalEvent<PlantHolderComponent, InteractUsingEvent>(OnInteractUsing);
+         SubscribeLocalEvent<PlantHolderComponent, SolutionTransferredEvent>(OnSolutionTransferred);
+diff --git a/Content.Server/Botany/Systems/PlantSystem.cs b/Content.Server/Botany/Systems/PlantSystem.cs
+index 7b6f5044f7..23120c4a13 100644
+--- a/Content.Server/Botany/Systems/PlantSystem.cs
++++ b/Content.Server/Botany/Systems/PlantSystem.cs
+@@ -12,8 +12,6 @@ public sealed class PlantSystem : EntitySystem
+ 
+     public override void Initialize()
+     {
+-        base.Initialize();
+-
+         SubscribeLocalEvent<PlantComponent, OnPlantGrowEvent>(OnPlantGrow);
+     }
+ 
+@@ -21,8 +19,7 @@ private void OnPlantGrow(Entity<PlantComponent> ent, ref OnPlantGrowEvent args)
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? holder = null;
+-        if (!Resolve(uid, ref holder))
++        if (!TryComp(uid, out PlantHolderComponent? holder))
+             return;
+ 
+         // Check if plant is too old.
+diff --git a/Content.Server/Botany/Systems/PlantToxinsSystem.cs b/Content.Server/Botany/Systems/PlantToxinsSystem.cs
+index b350592299..bc49e31d07 100644
+--- a/Content.Server/Botany/Systems/PlantToxinsSystem.cs
++++ b/Content.Server/Botany/Systems/PlantToxinsSystem.cs
+@@ -10,8 +10,6 @@ public sealed class ToxinsSystem : EntitySystem
+ {
+     public override void Initialize()
+     {
+-        base.Initialize();
+-
+         SubscribeLocalEvent<PlantToxinsComponent, OnPlantGrowEvent>(OnPlantGrow);
+     }
+ 
+@@ -19,8 +17,7 @@ private void OnPlantGrow(Entity<PlantToxinsComponent> ent, ref OnPlantGrowEvent
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? holder = null;
+-        if (!Resolve(uid, ref holder))
++        if (!TryComp(uid, out PlantHolderComponent? holder ))
+             return;
+ 
+         if (holder.Toxins < 0)
+diff --git a/Content.Server/Botany/Systems/UnviableGrowthSystem.cs b/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
+index 8f0b9d4620..5b1947b647 100644
+--- a/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
+@@ -9,8 +9,6 @@ public sealed class UnviableGrowthSystem : EntitySystem
+ {
+     public override void Initialize()
+     {
+-        base.Initialize();
+-
+         SubscribeLocalEvent<UnviableGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
+     }
+ 
+@@ -18,8 +16,7 @@ private void OnPlantGrow(Entity<UnviableGrowthComponent> ent, ref OnPlantGrowEve
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? holder = null;
+-        if (!Resolve(uid, ref holder))
++        if (!TryComp(uid, out PlantHolderComponent? holder))
+             return;
+ 
+         holder.Health -= component.UnviableDamage;
+diff --git a/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+index 07ef935056..015851880b 100644
+--- a/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+@@ -14,8 +14,6 @@ public sealed class WeedPestGrowthSystem : EntitySystem
+ 
+     public override void Initialize()
+     {
+-        base.Initialize();
+-
+         SubscribeLocalEvent<WeedPestGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
+         SubscribeLocalEvent<PlantHolderComponent, OnPlantGrowEvent>(OnTrayUpdate);
+     }
+@@ -24,8 +22,7 @@ private void OnPlantGrow(Entity<WeedPestGrowthComponent> ent, ref OnPlantGrowEve
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? holder = null;
+-        if (!Resolve(uid, ref holder))
++        if (!TryComp(uid, out PlantHolderComponent? holder))
+             return;
+ 
+         // Weed growth logic.
+@@ -48,9 +45,8 @@ private void OnTrayUpdate(Entity<PlantHolderComponent> ent, ref OnPlantGrowEvent
+     {
+         var (uid, component) = ent;
+ 
+-        PlantTraitsComponent? traits = null;
+-        WeedPestGrowthComponent? weed = null;
+-        if (!Resolve(uid, ref traits, ref weed))
++        if (!TryComp(uid, out PlantTraitsComponent? traits)
++            || !TryComp(uid, out WeedPestGrowthComponent? weed))
+             return;
+ 
+         // Weeds like water and nutrients! They may appear even if there's not a seed planted.
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
+index 5d2a66ac19..f98a378be2 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
+@@ -1,5 +1,4 @@
+ using System.Linq;
+-using System.Reflection;
+ using Content.Server.Botany.Components;
+ using Content.Shared.EntityEffects;
+ using Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+-- 
+2.55.0
+

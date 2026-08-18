@@ -1,0 +1,28 @@
+From c1f47efa55fd88b2b3859bc68f7dd889e2ef56a6 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sun, 26 Jul 2026 22:59:18 +0300
+Subject: [PATCH 100/112] Update PlantTrayVisualizerSystem.cs
+
+---
+ Content.Client/Botany/PlantTrayVisualizerSystem.cs | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Content.Client/Botany/PlantTrayVisualizerSystem.cs b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+index 34d7e5299f..939d761dcc 100644
+--- a/Content.Client/Botany/PlantTrayVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+@@ -18,9 +18,9 @@ public sealed partial class PlantTrayVisualizerSystem : VisualizerSystem<PlantTr
+     /// </summary>
+     private readonly HashSet<EntityUid> _pendingTrayUpdates = [];
+ 
+-    public override void FrameUpdate(float frameTime)
++    public override void Update(float frameTime)
+     {
+-        base.FrameUpdate(frameTime);
++        base.Update(frameTime);
+ 
+         foreach (var uid in _pendingTrayUpdates)
+         {
+-- 
+2.55.0
+

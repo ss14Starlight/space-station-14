@@ -1,0 +1,369 @@
+From 074ffbcbde511c05850b75c0ddc9ad4384dbe25c Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sat, 10 Jan 2026 02:58:55 +0200
+Subject: [PATCH 085/112] minor fix design
+
+---
+ .../Botany/PlantTrayVisualizerSystem.cs       | 24 +++++++++----------
+ .../Botany/PlantVisualizerSystem.cs           | 21 +++++++++-------
+ Content.Shared/Botany/Systems/PlantSystem.cs  |  8 ++++++-
+ .../Components/PlantTraitKudzuComponent.cs    |  5 ++++
+ .../Components/PlantTraitLigneousComponent.cs |  3 +++
+ .../Components/PlantTraitSampledComponent.cs  |  3 +++
+ .../Components/PlantTraitScreamComponent.cs   |  3 +++
+ .../Components/PlantTraitSeedlessComponent.cs |  3 +++
+ .../Components/PlantTraitUnviableComponent.cs |  4 ++++
+ .../Traits/Systems/PlantTraitsSystem.Kudzu.cs |  5 +---
+ .../Systems/PlantTraitsSystem.Ligneous.cs     |  4 +---
+ .../Systems/PlantTraitsSystem.Sampled.cs      |  4 +---
+ .../Systems/PlantTraitsSystem.Scream.cs       |  4 +---
+ .../Systems/PlantTraitsSystem.Unviable.cs     |  5 +---
+ .../PlantDestroySeedsEntityEffectSystem.cs    |  2 +-
+ .../PlantPhalanximineEntityEffectSystem.cs    |  2 +-
+ .../PlantRestoreSeedsEntityEffectSystem.cs    |  2 +-
+ .../RobustHarvestEntityEffectSystem.cs        |  2 +-
+ 18 files changed, 61 insertions(+), 43 deletions(-)
+
+diff --git a/Content.Client/Botany/PlantTrayVisualizerSystem.cs b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+index 6b670c6a10..8b8d7d114f 100644
+--- a/Content.Client/Botany/PlantTrayVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+@@ -20,22 +20,22 @@ public override void FrameUpdate(float frameTime)
+         var query = EntityQueryEnumerator<PlantTrayVisualsComponent, PlantTrayComponent, AppearanceComponent>();
+         while (query.MoveNext(out var uid, out _, out var tray, out var appearance))
+         {
+-            UpdateTrayWarnings(uid, tray, appearance);
++            UpdateTrayWarnings((uid, tray), appearance);
+         }
+     }
+ 
+-    private void UpdateTrayWarnings(EntityUid trayUid, PlantTrayComponent tray, AppearanceComponent appearance)
++    private void UpdateTrayWarnings(Entity<PlantTrayComponent> ent, AppearanceComponent appearance)
+     {
+-        if (!tray.DrawWarnings)
++        if (!ent.Comp.DrawWarnings)
+             return;
+ 
+-        var water = tray.WaterLevel <= tray.MaxWaterLevel * 0.1f;
+-        var nutrition = tray.NutritionLevel <= tray.MaxNutritionLevel * 0.1f;
+-        var alert = _plantTray.GetWeedThreshold(trayUid);
++        var water = ent.Comp.WaterLevel <= ent.Comp.MaxWaterLevel * 0.1f;
++        var nutrition = ent.Comp.NutritionLevel <= ent.Comp.MaxNutritionLevel * 0.1f;
++        var alert = _plantTray.GetWeedThreshold(ent.Owner);
+         var health = false;
+         var harvest = false;
+ 
+-        if (_plantTray.TryGetPlant(trayUid, out var plantUid))
++        if (_plantTray.TryGetPlant(ent.AsNullable(), out var plantUid))
+         {
+             if (TryComp<PlantHolderComponent>(plantUid, out var plantHolder))
+             {
+@@ -53,10 +53,10 @@ private void UpdateTrayWarnings(EntityUid trayUid, PlantTrayComponent tray, Appe
+         }
+ 
+         // These are appearance keys consumed by the prototype's <see cref="GenericVisualizer"/>.
+-        _appearance.SetData(trayUid, PlantTrayVisuals.HealthLight, health, appearance);
+-        _appearance.SetData(trayUid, PlantTrayVisuals.WaterLight, water, appearance);
+-        _appearance.SetData(trayUid, PlantTrayVisuals.NutritionLight, nutrition, appearance);
+-        _appearance.SetData(trayUid, PlantTrayVisuals.AlertLight, alert, appearance);
+-        _appearance.SetData(trayUid, PlantTrayVisuals.HarvestLight, harvest, appearance);
++        _appearance.SetData(ent.Owner, PlantTrayVisuals.HealthLight, health, appearance);
++        _appearance.SetData(ent.Owner, PlantTrayVisuals.WaterLight, water, appearance);
++        _appearance.SetData(ent.Owner, PlantTrayVisuals.NutritionLight, nutrition, appearance);
++        _appearance.SetData(ent.Owner, PlantTrayVisuals.AlertLight, alert, appearance);
++        _appearance.SetData(ent.Owner, PlantTrayVisuals.HarvestLight, harvest, appearance);
+     }
+ }
+diff --git a/Content.Client/Botany/PlantVisualizerSystem.cs b/Content.Client/Botany/PlantVisualizerSystem.cs
+index e521b9c53e..e86671928e 100644
+--- a/Content.Client/Botany/PlantVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantVisualizerSystem.cs
+@@ -9,6 +9,7 @@ namespace Content.Client.Botany;
+ public sealed class PlantVisualizerSystem : VisualizerSystem<PlantVisualsComponent>
+ {
+     [Dependency] private readonly PlantSystem _plantSystem = default!;
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+ 
+     public override void Initialize()
+     {
+@@ -21,10 +22,10 @@ public override void FrameUpdate(float frameTime)
+     {
+         base.FrameUpdate(frameTime);
+ 
+-        var query = EntityQueryEnumerator<PlantVisualsComponent, PlantComponent, PlantHolderComponent, SpriteComponent>();
+-        while (query.MoveNext(out var uid, out _, out var plant, out var holder, out var sprite))
++        var query = EntityQueryEnumerator<PlantVisualsComponent, PlantComponent, PlantHarvestComponent, SpriteComponent>();
++        while (query.MoveNext(out var uid, out _, out var plant, out var harvest, out var sprite))
+         {
+-            UpdateSprite((uid, plant), holder, sprite);
++            UpdateSprite((uid, plant), harvest, sprite);
+         }
+     }
+ 
+@@ -39,18 +40,20 @@ private void OnComponentInit(EntityUid uid, PlantVisualsComponent component, Com
+         SpriteSystem.LayerSetVisible((uid, sprite), PlantLayers.Plant, false);
+     }
+ 
+-    private void UpdateSprite(Entity<PlantComponent> ent, PlantHolderComponent holder, SpriteComponent sprite)
++    private void UpdateSprite(Entity<PlantComponent> ent, PlantHarvestComponent harvest, SpriteComponent sprite)
+     {
+         string state;
+ 
+-        if (holder.Dead)
++        var dead = _plantHolder.IsDead(ent.Owner);
++        var harvestReady = harvest.ReadyForHarvest;
++        var growthStage = _plantSystem.GetGrowthStageValue(ent.AsNullable());
++
++        if (dead)
+             state = "dead";
+-        else if (TryComp<PlantHarvestComponent>(ent.Owner, out var harvest) && harvest.ReadyForHarvest)
++        else if (harvestReady)
+             state = "harvest";
+-        else if (holder.Age < ent.Comp.Maturation)
+-            state = $"stage-{Math.Max(1, _plantSystem.GetGrowthStageValue(ent.AsNullable()))}";
+         else
+-            state = $"stage-{ent.Comp.GrowthStages}";
++            state = $"stage-{growthStage}";
+ 
+         SpriteSystem.LayerSetVisible((ent.Owner, sprite), PlantLayers.Plant, true);
+         SpriteSystem.LayerSetRsiState((ent.Owner, sprite), PlantLayers.Plant, state);
+diff --git a/Content.Shared/Botany/Systems/PlantSystem.cs b/Content.Shared/Botany/Systems/PlantSystem.cs
+index 960b221e74..83244425a9 100644
+--- a/Content.Shared/Botany/Systems/PlantSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantSystem.cs
+@@ -300,7 +300,13 @@ public int GetGrowthStageValue(Entity<PlantComponent?> ent)
+         if (!TryComp<PlantHolderComponent>(ent.Owner, out var plantHolder))
+             return 1;
+ 
+-        return Math.Max(1, (int)(plantHolder.Age * ent.Comp.GrowthStages / ent.Comp.Maturation));
++        int growthStage;
++        if (plantHolder.Age < ent.Comp.Maturation)
++            growthStage = (int)(plantHolder.Age * ent.Comp.GrowthStages / ent.Comp.Maturation);
++        else
++            growthStage = ent.Comp.GrowthStages;
++
++        return Math.Max(1, growthStage);
+     }
+ 
+     /// <summary>
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
+index 97b129884f..da8b7890c0 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
+@@ -1,8 +1,13 @@
++using Content.Shared.Botany.Components;
+ using Robust.Shared.Prototypes;
+ using Robust.Shared.GameStates;
+ 
+ namespace Content.Shared.Botany.Traits.Components;
+ 
++/// <summary>
++/// A plant trait that increases <see cref="PlantTrayComponent.WeedLevel"/> as the plant grows.
++/// Once the limit is exceeded, it kills the plant and creates kudzu.
++/// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+ public sealed partial class PlantTraitKudzuComponent : PlantTraitsComponent
+ {
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
+index b1a6e29e0f..c9f941188d 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
+@@ -2,6 +2,9 @@
+ 
+ namespace Content.Shared.Botany.Traits.Components;
+ 
++/// <summary>
++/// A plant trait that causes a plant to become ligneous, preventing it from being harvested without special tools.
++/// </summary>
+ [RegisterComponent, NetworkedComponent]
+ public sealed partial class PlantTraitLigneousComponent : PlantTraitsComponent
+ {
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
+index c10a23f304..b3f7cca2ae 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
+@@ -2,6 +2,9 @@
+ 
+ namespace Content.Shared.Botany.Traits.Components;
+ 
++/// <summary>
++/// A plant trait that indicates the plant has already been sampled, preventing it from being sampled again.
++/// </summary>
+ [RegisterComponent, NetworkedComponent]
+ public sealed partial class PlantTraitSampledComponent : PlantTraitsComponent
+ {
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
+index 391a15e1c6..b878cd3a23 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
+@@ -3,6 +3,9 @@
+ 
+ namespace Content.Shared.Botany.Traits.Components;
+ 
++/// <summary>
++/// A plant trait that plays screams when the plant is harvested.
++/// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+ public sealed partial class PlantTraitScreamComponent : PlantTraitsComponent
+ {
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
+index cca71133fc..67045cbb95 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
+@@ -2,6 +2,9 @@
+ 
+ namespace Content.Shared.Botany.Traits.Components;
+ 
++/// <summary>
++/// A plant trait that prevents a plant from producing seeds using a seed maker.
++/// </summary>
+ [RegisterComponent, NetworkedComponent]
+ public sealed partial class PlantTraitSeedlessComponent : PlantTraitsComponent
+ {
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
+index bcf024bf33..e02b4b4bd2 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
+@@ -2,6 +2,10 @@
+ 
+ namespace Content.Shared.Botany.Traits.Components;
+ 
++/// <summary>
++/// A plant trait that causes a plant to stop growing and die quickly.
++/// It adds a bit of challenge to keeping mutated plants alive via Unviable's frequency.
++/// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+ public sealed partial class PlantTraitUnviableComponent : PlantTraitsComponent
+ {
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs
+index db479ec320..b8ae446228 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs
+@@ -5,10 +5,7 @@
+ 
+ namespace Content.Shared.Botany.Traits.Systems;
+ 
+-/// <summary>
+-/// As the plant grows, it increases the <see cref="PlantTrayComponent.WeedLevel"/>.
+-/// Once the limit is exceeded, it kills the plant and creates kudzu.
+-/// </summary>
++/// <inheritdoc cref="PlantTraitKudzuComponent"/>
+ public sealed partial class PlantTraitKudzuSystem : EntitySystem
+ {
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
+index 83e0b8df1b..33ddb69325 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
+@@ -8,9 +8,7 @@
+ 
+ namespace Content.Shared.Botany.Traits.Systems;
+ 
+-/// <summary>
+-/// The plant becomes ligneous, preventing it from being harvested without special tools
+-/// </summary>
++/// <inheritdoc cref="PlantTraitLigneousComponent"/>
+ public sealed partial class PlantTraitLigneousSystem : EntitySystem
+ {
+     [Dependency] private readonly PlantHarvestSystem _plantHarvest = default!;
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
+index 7e525e3808..944b6a017e 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
+@@ -4,9 +4,7 @@
+ 
+ namespace Content.Shared.Botany.Traits.Systems;
+ 
+-/// <summary>
+-/// The plant has been sampled, preventing it from being sampled again.
+-/// </summary>
++/// <inheritdoc cref="PlantTraitSampledComponent"/>
+ public sealed partial class PlantTraitSampledSystem : EntitySystem
+ {
+     [Dependency] private readonly SharedPopupSystem _popup = default!;
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs
+index aae39ec9ad..eadfaa54ab 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs
+@@ -4,9 +4,7 @@
+ 
+ namespace Content.Shared.Botany.Traits.Systems;
+ 
+-/// <summary>
+-/// Plays a screams when the plant is harvested.
+-/// </summary>
++/// <inheritdoc cref="PlantTraitScreamComponent"/>
+ public sealed partial class PlantTraitScreamSystem : EntitySystem
+ {
+     [Dependency] private readonly SharedAudioSystem _audio = default!;
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs
+index 8cbcbd9f6d..c46412ea10 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs
+@@ -4,10 +4,7 @@
+ 
+ namespace Content.Shared.Botany.Traits.Systems;
+ 
+-/// <summary>
+-/// The plant stops growing and dies quickly.
+-/// Adds a bit of challenge to keep mutated plants alive via Unviable's frequency.
+-/// </summary>
++/// <inheritdoc cref="PlantTraitUnviableComponent"/>
+ public sealed partial class PlantTraitUnviableSystem : EntitySystem
+ {
+     [Dependency] private readonly PlantHarvestSystem _plantHarvest = default!;
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
+index 105347e271..691699a074 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
+@@ -7,7 +7,7 @@
+ namespace Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+ 
+ /// <summary>
+-/// Entity effect that removes ability to get seeds from plant using seed maker.
++/// Entity effect that adds the <see cref="PlantTraitSeedlessComponent"/> to a plant.
+ /// </summary>
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+ public sealed partial class PlantDestroySeedsEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantDestroySeeds>
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
+index 0dc6a64a75..3149aa2193 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
+@@ -6,7 +6,7 @@
+ namespace Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+ 
+ /// <summary>
+-/// Entity effect that mutates plant to lose health with time.
++/// Entity effect that removes the <see cref="PlantTraitUnviableComponent"/> from a plant.
+ /// </summary>
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+ public sealed partial class PlantPhalanximineEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantPhalanximine>
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
+index d5473ae0ae..cedfb3b032 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
+@@ -7,7 +7,7 @@
+ namespace Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+ 
+ /// <summary>
+-/// Entity effect that restores ability to get seeds from plant seed maker.
++/// Entity effect that removes the <see cref="PlantTraitSeedlessComponent"/> from a plant.
+ /// </summary>
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+ public sealed partial class PlantRestoreSeedsEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantRestoreSeeds>
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
+index da9df06f78..2a05a20f51 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
+@@ -7,7 +7,7 @@
+ namespace Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+ 
+ /// <summary>
+-/// This effect directly increases the potency of a PlantHolder's plant provided it exists and isn't dead.
++/// This effect directly increases the potency of a plant.
+ /// Potency directly correlates to the size of the plant's produce.
+ /// </summary>
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+-- 
+2.55.0
+

@@ -1,0 +1,36 @@
+From 731e86124cf8d68e134b99b3ffaf7cabec7a8770 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Fri, 1 Aug 2025 06:42:36 +0300
+Subject: [PATCH 013/112] last update
+
+---
+ Content.Server/Botany/Systems/PlantHolderSystem.cs | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 0b3ca4c57b..57605c1b3a 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -1,5 +1,6 @@
+ using Content.Server.Atmos.EntitySystems;
+ using Content.Server.Botany.Components;
++using Content.Server.Botany.Systems;
+ using Content.Server.Hands.Systems;
+ using Content.Server.Kitchen.Components;
+ using Content.Server.Popups;
+@@ -395,6 +396,12 @@ public void Update(EntityUid uid, PlantHolderComponent? component = null)
+ 
+         component.LastCycle = curTime;
+ 
++        if (component.Seed != null && !component.Dead)
++        {
++            var plantGrow = new OnPlantGrowEvent();
++            RaiseLocalEvent(uid, ref plantGrow);
++        }
++
+         // Process mutations. All plants can mutate, so this stays here.
+         if (component.MutationLevel > 0)
+         {
+-- 
+2.55.0
+

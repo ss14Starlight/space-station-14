@@ -1,0 +1,4788 @@
+From 1fc1b039a95e6d5e98f5229b40c74367491c46eb Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sun, 4 Jan 2026 17:50:46 +0200
+Subject: [PATCH 075/112] botany-rework-part-4
+
+---
+ .../Botany/PlantTrayVisualizerSystem.cs       |  30 --
+ .../Botany/PlantVisualizerSystem.cs           |   3 +
+ .../Components/AtmosphericGrowthComponent.cs  |   2 +
+ .../Botany/Components/BasicGrowthComponent.cs |   3 +
+ .../Botany/Components/BotanyHoeComponent.cs   |  18 +
+ .../Components/BotanySampleTakerComponent.cs  |  36 ++
+ .../Botany/Components/BotanySwabComponent.cs  |   2 +
+ .../ConsumeExudeGasGrowthComponent.cs         |   2 +
+ .../Components/PlantChemicalsComponent.cs     |   2 +
+ .../Botany/Components/PlantComponent.cs       |   2 +
+ .../Botany/Components/PlantDataComponent.cs   |   2 +-
+ .../Components/PlantHarvestComponent.cs       |   5 +
+ .../Botany/Components/PlantHolderComponent.cs |  50 ++-
+ .../Botany/Components/PlantToxinsComponent.cs |   3 +
+ .../Botany/Components/PlantTraitsComponent.cs |  42 +--
+ .../Botany/Components/PlantTrayComponent.cs   |  29 +-
+ .../Botany/Components/ProduceComponent.cs     |   7 +
+ .../Botany/Components/SeedComponent.cs        |   2 +-
+ .../Components/UnviableGrowthComponent.cs     |  15 -
+ .../Components/WeedPestGrowthComponent.cs     |  25 +-
+ ...llinateEvent.cs => PlantPollinateEvent.cs} |   0
+ .../Botany/Systems/AtmosphericGrowthSystem.cs |  14 +-
+ .../Botany/Systems/BasicGrowthSystem.cs       |  67 +---
+ .../Botany/Systems/BotanySwabSystem.cs        |  36 +-
+ .../Botany/Systems/BotanySystem.Produce.cs    |  26 +-
+ .../Botany/Systems/BotanySystem.Seed.cs       |  13 +-
+ .../Systems/ConsumeExudeGasGrowthSystem.cs    |  63 +++-
+ .../Botany/Systems/Item/BotanyHoeSystem.cs    |  74 ++++
+ .../Systems/Item/BotanyProduceSystem.cs       |  90 +++++
+ .../Systems/Item/BotanySampleTakerSystem.cs   |  78 ++++
+ .../Botany/Systems/Item/BotanySeedSystem.cs   |  89 +++++
+ .../Botany/Systems/Item/BotanyShovelSystem.cs |  77 ++++
+ .../Botany/Systems/MutationSystem.cs          |  21 +-
+ .../Botany/Systems/PlantChemicalsSystem.cs    |  35 ++
+ .../Botany/Systems/PlantHarvestSystem.cs      | 185 +++++-----
+ .../Botany/Systems/PlantHolderSystem.cs       |  39 +-
+ Content.Server/Botany/Systems/PlantSystem.cs  | 291 ++++++++-------
+ .../Botany/Systems/PlantToxinsSystem.cs       |  17 +-
+ .../Botany/Systems/PlantTraySystem.cs         | 333 ++++++------------
+ .../Botany/Systems/SeedExtractorSystem.cs     |  10 +-
+ .../Systems/Traits/PlantTraitsSystem.Kudzu.cs |  52 +++
+ .../Traits/PlantTraitsSystem.Ligneous.cs      |  67 ++++
+ .../Traits/PlantTraitsSystem.Sampled.cs       |  26 ++
+ .../Traits/PlantTraitsSystem.Scream.cs        |  32 ++
+ .../Traits/PlantTraitsSystem.Seedless.cs      |  16 +
+ .../Traits/PlantTraitsSystem.Unviable.cs      |  36 ++
+ .../Systems/Traits/PlantTraitsSystem.cs       | 165 +++++++++
+ .../Botany/Systems/UnviableGrowthSystem.cs    |  28 --
+ .../Botany/Systems/WeedPestGrowthSystem.cs    |  65 +---
+ .../PlantAdjustWeedsEntityEffectSystem.cs     |   4 +-
+ .../PlantAffectGrowthEntityEffectSystem.cs    |   4 +-
+ .../PlantChangeStatEntityEffectSystem.cs      | 140 ++++----
+ .../PlantChangeTraitsEntityEffectSystem.cs    |  30 ++
+ .../PlantCryoxadoneEntityEffectSystem.cs      |  18 +-
+ .../PlantDestroySeedsEntityEffectSystem.cs    |   7 +-
+ .../PlantDiethylamineEntityEffectSystem.cs    |   8 +-
+ .../PlantPhalanximineEntityEffectSystem.cs    |   6 +-
+ .../PlantRestoreSeedsEntityEffectSystem.cs    |   7 +-
+ .../RobustHarvestEntityEffectSystem.cs        |  13 +-
+ .../PlantMutateChemicalsEntityEffectSystem.cs |  27 +-
+ .../PlantMutateGasesEntityEffectSystem.cs     |  26 +-
+ .../PlantMutateHarvestEntityEffectSystem.cs   |  14 +-
+ .../Botany/PlantAttributes/PlantChangeStat.cs |   8 +-
+ .../PlantChangeTraitsEntityEffect.cs          |  21 ++
+ Resources/Locale/en-US/plants/mutations.ftl   |   4 +-
+ .../Prototypes/Entities/Clothing/Belt/job.yml |   6 +-
+ .../Prototypes/Entities/Mobs/Player/clone.yml |   1 -
+ .../Objects/Specific/Hydroponics/tools.yml    |   6 +-
+ .../Entities/Objects/Tools/cowtools.yml       |   4 +-
+ .../Entities/Objects/Tools/tools.yml          |   2 +-
+ Resources/Prototypes/Hydroponics/plants.yml   |   6 +-
+ .../Hydroponics/randomMutations.yml           |  35 +-
+ Resources/Prototypes/tags.yml                 |   6 -
+ 73 files changed, 1730 insertions(+), 998 deletions(-)
+ create mode 100644 Content.Server/Botany/Components/BotanyHoeComponent.cs
+ create mode 100644 Content.Server/Botany/Components/BotanySampleTakerComponent.cs
+ delete mode 100644 Content.Server/Botany/Components/UnviableGrowthComponent.cs
+ rename Content.Server/Botany/Events/{PlantCrossPollinateEvent.cs => PlantPollinateEvent.cs} (100%)
+ create mode 100644 Content.Server/Botany/Systems/Item/BotanyHoeSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/Item/BotanyProduceSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/Item/BotanySampleTakerSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/Item/BotanySeedSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/Item/BotanyShovelSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Kudzu.cs
+ create mode 100644 Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Ligneous.cs
+ create mode 100644 Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Sampled.cs
+ create mode 100644 Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Scream.cs
+ create mode 100644 Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Seedless.cs
+ create mode 100644 Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Unviable.cs
+ create mode 100644 Content.Server/Botany/Systems/Traits/PlantTraitsSystem.cs
+ delete mode 100644 Content.Server/Botany/Systems/UnviableGrowthSystem.cs
+ create mode 100644 Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs
+ create mode 100644 Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffect.cs
+
+diff --git a/Content.Client/Botany/PlantTrayVisualizerSystem.cs b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+index 26280af335..b983b90535 100644
+--- a/Content.Client/Botany/PlantTrayVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+@@ -10,46 +10,16 @@ public sealed class PlantTrayVisualizerSystem : VisualizerSystem<PlantTrayVisual
+     public override void Initialize()
+     {
+         base.Initialize();
+-
+-        SubscribeLocalEvent<PlantTrayVisualsComponent, ComponentInit>(OnComponentInit);
+-    }
+-
+-    private void OnComponentInit(EntityUid uid, PlantTrayVisualsComponent component, ComponentInit args)
+-    {
+-        if (!TryComp<SpriteComponent>(uid, out var sprite))
+-            return;
+-
+-        SpriteSystem.LayerMapReserve((uid, sprite), PlantTrayLayers.Plant);
+-        SpriteSystem.LayerSetVisible((uid, sprite), PlantTrayLayers.Plant, false);
+     }
+ 
+     protected override void OnAppearanceChange(EntityUid uid, PlantTrayVisualsComponent component, ref AppearanceChangeEvent args)
+     {
+-        if (args.Sprite == null)
+-            return;
+-
+-        if (AppearanceSystem.TryGetData<string>(uid, PlantVisuals.PlantRsi, out var rsi, args.Component)
+-            && AppearanceSystem.TryGetData<string>(uid, PlantVisuals.PlantState, out var state, args.Component))
+-        {
+-            // Tray should never render plant sprite.
+-            AppearanceSystem.SetData(uid, PlantVisuals.PlantState, string.Empty, args.Component);
+-
+-            var valid = !string.IsNullOrWhiteSpace(state);
+-
+-            SpriteSystem.LayerSetVisible((uid, args.Sprite), PlantTrayLayers.Plant, valid);
+ 
+-            if (valid)
+-            {
+-                SpriteSystem.LayerSetRsi((uid, args.Sprite), PlantTrayLayers.Plant, new ResPath(rsi));
+-                SpriteSystem.LayerSetRsiState((uid, args.Sprite), PlantTrayLayers.Plant, state);
+-            }
+-        }
+     }
+ }
+ 
+ public enum PlantTrayLayers : byte
+ {
+-    Plant,
+     HealthLight,
+     WaterLight,
+     NutritionLight,
+diff --git a/Content.Client/Botany/PlantVisualizerSystem.cs b/Content.Client/Botany/PlantVisualizerSystem.cs
+index 6b204acdda..c7cf92de7e 100644
+--- a/Content.Client/Botany/PlantVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantVisualizerSystem.cs
+@@ -1,5 +1,6 @@
+ using Content.Client.Botany.Components;
+ using Content.Shared.Botany;
++using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
+ using Robust.Client.GameObjects;
+ using Robust.Shared.Utility;
+ 
+@@ -19,6 +20,8 @@ private void OnComponentInit(EntityUid uid, PlantVisualsComponent component, Com
+         if (!TryComp<SpriteComponent>(uid, out var sprite))
+             return;
+ 
++        // Ensure they always render above the tray sprite.
++        SpriteSystem.SetDrawDepth((uid, sprite), (int) DrawDepth.SmallObjects);
+         SpriteSystem.LayerMapReserve((uid, sprite), PlantLayers.Plant);
+         SpriteSystem.LayerSetVisible((uid, sprite), PlantLayers.Plant, false);
+     }
+diff --git a/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs b/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
+index 8894e3f686..ca2f808288 100644
+--- a/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
++++ b/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
+@@ -1,4 +1,5 @@
+ using Content.Shared.Atmos;
++using Content.Server.Botany.Systems;
+ 
+ namespace Content.Server.Botany.Components;
+ 
+@@ -7,6 +8,7 @@ namespace Content.Server.Botany.Components;
+ /// </summary>
+ [RegisterComponent]
+ [DataDefinition]
++[Access(typeof(AtmosphericGrowthSystem))]
+ public sealed partial class AtmosphericGrowthComponent : Component
+ {
+     /// <summary>
+diff --git a/Content.Server/Botany/Components/BasicGrowthComponent.cs b/Content.Server/Botany/Components/BasicGrowthComponent.cs
+index aac178dfe7..ed7c5ab8fb 100644
+--- a/Content.Server/Botany/Components/BasicGrowthComponent.cs
++++ b/Content.Server/Botany/Components/BasicGrowthComponent.cs
+@@ -1,3 +1,5 @@
++using Content.Server.Botany.Systems;
++
+ namespace Content.Server.Botany.Components;
+ 
+ /// <summary>
+@@ -5,6 +7,7 @@ namespace Content.Server.Botany.Components;
+ /// </summary>
+ [RegisterComponent]
+ [DataDefinition]
++[Access(typeof(BasicGrowthSystem))]
+ public sealed partial class BasicGrowthComponent : Component
+ {
+     /// <summary>
+diff --git a/Content.Server/Botany/Components/BotanyHoeComponent.cs b/Content.Server/Botany/Components/BotanyHoeComponent.cs
+new file mode 100644
+index 0000000000..d6b6921bbf
+--- /dev/null
++++ b/Content.Server/Botany/Components/BotanyHoeComponent.cs
+@@ -0,0 +1,18 @@
++using Content.Server.Botany.Systems;
++
++namespace Content.Server.Botany.Components;
++
++/// <summary>
++/// Component for using a hoe on a plant.
++/// </summary>
++[RegisterComponent]
++[DataDefinition]
++[Access(typeof(BotanyHoeSystem))]
++public sealed partial class BotanyHoeComponent : Component
++{
++    /// <summary>
++    /// How many weeds to remove when using the hoe.
++    /// </summary>
++    [DataField]
++    public float WeedAmount = 5f;
++}
+diff --git a/Content.Server/Botany/Components/BotanySampleTakerComponent.cs b/Content.Server/Botany/Components/BotanySampleTakerComponent.cs
+new file mode 100644
+index 0000000000..2117773daf
+--- /dev/null
++++ b/Content.Server/Botany/Components/BotanySampleTakerComponent.cs
+@@ -0,0 +1,36 @@
++using Content.Server.Botany.Systems;
++
++namespace Content.Server.Botany.Components;
++
++/// <summary>
++/// Component for taking a sample of a plant.
++/// </summary>
++[RegisterComponent]
++[DataDefinition]
++[Access(typeof(BotanySampleTakerSystem))]
++public sealed partial class BotanySampleTakerComponent : Component
++{
++    /// <summary>
++    /// Minimum damage dealt to the plant when taking a sample.
++    /// </summary>
++    [DataField]
++    public int MinSampleDamage = 30;
++
++    /// <summary>
++    /// Maximum damage dealt to the plant when taking a sample.
++    /// </summary>
++    [DataField]
++    public int MaxSampleDamage = 50;
++
++    /// <summary>
++    /// Minimum growth stage of the plant to take a sample.
++    /// </summary>
++    [DataField]
++    public int MinSampleStage = 1;
++
++    /// <summary>
++    /// Probability of the plant being sampled.
++    /// </summary>
++    [DataField]
++    public float SampleProbability = 0.3f;
++}
+diff --git a/Content.Server/Botany/Components/BotanySwabComponent.cs b/Content.Server/Botany/Components/BotanySwabComponent.cs
+index 468f5b420f..482081586e 100644
+--- a/Content.Server/Botany/Components/BotanySwabComponent.cs
++++ b/Content.Server/Botany/Components/BotanySwabComponent.cs
+@@ -1,3 +1,4 @@
++using Content.Server.Botany.Systems;
+ using Robust.Shared.Prototypes;
+ 
+ namespace Content.Server.Botany.Components;
+@@ -6,6 +7,7 @@ namespace Content.Server.Botany.Components;
+ /// Anything that can be used to cross-pollinate plants.
+ /// </summary>
+ [RegisterComponent]
++[Access(typeof(BotanySwabSystem))]
+ public sealed partial class BotanySwabComponent : Component
+ {
+     /// <summary>
+diff --git a/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs b/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs
+index 96d92693f3..48c3ebae37 100644
+--- a/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs
++++ b/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs
+@@ -1,4 +1,5 @@
+ using Content.Shared.Atmos;
++using Content.Server.Botany.Systems;
+ 
+ namespace Content.Server.Botany.Components;
+ 
+@@ -7,6 +8,7 @@ namespace Content.Server.Botany.Components;
+ /// </summary>
+ [RegisterComponent]
+ [DataDefinition]
++[Access(typeof(ConsumeExudeGasGrowthSystem))]
+ public sealed partial class ConsumeExudeGasGrowthComponent : Component
+ {
+     /// <summary>
+diff --git a/Content.Server/Botany/Components/PlantChemicalsComponent.cs b/Content.Server/Botany/Components/PlantChemicalsComponent.cs
+index aec15e913b..d197e57751 100644
+--- a/Content.Server/Botany/Components/PlantChemicalsComponent.cs
++++ b/Content.Server/Botany/Components/PlantChemicalsComponent.cs
+@@ -1,3 +1,4 @@
++using Content.Server.Botany.Systems;
+ using Content.Shared.Chemistry.Reagent;
+ using Content.Shared.FixedPoint;
+ using Robust.Shared.Prototypes;
+@@ -9,6 +10,7 @@ namespace Content.Server.Botany.Components;
+ /// </summary>
+ [RegisterComponent]
+ [DataDefinition]
++[Access(typeof(PlantChemicalsSystem))]
+ public sealed partial class PlantChemicalsComponent : Component
+ {
+     /// <summary>
+diff --git a/Content.Server/Botany/Components/PlantComponent.cs b/Content.Server/Botany/Components/PlantComponent.cs
+index fa3670243c..5c1d16574b 100644
+--- a/Content.Server/Botany/Components/PlantComponent.cs
++++ b/Content.Server/Botany/Components/PlantComponent.cs
+@@ -1,3 +1,4 @@
++using Content.Server.Botany.Systems;
+ using Content.Shared.Random;
+ 
+ namespace Content.Server.Botany.Components;
+@@ -7,6 +8,7 @@ namespace Content.Server.Botany.Components;
+ /// </summary>
+ [RegisterComponent]
+ [DataDefinition]
++[Access(typeof(PlantSystem), typeof(MutationSystem))]
+ public sealed partial class PlantComponent : Component
+ {
+     /// <summary>
+diff --git a/Content.Server/Botany/Components/PlantDataComponent.cs b/Content.Server/Botany/Components/PlantDataComponent.cs
+index 19f65c8d57..d699c8eb2e 100644
+--- a/Content.Server/Botany/Components/PlantDataComponent.cs
++++ b/Content.Server/Botany/Components/PlantDataComponent.cs
+@@ -46,7 +46,7 @@ public sealed partial class PlantDataComponent : Component
+     /// The RSI path to the plant's sprite.
+     /// </summary>
+     [DataField(required: true)]
+-    public ResPath PlantRsi = default!;
++    public ResPath PlantRsi;
+ 
+     /// <summary>
+     /// Log impact for harvest operations.
+diff --git a/Content.Server/Botany/Components/PlantHarvestComponent.cs b/Content.Server/Botany/Components/PlantHarvestComponent.cs
+index 2a3c918218..85d0d95935 100644
+--- a/Content.Server/Botany/Components/PlantHarvestComponent.cs
++++ b/Content.Server/Botany/Components/PlantHarvestComponent.cs
+@@ -1,3 +1,5 @@
++using Content.Server.Botany.Systems;
++
+ namespace Content.Server.Botany.Components;
+ 
+ /// <summary>
+@@ -5,6 +7,7 @@ namespace Content.Server.Botany.Components;
+ /// </summary>
+ [RegisterComponent]
+ [DataDefinition]
++[Access(typeof(PlantHarvestSystem))]
+ public sealed partial class PlantHarvestComponent : Component
+ {
+     /// <summary>
+@@ -17,12 +20,14 @@ public sealed partial class PlantHarvestComponent : Component
+     /// Whether the plant is currently ready for harvest.
+     /// </summary>
+     [ViewVariables]
++    [Access(Other = AccessPermissions.ReadWriteExecute)]
+     public bool ReadyForHarvest = false;
+ 
+     /// <summary>
+     /// The age of the plant when last harvested.
+     /// </summary>
+     [ViewVariables]
++    [Access(Other = AccessPermissions.ReadWriteExecute)]
+     public int LastHarvest = 0;
+ }
+ 
+diff --git a/Content.Server/Botany/Components/PlantHolderComponent.cs b/Content.Server/Botany/Components/PlantHolderComponent.cs
+index effd3c4d82..a6bf7fea7d 100644
+--- a/Content.Server/Botany/Components/PlantHolderComponent.cs
++++ b/Content.Server/Botany/Components/PlantHolderComponent.cs
+@@ -1,3 +1,4 @@
++using Content.Server.Botany.Systems;
+ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+ 
+ namespace Content.Server.Botany.Components;
+@@ -6,6 +7,7 @@ namespace Content.Server.Botany.Components;
+ /// Runtime plant lifecycle data. This component is attached to the plant entity.
+ /// </summary>
+ [RegisterComponent]
++[Access(typeof(PlantHolderSystem), typeof(PlantSystem))]
+ public sealed partial class PlantHolderComponent : Component
+ {
+     /// <summary>
+@@ -23,15 +25,8 @@ public sealed partial class PlantHolderComponent : Component
+     /// <summary>
+     /// Whether the plant is dead.
+     /// </summary>
+-    [DataField]
+-    public bool Dead = false;
+-
+-    /// <summary>
+-    /// Set to true if this plant has been clipped by seed clippers. Used to prevent a single plant
+-    /// from repeatedly being clipped.
+-    /// </summary>
+-    [DataField]
+-    public bool Sampled;
++    [ViewVariables]
++    public bool Dead;
+ 
+     /// <summary>
+     /// Multiplier for the number of entities produced at harvest.
+@@ -39,23 +34,31 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField]
+     public int YieldMod = 1;
+ 
++    [DataField]
++    public int MaxYieldMod = 2;
++
+     /// <summary>
+     /// Multiplier for mutation chance and severity.
+     /// </summary>
+     [DataField]
+     public float MutationMod = 1f;
+ 
++    [DataField]
++    public float MaxMutationMod = 3f;
++
+     /// <summary>
+-    /// Current mutation level (0-100).
++    /// Current mutation level.
+     /// </summary>
+     [DataField]
+     public float MutationLevel;
+ 
++    public float MaxMutationLevel = 100f;
++
+     /// <summary>
+     /// Current health of the plant (0 to seed endurance).
+     /// </summary>
+     [DataField]
+-    public float Health = 100;
++    public float Health = 100f;
+ 
+     /// <summary>
+     /// Game time for the next plant reagent update.
+@@ -63,12 +66,6 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+     public TimeSpan NextUpdate = TimeSpan.Zero;
+ 
+-    /// <summary>
+-    /// Number of missing gases required for plant growth.
+-    /// </summary>
+-    [DataField]
+-    public int MissingGas;
+-
+     /// <summary>
+     /// Time between plant growth updates.
+     /// </summary>
+@@ -88,26 +85,41 @@ public sealed partial class PlantHolderComponent : Component
+     public bool ForceUpdate;
+ 
+     /// <summary>
+-    /// Current pest level in the plant (0-10).
++    /// Current pest level in the plant.
+     /// </summary>
+     [DataField]
+     public float PestLevel;
+ 
++    [DataField]
++    public float MaxPestLevel = 10f;
++
+     /// <summary>
+-    /// Current toxin level in the plant (0-100).
++    /// Current toxin level in the plant.
+     /// </summary>
+     [DataField]
+     public float Toxins;
+ 
++    [DataField]
++    public float MaxToxins = 100f;
++
+     /// <summary>
+     /// True if the plant is losing health due to too high/low temperature.
+     /// </summary>
+     [DataField]
++    [Access(Other = AccessPermissions.ReadWriteExecute)]
+     public bool ImproperHeat;
+ 
+     /// <summary>
+     /// True if the plant is losing health due to too high/low pressure.
+     /// </summary>
+     [DataField]
++    [Access(Other = AccessPermissions.ReadWriteExecute)]
+     public bool ImproperPressure;
++
++    /// <summary>
++    /// True if the plant is missing gases required for growth.
++    /// </summary>
++    [DataField]
++    [Access(Other = AccessPermissions.ReadWriteExecute)]
++    public bool MissingGas;
+ }
+diff --git a/Content.Server/Botany/Components/PlantToxinsComponent.cs b/Content.Server/Botany/Components/PlantToxinsComponent.cs
+index e02bdd196b..6b99792527 100644
+--- a/Content.Server/Botany/Components/PlantToxinsComponent.cs
++++ b/Content.Server/Botany/Components/PlantToxinsComponent.cs
+@@ -1,3 +1,5 @@
++using Content.Server.Botany.Systems;
++
+ namespace Content.Server.Botany.Components;
+ 
+ /// <summary>
+@@ -5,6 +7,7 @@ namespace Content.Server.Botany.Components;
+ /// </summary>
+ [RegisterComponent]
+ [DataDefinition]
++[Access(typeof(PlantToxinsSystem))]
+ public sealed partial class PlantToxinsComponent : Component
+ {
+     /// <summary>
+diff --git a/Content.Server/Botany/Components/PlantTraitsComponent.cs b/Content.Server/Botany/Components/PlantTraitsComponent.cs
+index b2c1253060..b01b5e781b 100644
+--- a/Content.Server/Botany/Components/PlantTraitsComponent.cs
++++ b/Content.Server/Botany/Components/PlantTraitsComponent.cs
+@@ -1,49 +1,19 @@
++using Content.Server.Botany.Systems;
++using Content.Server.Botany.Events;
++using Robust.Shared.Localization;
+ using Robust.Shared.Prototypes;
++using Content.Server.Botany.Systems;
++using Content.Shared.Interaction;
+ 
+ namespace Content.Server.Botany.Components;
+ 
+ /// <summary>
+ /// Component for managing special plant traits and mutations.
+ /// </summary>
+-/// TODO: The logic for these component is quite hardcoded.
+-/// They require a separate a system that will use events or APIs from other growth systems.
+ [RegisterComponent]
+ [DataDefinition]
+ public sealed partial class PlantTraitsComponent : Component
+ {
+-    /// <summary>
+-    /// If true, produce can't be put into the seed maker.
+-    /// </summary>
+     [DataField]
+-    public bool Seedless = false;
+-
+-    /// <summary>
+-    /// If true, a sharp tool is required to harvest this plant.
+-    /// </summary>
+-    [DataField]
+-    public bool Ligneous = false;
+-
+-    /// <summary>
+-    /// If true, the plant can scream when harvested.
+-    /// </summary>
+-    [DataField]
+-    public bool CanScream = false;
+-
+-    /// <summary>
+-    /// If true, the plant can turn into kudzu.
+-    /// </summary>
+-    [DataField]
+-    public bool TurnIntoKudzu = false;
+-
+-    /// <summary>
+-    /// Which kind of kudzu this plant will turn into if it kuzuifies.
+-    /// </summary>
+-    [DataField]
+-    public EntProtoId KudzuPrototype = "WeakKudzu";
+-
+-    /// <summary>
+-    /// If false, rapidly decrease health while growing. Adds a bit of challenge to keep mutated plants alive via Unviable's frequency.
+-    /// </summary>
+-    [DataField]
+-    public bool Viable = true;
++    public List<PlantTrait> Traits = [];
+ }
+diff --git a/Content.Server/Botany/Components/PlantTrayComponent.cs b/Content.Server/Botany/Components/PlantTrayComponent.cs
+index b2cf5f461c..63ca85a6bc 100644
+--- a/Content.Server/Botany/Components/PlantTrayComponent.cs
++++ b/Content.Server/Botany/Components/PlantTrayComponent.cs
+@@ -1,3 +1,4 @@
++using Content.Server.Botany.Systems;
+ using Content.Shared.Chemistry.Components;
+ using Robust.Shared.Audio;
+ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+@@ -8,6 +9,7 @@ namespace Content.Server.Botany.Components;
+ /// Component for hydroponics trays plots that hold resources and link to a plant entity.
+ /// </summary>
+ [RegisterComponent]
++[Access(typeof(PlantTraySystem))]
+ public sealed partial class PlantTrayComponent : Component
+ {
+     /// <summary>
+@@ -16,18 +18,24 @@ public sealed partial class PlantTrayComponent : Component
+     [DataField]
+     public float WaterLevel = 100f;
+ 
++    [DataField]
++    public float MaxWaterLevel = 100f;
++
+     /// <summary>
+     /// Current nutrient level in the plant (0-100).
+     /// </summary>
+     [DataField]
+     public float NutritionLevel = 100f;
+ 
++    [DataField]
++    public float MaxNutritionLevel = 100f;
++
+     /// <summary>
+     /// Set to true if the plant holder displays plant warnings (e.g. water low) in the sprite and
+     /// examine text. Used to differentiate hydroponic trays from simple soil plots.
+     /// </summary>
+     [DataField]
+-    public bool DrawWarnings = false;
++    public bool DrawWarnings;
+ 
+     /// <summary>
+     /// Sound played when any reagent is transferred into the tray.
+@@ -48,11 +56,14 @@ public sealed partial class PlantTrayComponent : Component
+     public Entity<SolutionComponent>? SoilSolution = null;
+ 
+     /// <summary>
+-    /// Current weed level in the plant (0-10).
++    /// Current weed level in the plant.
+     /// </summary>
+     [DataField]
+     public float WeedLevel;
+ 
++    [DataField]
++    public float MaxWeedLevel = 10f;
++
+     /// <summary>
+     /// Multiplier for weed growth rate.
+     /// </summary>
+@@ -78,8 +89,20 @@ public sealed partial class PlantTrayComponent : Component
+     public TimeSpan NextUpdate = TimeSpan.Zero;
+ 
+     /// <summary>
+-    /// Time between plant reagent consumption updates.
++    /// The basic tick for updating the tray, between which most of the tray logic processing takes place.
+     /// </summary>
+     [DataField]
+     public TimeSpan UpdateDelay = TimeSpan.FromSeconds(3);
++
++    /// <summary>
++    /// Chance per tick for weeds to grow around this tray.
++    /// </summary>
++    [DataField]
++    public float WeedGrowthChance = 0.05f;
++
++    /// <summary>
++    /// Amount of weed growth per successful weed tray tick.
++    /// </summary>
++    [DataField]
++    public float WeedGrowthAmount = 0.1f;
+ }
+diff --git a/Content.Server/Botany/Components/ProduceComponent.cs b/Content.Server/Botany/Components/ProduceComponent.cs
+index e5c063b090..b3910dc207 100644
+--- a/Content.Server/Botany/Components/ProduceComponent.cs
++++ b/Content.Server/Botany/Components/ProduceComponent.cs
+@@ -8,6 +8,7 @@ namespace Content.Server.Botany.Components;
+ /// Produce-related data for plant and plant growth cycle.
+ /// </summary>
+ [RegisterComponent]
++[Access(typeof(BotanySystem))]
+ public sealed partial class ProduceComponent : SharedProduceComponent
+ {
+     /// <summary>
+@@ -28,4 +29,10 @@ public sealed partial class ProduceComponent : SharedProduceComponent
+     /// </summary>
+     [DataField("targetSolution")]
+     public string SolutionName { get; set; } = "food";
++
++    /// <summary>
++    /// Divider for the nutrient bonus when composting this produce.
++    /// </summary>
++    [DataField]
++    public float NutrientDivider = 2.5f;
+ }
+diff --git a/Content.Server/Botany/Components/SeedComponent.cs b/Content.Server/Botany/Components/SeedComponent.cs
+index 34ab7ffc3f..ad7a69517e 100644
+--- a/Content.Server/Botany/Components/SeedComponent.cs
++++ b/Content.Server/Botany/Components/SeedComponent.cs
+@@ -8,7 +8,7 @@ namespace Content.Server.Botany.Components;
+ /// Data container for plant seed. Contains all info (values for components) for new plant to grow from seed.
+ /// </summary>
+ [RegisterComponent]
+-[Access(typeof(BotanySystem), typeof(PlantHolderSystem))]
++[Access(typeof(BotanySystem))]
+ public sealed partial class SeedComponent : SharedSeedComponent
+ {
+     /// <summary>
+diff --git a/Content.Server/Botany/Components/UnviableGrowthComponent.cs b/Content.Server/Botany/Components/UnviableGrowthComponent.cs
+deleted file mode 100644
+index 745d8e1ab8..0000000000
+--- a/Content.Server/Botany/Components/UnviableGrowthComponent.cs
++++ /dev/null
+@@ -1,15 +0,0 @@
+-namespace Content.Server.Botany.Components;
+-
+-/// <summary>
+-/// Damage tolerance of plant.
+-/// </summary>
+-[RegisterComponent]
+-[DataDefinition]
+-public sealed partial class UnviableGrowthComponent : Component
+-{
+-    /// <summary>
+-    /// Amount of damage dealt to the plant per growth tick with unviable.
+-    /// </summary>
+-    [DataField]
+-    public float UnviableDamage = 6f;
+-}
+diff --git a/Content.Server/Botany/Components/WeedPestGrowthComponent.cs b/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
+index ae80a30c7e..12fe254203 100644
+--- a/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
++++ b/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
+@@ -1,3 +1,5 @@
++using Content.Server.Botany.Systems;
++
+ namespace Content.Server.Botany.Components;
+ 
+ /// <summary>
+@@ -6,6 +8,7 @@ namespace Content.Server.Botany.Components;
+ /// </summary>
+ [RegisterComponent]
+ [DataDefinition]
++[Access(typeof(WeedPestGrowthSystem))]
+ public sealed partial class WeedPestGrowthComponent : Component
+ {
+     /// <summary>
+@@ -15,34 +18,28 @@ public sealed partial class WeedPestGrowthComponent : Component
+     public float WeedTolerance = 5f;
+ 
+     /// <summary>
+-    /// Maximum pest level the plant can tolerate before taking damage.
++    /// Amount of damage dealt to the plant per successful weed damage tick.
+     /// </summary>
+     [DataField]
+-    public float PestTolerance = 5f;
++    public float WeedDamageAmount = 1f;
+ 
+     /// <summary>
+-    /// Chance per tick for weeds to grow around this plant.
+-    /// </summary>
+-    [DataField]
+-    public float WeedGrowthChance = 0.01f;
+-
+-    /// <summary>
+-    /// Amount of weed growth per successful weed growth tick.
++    /// Maximum pest level the plant can tolerate before taking damage.
+     /// </summary>
+     [DataField]
+-    public float WeedGrowthAmount = 0.5f;
++    public float PestTolerance = 5f;
+ 
+     /// <summary>
+-    /// Weed level threshold at which the plant is considered overgrown and will transform into kudzu.
++    /// Chance per tick for pests to grow around this plant.
+     /// </summary>
+     [DataField]
+-    public float WeedHighLevelThreshold = 10f;
++    public float PestGrowthChance = 0.01f;
+ 
+     /// <summary>
+-    /// Chance per tick for pests to damage this plant.
++    /// Amount of pest growth per successful pest growth tick.
+     /// </summary>
+     [DataField]
+-    public float PestDamageChance = 0.05f;
++    public float PestGrowthAmount = 0.5f;
+ 
+     /// <summary>
+     /// Amount of damage dealt to the plant per successful pest damage tick.
+diff --git a/Content.Server/Botany/Events/PlantCrossPollinateEvent.cs b/Content.Server/Botany/Events/PlantPollinateEvent.cs
+similarity index 100%
+rename from Content.Server/Botany/Events/PlantCrossPollinateEvent.cs
+rename to Content.Server/Botany/Events/PlantPollinateEvent.cs
+diff --git a/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs b/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
+index e9a3171659..a4d1f0cd32 100644
+--- a/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
+@@ -37,15 +37,13 @@ private void OnCrossPollinate(Entity<AtmosphericGrowthComponent> ent, ref PlantC
+ 
+     private void OnPlantGrow(Entity<AtmosphericGrowthComponent> ent, ref OnPlantGrowEvent args)
+     {
+-        var (plantUid, component) = ent;
+-
+-        if (!TryComp<PlantHolderComponent>(plantUid, out var holder))
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder))
+             return;
+ 
+-        var environment = _atmosphere.GetContainingMixture(plantUid, true, true) ?? GasMixture.SpaceGas;
+-        if (MathF.Abs(environment.Temperature - component.IdealHeat) > component.HeatTolerance)
++        var environment = _atmosphere.GetContainingMixture(ent.Owner, true, true) ?? GasMixture.SpaceGas;
++        if (MathF.Abs(environment.Temperature - ent.Comp.IdealHeat) > ent.Comp.HeatTolerance)
+         {
+-            _plantHolder.AdjustsHealth(plantUid, -_random.Next(1, 3));
++            _plantHolder.AdjustsHealth(ent.Owner, -_random.Next(1, 3));
+             holder.ImproperHeat = true;
+         }
+         else
+@@ -54,9 +52,9 @@ private void OnPlantGrow(Entity<AtmosphericGrowthComponent> ent, ref OnPlantGrow
+         }
+ 
+         var pressure = environment.Pressure;
+-        if (pressure < component.LowPressureTolerance || pressure > component.HighPressureTolerance)
++        if (pressure < ent.Comp.LowPressureTolerance || pressure > ent.Comp.HighPressureTolerance)
+         {
+-            _plantHolder.AdjustsHealth(plantUid, -_random.Next(1, 3));
++            _plantHolder.AdjustsHealth(ent.Owner, -_random.Next(1, 3));
+             holder.ImproperPressure = true;
+         }
+         else
+diff --git a/Content.Server/Botany/Systems/BasicGrowthSystem.cs b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+index c2d482663c..be54c76480 100644
+--- a/Content.Server/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+@@ -16,6 +16,8 @@ public sealed class BasicGrowthSystem : EntitySystem
+     [Dependency] private readonly MutationSystem _mutation = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+     [Dependency] private readonly PlantSystem _plant = default!;
++    [Dependency] private readonly PlantTraySystem _plantTray = default!;
++    [Dependency] private readonly PlantHarvestSystem _plantHarvest = default!;
+ 
+     public override void Initialize()
+     {
+@@ -25,7 +27,9 @@ public override void Initialize()
+ 
+     private void OnCrossPollinate(Entity<BasicGrowthComponent> ent, ref PlantCrossPollinateEvent args)
+     {
+-        if (!_botany.TryGetPlantComponent<BasicGrowthComponent>(args.PollenData, args.PollenProtoId, out var pollenData))
++        if (!_botany.TryGetPlantComponent<BasicGrowthComponent>(args.PollenData,
++                args.PollenProtoId,
++                out var pollenData))
+             return;
+ 
+         _mutation.CrossFloat(ref ent.Comp.WaterConsumption, pollenData.WaterConsumption);
+@@ -34,32 +38,29 @@ private void OnCrossPollinate(Entity<BasicGrowthComponent> ent, ref PlantCrossPo
+ 
+     private void OnPlantGrow(Entity<BasicGrowthComponent> ent, ref OnPlantGrowEvent args)
+     {
+-        var (plantUid, component) = ent;
++        var (plantUid, plantComp) = ent;
++        var (trayUid, trayComp) = args.Tray;
+ 
+-        if (args.Tray == null || args.Tray.Comp == null)
++        if (trayComp == null)
+             return;
+ 
+-        var tray = args.Tray.Comp;
+-
+         if (!TryComp<PlantHolderComponent>(plantUid, out var holder))
+             return;
+ 
+         // Advance plant age here.
+         if (holder.SkipAging > 0)
+-            holder.SkipAging--;
++            _plantHolder.AdjustsSkipAging(plantUid, -1);
+         else if (_random.Prob(0.8f))
+             _plantHolder.AdjustsAge(plantUid, 1);
+ 
+-        if (component.WaterConsumption > 0 && tray.WaterLevel > 0 && _random.Prob(0.75f))
++        if (plantComp.WaterConsumption > 0 && trayComp.WaterLevel > 0 && _random.Prob(0.75f))
+         {
+-            tray.WaterLevel -= MathF.Max(0f,
+-                component.WaterConsumption * tray.TrayConsumptionMultiplier);
++            _plantTray.AdjustWater(trayUid,-MathF.Max(0f, plantComp.WaterConsumption * trayComp.TrayConsumptionMultiplier));
+         }
+ 
+-        if (component.NutrientConsumption > 0 && tray.NutritionLevel > 0 && _random.Prob(0.75f))
++        if (plantComp.NutrientConsumption > 0 && trayComp.NutritionLevel > 0 && _random.Prob(0.75f))
+         {
+-            tray.NutritionLevel -= MathF.Max(0f,
+-                component.NutrientConsumption * tray.TrayConsumptionMultiplier);
++            _plantTray.AdjustNutrient(trayUid,  -MathF.Max(0f, plantComp.NutrientConsumption * trayComp.TrayConsumptionMultiplier));
+ 
+             _plant.UpdateSprite(plantUid);
+         }
+@@ -68,61 +69,27 @@ private void OnPlantGrow(Entity<BasicGrowthComponent> ent, ref OnPlantGrowEvent
+         if (holder.SkipAging < 10)
+         {
+             // Make sure the plant is not thirsty.
+-            if (tray.WaterLevel > 10)
++            if (trayComp.WaterLevel > 10)
+             {
+                 _plantHolder.AdjustsHealth(plantUid, Convert.ToInt32(_random.Prob(0.35f)) * healthMod);
+             }
+             else
+             {
+-                AffectGrowth((plantUid, holder), -1);
++                _plantHarvest.AffectGrowth(plantUid, -1);
+                 _plantHolder.AdjustsHealth(plantUid, -healthMod);
+             }
+ 
+-            if (tray.NutritionLevel > 5)
++            if (trayComp.NutritionLevel > 5)
+             {
+                 _plantHolder.AdjustsHealth(plantUid, Convert.ToInt32(_random.Prob(0.35f)) * healthMod);
+             }
+             else
+             {
+-                AffectGrowth((plantUid, holder), -1);
++                _plantHarvest.AffectGrowth(plantUid, -1);
+                 _plantHolder.AdjustsHealth(plantUid, -healthMod);
+             }
+         }
+     }
+-
+-    /// <summary>
+-    /// Affects the growth of a plant by modifying its age or production timing.
+-    /// </summary>
+-    [PublicAPI]
+-    public void AffectGrowth(Entity<PlantHolderComponent?> ent, int amount)
+-    {
+-        if (amount == 0)
+-            return;
+-
+-        var (uid, component) = ent;
+-
+-        if (!Resolve(uid, ref component, false))
+-            return;
+-
+-        if (!TryComp<PlantHarvestComponent>(uid, out var harvest)
+-            || !TryComp<PlantComponent>(uid, out var plant))
+-            return;
+-
+-        if (amount > 0)
+-        {
+-            if (component.Age < plant.Maturation)
+-                component.Age += amount;
+-            else if (!harvest.ReadyForHarvest && plant.Yield <= 0f)
+-                harvest.LastHarvest -= amount;
+-        }
+-        else
+-        {
+-            if (component.Age < plant.Maturation)
+-                component.SkipAging++;
+-            else if (!harvest.ReadyForHarvest && plant.Yield <= 0f)
+-                harvest.LastHarvest += amount;
+-        }
+-    }
+ }
+ 
+ /// <summary>
+diff --git a/Content.Server/Botany/Systems/BotanySwabSystem.cs b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+index 2e58b5a451..976a3ee771 100644
+--- a/Content.Server/Botany/Systems/BotanySwabSystem.cs
++++ b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+@@ -28,26 +28,26 @@ public override void Initialize()
+     /// This handles swab examination text
+     /// so you can tell if they are used or not.
+     /// </summary>
+-    private void OnExamined(EntityUid uid, BotanySwabComponent swab, ExaminedEvent args)
++    private void OnExamined(Entity<BotanySwabComponent> ent, ref ExaminedEvent args)
+     {
+-        if (args.IsInDetailsRange)
+-        {
+-            if (swab.PlantData != null)
+-                args.PushMarkup(Loc.GetString("swab-used"));
+-            else
+-                args.PushMarkup(Loc.GetString("swab-unused"));
+-        }
++        if (!args.IsInDetailsRange)
++            return;
++
++        if (ent.Comp.PlantData != null)
++            args.PushMarkup(Loc.GetString("swab-used"));
++        else
++            args.PushMarkup(Loc.GetString("swab-unused"));
+     }
+ 
+     /// <summary>
+     /// Handles swabbing a plant.
+     /// </summary>
+-    private void OnAfterInteract(EntityUid uid, BotanySwabComponent swab, AfterInteractEvent args)
++    private void OnAfterInteract(Entity<BotanySwabComponent> ent, ref AfterInteractEvent args)
+     {
+         if (args.Target == null || !args.CanReach || !HasComp<PlantComponent>(args.Target))
+             return;
+ 
+-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, swab.SwabDelay, new BotanySwabDoAfterEvent(), uid, target: args.Target, used: uid)
++        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.SwabDelay, new BotanySwabDoAfterEvent(), ent.Owner, target: args.Target, used: ent.Owner)
+         {
+             Broadcast = true,
+             BreakOnMove = true,
+@@ -58,32 +58,32 @@ private void OnAfterInteract(EntityUid uid, BotanySwabComponent swab, AfterInter
+     /// <summary>
+     /// Save seed data or cross-pollenate.
+     /// </summary>
+-    private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent args)
++    private void OnDoAfter(Entity<BotanySwabComponent> ent, ref BotanySwabDoAfterEvent args)
+     {
+         if (args.Cancelled || args.Handled || !HasComp<PlantComponent>(args.Args.Target))
+             return;
+ 
+         var targetPlant = args.Args.Target.Value;
+ 
+-        if (swab.PlantData == null)
++        if (ent.Comp.PlantData == null)
+         {
+             // Pick up pollen snapshot.
+-            swab.PlantProtoId = MetaData(targetPlant).EntityPrototype?.ID;
+-            swab.PlantData = _botany.ClonePlantSnapshotData(targetPlant);
++            ent.Comp.PlantProtoId = MetaData(targetPlant).EntityPrototype?.ID;
++            ent.Comp.PlantData = _botany.ClonePlantSnapshotData(targetPlant);
+ 
+             _popup.PopupEntity(Loc.GetString("botany-swab-from"), targetPlant, args.Args.User);
+         }
+         else
+         {
+-            _mutation.CrossMutations(swab.PlantData, swab.PlantProtoId, targetPlant);
++            _mutation.CrossMutations(ent.Comp.PlantData, ent.Comp.PlantProtoId, targetPlant);
+ 
+             // Notify growth systems to apply their per-component cross logic.
+-            var crossEv = new PlantCrossPollinateEvent(swab.PlantData, swab.PlantProtoId);
++            var crossEv = new PlantCrossPollinateEvent(ent.Comp.PlantData, ent.Comp.PlantProtoId);
+             RaiseLocalEvent(targetPlant, ref crossEv);
+ 
+             // Swap: store old target pollen on the swab, apply cross to the target using swab pollen.
+-            swab.PlantProtoId = MetaData(targetPlant).EntityPrototype?.ID;
+-            swab.PlantData = _botany.ClonePlantSnapshotData(targetPlant);
++            ent.Comp.PlantProtoId = MetaData(targetPlant).EntityPrototype?.ID;
++            ent.Comp.PlantData = _botany.ClonePlantSnapshotData(targetPlant);
+ 
+             _popup.PopupEntity(Loc.GetString("botany-swab-to"), targetPlant, args.Args.User);
+         }
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Produce.cs b/Content.Server/Botany/Systems/BotanySystem.Produce.cs
+index 97c7c2fa29..a4c441fe37 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Produce.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Produce.cs
+@@ -1,7 +1,10 @@
+ using Content.Server.Botany.Components;
++using Content.Shared.Botany;
+ using Content.Shared.EntityEffects;
+ using Content.Shared.Examine;
+ using Content.Shared.FixedPoint;
++using Robust.Shared.Map;
++using Robust.Shared.Random;
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+@@ -25,7 +28,9 @@ public void ProduceGrown(EntityUid uid, ProduceComponent produce)
+                 produce.SolutionName,
+                 out var solutionContainer,
+                 FixedPoint2.Zero))
++        {
+             return;
++        }
+ 
+         solutionContainer.RemoveAllSolution();
+ 
+@@ -40,10 +45,9 @@ public void ProduceGrown(EntityUid uid, ProduceComponent produce)
+         }
+     }
+ 
+-    public void OnProduceExamined(EntityUid uid, ProduceComponent comp, ExaminedEvent args)
++    private void OnProduceExamined(Entity<ProduceComponent> ent, ref ExaminedEvent args)
+     {
+-        if (comp.PlantData == null
+-            || !TryGetPlantComponent<PlantComponent>(comp.PlantData, comp.PlantProtoId, out var plant))
++        if (!TryGetPlantComponent<PlantComponent>(ent.Comp.PlantData, ent.Comp.PlantProtoId, out var plant))
+             return;
+ 
+         using (args.PushGroup(nameof(ProduceComponent)))
+@@ -59,4 +63,20 @@ public void OnProduceExamined(EntityUid uid, ProduceComponent comp, ExaminedEven
+             }
+         }
+     }
++
++    public void SpawnProduce(Entity<PlantDataComponent?, PlantComponent?> ent, EntityCoordinates position)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp1, ref ent.Comp2, false))
++            return;
++
++        var product = _random.Pick(ent.Comp1.ProductPrototypes);
++        var entity = Spawn(product, position);
++        _randomHelper.RandomOffset(entity, 0.25f);
++
++        var produce = EnsureComp<ProduceComponent>(entity);
++        produce.PlantProtoId = MetaData(ent.Owner).EntityPrototype!.ID;
++        produce.PlantData = ClonePlantSnapshotData(ent.Owner);
++        ProduceGrown(entity, produce);
++        _appearance.SetData(entity, ProduceVisuals.Potency, ent.Comp2.Potency);
++    }
+ }
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Seed.cs b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+index 0751270ab1..9901abf0d7 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+@@ -23,7 +23,7 @@ public sealed partial class BotanySystem : EntitySystem
+     [Dependency] private readonly CloningSystem _cloning = default!;
+     [Dependency] private readonly IComponentFactory _componentFactory = default!;
+     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
++    [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly ISerializationManager _serialization = default!;
+     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+     [Dependency] private readonly MetaDataSystem _metaData = default!;
+@@ -31,6 +31,7 @@ public sealed partial class BotanySystem : EntitySystem
+     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+     [Dependency] private readonly SharedHandsSystem _hands = default!;
+     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
++    [Dependency] private readonly PlantSystem _plant = default!;
+ 
+     public readonly ProtoId<CloningSettingsPrototype> SettingsId = "PlantClone";
+     public readonly ProtoId<CloningSettingsPrototype> LifecycleSettingsId = "PlantLifecycleClone";
+@@ -56,8 +57,7 @@ private void OnExamined(EntityUid uid, SeedComponent component, ExaminedEvent ar
+         {
+             var name = Loc.GetString(plantData.DisplayName);
+             args.PushMarkup(Loc.GetString("seed-component-description", ("seedName", name)));
+-            args.PushMarkup(Loc.GetString("seed-component-plant-yield-text", ("seedYield", plant.Yield)));
+-            args.PushMarkup(Loc.GetString("seed-component-plant-potency-text", ("seedPotency", plant.Potency)));
++            args.PushMarkup(_plant.GetPlantStateMarkup(uid, plant));
+         }
+     }
+ 
+@@ -112,9 +112,6 @@ public ComponentRegistry ClonePlantSnapshotData(EntityUid source, bool cloneLife
+                 continue;
+ 
+             var compName = _componentFactory.GetComponentName(component.GetType());
+-            if (!settings.Components.Contains(compName))
+-                continue;
+-
+             var copied = _serialization.CreateCopy(component, notNullableOverride: true);
+             snap[compName] = new EntityPrototype.ComponentRegistryEntry(copied, []);
+         }
+@@ -142,7 +139,7 @@ public EntityUid SpawnSeedPacketFromPlant(EntityUid sourcePlant, EntityCoordinat
+ 
+     /// <summary>
+     /// Spawns a seed packet that stores a component snapshot of <paramref name="snapshot"/>.
+-    /// </summary
++    /// </summary>
+     [PublicAPI]
+     public EntityUid SpawnSeedPacketFromSnapshot(ComponentRegistry? snapshot, EntProtoId plantProtoId, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
+     {
+@@ -155,7 +152,7 @@ public EntityUid SpawnSeedPacketFromSnapshot(ComponentRegistry? snapshot, EntPro
+     /// <summary>
+     /// Internal method to spawn a seed packet from a plant component.
+     /// </summary>
+-    /// <param name="plant">The plant component to spawn.</param>
++    /// <param name="plantData">The plant component to spawn.</param>
+     /// <param name="plantProtoId">The plant prototype ID to store in the seed component.</param>
+     /// <param name="snapshot">The component snapshot to store in the seed component.</param>
+     /// <param name="coords">The coordinates to spawn the seed packet at.</param>
+diff --git a/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs b/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+index 3855d63190..7ad930138b 100644
+--- a/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+@@ -1,7 +1,9 @@
++using JetBrains.Annotations;
+ using Content.Server.Atmos.EntitySystems;
+ using Content.Server.Botany.Components;
+ using Content.Server.Botany.Events;
+ using Content.Shared.Atmos;
++using Robust.Shared.Random;
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+@@ -15,6 +17,7 @@ public sealed class ConsumeExudeGasGrowthSystem : EntitySystem
+     [Dependency] private readonly BotanySystem _botany = default!;
+     [Dependency] private readonly MutationSystem _mutation = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly IRobustRandom _random = default!;
+ 
+     public override void Initialize()
+     {
+@@ -33,42 +36,76 @@ private void OnCrossPollinate(Entity<ConsumeExudeGasGrowthComponent> ent, ref Pl
+ 
+     private void OnPlantGrow(Entity<ConsumeExudeGasGrowthComponent> ent, ref OnPlantGrowEvent args)
+     {
+-        var (plantUid, component) = ent;
+-
+-        if (!TryComp<PlantComponent>(plantUid, out var plant)
+-            || !TryComp<PlantHolderComponent>(plantUid, out var holder))
++        if (!TryComp<PlantComponent>(ent.Owner, out var plant)
++            || !TryComp<PlantHolderComponent>(ent.Owner, out var plantHolder))
+             return;
+ 
+-        var environment = _atmosphere.GetContainingMixture(plantUid, true, true) ?? GasMixture.SpaceGas;
++        var environment = _atmosphere.GetContainingMixture(ent.Owner, true, true) ?? GasMixture.SpaceGas;
+ 
+         // Consume Gasses.
+-        holder.MissingGas = 0;
+-        if (component.ConsumeGasses.Count > 0)
++        plantHolder.MissingGas = false;
++        var missingGas = 0;
++        if (ent.Comp.ConsumeGasses.Count > 0)
+         {
+-            foreach (var (gas, amount) in component.ConsumeGasses)
++            foreach (var (gas, amount) in ent.Comp.ConsumeGasses)
+             {
+                 if (environment.GetMoles(gas) < amount)
+                 {
+-                    holder.MissingGas++;
++                    missingGas++;
+                     continue;
+                 }
+ 
+                 environment.AdjustMoles(gas, -amount);
+             }
+ 
+-            if (holder.MissingGas > 0)
+-                _plantHolder.AdjustsHealth(plantUid, -holder.MissingGas);
++            if (missingGas > 0)
++            {
++                _plantHolder.AdjustsHealth(ent.Owner, -missingGas);
++                plantHolder.MissingGas = true;
++            }
+         }
+ 
+         // Exude Gasses.
+-        var exudeCount = component.ExudeGasses.Count;
++        var exudeCount = ent.Comp.ExudeGasses.Count;
+         if (exudeCount > 0)
+         {
+-            foreach (var (gas, amount) in component.ExudeGasses)
++            foreach (var (gas, amount) in ent.Comp.ExudeGasses)
+             {
+                 environment.AdjustMoles(gas,
+                     MathF.Max(1f, MathF.Round(amount * MathF.Round(plant.Potency) / exudeCount)));
+             }
+         }
+     }
++
++    /// <summary>
++    /// Adds a random amount of a random gas to the exude gasses.
++    /// </summary>
++    [PublicAPI]
++    public void MutateRandomExudeGasses(Entity<ConsumeExudeGasGrowthComponent?> ent, float amount)
++    {
++        if (!Resolve(ent, ref ent.Comp, false))
++            return;
++
++        var gasses = ent.Comp.ExudeGasses;
++        var gas = _random.Pick(Enum.GetValues<Gas>());
++
++        if (!gasses.TryAdd(gas, amount))
++            gasses[gas] += amount;
++    }
++
++    /// <summary>
++    /// Adds a random amount of a random gas to the consume gasses.
++    /// </summary>
++    [PublicAPI]
++    public void MutateRandomConsumeGasses(Entity<ConsumeExudeGasGrowthComponent?> ent, float amount)
++    {
++        if (!Resolve(ent, ref ent.Comp, false))
++            return;
++
++        var gasses = ent.Comp.ConsumeGasses;
++        var gas = _random.Pick(Enum.GetValues<Gas>());
++
++        if (!gasses.TryAdd(gas, amount))
++            gasses[gas] += amount;
++    }
+ }
+diff --git a/Content.Server/Botany/Systems/Item/BotanyHoeSystem.cs b/Content.Server/Botany/Systems/Item/BotanyHoeSystem.cs
+new file mode 100644
+index 0000000000..4251902b9a
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Item/BotanyHoeSystem.cs
+@@ -0,0 +1,74 @@
++
++using Content.Server.Botany.Components;
++using Content.Server.Popups;
++using Content.Shared.Interaction;
++using Content.Shared.Popups;
++using Robust.Shared.Player;
++using Robust.Shared.Random;
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// System for taking a sample of a plant.
++/// </summary>
++public sealed class BotanyHoeSystem : EntitySystem
++{
++    [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly PopupSystem _popup = default!;
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantSystem _plant = default!;
++    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
++    [Dependency] private readonly IRobustRandom _random = default!;
++    [Dependency] private readonly PlantTraySystem _plantTray = default!;
++
++    public override void Initialize()
++    {
++        base.Initialize();
++
++        SubscribeLocalEvent<BotanyHoeComponent, AfterInteractEvent>(OnAfterInteract);
++        SubscribeLocalEvent<PlantTrayComponent, TrayHoeAttemptEvent>(OnTrayHoeAttempt);
++    }
++
++    private void OnAfterInteract(Entity<BotanyHoeComponent> ent, ref AfterInteractEvent args)
++    {
++        if (args.Target == null || args.Handled || !args.CanReach || !HasComp<PlantTrayComponent>(args.Target))
++            return;
++
++        var ev = new TrayHoeAttemptEvent(ent, args.User);
++        RaiseLocalEvent(args.Target.Value, ref ev);
++
++        args.Handled = true;
++    }
++
++    private void OnTrayHoeAttempt(Entity<PlantTrayComponent> ent, ref TrayHoeAttemptEvent args)
++    {
++        if (args.Cancelled)
++            return;
++
++        if (ent.Comp.WeedLevel <= 0)
++        {
++            _popup.PopupCursor(Loc.GetString("plant-holder-component-no-weeds-message"), args.User);
++            return;
++        }
++
++        _popup.PopupCursor(
++            Loc.GetString("plant-holder-component-remove-weeds-message", ("name", MetaData(ent.Owner).EntityName)),
++            args.User,
++            PopupType.Medium);
++        _popup.PopupEntity(
++            Loc.GetString("plant-holder-component-remove-weeds-others-message",
++                ("otherName", MetaData(args.User).EntityName)),
++            ent.Owner,
++            Filter.PvsExcept(args.User),
++            true);
++
++        _plantTray.AdjustWeed(ent.AsNullable(), -args.Hoe.Comp.WeedAmount);
++    }
++}
++
++[ByRefEvent]
++public sealed class TrayHoeAttemptEvent(Entity<BotanyHoeComponent> hoe, EntityUid user) : CancellableEntityEventArgs
++{
++    public Entity<BotanyHoeComponent> Hoe { get; } = hoe;
++    public EntityUid User { get; } = user;
++}
+diff --git a/Content.Server/Botany/Systems/Item/BotanyProduceSystem.cs b/Content.Server/Botany/Systems/Item/BotanyProduceSystem.cs
+new file mode 100644
+index 0000000000..747104b9d3
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Item/BotanyProduceSystem.cs
+@@ -0,0 +1,90 @@
++
++using Content.Server.Botany.Components;
++using Content.Server.Popups;
++using Content.Shared.Interaction;
++using Content.Shared.Popups;
++using Content.Shared.FixedPoint;
++using Robust.Shared.Player;
++using Content.Shared.Chemistry.EntitySystems;
++using Content.Shared.IdentityManagement;
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// System for taking a sample of a plant.
++/// </summary>
++public sealed class BotanyProduceSystem : EntitySystem
++{
++    [Dependency] private readonly PlantSystem _plant = default!;
++    [Dependency] private readonly PopupSystem _popup = default!;
++    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
++    [Dependency] private readonly PlantTraySystem _plantTray = default!;
++    [Dependency] private readonly BotanySystem _botany = default!;
++
++    public override void Initialize()
++    {
++        base.Initialize();
++
++        SubscribeLocalEvent<ProduceComponent, AfterInteractEvent>(OnAfterInteract);
++        SubscribeLocalEvent<PlantTrayComponent, CompostingProduceAttemptEvent>(OnCompostingProduceAttempt);
++    }
++
++    private void OnAfterInteract(Entity<ProduceComponent> ent, ref AfterInteractEvent args)
++    {
++        if (args.Target == null || args.Handled || !args.CanReach || !HasComp<PlantTrayComponent>(args.Target))
++            return;
++
++        var ev = new CompostingProduceAttemptEvent(ent, args.User);
++        RaiseLocalEvent(args.Target.Value, ref ev);
++
++        args.Handled = true;
++    }
++
++    private void OnCompostingProduceAttempt(Entity<PlantTrayComponent> ent, ref CompostingProduceAttemptEvent args)
++    {
++        if (args.Cancelled)
++            return;
++
++        _popup.PopupCursor(Loc.GetString("plant-holder-component-compost-message",
++                ("owner", ent.Owner),
++                ("usingItem", args.Produce.Owner)),
++            args.User,
++            PopupType.Medium);
++        _popup.PopupEntity(Loc.GetString("plant-holder-component-compost-others-message",
++                ("user", Identity.Entity(args.User, EntityManager)),
++                ("usingItem", args.Produce.Owner),
++                ("owner", ent.Owner)),
++            ent.Owner,
++            Filter.PvsExcept(args.User),
++            true);
++
++        if (_solutionContainer.TryGetSolution(args.Produce.Owner, args.Produce.Comp.SolutionName, out var soln2, out var solution2))
++        {
++            if (_solutionContainer.ResolveSolution(ent.Owner, ent.Comp.SoilSolutionName, ref ent.Comp.SoilSolution, out var solution1))
++            {
++                // We try to fit as much of the composted plant's contained solution into the hydroponics tray as we can,
++                // since the plant will be consumed anyway.
++                var fillAmount = FixedPoint2.Min(solution2.Volume, solution1.AvailableVolume);
++                _solutionContainer.TryAddSolution(ent.Comp.SoilSolution.Value, _solutionContainer.SplitSolution(soln2.Value, fillAmount));
++
++                if (_plantTray.TryGetPlant(ent.AsNullable(), out var plantUid))
++                    _plant.ForceUpdateByExternalCause(plantUid.Value);
++            }
++        }
++
++        if (_botany.TryGetPlantComponent<PlantComponent>(args.Produce.Comp.PlantData, args.Produce.Comp.PlantProtoId, out var compostPlant))
++        {
++            var nutrientBonus = compostPlant.Potency / args.Produce.Comp.NutrientDivider;
++            _plantTray.AdjustNutrient(ent.AsNullable(), nutrientBonus);
++        }
++
++        QueueDel(args.Produce);
++    }
++}
++
++[ByRefEvent]
++public sealed class CompostingProduceAttemptEvent(Entity<ProduceComponent> produce, EntityUid user) : CancellableEntityEventArgs
++{
++    public Entity<ProduceComponent> Produce { get; } = produce;
++    public EntityUid User { get; } = user;
++}
+diff --git a/Content.Server/Botany/Systems/Item/BotanySampleTakerSystem.cs b/Content.Server/Botany/Systems/Item/BotanySampleTakerSystem.cs
+new file mode 100644
+index 0000000000..e44b721967
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Item/BotanySampleTakerSystem.cs
+@@ -0,0 +1,78 @@
++
++using Content.Server.Botany.Components;
++using Content.Server.Popups;
++using Content.Shared.Interaction;
++using Robust.Shared.Random;
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// System for taking a sample of a plant.
++/// </summary>
++public sealed class BotanySampleTakerSystem : EntitySystem
++{
++    [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly PopupSystem _popup = default!;
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantSystem _plant = default!;
++    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
++    [Dependency] private readonly IRobustRandom _random = default!;
++
++    public override void Initialize()
++    {
++        base.Initialize();
++
++        SubscribeLocalEvent<BotanySampleTakerComponent, AfterInteractEvent>(OnAfterInteract);
++        SubscribeLocalEvent<PlantComponent, PlantSampleAttemptEvent>(OnPlantSampleAttempt);
++    }
++
++    private void OnAfterInteract(Entity<BotanySampleTakerComponent> ent, ref AfterInteractEvent args)
++    {
++        if (args.Target == null || args.Handled || !args.CanReach || !HasComp<PlantComponent>(args.Target))
++            return;
++
++        var ev = new PlantSampleAttemptEvent(ent, args.User);
++        RaiseLocalEvent(args.Target.Value, ref ev);
++
++        args.Handled = true;
++    }
++
++    private void OnPlantSampleAttempt(Entity<PlantComponent> ent, ref PlantSampleAttemptEvent args)
++    {
++        if (args.Cancelled)
++            return;
++
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder)
++            || !TryComp<PlantDataComponent>(ent.Owner, out var plantData)
++            || !TryComp<PlantHarvestComponent>(ent.Owner, out var harvest))
++            return;
++
++        // Prevent early sampling.
++        var growthStage = _plant.GetGrowthStageValue(ent.AsNullable());
++        if (growthStage <= args.Sample.Comp.MinSampleStage)
++        {
++            _popup.PopupCursor(Loc.GetString("plant-holder-component-early-sample-message"), args.User);
++            return;
++        }
++
++        // Damage the plant.
++        _plantHolder.AdjustsHealth(ent.Owner, -_random.Next(args.Sample.Comp.MinSampleDamage, args.Sample.Comp.MaxSampleDamage));
++
++        // Produce a seed packet snapshot.
++        float? healthOverride = harvest.ReadyForHarvest ? null : holder.Health;
++        _botany.SpawnSeedPacketFromPlant(ent.Owner, Transform(args.User).Coordinates, args.User, healthOverride);
++
++        var displayName = Loc.GetString(plantData.DisplayName);
++        _popup.PopupCursor(Loc.GetString("plant-holder-component-take-sample-message", ("seedName", displayName)), args.User);
++
++        if (_random.Prob(args.Sample.Comp.SampleProbability))
++            _plantTraits.AddTrait(ent.Owner, new TraitSampled());
++    }
++}
++
++[ByRefEvent]
++public sealed class PlantSampleAttemptEvent(Entity<BotanySampleTakerComponent> sample, EntityUid user) : CancellableEntityEventArgs
++{
++    public Entity<BotanySampleTakerComponent> Sample { get; } = sample;
++    public EntityUid User { get; } = user;
++}
+diff --git a/Content.Server/Botany/Systems/Item/BotanySeedSystem.cs b/Content.Server/Botany/Systems/Item/BotanySeedSystem.cs
+new file mode 100644
+index 0000000000..4616d09298
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Item/BotanySeedSystem.cs
+@@ -0,0 +1,89 @@
++using Content.Server.Botany.Components;
++using Content.Server.Popups;
++using Content.Shared.Interaction;
++using Content.Shared.Popups;
++using Content.Shared.Administration.Logs;
++using Content.Shared.Labels.Components;
++using Robust.Server.GameObjects;
++using Content.Shared.Database;
++using Content.Shared.Containers.ItemSlots;
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// System for taking a sample of a plant.
++/// </summary>
++public sealed class BotanySeedSystem : EntitySystem
++{
++    [Dependency] private readonly PopupSystem _popup = default!;
++    [Dependency] private readonly TransformSystem _transform = default!;
++    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
++    [Dependency] private readonly PlantTraySystem _plantTray = default!;
++    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
++
++    public override void Initialize()
++    {
++        base.Initialize();
++
++        SubscribeLocalEvent<SeedComponent, AfterInteractEvent>(OnAfterInteract);
++        SubscribeLocalEvent<PlantTrayComponent, PlantingSeedAttemptEvent>(OnPlantingSeedAttempt);
++    }
++
++    private void OnAfterInteract(Entity<SeedComponent> ent, ref AfterInteractEvent args)
++    {
++        if (args.Handled || !args.CanReach || !HasComp<PlantTrayComponent>(args.Target))
++            return;
++
++        var ev = new PlantingSeedAttemptEvent(ent, args.User);
++        RaiseLocalEvent(args.Target.Value, ref ev);
++
++        args.Handled = true;
++    }
++
++    private void OnPlantingSeedAttempt(Entity<PlantTrayComponent> ent, ref PlantingSeedAttemptEvent args)
++    {
++        if (args.Cancelled)
++            return;
++
++        if (_plantTray.TryGetPlant(ent.AsNullable(), out _))
++        {
++            _popup.PopupCursor(
++                Loc.GetString("plant-holder-component-already-seeded-message", ("name", MetaData(ent.Owner).EntityName)),
++                args.User,
++                PopupType.Medium);
++            return;
++        }
++
++        var plantUid = Spawn(args.Seed.Comp.PlantProtoId, _transform.GetMapCoordinates(ent.Owner), args.Seed.Comp.PlantData);
++        if (!TryComp<PlantDataComponent>(plantUid, out var plantData))
++            return;
++
++        var name = Loc.GetString(plantData.DisplayName);
++        var noun = Loc.GetString(plantData.Noun);
++        _popup.PopupCursor(Loc.GetString("plant-holder-component-plant-success-message",
++                ("seedName", name),
++                ("seedNoun", noun)),
++            args.User,
++            PopupType.Medium);
++
++        if (TryComp<PaperLabelComponent>(args.Seed, out var paperLabel))
++            _itemSlots.TryEjectToHands(args.Seed, paperLabel.LabelSlot, args.User);
++
++        _plantTray.PlantingPlantInTray(ent.Owner, plantUid, args.Seed.Comp.HealthOverride);
++        QueueDel(args.Seed);
++
++        if (plantData.PlantLogImpact != null)
++        {
++            _adminLogger.Add(LogType.Botany,
++                plantData.PlantLogImpact.Value,
++                $"{ToPrettyString(args.User):player} planted {Loc.GetString(plantData.DisplayName):seed} at Pos:{Transform(ent.Owner).Coordinates}.");
++        }
++    }
++}
++
++[ByRefEvent]
++public sealed class PlantingSeedAttemptEvent(Entity<SeedComponent> seed, EntityUid user) : CancellableEntityEventArgs
++{
++    public Entity<SeedComponent> Seed { get; } = seed;
++    public EntityUid User { get; } = user;
++}
+diff --git a/Content.Server/Botany/Systems/Item/BotanyShovelSystem.cs b/Content.Server/Botany/Systems/Item/BotanyShovelSystem.cs
+new file mode 100644
+index 0000000000..b34208bd45
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Item/BotanyShovelSystem.cs
+@@ -0,0 +1,77 @@
++
++using Content.Server.Botany.Components;
++using Content.Server.Popups;
++using Content.Shared.Burial.Components;
++using Content.Shared.Interaction;
++using Content.Shared.Popups;
++using Robust.Shared.Player;
++using Robust.Shared.Random;
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// System for using a shovel on a plant.
++/// </summary>
++public sealed class BotanyShovelSystem : EntitySystem
++{
++    [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly PopupSystem _popup = default!;
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantSystem _plant = default!;
++    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
++    [Dependency] private readonly IRobustRandom _random = default!;
++    [Dependency] private readonly PlantTraySystem _plantTray = default!;
++
++    public override void Initialize()
++    {
++        base.Initialize();
++
++        SubscribeLocalEvent<ShovelComponent, AfterInteractEvent>(OnAfterInteract);
++        SubscribeLocalEvent<PlantTrayComponent, TrayShovelAttemptEvent>(OnTrayShovelAttempt);
++    }
++
++    private void OnAfterInteract(Entity<ShovelComponent> ent, ref AfterInteractEvent args)
++    {
++        if (args.Target == null || args.Handled || !args.CanReach || !HasComp<PlantTrayComponent>(args.Target))
++            return;
++
++        var ev = new TrayShovelAttemptEvent(ent, args.User);
++        RaiseLocalEvent(args.Target.Value, ref ev);
++
++        args.Handled = true;
++    }
++
++    private void OnTrayShovelAttempt(Entity<PlantTrayComponent> ent, ref TrayShovelAttemptEvent args)
++    {
++        if (args.Cancelled)
++            return;
++
++        if (!_plantTray.TryGetPlant(ent.AsNullable(), out var plantUid))
++        {
++            _popup.PopupCursor(
++                Loc.GetString("plant-holder-component-no-plant-message", ("name", MetaData(ent.Owner).EntityName)),
++                args.User);
++            return;
++        }
++
++        _popup.PopupCursor(
++            Loc.GetString("plant-holder-component-remove-plant-message", ("name", MetaData(ent.Owner).EntityName)),
++            args.User,
++            PopupType.Medium);
++        _popup.PopupEntity(
++            Loc.GetString("plant-holder-component-remove-plant-others-message",
++                ("name", MetaData(args.User).EntityName)),
++            ent.Owner,
++            Filter.PvsExcept(args.User),
++            true);
++        _plant.RemovePlant(plantUid.Value);
++
++    }
++}
++
++[ByRefEvent]
++public sealed class TrayShovelAttemptEvent(Entity<ShovelComponent> shovel, EntityUid user) : CancellableEntityEventArgs
++{
++    public Entity<ShovelComponent> Shovel { get; } = shovel;
++    public EntityUid User { get; } = user;
++}
+diff --git a/Content.Server/Botany/Systems/MutationSystem.cs b/Content.Server/Botany/Systems/MutationSystem.cs
+index 1a37a754c9..b9512a9e41 100644
+--- a/Content.Server/Botany/Systems/MutationSystem.cs
++++ b/Content.Server/Botany/Systems/MutationSystem.cs
+@@ -22,6 +22,7 @@ public sealed class MutationSystem : EntitySystem
+     [Dependency] private readonly PlantTraySystem _plantTray = default!;
+     [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
+     [Dependency] private readonly TransformSystem _transform = default!;
++    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+ 
+     private RandomPlantMutationListPrototype _randomMutations = default!;
+ 
+@@ -47,7 +48,7 @@ public void CheckRandomMutations(Entity<PlantComponent?> plantEnt, float severit
+                     _entityEffects.TryApplyEffect(plantEnt, mutation.Effect);
+ 
+                 // Stat adjustments do not persist by being an attached effect, they just change the stat.
+-                if (mutation.Persists && !plantEnt.Comp.Mutations.Any(m => m.Name == mutation.Name))
++                if (mutation.Persists && plantEnt.Comp.Mutations.All(m => m.Name != mutation.Name))
+                     plantEnt.Comp.Mutations.Add(mutation);
+             }
+         }
+@@ -101,7 +102,7 @@ public void CrossMutations(ComponentRegistry pollenPlant, EntProtoId? pollenProt
+         // LINQ Explanation
+         // For the list of mutation effects on both plants, use a 50% chance to pick each one.
+         // Union all of the chosen mutations into one list, and pick ones with a Distinct (unique) name.
+-        targetCore.Mutations = targetCore.Mutations.Where(m => Random(0.5f)).Union(pollenCore.Mutations.Where(m => Random(0.5f))).DistinctBy(m => m.Name).ToList();
++        targetCore.Mutations = targetCore.Mutations.Where(_ => Random(0.5f)).Union(pollenCore.Mutations.Where(_ => Random(0.5f))).DistinctBy(m => m.Name).ToList();
+ 
+         // Hybrids have a high chance of being seedless. Balances very
+         // effective hybrid crossings.
+@@ -109,8 +110,7 @@ public void CrossMutations(ComponentRegistry pollenPlant, EntProtoId? pollenProt
+             && pollenProtoId != MetaData(targetPlant).EntityPrototype?.ID
+             && Random(0.7f))
+         {
+-            if (TryComp<PlantTraitsComponent>(targetPlant, out var traits))
+-                traits.Seedless = true;
++            _plantTraits.AddTrait(targetPlant, new TraitSeedless());
+         }
+     }
+ 
+@@ -204,6 +204,19 @@ public void CrossBool(ref bool val, bool other)
+         val = Random(0.5f) ? val : other;
+     }
+ 
++    [PublicAPI]
++    public void CrossTrait(ref Entity<PlantTraitsComponent> val, List<PlantTrait> other)
++    {
++        foreach (var trait in other.ToArray())
++        {
++            if (val.Comp.Traits.Any(t => t.GetType() == trait.GetType()))
++                continue;
++
++            if (Random(0.5f))
++                _plantTraits.AddTrait(val.AsNullable(), trait);
++        }
++    }
++
+     private bool Random(float p)
+     {
+         return _random.Prob(p);
+diff --git a/Content.Server/Botany/Systems/PlantChemicalsSystem.cs b/Content.Server/Botany/Systems/PlantChemicalsSystem.cs
+index 7270b34c9a..373d18f7b4 100644
+--- a/Content.Server/Botany/Systems/PlantChemicalsSystem.cs
++++ b/Content.Server/Botany/Systems/PlantChemicalsSystem.cs
+@@ -1,5 +1,9 @@
++using JetBrains.Annotations;
+ using Content.Server.Botany.Components;
+ using Content.Server.Botany.Events;
++using Content.Shared.Random;
++using Content.Shared.FixedPoint;
++using Robust.Shared.Random;
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+@@ -10,6 +14,7 @@ public sealed class PlantChemicalsSystem : EntitySystem
+ {
+     [Dependency] private readonly BotanySystem _botany = default!;
+     [Dependency] private readonly MutationSystem _mutation = default!;
++    [Dependency] private readonly IRobustRandom _random = default!;
+ 
+     public override void Initialize()
+     {
+@@ -23,4 +28,34 @@ private void OnCrossPollinate(Entity<PlantChemicalsComponent> ent, ref PlantCros
+ 
+         _mutation.CrossChemicals(ref ent.Comp.Chemicals, pollenData.Chemicals);
+     }
++
++    /// <summary>
++    /// Adds a random chemical to the plant chemicals.
++    /// </summary>
++    [PublicAPI]
++    public void MutateRandomChemical(Entity<PlantChemicalsComponent?> ent, List<RandomFillSolution> randomChems)
++    {
++        if (!Resolve(ent, ref ent.Comp, false))
++            return;
++
++        var pick = _random.Pick(randomChems);
++        var chemicalId = _random.Pick(pick.Reagents);
++        var amount = _random.NextFloat(0.1f, (float)pick.Quantity);
++        var seedChemQuantity = new PlantChemQuantity();
++        if (ent.Comp.Chemicals.TryGetValue(chemicalId, out var value))
++        {
++            seedChemQuantity.Min = value.Min;
++            seedChemQuantity.Max = value.Max + amount;
++        }
++        else
++        {
++            seedChemQuantity.Min = FixedPoint2.Epsilon;
++            seedChemQuantity.Max = FixedPoint2.Zero + amount;
++            seedChemQuantity.Inherent = false;
++        }
++
++        var potencyDivisor = 100f / seedChemQuantity.Max;
++        seedChemQuantity.PotencyDivisor = (float)potencyDivisor;
++        ent.Comp.Chemicals[chemicalId] = seedChemQuantity;
++    }
+ }
+diff --git a/Content.Server/Botany/Systems/PlantHarvestSystem.cs b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+index d265a9bff8..1968ed739f 100644
+--- a/Content.Server/Botany/Systems/PlantHarvestSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+@@ -19,7 +19,7 @@ namespace Content.Server.Botany.Systems;
+ /// Manages harvest readiness and execution for plants, including repeat/self-harvest
+ /// logic and produce spawning, responding to growth and interaction events.
+ /// </summary>
+-public sealed class HarvestSystem : EntitySystem
++public sealed class PlantHarvestSystem : EntitySystem
+ {
+     [Dependency] private readonly AppearanceSystem _appearance = default!;
+     [Dependency] private readonly BotanySystem _botany = default!;
+@@ -30,104 +30,76 @@ public sealed class HarvestSystem : EntitySystem
+     [Dependency] private readonly PopupSystem _popup = default!;
+     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+     [Dependency] private readonly SharedAudioSystem _audio = default!;
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+ 
+     public override void Initialize()
+     {
+         SubscribeLocalEvent<PlantHarvestComponent, OnPlantGrowEvent>(OnPlantGrow);
+         SubscribeLocalEvent<PlantHarvestComponent, InteractHandEvent>(OnInteractHand);
+-        SubscribeLocalEvent<PlantHarvestComponent, InteractUsingEvent>(OnInteractUsing);
++        SubscribeLocalEvent<PlantHarvestComponent, DoHarvestEvent>(OnHandledDoHarvest);
+     }
+ 
+     private void OnPlantGrow(Entity<PlantHarvestComponent> ent, ref OnPlantGrowEvent args)
+     {
+-        var (plantUid, component) = ent;
+-
+-        if (!TryComp<PlantHolderComponent>(plantUid, out var holder)
+-            || !TryComp<PlantComponent>(plantUid, out var plant)
+-            || holder.Dead)
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder)
++            || !TryComp<PlantComponent>(ent.Owner, out var plant))
+             return;
+ 
+         // Check if plant is ready for harvest.
+-        var timeLastHarvest = holder.Age - component.LastHarvest;
+-        if (timeLastHarvest > plant.Production && !component.ReadyForHarvest)
++        var timeLastHarvest = holder.Age - ent.Comp.LastHarvest;
++        if (timeLastHarvest > plant.Production && !ent.Comp.ReadyForHarvest)
+         {
+-            component.ReadyForHarvest = true;
+-            component.LastHarvest = holder.Age;
+-            _plant.UpdateSprite(plantUid);
+-            TryAutoHarvest(ent, (plantUid, plant), plantUid);
++            ent.Comp.ReadyForHarvest = true;
++            ent.Comp.LastHarvest = holder.Age;
++            _plant.UpdateSprite(ent.Owner);
++            TryAutoHarvest(ent, (ent.Owner, plant), ent.Owner);
+         }
+     }
+ 
+-    private void OnInteractUsing(Entity<PlantHarvestComponent> ent, ref InteractUsingEvent args)
++    private void OnInteractHand(Entity<PlantHarvestComponent> ent, ref InteractHandEvent args)
+     {
+         if (args.Handled)
+             return;
+ 
+-        var (plantUid, harvest) = ent;
+-
+-        if (!TryComp<PlantComponent>(plantUid, out var plant)
+-            || !TryComp<PlantHolderComponent>(plantUid, out var holder)
+-            || !TryComp<PlantTraitsComponent>(plantUid, out var traits))
+-            return;
+-
+-        if (!harvest.ReadyForHarvest || holder.Dead || !traits.Ligneous)
+-            return;
+-
+-        // ligneous requires sharp tool.
+-        if (!HasComp<SharpComponent>(args.Used))
++        if (_plantHolder.IsDead(ent.Owner))
+         {
+-            _popup.PopupCursor(Loc.GetString("plant-holder-component-ligneous-cant-harvest-message"), args.User);
++            args.Handled = true;
++            _plant.RemovePlant(ent.Owner);
+             return;
+         }
+ 
+-        TryHandleHarvest((plantUid, harvest), (plantUid, plant), args.User);
++        if (!ent.Comp.ReadyForHarvest)
++            return;
++
++        var ev = new DoHarvestEvent(args.User, ent.Owner);
++        RaiseLocalEvent(ent.Owner, ref ev);
+         args.Handled = true;
+     }
+ 
+-    private void OnInteractHand(Entity<PlantHarvestComponent> ent, ref InteractHandEvent args)
++    private void OnHandledDoHarvest(Entity<PlantHarvestComponent> ent, ref DoHarvestEvent args)
+     {
+-        if (args.Handled)
+-            return;
+-
+-        var (plantUid, harvest) = ent;
+-
+-        if (!TryComp<PlantComponent>(plantUid, out var plant)
+-            || !TryComp<PlantHolderComponent>(plantUid, out var holder)
+-            || !TryComp<PlantTraitsComponent>(plantUid, out var traits))
+-            return;
+-
+-        if (holder.Dead)
+-        {
+-            _plant.RemovePlant(plantUid);
+-            return;
+-        }
+-
+-        if (!harvest.ReadyForHarvest)
++        if (args.Cancelled)
+             return;
+ 
+-        if (traits.Ligneous)
+-        {
+-            _popup.PopupCursor(Loc.GetString("plant-holder-component-ligneous-cant-harvest-message"), args.User);
++        if (!TryComp<PlantComponent>(ent.Owner, out var plant))
+             return;
+-        }
+ 
+-        TryHandleHarvest((plantUid, harvest), (plantUid, plant), args.User);
+-        args.Handled = true;
++        TryHandleHarvest(ent, (ent.Owner, plant), args.User);
+     }
+ 
+-    private void TryHandleHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantComponent> plantEnt, EntityUid user)
++    private void TryAutoHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantComponent> plantEnt, EntityUid user)
+     {
++        if (ent.Comp.HarvestRepeat != HarvestType.SelfHarvest)
++            return;
++
+         if (TryComp<PlantDataComponent>(ent.Owner, out var plantData) && plantData.HarvestLogImpact != null)
+             _adminLogger.Add(LogType.Botany, plantData.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(plantData.DisplayName):seed} at Pos:{Transform(plantEnt.Owner).Coordinates}.");
+ 
+         DoHarvest(ent, plantEnt, user);
+     }
+ 
+-    private void TryAutoHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantComponent> plantEnt, EntityUid user)
++    public void TryHandleHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantComponent> plantEnt, EntityUid user)
+     {
+-        if (ent.Comp.HarvestRepeat != HarvestType.SelfHarvest)
+-            return;
+-
+         if (TryComp<PlantDataComponent>(ent.Owner, out var plantData) && plantData.HarvestLogImpact != null)
+             _adminLogger.Add(LogType.Botany, plantData.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(plantData.DisplayName):seed} at Pos:{Transform(plantEnt.Owner).Coordinates}.");
+ 
+@@ -143,15 +115,12 @@ private void TryAutoHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantCompo
+     [PublicAPI]
+     public void DoHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantComponent> plantEnt, EntityUid user)
+     {
+-        var (plantUid, harvest) = ent;
+-
+-        if (!TryComp<PlantComponent>(plantUid, out var plant)
+-            || !TryComp<PlantDataComponent>(plantUid, out var plantData)
+-            || !TryComp<PlantTraitsComponent>(plantUid, out var traits)
+-            || !TryComp<PlantHolderComponent>(plantUid, out var holder))
++        if (!TryComp<PlantComponent>(ent.Owner, out var plant)
++            || !TryComp<PlantDataComponent>(ent.Owner, out var plantData)
++            || !TryComp<PlantHolderComponent>(ent.Owner, out var holder))
+             return;
+ 
+-        if (!harvest.ReadyForHarvest || plantData.ProductPrototypes.Count == 0 || plant.Yield == 0)
++        if (!ent.Comp.ReadyForHarvest || plantData.ProductPrototypes.Count == 0 || plant.Yield == 0)
+             return;
+ 
+         var name = Loc.GetString(plantData.DisplayName);
+@@ -164,31 +133,83 @@ public void DoHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantComponent>
+             totalYield = Math.Max(1, totalYield);
+         }
+ 
+-        var position = Transform(plantUid).Coordinates;
++        var position = Transform(ent.Owner).Coordinates;
+         for (var i = 0; i < totalYield; i++)
+         {
+-            var product = _random.Pick(plantData.ProductPrototypes);
+-            var entity = Spawn(product, position);
+-            _randomHelper.RandomOffset(entity, 0.25f);
+-
+-            var produce = EnsureComp<ProduceComponent>(entity);
+-            produce.PlantProtoId = MetaData(plantUid).EntityPrototype!.ID;
+-            produce.PlantData = _botany.ClonePlantSnapshotData(plantUid);
+-            _botany.ProduceGrown(entity, produce);
+-            _appearance.SetData(entity, ProduceVisuals.Potency, plant.Potency);
++            _botany.SpawnProduce((ent.Owner, plantData, plant), position);
+         }
+ 
+-        harvest.ReadyForHarvest = false;
+-        harvest.LastHarvest = holder.Age;
++        ent.Comp.ReadyForHarvest = false;
++        ent.Comp.LastHarvest = holder.Age;
+ 
+-        if (traits.CanScream)
+-            _audio.PlayPvs(new SoundCollectionSpecifier("PlantScreams"), plantUid);
+-
+-        if (harvest.HarvestRepeat == HarvestType.NoRepeat)
++        if (ent.Comp.HarvestRepeat == HarvestType.NoRepeat)
+             _plant.RemovePlant(plantEnt.AsNullable());
+ 
+         _plant.UpdateSprite(plantEnt.AsNullable());
+-        if (_plant.TryGetTray(plantEnt.AsNullable(), out var trayEnt))
+-            _tray.UpdateWarnings(trayEnt);
++        var ev = new AfterDoHarvestEvent(user, ent.Owner);
++        RaiseLocalEvent(ent.Owner, ref ev);
++    }
++
++    /// <summary>
++    /// Affects the growth of a plant by modifying its age or production timing.
++    /// </summary>
++    [PublicAPI]
++    public void AffectGrowth(Entity<PlantHarvestComponent?> ent, int amount)
++    {
++        if (amount == 0)
++            return;
++
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return;
++
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder)
++            || !TryComp<PlantComponent>(ent.Owner, out var plant))
++            return;
++
++        if (amount > 0)
++        {
++            if (holder.Age < plant.Maturation)
++                _plantHolder.AdjustsAge(ent.Owner, amount);
++            else if (!ent.Comp.ReadyForHarvest && plant.Yield <= 0f)
++                ent.Comp.LastHarvest -= amount;
++        }
++        else
++        {
++            if (holder.Age < plant.Maturation)
++                _plantHolder.AdjustsSkipAging(ent.Owner, 1);
++            else if (!ent.Comp.ReadyForHarvest && plant.Yield <= 0f)
++                ent.Comp.LastHarvest += amount;
++        }
++    }
++
++    /// <summary>
++    /// Changes the harvest repeat of a plant.
++    /// </summary>
++    [PublicAPI]
++    public void ChangeHarvestRepeat(Entity<PlantHarvestComponent?> ent)
++    {
++        if (!Resolve(ent, ref ent.Comp, false))
++            return;
++
++        ent.Comp.HarvestRepeat = ent.Comp.HarvestRepeat switch
++        {
++            HarvestType.NoRepeat => HarvestType.Repeat,
++            HarvestType.Repeat => HarvestType.SelfHarvest,
++            _ => ent.Comp.HarvestRepeat,
++        };
+     }
+ }
++
++[ByRefEvent]
++public sealed class DoHarvestEvent(EntityUid user, EntityUid target) : CancellableEntityEventArgs
++{
++    public EntityUid User { get; } = user;
++    public EntityUid Target { get; } = target;
++}
++
++[ByRefEvent]
++public sealed class AfterDoHarvestEvent(EntityUid user, EntityUid target) : CancellableEntityEventArgs
++{
++    public EntityUid User { get; } = user;
++    public EntityUid Target { get; } = target;
++}
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 2e710b1b50..c564251f09 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -1,5 +1,7 @@
+ using JetBrains.Annotations;
+ using Content.Server.Botany.Components;
++using Content.Server.Popups;
++using Robust.Shared.Random;
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+@@ -23,7 +25,7 @@ public void AdjustsHealth(Entity<PlantHolderComponent?> ent, float amount)
+             return;
+ 
+         ent.Comp.Health += amount;
+-        ent.Comp.Health = MathHelper.Clamp(ent.Comp.Health, 0, plant.Endurance);
++        ent.Comp.Health = MathHelper.Clamp(ent.Comp.Health, 0f, plant.Endurance);
+         CheckHealth(ent);
+         _plant.UpdateSprite(ent.Owner);
+     }
+@@ -38,6 +40,7 @@ public void AdjustsMutationLevel(Entity<PlantHolderComponent?> ent, float amount
+             return;
+ 
+         ent.Comp.MutationLevel += amount * ent.Comp.MutationMod;
++        ent.Comp.MutationLevel = MathHelper.Clamp(ent.Comp.MutationLevel, 0f, ent.Comp.MaxMutationLevel);
+         CheckHealth(ent);
+     }
+ 
+@@ -51,6 +54,7 @@ public void AdjustsMutationMod(Entity<PlantHolderComponent?> ent, float amount)
+             return;
+ 
+         ent.Comp.MutationMod += amount;
++        ent.Comp.MutationMod = MathHelper.Clamp(ent.Comp.MutationMod, 0f, ent.Comp.MaxMutationMod);
+     }
+ 
+     /// <summary>
+@@ -63,6 +67,7 @@ public void AdjustsPests(Entity<PlantHolderComponent?> ent, float amount)
+             return;
+ 
+         ent.Comp.PestLevel += amount;
++        ent.Comp.PestLevel = MathHelper.Clamp(ent.Comp.PestLevel, 0f, ent.Comp.MaxPestLevel);
+     }
+ 
+     /// <summary>
+@@ -74,7 +79,7 @@ public void AdjustsAge(Entity<PlantHolderComponent?> ent, int amount)
+         if (!Resolve(ent.Owner, ref ent.Comp))
+             return;
+ 
+-        ent.Comp.Age += amount;
++        ent.Comp.Age = Math.Max(0, ent.Comp.Age + amount);
+         _plant.UpdateSprite(ent.Owner);
+     }
+ 
+@@ -88,6 +93,32 @@ public void AdjustsToxins(Entity<PlantHolderComponent?> ent, float amount)
+             return;
+ 
+         ent.Comp.Toxins += amount;
++        ent.Comp.Toxins = MathHelper.Clamp(ent.Comp.Toxins, 0f, ent.Comp.MaxToxins);
++    }
++
++    /// <summary>
++    /// Adjusts the yield mod of the plant.
++    /// </summary>
++    [PublicAPI]
++    public void AdjustsYieldMod(Entity<PlantHolderComponent?> ent, int amount)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp))
++            return;
++
++        ent.Comp.YieldMod += amount;
++        ent.Comp.YieldMod = MathHelper.Clamp(ent.Comp.YieldMod, 1, ent.Comp.MaxYieldMod);
++    }
++
++    /// <summary>
++    /// Adjusts the skip aging of the plant.
++    /// </summary>
++    [PublicAPI]
++    public void AdjustsSkipAging(Entity<PlantHolderComponent?> ent, int amount)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp))
++            return;
++
++        ent.Comp.SkipAging = Math.Max(0, ent.Comp.SkipAging + amount);
+     }
+ 
+     /// <summary>
+@@ -126,10 +157,6 @@ public void Die(Entity<PlantHolderComponent?> ent)
+ 
+         ent.Comp.Dead = true;
+         ent.Comp.Health = Math.Max(0, ent.Comp.Health);
+-
+-        if (TryComp<PlantHarvestComponent>(ent.Owner, out var harvest))
+-            harvest.ReadyForHarvest = false;
+-
+         ent.Comp.MutationLevel = 0;
+         ent.Comp.YieldMod = 1;
+         ent.Comp.MutationMod = 1;
+diff --git a/Content.Server/Botany/Systems/PlantSystem.cs b/Content.Server/Botany/Systems/PlantSystem.cs
+index 5151f9e2ee..371580f7a6 100644
+--- a/Content.Server/Botany/Systems/PlantSystem.cs
++++ b/Content.Server/Botany/Systems/PlantSystem.cs
+@@ -1,4 +1,3 @@
+-using System.Diagnostics.CodeAnalysis;
+ using JetBrains.Annotations;
+ using Content.Server.Botany.Components;
+ using Content.Server.Botany.Events;
+@@ -36,18 +35,12 @@ public sealed class PlantSystem : EntitySystem
+     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+     [Dependency] private readonly TagSystem _tag = default!;
+ 
+-    /// <summary>
+-    /// Tag for items that can be used to take a sample of a plant.
+-    /// </summary>
+-    private static readonly ProtoId<TagPrototype> PlantSampleTakerTag = "PlantSampleTaker";
+-
+     public override void Initialize()
+     {
+         SubscribeLocalEvent<PlantComponent, MapInitEvent>(OnMapInit);
+         SubscribeLocalEvent<PlantComponent, PlantCrossPollinateEvent>(OnCrossPollinate);
+         SubscribeLocalEvent<PlantComponent, OnPlantGrowEvent>(OnPlantGrow);
+         SubscribeLocalEvent<PlantComponent, ExaminedEvent>(OnExamined);
+-        SubscribeLocalEvent<PlantComponent, InteractUsingEvent>(OnInteractUsing);
+     }
+ 
+     private void OnMapInit(Entity<PlantComponent> ent, ref MapInitEvent args)
+@@ -67,28 +60,16 @@ private void OnCrossPollinate(Entity<PlantComponent> ent, ref PlantCrossPollinat
+         _mutation.CrossFloat(ref ent.Comp.Maturation, pollenData.Maturation);
+         _mutation.CrossFloat(ref ent.Comp.Production, pollenData.Production);
+         _mutation.CrossFloat(ref ent.Comp.Potency, pollenData.Potency);
+-
+-        // TODO: Move this to a separate system
+-        if (_botany.TryGetPlantComponent<PlantTraitsComponent>(args.PollenData, args.PollenProtoId, out var pollenTraits)
+-            && TryComp<PlantTraitsComponent>(ent.Owner, out var traits))
+-        {
+-            _mutation.CrossBool(ref traits.Seedless, pollenTraits.Seedless);
+-            _mutation.CrossBool(ref traits.Ligneous, pollenTraits.Ligneous);
+-            _mutation.CrossBool(ref traits.CanScream, pollenTraits.CanScream);
+-            _mutation.CrossBool(ref traits.TurnIntoKudzu, pollenTraits.TurnIntoKudzu);
+-        }
+     }
+ 
+     private void OnPlantGrow(Entity<PlantComponent> ent, ref OnPlantGrowEvent args)
+     {
+-        var (plantUid, component) = ent;
+-
+-        if (!TryComp<PlantHolderComponent>(plantUid, out var holder))
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder))
+             return;
+ 
+         // Check if plant is too old.
+-        if (holder.Age > component.Lifespan)
+-            _plantHolder.AdjustsHealth(plantUid, -_random.Next(3, 5));
++        if (holder.Age > ent.Comp.Lifespan)
++            _plantHolder.AdjustsHealth(ent.Owner, -_random.Next(3, 5));
+     }
+ 
+     private void OnExamined(Entity<PlantComponent> ent, ref ExaminedEvent args)
+@@ -96,116 +77,49 @@ private void OnExamined(Entity<PlantComponent> ent, ref ExaminedEvent args)
+         if (!args.IsInDetailsRange)
+             return;
+ 
+-        var (uid, plant) = ent;
+-
+-        if (!TryComp<PlantHolderComponent>(uid, out var holder)
+-            || !TryComp<PlantDataComponent>(uid, out var plantData))
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder)
++            || !TryComp<PlantDataComponent>(ent.Owner, out var plantData))
+             return;
+ 
+         using (args.PushGroup(nameof(PlantComponent)))
+         {
++            args.PushMarkup(GetPlantStateMarkup(ent));
++
+             var displayName = Loc.GetString(plantData.DisplayName);
+             args.PushMarkup(Loc.GetString("plant-holder-component-something-already-growing-message",
+                 ("seedName", displayName),
+                 ("toBeForm", displayName.EndsWith('s') ? "are" : "is")));
+ 
+-            if (holder.Dead)
+-            {
++            if (_plantHolder.IsDead(ent.Owner))
+                 args.PushMarkup(Loc.GetString("plant-holder-component-dead-plant-message"));
+-                return;
+-            }
+ 
+-            if (holder.Health <= plant.Endurance / 2f)
++            if (holder.Health <= ent.Comp.Endurance / 2f)
+             {
+                 args.PushMarkup(Loc.GetString(
+                     "plant-holder-component-something-already-growing-low-health-message",
+                     ("healthState",
+-                        Loc.GetString(holder.Age > plant.Lifespan
++                        Loc.GetString(holder.Age > ent.Comp.Lifespan
+                             ? "plant-holder-component-plant-old-adjective"
+                             : "plant-holder-component-plant-unhealthy-adjective"))));
+             }
+ 
+-            if (TryComp<PlantTraitsComponent>(uid, out var traits))
++            if (TryComp<PlantTraitsComponent>(ent.Owner, out var traits))
+             {
+-                if (traits.Ligneous)
+-                    args.PushMarkup(Loc.GetString("mutation-plant-ligneous"));
+-
+-                if (traits.TurnIntoKudzu)
+-                    args.PushMarkup(Loc.GetString("mutation-plant-kudzu"));
+-
+-                if (traits.CanScream)
+-                    args.PushMarkup(Loc.GetString("mutation-plant-scream"));
+-
+-                if (!traits.Viable)
+-                    args.PushMarkup(Loc.GetString("mutation-plant-unviable"));
++                var traitList = traits.Traits;
++                foreach (var trait in traitList)
++                {
++                    foreach (var markup in trait.GetPlantStateMarkup())
++                    {
++                        args.PushMarkup(markup);
++                    }
++                }
+             }
+         }
+     }
+ 
+-    private void OnInteractUsing(Entity<PlantComponent> ent, ref InteractUsingEvent args)
+-    {
+-        var (plantUid, plant) = ent;
+-
+-        if (args.Handled)
+-            return;
+-
+-        if (!_tag.HasTag(args.Used, PlantSampleTakerTag))
+-            return;
+-
+-        if (!TryComp<PlantHolderComponent>(plantUid, out var holder)
+-            || !TryComp<PlantDataComponent>(plantUid, out var plantData))
+-            return;
+-
+-        args.Handled = true;
+-
+-        if (holder.Sampled)
+-        {
+-            _popup.PopupCursor(Loc.GetString("plant-holder-component-already-sampled-message"), args.User);
+-            return;
+-        }
+-
+-        if (holder.Dead)
+-        {
+-            _popup.PopupCursor(Loc.GetString("plant-holder-component-dead-plant-message"), args.User);
+-            return;
+-        }
+-
+-        // Prevent early sampling.
+-        var maturation = Math.Max(plant.Maturation, 1f);
+-        var growthStage = Math.Max(1, (int)(holder.Age * plant.GrowthStages / maturation));
+-        if (growthStage <= 1)
+-        {
+-            _popup.PopupCursor(Loc.GetString("plant-holder-component-early-sample-message"), args.User);
+-            return;
+-        }
+-
+-        // Damage the plant and produce a seed packet snapshot.
+-        _plantHolder.AdjustsHealth(plantUid, -_random.Next(3, 5) * 10);
+-
+-        float? healthOverride;
+-        if (TryComp<PlantHarvestComponent>(plantUid, out var harvest) && harvest.ReadyForHarvest)
+-            healthOverride = null;
+-        else
+-            healthOverride = holder.Health;
+-
+-        var seed = _botany.SpawnSeedPacketFromPlant(plantUid, Transform(args.User).Coordinates, args.User, healthOverride);
+-        _randomHelper.RandomOffset(seed, 0.25f);
+-
+-        var displayName = Loc.GetString(plantData.DisplayName);
+-        _popup.PopupCursor(Loc.GetString("plant-holder-component-take-sample-message",
+-            ("seedName", displayName)), args.User);
+-
+-        if (_random.Prob(0.3f))
+-            holder.Sampled = true;
+-
+-        ForceUpdateByExternalCause(ent.AsNullable());
+-    }
+-
+     private void Mutate(Entity<PlantComponent?> ent, float severity)
+     {
+-        var (uid, component) = ent;
+-
+-        if (!Resolve(uid, ref component, false))
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
+             return;
+ 
+         _mutation.MutatePlant(ent, severity);
+@@ -228,12 +142,10 @@ public override void Update(float frameTime)
+ 
+     public void Update(Entity<PlantComponent?> ent)
+     {
+-        var (uid, component) = ent;
+-
+-        if (!Resolve(uid, ref component, false))
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
+             return;
+ 
+-        if (!TryComp<PlantHolderComponent>(uid, out var plantHolder))
++        if (!TryComp<PlantHolderComponent>(ent, out var plantHolder))
+             return;
+ 
+         var curTime = _gameTiming.CurTime;
+@@ -246,13 +158,12 @@ public void Update(Entity<PlantComponent?> ent)
+ 
+         plantHolder.LastCycle = curTime;
+ 
+-        if (plantHolder.Dead)
++        if (_plantHolder.IsDead(ent.Owner))
+             return;
+ 
+         TryGetTray(ent, out var trayEnt);
+         var plantGrow = new OnPlantGrowEvent(trayEnt);
+-        RaiseLocalEvent(trayEnt.Owner, ref plantGrow);
+-        RaiseLocalEvent(uid, ref plantGrow);
++        RaiseLocalEvent(ent.Owner, ref plantGrow);
+ 
+         // Process mutations.
+         if (plantHolder.MutationLevel > 0)
+@@ -262,7 +173,7 @@ public void Update(Entity<PlantComponent?> ent)
+         }
+ 
+         if (plantHolder.Health <= 0)
+-            _plantHolder.Die(uid);
++            _plantHolder.Die(ent.Owner);
+     }
+ 
+     /// <summary>
+@@ -271,16 +182,14 @@ public void Update(Entity<PlantComponent?> ent)
+     [PublicAPI]
+     public void ForceUpdateByExternalCause(Entity<PlantComponent?> ent)
+     {
+-        var (uid, component) = ent;
+-
+-        if (!Resolve(uid, ref component, false))
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
+             return;
+ 
+-        if (!TryComp<PlantHolderComponent>(uid, out var plantHolder))
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var plantHolder))
+             return;
+ 
+-        plantHolder.SkipAging++;
+         plantHolder.ForceUpdate = true;
++        _plantHolder.AdjustsSkipAging(ent.Owner, 1);
+         Update(ent);
+     }
+ 
+@@ -288,10 +197,7 @@ public void ForceUpdateByExternalCause(Entity<PlantComponent?> ent)
+     /// Tries to get the tray entity that the plant is in.
+     /// </summary>
+     [PublicAPI]
+-    public bool TryGetTray(
+-        Entity<PlantComponent?> ent,
+-        [NotNullWhen(true)] out Entity<PlantTrayComponent?> trayEnt
+-    )
++    public bool TryGetTray(Entity<PlantComponent?> ent, out Entity<PlantTrayComponent?> trayEnt)
+     {
+         trayEnt = default!;
+         if (!Resolve(ent.Owner, ref ent.Comp))
+@@ -313,7 +219,43 @@ public void AdjustPotency(Entity<PlantComponent?> ent, float amount)
+         if (!Resolve(ent.Owner, ref ent.Comp, false))
+             return;
+ 
+-        ent.Comp.Potency = Math.Max(ent.Comp.Potency + amount, 1);
++        ent.Comp.Potency = Math.Max(0, ent.Comp.Potency + amount);
++    }
++
++    /// <summary>
++    /// Adjusts the lifespan of a plant component.
++    /// </summary>
++    [PublicAPI]
++    public void AdjustLifespan(Entity<PlantComponent?> ent, int amount)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return;
++
++        ent.Comp.Lifespan = Math.Max(0, ent.Comp.Lifespan + amount);
++    }
++
++    /// <summary>
++    /// Adjusts the endurance of a plant component.
++    /// </summary>
++    [PublicAPI]
++    public void AdjustEndurance(Entity<PlantComponent?> ent, int amount)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return;
++
++        ent.Comp.Endurance = Math.Max(0, ent.Comp.Endurance);
++    }
++
++    /// <summary>
++    /// Adjusts the yield of a plant component.
++    /// </summary>
++    [PublicAPI]
++    public void AdjustYield(Entity<PlantComponent?> ent, int amount)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return;
++
++        ent.Comp.Yield = Math.Max(0, ent.Comp.Yield + amount);
+     }
+ 
+     /// <summary>
+@@ -328,10 +270,22 @@ public void RemovePlant(Entity<PlantComponent?> ent)
+             return;
+ 
+         QueueDel(uid);
++    }
+ 
+-        // Delete the plant from the tray.
+-        if (TryGetTray(ent, out var trayEnt))
+-            trayEnt.Comp!.PlantEntity = null;
++    /// <summary>
++    /// Gets the growth stage value of the plant.
++    /// </summary>
++    [PublicAPI]
++    public int GetGrowthStageValue(Entity<PlantComponent?> ent)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return 1;
++
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var plantHolder))
++            return 1;
++
++        var maturation = Math.Max(ent.Comp.Maturation, 1f);
++        return Math.Max(1, (int)(plantHolder.Age * ent.Comp.GrowthStages / maturation));
+     }
+ 
+     /// <summary>
+@@ -340,43 +294,41 @@ public void RemovePlant(Entity<PlantComponent?> ent)
+     [PublicAPI]
+     public void UpdateSprite(Entity<PlantComponent?> ent)
+     {
+-        var (uid, component) = ent;
+-
+-        if (!Resolve(uid, ref component, false))
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
+             return;
+ 
+-        if (!TryComp<PlantHolderComponent>(uid, out var plantHolder)
+-            || !TryComp<PlantDataComponent>(uid, out var plantData)
+-            || !TryComp<PlantHarvestComponent>(uid, out var harvest))
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var plantHolder)
++            || !TryComp<PlantDataComponent>(ent.Owner, out var plantData)
++            || !TryComp<PlantHarvestComponent>(ent.Owner, out var harvest))
+             return;
+ 
+-        if (!TryComp<AppearanceComponent>(uid, out var plantApp))
++        if (!TryComp<AppearanceComponent>(ent.Owner, out var plantApp))
+             return;
+ 
+-        _appearance.SetData(uid, PlantVisuals.PlantRsi, plantData.PlantRsi.ToString(), plantApp);
++        _appearance.SetData(ent.Owner, PlantVisuals.PlantRsi, plantData.PlantRsi.ToString(), plantApp);
+ 
+-        if (plantHolder.Dead)
++        if (_plantHolder.IsDead(ent.Owner))
+         {
+-            _appearance.SetData(uid, PlantVisuals.PlantState, "dead", plantApp);
++            _appearance.SetData(ent.Owner, PlantVisuals.PlantState, "dead", plantApp);
+         }
+         else if (harvest.ReadyForHarvest)
+         {
+-            _appearance.SetData(uid, PlantVisuals.PlantState, "harvest", plantApp);
++            _appearance.SetData(ent.Owner, PlantVisuals.PlantState, "harvest", plantApp);
+         }
+         else
+         {
+-            if (plantHolder.Age < component.Maturation)
++            if (plantHolder.Age < ent.Comp.Maturation)
+             {
+-                var growthStage = Math.Max(1, (int)(plantHolder.Age * component.GrowthStages / component.Maturation));
+-                _appearance.SetData(uid, PlantVisuals.PlantState, $"stage-{growthStage}", plantApp);
++                var growthStage = Math.Max(1, (int)(plantHolder.Age * ent.Comp.GrowthStages / ent.Comp.Maturation));
++                _appearance.SetData(ent.Owner, PlantVisuals.PlantState, $"stage-{growthStage}", plantApp);
+             }
+             else
+             {
+-                _appearance.SetData(uid, PlantVisuals.PlantState, $"stage-{component.GrowthStages}", plantApp);
++                _appearance.SetData(ent.Owner, PlantVisuals.PlantState, $"stage-{ent.Comp.GrowthStages}", plantApp);
+             }
+         }
+ 
+-        if (TryGetTray(uid, out var trayEnt))
++        if (TryGetTray(ent, out var trayEnt))
+             _tray.UpdateWarnings(trayEnt);
+     }
+ 
+@@ -384,25 +336,62 @@ public void UpdateSprite(Entity<PlantComponent?> ent)
+     /// Planting a plant.
+     /// </summary>
+     [PublicAPI]
+-    public void PlantingPlant(Entity<PlantComponent?> plantEnt)
++    public void PlantingPlant(Entity<PlantComponent?> ent, float? healthOverride = null)
+     {
+-        var (plantUid, plantComp) = plantEnt;
+-
+-        if (!Resolve(plantUid, ref plantComp, false))
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
+             return;
+ 
+-        if (!TryComp<PlantHolderComponent>(plantUid, out var plantHolder))
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var plantHolder))
+             return;
+ 
+-        plantHolder.Health = plantComp.Endurance;
++        plantHolder.Health = healthOverride ?? ent.Comp.Endurance;
+         plantHolder.LastCycle = _gameTiming.CurTime;
+ 
+-        if (TryComp<PlantHarvestComponent>(plantUid, out var harvest))
++        if (TryComp<PlantHarvestComponent>(ent.Owner, out var harvest))
+         {
+             harvest.ReadyForHarvest = false;
+             harvest.LastHarvest = 0;
+         }
+ 
+-        UpdateSprite(plantEnt.AsNullable());
++        UpdateSprite(ent.AsNullable());
++    }
++
++    /// <summary>
++    /// Gets the warnings markup of the plant.
++    /// </summary>
++    [PublicAPI]
++    public string GetPlantWarningsMarkup(Entity<PlantHolderComponent?> ent)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return string.Empty;
++
++        var markup = string.Empty;
++        if (ent.Comp.Toxins > 40f)
++            markup += "\n" + Loc.GetString("plant-holder-component-toxins-high-warning");
++
++        if (ent.Comp.ImproperHeat)
++            markup += "\n" + Loc.GetString("plant-holder-component-heat-improper-warning");
++
++        if (ent.Comp.ImproperPressure)
++            markup += "\n" + Loc.GetString("plant-holder-component-pressure-improper-warning");
++
++        if (ent.Comp.MissingGas)
++            markup += "\n" + Loc.GetString("plant-holder-component-gas-missing-warning");
++
++        if (ent.Comp.PestLevel >= 5)
++            markup += "\n" + Loc.GetString("plant-holder-component-pest-high-level-message");
++
++        return markup;
++    }
++
++    public string GetPlantStateMarkup(EntityUid uid, PlantComponent? component = null)
++    {
++        if (component == null && !Resolve(uid, ref component, false))
++            return string.Empty;
++
++        var markup = Loc.GetString("seed-component-plant-yield-text", ("seedYield", component.Yield));
++        markup += "\n" + Loc.GetString("seed-component-plant-potency-text", ("seedPotency", component.Potency));
++
++        return markup;
+     }
+ }
+diff --git a/Content.Server/Botany/Systems/PlantToxinsSystem.cs b/Content.Server/Botany/Systems/PlantToxinsSystem.cs
+index 24709f0ea7..8e9abe634c 100644
+--- a/Content.Server/Botany/Systems/PlantToxinsSystem.cs
++++ b/Content.Server/Botany/Systems/PlantToxinsSystem.cs
+@@ -7,9 +7,10 @@ namespace Content.Server.Botany.Systems;
+ /// Handles toxin accumulation and tolerance for plants, applying health damage
+ /// and decrementing toxins based on per-tick uptake.
+ /// </summary>
+-public sealed class ToxinsSystem : EntitySystem
++public sealed class PlantToxinsSystem : EntitySystem
+ {
+     [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+     [Dependency] private readonly MutationSystem _mutation = default!;
+ 
+     public override void Initialize()
+@@ -29,20 +30,18 @@ private void OnCrossPollinate(Entity<PlantToxinsComponent> ent, ref PlantCrossPo
+ 
+     private void OnPlantGrow(Entity<PlantToxinsComponent> ent, ref OnPlantGrowEvent args)
+     {
+-        var (plantUid, component) = ent;
+-
+-        if (!TryComp<PlantHolderComponent>(plantUid, out var holder))
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder))
+             return;
+ 
+-        if (holder.Toxins < 0)
++        if (ent.Comp.ToxinUptakeDivisor <= 0)
+             return;
+ 
+-        var toxinUptake = MathF.Max(1, MathF.Round(holder.Toxins / component.ToxinUptakeDivisor));
+-        if (holder.Toxins > component.ToxinsTolerance)
+-            holder.Health -= toxinUptake;
++        var toxinUptake = MathF.Max(1, MathF.Round(holder.Toxins / ent.Comp.ToxinUptakeDivisor));
++        if (holder.Toxins > ent.Comp.ToxinsTolerance)
++            _plantHolder.AdjustsHealth(ent.Owner, -toxinUptake);
+ 
+         // there is a possibility that it will remove more toxin than amount of damage it took on plant health (and killed it).
+         // TODO: get min out of health left and toxin uptake - would work better, probably.
+-        holder.Toxins -= toxinUptake;
++        _plantHolder.AdjustsToxins(ent.Owner, -toxinUptake);
+     }
+ }
+diff --git a/Content.Server/Botany/Systems/PlantTraySystem.cs b/Content.Server/Botany/Systems/PlantTraySystem.cs
+index 40a674dd67..fdb1346ae0 100644
+--- a/Content.Server/Botany/Systems/PlantTraySystem.cs
++++ b/Content.Server/Botany/Systems/PlantTraySystem.cs
+@@ -16,13 +16,12 @@
+ using Content.Shared.Interaction;
+ using Content.Shared.Labels.Components;
+ using Content.Shared.Popups;
+-using Content.Shared.Random;
+ using Content.Shared.Tag;
+ using Robust.Server.GameObjects;
+ using Robust.Shared.Audio.Systems;
+ using Robust.Shared.Player;
+-using Robust.Shared.Prototypes;
+ using Robust.Shared.Random;
++using Robust.Shared.Prototypes;
+ using Robust.Shared.Timing;
+ 
+ namespace Content.Server.Botany.Systems;
+@@ -30,225 +29,45 @@ namespace Content.Server.Botany.Systems;
+ public sealed class PlantTraySystem : EntitySystem
+ {
+     [Dependency] private readonly AppearanceSystem _appearance = default!;
+-    [Dependency] private readonly BotanySystem _botany = default!;
+     [Dependency] private readonly IComponentFactory _componentFactory = default!;
+     [Dependency] private readonly IGameTiming _gameTiming = default!;
+     [Dependency] private readonly IPrototypeManager _prototype = default!;
+-    [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+-    [Dependency] private readonly MutationSystem _mutation = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+     [Dependency] private readonly PlantSystem _plant = default!;
+     [Dependency] private readonly PopupSystem _popup = default!;
+-    [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+     [Dependency] private readonly SharedAudioSystem _audio = default!;
+     [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
+     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+     [Dependency] private readonly TagSystem _tag = default!;
+     [Dependency] private readonly TransformSystem _transform = default!;
+-
+-    private static readonly ProtoId<TagPrototype> HoeTag = "Hoe";
++    [Dependency] private readonly IRobustRandom _random = default!;
+ 
+     public override void Initialize()
+     {
+         SubscribeLocalEvent<PlantTrayComponent, ExaminedEvent>(OnExamine);
+-        SubscribeLocalEvent<PlantTrayComponent, InteractUsingEvent>(OnInteractUsing);
+         SubscribeLocalEvent<PlantTrayComponent, SolutionTransferredEvent>(OnSolutionTransferred);
+     }
+ 
+     private void OnExamine(Entity<PlantTrayComponent> ent, ref ExaminedEvent args)
+     {
+-        var (uid, component) = ent;
+-
+         if (!args.IsInDetailsRange)
+             return;
+ 
+-        TryGetPlant(ent.AsNullable(), out var plantUid);
+-        TryComp<PlantHolderComponent>(plantUid, out var plantHolder);
+-
+         using (args.PushGroup(nameof(PlantTrayComponent)))
+         {
+-            if (component.PlantEntity == null || Deleted(component.PlantEntity))
+-                args.PushMarkup(Loc.GetString("plant-holder-component-nothing-planted-message"));
+-
+-            if (component.WeedLevel >= 5)
+-                args.PushMarkup(Loc.GetString("plant-holder-component-weed-high-level-message"));
+-
+-            if (plantHolder != null && plantHolder.PestLevel >= 5)
+-                args.PushMarkup(Loc.GetString("plant-holder-component-pest-high-level-message"));
+-
+-            args.PushMarkup(Loc.GetString($"plant-holder-component-water-level-message",
+-                ("waterLevel", (int)component.WaterLevel)));
+-            args.PushMarkup(Loc.GetString($"plant-holder-component-nutrient-level-message",
+-                ("nutritionLevel", (int)component.NutritionLevel)));
+-
+-            if (plantHolder != null && component.DrawWarnings)
+-            {
+-                if (plantHolder.Toxins > 40f)
+-                    args.PushMarkup(Loc.GetString("plant-holder-component-toxins-high-warning"));
+-
+-                if (plantHolder.ImproperHeat)
+-                    args.PushMarkup(Loc.GetString("plant-holder-component-heat-improper-warning"));
+-
+-                if (plantHolder.ImproperPressure)
+-                    args.PushMarkup(Loc.GetString("plant-holder-component-pressure-improper-warning"));
+-
+-                if (plantHolder.MissingGas > 0)
+-                    args.PushMarkup(Loc.GetString("plant-holder-component-gas-missing-warning"));
+-            }
+-        }
+-    }
+-
+-    private void OnInteractUsing(Entity<PlantTrayComponent> ent, ref InteractUsingEvent args)
+-    {
+-        if (args.Handled)
+-            return;
+-
+-        var (uid, tray) = ent;
+-
+-        // Planting seeds is tray interaction.
+-        if (TryComp(args.Used, out SeedComponent? seeds))
+-        {
+-            if (tray.PlantEntity == null || Deleted(tray.PlantEntity))
+-            {
+-                args.Handled = true;
+-                var plantUid = Spawn(seeds.PlantProtoId, _transform.GetMapCoordinates(uid), seeds.PlantData);
+-
+-                if (!TryComp<PlantDataComponent>(plantUid, out var plantData))
+-                    return;
+-
+-                var name = Loc.GetString(plantData.DisplayName);
+-                var noun = Loc.GetString(plantData.Noun);
+-                _popup.PopupCursor(Loc.GetString("plant-holder-component-plant-success-message",
+-                        ("seedName", name),
+-                        ("seedNoun", noun)),
+-                    args.User,
+-                    PopupType.Medium);
+-
+-                PlantingPlantInTray(uid, plantUid);
+-
+-                if (TryComp<PlantHolderComponent>(tray.PlantEntity!.Value, out var plantHolder)
+-                    && seeds.HealthOverride != null)
+-                {
+-                    plantHolder.Health = seeds.HealthOverride.Value;
+-                }
+-
+-                if (TryComp<PaperLabelComponent>(args.Used, out var paperLabel))
+-                    _itemSlots.TryEjectToHands(args.Used, paperLabel.LabelSlot, args.User);
+-
+-                QueueDel(args.Used);
+-
+-                if (plantData.PlantLogImpact != null)
+-                    _adminLogger.Add(LogType.Botany, plantData.PlantLogImpact.Value,
+-                        $"{ToPrettyString(args.User):player} planted {Loc.GetString(plantData.DisplayName):seed} at Pos:{Transform(uid).Coordinates}.");
+-
+-                return;
+-            }
+-
+-            args.Handled = true;
+-            _popup.PopupCursor(
+-                Loc.GetString("plant-holder-component-already-seeded-message", ("name", MetaData(uid).EntityName)),
+-                args.User,
+-                PopupType.Medium);
+-            return;
+-        }
+-
+-        // Hoe uproots weeds on the tray.
+-        if (_tag.HasTag(args.Used, HoeTag))
+-        {
+-            args.Handled = true;
+-            if (tray.WeedLevel > 0)
+-            {
+-                _popup.PopupCursor(
+-                    Loc.GetString("plant-holder-component-remove-weeds-message", ("name", MetaData(uid).EntityName)),
+-                    args.User,
+-                    PopupType.Medium);
+-                _popup.PopupEntity(
+-                    Loc.GetString("plant-holder-component-remove-weeds-others-message",
+-                        ("otherName", MetaData(args.User).EntityName)),
+-                    uid,
+-                    Filter.PvsExcept(args.User),
+-                    true);
+-                tray.WeedLevel = 0;
+-                UpdateWarnings(ent.AsNullable());
+-            }
+-            else
+-            {
+-                _popup.PopupCursor(Loc.GetString("plant-holder-component-no-weeds-message"), args.User);
+-            }
+-
+-            return;
+-        }
+-
+-        // Shovel removes the currently planted entity.
+-        if (HasComp<ShovelComponent>(args.Used))
+-        {
+-            args.Handled = true;
+             if (TryGetPlant(ent.AsNullable(), out var plantUid))
+-            {
+-                _popup.PopupCursor(
+-                    Loc.GetString("plant-holder-component-remove-plant-message", ("name", MetaData(uid).EntityName)),
+-                    args.User,
+-                    PopupType.Medium);
+-                _popup.PopupEntity(
+-                    Loc.GetString("plant-holder-component-remove-plant-others-message",
+-                        ("name", MetaData(args.User).EntityName)),
+-                    uid,
+-                    Filter.PvsExcept(args.User),
+-                    true);
+-                _plant.RemovePlant(plantUid.Value);
+-            }
+-            else
+-            {
+-                _popup.PopupCursor(
+-                    Loc.GetString("plant-holder-component-no-plant-message", ("name", MetaData(uid).EntityName)),
+-                    args.User);
+-            }
+-
+-            return;
+-        }
+-
+-        // Composting produce is tray interaction (tray stores reagents/resources).
+-        if (TryComp<ProduceComponent>(args.Used, out var produce))
+-        {
+-            args.Handled = true;
+-            _popup.PopupCursor(Loc.GetString("plant-holder-component-compost-message",
+-                    ("owner", uid),
+-                    ("usingItem", args.Used)),
+-                args.User,
+-                PopupType.Medium);
+-            _popup.PopupEntity(Loc.GetString("plant-holder-component-compost-others-message",
+-                    ("user", Identity.Entity(args.User, EntityManager)),
+-                    ("usingItem", args.Used),
+-                    ("owner", uid)),
+-                uid,
+-                Filter.PvsExcept(args.User),
+-                true);
+-
+-            if (_solutionContainer.TryGetSolution(args.Used, produce.SolutionName, out var soln2, out var solution2))
+-            {
+-                if (_solutionContainer.ResolveSolution(uid, tray.SoilSolutionName, ref tray.SoilSolution, out var solution1))
+-                {
+-                    // We try to fit as much of the composted plant's contained solution into the hydroponics tray as we can,
+-                    // since the plant will be consumed anyway.
+-                    var fillAmount = FixedPoint2.Min(solution2.Volume, solution1.AvailableVolume);
+-                    _solutionContainer.TryAddSolution(tray.SoilSolution.Value, _solutionContainer.SplitSolution(soln2.Value, fillAmount));
+-
+-                    if (TryGetPlant(ent.AsNullable(), out var plantUid))
+-                        _plant.ForceUpdateByExternalCause(plantUid.Value);
+-                }
+-            }
++                args.PushMarkup(Loc.GetString("plant-holder-component-nothing-planted-message"));
+ 
+-            var plantData = produce.PlantData;
+-            if (plantData != null &&
+-                plantData.TryGetComponent(_componentFactory, out PlantComponent? compostPlant))
+-            {
+-                var nutrientBonus = compostPlant.Potency / 2.5f;
+-                AdjustNutrient(ent.AsNullable(), nutrientBonus);
+-            }
++            args.PushMarkup(Loc.GetString("plant-holder-component-water-level-message",
++                ("waterLevel", (int)ent.Comp.WaterLevel)));
++            args.PushMarkup(Loc.GetString("plant-holder-component-nutrient-level-message",
++                ("nutritionLevel", (int)ent.Comp.NutritionLevel)));
+ 
+-            QueueDel(args.Used);
++            args.PushMarkup(GetTrayWarningsMarkup(ent.AsNullable()));
++            if (plantUid != null && ent.Comp.DrawWarnings)
++                args.PushMarkup(_plant.GetPlantWarningsMarkup(plantUid.Value));
+         }
+     }
+ 
+@@ -270,6 +89,10 @@ public override void Update(float frameTime)
+             tray.NextUpdate = _gameTiming.CurTime + tray.UpdateDelay;
+             UpdateWarnings(uid);
+             UpdateReagents(uid);
++            GrowthWeeds(uid);
++
++            var ev = new TrayUpdateEvent();
++            RaiseLocalEvent(uid, ref ev);
+         }
+     }
+ 
+@@ -279,22 +102,22 @@ public override void Update(float frameTime)
+     [PublicAPI]
+     public void UpdateWarnings(Entity<PlantTrayComponent?> ent)
+     {
+-        var (uid, component) = ent;
++        var (trayUid, trayComp) = ent;
+ 
+-        if (!Resolve(uid, ref component, false))
++        if (!Resolve(trayUid, ref trayComp, false))
+             return;
+ 
+-        if (!component.DrawWarnings)
++        if (!trayComp.DrawWarnings)
+             return;
+ 
+-        if (!TryComp<AppearanceComponent>(uid, out var app))
++        if (!TryComp<AppearanceComponent>(trayUid, out var app))
+             return;
+ 
+         if (!TryGetPlant(ent, out var plantUid))
+         {
+-            _appearance.SetData(uid, PlantTrayVisuals.HealthLight, false, app);
+-            _appearance.SetData(uid, PlantTrayVisuals.AlertLight, false, app);
+-            _appearance.SetData(uid, PlantTrayVisuals.HarvestLight, false, app);
++            _appearance.SetData(trayUid, PlantTrayVisuals.HealthLight, false, app);
++            _appearance.SetData(trayUid, PlantTrayVisuals.AlertLight, false, app);
++            _appearance.SetData(trayUid, PlantTrayVisuals.HarvestLight, false, app);
+             return;
+         }
+ 
+@@ -304,15 +127,15 @@ public void UpdateWarnings(Entity<PlantTrayComponent?> ent)
+             return;
+ 
+         // TODO: dehardcode those alert levels.
+-        _appearance.SetData(uid, PlantTrayVisuals.HealthLight, plantHolder.Health <= plant.Endurance / 2f, app);
+-        _appearance.SetData(uid, PlantTrayVisuals.WaterLight, component.WaterLevel <= 15, app);
+-        _appearance.SetData(uid, PlantTrayVisuals.NutritionLight, component.NutritionLevel <= 8, app);
+-        _appearance.SetData(uid,
++        _appearance.SetData(trayUid, PlantTrayVisuals.HealthLight, plantHolder.Health <= plant.Endurance / 2f, app);
++        _appearance.SetData(trayUid, PlantTrayVisuals.WaterLight, trayComp.WaterLevel <= 15, app);
++        _appearance.SetData(trayUid, PlantTrayVisuals.NutritionLight, trayComp.NutritionLevel <= 8, app);
++        _appearance.SetData(trayUid,
+             PlantTrayVisuals.AlertLight,
+-            component.WeedLevel >= 5 || plantHolder.PestLevel >= 5 || plantHolder.Toxins >= 40 || plantHolder.ImproperHeat
+-            || plantHolder.ImproperPressure || plantHolder.MissingGas > 0,
++            trayComp.WeedLevel >= 5 || plantHolder.PestLevel >= 5 || plantHolder.Toxins >= 40 || plantHolder.ImproperHeat
++            || plantHolder.ImproperPressure || plantHolder.MissingGas,
+             app);
+-        _appearance.SetData(uid, PlantTrayVisuals.HarvestLight, harvest is { ReadyForHarvest: true }, app);
++        _appearance.SetData(trayUid, PlantTrayVisuals.HarvestLight, harvest is { ReadyForHarvest: true }, app);
+     }
+ 
+     /// <summary>
+@@ -321,12 +144,12 @@ public void UpdateWarnings(Entity<PlantTrayComponent?> ent)
+     [PublicAPI]
+     public void UpdateReagents(Entity<PlantTrayComponent?> ent)
+     {
+-        var (uid, component) = ent;
++        var (trayUid, trayComp) = ent;
+ 
+-        if (!Resolve(uid, ref component, false))
++        if (!Resolve(trayUid, ref trayComp, false))
+             return;
+ 
+-        if (!_solutionContainer.ResolveSolution(uid, component.SoilSolutionName, ref component.SoilSolution, out var solution))
++        if (!_solutionContainer.ResolveSolution(trayUid, trayComp.SoilSolutionName, ref trayComp.SoilSolution, out var solution))
+             return;
+ 
+         if (!TryGetPlant(ent, out var plantUid))
+@@ -337,31 +160,52 @@ public void UpdateReagents(Entity<PlantTrayComponent?> ent)
+ 
+         if (solution.Volume > 0 && plantHolder.MutationLevel < 25)
+         {
+-            var contents = component.SoilSolution.Value.Comp.Solution.Contents.ToArray();
++            var contents = trayComp.SoilSolution.Value.Comp.Solution.Contents.ToArray();
+ 
+             foreach (var entry in contents)
+             {
+                 var reagentProto = _prototype.Index<ReagentPrototype>(entry.Reagent.Prototype);
+-                _entityEffects.ApplyEffects(uid, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
++                _entityEffects.ApplyEffects(trayUid, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
+                 _entityEffects.ApplyEffects(plantUid.Value, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
+             }
+ 
+-            _solutionContainer.RemoveEachReagent(component.SoilSolution.Value, FixedPoint2.New(1));
++            _solutionContainer.RemoveEachReagent(trayComp.SoilSolution.Value, FixedPoint2.New(1));
+         }
+     }
+ 
++    private void GrowthWeeds(Entity<PlantTrayComponent?> ent)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return;
++
++        if (ent.Comp is not { WaterLevel: > 10, NutritionLevel: > 5 })
++            return;
++
++        if (TryGetPlant(ent, out var plantUid))
++        {
++            if (!TryComp<WeedPestGrowthComponent>(plantUid.Value, out var weedPestGrowth))
++                return;
++
++            if (ent.Comp.WeedLevel > weedPestGrowth.WeedTolerance)
++                _plantHolder.AdjustsHealth(plantUid.Value, -weedPestGrowth.WeedDamageAmount);
++        }
++
++        if (_random.Prob(ent.Comp.WeedGrowthChance))
++            AdjustWeed(ent, ent.Comp.WeedGrowthAmount);
++    }
++
+     /// <summary>
+     /// Planting a plant in a tray.
+     /// </summary>
+     [PublicAPI]
+-    public void PlantingPlantInTray(Entity<PlantTrayComponent?> trayEnt, EntityUid plantUid)
++    public void PlantingPlantInTray(Entity<PlantTrayComponent?> trayEnt, EntityUid plantUid, float? healthOverride = null)
+     {
+         var (trayUid, trayComp) = trayEnt;
+ 
+         if (!Resolve(trayUid, ref trayComp, false))
+             return;
+ 
+-        _plant.PlantingPlant(plantUid);
++        _plant.PlantingPlant(plantUid, healthOverride);
+         _transform.SetCoordinates(plantUid, Transform(trayUid).Coordinates);
+         _transform.SetParent(plantUid, trayUid);
+         trayComp.PlantEntity = plantUid;
+@@ -373,12 +217,11 @@ public void PlantingPlantInTray(Entity<PlantTrayComponent?> trayEnt, EntityUid p
+     [PublicAPI]
+     public void AdjustNutrient(Entity<PlantTrayComponent?> ent, float amount)
+     {
+-        var (uid, component) = ent;
+-
+-        if (!Resolve(uid, ref component, false))
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
+             return;
+ 
+-        component.NutritionLevel += amount;
++        ent.Comp.NutritionLevel += amount;
++        ent.Comp.NutritionLevel = MathHelper.Clamp(ent.Comp.NutritionLevel, 0f, ent.Comp.MaxNutritionLevel);
+     }
+ 
+     /// <summary>
+@@ -387,18 +230,30 @@ public void AdjustNutrient(Entity<PlantTrayComponent?> ent, float amount)
+     [PublicAPI]
+     public void AdjustWater(Entity<PlantTrayComponent?> ent, float amount)
+     {
+-        var (uid, component) = ent;
+-
+-        if (!Resolve(uid, ref component, false))
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
+             return;
+ 
+-        component.WaterLevel += amount;
++        ent.Comp.WaterLevel += amount;
++        ent.Comp.WaterLevel = MathHelper.Clamp(ent.Comp.WaterLevel, 0f, ent.Comp.MaxWaterLevel);
+ 
+         // Water dilutes toxins.
+         if (TryGetPlant(ent, out var plantUid))
+             _plantHolder.AdjustsToxins(plantUid.Value, -amount * 4f);
+     }
+ 
++    /// <summary>
++    /// Adjusts the weed level of the tray.
++    /// </summary>
++    [PublicAPI]
++    public void AdjustWeed(Entity<PlantTrayComponent?> ent, float amount)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return;
++
++        ent.Comp.WeedLevel += amount * ent.Comp.WeedCoefficient;
++        ent.Comp.WeedLevel = MathHelper.Clamp(ent.Comp.WeedLevel, 0f, ent.Comp.MaxWeedLevel);
++    }
++
+     /// <summary>
+     /// Tries to get the plant entity in the tray.
+     /// </summary>
+@@ -411,7 +266,10 @@ public bool TryGetPlant(Entity<PlantTrayComponent?> ent, [NotNullWhen(true)] out
+ 
+         plant = ent.Comp.PlantEntity;
+         if (plant == null || Deleted(plant))
++        {
++            ent.Comp.PlantEntity = null;
+             return false;
++        }
+ 
+         return true;
+     }
+@@ -420,26 +278,37 @@ public bool TryGetPlant(Entity<PlantTrayComponent?> ent, [NotNullWhen(true)] out
+     /// Tries to get the living plant entity in the tray.
+     /// </summary>
+     [PublicAPI]
+-    public bool TryGetAlivePlant(
+-        Entity<PlantTrayComponent?> ent,
+-        [NotNullWhen(true)] out EntityUid? plant,
+-        [NotNullWhen(true)] out PlantHolderComponent? holder
+-    )
++    public bool TryGetAlivePlant(Entity<PlantTrayComponent?> ent, [NotNullWhen(true)] out EntityUid? plant)
+     {
+         plant = null;
+-        holder = null;
+         if (!Resolve(ent.Owner, ref ent.Comp))
+             return false;
+ 
+         if (!TryGetPlant(ent.Owner, out plant))
+             return false;
+ 
+-        if (!TryComp(plant, out holder))
+-            return false;
++        return !_plantHolder.IsDead(ent.Owner);
++    }
+ 
+-        if (holder.Dead)
+-            return false;
++    /// <summary>
++    /// Gets the warnings markup of the tray.
++    /// </summary>
++    [PublicAPI]
++    public string GetTrayWarningsMarkup(Entity<PlantTrayComponent?> ent)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return string.Empty;
+ 
+-        return true;
++        var markup = string.Empty;
++        if (ent.Comp.WeedLevel >= 5)
++            markup += "\n" + Loc.GetString("plant-holder-component-weed-high-level-message");
++
++        return markup;
+     }
+ }
++
++/// <summary>
++/// Event raised when a tray is updated.
++/// </summary>
++[ByRefEvent]
++public readonly record struct TrayUpdateEvent;
+diff --git a/Content.Server/Botany/Systems/SeedExtractorSystem.cs b/Content.Server/Botany/Systems/SeedExtractorSystem.cs
+index 9573ebb259..f185f561f8 100644
+--- a/Content.Server/Botany/Systems/SeedExtractorSystem.cs
++++ b/Content.Server/Botany/Systems/SeedExtractorSystem.cs
+@@ -13,6 +13,7 @@ public sealed class SeedExtractorSystem : EntitySystem
+     [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly PopupSystem _popup = default!;
+     [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+ 
+     public override void Initialize()
+     {
+@@ -36,15 +37,18 @@ private void OnInteractUsing(EntityUid uid, SeedExtractorComponent seedExtractor
+         if (produce.PlantData != null)
+             snapshot = produce.PlantData;
+ 
+-        if (_botany.TryGetPlantComponent<PlantTraitsComponent>(snapshot, produce.PlantProtoId, out var traits) && traits.Seedless)
++        if (_botany.TryGetPlantComponent<PlantTraitsComponent>(snapshot, produce.PlantProtoId, out var traits) &&
++            _plantTraits.TryGetTrait<TraitSeedless>(traits, out _))
+         {
+             _popup.PopupCursor(Loc.GetString("seed-extractor-component-no-seeds", ("name", args.Used)),
+-                args.User, PopupType.MediumCaution);
++                args.User,
++                PopupType.MediumCaution);
+             return;
+         }
+ 
+         _popup.PopupCursor(Loc.GetString("seed-extractor-component-interact-message", ("name", args.Used)),
+-            args.User, PopupType.Medium);
++            args.User,
++            PopupType.Medium);
+ 
+         QueueDel(args.Used);
+         args.Handled = true;
+diff --git a/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Kudzu.cs b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Kudzu.cs
+new file mode 100644
+index 0000000000..d1926c020f
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Kudzu.cs
+@@ -0,0 +1,52 @@
++using Content.Server.Botany.Components;
++using Robust.Server.GameObjects;
++using Robust.Shared.Prototypes;
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// As the plant grows, it increases the <see cref="PlantTrayComponent.WeedLevel"/>.
++/// Once the limit is exceeded, it kills the plant and creates kudzu.
++/// </summary>
++[DataDefinition]
++public sealed partial class TraitKudzu : PlantTrait
++{
++    /// <summary>
++    /// Which kind of kudzu this plant will turn into if it kuzuifies.
++    /// </summary>
++    [DataField]
++    public EntProtoId KudzuPrototype = "WeakKudzu";
++
++    /// <summary>
++    /// Weed level threshold at which the plant is considered overgrown and will transform into kudzu.
++    /// </summary>
++    [DataField]
++    public float WeedLevelThreshold = 10f;
++
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantTraySystem _plantTray = default!;
++    [Dependency] private readonly PlantTraitsSystem _plantTrait = default!;
++    [Dependency] private readonly TransformSystem _transform = default!;
++
++    public override void OnPlantGrow(Entity<PlantTraitsComponent> ent, ref OnPlantGrowEvent args)
++    {
++        if (args.Tray.Comp == null)
++            return;
++
++        if (args.Tray.Comp is { WaterLevel: > 10, NutritionLevel: > 5 })
++            _plantTray.AdjustWeed(args.Tray.AsNullable(), 1);
++
++        // Handle kudzu transformation.
++        if (args.Tray.Comp.WeedLevel >= WeedLevelThreshold)
++        {
++            Spawn(KudzuPrototype, _transform.GetMapCoordinates(ent.Owner));
++            _plantTrait.DelTrait(ent.AsNullable(), this);
++            _plantHolder.Die(ent.Owner);
++        }
++    }
++
++    public override IEnumerable<string> GetPlantStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-kudzu");
++    }
++}
+diff --git a/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Ligneous.cs b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Ligneous.cs
+new file mode 100644
+index 0000000000..c413bf2412
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Ligneous.cs
+@@ -0,0 +1,67 @@
++using Content.Server.Botany.Components;
++using Content.Server.Botany.Events;
++using Robust.Server.GameObjects;
++using Robust.Shared.Prototypes;
++using Content.Shared.Interaction;
++using Content.Shared.Kitchen.Components;
++using Content.Server.Popups;
++using Content.Shared.Tools;
++
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// The plant becomes ligneous, preventing it from being harvested without special tools
++/// </summary>
++[DataDefinition]
++public sealed partial class TraitLigneous : PlantTrait
++{
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly MutationSystem _mutation = default!;
++    [Dependency] private readonly PlantTraySystem _plantTray = default!;
++    [Dependency] private readonly IEntityManager _entityManager = default!;
++    [Dependency] private readonly TransformSystem _transform = default!;
++    [Dependency] private readonly PlantHarvestSystem _plantHarvest = default!;
++    [Dependency] private readonly PopupSystem _popup = default!;
++
++    public override void OnInteractUsing(Entity<PlantTraitsComponent> ent, ref InteractUsingEvent args)
++    {
++        if (args.Handled)
++            return;
++
++        if (!TryComp<PlantComponent>(ent.Owner, out var plant)
++            || !TryComp<PlantHarvestComponent>(ent.Owner, out var harvest))
++            return;
++
++        if (!harvest.ReadyForHarvest)
++            return;
++
++        if (_plantHolder.IsDead(ent.Owner))
++        {
++            _popup.PopupCursor(Loc.GetString("plant-holder-component-dead-plant-message"), args.User);
++            return;
++        }
++
++        // ligneous requires sharp tool.
++        if (!HasComp<SharpComponent>(args.Used))
++        {
++            _popup.PopupCursor(Loc.GetString("plant-holder-component-ligneous-cant-harvest-message"), args.User);
++            return;
++        }
++
++        _plantHarvest.TryHandleHarvest((ent.Owner, harvest), (ent.Owner, plant), args.User);
++        args.Handled = true;
++    }
++
++    public override void OnDoHarvest(Entity<PlantTraitsComponent> ent, ref DoHarvestEvent args)
++    {
++        _popup.PopupCursor(Loc.GetString("plant-holder-component-ligneous-cant-harvest-message"), args.User);
++        args.Cancel();
++    }
++
++    public override IEnumerable<string> GetPlantStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-ligneous");
++    }
++}
+diff --git a/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Sampled.cs b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Sampled.cs
+new file mode 100644
+index 0000000000..dbc1c18b9c
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Sampled.cs
+@@ -0,0 +1,26 @@
++using Content.Server.Botany.Components;
++using Content.Server.Botany.Events;
++using Content.Server.Popups;
++
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// The plant has been sampled, preventing it from being sampled again.
++/// </summary>
++[DataDefinition]
++public sealed partial class TraitSampled : PlantTrait
++{
++    [Dependency] private readonly PopupSystem _popup = default!;
++
++    public override void OnPlantSampleAttempt(Entity<PlantTraitsComponent> ent, ref PlantSampleAttemptEvent args)
++    {
++        _popup.PopupCursor(Loc.GetString("plant-holder-component-already-sampled-message"), args.User);
++        args.Cancel();
++    }
++
++    public override IEnumerable<string> GetPlantStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-sampled");
++    }
++}
+diff --git a/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Scream.cs b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Scream.cs
+new file mode 100644
+index 0000000000..372adf072c
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Scream.cs
+@@ -0,0 +1,32 @@
++using Content.Server.Botany.Components;
++using Robust.Server.GameObjects;
++using Robust.Shared.Audio.Systems;
++using Robust.Shared.Audio;
++using Robust.Shared.Prototypes;
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// Plays a screams when the plant is harvested.
++/// </summary>
++[DataDefinition]
++public sealed partial class TraitScream : PlantTrait
++{
++    /// <summary>
++    /// The sound to play when the plant screams.
++    /// </summary>
++    [DataField]
++    public SoundSpecifier ScreamSound = new SoundCollectionSpecifier("PlantScreams");
++
++    [Dependency] private readonly SharedAudioSystem _audio = default!;
++
++    public override void OnAfterDoHarvest(Entity<PlantTraitsComponent> ent, ref AfterDoHarvestEvent args)
++    {
++        _audio.PlayPvs(ScreamSound, ent.Owner);
++    }
++
++    public override IEnumerable<string> GetPlantStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-scream");
++    }
++}
+diff --git a/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Seedless.cs b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Seedless.cs
+new file mode 100644
+index 0000000000..7420e24761
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Seedless.cs
+@@ -0,0 +1,16 @@
++using Content.Server.Botany.Components;
++using Content.Server.Popups;
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// The produce of the plant become seedless, which makes it impossible to extract seeds from them.
++/// </summary>
++[DataDefinition]
++public sealed partial class TraitSeedless : PlantTrait
++{
++    public override IEnumerable<string> GetPlantStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-seedless");
++    }
++}
+diff --git a/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Unviable.cs b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Unviable.cs
+new file mode 100644
+index 0000000000..d84266fc7f
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.Unviable.cs
+@@ -0,0 +1,36 @@
++using Content.Server.Botany.Components;
++using Content.Server.Botany.Events;
++using Content.Server.Popups;
++using Robust.Shared.Localization;
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// The plant stops growing and dies quickly.
++/// Adds a bit of challenge to keep mutated plants alive via Unviable's frequency.
++/// </summary>
++[DataDefinition]
++public sealed partial class TraitUnviable : PlantTrait
++{
++    /// <summary>
++    /// Amount of damage dealt to the plant per growth tick with unviable.
++    /// </summary>
++    [DataField]
++    public float UnviableDamage = 6f;
++
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantHarvestSystem _plantHarvest = default!;
++    [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly MutationSystem _mutation = default!;
++
++    public override void OnPlantGrow(Entity<PlantTraitsComponent> ent, ref OnPlantGrowEvent args)
++    {
++        _plantHarvest.AffectGrowth(ent.Owner, -1);
++        _plantHolder.AdjustsHealth(ent.Owner, -UnviableDamage);
++    }
++
++    public override IEnumerable<string> GetPlantStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-unviable");
++    }
++}
+diff --git a/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.cs b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.cs
+new file mode 100644
+index 0000000000..fe3217d820
+--- /dev/null
++++ b/Content.Server/Botany/Systems/Traits/PlantTraitsSystem.cs
+@@ -0,0 +1,165 @@
++using System.Linq;
++using System.Diagnostics.CodeAnalysis;
++using JetBrains.Annotations;
++using Content.Server.Botany.Components;
++using Content.Server.Botany.Events;
++using Content.Shared.Interaction;
++
++namespace Content.Server.Botany.Systems;
++
++/// <summary>
++/// Base system for managing plant traits.
++/// </summary>
++public sealed class PlantTraitsSystem : EntitySystem
++{
++    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
++    [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly MutationSystem _mutation = default!;
++
++    public override void Initialize()
++    {
++        base.Initialize();
++
++        SubscribeLocalEvent<PlantTraitsComponent, ComponentInit>(OnInit);
++
++        SubscribeLocalEvent<PlantTraitsComponent, PlantCrossPollinateEvent>(OnCrossPollinate);
++        SubscribeLocalEvent<PlantTraitsComponent, OnPlantGrowEvent>(OnPlantGrow);
++        SubscribeLocalEvent<PlantTraitsComponent, DoHarvestEvent>(OnDoHarvest);
++        SubscribeLocalEvent<PlantTraitsComponent, AfterDoHarvestEvent>(OnAfterDoHarvest);
++        SubscribeLocalEvent<PlantTraitsComponent, InteractUsingEvent>(OnInteractUsing);
++        SubscribeLocalEvent<PlantTraitsComponent, PlantSampleAttemptEvent>(OnPlantSampleAttempt);
++    }
++
++    private void OnCrossPollinate(Entity<PlantTraitsComponent> ent, ref PlantCrossPollinateEvent args)
++    {
++        if (!_botany.TryGetPlantComponent<PlantTraitsComponent>(args.PollenData, args.PollenProtoId, out var pollenData))
++            return;
++
++        _mutation.CrossTrait(ref ent, pollenData.Traits);
++    }
++
++    private void OnPlantGrow(Entity<PlantTraitsComponent> ent, ref OnPlantGrowEvent args)
++    {
++        foreach (var trait in ent.Comp.Traits.ToArray())
++        {
++            trait.OnPlantGrow(ent, ref args);
++        }
++    }
++
++    private void OnDoHarvest(Entity<PlantTraitsComponent> ent, ref DoHarvestEvent args)
++    {
++        foreach (var trait in ent.Comp.Traits.ToArray())
++        {
++            trait.OnDoHarvest(ent, ref args);
++        }
++    }
++
++    private void OnAfterDoHarvest(Entity<PlantTraitsComponent> ent, ref AfterDoHarvestEvent args)
++    {
++        foreach (var trait in ent.Comp.Traits.ToArray())
++        {
++            trait.OnAfterDoHarvest(ent, ref args);
++        }
++    }
++
++    private void OnInteractUsing(Entity<PlantTraitsComponent> ent, ref InteractUsingEvent args)
++    {
++        foreach (var trait in ent.Comp.Traits.ToArray())
++        {
++            trait.OnInteractUsing(ent, ref args);
++        }
++    }
++
++    private void OnInit(Entity<PlantTraitsComponent> ent, ref ComponentInit args)
++    {
++        var deps = _entitySystemManager.DependencyCollection;
++        foreach (var trait in ent.Comp.Traits)
++        {
++            deps.InjectDependencies(trait);
++        }
++    }
++
++    private void OnPlantSampleAttempt(Entity<PlantTraitsComponent> ent, ref PlantSampleAttemptEvent args)
++    {
++        foreach (var trait in ent.Comp.Traits.ToArray())
++        {
++            trait.OnPlantSampleAttempt(ent, ref args);
++        }
++    }
++
++    /// <summary>
++    /// Tries to get a trait from the plant traits component.
++    /// </summary>
++    [PublicAPI]
++    public bool TryGetTrait<T>(PlantTraitsComponent component, [NotNullWhen(true)] out T? trait)
++        where T : PlantTrait
++    {
++        trait = null;
++        foreach (var existing in component.Traits)
++        {
++            if (existing is T t)
++            {
++                trait = t;
++                return true;
++            }
++        }
++
++        return false;
++    }
++
++    /// <summary>
++    /// Removes a trait from the plant traits component.
++    /// </summary>
++    [PublicAPI]
++    public void DelTrait(Entity<PlantTraitsComponent?> ent, PlantTrait trait)
++    {
++        if (!Resolve(ent, ref ent.Comp, false))
++            return;
++
++        ent.Comp.Traits.RemoveAll(t => t.GetType() == trait.GetType());
++    }
++
++    /// <summary>
++    /// Adds a trait to the plant traits component.
++    /// </summary>
++    [PublicAPI]
++    public void AddTrait(Entity<PlantTraitsComponent?> ent, PlantTrait trait)
++    {
++        if (!Resolve(ent, ref ent.Comp, false))
++            return;
++
++        if (ent.Comp.Traits.Any(t => t.GetType() == trait.GetType()))
++            return;
++
++        _entitySystemManager.DependencyCollection.InjectDependencies(trait);
++        ent.Comp.Traits.Add(trait);
++    }
++}
++
++public abstract class PlantTrait : EntitySystem
++{
++    public virtual void OnPlantGrow(Entity<PlantTraitsComponent> ent, ref OnPlantGrowEvent args)
++    {
++    }
++
++    public virtual void OnDoHarvest(Entity<PlantTraitsComponent> ent, ref DoHarvestEvent args)
++    {
++    }
++
++    public virtual void OnAfterDoHarvest(Entity<PlantTraitsComponent> ent, ref AfterDoHarvestEvent args)
++    {
++    }
++
++    public virtual void OnInteractUsing(Entity<PlantTraitsComponent> ent, ref InteractUsingEvent args)
++    {
++    }
++
++    public virtual void OnPlantSampleAttempt(Entity<PlantTraitsComponent> ent, ref PlantSampleAttemptEvent args)
++    {
++    }
++
++    public virtual IEnumerable<string> GetPlantStateMarkup()
++    {
++        yield break;
++    }
++}
+diff --git a/Content.Server/Botany/Systems/UnviableGrowthSystem.cs b/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
+deleted file mode 100644
+index e5565af7d7..0000000000
+--- a/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
++++ /dev/null
+@@ -1,28 +0,0 @@
+-using Content.Server.Botany.Components;
+-
+-namespace Content.Server.Botany.Systems;
+-
+-/// <summary>
+-/// Applies a death chance and damage to unviable plants each growth tick, updating visuals when necessary.
+-/// </summary>
+-public sealed class UnviableGrowthSystem : EntitySystem
+-{
+-    [Dependency] private readonly BasicGrowthSystem _basicGrowth = default!;
+-    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+-
+-    public override void Initialize()
+-    {
+-        SubscribeLocalEvent<UnviableGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
+-    }
+-
+-    private void OnPlantGrow(Entity<UnviableGrowthComponent> ent, ref OnPlantGrowEvent args)
+-    {
+-        var (plantUid, component) = ent;
+-
+-        if (TryComp<PlantTraitsComponent>(plantUid, out var traits) && !traits.Viable)
+-        {
+-            _basicGrowth.AffectGrowth(plantUid, -1);
+-            _plantHolder.AdjustsHealth(plantUid, -component.UnviableDamage);
+-        }
+-    }
+-}
+diff --git a/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+index 41c5963519..2c430f7836 100644
+--- a/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+@@ -1,13 +1,12 @@
+ using Content.Server.Botany.Components;
+ using Content.Server.Botany.Events;
+-using Content.Shared.Coordinates.Helpers;
+ using Robust.Shared.Random;
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+ /// <summary>
+ /// Manages weed growth and pest damage per growth tick, and handles tray-level
+-/// weed spawning and kudzu transformation based on conditions.
++/// weed spawning.
+ /// </summary>
+ public sealed class WeedPestGrowthSystem : EntitySystem
+ {
+@@ -15,13 +14,11 @@ public sealed class WeedPestGrowthSystem : EntitySystem
+     [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly MutationSystem _mutation = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+-    [Dependency] private readonly PlantTraySystem _plantTray = default!;
+ 
+     public override void Initialize()
+     {
+         SubscribeLocalEvent<WeedPestGrowthComponent, PlantCrossPollinateEvent>(OnCrossPollinate);
+         SubscribeLocalEvent<WeedPestGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
+-        SubscribeLocalEvent<PlantTrayComponent, OnPlantGrowEvent>(OnTrayUpdate);
+     }
+ 
+     private void OnCrossPollinate(Entity<WeedPestGrowthComponent> ent, ref PlantCrossPollinateEvent args)
+@@ -35,63 +32,13 @@ private void OnCrossPollinate(Entity<WeedPestGrowthComponent> ent, ref PlantCros
+ 
+     private void OnPlantGrow(Entity<WeedPestGrowthComponent> ent, ref OnPlantGrowEvent args)
+     {
+-        var (plantUid, component) = ent;
+-
+-        if (args.Tray.Comp == null)
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder))
+             return;
+ 
+-        // Weed growth.
+-        if (_random.Prob(component.WeedGrowthChance))
+-            args.Tray.Comp.WeedLevel += component.WeedGrowthAmount;
+-
+-        // Pest damage.
+-        if (_random.Prob(component.PestDamageChance))
+-            _plantHolder.AdjustsHealth(plantUid, -component.PestDamageAmount);
+-    }
+-
+-    /// <summary>
+-    /// Handles weed growth and kudzu transformation for plant holder trays.
+-    /// </summary>
+-    private void OnTrayUpdate(Entity<PlantTrayComponent> ent, ref OnPlantGrowEvent args)
+-    {
+-        var (uid, component) = ent;
+-
+-        if (_plantTray.TryGetPlant(ent.AsNullable(), out var plant))
+-        {
+-            if (!TryComp(plant, out PlantTraitsComponent? traits)
+-                || !TryComp(plant, out WeedPestGrowthComponent? weed)
+-                || !TryComp(plant, out PlantHolderComponent? holder))
+-                return;
+-
+-            // Weeds like water and nutrients! They may appear even if there's not a seed planted.
+-            if (component is { WaterLevel: > 10, NutritionLevel: > 5 })
+-            {
+-                float chance;
+-                if (traits.TurnIntoKudzu)
+-                    chance = 1f;
+-                else
+-                    chance = 0.01f;
+-
+-                if (_random.Prob(chance))
+-                    component.WeedLevel += 1 + component.WeedCoefficient;
+-            }
++        if (_random.Prob(ent.Comp.PestGrowthChance))
++            _plantHolder.AdjustsPests(ent.Owner, ent.Comp.PestGrowthAmount);
+ 
+-            // Handle kudzu transformation.
+-            if (traits.TurnIntoKudzu
+-                && component.WeedLevel >= weed.WeedHighLevelThreshold)
+-            {
+-                Spawn(traits.KudzuPrototype, Transform(uid).Coordinates.SnapToGrid(EntityManager));
+-                traits.TurnIntoKudzu = false;
+-                holder.Health = 0;
+-            }
+-        }
+-        else
+-        {
+-            if (component is { WaterLevel: > 10, NutritionLevel: > 5 })
+-            {
+-                if (_random.Prob(0.05f))
+-                    component.WeedLevel += 1 + component.WeedCoefficient;
+-            }
+-        }
++        if (holder.PestLevel > ent.Comp.PestTolerance)
++            _plantHolder.AdjustsHealth(ent.Owner, -ent.Comp.PestDamageAmount);
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustWeedsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustWeedsEntityEffectSystem.cs
+index 14c52204b1..70da4f7253 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustWeedsEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustWeedsEntityEffectSystem.cs
+@@ -16,9 +16,9 @@ public sealed partial class PlantAdjustWeedsEntityEffectSystem : EntityEffectSys
+ 
+     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustWeeds> args)
+     {
+-        if (!_plantTray.TryGetAlivePlant(entity.AsNullable(), out _, out _))
++        if (!_plantTray.TryGetAlivePlant(entity.AsNullable(), out _))
+             return;
+ 
+-        entity.Comp.WeedLevel += args.Effect.Amount;
++        _plantTray.AdjustWeed(entity.AsNullable(), args.Effect.Amount);
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAffectGrowthEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAffectGrowthEntityEffectSystem.cs
+index bf5bb541f1..735d6ea85a 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAffectGrowthEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAffectGrowthEntityEffectSystem.cs
+@@ -11,7 +11,7 @@ namespace Content.Server.EntityEffects.Effects.Botany.PlantAttributes;
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+ public sealed partial class PlantAffectGrowthEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantAffectGrowth>
+ {
+-    [Dependency] private readonly BasicGrowthSystem _plantGrowth = default!;
++    [Dependency] private readonly PlantHarvestSystem _plantHarvest = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantAffectGrowth> args)
+@@ -19,6 +19,6 @@ protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEv
+         if (_plantHolder.IsDead(entity.Owner))
+             return;
+ 
+-        _plantGrowth.AffectGrowth(entity.Owner, (int)args.Effect.Amount);
++        _plantHarvest.AffectGrowth(entity.Owner, (int)args.Effect.Amount);
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
+index f76668321e..52d3f5ade7 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
+@@ -12,8 +12,8 @@ namespace Content.Server.EntityEffects.Effects.Botany.PlantAttributes;
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+ public sealed partial class PlantChangeStatEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantChangeStat>
+ {
+-    // TODO: This is awful. I do not have the strength to refactor this. I want it gone.
+     [Dependency] private readonly IRobustRandom _random = default!;
++    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantChangeStat> args)
+@@ -22,43 +22,49 @@ protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEv
+             return;
+ 
+         var targetValue = args.Effect.TargetValue;
++        var targetComponent = args.Effect.TargetComponent;
+ 
+-        // Scan live plant growth components and mutate the first matching field.
+-        foreach (var growthComp in EntityManager.GetComponents<Component>(entity.Owner))
++        if (string.IsNullOrWhiteSpace(targetComponent))
++            return;
++
++        if (!_componentFactory.TryGetRegistration(targetComponent, out var registration))
++        {
++            Log.Error($"{nameof(PlantChangeStat)} Error: Component '{targetComponent}' is not a valid component name.");
++            return;
++        }
++
++        if (!EntityManager.TryGetComponent(entity.Owner, registration.Type, out var plantComp))
++            return;
++
++        var field = registration.Type.GetField(targetValue);
++        if (field == null)
+         {
+-            var componentType = growthComp.GetType();
+-            var field = componentType.GetField(targetValue);
+-
+-            if (field == null)
+-                continue;
+-
+-            var currentValue = field.GetValue(growthComp);
+-            if (currentValue == null)
+-                continue;
+-
+-            if (TryGetValue<float>(currentValue, out var floatVal))
+-            {
+-                MutateFloat(ref floatVal, args.Effect.MinValue, args.Effect.MaxValue, args.Effect.Steps);
+-                field.SetValue(growthComp, floatVal);
+-                return;
+-            }
+-
+-            if (TryGetValue<int>(currentValue, out var intVal))
+-            {
+-                MutateInt(ref intVal, (int)args.Effect.MinValue, (int)args.Effect.MaxValue, args.Effect.Steps);
+-                field.SetValue(growthComp, intVal);
+-                return;
+-            }
+-
+-            if (TryGetValue<bool>(currentValue, out var boolVal))
+-            {
+-                field.SetValue(growthComp, !boolVal);
+-                return;
+-            }
++            Log.Error($"{nameof(PlantChangeStat)} Error: Field '{targetValue}' not found on component '{targetComponent}'. Did you misspell it?");
++            return;
++        }
++
++        var currentValue = field.GetValue(plantComp);
++        if (currentValue == null)
++            return;
++
++        if (TryGetValue<float>(currentValue, out var floatVal))
++        {
++            MutateFloat(ref floatVal, args.Effect.MinValue, args.Effect.MaxValue, args.Effect.Steps);
++            field.SetValue(plantComp, floatVal);
++            return;
++        }
++
++        if (TryGetValue<int>(currentValue, out var intVal))
++        {
++            MutateInt(ref intVal, (int)args.Effect.MinValue, (int)args.Effect.MaxValue, args.Effect.Steps);
++            field.SetValue(plantComp, intVal);
++            return;
+         }
+ 
+-        // Field not found in any component.
+-        Log.Error($"{nameof(PlantChangeStat)} Error: Field '{targetValue}' not found in any plant component. Did you misspell it?");
++        if (TryGetValue<bool>(currentValue, out var boolVal))
++        {
++            field.SetValue(plantComp, !boolVal);
++        }
+     }
+ 
+     private bool TryGetValue<T>(object value, out T? result)
+@@ -73,40 +79,33 @@ private bool TryGetValue<T>(object value, out T? result)
+         return false;
+     }
+ 
++    // Thermometer-code helpers: map a value in [min, max] to an integer [0, bits] and move it by +-1 (biased toward the middle).
++    private static int GetThermometerBitsHigh(float val, float min, float max, int bits)
++    {
++        var thermometer = (int) MathF.Round((val - min) / (max - min) * bits);
++        return Math.Clamp(thermometer, 0, bits);
++    }
++
++    private int GetThermometerDelta(int thermometer, int bits)
++    {
++        var probIncrease = 1f - (float) thermometer / bits;
++        return _random.Prob(probIncrease) ? 1 : -1;
++    }
++
+     // Mutate reference 'val' between 'min' and 'max' by pretending the value
+     // is representable by a thermometer code with 'bits' number of bits and
+     // randomly flipping some of them.
+     private void MutateFloat(ref float val, float min, float max, int bits)
+     {
+-        if (min == max)
++        if (MathHelper.CloseTo(min, max))
+         {
+             val = min;
+             return;
+         }
+ 
+-        // Starting number of bits that are high, between 0 and bits.
+-        // In other words, it's val mapped linearly from range [min, max] to range [0, bits], and then rounded.
+-        var valInt = (int)MathF.Round((val - min) / (max - min) * bits);
+-        // val may be outside the range of min/max due to starting prototype values, so clamp.
+-        valInt = Math.Clamp(valInt, 0, bits);
+-
+-        // Probability that the bit flip increases n.
+-        // The higher the current value is, the lower the probability of increasing value is, and the higher the probability of decreasive it it.
+-        // In other words, it tends to go to the middle.
+-        var probIncrease = 1 - (float)valInt / bits;
+-        int valIntMutated;
+-        if (_random.Prob(probIncrease))
+-        {
+-            valIntMutated = valInt + 1;
+-        }
+-        else
+-        {
+-            valIntMutated = valInt - 1;
+-        }
+-
+-        // Set value based on mutated thermometer code.
+-        var valMutated = Math.Clamp((float)valIntMutated / bits * (max - min) + min, min, max);
+-        val = valMutated;
++        var thermometer = GetThermometerBitsHigh(val, min, max, bits);
++        thermometer += GetThermometerDelta(thermometer, bits);
++        val = Math.Clamp((float) thermometer / bits * (max - min) + min, min, max);
+     }
+ 
+     private void MutateInt(ref int val, int min, int max, int bits)
+@@ -117,27 +116,8 @@ private void MutateInt(ref int val, int min, int max, int bits)
+             return;
+         }
+ 
+-        // Starting number of bits that are high, between 0 and bits.
+-        // In other words, it's val mapped linearly from range [min, max] to range [0, bits], and then rounded.
+-        var valInt = (int)MathF.Round((val - min) / (max - min) * bits);
+-        // val may be outside the range of min/max due to starting prototype values, so clamp.
+-        valInt = Math.Clamp(valInt, 0, bits);
+-
+-        // Probability that the bit flip increases n.
+-        // The higher the current value is, the lower the probability of increasing value is, and the higher the probability of decreasing it.
+-        // In other words, it tends to go to the middle.
+-        var probIncrease = 1 - (float)valInt / bits;
+-        int valMutated;
+-        if (_random.Prob(probIncrease))
+-        {
+-            valMutated = val + 1;
+-        }
+-        else
+-        {
+-            valMutated = val - 1;
+-        }
+-
+-        valMutated = Math.Clamp(valMutated, min, max);
+-        val = valMutated;
++        var thermometer = GetThermometerBitsHigh(val, min, max, bits);
++        thermometer += GetThermometerDelta(thermometer, bits);
++        val = Math.Clamp(val + thermometer, min, max);
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs
+new file mode 100644
+index 0000000000..708ddc92b3
+--- /dev/null
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs
+@@ -0,0 +1,30 @@
++using Content.Server.Botany.Components;
++using Content.Server.Botany.Systems;
++using Content.Shared.EntityEffects;
++using Content.Shared.EntityEffects.Effects.Botany;
++using Robust.Shared.IoC;
++using Robust.Shared.Reflection;
++
++namespace Content.Server.EntityEffects.Effects.Botany;
++
++/// <summary>
++/// Entity effect that adds or removes a plant trait.
++/// </summary>
++/// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
++public sealed partial class PlantChangeTraitsEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantChangeTraits>
++{
++    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++
++    protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantChangeTraits> args)
++    {
++        // if (_plantHolder.IsDead(entity.Owner))
++        //     return;
++
++        // var trait = args.Effect.Trait;
++        // if (args.Effect.Remove)
++        //     _plantTraits.DelTrait(entity.Owner, trait);
++        // else
++        //     _plantTraits.AddTrait(entity.Owner, trait);
++    }
++}
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs
+index e1d3ceee06..88ac2da128 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs
+@@ -13,25 +13,23 @@ namespace Content.Server.EntityEffects.Effects.Botany.PlantAttributes;
+ public sealed partial class PlantCryoxadoneEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantCryoxadone>
+ {
+     [Dependency] private readonly IRobustRandom _random = default!;
++    [Dependency] private readonly PlantSystem _plant = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantHarvestSystem _plantHarvest = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantCryoxadone> args)
+     {
+         if (_plantHolder.IsDead(entity.Owner))
+             return;
+ 
+-        if (!TryComp<PlantHolderComponent>(entity, out var plantHolder)
+-            || !TryComp<PlantComponent>(entity, out var plantComp)
+-            || !TryComp<PlantHarvestComponent>(entity, out var harvest))
++        if (!TryComp<PlantHolderComponent>(entity, out var plantHolder))
+             return;
+ 
+-        var deviation = plantHolder.Age > plantComp.Maturation
+-            ? (int)Math.Max(plantComp.Maturation - 1, plantHolder.Age - _random.Next(7, 10))
+-            : (int)(plantComp.Maturation / plantComp.GrowthStages);
++        var deviation = plantHolder.Age > entity.Comp.Maturation
++            ? (int)Math.Max(entity.Comp.Maturation - 1, plantHolder.Age - _random.Next(7, 10))
++            : (int)(entity.Comp.Maturation / entity.Comp.GrowthStages);
+ 
+-        plantHolder.Age -= deviation;
+-        plantHolder.SkipAging++;
+-        plantHolder.ForceUpdate = true;
+-        harvest.LastHarvest = plantHolder.Age;
++        _plantHarvest.AffectGrowth(entity.Owner, -deviation);
++        _plant.ForceUpdateByExternalCause(entity.AsNullable());
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
+index 523dcd23a3..f54f052587 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
+@@ -15,21 +15,18 @@ public sealed partial class PlantDestroySeedsEntityEffectSystem : EntityEffectSy
+ {
+     [Dependency] private readonly PopupSystem _popup = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantDestroySeeds> args)
+     {
+         if (_plantHolder.IsDead(entity.Owner))
+             return;
+ 
+-        if (!TryComp<PlantTraitsComponent>(entity, out var traits)
+-            || traits.Seedless)
+-            return;
+-
+         _popup.PopupEntity(
+             Loc.GetString("botany-plant-seedsdestroyed"),
+             entity,
+             PopupType.SmallCaution
+         );
+-        traits.Seedless = true;
++        _plantTraits.AddTrait(entity.Owner, new TraitSeedless());
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs
+index 15e8a2771d..fdc26e3541 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs
+@@ -14,19 +14,17 @@ public sealed partial class PlantDiethylamineEntityEffectSystem : EntityEffectSy
+ {
+     [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantSystem _plant = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantDiethylamine> args)
+     {
+         if (_plantHolder.IsDead(entity.Owner))
+             return;
+ 
+-        if (!TryComp<PlantComponent>(entity, out var plant))
+-            return;
+-
+         if (_random.Prob(0.1f))
+-            plant.Lifespan++;
++            _plant.AdjustLifespan(entity.AsNullable(), 1);
+ 
+         if (_random.Prob(0.1f))
+-            plant.Endurance++;
++            _plant.AdjustEndurance(entity.AsNullable(), 1);
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
+index a669c21b70..fb65db17fe 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
+@@ -12,15 +12,13 @@ namespace Content.Server.EntityEffects.Effects.Botany.PlantAttributes;
+ public sealed partial class PlantPhalanximineEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantPhalanximine>
+ {
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantTraitsSystem _plantTrait = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantPhalanximine> args)
+     {
+         if (_plantHolder.IsDead(entity.Owner))
+             return;
+ 
+-        if (!TryComp<PlantTraitsComponent>(entity, out var traits))
+-            return;
+-
+-        traits.Viable = true;
++        _plantTrait.DelTrait(entity.Owner, new TraitUnviable());
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
+index 604c2c73bc..29984ba26d 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
+@@ -14,17 +14,14 @@ public sealed partial class PlantRestoreSeedsEntityEffectSystem : EntityEffectSy
+ {
+     [Dependency] private readonly PopupSystem _popup = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantRestoreSeeds> args)
+     {
+         if (_plantHolder.IsDead(entity.Owner))
+             return;
+ 
+-        if (!TryComp<PlantTraitsComponent>(entity, out var traits)
+-            || !traits.Seedless)
+-            return;
+-
+         _popup.PopupEntity(Loc.GetString("botany-plant-seedsrestored"), entity);
+-        traits.Seedless = false;
++        _plantTraits.DelTrait(entity.Owner, new TraitSeedless());
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
+index 6f456ec83b..39eade3d61 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
+@@ -15,27 +15,30 @@ public sealed partial class RobustHarvestEntityEffectSystem : EntityEffectSystem
+ {
+     [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantSystem _plant = default!;
++    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<RobustHarvest> args)
+     {
+         if (_plantHolder.IsDead(entity.Owner))
+             return;
+ 
+-        if (!TryComp<PlantComponent>(entity, out var plant)
+-            || !TryComp<PlantTraitsComponent>(entity, out var traits))
++        if (!TryComp<PlantComponent>(entity, out var plant))
+             return;
+ 
+         if (plant.Potency < args.Effect.PotencyLimit)
+         {
+-            plant.Potency = Math.Min(plant.Potency + args.Effect.PotencyIncrease, args.Effect.PotencyLimit);
++            // Calculates and rewrites the potency value.
++            var potency = Math.Min(plant.Potency + args.Effect.PotencyIncrease, args.Effect.PotencyLimit);
++            _plant.AdjustPotency(entity.AsNullable(), potency - plant.Potency);
+ 
+             if (plant.Potency > args.Effect.PotencySeedlessThreshold)
+-                traits.Seedless = true;
++                _plantTraits.AddTrait(entity.Owner, new TraitSeedless());
+         }
+         else if (plant.Yield > 1 && _random.Prob(0.1f))
+         {
+             // Too much of a good thing reduces yield.
+-            plant.Yield--;
++            _plant.AdjustYield(entity.AsNullable(), -1);
+         }
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs
+index d6d3372185..c02d81d77a 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantMutateChemicalsEntityEffectSystem.cs
+@@ -2,9 +2,7 @@
+ using Content.Server.Botany.Systems;
+ using Content.Shared.EntityEffects;
+ using Content.Shared.EntityEffects.Effects.Botany;
+-using Content.Shared.FixedPoint;
+ using Robust.Shared.Prototypes;
+-using Robust.Shared.Random;
+ 
+ namespace Content.Server.EntityEffects.Effects.Botany;
+ 
+@@ -15,32 +13,11 @@ namespace Content.Server.EntityEffects.Effects.Botany;
+ public sealed partial class PlantMutateChemicalsEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantMutateChemicals>
+ {
+     [Dependency] private readonly IPrototypeManager _proto = default!;
+-    [Dependency] private readonly IRobustRandom _random = default!;
++    [Dependency] private readonly PlantChemicalsSystem _plantChemicals = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantMutateChemicals> args)
+     {
+-        var chemicals = EnsureComp<PlantChemicalsComponent>(entity.Owner).Chemicals;
+         var randomChems = _proto.Index(args.Effect.RandomPickBotanyReagent).Fills;
+-
+-        // Add a random amount of a random chemical to this set of chemicals.
+-        var pick = _random.Pick(randomChems);
+-        var chemicalId = _random.Pick(pick.Reagents);
+-        var amount = _random.NextFloat(0.1f, (float)pick.Quantity);
+-        var seedChemQuantity = new PlantChemQuantity();
+-        if (chemicals.TryGetValue(chemicalId, out var value))
+-        {
+-            seedChemQuantity.Min = value.Min;
+-            seedChemQuantity.Max = value.Max + amount;
+-        }
+-        else
+-        {
+-            seedChemQuantity.Min = FixedPoint2.Epsilon;
+-            seedChemQuantity.Max = FixedPoint2.Zero + amount;
+-            seedChemQuantity.Inherent = false;
+-        }
+-
+-        var potencyDivisor = 100f / seedChemQuantity.Max;
+-        seedChemQuantity.PotencyDivisor = (float)potencyDivisor;
+-        chemicals[chemicalId] = seedChemQuantity;
++        _plantChemicals.MutateRandomChemical(entity.Owner, randomChems);
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantMutateGasesEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantMutateGasesEntityEffectSystem.cs
+index 40cc582682..45c2daced9 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantMutateGasesEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantMutateGasesEntityEffectSystem.cs
+@@ -1,5 +1,5 @@
+ using Content.Server.Botany.Components;
+-using Content.Shared.Atmos;
++using Content.Server.Botany.Systems;
+ using Content.Shared.EntityEffects;
+ using Content.Shared.EntityEffects.Effects.Botany;
+ using Robust.Shared.Random;
+@@ -13,20 +13,12 @@ namespace Content.Server.EntityEffects.Effects.Botany;
+ public sealed partial class PlantMutateExudeGasesEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantMutateExudeGases>
+ {
+     [Dependency] private readonly IRobustRandom _random = default!;
++    [Dependency] private readonly ConsumeExudeGasGrowthSystem _consumeExudeGasGrowth = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantMutateExudeGases> args)
+     {
+-        var gasComponent = EnsureComp<ConsumeExudeGasGrowthComponent>(entity.Owner);
+-        var gasses = gasComponent.ExudeGasses;
+-
+-        // Add a random amount of a random gas to this gas dictionary.
+         var amount = _random.NextFloat(args.Effect.MinValue, args.Effect.MaxValue);
+-        var gas = _random.Pick(Enum.GetValues<Gas>());
+-
+-        if (!gasses.TryAdd(gas, amount))
+-        {
+-            gasses[gas] += amount;
+-        }
++        _consumeExudeGasGrowth.MutateRandomExudeGasses(entity.Owner, amount);
+     }
+ }
+ 
+@@ -37,20 +29,12 @@ protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEv
+ public sealed partial class PlantMutateConsumeGasesEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantMutateConsumeGases>
+ {
+     [Dependency] private readonly IRobustRandom _random = default!;
++    [Dependency] private readonly ConsumeExudeGasGrowthSystem _consumeExudeGasGrowth = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantMutateConsumeGases> args)
+     {
+-        var gasComponent = EnsureComp<ConsumeExudeGasGrowthComponent>(entity.Owner);
+-        var gasses = gasComponent.ConsumeGasses;
+-
+-        // Add a random amount of a random gas to this gas dictionary.
+         var amount = _random.NextFloat(args.Effect.MinValue, args.Effect.MaxValue);
+-        var gas = _random.Pick(Enum.GetValues<Gas>());
+-
+-        if (!gasses.TryAdd(gas, amount))
+-        {
+-            gasses[gas] += amount;
+-        }
++        _consumeExudeGasGrowth.MutateRandomConsumeGasses(entity.Owner, amount);
+     }
+ }
+ 
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantMutateHarvestEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantMutateHarvestEntityEffectSystem.cs
+index 57812030b3..8f79dc8a1c 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantMutateHarvestEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantMutateHarvestEntityEffectSystem.cs
+@@ -1,4 +1,5 @@
+ using Content.Server.Botany.Components;
++using Content.Server.Botany.Systems;
+ using Content.Shared.EntityEffects;
+ using Content.Shared.EntityEffects.Effects.Botany;
+ 
+@@ -10,17 +11,10 @@ namespace Content.Server.EntityEffects.Effects.Botany;
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+ public sealed partial class PlantMutateHarvestEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantMutateHarvest>
+ {
++    [Dependency] private readonly PlantHarvestSystem _plantHarvest = default!;
++
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantMutateHarvest> args)
+     {
+-        var harvest = EnsureComp<PlantHarvestComponent>(entity.Owner);
+-        switch (harvest.HarvestRepeat)
+-        {
+-            case HarvestType.NoRepeat:
+-                harvest.HarvestRepeat = HarvestType.Repeat;
+-                break;
+-            case HarvestType.Repeat:
+-                harvest.HarvestRepeat = HarvestType.SelfHarvest;
+-                break;
+-        }
++        _plantHarvest.ChangeHarvestRepeat(entity.Owner);
+     }
+ }
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStat.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStat.cs
+index dcea56baad..f2ad834d60 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStat.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStat.cs
+@@ -7,9 +7,15 @@ public sealed partial class PlantChangeStat : EntityEffectBase<PlantChangeStat>
+     /// It's meant to be generic and expandable I guess? But it's looking for a specific datafield and then
+     /// sending it into an if else if else if statement that filters by object type and randomly flips bits.
+     /// </remarks>
+-    [DataField (required: true)]
++    [DataField(required: true)]
+     public string TargetValue = string.Empty;
+ 
++    /// <summary>
++    /// The plant component that contains <see cref="TargetValue"/>.
++    /// </summary>
++    [DataField(required: true)]
++    public string TargetComponent = string.Empty;
++
+     [DataField]
+     public float MinValue;
+ 
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffect.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffect.cs
+new file mode 100644
+index 0000000000..f1f5f2ab75
+--- /dev/null
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffect.cs
+@@ -0,0 +1,21 @@
++
++
++namespace Content.Shared.EntityEffects.Effects.Botany;
++
++/// <summary>
++/// See server-side system.
++/// </summary>
++public sealed partial class PlantChangeTraits : EntityEffectBase<PlantChangeTraits>
++{
++    /// <summary>
++    /// Name of a <see cref="PlantTraitsSystem.PlantTrait"/> type.
++    /// </summary>
++    [DataField(required: true)]
++    public string Trait;
++
++    /// <summary>
++    /// If true, the trait is removed. If false, the trait is added.
++    /// </summary>
++    [DataField]
++    public bool Remove;
++}
+diff --git a/Resources/Locale/en-US/plants/mutations.ftl b/Resources/Locale/en-US/plants/mutations.ftl
+index 80f4052ce6..f746c0f74e 100644
+--- a/Resources/Locale/en-US/plants/mutations.ftl
++++ b/Resources/Locale/en-US/plants/mutations.ftl
+@@ -4,4 +4,6 @@ mutation-plant-ligneous = It is woody and will need a sharp tool to harvest.
+ mutation-plant-scream = This plant seems nervous somehow.
+ mutation-plant-sentient = It seems to be examining its surroundings.
+ mutation-plant-slippery = It is slick to the touch.
+-mutation-plant-unviable = It is wilting and sickly.
+\ No newline at end of file
++mutation-plant-unviable = It is wilting and sickly.
++mutation-plant-seedless = Its harvested produce is seedless.
++mutation-plant-sampled = It has already been sampled.
+diff --git a/Resources/Prototypes/Entities/Clothing/Belt/job.yml b/Resources/Prototypes/Entities/Clothing/Belt/job.yml
+index 820a59e019..6bf1670343 100644
+--- a/Resources/Prototypes/Entities/Clothing/Belt/job.yml
++++ b/Resources/Prototypes/Entities/Clothing/Belt/job.yml
+@@ -248,9 +248,7 @@
+   - type: Storage
+     whitelist:
+       tags:
+-      - PlantSampleTaker
+       - BotanyShovel
+-      - BotanyHoe
+       - BotanyHatchet
+       - PlantBGone
+       - Bottle
+@@ -258,6 +256,8 @@
+       - CigPack
+       - Dropper
+       components:
++      - BotanySampleTaker
++      - BotanyHoe
+       - Seed
+       - Smokable
+       - HandLabeler
+@@ -270,7 +270,7 @@
+           - BotanyHatchet
+       hoe:
+         whitelist:
+-          tags:
++          components:
+           - BotanyHoe
+       secateurs: # We don't have secateurs and this looks similar enough.
+         whitelist:
+diff --git a/Resources/Prototypes/Entities/Mobs/Player/clone.yml b/Resources/Prototypes/Entities/Mobs/Player/clone.yml
+index 01e9bb4871..c06e59d83e 100644
+--- a/Resources/Prototypes/Entities/Mobs/Player/clone.yml
++++ b/Resources/Prototypes/Entities/Mobs/Player/clone.yml
+@@ -154,7 +154,6 @@
+   - AtmosphericGrowth
+   - ConsumeExudeGasGrowth
+   - WeedPestGrowth
+-  - UnviableGrowth
+   - PlantToxins
+ 
+ # for plant lifecycle clones
+diff --git a/Resources/Prototypes/Entities/Objects/Specific/Hydroponics/tools.yml b/Resources/Prototypes/Entities/Objects/Specific/Hydroponics/tools.yml
+index cfe3a6924e..b42c76e2b3 100644
+--- a/Resources/Prototypes/Entities/Objects/Specific/Hydroponics/tools.yml
++++ b/Resources/Prototypes/Entities/Objects/Specific/Hydroponics/tools.yml
+@@ -7,7 +7,6 @@
+   - type: Tag
+     tags:
+     - Hoe
+-    - BotanyHoe
+   - type: Sprite
+     sprite: Objects/Tools/Hydroponics/hoe.rsi
+     state: icon
+@@ -25,6 +24,7 @@
+   - type: PhysicalComposition
+     materialComposition:
+       Steel: 100
++  - type: BotanyHoe
+ 
+ - type: entity
+   name: plant clippers
+@@ -32,9 +32,6 @@
+   id: HydroponicsToolClippers
+   description: A tool used to take samples from plants.
+   components:
+-  - type: Tag
+-    tags:
+-    - PlantSampleTaker
+   - type: Sprite
+     sprite: Objects/Tools/Hydroponics/clippers.rsi
+     state: icon
+@@ -49,6 +46,7 @@
+   - type: PhysicalComposition
+     materialComposition:
+       Steel: 100
++  - type: BotanySampleTaker
+ 
+ - type: entity
+   name: scythe
+diff --git a/Resources/Prototypes/Entities/Objects/Tools/cowtools.yml b/Resources/Prototypes/Entities/Objects/Tools/cowtools.yml
+index 8320bba397..4b37300c58 100644
+--- a/Resources/Prototypes/Entities/Objects/Tools/cowtools.yml
++++ b/Resources/Prototypes/Entities/Objects/Tools/cowtools.yml
+@@ -4,9 +4,6 @@
+   id: Haycutters
+   description: This kills the wire. Moo!
+   components:
+-  - type: Tag
+-    tags:
+-    - PlantSampleTaker
+   - type: Sprite
+     sprite: Objects/Tools/Cowtools/haycutters.rsi
+     state: haycutters
+@@ -24,6 +21,7 @@
+     speedModifier: 0.05
+   - type: Item
+     sprite: Objects/Tools/Cowtools/haycutters.rsi
++  - type: BotanySampleTaker
+ 
+ - type: entity
+   name: moodriver
+diff --git a/Resources/Prototypes/Entities/Objects/Tools/tools.yml b/Resources/Prototypes/Entities/Objects/Tools/tools.yml
+index 339ba9eeae..66c04da171 100644
+--- a/Resources/Prototypes/Entities/Objects/Tools/tools.yml
++++ b/Resources/Prototypes/Entities/Objects/Tools/tools.yml
+@@ -9,7 +9,6 @@
+       path: /Audio/Items/wirecutter_drop.ogg
+   - type: Tag
+     tags:
+-    - PlantSampleTaker
+     - Wirecutter
+   - type: Sprite
+     sprite: Objects/Tools/wirecutters.rsi
+@@ -43,6 +42,7 @@
+       Steel: 100
+   - type: StaticPrice
+     price: 30
++  - type: BotanySampleTaker
+ 
+ - type: entity
+   name: screwdriver
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index d882e5aecf..373905b1a2 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -26,7 +26,6 @@
+   - type: PlantToxins
+   - type: PlantTraits
+   - type: PlantVisuals
+-  - type: UnviableGrowth
+   - type: WeedPestGrowth
+   - type: AtmosphericGrowth
+   - type: BasicGrowth
+@@ -44,6 +43,11 @@
+     packetPrototype: WheatSeeds
+     productPrototypes: [ WheatBushel ]
+     mutationPrototypes: [ MeatWheatPlants ]
++  - type: PlantTraits
++    traits:
++    - !type:TraitUnviable
++    - !type:TraitKudzu
++    - !type:TraitLigneous
+   - type: Plant
+     lifespan: 25
+     maturation: 6
+diff --git a/Resources/Prototypes/Hydroponics/randomMutations.yml b/Resources/Prototypes/Hydroponics/randomMutations.yml
+index 2d45601da9..e43ead356d 100644
+--- a/Resources/Prototypes/Hydroponics/randomMutations.yml
++++ b/Resources/Prototypes/Hydroponics/randomMutations.yml
+@@ -26,13 +26,14 @@
+     - name: Unviable
+       baseOdds: 0.109
+       persists: false
+-      effect: !type:PlantChangeStat
+-        targetValue: Viable
++      effect: !type:PlantChangeTraits
++        trait: TraitUnviable
+     - name: ChangeWaterConsumption
+       baseOdds: 0.018
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: WaterConsumption
++        targetComponent: BasicGrowth
+         minValue: 0.3
+         maxValue: 0.9
+         steps: 5
+@@ -41,6 +42,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: NutrientConsumption
++        targetComponent: BasicGrowth
+         minValue: 0.05
+         maxValue: 1.2
+         steps: 5
+@@ -49,6 +51,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: IdealHeat
++        targetComponent: AtmosphericGrowth
+         minValue: 263
+         maxValue: 323
+         steps: 5
+@@ -57,6 +60,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: HeatTolerance
++        targetComponent: AtmosphericGrowth
+         minValue: 2
+         maxValue: 25
+         steps: 5
+@@ -65,6 +69,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: ToxinsTolerance
++        targetComponent: PlantToxins
+         minValue: 1
+         maxValue: 10
+         steps: 5
+@@ -73,6 +78,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: LowPressureTolerance
++        targetComponent: AtmosphericGrowth
+         minValue: 60
+         maxValue: 100
+         steps: 5
+@@ -81,6 +87,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: HighPressureTolerance
++        targetComponent: AtmosphericGrowth
+         minValue: 100
+         maxValue: 140
+         steps: 5
+@@ -89,6 +96,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: PestTolerance
++        targetComponent: WeedPestGrowth
+         minValue: 0
+         maxValue: 15
+         steps: 5
+@@ -97,6 +105,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: WeedTolerance
++        targetComponent: WeedPestGrowth
+         minValue: 0
+         maxValue: 15
+         steps: 5
+@@ -105,6 +114,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: Endurance
++        targetComponent: Plant
+         minValue: 50
+         maxValue: 150
+         steps: 5
+@@ -113,6 +123,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: Yield
++        targetComponent: Plant
+         minValue: 3
+         maxValue: 10
+         steps: 5
+@@ -121,6 +132,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: Lifespan
++        targetComponent: Plant
+         minValue: 10
+         maxValue: 80
+         steps: 5
+@@ -129,6 +141,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: Maturation
++        targetComponent: Plant
+         minValue: 3
+         maxValue: 8
+         steps: 5
+@@ -137,6 +150,7 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: Production
++        targetComponent: Plant
+         minValue: 1
+         maxValue: 10
+         steps: 5
+@@ -145,29 +159,30 @@
+       persists: false
+       effect: !type:PlantChangeStat
+         targetValue: Potency
++        targetComponent: Plant
+         minValue: 30
+         maxValue: 100
+         steps: 5
+     - name: ChangeSeedless
+       baseOdds: 0.036
+       persists: false
+-      effect: !type:PlantChangeStat
+-        targetValue: Seedless
++      effect: !type:PlantChangeTraits
++        trait: TraitSeedless
+     - name: Lignification
+       baseOdds: 0.036
+       persists: false
+-      effect: !type:PlantChangeStat
+-        targetValue: Ligneous
++      effect: !type:PlantChangeTraits
++        trait: TraitLigneous
+     - name: Kudzufication
+       baseOdds: 0.036
+       persists: false
+-      effect: !type:PlantChangeStat
+-        targetValue: TurnIntoKudzu
++      effect: !type:PlantChangeTraits
++        trait: TraitKudzu
+     - name: ChangeScreaming
+       baseOdds: 0.036
+       persists: false
+-      effect: !type:PlantChangeStat
+-        targetValue: CanScream
++      effect: !type:PlantChangeTraits
++        trait: TraitScream
+     - name: ChangeChemicals
+       baseOdds: 0.072
+       persists: false
+diff --git a/Resources/Prototypes/tags.yml b/Resources/Prototypes/tags.yml
+index 1ad47eb84c..e1b24d322f 100644
+--- a/Resources/Prototypes/tags.yml
++++ b/Resources/Prototypes/tags.yml
+@@ -149,9 +149,6 @@
+ - type: Tag
+   id: BotanyHatchet # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
+ 
+-- type: Tag
+-  id: BotanyHoe # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
+-
+ - type: Tag
+   id: BotanyShovel # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
+ 
+@@ -1094,9 +1091,6 @@
+ - type: Tag
+   id: PlantBGone # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
+ 
+-- type: Tag
+-  id: PlantSampleTaker # Used by PlantHolderSystem to make tagged entities a pseudo-tool for trimming seeds. TODO this sucks!
+-
+ - type: Tag
+   id: PlasmaGlassShard # ConstructionGraph: ImprovisedArrowPlasma, PlasmaShiv, SpearPlasma
+ 
+-- 
+2.55.0
+

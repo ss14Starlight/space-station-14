@@ -1,0 +1,931 @@
+From a4ab02ec8a906597c54e4a05a5b96a017eb0f42e Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 31 Jul 2025 22:53:53 +0300
+Subject: [PATCH 009/112] fix 1
+
+---
+ .../Components/AtmosphericGrowthComponent.cs  |   1 +
+ .../Components/AutoHarvestGrowthComponent.cs  |   1 +
+ .../Botany/Components/BasicGrowthComponent.cs |   1 +
+ .../ConsumeExudeGasGrowthComponent.cs         |   1 +
+ .../Botany/Components/PlantComponent.cs       |   1 +
+ .../Botany/Components/PlantGrowthComponent.cs |   2 +-
+ .../Components/UnviableGrowthComponent.cs     |   1 +
+ .../Components/WeedPestGrowthComponent.cs     |   1 +
+ .../Botany/Systems/PlantHolderSystem.cs       |  13 +-
+ Resources/Maps/Salvage/vegan-meatball.yml     |   8 +-
+ Resources/Prototypes/Hydroponics/seeds.yml    | 196 +++++++++---------
+ 11 files changed, 120 insertions(+), 106 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs b/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
+index dbf6c5728e..330b3210c0 100644
+--- a/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
++++ b/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
+@@ -1,6 +1,7 @@
+ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
++[DataDefinition]
+ public sealed partial class AtmosphericGrowthComponent : PlantGrowthComponent
+ {
+     [DataField]
+diff --git a/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs b/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
+index 9d468cc789..a56c9e0d23 100644
+--- a/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
++++ b/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
+@@ -1,5 +1,6 @@
+ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
++[DataDefinition]
+ public sealed partial class AutoHarvestGrowthComponent : PlantGrowthComponent
+ {}
+diff --git a/Content.Server/Botany/Components/BasicGrowthComponent.cs b/Content.Server/Botany/Components/BasicGrowthComponent.cs
+index 58663c363d..bc71608afd 100644
+--- a/Content.Server/Botany/Components/BasicGrowthComponent.cs
++++ b/Content.Server/Botany/Components/BasicGrowthComponent.cs
+@@ -1,6 +1,7 @@
+ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
++[DataDefinition]
+ public sealed partial class BasicGrowthComponent : PlantGrowthComponent
+ {
+     /// <summary>
+diff --git a/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs b/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs
+index 1da31d376b..41b9e4a068 100644
+--- a/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs
++++ b/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs
+@@ -3,6 +3,7 @@
+ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
++[DataDefinition]
+ public sealed partial class ConsumeExudeGasGrowthComponent : PlantGrowthComponent
+ {
+     [DataField] public Dictionary<Gas, float> ConsumeGasses = new();
+diff --git a/Content.Server/Botany/Components/PlantComponent.cs b/Content.Server/Botany/Components/PlantComponent.cs
+index b77edc964f..2da1f89a19 100644
+--- a/Content.Server/Botany/Components/PlantComponent.cs
++++ b/Content.Server/Botany/Components/PlantComponent.cs
+@@ -1,5 +1,6 @@
+ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
++[DataDefinition]
+ public sealed partial class PlantComponent : PlantGrowthComponent
+ {}
+diff --git a/Content.Server/Botany/Components/PlantGrowthComponent.cs b/Content.Server/Botany/Components/PlantGrowthComponent.cs
+index 5511f0eeca..c685755bcd 100644
+--- a/Content.Server/Botany/Components/PlantGrowthComponent.cs
++++ b/Content.Server/Botany/Components/PlantGrowthComponent.cs
+@@ -3,7 +3,7 @@
+ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
+-[Virtual]
++[DataDefinition]
+ public partial class PlantGrowthComponent : Component {
+     /// <summary>
+     /// Creates a copy of this component.
+diff --git a/Content.Server/Botany/Components/UnviableGrowthComponent.cs b/Content.Server/Botany/Components/UnviableGrowthComponent.cs
+index c7fb0b45f8..e002139cda 100644
+--- a/Content.Server/Botany/Components/UnviableGrowthComponent.cs
++++ b/Content.Server/Botany/Components/UnviableGrowthComponent.cs
+@@ -1,5 +1,6 @@
+ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
++[DataDefinition]
+ public sealed partial class UnviableGrowthComponent : PlantGrowthComponent
+ {}
+diff --git a/Content.Server/Botany/Components/WeedPestGrowthComponent.cs b/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
+index b3b63ce890..0e8cd82ff3 100644
+--- a/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
++++ b/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
+@@ -1,6 +1,7 @@
+ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
++[DataDefinition]
+ public sealed partial class WeedPestGrowthComponent : PlantGrowthComponent
+ {
+     [DataField]
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index b919e4607f..768dd31db7 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -27,6 +27,7 @@
+ using Content.Shared.Containers.ItemSlots;
+ using LogType = Content.Shared.Database.LogType;
+ using Content.Shared.Labels.Components;
++using System.Linq;
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+@@ -200,8 +201,13 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+                 }
+                 component.LastCycle = _gameTiming.CurTime;
+ 
++                // Ensure no existing growth components before adding new ones
++                var existingGrowthComponents = EntityManager.GetComponents<PlantGrowthComponent>(uid).ToList();
++                foreach(var g in existingGrowthComponents)
++                    EntityManager.RemoveComponent(uid, g);
++
+                 foreach(var g in seed.GrowthComponents)
+-                    EntityManager.AddComponent(uid, _copier.CreateCopy(g, notNullableOverride: true));
++                    EntityManager.AddComponent(uid, _copier.CreateCopy(g, notNullableOverride: true), overwrite: true);
+ 
+                 if (TryComp<PaperLabelComponent>(args.Used, out var paperLabel))
+                 {
+@@ -595,8 +601,9 @@ public void RemovePlant(EntityUid uid, PlantHolderComponent? component = null)
+         if (!Resolve(uid, ref component) || component.Seed == null)
+             return;
+ 
+-        //OK, how do i check the entity instead of the seed?
+-        foreach(var g in EntityManager.GetComponents<PlantGrowthComponent>(uid))
++        // Remove all growth components before planting new seed
++        var growthComponents = EntityManager.GetComponents<PlantGrowthComponent>(uid).ToList();
++        foreach(var g in growthComponents)
+             EntityManager.RemoveComponent(uid, g);
+ 
+         component.YieldMod = 1;
+diff --git a/Resources/Maps/Salvage/vegan-meatball.yml b/Resources/Maps/Salvage/vegan-meatball.yml
+index 0fc58eaed8..e4afd9564a 100644
+--- a/Resources/Maps/Salvage/vegan-meatball.yml
++++ b/Resources/Maps/Salvage/vegan-meatball.yml
+@@ -492,10 +492,10 @@ entities:
+         pestTolerance: 5
+         toxinsTolerance: 4
+         growthComponents:
+-          - type: BasicGrowthComponent
++          - !type:BasicGrowthComponent
+             WaterConsumption: 0.4
+             NutrientConsumption: 0.75
+-          - type: AtmosphericGrowthComponent
++          - !type:AtmosphericGrowthComponent
+             IdealHeat: 298
+             HeatTolerance: 10
+             LowPressureTolerance: 81
+@@ -563,10 +563,10 @@ entities:
+         pestTolerance: 5
+         toxinsTolerance: 4
+         growthComponents:
+-          - type: BasicGrowthComponent
++          - !type:BasicGrowthComponent
+             WaterConsumption: 0.6
+             NutrientConsumption: 0.75
+-          - type: AtmosphericGrowthComponent
++          - !type:AtmosphericGrowthComponent
+             IdealHeat: 293
+             HeatTolerance: 10
+             LowPressureTolerance: 81
+diff --git a/Resources/Prototypes/Hydroponics/seeds.yml b/Resources/Prototypes/Hydroponics/seeds.yml
+index 9ccdcf69f5..244198f0ac 100644
+--- a/Resources/Prototypes/Hydroponics/seeds.yml
++++ b/Resources/Prototypes/Hydroponics/seeds.yml
+@@ -16,7 +16,7 @@
+   potency: 5
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.4
+   chemicals:
+@@ -45,7 +45,7 @@
+   potency: 5
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.4
+   chemicals:
+@@ -74,7 +74,7 @@
+   potency: 5
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.4
+   chemicals:
+@@ -105,10 +105,10 @@
+   yield: 2
+   idealLight: 9
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Vitamin:
+@@ -136,10 +136,10 @@
+   yield: 2
+   idealLight: 9
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     MuteToxin:
+@@ -167,7 +167,7 @@
+   potency: 10
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -204,7 +204,7 @@
+   idealLight: 8
+   harvestRepeat: Repeat
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.6
+   chemicals:
+@@ -242,7 +242,7 @@
+   potency: 10
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -272,7 +272,7 @@
+   potency: 1
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -305,7 +305,7 @@
+   potency: 10
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -339,7 +339,7 @@
+   potency: 10
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -369,7 +369,7 @@
+   potency: 10
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -404,7 +404,7 @@
+   idealLight: 8
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -437,7 +437,7 @@
+   potency: 10
+   growthStages: 4
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -469,10 +469,10 @@
+   potency: 10
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Sugar:
+@@ -498,10 +498,10 @@
+   growthStages: 5
+   idealLight: 9
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Vitamin:
+@@ -526,10 +526,10 @@
+   potency: 10
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+ 
+ - type: seed
+@@ -552,10 +552,10 @@
+   growthStages: 3
+   lightTolerance: 6
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 288
+ 
+ - type: seed
+@@ -576,10 +576,10 @@
+   growthStages: 3
+   lightTolerance: 6
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 288
+ 
+ - type: seed
+@@ -603,10 +603,10 @@
+   idealLight: 8
+   splatPrototype: PuddleSplatter
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.4
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Nutriment:
+@@ -640,10 +640,10 @@
+   idealLight: 8
+   splatPrototype: PuddleSplatter
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.7
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Nutriment:
+@@ -679,10 +679,10 @@
+   idealLight: 8
+   splatPrototype: PuddleSplatter
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.7
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Blood:
+@@ -715,10 +715,10 @@
+   growthStages: 2
+   splatPrototype: PuddleSplatter
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.7
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Blood:
+@@ -750,10 +750,10 @@
+   growthStages: 3
+   idealLight: 9
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Nutriment:
+@@ -781,7 +781,7 @@
+   potency: 10
+   growthStages: 1
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -810,7 +810,7 @@
+   potency: 25
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -846,7 +846,7 @@
+   potency: 10
+   idealLight: 6
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -876,7 +876,7 @@
+   potency: 10
+   idealLight: 6
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.75
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -910,10 +910,10 @@
+   growthStages: 3
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Nutriment:
+@@ -944,10 +944,10 @@
+   growthStages: 3
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Nutriment:
+@@ -980,10 +980,10 @@
+   growthStages: 3
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Nutriment:
+@@ -1016,10 +1016,10 @@
+   growthStages: 3
+   lightTolerance: 6
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.5
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 288
+   chemicals:
+     Nutriment:
+@@ -1044,10 +1044,10 @@
+   potency: 20
+   idealLight: 9
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.5
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Egg:
+@@ -1075,10 +1075,10 @@
+   growthStages: 3
+   idealLight: 9
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.4
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     THC:
+@@ -1104,10 +1104,10 @@
+   growthStages: 3
+   idealLight: 9
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.4
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     SpaceDrugs:
+@@ -1153,10 +1153,10 @@
+   growthStages: 3
+   idealLight: 9
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.4
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Nicotine:
+@@ -1183,10 +1183,10 @@
+   growthStages: 5
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Histamine:
+@@ -1213,10 +1213,10 @@
+   growthStages: 5
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.7
+       NutrientConsumption: 0.8
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     SulfuricAcid:
+@@ -1247,10 +1247,10 @@
+   potency: 20
+   idealLight: 9
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     CapsaicinOil:
+@@ -1283,10 +1283,10 @@
+   potency: 20
+   idealLight: 9
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     FrostOil:
+@@ -1320,7 +1320,7 @@
+   potency: 10
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1349,7 +1349,7 @@
+   potency: 10
+   growthStages: 5
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1380,7 +1380,7 @@
+   potency: 10
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1409,7 +1409,7 @@
+   potency: 10
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1440,7 +1440,7 @@
+   potency: 10
+   growthStages: 6
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1481,7 +1481,7 @@
+   potency: 10
+   growthStages: 6
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1520,7 +1520,7 @@
+   potency: 10
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1545,7 +1545,7 @@
+   potency: 10
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1570,7 +1570,7 @@
+   potency: 10
+   growthStages: 2
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.5
+   chemicals:
+@@ -1603,7 +1603,7 @@
+   growthStages: 2
+   idealLight: 6
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1633,7 +1633,7 @@
+   growthStages: 2
+   idealLight: 6
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1663,7 +1663,7 @@
+   growthStages: 2
+   idealLight: 6
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1693,7 +1693,7 @@
+   growthStages: 4
+   idealLight: 5
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.4
+   chemicals:
+@@ -1725,7 +1725,7 @@
+   potency: 5
+   idealLight: 7
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.4
+   chemicals:
+@@ -1750,7 +1750,7 @@
+   yield: 2
+   potency: 10
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1780,7 +1780,7 @@
+   potency: 5
+   idealLight: 7
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.4
+   chemicals:
+@@ -1809,7 +1809,7 @@
+   potency: 10
+   growthStages: 2
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1840,7 +1840,7 @@
+   potency: 1
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1873,7 +1873,7 @@
+   potency: 1
+   idealLight: 8
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -1906,10 +1906,10 @@
+   yield: 6
+   idealLight: 7
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 1.0
+       NutrientConsumption: 0.8
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Vitamin:
+@@ -1937,7 +1937,7 @@
+   yield: 4
+   idealLight: 7
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.6
+   chemicals:
+@@ -1968,10 +1968,10 @@
+   idealLight: 8
+   growthStages: 4
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 298
+   chemicals:
+     Nutriment:
+@@ -2003,7 +2003,7 @@
+   idealLight: 8
+   harvestRepeat: Repeat
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.5
+   chemicals:
+@@ -2034,7 +2034,7 @@
+   idealLight: 8
+   harvestRepeat: Repeat
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.5
+   chemicals:
+@@ -2069,10 +2069,10 @@
+   potency: 10
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 288
+   chemicals:
+     PumpkinFlesh:
+@@ -2100,10 +2100,10 @@
+   potency: 10
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+-    - type: AtmosphericGrowthComponent
++    - !type:AtmosphericGrowthComponent
+       IdealHeat: 288
+   chemicals:
+     Ammonia:
+@@ -2138,7 +2138,7 @@
+   idealLight: 8
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -2164,7 +2164,7 @@
+   idealLight: 8
+   growthStages: 3
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.8
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -2194,7 +2194,7 @@
+   potency: 10
+   idealLight: 6
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.5
+       NutrientConsumption: 0.75
+   chemicals:
+@@ -2223,7 +2223,7 @@
+   potency: 10
+   growthStages: 2
+   growthComponents:
+-    - type: BasicGrowthComponent
++    - !type:BasicGrowthComponent
+       WaterConsumption: 0.6
+       NutrientConsumption: 0.5
+   chemicals:
+-- 
+2.55.0
+

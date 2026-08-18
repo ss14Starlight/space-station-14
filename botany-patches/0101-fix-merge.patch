@@ -1,0 +1,39 @@
+From 3c4b9988e730f54ddc8e06fc6dea5803dcf0d9bf Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sun, 26 Jul 2026 23:23:19 +0300
+Subject: [PATCH 101/112] fix merge
+
+---
+ .../Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs | 2 +-
+ .../Botany/Traits/Components/PlantTraitScreamComponent.cs       | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
+index ef23c64ce1..92071552f6 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeStatEntityEffectSystem.cs
+@@ -31,7 +31,7 @@ protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEv
+             return;
+         }
+ 
+-        if (!EntityManager.TryGetComponent(entity.Owner, registration.Type, out var plantComp))
++        if (!TryComp(entity.Owner, registration.Type, out var plantComp))
+             return;
+ 
+         var field = registration.Type.GetField(targetDataField);
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
+index c215cf3e8b..b7c36ab777 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
+@@ -13,7 +13,7 @@ public sealed partial class PlantTraitScreamComponent : PlantTraitsComponent
+     /// The sound to play when the plant screams.
+     /// </summary>
+     [DataField, AutoNetworkedField]
+-    public SoundSpecifier ScreamSound = new SoundCollectionSpecifier("PlantScreams");
++    public SoundSpecifier ScreamSound = new SoundCollectionSpecifier("PlantScreams", AudioParams.Default.AddVolume(-10));
+ 
+     [DataField]
+     public override LocId TraitState { get; set; } = "mutation-plant-scream";
+-- 
+2.55.0
+

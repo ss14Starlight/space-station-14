@@ -1,0 +1,31 @@
+From c7635d8ab90321bf8b93f6c364b15d8a071fb450 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Wed, 17 Dec 2025 15:07:49 +0200
+Subject: [PATCH 067/112] Update clone.yml
+
+---
+ Resources/Prototypes/Entities/Mobs/Player/clone.yml | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/Resources/Prototypes/Entities/Mobs/Player/clone.yml b/Resources/Prototypes/Entities/Mobs/Player/clone.yml
+index 001314b989..01e9bb4871 100644
+--- a/Resources/Prototypes/Entities/Mobs/Player/clone.yml
++++ b/Resources/Prototypes/Entities/Mobs/Player/clone.yml
+@@ -145,7 +145,6 @@
+ # for plant clones
+ - type: cloningSettings
+   id: PlantClone
+-  name: Plant Clone
+   components:
+   - Plant
+   - PlantChemicals
+@@ -162,6 +161,5 @@
+ - type: cloningSettings
+   id: PlantLifecycleClone
+   parent: PlantClone
+-  name: Plant Lifecycle Clone
+   components:
+   - PlantHolder
+-- 
+2.55.0
+

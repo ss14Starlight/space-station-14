@@ -1,0 +1,29 @@
+From 477a45d4a283ec367eac8561bb42fdf7f7c7d969 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Fri, 7 Aug 2026 14:43:03 +0300
+Subject: [PATCH 110/112] Update PlantTraitsComponent.cs
+
+---
+ .../Botany/Traits/Components/PlantTraitsComponent.cs         | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
+index e442b0b6b1..e68a67941e 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
+@@ -1,11 +1,8 @@
+-using Robust.Shared.GameStates;
+-
+ namespace Content.Shared.Botany.Traits.Components;
+ 
+ /// <summary>
+-/// Base component for plant trait components.
++/// Base class for plant trait components.
+ /// </summary>
+-[RegisterComponent, NetworkedComponent]
+ public abstract partial class PlantTraitsComponent : Component
+ {
+     /// <summary>
+-- 
+2.55.0
+

@@ -1,0 +1,412 @@
+From 81a177d3c9ee3c0a4703ac054036c2aad8795c35 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Fri, 7 Aug 2026 13:21:48 +0300
+Subject: [PATCH 109/112] fix all part 3
+
+---
+ .../Components/PlantTrayVisualsComponent.cs   |  3 +++
+ .../Components/PlantVisualsComponent.cs       |  3 +++
+ .../Components/PotencyVisualsComponent.cs     |  9 +++++++
+ ...ystem.cs => PlantConsumeExudeGasSystem.cs} |  0
+ ...ystem.cs => PlantConsumeExudeGasSystem.cs} |  0
+ .../Components/PlantChemicalsComponent.cs     |  2 +-
+ .../Botany/Components/PlantComponent.cs       |  2 +-
+ .../Botany/Items/Systems/BotanySwabSystem.cs  |  2 +-
+ Content.Shared/Botany/PlantVisuals.cs         | 24 ++++++++++++++++++-
+ Content.Shared/Botany/ProduceVisuals.cs       |  3 +++
+ .../Botany/Systems/MutationSystem.cs          |  2 +-
+ .../Botany/Systems/PlantChemicalsSystem.cs    |  2 +-
+ .../Botany/Systems/PlantGrowthSystem.cs       |  2 +-
+ Content.Shared/Botany/Systems/PlantSystem.cs  |  8 ++++---
+ .../Botany/Systems/PlantToxinsSystem.cs       |  2 +-
+ .../Botany/Systems/PlantWeedPestSystem.cs     |  2 +-
+ .../Systems/SharedPlantAtmosphericSystem.cs   |  2 +-
+ ...cs => SharedPlantConsumeExudeGasSystem.cs} |  2 +-
+ .../Traits/Components/PlantTraitsComponent.cs |  3 +--
+ .../Traits/Systems/PlantTraitsSystem.cs       | 19 ---------------
+ ...ntMutateSpeciesChangeEntityEffectSystem.cs |  2 +-
+ .../en-US/{plants => botany}/mutations.ftl    |  1 -
+ .../component/potted-plant-hide-component.ftl |  1 -
+ Resources/Prototypes/Hydroponics/plants.yml   |  1 -
+ 24 files changed, 58 insertions(+), 39 deletions(-)
+ rename Content.Client/Botany/Systems/{ConsumeExudeGasGrowthSystem.cs => PlantConsumeExudeGasSystem.cs} (100%)
+ rename Content.Server/Botany/Systems/{ConsumeExudeGasGrowthSystem.cs => PlantConsumeExudeGasSystem.cs} (100%)
+ rename Content.Shared/Botany/Systems/{SharedConsumeExudeGasGrowthSystem.cs => SharedPlantConsumeExudeGasSystem.cs} (97%)
+ delete mode 100644 Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs
+ rename Resources/Locale/en-US/{plants => botany}/mutations.ftl (88%)
+ delete mode 100644 Resources/Locale/en-US/plants/component/potted-plant-hide-component.ftl
+
+diff --git a/Content.Client/Botany/Components/PlantTrayVisualsComponent.cs b/Content.Client/Botany/Components/PlantTrayVisualsComponent.cs
+index 0860f724eb..81eec7bfce 100644
+--- a/Content.Client/Botany/Components/PlantTrayVisualsComponent.cs
++++ b/Content.Client/Botany/Components/PlantTrayVisualsComponent.cs
+@@ -1,4 +1,7 @@
+ namespace Content.Client.Botany.Components;
+ 
++/// <summary>
++/// Marker component for plant tray visual updates.
++/// </summary>
+ [RegisterComponent]
+ public sealed partial class PlantTrayVisualsComponent : Component;
+diff --git a/Content.Client/Botany/Components/PlantVisualsComponent.cs b/Content.Client/Botany/Components/PlantVisualsComponent.cs
+index 9e6dc398a6..b6823e4130 100644
+--- a/Content.Client/Botany/Components/PlantVisualsComponent.cs
++++ b/Content.Client/Botany/Components/PlantVisualsComponent.cs
+@@ -1,4 +1,7 @@
+ namespace Content.Client.Botany.Components;
+ 
++/// <summary>
++/// Marker component for plant sprite visualization.
++/// </summary>
+ [RegisterComponent]
+ public sealed partial class PlantVisualsComponent : Component;
+diff --git a/Content.Client/Botany/Components/PotencyVisualsComponent.cs b/Content.Client/Botany/Components/PotencyVisualsComponent.cs
+index c60564538d..6399dbe8da 100644
+--- a/Content.Client/Botany/Components/PotencyVisualsComponent.cs
++++ b/Content.Client/Botany/Components/PotencyVisualsComponent.cs
+@@ -1,11 +1,20 @@
+ namespace Content.Client.Botany.Components;
+ 
++/// <summary>
++/// Configuration for scaling a sprite by its potency value.
++/// </summary>
+ [RegisterComponent]
+ public sealed partial class PotencyVisualsComponent : Component
+ {
++    /// <summary>
++    /// Minimum scale applied to the sprite.
++    /// </summary>
+     [DataField]
+     public float MinimumScale = 1f;
+ 
++    /// <summary>
++    /// Maximum scale applied to the sprite.
++    /// </summary>
+     [DataField]
+     public float MaximumScale = 2f;
+ }
+diff --git a/Content.Client/Botany/Systems/ConsumeExudeGasGrowthSystem.cs b/Content.Client/Botany/Systems/PlantConsumeExudeGasSystem.cs
+similarity index 100%
+rename from Content.Client/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+rename to Content.Client/Botany/Systems/PlantConsumeExudeGasSystem.cs
+diff --git a/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs b/Content.Server/Botany/Systems/PlantConsumeExudeGasSystem.cs
+similarity index 100%
+rename from Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+rename to Content.Server/Botany/Systems/PlantConsumeExudeGasSystem.cs
+diff --git a/Content.Shared/Botany/Components/PlantChemicalsComponent.cs b/Content.Shared/Botany/Components/PlantChemicalsComponent.cs
+index ad9e07efc9..aae096dcc3 100644
+--- a/Content.Shared/Botany/Components/PlantChemicalsComponent.cs
++++ b/Content.Shared/Botany/Components/PlantChemicalsComponent.cs
+@@ -11,7 +11,7 @@ namespace Content.Shared.Botany.Components;
+ /// Component for defining what reagents harvested produce will contain for this plant species.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
+-[Access(typeof(PlantChemicalsSystem), typeof(MutationSystem))]
++[Access(typeof(PlantChemicalsSystem), typeof(PlantMutationSystem))]
+ public sealed partial class PlantChemicalsComponent : Component
+ {
+     /// <summary>
+diff --git a/Content.Shared/Botany/Components/PlantComponent.cs b/Content.Shared/Botany/Components/PlantComponent.cs
+index 1a5a5575dd..aef62be0dc 100644
+--- a/Content.Shared/Botany/Components/PlantComponent.cs
++++ b/Content.Shared/Botany/Components/PlantComponent.cs
+@@ -7,7 +7,7 @@ namespace Content.Shared.Botany.Components;
+ /// Component for storing plant growth data.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)]
+-[Access(typeof(PlantSystem), typeof(MutationSystem))]
++[Access(typeof(PlantSystem), typeof(PlantMutationSystem))]
+ public sealed partial class PlantComponent : Component
+ {
+     /// <summary>
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs
+index 03a5c3edac..6b99ac97e4 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySwabSystem.cs
+@@ -13,7 +13,7 @@ namespace Content.Shared.Botany.Items.Systems;
+ public sealed partial class BotanySwabSystem : EntitySystem
+ {
+     [Dependency] private BotanySystem _botany = default!;
+-    [Dependency] private MutationSystem _mutation = default!;
++    [Dependency] private PlantMutationSystem _mutation = default!;
+     [Dependency] private SharedDoAfterSystem _doAfter = default!;
+     [Dependency] private SharedPopupSystem _popup = default!;
+ 
+diff --git a/Content.Shared/Botany/PlantVisuals.cs b/Content.Shared/Botany/PlantVisuals.cs
+index 8b139e2a46..1d8570d91c 100644
+--- a/Content.Shared/Botany/PlantVisuals.cs
++++ b/Content.Shared/Botany/PlantVisuals.cs
+@@ -1,13 +1,35 @@
+-﻿using Robust.Shared.Serialization;
++using Robust.Shared.Serialization;
+ 
+ namespace Content.Shared.Botany;
+ 
++/// <summary>
++/// Appearance data keys used by plant tray visualizers.
++/// </summary>
+ [Serializable, NetSerializable]
+ public enum PlantTrayVisuals
+ {
++    /// <summary>
++    /// Whether the plant's health warning light is enabled.
++    /// </summary>
+     HealthLight,
++
++    /// <summary>
++    /// Whether the water warning light is enabled.
++    /// </summary>
+     WaterLight,
++
++    /// <summary>
++    /// Whether the nutrition warning light is enabled.
++    /// </summary>
+     NutritionLight,
++
++    /// <summary>
++    /// Whether the general alert light is enabled.
++    /// </summary>
+     AlertLight,
++
++    /// <summary>
++    /// Whether the plant is ready for harvest.
++    /// </summary>
+     HarvestLight,
+ }
+diff --git a/Content.Shared/Botany/ProduceVisuals.cs b/Content.Shared/Botany/ProduceVisuals.cs
+index c55ab8114e..dd3bd2e746 100644
+--- a/Content.Shared/Botany/ProduceVisuals.cs
++++ b/Content.Shared/Botany/ProduceVisuals.cs
+@@ -2,6 +2,9 @@
+ 
+ namespace Content.Shared.Botany;
+ 
++/// <summary>
++/// Appearance data keys used by produce visualizers.
++/// </summary>
+ [Serializable, NetSerializable]
+ public enum ProduceVisuals : byte
+ {
+diff --git a/Content.Shared/Botany/Systems/MutationSystem.cs b/Content.Shared/Botany/Systems/MutationSystem.cs
+index 01c38e6e99..82e0f6e656 100644
+--- a/Content.Shared/Botany/Systems/MutationSystem.cs
++++ b/Content.Shared/Botany/Systems/MutationSystem.cs
+@@ -17,7 +17,7 @@ namespace Content.Shared.Botany.Systems;
+ /// Handles plant mutations, including random mutation effects, crossbreeding, and
+ /// inheritance of plant properties and traits from pollen.
+ /// </summary>
+-public sealed partial class MutationSystem : EntitySystem
++public sealed partial class PlantMutationSystem : EntitySystem
+ {
+     private static readonly ProtoId<RandomPlantMutationListPrototype> RandomPlantMutations = "RandomPlantMutations";
+     private RandomPlantMutationListPrototype _randomMutations = default!;
+diff --git a/Content.Shared/Botany/Systems/PlantChemicalsSystem.cs b/Content.Shared/Botany/Systems/PlantChemicalsSystem.cs
+index b9620a2166..0ba64044ac 100644
+--- a/Content.Shared/Botany/Systems/PlantChemicalsSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantChemicalsSystem.cs
+@@ -14,7 +14,7 @@ namespace Content.Shared.Botany.Systems;
+ public sealed partial class PlantChemicalsSystem : EntitySystem
+ {
+     [Dependency] private BotanySystem _botany = default!;
+-    [Dependency] private MutationSystem _mutation = default!;
++    [Dependency] private PlantMutationSystem _mutation = default!;
+     [Dependency] private IGameTiming _timing = default!;
+ 
+     public override void Initialize()
+diff --git a/Content.Shared/Botany/Systems/PlantGrowthSystem.cs b/Content.Shared/Botany/Systems/PlantGrowthSystem.cs
+index 09fbbd06b9..9b91712dc3 100644
+--- a/Content.Shared/Botany/Systems/PlantGrowthSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantGrowthSystem.cs
+@@ -15,7 +15,7 @@ public sealed partial class PlantGrowthSystem : EntitySystem
+ {
+     [Dependency] private BotanySystem _botany = default!;
+     [Dependency] private IGameTiming _timing = default!;
+-    [Dependency] private MutationSystem _mutation = default!;
++    [Dependency] private PlantMutationSystem _mutation = default!;
+     [Dependency] private PlantHarvestSystem _plantHarvest = default!;
+     [Dependency] private PlantHolderSystem _plantHolder = default!;
+     [Dependency] private PlantTraySystem _plantTray = default!;
+diff --git a/Content.Shared/Botany/Systems/PlantSystem.cs b/Content.Shared/Botany/Systems/PlantSystem.cs
+index 192d168658..21fe967ef6 100644
+--- a/Content.Shared/Botany/Systems/PlantSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantSystem.cs
+@@ -1,3 +1,4 @@
++using System.Linq;
+ using JetBrains.Annotations;
+ using Content.Shared.Botany.Components;
+ using Content.Shared.Botany.Events;
+@@ -14,7 +15,7 @@ public sealed partial class PlantSystem : EntitySystem
+ {
+     [Dependency] private BotanySystem _botany = default!;
+     [Dependency] private IGameTiming _gameTiming = default!;
+-    [Dependency] private MutationSystem _mutation = default!;
++    [Dependency] private PlantMutationSystem _mutation = default!;
+     [Dependency] private PlantHolderSystem _plantHolder = default!;
+ 
+     public override void Update(float frameTime)
+@@ -52,12 +53,12 @@ private void OnCrossPollinate(Entity<PlantComponent> ent, ref PlantCrossPollinat
+             return;
+ 
+         _mutation.CrossInt(ent, ref ent.Comp.Yield, pollenData.Yield);
+-        _mutation.CrossInt(ent, ref ent.Comp.GrowthStages, pollenData.GrowthStages);
+         _mutation.CrossFloat(ent, ref ent.Comp.Endurance, pollenData.Endurance);
+         _mutation.CrossFloat(ent, ref ent.Comp.Lifespan, pollenData.Lifespan);
+         _mutation.CrossFloat(ent, ref ent.Comp.Maturation, pollenData.Maturation);
+         _mutation.CrossFloat(ent, ref ent.Comp.Production, pollenData.Production);
+         _mutation.CrossFloat(ent, ref ent.Comp.Potency, pollenData.Potency);
++        _mutation.CrossTrait(ent.Owner, args.PollenData);
+         Dirty(ent);
+     }
+ 
+@@ -96,7 +97,8 @@ private void OnExamined(Entity<PlantComponent> ent, ref ExaminedEvent args)
+                             : "plant-component-plant-unhealthy-adjective"))));
+             }
+ 
+-            foreach (var trait in AllComps<PlantTraitsComponent>(ent.Owner))
++            foreach (var trait in AllComps<PlantTraitsComponent>(ent.Owner)
++                         .OrderBy(trait => trait.GetType().FullName))
+             {
+                 if (trait.TraitState is { } traitState)
+                     args.PushMarkup(Loc.GetString(traitState));
+diff --git a/Content.Shared/Botany/Systems/PlantToxinsSystem.cs b/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
+index 3fd76b5f08..0947db816d 100644
+--- a/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
+@@ -11,7 +11,7 @@ namespace Content.Shared.Botany.Systems;
+ public sealed partial class PlantToxinsSystem : EntitySystem
+ {
+     [Dependency] private BotanySystem _botany = default!;
+-    [Dependency] private MutationSystem _mutation = default!;
++    [Dependency] private PlantMutationSystem _mutation = default!;
+     [Dependency] private PlantHolderSystem _plantHolder = default!;
+     [Dependency] private PlantTraySystem _plantTray = default!;
+ 
+diff --git a/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs b/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs
+index 01d7180a40..d94d17251b 100644
+--- a/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs
+@@ -13,7 +13,7 @@ public sealed partial class PlantWeedPestSystem : EntitySystem
+ {
+     [Dependency] private BotanySystem _botany = default!;
+     [Dependency] private IRobustRandom _random = default!;
+-    [Dependency] private MutationSystem _mutation = default!;
++    [Dependency] private PlantMutationSystem _mutation = default!;
+     [Dependency] private PlantHolderSystem _plantHolder = default!;
+     [Dependency] private PlantTraySystem _plantTray = default!;
+ 
+diff --git a/Content.Shared/Botany/Systems/SharedPlantAtmosphericSystem.cs b/Content.Shared/Botany/Systems/SharedPlantAtmosphericSystem.cs
+index daa9158869..c6670bd1bd 100644
+--- a/Content.Shared/Botany/Systems/SharedPlantAtmosphericSystem.cs
++++ b/Content.Shared/Botany/Systems/SharedPlantAtmosphericSystem.cs
+@@ -11,7 +11,7 @@ namespace Content.Shared.Botany.Systems;
+ public abstract partial class SharedPlantAtmosphericSystem : EntitySystem
+ {
+     [Dependency] private BotanySystem _botany = default!;
+-    [Dependency] private MutationSystem _mutation = default!;
++    [Dependency] private PlantMutationSystem _mutation = default!;
+ 
+     [SubscribeLocalEvent]
+     private void OnCrossPollinate(Entity<PlantAtmosphericComponent> ent, ref PlantCrossPollinateEvent args)
+diff --git a/Content.Shared/Botany/Systems/SharedConsumeExudeGasGrowthSystem.cs b/Content.Shared/Botany/Systems/SharedPlantConsumeExudeGasSystem.cs
+similarity index 97%
+rename from Content.Shared/Botany/Systems/SharedConsumeExudeGasGrowthSystem.cs
+rename to Content.Shared/Botany/Systems/SharedPlantConsumeExudeGasSystem.cs
+index 253f30926a..036ec835c7 100644
+--- a/Content.Shared/Botany/Systems/SharedConsumeExudeGasGrowthSystem.cs
++++ b/Content.Shared/Botany/Systems/SharedPlantConsumeExudeGasSystem.cs
+@@ -16,7 +16,7 @@ public abstract partial class SharedPlantConsumeExudeGasSystem : EntitySystem
+ {
+     [Dependency] private BotanySystem _botany = default!;
+     [Dependency] private IGameTiming _timing = default!;
+-    [Dependency] private MutationSystem _mutation = default!;
++    [Dependency] private PlantMutationSystem _mutation = default!;
+ 
+     [SubscribeLocalEvent]
+     private void OnCrossPollinate(Entity<PlantConsumeExudeGasComponent> ent, ref PlantCrossPollinateEvent args)
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
+index 16a8ae0f49..e442b0b6b1 100644
+--- a/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
+@@ -6,8 +6,7 @@ namespace Content.Shared.Botany.Traits.Components;
+ /// Base component for plant trait components.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent]
+-[Virtual]
+-public partial class PlantTraitsComponent : Component
++public abstract partial class PlantTraitsComponent : Component
+ {
+     /// <summary>
+     /// Localization key describing the plant trait state.
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs
+deleted file mode 100644
+index 4e43ca82c0..0000000000
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs
++++ /dev/null
+@@ -1,19 +0,0 @@
+-using Content.Shared.Botany.Events;
+-using Content.Shared.Botany.Traits.Components;
+-using Content.Shared.Botany.Systems;
+-
+-namespace Content.Shared.Botany.Traits.Systems;
+-
+-/// <summary>
+-/// Base system for managing plant traits.
+-/// </summary>
+-public sealed partial class PlantTraitsSystem : EntitySystem
+-{
+-    [Dependency] private MutationSystem _mutation = default!;
+-
+-    [SubscribeLocalEvent]
+-    private void OnCrossPollinate(Entity<PlantTraitsComponent> ent, ref PlantCrossPollinateEvent args)
+-    {
+-        _mutation.CrossTrait(ent.Owner, args.PollenData);
+-    }
+-}
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs
+index c082a198b1..c509818aeb 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs
+@@ -14,7 +14,7 @@ namespace Content.Shared.EntityEffects.Effects.Botany;
+ public sealed partial class PlantMutateSpeciesChangeEntityEffectSystem : EntityEffectSystem<PlantDataComponent, PlantMutateSpeciesChange>
+ {
+     [Dependency] private IGameTiming _timing = default!;
+-    [Dependency] private MutationSystem _mutation = default!;
++    [Dependency] private PlantMutationSystem _mutation = default!;
+ 
+     protected override void Effect(Entity<PlantDataComponent> entity, ref EntityEffectEvent<PlantMutateSpeciesChange> args)
+     {
+diff --git a/Resources/Locale/en-US/plants/mutations.ftl b/Resources/Locale/en-US/botany/mutations.ftl
+similarity index 88%
+rename from Resources/Locale/en-US/plants/mutations.ftl
+rename to Resources/Locale/en-US/botany/mutations.ftl
+index f746c0f74e..7d09cf8d73 100644
+--- a/Resources/Locale/en-US/plants/mutations.ftl
++++ b/Resources/Locale/en-US/botany/mutations.ftl
+@@ -1,4 +1,3 @@
+-mutation-plant-bioluminescent = It glows with a gentle light.
+ mutation-plant-kudzu = It is growing unusually fast and thin.
+ mutation-plant-ligneous = It is woody and will need a sharp tool to harvest.
+ mutation-plant-scream = This plant seems nervous somehow.
+diff --git a/Resources/Locale/en-US/plants/component/potted-plant-hide-component.ftl b/Resources/Locale/en-US/plants/component/potted-plant-hide-component.ftl
+deleted file mode 100644
+index 698dc780b6..0000000000
+--- a/Resources/Locale/en-US/plants/component/potted-plant-hide-component.ftl
++++ /dev/null
+@@ -1 +0,0 @@
+-potted-plant-hide-component-interact-hand-got-no-item-message = You root around in the roots.
+\ No newline at end of file
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index 4fb91dccea..b121fc7e4c 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -37,7 +37,6 @@
+   - type: PlantHarvest
+   - type: PlantChemicals
+   - type: PlantToxins
+-  - type: PlantTraits
+   - type: PlantVisuals
+   - type: PlantWeedPest
+   - type: PlantAtmospheric
+-- 
+2.55.0
+

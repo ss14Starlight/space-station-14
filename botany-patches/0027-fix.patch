@@ -1,0 +1,111 @@
+From 2173d26c1e616adcc21c34f0a34c54703ed9d509 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Mon, 4 Aug 2025 20:40:48 +0300
+Subject: [PATCH 027/112] fix
+
+---
+ .../Botany/Systems/HarvestSystem.cs           | 12 +++++-
+ .../Botany/Systems/PlantGrowthSystem.cs       |  5 ---
+ .../Botany/Systems/PlantHolderSystem.cs       | 37 -------------------
+ 3 files changed, 11 insertions(+), 43 deletions(-)
+
+diff --git a/Content.Server/Botany/Systems/HarvestSystem.cs b/Content.Server/Botany/Systems/HarvestSystem.cs
+index ac407c8ed3..7d52190694 100644
+--- a/Content.Server/Botany/Systems/HarvestSystem.cs
++++ b/Content.Server/Botany/Systems/HarvestSystem.cs
+@@ -63,8 +63,9 @@ private void OnPlantGrow(EntityUid uid, HarvestComponent component, OnPlantGrowE
+             return;
+ 
+         // Check if plant is ready for harvest
+-        if (plantHolder.Age >= traits.Production)
++        if (component.HarvestRepeat == HarvestType.Repeat || component.HarvestRepeat == HarvestType.SelfHarvest)
+         {
++            // Repeat harvest
+             var timeSinceLastHarvest = plantHolder.Age - component.LastHarvestTime;
+             if (timeSinceLastHarvest >= traits.Production && !component.ReadyForHarvest)
+             {
+@@ -72,6 +73,15 @@ private void OnPlantGrow(EntityUid uid, HarvestComponent component, OnPlantGrowE
+                 plantHolder.UpdateSpriteAfterUpdate = true;
+             }
+         }
++        else
++        {
++            // Non-repeat harvest
++            if (plantHolder.Age >= traits.Production && !component.ReadyForHarvest)
++            {
++                component.ReadyForHarvest = true;
++                plantHolder.UpdateSpriteAfterUpdate = true;
++            }
++        }
+     }
+ 
+     private void OnInteractHand(EntityUid uid, HarvestComponent component, InteractHandEvent args)
+diff --git a/Content.Server/Botany/Systems/PlantGrowthSystem.cs b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+index 7341fb264b..ea0ddbe5f7 100644
+--- a/Content.Server/Botany/Systems/PlantGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+@@ -31,13 +31,8 @@ public override void Update(float frameTime)
+         var query = EntityQueryEnumerator<PlantHolderComponent>();
+         while (query.MoveNext(out var uid, out var plantHolder))
+         {
+-            if (_gameTiming.CurTime < plantHolder.LastCycle + plantHolder.CycleDelay)
+-                continue;
+-
+             var plantGrow = new OnPlantGrowEvent();
+             RaiseLocalEvent(uid, ref plantGrow);
+-
+-            plantHolder.LastCycle = _gameTiming.CurTime;
+         }
+ 
+         nextUpdate = _gameTiming.CurTime + updateDelay;
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 5c290e768a..86bbf71ea7 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -473,43 +473,6 @@ public void CheckLevelSanity(EntityUid uid, PlantHolderComponent? component = nu
+         component.MutationMod = MathHelper.Clamp(component.MutationMod, 0f, 3f);
+     }
+ 
+-    public void AutoHarvest(EntityUid uid, PlantHolderComponent? component = null)
+-    {
+-        if (!Resolve(uid, ref component))
+-            return;
+-
+-        if (component.Seed == null || !component.Harvest)
+-            return;
+-
+-        if (TryComp<HarvestComponent>(uid, out var harvestComp))
+-        {
+-            var harvestSystem = EntitySystem.Get<HarvestSystem>();
+-            harvestSystem.DoHarvest(uid, uid, harvestComp, component);
+-        }
+-    }
+-
+-    private void AfterHarvest(EntityUid uid, PlantHolderComponent? component = null)
+-    {
+-        if (!Resolve(uid, ref component))
+-            return;
+-
+-        component.Harvest = false;
+-        component.LastProduce = component.Age;
+-
+-        HarvestComponent? harvest = null;
+-        if (TryComp<HarvestComponent>(uid, out harvest))
+-        {
+-            harvest.ReadyForHarvest = false;
+-            harvest.LastHarvestTime = component.Age;
+-
+-            if (harvest.HarvestRepeat == HarvestType.NoRepeat)
+-                RemovePlant(uid, component);
+-        }
+-
+-        CheckLevelSanity(uid, component);
+-        UpdateSprite(uid, component);
+-    }
+-
+     public void CheckHealth(EntityUid uid, PlantHolderComponent? component = null)
+     {
+         if (!Resolve(uid, ref component))
+-- 
+2.55.0
+

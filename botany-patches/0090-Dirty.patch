@@ -1,0 +1,147 @@
+From 598c37e0236964c2f9de6215ecbe17eaf1a9807b Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Wed, 8 Jul 2026 21:42:31 +0300
+Subject: [PATCH 090/112] Dirty
+
+---
+ Content.Shared/Botany/Items/Components/ProduceComponent.cs      | 2 +-
+ Content.Shared/Botany/Items/Components/SeedComponent.cs         | 2 +-
+ Content.Shared/Botany/Systems/BotanySystem.Seed.cs              | 2 +-
+ Content.Shared/Botany/Systems/PlantChemicalsSystem.cs           | 1 +
+ Content.Shared/Botany/Systems/PlantGrowthSystem.cs              | 1 +
+ Content.Shared/Botany/Systems/PlantSystem.cs                    | 1 +
+ Content.Shared/Botany/Systems/PlantToxinsSystem.cs              | 1 +
+ Content.Shared/Botany/Systems/PlantWeedPestSystem.cs            | 1 +
+ .../Botany/Systems/SharedConsumeExudeGasGrowthSystem.cs         | 1 +
+ Content.Shared/Botany/Systems/SharedPlantAtmosphericSystem.cs   | 2 +-
+ 10 files changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/Content.Shared/Botany/Items/Components/ProduceComponent.cs b/Content.Shared/Botany/Items/Components/ProduceComponent.cs
+index 9e2948cf49..c0838eb182 100644
+--- a/Content.Shared/Botany/Items/Components/ProduceComponent.cs
++++ b/Content.Shared/Botany/Items/Components/ProduceComponent.cs
+@@ -21,7 +21,7 @@ public sealed partial class ProduceComponent : Component
+     /// Serialized snapshot of plant components.
+     /// Used to create a <see cref="SeedComponent"/> when this produce has its seeds extracted.
+     /// </summary>
+-    [DataField, AutoNetworkedField]
++    [DataField]
+     public ComponentRegistry? PlantData;
+ 
+     /// <summary>
+diff --git a/Content.Shared/Botany/Items/Components/SeedComponent.cs b/Content.Shared/Botany/Items/Components/SeedComponent.cs
+index 0b154a0e9c..084209fa8d 100644
+--- a/Content.Shared/Botany/Items/Components/SeedComponent.cs
++++ b/Content.Shared/Botany/Items/Components/SeedComponent.cs
+@@ -20,7 +20,7 @@ public sealed partial class SeedComponent : Component
+     /// <summary>
+     /// Serialized snapshot of plant components used to override defaults when planting.
+     /// </summary>
+-    [DataField, AutoNetworkedField]
++    [DataField]
+     public ComponentRegistry? PlantData;
+ 
+     /// <summary>
+diff --git a/Content.Shared/Botany/Systems/BotanySystem.Seed.cs b/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
+index 3874a2727c..06036286fa 100644
+--- a/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
+@@ -162,7 +162,7 @@ private EntityUid SpawnSeedPacketInternal(
+         EntityUid user,
+         float? healthOverride)
+     {
+-        var seedItem = EntityManager.PredictedSpawnAtPosition(plantData.PacketPrototype, coords);
++        var seedItem = PredictedSpawnAtPosition(plantData.PacketPrototype, coords);
+         var seedComp = EnsureComp<SeedComponent>(seedItem);
+         seedComp.PlantProtoId = plantProtoId;
+         seedComp.PlantData = snapshot != null
+diff --git a/Content.Shared/Botany/Systems/PlantChemicalsSystem.cs b/Content.Shared/Botany/Systems/PlantChemicalsSystem.cs
+index c72deaffaa..176a654895 100644
+--- a/Content.Shared/Botany/Systems/PlantChemicalsSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantChemicalsSystem.cs
+@@ -29,6 +29,7 @@ private void OnCrossPollinate(Entity<PlantChemicalsComponent> ent, ref PlantCros
+             return;
+ 
+         _mutation.CrossChemicals(ref ent.Comp.Chemicals, pollenData.Chemicals);
++        Dirty(ent);
+     }
+ 
+     /// <summary>
+diff --git a/Content.Shared/Botany/Systems/PlantGrowthSystem.cs b/Content.Shared/Botany/Systems/PlantGrowthSystem.cs
+index c79bd0d2c5..bf483b89d9 100644
+--- a/Content.Shared/Botany/Systems/PlantGrowthSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantGrowthSystem.cs
+@@ -33,6 +33,7 @@ private void OnCrossPollinate(Entity<PlantGrowthComponent> ent, ref PlantCrossPo
+ 
+         _mutation.CrossFloat(ref ent.Comp.WaterConsumption, pollenData.WaterConsumption);
+         _mutation.CrossFloat(ref ent.Comp.NutrientConsumption, pollenData.NutrientConsumption);
++        Dirty(ent);
+     }
+ 
+     private void OnPlantGrow(Entity<PlantGrowthComponent> ent, ref OnPlantGrowEvent args)
+diff --git a/Content.Shared/Botany/Systems/PlantSystem.cs b/Content.Shared/Botany/Systems/PlantSystem.cs
+index 6b9de0ec99..78e7989bc5 100644
+--- a/Content.Shared/Botany/Systems/PlantSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantSystem.cs
+@@ -44,6 +44,7 @@ private void OnCrossPollinate(Entity<PlantComponent> ent, ref PlantCrossPollinat
+         _mutation.CrossFloat(ref ent.Comp.Maturation, pollenData.Maturation);
+         _mutation.CrossFloat(ref ent.Comp.Production, pollenData.Production);
+         _mutation.CrossFloat(ref ent.Comp.Potency, pollenData.Potency);
++        Dirty(ent);
+     }
+ 
+     private void OnPlantGrow(Entity<PlantComponent> ent, ref OnPlantGrowEvent args)
+diff --git a/Content.Shared/Botany/Systems/PlantToxinsSystem.cs b/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
+index c0ed2b2064..948a621430 100644
+--- a/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantToxinsSystem.cs
+@@ -27,6 +27,7 @@ private void OnCrossPollinate(Entity<PlantToxinsComponent> ent, ref PlantCrossPo
+ 
+         _mutation.CrossFloat(ref ent.Comp.ToxinsTolerance, pollenData.ToxinsTolerance);
+         _mutation.CrossFloat(ref ent.Comp.ToxinUptakeDivisor, pollenData.ToxinUptakeDivisor);
++        Dirty(ent);
+     }
+ 
+     private void OnPlantGrow(Entity<PlantToxinsComponent> ent, ref OnPlantGrowEvent args)
+diff --git a/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs b/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs
+index 1c2fcbd8f4..6c79874465 100644
+--- a/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantWeedPestSystem.cs
+@@ -29,6 +29,7 @@ private void OnCrossPollinate(Entity<PlantWeedPestComponent> ent, ref PlantCross
+ 
+         _mutation.CrossFloat(ref ent.Comp.WeedTolerance, pollenData.WeedTolerance);
+         _mutation.CrossFloat(ref ent.Comp.PestTolerance, pollenData.PestTolerance);
++        Dirty(ent);
+     }
+ 
+     private void OnPlantGrow(Entity<PlantWeedPestComponent> ent, ref OnPlantGrowEvent args)
+diff --git a/Content.Shared/Botany/Systems/SharedConsumeExudeGasGrowthSystem.cs b/Content.Shared/Botany/Systems/SharedConsumeExudeGasGrowthSystem.cs
+index 93adc7e278..39b5e2c977 100644
+--- a/Content.Shared/Botany/Systems/SharedConsumeExudeGasGrowthSystem.cs
++++ b/Content.Shared/Botany/Systems/SharedConsumeExudeGasGrowthSystem.cs
+@@ -30,6 +30,7 @@ private void OnCrossPollinate(Entity<PlantConsumeExudeGasComponent> ent, ref Pla
+ 
+         _mutation.CrossGasses(ref ent.Comp.ConsumeGasses, pollenData.ConsumeGasses);
+         _mutation.CrossGasses(ref ent.Comp.ExudeGasses, pollenData.ExudeGasses);
++        Dirty(ent);
+     }
+ 
+     /// <summary>
+diff --git a/Content.Shared/Botany/Systems/SharedPlantAtmosphericSystem.cs b/Content.Shared/Botany/Systems/SharedPlantAtmosphericSystem.cs
+index 751c44a46d..f3058ca00d 100644
+--- a/Content.Shared/Botany/Systems/SharedPlantAtmosphericSystem.cs
++++ b/Content.Shared/Botany/Systems/SharedPlantAtmosphericSystem.cs
+@@ -27,9 +27,9 @@ private void OnCrossPollinate(Entity<PlantAtmosphericComponent> ent, ref PlantCr
+         _mutation.CrossFloat(ref ent.Comp.HighHeatTolerance, pollenData.HighHeatTolerance);
+         _mutation.CrossFloat(ref ent.Comp.LowPressureTolerance, pollenData.LowPressureTolerance);
+         _mutation.CrossFloat(ref ent.Comp.HighPressureTolerance, pollenData.HighPressureTolerance);
++        Dirty(ent);
+     }
+ 
+-
+     /// <summary>
+     /// Adjusts minimum temperature tolerance for plant growth.
+     /// Ensures low temperature is not greater than high.
+-- 
+2.55.0
+

@@ -1,0 +1,1351 @@
+From acd04c3e9cf119a0a2ca35f1c79fb997172141e0 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Wed, 7 Jan 2026 04:23:48 +0200
+Subject: [PATCH 083/112] review
+
+---
+ .../Botany/Components/PlantComponent.cs       |   3 +-
+ .../Botany/Components/PlantTraitsComponent.cs |  14 --
+ .../Items/Systems/BotanySampleTakerSystem.cs  |   4 +-
+ .../Botany/Systems/MutationSystem.cs          |  19 +-
+ Content.Shared/Botany/Systems/PlantSystem.cs  |  12 +-
+ .../Botany/Systems/PlantTraySystem.cs         |   2 +-
+ .../Botany/Systems/SeedExtractorSystem.cs     |   5 +-
+ .../Systems/Traits/PlantTraitsSystem.Kudzu.cs |  59 -------
+ .../Traits/PlantTraitsSystem.Sampled.cs       |  25 ---
+ .../Traits/PlantTraitsSystem.Scream.cs        |  31 ----
+ .../Traits/PlantTraitsSystem.Seedless.cs      |  13 --
+ .../Traits/PlantTraitsSystem.Unviable.cs      |  32 ----
+ .../Systems/Traits/PlantTraitsSystem.cs       | 166 ------------------
+ .../Components/PlantTraitKudzuComponent.cs    |  31 ++++
+ .../Components/PlantTraitLigneousComponent.cs |  12 ++
+ .../Components/PlantTraitSampledComponent.cs  |  12 ++
+ .../Components/PlantTraitScreamComponent.cs   |  19 ++
+ .../Components/PlantTraitSeedlessComponent.cs |  12 ++
+ .../Components/PlantTraitUnviableComponent.cs |  18 ++
+ .../Traits/Components/PlantTraitsComponent.cs |  16 ++
+ .../Traits/Systems/PlantTraitsSystem.Kudzu.cs |  40 +++++
+ .../Systems}/PlantTraitsSystem.Ligneous.cs    |  22 +--
+ .../Systems/PlantTraitsSystem.Sampled.cs      |  24 +++
+ .../Systems/PlantTraitsSystem.Scream.cs       |  23 +++
+ .../Systems/PlantTraitsSystem.Unviable.cs     |  26 +++
+ .../Traits/Systems/PlantTraitsSystem.cs       |  23 +++
+ .../PlantChangeTraitsEntityEffectSystem.cs    |  25 ++-
+ .../PlantDestroySeedsEntityEffectSystem.cs    |   4 +-
+ .../PlantPhalanximineEntityEffectSystem.cs    |   4 +-
+ .../PlantRestoreSeedsEntityEffectSystem.cs    |   4 +-
+ .../RobustHarvestEntityEffectSystem.cs        |   6 +-
+ .../PlantMutateGasesEntityEffectSystem.cs     |  16 +-
+ .../Prototypes/Entities/Mobs/Player/clone.yml |   8 +
+ Resources/Prototypes/Hydroponics/plants.yml   |   9 +-
+ .../Hydroponics/randomMutations.yml           |   8 +-
+ 35 files changed, 338 insertions(+), 409 deletions(-)
+ delete mode 100644 Content.Shared/Botany/Components/PlantTraitsComponent.cs
+ delete mode 100644 Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Kudzu.cs
+ delete mode 100644 Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Sampled.cs
+ delete mode 100644 Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Scream.cs
+ delete mode 100644 Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Seedless.cs
+ delete mode 100644 Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Unviable.cs
+ delete mode 100644 Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.cs
+ create mode 100644 Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
+ create mode 100644 Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
+ create mode 100644 Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
+ create mode 100644 Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
+ create mode 100644 Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
+ create mode 100644 Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
+ create mode 100644 Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
+ create mode 100644 Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs
+ rename Content.Shared/Botany/{Systems/Traits => Traits/Systems}/PlantTraitsSystem.Ligneous.cs (71%)
+ create mode 100644 Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
+ create mode 100644 Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs
+ create mode 100644 Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs
+ create mode 100644 Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs
+
+diff --git a/Content.Shared/Botany/Components/PlantComponent.cs b/Content.Shared/Botany/Components/PlantComponent.cs
+index 0ed508cb6a..7ab108b536 100644
+--- a/Content.Shared/Botany/Components/PlantComponent.cs
++++ b/Content.Shared/Botany/Components/PlantComponent.cs
+@@ -13,8 +13,9 @@ public sealed partial class PlantComponent : Component
+ {
+     /// <summary>
+     /// The mutation effects that have been applied to this plant.
++    /// Server-only: mutations are applied as effects which are synced separately.
+     /// </summary>
+-    [DataField, AutoNetworkedField]
++    [DataField]
+     public List<RandomPlantMutation> Mutations = [];
+ 
+     /// <summary>
+diff --git a/Content.Shared/Botany/Components/PlantTraitsComponent.cs b/Content.Shared/Botany/Components/PlantTraitsComponent.cs
+deleted file mode 100644
+index f99690b5a4..0000000000
+--- a/Content.Shared/Botany/Components/PlantTraitsComponent.cs
++++ /dev/null
+@@ -1,14 +0,0 @@
+-using Content.Shared.Botany.Systems;
+-using Robust.Shared.GameStates;
+-
+-namespace Content.Shared.Botany.Components;
+-
+-/// <summary>
+-/// Component for managing special plant traits and mutations.
+-/// </summary>
+-[RegisterComponent, NetworkedComponent]
+-public sealed partial class PlantTraitsComponent : Component
+-{
+-    [DataField]
+-    public List<PlantTrait> Traits = [];
+-}
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
+index 0ba8d98c17..f059904be9 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
+@@ -2,6 +2,7 @@
+ using Content.Shared.Botany.Events;
+ using Content.Shared.Botany.Items.Components;
+ using Content.Shared.Botany.Systems;
++using Content.Shared.Botany.Traits.Components;
+ using Content.Shared.Interaction;
+ using Content.Shared.Popups;
+ using Content.Shared.Random.Helpers;
+@@ -19,7 +20,6 @@ public sealed class BotanySampleTakerSystem : EntitySystem
+     [Dependency] private readonly IGameTiming _timing = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+     [Dependency] private readonly PlantSystem _plant = default!;
+-    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+     [Dependency] private readonly SharedPopupSystem _popup = default!;
+ 
+     public override void Initialize()
+@@ -74,6 +74,6 @@ private void OnPlantSampleAttempt(Entity<PlantComponent> ent, ref PlantSampleAtt
+         _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-take-sample-message", ("seedName", displayName)), args.User);
+ 
+         if (rand.Prob(args.Sample.Comp.SampleProbability))
+-            _plantTraits.AddTrait(ent.Owner, new TraitSampled());
++            EnsureComp<PlantTraitSampledComponent>(ent.Owner);
+     }
+ }
+diff --git a/Content.Shared/Botany/Systems/MutationSystem.cs b/Content.Shared/Botany/Systems/MutationSystem.cs
+index 8f143e4c79..2b979b6bc4 100644
+--- a/Content.Shared/Botany/Systems/MutationSystem.cs
++++ b/Content.Shared/Botany/Systems/MutationSystem.cs
+@@ -2,6 +2,7 @@
+ using System.Linq;
+ using Content.Shared.Atmos;
+ using Content.Shared.Botany.Components;
++using Content.Shared.Botany.Traits.Components;
+ using Content.Shared.Chemistry.Reagent;
+ using Content.Shared.EntityEffects;
+ using Content.Shared.Random;
+@@ -21,10 +22,10 @@ public sealed class MutationSystem : EntitySystem
+     [Dependency] private readonly IGameTiming _timing = default!;
+     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+     [Dependency] private readonly PlantSystem _plant = default!;
+-    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+     [Dependency] private readonly PlantTraySystem _plantTray = default!;
+     [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
+     [Dependency] private readonly SharedTransformSystem _transform = default!;
++    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+ 
+     public override void Initialize()
+     {
+@@ -50,8 +51,6 @@ public void CheckRandomMutations(Entity<PlantComponent?> ent, float severity)
+                 // Stat adjustments do not persist by being an attached effect, they just change the stat.
+                 if (mutation.Persists && ent.Comp.Mutations.All(m => m.Name != mutation.Name))
+                     ent.Comp.Mutations.Add(mutation);
+-
+-                DirtyField(ent, nameof(ent.Comp.Mutations));
+             }
+         }
+     }
+@@ -100,7 +99,7 @@ public void CrossMutations(ComponentRegistry pollenPlant, EntProtoId? pollenProt
+             && pollenProtoId != MetaData(targetPlant).EntityPrototype?.ID
+             && Random(0.7f))
+         {
+-            _plantTraits.AddTrait(targetPlant, new TraitSeedless());
++            EnsureComp<PlantTraitSeedlessComponent>(targetPlant);
+         }
+     }
+ 
+@@ -195,15 +194,19 @@ public void CrossBool(ref bool val, bool other)
+     }
+ 
+     [PublicAPI]
+-    public void CrossTrait(ref Entity<PlantTraitsComponent> val, List<PlantTrait> other)
++    public void CrossTrait(EntityUid val, ComponentRegistry pollenData)
+     {
+-        foreach (var trait in other.ToArray())
++        foreach (var (componentName, _) in pollenData)
+         {
+-            if (val.Comp.Traits.Any(t => t.GetType() == trait.GetType()))
++            var newComponent = _componentFactory.GetComponent(componentName);
++            if (newComponent is not PlantTraitsComponent)
++                continue;
++
++            if (HasComp(val, newComponent.GetType()))
+                 continue;
+ 
+             if (Random(0.5f))
+-                _plantTraits.AddTrait(val.AsNullable(), trait);
++                AddComp(val, newComponent);
+         }
+     }
+ 
+diff --git a/Content.Shared/Botany/Systems/PlantSystem.cs b/Content.Shared/Botany/Systems/PlantSystem.cs
+index 483f39318e..960b221e74 100644
+--- a/Content.Shared/Botany/Systems/PlantSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantSystem.cs
+@@ -1,8 +1,8 @@
+ using JetBrains.Annotations;
+ using Content.Shared.Botany.Components;
+ using Content.Shared.Botany.Events;
++using Content.Shared.Botany.Traits.Components;
+ using Content.Shared.Examine;
+-using Content.Shared.Random.Helpers;
+ using Robust.Shared.Timing;
+ 
+ namespace Content.Shared.Botany.Systems;
+@@ -85,15 +85,11 @@ private void OnExamined(Entity<PlantComponent> ent, ref ExaminedEvent args)
+                             : "plant-holder-component-plant-unhealthy-adjective"))));
+             }
+ 
+-            if (TryComp<PlantTraitsComponent>(ent.Owner, out var traits))
++            foreach (var trait in EntityManager.GetComponents<PlantTraitsComponent>(ent.Owner))
+             {
+-                var traitList = traits.Traits;
+-                foreach (var trait in traitList)
++                foreach (var markup in trait.GetTraitStateMarkup())
+                 {
+-                    foreach (var markup in trait.GetTraitStateMarkup())
+-                    {
+-                        args.PushMarkup(markup);
+-                    }
++                    args.PushMarkup(markup);
+                 }
+             }
+         }
+diff --git a/Content.Shared/Botany/Systems/PlantTraySystem.cs b/Content.Shared/Botany/Systems/PlantTraySystem.cs
+index 701cc7bcde..bc0aa35702 100644
+--- a/Content.Shared/Botany/Systems/PlantTraySystem.cs
++++ b/Content.Shared/Botany/Systems/PlantTraySystem.cs
+@@ -181,7 +181,7 @@ public void AdjustWater(Entity<PlantTrayComponent?> ent, float amount)
+         DirtyField(ent, nameof(ent.Comp.WaterLevel));
+ 
+         // Water dilutes toxins.
+-        if (TryGetPlant(ent, out var plantUid))
++        if (TryGetPlant(ent, out var plantUid) && amount > 0)
+             _plantHolder.AdjustsToxins(plantUid.Value, -amount * 4f);
+     }
+ 
+diff --git a/Content.Shared/Botany/Systems/SeedExtractorSystem.cs b/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
+index 3a7f10dcf9..8100bf23ca 100644
+--- a/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
++++ b/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
+@@ -1,5 +1,6 @@
+ using Content.Shared.Botany.Components;
+ using Content.Shared.Botany.Items.Components;
++using Content.Shared.Botany.Traits.Components;
+ using Content.Shared.Interaction;
+ using Content.Shared.Popups;
+ using Content.Shared.Power.EntitySystems;
+@@ -13,7 +14,6 @@ public sealed class SeedExtractorSystem : EntitySystem
+ {
+     [Dependency] private readonly BotanySystem _botany = default!;
+     [Dependency] private readonly IGameTiming _timing = default!;
+-    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+     [Dependency] private readonly SharedPopupSystem _popup = default!;
+     [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
+ 
+@@ -39,8 +39,7 @@ private void OnInteractUsing(Entity<SeedExtractorComponent> ent, ref InteractUsi
+         if (produce.PlantData != null)
+             snapshot = produce.PlantData;
+ 
+-        if (_botany.TryGetPlantComponent<PlantTraitsComponent>(snapshot, produce.PlantProtoId, out var traits) &&
+-            _plantTraits.TryGetTrait<TraitSeedless>(traits, out _))
++        if (_botany.TryGetPlantComponent<PlantTraitSeedlessComponent>(snapshot, produce.PlantProtoId, out _))
+         {
+             _popup.PopupPredictedCursor(Loc.GetString("seed-extractor-component-no-seeds", ("name", args.Used)),
+                 args.User,
+diff --git a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Kudzu.cs b/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Kudzu.cs
+deleted file mode 100644
+index 3aa8cfdc8e..0000000000
+--- a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Kudzu.cs
++++ /dev/null
+@@ -1,59 +0,0 @@
+-using Content.Shared.Botany.Components;
+-using Content.Shared.Botany.Events;
+-using Robust.Shared.Prototypes;
+-
+-namespace Content.Shared.Botany.Systems;
+-
+-/// <summary>
+-/// As the plant grows, it increases the <see cref="PlantTrayComponent.WeedLevel"/>.
+-/// Once the limit is exceeded, it kills the plant and creates kudzu.
+-/// </summary>
+-[DataDefinition]
+-public sealed partial class TraitKudzu : PlantTrait
+-{
+-    /// <summary>
+-    /// Which kind of kudzu this plant will turn into if it kuzuifies.
+-    /// </summary>
+-    [DataField]
+-    public EntProtoId KudzuPrototype = "WeakKudzu";
+-
+-    /// <summary>
+-    /// Weed level threshold at which the plant is considered overgrown and will transform into kudzu.
+-    /// </summary>
+-    [DataField]
+-    public float WeedLevelThreshold = 10f;
+-
+-    /// <summary>
+-    /// Amount of weed to grow per growth tick.
+-    /// </summary>
+-    [DataField]
+-    public float WeedGrowthAmount = 1f;
+-
+-    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+-    [Dependency] private readonly PlantTraitsSystem _plantTrait = default!;
+-    [Dependency] private readonly PlantTraySystem _plantTray = default!;
+-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+-
+-    public override void OnPlantGrow(Entity<PlantTraitsComponent> ent, ref OnPlantGrowEvent args)
+-    {
+-        var trayUid = GetEntity(args.Tray);
+-        if (!TryComp<PlantTrayComponent>(trayUid, out var trayComp))
+-            return;
+-
+-        if (trayComp is { WaterLevel: > 10, NutritionLevel: > 5 })
+-            _plantTray.AdjustWeed(trayUid, WeedGrowthAmount);
+-
+-        // Handle kudzu transformation.
+-        if (trayComp.WeedLevel >= WeedLevelThreshold)
+-        {
+-            EntityManager.PredictedSpawn(KudzuPrototype, _transform.GetMapCoordinates(ent.Owner));
+-            _plantTrait.DelTrait(ent.AsNullable(), this);
+-            _plantHolder.Die(ent.Owner);
+-        }
+-    }
+-
+-    public override IEnumerable<string> GetTraitStateMarkup()
+-    {
+-        yield return Loc.GetString("mutation-plant-kudzu");
+-    }
+-}
+diff --git a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Sampled.cs b/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Sampled.cs
+deleted file mode 100644
+index b59d335f0e..0000000000
+--- a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Sampled.cs
++++ /dev/null
+@@ -1,25 +0,0 @@
+-using Content.Shared.Botany.Components;
+-using Content.Shared.Botany.Events;
+-using Content.Shared.Popups;
+-
+-namespace Content.Shared.Botany.Systems;
+-
+-/// <summary>
+-/// The plant has been sampled, preventing it from being sampled again.
+-/// </summary>
+-[DataDefinition]
+-public sealed partial class TraitSampled : PlantTrait
+-{
+-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+-
+-    public override void OnPlantSampleAttempt(Entity<PlantTraitsComponent> ent, ref PlantSampleAttemptEvent args)
+-    {
+-        _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-already-sampled-message"), args.User);
+-        args.Cancel();
+-    }
+-
+-    public override IEnumerable<string> GetTraitStateMarkup()
+-    {
+-        yield return Loc.GetString("mutation-plant-sampled");
+-    }
+-}
+diff --git a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Scream.cs b/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Scream.cs
+deleted file mode 100644
+index 654d3c298f..0000000000
+--- a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Scream.cs
++++ /dev/null
+@@ -1,31 +0,0 @@
+-using Content.Shared.Botany.Components;
+-using Content.Shared.Botany.Events;
+-using Robust.Shared.Audio;
+-using Robust.Shared.Audio.Systems;
+-
+-namespace Content.Shared.Botany.Systems;
+-
+-/// <summary>
+-/// Plays a screams when the plant is harvested.
+-/// </summary>
+-[DataDefinition]
+-public sealed partial class TraitScream : PlantTrait
+-{
+-    /// <summary>
+-    /// The sound to play when the plant screams.
+-    /// </summary>
+-    [DataField]
+-    public SoundSpecifier ScreamSound = new SoundCollectionSpecifier("PlantScreams");
+-
+-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+-
+-    public override void OnAfterDoHarvest(Entity<PlantTraitsComponent> ent, ref AfterDoHarvestEvent args)
+-    {
+-        _audio.PlayPredicted(ScreamSound, ent, args.User);
+-    }
+-
+-    public override IEnumerable<string> GetTraitStateMarkup()
+-    {
+-        yield return Loc.GetString("mutation-plant-scream");
+-    }
+-}
+diff --git a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Seedless.cs b/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Seedless.cs
+deleted file mode 100644
+index 5a8a30d4e9..0000000000
+--- a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Seedless.cs
++++ /dev/null
+@@ -1,13 +0,0 @@
+-namespace Content.Shared.Botany.Systems;
+-
+-/// <summary>
+-/// The produce of the plant become seedless, which makes it impossible to extract seeds from them.
+-/// </summary>
+-[DataDefinition]
+-public sealed partial class TraitSeedless : PlantTrait
+-{
+-    public override IEnumerable<string> GetTraitStateMarkup()
+-    {
+-        yield return Loc.GetString("mutation-plant-seedless");
+-    }
+-}
+diff --git a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Unviable.cs b/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Unviable.cs
+deleted file mode 100644
+index 6de6920b81..0000000000
+--- a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Unviable.cs
++++ /dev/null
+@@ -1,32 +0,0 @@
+-using Content.Shared.Botany.Components;
+-using Content.Shared.Botany.Events;
+-
+-namespace Content.Shared.Botany.Systems;
+-
+-/// <summary>
+-/// The plant stops growing and dies quickly.
+-/// Adds a bit of challenge to keep mutated plants alive via Unviable's frequency.
+-/// </summary>
+-[DataDefinition]
+-public sealed partial class TraitUnviable : PlantTrait
+-{
+-    /// <summary>
+-    /// Amount of damage dealt to the plant per growth tick with unviable.
+-    /// </summary>
+-    [DataField]
+-    public float UnviableDamage = 6f;
+-
+-    [Dependency] private readonly PlantHarvestSystem _plantHarvest = default!;
+-    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+-
+-    public override void OnPlantGrow(Entity<PlantTraitsComponent> ent, ref OnPlantGrowEvent args)
+-    {
+-        _plantHarvest.AffectGrowth(ent.Owner, -1);
+-        _plantHolder.AdjustsHealth(ent.Owner, -UnviableDamage);
+-    }
+-
+-    public override IEnumerable<string> GetTraitStateMarkup()
+-    {
+-        yield return Loc.GetString("mutation-plant-unviable");
+-    }
+-}
+diff --git a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.cs b/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.cs
+deleted file mode 100644
+index ab227365b5..0000000000
+--- a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.cs
++++ /dev/null
+@@ -1,166 +0,0 @@
+-using System.Linq;
+-using System.Diagnostics.CodeAnalysis;
+-using JetBrains.Annotations;
+-using Content.Shared.Botany.Components;
+-using Content.Shared.Botany.Events;
+-using Content.Shared.Interaction;
+-
+-namespace Content.Shared.Botany.Systems;
+-
+-/// <summary>
+-/// Base system for managing plant traits.
+-/// </summary>
+-public sealed class PlantTraitsSystem : EntitySystem
+-{
+-    [Dependency] private readonly BotanySystem _botany = default!;
+-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+-    [Dependency] private readonly MutationSystem _mutation = default!;
+-
+-    public override void Initialize()
+-    {
+-        base.Initialize();
+-
+-        SubscribeLocalEvent<PlantTraitsComponent, ComponentInit>(OnInit);
+-
+-        SubscribeLocalEvent<PlantTraitsComponent, PlantCrossPollinateEvent>(OnCrossPollinate);
+-        SubscribeLocalEvent<PlantTraitsComponent, OnPlantGrowEvent>(OnPlantGrow);
+-        SubscribeLocalEvent<PlantTraitsComponent, DoHarvestEvent>(OnDoHarvest);
+-        SubscribeLocalEvent<PlantTraitsComponent, AfterDoHarvestEvent>(OnAfterDoHarvest);
+-        SubscribeLocalEvent<PlantTraitsComponent, InteractUsingEvent>(OnInteractUsing);
+-        SubscribeLocalEvent<PlantTraitsComponent, PlantSampleAttemptEvent>(OnPlantSampleAttempt);
+-    }
+-
+-    private void OnInit(Entity<PlantTraitsComponent> ent, ref ComponentInit args)
+-    {
+-        var deps = _entitySystemManager.DependencyCollection;
+-        foreach (var trait in ent.Comp.Traits)
+-        {
+-            deps.InjectDependencies(trait);
+-        }
+-    }
+-
+-    private void OnCrossPollinate(Entity<PlantTraitsComponent> ent, ref PlantCrossPollinateEvent args)
+-    {
+-        if (!_botany.TryGetPlantComponent<PlantTraitsComponent>(args.PollenData, args.PollenProtoId, out var pollenData))
+-            return;
+-
+-        _mutation.CrossTrait(ref ent, pollenData.Traits);
+-    }
+-
+-    private void OnPlantGrow(Entity<PlantTraitsComponent> ent, ref OnPlantGrowEvent args)
+-    {
+-        foreach (var trait in ent.Comp.Traits.ToArray())
+-        {
+-            trait.OnPlantGrow(ent, ref args);
+-        }
+-    }
+-
+-    private void OnDoHarvest(Entity<PlantTraitsComponent> ent, ref DoHarvestEvent args)
+-    {
+-        foreach (var trait in ent.Comp.Traits.ToArray())
+-        {
+-            trait.OnDoHarvest(ent, ref args);
+-        }
+-    }
+-
+-    private void OnAfterDoHarvest(Entity<PlantTraitsComponent> ent, ref AfterDoHarvestEvent args)
+-    {
+-        foreach (var trait in ent.Comp.Traits.ToArray())
+-        {
+-            trait.OnAfterDoHarvest(ent, ref args);
+-        }
+-    }
+-
+-    private void OnInteractUsing(Entity<PlantTraitsComponent> ent, ref InteractUsingEvent args)
+-    {
+-        foreach (var trait in ent.Comp.Traits.ToArray())
+-        {
+-            trait.OnInteractUsing(ent, ref args);
+-        }
+-    }
+-
+-    private void OnPlantSampleAttempt(Entity<PlantTraitsComponent> ent, ref PlantSampleAttemptEvent args)
+-    {
+-        foreach (var trait in ent.Comp.Traits.ToArray())
+-        {
+-            trait.OnPlantSampleAttempt(ent, ref args);
+-        }
+-    }
+-
+-    /// <summary>
+-    /// Tries to get a trait from the plant traits component.
+-    /// </summary>
+-    [PublicAPI]
+-    public bool TryGetTrait<T>(PlantTraitsComponent component, [NotNullWhen(true)] out T? trait)
+-        where T : PlantTrait
+-    {
+-        trait = null;
+-        foreach (var existing in component.Traits)
+-        {
+-            if (existing is T t)
+-            {
+-                trait = t;
+-                return true;
+-            }
+-        }
+-
+-        return false;
+-    }
+-
+-    /// <summary>
+-    /// Removes a trait from the plant traits component.
+-    /// </summary>
+-    [PublicAPI]
+-    public void DelTrait(Entity<PlantTraitsComponent?> ent, PlantTrait trait)
+-    {
+-        if (!Resolve(ent, ref ent.Comp, false))
+-            return;
+-
+-        ent.Comp.Traits.RemoveAll(t => t.GetType() == trait.GetType());
+-    }
+-
+-    /// <summary>
+-    /// Adds a trait to the plant traits component.
+-    /// </summary>
+-    [PublicAPI]
+-    public void AddTrait(Entity<PlantTraitsComponent?> ent, PlantTrait trait)
+-    {
+-        if (!Resolve(ent, ref ent.Comp, false))
+-            return;
+-
+-        if (ent.Comp.Traits.Any(t => t.GetType() == trait.GetType()))
+-            return;
+-
+-        _entitySystemManager.DependencyCollection.InjectDependencies(trait);
+-        ent.Comp.Traits.Add(trait);
+-    }
+-}
+-
+-[ImplicitDataDefinitionForInheritors]
+-public abstract partial class PlantTrait : EntitySystem
+-{
+-    public virtual void OnPlantGrow(Entity<PlantTraitsComponent> ent, ref OnPlantGrowEvent args)
+-    {
+-    }
+-
+-    public virtual void OnDoHarvest(Entity<PlantTraitsComponent> ent, ref DoHarvestEvent args)
+-    {
+-    }
+-
+-    public virtual void OnAfterDoHarvest(Entity<PlantTraitsComponent> ent, ref AfterDoHarvestEvent args)
+-    {
+-    }
+-
+-    public virtual void OnInteractUsing(Entity<PlantTraitsComponent> ent, ref InteractUsingEvent args)
+-    {
+-    }
+-
+-    public virtual void OnPlantSampleAttempt(Entity<PlantTraitsComponent> ent, ref PlantSampleAttemptEvent args)
+-    {
+-    }
+-
+-    public virtual IEnumerable<string> GetTraitStateMarkup()
+-    {
+-        yield break;
+-    }
+-}
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
+new file mode 100644
+index 0000000000..97b129884f
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitKudzuComponent.cs
+@@ -0,0 +1,31 @@
++using Robust.Shared.Prototypes;
++using Robust.Shared.GameStates;
++
++namespace Content.Shared.Botany.Traits.Components;
++
++[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
++public sealed partial class PlantTraitKudzuComponent : PlantTraitsComponent
++{
++    /// <summary>
++    /// Which kind of kudzu this plant will turn into if it kuzuifies.
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public EntProtoId KudzuPrototype = "WeakKudzu";
++
++    /// <summary>
++    /// Weed level threshold at which the plant is considered overgrown and will transform into kudzu.
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public float WeedLevelThreshold = 10f;
++
++    /// <summary>
++    /// Amount of weed to grow per growth tick.
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public float WeedGrowthAmount = 1f;
++
++    public override IEnumerable<string> GetTraitStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-kudzu");
++    }
++}
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
+new file mode 100644
+index 0000000000..b1a6e29e0f
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitLigneousComponent.cs
+@@ -0,0 +1,12 @@
++using Robust.Shared.GameStates;
++
++namespace Content.Shared.Botany.Traits.Components;
++
++[RegisterComponent, NetworkedComponent]
++public sealed partial class PlantTraitLigneousComponent : PlantTraitsComponent
++{
++    public override IEnumerable<string> GetTraitStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-ligneous");
++    }
++}
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
+new file mode 100644
+index 0000000000..c10a23f304
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitSampledComponent.cs
+@@ -0,0 +1,12 @@
++using Robust.Shared.GameStates;
++
++namespace Content.Shared.Botany.Traits.Components;
++
++[RegisterComponent, NetworkedComponent]
++public sealed partial class PlantTraitSampledComponent : PlantTraitsComponent
++{
++    public override IEnumerable<string> GetTraitStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-sampled");
++    }
++}
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
+new file mode 100644
+index 0000000000..391a15e1c6
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitScreamComponent.cs
+@@ -0,0 +1,19 @@
++using Robust.Shared.GameStates;
++using Robust.Shared.Audio;
++
++namespace Content.Shared.Botany.Traits.Components;
++
++[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
++public sealed partial class PlantTraitScreamComponent : PlantTraitsComponent
++{
++    /// <summary>
++    /// The sound to play when the plant screams.
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public SoundSpecifier ScreamSound = new SoundCollectionSpecifier("PlantScreams");
++
++    public override IEnumerable<string> GetTraitStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-scream");
++    }
++}
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
+new file mode 100644
+index 0000000000..cca71133fc
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitSeedlessComponent.cs
+@@ -0,0 +1,12 @@
++using Robust.Shared.GameStates;
++
++namespace Content.Shared.Botany.Traits.Components;
++
++[RegisterComponent, NetworkedComponent]
++public sealed partial class PlantTraitSeedlessComponent : PlantTraitsComponent
++{
++    public override IEnumerable<string> GetTraitStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-seedless");
++    }
++}
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
+new file mode 100644
+index 0000000000..bcf024bf33
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitUnviableComponent.cs
+@@ -0,0 +1,18 @@
++using Robust.Shared.GameStates;
++
++namespace Content.Shared.Botany.Traits.Components;
++
++[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
++public sealed partial class PlantTraitUnviableComponent : PlantTraitsComponent
++{
++    /// <summary>
++    /// Amount of damage dealt to the plant per growth tick with unviable.
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public float UnviableDamage = 6f;
++
++    public override IEnumerable<string> GetTraitStateMarkup()
++    {
++        yield return Loc.GetString("mutation-plant-unviable");
++    }
++}
+diff --git a/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs b/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
+new file mode 100644
+index 0000000000..250b465730
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Components/PlantTraitsComponent.cs
+@@ -0,0 +1,16 @@
++using Robust.Shared.GameStates;
++
++namespace Content.Shared.Botany.Traits.Components;
++
++/// <summary>
++/// Base component for plant trait components.
++/// </summary>
++[RegisterComponent, NetworkedComponent]
++[Virtual]
++public partial class PlantTraitsComponent : Component
++{
++    public virtual IEnumerable<string> GetTraitStateMarkup()
++    {
++        yield break;
++    }
++}
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs
+new file mode 100644
+index 0000000000..db479ec320
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Kudzu.cs
+@@ -0,0 +1,40 @@
++using Content.Shared.Botany.Components;
++using Content.Shared.Botany.Events;
++using Content.Shared.Botany.Systems;
++using Content.Shared.Botany.Traits.Components;
++
++namespace Content.Shared.Botany.Traits.Systems;
++
++/// <summary>
++/// As the plant grows, it increases the <see cref="PlantTrayComponent.WeedLevel"/>.
++/// Once the limit is exceeded, it kills the plant and creates kudzu.
++/// </summary>
++public sealed partial class PlantTraitKudzuSystem : EntitySystem
++{
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantTraySystem _plantTray = default!;
++    [Dependency] private readonly SharedTransformSystem _transform = default!;
++
++    public override void Initialize()
++    {
++        SubscribeLocalEvent<PlantTraitKudzuComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(Entity<PlantTraitKudzuComponent> ent, ref OnPlantGrowEvent args)
++    {
++        var trayUid = GetEntity(args.Tray);
++        if (!TryComp<PlantTrayComponent>(trayUid, out var trayComp))
++            return;
++
++        if (trayComp is { WaterLevel: > 10, NutritionLevel: > 5 })
++            _plantTray.AdjustWeed(trayUid, ent.Comp.WeedGrowthAmount);
++
++        // Handle kudzu transformation.
++        if (trayComp.WeedLevel >= ent.Comp.WeedLevelThreshold)
++        {
++            EntityManager.PredictedSpawn(ent.Comp.KudzuPrototype, _transform.GetMapCoordinates(ent.Owner));
++            RemComp<PlantTraitKudzuComponent>(ent.Owner);
++            _plantHolder.Die(ent.Owner);
++        }
++    }
++}
+diff --git a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Ligneous.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
+similarity index 71%
+rename from Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Ligneous.cs
+rename to Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
+index b750ebffc9..83e0b8df1b 100644
+--- a/Content.Shared/Botany/Systems/Traits/PlantTraitsSystem.Ligneous.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
+@@ -1,22 +1,29 @@
+ using Content.Shared.Botany.Components;
+ using Content.Shared.Botany.Events;
++using Content.Shared.Botany.Systems;
++using Content.Shared.Botany.Traits.Components;
+ using Content.Shared.Interaction;
+ using Content.Shared.Kitchen.Components;
+ using Content.Shared.Popups;
+ 
+-namespace Content.Shared.Botany.Systems;
++namespace Content.Shared.Botany.Traits.Systems;
+ 
+ /// <summary>
+ /// The plant becomes ligneous, preventing it from being harvested without special tools
+ /// </summary>
+-[DataDefinition]
+-public sealed partial class TraitLigneous : PlantTrait
++public sealed partial class PlantTraitLigneousSystem : EntitySystem
+ {
+     [Dependency] private readonly PlantHarvestSystem _plantHarvest = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+     [Dependency] private readonly SharedPopupSystem _popup = default!;
+ 
+-    public override void OnInteractUsing(Entity<PlantTraitsComponent> ent, ref InteractUsingEvent args)
++    public override void Initialize()
++    {
++        SubscribeLocalEvent<PlantTraitLigneousComponent, InteractUsingEvent>(OnInteractUsing);
++        SubscribeLocalEvent<PlantTraitLigneousComponent, DoHarvestEvent>(OnDoHarvest);
++    }
++
++    private void OnInteractUsing(Entity<PlantTraitLigneousComponent> ent, ref InteractUsingEvent args)
+     {
+         if (args.Handled)
+             return;
+@@ -45,14 +52,9 @@ public override void OnInteractUsing(Entity<PlantTraitsComponent> ent, ref Inter
+         args.Handled = true;
+     }
+ 
+-    public override void OnDoHarvest(Entity<PlantTraitsComponent> ent, ref DoHarvestEvent args)
++    private void OnDoHarvest(Entity<PlantTraitLigneousComponent> ent, ref DoHarvestEvent args)
+     {
+         _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-ligneous-cant-harvest-message"), args.User);
+         args.Cancel();
+     }
+-
+-    public override IEnumerable<string> GetTraitStateMarkup()
+-    {
+-        yield return Loc.GetString("mutation-plant-ligneous");
+-    }
+ }
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
+new file mode 100644
+index 0000000000..7e525e3808
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
+@@ -0,0 +1,24 @@
++using Content.Shared.Botany.Events;
++using Content.Shared.Botany.Traits.Components;
++using Content.Shared.Popups;
++
++namespace Content.Shared.Botany.Traits.Systems;
++
++/// <summary>
++/// The plant has been sampled, preventing it from being sampled again.
++/// </summary>
++public sealed partial class PlantTraitSampledSystem : EntitySystem
++{
++    [Dependency] private readonly SharedPopupSystem _popup = default!;
++
++    public override void Initialize()
++    {
++        SubscribeLocalEvent<PlantTraitSampledComponent, PlantSampleAttemptEvent>(OnPlantSampleAttempt);
++    }
++
++    private void OnPlantSampleAttempt(Entity<PlantTraitSampledComponent> ent, ref PlantSampleAttemptEvent args)
++    {
++        _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-already-sampled-message"), args.User);
++        args.Cancel();
++    }
++}
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs
+new file mode 100644
+index 0000000000..aae39ec9ad
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Scream.cs
+@@ -0,0 +1,23 @@
++using Content.Shared.Botany.Events;
++using Content.Shared.Botany.Traits.Components;
++using Robust.Shared.Audio.Systems;
++
++namespace Content.Shared.Botany.Traits.Systems;
++
++/// <summary>
++/// Plays a screams when the plant is harvested.
++/// </summary>
++public sealed partial class PlantTraitScreamSystem : EntitySystem
++{
++    [Dependency] private readonly SharedAudioSystem _audio = default!;
++
++    public override void Initialize()
++    {
++        SubscribeLocalEvent<PlantTraitScreamComponent, AfterDoHarvestEvent>(OnAfterDoHarvest);
++    }
++
++    private void OnAfterDoHarvest(Entity<PlantTraitScreamComponent> ent, ref AfterDoHarvestEvent args)
++    {
++        _audio.PlayPredicted(ent.Comp.ScreamSound, ent, args.User);
++    }
++}
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs
+new file mode 100644
+index 0000000000..8cbcbd9f6d
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Unviable.cs
+@@ -0,0 +1,26 @@
++using Content.Shared.Botany.Events;
++using Content.Shared.Botany.Systems;
++using Content.Shared.Botany.Traits.Components;
++
++namespace Content.Shared.Botany.Traits.Systems;
++
++/// <summary>
++/// The plant stops growing and dies quickly.
++/// Adds a bit of challenge to keep mutated plants alive via Unviable's frequency.
++/// </summary>
++public sealed partial class PlantTraitUnviableSystem : EntitySystem
++{
++    [Dependency] private readonly PlantHarvestSystem _plantHarvest = default!;
++    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++
++    public override void Initialize()
++    {
++        SubscribeLocalEvent<PlantTraitUnviableComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(Entity<PlantTraitUnviableComponent> ent, ref OnPlantGrowEvent args)
++    {
++        _plantHarvest.AffectGrowth(ent.Owner, -1);
++        _plantHolder.AdjustsHealth(ent.Owner, -ent.Comp.UnviableDamage);
++    }
++}
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs
+new file mode 100644
+index 0000000000..e104c15fd1
+--- /dev/null
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.cs
+@@ -0,0 +1,23 @@
++using Content.Shared.Botany.Events;
++using Content.Shared.Botany.Traits.Components;
++using Content.Shared.Botany.Systems;
++
++namespace Content.Shared.Botany.Traits.Systems;
++
++/// <summary>
++/// Base system for managing plant traits.
++/// </summary>
++public sealed class PlantTraitsSystem : EntitySystem
++{
++    [Dependency] private readonly MutationSystem _mutation = default!;
++
++    public override void Initialize()
++    {
++        SubscribeLocalEvent<PlantTraitsComponent, PlantCrossPollinateEvent>(OnCrossPollinate);
++    }
++
++    private void OnCrossPollinate(Entity<PlantTraitsComponent> ent, ref PlantCrossPollinateEvent args)
++    {
++        _mutation.CrossTrait(ent.Owner, args.PollenData);
++    }
++}
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs
+index 7d10deaf68..b0a204bfb0 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantChangeTraitsEntityEffectSystem.cs
+@@ -1,5 +1,7 @@
+ using Content.Shared.Botany.Components;
+ using Content.Shared.Botany.Systems;
++using Content.Shared.Botany.Traits.Components;
++using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+ 
+ namespace Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+ 
+@@ -9,19 +11,26 @@ namespace Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+ public sealed partial class PlantChangeTraitsEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantChangeTraits>
+ {
+-    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantChangeTraits> args)
+     {
+         if (_plantHolder.IsDead(entity.Owner))
+             return;
+ 
+-        var trait = args.Effect.Trait;
++        var traitType = _componentFactory.GetComponent(args.Effect.Trait);
++        if (traitType is not PlantTraitsComponent)
++        {
++            Log.Error(
++                $"Component '{traitType}' (type: {traitType.GetType().Name}) is not a descendant of {nameof(PlantTraitsComponent)}.");
++            return;
++        }
++
+         if (args.Effect.Remove)
+-            _plantTraits.DelTrait(entity.Owner, trait);
+-        else
+-            _plantTraits.AddTrait(entity.Owner, trait);
++            RemCompDeferred(entity.Owner, traitType);
++        else if (!HasComp(entity.Owner, traitType.GetType()))
++            AddComp(entity.Owner, traitType);
+     }
+ }
+ 
+@@ -29,10 +38,10 @@ protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEv
+ public sealed partial class PlantChangeTraits : EntityEffectBase<PlantChangeTraits>
+ {
+     /// <summary>
+-    /// Name of a <see cref="PlantTrait"/> type.
++    /// Name of a <see cref="PlantTraitsComponent"/> type.
+     /// </summary>
+-    [DataField(required: true)]
+-    public PlantTrait Trait;
++    [DataField(required: true, customTypeSerializer: typeof(ComponentNameSerializer))]
++    public string Trait;
+ 
+     /// <summary>
+     /// If true, the trait is removed. If false, the trait is added.
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
+index 628f926dc8..105347e271 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
+@@ -1,5 +1,6 @@
+ using Content.Shared.Botany.Components;
+ using Content.Shared.Botany.Systems;
++using Content.Shared.Botany.Traits.Components;
+ using Content.Shared.Popups;
+ using Robust.Shared.Prototypes;
+ 
+@@ -13,7 +14,6 @@ public sealed partial class PlantDestroySeedsEntityEffectSystem : EntityEffectSy
+ {
+     [Dependency] private readonly SharedPopupSystem _popup = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+-    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantDestroySeeds> args)
+     {
+@@ -25,7 +25,7 @@ protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEv
+             entity,
+             PopupType.SmallCaution
+         );
+-        _plantTraits.AddTrait(entity.Owner, new TraitSeedless());
++        EnsureComp<PlantTraitSeedlessComponent>(entity.Owner);
+     }
+ }
+ 
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
+index d975c8b863..0dc6a64a75 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantPhalanximineEntityEffectSystem.cs
+@@ -1,5 +1,6 @@
+ using Content.Shared.Botany.Components;
+ using Content.Shared.Botany.Systems;
++using Content.Shared.Botany.Traits.Components;
+ using Robust.Shared.Prototypes;
+ 
+ namespace Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+@@ -11,14 +12,13 @@ namespace Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+ public sealed partial class PlantPhalanximineEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantPhalanximine>
+ {
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+-    [Dependency] private readonly PlantTraitsSystem _plantTrait = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantPhalanximine> args)
+     {
+         if (_plantHolder.IsDead(entity.Owner))
+             return;
+ 
+-        _plantTrait.DelTrait(entity.Owner, new TraitUnviable());
++        RemCompDeferred<PlantTraitUnviableComponent>(entity.Owner);
+     }
+ }
+ 
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
+index a894e666e0..d5473ae0ae 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
+@@ -1,5 +1,6 @@
+ using Content.Shared.Botany.Components;
+ using Content.Shared.Botany.Systems;
++using Content.Shared.Botany.Traits.Components;
+ using Content.Shared.Popups;
+ using Robust.Shared.Prototypes;
+ 
+@@ -13,7 +14,6 @@ public sealed partial class PlantRestoreSeedsEntityEffectSystem : EntityEffectSy
+ {
+     [Dependency] private readonly SharedPopupSystem _popup = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+-    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantRestoreSeeds> args)
+     {
+@@ -21,7 +21,7 @@ protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEv
+             return;
+ 
+         _popup.PopupEntity(Loc.GetString("botany-plant-seedsrestored"), entity);
+-        _plantTraits.DelTrait(entity.Owner, new TraitSeedless());
++        RemCompDeferred<PlantTraitSeedlessComponent>(entity.Owner);
+     }
+ }
+ 
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
+index b2972b24c0..da9df06f78 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
+@@ -1,7 +1,8 @@
+ using Content.Shared.Botany.Components;
+ using Content.Shared.Botany.Systems;
+-using Robust.Shared.Random;
++using Content.Shared.Botany.Traits.Components;
+ using Robust.Shared.Prototypes;
++using Robust.Shared.Random;
+ 
+ namespace Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
+ 
+@@ -15,7 +16,6 @@ public sealed partial class RobustHarvestEntityEffectSystem : EntityEffectSystem
+     [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
+     [Dependency] private readonly PlantSystem _plant = default!;
+-    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
+ 
+     protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<RobustHarvest> args)
+     {
+@@ -32,7 +32,7 @@ protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEv
+             _plant.AdjustPotency(entity.AsNullable(), potency - plant.Potency);
+ 
+             if (plant.Potency > args.Effect.PotencySeedlessThreshold)
+-                _plantTraits.AddTrait(entity.Owner, new TraitSeedless());
++                EnsureComp<PlantTraitSeedlessComponent>(entity.Owner);
+         }
+         else if (plant.Yield > 1 && _random.Prob(0.1f))
+         {
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantMutateGasesEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantMutateGasesEntityEffectSystem.cs
+index 06b5eb84fb..39e4fae30c 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantMutateGasesEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantMutateGasesEntityEffectSystem.cs
+@@ -28,16 +28,16 @@ protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEv
+ }
+ 
+ /// <inheritdoc cref="EntityEffect"/>
+-public sealed partial class PlantMutateConsumeGases : EntityEffectBase<PlantMutateConsumeGases>
++public sealed partial class PlantMutateExudeGases : EntityEffectBase<PlantMutateExudeGases>
+ {
+     /// <summary>
+-    /// The minimum amount of gas to exude.
++    /// The minimum amount of gas to consume.
+     /// </summary>
+     [DataField]
+     public float MinValue = 0.01f;
+ 
+     /// <summary>
+-    /// The maximum amount of gas to exude.
++    /// The maximum amount of gas to consume.
+     /// </summary>
+     [DataField]
+     public float MaxValue = 0.5f;
+@@ -45,7 +45,7 @@ public sealed partial class PlantMutateConsumeGases : EntityEffectBase<PlantMuta
+     /// <inheritdoc/>
+     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+     {
+-        return Loc.GetString("entity-effect-guidebook-plant-mutate-consume-gasses",
++        return Loc.GetString("entity-effect-guidebook-plant-mutate-exude-gasses",
+                 ("chance", Probability),
+                 ("minValue", MinValue),
+                 ("maxValue", MaxValue));
+@@ -69,16 +69,16 @@ protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEv
+ }
+ 
+ /// <inheritdoc cref="EntityEffect"/>
+-public sealed partial class PlantMutateExudeGases : EntityEffectBase<PlantMutateExudeGases>
++public sealed partial class PlantMutateConsumeGases : EntityEffectBase<PlantMutateConsumeGases>
+ {
+     /// <summary>
+-    /// The minimum amount of gas to consume.
++    /// The minimum amount of gas to exude.
+     /// </summary>
+     [DataField]
+     public float MinValue = 0.01f;
+ 
+     /// <summary>
+-    /// The maximum amount of gas to consume.
++    /// The maximum amount of gas to exude.
+     /// </summary>
+     [DataField]
+     public float MaxValue = 0.5f;
+@@ -86,7 +86,7 @@ public sealed partial class PlantMutateExudeGases : EntityEffectBase<PlantMutate
+     /// <inheritdoc/>
+     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+     {
+-        return Loc.GetString("entity-effect-guidebook-plant-mutate-exude-gasses",
++        return Loc.GetString("entity-effect-guidebook-plant-mutate-consume-gasses",
+                 ("chance", Probability),
+                 ("minValue", MinValue),
+                 ("maxValue", MaxValue));
+diff --git a/Resources/Prototypes/Entities/Mobs/Player/clone.yml b/Resources/Prototypes/Entities/Mobs/Player/clone.yml
+index c06e59d83e..b11268d1d6 100644
+--- a/Resources/Prototypes/Entities/Mobs/Player/clone.yml
++++ b/Resources/Prototypes/Entities/Mobs/Player/clone.yml
+@@ -155,6 +155,11 @@
+   - ConsumeExudeGasGrowth
+   - WeedPestGrowth
+   - PlantToxins
++  # traits
++  - PlantTraitKudzu
++  - PlantTraitLigneous
++  - PlantTraitScream
++  - PlantTraitUnviable
+ 
+ # for plant lifecycle clones
+ - type: cloningSettings
+@@ -162,3 +167,6 @@
+   parent: PlantClone
+   components:
+   - PlantHolder
++  # traits
++  - PlantTraitSampled
++  - PlantTraitSeedless
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index 01720772d1..4a338547a5 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -44,7 +44,6 @@
+     packetPrototype: WheatSeeds
+     productPrototypes: [ WheatBushel ]
+     mutationPrototypes: [ MeatWheatPlants ]
+-  - type: PlantTraits
+   - type: Plant
+     lifespan: 25
+     maturation: 6
+@@ -597,15 +596,13 @@
+     yield: 5
+     potency: 1
+     growthStages: 3
+-  - type: PlantTraits
+-    traits:
+-    - !type:TraitLigneous
+   - type: BasicGrowth
+     waterConsumption: 0.6
+     nutrientConsumption: 0.5
+   - type: AtmosphericGrowth
+     lowHeatTolerance: 278 # 5°C
+     highHeatTolerance: 298 # 25°C
++  - type: PlantTraitLigneous
+ 
+ - type: entity
+   parent: BasePlant
+@@ -626,15 +623,13 @@
+     yield: 3
+     potency: 1
+     growthStages: 3
+-  - type: PlantTraits
+-    traits:
+-    - !type:TraitLigneous
+   - type: BasicGrowth
+     waterConsumption: 0.6
+     nutrientConsumption: 0.8
+   - type: AtmosphericGrowth
+     lowHeatTolerance: 278 # 5°C
+     highHeatTolerance: 298 # 25°C
++  - type: PlantTraitLigneous
+ 
+ - type: entity
+   parent: BasePlant
+diff --git a/Resources/Prototypes/Hydroponics/randomMutations.yml b/Resources/Prototypes/Hydroponics/randomMutations.yml
+index e3754ecb92..cd54e203c0 100644
+--- a/Resources/Prototypes/Hydroponics/randomMutations.yml
++++ b/Resources/Prototypes/Hydroponics/randomMutations.yml
+@@ -206,22 +206,22 @@
+       baseOdds: 0.036
+       persists: false
+       effect: !type:PlantChangeTraits
+-        trait: !type:TraitSeedless
++        trait: PlantTraitSeedless
+     - name: Lignification
+       baseOdds: 0.036
+       persists: false
+       effect: !type:PlantChangeTraits
+-        trait: !type:TraitLigneous
++        trait: PlantTraitLigneous
+     - name: Kudzufication
+       baseOdds: 0.036
+       persists: false
+       effect: !type:PlantChangeTraits
+-        trait: !type:TraitKudzu
++        trait: PlantTraitKudzu
+     - name: ChangeScreaming
+       baseOdds: 0.036
+       persists: false
+       effect: !type:PlantChangeTraits
+-        trait: !type:TraitScream
++        trait: PlantTraitScream
+     - name: ChangeChemicals
+       baseOdds: 0.072
+       persists: false
+-- 
+2.55.0
+

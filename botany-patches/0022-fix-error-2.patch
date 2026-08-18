@@ -1,0 +1,101 @@
+From 6d852bfb37660086b1b6209ee364b86b7e01307d Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sat, 2 Aug 2025 21:32:13 +0300
+Subject: [PATCH 022/112] fix error 2
+
+---
+ Content.Server/Botany/Systems/BotanySystem.Seed.cs | 8 ++++++--
+ Content.Server/Botany/Systems/PlantHolderSystem.cs | 4 ++--
+ Resources/Prototypes/Hydroponics/seeds.yml         | 4 ++--
+ 3 files changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Seed.cs b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+index 79f30fc27a..33d9a239ee 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+@@ -145,7 +145,7 @@ public EntityUid SpawnSeedPacket(SeedData proto, EntityCoordinates coords, Entit
+         return seed;
+     }
+ 
+-    public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates position, int yieldMod = 1)
++    public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates position, EntityUid? plantEntity = null)
+     {
+         if (position.IsValid(EntityManager) &&
+             proto.ProductPrototypes.Count > 0)
+@@ -153,13 +153,15 @@ public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates posi
+             if (proto.HarvestLogImpact != null)
+                 _adminLogger.Add(LogType.Botany, proto.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(proto.Name):seed} at Pos:{position}.");
+ 
++            var yieldMod = Comp<PlantHolderComponent>(plantEntity!.Value).YieldMod;
++
+             return GenerateProduct(proto, position, yieldMod);
+         }
+ 
+         return Enumerable.Empty<EntityUid>();
+     }
+ 
+-    public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, int yieldMod = 1)
++    public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, EntityUid? plantEntity = null)
+     {
+         var traits = GetPlantTraits(proto);
+         if (traits == null || proto.ProductPrototypes.Count == 0 || traits.Yield <= 0)
+@@ -174,6 +176,8 @@ public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, int yieldM
+         if (proto.HarvestLogImpact != null)
+             _adminLogger.Add(LogType.Botany, proto.HarvestLogImpact.Value, $"{ToPrettyString(user):player} harvested {Loc.GetString(proto.Name):seed} at Pos:{Transform(user).Coordinates}.");
+ 
++        var yieldMod = Comp<PlantHolderComponent>(plantEntity!.Value).YieldMod;
++
+         return GenerateProduct(proto, Transform(user).Coordinates, yieldMod);
+     }
+ 
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 0ae4941c8a..aea2a2bd65 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -526,7 +526,7 @@ public bool DoHarvest(EntityUid plantholder, EntityUid user, PlantHolderComponen
+                 return false;
+             }
+ 
+-            _botany.Harvest(component.Seed, user, component.YieldMod);
++            _botany.Harvest(component.Seed, user, plantholder);
+             AfterHarvest(plantholder, component);
+             return true;
+         }
+@@ -563,7 +563,7 @@ public void AutoHarvest(EntityUid uid, PlantHolderComponent? component = null)
+         if (component.Seed == null || !component.Harvest)
+             return;
+ 
+-        _botany.AutoHarvest(component.Seed, Transform(uid).Coordinates);
++        _botany.AutoHarvest(component.Seed, Transform(uid).Coordinates, uid);
+         AfterHarvest(uid, component);
+     }
+ 
+diff --git a/Resources/Prototypes/Hydroponics/seeds.yml b/Resources/Prototypes/Hydroponics/seeds.yml
+index b294a5110b..8a2ce37c49 100644
+--- a/Resources/Prototypes/Hydroponics/seeds.yml
++++ b/Resources/Prototypes/Hydroponics/seeds.yml
+@@ -527,9 +527,9 @@
+     - Log
+   mutationPrototypes:
+     - steelcap
+-  ligneous: true
+   growthComponents:
+     - !type:PlantTraitsComponent
++        ligneous: true
+         lifespan: 80
+         maturation: 15
+         production: 3
+@@ -551,9 +551,9 @@
+   packetPrototype: SteelcapSeeds
+   productPrototypes:
+     - SteelLog
+-  ligneous: true
+   growthComponents:
+     - !type:PlantTraitsComponent
++        ligneous: true
+         lifespan: 80
+         maturation: 15
+         production: 3
+-- 
+2.55.0
+

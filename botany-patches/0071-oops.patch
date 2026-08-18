@@ -1,0 +1,44 @@
+From ffbb7f9745f3a99fa8485dfc464c4b9bf8715128 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Mon, 22 Dec 2025 21:43:38 +0200
+Subject: [PATCH 071/112] oops
+
+---
+ .../Prototypes/Entities/Structures/hydro_tray.yml      |  2 --
+ Resources/Prototypes/Reagents/elements.yml             | 10 ++++++++--
+ 2 files changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/Resources/Prototypes/Entities/Structures/hydro_tray.yml b/Resources/Prototypes/Entities/Structures/hydro_tray.yml
+index 64cb3b4e75..a9ae7a7d9f 100644
+--- a/Resources/Prototypes/Entities/Structures/hydro_tray.yml
++++ b/Resources/Prototypes/Entities/Structures/hydro_tray.yml
+@@ -106,5 +106,3 @@
+   - type: PlantTray
+     waterLevel: 0
+     nutritionLevel: 0
+-    # for the lights to update immediately
+-    updateSpriteAfterUpdate: true
+diff --git a/Resources/Prototypes/Reagents/elements.yml b/Resources/Prototypes/Reagents/elements.yml
+index ed53406b3e..401fdfd2eb 100644
+--- a/Resources/Prototypes/Reagents/elements.yml
++++ b/Resources/Prototypes/Reagents/elements.yml
+@@ -31,8 +31,14 @@
+   meltingPoint: -101.5
+   boilingPoint: -34.04
+   plantMetabolism:
+-    - !type:PlantMutateSpeciesChange
+-      amount: 1
++    - !type:PlantAdjustWater
++      amount: -0.5
++    - !type:PlantAdjustToxins
++      amount: 15
++    - !type:PlantAdjustWeeds
++      amount: -3
++    - !type:PlantAdjustHealth
++      amount: -1
+   metabolisms:
+     Poison:
+       effects:
+-- 
+2.55.0
+

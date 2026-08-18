@@ -1,0 +1,1762 @@
+From 0a86e566c326927e386a4e38165a319b4040d707 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Mon, 3 Aug 2026 03:02:12 +0300
+Subject: [PATCH 107/112] PlantDataComponent revert
+
+---
+ .../Botany/Components/PlantComponent.cs       |  49 +--
+ .../Botany/Components/PlantDataComponent.cs   |  56 +++
+ .../Items/Systems/BotanySampleTakerSystem.cs  |   5 +-
+ .../Botany/Items/Systems/BotanySeedSystem.cs  |  12 +-
+ .../Botany/Systems/BotanySystem.Produce.cs    |   8 +-
+ .../Botany/Systems/BotanySystem.Seed.cs       |  15 +-
+ .../Botany/Systems/MutationSystem.cs          |   2 +-
+ .../Botany/Systems/PlantHarvestSystem.cs      |  44 +--
+ .../Botany/Systems/PlantTraySystem.cs         |   4 +-
+ .../Botany/Systems/SeedExtractorSystem.cs     |   4 +-
+ .../Systems/PlantTraitsSystem.Ligneous.cs     |   5 +-
+ ...ntMutateSpeciesChangeEntityEffectSystem.cs |   6 +-
+ Resources/Prototypes/Hydroponics/plants.yml   | 334 +++++++++++-------
+ 13 files changed, 316 insertions(+), 228 deletions(-)
+ create mode 100644 Content.Shared/Botany/Components/PlantDataComponent.cs
+
+diff --git a/Content.Shared/Botany/Components/PlantComponent.cs b/Content.Shared/Botany/Components/PlantComponent.cs
+index 3c02c1c868..b5f2cf721b 100644
+--- a/Content.Shared/Botany/Components/PlantComponent.cs
++++ b/Content.Shared/Botany/Components/PlantComponent.cs
+@@ -1,58 +1,15 @@
+-using Content.Shared.Database;
++using Content.Shared.Botany.Systems;
+ using Robust.Shared.GameStates;
+-using Robust.Shared.Prototypes;
+ 
+ namespace Content.Shared.Botany.Components;
+ 
+ /// <summary>
+-/// Component for storing plant data, growth, and species information.
++/// Component for storing plant growth data.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)]
++[Access(typeof(PlantSystem), typeof(MutationSystem))]
+ public sealed partial class PlantComponent : Component
+ {
+-    /// <summary>
+-    /// The noun for this type of seeds. E.g. for fungi this should probably be "spores" instead of "seeds". Also
+-    /// used to determine the name of seed packets.
+-    /// </summary>
+-    [DataField, AutoNetworkedField]
+-    public LocId Noun = "seeds-noun-seeds";
+-
+-    /// <summary>
+-    /// Name displayed when examining the hydroponics tray. Describes the actual plant, not the seed itself.
+-    /// </summary>
+-    [DataField(required: true), AutoNetworkedField]
+-    public LocId Name;
+-
+-    /// <summary>
+-    /// The entity prototype that is spawned when this type of seed is extracted from produce using a seed extractor.
+-    /// </summary>
+-    [DataField(required: true), AutoNetworkedField]
+-    public EntProtoId PacketPrototype;
+-
+-    /// <summary>
+-    /// The plant prototypes this plant may mutate into when prompted to.
+-    /// </summary>
+-    [DataField, AutoNetworkedField]
+-    public List<EntProtoId> MutationPrototypes = [];
+-
+-    /// <summary>
+-    /// The entity prototypes that are spawned when this type of seed is harvested.
+-    /// </summary>
+-    [DataField(required: true), AutoNetworkedField]
+-    public List<EntProtoId> ProductPrototypes = [];
+-
+-    /// <summary>
+-    /// Log impact for harvest operations.
+-    /// </summary>
+-    [DataField, AutoNetworkedField]
+-    public LogImpact? HarvestLogImpact;
+-
+-    /// <summary>
+-    /// Log impact for plant operations.
+-    /// </summary>
+-    [DataField, AutoNetworkedField]
+-    public LogImpact? PlantLogImpact;
+-
+     /// <summary>
+     /// The mutation effects that have been applied to this plant.
+     /// Server-only: mutations are applied as effects which are synced separately.
+diff --git a/Content.Shared/Botany/Components/PlantDataComponent.cs b/Content.Shared/Botany/Components/PlantDataComponent.cs
+new file mode 100644
+index 0000000000..df4536d801
+--- /dev/null
++++ b/Content.Shared/Botany/Components/PlantDataComponent.cs
+@@ -0,0 +1,56 @@
++using Content.Shared.Database;
++using Robust.Shared.GameStates;
++using Robust.Shared.Prototypes;
++
++namespace Content.Shared.Botany.Components;
++
++/// <summary>
++/// Component for storing core plant data.
++/// Required as a component to store data specific to the plant type that should not be cloned when the plant's mutable state changes.
++/// </summary>
++[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
++public sealed partial class PlantDataComponent : Component
++{
++    /// <summary>
++    /// The noun for this type of seeds. E.g. for fungi this should probably be "spores" instead of "seeds". Also
++    /// used to determine the name of seed packets.
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public LocId Noun = "seeds-noun-seeds";
++
++    /// <summary>
++    /// Name displayed when examining the hydroponics tray. Describes the actual plant, not the seed itself.
++    /// </summary>
++    [DataField(required: true), AutoNetworkedField]
++    public LocId Name;
++
++    /// <summary>
++    /// The entity prototype that is spawned when this type of seed is extracted from produce using a seed extractor.
++    /// </summary>
++    [DataField(required: true), AutoNetworkedField]
++    public EntProtoId PacketPrototype;
++
++    /// <summary>
++    /// The plant prototypes this plant may mutate into when prompted to.
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public List<EntProtoId> MutationPrototypes = [];
++
++    /// <summary>
++    /// The entity prototypes that are spawned when this type of seed is harvested.
++    /// </summary>
++    [DataField(required: true), AutoNetworkedField]
++    public List<EntProtoId> ProductPrototypes = [];
++
++    /// <summary>
++    /// Log impact for harvest operations.
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public LogImpact? HarvestLogImpact;
++
++    /// <summary>
++    /// Log impact for plant operations.
++    /// </summary>
++    [DataField, AutoNetworkedField]
++    public LogImpact? PlantLogImpact;
++}
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
+index 54459b3075..55531cf855 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
+@@ -41,6 +41,7 @@ private void OnPlantSampleAttempt(Entity<PlantComponent> ent, ref PlantSampleAtt
+             return;
+ 
+         if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder)
++            || !TryComp<PlantDataComponent>(ent.Owner, out var plantData)
+             || !TryComp<PlantHarvestComponent>(ent.Owner, out var harvest))
+             return;
+ 
+@@ -66,9 +67,9 @@ private void OnPlantSampleAttempt(Entity<PlantComponent> ent, ref PlantSampleAtt
+         // Produce a seed packet snapshot.
+         float? healthOverride = harvest.ReadyForHarvest ? null : holder.Health;
+         var protoId = MetaData(ent.Owner).EntityPrototype!.ID;
+-        _botany.SpawnSeedPacket(ent, protoId, ent.Owner, Transform(args.User).Coordinates, args.User, healthOverride);
++        _botany.SpawnSeedPacket(plantData, protoId, ent.Owner, Transform(args.User).Coordinates, args.User, healthOverride);
+ 
+-        var name = Loc.GetString(ent.Comp.Name);
++        var name = Loc.GetString(plantData.Name);
+         _popup.PopupCursor(Loc.GetString("plant-sample-component-take-sample-popup", ("seedName", name)), args.User);
+ 
+         if (random.Prob(args.Sample.Comp.SampleProbability))
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
+index 6910b2e573..3b052311eb 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
+@@ -52,11 +52,11 @@ private void OnPlantingSeedAttempt(Entity<PlantTrayComponent> ent, ref PlantingS
+         var plantUid = PredictedSpawnAtPosition(args.Seed.Comp.PlantProtoId, Transform(ent.Owner).Coordinates);
+         _botany.ApplyPlantSnapshotData(args.Seed.Comp.PlantData, plantUid);
+ 
+-        if (!TryComp<PlantComponent>(plantUid, out var plant))
++        if (!TryComp<PlantDataComponent>(plantUid, out var plantData))
+             return;
+ 
+-        var name = Loc.GetString(plant.Name);
+-        var noun = Loc.GetString(plant.Noun);
++        var name = Loc.GetString(plantData.Name);
++        var noun = Loc.GetString(plantData.Noun);
+         _popup.PopupCursor(Loc.GetString("plant-component-plant-success-popup",
+                 ("seedName", name),
+                 ("seedNoun", noun)),
+@@ -69,11 +69,11 @@ private void OnPlantingSeedAttempt(Entity<PlantTrayComponent> ent, ref PlantingS
+         _plantTray.PlantingPlantInTray(ent.Owner, plantUid, args.Seed.Comp.HealthOverride);
+         PredictedQueueDel(args.Seed);
+ 
+-        if (plant.PlantLogImpact != null)
++        if (plantData.PlantLogImpact != null)
+         {
+             _adminLogger.Add(LogType.Botany,
+-                plant.PlantLogImpact.Value,
+-                $"{ToPrettyString(args.User):player} planted {Loc.GetString(plant.Name):seed} at Pos:{Transform(ent.Owner).Coordinates}.");
++                plantData.PlantLogImpact.Value,
++                $"{ToPrettyString(args.User):player} planted {Loc.GetString(plantData.Name):seed} at Pos:{Transform(ent.Owner).Coordinates}.");
+         }
+     }
+ }
+diff --git a/Content.Shared/Botany/Systems/BotanySystem.Produce.cs b/Content.Shared/Botany/Systems/BotanySystem.Produce.cs
+index f0fca52b62..34a92c05f2 100644
+--- a/Content.Shared/Botany/Systems/BotanySystem.Produce.cs
++++ b/Content.Shared/Botany/Systems/BotanySystem.Produce.cs
+@@ -64,13 +64,13 @@ private void ProduceGrown(Entity<ProduceComponent> ent)
+     /// Spawns a produce item from a plant and produces the produce.
+     /// </summary>
+     [PublicAPI]
+-    public void SpawnProduce(Entity<PlantComponent?> ent, EntityCoordinates position)
++    public void SpawnProduce(Entity<PlantComponent?, PlantDataComponent?> ent, EntityCoordinates position)
+     {
+-        if (!Resolve(ent.Owner, ref ent.Comp, false))
++        if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, false))
+             return;
+ 
+         var random = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(ent));
+-        var product = random.Pick(ent.Comp.ProductPrototypes);
++        var product = random.Pick(ent.Comp2.ProductPrototypes);
+         var entity = PredictedSpawnAtPosition(product, position);
+         _randomHelper.RandomOffset(entity, 0.25f, random);
+ 
+@@ -79,6 +79,6 @@ public void SpawnProduce(Entity<PlantComponent?> ent, EntityCoordinates position
+         produce.PlantData = ClonePlantSnapshotData(ent.Owner, parent: entity);
+         Dirty(entity, produce);
+         ProduceGrown((entity, produce));
+-        _appearance.SetData(entity, ProduceVisuals.Potency, ent.Comp.Potency);
++        _appearance.SetData(entity, ProduceVisuals.Potency, ent.Comp1.Potency);
+     }
+ }
+diff --git a/Content.Shared/Botany/Systems/BotanySystem.Seed.cs b/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
+index 670987602b..4e9e13a8be 100644
+--- a/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Shared/Botany/Systems/BotanySystem.Seed.cs
+@@ -35,12 +35,13 @@ private void OnExamined(Entity<SeedComponent> ent, ref ExaminedEvent args)
+         if (!args.IsInDetailsRange)
+             return;
+ 
+-        if (!TryGetPlantComponent<PlantComponent>(ent.Comp.PlantData, ent.Comp.PlantProtoId, out var plant))
++        if (!TryGetPlantComponent<PlantComponent>(ent.Comp.PlantData, ent.Comp.PlantProtoId, out var plant)
++            || !TryGetPlantComponent<PlantDataComponent>(ent.Comp.PlantData, ent.Comp.PlantProtoId, out var plantData))
+             return;
+ 
+         using (args.PushGroup(nameof(SeedComponent), 1))
+         {
+-            var name = Loc.GetString(plant.Name);
++            var name = Loc.GetString(plantData.Name);
+             args.PushMarkup(Loc.GetString("seed-component-description", ("seedName", name)));
+             args.PushMarkup(_plant.GetPlantStateMarkup(ent.Owner, plant));
+         }
+@@ -146,7 +147,7 @@ public void ApplyPlantSnapshotData(EntityUid? snapshot, EntityUid target, bool c
+     /// <summary>
+     /// Internal method to spawn a seed packet from a plant component.
+     /// </summary>
+-    /// <param name="plant">The plant component to spawn.</param>
++    /// <param name="plantData">The plant data component to spawn.</param>
+     /// <param name="plantProtoId">The plant prototype ID to store in the seed component.</param>
+     /// <param name="snapshot">The component snapshot to store in the seed component.</param>
+     /// <param name="coords">The coordinates to spawn the seed packet at.</param>
+@@ -155,14 +156,14 @@ public void ApplyPlantSnapshotData(EntityUid? snapshot, EntityUid target, bool c
+     /// <returns>The spawned seed packet entity.</returns>
+     [PublicAPI]
+     public EntityUid SpawnSeedPacket(
+-        PlantComponent plant,
++        PlantDataComponent plantData,
+         EntProtoId plantProtoId,
+         EntityUid? snapshot,
+         EntityCoordinates coords,
+         EntityUid user,
+         float? healthOverride = null)
+     {
+-        var seedItem = PredictedSpawnAtPosition(plant.PacketPrototype, coords);
++        var seedItem = PredictedSpawnAtPosition(plantData.PacketPrototype, coords);
+         var seedComp = EnsureComp<SeedComponent>(seedItem);
+         seedComp.PlantProtoId = plantProtoId;
+         seedComp.PlantData = snapshot.HasValue
+@@ -171,8 +172,8 @@ public EntityUid SpawnSeedPacket(
+         seedComp.HealthOverride = healthOverride;
+         Dirty(seedItem, seedComp);
+ 
+-        var name = Loc.GetString(plant.Name);
+-        var noun = Loc.GetString(plant.Noun);
++        var name = Loc.GetString(plantData.Name);
++        var noun = Loc.GetString(plantData.Noun);
+         _metaData.SetEntityName(seedItem, Loc.GetString("botany-seed-packet-name", ("seedName", name), ("seedNoun", noun)));
+ 
+         _hands.TryPickupAnyHand(user, seedItem);
+diff --git a/Content.Shared/Botany/Systems/MutationSystem.cs b/Content.Shared/Botany/Systems/MutationSystem.cs
+index a8cafab330..9c713e8d19 100644
+--- a/Content.Shared/Botany/Systems/MutationSystem.cs
++++ b/Content.Shared/Botany/Systems/MutationSystem.cs
+@@ -66,7 +66,7 @@ public void CheckRandomMutations(Entity<PlantComponent?> ent, float severity)
+     /// preserving lifecycle state.
+     /// </summary>
+     [PublicAPI]
+-    public void SpeciesChange(Entity<PlantComponent?> oldPlant, EntProtoId newPlantProto)
++    public void SpeciesChange(Entity<PlantDataComponent?> oldPlant, EntProtoId newPlantProto)
+     {
+         if (!Resolve(oldPlant, ref oldPlant.Comp, false))
+             return;
+diff --git a/Content.Shared/Botany/Systems/PlantHarvestSystem.cs b/Content.Shared/Botany/Systems/PlantHarvestSystem.cs
+index 7139967595..336a2bd2af 100644
+--- a/Content.Shared/Botany/Systems/PlantHarvestSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantHarvestSystem.cs
+@@ -31,7 +31,7 @@ private void OnPlantGrow(Entity<PlantHarvestComponent> ent, ref PlantGrowEvent a
+         if (holder.Age < plant.Maturation)
+             ent.Comp.LastHarvest = holder.Age;
+ 
+-        TryAutoHarvest(ent, (ent.Owner, plant), ent.Owner);
++        TryAutoHarvest(ent, ent.Owner);
+ 
+         // Update whether the plant is ready for harvest.
+         var timeLastHarvest = holder.Age - ent.Comp.LastHarvest;
+@@ -71,61 +71,63 @@ private void OnHandledDoHarvest(Entity<PlantHarvestComponent> ent, ref DoHarvest
+         if (args.Cancelled)
+             return;
+ 
+-        if (!TryComp<PlantComponent>(ent.Owner, out var plant))
+-            return;
+-
+-        TryHandleHarvest(ent, (ent.Owner, plant), args.User);
++        TryHandleHarvest(ent, args.User);
+     }
+ 
+-    private void TryAutoHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantComponent> plant, EntityUid user)
++    private void TryAutoHarvest(Entity<PlantHarvestComponent> ent, EntityUid user)
+     {
+         if (ent.Comp.HarvestRepeat != HarvestType.SelfHarvest)
+             return;
+ 
+-        if (plant.Comp.HarvestLogImpact != null)
+-            _adminLogger.Add(LogType.Botany, plant.Comp.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(plant.Comp.Name):seed} at Pos:{Transform(plant.Owner).Coordinates}.");
++        if (TryComp<PlantDataComponent>(ent.Owner, out var plantData) && plantData.HarvestLogImpact != null)
++            _adminLogger.Add(LogType.Botany, plantData.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(plantData.Name):seed} at Pos:{Transform(ent.Owner).Coordinates}.");
+ 
+-        DoHarvest(ent, plant, user);
++        DoHarvest(ent.AsNullable(), user);
+     }
+ 
+     /// <summary>
+     /// Handles harvesting a plant for the specified user.
+     /// </summary>
+     [PublicAPI]
+-    public void TryHandleHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantComponent> plant, EntityUid user)
++    public void TryHandleHarvest(EntityUid plant, EntityUid user)
+     {
+-        if (plant.Comp.HarvestLogImpact != null)
+-            _adminLogger.Add(LogType.Botany, plant.Comp.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(plant.Comp.Name):seed} at Pos:{Transform(plant.Owner).Coordinates}.");
++        if (TryComp<PlantDataComponent>(plant, out var plantData) && plantData.HarvestLogImpact != null)
++            _adminLogger.Add(LogType.Botany, plantData.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(plantData.Name):seed} at Pos:{Transform(plant).Coordinates}.");
+ 
+-        DoHarvest(ent, plant, user);
++        DoHarvest(plant, user);
+     }
+ 
+     /// <summary>
+     /// Harvests the plant and produces the produce.
+     /// </summary>
+     [PublicAPI]
+-    public void DoHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantComponent> plant, EntityUid user)
++    public void DoHarvest(Entity<PlantHarvestComponent?> ent, EntityUid user)
+     {
+-        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder))
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
+             return;
+ 
+-        if (!ent.Comp.ReadyForHarvest || plant.Comp.ProductPrototypes.Count == 0 || plant.Comp.Yield == 0)
++        if (!TryComp<PlantComponent>(ent.Owner, out var plant)
++            || !TryComp<PlantDataComponent>(ent.Owner, out var plantData)
++            || !TryComp<PlantHolderComponent>(ent.Owner, out var holder))
+             return;
+ 
+-        var name = Loc.GetString(plant.Comp.Name);
++        if (!ent.Comp.ReadyForHarvest || plantData.ProductPrototypes.Count == 0 || plant.Yield == 0)
++            return;
++
++        var name = Loc.GetString(plantData.Name);
+         _popup.PopupCursor(Loc.GetString("botany-harvest-success-message", ("name", name)), user, PopupType.Medium);
+ 
+         var totalYield = 0;
+-        if (plant.Comp.Yield >= 0)
++        if (plant.Yield >= 0)
+         {
+-            totalYield = holder.YieldMod < 0 ? plant.Comp.Yield : plant.Comp.Yield * holder.YieldMod;
++            totalYield = holder.YieldMod < 0 ? plant.Yield : plant.Yield * holder.YieldMod;
+             totalYield = Math.Max(1, totalYield);
+         }
+ 
+         var position = Transform(ent.Owner).Coordinates;
+         for (var i = 0; i < totalYield; i++)
+         {
+-            _botany.SpawnProduce(plant.Owner, position);
++            _botany.SpawnProduce(ent.Owner, position);
+         }
+ 
+         ent.Comp.ReadyForHarvest = false;
+@@ -133,7 +135,7 @@ public void DoHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantComponent>
+         Dirty(ent);
+ 
+         if (ent.Comp.HarvestRepeat == HarvestType.NoRepeat)
+-            _plant.RemovePlant(plant.AsNullable());
++            _plant.RemovePlant(ent.Owner);
+ 
+         var ev = new AfterDoHarvestEvent(user, ent.Owner);
+         RaiseLocalEvent(ent.Owner, ref ev);
+diff --git a/Content.Shared/Botany/Systems/PlantTraySystem.cs b/Content.Shared/Botany/Systems/PlantTraySystem.cs
+index 577c8aa450..15b70025c1 100644
+--- a/Content.Shared/Botany/Systems/PlantTraySystem.cs
++++ b/Content.Shared/Botany/Systems/PlantTraySystem.cs
+@@ -38,9 +38,9 @@ private void OnExamine(Entity<PlantTrayComponent> ent, ref ExaminedEvent args)
+             if (!TryGetPlant(ent.AsNullable(), out var plantUid))
+             {
+                 args.PushMarkup(Loc.GetString("tray-component-nothing-planted-message"));
+-                if (TryComp<PlantComponent>(plantUid, out var plant))
++                if (TryComp<PlantDataComponent>(plantUid, out var plantData))
+                 {
+-                    var name = Loc.GetString(plant.Name);
++                    var name = Loc.GetString(plantData.Name);
+                     args.PushMarkup(Loc.GetString("plant-component-something-already-growing-message", ("seedName", name)));
+                 }
+             }
+diff --git a/Content.Shared/Botany/Systems/SeedExtractorSystem.cs b/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
+index 6ee8863b05..181c34a3f3 100644
+--- a/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
++++ b/Content.Shared/Botany/Systems/SeedExtractorSystem.cs
+@@ -54,8 +54,8 @@ private void OnInteractUsing(Entity<SeedExtractorComponent> ent, ref InteractUsi
+ 
+         for (var i = 0; i < amount; i++)
+         {
+-            if (_botany.TryGetPlantComponent<PlantComponent>(snapshot, produce.PlantProtoId, out var plant))
+-                _botany.SpawnSeedPacket(plant, produce.PlantProtoId.Value, snapshot, coords, args.User);
++            if (_botany.TryGetPlantComponent<PlantDataComponent>(snapshot, produce.PlantProtoId, out var plantData))
++                _botany.SpawnSeedPacket(plantData, produce.PlantProtoId.Value, snapshot, coords, args.User);
+         }
+     }
+ }
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
+index 50739fc913..897acbdd10 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
+@@ -27,8 +27,7 @@ private void OnInteractUsing(Entity<PlantTraitLigneousComponent> ent, ref Intera
+         if (args.Handled)
+             return;
+ 
+-        if (!TryComp<PlantComponent>(ent.Owner, out var plant)
+-            || !TryComp<PlantHarvestComponent>(ent.Owner, out var harvest))
++        if (!TryComp<PlantHarvestComponent>(ent.Owner, out var harvest))
+             return;
+ 
+         if (!harvest.ReadyForHarvest)
+@@ -48,7 +47,7 @@ private void OnInteractUsing(Entity<PlantTraitLigneousComponent> ent, ref Intera
+             return;
+         }
+ 
+-        _plantHarvest.TryHandleHarvest((ent.Owner, harvest), (ent.Owner, plant), args.User);
++        _plantHarvest.TryHandleHarvest(ent.Owner, args.User);
+         args.Handled = true;
+     }
+ 
+diff --git a/Content.Shared/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs b/Content.Shared/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs
+index 7113b3f1d5..c082a198b1 100644
+--- a/Content.Shared/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs
++++ b/Content.Shared/EntityEffects/Effects/Botany/PlantMutateSpeciesChangeEntityEffectSystem.cs
+@@ -8,15 +8,15 @@ namespace Content.Shared.EntityEffects.Effects.Botany;
+ 
+ /// <summary>
+ /// Changes the planted plant's species by replacing the plant entity with a new entity spawned from one
+-/// of the current plant's <see cref="PlantComponent.MutationPrototypes"/>.
++/// of the current plant's <see cref="PlantDataComponent.MutationPrototypes"/>.
+ /// </summary>
+ /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
+-public sealed partial class PlantMutateSpeciesChangeEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantMutateSpeciesChange>
++public sealed partial class PlantMutateSpeciesChangeEntityEffectSystem : EntityEffectSystem<PlantDataComponent, PlantMutateSpeciesChange>
+ {
+     [Dependency] private IGameTiming _timing = default!;
+     [Dependency] private MutationSystem _mutation = default!;
+ 
+-    protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantMutateSpeciesChange> args)
++    protected override void Effect(Entity<PlantDataComponent> entity, ref EntityEffectEvent<PlantMutateSpeciesChange> args)
+     {
+         if (entity.Comp.MutationPrototypes.Count == 0)
+             return;
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index 69395806eb..4fb91dccea 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -32,6 +32,7 @@
+         acts: [ "Destruction" ]
+   - type: RequireProjectileTarget
+   - type: Plant
++  - type: PlantData
+   - type: PlantHolder
+   - type: PlantHarvest
+   - type: PlantChemicals
+@@ -46,15 +47,16 @@
+ - type: entity
+   parent: BasePlant
+   id: WheatPlants
+-  name: wheat stalks
++  name: wheat
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/wheat.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-wheat-name
+     packetPrototype: WheatSeeds
+     productPrototypes: [ WheatBushel ]
+     mutationPrototypes: [ MeatWheatPlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 6
+     production: 3
+@@ -76,14 +78,15 @@
+ - type: entity
+   parent: BasePlant
+   id: MeatWheatPlants
+-  name: meatwheat stalks
++  name: meatwheat
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/meatwheat.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-meatwheat-name
+     packetPrototype: MeatwheatSeeds
+     productPrototypes: [ MeatwheatBushel ]
++  - type: Plant
+     lifespan: 25
+     maturation: 6
+     production: 3
+@@ -105,14 +108,15 @@
+ - type: entity
+   parent: BasePlant
+   id: OatPlants
+-  name: oat stalks
++  name: oat
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/oat.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-oat-name
+     packetPrototype: OatSeeds
+     productPrototypes: [ OatBushel ]
++  - type: Plant
+     lifespan: 25
+     maturation: 6
+     production: 3
+@@ -134,15 +138,16 @@
+ - type: entity
+   parent: BasePlant
+   id: BananaPlants
+-  name: banana plant
++  name: banana
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/banana.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-banana-name
+     packetPrototype: BananaSeeds
+     productPrototypes: [ FoodBanana ]
+     mutationPrototypes: [ MimanaPlants ]
++  - type: Plant
+     lifespan: 50
+     maturation: 6
+     production: 6
+@@ -168,14 +173,15 @@
+ - type: entity
+   parent: BasePlant
+   id: MimanaPlants
+-  name: mimana plant
++  name: mimana
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/mimana.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-mimana-name
+     packetPrototype: MimanaSeeds
+     productPrototypes: [ FoodMimana ]
++  - type: Plant
+     lifespan: 50
+     maturation: 6
+     production: 6
+@@ -201,14 +207,15 @@
+ - type: entity
+   parent: BasePlant
+   id: CarrotPlants
+-  name: carrots
++  name: carrot
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/carrot.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-carrots-name
+     packetPrototype: CarrotSeeds
+     productPrototypes: [ FoodCarrot ]
++  - type: Plant
+     lifespan: 25
+     maturation: 10
+     production: 3
+@@ -239,11 +246,12 @@
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/laughin_pea.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-laughin-pea-name
+     packetPrototype: LaughinPeaSeeds
+     productPrototypes: [ FoodLaughinPeaPod ]
+     mutationPrototypes: [ WorldPeaPlants ]
++  - type: Plant
+     lifespan: 25
+     growthStages: 3
+     maturation: 7
+@@ -273,15 +281,16 @@
+ - type: entity
+   parent: BasePlant
+   id: LemonPlants
+-  name: lemon trees
++  name: lemon
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/lemon.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-lemon-name
+     packetPrototype: LemonSeeds
+     productPrototypes: [ FoodLemon ]
+     mutationPrototypes: [ LemoonPlants, LimePlants, OrangePlants ]
++  - type: Plant
+     lifespan: 55
+     maturation: 6
+     production: 6
+@@ -303,14 +312,15 @@
+ - type: entity
+   parent: BasePlant
+   id: LemoonPlants
+-  name: lemoon trees
++  name: lemoon
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/lemoon.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-lemoon-name
+     packetPrototype: LemoonSeeds
+     productPrototypes: [ FoodLemoon ]
++  - type: Plant
+     lifespan: 90
+     maturation: 8
+     production: 6
+@@ -332,15 +342,16 @@
+ - type: entity
+   parent: BasePlant
+   id: LimePlants
+-  name: lime trees
++  name: lime
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/lime.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-lime-name
+     packetPrototype: LimeSeeds
+     productPrototypes: [ FoodLime ]
+     mutationPrototypes: [ OrangePlants, LemonPlants ]
++  - type: Plant
+     lifespan: 55
+     maturation: 6
+     production: 6
+@@ -362,15 +373,16 @@
+ - type: entity
+   parent: BasePlant
+   id: OrangePlants
+-  name: orange trees
++  name: orange
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/orange.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-orange-name
+     packetPrototype: OrangeSeeds
+     productPrototypes: [ FoodOrange ]
+     mutationPrototypes: [ ExtradimensionalOrangePlants, LemonPlants, LimePlants ]
++  - type: Plant
+     lifespan: 55
+     maturation: 6
+     production: 6
+@@ -392,14 +404,15 @@
+ - type: entity
+   parent: BasePlant
+   id: ExtradimensionalOrangePlants
+-  name: extradimensional orange trees
++  name: extradimensional orange
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/extradimensional_orange.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-extradimensionalorange-name
+     packetPrototype: ExtradimensionalOrangeSeeds
+     productPrototypes: [ FoodExtradimensionalOrange ]
++  - type: Plant
+     lifespan: 55
+     maturation: 6
+     production: 6
+@@ -425,14 +438,15 @@
+ - type: entity
+   parent: BasePlant
+   id: PineapplePlants
+-  name: pineapple plant
++  name: pineapple
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/pineapple.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-pineapple-name
+     packetPrototype: PineappleSeeds
+     productPrototypes: [ FoodPineapple ]
++  - type: Plant
+     lifespan: 55
+     maturation: 6
+     production: 6
+@@ -459,14 +473,15 @@
+ - type: entity
+   parent: BasePlant
+   id: PotatoPlants
+-  name: potatoes
++  name: potato
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/potato.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-potato-name
+     packetPrototype: PotatoSeeds
+     productPrototypes: [ FoodPotato ]
++  - type: Plant
+     lifespan: 30
+     maturation: 10
+     production: 3
+@@ -489,15 +504,16 @@
+ - type: entity
+   parent: BasePlant
+   id: SugarcanePlants
+-  name: sugarcanes
++  name: sugarcane
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/sugarcane.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-sugarcane-name
+     packetPrototype: SugarcaneSeeds
+     productPrototypes: [ Sugarcane ]
+     mutationPrototypes: [ PapercanePlants ]
++  - type: Plant
+     lifespan: 60
+     maturation: 6
+     production: 6
+@@ -519,14 +535,15 @@
+ - type: entity
+   parent: BasePlant
+   id: TeaPlantPlants
+-  name: tea plants
++  name: tea plant
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/tea_plant.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-teaplant-name
+     packetPrototype: TeaPlantSeeds
+     productPrototypes: [ LeavesTea ]
++  - type: Plant
+     lifespan: 75
+     maturation: 5
+     production: 3
+@@ -550,14 +567,15 @@
+ - type: entity
+   parent: BasePlant
+   id: PapercanePlants
+-  name: papercanes
++  name: papercane
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/papercane.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-papercane-name
+     packetPrototype: PapercaneSeeds
+     productPrototypes: [ Papercane ]
++  - type: Plant
+     lifespan: 60
+     maturation: 6
+     production: 6
+@@ -573,16 +591,17 @@
+ - type: entity
+   parent: BasePlant
+   id: TowercapPlants
+-  name: tower caps
++  name: tower cap
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/towercap.rsi
+-  - type: Plant
++  - type: PlantData
+     noun: seeds-noun-spores
+     name: seeds-towercap-name
+     packetPrototype: TowercapSeeds
+     productPrototypes: [ Log ]
+     mutationPrototypes: [ SteelcapPlants ]
++  - type: Plant
+     lifespan: 80
+     maturation: 15
+     production: 3
+@@ -600,15 +619,16 @@
+ - type: entity
+   parent: BasePlant
+   id: SteelcapPlants
+-  name: steel caps
++  name: steel cap
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/steelcap.rsi
+-  - type: Plant
++  - type: PlantData
+     noun: seeds-noun-spores
+     name: seeds-steelcap-name
+     packetPrototype: SteelcapSeeds
+     productPrototypes: [ SteelLog ]
++  - type: Plant
+     lifespan: 80
+     maturation: 15
+     production: 3
+@@ -626,15 +646,16 @@
+ - type: entity
+   parent: BasePlant
+   id: TomatoPlants
+-  name: tomato plant
++  name: tomato
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/tomato.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-tomato-name
+     packetPrototype: TomatoSeeds
+     productPrototypes: [ FoodTomato ]
+     mutationPrototypes: [ BlueTomatoPlants, BloodTomatoPlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 8
+     production: 6
+@@ -666,14 +687,15 @@
+ - type: entity
+   parent: BasePlant
+   id: BlueTomatoPlants
+-  name: blue tomato plant
++  name: blue tomato
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/blue_tomato.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-bluetomato-name
+     packetPrototype: BlueTomatoSeeds
+     productPrototypes: [ FoodBlueTomato ]
++  - type: Plant
+     lifespan: 25
+     maturation: 8
+     production: 6
+@@ -705,15 +727,16 @@
+ - type: entity
+   parent: BasePlant
+   id: BloodTomatoPlants
+-  name: blood tomato plant
++  name: blood tomato
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/blood_tomato.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-bloodtomato-name
+     packetPrototype: BloodTomatoSeeds
+     productPrototypes: [ FoodBloodTomato ]
+     mutationPrototypes: [ KillerTomatoPlants ]
++  - type: Plant
+     lifespan: 60
+     maturation: 8
+     production: 6
+@@ -741,16 +764,17 @@
+ - type: entity
+   parent: BasePlant
+   id: KillerTomatoPlants
+-  name: tomato killer plant
++  name: tomato killer
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/tomatokiller.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-killertomato-name
+     plantLogImpact: High
+     harvestLogImpact: High
+     packetPrototype: KillerTomatoSeeds
+     productPrototypes: [ MobTomatoKiller ]
++  - type: Plant
+     lifespan: 25
+     maturation: 15
+     production: 6
+@@ -779,15 +803,16 @@
+ - type: entity
+   parent: BasePlant
+   id: EggplantPlants
+-  name: eggplants
++  name: eggplant
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/eggplant.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-eggplant-name
+     packetPrototype: EggplantSeeds
+     productPrototypes: [ FoodEggplant ]
+     mutationPrototypes: [ EggyPlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 6
+     production: 6
+@@ -813,14 +838,15 @@
+ - type: entity
+   parent: BasePlant
+   id: CabbagePlants
+-  name: cabbages
++  name: cabbage
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/cabbage.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-cabbage-name
+     packetPrototype: CabbageSeeds
+     productPrototypes: [ FoodCabbage ]
++  - type: Plant
+     lifespan: 50
+     maturation: 7
+     production: 5
+@@ -841,14 +867,15 @@
+ - type: entity
+   parent: BasePlant
+   id: GarlicPlants
+-  name: garlic heads
++  name: garlic head
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/garlic.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-garlic-name
+     packetPrototype: GarlicSeeds
+     productPrototypes: [ FoodGarlic ]
++  - type: Plant
+     lifespan: 25
+     maturation: 8
+     production: 5
+@@ -873,15 +900,16 @@
+ - type: entity
+   parent: BasePlant
+   id: ApplePlants
+-  name: apple tree
++  name: apple
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/apple.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-apple-name
+     packetPrototype: AppleSeeds
+     productPrototypes: [ FoodApple ]
+     mutationPrototypes: [ GoldenApplePlants ]
++  - type: Plant
+     lifespan: 55
+     maturation: 6
+     production: 6
+@@ -903,14 +931,15 @@
+ - type: entity
+   parent: BasePlant
+   id: GoldenApplePlants
+-  name: golden apple tree
++  name: golden apple
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/golden_apple.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-goldenapple-name
+     packetPrototype: GoldenAppleSeeds
+     productPrototypes: [ FoodGoldenApple ]
++  - type: Plant
+     lifespan: 55
+     maturation: 6
+     production: 6
+@@ -938,14 +967,15 @@
+ - type: entity
+   parent: BasePlant
+   id: CornPlants
+-  name: ears of corn
++  name: corn
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/corn.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-corn-name
+     packetPrototype: CornSeeds
+     productPrototypes: [ FoodCorn ]
++  - type: Plant
+     lifespan: 25
+     maturation: 8
+     production: 6
+@@ -971,15 +1001,16 @@
+ - type: entity
+   parent: BasePlant
+   id: OnionPlants
+-  name: onions
++  name: onion
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/onion.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-onion-name
+     packetPrototype: OnionSeeds
+     productPrototypes: [ FoodOnion ]
+     mutationPrototypes: [ OnionRedPlants, BloonionPlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 10
+     production: 7
+@@ -1012,14 +1043,15 @@
+ - type: entity
+   parent: BasePlant
+   id: OnionRedPlants
+-  name: red onions
++  name: red onion
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/onion_red.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-onionred-name
+     packetPrototype: OnionRedSeeds
+     productPrototypes: [ FoodOnionRed ]
++  - type: Plant
+     lifespan: 25
+     maturation: 8
+     production: 6
+@@ -1051,15 +1083,16 @@
+ - type: entity
+   parent: BasePlant
+   id: ChanterellePlants
+-  name: chanterelle mushrooms
++  name: chanterelle
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/chanterelle.rsi
+-  - type: Plant
++  - type: PlantData
+     noun: seeds-noun-spores
+     name: seeds-chanterelle-name
+     packetPrototype: ChanterelleSeeds
+     productPrototypes: [ FoodMushroom ]
++  - type: Plant
+     lifespan: 35
+     maturation: 10
+     production: 7
+@@ -1082,14 +1115,15 @@
+ - type: entity
+   parent: BasePlant
+   id: EggyPlants
+-  name: egg-plants
++  name: egg-plant
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/eggy.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-eggy-name
+     packetPrototype: EggySeeds
+     productPrototypes: [ FoodEgg ]
++  - type: Plant
+     lifespan: 75
+     maturation: 6
+     production: 12
+@@ -1116,11 +1150,12 @@
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/cannabis.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-cannabis-name
+     packetPrototype: CannabisSeeds
+     productPrototypes: [ LeavesCannabis ]
+     mutationPrototypes: [ RainbowCannabisPlants ]
++  - type: Plant
+     lifespan: 75
+     maturation: 8
+     production: 12
+@@ -1146,10 +1181,11 @@
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-rainbow-cannabis-name
+     packetPrototype: RainbowCannabisSeeds
+     productPrototypes: [ LeavesCannabisRainbow ]
++  - type: Plant
+     lifespan: 75
+     maturation: 8
+     production: 12
+@@ -1185,14 +1221,15 @@
+ - type: entity
+   parent: BasePlant
+   id: TobaccoPlants
+-  name: tobacco plant
++  name: tobacco
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/tobacco.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-tobacco-name
+     packetPrototype: TobaccoSeeds
+     productPrototypes: [ LeavesTobacco ]
++  - type: Plant
+     lifespan: 75
+     maturation: 5
+     production: 5
+@@ -1216,15 +1253,16 @@
+ - type: entity
+   parent: BasePlant
+   id: NettlePlants
+-  name: nettles
++  name: nettle
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/nettle.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-nettle-name
+     packetPrototype: NettleSeeds
+     productPrototypes: [ Nettle ]
+     mutationPrototypes: [ DeathNettlePlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 8
+     production: 6
+@@ -1246,16 +1284,17 @@
+ - type: entity
+   parent: BasePlant
+   id: DeathNettlePlants
+-  name: death nettles
++  name: death nettle
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/death_nettle.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-deathnettle-name
+     packetPrototype: DeathNettleSeeds
+     productPrototypes: [ DeathNettle ]
+     plantLogImpact: High
+     harvestLogImpact: High
++  - type: Plant
+     lifespan: 25
+     maturation: 8
+     production: 6
+@@ -1282,15 +1321,16 @@
+ - type: entity
+   parent: BasePlant
+   id: ChiliPlants
+-  name: chili peppers
++  name: chili
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/chili.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-chili-name
+     packetPrototype: ChiliSeeds
+     productPrototypes: [ FoodChiliPepper ]
+     mutationPrototypes: [ ChillyPlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 6
+     production: 6
+@@ -1319,14 +1359,15 @@
+ - type: entity
+   parent: BasePlant
+   id: ChillyPlants
+-  name: chilly peppers
++  name: chilly
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/chilly.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-chilly-name
+     packetPrototype: ChillySeeds
+     productPrototypes: [ FoodChillyPepper ]
++  - type: Plant
+     lifespan: 25
+     maturation: 6
+     production: 6
+@@ -1355,15 +1396,16 @@
+ - type: entity
+   parent: BasePlant
+   id: PoppyPlants
+-  name: poppies
++  name: poppy
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/poppy.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-poppy-name
+     packetPrototype: PoppySeeds
+     productPrototypes: [ FoodPoppy ]
+     mutationPrototypes: [ LilyPlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 10
+     production: 3
+@@ -1390,11 +1432,12 @@
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/lily.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-lily-name
+     packetPrototype: LilySeeds
+     productPrototypes: [ FoodLily ]
+     mutationPrototypes: [ SpacemansTrumpetPlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 10
+     production: 3
+@@ -1421,10 +1464,11 @@
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/aloe.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-aloe-name
+     packetPrototype: AloeSeeds
+     productPrototypes: [ FoodAloe ]
++  - type: Plant
+     lifespan: 25
+     maturation: 10
+     production: 3
+@@ -1451,11 +1495,12 @@
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/lingzhi.rsi
+-  - type: Plant
++  - type: PlantData
+     noun: seeds-noun-spores
+     name: seeds-lingzhi-name
+     packetPrototype: LingzhiSeeds
+     productPrototypes: [ FoodLingzhi ]
++  - type: Plant
+     lifespan: 25
+     maturation: 10
+     production: 3
+@@ -1482,11 +1527,12 @@
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/ambrosia_vulgaris.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-ambrosiavulgaris-name
+     packetPrototype: AmbrosiaVulgarisSeeds
+     productPrototypes: [ FoodAmbrosiaVulgaris ]
+     mutationPrototypes: [ AmbrosiaDeusPlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 10
+     production: 3
+@@ -1521,10 +1567,11 @@
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/ambrosia_deus.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-ambrosiadeus-name
+     packetPrototype: AmbrosiaDeusSeeds
+     productPrototypes: [ FoodAmbrosiaDeus ]
++  - type: Plant
+     lifespan: 25
+     maturation: 10
+     production: 3
+@@ -1555,11 +1602,12 @@
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/galaxythistle.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-galaxythistle-name
+     packetPrototype: GalaxythistleSeeds
+     productPrototypes: [ FoodGalaxythistle ]
+     mutationPrototypes: [ GlasstlePlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 10
+     production: 3
+@@ -1582,10 +1630,11 @@
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/glasstle.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-glasstle-name
+     packetPrototype: GlasstleSeeds
+     productPrototypes: [ FoodGlasstle ]
++  - type: Plant
+     lifespan: 25
+     maturation: 10
+     production: 3
+@@ -1610,11 +1659,12 @@
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/fly_amanita.rsi
+-  - type: Plant
++  - type: PlantData
+     noun: seeds-noun-spores
+     name: seeds-flyamanita-name
+     packetPrototype: FlyAmanitaSeeds
+     productPrototypes: [ FoodFlyAmanita ]
++  - type: Plant
+     lifespan: 25
+     maturation: 12
+     production: 3
+@@ -1638,15 +1688,16 @@
+ - type: entity
+   parent: BasePlant
+   id: GatfruitPlants
+-  name: gatfruit tree
++  name: gatfruit
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/gatfruit.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-gatfruit-name
+     packetPrototype: GatfruitSeeds
+     productPrototypes: [ FoodGatfruit ]
+     mutationPrototypes: [ FakeCapfruitPlants, RealCapfruitPlants ]
++  - type: Plant
+     lifespan: 65
+     maturation: 25
+     production: 25
+@@ -1667,14 +1718,15 @@
+ - type: entity
+   parent: BasePlant
+   id: FakeCapfruitPlants
+-  name: capfruit tree
++  name: fake capfruit
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/capfruit.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-capfruit-name
+     packetPrototype: FakeCapfruitSeeds
+     productPrototypes: [ FoodFakeCapfruit ]
++  - type: Plant
+     lifespan: 65
+     maturation: 25
+     production: 25
+@@ -1695,14 +1747,15 @@
+ - type: entity
+   parent: BasePlant
+   id: RealCapfruitPlants
+-  name: capfruit tree
++  name: real capfruit
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/capfruit.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-capfruit-name
+     packetPrototype: RealCapfruitSeeds
+     productPrototypes: [ FoodRealCapfruit ]
++  - type: Plant
+     lifespan: 65
+     maturation: 25
+     production: 25
+@@ -1723,14 +1776,15 @@
+ - type: entity
+   parent: BasePlant
+   id: RicePlants
+-  name: rice stalks
++  name: rice
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/rice.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-rice-name
+     packetPrototype: RiceSeeds
+     productPrototypes: [ RiceBushel ]
++  - type: Plant
+     lifespan: 25
+     maturation: 6
+     production: 3
+@@ -1754,15 +1808,16 @@
+ - type: entity
+   parent: BasePlant
+   id: SoybeanPlants
+-  name: soy plant
++  name: soybeans
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/soybeans.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-soybeans-name
+     packetPrototype: SoybeanSeeds
+     productPrototypes: [ FoodSoybeans ]
+     mutationPrototypes: [ KoibeanPlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 6
+     production: 6
+@@ -1781,14 +1836,15 @@
+ - type: entity
+   parent: BasePlant
+   id: SpacemansTrumpetPlants
+-  name: spaceman's trumpet plant
++  name: spaceman's trumpet
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/spacemans_trumpet.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-spacemans-trumpet-name
+     packetPrototype: SpacemansTrumpetSeeds
+     productPrototypes: [ FoodSpacemansTrumpet ]
++  - type: Plant
+     lifespan: 20
+     maturation: 14
+     production: 3
+@@ -1811,14 +1867,15 @@
+ - type: entity
+   parent: BasePlant
+   id: KoibeanPlants
+-  name: koibean plant
++  name: koibeans
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/koibean.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-koibean-name
+     packetPrototype: KoibeanSeeds
+     productPrototypes: [ FoodKoibean ]
++  - type: Plant
+     lifespan: 25
+     maturation: 6
+     production: 6
+@@ -1841,14 +1898,15 @@
+ - type: entity
+   parent: BasePlant
+   id: GrapePlants
+-  name: grape plant
++  name: grape
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/grape.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-grape-name
+     packetPrototype: GrapeSeeds
+     productPrototypes: [ FoodGrape ]
++  - type: Plant
+     lifespan: 50
+     maturation: 6
+     production: 5
+@@ -1869,15 +1927,16 @@
+ - type: entity
+   parent: BasePlant
+   id: WatermelonPlants
+-  name: watermelon vines
++  name: watermelon
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/watermelon.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-watermelon-name
+     packetPrototype: WatermelonSeeds
+     productPrototypes: [ FoodWatermelon ]
+     mutationPrototypes: [ HolymelonPlants ]
++  - type: Plant
+     lifespan: 55
+     maturation: 12
+     production: 3
+@@ -1901,14 +1960,15 @@
+ - type: entity
+   parent: BasePlant
+   id: HolymelonPlants
+-  name: holymelon vines
++  name: holymelon
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/holymelon.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-holymelon-name
+     packetPrototype: HolymelonSeeds
+     productPrototypes: [ FoodHolymelon ]
++  - type: Plant
+     lifespan: 55
+     maturation: 12
+     production: 3
+@@ -1932,14 +1992,15 @@
+ - type: entity
+   parent: BasePlant
+   id: CocoaPlants
+-  name: cocoa plant
++  name: cocoa
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/cocoa.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-cocoa-name
+     packetPrototype: CocoaSeeds
+     productPrototypes: [ FoodCocoaPod ]
++  - type: Plant
+     lifespan: 50
+     maturation: 6
+     production: 6
+@@ -1966,14 +2027,15 @@
+ - type: entity
+   parent: BasePlant
+   id: BerryPlants
+-  name: berry bush
++  name: berries
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/berries.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-berries-name
+     packetPrototype: BerrySeeds
+     productPrototypes: [ FoodBerries ]
++  - type: Plant
+     lifespan: 50
+     maturation: 6
+     production: 6
+@@ -1996,14 +2058,15 @@
+ - type: entity
+   parent: BasePlant
+   id: BungoPlants
+-  name: bungo plant
++  name: bungo
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/bungo.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-bungo-name
+     packetPrototype: BungoSeeds
+     productPrototypes: [ FoodBungo ]
++  - type: Plant
+     lifespan: 50
+     maturation: 8
+     production: 6
+@@ -2031,15 +2094,16 @@
+ - type: entity
+   parent: BasePlant
+   id: PeaPlants
+-  name: pea vines
++  name: peas
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/pea.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-pea-name
+     packetPrototype: PeaSeeds
+     productPrototypes: [ FoodPeaPod ]
+     mutationPrototypes: [ LaughinPeaPlants ]
++  - type: Plant
+     lifespan: 25
+     growthStages: 3
+     maturation: 8
+@@ -2064,14 +2128,15 @@
+ - type: entity
+   parent: BasePlant
+   id: WorldPeaPlants
+-  name: world pea vines
++  name: world peas
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/world_pea.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-worldpea-name
+     packetPrototype: PeaSeeds
+     productPrototypes: [ FoodWorldPeas ]
++  - type: Plant
+     lifespan: 25
+     growthStages: 3
+     maturation: 20
+@@ -2100,15 +2165,16 @@
+ - type: entity
+   parent: BasePlant
+   id: PumpkinPlants
+-  name: pumpkins
++  name: pumpkin
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/pumpkin.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-pumpkin-name
+     packetPrototype: PumpkinSeeds
+     productPrototypes: [ FoodPumpkin ]
+     mutationPrototypes: [ BluePumpkinPlants ]
++  - type: Plant
+     lifespan: 55
+     maturation: 10
+     production: 4
+@@ -2132,14 +2198,15 @@
+ - type: entity
+   parent: BasePlant
+   id: BluePumpkinPlants
+-  name: blue pumpkins
++  name: blue pumpkin
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/blue_pumpkin.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-blue-pumpkin-name
+     packetPrototype: BluePumpkinSeeds
+     productPrototypes: [ FoodBluePumpkin ]
++  - type: Plant
+     lifespan: 55
+     maturation: 10
+     production: 4
+@@ -2167,15 +2234,16 @@
+ - type: entity
+   parent: BasePlant
+   id: CottonPlants
+-  name: cotton plant
++  name: cotton
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/cotton.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-cotton-name
+     packetPrototype: CottonSeeds
+     productPrototypes: [ CottonBol ]
+     mutationPrototypes: [ PyrottonPlants ]
++  - type: Plant
+     lifespan: 25
+     maturation: 8
+     production: 3
+@@ -2194,14 +2262,15 @@
+ - type: entity
+   parent: BasePlant
+   id: PyrottonPlants
+-  name: pyrotton plant
++  name: pyrotton
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/pyrotton.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-pyrotton-name
+     packetPrototype: PyrottonSeeds
+     productPrototypes: [ PyrottonBol ]
++  - type: Plant
+     lifespan: 25
+     maturation: 8
+     production: 3
+@@ -2224,14 +2293,15 @@
+ - type: entity
+   parent: BasePlant
+   id: CherryPlants
+-  name: cherry tree
++  name: cherry
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/cherry.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-cherry-name
+     packetPrototype: CherrySeeds
+     productPrototypes: [ FoodCherry ]
++  - type: Plant
+     lifespan: 55
+     maturation: 6
+     production: 6
+@@ -2253,14 +2323,15 @@
+ - type: entity
+   parent: BasePlant
+   id: AnomalyBerryPlants
+-  name: anomaly berries
++  name: anomaly berry
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/anomaly_berry.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-anomaly-berry-name
+     packetPrototype: AnomalyBerrySeeds
+     productPrototypes: [ FoodAnomalyBerry ]
++  - type: Plant
+     lifespan: 25
+     maturation: 12
+     production: 3
+@@ -2288,14 +2359,15 @@
+ - type: entity
+   parent: BasePlant
+   id: BloonionPlants
+-  name: bloonion bulbs
++  name: bloonion
+   components:
+   - type: Sprite
+     sprite: Objects/Specific/Hydroponics/bloonion.rsi
+-  - type: Plant
++  - type: PlantData
+     name: seeds-bloonion-name
+     packetPrototype: BloonionSeeds
+     productPrototypes: [ FoodBloonion ]
++  - type: Plant
+     lifespan: 25
+     maturation: 15
+     production: 3
+-- 
+2.55.0
+

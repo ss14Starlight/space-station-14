@@ -1,0 +1,25 @@
+From dbdac861e6d6efaf5b56c600e883a55a032a50f1 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Tue, 16 Dec 2025 18:20:18 +0200
+Subject: [PATCH 058/112] Update plants.yml
+
+---
+ Resources/Prototypes/Hydroponics/plants.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index 351b10ce1d..6526dd11d7 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -2134,7 +2134,7 @@
+     displayName: seeds-rainbowcannabis-display-name
+     plantRsi: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+     packetPrototype: RainbowCannabisSeeds
+-    productPrototypes: [ LeavesRainbowCannabis ]
++    productPrototypes: [ LeavesCannabisRainbow ]
+   - type: Plant
+     lifespan: 75
+     maturation: 8
+-- 
+2.55.0
+

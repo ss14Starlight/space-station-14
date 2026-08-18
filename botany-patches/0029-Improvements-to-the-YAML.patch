@@ -1,0 +1,2539 @@
+From 8a5eaa670c2e1d9842159ea6c43f12e8d73205c6 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Mon, 1 Sep 2025 22:03:06 +0300
+Subject: [PATCH 029/112] Improvements to the YAML
+
+---
+ .../Botany/Components/BotanySwabComponent.cs  |    5 -
+ .../Components/GrowthComponentsHolder.cs      |   49 +
+ Content.Server/Botany/SeedPrototype.cs        |   24 +-
+ .../Botany/Systems/BasicGrowthSystem.cs       |   16 +-
+ .../Botany/Systems/BotanySwabSystem.cs        |   24 +-
+ .../Botany/Systems/BotanySystem.Seed.cs       |   18 +-
+ .../Botany/Systems/MutationSystem.cs          |    8 +-
+ .../Botany/Systems/PlantHolderSystem.cs       |  112 +-
+ Resources/Maps/Salvage/vegan-meatball.yml     |   64 +-
+ Resources/Prototypes/Hydroponics/seeds.yml    | 1396 ++++++++---------
+ 10 files changed, 864 insertions(+), 852 deletions(-)
+ create mode 100644 Content.Server/Botany/Components/GrowthComponentsHolder.cs
+
+diff --git a/Content.Server/Botany/Components/BotanySwabComponent.cs b/Content.Server/Botany/Components/BotanySwabComponent.cs
+index fcedaa036f..987a804c96 100644
+--- a/Content.Server/Botany/Components/BotanySwabComponent.cs
++++ b/Content.Server/Botany/Components/BotanySwabComponent.cs
+@@ -18,9 +18,4 @@ public sealed partial class BotanySwabComponent : Component
+     /// SeedData from the first plant that got swabbed.
+     /// </summary>
+     public SeedData? SeedData;
+-
+-    /// <summary>
+-    /// Growth components from the first plant that got swabbed.
+-    /// </summary>
+-    public List<PlantGrowthComponent> components;
+ }
+diff --git a/Content.Server/Botany/Components/GrowthComponentsHolder.cs b/Content.Server/Botany/Components/GrowthComponentsHolder.cs
+new file mode 100644
+index 0000000000..3bbe7ee15e
+--- /dev/null
++++ b/Content.Server/Botany/Components/GrowthComponentsHolder.cs
+@@ -0,0 +1,49 @@
++namespace Content.Server.Botany.Components;
++
++/// <summary>
++/// Holder for plant growth settings serialized from YAML as a map under "growthComponents".
++/// Each property corresponds to a concrete growth component type.
++/// </summary>
++[DataDefinition]
++public sealed partial class GrowthComponentsHolder
++{
++    [DataField("plantTraits")]
++    public PlantTraitsComponent? PlantTraits { get; set; }
++
++    [DataField("basicGrowth")]
++    public BasicGrowthComponent? BasicGrowth { get; set; }
++
++    [DataField("toxins")]
++    public ToxinsComponent? Toxins { get; set; }
++
++    [DataField("harvest")]
++    public HarvestComponent? Harvest { get; set; }
++
++    [DataField("atmosphericGrowth")]
++    public AtmosphericGrowthComponent? AtmosphericGrowth { get; set; }
++
++    [DataField("consumeExudeGasGrowth")]
++    public ConsumeExudeGasGrowthComponent? ConsumeExudeGasGrowth { get; set; }
++
++    [DataField("weedPestGrowth")]
++    public WeedPestGrowthComponent? WeedPestGrowth { get; set; }
++
++    [DataField("unviableGrowth")]
++    public UnviableGrowthComponent? UnviableGrowth { get; set; }
++
++    /// <summary>
++    /// Populates any null properties with default component instances so that
++    /// systems can always apply a full set. Existing (YAML-provided) values are kept.
++    /// </summary>
++    public void EnsureGrowthComponents()
++    {
++        foreach (var prop in typeof(GrowthComponentsHolder).GetProperties())
++        {
++            if (prop.GetValue(this) == null)
++            {
++                var instance = System.Activator.CreateInstance(prop.PropertyType);
++                prop.SetValue(this, instance);
++            }
++        }
++    }
++}
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index 0c9250b0ae..e8ab7a368c 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -45,7 +45,7 @@ public partial struct SeedChemQuantity
+ }
+ 
+ [Virtual, DataDefinition]
+-[Access(typeof(BotanySystem), typeof(PlantHolderSystem), typeof(SeedExtractorSystem), typeof(EntityEffectSystem), typeof(MutationSystem), typeof(HarvestSystem), typeof(PlantTraitsSystem))]
++[Access(typeof(BotanySystem), typeof(PlantHolderSystem), typeof(SeedExtractorSystem), typeof(EntityEffectSystem), typeof(MutationSystem), typeof(HarvestSystem), typeof(PlantTraitsSystem), typeof(BotanySwabSystem), typeof(BasicGrowthSystem))]
+ public partial class SeedData
+ {
+     #region Tracking
+@@ -142,7 +142,7 @@ public partial class SeedData
+     /// The growth components used by this seed.
+     /// </summary>
+     [DataField]
+-    public List<PlantGrowthComponent> GrowthComponents = new();
++    public GrowthComponentsHolder GrowthComponents = new();
+ 
+     /// <summary>
+     /// Log impact for harvest operations.
+@@ -159,10 +159,11 @@ public partial class SeedData
+     public SeedData Clone()
+     {
+         DebugTools.Assert(!Immutable, "There should be no need to clone an immutable seed.");
++        var serializationManager = IoCManager.Resolve<ISerializationManager>();
+ 
+         var newSeed = new SeedData
+         {
+-            GrowthComponents = new List<PlantGrowthComponent>(),
++            GrowthComponents = serializationManager.CreateCopy(GrowthComponents, notNullableOverride: true),
+             HarvestLogImpact = HarvestLogImpact,
+             PlantLogImpact = PlantLogImpact,
+             Name = Name,
+@@ -183,13 +184,6 @@ public SeedData Clone()
+             Unique = true,
+         };
+ 
+-        // Deep copy growth components
+-        foreach (var component in GrowthComponents)
+-        {
+-            var newComponent = component.DupeComponent();
+-            newSeed.GrowthComponents.Add(newComponent);
+-        }
+-
+         newSeed.Mutations.AddRange(Mutations);
+         return newSeed;
+     }
+@@ -200,9 +194,10 @@ public SeedData Clone()
+     /// </summary>
+     public SeedData SpeciesChange(SeedData other)
+     {
++        var serializationManager = IoCManager.Resolve<ISerializationManager>();
+         var newSeed = new SeedData
+         {
+-            GrowthComponents = new List<PlantGrowthComponent>(),
++            GrowthComponents = serializationManager.CreateCopy(other.GrowthComponents, notNullableOverride: true),
+             HarvestLogImpact = other.HarvestLogImpact,
+             PlantLogImpact = other.PlantLogImpact,
+             Name = other.Name,
+@@ -240,13 +235,6 @@ public SeedData SpeciesChange(SeedData other)
+             }
+         }
+ 
+-        // Deep copy growth components from the new species
+-        foreach (var component in other.GrowthComponents)
+-        {
+-            var newComponent = component.DupeComponent();
+-            newSeed.GrowthComponents.Add(newComponent);
+-        }
+-
+         return newSeed;
+     }
+ }
+diff --git a/Content.Server/Botany/Systems/BasicGrowthSystem.cs b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+index 1052105dd6..1863c28c3a 100644
+--- a/Content.Server/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+@@ -22,22 +22,24 @@ public override void Initialize()
+     private void OnSwab(EntityUid uid, BasicGrowthComponent component, BotanySwabDoAfterEvent args)
+     {
+         if (args.Cancelled || args.Handled || !TryComp<PlantHolderComponent>(args.Args.Target, out var plant) ||
+-            args.Used == null || !TryComp<BotanySwabComponent>(args.Used.Value, out var swab))
++            args.Used == null || !TryComp<BotanySwabComponent>(args.Used.Value, out var swab) || swab.SeedData == null)
+             return;
+ 
+-        var swabComp = swab.components.Find(c => c.GetType() == typeof(BasicGrowthComponent));
++        var swabComp = swab.SeedData.GrowthComponents.BasicGrowth;
+         if (swabComp == null)
+         {
+-            swab.components.Add(new BasicGrowthComponent() {
++            swab.SeedData.GrowthComponents.BasicGrowth = new BasicGrowthComponent()
++            {
+                 WaterConsumption = component.WaterConsumption,
+                 NutrientConsumption = component.NutrientConsumption
+-            });
++            };
+         }
+         else
+         {
+-            BasicGrowthComponent typedComp = (BasicGrowthComponent)swabComp;
+-            if (_random.Prob(0.5f)) typedComp.WaterConsumption = component.WaterConsumption;
+-            if (_random.Prob(0.5f)) typedComp.NutrientConsumption = component.NutrientConsumption;
++            if (_random.Prob(0.5f))
++                swabComp.WaterConsumption = component.WaterConsumption;
++            if (_random.Prob(0.5f))
++                swabComp.NutrientConsumption = component.NutrientConsumption;
+         }
+     }
+ 
+diff --git a/Content.Server/Botany/Systems/BotanySwabSystem.cs b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+index 9231f0c2cd..95436dab1a 100644
+--- a/Content.Server/Botany/Systems/BotanySwabSystem.cs
++++ b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+@@ -68,17 +68,8 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+         if (swab.SeedData == null)
+         {
+             // Pick up pollen
+-            swab.SeedData = plant.Seed;
+             if (plant.Seed != null)
+-            {
+-                // Deep copy components to prevent changes to the original plant from affecting the swab
+-                swab.components = new List<PlantGrowthComponent>();
+-                foreach (var component in plant.Seed.GrowthComponents)
+-                {
+-                    var copiedComponent = component.DupeComponent();
+-                    swab.components.Add(copiedComponent);
+-                }
+-            }
++                swab.SeedData = plant.Seed.Clone();
+ 
+             _popupSystem.PopupEntity(Loc.GetString("botany-swab-from"), args.Args.Target.Value, args.Args.User);
+         }
+@@ -92,18 +83,7 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+             plant.Seed = _mutationSystem.Cross(swab.SeedData, old);
+ 
+             // Transfer old plant pollen to swab
+-            swab.SeedData = old;
+-
+-            // Copy components from the old plant to the swab
+-            if (old.GrowthComponents != null)
+-            {
+-                swab.components = new List<PlantGrowthComponent>();
+-                foreach (var component in old.GrowthComponents)
+-                {
+-                    var copiedComponent = component.DupeComponent();
+-                    swab.components.Add(copiedComponent);
+-                }
+-            }
++            swab.SeedData = old.Clone();
+ 
+             _popupSystem.PopupEntity(Loc.GetString("botany-swab-to"), args.Args.Target.Value, args.Args.User);
+         }
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Seed.cs b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+index b56a2bb2a4..7c1b4244f0 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+@@ -79,26 +79,12 @@ public bool TryGetSeed(ProduceComponent comp, [NotNullWhen(true)] out SeedData?
+ 
+     public PlantTraitsComponent? GetPlantTraits(SeedData seed)
+     {
+-        foreach (var growthComponent in seed.GrowthComponents)
+-        {
+-            if (growthComponent is PlantTraitsComponent plantTraits)
+-            {
+-                return plantTraits;
+-            }
+-        }
+-        return null;
++        return seed.GrowthComponents.PlantTraits;
+     }
+ 
+     public HarvestComponent? GetHarvestComponent(SeedData seed)
+     {
+-        foreach (var growthComponent in seed.GrowthComponents)
+-        {
+-            if (growthComponent is HarvestComponent harvestComp)
+-            {
+-                return harvestComp;
+-            }
+-        }
+-        return null;
++        return seed.GrowthComponents.Harvest;
+     }
+ 
+     private void OnExamined(EntityUid uid, SeedComponent component, ExaminedEvent args)
+diff --git a/Content.Server/Botany/Systems/MutationSystem.cs b/Content.Server/Botany/Systems/MutationSystem.cs
+index d721038046..c28ce39353 100644
+--- a/Content.Server/Botany/Systems/MutationSystem.cs
++++ b/Content.Server/Botany/Systems/MutationSystem.cs
+@@ -1,3 +1,4 @@
++using Content.Server.Botany.Components;
+ using Content.Server.Botany.Systems;
+ using Content.Shared.Atmos;
+ using Content.Shared.EntityEffects;
+@@ -65,9 +66,12 @@ public void MutateSeed(EntityUid plantHolder, ref SeedData seed, float severity)
+     /// </summary>
+     private void EnsureGrowthComponents(EntityUid plantHolder, SeedData seed)
+     {
+-        foreach (var component in seed.GrowthComponents)
++        // Fill missing components in the seed with defaults.
++        seed.GrowthComponents.EnsureGrowthComponents();
++
++        foreach (var prop in typeof(GrowthComponentsHolder).GetProperties())
+         {
+-            if (!EntityManager.HasComponent(plantHolder, component.GetType()))
++            if (prop.GetValue(seed.GrowthComponents) is PlantGrowthComponent component && !EntityManager.HasComponent(plantHolder, component.GetType()))
+             {
+                 var newComponent = component.DupeComponent();
+                 EntityManager.AddComponent(plantHolder, newComponent);
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 87b1740f92..f1f7f1d5b0 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -174,11 +174,11 @@ private void OnExamine(Entity<PlantHolderComponent> entity, ref ExaminedEvent ar
+ 
+     private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUsingEvent args)
+     {
+-        var (uid, component) = entity;
++        var (uid, plantHolder) = entity;
+ 
+         if (TryComp(args.Used, out SeedComponent? seeds))
+         {
+-            if (component.Seed == null)
++            if (plantHolder.Seed == null)
+             {
+                 if (!_botany.TryGetSeed(seeds, out var seed))
+                     return;
+@@ -190,32 +190,38 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+                     ("seedName", name),
+                     ("seedNoun", noun)), args.User, PopupType.Medium);
+ 
+-                component.Seed = seed.Clone();
+-                component.Dead = false;
+-                component.Age = 1;
+-                component.DrawWarnings = true;
++                plantHolder.Seed = seed.Clone();
++                plantHolder.Dead = false;
++                plantHolder.Age = 1;
++                plantHolder.DrawWarnings = true;
+ 
+                 // Get endurance from seed's PlantTraitsComponent
+                 var seedTraits = _botany.GetPlantTraits(seed);
+                 if (seeds.HealthOverride != null)
+                 {
+-                    component.Health = seeds.HealthOverride.Value;
++                    plantHolder.Health = seeds.HealthOverride.Value;
+                 }
+                 else if (seedTraits != null)
+                 {
+-                    component.Health = seedTraits.Endurance;
++                    plantHolder.Health = seedTraits.Endurance;
+                 }
+-                component.LastCycle = _gameTiming.CurTime;
++                plantHolder.LastCycle = _gameTiming.CurTime;
+ 
+                 // Ensure no existing growth components before adding new ones
+-                var existingGrowthComponents = EntityManager.GetComponents<PlantGrowthComponent>(uid).ToList();
+-                foreach (var g in existingGrowthComponents)
+-                    EntityManager.RemoveComponent(uid, g);
++                RemoveAllGrowthComponents(uid);
+ 
+-                foreach (var g in seed.GrowthComponents)
+-                    EntityManager.AddComponent(uid, _copier.CreateCopy(g, notNullableOverride: true), overwrite: true);
++                // Fill missing components with defaults
++                seed.GrowthComponents.EnsureGrowthComponents();
+ 
+-                EnsureDefaultGrowthComponents(uid);
++                foreach (var prop in typeof(GrowthComponentsHolder).GetProperties())
++                {
++                    if (prop.GetValue(seed.GrowthComponents) is PlantGrowthComponent growthComp)
++                    {
++                        EntityManager.AddComponent(uid, _copier.CreateCopy(growthComp, notNullableOverride: true), overwrite: true);
++                    }
++                }
++
++                EnsureComp<PlantComponent>(uid);
+ 
+                 if (TryComp<PaperLabelComponent>(args.Used, out var paperLabel))
+                 {
+@@ -223,8 +229,8 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+                 }
+                 QueueDel(args.Used);
+ 
+-                CheckLevelSanity(uid, component);
+-                UpdateSprite(uid, component);
++                CheckLevelSanity(uid, plantHolder);
++                UpdateSprite(uid, plantHolder);
+ 
+                 if (seed.PlantLogImpact != null)
+                     _adminLogger.Add(LogType.Botany, seed.PlantLogImpact.Value, $"{ToPrettyString(args.User):player} planted  {Loc.GetString(seed.Name):seed} at Pos:{Transform(uid).Coordinates}.");
+@@ -241,14 +247,14 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+         if (_tagSystem.HasTag(args.Used, HoeTag))
+         {
+             args.Handled = true;
+-            if (component.WeedLevel > 0)
++            if (plantHolder.WeedLevel > 0)
+             {
+                 _popup.PopupCursor(Loc.GetString("plant-holder-component-remove-weeds-message",
+                     ("name", Comp<MetaDataComponent>(uid).EntityName)), args.User, PopupType.Medium);
+                 _popup.PopupEntity(Loc.GetString("plant-holder-component-remove-weeds-others-message",
+                     ("otherName", Comp<MetaDataComponent>(args.User).EntityName)), uid, Filter.PvsExcept(args.User), true);
+-                component.WeedLevel = 0;
+-                UpdateSprite(uid, component);
++                plantHolder.WeedLevel = 0;
++                UpdateSprite(uid, plantHolder);
+             }
+             else
+             {
+@@ -261,13 +267,13 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+         if (HasComp<ShovelComponent>(args.Used))
+         {
+             args.Handled = true;
+-            if (component.Seed != null)
++            if (plantHolder.Seed != null)
+             {
+                 _popup.PopupCursor(Loc.GetString("plant-holder-component-remove-plant-message",
+                     ("name", Comp<MetaDataComponent>(uid).EntityName)), args.User, PopupType.Medium);
+                 _popup.PopupEntity(Loc.GetString("plant-holder-component-remove-plant-others-message",
+                     ("name", Comp<MetaDataComponent>(args.User).EntityName)), uid, Filter.PvsExcept(args.User), true);
+-                RemovePlant(uid, component);
++                RemovePlant(uid, plantHolder);
+             }
+             else
+             {
+@@ -281,19 +287,19 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+         if (_tagSystem.HasTag(args.Used, PlantSampleTakerTag))
+         {
+             args.Handled = true;
+-            if (component.Seed == null)
++            if (plantHolder.Seed == null)
+             {
+                 _popup.PopupCursor(Loc.GetString("plant-holder-component-nothing-to-sample-message"), args.User);
+                 return;
+             }
+ 
+-            if (component.Sampled)
++            if (plantHolder.Sampled)
+             {
+                 _popup.PopupCursor(Loc.GetString("plant-holder-component-already-sampled-message"), args.User);
+                 return;
+             }
+ 
+-            if (component.Dead)
++            if (plantHolder.Dead)
+             {
+                 _popup.PopupCursor(Loc.GetString("plant-holder-component-dead-plant-message"), args.User);
+                 return;
+@@ -305,41 +311,46 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+                 return;
+             }
+ 
+-            component.Health -= _random.Next(3, 5) * 10;
++            plantHolder.Health -= _random.Next(3, 5) * 10;
+ 
+             float? healthOverride;
+-            if (component.Harvest)
++            if (plantHolder.Harvest)
+             {
+                 healthOverride = null;
+             }
+             else
+             {
+-                healthOverride = component.Health;
++                healthOverride = plantHolder.Health;
+             }
+-            var packetSeed = component.Seed;
++            var packetSeed = plantHolder.Seed;
+ 
+             if (packetSeed != null)
+             {
+                 // Copy growth components from the plant to the seed before creating seed packet
+-                var plantGrowthComponents = EntityManager.GetComponents<PlantGrowthComponent>(uid).ToList();
+-                packetSeed.GrowthComponents?.Clear();
+-                foreach (var growthComponent in plantGrowthComponents)
++                var holder = new GrowthComponentsHolder();
++
++                foreach (var prop in typeof(GrowthComponentsHolder).GetProperties())
+                 {
+-                    var newComponent = growthComponent.DupeComponent();
+-                    packetSeed.GrowthComponents?.Add(newComponent);
++                    if (EntityManager.TryGetComponent(uid, prop.PropertyType, out var growthComponent))
++                    {
++                        var copiedComponent = _copier.CreateCopy((Component)growthComponent, notNullableOverride: true);
++                        prop.SetValue(holder, copiedComponent);
++                    }
+                 }
+ 
++                packetSeed.GrowthComponents = holder;
++
+                 var seed = _botany.SpawnSeedPacket(packetSeed, Transform(args.User).Coordinates, args.User, healthOverride);
+                 _randomHelper.RandomOffset(seed, 0.25f);
+-                var displayName = Loc.GetString(component.Seed.DisplayName);
++                var displayName = Loc.GetString(plantHolder.Seed.DisplayName);
+                 _popup.PopupCursor(Loc.GetString("plant-holder-component-take-sample-message",
+                     ("seedName", displayName)), args.User);
+ 
+                 if (_random.Prob(0.3f))
+-                    component.Sampled = true;
++                    plantHolder.Sampled = true;
+ 
+-                CheckLevelSanity(uid, component);
+-                ForceUpdateByExternalCause(uid, component);
++                CheckLevelSanity(uid, plantHolder);
++                ForceUpdateByExternalCause(uid, plantHolder);
+             }
+ 
+             return;
+@@ -358,15 +369,15 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+ 
+             if (_solutionContainerSystem.TryGetSolution(args.Used, produce.SolutionName, out var soln2, out var solution2))
+             {
+-                if (_solutionContainerSystem.ResolveSolution(uid, component.SoilSolutionName, ref component.SoilSolution, out var solution1))
++                if (_solutionContainerSystem.ResolveSolution(uid, plantHolder.SoilSolutionName, ref plantHolder.SoilSolution, out var solution1))
+                 {
+                     // We try to fit as much of the composted plant's contained solution into the hydroponics tray as we can,
+                     // since the plant will be consumed anyway.
+ 
+                     var fillAmount = FixedPoint2.Min(solution2.Volume, solution1.AvailableVolume);
+-                    _solutionContainerSystem.TryAddSolution(component.SoilSolution.Value, _solutionContainerSystem.SplitSolution(soln2.Value, fillAmount));
++                    _solutionContainerSystem.TryAddSolution(plantHolder.SoilSolution.Value, _solutionContainerSystem.SplitSolution(soln2.Value, fillAmount));
+ 
+-                    ForceUpdateByExternalCause(uid, component);
++                    ForceUpdateByExternalCause(uid, plantHolder);
+                 }
+             }
+             var seed = produce.Seed;
+@@ -376,7 +387,7 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+                 if (seedTraits != null)
+                 {
+                     var nutrientBonus = seedTraits.Potency / 2.5f;
+-                    AdjustNutrient(uid, nutrientBonus, component);
++                    AdjustNutrient(uid, nutrientBonus, plantHolder);
+                 }
+             }
+             QueueDel(args.Used);
+@@ -505,9 +516,7 @@ public void RemovePlant(EntityUid uid, PlantHolderComponent? component = null)
+             return;
+ 
+         // Remove all growth components before planting new seed
+-        var growthComponents = EntityManager.GetComponents<PlantGrowthComponent>(uid).ToList();
+-        foreach (var g in growthComponents)
+-            EntityManager.RemoveComponent(uid, g);
++        RemoveAllGrowthComponents(uid);
+ 
+         component.YieldMod = 1;
+         component.MutationMod = 1;
+@@ -669,14 +678,13 @@ public void ForceUpdateByExternalCause(EntityUid uid, PlantHolderComponent? comp
+     }
+ 
+     /// <summary>
+-    /// Ensures that all default growth components are added to the plant if they're not already present.
++    /// Removes all growth-related components from a plant.
+     /// </summary>
+-    private void EnsureDefaultGrowthComponents(EntityUid uid)
++    private void RemoveAllGrowthComponents(EntityUid uid)
+     {
+-        EnsureComp<PlantComponent>(uid);
+-        EnsureComp<BasicGrowthComponent>(uid);
+-        EnsureComp<PlantTraitsComponent>(uid);
+-        EnsureComp<AtmosphericGrowthComponent>(uid);
+-        EnsureComp<WeedPestGrowthComponent>(uid);
++        foreach (var comp in EntityManager.GetComponents<PlantGrowthComponent>(uid))
++        {
++            RemComp(uid, comp);
++        }
+     }
+ }
+diff --git a/Resources/Maps/Salvage/vegan-meatball.yml b/Resources/Maps/Salvage/vegan-meatball.yml
+index 1d6e29ac3b..48944cf21a 100644
+--- a/Resources/Maps/Salvage/vegan-meatball.yml
++++ b/Resources/Maps/Salvage/vegan-meatball.yml
+@@ -486,22 +486,22 @@ entities:
+       health: 100
+       seed:
+         growthComponents:
+-          - !type:PlantTraitsComponent
+-              lifespan: 75
+-              endurance: 100
+-          - !type:BasicGrowthComponent
+-              waterConsumption: 0.4
+-              nutrientConsumption: 0.75
+-          - !type:AtmosphericGrowthComponent
+-              idealHeat: 298
+-              heatTolerance: 10
+-              lowPressureTolerance: 81
+-              highPressureTolerance: 121
+-          - !type:WeedPestGrowthComponent
+-              weedTolerance: 5
+-              pestTolerance: 5
+-          - !type:ToxinsComponent
+-              toxinsTolerance: 4
++          plantTraits:
++            lifespan: 75
++            endurance: 100
++          basicGrowth:
++            waterConsumption: 0.4
++            nutrientConsumption: 0.75
++          atmosphericGrowth:
++            idealHeat: 298
++            heatTolerance: 10
++            lowPressureTolerance: 81
++            highPressureTolerance: 121
++          weedPestGrowth:
++            weedTolerance: 5
++            pestTolerance: 5
++          toxins:
++            toxinsTolerance: 4
+         chemicals:
+           THC:
+             Inherent: True
+@@ -559,22 +559,22 @@ entities:
+       health: 100
+       seed:
+         growthComponents:
+-          - !type:PlantTraitsComponent
+-              lifespan: 25
+-              endurance: 100
+-          - !type:BasicGrowthComponent
+-              waterConsumption: 0.6
+-              nutrientConsumption: 0.75
+-          - !type:AtmosphericGrowthComponent
+-              idealHeat: 293
+-              heatTolerance: 10
+-              lowPressureTolerance: 81
+-              highPressureTolerance: 121
+-          - !type:WeedPestGrowthComponent
+-              weedTolerance: 5
+-              pestTolerance: 5
+-          - !type:ToxinsComponent
+-              toxinsTolerance: 4
++          plantTraits:
++            lifespan: 25
++            endurance: 100
++          basicGrowth:
++            waterConsumption: 0.6
++            nutrientConsumption: 0.75
++          atmosphericGrowth:
++            idealHeat: 293
++            heatTolerance: 10
++            lowPressureTolerance: 81
++            highPressureTolerance: 121
++          weedPestGrowth:
++            weedTolerance: 5
++            pestTolerance: 5
++          toxins:
++            toxinsTolerance: 4
+         chemicals:
+           Stellibinin:
+             Inherent: True
+diff --git a/Resources/Prototypes/Hydroponics/seeds.yml b/Resources/Prototypes/Hydroponics/seeds.yml
+index 840b8c8c17..e663a79fc0 100644
+--- a/Resources/Prototypes/Hydroponics/seeds.yml
++++ b/Resources/Prototypes/Hydroponics/seeds.yml
+@@ -10,14 +10,14 @@
+   mutationPrototypes:
+     - meatwheat
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 6
+-        production: 3
+-        yield: 3
+-        potency: 5
+-    - !type:BasicGrowthComponent
+-        nutrientConsumption: 0.4
++    plantTraits:
++      lifespan: 25
++      maturation: 6
++      production: 3
++      yield: 3
++      potency: 5
++    basicGrowth:
++      nutrientConsumption: 0.4
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -38,14 +38,14 @@
+   productPrototypes:
+     - MeatwheatBushel
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 6
+-        production: 3
+-        yield: 3
+-        potency: 5
+-    - !type:BasicGrowthComponent
+-        nutrientConsumption: 0.4
++    plantTraits:
++      lifespan: 25
++      maturation: 6
++      production: 3
++      yield: 3
++      potency: 5
++    basicGrowth:
++      nutrientConsumption: 0.4
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -66,14 +66,14 @@
+   productPrototypes:
+     - OatBushel
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 6
+-        production: 3
+-        yield: 3
+-        potency: 5
+-    - !type:BasicGrowthComponent
+-        nutrientConsumption: 0.4
++    plantTraits:
++      lifespan: 25
++      maturation: 6
++      production: 3
++      yield: 3
++      potency: 5
++    basicGrowth:
++      nutrientConsumption: 0.4
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -96,17 +96,17 @@
+   mutationPrototypes:
+     - mimana
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 50
+-        maturation: 6
+-        production: 6
+-        yield: 2
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 50
++      maturation: 6
++      production: 6
++      yield: 2
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.6
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Vitamin:
+       Min: 1
+@@ -127,17 +127,17 @@
+   productPrototypes:
+     - FoodMimana
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 50
+-        maturation: 6
+-        production: 6
+-        yield: 2
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 50
++      maturation: 6
++      production: 6
++      yield: 2
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.6
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     MuteToxin:
+       Min: 1
+@@ -158,15 +158,15 @@
+   productPrototypes:
+     - FoodCarrot
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 10
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
++    plantTraits:
++      lifespan: 25
++      maturation: 10
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
+   chemicals:
+     JuiceCarrot:
+       Min: 1
+@@ -193,18 +193,18 @@
+   mutationPrototypes:
+     - worldPea
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        growthStages: 3
+-        maturation: 7
+-        production: 5
+-        yield: 3
+-        potency: 20
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.6
++    plantTraits:
++      lifespan: 25
++      growthStages: 3
++      maturation: 7
++      production: 5
++      yield: 3
++      potency: 20
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -233,14 +233,14 @@
+     - lime
+     - orange
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 6
+-        production: 6
+-        yield: 3
+-        potency: 10
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
++    plantTraits:
++      lifespan: 55
++      maturation: 6
++      production: 6
++      yield: 3
++      potency: 10
++    harvest:
++      harvestRepeat: Repeat
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -259,14 +259,14 @@
+   plantRsi: Objects/Specific/Hydroponics/lemoon.rsi
+   packetPrototype: LemoonSeeds
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 90
+-        maturation: 8
+-        production: 6
+-        yield: 4
+-        potency: 1
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
++    plantTraits:
++      lifespan: 90
++      maturation: 8
++      production: 6
++      yield: 4
++      potency: 1
++    harvest:
++      harvestRepeat: Repeat
+   productPrototypes:
+     - FoodLemoon
+   chemicals:
+@@ -292,14 +292,14 @@
+     - orange
+     - lemon
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 6
+-        production: 6
+-        yield: 3
+-        potency: 10
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
++    plantTraits:
++      lifespan: 55
++      maturation: 6
++      production: 6
++      yield: 3
++      potency: 10
++    harvest:
++      harvestRepeat: Repeat
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -324,14 +324,14 @@
+     - lemon
+     - lime
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 6
+-        production: 6
+-        yield: 3
+-        potency: 10
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
++    plantTraits:
++      lifespan: 55
++      maturation: 6
++      production: 6
++      yield: 3
++      potency: 10
++    harvest:
++      harvestRepeat: Repeat
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -352,14 +352,14 @@
+   productPrototypes:
+     - FoodExtradimensionalOrange
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 6
+-        production: 6
+-        yield: 3
+-        potency: 10
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
++    plantTraits:
++      lifespan: 55
++      maturation: 6
++      production: 6
++      yield: 3
++      potency: 10
++    harvest:
++      harvestRepeat: Repeat
+   chemicals:
+     Haloperidol:
+       Min: 1
+@@ -384,15 +384,15 @@
+   productPrototypes:
+     - FoodPineapple
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 6
+-        production: 6
+-        yield: 3
+-        potency: 10
+-        growthStages: 3
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
++    plantTraits:
++      lifespan: 55
++      maturation: 6
++      production: 6
++      yield: 3
++      potency: 10
++      growthStages: 3
++    harvest:
++      harvestRepeat: Repeat
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -417,15 +417,15 @@
+   productPrototypes:
+     - FoodPotato
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 30
+-        maturation: 10
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 4
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
++    plantTraits:
++      lifespan: 30
++      maturation: 10
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 4
++    basicGrowth:
++      waterConsumption: 0.6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -448,17 +448,17 @@
+   mutationPrototypes:
+     - papercane
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 60
+-        maturation: 6
+-        production: 6
+-        yield: 3
+-        potency: 10
+-        growthStages: 3
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 60
++      maturation: 6
++      production: 6
++      yield: 3
++      potency: 10
++      growthStages: 3
++    harvest:
++      harvestRepeat: Repeat
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Sugar:
+       Min: 4
+@@ -475,19 +475,19 @@
+   productPrototypes:
+     - LeavesTea
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 75
+-        maturation: 5
+-        production: 3
+-        yield: 2
+-        potency: 20
+-        growthStages: 5
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 75
++      maturation: 5
++      production: 3
++      yield: 2
++      potency: 20
++      growthStages: 5
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.6
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Vitamin:
+       Min: 1
+@@ -504,17 +504,17 @@
+   productPrototypes:
+     - Papercane
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 60
+-        maturation: 6
+-        production: 6
+-        yield: 3
+-        potency: 10
+-        growthStages: 3
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 60
++      maturation: 6
++      production: 6
++      yield: 3
++      potency: 10
++      growthStages: 3
++    harvest:
++      harvestRepeat: Repeat
++    atmosphericGrowth:
++      idealHeat: 298
+ 
+ - type: seed
+   id: towercap
+@@ -528,19 +528,19 @@
+   mutationPrototypes:
+     - steelcap
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        ligneous: true
+-        lifespan: 80
+-        maturation: 15
+-        production: 3
+-        yield: 5
+-        potency: 1
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.5
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 288
++    plantTraits:
++      ligneous: true
++      lifespan: 80
++      maturation: 15
++      production: 3
++      yield: 5
++      potency: 1
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.5
++    atmosphericGrowth:
++      idealHeat: 288
+ 
+ - type: seed
+   id: steelcap
+@@ -552,19 +552,19 @@
+   productPrototypes:
+     - SteelLog
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        ligneous: true
+-        lifespan: 80
+-        maturation: 15
+-        production: 3
+-        yield: 3
+-        potency: 1
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.8
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 288
++    plantTraits:
++      ligneous: true
++      lifespan: 80
++      maturation: 15
++      production: 3
++      yield: 3
++      potency: 1
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.8
++    atmosphericGrowth:
++      idealHeat: 288
+ 
+ - type: seed
+   id: tomato
+@@ -579,19 +579,19 @@
+     - blueTomato
+     - bloodTomato
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 8
+-        production: 6
+-        yield: 2
+-        potency: 10
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.4
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 25
++      maturation: 8
++      production: 6
++      yield: 2
++      potency: 10
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.4
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -616,19 +616,19 @@
+   productPrototypes:
+     - FoodBlueTomato
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 8
+-        production: 6
+-        yield: 2
+-        potency: 10
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.7
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 25
++      maturation: 8
++      production: 6
++      yield: 2
++      potency: 10
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.7
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -655,19 +655,19 @@
+   mutationPrototypes:
+     - killerTomato
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 60
+-        maturation: 8
+-        production: 6
+-        yield: 2
+-        potency: 10
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.7
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 60
++      maturation: 8
++      production: 6
++      yield: 2
++      potency: 10
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.7
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Blood:
+       Min: 1
+@@ -690,20 +690,20 @@
+   productPrototypes:
+     - MobTomatoKiller
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 15
+-        production: 6
+-        yield: 2
+-        potency: 10
+-        growthStages: 2
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.7
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 25
++      maturation: 15
++      production: 6
++      yield: 2
++      potency: 10
++      growthStages: 2
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.7
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Blood:
+       Min: 1
+@@ -726,17 +726,17 @@
+   mutationPrototypes:
+     - eggy
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 6
+-        production: 6
+-        yield: 2
+-        potency: 20
+-        growthStages: 3
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 25
++      maturation: 6
++      production: 6
++      yield: 2
++      potency: 20
++      growthStages: 3
++    harvest:
++      harvestRepeat: Repeat
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -757,13 +757,13 @@
+   productPrototypes:
+     - FoodCabbage
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 50
+-        maturation: 7
+-        production: 5
+-        yield: 3
+-        potency: 10
+-        growthStages: 1
++    plantTraits:
++      lifespan: 50
++      maturation: 7
++      production: 5
++      yield: 3
++      potency: 10
++      growthStages: 1
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -784,13 +784,13 @@
+   productPrototypes:
+     - FoodGarlic
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 8
+-        production: 5
+-        yield: 3
+-        potency: 25
+-        growthStages: 3
++    plantTraits:
++      lifespan: 25
++      maturation: 8
++      production: 5
++      yield: 3
++      potency: 25
++      growthStages: 3
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -817,14 +817,14 @@
+   mutationPrototypes:
+     - goldenApple
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 6
+-        production: 6
+-        yield: 3
+-        potency: 10
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
++    plantTraits:
++      lifespan: 55
++      maturation: 6
++      production: 6
++      yield: 3
++      potency: 10
++    harvest:
++      harvestRepeat: Repeat
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -845,16 +845,16 @@
+   productPrototypes:
+     - FoodGoldenApple
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 6
+-        production: 6
+-        yield: 3
+-        potency: 10
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.75
++    plantTraits:
++      lifespan: 55
++      maturation: 6
++      production: 6
++      yield: 3
++      potency: 10
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.75
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -879,17 +879,17 @@
+   productPrototypes:
+     - FoodCorn
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 8
+-        production: 6
+-        yield: 2
+-        potency: 20
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 25
++      maturation: 8
++      production: 6
++      yield: 2
++      potency: 20
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -913,17 +913,17 @@
+     - onionred
+     - bloonion
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 8
+-        production: 6
+-        yield: 2
+-        potency: 20
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 25
++      maturation: 8
++      production: 6
++      yield: 2
++      potency: 20
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -948,17 +948,17 @@
+   productPrototypes:
+     - FoodOnionRed
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 8
+-        production: 6
+-        yield: 2
+-        potency: 20
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 25
++      maturation: 8
++      production: 6
++      yield: 2
++      potency: 20
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -983,18 +983,18 @@
+   productPrototypes:
+     - FoodMushroom
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 35
+-        maturation: 10
+-        production: 7
+-        yield: 5
+-        potency: 1
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.5
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 288
++    plantTraits:
++      lifespan: 35
++      maturation: 10
++      production: 7
++      yield: 5
++      potency: 1
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.5
++    atmosphericGrowth:
++      idealHeat: 288
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1011,18 +1011,18 @@
+   productPrototypes:
+     - FoodEgg
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 75
+-        maturation: 6
+-        production: 12
+-        yield: 2
+-        potency: 20
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        nutrientConsumption: 0.5
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 75
++      maturation: 6
++      production: 12
++      yield: 2
++      potency: 20
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      nutrientConsumption: 0.5
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Egg:
+       Min: 4
+@@ -1041,19 +1041,19 @@
+   mutationPrototypes:
+     - rainbowCannabis
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 75
+-        maturation: 8
+-        production: 12
+-        yield: 2
+-        potency: 20
+-        growthStages: 3
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.4
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 75
++      maturation: 8
++      production: 12
++      yield: 2
++      potency: 20
++      growthStages: 3
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.4
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     THC:
+       Min: 1
+@@ -1070,19 +1070,19 @@
+   productPrototypes:
+     - LeavesCannabisRainbow
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 75
+-        maturation: 8
+-        production: 12
+-        yield: 2
+-        potency: 20
+-        growthStages: 3
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.4
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 75
++      maturation: 8
++      production: 12
++      yield: 2
++      potency: 20
++      growthStages: 3
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.4
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     SpaceDrugs:
+       Min: 1
+@@ -1119,19 +1119,19 @@
+   productPrototypes:
+     - LeavesTobacco
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 75
+-        maturation: 5
+-        production: 5
+-        yield: 2
+-        potency: 20
+-        growthStages: 3
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.4
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 75
++      maturation: 5
++      production: 5
++      yield: 2
++      potency: 20
++      growthStages: 3
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.4
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Nicotine:
+       Min: 1
+@@ -1150,17 +1150,17 @@
+   mutationPrototypes:
+     - deathNettle
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 8
+-        production: 6
+-        yield: 2
+-        potency: 20
+-        growthStages: 5
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 25
++      maturation: 8
++      production: 6
++      yield: 2
++      potency: 20
++      growthStages: 5
++    basicGrowth:
++      waterConsumption: 0.6
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Histamine:
+       Min: 1
+@@ -1179,18 +1179,18 @@
+   productPrototypes:
+     - DeathNettle
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 8
+-        production: 6
+-        yield: 2
+-        potency: 20
+-        growthStages: 5
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.7
+-        nutrientConsumption: 0.8
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 25
++      maturation: 8
++      production: 6
++      yield: 2
++      potency: 20
++      growthStages: 5
++    basicGrowth:
++      waterConsumption: 0.7
++      nutrientConsumption: 0.8
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     SulfuricAcid:
+       Min: 1
+@@ -1213,16 +1213,16 @@
+   mutationPrototypes:
+     - chilly
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 6
+-        production: 6
+-        yield: 2
+-        potency: 20
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 25
++      maturation: 6
++      production: 6
++      yield: 2
++      potency: 20
++    harvest:
++      harvestRepeat: Repeat
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     CapsaicinOil:
+       Min: 1
+@@ -1247,16 +1247,16 @@
+   productPrototypes:
+     - FoodChillyPepper
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 6
+-        production: 6
+-        yield: 2
+-        potency: 20
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 25
++      maturation: 6
++      production: 6
++      yield: 2
++      potency: 20
++    harvest:
++      harvestRepeat: Repeat
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     FrostOil:
+       Min: 1
+@@ -1283,15 +1283,15 @@
+   mutationPrototypes:
+     - lily
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 10
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
++    plantTraits:
++      lifespan: 25
++      maturation: 10
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1312,15 +1312,15 @@
+   productPrototypes:
+     - FoodAloe
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 10
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 5
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
++    plantTraits:
++      lifespan: 25
++      maturation: 10
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 5
++    basicGrowth:
++      waterConsumption: 0.6
+   chemicals:
+     Aloe:
+       Min: 1
+@@ -1343,15 +1343,15 @@
+   mutationPrototypes:
+     - spacemansTrumpet
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 10
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
++    plantTraits:
++      lifespan: 25
++      maturation: 10
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1372,15 +1372,15 @@
+   productPrototypes:
+     - FoodLingzhi
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 10
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
++    plantTraits:
++      lifespan: 25
++      maturation: 10
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
+   chemicals:
+     Ultravasculine:
+       Min: 1
+@@ -1403,15 +1403,15 @@
+   mutationPrototypes:
+     - ambrosiaDeus
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 10
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 6
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
++    plantTraits:
++      lifespan: 25
++      maturation: 10
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 6
++    basicGrowth:
++      waterConsumption: 0.6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1444,15 +1444,15 @@
+   productPrototypes:
+     - FoodAmbrosiaDeus
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 10
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 6
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
++    plantTraits:
++      lifespan: 25
++      maturation: 10
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 6
++    basicGrowth:
++      waterConsumption: 0.6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1483,15 +1483,15 @@
+   mutationPrototypes:
+     - glasstle
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 10
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
++    plantTraits:
++      lifespan: 25
++      maturation: 10
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
+   chemicals:
+     Stellibinin:
+       Min: 1
+@@ -1508,13 +1508,13 @@
+   productPrototypes:
+     - FoodGlasstle
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 10
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 3
++    plantTraits:
++      lifespan: 25
++      maturation: 10
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 3
+   chemicals:
+     Razorium:
+       Min: 1
+@@ -1531,16 +1531,16 @@
+   productPrototypes:
+     - FoodFlyAmanita
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 12
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 2
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.5
++    plantTraits:
++      lifespan: 25
++      maturation: 12
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 2
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.5
+   chemicals:
+     Amatoxin:
+       Min: 1
+@@ -1564,13 +1564,13 @@
+     - fakeCapfruit
+     - realCapfruit
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 65
+-        maturation: 25
+-        production: 25
+-        yield: 1
+-        potency: 10
+-        growthStages: 2
++    plantTraits:
++      lifespan: 65
++      maturation: 25
++      production: 25
++      yield: 1
++      potency: 10
++      growthStages: 2
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1591,13 +1591,13 @@
+   productPrototypes:
+     - FoodFakeCapfruit
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 65
+-        maturation: 25
+-        production: 25
+-        yield: 1
+-        potency: 10
+-        growthStages: 2
++    plantTraits:
++      lifespan: 65
++      maturation: 25
++      production: 25
++      yield: 1
++      potency: 10
++      growthStages: 2
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1618,13 +1618,13 @@
+   productPrototypes:
+     - FoodRealCapfruit
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 65
+-        maturation: 25
+-        production: 25
+-        yield: 1
+-        potency: 10
+-        growthStages: 2
++    plantTraits:
++      lifespan: 65
++      maturation: 25
++      production: 25
++      yield: 1
++      potency: 10
++      growthStages: 2
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1645,16 +1645,16 @@
+   productPrototypes:
+     - RiceBushel
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 6
+-        production: 3
+-        yield: 3
+-        potency: 5
+-        growthStages: 4
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.4
++    plantTraits:
++      lifespan: 25
++      maturation: 6
++      production: 3
++      yield: 3
++      potency: 5
++      growthStages: 4
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.4
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1677,15 +1677,15 @@
+   mutationPrototypes:
+     - koibean
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        growthStages: 4
+-        lifespan: 25
+-        maturation: 6
+-        production: 6
+-        yield: 3
+-        potency: 5
+-    - !type:BasicGrowthComponent
+-        nutrientConsumption: 0.4
++    plantTraits:
++      growthStages: 4
++      lifespan: 25
++      maturation: 6
++      production: 6
++      yield: 3
++      potency: 5
++    basicGrowth:
++      nutrientConsumption: 0.4
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1702,15 +1702,15 @@
+   productPrototypes:
+     - FoodSpacemansTrumpet
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        growthStages: 4
+-        lifespan: 20
+-        maturation: 14
+-        production: 3
+-        yield: 2
+-        potency: 10
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
++    plantTraits:
++      growthStages: 4
++      lifespan: 20
++      maturation: 14
++      production: 3
++      yield: 2
++      potency: 10
++    basicGrowth:
++      waterConsumption: 0.6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1731,15 +1731,15 @@
+   productPrototypes:
+     - FoodKoibean
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        growthStages: 4
+-        lifespan: 25
+-        maturation: 6
+-        production: 6
+-        yield: 3
+-        potency: 5
+-    - !type:BasicGrowthComponent
+-        nutrientConsumption: 0.4
++    plantTraits:
++      growthStages: 4
++      lifespan: 25
++      maturation: 6
++      production: 6
++      yield: 3
++      potency: 5
++    basicGrowth:
++      nutrientConsumption: 0.4
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1760,13 +1760,13 @@
+   productPrototypes:
+     - FoodGrape
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 50
+-        maturation: 6
+-        production: 5
+-        yield: 3
+-        potency: 10
+-        growthStages: 2
++    plantTraits:
++      lifespan: 50
++      maturation: 6
++      production: 5
++      yield: 3
++      potency: 10
++      growthStages: 2
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1789,12 +1789,12 @@
+   mutationPrototypes:
+     - holymelon
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 12
+-        production: 3
+-        yield: 1
+-        potency: 1
++    plantTraits:
++      lifespan: 55
++      maturation: 12
++      production: 3
++      yield: 1
++      potency: 1
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1819,12 +1819,12 @@
+   productPrototypes:
+     - FoodHolymelon
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 12
+-        production: 3
+-        yield: 1
+-        potency: 1
++    plantTraits:
++      lifespan: 55
++      maturation: 12
++      production: 3
++      yield: 1
++      potency: 1
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1849,18 +1849,18 @@
+   productPrototypes:
+     - FoodCocoaPod
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 50
+-        maturation: 6
+-        production: 6
+-        yield: 6
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 1.0
+-        nutrientConsumption: 0.8
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 50
++      maturation: 6
++      production: 6
++      yield: 6
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 1.0
++      nutrientConsumption: 0.8
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Vitamin:
+       Min: 1
+@@ -1881,15 +1881,15 @@
+   productPrototypes:
+     - FoodBerries
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 50
+-        maturation: 6
+-        production: 6
+-        yield: 4
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        nutrientConsumption: 0.6
++    plantTraits:
++      lifespan: 50
++      maturation: 6
++      production: 6
++      yield: 4
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      nutrientConsumption: 0.6
+   chemicals:
+     Nutriment:
+       Min: 2
+@@ -1910,19 +1910,19 @@
+   productPrototypes:
+     - FoodBungo
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 50
+-        maturation: 8
+-        production: 6
+-        potency: 10
+-        yield: 3
+-        growthStages: 4
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 298
++    plantTraits:
++      lifespan: 50
++      maturation: 8
++      production: 6
++      potency: 10
++      yield: 3
++      growthStages: 4
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      waterConsumption: 0.6
++    atmosphericGrowth:
++      idealHeat: 298
+   chemicals:
+     Nutriment:
+       Min: 5
+@@ -1945,17 +1945,17 @@
+   mutationPrototypes:
+     - laughinPea
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        growthStages: 3
+-        maturation: 8
+-        production: 6
+-        yield: 3
+-        potency: 25
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        nutrientConsumption: 0.5
++    plantTraits:
++      lifespan: 25
++      growthStages: 3
++      maturation: 8
++      production: 6
++      yield: 3
++      potency: 25
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      nutrientConsumption: 0.5
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1976,17 +1976,17 @@
+   productPrototypes:
+     - FoodWorldPeas
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        growthStages: 3
+-        maturation: 20
+-        production: 6
+-        yield: 3
+-        potency: 25
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
+-    - !type:BasicGrowthComponent
+-        nutrientConsumption: 0.5
++    plantTraits:
++      lifespan: 25
++      growthStages: 3
++      maturation: 20
++      production: 6
++      yield: 3
++      potency: 25
++    harvest:
++      harvestRepeat: Repeat
++    basicGrowth:
++      nutrientConsumption: 0.5
+   chemicals:
+     Happiness:
+       Min: 1
+@@ -2013,15 +2013,15 @@
+   mutationPrototypes:
+     - bluePumpkin
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 10
+-        production: 4
+-        yield: 2
+-        potency: 10
+-        growthStages: 3
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 288
++    plantTraits:
++      lifespan: 55
++      maturation: 10
++      production: 4
++      yield: 2
++      potency: 10
++      growthStages: 3
++    atmosphericGrowth:
++      idealHeat: 288
+   chemicals:
+     PumpkinFlesh:
+       Min: 1
+@@ -2042,15 +2042,15 @@
+   productPrototypes:
+     - FoodBluePumpkin
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 10
+-        production: 4
+-        yield: 2
+-        potency: 10
+-        growthStages: 3
+-    - !type:AtmosphericGrowthComponent
+-        idealHeat: 288
++    plantTraits:
++      lifespan: 55
++      maturation: 10
++      production: 4
++      yield: 2
++      potency: 10
++      growthStages: 3
++    atmosphericGrowth:
++      idealHeat: 288
+   chemicals:
+     Ammonia:
+       Min: 1
+@@ -2077,15 +2077,15 @@
+   mutationPrototypes:
+     - pyrotton
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 8
+-        production: 3
+-        yield: 3
+-        potency: 5
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
++    plantTraits:
++      lifespan: 25
++      maturation: 8
++      production: 3
++      yield: 3
++      potency: 5
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.6
+   chemicals:
+     Fiber:
+       Min: 5
+@@ -2102,15 +2102,15 @@
+   productPrototypes:
+     - PyrottonBol
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 8
+-        production: 3
+-        yield: 2
+-        potency: 5
+-        growthStages: 3
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.8
++    plantTraits:
++      lifespan: 25
++      maturation: 8
++      production: 3
++      yield: 2
++      potency: 5
++      growthStages: 3
++    basicGrowth:
++      waterConsumption: 0.8
+   chemicals:
+     Fiber:
+       Min: 5
+@@ -2131,14 +2131,14 @@
+   productPrototypes:
+     - FoodCherry
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 55
+-        maturation: 6
+-        production: 6
+-        yield: 5
+-        potency: 10
+-    - !type:HarvestComponent
+-        harvestRepeat: Repeat
++    plantTraits:
++      lifespan: 55
++      maturation: 6
++      production: 6
++      yield: 5
++      potency: 10
++    harvest:
++      harvestRepeat: Repeat
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -2159,16 +2159,16 @@
+   productPrototypes:
+     - FoodAnomalyBerry
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 12
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 2
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.5
++    plantTraits:
++      lifespan: 25
++      maturation: 12
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 2
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.5
+   chemicals:
+     Artifexium:
+       Min: 1
+@@ -2193,16 +2193,16 @@
+   productPrototypes:
+   - FoodBloonion
+   growthComponents:
+-    - !type:PlantTraitsComponent
+-        lifespan: 25
+-        maturation: 15
+-        production: 3
+-        yield: 3
+-        potency: 10
+-        growthStages: 4
+-    - !type:BasicGrowthComponent
+-        waterConsumption: 0.6
+-        nutrientConsumption: 0.5
++    plantTraits:
++      lifespan: 25
++      maturation: 15
++      production: 3
++      yield: 3
++      potency: 10
++      growthStages: 4
++    basicGrowth:
++      waterConsumption: 0.6
++      nutrientConsumption: 0.5
+   chemicals:
+     Potassium:
+       Min: 1
+-- 
+2.55.0
+

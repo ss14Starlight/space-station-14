@@ -1,0 +1,1625 @@
+From 3e55cd29dc5746d7faeba8ad511ff7be21d04815 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sat, 13 Dec 2025 18:01:50 +0200
+Subject: [PATCH 048/112] Separation of plant components into PlantComponent
+ and PlantTraitsComponent and cleaning
+
+---
+ .../Components/GrowthComponentsHolder.cs      |   6 +
+ .../Botany/Components/PlantComponent.cs       |  51 ++++++
+ .../Components/PlantHarvestComponent.cs       |   4 +-
+ .../Botany/Components/PlantTraitsComponent.cs |  49 +-----
+ .../Botany/Systems/AtmosphericGrowthSystem.cs |   3 -
+ .../Botany/Systems/BasicGrowthSystem.cs       |  12 +-
+ .../Botany/Systems/BotanySystem.Produce.cs    |   8 +-
+ .../Botany/Systems/BotanySystem.Seed.cs       |  35 +++--
+ .../Systems/ConsumeExudeGasGrowthSystem.cs    |   9 +-
+ .../Botany/Systems/MutationSystem.cs          |   6 +-
+ .../Botany/Systems/PlantHarvestSystem.cs      |  63 ++++----
+ .../Botany/Systems/PlantHolderSystem.cs       |  53 +++----
+ .../{PlantTraitsSystem.cs => PlantSystem.cs}  |  17 +-
+ .../Botany/Systems/PlantToxinsSystem.cs       |  22 ++-
+ .../Botany/Systems/SeedExtractorSystem.cs     |   3 +-
+ .../Botany/Systems/UnviableGrowthSystem.cs    |   3 -
+ .../Botany/Systems/WeedPestGrowthSystem.cs    |   5 +-
+ .../PlantAdjustPotencyEntityEffectSystem.cs   |   6 +-
+ .../PlantCryoxadoneEntityEffectSystem.cs      |   8 +-
+ .../PlantDiethylamineEntityEffectSystem.cs    |   6 +-
+ .../RobustHarvestEntityEffectSystem.cs        |  16 +-
+ Resources/Maps/Salvage/vegan-meatball.yml     |   4 +-
+ Resources/Prototypes/Hydroponics/seeds.yml    | 148 +++++++++---------
+ 23 files changed, 267 insertions(+), 270 deletions(-)
+ create mode 100644 Content.Server/Botany/Components/PlantComponent.cs
+ rename Content.Server/Botany/Systems/{PlantTraitsSystem.cs => PlantSystem.cs} (62%)
+
+diff --git a/Content.Server/Botany/Components/GrowthComponentsHolder.cs b/Content.Server/Botany/Components/GrowthComponentsHolder.cs
+index fd5969e13b..d2c8ef65fd 100644
+--- a/Content.Server/Botany/Components/GrowthComponentsHolder.cs
++++ b/Content.Server/Botany/Components/GrowthComponentsHolder.cs
+@@ -21,6 +21,12 @@ public sealed partial class GrowthComponentsHolder
+     [DataField]
+     public PlantTraitsComponent? PlantTraits { get; set; }
+ 
++    /// <summary>
++    /// Plant characteristics.
++    /// </summary>
++    [DataField]
++    public PlantComponent? Plant { get; set; }
++
+     /// <summary>
+     /// Basic properties for plant growth.
+     /// </summary>
+diff --git a/Content.Server/Botany/Components/PlantComponent.cs b/Content.Server/Botany/Components/PlantComponent.cs
+new file mode 100644
+index 0000000000..350356dca3
+--- /dev/null
++++ b/Content.Server/Botany/Components/PlantComponent.cs
+@@ -0,0 +1,51 @@
++namespace Content.Server.Botany.Components;
++
++/// <summary>
++/// Component for storing core plant data.
++/// </summary>
++[RegisterComponent]
++[DataDefinition]
++public sealed partial class PlantComponent : Component
++{
++    /// <summary>
++    /// The plant's max health.
++    /// </summary>
++    [DataField]
++    public float Endurance = 100f;
++
++    /// <summary>
++    /// How many produce are created on harvest.
++    /// </summary>
++    [DataField]
++    public int Yield;
++
++    /// <summary>
++    /// The number of growth ticks this plant can be alive for. Plants take high damage levels when Age > Lifespan.
++    /// </summary>
++    [DataField]
++    public float Lifespan;
++
++    /// <summary>
++    /// The number of growth ticks it takes for a plant to reach its final growth stage.
++    /// </summary>
++    [DataField]
++    public float Maturation;
++
++    /// <summary>
++    /// The number of growth ticks it takes for a plant to be (re-)harvestable. Shouldn't be lower than Maturation.
++    /// </summary>
++    [DataField]
++    public float Production;
++
++    /// <summary>
++    /// How many different sprites appear before the plant is fully grown.
++    /// </summary>
++    [DataField]
++    public int GrowthStages = 6;
++
++    /// <summary>
++    /// A scalar for sprite size and chemical quantity on the produce. Caps at 100.
++    /// </summary>
++    [DataField]
++    public float Potency = 1f;
++}
+diff --git a/Content.Server/Botany/Components/PlantHarvestComponent.cs b/Content.Server/Botany/Components/PlantHarvestComponent.cs
+index 8bec13891e..510f361969 100644
+--- a/Content.Server/Botany/Components/PlantHarvestComponent.cs
++++ b/Content.Server/Botany/Components/PlantHarvestComponent.cs
+@@ -1,7 +1,7 @@
+ namespace Content.Server.Botany.Components;
+ 
+-/// <summary> 
+-/// Data for plant harvesting process. 
++/// <summary>
++/// Data for plant harvesting process.
+ /// </summary>
+ [RegisterComponent]
+ [DataDefinition]
+diff --git a/Content.Server/Botany/Components/PlantTraitsComponent.cs b/Content.Server/Botany/Components/PlantTraitsComponent.cs
+index 8102494042..b2c1253060 100644
+--- a/Content.Server/Botany/Components/PlantTraitsComponent.cs
++++ b/Content.Server/Botany/Components/PlantTraitsComponent.cs
+@@ -3,57 +3,14 @@
+ namespace Content.Server.Botany.Components;
+ 
+ /// <summary>
+-/// Aggregate for general plant information and rare quirks.
++/// Component for managing special plant traits and mutations.
+ /// </summary>
++/// TODO: The logic for these component is quite hardcoded.
++/// They require a separate a system that will use events or APIs from other growth systems.
+ [RegisterComponent]
+ [DataDefinition]
+ public sealed partial class PlantTraitsComponent : Component
+ {
+-    /// <summary>
+-    /// The plant's max health.
+-    /// </summary>
+-    [DataField]
+-    public float Endurance = 100f;
+-
+-    /// <summary>
+-    /// How many produce are created on harvest.
+-    /// </summary>
+-    [DataField]
+-    public int Yield;
+-
+-    /// <summary>
+-    /// The number of growth ticks this plant can be alive for. Plants take high damage levels when Age > Lifespan.
+-    /// </summary>
+-    [DataField]
+-    public float Lifespan;
+-
+-    /// <summary>
+-    /// The number of growth ticks it takes for a plant to reach its final growth stage.
+-    /// </summary>
+-    [DataField]
+-    public float Maturation;
+-
+-    /// <summary>
+-    /// The number of growth ticks it takes for a plant to be (re-)harvestable. Shouldn't be lower than Maturation.
+-    /// </summary>
+-    [DataField]
+-    public float Production;
+-
+-    /// <summary>
+-    /// How many different sprites appear before the plant is fully grown.
+-    /// </summary>
+-    [DataField]
+-    public int GrowthStages = 6;
+-
+-    /// <summary>
+-    /// A scalar for sprite size and chemical quantity on the produce. Caps at 100.
+-    /// </summary>
+-    [DataField]
+-    public float Potency = 1f;
+-
+-    /// TODO: The logic for these fields is quite hardcoded.
+-    /// They require a separate component and a system that will use events or APIs from other growth systems.
+-
+     /// <summary>
+     /// If true, produce can't be put into the seed maker.
+     /// </summary>
+diff --git a/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs b/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
+index e2b172ca87..fbecc58e2b 100644
+--- a/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/AtmosphericGrowthSystem.cs
+@@ -29,9 +29,6 @@ private void OnPlantGrow(Entity<AtmosphericGrowthComponent> ent, ref OnPlantGrow
+         if (!Resolve(uid, ref holder))
+             return;
+ 
+-        if (holder.Seed == null || holder.Dead)
+-            return;
+-
+         var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
+         if (MathF.Abs(environment.Temperature - component.IdealHeat) > component.HeatTolerance)
+         {
+diff --git a/Content.Server/Botany/Systems/BasicGrowthSystem.cs b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+index 8c62100323..a9aae6fb7a 100644
+--- a/Content.Server/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+@@ -164,22 +164,22 @@ public void AffectGrowth(Entity<PlantHolderComponent> ent, int amount)
+             return;
+ 
+         PlantHarvestComponent? harvest = null;
+-        PlantTraitsComponent? traits = null;
+-        if (!Resolve(uid, ref harvest, ref traits))
++        PlantComponent? plant = null;
++        if (!Resolve(uid, ref harvest, ref plant))
+             return;
+ 
+         if (amount > 0)
+         {
+-            if (component.Age < traits.Maturation)
++            if (component.Age < plant.Maturation)
+                 component.Age += amount;
+-            else if (!harvest.ReadyForHarvest && traits.Yield <= 0f)
++            else if (!harvest.ReadyForHarvest && plant.Yield <= 0f)
+                 harvest.LastHarvest -= amount;
+         }
+         else
+         {
+-            if (component.Age < traits.Maturation)
++            if (component.Age < plant.Maturation)
+                 component.SkipAging++;
+-            else if (!harvest.ReadyForHarvest && traits.Yield <= 0f)
++            else if (!harvest.ReadyForHarvest && plant.Yield <= 0f)
+                 harvest.LastHarvest += amount;
+         }
+     }
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Produce.cs b/Content.Server/Botany/Systems/BotanySystem.Produce.cs
+index a4ad8a7e01..022ce8c55e 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Produce.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Produce.cs
+@@ -28,15 +28,15 @@ public void ProduceGrown(EntityUid uid, ProduceComponent produce)
+ 
+         solutionContainer.RemoveAllSolution();
+ 
+-        var traits = GetPlantTraits(seed);
+-        if (traits == null)
++        var plant = GetPlantComponent(seed);
++        if (plant == null)
+             return;
+ 
+         foreach (var (chem, quantity) in seed.Chemicals)
+         {
+             var amount = quantity.Min;
+-            if (quantity.PotencyDivisor > 0 && traits.Potency > 0)
+-                amount += traits.Potency / quantity.PotencyDivisor;
++            if (quantity.PotencyDivisor > 0 && plant.Potency > 0)
++                amount += plant.Potency / quantity.PotencyDivisor;
+             amount = FixedPoint2.Clamp(amount, quantity.Min, quantity.Max);
+             solutionContainer.MaxVolume += amount;
+             solutionContainer.AddReagent(chem, amount);
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Seed.cs b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+index c5a2e178e5..3544c0d583 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+@@ -75,7 +75,14 @@ public bool TryGetSeed(ProduceComponent comp, [NotNullWhen(true)] out SeedData?
+         return false;
+     }
+ 
+-    public static PlantTraitsComponent? GetPlantTraits(SeedData seed)
++    /// TODO: Delete after plants transition to entities
++    public static PlantComponent? GetPlantComponent(SeedData seed)
++    {
++        return seed.GrowthComponents.Plant;
++    }
++
++    /// TODO: Delete after plants transition to entities
++    public static PlantTraitsComponent? GetPlantTraitsComponent(SeedData seed)
+     {
+         return seed.GrowthComponents.PlantTraits;
+     }
+@@ -88,16 +95,16 @@ private void OnExamined(EntityUid uid, SeedComponent component, ExaminedEvent ar
+         if (!TryGetSeed(component, out var seed))
+             return;
+ 
+-        var traits = GetPlantTraits(seed);
+-        if (traits == null)
++        var plant = GetPlantComponent(seed);
++        if (plant == null)
+             return;
+ 
+         using (args.PushGroup(nameof(SeedComponent), 1))
+         {
+             var name = Loc.GetString(seed.DisplayName);
+             args.PushMarkup(Loc.GetString($"seed-component-description", ("seedName", name)));
+-            args.PushMarkup(Loc.GetString($"seed-component-plant-yield-text", ("seedYield", traits.Yield)));
+-            args.PushMarkup(Loc.GetString($"seed-component-plant-potency-text", ("seedPotency", traits.Potency)));
++            args.PushMarkup(Loc.GetString($"seed-component-plant-yield-text", ("seedYield", plant.Yield)));
++            args.PushMarkup(Loc.GetString($"seed-component-plant-potency-text", ("seedPotency", plant.Potency)));
+         }
+     }
+ 
+@@ -139,8 +146,8 @@ public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates posi
+ 
+     public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, EntityUid plantEntity)
+     {
+-        var traits = GetPlantTraits(proto);
+-        if (traits == null || proto.ProductPrototypes.Count == 0 || traits.Yield <= 0)
++        var plant = GetPlantComponent(proto);
++        if (plant == null || proto.ProductPrototypes.Count == 0 || plant.Yield <= 0)
+         {
+             _popupSystem.PopupCursor(Loc.GetString("botany-harvest-fail-message"), user, PopupType.Medium);
+             return [];
+@@ -157,8 +164,8 @@ public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, EntityUid
+ 
+     public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, EntityUid plantEntity)
+     {
+-        var traits = GetPlantTraits(proto);
+-        if (traits == null)
++        var plant = GetPlantComponent(proto);
++        if (plant == null)
+             return [];
+ 
+         var yieldMod = Comp<PlantHolderComponent>(plantEntity).YieldMod;
+@@ -166,12 +173,12 @@ public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates
+ 
+         var totalYield = 0;
+ 
+-        if (traits.Yield > -1)
++        if (plant.Yield > -1)
+         {
+             if (yieldMod < 0)
+-                totalYield = traits.Yield;
++                totalYield = plant.Yield;
+             else
+-                totalYield = traits.Yield * yieldMod;
++                totalYield = plant.Yield * yieldMod;
+ 
+             totalYield = Math.Max(1, totalYield);
+         }
+@@ -195,7 +202,7 @@ public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates
+ 
+             ProduceGrown(entity, produce);
+ 
+-            _appearance.SetData(entity, ProduceVisuals.Potency, traits.Potency);
++            _appearance.SetData(entity, ProduceVisuals.Potency, plant.Potency);
+ 
+             if (proto.Mysterious)
+             {
+@@ -211,7 +218,7 @@ public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates
+ 
+     public bool CanHarvest(SeedData proto, EntityUid? held = null)
+     {
+-        var traits = GetPlantTraits(proto);
++        var traits = GetPlantTraitsComponent(proto);
+         if (traits == null)
+             return true;
+ 
+diff --git a/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs b/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+index c8a46c0466..f975f52e9b 100644
+--- a/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/ConsumeExudeGasGrowthSystem.cs
+@@ -24,11 +24,8 @@ private void OnPlantGrow(Entity<ConsumeExudeGasGrowthComponent> ent, ref OnPlant
+         var (uid, component) = ent;
+ 
+         PlantHolderComponent? holder = null;
+-        PlantTraitsComponent? traits = null;
+-        if (!Resolve(uid, ref holder, ref traits))
+-            return;
+-
+-        if (holder.Seed == null || holder.Dead)
++        PlantComponent? plant = null;
++        if (!Resolve(uid, ref holder, ref plant))
+             return;
+ 
+         var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
+@@ -63,7 +60,7 @@ private void OnPlantGrow(Entity<ConsumeExudeGasGrowthComponent> ent, ref OnPlant
+             foreach (var (gas, amount) in component.ExudeGasses)
+             {
+                 environment.AdjustMoles(gas,
+-                    MathF.Max(1f, MathF.Round(amount * MathF.Round(traits.Potency) / exudeCount)));
++                    MathF.Max(1f, MathF.Round(amount * MathF.Round(plant.Potency) / exudeCount)));
+             }
+         }
+     }
+diff --git a/Content.Server/Botany/Systems/MutationSystem.cs b/Content.Server/Botany/Systems/MutationSystem.cs
+index d11effe1eb..eafe1d4ab9 100644
+--- a/Content.Server/Botany/Systems/MutationSystem.cs
++++ b/Content.Server/Botany/Systems/MutationSystem.cs
+@@ -82,8 +82,8 @@ public SeedData Cross(SeedData a, SeedData b)
+ 
+         CrossChemicals(ref result.Chemicals, a.Chemicals);
+ 
+-        var sourceTraits = BotanySystem.GetPlantTraits(a);
+-        var resultTraits = BotanySystem.GetPlantTraits(result);
++        var sourceTraits = BotanySystem.GetPlantTraitsComponent(a);
++        var resultTraits = BotanySystem.GetPlantTraitsComponent(result);
+ 
+         if (sourceTraits != null && resultTraits != null)
+         {
+@@ -102,7 +102,7 @@ public SeedData Cross(SeedData a, SeedData b)
+         // effective hybrid crossings.
+         if (a.Name != result.Name && Random(0.7f))
+         {
+-            var traits = BotanySystem.GetPlantTraits(result);
++            var traits = BotanySystem.GetPlantTraitsComponent(result);
+             if (traits != null)
+                 traits.Seedless = true;
+         }
+diff --git a/Content.Server/Botany/Systems/PlantHarvestSystem.cs b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+index f3bc753fec..217c03f754 100644
+--- a/Content.Server/Botany/Systems/PlantHarvestSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+@@ -12,7 +12,7 @@ namespace Content.Server.Botany.Systems;
+ public sealed class HarvestSystem : EntitySystem
+ {
+     [Dependency] private readonly BotanySystem _botany = default!;
+-    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
++    [Dependency] private readonly PlantHolderSystem _holder = default!;
+     [Dependency] private readonly PopupSystem _popup = default!;
+     [Dependency] private readonly SharedAudioSystem _audio = default!;
+ 
+@@ -29,24 +29,21 @@ private void OnPlantGrow(Entity<PlantHarvestComponent> ent, ref OnPlantGrowEvent
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? plantHolder = null;
+-        PlantTraitsComponent? traits = null;
+-        if (!Resolve(uid, ref plantHolder, ref traits))
+-            return;
+-
+-        if (plantHolder.Dead || plantHolder.Seed == null)
++        PlantHolderComponent? holder = null;
++        PlantComponent? plant = null;
++        if (!Resolve(uid, ref holder, ref plant))
+             return;
+ 
+         if (component is { ReadyForHarvest: true, HarvestRepeat: HarvestType.SelfHarvest })
+-            AutoHarvest((ent, ent, plantHolder));
++            AutoHarvest((ent, ent, holder));
+ 
+         // Check if plant is ready for harvest.
+-        var timeLastHarvest = plantHolder.Age - component.LastHarvest;
+-        if (timeLastHarvest > traits.Production && !component.ReadyForHarvest)
++        var timeLastHarvest = holder.Age - component.LastHarvest;
++        if (timeLastHarvest > plant.Production && !component.ReadyForHarvest)
+         {
+             component.ReadyForHarvest = true;
+-            component.LastHarvest = plantHolder.Age;
+-            plantHolder.UpdateSpriteAfterUpdate = true;
++            component.LastHarvest = holder.Age;
++            holder.UpdateSpriteAfterUpdate = true;
+         }
+     }
+ 
+@@ -54,16 +51,16 @@ private void OnInteractUsing(Entity<PlantHarvestComponent> ent, ref InteractUsin
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? plantHolder = null;
++        PlantHolderComponent? holder = null;
+         PlantTraitsComponent? traits = null;
+-        if (!Resolve(uid, ref plantHolder, ref traits))
++        if (!Resolve(uid, ref holder, ref traits))
+             return;
+ 
+-        if (!component.ReadyForHarvest || plantHolder.Dead || plantHolder.Seed == null || !traits.Ligneous)
++        if (!component.ReadyForHarvest || holder.Dead || holder.Seed == null || !traits.Ligneous)
+             return;
+ 
+         // Check if sharp tool is required.
+-        if (!_botany.CanHarvest(plantHolder.Seed, args.Used))
++        if (!_botany.CanHarvest(holder.Seed, args.Used))
+         {
+             _popup.PopupCursor(Loc.GetString("plant-holder-component-ligneous-cant-harvest-message"), args.User);
+             return;
+@@ -77,12 +74,12 @@ private void OnInteractHand(Entity<PlantHarvestComponent> ent, ref InteractHandE
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? plantHolder = null;
++        PlantHolderComponent? holder = null;
+         PlantTraitsComponent? traits = null;
+-        if (!Resolve(uid, ref plantHolder, ref traits))
++        if (!Resolve(uid, ref holder, ref traits))
+             return;
+ 
+-        if (!component.ReadyForHarvest || plantHolder.Dead || plantHolder.Seed == null)
++        if (!component.ReadyForHarvest || holder.Dead || holder.Seed == null)
+             return;
+ 
+         // Check if sharp tool is required.
+@@ -100,15 +97,15 @@ public void DoHarvest(Entity<PlantHarvestComponent> ent, EntityUid user)
+     {
+         var (uid, component) = ent;
+ 
+-        PlantHolderComponent? plantHolder = null;
++        PlantHolderComponent? holder = null;
+         PlantTraitsComponent? traits = null;
+-        if (!Resolve(uid, ref plantHolder, ref traits))
++        if (!Resolve(uid, ref holder, ref traits))
+             return;
+ 
+-        if (plantHolder.Dead)
++        if (holder.Dead)
+         {
+             // Remove dead plant.
+-            _plantHolder.RemovePlant(uid, plantHolder);
++            _holder.RemovePlant(uid, holder);
+             AfterHarvest(ent);
+             return;
+         }
+@@ -117,31 +114,31 @@ public void DoHarvest(Entity<PlantHarvestComponent> ent, EntityUid user)
+             return;
+ 
+         // Spawn products.
+-        if (plantHolder.Seed != null)
+-            _botany.Harvest(plantHolder.Seed, user, ent);
++        if (holder.Seed != null)
++            _botany.Harvest(holder.Seed, user, ent);
+ 
+         // Handle harvest type.
+         if (component.HarvestRepeat == HarvestType.NoRepeat)
+-            _plantHolder.RemovePlant(uid, plantHolder);
++            _holder.RemovePlant(uid, holder);
+ 
+-        AfterHarvest(ent, plantHolder, traits);
++        AfterHarvest(ent, holder, traits);
+     }
+ 
+-    private void AfterHarvest(Entity<PlantHarvestComponent> ent, PlantHolderComponent? plantHolder = null, PlantTraitsComponent? traits = null)
++    private void AfterHarvest(Entity<PlantHarvestComponent> ent, PlantHolderComponent? holder = null, PlantTraitsComponent? traits = null)
+     {
+         var (uid, component) = ent;
+-        if (!Resolve(uid, ref traits, ref plantHolder))
++        if (!Resolve(uid, ref traits, ref holder))
+             return;
+ 
+         component.ReadyForHarvest = false;
+-        component.LastHarvest = plantHolder.Age;
++        component.LastHarvest = holder.Age;
+ 
+         // Play scream sound if applicable.
+-        if (traits.CanScream && plantHolder.Seed != null)
+-            _audio.PlayPvs(plantHolder.Seed.ScreamSound, uid);
++        if (traits.CanScream && holder.Seed != null)
++            _audio.PlayPvs(holder.Seed.ScreamSound, uid);
+ 
+         // Update sprite.
+-        _plantHolder.UpdateSprite(uid, plantHolder);
++        _holder.UpdateSprite(uid, holder);
+     }
+ 
+     /// <summary>
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 62cc3969cf..e43105c9fa 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -79,19 +79,24 @@ private int GetCurrentGrowthStage(Entity<PlantHolderComponent> entity)
+         if (component.Seed == null)
+             return 0;
+ 
+-        if (!TryComp<PlantTraitsComponent>(uid, out var traits))
++        if (!TryComp<PlantComponent>(uid, out var plant))
+             return 0;
+ 
+-        var result = Math.Max(1, (int)(component.Age * traits.GrowthStages / traits.Maturation));
++        var result = Math.Max(1, (int)(component.Age * plant.GrowthStages / plant.Maturation));
+         return result;
+     }
+ 
+     private void OnExamine(Entity<PlantHolderComponent> entity, ref ExaminedEvent args)
+     {
+-        if (!args.IsInDetailsRange)
++        var (uid, component) = entity;
++
++        PlantComponent? plant = null;
++        PlantTraitsComponent? traits = null;
++        if (!Resolve(uid, ref plant, ref traits))
+             return;
+ 
+-        var component = entity.Comp;
++        if (!args.IsInDetailsRange)
++            return;
+ 
+         using (args.PushGroup(nameof(PlantHolderComponent)))
+         {
+@@ -106,21 +111,17 @@ private void OnExamine(Entity<PlantHolderComponent> entity, ref ExaminedEvent ar
+                     ("seedName", displayName),
+                     ("toBeForm", displayName.EndsWith('s') ? "are" : "is")));
+ 
+-                if (!TryComp<PlantTraitsComponent>(entity, out var traits))
+-                    return;
+-
+-                if (component.Health <= traits.Endurance / 2)
++                if (component.Health <= plant.Endurance / 2)
+                 {
+                     args.PushMarkup(Loc.GetString(
+                         "plant-holder-component-something-already-growing-low-health-message",
+                         ("healthState",
+-                            Loc.GetString(component.Age > traits.Lifespan
++                            Loc.GetString(component.Age > plant.Lifespan
+                                 ? "plant-holder-component-plant-old-adjective"
+                                 : "plant-holder-component-plant-unhealthy-adjective"))));
+                 }
+ 
+                 // For future reference, mutations should only appear on examine if they apply to a plant, not to produce.
+-
+                 if (traits.Ligneous)
+                     args.PushMarkup(Loc.GetString("mutation-plant-ligneous"));
+ 
+@@ -190,16 +191,12 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+                 plantHolder.Dead = false;
+                 plantHolder.Age = 1;
+ 
+-                // Get endurance from seed's PlantTraitsComponent
+-                var seedTraits = BotanySystem.GetPlantTraits(seed);
++                var seedPlant = BotanySystem.GetPlantComponent(seed);
+                 if (seeds.HealthOverride != null)
+-                {
+                     plantHolder.Health = seeds.HealthOverride.Value;
+-                }
+-                else if (seedTraits != null)
+-                {
+-                    plantHolder.Health = seedTraits.Endurance;
+-                }
++                else if (seedPlant != null)
++                    plantHolder.Health = seedPlant.Endurance;
++
+                 plantHolder.LastCycle = _gameTiming.CurTime;
+ 
+                 // Ensure no existing growth components before adding new ones
+@@ -393,10 +390,10 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+             var seed = produce.Seed;
+             if (seed != null)
+             {
+-                var seedTraits = BotanySystem.GetPlantTraits(seed);
+-                if (seedTraits != null)
++                var seedPlant = BotanySystem.GetPlantComponent(seed);
++                if (seedPlant != null)
+                 {
+-                    var nutrientBonus = seedTraits.Potency / 2.5f;
++                    var nutrientBonus = seedPlant.Potency / 2.5f;
+                     AdjustNutrient(uid, nutrientBonus, plantHolder);
+                 }
+             }
+@@ -551,7 +548,7 @@ public void UpdateReagents(EntityUid uid, PlantHolderComponent? component = null
+             foreach (var entry in component.SoilSolution.Value.Comp.Solution.Contents)
+             {
+                 var reagentProto = _prototype.Index<ReagentPrototype>(entry.Reagent.Prototype);
+-                _entityEffects.ApplyEffects(uid, reagentProto.PlantMetabolisms.ToArray(), entry.Quantity.Float());
++                _entityEffects.ApplyEffects(uid, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
+             }
+ 
+             _solutionContainer.RemoveEachReagent(component.SoilSolution.Value, FixedPoint2.New(1));
+@@ -573,8 +570,8 @@ private void Mutate(EntityUid uid, float severity, PlantHolderComponent? compone
+     public void UpdateSprite(EntityUid uid, PlantHolderComponent component)
+     {
+         PlantHarvestComponent? harvest = null;
+-        PlantTraitsComponent? traits = null;
+-        Resolve(uid, ref harvest, ref traits, false);
++        PlantComponent? plant = null;
++        Resolve(uid, ref harvest, ref plant, false);
+ 
+         component.UpdateSpriteAfterUpdate = false;
+ 
+@@ -588,11 +585,11 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent component)
+             _appearance.SetData(uid, PlantHolderVisuals.HealthLight, false, app);
+             _appearance.SetData(uid, PlantHolderVisuals.HarvestLight, false, app);
+         }
+-        else if (harvest != null && traits != null)
++        else if (harvest != null && plant != null)
+         {
+             if (component.DrawWarnings)
+             {
+-                _appearance.SetData(uid, PlantHolderVisuals.HealthLight, component.Health <= traits.Endurance / 2f);
++                _appearance.SetData(uid, PlantHolderVisuals.HealthLight, component.Health <= plant.Endurance / 2f);
+             }
+ 
+             if (component.Dead)
+@@ -605,7 +602,7 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent component)
+                 _appearance.SetData(uid, PlantHolderVisuals.PlantRsi, component.Seed.PlantRsi.ToString(), app);
+                 _appearance.SetData(uid, PlantHolderVisuals.PlantState, "harvest", app);
+             }
+-            else if (component.Age < traits.Maturation)
++            else if (component.Age < plant.Maturation)
+             {
+                 var growthStage = GetCurrentGrowthStage((uid, component));
+ 
+@@ -616,7 +613,7 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent component)
+             else
+             {
+                 _appearance.SetData(uid, PlantHolderVisuals.PlantRsi, component.Seed.PlantRsi.ToString(), app);
+-                _appearance.SetData(uid, PlantHolderVisuals.PlantState, $"stage-{traits.GrowthStages}", app);
++                _appearance.SetData(uid, PlantHolderVisuals.PlantState, $"stage-{plant.GrowthStages}", app);
+             }
+         }
+ 
+diff --git a/Content.Server/Botany/Systems/PlantTraitsSystem.cs b/Content.Server/Botany/Systems/PlantSystem.cs
+similarity index 62%
+rename from Content.Server/Botany/Systems/PlantTraitsSystem.cs
+rename to Content.Server/Botany/Systems/PlantSystem.cs
+index 34ed7f0fa4..d7cbee77ae 100644
+--- a/Content.Server/Botany/Systems/PlantTraitsSystem.cs
++++ b/Content.Server/Botany/Systems/PlantSystem.cs
+@@ -6,7 +6,7 @@ namespace Content.Server.Botany.Systems;
+ /// <summary>
+ /// Applies plant trait effects on growth ticks.
+ /// </summary>
+-public sealed class PlantTraitsSystem : EntitySystem
++public sealed class PlantSystem : EntitySystem
+ {
+     [Dependency] private readonly IRobustRandom _random = default!;
+ 
+@@ -14,10 +14,10 @@ public override void Initialize()
+     {
+         base.Initialize();
+ 
+-        SubscribeLocalEvent<PlantTraitsComponent, OnPlantGrowEvent>(OnPlantGrow);
++        SubscribeLocalEvent<PlantComponent, OnPlantGrowEvent>(OnPlantGrow);
+     }
+ 
+-    private void OnPlantGrow(Entity<PlantTraitsComponent> ent, ref OnPlantGrowEvent args)
++    private void OnPlantGrow(Entity<PlantComponent> ent, ref OnPlantGrowEvent args)
+     {
+         var (uid, component) = ent;
+ 
+@@ -25,9 +25,6 @@ private void OnPlantGrow(Entity<PlantTraitsComponent> ent, ref OnPlantGrowEvent
+         if (!Resolve(uid, ref holder))
+             return;
+ 
+-        if (holder.Seed == null || holder.Dead)
+-            return;
+-
+         // Check if plant is too old.
+         if (holder.Age > component.Lifespan)
+         {
+@@ -38,12 +35,12 @@ private void OnPlantGrow(Entity<PlantTraitsComponent> ent, ref OnPlantGrowEvent
+     }
+ 
+     /// <summary>
+-    /// Adjusts the potency of a plant traits component.
++    /// Adjusts the potency of a plant component.
+     /// </summary>
+-    public void AdjustPotency(Entity<PlantTraitsComponent> ent, float delta)
++    public void AdjustPotency(Entity<PlantComponent> ent, float delta)
+     {
+-        var traits = ent.Comp;
+-        traits.Potency = Math.Max(traits.Potency + delta, 1);
++        var plant = ent.Comp;
++        plant.Potency = Math.Max(plant.Potency + delta, 1);
+         Dirty(ent);
+     }
+ }
+diff --git a/Content.Server/Botany/Systems/PlantToxinsSystem.cs b/Content.Server/Botany/Systems/PlantToxinsSystem.cs
+index 8038341c02..b350592299 100644
+--- a/Content.Server/Botany/Systems/PlantToxinsSystem.cs
++++ b/Content.Server/Botany/Systems/PlantToxinsSystem.cs
+@@ -23,20 +23,16 @@ private void OnPlantGrow(Entity<PlantToxinsComponent> ent, ref OnPlantGrowEvent
+         if (!Resolve(uid, ref holder))
+             return;
+ 
+-        if (holder.Seed == null || holder.Dead)
++        if (holder.Toxins < 0)
+             return;
+ 
+-        if (holder.Toxins > 0)
+-        {
+-            var toxinUptake = MathF.Max(1, MathF.Round(holder.Toxins / component.ToxinUptakeDivisor));
+-            if (holder.Toxins > component.ToxinsTolerance)
+-            {
+-                holder.Health -= toxinUptake;
+-            }
+-
+-            holder.Toxins -= toxinUptake;
+-            if (holder.DrawWarnings)
+-                holder.UpdateSpriteAfterUpdate = true;
+-        }
++        var toxinUptake = MathF.Max(1, MathF.Round(holder.Toxins / component.ToxinUptakeDivisor));
++        if (holder.Toxins > component.ToxinsTolerance)
++            holder.Health -= toxinUptake;
++
++        holder.Toxins -= toxinUptake;
++
++        if (holder.DrawWarnings)
++            holder.UpdateSpriteAfterUpdate = true;
+     }
+ }
+diff --git a/Content.Server/Botany/Systems/SeedExtractorSystem.cs b/Content.Server/Botany/Systems/SeedExtractorSystem.cs
+index 4c6bf508f5..be3e217428 100644
+--- a/Content.Server/Botany/Systems/SeedExtractorSystem.cs
++++ b/Content.Server/Botany/Systems/SeedExtractorSystem.cs
+@@ -27,10 +27,11 @@ private void OnInteractUsing(EntityUid uid, SeedExtractorComponent seedExtractor
+ 
+         if (!TryComp(args.Used, out ProduceComponent? produce))
+             return;
++
+         if (!_botanySystem.TryGetSeed(produce, out var seed))
+             return;
+ 
+-        var traits = BotanySystem.GetPlantTraits(seed);
++        var traits = BotanySystem.GetPlantTraitsComponent(seed);
+         if (traits?.Seedless == true)
+         {
+             _popupSystem.PopupCursor(Loc.GetString("seed-extractor-component-no-seeds", ("name", args.Used)),
+diff --git a/Content.Server/Botany/Systems/UnviableGrowthSystem.cs b/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
+index 01faf62e84..8f0b9d4620 100644
+--- a/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
+@@ -22,9 +22,6 @@ private void OnPlantGrow(Entity<UnviableGrowthComponent> ent, ref OnPlantGrowEve
+         if (!Resolve(uid, ref holder))
+             return;
+ 
+-        if (holder.Seed == null || holder.Dead)
+-            return;
+-
+         holder.Health -= component.UnviableDamage;
+         if (holder.DrawWarnings)
+             holder.UpdateSpriteAfterUpdate = true;
+diff --git a/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+index ddb7d0406e..07ef935056 100644
+--- a/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+@@ -28,9 +28,6 @@ private void OnPlantGrow(Entity<WeedPestGrowthComponent> ent, ref OnPlantGrowEve
+         if (!Resolve(uid, ref holder))
+             return;
+ 
+-        if (holder.Seed == null || holder.Dead)
+-            return;
+-
+         // Weed growth logic.
+         if (_random.Prob(component.WeedGrowthChance))
+         {
+@@ -56,7 +53,7 @@ private void OnTrayUpdate(Entity<PlantHolderComponent> ent, ref OnPlantGrowEvent
+         if (!Resolve(uid, ref traits, ref weed))
+             return;
+ 
+-        // Weeds like water and nutrients! They may appear even if there's not a seed planted
++        // Weeds like water and nutrients! They may appear even if there's not a seed planted.
+         if (component is { WaterLevel: > 10, NutritionLevel: > 5 })
+         {
+             float chance;
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPotencyEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPotencyEntityEffectSystem.cs
+index ae80f8ed0d..2ac191ad41 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPotencyEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAdjustPotencyEntityEffectSystem.cs
+@@ -10,16 +10,16 @@ namespace Content.Server.EntityEffects.Effects.Botany.PlantAttributes;
+ /// </summary>
+ public sealed partial class PlantAdjustPotencyEntityEffectSystem : EntityEffectSystem<PlantHolderComponent, PlantAdjustPotency>
+ {
+-    [Dependency] private readonly PlantTraitsSystem _plantTraits = default!;
++    [Dependency] private readonly PlantSystem _plant = default!;
+ 
+     protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEffectEvent<PlantAdjustPotency> args)
+     {
+         if (entity.Comp.Seed == null || entity.Comp.Dead)
+             return;
+ 
+-        if (!TryComp<PlantTraitsComponent>(entity, out var traits))
++        if (!TryComp<PlantComponent>(entity, out var plant))
+             return;
+ 
+-        _plantTraits.AdjustPotency((entity.Owner, traits), args.Effect.Amount);
++        _plant.AdjustPotency((entity.Owner, plant), args.Effect.Amount);
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs
+index ebd3e0953d..c9d3bf7e22 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantCryoxadoneEntityEffectSystem.cs
+@@ -17,12 +17,12 @@ protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEf
+         if (entity.Comp.Seed == null || entity.Comp.Dead)
+             return;
+ 
+-        if (!TryComp<PlantTraitsComponent>(entity, out var traits) || !TryComp<PlantHarvestComponent>(entity, out var harvest))
++        if (!TryComp<PlantComponent>(entity, out var plant) || !TryComp<PlantHarvestComponent>(entity, out var harvest))
+             return;
+ 
+-        var deviation = entity.Comp.Age > traits.Maturation
+-            ? (int)Math.Max(traits.Maturation - 1, entity.Comp.Age - _random.Next(7, 10))
+-            : (int)(traits.Maturation / traits.GrowthStages);
++        var deviation = entity.Comp.Age > plant.Maturation
++            ? (int)Math.Max(plant.Maturation - 1, entity.Comp.Age - _random.Next(7, 10))
++            : (int)(plant.Maturation / plant.GrowthStages);
+ 
+         entity.Comp.Age -= deviation;
+         entity.Comp.SkipAging++;
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs
+index 3abfe2a1ff..34575b2124 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDiethylamineEntityEffectSystem.cs
+@@ -17,13 +17,13 @@ protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEf
+         if (entity.Comp.Seed == null || entity.Comp.Dead || entity.Comp.Seed.Immutable)
+             return;
+ 
+-        if(!TryComp<PlantTraitsComponent>(entity, out var traits))
++        if (!TryComp<PlantComponent>(entity, out var plant))
+             return;
+ 
+         if (_random.Prob(0.1f))
+-            traits.Lifespan++;
++            plant.Lifespan++;
+ 
+         if (_random.Prob(0.1f))
+-            traits.Endurance++;
++            plant.Endurance++;
+     }
+ }
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
+index f88951fedc..79ed860343 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/RobustHarvestEntityEffectSystem.cs
+@@ -20,22 +20,20 @@ protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEf
+         if (entity.Comp.Seed == null || entity.Comp.Dead)
+             return;
+ 
+-        if (!TryComp<PlantTraitsComponent>(entity, out var traits))
++        if (!TryComp<PlantComponent>(entity, out var plant) || !TryComp<PlantTraitsComponent>(entity, out var traits))
+             return;
+ 
+-        if (traits.Potency < args.Effect.PotencyLimit)
++        if (plant.Potency < args.Effect.PotencyLimit)
+         {
+-            traits.Potency = Math.Min(traits.Potency + args.Effect.PotencyIncrease, args.Effect.PotencyLimit);
++            plant.Potency = Math.Min(plant.Potency + args.Effect.PotencyIncrease, args.Effect.PotencyLimit);
+ 
+-            if (traits.Potency > args.Effect.PotencySeedlessThreshold)
+-            {
++            if (plant.Potency > args.Effect.PotencySeedlessThreshold)
+                 traits.Seedless = true;
+-            }
+         }
+-        else if (traits.Yield > 1 && _random.Prob(0.1f))
++        else if (plant.Yield > 1 && _random.Prob(0.1f))
+         {
+-            // Too much of a good thing reduces yield
+-            traits.Yield--;
++            // Too much of a good thing reduces yield.
++            plant.Yield--;
+         }
+     }
+ }
+diff --git a/Resources/Maps/Salvage/vegan-meatball.yml b/Resources/Maps/Salvage/vegan-meatball.yml
+index 48944cf21a..e128151ca5 100644
+--- a/Resources/Maps/Salvage/vegan-meatball.yml
++++ b/Resources/Maps/Salvage/vegan-meatball.yml
+@@ -486,7 +486,7 @@ entities:
+       health: 100
+       seed:
+         growthComponents:
+-          plantTraits:
++          plant:
+             lifespan: 75
+             endurance: 100
+           basicGrowth:
+@@ -559,7 +559,7 @@ entities:
+       health: 100
+       seed:
+         growthComponents:
+-          plantTraits:
++          plant:
+             lifespan: 25
+             endurance: 100
+           basicGrowth:
+diff --git a/Resources/Prototypes/Hydroponics/seeds.yml b/Resources/Prototypes/Hydroponics/seeds.yml
+index d6b5445e00..d3d444b981 100644
+--- a/Resources/Prototypes/Hydroponics/seeds.yml
++++ b/Resources/Prototypes/Hydroponics/seeds.yml
+@@ -10,7 +10,7 @@
+   mutationPrototypes:
+     - meatwheat
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 6
+       production: 3
+@@ -38,7 +38,7 @@
+   productPrototypes:
+     - MeatwheatBushel
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 6
+       production: 3
+@@ -66,7 +66,7 @@
+   productPrototypes:
+     - OatBushel
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 6
+       production: 3
+@@ -96,7 +96,7 @@
+   mutationPrototypes:
+     - mimana
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 50
+       maturation: 6
+       production: 6
+@@ -127,7 +127,7 @@
+   productPrototypes:
+     - FoodMimana
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 50
+       maturation: 6
+       production: 6
+@@ -158,7 +158,7 @@
+   productPrototypes:
+     - FoodCarrot
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 10
+       production: 3
+@@ -193,7 +193,7 @@
+   mutationPrototypes:
+     - worldPea
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       growthStages: 3
+       maturation: 7
+@@ -233,7 +233,7 @@
+     - lime
+     - orange
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 6
+       production: 6
+@@ -259,7 +259,7 @@
+   plantRsi: Objects/Specific/Hydroponics/lemoon.rsi
+   packetPrototype: LemoonSeeds
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 90
+       maturation: 8
+       production: 6
+@@ -292,7 +292,7 @@
+     - orange
+     - lemon
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 6
+       production: 6
+@@ -324,7 +324,7 @@
+     - lemon
+     - lime
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 6
+       production: 6
+@@ -352,7 +352,7 @@
+   productPrototypes:
+     - FoodExtradimensionalOrange
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 6
+       production: 6
+@@ -384,7 +384,7 @@
+   productPrototypes:
+     - FoodPineapple
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 6
+       production: 6
+@@ -417,7 +417,7 @@
+   productPrototypes:
+     - FoodPotato
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 30
+       maturation: 10
+       production: 3
+@@ -448,7 +448,7 @@
+   mutationPrototypes:
+     - papercane
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 60
+       maturation: 6
+       production: 6
+@@ -475,7 +475,7 @@
+   productPrototypes:
+     - LeavesTea
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 75
+       maturation: 5
+       production: 3
+@@ -504,7 +504,7 @@
+   productPrototypes:
+     - Papercane
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 60
+       maturation: 6
+       production: 6
+@@ -528,14 +528,15 @@
+   mutationPrototypes:
+     - steelcap
+   growthComponents:
+-    plantTraits:
+-      ligneous: true
++    plant:
+       lifespan: 80
+       maturation: 15
+       production: 3
+       yield: 5
+       potency: 1
+       growthStages: 3
++    plantTraits:
++      ligneous: true
+     basicGrowth:
+       waterConsumption: 0.6
+       nutrientConsumption: 0.5
+@@ -552,14 +553,15 @@
+   productPrototypes:
+     - SteelLog
+   growthComponents:
+-    plantTraits:
+-      ligneous: true
++    plant:
+       lifespan: 80
+       maturation: 15
+       production: 3
+       yield: 3
+       potency: 1
+       growthStages: 3
++    plantTraits:
++      ligneous: true
+     basicGrowth:
+       waterConsumption: 0.6
+       nutrientConsumption: 0.8
+@@ -579,7 +581,7 @@
+     - blueTomato
+     - bloodTomato
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 8
+       production: 6
+@@ -616,7 +618,7 @@
+   productPrototypes:
+     - FoodBlueTomato
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 8
+       production: 6
+@@ -655,7 +657,7 @@
+   mutationPrototypes:
+     - killerTomato
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 60
+       maturation: 8
+       production: 6
+@@ -690,7 +692,7 @@
+   productPrototypes:
+     - MobTomatoKiller
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 15
+       production: 6
+@@ -726,7 +728,7 @@
+   mutationPrototypes:
+     - eggy
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 6
+       production: 6
+@@ -757,7 +759,7 @@
+   productPrototypes:
+     - FoodCabbage
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 50
+       maturation: 7
+       production: 5
+@@ -784,7 +786,7 @@
+   productPrototypes:
+     - FoodGarlic
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 8
+       production: 5
+@@ -817,7 +819,7 @@
+   mutationPrototypes:
+     - goldenApple
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 6
+       production: 6
+@@ -845,7 +847,7 @@
+   productPrototypes:
+     - FoodGoldenApple
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 6
+       production: 6
+@@ -879,7 +881,7 @@
+   productPrototypes:
+     - FoodCorn
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 8
+       production: 6
+@@ -913,7 +915,7 @@
+     - onionred
+     - bloonion
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 8
+       production: 6
+@@ -948,7 +950,7 @@
+   productPrototypes:
+     - FoodOnionRed
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 8
+       production: 6
+@@ -983,7 +985,7 @@
+   productPrototypes:
+     - FoodMushroom
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 35
+       maturation: 10
+       production: 7
+@@ -1011,7 +1013,7 @@
+   productPrototypes:
+     - FoodEgg
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 75
+       maturation: 6
+       production: 12
+@@ -1041,7 +1043,7 @@
+   mutationPrototypes:
+     - rainbowCannabis
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 75
+       maturation: 8
+       production: 12
+@@ -1070,7 +1072,7 @@
+   productPrototypes:
+     - LeavesCannabisRainbow
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 75
+       maturation: 8
+       production: 12
+@@ -1119,7 +1121,7 @@
+   productPrototypes:
+     - LeavesTobacco
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 75
+       maturation: 5
+       production: 5
+@@ -1150,7 +1152,7 @@
+   mutationPrototypes:
+     - deathNettle
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 8
+       production: 6
+@@ -1179,7 +1181,7 @@
+   productPrototypes:
+     - DeathNettle
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 8
+       production: 6
+@@ -1213,7 +1215,7 @@
+   mutationPrototypes:
+     - chilly
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 6
+       production: 6
+@@ -1247,7 +1249,7 @@
+   productPrototypes:
+     - FoodChillyPepper
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 6
+       production: 6
+@@ -1283,7 +1285,7 @@
+   mutationPrototypes:
+     - lily
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 10
+       production: 3
+@@ -1312,7 +1314,7 @@
+   productPrototypes:
+     - FoodAloe
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 10
+       production: 3
+@@ -1343,7 +1345,7 @@
+   mutationPrototypes:
+     - spacemansTrumpet
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 10
+       production: 3
+@@ -1372,7 +1374,7 @@
+   productPrototypes:
+     - FoodLingzhi
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 10
+       production: 3
+@@ -1403,7 +1405,7 @@
+   mutationPrototypes:
+     - ambrosiaDeus
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 10
+       production: 3
+@@ -1440,7 +1442,7 @@
+   productPrototypes:
+     - FoodAmbrosiaDeus
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 10
+       production: 3
+@@ -1475,7 +1477,7 @@
+   mutationPrototypes:
+     - glasstle
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 10
+       production: 3
+@@ -1500,7 +1502,7 @@
+   productPrototypes:
+     - FoodGlasstle
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 10
+       production: 3
+@@ -1527,7 +1529,7 @@
+   productPrototypes:
+     - FoodFlyAmanita
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 12
+       production: 3
+@@ -1560,7 +1562,7 @@
+     - fakeCapfruit
+     - realCapfruit
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 65
+       maturation: 25
+       production: 25
+@@ -1587,7 +1589,7 @@
+   productPrototypes:
+     - FoodFakeCapfruit
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 65
+       maturation: 25
+       production: 25
+@@ -1614,7 +1616,7 @@
+   productPrototypes:
+     - FoodRealCapfruit
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 65
+       maturation: 25
+       production: 25
+@@ -1641,7 +1643,7 @@
+   productPrototypes:
+     - RiceBushel
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 6
+       production: 3
+@@ -1673,7 +1675,7 @@
+   mutationPrototypes:
+     - koibean
+   growthComponents:
+-    plantTraits:
++    plant:
+       growthStages: 4
+       lifespan: 25
+       maturation: 6
+@@ -1698,7 +1700,7 @@
+   productPrototypes:
+     - FoodSpacemansTrumpet
+   growthComponents:
+-    plantTraits:
++    plant:
+       growthStages: 4
+       lifespan: 20
+       maturation: 14
+@@ -1727,7 +1729,7 @@
+   productPrototypes:
+     - FoodKoibean
+   growthComponents:
+-    plantTraits:
++    plant:
+       growthStages: 4
+       lifespan: 25
+       maturation: 6
+@@ -1756,7 +1758,7 @@
+   productPrototypes:
+     - FoodGrape
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 50
+       maturation: 6
+       production: 5
+@@ -1785,7 +1787,7 @@
+   mutationPrototypes:
+     - holymelon
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 12
+       production: 3
+@@ -1815,7 +1817,7 @@
+   productPrototypes:
+     - FoodHolymelon
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 12
+       production: 3
+@@ -1845,7 +1847,7 @@
+   productPrototypes:
+     - FoodCocoaPod
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 50
+       maturation: 6
+       production: 6
+@@ -1877,7 +1879,7 @@
+   productPrototypes:
+     - FoodBerries
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 50
+       maturation: 6
+       production: 6
+@@ -1906,7 +1908,7 @@
+   productPrototypes:
+     - FoodBungo
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 50
+       maturation: 8
+       production: 6
+@@ -1941,7 +1943,7 @@
+   mutationPrototypes:
+     - laughinPea
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       growthStages: 3
+       maturation: 8
+@@ -1972,7 +1974,7 @@
+   productPrototypes:
+     - FoodWorldPeas
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       growthStages: 3
+       maturation: 20
+@@ -2009,7 +2011,7 @@
+   mutationPrototypes:
+     - bluePumpkin
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 10
+       production: 4
+@@ -2038,7 +2040,7 @@
+   productPrototypes:
+     - FoodBluePumpkin
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 10
+       production: 4
+@@ -2073,7 +2075,7 @@
+   mutationPrototypes:
+     - pyrotton
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 8
+       production: 3
+@@ -2098,7 +2100,7 @@
+   productPrototypes:
+     - PyrottonBol
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 8
+       production: 3
+@@ -2127,7 +2129,7 @@
+   productPrototypes:
+     - FoodCherry
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 55
+       maturation: 6
+       production: 6
+@@ -2155,7 +2157,7 @@
+   productPrototypes:
+     - FoodAnomalyBerry
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 12
+       production: 3
+@@ -2189,7 +2191,7 @@
+   productPrototypes:
+   - FoodBloonion
+   growthComponents:
+-    plantTraits:
++    plant:
+       lifespan: 25
+       maturation: 15
+       production: 3
+-- 
+2.55.0
+

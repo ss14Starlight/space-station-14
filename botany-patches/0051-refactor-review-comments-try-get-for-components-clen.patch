@@ -1,0 +1,528 @@
+From 7d3e385a86b96492bac9a26bc00a37335c853e46 Mon Sep 17 00:00:00 2001
+From: "pa.pecherskij" <pa.pecherskij@interfax.ru>
+Date: Sun, 14 Dec 2025 17:39:32 +0300
+Subject: [PATCH 051/112] refactor: review comments - try get for components,
+ clenaups
+
+---
+ .../Botany/Components/PlantComponent.cs       |  2 +-
+ .../Components/PlantHarvestComponent.cs       |  2 +-
+ .../Botany/Components/PlantHolderComponent.cs |  6 ---
+ .../Components/UnviableGrowthComponent.cs     |  2 +-
+ Content.Server/Botany/SeedPrototype.cs        |  8 +++-
+ .../Botany/Systems/BasicGrowthSystem.cs       |  3 ++
+ .../Botany/Systems/BotanySwabSystem.cs        |  2 +-
+ .../Botany/Systems/BotanySystem.Produce.cs    |  6 +--
+ .../Botany/Systems/BotanySystem.Seed.cs       | 25 ++++------
+ .../Botany/Systems/MutationSystem.cs          | 13 +++---
+ .../Botany/Systems/PlantHarvestSystem.cs      | 46 ++++++++++---------
+ .../Botany/Systems/PlantHolderSystem.cs       | 35 +++++++-------
+ .../Botany/Systems/PlantToxinsSystem.cs       |  2 +
+ .../Botany/Systems/SeedExtractorSystem.cs     |  3 +-
+ .../Botany/Systems/UnviableGrowthSystem.cs    |  4 +-
+ .../Botany/Systems/WeedPestGrowthSystem.cs    |  2 +-
+ Resources/Maps/Salvage/vegan-meatball.yml     | 20 --------
+ 17 files changed, 78 insertions(+), 103 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/PlantComponent.cs b/Content.Server/Botany/Components/PlantComponent.cs
+index 350356dca3..066ec206da 100644
+--- a/Content.Server/Botany/Components/PlantComponent.cs
++++ b/Content.Server/Botany/Components/PlantComponent.cs
+@@ -44,7 +44,7 @@ public sealed partial class PlantComponent : Component
+     public int GrowthStages = 6;
+ 
+     /// <summary>
+-    /// A scalar for sprite size and chemical quantity on the produce. Caps at 100.
++    /// A scalar for sprite size and chemical solution volume in the produce. Caps at 100.
+     /// </summary>
+     [DataField]
+     public float Potency = 1f;
+diff --git a/Content.Server/Botany/Components/PlantHarvestComponent.cs b/Content.Server/Botany/Components/PlantHarvestComponent.cs
+index 510f361969..2a3c918218 100644
+--- a/Content.Server/Botany/Components/PlantHarvestComponent.cs
++++ b/Content.Server/Botany/Components/PlantHarvestComponent.cs
+@@ -20,7 +20,7 @@ public sealed partial class PlantHarvestComponent : Component
+     public bool ReadyForHarvest = false;
+ 
+     /// <summary>
+-    /// The last time this plant was harvested.
++    /// The age of the plant when last harvested.
+     /// </summary>
+     [ViewVariables]
+     public int LastHarvest = 0;
+diff --git a/Content.Server/Botany/Components/PlantHolderComponent.cs b/Content.Server/Botany/Components/PlantHolderComponent.cs
+index be88d2ca92..e72ec57d69 100644
+--- a/Content.Server/Botany/Components/PlantHolderComponent.cs
++++ b/Content.Server/Botany/Components/PlantHolderComponent.cs
+@@ -162,12 +162,6 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField]
+     public bool ImproperPressure;
+ 
+-    /// <summary>
+-    /// Not currently used.
+-    /// </summary>
+-    [DataField]
+-    public bool ImproperLight;
+-
+     /// <summary>
+     /// Set to true to force a plant update (visuals, component, etc.) regardless of the current
+     /// update cycle time. Typically used when some interaction affects this plant.
+diff --git a/Content.Server/Botany/Components/UnviableGrowthComponent.cs b/Content.Server/Botany/Components/UnviableGrowthComponent.cs
+index 4cf116d1e3..745d8e1ab8 100644
+--- a/Content.Server/Botany/Components/UnviableGrowthComponent.cs
++++ b/Content.Server/Botany/Components/UnviableGrowthComponent.cs
+@@ -8,7 +8,7 @@ namespace Content.Server.Botany.Components;
+ public sealed partial class UnviableGrowthComponent : Component
+ {
+     /// <summary>
+-    /// Amount of damage dealt to the plant per successful tick with unviable.
++    /// Amount of damage dealt to the plant per growth tick with unviable.
+     /// </summary>
+     [DataField]
+     public float UnviableDamage = 6f;
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index c2591db93b..b1cefe60a1 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -79,7 +79,7 @@ public partial class SeedData
+     public bool Immutable;
+ 
+     /// <summary>
+-    /// If true, there is only a single reference to this seed and it's properties can be directly modified without
++    /// If true, there is only a single reference to this seed and its properties can be directly modified without
+     /// needing to clone the seed.
+     /// </summary>
+     [ViewVariables]
+@@ -152,7 +152,11 @@ public partial class SeedData
+ 
+     public SeedData Clone()
+     {
+-        DebugTools.Assert(!Immutable, "There should be no need to clone an immutable seed.");
++        if (Immutable)
++        {
++            return this;
++        }
++
+         var serializationManager = IoCManager.Resolve<ISerializationManager>();
+ 
+         var newSeed = new SeedData
+diff --git a/Content.Server/Botany/Systems/BasicGrowthSystem.cs b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+index 156e9cfe0f..1f6a29d644 100644
+--- a/Content.Server/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+@@ -156,6 +156,9 @@ private void OnPlantGrow(Entity<BasicGrowthComponent> ent, ref OnPlantGrowEvent
+     /// </summary>
+     public void AffectGrowth(Entity<PlantHolderComponent> ent, int amount)
+     {
++        if(amount == 0)
++            return;
++
+         var (uid, component) = ent;
+ 
+         if (component.Seed == null)
+diff --git a/Content.Server/Botany/Systems/BotanySwabSystem.cs b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+index 3fa55ea574..d557d111de 100644
+--- a/Content.Server/Botany/Systems/BotanySwabSystem.cs
++++ b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+@@ -75,7 +75,7 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+             if (old == null)
+                 return;
+ 
+-            // Cross-pollenate the plants.
++            // Cross-pollinate the plants.
+             plant.Seed = _mutation.Cross(swab.SeedData, old);
+ 
+             // Transfer old plant pollen to swab.
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Produce.cs b/Content.Server/Botany/Systems/BotanySystem.Produce.cs
+index 022ce8c55e..c63ebdad37 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Produce.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Produce.cs
+@@ -11,7 +11,7 @@ public sealed partial class BotanySystem
+ 
+     public void ProduceGrown(EntityUid uid, ProduceComponent produce)
+     {
+-        if (!TryGetSeed(produce, out var seed))
++        if (!TryGetSeed(produce, out var seed) || !TryGetPlant(seed, out var plant))
+             return;
+ 
+         foreach (var mutation in seed.Mutations)
+@@ -28,10 +28,6 @@ public void ProduceGrown(EntityUid uid, ProduceComponent produce)
+ 
+         solutionContainer.RemoveAllSolution();
+ 
+-        var plant = GetPlantComponent(seed);
+-        if (plant == null)
+-            return;
+-
+         foreach (var (chem, quantity) in seed.Chemicals)
+         {
+             var amount = quantity.Min;
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Seed.cs b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+index 3544c0d583..999966b4ac 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+@@ -76,15 +76,17 @@ public bool TryGetSeed(ProduceComponent comp, [NotNullWhen(true)] out SeedData?
+     }
+ 
+     /// TODO: Delete after plants transition to entities
+-    public static PlantComponent? GetPlantComponent(SeedData seed)
++    public static bool TryGetPlant(SeedData? seed, [NotNullWhen(true)] out PlantComponent? plantComponent)
+     {
+-        return seed.GrowthComponents.Plant;
++        plantComponent = seed?.GrowthComponents.Plant;
++        return plantComponent != null;
+     }
+ 
+     /// TODO: Delete after plants transition to entities
+-    public static PlantTraitsComponent? GetPlantTraitsComponent(SeedData seed)
++    public static bool TryGetPlantTraits(SeedData? seed, [NotNullWhen(true)] out PlantTraitsComponent? traitsComponent)
+     {
+-        return seed.GrowthComponents.PlantTraits;
++        traitsComponent = seed?.GrowthComponents.PlantTraits;
++        return traitsComponent != null;
+     }
+ 
+     private void OnExamined(EntityUid uid, SeedComponent component, ExaminedEvent args)
+@@ -92,11 +94,7 @@ private void OnExamined(EntityUid uid, SeedComponent component, ExaminedEvent ar
+         if (!args.IsInDetailsRange)
+             return;
+ 
+-        if (!TryGetSeed(component, out var seed))
+-            return;
+-
+-        var plant = GetPlantComponent(seed);
+-        if (plant == null)
++        if (!TryGetSeed(component, out var seed) || !TryGetPlant(seed, out var plant))
+             return;
+ 
+         using (args.PushGroup(nameof(SeedComponent), 1))
+@@ -146,8 +144,7 @@ public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates posi
+ 
+     public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, EntityUid plantEntity)
+     {
+-        var plant = GetPlantComponent(proto);
+-        if (plant == null || proto.ProductPrototypes.Count == 0 || plant.Yield <= 0)
++        if (!TryGetPlant(proto, out var plant) || proto.ProductPrototypes.Count == 0 || plant.Yield <= 0)
+         {
+             _popupSystem.PopupCursor(Loc.GetString("botany-harvest-fail-message"), user, PopupType.Medium);
+             return [];
+@@ -164,8 +161,7 @@ public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, EntityUid
+ 
+     public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, EntityUid plantEntity)
+     {
+-        var plant = GetPlantComponent(proto);
+-        if (plant == null)
++        if (!TryGetPlant(proto, out var plant))
+             return [];
+ 
+         var yieldMod = Comp<PlantHolderComponent>(plantEntity).YieldMod;
+@@ -218,8 +214,7 @@ public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates
+ 
+     public bool CanHarvest(SeedData proto, EntityUid? held = null)
+     {
+-        var traits = GetPlantTraitsComponent(proto);
+-        if (traits == null)
++        if (!TryGetPlantTraits(proto, out var traits))
+             return true;
+ 
+         return !traits.Ligneous || traits.Ligneous && held != null && HasComp<SharpComponent>(held);
+diff --git a/Content.Server/Botany/Systems/MutationSystem.cs b/Content.Server/Botany/Systems/MutationSystem.cs
+index eafe1d4ab9..ac8269b0f9 100644
+--- a/Content.Server/Botany/Systems/MutationSystem.cs
++++ b/Content.Server/Botany/Systems/MutationSystem.cs
+@@ -78,14 +78,16 @@ private void EnsureGrowthComponents(EntityUid plantHolder, SeedData seed)
+ 
+     public SeedData Cross(SeedData a, SeedData b)
+     {
++        if (b.Immutable)
++        {
++            return b;
++        }
++
+         var result = b.Clone();
+ 
+         CrossChemicals(ref result.Chemicals, a.Chemicals);
+ 
+-        var sourceTraits = BotanySystem.GetPlantTraitsComponent(a);
+-        var resultTraits = BotanySystem.GetPlantTraitsComponent(result);
+-
+-        if (sourceTraits != null && resultTraits != null)
++        if (BotanySystem.TryGetPlantTraits(a, out var sourceTraits) && BotanySystem.TryGetPlantTraits(result, out var resultTraits))
+         {
+             CrossBool(ref resultTraits.Seedless, sourceTraits.Seedless);
+             CrossBool(ref resultTraits.Ligneous, sourceTraits.Ligneous);
+@@ -102,8 +104,7 @@ public SeedData Cross(SeedData a, SeedData b)
+         // effective hybrid crossings.
+         if (a.Name != result.Name && Random(0.7f))
+         {
+-            var traits = BotanySystem.GetPlantTraitsComponent(result);
+-            if (traits != null)
++            if (BotanySystem.TryGetPlantTraits(result, out var traits))
+                 traits.Seedless = true;
+         }
+ 
+diff --git a/Content.Server/Botany/Systems/PlantHarvestSystem.cs b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+index 021af9d916..d56914e869 100644
+--- a/Content.Server/Botany/Systems/PlantHarvestSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+@@ -48,44 +48,46 @@ private void OnInteractUsing(Entity<PlantHarvestComponent> ent, ref InteractUsin
+     {
+         var (uid, component) = ent;
+ 
+-        if (!TryComp(uid, out PlantHolderComponent? holder)
+-            || !TryComp(uid, out PlantTraitsComponent? traits))
++        if (!TryComp(uid, out PlantTraitsComponent? traits)
++            || !traits.Ligneous
++            || !TryComp(uid, out PlantHolderComponent? holder)
++            || holder.Seed == null)
+             return;
+ 
+-        if (!component.ReadyForHarvest || holder.Dead || holder.Seed == null || !traits.Ligneous)
+-            return;
+-
+-        // Check if sharp tool is required.
+-        if (!_botany.CanHarvest(holder.Seed, args.Used))
+-        {
+-            _popup.PopupCursor(Loc.GetString("plant-holder-component-ligneous-cant-harvest-message"), args.User);
++        if (!component.ReadyForHarvest || holder.Dead || holder.Seed == null)
+             return;
+-        }
+ 
+-        // Perform harvest.
+-        DoHarvest(ent, args.User);
++        var canHarvestUsing = _botany.CanHarvest(holder.Seed, args.Used);
++        HandleInteraction((ent, ent, holder), args.User, !canHarvestUsing);
+     }
+ 
+     private void OnInteractHand(Entity<PlantHarvestComponent> ent, ref InteractHandEvent args)
+     {
+-        var (uid, component) = ent;
+-
+-        if (!TryComp(uid, out PlantHolderComponent? holder)
+-            || !TryComp(uid, out PlantTraitsComponent? traits))
++        if (!TryComp(ent, out PlantHolderComponent? holder)
++            || !TryComp(ent, out PlantTraitsComponent? traits))
+             return;
+ 
+-        if (!component.ReadyForHarvest || holder.Dead || holder.Seed == null)
+-            return;
++        HandleInteraction((ent, ent, holder), args.User, traits.Ligneous);
++    }
+ 
+-        // Check if sharp tool is required.
+-        if (traits.Ligneous)
++    private void HandleInteraction(
++        Entity<PlantHarvestComponent, PlantHolderComponent> ent,
++        EntityUid user,
++        bool missingRequiredTool
++    )
++    {
++        if (missingRequiredTool)
+         {
+-            _popup.PopupCursor(Loc.GetString("plant-holder-component-ligneous-cant-harvest-message"), args.User);
++            _popup.PopupCursor(Loc.GetString("plant-holder-component-ligneous-cant-harvest-message"), user);
+             return;
+         }
+ 
++        var (_, harvest, holder) = ent;
++        if (!harvest.ReadyForHarvest || holder.Dead || holder.Seed == null)
++            return;
++
+         // Perform harvest.
+-        DoHarvest(ent, args.User);
++        DoHarvest(ent, user);
+     }
+ 
+     public void DoHarvest(Entity<PlantHarvestComponent> ent, EntityUid user)
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 7f37611db0..ea00617b6f 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -174,7 +174,7 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+         {
+             if (plantHolder.Seed == null)
+             {
+-                if (!_botany.TryGetSeed(seeds, out var seed))
++                if (!_botany.TryGetSeed(seeds, out var seed) || !BotanySystem.TryGetPlant(seed, out var seedPlant))
+                     return;
+ 
+                 args.Handled = true;
+@@ -190,11 +190,7 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+                 plantHolder.Dead = false;
+                 plantHolder.Age = 1;
+ 
+-                var seedPlant = BotanySystem.GetPlantComponent(seed);
+-                if (seeds.HealthOverride != null)
+-                    plantHolder.Health = seeds.HealthOverride.Value;
+-                else if (seedPlant != null)
+-                    plantHolder.Health = seedPlant.Endurance;
++                plantHolder.Health = seeds.HealthOverride ?? seedPlant.Endurance;
+ 
+                 plantHolder.LastCycle = _gameTiming.CurTime;
+ 
+@@ -387,14 +383,10 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+                 }
+             }
+             var seed = produce.Seed;
+-            if (seed != null)
++            if (seed != null && BotanySystem.TryGetPlant(seed, out var seedPlant))
+             {
+-                var seedPlant = BotanySystem.GetPlantComponent(seed);
+-                if (seedPlant != null)
+-                {
+-                    var nutrientBonus = seedPlant.Potency / 2.5f;
+-                    AdjustNutrient(uid, nutrientBonus, plantHolder);
+-                }
++                var nutrientBonus = seedPlant.Potency / 2.5f;
++                AdjustNutrient(uid, nutrientBonus, plantHolder);
+             }
+             QueueDel(args.Used);
+         }
+@@ -563,17 +555,19 @@ private void Mutate(EntityUid uid, float severity, PlantHolderComponent? compone
+             _mutation.MutateSeed(uid, ref component.Seed, severity);
+     }
+ 
+-    public void UpdateSprite(EntityUid uid, PlantHolderComponent component)
++    public void UpdateSprite(EntityUid uid, PlantHolderComponent? component = null)
+     {
+         PlantHarvestComponent? harvest = null;
+         PlantComponent? plant = null;
+-        Resolve(uid, ref harvest, ref plant, false);
+-
+-        component.UpdateSpriteAfterUpdate = false;
++        Resolve(uid, ref harvest, ref plant, ref component, false);
+ 
+-        if (!TryComp<AppearanceComponent>(uid, out var app))
++        if (!TryComp<AppearanceComponent>(uid, out var app)
++            || component == null)
+             return;
+ 
++
++        component.UpdateSpriteAfterUpdate = false;
++
+         // If no seed, clear visuals regardless of traits.
+         if (component.Seed == null)
+         {
+@@ -581,7 +575,7 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent component)
+             _appearance.SetData(uid, PlantHolderVisuals.HealthLight, false, app);
+             _appearance.SetData(uid, PlantHolderVisuals.HarvestLight, false, app);
+         }
+-        else if (harvest != null && plant != null)
++        else if(harvest != null && plant != null)
+         {
+             if (component.DrawWarnings)
+             {
+@@ -616,6 +610,9 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent component)
+         if (!component.DrawWarnings)
+             return;
+ 
++        // todo: dehardcode those alert levels.
++        // Not obvious where they go, as plant holder have alerts, sure, but some plants could have
++        // very different consumption rates so it would make sense to have different thresholds
+         _appearance.SetData(uid, PlantHolderVisuals.WaterLight, component.WaterLevel <= 15, app);
+         _appearance.SetData(uid, PlantHolderVisuals.NutritionLight, component.NutritionLevel <= 8, app);
+         _appearance.SetData(uid,
+diff --git a/Content.Server/Botany/Systems/PlantToxinsSystem.cs b/Content.Server/Botany/Systems/PlantToxinsSystem.cs
+index bc49e31d07..eaca60077d 100644
+--- a/Content.Server/Botany/Systems/PlantToxinsSystem.cs
++++ b/Content.Server/Botany/Systems/PlantToxinsSystem.cs
+@@ -27,6 +27,8 @@ private void OnPlantGrow(Entity<PlantToxinsComponent> ent, ref OnPlantGrowEvent
+         if (holder.Toxins > component.ToxinsTolerance)
+             holder.Health -= toxinUptake;
+ 
++        // there is a possibility that it will remove more toxin than amount of damage it took on plant health (and killed it).
++        // todo: get min out of health left and toxin uptake - would work better, probably.
+         holder.Toxins -= toxinUptake;
+ 
+         if (holder.DrawWarnings)
+diff --git a/Content.Server/Botany/Systems/SeedExtractorSystem.cs b/Content.Server/Botany/Systems/SeedExtractorSystem.cs
+index be3e217428..fa030f50e3 100644
+--- a/Content.Server/Botany/Systems/SeedExtractorSystem.cs
++++ b/Content.Server/Botany/Systems/SeedExtractorSystem.cs
+@@ -31,8 +31,7 @@ private void OnInteractUsing(EntityUid uid, SeedExtractorComponent seedExtractor
+         if (!_botanySystem.TryGetSeed(produce, out var seed))
+             return;
+ 
+-        var traits = BotanySystem.GetPlantTraitsComponent(seed);
+-        if (traits?.Seedless == true)
++        if (!BotanySystem.TryGetPlantTraits(seed, out var traits) || traits.Seedless)
+         {
+             _popupSystem.PopupCursor(Loc.GetString("seed-extractor-component-no-seeds", ("name", args.Used)),
+                 args.User, PopupType.MediumCaution);
+diff --git a/Content.Server/Botany/Systems/UnviableGrowthSystem.cs b/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
+index 5b1947b647..64ed3f32ad 100644
+--- a/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
+@@ -16,7 +16,9 @@ private void OnPlantGrow(Entity<UnviableGrowthComponent> ent, ref OnPlantGrowEve
+     {
+         var (uid, component) = ent;
+ 
+-        if (!TryComp(uid, out PlantHolderComponent? holder))
++        if (!TryComp(uid, out PlantHolderComponent? holder)
++            || !BotanySystem.TryGetPlantTraits(holder.Seed, out var traits)
++            || traits.Viable)
+             return;
+ 
+         holder.Health -= component.UnviableDamage;
+diff --git a/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+index 015851880b..0f0d8f00be 100644
+--- a/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+@@ -68,7 +68,7 @@ private void OnTrayUpdate(Entity<PlantHolderComponent> ent, ref OnPlantGrowEvent
+         }
+ 
+         // Handle kudzu transformation.
+-        if (component is { Seed: not null, Dead: false }
++        if (component is { Seed: not null }
+             && traits.TurnIntoKudzu
+             && component.WeedLevel >= weed.WeedHighLevelThreshold)
+         {
+diff --git a/Resources/Maps/Salvage/vegan-meatball.yml b/Resources/Maps/Salvage/vegan-meatball.yml
+index e128151ca5..f6b045d26a 100644
+--- a/Resources/Maps/Salvage/vegan-meatball.yml
++++ b/Resources/Maps/Salvage/vegan-meatball.yml
+@@ -488,20 +488,10 @@ entities:
+         growthComponents:
+           plant:
+             lifespan: 75
+-            endurance: 100
+           basicGrowth:
+             waterConsumption: 0.4
+-            nutrientConsumption: 0.75
+           atmosphericGrowth:
+             idealHeat: 298
+-            heatTolerance: 10
+-            lowPressureTolerance: 81
+-            highPressureTolerance: 121
+-          weedPestGrowth:
+-            weedTolerance: 5
+-            pestTolerance: 5
+-          toxins:
+-            toxinsTolerance: 4
+         chemicals:
+           THC:
+             Inherent: True
+@@ -561,20 +551,10 @@ entities:
+         growthComponents:
+           plant:
+             lifespan: 25
+-            endurance: 100
+           basicGrowth:
+             waterConsumption: 0.6
+-            nutrientConsumption: 0.75
+           atmosphericGrowth:
+             idealHeat: 293
+-            heatTolerance: 10
+-            lowPressureTolerance: 81
+-            highPressureTolerance: 121
+-          weedPestGrowth:
+-            weedTolerance: 5
+-            pestTolerance: 5
+-          toxins:
+-            toxinsTolerance: 4
+         chemicals:
+           Stellibinin:
+             Inherent: True
+-- 
+2.55.0
+

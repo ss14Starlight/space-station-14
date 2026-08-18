@@ -1,0 +1,54 @@
+From a67b68dbc07e4998cb49179ee74fd711f36407f5 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Fri, 1 Aug 2025 10:44:25 +0300
+Subject: [PATCH 015/112] Update vegan-meatball.yml
+
+---
+ Resources/Maps/Salvage/vegan-meatball.yml | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/Resources/Maps/Salvage/vegan-meatball.yml b/Resources/Maps/Salvage/vegan-meatball.yml
+index c6e85014e4..d5860da20a 100644
+--- a/Resources/Maps/Salvage/vegan-meatball.yml
++++ b/Resources/Maps/Salvage/vegan-meatball.yml
+@@ -488,8 +488,6 @@ entities:
+         splatPrototype: null
+         lifespan: 75
+         endurance: 100
+-        weedTolerance: 5
+-        pestTolerance: 5
+         toxinsTolerance: 4
+         growthComponents:
+           - !type:BasicGrowthComponent
+@@ -500,6 +498,9 @@ entities:
+               heatTolerance: 10
+               lowPressureTolerance: 81
+               highPressureTolerance: 121
++          - !type:WeedPestGrowthComponent
++              weedTolerance: 5
++              pestTolerance: 5
+         chemicals:
+           THC:
+             Inherent: True
+@@ -559,8 +560,6 @@ entities:
+         splatPrototype: null
+         lifespan: 25
+         endurance: 100
+-        weedTolerance: 5
+-        pestTolerance: 5
+         toxinsTolerance: 4
+         growthComponents:
+           - !type:BasicGrowthComponent
+@@ -571,6 +570,9 @@ entities:
+               heatTolerance: 10
+               lowPressureTolerance: 81
+               highPressureTolerance: 121
++          - !type:WeedPestGrowthComponent
++              weedTolerance: 5
++              pestTolerance: 5
+         chemicals:
+           Stellibinin:
+             Inherent: True
+-- 
+2.55.0
+

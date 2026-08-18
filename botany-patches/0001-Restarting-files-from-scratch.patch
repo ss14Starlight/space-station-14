@@ -1,0 +1,3348 @@
+From dfc54ce04ae6655f512981f5807bb5bab4562fb7 Mon Sep 17 00:00:00 2001
+From: PraxisMapper <praxismapper@gmail.com>
+Date: Tue, 17 Sep 2024 23:31:25 -0400
+Subject: [PATCH 001/112] Restarting files from scratch
+
+---
+ .../Botany/Components/AgeGrowthComponent.cs   |   5 +
+ .../Components/AutoHarvestGrowthComponent.cs  |   5 +
+ .../Botany/Components/BotanySwabComponent.cs  |  28 +-
+ .../Components/ConsumeGasGrowthComponent.cs   |   9 +
+ .../Components/ExudeGasGrowthComponent .cs    |   9 +
+ .../Components/NutrientGrowthComponent.cs     |   8 +
+ .../Botany/Components/PlantComponent.cs       |   5 +
+ .../Botany/Components/PlantGrowthComponent.cs |   5 +
+ .../Botany/Components/PlantHolderComponent.cs |   3 -
+ .../Components/PressureGrowthComponent.cs     |  11 +
+ .../Botany/Components/SeedComponent.cs        |  43 +-
+ .../Components/TemperatureGrowthComponent.cs  |  11 +
+ .../Components/UnviableGrowthComponent.cs     |   5 +
+ .../Botany/Components/WaterGrowthComponent.cs |   8 +
+ .../Components/WeedPestGrowthComponent.cs     |  11 +
+ Content.Server/Botany/SeedPrototype.cs        | 134 +---
+ .../Botany/Systems/AgeGrowthSystem.cs         |  72 ++
+ .../Botany/Systems/AutoHarvestGrowthSystem.cs |  23 +
+ .../Botany/Systems/BotanySwabSystem.cs        |  22 +
+ .../Botany/Systems/BotanySystem.Seed.cs       |   2 +-
+ .../Botany/Systems/ConsumeGasGrowthSystem.cs  |  47 ++
+ .../Botany/Systems/ExudeGasGrowthSystem.cs    |  36 +
+ .../Botany/Systems/MutationSystem.cs          |  14 -
+ .../Botany/Systems/NutrientGrowthSystem.cs    |  44 ++
+ .../Botany/Systems/PlantGrowthSystem.cs       |  91 +++
+ .../Botany/Systems/PlantHolderSystem.cs       | 256 +------
+ .../Botany/Systems/PressureGrowthSystem.cs    |  40 +
+ .../Botany/Systems/TemperatureGrowthSystem.cs |  40 +
+ .../Botany/Systems/UnviableGrowthSystem.cs    |  22 +
+ .../Botany/Systems/WaterGrowthSystem.cs       |  44 ++
+ .../Botany/Systems/WeedPestGrowthSystem.cs    |  37 +
+ .../PlantMetabolism/PlantPhalanximine.cs      |   2 +-
+ .../EntityEffects/Effects/PlantMutateGases.cs |  23 +-
+ Resources/Maps/Salvage/vegan-meatball.yml     |   6 -
+ Resources/Prototypes/Hydroponics/seeds.yml    | 708 +++++++++++++++---
+ 35 files changed, 1302 insertions(+), 527 deletions(-)
+ create mode 100644 Content.Server/Botany/Components/AgeGrowthComponent.cs
+ create mode 100644 Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
+ create mode 100644 Content.Server/Botany/Components/ConsumeGasGrowthComponent.cs
+ create mode 100644 Content.Server/Botany/Components/ExudeGasGrowthComponent .cs
+ create mode 100644 Content.Server/Botany/Components/NutrientGrowthComponent.cs
+ create mode 100644 Content.Server/Botany/Components/PlantComponent.cs
+ create mode 100644 Content.Server/Botany/Components/PlantGrowthComponent.cs
+ create mode 100644 Content.Server/Botany/Components/PressureGrowthComponent.cs
+ create mode 100644 Content.Server/Botany/Components/TemperatureGrowthComponent.cs
+ create mode 100644 Content.Server/Botany/Components/UnviableGrowthComponent.cs
+ create mode 100644 Content.Server/Botany/Components/WaterGrowthComponent.cs
+ create mode 100644 Content.Server/Botany/Components/WeedPestGrowthComponent.cs
+ create mode 100644 Content.Server/Botany/Systems/AgeGrowthSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/AutoHarvestGrowthSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/ConsumeGasGrowthSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/ExudeGasGrowthSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/NutrientGrowthSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/PlantGrowthSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/PressureGrowthSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/TemperatureGrowthSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/UnviableGrowthSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/WaterGrowthSystem.cs
+ create mode 100644 Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+
+diff --git a/Content.Server/Botany/Components/AgeGrowthComponent.cs b/Content.Server/Botany/Components/AgeGrowthComponent.cs
+new file mode 100644
+index 0000000000..4c7778b702
+--- /dev/null
++++ b/Content.Server/Botany/Components/AgeGrowthComponent.cs
+@@ -0,0 +1,5 @@
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class AgeGrowthComponent : PlantGrowthComponent
++{}
+diff --git a/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs b/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
+new file mode 100644
+index 0000000000..9d468cc789
+--- /dev/null
++++ b/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
+@@ -0,0 +1,5 @@
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class AutoHarvestGrowthComponent : PlantGrowthComponent
++{}
+diff --git a/Content.Server/Botany/Components/BotanySwabComponent.cs b/Content.Server/Botany/Components/BotanySwabComponent.cs
+index 5fad5764b4..91508996c2 100644
+--- a/Content.Server/Botany/Components/BotanySwabComponent.cs
++++ b/Content.Server/Botany/Components/BotanySwabComponent.cs
+@@ -1,19 +1,21 @@
+-using System.Threading;
++using Content.Server.Botany.Components;
+ 
+-namespace Content.Server.Botany
++namespace Content.Server.Botany;
++
++/// <summary>
++/// Anything that can be used to cross-pollinate plants.
++/// </summary>
++[RegisterComponent]
++public sealed partial class BotanySwabComponent : Component
+ {
++    [DataField("swabDelay")]
++    public float SwabDelay = 2f;
++
+     /// <summary>
+-    /// Anything that can be used to cross-pollinate plants.
++    /// SeedData from the first plant that got swabbed.
+     /// </summary>
+-    [RegisterComponent]
+-    public sealed partial class BotanySwabComponent : Component
+-    {
+-        [DataField("swabDelay")]
+-        public float SwabDelay = 2f;
++    public SeedData? SeedData;
+ 
+-        /// <summary>
+-        /// SeedData from the first plant that got swabbed.
+-        /// </summary>
+-        public SeedData? SeedData;
+-    }
++    //data from first plant.
++    public List<PlantGrowthComponent> components;
+ }
+diff --git a/Content.Server/Botany/Components/ConsumeGasGrowthComponent.cs b/Content.Server/Botany/Components/ConsumeGasGrowthComponent.cs
+new file mode 100644
+index 0000000000..a3ee859160
+--- /dev/null
++++ b/Content.Server/Botany/Components/ConsumeGasGrowthComponent.cs
+@@ -0,0 +1,9 @@
++using Content.Shared.Atmos;
++
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class ConsumeGasGrowthComponent : PlantGrowthComponent
++{
++    [DataField] public Dictionary<Gas, float> ConsumeGasses = new();
++}
+diff --git a/Content.Server/Botany/Components/ExudeGasGrowthComponent .cs b/Content.Server/Botany/Components/ExudeGasGrowthComponent .cs
+new file mode 100644
+index 0000000000..280c798823
+--- /dev/null
++++ b/Content.Server/Botany/Components/ExudeGasGrowthComponent .cs	
+@@ -0,0 +1,9 @@
++using Content.Shared.Atmos;
++
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class ExudeGasGrowthComponent : PlantGrowthComponent
++{
++    [DataField] public Dictionary<Gas, float> ExudeGasses = new();
++}
+diff --git a/Content.Server/Botany/Components/NutrientGrowthComponent.cs b/Content.Server/Botany/Components/NutrientGrowthComponent.cs
+new file mode 100644
+index 0000000000..bcc14ede19
+--- /dev/null
++++ b/Content.Server/Botany/Components/NutrientGrowthComponent.cs
+@@ -0,0 +1,8 @@
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class NutrientGrowthComponent : PlantGrowthComponent
++{
++    [DataField]
++    public float NutrientConsumption = 0.75f;
++}
+diff --git a/Content.Server/Botany/Components/PlantComponent.cs b/Content.Server/Botany/Components/PlantComponent.cs
+new file mode 100644
+index 0000000000..b77edc964f
+--- /dev/null
++++ b/Content.Server/Botany/Components/PlantComponent.cs
+@@ -0,0 +1,5 @@
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class PlantComponent : PlantGrowthComponent
++{}
+diff --git a/Content.Server/Botany/Components/PlantGrowthComponent.cs b/Content.Server/Botany/Components/PlantGrowthComponent.cs
+new file mode 100644
+index 0000000000..df11fc745a
+--- /dev/null
++++ b/Content.Server/Botany/Components/PlantGrowthComponent.cs
+@@ -0,0 +1,5 @@
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public abstract partial class PlantGrowthComponent : Component
++{ }
+diff --git a/Content.Server/Botany/Components/PlantHolderComponent.cs b/Content.Server/Botany/Components/PlantHolderComponent.cs
+index f0661e4a30..21444beb8a 100644
+--- a/Content.Server/Botany/Components/PlantHolderComponent.cs
++++ b/Content.Server/Botany/Components/PlantHolderComponent.cs
+@@ -87,9 +87,6 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField]
+     public bool ImproperPressure;
+ 
+-    [DataField]
+-    public bool ImproperLight;
+-
+     [DataField]
+     public bool ForceUpdate;
+ 
+diff --git a/Content.Server/Botany/Components/PressureGrowthComponent.cs b/Content.Server/Botany/Components/PressureGrowthComponent.cs
+new file mode 100644
+index 0000000000..227f1dbcaa
+--- /dev/null
++++ b/Content.Server/Botany/Components/PressureGrowthComponent.cs
+@@ -0,0 +1,11 @@
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class PressureGrowthComponent : PlantGrowthComponent
++{
++    [DataField]
++    public float LowPressureTolerance = 81f;
++
++    [DataField]
++    public float HighPressureTolerance = 121f;
++}
+diff --git a/Content.Server/Botany/Components/SeedComponent.cs b/Content.Server/Botany/Components/SeedComponent.cs
+index ffa1b7ef4e..b56361146b 100644
+--- a/Content.Server/Botany/Components/SeedComponent.cs
++++ b/Content.Server/Botany/Components/SeedComponent.cs
+@@ -2,29 +2,28 @@
+ using Content.Shared.Botany.Components;
+ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+ 
+-namespace Content.Server.Botany.Components
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent, Access(typeof(BotanySystem))]
++public sealed partial class SeedComponent : SharedSeedComponent
+ {
+-    [RegisterComponent, Access(typeof(BotanySystem))]
+-    public sealed partial class SeedComponent : SharedSeedComponent
+-    {
+-        /// <summary>
+-        ///     Seed data containing information about the plant type & properties that this seed can grow seed. If
+-        ///     null, will instead attempt to get data from a seed prototype, if one is defined. See <see
+-        ///     cref="SeedId"/>.
+-        /// </summary>
+-        [DataField("seed")]
+-        public SeedData? Seed;
++    /// <summary>
++    ///     Seed data containing information about the plant type & properties that this seed can grow seed. If
++    ///     null, will instead attempt to get data from a seed prototype, if one is defined. See <see
++    ///     cref="SeedId"/>.
++    /// </summary>
++    [DataField("seed")]
++    public SeedData? Seed;
+ 
+-        /// <summary>
+-        ///     If not null, overrides the plant's initial health. Otherwise, the plant's initial health is set to the Endurance value.
+-        /// </summary>
+-        [DataField]
+-        public float? HealthOverride = null;
++    /// <summary>
++    ///     If not null, overrides the plant's initial health. Otherwise, the plant's initial health is set to the Endurance value.
++    /// </summary>
++    [DataField]
++    public float? HealthOverride = null;
+ 
+-        /// <summary>
+-        ///     Name of a base seed prototype that is used if <see cref="Seed"/> is null.
+-        /// </summary>
+-        [DataField("seedId", customTypeSerializer: typeof(PrototypeIdSerializer<SeedPrototype>))]
+-        public string? SeedId;
+-    }
++    /// <summary>
++    ///     Name of a base seed prototype that is used if <see cref="Seed"/> is null.
++    /// </summary>
++    [DataField("seedId", customTypeSerializer: typeof(PrototypeIdSerializer<SeedPrototype>))]
++    public string? SeedId;
+ }
+diff --git a/Content.Server/Botany/Components/TemperatureGrowthComponent.cs b/Content.Server/Botany/Components/TemperatureGrowthComponent.cs
+new file mode 100644
+index 0000000000..7fcf712d84
+--- /dev/null
++++ b/Content.Server/Botany/Components/TemperatureGrowthComponent.cs
+@@ -0,0 +1,11 @@
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class TemperatureGrowthComponent : PlantGrowthComponent
++{
++    [DataField]
++    public float IdealHeat = 293f;
++
++    [DataField]
++    public float HeatTolerance = 10f;
++}
+diff --git a/Content.Server/Botany/Components/UnviableGrowthComponent.cs b/Content.Server/Botany/Components/UnviableGrowthComponent.cs
+new file mode 100644
+index 0000000000..c7fb0b45f8
+--- /dev/null
++++ b/Content.Server/Botany/Components/UnviableGrowthComponent.cs
+@@ -0,0 +1,5 @@
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class UnviableGrowthComponent : PlantGrowthComponent
++{}
+diff --git a/Content.Server/Botany/Components/WaterGrowthComponent.cs b/Content.Server/Botany/Components/WaterGrowthComponent.cs
+new file mode 100644
+index 0000000000..b073d0cc88
+--- /dev/null
++++ b/Content.Server/Botany/Components/WaterGrowthComponent.cs
+@@ -0,0 +1,8 @@
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class WaterGrowthComponent : PlantGrowthComponent
++{
++    [DataField]
++    public float WaterConsumption = 0.5f;
++}
+diff --git a/Content.Server/Botany/Components/WeedPestGrowthComponent.cs b/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
+new file mode 100644
+index 0000000000..b3b63ce890
+--- /dev/null
++++ b/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
+@@ -0,0 +1,11 @@
++namespace Content.Server.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class WeedPestGrowthComponent : PlantGrowthComponent
++{
++    [DataField]
++    public float WeedTolerance = 5f;
++
++    [DataField]
++    public float PestTolerance = 5f;
++}
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index 5608338f22..6bbe83539c 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -1,6 +1,5 @@
+ using Content.Server.Botany.Components;
+ using Content.Server.Botany.Systems;
+-using Content.Shared.Atmos;
+ using Content.Shared.EntityEffects;
+ using Content.Shared.Random;
+ using Robust.Shared.Audio;
+@@ -24,36 +23,6 @@ public enum HarvestType : byte
+     SelfHarvest
+ }
+ 
+-/*
+-    public enum PlantSpread : byte
+-    {
+-        NoSpread,
+-        Creepers,
+-        Vines,
+-    }
+-
+-    public enum PlantMutation : byte
+-    {
+-        NoMutation,
+-        Mutable,
+-        HighlyMutable,
+-    }
+-
+-    public enum PlantCarnivorous : byte
+-    {
+-        NotCarnivorous,
+-        EatPests,
+-        EatLivingBeings,
+-    }
+-
+-    public enum PlantJuicy : byte
+-    {
+-        NotJuicy,
+-        Juicy,
+-        Slippery,
+-    }
+-*/
+-
+ [DataDefinition]
+ public partial struct SeedChemQuantity
+ {
+@@ -81,7 +50,7 @@ public partial struct SeedChemQuantity
+ 
+ // TODO reduce the number of friends to a reasonable level. Requires ECS-ing things like plant holder component.
+ [Virtual, DataDefinition]
+-[Access(typeof(BotanySystem), typeof(PlantHolderSystem), typeof(SeedExtractorSystem), typeof(PlantHolderComponent), typeof(EntityEffect), typeof(MutationSystem))]
++[Access(typeof(BotanySystem), typeof(PlantHolderSystem), typeof(SeedExtractorSystem), typeof(PlantHolderComponent), typeof(EntityEffect), typeof(MutationSystem), typeof(AgeGrowthSystem))]
+ public partial class SeedData
+ {
+     #region Tracking
+@@ -89,28 +58,28 @@ public partial class SeedData
+     /// <summary>
+     ///     The name of this seed. Determines the name of seed packets.
+     /// </summary>
+-    [DataField("name")]
++    [DataField]
+     public string Name { get; private set; } = "";
+ 
+     /// <summary>
+     ///     The noun for this type of seeds. E.g. for fungi this should probably be "spores" instead of "seeds". Also
+     ///     used to determine the name of seed packets.
+     /// </summary>
+-    [DataField("noun")]
++    [DataField]
+     public string Noun { get; private set; } = "";
+ 
+     /// <summary>
+     ///     Name displayed when examining the hydroponics tray. Describes the actual plant, not the seed itself.
+     /// </summary>
+-    [DataField("displayName")]
++    [DataField]
+     public string DisplayName { get; private set; } = "";
+ 
+-    [DataField("mysterious")] public bool Mysterious;
++    [DataField] public bool Mysterious;
+ 
+     /// <summary>
+     ///     If true, the properties of this seed cannot be modified.
+     /// </summary>
+-    [DataField("immutable")] public bool Immutable;
++    [DataField] public bool Immutable;
+ 
+     /// <summary>
+     ///     If true, there is only a single reference to this seed and it's properties can be directly modified without
+@@ -124,44 +93,22 @@ public partial class SeedData
+     /// <summary>
+     ///     The entity prototype that is spawned when this type of seed is extracted from produce using a seed extractor.
+     /// </summary>
+-    [DataField("packetPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
++    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+     public string PacketPrototype = "SeedBase";
+ 
+     /// <summary>
+     ///     The entity prototype this seed spawns when it gets harvested.
+     /// </summary>
+-    [DataField("productPrototypes", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
++    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
+     public List<string> ProductPrototypes = new();
+ 
+     [DataField] public Dictionary<string, SeedChemQuantity> Chemicals = new();
+ 
+-    [DataField] public Dictionary<Gas, float> ConsumeGasses = new();
+-
+-    [DataField] public Dictionary<Gas, float> ExudeGasses = new();
+-
+     #endregion
+ 
+     #region Tolerances
+-
+-    [DataField] public float NutrientConsumption = 0.75f;
+-
+-    [DataField] public float WaterConsumption = 0.5f;
+-    [DataField] public float IdealHeat = 293f;
+-    [DataField] public float HeatTolerance = 10f;
+-    [DataField] public float IdealLight = 7f;
+-    [DataField] public float LightTolerance = 3f;
+     [DataField] public float ToxinsTolerance = 4f;
+ 
+-    [DataField] public float LowPressureTolerance = 81f;
+-
+-    [DataField] public float HighPressureTolerance = 121f;
+-
+-    [DataField] public float PestTolerance = 5f;
+-
+-    [DataField] public float WeedTolerance = 5f;
+-
+-    [DataField] public float WeedHighLevelThreshold = 10f;
+-
+     #endregion
+ 
+     #region General traits
+@@ -184,30 +131,11 @@ public partial class SeedData
+     /// </summary>
+     [DataField] public bool Seedless = false;
+ 
+-    /// <summary>
+-    ///     If false, rapidly decrease health while growing. Used to kill off
+-    ///     plants with "bad" mutations.
+-    /// </summary>
+-    [DataField] public bool Viable = true;
+-
+     /// <summary>
+     ///     If true, a sharp tool is required to harvest this plant.
+     /// </summary>
+     [DataField] public bool Ligneous;
+ 
+-    // No, I'm not removing these.
+-    // if you re-add these, make sure that they get cloned.
+-    //public PlantSpread Spread { get; set; }
+-    //public PlantMutation Mutation { get; set; }
+-    //public float AlterTemperature { get; set; }
+-    //public PlantCarnivorous Carnivorous { get; set; }
+-    //public bool Parasite { get; set; }
+-    //public bool Hematophage { get; set; }
+-    //public bool Thorny { get; set; }
+-    //public bool Stinging { get; set; }
+-    // public bool Teleporting { get; set; }
+-    // public PlantJuicy Juicy { get; set; }
+-
+     #endregion
+ 
+     #region Cosmetics
+@@ -243,6 +171,22 @@ public partial class SeedData
+     [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<SeedPrototype>))]
+     public List<string> MutationPrototypes = new();
+ 
++    /// <summary>
++    /// The growth components used by this seed. 
++    /// </summary>
++    [DataField]
++    public List<PlantGrowthComponent> GrowthComponents = new() {
++        new PlantComponent(),
++        new WaterGrowthComponent(),
++        new NutrientGrowthComponent(),
++        new AgeGrowthComponent(),
++        new PressureGrowthComponent(),
++        new TemperatureGrowthComponent(),
++        new WeedPestGrowthComponent(),
++        };
++        //TODO: the mutation system should add the missing components when they mutate.
++        //This would be done with EnsureComp<>
++
+     public SeedData Clone()
+     {
+         DebugTools.Assert(!Immutable, "There should be no need to clone an immutable seed.");
+@@ -258,20 +202,8 @@ public SeedData Clone()
+             ProductPrototypes = new List<string>(ProductPrototypes),
+             MutationPrototypes = new List<string>(MutationPrototypes),
+             Chemicals = new Dictionary<string, SeedChemQuantity>(Chemicals),
+-            ConsumeGasses = new Dictionary<Gas, float>(ConsumeGasses),
+-            ExudeGasses = new Dictionary<Gas, float>(ExudeGasses),
+-
+-            NutrientConsumption = NutrientConsumption,
+-            WaterConsumption = WaterConsumption,
+-            IdealHeat = IdealHeat,
+-            HeatTolerance = HeatTolerance,
+-            IdealLight = IdealLight,
+-            LightTolerance = LightTolerance,
++
+             ToxinsTolerance = ToxinsTolerance,
+-            LowPressureTolerance = LowPressureTolerance,
+-            HighPressureTolerance = HighPressureTolerance,
+-            PestTolerance = PestTolerance,
+-            WeedTolerance = WeedTolerance,
+ 
+             Endurance = Endurance,
+             Yield = Yield,
+@@ -283,7 +215,6 @@ public SeedData Clone()
+             Potency = Potency,
+ 
+             Seedless = Seedless,
+-            Viable = Viable,
+             Ligneous = Ligneous,
+ 
+             PlantRsi = PlantRsi,
+@@ -319,20 +250,8 @@ public SeedData SpeciesChange(SeedData other)
+             MutationPrototypes = new List<string>(other.MutationPrototypes),
+ 
+             Chemicals = new Dictionary<string, SeedChemQuantity>(Chemicals),
+-            ConsumeGasses = new Dictionary<Gas, float>(ConsumeGasses),
+-            ExudeGasses = new Dictionary<Gas, float>(ExudeGasses),
+-
+-            NutrientConsumption = NutrientConsumption,
+-            WaterConsumption = WaterConsumption,
+-            IdealHeat = IdealHeat,
+-            HeatTolerance = HeatTolerance,
+-            IdealLight = IdealLight,
+-            LightTolerance = LightTolerance,
++
+             ToxinsTolerance = ToxinsTolerance,
+-            LowPressureTolerance = LowPressureTolerance,
+-            HighPressureTolerance = HighPressureTolerance,
+-            PestTolerance = PestTolerance,
+-            WeedTolerance = WeedTolerance,
+ 
+             Endurance = Endurance,
+             Yield = Yield,
+@@ -346,7 +265,6 @@ public SeedData SpeciesChange(SeedData other)
+             Mutations = Mutations,
+ 
+             Seedless = Seedless,
+-            Viable = Viable,
+             Ligneous = Ligneous,
+ 
+             PlantRsi = other.PlantRsi,
+diff --git a/Content.Server/Botany/Systems/AgeGrowthSystem.cs b/Content.Server/Botany/Systems/AgeGrowthSystem.cs
+new file mode 100644
+index 0000000000..22e42ba300
+--- /dev/null
++++ b/Content.Server/Botany/Systems/AgeGrowthSystem.cs
+@@ -0,0 +1,72 @@
++using Content.Server.Botany.Components;
++using Robust.Shared.Random;
++
++namespace Content.Server.Botany.Systems;
++public sealed class AgeGrowthSystem : PlantGrowthSystem
++{
++    [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly PlantHolderSystem _plantHolderSystem = default!;
++    public override void Initialize()
++    {
++        base.Initialize();
++        SubscribeLocalEvent<AgeGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(EntityUid uid, AgeGrowthComponent component, OnPlantGrowEvent args)
++    {
++        PlantHolderComponent? holder = null;
++        Resolve<PlantHolderComponent>(uid, ref holder);
++
++        if (holder == null || holder.Seed == null || holder.Dead)
++            return;
++
++        // Advance plant age here.
++        if (holder.SkipAging > 0)
++            holder.SkipAging--;
++        else
++        {
++            if (_random.Prob(0.8f))
++            {
++                holder.Age += (int)(1 * HydroponicsSpeedMultiplier);
++                holder.UpdateSpriteAfterUpdate = true;
++            }
++        }
++
++        if (holder.Age > holder.Seed.Lifespan)
++        {
++            holder.Health -= _random.Next(3, 5) * HydroponicsSpeedMultiplier;
++            if (holder.DrawWarnings)
++                holder.UpdateSpriteAfterUpdate = true;
++        }
++        else if (holder.Age < 0) // Revert back to seed packet!
++        {
++            var packetSeed = holder.Seed;
++            // will put it in the trays hands if it has any, please do not try doing this
++            _botany.SpawnSeedPacket(packetSeed, Transform(uid).Coordinates, uid);
++            _plantHolderSystem.RemovePlant(uid, holder);
++            holder.ForceUpdate = true;
++            _plantHolderSystem.Update(uid, holder);
++        }
++
++        // If enough time has passed since the plant was harvested, we're ready to harvest again!
++        if (holder.Seed.ProductPrototypes.Count > 0)
++        {
++            if (holder.Age > holder.Seed.Production)
++            {
++                if (holder.Age - holder.LastProduce > holder.Seed.Production && !holder.Harvest)
++                {
++                    holder.Harvest = true;
++                    holder.LastProduce = holder.Age;
++                }
++            }
++            else
++            {
++                if (holder.Harvest)
++                {
++                    holder.Harvest = false;
++                    holder.LastProduce = holder.Age;
++                }
++            }
++        }
++    }
++}
+diff --git a/Content.Server/Botany/Systems/AutoHarvestGrowthSystem.cs b/Content.Server/Botany/Systems/AutoHarvestGrowthSystem.cs
+new file mode 100644
+index 0000000000..f589e3f69a
+--- /dev/null
++++ b/Content.Server/Botany/Systems/AutoHarvestGrowthSystem.cs
+@@ -0,0 +1,23 @@
++using Content.Server.Botany.Components;
++
++namespace Content.Server.Botany.Systems;
++public sealed class AutoHarvestGrowthSystem : PlantGrowthSystem
++{
++    [Dependency] private readonly PlantHolderSystem _plantHolderSystem = default!;
++    public override void Initialize()
++    {
++        base.Initialize();
++        SubscribeLocalEvent<AutoHarvestGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(EntityUid uid, AutoHarvestGrowthComponent component, OnPlantGrowEvent args)
++    {
++        PlantHolderComponent? holder = null;
++        Resolve<PlantHolderComponent>(uid, ref holder);
++
++        if (holder == null || holder.Seed == null || holder.Dead || !holder.Harvest)
++            return;
++
++        _plantHolderSystem.AutoHarvest(uid, holder);
++    }
++}
+diff --git a/Content.Server/Botany/Systems/BotanySwabSystem.cs b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+index e8c7af92c2..7b75b8db59 100644
+--- a/Content.Server/Botany/Systems/BotanySwabSystem.cs
++++ b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+@@ -4,6 +4,9 @@
+ using Content.Shared.Examine;
+ using Content.Shared.Interaction;
+ using Content.Shared.Swab;
++using Robust.Shared.Random;
++using Robust.Shared.Serialization.Manager;
++using System.Linq;
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+@@ -12,6 +15,8 @@ public sealed class BotanySwabSystem : EntitySystem
+     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+     [Dependency] private readonly PopupSystem _popupSystem = default!;
+     [Dependency] private readonly MutationSystem _mutationSystem = default!;
++    [Dependency] private readonly ISerializationManager _serializationManager = default!;
++    [Dependency] private readonly IRobustRandom _random = default!;
+ 
+     public override void Initialize()
+     {
+@@ -64,6 +69,9 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+         {
+             // Pick up pollen
+             swab.SeedData = plant.Seed;
++            if (plant.Seed != null)
++                swab.components = plant.Seed.GrowthComponents.ToList(); //copy list in case plant changes after sampling
++
+             _popupSystem.PopupEntity(Loc.GetString("botany-swab-from"), args.Args.Target.Value, args.Args.User);
+         }
+         else
+@@ -71,6 +79,20 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+             var old = plant.Seed;
+             if (old == null)
+                 return;
++
++            for (int index = 0; index < old.GrowthComponents.Count(); index++)
++            {
++                var c1 = old.GrowthComponents[index];
++                foreach (var c2 in swab.components)
++                {
++                    if (c1.GetType() == c2.GetType())
++                    {
++                        if (_random.Prob(0.5f))
++                            _serializationManager.CopyTo(c2, ref c1, notNullableOverride: true);
++                    }
++                }
++            }
++
+             plant.Seed = _mutationSystem.Cross(swab.SeedData, old); // Cross-pollenate
+             swab.SeedData = old; // Transfer old plant pollen to swab
+             _popupSystem.PopupEntity(Loc.GetString("botany-swab-to"), args.Args.Target.Value, args.Args.User);
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Seed.cs b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+index 1487ed71d4..dc4847d750 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+@@ -49,7 +49,7 @@ public bool TryGetSeed(SeedComponent comp, [NotNullWhen(true)] out SeedData? see
+         if (comp.SeedId != null
+             && _prototypeManager.TryIndex(comp.SeedId, out SeedPrototype? protoSeed))
+         {
+-            seed = protoSeed;
++            seed = protoSeed.Clone();
+             return true;
+         }
+ 
+diff --git a/Content.Server/Botany/Systems/ConsumeGasGrowthSystem.cs b/Content.Server/Botany/Systems/ConsumeGasGrowthSystem.cs
+new file mode 100644
+index 0000000000..63d79e3164
+--- /dev/null
++++ b/Content.Server/Botany/Systems/ConsumeGasGrowthSystem.cs
+@@ -0,0 +1,47 @@
++using Content.Server.Atmos.EntitySystems;
++using Content.Server.Botany.Components;
++using Content.Shared.Atmos;
++
++namespace Content.Server.Botany.Systems;
++public sealed class ConsumeGasGrowthSystem : PlantGrowthSystem
++{
++    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
++    public override void Initialize()
++    {
++        base.Initialize();
++        SubscribeLocalEvent<ConsumeGasGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(EntityUid uid, ConsumeGasGrowthComponent component, OnPlantGrowEvent args)
++    {
++        PlantHolderComponent? holder = null;
++        Resolve<PlantHolderComponent>(uid, ref holder);
++
++        if (holder == null || holder.Seed == null || holder.Dead)
++            return;
++
++        var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
++
++        holder.MissingGas = 0;
++        if (component.ConsumeGasses.Count > 0)
++        {
++            foreach (var (gas, amount) in component.ConsumeGasses)
++            {
++                if (environment.GetMoles(gas) < amount)
++                {
++                    holder.MissingGas++;
++                    continue;
++                }
++
++                environment.AdjustMoles(gas, -amount);
++            }
++
++            if (holder.MissingGas > 0)
++            {
++                holder.Health -= holder.MissingGas * HydroponicsSpeedMultiplier;
++                if (holder.DrawWarnings)
++                    holder.UpdateSpriteAfterUpdate = true;
++            }
++        }
++    }
++}
+diff --git a/Content.Server/Botany/Systems/ExudeGasGrowthSystem.cs b/Content.Server/Botany/Systems/ExudeGasGrowthSystem.cs
+new file mode 100644
+index 0000000000..b33d945f58
+--- /dev/null
++++ b/Content.Server/Botany/Systems/ExudeGasGrowthSystem.cs
+@@ -0,0 +1,36 @@
++using Content.Server.Atmos.EntitySystems;
++using Content.Server.Botany.Components;
++using Content.Shared.Atmos;
++
++namespace Content.Server.Botany.Systems;
++public sealed class ExudeGasGrowthSystem : PlantGrowthSystem
++{
++    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
++    public override void Initialize()
++    {
++        base.Initialize();
++        SubscribeLocalEvent<ExudeGasGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(EntityUid uid, ExudeGasGrowthComponent component, OnPlantGrowEvent args)
++    {
++        PlantHolderComponent? holder = null;
++        Resolve<PlantHolderComponent>(uid, ref holder);
++
++        if (holder == null || holder.Seed == null || holder.Dead)
++            return;
++
++        var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
++
++        // Gas production.
++        var exudeCount = component.ExudeGasses.Count;
++        if (exudeCount > 0)
++        {
++            foreach (var (gas, amount) in component.ExudeGasses)
++            {
++                environment.AdjustMoles(gas,
++                    MathF.Max(1f, MathF.Round(amount * MathF.Round(holder.Seed.Potency) / exudeCount)));
++            }
++        }
++    }
++}
+diff --git a/Content.Server/Botany/Systems/MutationSystem.cs b/Content.Server/Botany/Systems/MutationSystem.cs
+index 37b68d9475..8c559d00c7 100644
+--- a/Content.Server/Botany/Systems/MutationSystem.cs
++++ b/Content.Server/Botany/Systems/MutationSystem.cs
+@@ -61,17 +61,7 @@ public SeedData Cross(SeedData a, SeedData b)
+ 
+         CrossChemicals(ref result.Chemicals, a.Chemicals);
+ 
+-        CrossFloat(ref result.NutrientConsumption, a.NutrientConsumption);
+-        CrossFloat(ref result.WaterConsumption, a.WaterConsumption);
+-        CrossFloat(ref result.IdealHeat, a.IdealHeat);
+-        CrossFloat(ref result.HeatTolerance, a.HeatTolerance);
+-        CrossFloat(ref result.IdealLight, a.IdealLight);
+-        CrossFloat(ref result.LightTolerance, a.LightTolerance);
+         CrossFloat(ref result.ToxinsTolerance, a.ToxinsTolerance);
+-        CrossFloat(ref result.LowPressureTolerance, a.LowPressureTolerance);
+-        CrossFloat(ref result.HighPressureTolerance, a.HighPressureTolerance);
+-        CrossFloat(ref result.PestTolerance, a.PestTolerance);
+-        CrossFloat(ref result.WeedTolerance, a.WeedTolerance);
+ 
+         CrossFloat(ref result.Endurance, a.Endurance);
+         CrossInt(ref result.Yield, a.Yield);
+@@ -83,10 +73,6 @@ public SeedData Cross(SeedData a, SeedData b)
+         CrossBool(ref result.Seedless, a.Seedless);
+         CrossBool(ref result.Ligneous, a.Ligneous);
+         CrossBool(ref result.TurnIntoKudzu, a.TurnIntoKudzu);
+-        CrossBool(ref result.CanScream, a.CanScream);
+-
+-        CrossGasses(ref result.ExudeGasses, a.ExudeGasses);
+-        CrossGasses(ref result.ConsumeGasses, a.ConsumeGasses);
+ 
+         // LINQ Explanation
+         // For the list of mutation effects on both plants, use a 50% chance to pick each one.
+diff --git a/Content.Server/Botany/Systems/NutrientGrowthSystem.cs b/Content.Server/Botany/Systems/NutrientGrowthSystem.cs
+new file mode 100644
+index 0000000000..0be2d099e2
+--- /dev/null
++++ b/Content.Server/Botany/Systems/NutrientGrowthSystem.cs
+@@ -0,0 +1,44 @@
++using Content.Server.Botany.Components;
++using Robust.Shared.Random;
++
++namespace Content.Server.Botany.Systems;
++public sealed class NutrientGrowthSystem : PlantGrowthSystem
++{
++    public override void Initialize()
++    {
++        base.Initialize();
++        SubscribeLocalEvent<NutrientGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(EntityUid uid, NutrientGrowthComponent component, OnPlantGrowEvent args)
++    {
++        PlantHolderComponent? holder = null;
++        Resolve<PlantHolderComponent>(uid, ref holder);
++
++        if (holder == null || holder.Seed == null || holder.Dead)
++            return;
++
++        if (component.NutrientConsumption > 0 && holder.NutritionLevel > 0 && _random.Prob(0.75f))
++        {
++            holder.NutritionLevel -= MathF.Max(0f,
++                component.NutrientConsumption * HydroponicsConsumptionMultiplier * HydroponicsSpeedMultiplier);
++            if (holder.DrawWarnings)
++                holder.UpdateSpriteAfterUpdate = true;
++        }
++
++        var healthMod = _random.Next(1, 3) * HydroponicsSpeedMultiplier;
++        if (holder.SkipAging < 10)
++        {
++            // Make sure the plant is not hungry
++            if (holder.NutritionLevel > 5)
++            {
++                holder.Health += Convert.ToInt32(_random.Prob(0.35f)) * healthMod;
++            }
++            else
++            {
++                AffectGrowth(-1, holder);
++                holder.Health -= healthMod;
++            }
++        }
++    }
++}
+diff --git a/Content.Server/Botany/Systems/PlantGrowthSystem.cs b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+new file mode 100644
+index 0000000000..4351621306
+--- /dev/null
++++ b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+@@ -0,0 +1,91 @@
++using Content.Server.Botany.Components;
++using Robust.Shared.Random;
++using Robust.Shared.Timing;
++
++namespace Content.Server.Botany.Systems;
++
++[ByRefEvent]
++public readonly record struct OnPlantGrowEvent;
++
++//May need to be PlantSystem, since this looks for PlantComponent.
++public abstract class PlantGrowthSystem : EntitySystem
++{
++    [Dependency] protected readonly IRobustRandom _random = default!;
++    [Dependency] protected readonly IGameTiming _gameTiming = default!;
++
++    public TimeSpan nextUpdate = TimeSpan.Zero;
++    public TimeSpan updateDelay = TimeSpan.FromSeconds(15); //PlantHolder has a 15 second delay on cycles, but checks every 3 for sprite updates.
++
++    public const float HydroponicsSpeedMultiplier = 1f;
++    public const float HydroponicsConsumptionMultiplier = 2f;
++
++
++
++    public override void Initialize()
++    {
++        base.Initialize();
++
++        //This might be overcomplicating things. Maybe I should just create a new event here and
++        //have each system listen for that instead?
++
++
++        //List<EntitySystem> subsystems = new List<EntitySystem>();
++        //Dictionary<Type, EntitySystem> subSystemDict = new Dictionary<Type, EntitySystem>();
++        //foreach (var system in EntityManager.EntitySysManager.GetEntitySystemTypes())
++        //{
++        //    if (system is PlantGrowthSystem && system.Name != "PlantGrowthSystem")
++        //    {
++        //        subsystems.Add(system);
++
++        //        //find component by name?
++        //        EntityManager.getco
++        //    }
++        //}
++    }
++
++    // TO INVESTIGATE: can I figure out some way here to connect all the plant growth systems and components so
++    // I don't have to give each one of those their own Update() method that listens for gameticks?
++    // It would be much less code to do it here once instead of in each new system.
++    // Maybe even if its forcing it by name, to prove its doable?
++
++    public override void Update(float frameTime)
++    {
++        if (nextUpdate > _gameTiming.CurTime)
++            return;
++
++        //This does not work as a universal check. I do need a baseline PlantComponent.
++        var query = EntityQueryEnumerator<PlantComponent>();
++        while (query.MoveNext(out var uid, out var plantComponent))
++        {
++            int a = 1; //I want to see each entity once, not each component once.
++            //Update(uid, unviableGrowthComponent);
++            var plantGrow = new OnPlantGrowEvent();
++            RaiseLocalEvent(uid, ref plantGrow);
++        }
++        nextUpdate = _gameTiming.CurTime + updateDelay;
++    }
++
++
++
++
++    public void AffectGrowth(int amount, PlantHolderComponent? component = null)
++    {
++        if (component == null || component.Seed == null)
++            return;
++
++        if (amount > 0)
++        {
++            if (component.Age < component.Seed.Maturation)
++                component.Age += amount;
++            else if (!component.Harvest && component.Seed.Yield <= 0f)
++                component.LastProduce -= amount;
++        }
++        else
++        {
++            if (component.Age < component.Seed.Maturation)
++                component.SkipAging++;
++            else if (!component.Harvest && component.Seed.Yield <= 0f)
++                component.LastProduce += amount;
++        }
++    }
++}
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 34d6a75bf2..efac1314a9 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -2,10 +2,9 @@
+ using Content.Server.Botany.Components;
+ using Content.Server.Kitchen.Components;
+ using Content.Server.Popups;
+-using Content.Shared.Chemistry.EntitySystems;
+-using Content.Shared.Atmos;
+ using Content.Shared.Botany;
+ using Content.Shared.Burial.Components;
++using Content.Shared.Chemistry.EntitySystems;
+ using Content.Shared.Chemistry.Reagent;
+ using Content.Shared.Coordinates.Helpers;
+ using Content.Shared.Examine;
+@@ -21,6 +20,7 @@
+ using Robust.Shared.Player;
+ using Robust.Shared.Prototypes;
+ using Robust.Shared.Random;
++using Robust.Shared.Serialization.Manager;
+ using Robust.Shared.Timing;
+ 
+ namespace Content.Server.Botany.Systems;
+@@ -39,10 +39,9 @@ public sealed class PlantHolderSystem : EntitySystem
+     [Dependency] private readonly TagSystem _tagSystem = default!;
+     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+     [Dependency] private readonly IRobustRandom _random = default!;
++    [Dependency] private readonly ISerializationManager _copier = default!;
+ 
+-
+-    public const float HydroponicsSpeedMultiplier = 1f;
+-    public const float HydroponicsConsumptionMultiplier = 2f;
++    public const float WeedHighLevelThreshold = 10f;
+ 
+     public override void Initialize()
+     {
+@@ -130,9 +129,6 @@ private void OnExamine(Entity<PlantHolderComponent> entity, ref ExaminedEvent ar
+                 if (component.Toxins > 40f)
+                     args.PushMarkup(Loc.GetString("plant-holder-component-toxins-high-warning"));
+ 
+-                if (component.ImproperLight)
+-                    args.PushMarkup(Loc.GetString("plant-holder-component-light-improper-warning"));
+-
+                 if (component.ImproperHeat)
+                     args.PushMarkup(Loc.GetString("plant-holder-component-heat-improper-warning"));
+ 
+@@ -176,6 +172,9 @@ private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUs
+                 }
+                 component.LastCycle = _gameTiming.CurTime;
+ 
++                foreach(var g in seed.GrowthComponents)
++                    EntityManager.AddComponent(uid, _copier.CreateCopy(g, notNullableOverride: true));
++
+                 QueueDel(args.Used);
+ 
+                 CheckLevelSanity(uid, component);
+@@ -337,11 +336,6 @@ private void OnInteractHand(Entity<PlantHolderComponent> entity, ref InteractHan
+         DoHarvest(entity, args.User, entity.Comp);
+     }
+ 
+-    public void WeedInvasion()
+-    {
+-        // TODO
+-    }
+-
+ 
+     public void Update(EntityUid uid, PlantHolderComponent? component = null)
+     {
+@@ -363,7 +357,7 @@ public void Update(EntityUid uid, PlantHolderComponent? component = null)
+ 
+         component.LastCycle = curTime;
+ 
+-        // Process mutations
++        // Process mutations. All plants can mutate, so this stays here.
+         if (component.MutationLevel > 0)
+         {
+             Mutate(uid, Math.Min(component.MutationLevel, 25), component);
+@@ -371,7 +365,7 @@ public void Update(EntityUid uid, PlantHolderComponent? component = null)
+             component.MutationLevel = 0;
+         }
+ 
+-        // Weeds like water and nutrients! They may appear even if there's not a seed planted.
++        // Weeds like water and nutrients! They may appear even if there's not a seed planted. Isnt connected to the plant, stays here in PlantHolder.
+         if (component.WaterLevel > 10 && component.NutritionLevel > 5)
+         {
+             var chance = 0f;
+@@ -383,27 +377,20 @@ public void Update(EntityUid uid, PlantHolderComponent? component = null)
+                 chance = 0.01f;
+ 
+             if (_random.Prob(chance))
+-                component.WeedLevel += 1 + HydroponicsSpeedMultiplier * component.WeedCoefficient;
++                component.WeedLevel += 1 + component.WeedCoefficient; // * HydroponicsSpeedMultiplier 
+ 
+             if (component.DrawWarnings)
+                 component.UpdateSpriteAfterUpdate = true;
+         }
+ 
+         if (component.Seed != null && component.Seed.TurnIntoKudzu
+-            && component.WeedLevel >= component.Seed.WeedHighLevelThreshold)
++            && component.WeedLevel >= WeedHighLevelThreshold)
+         {
+             Spawn(component.Seed.KudzuPrototype, Transform(uid).Coordinates.SnapToGrid(EntityManager));
+             component.Seed.TurnIntoKudzu = false;
+             component.Health = 0;
+         }
+ 
+-        // There's a chance for a weed explosion to happen if weeds take over.
+-        // Plants that are themselves weeds (WeedTolerance > 8) are unaffected.
+-        if (component.WeedLevel >= 10 && _random.Prob(0.1f))
+-        {
+-            if (component.Seed == null || component.WeedLevel >= component.Seed.WeedTolerance + 2)
+-                WeedInvasion();
+-        }
+ 
+         // If we have no seed planted, or the plant is dead, stop processing here.
+         if (component.Seed == null || component.Dead)
+@@ -414,144 +401,6 @@ public void Update(EntityUid uid, PlantHolderComponent? component = null)
+             return;
+         }
+ 
+-        // There's a small chance the pest population increases.
+-        // Can only happen when there's a live seed planted.
+-        if (_random.Prob(0.01f))
+-        {
+-            component.PestLevel += 0.5f * HydroponicsSpeedMultiplier;
+-            if (component.DrawWarnings)
+-                component.UpdateSpriteAfterUpdate = true;
+-        }
+-
+-        // Advance plant age here.
+-        if (component.SkipAging > 0)
+-            component.SkipAging--;
+-        else
+-        {
+-            if (_random.Prob(0.8f))
+-                component.Age += (int)(1 * HydroponicsSpeedMultiplier);
+-
+-            component.UpdateSpriteAfterUpdate = true;
+-        }
+-
+-        // Nutrient consumption.
+-        if (component.Seed.NutrientConsumption > 0 && component.NutritionLevel > 0 && _random.Prob(0.75f))
+-        {
+-            component.NutritionLevel -= MathF.Max(0f, component.Seed.NutrientConsumption * HydroponicsSpeedMultiplier);
+-            if (component.DrawWarnings)
+-                component.UpdateSpriteAfterUpdate = true;
+-        }
+-
+-        // Water consumption.
+-        if (component.Seed.WaterConsumption > 0 && component.WaterLevel > 0 && _random.Prob(0.75f))
+-        {
+-            component.WaterLevel -= MathF.Max(0f,
+-                component.Seed.WaterConsumption * HydroponicsConsumptionMultiplier * HydroponicsSpeedMultiplier);
+-            if (component.DrawWarnings)
+-                component.UpdateSpriteAfterUpdate = true;
+-        }
+-
+-        var healthMod = _random.Next(1, 3) * HydroponicsSpeedMultiplier;
+-
+-        // Make sure genetics are viable.
+-        if (!component.Seed.Viable)
+-        {
+-            AffectGrowth(uid, -1, component);
+-            component.Health -= 6 * healthMod;
+-        }
+-
+-        // Prevents the plant from aging when lacking resources.
+-        // Limits the effect on aging so that when resources are added, the plant starts growing in a reasonable amount of time.
+-        if (component.SkipAging < 10)
+-        {
+-            // Make sure the plant is not starving.
+-            if (component.NutritionLevel > 5)
+-            {
+-                component.Health += Convert.ToInt32(_random.Prob(0.35f)) * healthMod;
+-            }
+-            else
+-            {
+-                AffectGrowth(uid, -1, component);
+-                component.Health -= healthMod;
+-            }
+-
+-            // Make sure the plant is not thirsty.
+-            if (component.WaterLevel > 10)
+-            {
+-                component.Health += Convert.ToInt32(_random.Prob(0.35f)) * healthMod;
+-            }
+-            else
+-            {
+-                AffectGrowth(uid, -1, component);
+-                component.Health -= healthMod;
+-            }
+-
+-            if (component.DrawWarnings)
+-                component.UpdateSpriteAfterUpdate = true;
+-        }
+-
+-        var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
+-
+-        component.MissingGas = 0;
+-        if (component.Seed.ConsumeGasses.Count > 0)
+-        {
+-            foreach (var (gas, amount) in component.Seed.ConsumeGasses)
+-            {
+-                if (environment.GetMoles(gas) < amount)
+-                {
+-                    component.MissingGas++;
+-                    continue;
+-                }
+-
+-                environment.AdjustMoles(gas, -amount);
+-            }
+-
+-            if (component.MissingGas > 0)
+-            {
+-                component.Health -= component.MissingGas * HydroponicsSpeedMultiplier;
+-                if (component.DrawWarnings)
+-                    component.UpdateSpriteAfterUpdate = true;
+-            }
+-        }
+-
+-        // SeedPrototype pressure resistance.
+-        var pressure = environment.Pressure;
+-        if (pressure < component.Seed.LowPressureTolerance || pressure > component.Seed.HighPressureTolerance)
+-        {
+-            component.Health -= healthMod;
+-            component.ImproperPressure = true;
+-            if (component.DrawWarnings)
+-                component.UpdateSpriteAfterUpdate = true;
+-        }
+-        else
+-        {
+-            component.ImproperPressure = false;
+-        }
+-
+-        // SeedPrototype ideal temperature.
+-        if (MathF.Abs(environment.Temperature - component.Seed.IdealHeat) > component.Seed.HeatTolerance)
+-        {
+-            component.Health -= healthMod;
+-            component.ImproperHeat = true;
+-            if (component.DrawWarnings)
+-                component.UpdateSpriteAfterUpdate = true;
+-        }
+-        else
+-        {
+-            component.ImproperHeat = false;
+-        }
+-
+-        // Gas production.
+-        var exudeCount = component.Seed.ExudeGasses.Count;
+-        if (exudeCount > 0)
+-        {
+-            foreach (var (gas, amount) in component.Seed.ExudeGasses)
+-            {
+-                environment.AdjustMoles(gas,
+-                    MathF.Max(1f, MathF.Round(amount * MathF.Round(component.Seed.Potency) / exudeCount)));
+-            }
+-        }
+-
+         // Toxin levels beyond the plant's tolerance cause damage.
+         // They are, however, slowly reduced over time.
+         if (component.Toxins > 0)
+@@ -567,75 +416,7 @@ public void Update(EntityUid uid, PlantHolderComponent? component = null)
+                 component.UpdateSpriteAfterUpdate = true;
+         }
+ 
+-        // Weed levels.
+-        if (component.PestLevel > 0)
+-        {
+-            // TODO: Carnivorous plants?
+-            if (component.PestLevel > component.Seed.PestTolerance)
+-            {
+-                component.Health -= HydroponicsSpeedMultiplier;
+-            }
+-
+-            if (component.DrawWarnings)
+-                component.UpdateSpriteAfterUpdate = true;
+-        }
+-
+-        // Weed levels.
+-        if (component.WeedLevel > 0)
+-        {
+-            // TODO: Parasitic plants.
+-            if (component.WeedLevel >= component.Seed.WeedTolerance)
+-            {
+-                component.Health -= HydroponicsSpeedMultiplier;
+-            }
+-
+-            if (component.DrawWarnings)
+-                component.UpdateSpriteAfterUpdate = true;
+-        }
+-
+-        if (component.Age > component.Seed.Lifespan)
+-        {
+-            component.Health -= _random.Next(3, 5) * HydroponicsSpeedMultiplier;
+-            if (component.DrawWarnings)
+-                component.UpdateSpriteAfterUpdate = true;
+-        }
+-        else if (component.Age < 0) // Revert back to seed packet!
+-        {
+-            var packetSeed = component.Seed;
+-            // will put it in the trays hands if it has any, please do not try doing this
+-            _botany.SpawnSeedPacket(packetSeed, Transform(uid).Coordinates, uid);
+-            RemovePlant(uid, component);
+-            component.ForceUpdate = true;
+-            Update(uid, component);
+-            return;
+-        }
+-
+         CheckHealth(uid, component);
+-
+-        if (component.Harvest && component.Seed.HarvestRepeat == HarvestType.SelfHarvest)
+-            AutoHarvest(uid, component);
+-
+-        // If enough time has passed since the plant was harvested, we're ready to harvest again!
+-        if (!component.Dead && component.Seed.ProductPrototypes.Count > 0)
+-        {
+-            if (component.Age > component.Seed.Production)
+-            {
+-                if (component.Age - component.LastProduce > component.Seed.Production && !component.Harvest)
+-                {
+-                    component.Harvest = true;
+-                    component.LastProduce = component.Age;
+-                }
+-            }
+-            else
+-            {
+-                if (component.Harvest)
+-                {
+-                    component.Harvest = false;
+-                    component.LastProduce = component.Age;
+-                }
+-            }
+-        }
+-
+         CheckLevelSanity(uid, component);
+ 
+         if (component.UpdateSpriteAfterUpdate)
+@@ -763,10 +544,8 @@ public void Die(EntityUid uid, PlantHolderComponent? component = null)
+         component.MutationLevel = 0;
+         component.YieldMod = 1;
+         component.MutationMod = 1;
+-        component.ImproperLight = false;
+-        component.ImproperHeat = false;
+         component.ImproperPressure = false;
+-        component.WeedLevel += 1 * HydroponicsSpeedMultiplier;
++        component.WeedLevel += 1; // * HydroponicsSpeedMultiplier;
+         component.PestLevel = 0;
+         UpdateSprite(uid, component);
+     }
+@@ -776,6 +555,10 @@ public void RemovePlant(EntityUid uid, PlantHolderComponent? component = null)
+         if (!Resolve(uid, ref component))
+             return;
+ 
++        if (component.Seed != null)
++            foreach (var g in component.Seed.GrowthComponents)
++                EntityManager.RemoveComponent(uid, g);
++
+         component.YieldMod = 1;
+         component.MutationMod = 1;
+         component.PestLevel = 0;
+@@ -785,7 +568,6 @@ public void RemovePlant(EntityUid uid, PlantHolderComponent? component = null)
+         component.LastProduce = 0;
+         component.Sampled = false;
+         component.Harvest = false;
+-        component.ImproperLight = false;
+         component.ImproperPressure = false;
+         component.ImproperHeat = false;
+ 
+@@ -868,6 +650,10 @@ private void Mutate(EntityUid uid, float severity, PlantHolderComponent? compone
+         {
+             EnsureUniqueSeed(uid, component);
+             _mutation.MutateSeed(uid, ref component.Seed, severity);
++
++            //TODO: this is a temp check to apply autoharvest. New mutation system should handle this correctly.
++            if (component.Seed.HarvestRepeat == HarvestType.SelfHarvest)
++                Comp<AutoHarvestGrowthComponent>(uid);
+         }
+     }
+ 
+@@ -925,7 +711,7 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent? component = null)
+         _appearance.SetData(uid, PlantHolderVisuals.NutritionLight, component.NutritionLevel <= 8, app);
+         _appearance.SetData(uid, PlantHolderVisuals.AlertLight,
+             component.WeedLevel >= 5 || component.PestLevel >= 5 || component.Toxins >= 40 || component.ImproperHeat ||
+-            component.ImproperLight || component.ImproperPressure || component.MissingGas > 0, app);
++            component.ImproperPressure || component.MissingGas > 0, app);
+         _appearance.SetData(uid, PlantHolderVisuals.HarvestLight, component.Harvest, app);
+     }
+ 
+diff --git a/Content.Server/Botany/Systems/PressureGrowthSystem.cs b/Content.Server/Botany/Systems/PressureGrowthSystem.cs
+new file mode 100644
+index 0000000000..45368672bc
+--- /dev/null
++++ b/Content.Server/Botany/Systems/PressureGrowthSystem.cs
+@@ -0,0 +1,40 @@
++using Content.Server.Atmos.EntitySystems;
++using Content.Server.Botany.Components;
++using Content.Shared.Atmos;
++
++namespace Content.Server.Botany.Systems;
++public sealed class PressureGrowthSystem : PlantGrowthSystem
++{
++    [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly PlantHolderSystem _plantHolderSystem = default!;
++    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
++
++    public override void Initialize()
++    {
++        base.Initialize();
++        SubscribeLocalEvent<PressureGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(EntityUid uid, PressureGrowthComponent component, OnPlantGrowEvent args)
++    {
++        PlantHolderComponent? holder = null;
++        Resolve<PlantHolderComponent>(uid, ref holder);
++
++        if (holder == null || holder.Seed == null || holder.Dead)
++            return;
++
++        var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
++        var pressure = environment.Pressure;
++        if (pressure < component.LowPressureTolerance || pressure > component.HighPressureTolerance)
++        {
++            holder.Health -= _random.Next(1, 3);
++            holder.ImproperPressure = true;
++            if (holder.DrawWarnings)
++                holder.UpdateSpriteAfterUpdate = true;
++        }
++        else
++        {
++            holder.ImproperPressure = false;
++        }
++    }
++}
+diff --git a/Content.Server/Botany/Systems/TemperatureGrowthSystem.cs b/Content.Server/Botany/Systems/TemperatureGrowthSystem.cs
+new file mode 100644
+index 0000000000..8379ad7747
+--- /dev/null
++++ b/Content.Server/Botany/Systems/TemperatureGrowthSystem.cs
+@@ -0,0 +1,40 @@
++using Content.Server.Atmos.EntitySystems;
++using Content.Server.Botany.Components;
++using Content.Shared.Atmos;
++
++namespace Content.Server.Botany.Systems;
++public sealed class TemperatureGrowthSystem : PlantGrowthSystem
++{
++    [Dependency] private readonly BotanySystem _botany = default!;
++    [Dependency] private readonly PlantHolderSystem _plantHolderSystem = default!;
++    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
++
++    public override void Initialize()
++    {
++        base.Initialize();
++        SubscribeLocalEvent<TemperatureGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(EntityUid uid, TemperatureGrowthComponent component, OnPlantGrowEvent args)
++    {
++    
++        PlantHolderComponent? holder = null;
++        Resolve<PlantHolderComponent>(uid, ref holder);
++
++        if (holder == null || holder.Seed == null || holder.Dead)
++            return;
++
++        var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
++        if (MathF.Abs(environment.Temperature - component.IdealHeat) > component.HeatTolerance)
++        {
++            holder.Health -= _random.Next(1, 3);
++            holder.ImproperHeat = true;
++            if (holder.DrawWarnings)
++                holder.UpdateSpriteAfterUpdate = true;
++        }
++        else
++        {
++            holder.ImproperHeat = false;
++        }
++    }
++}
+diff --git a/Content.Server/Botany/Systems/UnviableGrowthSystem.cs b/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
+new file mode 100644
+index 0000000000..cd2b8d3d76
+--- /dev/null
++++ b/Content.Server/Botany/Systems/UnviableGrowthSystem.cs
+@@ -0,0 +1,22 @@
++using Content.Server.Botany.Components;
++
++namespace Content.Server.Botany.Systems;
++public sealed class UnviableGrowthSystem : PlantGrowthSystem
++{
++    public override void Initialize()
++    {
++        base.Initialize();
++        SubscribeLocalEvent<UnviableGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(EntityUid uid, UnviableGrowthComponent component, OnPlantGrowEvent args)
++    {
++        PlantHolderComponent? holder = null;
++        Resolve<PlantHolderComponent>(uid, ref holder);
++
++        if (holder == null || holder.Seed == null || holder.Dead)
++            return;
++
++        holder.Health -= 6 * _random.Next(1, 3) * HydroponicsSpeedMultiplier;
++    }
++}
+diff --git a/Content.Server/Botany/Systems/WaterGrowthSystem.cs b/Content.Server/Botany/Systems/WaterGrowthSystem.cs
+new file mode 100644
+index 0000000000..fd2a64a0a1
+--- /dev/null
++++ b/Content.Server/Botany/Systems/WaterGrowthSystem.cs
+@@ -0,0 +1,44 @@
++using Content.Server.Botany.Components;
++using Robust.Shared.Random;
++
++namespace Content.Server.Botany.Systems;
++public sealed class WaterGrowthSystem : PlantGrowthSystem
++{
++    public override void Initialize()
++    {
++        base.Initialize();
++        SubscribeLocalEvent<WaterGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(EntityUid uid, WaterGrowthComponent component, OnPlantGrowEvent args)
++    {
++        PlantHolderComponent? holder = null;
++        Resolve<PlantHolderComponent>(uid, ref holder);
++
++        if (holder == null || holder.Seed == null || holder.Dead)
++            return;
++
++        if (component.WaterConsumption > 0 && holder.WaterLevel > 0 && _random.Prob(0.75f))
++        {
++            holder.WaterLevel -= MathF.Max(0f,
++                component.WaterConsumption * HydroponicsConsumptionMultiplier * HydroponicsSpeedMultiplier);
++            if (holder.DrawWarnings)
++                holder.UpdateSpriteAfterUpdate = true;
++        }
++
++        var healthMod = _random.Next(1, 3) * HydroponicsSpeedMultiplier;
++        if (holder.SkipAging < 10)
++        {
++            // Make sure the plant is not thirsty.
++            if (holder.WaterLevel > 10)
++            {
++                holder.Health += Convert.ToInt32(_random.Prob(0.35f)) * healthMod;
++            }
++            else
++            {
++                AffectGrowth(-1, holder);
++                holder.Health -= healthMod;
++            }
++        }
++    }
++}
+diff --git a/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+new file mode 100644
+index 0000000000..1980f18eb0
+--- /dev/null
++++ b/Content.Server/Botany/Systems/WeedPestGrowthSystem.cs
+@@ -0,0 +1,37 @@
++using Content.Server.Botany.Components;
++using Robust.Shared.Random;
++
++namespace Content.Server.Botany.Systems;
++public sealed class WeedPestGrowthSystem : PlantGrowthSystem
++{
++    public override void Initialize()
++    {
++        base.Initialize();
++        SubscribeLocalEvent<WeedPestGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
++    }
++
++    private void OnPlantGrow(EntityUid uid, WeedPestGrowthComponent component, OnPlantGrowEvent args)
++    {
++        PlantHolderComponent? holder = null;
++        Resolve<PlantHolderComponent>(uid, ref holder);
++
++        if (holder == null || holder.Seed == null || holder.Dead)
++            return;
++
++        // There's a small chance the pest population increases. Only happens with plants present.
++        if (_random.Prob(0.01f))
++        {
++            holder.PestLevel += 0.5f * HydroponicsSpeedMultiplier;
++            if (holder.DrawWarnings)
++                holder.UpdateSpriteAfterUpdate = true;
++        }
++
++        // Pest levels.
++        if (holder.PestLevel > component.PestTolerance)
++            holder.Health -= HydroponicsSpeedMultiplier;
++
++        // Weed levels.
++        if (holder.WeedLevel >= component.WeedTolerance)
++            holder.Health -= HydroponicsSpeedMultiplier;
++    }
++}
+diff --git a/Content.Server/EntityEffects/Effects/PlantMetabolism/PlantPhalanximine.cs b/Content.Server/EntityEffects/Effects/PlantMetabolism/PlantPhalanximine.cs
+index 96d98bfbf2..8a2fa559ca 100644
+--- a/Content.Server/EntityEffects/Effects/PlantMetabolism/PlantPhalanximine.cs
++++ b/Content.Server/EntityEffects/Effects/PlantMetabolism/PlantPhalanximine.cs
+@@ -16,7 +16,7 @@ public override void Effect(EntityEffectBaseArgs args)
+                                 plantHolderComp.Seed.Immutable)
+             return;
+ 
+-        plantHolderComp.Seed.Viable = true;
++        args.EntityManager.RemoveComponent<UnviableGrowthComponent>(args.TargetEntity);
+     }
+ 
+     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => Loc.GetString("reagent-effect-guidebook-plant-phalanximine", ("chance", Probability));
+diff --git a/Content.Server/EntityEffects/Effects/PlantMutateGases.cs b/Content.Server/EntityEffects/Effects/PlantMutateGases.cs
+index 52b9da3a85..de54677d37 100644
+--- a/Content.Server/EntityEffects/Effects/PlantMutateGases.cs
++++ b/Content.Server/EntityEffects/Effects/PlantMutateGases.cs
+@@ -20,24 +20,23 @@ public sealed partial class PlantMutateExudeGasses : EntityEffect
+ 
+     public override void Effect(EntityEffectBaseArgs args)
+     {
+-        var plantholder = args.EntityManager.GetComponent<PlantHolderComponent>(args.TargetEntity);
++        var gasses = args.EntityManager.GetComponent<ExudeGasGrowthComponent>(args.TargetEntity);
+ 
+-        if (plantholder.Seed == null)
++        if (gasses == null)
+             return;
+ 
+         var random = IoCManager.Resolve<IRobustRandom>();
+-        var gasses = plantholder.Seed.ExudeGasses;
+ 
+         // Add a random amount of a random gas to this gas dictionary
+         float amount = random.NextFloat(MinValue, MaxValue);
+         Gas gas = random.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList());
+-        if (gasses.ContainsKey(gas))
++        if (gasses.ExudeGasses.ContainsKey(gas))
+         {
+-            gasses[gas] += amount;
++            gasses.ExudeGasses[gas] += amount;
+         }
+         else
+         {
+-            gasses.Add(gas, amount);
++            gasses.ExudeGasses.Add(gas, amount);
+         }
+     }
+ 
+@@ -59,24 +58,22 @@ public sealed partial class PlantMutateConsumeGasses : EntityEffect
+     public float MaxValue = 0.5f;
+     public override void Effect(EntityEffectBaseArgs args)
+     {
+-        var plantholder = args.EntityManager.GetComponent<PlantHolderComponent>(args.TargetEntity);
+-
+-        if (plantholder.Seed == null)
++        var gasses = args.EntityManager.GetComponent<ConsumeGasGrowthComponent>(args.TargetEntity);
++        if (gasses == null)
+             return;
+ 
+         var random = IoCManager.Resolve<IRobustRandom>();
+-        var gasses = plantholder.Seed.ConsumeGasses;
+ 
+         // Add a random amount of a random gas to this gas dictionary
+         float amount = random.NextFloat(MinValue, MaxValue);
+         Gas gas = random.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList());
+-        if (gasses.ContainsKey(gas))
++        if (gasses.ConsumeGasses.ContainsKey(gas))
+         {
+-            gasses[gas] += amount;
++            gasses.ConsumeGasses[gas] += amount;
+         }
+         else
+         {
+-            gasses.Add(gas, amount);
++            gasses.ConsumeGasses.Add(gas, amount);
+         }
+     }
+ 
+diff --git a/Resources/Maps/Salvage/vegan-meatball.yml b/Resources/Maps/Salvage/vegan-meatball.yml
+index 824e3d0b7e..8a0e8d8ef7 100644
+--- a/Resources/Maps/Salvage/vegan-meatball.yml
++++ b/Resources/Maps/Salvage/vegan-meatball.yml
+@@ -488,14 +488,11 @@ entities:
+         splatPrototype: null
+         lifespan: 75
+         endurance: 100
+-        weedHighLevelThreshold: 10
+         weedTolerance: 5
+         pestTolerance: 5
+         highPressureTolerance: 121
+         lowPressureTolerance: 81
+         toxinsTolerance: 4
+-        lightTolerance: 3
+-        idealLight: 9
+         heatTolerance: 10
+         idealHeat: 298
+         waterConsumption: 0.4
+@@ -561,14 +558,11 @@ entities:
+         splatPrototype: null
+         lifespan: 25
+         endurance: 100
+-        weedHighLevelThreshold: 10
+         weedTolerance: 5
+         pestTolerance: 5
+         highPressureTolerance: 121
+         lowPressureTolerance: 81
+         toxinsTolerance: 4
+-        lightTolerance: 3
+-        idealLight: 7
+         heatTolerance: 10
+         idealHeat: 293
+         waterConsumption: 0.6
+diff --git a/Resources/Prototypes/Hydroponics/seeds.yml b/Resources/Prototypes/Hydroponics/seeds.yml
+index 7349f3c3d7..c864e982e2 100644
+--- a/Resources/Prototypes/Hydroponics/seeds.yml
++++ b/Resources/Prototypes/Hydroponics/seeds.yml
+@@ -14,8 +14,6 @@
+   production: 3
+   yield: 3
+   potency: 5
+-  idealLight: 8
+-  nutrientConsumption: 0.40
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -40,8 +38,6 @@
+   production: 3
+   yield: 3
+   potency: 5
+-  idealLight: 8
+-  nutrientConsumption: 0.40
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -51,6 +47,15 @@
+       Min: 5
+       Max: 20
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.4
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: oat
+@@ -66,8 +71,6 @@
+   production: 3
+   yield: 3
+   potency: 5
+-  idealLight: 8
+-  nutrientConsumption: 0.40
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -77,6 +80,15 @@
+       Min: 5
+       Max: 20
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.4
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: banana
+@@ -94,8 +106,6 @@
+   maturation: 6
+   production: 6
+   yield: 2
+-  idealLight: 9
+-  waterConsumption: 0.60
+   idealHeat: 298
+   chemicals:
+     Vitamin:
+@@ -106,6 +116,15 @@
+       Min: 1
+       Max: 2
+       PotencyDivisor: 50
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: mimana
+@@ -121,8 +140,6 @@
+   maturation: 6
+   production: 6
+   yield: 2
+-  idealLight: 9
+-  waterConsumption: 0.60
+   idealHeat: 298
+   chemicals:
+     MuteToxin:
+@@ -133,6 +150,15 @@
+       Min: 1
+       Max: 2
+       PotencyDivisor: 50
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: carrots
+@@ -149,7 +175,6 @@
+   yield: 3
+   potency: 10
+   growthStages: 3
+-  waterConsumption: 0.60
+   chemicals:
+     JuiceCarrot:
+       Min: 1
+@@ -163,6 +188,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: laughinPea
+@@ -181,10 +215,7 @@
+   production: 5
+   yield: 3
+   potency: 20
+-  idealLight: 8
+   harvestRepeat: Repeat
+-  nutrientConsumption: 0.6
+-  waterConsumption: 0.6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -198,6 +229,15 @@
+       Min: 1
+       Max: 10
+       PotencyDivisor: 5
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.6
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: lemon
+@@ -218,7 +258,6 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 8
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -228,6 +267,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: lemoon
+@@ -244,7 +292,6 @@
+   production: 6
+   yield: 4
+   potency: 1
+-  idealLight: 8
+   chemicals:
+     Vitamin:
+       Min: 1
+@@ -254,6 +301,15 @@
+       Min: 8
+       Max: 20
+       PotencyDivisor: 5
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: lime
+@@ -273,7 +329,6 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 8
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -283,6 +338,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: orange
+@@ -303,7 +367,6 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 8
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -329,7 +392,6 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 8
+   chemicals:
+     Haloperidol:
+       Min: 1
+@@ -343,6 +405,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: pineapple
+@@ -359,7 +430,6 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 8
+   growthStages: 3
+   chemicals:
+     Nutriment:
+@@ -374,6 +444,15 @@
+       Min: 1
+       Max: 2
+       PotencyDivisor: 50
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: potato
+@@ -390,7 +469,6 @@
+   yield: 3
+   potency: 10
+   growthStages: 4
+-  waterConsumption: 0.60
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -400,6 +478,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: sugarcane
+@@ -425,6 +512,15 @@
+       Min: 4
+       Max: 5
+       PotencyDivisor: 5
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: teaPlant
+@@ -442,14 +538,21 @@
+   yield: 2
+   potency: 20
+   growthStages: 5
+-  waterConsumption: 0.6
+-  idealLight: 9
+   idealHeat: 298
+   chemicals:
+     Vitamin:
+       Min: 1
+       Max: 5
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: papercane
+@@ -468,6 +571,15 @@
+   potency: 10
+   growthStages: 3
+   idealHeat: 298
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: towercap
+@@ -487,10 +599,16 @@
+   yield: 5
+   potency: 1
+   growthStages: 3
+-  waterConsumption: 0.60
+-  nutrientConsumption: 0.50
+-  lightTolerance: 6
+   idealHeat: 288
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: steelcap
+@@ -508,10 +626,16 @@
+   yield: 3
+   potency: 1
+   growthStages: 3
+-  waterConsumption: 0.60
+-  nutrientConsumption: 0.80
+-  lightTolerance: 6
+   idealHeat: 288
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.8
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: tomato
+@@ -531,9 +655,6 @@
+   production: 6
+   yield: 2
+   potency: 10
+-  waterConsumption: 0.60
+-  nutrientConsumption: 0.40
+-  idealLight: 8
+   idealHeat: 298
+   splatPrototype: PuddleSplatter
+   chemicals:
+@@ -549,6 +670,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.4
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: blueTomato
+@@ -565,9 +695,6 @@
+   production: 6
+   yield: 2
+   potency: 10
+-  waterConsumption: 0.60
+-  nutrientConsumption: 0.70
+-  idealLight: 8
+   idealHeat: 298
+   splatPrototype: PuddleSplatter
+   chemicals:
+@@ -583,6 +710,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.7
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: bloodTomato
+@@ -601,9 +737,6 @@
+   production: 6
+   yield: 2
+   potency: 10
+-  waterConsumption: 0.60
+-  nutrientConsumption: 0.70
+-  idealLight: 8
+   idealHeat: 298
+   splatPrototype: PuddleSplatter
+   chemicals:
+@@ -615,6 +748,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.7
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: killerTomato
+@@ -631,9 +773,6 @@
+   production: 6
+   yield: 2
+   potency: 10
+-  waterConsumption: 0.60
+-  nutrientConsumption: 0.70
+-  idealLight: 8
+   idealHeat: 298
+   growthStages: 2
+   splatPrototype: PuddleSplatter
+@@ -646,6 +785,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.7
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: eggplant
+@@ -664,7 +812,6 @@
+   production: 6
+   yield: 2
+   potency: 20
+-  idealLight: 9
+   idealHeat: 298
+   chemicals:
+     Nutriment:
+@@ -675,6 +822,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: cabbage
+@@ -700,6 +856,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: garlic
+@@ -729,6 +894,15 @@
+       Min: 1
+       Max: 8
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: apple
+@@ -747,7 +921,6 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -757,6 +930,16 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
++      
+ 
+ - type: seed
+   id: goldenApple
+@@ -773,9 +956,6 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 6
+-  waterConsumption: 0.75
+-  nutrientConsumption: 0.75
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -788,7 +968,16 @@
+     DoctorsDelight:
+       Min: 3
+       Max: 13
+-      PotencyDivisor: 10
++      PotencyDivisor: 10 
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.75
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.75
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: corn
+@@ -805,8 +994,6 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  idealLight: 8
+-  waterConsumption: 0.60
+   idealHeat: 298
+   chemicals:
+     Nutriment:
+@@ -817,6 +1004,15 @@
+       Min: 5
+       Max: 15
+       PotencyDivisor: 10
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: onion
+@@ -835,8 +1031,6 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  idealLight: 8
+-  waterConsumption: 0.60
+   idealHeat: 298
+   chemicals:
+     Nutriment:
+@@ -851,6 +1045,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: onionred
+@@ -867,8 +1070,6 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  idealLight: 8
+-  waterConsumption: 0.60
+   idealHeat: 298
+   chemicals:
+     Nutriment:
+@@ -883,6 +1084,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: chanterelle
+@@ -899,15 +1109,21 @@
+   yield: 5
+   potency: 1
+   growthStages: 3
+-  lightTolerance: 6
+-  waterConsumption: 0.60
+-  nutrientConsumption: 0.50
+   idealHeat: 288
+   chemicals:
+     Nutriment:
+       Min: 1
+       Max: 25
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: eggy
+@@ -924,14 +1140,21 @@
+   production: 12
+   yield: 2
+   potency: 20
+-  nutrientConsumption: 0.50
+-  idealLight: 9
+   idealHeat: 298
+   chemicals:
+     Egg:
+       Min: 1
+       Max: 10
+       PotencyDivisor: 10
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: cannabis
+@@ -951,14 +1174,21 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  waterConsumption: 0.40
+-  idealLight: 9
+   idealHeat: 298
+   chemicals:
+     THC:
+       Min: 1
+       Max: 10
+       PotencyDivisor: 10
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.4
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: rainbowCannabis
+@@ -976,8 +1206,6 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  waterConsumption: 0.40
+-  idealLight: 9
+   idealHeat: 298
+   chemicals:
+     SpaceDrugs:
+@@ -1004,6 +1232,15 @@
+       Min: 0
+       Max: 5
+       PotencyDivisor: 33
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.4
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: tobacco
+@@ -1021,14 +1258,21 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  waterConsumption: 0.40
+-  idealLight: 9
+   idealHeat: 298
+   chemicals:
+     Nicotine:
+       Min: 1
+       Max: 10
+       PotencyDivisor: 10
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.4
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: nettle
+@@ -1047,14 +1291,21 @@
+   yield: 2
+   potency: 20
+   growthStages: 5
+-  idealLight: 8
+-  waterConsumption: 0.60
+   idealHeat: 298
+   chemicals:
+     Histamine:
+       Min: 1
+       Max: 25
+       PotencyDivisor: 4
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: deathNettle
+@@ -1071,9 +1322,6 @@
+   yield: 2
+   potency: 20
+   growthStages: 5
+-  idealLight: 8
+-  waterConsumption: 0.70
+-  nutrientConsumption: 0.80
+   idealHeat: 298
+   chemicals:
+     SulfuricAcid:
+@@ -1084,6 +1332,15 @@
+       Min: 1
+       Max: 15
+       PotencyDivisor: 6
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.7
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.8
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: chili
+@@ -1102,7 +1359,6 @@
+   production: 6
+   yield: 2
+   potency: 20
+-  idealLight: 9
+   idealHeat: 298
+   chemicals:
+     CapsaicinOil:
+@@ -1117,6 +1373,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: chilly
+@@ -1133,7 +1398,6 @@
+   production: 6
+   yield: 2
+   potency: 20
+-  idealLight: 9
+   idealHeat: 298
+   chemicals:
+     Frostoil:
+@@ -1148,6 +1412,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: poppy
+@@ -1166,7 +1439,6 @@
+   yield: 3
+   potency: 10
+   growthStages: 3
+-  waterConsumption: 0.60
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1176,6 +1448,15 @@
+       Min: 1
+       Max: 20
+       PotencyDivisor: 5
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: aloe
+@@ -1192,7 +1473,6 @@
+   yield: 3
+   potency: 10
+   growthStages: 5
+-  waterConsumption: 0.60
+   chemicals:
+     Aloe:
+       Min: 1
+@@ -1202,6 +1482,15 @@
+       Min: 1
+       Max: 10
+       PotencyDivisor: 10
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: lily
+@@ -1220,7 +1509,6 @@
+   yield: 3
+   potency: 10
+   growthStages: 3
+-  waterConsumption: 0.60
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1230,6 +1518,15 @@
+       Min: 1
+       Max: 20
+       PotencyDivisor: 5
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: lingzhi
+@@ -1246,7 +1543,6 @@
+   yield: 3
+   potency: 10
+   growthStages: 3
+-  waterConsumption: 0.60
+   chemicals:
+     Ultravasculine:
+       Min: 1
+@@ -1256,6 +1552,15 @@
+       Min: 1
+       Max: 20
+       PotencyDivisor: 5
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: ambrosiaVulgaris
+@@ -1274,7 +1579,6 @@
+   yield: 3
+   potency: 10
+   growthStages: 6
+-  waterConsumption: 0.60
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1296,6 +1600,15 @@
+       Min: 1
+       Max: 2
+       PotencyDivisor: 50
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: ambrosiaDeus
+@@ -1312,7 +1625,6 @@
+   yield: 3
+   potency: 10
+   growthStages: 6
+-  waterConsumption: 0.60
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1330,6 +1642,15 @@
+       Min: 1
+       Max: 10
+       PotencyDivisor: 10
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: galaxythistle
+@@ -1348,12 +1669,20 @@
+   yield: 3
+   potency: 10
+   growthStages: 3
+-  waterConsumption: 0.60
+   chemicals:
+     Stellibinin:
+       Min: 1
+       Max: 25
+       PotencyDivisor: 4
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: glasstle
+@@ -1370,12 +1699,20 @@
+   yield: 3
+   potency: 10
+   growthStages: 3
+-  waterConsumption: 0.5
+   chemicals:
+     Razorium:
+       Min: 1
+       Max: 25
+       PotencyDivisor: 4
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: flyAmanita
+@@ -1392,8 +1729,6 @@
+   yield: 3
+   potency: 10
+   growthStages: 2
+-  waterConsumption: 0.60
+-  nutrientConsumption: 0.50
+   chemicals:
+     Amatoxin:
+       Min: 1
+@@ -1403,6 +1738,15 @@
+       Min: 1
+       Max: 5
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: gatfruit
+@@ -1422,7 +1766,6 @@
+   yield: 1
+   potency: 10
+   growthStages: 2
+-  idealLight: 6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1432,6 +1775,15 @@
+       Min: 1
+       Max: 5
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: fakeCapfruit
+@@ -1448,7 +1800,6 @@
+   yield: 1
+   potency: 10
+   growthStages: 2
+-  idealLight: 6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1458,6 +1809,15 @@
+       Min: 1
+       Max: 5
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: realCapfruit
+@@ -1474,7 +1834,6 @@
+   yield: 1
+   potency: 10
+   growthStages: 2
+-  idealLight: 6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1484,6 +1843,15 @@
+       Min: 1
+       Max: 5
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: rice
+@@ -1500,9 +1868,6 @@
+   yield: 3
+   potency: 5
+   growthStages: 4
+-  idealLight: 5
+-  nutrientConsumption: 0.40
+-  waterConsumption: 0.60
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1512,6 +1877,15 @@
+       Min: 5
+       Max: 20
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.4
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: soybeans
+@@ -1530,13 +1904,20 @@
+   production: 6
+   yield: 3
+   potency: 5
+-  idealLight: 7
+-  nutrientConsumption: 0.40
+   chemicals:
+     Nutriment:
+       Min: 1
+       Max: 2
+       PotencyDivisor: 50
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.4
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: spacemansTrumpet
+@@ -1553,7 +1934,6 @@
+   production: 3
+   yield: 2
+   potency: 10
+-  waterConsumption: 0.60
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1563,6 +1943,15 @@
+       Min: 1
+       Max: 15
+       PotencyDivisor: 5
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: koibean
+@@ -1579,8 +1968,6 @@
+   production: 6
+   yield: 3
+   potency: 5
+-  idealLight: 7
+-  nutrientConsumption: 0.40
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1590,6 +1977,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 30
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: grape
+@@ -1615,6 +2011,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 25
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: watermelon
+@@ -1632,7 +2037,6 @@
+   production: 3
+   yield: 1
+   potency: 1
+-  idealLight: 8
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1646,6 +2050,15 @@
+       Min: 1
+       Max: 5
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: holymelon
+@@ -1661,7 +2074,6 @@
+   production: 3
+   yield: 1
+   potency: 1
+-  idealLight: 8
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1690,9 +2102,6 @@
+   maturation: 6
+   production: 6
+   yield: 6
+-  idealLight: 7
+-  waterConsumption: 1
+-  nutrientConsumption: 0.8
+   idealHeat: 298
+   chemicals:
+     Vitamin:
+@@ -1703,6 +2112,15 @@
+       Min: 1
+       Max: 2
+       PotencyDivisor: 50
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 1.0
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.8
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: berries
+@@ -1718,8 +2136,6 @@
+   maturation: 6
+   production: 6
+   yield: 4
+-  idealLight: 7
+-  nutrientConsumption: 0.6
+   chemicals:
+     Nutriment:
+       Min: 2
+@@ -1729,6 +2145,15 @@
+       Min: 1
+       Max: 4
+       PotencyDivisor: 40
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.6
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: bungo
+@@ -1745,10 +2170,8 @@
+   production: 6
+   potency: 10
+   yield: 3
+-  idealLight: 8
+   idealHeat: 298
+   growthStages: 4
+-  waterConsumption: 0.6
+   chemicals:
+     Nutriment:
+       Min: 5
+@@ -1758,6 +2181,15 @@
+       Min: 5
+       Max: 10
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: pea
+@@ -1776,10 +2208,7 @@
+   production: 6
+   yield: 3
+   potency: 25
+-  idealLight: 8
+   harvestRepeat: Repeat
+-  nutrientConsumption: 0.5
+-  waterConsumption: 0.5
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1789,6 +2218,15 @@
+       Min: 1
+       Max: 2
+       PotencyDivisor: 50
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: worldPea
+@@ -1805,7 +2243,6 @@
+   production: 6
+   yield: 3
+   potency: 25
+-  idealLight: 8
+   harvestRepeat: Repeat
+   nutrientConsumption: 0.5
+   waterConsumption: 0.5
+@@ -1822,6 +2259,15 @@
+       Min: 1
+       Max: 2
+       PotencyDivisor: 50
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: pumpkin
+@@ -1850,6 +2296,15 @@
+       Min: 1
+       Max: 5
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: bluePumpkin
+@@ -1880,6 +2335,15 @@
+       Min: 1
+       Max: 10
+       PotencyDivisor: 3
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: cotton
+@@ -1897,14 +2361,21 @@
+   production: 3
+   yield: 3
+   potency: 5
+-  idealLight: 8
+   growthStages: 3
+-  waterConsumption: 0.60
+   chemicals:
+     Fiber:
+       Min: 5
+       Max: 10
+       PotencyDivisor: 20
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.6
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: pyrotton
+@@ -1920,9 +2391,7 @@
+   production: 3
+   yield: 2
+   potency: 5
+-  idealLight: 8
+   growthStages: 3
+-  waterConsumption: 0.80
+   chemicals:
+     Fiber:
+       Min: 5
+@@ -1932,6 +2401,15 @@
+       Min: 4
+       Max: 8
+       PotencyDivisor: 30
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.8
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: cherry
+@@ -1948,7 +2426,6 @@
+   production: 6
+   yield: 5
+   potency: 10
+-  idealLight: 6
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1958,6 +2435,15 @@
+       Min: 1
+       Max: 3
+       PotencyDivisor: 40
++  growthComponents:
++    - !type:WaterGrowthComponent
++      waterConsumption: 0.5
++    - !type:NutrientGrowthComponent
++      nutrientConsumption: 0.5
++    - !type:AgeGrowthComponent
++    - !type:WeedPestGrowthComponent
++    - !type:TemperatureGrowthComponent
++    - !type:PressureGrowthComponent
+ 
+ - type: seed
+   id: anomalyBerry
+@@ -1988,4 +2474,4 @@
+     Vitamin:
+       Min: 1
+       Max: 2
+-      PotencyDivisor: 40
++      PotencyDivisor: 40
+\ No newline at end of file
+-- 
+2.55.0
+

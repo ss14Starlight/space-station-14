@@ -1,0 +1,87 @@
+From a10823518664b8c5b930ef2fc3e0da91c2c8b233 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sat, 13 Dec 2025 20:14:48 +0200
+Subject: [PATCH 049/112] EnsureUniqueSeed
+
+---
+ .../Botany/Systems/PlantHolderSystem.cs          | 16 ----------------
+ Content.Server/Botany/Systems/PlantSystem.cs     |  2 +-
+ .../PlantDestroySeedsEntityEffectSystem.cs       |  1 -
+ .../PlantRestoreSeedsEntityEffectSystem.cs       |  1 -
+ 4 files changed, 1 insertion(+), 19 deletions(-)
+
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index e43105c9fa..e55c493c60 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -561,10 +561,7 @@ private void Mutate(EntityUid uid, float severity, PlantHolderComponent? compone
+             return;
+ 
+         if (component.Seed != null)
+-        {
+-            EnsureUniqueSeed(uid, component);
+             _mutation.MutateSeed(uid, ref component.Seed, severity);
+-        }
+     }
+ 
+     public void UpdateSprite(EntityUid uid, PlantHolderComponent component)
+@@ -630,19 +627,6 @@ public void UpdateSprite(EntityUid uid, PlantHolderComponent component)
+         _appearance.SetData(uid, PlantHolderVisuals.HarvestLight, harvest is { ReadyForHarvest: true }, app);
+     }
+ 
+-    /// <summary>
+-    /// Check if the currently contained seed is unique. If it is not, clone it so that we have a unique seed.
+-    /// Necessary to avoid modifying global seeds.
+-    /// </summary>
+-    public void EnsureUniqueSeed(EntityUid uid, PlantHolderComponent? component = null)
+-    {
+-        if (!Resolve(uid, ref component))
+-            return;
+-
+-        if (component.Seed is { Unique: false })
+-            component.Seed = component.Seed.Clone();
+-    }
+-
+     public void ForceUpdateByExternalCause(EntityUid uid, PlantHolderComponent? component = null)
+     {
+         if (!Resolve(uid, ref component))
+diff --git a/Content.Server/Botany/Systems/PlantSystem.cs b/Content.Server/Botany/Systems/PlantSystem.cs
+index d7cbee77ae..7b6f5044f7 100644
+--- a/Content.Server/Botany/Systems/PlantSystem.cs
++++ b/Content.Server/Botany/Systems/PlantSystem.cs
+@@ -4,7 +4,7 @@
+ namespace Content.Server.Botany.Systems;
+ 
+ /// <summary>
+-/// Applies plant trait effects on growth ticks.
++/// Handles plant behavior and growth processing.
+ /// </summary>
+ public sealed class PlantSystem : EntitySystem
+ {
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
+index dd1522d8b6..667e31cc68 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantDestroySeedsEntityEffectSystem.cs
+@@ -23,7 +23,6 @@ protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEf
+         if (!TryComp<PlantTraitsComponent>(entity, out var traits) || traits.Seedless)
+             return;
+ 
+-        _plantHolder.EnsureUniqueSeed(entity, entity.Comp);
+         _popup.PopupEntity(
+             Loc.GetString("botany-plant-seedsdestroyed"),
+             entity,
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
+index bde6bdb111..dc1081ca51 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantRestoreSeedsEntityEffectSystem.cs
+@@ -22,7 +22,6 @@ protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEf
+         if (!TryComp<PlantTraitsComponent>(entity, out var traits) || !traits.Seedless)
+             return;
+ 
+-        _plantHolder.EnsureUniqueSeed(entity, entity.Comp);
+         _popup.PopupEntity(Loc.GetString("botany-plant-seedsrestored"), entity);
+         traits.Seedless = false;
+     }
+-- 
+2.55.0
+

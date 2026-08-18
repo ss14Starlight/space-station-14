@@ -1,0 +1,75 @@
+From 6bd3fb725c216464d7cc231dabd305c5046f913f Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Mon, 5 Jan 2026 17:43:47 +0200
+Subject: [PATCH 080/112] YMAL 2
+
+---
+ .../Entities/Objects/Consumable/Food/produce.yml          | 8 ++++----
+ Resources/Prototypes/Hydroponics/plants.yml               | 4 ++--
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/Resources/Prototypes/Entities/Objects/Consumable/Food/produce.yml b/Resources/Prototypes/Entities/Objects/Consumable/Food/produce.yml
+index a844248bbf..2824ff0324 100644
+--- a/Resources/Prototypes/Entities/Objects/Consumable/Food/produce.yml
++++ b/Resources/Prototypes/Entities/Objects/Consumable/Food/produce.yml
+@@ -1482,7 +1482,7 @@
+   - type: Item
+     heldPrefix: produce
+   - type: Produce
+-    plantId: ChiliPepperPlants
++    plantId: ChiliPlants
+   - type: Tag
+     tags:
+     - Vegetable
+@@ -1518,7 +1518,7 @@
+   - type: Item
+     heldPrefix: produce
+   - type: Produce
+-    plantId: ChillyPepperPlants
++    plantId: ChillyPlants
+   - type: FoodSequenceElement
+     entries:
+       Taco: ChillyPepper
+@@ -1999,7 +1999,7 @@
+         - ReagentId: Nutriment
+           Quantity: 4
+   - type: Produce
+-    plantId: SoybeansPlants
++    plantId: SoybeanPlants
+   - type: Extractable
+     juiceSolution:
+       reagents:
+@@ -2341,7 +2341,7 @@
+   - type: Item
+     heldPrefix: produce
+   - type: Produce
+-    plantId: BerriesPlants
++    plantId: BerryPlants
+   - type: Extractable
+     juiceSolution:
+       reagents:
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index 4c0d695a1b..d93fe56ee2 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -599,7 +599,7 @@
+     growthStages: 3
+   - type: PlantTraits
+     traits:
+-    - !type: TraitLigneous
++      - !type: TraitLigneous
+   - type: BasicGrowth
+     waterConsumption: 0.6
+     nutrientConsumption: 0.5
+@@ -628,7 +628,7 @@
+     growthStages: 3
+   - type: PlantTraits
+     traits:
+-    - !type: TraitLigneous
++      - !type: TraitLigneous
+   - type: BasicGrowth
+     waterConsumption: 0.6
+     nutrientConsumption: 0.8
+-- 
+2.55.0
+

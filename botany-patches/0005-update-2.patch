@@ -1,0 +1,561 @@
+From 85c25ff639afbea9981c2d7d6b3e3755bb1cb286 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 31 Jul 2025 06:30:09 +0300
+Subject: [PATCH 005/112] update 2
+
+---
+ Content.Server/Botany/SeedPrototype.cs        | 48 +++++++++-
+ .../Botany/Systems/BotanySwabSystem.cs        | 44 ++-------
+ .../Botany/Systems/BotanySystem.Seed.cs       |  1 +
+ .../Botany/Systems/PlantGrowthSystem.cs       | 56 +++++------
+ .../Botany/Systems/PlantHolderSystem.cs       |  1 +
+ .../Effects/PlantMutateHarvest.cs             | 30 ------
+ .../EntityEffects/EntityEffectSystem.cs       | 95 ++++++++++---------
+ .../Effects/PlantMutateHarvest.cs             |  9 +-
+ .../en-US/guidebook/chemistry/effects.ftl     | 13 +++
+ 9 files changed, 145 insertions(+), 152 deletions(-)
+ delete mode 100644 Content.Server/EntityEffects/Effects/PlantMutateHarvest.cs
+
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index fdce7ddf88..c019d13f37 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -1,6 +1,7 @@
+ using Content.Server.Botany.Components;
+ using Content.Server.Botany.Systems;
+ using Content.Server.EntityEffects;
++using Content.Shared.Database;
+ using Content.Shared.EntityEffects;
+ using Content.Shared.Random;
+ using Robust.Shared.Audio;
+@@ -177,6 +178,24 @@ public partial class SeedData
+     /// </summary>
+     [DataField]
+     public List<PlantGrowthComponent> GrowthComponents = new();
++
++    /// <summary>
++    /// Whether this seed is viable for growth.
++    /// </summary>
++    [DataField]
++    public bool Viable = true;
++
++    /// <summary>
++    /// Log impact for harvest operations.
++    /// </summary>
++    [DataField]
++    public LogImpact? HarvestLogImpact;
++
++    /// <summary>
++    /// Log impact for plant operations.
++    /// </summary>
++    [DataField]
++    public LogImpact? PlantLogImpact;
+     //{
+     //    new PlantComponent(),
+     //    new BasicGrowthComponent(),
+@@ -192,15 +211,18 @@ public SeedData Clone()
+ 
+         var newSeed = new SeedData
+         {
+-            GrowthComponents = GrowthComponents,
++            GrowthComponents = new List<PlantGrowthComponent>(),
++            Viable = Viable,
++            HarvestLogImpact = HarvestLogImpact,
++            PlantLogImpact = PlantLogImpact,
+             Name = Name,
+             Noun = Noun,
+             DisplayName = DisplayName,
+             Mysterious = Mysterious,
+ 
+             PacketPrototype = PacketPrototype,
+-            ProductPrototypes = new List<EntProtoId>(ProductPrototypes),
+-            MutationPrototypes = new List<ProtoId<SeedPrototype>>(MutationPrototypes),
++            ProductPrototypes = new List<string>(ProductPrototypes),
++            MutationPrototypes = new List<string>(MutationPrototypes),
+             Chemicals = new Dictionary<string, SeedChemQuantity>(Chemicals),
+ 
+             ToxinsTolerance = ToxinsTolerance,
+@@ -228,6 +250,12 @@ public SeedData Clone()
+             Unique = true,
+         };
+ 
++        // Deep copy growth components
++        foreach (var component in GrowthComponents)
++        {
++            newSeed.GrowthComponents.Add(component.DupeComponent());
++        }
++
+         newSeed.Mutations.AddRange(Mutations);
+         return newSeed;
+     }
+@@ -240,14 +268,18 @@ public SeedData SpeciesChange(SeedData other)
+     {
+         var newSeed = new SeedData
+         {
++            GrowthComponents = new List<PlantGrowthComponent>(),
++            Viable = other.Viable,
++            HarvestLogImpact = other.HarvestLogImpact,
++            PlantLogImpact = other.PlantLogImpact,
+             Name = other.Name,
+             Noun = other.Noun,
+             DisplayName = other.DisplayName,
+             Mysterious = other.Mysterious,
+ 
+             PacketPrototype = other.PacketPrototype,
+-            ProductPrototypes = new List<EntProtoId>(other.ProductPrototypes),
+-            MutationPrototypes = new List<ProtoId<SeedPrototype>>(other.MutationPrototypes),
++            ProductPrototypes = new List<string>(other.ProductPrototypes),
++            MutationPrototypes = new List<string>(other.MutationPrototypes),
+ 
+             Chemicals = new Dictionary<string, SeedChemQuantity>(Chemicals),
+ 
+@@ -292,6 +324,12 @@ public SeedData SpeciesChange(SeedData other)
+             }
+         }
+ 
++        // Deep copy growth components from the new species
++        foreach (var component in other.GrowthComponents)
++        {
++            newSeed.GrowthComponents.Add(component.DupeComponent());
++        }
++
+         return newSeed;
+     }
+ }
+diff --git a/Content.Server/Botany/Systems/BotanySwabSystem.cs b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+index bba7e05673..9231f0c2cd 100644
+--- a/Content.Server/Botany/Systems/BotanySwabSystem.cs
++++ b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+@@ -4,10 +4,8 @@
+ using Content.Shared.Examine;
+ using Content.Shared.Interaction;
+ using Content.Shared.Swab;
+-using Microsoft.CodeAnalysis.CSharp.Syntax;
+ using Robust.Shared.Random;
+ using Robust.Shared.Serialization.Manager;
+-using System.Linq;
+ using System.Collections.Generic;
+ 
+ namespace Content.Server.Botany.Systems;
+@@ -90,45 +88,23 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+             if (old == null)
+                 return;
+ 
+-            for (int index = 0; index < old.GrowthComponents.Count(); index++)
+-            {
+-                var c1 = old.GrowthComponents[index];
+-                foreach (var c2 in swab.components)
+-                {
+-                    if (c1.GetType() == c2.GetType())
+-                    {
+-                        if (_random.Prob(0.5f))
+-                            _serializationManager.CopyTo(c2, ref c1, notNullableOverride: true);
+-                    }
+-                }
+-            }
++            // Cross-pollenate the plants
++            plant.Seed = _mutationSystem.Cross(swab.SeedData, old);
+ 
+-            //Growth Components mean that those systems listed for the BotanySwabDoAfterEvent and do their stuff.
+-            //Wait, no. If the swab has components the plant doesn't that wont fire off.
+-            //I DO need to check that here (though maybe I can get away with calling an event for it instead of looking up systems?
+-            //Or maybe some override function that only applies the Cross math (since the other effect is copying the component?)
++            // Transfer old plant pollen to swab
++            swab.SeedData = old;
+ 
+-            //OR OR MAYBE THIS: the event fires, this handles  ones that aren't on the plant, and those system handle the event for ones that do?
+-            //that might be more work?
+-            var plantcomps = EntityManager.GetComponents<PlantGrowthComponent>(args.Args.Target.Value);
+-            foreach (var gc in swab.components)
++            // Copy components from the old plant to the swab
++            if (old.GrowthComponents != null)
+             {
+-                if (plantcomps.Any(p => p.GetType() == gc.GetType()))
+-                {
+-                    //fire the event or override to handle the 50% variable swap test.
+-                }
+-                else
++                swab.components = new List<PlantGrowthComponent>();
++                foreach (var component in old.GrowthComponents)
+                 {
+-                    //copy the component over on the 50% chance.
+-                    if (_random.Prob(0.5f)) {
+-                        //EntityManager.add
+-                    }
++                    var copiedComponent = component.DupeComponent();
++                    swab.components.Add(copiedComponent);
+                 }
+             }
+ 
+-
+-            plant.Seed = _mutationSystem.Cross(swab.SeedData, old); // Cross-pollenate
+-            swab.SeedData = old; // Transfer old plant pollen to swab
+             _popupSystem.PopupEntity(Loc.GetString("botany-swab-to"), args.Args.Target.Value, args.Args.User);
+         }
+ 
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Seed.cs b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+index 912f7d1168..7e15673ca5 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+@@ -16,6 +16,7 @@
+ using System.Linq;
+ using Content.Shared.Administration.Logs;
+ using Content.Shared.Database;
++using LogType = Content.Shared.Database.LogType;
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+diff --git a/Content.Server/Botany/Systems/PlantGrowthSystem.cs b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+index 521fc18344..24cd20f883 100644
+--- a/Content.Server/Botany/Systems/PlantGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+@@ -7,14 +7,17 @@ namespace Content.Server.Botany.Systems;
+ [ByRefEvent]
+ public readonly record struct OnPlantGrowEvent;
+ 
+-//May need to be PlantSystem, since this looks for PlantComponent.
++/// <summary>
++/// Base system for plant growth mechanics. Handles the core growth cycle and provides
++/// common functionality for all plant growth systems.
++/// </summary>
+ public abstract class PlantGrowthSystem : EntitySystem
+ {
+     [Dependency] protected readonly IRobustRandom _random = default!;
+     [Dependency] protected readonly IGameTiming _gameTiming = default!;
+ 
+     public TimeSpan nextUpdate = TimeSpan.Zero;
+-    public TimeSpan updateDelay = TimeSpan.FromSeconds(15); //PlantHolder has a 15 second delay on cycles, but checks every 3 for sprite updates.
++    public TimeSpan updateDelay = TimeSpan.FromSeconds(15); // PlantHolder has a 15 second delay on cycles
+ 
+     public const float HydroponicsSpeedMultiplier = 1f;
+     public const float HydroponicsConsumptionMultiplier = 2f;
+@@ -22,50 +25,35 @@ public abstract class PlantGrowthSystem : EntitySystem
+     public override void Initialize()
+     {
+         base.Initialize();
+-
+-        //This might be overcomplicating things. Maybe I should just create a new event here and
+-        //have each system listen for that instead?
+-
+-
+-        //List<EntitySystem> subsystems = new List<EntitySystem>();
+-        //Dictionary<Type, EntitySystem> subSystemDict = new Dictionary<Type, EntitySystem>();
+-        //foreach (var system in EntityManager.EntitySysManager.GetEntitySystemTypes())
+-        //{
+-        //    if (system is PlantGrowthSystem && system.Name != "PlantGrowthSystem")
+-        //    {
+-        //        subsystems.Add(system);
+-
+-        //        //find component by name?
+-        //        EntityManager.getco
+-        //    }
+-        //}
+     }
+ 
+-    // TO INVESTIGATE: can I figure out some way here to connect all the plant growth systems and components so
+-    // I don't have to give each one of those their own Update() method that listens for gameticks?
+-    // It would be much less code to do it here once instead of in each new system.
+-    // Maybe even if its forcing it by name, to prove its doable?
+-
+     public override void Update(float frameTime)
+     {
+         if (nextUpdate > _gameTiming.CurTime)
+             return;
+ 
+-        //This does not work as a universal check. I do need a baseline PlantComponent.
+-        var query = EntityQueryEnumerator<PlantComponent>();
+-        while (query.MoveNext(out var uid, out var plantComponent))
++        // Query for plant holders that have seeds and are not dead
++        var query = EntityQueryEnumerator<PlantHolderComponent>();
++        while (query.MoveNext(out var uid, out var plantHolder))
+         {
+-            int a = 1; //I want to see each entity once, not each component once.
+-            //Update(uid, unviableGrowthComponent);
++            // Only process plants that have seeds and are alive
++            if (plantHolder.Seed == null || plantHolder.Dead)
++                continue;
++
++            // Check if it's time for this plant to grow
++            if (_gameTiming.CurTime < plantHolder.LastCycle + plantHolder.CycleDelay)
++                continue;
++
+             var plantGrow = new OnPlantGrowEvent();
+             RaiseLocalEvent(uid, ref plantGrow);
+         }
++
+         nextUpdate = _gameTiming.CurTime + updateDelay;
+     }
+ 
+-
+-
+-
++    /// <summary>
++    /// Affects the growth of a plant by modifying its age or production timing.
++    /// </summary>
+     public void AffectGrowth(int amount, PlantHolderComponent? component = null)
+     {
+         if (component == null || component.Seed == null)
+@@ -75,14 +63,14 @@ public void AffectGrowth(int amount, PlantHolderComponent? component = null)
+         {
+             if (component.Age < component.Seed.Maturation)
+                 component.Age += amount;
+-            else if (!component.Harvest && component.Seed.Yield <= 0f)
++            else if (!component.Harvest && component.Seed.Yield > 0f)
+                 component.LastProduce -= amount;
+         }
+         else
+         {
+             if (component.Age < component.Seed.Maturation)
+                 component.SkipAging++;
+-            else if (!component.Harvest && component.Seed.Yield <= 0f)
++            else if (!component.Harvest && component.Seed.Yield > 0f)
+                 component.LastProduce += amount;
+         }
+     }
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 216461ba91..b919e4607f 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -25,6 +25,7 @@
+ using Robust.Shared.Timing;
+ using Content.Shared.Administration.Logs;
+ using Content.Shared.Containers.ItemSlots;
++using LogType = Content.Shared.Database.LogType;
+ using Content.Shared.Labels.Components;
+ 
+ namespace Content.Server.Botany.Systems;
+diff --git a/Content.Server/EntityEffects/Effects/PlantMutateHarvest.cs b/Content.Server/EntityEffects/Effects/PlantMutateHarvest.cs
+deleted file mode 100644
+index c92b154c01..0000000000
+--- a/Content.Server/EntityEffects/Effects/PlantMutateHarvest.cs
++++ /dev/null
+@@ -1,30 +0,0 @@
+-using Content.Server.Botany;
+-using Content.Server.Botany.Components;
+-using Content.Shared.EntityEffects;
+-using Robust.Shared.Prototypes;
+-
+-namespace Content.Server.EntityEffects.Effects;
+-
+-/// <summary>
+-///     Upgrades a plant's harvest type.
+-/// </summary>
+-public sealed partial class PlantMutateHarvest : EntityEffect
+-{
+-    public override void Effect(EntityEffectBaseArgs args)
+-    {
+-        var plantholder = args.EntityManager.GetComponent<PlantHolderComponent>(args.TargetEntity);
+-
+-        if (plantholder.Seed == null)
+-            return;
+-
+-        if (plantholder.Seed.HarvestRepeat == HarvestType.NoRepeat)
+-            plantholder.Seed.HarvestRepeat = HarvestType.Repeat;
+-        else if (plantholder.Seed.HarvestRepeat == HarvestType.Repeat)
+-            args.EntityManager.EnsureComponent<AutoHarvestGrowthComponent>(args.TargetEntity);
+-    }
+-
+-    protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+-    {
+-        return "TODO";
+-    }
+-}
+diff --git a/Content.Server/EntityEffects/EntityEffectSystem.cs b/Content.Server/EntityEffects/EntityEffectSystem.cs
+index b279920737..87ca854349 100644
+--- a/Content.Server/EntityEffects/EntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/EntityEffectSystem.cs
+@@ -522,40 +522,36 @@ private void OnExecuteAdjustTemperature(ref ExecuteEntityEffectEvent<AdjustTempe
+ 
+     private void OnExecuteAreaReactionEffect(ref ExecuteEntityEffectEvent<AreaReactionEffect> args)
+     {
+-        var transform = Comp<TransformComponent>(args.Args.TargetEntity);
+-        var coords = _xform.GetMapCoordinates(args.Args.TargetEntity, xform: transform);
+-        var range = args.Effect.Range;
+-
+         if (args.Args is EntityEffectReagentArgs reagentArgs)
+         {
+-            range *= reagentArgs.Scale.Float();
+-        }
+-
+-        var entities = _map.GetEntitiesInRange(coords, range);
+-        var reagent = args.Effect.Reagent;
+-        var quantity = args.Effect.Quantity;
++            if (reagentArgs.Source == null)
++                return;
+ 
+-        if (args.Args is EntityEffectReagentArgs reagentArgs2)
+-        {
+-            quantity *= reagentArgs2.Quantity.Int();
+-        }
++            var spreadAmount = (int) Math.Max(0, Math.Ceiling((reagentArgs.Quantity / args.Effect.OverflowThreshold).Float()));
++            var splitSolution = reagentArgs.Source.SplitSolution(reagentArgs.Source.Volume);
++            var transform = Comp<TransformComponent>(reagentArgs.TargetEntity);
++            var mapCoords = _xform.GetMapCoordinates(reagentArgs.TargetEntity, xform: transform);
+ 
+-        foreach (var entity in entities)
+-        {
+-            if (entity == args.Args.TargetEntity)
+-                continue;
+-
+-            if (TryComp<SolutionContainerManagerComponent>(entity, out var solutionContainer))
++            if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid) ||
++                !_map.TryGetTileRef(gridUid, grid, transform.Coordinates, out var tileRef))
+             {
+-                if (SolutionContainerSystem.TryGetSolution(entity, args.Effect.Solution, out var solution))
+-                {
+-                    SolutionContainerSystem.TryAddReagent(solution.Value, reagent, quantity);
+-                }
++                return;
+             }
+-        }
+ 
+-        if (args.Effect.Sound != null)
++            if (_spreader.RequiresFloorToSpread(args.Effect.PrototypeId) && _turf.IsSpace(tileRef))
++                return;
++
++            var coords = _map.MapToGrid(gridUid, mapCoords);
++            var ent = Spawn(args.Effect.PrototypeId, coords.SnapToGrid());
++
++            _smoke.StartSmoke(ent, splitSolution, args.Effect.Duration, spreadAmount);
++
+             _audio.PlayPvs(args.Effect.Sound, reagentArgs.TargetEntity, AudioParams.Default.WithVariation(0.25f));
++            return;
++        }
++
++        // TODO: Someone needs to figure out how to do this for non-reagent effects.
++        throw new NotImplementedException();
+     }
+ 
+     private void OnExecuteCauseZombieInfection(ref ExecuteEntityEffectEvent<CauseZombieInfection> args)
+@@ -896,59 +892,64 @@ private void OnExecutePlantMutateChemicals(ref ExecuteEntityEffectEvent<PlantMut
+ 
+     private void OnExecutePlantMutateConsumeGasses(ref ExecuteEntityEffectEvent<PlantMutateConsumeGasses> args)
+     {
+-        var plantholder = Comp<PlantHolderComponent>(args.Args.TargetEntity);
+-
+-        if (plantholder.Seed == null)
++        if (!TryComp<PlantHolderComponent>(args.Args.TargetEntity, out var plantholder) ||
++            plantholder.Seed == null)
+             return;
+ 
+-        var gasses = plantholder.Seed.ExudeGasses;
++        // Get or create the gas growth component
++        var gasComponent = EnsureComp<ConsumeExudeGasGrowthComponent>(args.Args.TargetEntity);
+ 
+         // Add a random amount of a random gas to this gas dictionary
+         float amount = _random.NextFloat(args.Effect.MinValue, args.Effect.MaxValue);
+         Gas gas = _random.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList());
+-        if (gasses.ContainsKey(gas))
++        if (gasComponent.ConsumeGasses.ContainsKey(gas))
+         {
+-            gasses[gas] += amount;
++            gasComponent.ConsumeGasses[gas] += amount;
+         }
+         else
+         {
+-            gasses.Add(gas, amount);
++            gasComponent.ConsumeGasses.Add(gas, amount);
+         }
+     }
+ 
+     private void OnExecutePlantMutateExudeGasses(ref ExecuteEntityEffectEvent<PlantMutateExudeGasses> args)
+     {
+-        var plantholder = Comp<PlantHolderComponent>(args.Args.TargetEntity);
+-
+-        if (plantholder.Seed == null)
++        if (!TryComp<PlantHolderComponent>(args.Args.TargetEntity, out var plantholder) ||
++            plantholder.Seed == null)
+             return;
+ 
+-        var gasses = plantholder.Seed.ConsumeGasses;
++        // Get or create the gas growth component
++        var gasComponent = EnsureComp<ConsumeExudeGasGrowthComponent>(args.Args.TargetEntity);
+ 
+         // Add a random amount of a random gas to this gas dictionary
+         float amount = _random.NextFloat(args.Effect.MinValue, args.Effect.MaxValue);
+         Gas gas = _random.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList());
+-        if (gasses.ContainsKey(gas))
++        if (gasComponent.ExudeGasses.ContainsKey(gas))
+         {
+-            gasses[gas] += amount;
++            gasComponent.ExudeGasses[gas] += amount;
+         }
+         else
+         {
+-            gasses.Add(gas, amount);
++            gasComponent.ExudeGasses.Add(gas, amount);
+         }
+     }
+ 
+     private void OnExecutePlantMutateHarvest(ref ExecuteEntityEffectEvent<PlantMutateHarvest> args)
+     {
+-        var plantholder = Comp<PlantHolderComponent>(args.Args.TargetEntity);
+-
+-        if (plantholder.Seed == null)
++        if (!TryComp<PlantHolderComponent>(args.Args.TargetEntity, out var plantholder) ||
++            plantholder.Seed == null)
+             return;
+ 
+-        if (plantholder.Seed.HarvestRepeat == HarvestType.NoRepeat)
+-            plantholder.Seed.HarvestRepeat = HarvestType.Repeat;
+-        else if (plantholder.Seed.HarvestRepeat == HarvestType.Repeat)
+-            plantholder.Seed.HarvestRepeat = HarvestType.SelfHarvest;
++        // Clone the seed to make it mutable
++        var clonedSeed = plantholder.Seed.Clone();
++
++        if (clonedSeed.HarvestRepeat == HarvestType.NoRepeat)
++            clonedSeed.HarvestRepeat = HarvestType.Repeat;
++        else if (clonedSeed.HarvestRepeat == HarvestType.Repeat)
++            clonedSeed.HarvestRepeat = HarvestType.SelfHarvest;
++
++        // Update the plant holder with the cloned seed
++        plantholder.Seed = clonedSeed;
+     }
+ 
+     private void OnExecutePlantSpeciesChange(ref ExecuteEntityEffectEvent<PlantSpeciesChange> args)
+diff --git a/Content.Shared/EntityEffects/Effects/PlantMutateHarvest.cs b/Content.Shared/EntityEffects/Effects/PlantMutateHarvest.cs
+index 84d6293185..2a591a300d 100644
+--- a/Content.Shared/EntityEffects/Effects/PlantMutateHarvest.cs
++++ b/Content.Shared/EntityEffects/Effects/PlantMutateHarvest.cs
+@@ -5,10 +5,15 @@ namespace Content.Shared.EntityEffects.Effects;
+ /// <summary>
+ ///     Upgrades a plant's harvest type.
+ /// </summary>
+-public sealed partial class PlantMutateHarvest : EventEntityEffect<PlantMutateHarvest>
++public sealed partial class PlantMutateHarvest : EntityEffect
+ {
++    public override void Effect(EntityEffectBaseArgs args)
++    {
++        // This is handled in EntityEffectSystem.cs
++    }
++
+     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+     {
+-        return "TODO";
++        return Loc.GetString("reagent-effect-guidebook-plant-mutate-harvest");
+     }
+ }
+diff --git a/Resources/Locale/en-US/guidebook/chemistry/effects.ftl b/Resources/Locale/en-US/guidebook/chemistry/effects.ftl
+index cd7bb21af2..90032c7166 100644
+--- a/Resources/Locale/en-US/guidebook/chemistry/effects.ftl
++++ b/Resources/Locale/en-US/guidebook/chemistry/effects.ftl
+@@ -428,3 +428,16 @@ reagent-effect-guidebook-plant-seeds-remove =
+         [1] Removes the
+         *[other] remove the
+     } seeds of the plant
++
++reagent-effect-guidebook-plant-mutate-exude-gasses =
++    { $chance ->
++        [1] Mutates
++        *[other] mutate
++    } the plant to exude gases between {$minValue} and {$maxValue} moles
++
++reagent-effect-guidebook-plant-mutate-consume-gasses =
++    { $chance ->
++        [1] Mutates
++        *[other] mutate
++    } the plant to consume gases between {$minValue} and {$maxValue} moles
++
+-- 
+2.55.0
+

@@ -1,0 +1,373 @@
+From 7e734edd07c6ec0db544f8a55ba2308a49a8fada Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Wed, 17 Dec 2025 00:56:18 +0200
+Subject: [PATCH 061/112] review and some lost code
+
+---
+ .../Botany/Components/BotanySwabComponent.cs  |  2 +-
+ .../Components/PlantChemicalsComponent.cs     |  4 ++-
+ .../Botany/Components/PlantComponent.cs       |  2 +-
+ .../Botany/Components/PlantDataComponent.cs   | 12 +++----
+ .../Botany/Components/ProduceComponent.cs     | 14 ++++----
+ .../Botany/Components/SeedComponent.cs        |  2 +-
+ .../Components/SeedExtractorComponent.cs      |  4 +--
+ .../Botany/Systems/BotanySwabSystem.cs        |  4 +--
+ .../Botany/Systems/BotanySystem.Seed.cs       |  6 ++--
+ .../Botany/Systems/MutationSystem.cs          |  5 ++-
+ .../Botany/Systems/PlantHarvestSystem.cs      | 34 +++++++++++++++----
+ .../Botany/Systems/PlantTraySystem.cs         |  5 +--
+ 12 files changed, 56 insertions(+), 38 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/BotanySwabComponent.cs b/Content.Server/Botany/Components/BotanySwabComponent.cs
+index 468f5b420f..97a9eb3504 100644
+--- a/Content.Server/Botany/Components/BotanySwabComponent.cs
++++ b/Content.Server/Botany/Components/BotanySwabComponent.cs
+@@ -18,7 +18,7 @@ public sealed partial class BotanySwabComponent : Component
+     /// Name of a base plant prototype for the stored pollen snapshot.
+     /// </summary>
+     [DataField]
+-    public EntProtoId? PlantProtoId;
++    public EntProtoId PlantProtoId;
+ 
+     /// <summary>
+     /// Serialized snapshot of plant components from the last swabbed plant.
+diff --git a/Content.Server/Botany/Components/PlantChemicalsComponent.cs b/Content.Server/Botany/Components/PlantChemicalsComponent.cs
+index e0e9abf33c..aec15e913b 100644
+--- a/Content.Server/Botany/Components/PlantChemicalsComponent.cs
++++ b/Content.Server/Botany/Components/PlantChemicalsComponent.cs
+@@ -1,4 +1,6 @@
++using Content.Shared.Chemistry.Reagent;
+ using Content.Shared.FixedPoint;
++using Robust.Shared.Prototypes;
+ 
+ namespace Content.Server.Botany.Components;
+ 
+@@ -13,7 +15,7 @@ public sealed partial class PlantChemicalsComponent : Component
+     /// Mapping reagent id -> chemical info for this plant species.
+     /// </summary>
+     [DataField]
+-    public Dictionary<string, PlantChemQuantity> Chemicals = [];
++    public Dictionary<ProtoId<ReagentPrototype>, PlantChemQuantity> Chemicals = [];
+ }
+ 
+ [DataDefinition]
+diff --git a/Content.Server/Botany/Components/PlantComponent.cs b/Content.Server/Botany/Components/PlantComponent.cs
+index 5f7dfeacac..fa3670243c 100644
+--- a/Content.Server/Botany/Components/PlantComponent.cs
++++ b/Content.Server/Botany/Components/PlantComponent.cs
+@@ -13,7 +13,7 @@ public sealed partial class PlantComponent : Component
+     /// The mutation effects that have been applied to this plant.
+     /// </summary>
+     [DataField]
+-    public List<RandomPlantMutation> Mutations { get; set; } = [];
++    public List<RandomPlantMutation> Mutations = [];
+ 
+     /// <summary>
+     /// The plant's max health.
+diff --git a/Content.Server/Botany/Components/PlantDataComponent.cs b/Content.Server/Botany/Components/PlantDataComponent.cs
+index fc84b5871e..19f65c8d57 100644
+--- a/Content.Server/Botany/Components/PlantDataComponent.cs
++++ b/Content.Server/Botany/Components/PlantDataComponent.cs
+@@ -16,19 +16,19 @@ public sealed partial class PlantDataComponent : Component
+     /// used to determine the name of seed packets.
+     /// </summary>
+     [DataField]
+-    public string Noun { get; private set; } = "";
++    public LocId Noun = "seeds-noun-seeds";
+ 
+     /// <summary>
+     /// Name displayed when examining the hydroponics tray. Describes the actual plant, not the seed itself.
+     /// </summary>
+     [DataField]
+-    public string DisplayName { get; private set; } = "";
++    public LocId DisplayName;
+ 
+     /// <summary>
+     /// The entity prototype that is spawned when this type of seed is extracted from produce using a seed extractor.
+     /// </summary>
+-    [DataField]
+-    public EntProtoId PacketPrototype = "SeedBase";
++    [DataField(required: true)]
++    public EntProtoId PacketPrototype;
+ 
+     /// <summary>
+     /// The plant prototypes this plant may mutate into when prompted to.
+@@ -39,14 +39,14 @@ public sealed partial class PlantDataComponent : Component
+     /// <summary>
+     /// The entity prototypes that are spawned when this type of seed is harvested.
+     /// </summary>
+-    [DataField]
++    [DataField(required: true)]
+     public List<EntProtoId> ProductPrototypes = [];
+ 
+     /// <summary>
+     /// The RSI path to the plant's sprite.
+     /// </summary>
+     [DataField(required: true)]
+-    public ResPath PlantRsi { get; set; } = default!;
++    public ResPath PlantRsi = default!;
+ 
+     /// <summary>
+     /// Log impact for harvest operations.
+diff --git a/Content.Server/Botany/Components/ProduceComponent.cs b/Content.Server/Botany/Components/ProduceComponent.cs
+index 16b9023512..1dee0c8de0 100644
+--- a/Content.Server/Botany/Components/ProduceComponent.cs
++++ b/Content.Server/Botany/Components/ProduceComponent.cs
+@@ -14,13 +14,7 @@ public sealed partial class ProduceComponent : SharedProduceComponent
+     /// Name of a base plant prototype to spawn when extracting seeds.
+     /// </summary>
+     [DataField]
+-    public EntProtoId? PlantProtoId;
+-
+-    /// <summary>
+-    /// Name of the solution container that holds the produce's contents.
+-    /// </summary>
+-    [DataField("targetSolution")]
+-    public string SolutionName { get; set; } = "food";
++    public EntProtoId PlantProtoId;
+ 
+     /// <summary>
+     /// Serialized snapshot of plant components.
+@@ -28,4 +22,10 @@ public sealed partial class ProduceComponent : SharedProduceComponent
+     /// </summary>
+     [DataField]
+     public ComponentRegistry? PlantData;
++
++    /// <summary>
++    /// Name of the solution container that holds the produce's contents.
++    /// </summary>
++    [DataField("targetSolution")]
++    public string SolutionName { get; set; } = "food";
+ }
+diff --git a/Content.Server/Botany/Components/SeedComponent.cs b/Content.Server/Botany/Components/SeedComponent.cs
+index e9fc47faf5..34ab7ffc3f 100644
+--- a/Content.Server/Botany/Components/SeedComponent.cs
++++ b/Content.Server/Botany/Components/SeedComponent.cs
+@@ -15,7 +15,7 @@ public sealed partial class SeedComponent : SharedSeedComponent
+     /// Name of a base plant prototype to spawn.
+     /// </summary>
+     [DataField]
+-    public EntProtoId? PlantProtoId;
++    public EntProtoId PlantProtoId;
+ 
+     /// <summary>
+     /// Serialized snapshot of plant components used to override defaults when planting.
+diff --git a/Content.Server/Botany/Components/SeedExtractorComponent.cs b/Content.Server/Botany/Components/SeedExtractorComponent.cs
+index ddb04f213d..90b4e391be 100644
+--- a/Content.Server/Botany/Components/SeedExtractorComponent.cs
++++ b/Content.Server/Botany/Components/SeedExtractorComponent.cs
+@@ -9,12 +9,12 @@ public sealed partial class SeedExtractorComponent : Component
+     /// <summary>
+     /// The minimum amount of seed packets dropped.
+     /// </summary>
+-    [DataField("baseMinSeeds"), ViewVariables(VVAccess.ReadWrite)]
++    [DataField]
+     public int BaseMinSeeds = 1;
+ 
+     /// <summary>
+     /// The maximum amount of seed packets dropped.
+     /// </summary>
+-    [DataField("baseMaxSeeds"), ViewVariables(VVAccess.ReadWrite)]
++    [DataField]
+     public int BaseMaxSeeds = 3;
+ }
+diff --git a/Content.Server/Botany/Systems/BotanySwabSystem.cs b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+index 2e58b5a451..fc4e2069dd 100644
+--- a/Content.Server/Botany/Systems/BotanySwabSystem.cs
++++ b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+@@ -68,7 +68,7 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+         if (swab.PlantData == null)
+         {
+             // Pick up pollen snapshot.
+-            swab.PlantProtoId = MetaData(targetPlant).EntityPrototype?.ID;
++            swab.PlantProtoId = MetaData(targetPlant).EntityPrototype!.ID;
+             swab.PlantData = _botany.ClonePlantSnapshotData(targetPlant);
+ 
+             _popup.PopupEntity(Loc.GetString("botany-swab-from"), targetPlant, args.Args.User);
+@@ -82,7 +82,7 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+             RaiseLocalEvent(targetPlant, ref crossEv);
+ 
+             // Swap: store old target pollen on the swab, apply cross to the target using swab pollen.
+-            swab.PlantProtoId = MetaData(targetPlant).EntityPrototype?.ID;
++            swab.PlantProtoId = MetaData(targetPlant).EntityPrototype!.ID;
+             swab.PlantData = _botany.ClonePlantSnapshotData(targetPlant);
+ 
+             _popup.PopupEntity(Loc.GetString("botany-swab-to"), targetPlant, args.Args.User);
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Seed.cs b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+index ce89a1101e..0657084fe7 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+@@ -154,7 +154,7 @@ public EntityUid SpawnSeedPacketFromPlant(EntityUid sourcePlant, EntityCoordinat
+         if (!TryComp<PlantDataComponent>(sourcePlant, out var plantData))
+             return EntityUid.Invalid;
+ 
+-        var protoId = MetaData(sourcePlant).EntityPrototype?.ID;
++        var protoId = MetaData(sourcePlant).EntityPrototype!.ID;
+         var snapshot = ClonePlantSnapshotData(sourcePlant);
+ 
+         return SpawnSeedPacketInternal(plantData, protoId, snapshot, coords, user, healthOverride);
+@@ -164,7 +164,7 @@ public EntityUid SpawnSeedPacketFromPlant(EntityUid sourcePlant, EntityCoordinat
+     /// Spawns a seed packet that stores a component snapshot of <paramref name="snapshot"/>.
+     /// </summary
+     [PublicAPI]
+-    public EntityUid SpawnSeedPacketFromSnapshot(ComponentRegistry snapshot, EntProtoId? plantProtoId, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
++    public EntityUid SpawnSeedPacketFromSnapshot(ComponentRegistry snapshot, EntProtoId plantProtoId, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
+     {
+         if (!TryGetPlantComponent<PlantDataComponent>(snapshot, plantProtoId, out var plantData))
+             return EntityUid.Invalid;
+@@ -184,7 +184,7 @@ public EntityUid SpawnSeedPacketFromSnapshot(ComponentRegistry snapshot, EntProt
+     /// <returns>The spawned seed packet entity.</returns>
+     private EntityUid SpawnSeedPacketInternal(
+         PlantDataComponent plantData,
+-        EntProtoId? plantProtoId,
++        EntProtoId plantProtoId,
+         ComponentRegistry? snapshot,
+         EntityCoordinates coords,
+         EntityUid user,
+diff --git a/Content.Server/Botany/Systems/MutationSystem.cs b/Content.Server/Botany/Systems/MutationSystem.cs
+index f5a91691a1..770f4bf6bb 100644
+--- a/Content.Server/Botany/Systems/MutationSystem.cs
++++ b/Content.Server/Botany/Systems/MutationSystem.cs
+@@ -2,12 +2,12 @@
+ using System.Linq;
+ using Content.Server.Botany.Components;
+ using Content.Shared.Atmos;
++using Content.Shared.Chemistry.Reagent;
+ using Content.Shared.EntityEffects;
+ using Content.Shared.Random;
+ using Robust.Server.GameObjects;
+ using Robust.Shared.Prototypes;
+ using Robust.Shared.Random;
+-using Robust.Shared.Serialization.Manager;
+ 
+ namespace Content.Server.Botany.Systems;
+ 
+@@ -18,7 +18,6 @@ public sealed class MutationSystem : EntitySystem
+     [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly PlantTraySystem _plantTray = default!;
+     [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
+-    [Dependency] private readonly TransformSystem _transform = default!;
+ 
+     private static readonly ProtoId<RandomPlantMutationListPrototype> RandomPlantMutations = "RandomPlantMutations";
+     private RandomPlantMutationListPrototype _randomMutations = default!;
+@@ -109,7 +108,7 @@ public void CrossMutations(ComponentRegistry pollenPlant, EntProtoId? pollenProt
+     }
+ 
+     [PublicAPI]
+-    public void CrossChemicals(ref Dictionary<string, PlantChemQuantity> val, Dictionary<string, PlantChemQuantity> other)
++    public void CrossChemicals(ref Dictionary<ProtoId<ReagentPrototype>, PlantChemQuantity> val, Dictionary<ProtoId<ReagentPrototype>, PlantChemQuantity> other)
+     {
+         // Go through chemicals from the pollen in swab
+         foreach (var otherChem in other)
+diff --git a/Content.Server/Botany/Systems/PlantHarvestSystem.cs b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+index 456ed97e65..b832e38d37 100644
+--- a/Content.Server/Botany/Systems/PlantHarvestSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHarvestSystem.cs
+@@ -1,7 +1,9 @@
+ using JetBrains.Annotations;
+ using Content.Server.Botany.Components;
+ using Content.Server.Popups;
++using Content.Shared.Administration.Logs;
+ using Content.Shared.Botany;
++using Content.Shared.Database;
+ using Content.Shared.Interaction;
+ using Content.Shared.Kitchen.Components;
+ using Content.Shared.Popups;
+@@ -19,6 +21,7 @@ namespace Content.Server.Botany.Systems;
+ /// </summary>
+ public sealed class HarvestSystem : EntitySystem
+ {
++    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+     [Dependency] private readonly AppearanceSystem _appearance = default!;
+     [Dependency] private readonly BotanySystem _botany = default!;
+     [Dependency] private readonly IRobustRandom _random = default!;
+@@ -53,10 +56,8 @@ private void OnPlantGrow(Entity<PlantHarvestComponent> ent, ref OnPlantGrowEvent
+             component.ReadyForHarvest = true;
+             component.LastHarvest = holder.Age;
+             tray.UpdateSpriteAfterUpdate = true;
++            TryAutoHarvest(ent, args.Tray, trayUid);
+         }
+-
+-        if (component is { ReadyForHarvest: true, HarvestRepeat: HarvestType.SelfHarvest })
+-            DoHarvest(ent, args.Tray, trayUid);
+     }
+ 
+     private void OnInteractUsing(Entity<PlantHarvestComponent> ent, ref InteractUsingEvent args)
+@@ -82,7 +83,7 @@ private void OnInteractUsing(Entity<PlantHarvestComponent> ent, ref InteractUsin
+             return;
+         }
+ 
+-        DoHarvest((plantUid, harvest), (trayUid, tray), args.User);
++        TryHandleHarvest((plantUid, harvest), (trayUid, tray), args.User);
+         args.Handled = true;
+     }
+ 
+@@ -108,10 +109,29 @@ private void OnInteractHand(Entity<PlantHarvestComponent> ent, ref InteractHandE
+             return;
+         }
+ 
+-        DoHarvest((plantUid, harvest), (trayUid, tray), args.User);
++        TryHandleHarvest((plantUid, harvest), (trayUid, tray), args.User);
+         args.Handled = true;
+     }
+ 
++    private void TryHandleHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantTrayComponent> trayEnt, EntityUid user)
++    {
++        if (TryComp<PlantDataComponent>(ent.Owner, out var plantData) && plantData.HarvestLogImpact != null)
++            _adminLogger.Add(LogType.Botany, plantData.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(plantData.DisplayName):seed} at Pos:{Transform(trayEnt.Owner).Coordinates}.");
++
++        DoHarvest(ent, trayEnt, user);
++    }
++
++    private void TryAutoHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantTrayComponent> trayEnt, EntityUid user)
++    {
++        if (ent.Comp.HarvestRepeat != HarvestType.SelfHarvest)
++            return;
++
++        if (TryComp<PlantDataComponent>(ent.Owner, out var plantData) && plantData.HarvestLogImpact != null)
++            _adminLogger.Add(LogType.Botany, plantData.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(plantData.DisplayName):seed} at Pos:{Transform(trayEnt.Owner).Coordinates}.");
++
++        DoHarvest(ent, trayEnt, user);
++    }
++
+     /// <summary>
+     /// Harvests the plant and produces the produce.
+     /// </summary>
+@@ -143,7 +163,7 @@ public void DoHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantTrayCompone
+         _popup.PopupCursor(Loc.GetString("botany-harvest-success-message", ("name", name)), user, PopupType.Medium);
+ 
+         var totalYield = 0;
+-        if (plant.Yield > -1)
++        if (plant.Yield >= 0)
+         {
+             totalYield = holder.YieldMod < 0 ? plant.Yield : plant.Yield * holder.YieldMod;
+             totalYield = Math.Max(1, totalYield);
+@@ -157,7 +177,7 @@ public void DoHarvest(Entity<PlantHarvestComponent> ent, Entity<PlantTrayCompone
+             _randomHelper.RandomOffset(entity, 0.25f);
+ 
+             var produce = EnsureComp<ProduceComponent>(entity);
+-            produce.PlantProtoId = MetaData(plantUid).EntityPrototype?.ID;
++            produce.PlantProtoId = MetaData(plantUid).EntityPrototype!.ID;
+             produce.PlantData = _botany.ClonePlantSnapshotData(plantUid);
+             _botany.ProduceGrown(entity, produce);
+             _appearance.SetData(entity, ProduceVisuals.Potency, plant.Potency);
+diff --git a/Content.Server/Botany/Systems/PlantTraySystem.cs b/Content.Server/Botany/Systems/PlantTraySystem.cs
+index 1dab4c523e..1d78448fdb 100644
+--- a/Content.Server/Botany/Systems/PlantTraySystem.cs
++++ b/Content.Server/Botany/Systems/PlantTraySystem.cs
+@@ -122,11 +122,8 @@ private void OnInteractUsing(Entity<PlantTrayComponent> ent, ref InteractUsingEv
+         {
+             if (tray.PlantEntity == null || Deleted(tray.PlantEntity))
+             {
+-                if (seeds.PlantProtoId == null)
+-                    return;
+-
+                 args.Handled = true;
+-                var plantUid = Spawn(seeds.PlantProtoId.Value, Transform(uid).Coordinates);
++                var plantUid = Spawn(seeds.PlantProtoId, Transform(uid).Coordinates);
+ 
+                 if (seeds.PlantData != null)
+                     _botany.ApplyPlantSnapshotData(plantUid, seeds.PlantData);
+-- 
+2.55.0
+

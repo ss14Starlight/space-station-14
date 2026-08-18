@@ -1,0 +1,26 @@
+From d4895c182a0c87b1ede1f02147d286bd23ea7584 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sat, 13 Dec 2025 16:04:48 +0200
+Subject: [PATCH 047/112] fix <summary>
+
+---
+ Content.Server/Botany/Components/PlantHarvestComponent.cs | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Content.Server/Botany/Components/PlantHarvestComponent.cs b/Content.Server/Botany/Components/PlantHarvestComponent.cs
+index abcc1d7474..8bec13891e 100644
+--- a/Content.Server/Botany/Components/PlantHarvestComponent.cs
++++ b/Content.Server/Botany/Components/PlantHarvestComponent.cs
+@@ -1,6 +1,8 @@
+ namespace Content.Server.Botany.Components;
+ 
+-/// <summary> Data for plant harvesting process. </summary>
++/// <summary> 
++/// Data for plant harvesting process. 
++/// </summary>
+ [RegisterComponent]
+ [DataDefinition]
+ public sealed partial class PlantHarvestComponent : Component
+-- 
+2.55.0
+

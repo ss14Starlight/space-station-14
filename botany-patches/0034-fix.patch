@@ -1,0 +1,92 @@
+From b6a2ee6b1726426fcceeab1bc54c0c828b875d36 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 16 Oct 2025 16:21:47 +0300
+Subject: [PATCH 034/112] fix
+
+---
+ Content.Server/Botany/Components/PlantGrowthComponent.cs   | 6 ++----
+ Content.Server/Botany/Systems/BasicGrowthSystem.cs         | 4 ++--
+ Content.Server/Botany/Systems/PlantGrowthSystem.cs         | 7 +++++--
+ .../PlantAttributes/PlantAffectGrowthEntityEffectSystem.cs | 2 +-
+ 4 files changed, 10 insertions(+), 9 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/PlantGrowthComponent.cs b/Content.Server/Botany/Components/PlantGrowthComponent.cs
+index fd806cba7b..6856b2fe05 100644
+--- a/Content.Server/Botany/Components/PlantGrowthComponent.cs
++++ b/Content.Server/Botany/Components/PlantGrowthComponent.cs
+@@ -1,11 +1,11 @@
+-using System.Security.Policy;
+ using Robust.Shared.Serialization.Manager;
+ 
+ namespace Content.Server.Botany.Components;
+ 
+ [RegisterComponent]
+ [DataDefinition]
+-public partial class PlantGrowthComponent : Component {
++public sealed partial class PlantGrowthComponent : Component
++{
+     /// <summary>
+     /// Creates a copy of this component.
+     /// </summary>
+@@ -14,5 +14,3 @@ public PlantGrowthComponent DupeComponent()
+         return IoCManager.Resolve<ISerializationManager>().CreateCopy(this, notNullableOverride: true);
+     }
+ }
+-
+-
+diff --git a/Content.Server/Botany/Systems/BasicGrowthSystem.cs b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+index 7ef26baea8..3ba8b10ec9 100644
+--- a/Content.Server/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+@@ -121,7 +121,7 @@ private void OnPlantGrow(Entity<BasicGrowthComponent> ent, ref OnPlantGrowEvent
+             }
+             else
+             {
+-                AffectGrowth(uid, -1, holder);
++                AffectGrowth((uid, holder), -1);
+                 holder.Health -= healthMod;
+             }
+ 
+@@ -131,7 +131,7 @@ private void OnPlantGrow(Entity<BasicGrowthComponent> ent, ref OnPlantGrowEvent
+             }
+             else
+             {
+-                AffectGrowth(uid, -1, holder);
++                AffectGrowth((uid, holder), -1);
+                 holder.Health -= healthMod;
+             }
+         }
+diff --git a/Content.Server/Botany/Systems/PlantGrowthSystem.cs b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+index ef1319fe02..28380b1cc9 100644
+--- a/Content.Server/Botany/Systems/PlantGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+@@ -29,9 +29,12 @@ public override void Initialize()
+     /// <summary>
+     /// Affects the growth of a plant by modifying its age or production timing.
+     /// </summary>
+-    public void AffectGrowth(EntityUid uid, int amount, PlantHolderComponent? component = null)
++    public void AffectGrowth(Entity<PlantHolderComponent> ent, int amount)
+     {
+-        if (!Resolve(uid, ref component) || component.Seed == null)
++        var uid = ent.Owner;
++        var component = ent.Comp;
++
++        if (component.Seed == null)
+             return;
+ 
+         if (!TryComp<PlantTraitsComponent>(uid, out var traits))
+diff --git a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAffectGrowthEntityEffectSystem.cs b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAffectGrowthEntityEffectSystem.cs
+index 74849db6c7..ed699612e7 100644
+--- a/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAffectGrowthEntityEffectSystem.cs
++++ b/Content.Server/EntityEffects/Effects/Botany/PlantAttributes/PlantAffectGrowthEntityEffectSystem.cs
+@@ -14,6 +14,6 @@ protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEf
+         if (entity.Comp.Seed == null || entity.Comp.Dead)
+             return;
+ 
+-        _plantGrowth.AffectGrowth(entity, (int)args.Effect.Amount, entity.Comp);
++        _plantGrowth.AffectGrowth(entity, (int)args.Effect.Amount);
+     }
+ }
+-- 
+2.55.0
+

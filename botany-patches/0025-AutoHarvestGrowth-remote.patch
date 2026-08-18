@@ -1,0 +1,83 @@
+From 256e233cfca8452dd8fd6ad3a361d37ca63c5729 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sun, 3 Aug 2025 08:17:32 +0300
+Subject: [PATCH 025/112] AutoHarvestGrowth remote
+
+---
+ .../Components/AutoHarvestGrowthComponent.cs  | 12 --------
+ Content.Server/Botany/SeedPrototype.cs        |  2 +-
+ .../Botany/Systems/AutoHarvestGrowthSystem.cs | 30 -------------------
+ 3 files changed, 1 insertion(+), 43 deletions(-)
+ delete mode 100644 Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
+ delete mode 100644 Content.Server/Botany/Systems/AutoHarvestGrowthSystem.cs
+
+diff --git a/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs b/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
+deleted file mode 100644
+index 5a28055c30..0000000000
+--- a/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
++++ /dev/null
+@@ -1,12 +0,0 @@
+-namespace Content.Server.Botany.Components;
+-
+-[RegisterComponent]
+-[DataDefinition]
+-public sealed partial class AutoHarvestGrowthComponent : PlantGrowthComponent
+-{
+-    /// <summary>
+-    /// Chance per tick for the plant to automatically harvest itself.
+-    /// </summary>
+-    [DataField]
+-    public float HarvestChance = 0.1f;
+-}
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index fdab80e138..9f20df5877 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -45,7 +45,7 @@ public partial struct SeedChemQuantity
+ }
+ 
+ [Virtual, DataDefinition]
+-[Access(typeof(BotanySystem), typeof(PlantHolderSystem), typeof(SeedExtractorSystem), typeof(EntityEffectSystem), typeof(MutationSystem), typeof(AutoHarvestGrowthSystem), typeof(HarvestSystem), typeof(PlantTraitsSystem))]
++[Access(typeof(BotanySystem), typeof(PlantHolderSystem), typeof(SeedExtractorSystem), typeof(EntityEffectSystem), typeof(MutationSystem), typeof(HarvestSystem), typeof(PlantTraitsSystem))]
+ public partial class SeedData
+ {
+     #region Tracking
+diff --git a/Content.Server/Botany/Systems/AutoHarvestGrowthSystem.cs b/Content.Server/Botany/Systems/AutoHarvestGrowthSystem.cs
+deleted file mode 100644
+index d7f01ba5b3..0000000000
+--- a/Content.Server/Botany/Systems/AutoHarvestGrowthSystem.cs
++++ /dev/null
+@@ -1,30 +0,0 @@
+-using Content.Server.Botany.Components;
+-using Robust.Shared.Random;
+-
+-namespace Content.Server.Botany.Systems;
+-
+-public sealed class AutoHarvestGrowthSystem : PlantGrowthSystem
+-{
+-    [Dependency] private readonly HarvestSystem _harvestSystem = default!;
+-
+-    public override void Initialize()
+-    {
+-        base.Initialize();
+-        SubscribeLocalEvent<AutoHarvestGrowthComponent, OnPlantGrowEvent>(OnPlantGrow);
+-    }
+-
+-    private void OnPlantGrow(EntityUid uid, AutoHarvestGrowthComponent component, OnPlantGrowEvent args)
+-    {
+-        PlantHolderComponent? holder = null;
+-        Resolve<PlantHolderComponent>(uid, ref holder);
+-
+-        if (holder == null || holder.Seed == null || holder.Dead)
+-            return;
+-
+-        // Check if ready for harvest using HarvestComponent
+-        if (TryComp<HarvestComponent>(uid, out var harvestComp) && harvestComp.ReadyForHarvest && _random.Prob(component.HarvestChance))
+-        {
+-            _harvestSystem.DoHarvest(uid, uid, harvestComp, holder);
+-        }
+-    }
+-}
+-- 
+2.55.0
+

@@ -1,0 +1,70 @@
+From 106700b0401c43b09fd2c61865afceb605a88676 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Wed, 5 Aug 2026 12:58:28 +0300
+Subject: [PATCH 108/112] aoao
+
+---
+ .../Botany/Components/PlantComponent.cs         |  2 +-
+ Content.Shared/Botany/Systems/MutationSystem.cs |  3 ---
+ .../Botany/Systems/PlantHarvestSystem.cs        | 17 +++++++++++++++++
+ 3 files changed, 18 insertions(+), 4 deletions(-)
+
+diff --git a/Content.Shared/Botany/Components/PlantComponent.cs b/Content.Shared/Botany/Components/PlantComponent.cs
+index b5f2cf721b..1a5a5575dd 100644
+--- a/Content.Shared/Botany/Components/PlantComponent.cs
++++ b/Content.Shared/Botany/Components/PlantComponent.cs
+@@ -14,7 +14,7 @@ public sealed partial class PlantComponent : Component
+     /// The mutation effects that have been applied to this plant.
+     /// Server-only: mutations are applied as effects which are synced separately.
+     /// </summary>
+-    [DataField, AutoNetworkedField]
++    [DataField]
+     public List<RandomPlantMutation> Mutations = [];
+ 
+     /// <summary>
+diff --git a/Content.Shared/Botany/Systems/MutationSystem.cs b/Content.Shared/Botany/Systems/MutationSystem.cs
+index 9c713e8d19..01c38e6e99 100644
+--- a/Content.Shared/Botany/Systems/MutationSystem.cs
++++ b/Content.Shared/Botany/Systems/MutationSystem.cs
+@@ -53,10 +53,7 @@ public void CheckRandomMutations(Entity<PlantComponent?> ent, float severity)
+ 
+                 // Stat adjustments do not persist by being an attached effect, they just change the stat.
+                 if (mutation.Persists && ent.Comp.Mutations.All(m => m.Name != mutation.Name))
+-                {
+                     ent.Comp.Mutations.Add(mutation);
+-                    DirtyField(ent, nameof(ent.Comp.Mutations));
+-                }
+             }
+         }
+     }
+diff --git a/Content.Shared/Botany/Systems/PlantHarvestSystem.cs b/Content.Shared/Botany/Systems/PlantHarvestSystem.cs
+index 336a2bd2af..197d46c082 100644
+--- a/Content.Shared/Botany/Systems/PlantHarvestSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantHarvestSystem.cs
+@@ -19,6 +19,23 @@ public sealed partial class PlantHarvestSystem : EntitySystem
+     [Dependency] private PlantSystem _plant = default!;
+     [Dependency] private SharedPopupSystem _popup = default!;
+     [Dependency] private PlantHolderSystem _plantHolder = default!;
++    [Dependency] private PlantTraySystem _plantTray = default!;
++
++    [SubscribeLocalEvent]
++    private void OnInteractHand(Entity<PlantTrayComponent> ent, ref InteractHandEvent args)
++    {
++        if (args.Handled)
++            return;
++
++        if (!_plantTray.TryGetPlant(ent.AsNullable(), out var plantUid)
++            || !TryComp<PlantHarvestComponent>(plantUid, out var harvest)
++            || !harvest.ReadyForHarvest)
++            return;
++
++        // TODO: Remove this once trays have a proper UI.
++        TryHandleHarvest(plantUid.Value, args.User);
++        args.Handled = true;
++    }
+ 
+     [SubscribeLocalEvent]
+     private void OnPlantGrow(Entity<PlantHarvestComponent> ent, ref PlantGrowEvent args)
+-- 
+2.55.0
+

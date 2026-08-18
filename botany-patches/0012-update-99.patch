@@ -1,0 +1,1377 @@
+From 8cfc2d82e24a62e4c940b336ea1e7e53342e64d2 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Fri, 1 Aug 2025 06:31:29 +0300
+Subject: [PATCH 012/112] update 99
+
+---
+ .../Components/AtmosphericGrowthComponent.cs  |  12 ++
+ .../Components/AutoHarvestGrowthComponent.cs  |   3 +
+ .../Botany/Components/BotanySwabComponent.cs  |   7 +-
+ .../ConsumeExudeGasGrowthComponent.cs         |   7 +
+ .../Botany/Components/LogComponent.cs         |   6 +
+ .../Botany/Components/PlantHolderComponent.cs |  57 ++++++
+ .../Botany/Components/ProduceComponent.cs     |   7 +-
+ .../Components/UnviableGrowthComponent.cs     |   6 +
+ .../Components/WeedPestGrowthComponent.cs     |  18 ++
+ Content.Server/Botany/SeedPrototype.cs        |  26 +--
+ .../Botany/Systems/BasicGrowthSystem.cs       |  12 +-
+ .../Botany/Systems/PlantGrowthSystem.cs       |   8 +-
+ .../Botany/Systems/PlantHolderSystem.cs       |   9 +-
+ .../SharedSolutionContainerSystem.cs          |   2 -
+ Resources/Prototypes/Hydroponics/seeds.yml    | 177 +++++-------------
+ 15 files changed, 191 insertions(+), 166 deletions(-)
+
+diff --git a/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs b/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
+index 6b85f262f9..21abdc70fd 100644
+--- a/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
++++ b/Content.Server/Botany/Components/AtmosphericGrowthComponent.cs
+@@ -4,15 +4,27 @@ namespace Content.Server.Botany.Components;
+ [DataDefinition]
+ public sealed partial class AtmosphericGrowthComponent : PlantGrowthComponent
+ {
++    /// <summary>
++    /// Ideal temperature for plant growth in Kelvin.
++    /// </summary>
+     [DataField("idealHeat")]
+     public float IdealHeat = 293f;
+ 
++    /// <summary>
++    /// Temperature tolerance range around ideal heat.
++    /// </summary>
+     [DataField("heatTolerance")]
+     public float HeatTolerance = 10f;
+ 
++    /// <summary>
++    /// Minimum pressure tolerance for plant growth.
++    /// </summary>
+     [DataField("lowPressureTolerance")]
+     public float LowPressureTolerance = 81f;
+ 
++    /// <summary>
++    /// Maximum pressure tolerance for plant growth.
++    /// </summary>
+     [DataField("lighPressureTolerance")]
+     public float HighPressureTolerance = 121f;
+ }
+diff --git a/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs b/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
+index fdd9e3a704..9b5c969075 100644
+--- a/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
++++ b/Content.Server/Botany/Components/AutoHarvestGrowthComponent.cs
+@@ -4,6 +4,9 @@ namespace Content.Server.Botany.Components;
+ [DataDefinition]
+ public sealed partial class AutoHarvestGrowthComponent : PlantGrowthComponent
+ {
++    /// <summary>
++    /// Chance per tick for the plant to automatically harvest itself.
++    /// </summary>
+     [DataField("harvestChance")]
+     public float HarvestChance = 0.1f;
+ }
+diff --git a/Content.Server/Botany/Components/BotanySwabComponent.cs b/Content.Server/Botany/Components/BotanySwabComponent.cs
+index 91508996c2..1f99554cb3 100644
+--- a/Content.Server/Botany/Components/BotanySwabComponent.cs
++++ b/Content.Server/Botany/Components/BotanySwabComponent.cs
+@@ -8,6 +8,9 @@ namespace Content.Server.Botany;
+ [RegisterComponent]
+ public sealed partial class BotanySwabComponent : Component
+ {
++    /// <summary>
++    /// Delay in seconds between swab uses.
++    /// </summary>
+     [DataField("swabDelay")]
+     public float SwabDelay = 2f;
+ 
+@@ -16,6 +19,8 @@ public sealed partial class BotanySwabComponent : Component
+     /// </summary>
+     public SeedData? SeedData;
+ 
+-    //data from first plant.
++    /// <summary>
++    /// Growth components from the first plant that got swabbed.
++    /// </summary>
+     public List<PlantGrowthComponent> components;
+ }
+diff --git a/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs b/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs
+index 41b9e4a068..6f815dfdf4 100644
+--- a/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs
++++ b/Content.Server/Botany/Components/ConsumeExudeGasGrowthComponent.cs
+@@ -6,6 +6,13 @@ namespace Content.Server.Botany.Components;
+ [DataDefinition]
+ public sealed partial class ConsumeExudeGasGrowthComponent : PlantGrowthComponent
+ {
++    /// <summary>
++    /// Dictionary of gases and their consumption rates per growth tick.
++    /// </summary>
+     [DataField] public Dictionary<Gas, float> ConsumeGasses = new();
++
++    /// <summary>
++    /// Dictionary of gases and their exude rates per growth tick.
++    /// </summary>
+     [DataField] public Dictionary<Gas, float> ExudeGasses = new();
+ }
+diff --git a/Content.Server/Botany/Components/LogComponent.cs b/Content.Server/Botany/Components/LogComponent.cs
+index da3f82416e..987ce2b159 100644
+--- a/Content.Server/Botany/Components/LogComponent.cs
++++ b/Content.Server/Botany/Components/LogComponent.cs
+@@ -10,8 +10,14 @@ namespace Content.Server.Botany.Components;
+ [Access(typeof(LogSystem))]
+ public sealed partial class LogComponent : Component
+ {
++    /// <summary>
++    /// Prototype ID of the entity spawned when this log is chopped.
++    /// </summary>
+     [DataField("spawnedPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+     public string SpawnedPrototype = "MaterialWoodPlank1";
+ 
++    /// <summary>
++    /// Number of entities spawned when this log is chopped.
++    /// </summary>
+     [DataField("spawnCount")] public int SpawnCount = 2;
+ }
+diff --git a/Content.Server/Botany/Components/PlantHolderComponent.cs b/Content.Server/Botany/Components/PlantHolderComponent.cs
+index d65e1b702b..ad33fa9ea2 100644
+--- a/Content.Server/Botany/Components/PlantHolderComponent.cs
++++ b/Content.Server/Botany/Components/PlantHolderComponent.cs
+@@ -19,9 +19,15 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField]
+     public TimeSpan UpdateDelay = TimeSpan.FromSeconds(3);
+ 
++    /// <summary>
++    /// Age when the plant last produced harvestable items.
++    /// </summary>
+     [DataField]
+     public int LastProduce;
+ 
++    /// <summary>
++    /// Number of missing gases required for plant growth.
++    /// </summary>
+     [DataField]
+     public int MissingGas;
+ 
+@@ -43,6 +49,9 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField]
+     public SoundSpecifier? WateringSound;
+ 
++    /// <summary>
++    /// Whether to update the sprite after the next update cycle.
++    /// </summary>
+     [DataField]
+     public bool UpdateSpriteAfterUpdate;
+ 
+@@ -53,30 +62,57 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField]
+     public bool DrawWarnings = false;
+ 
++    /// <summary>
++    /// Current water level in the plant holder (0-100).
++    /// </summary>
+     [DataField]
+     public float WaterLevel = 100f;
+ 
++    /// <summary>
++    /// Current nutrient level in the plant holder (0-100).
++    /// </summary>
+     [DataField]
+     public float NutritionLevel = 100f;
+ 
++    /// <summary>
++    /// Current pest level in the plant holder (0-10).
++    /// </summary>
+     [DataField]
+     public float PestLevel;
+ 
++    /// <summary>
++    /// Current weed level in the plant holder (0-10).
++    /// </summary>
+     [DataField]
+     public float WeedLevel;
+ 
++    /// <summary>
++    /// Current toxin level in the plant holder (0-100).
++    /// </summary>
+     [DataField]
+     public float Toxins;
+ 
++    /// <summary>
++    /// Current age of the plant in growth cycles.
++    /// </summary>
+     [DataField]
+     public int Age;
+ 
++    /// <summary>
++    /// Number of growth cycles to skip due to poor conditions.
++    /// </summary>
+     [DataField]
+     public int SkipAging;
+ 
++    /// <summary>
++    /// Whether the plant is dead.
++    /// </summary>
+     [DataField]
+     public bool Dead;
+ 
++    /// <summary>
++    /// Whether the plant is ready for harvest.
++    /// </summary>
+     [DataField]
+     public bool Harvest;
+ 
+@@ -93,18 +129,33 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField]
+     public int YieldMod = 1;
+ 
++    /// <summary>
++    /// Multiplier for mutation chance and severity.
++    /// </summary>
+     [DataField]
+     public float MutationMod = 1f;
+ 
++    /// <summary>
++    /// Current mutation level (0-100).
++    /// </summary>
+     [DataField]
+     public float MutationLevel;
+ 
++    /// <summary>
++    /// Current health of the plant (0 to seed endurance).
++    /// </summary>
+     [DataField]
+     public float Health;
+ 
++    /// <summary>
++    /// Multiplier for weed growth rate.
++    /// </summary>
+     [DataField]
+     public float WeedCoefficient = 1f;
+ 
++    /// <summary>
++    /// Seed data for the currently planted seed.
++    /// </summary>
+     [DataField]
+     public SeedData? Seed;
+ 
+@@ -133,9 +184,15 @@ public sealed partial class PlantHolderComponent : Component
+     [DataField]
+     public bool ForceUpdate;
+ 
++    /// <summary>
++    /// Name of the solution container that holds the soil/nutrient solution.
++    /// </summary>
+     [DataField]
+     public string SoilSolutionName = "soil";
+ 
++    /// <summary>
++    /// Reference to the soil solution container.
++    /// </summary>
+     [ViewVariables]
+     public Entity<SolutionComponent>? SoilSolution = null;
+ }
+diff --git a/Content.Server/Botany/Components/ProduceComponent.cs b/Content.Server/Botany/Components/ProduceComponent.cs
+index db4ed62dd3..6d7ed46a37 100644
+--- a/Content.Server/Botany/Components/ProduceComponent.cs
++++ b/Content.Server/Botany/Components/ProduceComponent.cs
+@@ -8,16 +8,19 @@ namespace Content.Server.Botany.Components;
+ [Access(typeof(BotanySystem))]
+ public sealed partial class ProduceComponent : SharedProduceComponent
+ {
++    /// <summary>
++    /// Name of the solution container that holds the produce's contents.
++    /// </summary>
+     [DataField("targetSolution")] public string SolutionName { get; set; } = "food";
+ 
+     /// <summary>
+-    ///     Seed data used to create a <see cref="SeedComponent"/> when this produce has its seeds extracted.
++    /// Seed data used to create a <see cref="SeedComponent"/> when this produce has its seeds extracted.
+     /// </summary>
+     [DataField]
+     public SeedData? Seed;
+ 
+     /// <summary>
+-    ///     Seed data used to create a <see cref="SeedComponent"/> when this produce has its seeds extracted.
++    /// Prototype ID for the seed that can be extracted from this produce.
+     /// </summary>
+     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SeedPrototype>))]
+     public string? SeedId;
+diff --git a/Content.Server/Botany/Components/UnviableGrowthComponent.cs b/Content.Server/Botany/Components/UnviableGrowthComponent.cs
+index 2e85931adf..fb8f823b23 100644
+--- a/Content.Server/Botany/Components/UnviableGrowthComponent.cs
++++ b/Content.Server/Botany/Components/UnviableGrowthComponent.cs
+@@ -4,9 +4,15 @@ namespace Content.Server.Botany.Components;
+ [DataDefinition]
+ public sealed partial class UnviableGrowthComponent : PlantGrowthComponent
+ {
++    /// <summary>
++    /// Chance per tick for the plant to take damage due to being unviable.
++    /// </summary>
+     [DataField("deathChance")]
+     public float DeathChance = 0.1f;
+ 
++    /// <summary>
++    /// Amount of damage dealt to the plant per successful death tick.
++    /// </summary>
+     [DataField("deathDamage")]
+     public float DeathDamage = 6f;
+ }
+diff --git a/Content.Server/Botany/Components/WeedPestGrowthComponent.cs b/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
+index 5d5d90f561..4b9a4d5f59 100644
+--- a/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
++++ b/Content.Server/Botany/Components/WeedPestGrowthComponent.cs
+@@ -4,21 +4,39 @@ namespace Content.Server.Botany.Components;
+ [DataDefinition]
+ public sealed partial class WeedPestGrowthComponent : PlantGrowthComponent
+ {
++    /// <summary>
++    /// Maximum weed level the plant can tolerate before taking damage.
++    /// </summary>
+     [DataField("weedTolerance")]
+     public float WeedTolerance = 5f;
+ 
++    /// <summary>
++    /// Maximum pest level the plant can tolerate before taking damage.
++    /// </summary>
+     [DataField("pestTolerance")]
+     public float PestTolerance = 5f;
+ 
++    /// <summary>
++    /// Chance per tick for weeds to grow around this plant.
++    /// </summary>
+     [DataField("weedGrowthChance")]
+     public float WeedGrowthChance = 0.01f;
+ 
++    /// <summary>
++    /// Amount of weed growth per successful weed growth tick.
++    /// </summary>
+     [DataField("weedGrowthAmount")]
+     public float WeedGrowthAmount = 0.5f;
+ 
++    /// <summary>
++    /// Chance per tick for pests to damage this plant.
++    /// </summary>
+     [DataField("pestDamageChance")]
+     public float PestDamageChance = 0.05f;
+ 
++    /// <summary>
++    /// Amount of damage dealt to the plant per successful pest damage tick.
++    /// </summary>
+     [DataField("pestDamageAmount")]
+     public float PestDamageAmount = 1f;
+ }
+diff --git a/Content.Server/Botany/SeedPrototype.cs b/Content.Server/Botany/SeedPrototype.cs
+index 48c0766d13..8543a224be 100644
+--- a/Content.Server/Botany/SeedPrototype.cs
++++ b/Content.Server/Botany/SeedPrototype.cs
+@@ -59,20 +59,20 @@ public partial class SeedData
+     #region Tracking
+ 
+     /// <summary>
+-    ///     The name of this seed. Determines the name of seed packets.
++    /// The name of this seed. Determines the name of seed packets.
+     /// </summary>
+     [DataField]
+     public string Name { get; private set; } = "";
+ 
+     /// <summary>
+-    ///     The noun for this type of seeds. E.g. for fungi this should probably be "spores" instead of "seeds". Also
+-    ///     used to determine the name of seed packets.
++    /// The noun for this type of seeds. E.g. for fungi this should probably be "spores" instead of "seeds". Also
++    /// used to determine the name of seed packets.
+     /// </summary>
+     [DataField]
+     public string Noun { get; private set; } = "";
+ 
+     /// <summary>
+-    ///     Name displayed when examining the hydroponics tray. Describes the actual plant, not the seed itself.
++    /// Name displayed when examining the hydroponics tray. Describes the actual plant, not the seed itself.
+     /// </summary>
+     [DataField]
+     public string DisplayName { get; private set; } = "";
+@@ -80,13 +80,13 @@ public partial class SeedData
+     [DataField] public bool Mysterious;
+ 
+     /// <summary>
+-    ///     If true, the properties of this seed cannot be modified.
++    /// If true, the properties of this seed cannot be modified.
+     /// </summary>
+     [DataField] public bool Immutable;
+ 
+     /// <summary>
+-    ///     If true, there is only a single reference to this seed and it's properties can be directly modified without
+-    ///     needing to clone the seed.
++    /// If true, there is only a single reference to this seed and it's properties can be directly modified without
++    /// needing to clone the seed.
+     /// </summary>
+     [ViewVariables]
+     public bool Unique = false; // seed-prototypes or yaml-defined seeds for entity prototypes will not generally be unique.
+@@ -94,13 +94,13 @@ public partial class SeedData
+ 
+     #region Output
+     /// <summary>
+-    ///     The entity prototype that is spawned when this type of seed is extracted from produce using a seed extractor.
++    /// The entity prototype that is spawned when this type of seed is extracted from produce using a seed extractor.
+     /// </summary>
+     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+     public string PacketPrototype = "SeedBase";
+ 
+     /// <summary>
+-    ///     The entity prototypes that are spawned when this type of seed is harvested.
++    /// The entity prototypes that are spawned when this type of seed is harvested.
+     /// </summary>
+     [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
+     public List<string> ProductPrototypes = new();
+@@ -129,13 +129,13 @@ public partial class SeedData
+     [DataField] public float Potency = 1f;
+ 
+     /// <summary>
+-    ///     If true, cannot be harvested for seeds. Balances hybrids and
+-    ///     mutations.
++    /// If true, cannot be harvested for seeds. Balances hybrids and
++    /// mutations.
+     /// </summary>
+     [DataField] public bool Seedless = false;
+ 
+     /// <summary>
+-    ///     If true, a sharp tool is required to harvest this plant.
++    /// If true, a sharp tool is required to harvest this plant.
+     /// </summary>
+     [DataField] public bool Ligneous;
+ 
+@@ -169,7 +169,7 @@ public partial class SeedData
+     [DataField] public List<RandomPlantMutation> Mutations { get; set; } = new();
+ 
+     /// <summary>
+-    ///     The seed prototypes this seed may mutate into when prompted to.
++    /// The seed prototypes this seed may mutate into when prompted to.
+     /// </summary>
+     [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<SeedPrototype>))]
+     public List<string> MutationPrototypes = new();
+diff --git a/Content.Server/Botany/Systems/BasicGrowthSystem.cs b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+index fed24d6d19..e20f85efa2 100644
+--- a/Content.Server/Botany/Systems/BasicGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/BasicGrowthSystem.cs
+@@ -52,7 +52,7 @@ private void OnPlantGrow(EntityUid uid, BasicGrowthComponent component, OnPlantG
+         // Check if the plant is viable
+         if (holder.Seed.Viable == false)
+         {
+-            holder.Health -= _random.Next(5, 10) * HydroponicsSpeedMultiplier;
++            holder.Health -= _random.Next(5, 10) * PlantGrowthSystem.HydroponicsSpeedMultiplier;
+             if (holder.DrawWarnings)
+                 holder.UpdateSpriteAfterUpdate = true;
+             return;
+@@ -65,14 +65,14 @@ private void OnPlantGrow(EntityUid uid, BasicGrowthComponent component, OnPlantG
+         {
+             if (_random.Prob(0.8f))
+             {
+-                holder.Age += (int)(1 * HydroponicsSpeedMultiplier);
++                holder.Age += (int)(1 * PlantGrowthSystem.HydroponicsSpeedMultiplier);
+                 holder.UpdateSpriteAfterUpdate = true;
+             }
+         }
+ 
+         if (holder.Age > holder.Seed.Lifespan)
+         {
+-            holder.Health -= _random.Next(3, 5) * HydroponicsSpeedMultiplier;
++            holder.Health -= _random.Next(3, 5) * PlantGrowthSystem.HydroponicsSpeedMultiplier;
+             if (holder.DrawWarnings)
+                 holder.UpdateSpriteAfterUpdate = true;
+         }
+@@ -110,7 +110,7 @@ private void OnPlantGrow(EntityUid uid, BasicGrowthComponent component, OnPlantG
+         if (component.WaterConsumption > 0 && holder.WaterLevel > 0 && _random.Prob(0.75f))
+         {
+             holder.WaterLevel -= MathF.Max(0f,
+-                component.WaterConsumption * HydroponicsConsumptionMultiplier * HydroponicsSpeedMultiplier);
++                component.WaterConsumption * PlantGrowthSystem.HydroponicsConsumptionMultiplier * PlantGrowthSystem.HydroponicsSpeedMultiplier);
+             if (holder.DrawWarnings)
+                 holder.UpdateSpriteAfterUpdate = true;
+         }
+@@ -118,12 +118,12 @@ private void OnPlantGrow(EntityUid uid, BasicGrowthComponent component, OnPlantG
+         if (component.NutrientConsumption > 0 && holder.NutritionLevel > 0 && _random.Prob(0.75f))
+         {
+             holder.NutritionLevel -= MathF.Max(0f,
+-                component.NutrientConsumption * HydroponicsConsumptionMultiplier * HydroponicsSpeedMultiplier);
++                component.NutrientConsumption * PlantGrowthSystem.HydroponicsConsumptionMultiplier * PlantGrowthSystem.HydroponicsSpeedMultiplier);
+             if (holder.DrawWarnings)
+                 holder.UpdateSpriteAfterUpdate = true;
+         }
+ 
+-        var healthMod = _random.Next(1, 3) * HydroponicsSpeedMultiplier;
++        var healthMod = _random.Next(1, 3) * PlantGrowthSystem.HydroponicsSpeedMultiplier;
+         if (holder.SkipAging < 10)
+         {
+             // Make sure the plant is not thirsty.
+diff --git a/Content.Server/Botany/Systems/PlantGrowthSystem.cs b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+index 7039f5c3c2..e4b1308679 100644
+--- a/Content.Server/Botany/Systems/PlantGrowthSystem.cs
++++ b/Content.Server/Botany/Systems/PlantGrowthSystem.cs
+@@ -28,7 +28,6 @@ public override void Update(float frameTime)
+         if (nextUpdate > _gameTiming.CurTime)
+             return;
+ 
+-        // Query for plant holders that have seeds and are not dead
+         var query = EntityQueryEnumerator<PlantHolderComponent>();
+         while (query.MoveNext(out var uid, out var plantHolder))
+         {
+@@ -59,7 +58,14 @@ public abstract class PlantGrowthSystem : EntitySystem
+     [Dependency] protected readonly IRobustRandom _random = default!;
+     [Dependency] protected readonly IGameTiming _gameTiming = default!;
+ 
++    /// <summary>
++    /// Multiplier for plant growth speed in hydroponics.
++    /// </summary>
+     public const float HydroponicsSpeedMultiplier = 1f;
++
++    /// <summary>
++    /// Multiplier for resource consumption (water, nutrients) in hydroponics.
++    /// </summary>
+     public const float HydroponicsConsumptionMultiplier = 2f;
+ 
+     public override void Initialize()
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index d0e28d65e5..0b3ca4c57b 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -47,13 +47,10 @@ public sealed class PlantHolderSystem : EntitySystem
+     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+     [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly ISerializationManager _copier = default!;
+-
+-    public const float WeedHighLevelThreshold = 10f;
+     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+ 
+-    public const float HydroponicsSpeedMultiplier = 1f;
+-    public const float HydroponicsConsumptionMultiplier = 2f;
++    public const float WeedHighLevelThreshold = 10f;
+ 
+     private static readonly ProtoId<TagPrototype> HoeTag = "Hoe";
+     private static readonly ProtoId<TagPrototype> PlantSampleTakerTag = "PlantSampleTaker";
+@@ -418,7 +415,7 @@ public void Update(EntityUid uid, PlantHolderComponent? component = null)
+                 chance = 0.01f;
+ 
+             if (_random.Prob(chance))
+-                component.WeedLevel += 1 + component.WeedCoefficient; // * HydroponicsSpeedMultiplier
++                component.WeedLevel += 1 + component.WeedCoefficient;
+ 
+             if (component.DrawWarnings)
+                 component.UpdateSpriteAfterUpdate = true;
+@@ -591,7 +588,7 @@ public void Die(EntityUid uid, PlantHolderComponent? component = null)
+         component.YieldMod = 1;
+         component.MutationMod = 1;
+         component.ImproperPressure = false;
+-        component.WeedLevel += 1; // * HydroponicsSpeedMultiplier;
++        component.WeedLevel += 1;
+         component.PestLevel = 0;
+         UpdateSprite(uid, component);
+     }
+diff --git a/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs b/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs
+index dd5865e461..c1653f9ef9 100644
+--- a/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs
++++ b/Content.Shared/Chemistry/EntitySystems/SharedSolutionContainerSystem.cs
+@@ -572,7 +572,6 @@ public bool TryTransferSolution(Entity<SolutionComponent> soln, Solution source,
+         if (quantity == 0)
+             return false;
+ 
+-        // Use the more efficient direct transfer method
+         return TryDirectTransferReagents(soln, source, quantity);
+     }
+ 
+@@ -1259,7 +1258,6 @@ public bool TryDirectTransferReagents(Entity<SolutionComponent> targetSoln, Solu
+         if (quantity == 0)
+             return false;
+ 
+-        // Directly transfer reagents without creating intermediate solutions
+         foreach (var (reagentId, amount) in source.Contents)
+         {
+             var transferAmount = amount * (quantity / source.Volume);
+diff --git a/Resources/Prototypes/Hydroponics/seeds.yml b/Resources/Prototypes/Hydroponics/seeds.yml
+index 6ac19402be..c44c932027 100644
+--- a/Resources/Prototypes/Hydroponics/seeds.yml
++++ b/Resources/Prototypes/Hydroponics/seeds.yml
+@@ -14,11 +14,10 @@
+   production: 3
+   yield: 3
+   potency: 5
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+         nutrientConsumption: 0.4
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -43,11 +42,10 @@
+   production: 3
+   yield: 3
+   potency: 5
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+         nutrientConsumption: 0.4
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -72,11 +70,10 @@
+   production: 3
+   yield: 3
+   potency: 5
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+         nutrientConsumption: 0.4
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -103,11 +100,9 @@
+   maturation: 6
+   production: 6
+   yield: 2
+-  idealLight: 9
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -134,11 +129,9 @@
+   maturation: 6
+   production: 6
+   yield: 2
+-  idealLight: 9
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -169,7 +162,7 @@
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     JuiceCarrot:
+       Min: 1
+@@ -201,12 +194,12 @@
+   production: 5
+   yield: 3
+   potency: 20
+-  idealLight: 8
+   harvestRepeat: Repeat
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+         nutrientConsumption: 0.6
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -240,11 +233,9 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -270,11 +261,9 @@
+   production: 6
+   yield: 4
+   potency: 1
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Vitamin:
+       Min: 1
+@@ -303,11 +292,9 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -337,11 +324,9 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -367,11 +352,9 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Haloperidol:
+       Min: 1
+@@ -401,12 +384,10 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 8
+   growthStages: 3
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -439,7 +420,7 @@
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -470,8 +451,6 @@
+   growthStages: 3
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -496,11 +475,9 @@
+   yield: 2
+   potency: 20
+   growthStages: 5
+-  idealLight: 9
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -527,8 +504,6 @@
+   growthStages: 3
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+ 
+@@ -550,11 +525,8 @@
+   yield: 5
+   potency: 1
+   growthStages: 3
+-  lightTolerance: 6
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 288
+ 
+@@ -574,11 +546,8 @@
+   yield: 3
+   potency: 1
+   growthStages: 3
+-  lightTolerance: 6
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 288
+ 
+@@ -600,7 +569,6 @@
+   production: 6
+   yield: 2
+   potency: 10
+-  idealLight: 8
+   splatPrototype: PuddleSplatter
+   growthComponents:
+     - !type:BasicGrowthComponent
+@@ -637,7 +605,6 @@
+   production: 6
+   yield: 2
+   potency: 10
+-  idealLight: 8
+   splatPrototype: PuddleSplatter
+   growthComponents:
+     - !type:BasicGrowthComponent
+@@ -676,7 +643,6 @@
+   production: 6
+   yield: 2
+   potency: 10
+-  idealLight: 8
+   splatPrototype: PuddleSplatter
+   growthComponents:
+     - !type:BasicGrowthComponent
+@@ -711,7 +677,6 @@
+   production: 6
+   yield: 2
+   potency: 10
+-  idealLight: 8
+   growthStages: 2
+   splatPrototype: PuddleSplatter
+   growthComponents:
+@@ -748,11 +713,8 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  idealLight: 9
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -782,8 +744,7 @@
+   growthStages: 1
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -811,8 +772,7 @@
+   growthStages: 3
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -844,11 +804,9 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 6
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -874,11 +832,10 @@
+   production: 6
+   yield: 3
+   potency: 10
+-  idealLight: 6
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.75
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -908,11 +865,9 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -942,11 +897,9 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -978,11 +931,9 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -1014,7 +965,6 @@
+   yield: 5
+   potency: 1
+   growthStages: 3
+-  lightTolerance: 6
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+@@ -1042,10 +992,8 @@
+   production: 12
+   yield: 2
+   potency: 20
+-  idealLight: 9
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+         nutrientConsumption: 0.5
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+@@ -1073,11 +1021,9 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  idealLight: 9
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.4
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -1102,11 +1048,9 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  idealLight: 9
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.4
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -1151,11 +1095,9 @@
+   yield: 2
+   potency: 20
+   growthStages: 3
+-  idealLight: 9
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.4
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -1181,11 +1123,9 @@
+   yield: 2
+   potency: 20
+   growthStages: 5
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -1211,7 +1151,6 @@
+   yield: 2
+   potency: 20
+   growthStages: 5
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.7
+@@ -1245,11 +1184,8 @@
+   production: 6
+   yield: 2
+   potency: 20
+-  idealLight: 9
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -1281,11 +1217,8 @@
+   production: 6
+   yield: 2
+   potency: 20
+-  idealLight: 9
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -1322,7 +1255,7 @@
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1351,7 +1284,7 @@
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Aloe:
+       Min: 1
+@@ -1382,7 +1315,7 @@
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1411,7 +1344,7 @@
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Ultravasculine:
+       Min: 1
+@@ -1442,7 +1375,7 @@
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1483,7 +1416,7 @@
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1522,7 +1455,7 @@
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Stellibinin:
+       Min: 1
+@@ -1546,8 +1479,7 @@
+   growthStages: 3
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Razorium:
+       Min: 1
+@@ -1573,6 +1505,7 @@
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+         nutrientConsumption: 0.5
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Amatoxin:
+       Min: 1
+@@ -1601,11 +1534,9 @@
+   yield: 1
+   potency: 10
+   growthStages: 2
+-  idealLight: 6
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1631,11 +1562,9 @@
+   yield: 1
+   potency: 10
+   growthStages: 2
+-  idealLight: 6
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1661,11 +1590,9 @@
+   yield: 1
+   potency: 10
+   growthStages: 2
+-  idealLight: 6
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1691,11 +1618,11 @@
+   yield: 3
+   potency: 5
+   growthStages: 4
+-  idealLight: 5
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+         nutrientConsumption: 0.4
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1723,11 +1650,10 @@
+   production: 6
+   yield: 3
+   potency: 5
+-  idealLight: 7
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+         nutrientConsumption: 0.4
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1752,7 +1678,7 @@
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1778,11 +1704,10 @@
+   production: 6
+   yield: 3
+   potency: 5
+-  idealLight: 7
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+         nutrientConsumption: 0.4
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1810,8 +1735,7 @@
+   growthStages: 2
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1838,11 +1762,9 @@
+   production: 3
+   yield: 1
+   potency: 1
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1871,11 +1793,9 @@
+   production: 3
+   yield: 1
+   potency: 1
+-  idealLight: 8
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -1904,7 +1824,6 @@
+   maturation: 6
+   production: 6
+   yield: 6
+-  idealLight: 7
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 1.0
+@@ -1935,11 +1854,10 @@
+   maturation: 6
+   production: 6
+   yield: 4
+-  idealLight: 7
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+         nutrientConsumption: 0.6
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 2
+@@ -1965,12 +1883,10 @@
+   production: 6
+   potency: 10
+   yield: 3
+-  idealLight: 8
+   growthStages: 4
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 298
+   chemicals:
+@@ -2000,12 +1916,11 @@
+   production: 6
+   yield: 3
+   potency: 25
+-  idealLight: 8
+   harvestRepeat: Repeat
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+         nutrientConsumption: 0.5
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -2031,12 +1946,11 @@
+   production: 6
+   yield: 3
+   potency: 25
+-  idealLight: 8
+   harvestRepeat: Repeat
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+         nutrientConsumption: 0.5
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Happiness:
+       Min: 1
+@@ -2070,8 +1984,6 @@
+   growthStages: 3
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 288
+   chemicals:
+@@ -2101,8 +2013,6 @@
+   growthStages: 3
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
+     - !type:AtmosphericGrowthComponent
+         idealHeat: 288
+   chemicals:
+@@ -2135,12 +2045,11 @@
+   production: 3
+   yield: 3
+   potency: 5
+-  idealLight: 8
+   growthStages: 3
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Fiber:
+       Min: 5
+@@ -2161,12 +2070,11 @@
+   production: 3
+   yield: 2
+   potency: 5
+-  idealLight: 8
+   growthStages: 3
+   growthComponents:
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.8
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Fiber:
+       Min: 5
+@@ -2192,11 +2100,9 @@
+   production: 6
+   yield: 5
+   potency: 10
+-  idealLight: 6
+   growthComponents:
+     - !type:BasicGrowthComponent
+-        waterConsumption: 0.5
+-        nutrientConsumption: 0.75
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Nutriment:
+       Min: 1
+@@ -2226,6 +2132,7 @@
+     - !type:BasicGrowthComponent
+         waterConsumption: 0.6
+         nutrientConsumption: 0.5
++    - !type:AtmosphericGrowthComponent
+   chemicals:
+     Artifexium:
+       Min: 1
+-- 
+2.55.0
+

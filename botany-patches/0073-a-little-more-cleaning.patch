@@ -1,0 +1,291 @@
+From ecc907ba85e45609cac7342943688d1b865acba6 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Thu, 25 Dec 2025 20:01:12 +0200
+Subject: [PATCH 073/112] a little more cleaning
+
+---
+ .../Components/PlantHolderVisualsComponent.cs |  6 -----
+ .../Components/PlantTrayVisualsComponent.cs   |  4 ++++
+ ...System.cs => PlantTrayVisualizerSystem.cs} | 24 +++++++++++--------
+ .../Botany/Systems/BotanySystem.Seed.cs       | 18 --------------
+ .../Botany/Systems/MutationSystem.cs          |  9 +------
+ .../Botany/Systems/PlantTraySystem.cs         | 21 +++++++---------
+ Content.Shared/Botany/PlantHolderVisuals.cs   |  2 +-
+ .../Entities/Structures/hydro_tray.yml        | 10 ++++----
+ .../Prototypes/Entities/Structures/soil.yml   |  2 +-
+ Resources/Prototypes/Hydroponics/plants.yml   |  1 +
+ 10 files changed, 36 insertions(+), 61 deletions(-)
+ delete mode 100644 Content.Client/Botany/Components/PlantHolderVisualsComponent.cs
+ create mode 100644 Content.Client/Botany/Components/PlantTrayVisualsComponent.cs
+ rename Content.Client/Botany/{PlantHolderVisualizerSystem.cs => PlantTrayVisualizerSystem.cs} (58%)
+
+diff --git a/Content.Client/Botany/Components/PlantHolderVisualsComponent.cs b/Content.Client/Botany/Components/PlantHolderVisualsComponent.cs
+deleted file mode 100644
+index 3cfb4cb081..0000000000
+--- a/Content.Client/Botany/Components/PlantHolderVisualsComponent.cs
++++ /dev/null
+@@ -1,6 +0,0 @@
+-namespace Content.Client.Botany.Components;
+-
+-[RegisterComponent]
+-public sealed partial class PlantHolderVisualsComponent : Component
+-{
+-}
+diff --git a/Content.Client/Botany/Components/PlantTrayVisualsComponent.cs b/Content.Client/Botany/Components/PlantTrayVisualsComponent.cs
+new file mode 100644
+index 0000000000..0860f724eb
+--- /dev/null
++++ b/Content.Client/Botany/Components/PlantTrayVisualsComponent.cs
+@@ -0,0 +1,4 @@
++namespace Content.Client.Botany.Components;
++
++[RegisterComponent]
++public sealed partial class PlantTrayVisualsComponent : Component;
+diff --git a/Content.Client/Botany/PlantHolderVisualizerSystem.cs b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+similarity index 58%
+rename from Content.Client/Botany/PlantHolderVisualizerSystem.cs
+rename to Content.Client/Botany/PlantTrayVisualizerSystem.cs
+index 42c2c4016f..26280af335 100644
+--- a/Content.Client/Botany/PlantHolderVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+@@ -5,24 +5,25 @@
+ 
+ namespace Content.Client.Botany;
+ 
+-public sealed class PlantHolderVisualizerSystem : VisualizerSystem<PlantHolderVisualsComponent>
++public sealed class PlantTrayVisualizerSystem : VisualizerSystem<PlantTrayVisualsComponent>
+ {
+     public override void Initialize()
+     {
+         base.Initialize();
+-        SubscribeLocalEvent<PlantHolderVisualsComponent, ComponentInit>(OnComponentInit);
++
++        SubscribeLocalEvent<PlantTrayVisualsComponent, ComponentInit>(OnComponentInit);
+     }
+ 
+-    private void OnComponentInit(EntityUid uid, PlantHolderVisualsComponent component, ComponentInit args)
++    private void OnComponentInit(EntityUid uid, PlantTrayVisualsComponent component, ComponentInit args)
+     {
+         if (!TryComp<SpriteComponent>(uid, out var sprite))
+             return;
+ 
+-        SpriteSystem.LayerMapReserve((uid, sprite), PlantHolderLayers.Plant);
+-        SpriteSystem.LayerSetVisible((uid, sprite), PlantHolderLayers.Plant, false);
++        SpriteSystem.LayerMapReserve((uid, sprite), PlantTrayLayers.Plant);
++        SpriteSystem.LayerSetVisible((uid, sprite), PlantTrayLayers.Plant, false);
+     }
+ 
+-    protected override void OnAppearanceChange(EntityUid uid, PlantHolderVisualsComponent component, ref AppearanceChangeEvent args)
++    protected override void OnAppearanceChange(EntityUid uid, PlantTrayVisualsComponent component, ref AppearanceChangeEvent args)
+     {
+         if (args.Sprite == null)
+             return;
+@@ -30,20 +31,23 @@ protected override void OnAppearanceChange(EntityUid uid, PlantHolderVisualsComp
+         if (AppearanceSystem.TryGetData<string>(uid, PlantVisuals.PlantRsi, out var rsi, args.Component)
+             && AppearanceSystem.TryGetData<string>(uid, PlantVisuals.PlantState, out var state, args.Component))
+         {
++            // Tray should never render plant sprite.
++            AppearanceSystem.SetData(uid, PlantVisuals.PlantState, string.Empty, args.Component);
++
+             var valid = !string.IsNullOrWhiteSpace(state);
+ 
+-            SpriteSystem.LayerSetVisible((uid, args.Sprite), PlantHolderLayers.Plant, valid);
++            SpriteSystem.LayerSetVisible((uid, args.Sprite), PlantTrayLayers.Plant, valid);
+ 
+             if (valid)
+             {
+-                SpriteSystem.LayerSetRsi((uid, args.Sprite), PlantHolderLayers.Plant, new ResPath(rsi));
+-                SpriteSystem.LayerSetRsiState((uid, args.Sprite), PlantHolderLayers.Plant, state);
++                SpriteSystem.LayerSetRsi((uid, args.Sprite), PlantTrayLayers.Plant, new ResPath(rsi));
++                SpriteSystem.LayerSetRsiState((uid, args.Sprite), PlantTrayLayers.Plant, state);
+             }
+         }
+     }
+ }
+ 
+-public enum PlantHolderLayers : byte
++public enum PlantTrayLayers : byte
+ {
+     Plant,
+     HealthLight,
+diff --git a/Content.Server/Botany/Systems/BotanySystem.Seed.cs b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+index 0e8ea9f5f8..0751270ab1 100644
+--- a/Content.Server/Botany/Systems/BotanySystem.Seed.cs
++++ b/Content.Server/Botany/Systems/BotanySystem.Seed.cs
+@@ -125,24 +125,6 @@ public ComponentRegistry ClonePlantSnapshotData(EntityUid source, bool cloneLife
+         return snap;
+     }
+ 
+-    /// <summary>
+-    /// Applies a component snapshot to a plant.
+-    /// </summary>
+-    /// <param name="plant">The plant to apply the snapshot to.</param>
+-    /// <param name="snapshot">The component snapshot to apply.</param>
+-    [PublicAPI]
+-    public void ApplyPlantSnapshotData(EntityUid plant, ComponentRegistry snapshot)
+-    {
+-        foreach (var (_, entry) in snapshot)
+-        {
+-            if (entry.Component is not Component component)
+-                continue;
+-
+-            var copied = _serialization.CreateCopy(component, notNullableOverride: true);
+-            EntityManager.AddComponent(plant, copied, overwrite: true);
+-        }
+-    }
+-
+     /// <summary>
+     /// Spawns a seed packet that stores a component snapshot of <paramref name="sourcePlant"/>.
+     /// </summary>
+diff --git a/Content.Server/Botany/Systems/MutationSystem.cs b/Content.Server/Botany/Systems/MutationSystem.cs
+index 562c0540e1..1a37a754c9 100644
+--- a/Content.Server/Botany/Systems/MutationSystem.cs
++++ b/Content.Server/Botany/Systems/MutationSystem.cs
+@@ -79,22 +79,15 @@ public void SpeciesChange(Entity<PlantDataComponent?> oldPlant, EntProtoId newPl
+             return;
+ 
+         // Clone state via snapshot and apply to new plant.
+-        var newPlantUid = Spawn(newPlantEnt);
+         var snapshot = _botany.ClonePlantSnapshotData(oldPlant.Owner, cloneLifecycle: true);
++        var newPlantUid = Spawn(newPlantEnt, _transform.GetMapCoordinates(oldPlant.Owner), snapshot);
+ 
+         if (_plant.TryGetTray(oldPlant.Owner, out var trayEnt))
+-        {
+             _plantTray.PlantingPlantInTray(trayEnt, newPlantUid);
+-        }
+         else
+-        {
+-            _transform.SetCoordinates(newPlantUid, Transform(oldPlant.Owner).Coordinates);
+             _plant.PlantingPlant(newPlantUid);
+-        }
+ 
+         QueueDel(oldPlant.Owner);
+-
+-        _botany.ApplyPlantSnapshotData(newPlantUid, snapshot);
+         _plant.ForceUpdateByExternalCause(newPlantUid);
+     }
+ 
+diff --git a/Content.Server/Botany/Systems/PlantTraySystem.cs b/Content.Server/Botany/Systems/PlantTraySystem.cs
+index b2f52ea747..40a674dd67 100644
+--- a/Content.Server/Botany/Systems/PlantTraySystem.cs
++++ b/Content.Server/Botany/Systems/PlantTraySystem.cs
+@@ -113,10 +113,7 @@ private void OnInteractUsing(Entity<PlantTrayComponent> ent, ref InteractUsingEv
+             if (tray.PlantEntity == null || Deleted(tray.PlantEntity))
+             {
+                 args.Handled = true;
+-                var plantUid = Spawn(seeds.PlantProtoId, Transform(uid).Coordinates);
+-
+-                if (seeds.PlantData != null)
+-                    _botany.ApplyPlantSnapshotData(plantUid, seeds.PlantData);
++                var plantUid = Spawn(seeds.PlantProtoId, _transform.GetMapCoordinates(uid), seeds.PlantData);
+ 
+                 if (!TryComp<PlantDataComponent>(plantUid, out var plantData))
+                     return;
+@@ -295,9 +292,9 @@ public void UpdateWarnings(Entity<PlantTrayComponent?> ent)
+ 
+         if (!TryGetPlant(ent, out var plantUid))
+         {
+-            _appearance.SetData(uid, PlantHolderVisuals.HealthLight, false, app);
+-            _appearance.SetData(uid, PlantHolderVisuals.AlertLight, false, app);
+-            _appearance.SetData(uid, PlantHolderVisuals.HarvestLight, false, app);
++            _appearance.SetData(uid, PlantTrayVisuals.HealthLight, false, app);
++            _appearance.SetData(uid, PlantTrayVisuals.AlertLight, false, app);
++            _appearance.SetData(uid, PlantTrayVisuals.HarvestLight, false, app);
+             return;
+         }
+ 
+@@ -307,15 +304,15 @@ public void UpdateWarnings(Entity<PlantTrayComponent?> ent)
+             return;
+ 
+         // TODO: dehardcode those alert levels.
+-        _appearance.SetData(uid, PlantHolderVisuals.HealthLight, plantHolder.Health <= plant.Endurance / 2f, app);
+-        _appearance.SetData(uid, PlantHolderVisuals.WaterLight, component.WaterLevel <= 15, app);
+-        _appearance.SetData(uid, PlantHolderVisuals.NutritionLight, component.NutritionLevel <= 8, app);
++        _appearance.SetData(uid, PlantTrayVisuals.HealthLight, plantHolder.Health <= plant.Endurance / 2f, app);
++        _appearance.SetData(uid, PlantTrayVisuals.WaterLight, component.WaterLevel <= 15, app);
++        _appearance.SetData(uid, PlantTrayVisuals.NutritionLight, component.NutritionLevel <= 8, app);
+         _appearance.SetData(uid,
+-            PlantHolderVisuals.AlertLight,
++            PlantTrayVisuals.AlertLight,
+             component.WeedLevel >= 5 || plantHolder.PestLevel >= 5 || plantHolder.Toxins >= 40 || plantHolder.ImproperHeat
+             || plantHolder.ImproperPressure || plantHolder.MissingGas > 0,
+             app);
+-        _appearance.SetData(uid, PlantHolderVisuals.HarvestLight, harvest is { ReadyForHarvest: true }, app);
++        _appearance.SetData(uid, PlantTrayVisuals.HarvestLight, harvest is { ReadyForHarvest: true }, app);
+     }
+ 
+     /// <summary>
+diff --git a/Content.Shared/Botany/PlantHolderVisuals.cs b/Content.Shared/Botany/PlantHolderVisuals.cs
+index 557157701d..73e9882033 100644
+--- a/Content.Shared/Botany/PlantHolderVisuals.cs
++++ b/Content.Shared/Botany/PlantHolderVisuals.cs
+@@ -3,7 +3,7 @@
+ namespace Content.Shared.Botany;
+ 
+ [Serializable, NetSerializable]
+-public enum PlantHolderVisuals
++public enum PlantTrayVisuals
+ {
+     HealthLight,
+     WaterLight,
+diff --git a/Resources/Prototypes/Entities/Structures/hydro_tray.yml b/Resources/Prototypes/Entities/Structures/hydro_tray.yml
+index a9ae7a7d9f..9e8c4672e9 100644
+--- a/Resources/Prototypes/Entities/Structures/hydro_tray.yml
++++ b/Resources/Prototypes/Entities/Structures/hydro_tray.yml
+@@ -45,23 +45,23 @@
+   - type: Appearance
+   - type: GenericVisualizer
+     visuals:
+-      enum.PlantHolderVisuals.HealthLight:
++      enum.PlantTrayVisuals.HealthLight:
+         health_alert:
+           True: { visible: true }
+           False: { visible: false }
+-      enum.PlantHolderVisuals.WaterLight:
++      enum.PlantTrayVisuals.WaterLight:
+         water_alert:
+           True: { visible: true }
+           False: { visible: false }
+-      enum.PlantHolderVisuals.NutritionLight:
++      enum.PlantTrayVisuals.NutritionLight:
+         nutri_alert:
+           True: { visible: true }
+           False: { visible: false }
+-      enum.PlantHolderVisuals.AlertLight:
++      enum.PlantTrayVisuals.AlertLight:
+         undefined_alert:
+           True: { visible: true }
+           False: { visible: false }
+-      enum.PlantHolderVisuals.HarvestLight:
++      enum.PlantTrayVisuals.HarvestLight:
+         harvest_alert:
+           True: { visible: true }
+           False: { visible: false }
+diff --git a/Resources/Prototypes/Entities/Structures/soil.yml b/Resources/Prototypes/Entities/Structures/soil.yml
+index 5324241405..4489124cde 100644
+--- a/Resources/Prototypes/Entities/Structures/soil.yml
++++ b/Resources/Prototypes/Entities/Structures/soil.yml
+@@ -56,7 +56,7 @@
+         reagent: Water
+         solution: soil
+   - type: Appearance
+-  - type: PlantHolderVisuals
++  - type: PlantTrayVisuals
+ 
+ - type: entity
+   parent: hydroponicsSoil
+diff --git a/Resources/Prototypes/Hydroponics/plants.yml b/Resources/Prototypes/Hydroponics/plants.yml
+index 6dd42f1f75..d882e5aecf 100644
+--- a/Resources/Prototypes/Hydroponics/plants.yml
++++ b/Resources/Prototypes/Hydroponics/plants.yml
+@@ -13,6 +13,7 @@
+         layer:
+         - BulletImpassable
+   - type: Sprite
++    snapCardinals: true
+   - type: Appearance
+   - type: Clickable
+   - type: InteractionOutline
+-- 
+2.55.0
+

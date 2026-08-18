@@ -1,0 +1,38 @@
+From d258fa4ff6f98a192afd76241e3242a188e6a917 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Sat, 13 Dec 2025 15:19:44 +0200
+Subject: [PATCH 046/112] oops
+
+---
+ Content.Server/Botany/Systems/BotanySwabSystem.cs  | 2 +-
+ Content.Server/Botany/Systems/PlantHolderSystem.cs | 1 -
+ 2 files changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/Content.Server/Botany/Systems/BotanySwabSystem.cs b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+index fb698cad13..3fa55ea574 100644
+--- a/Content.Server/Botany/Systems/BotanySwabSystem.cs
++++ b/Content.Server/Botany/Systems/BotanySwabSystem.cs
+@@ -63,7 +63,7 @@ private void OnDoAfter(EntityUid uid, BotanySwabComponent swab, DoAfterEvent arg
+ 
+         if (swab.SeedData == null)
+         {
+-            // Pick up pollen..=
++            // Pick up pollen.
+             if (plant.Seed != null)
+                 swab.SeedData = plant.Seed.Clone();
+ 
+diff --git a/Content.Server/Botany/Systems/PlantHolderSystem.cs b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+index 4e7661f267..62cc3969cf 100644
+--- a/Content.Server/Botany/Systems/PlantHolderSystem.cs
++++ b/Content.Server/Botany/Systems/PlantHolderSystem.cs
+@@ -456,7 +456,6 @@ public void Update(EntityUid uid, PlantHolderComponent? component = null)
+ 
+         CheckHealth(uid, component);
+ 
+-
+         if (component.UpdateSpriteAfterUpdate)
+             UpdateSprite(uid, component);
+     }
+-- 
+2.55.0
+

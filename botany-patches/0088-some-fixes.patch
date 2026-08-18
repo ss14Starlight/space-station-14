@@ -1,0 +1,537 @@
+From 23140bbffc8de9a03a5fa14244a26aafe2123384 Mon Sep 17 00:00:00 2001
+From: Pok245 <113675512+Pok27@users.noreply.github.com>
+Date: Tue, 3 Mar 2026 05:00:04 +0200
+Subject: [PATCH 088/112] some fixes
+
+---
+ .../Botany/PlantTrayVisualizerSystem.cs       |  4 +-
+ .../Components/PlantChemicalsComponent.cs     |  2 +-
+ .../Botany/Items/Systems/BotanyHoeSystem.cs   |  6 +--
+ .../Items/Systems/BotanyProduceSystem.cs      |  4 +-
+ .../Items/Systems/BotanySampleTakerSystem.cs  | 10 ++++-
+ .../Botany/Items/Systems/BotanySeedSystem.cs  |  4 +-
+ .../Items/Systems/BotanyShovelSystem.cs       |  6 +--
+ .../Botany/Systems/MutationSystem.cs          | 28 +++++++++++-
+ Content.Shared/Botany/Systems/PlantSystem.cs  | 28 ++++++------
+ .../Botany/Systems/PlantTraySystem.cs         | 43 ++++++++++++++++---
+ .../Systems/PlantTraitsSystem.Ligneous.cs     |  6 +--
+ .../Systems/PlantTraitsSystem.Sampled.cs      |  2 +-
+ .../botany/components/plant-component.ftl     | 16 +++++++
+ .../components/plant-holder-component.ftl     | 34 ---------------
+ .../components/plant-item-component.ftl       | 15 +++++++
+ .../botany/components/seed-component.ftl      |  2 -
+ .../components/seed-extractor-component.ftl   |  2 -
+ .../botany/components/tray-component.ftl      |  7 +++
+ 18 files changed, 138 insertions(+), 81 deletions(-)
+ create mode 100644 Resources/Locale/en-US/botany/components/plant-component.ftl
+ delete mode 100644 Resources/Locale/en-US/botany/components/plant-holder-component.ftl
+ create mode 100644 Resources/Locale/en-US/botany/components/plant-item-component.ftl
+ create mode 100644 Resources/Locale/en-US/botany/components/tray-component.ftl
+
+diff --git a/Content.Client/Botany/PlantTrayVisualizerSystem.cs b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+index 8b8d7d114f..3727c15987 100644
+--- a/Content.Client/Botany/PlantTrayVisualizerSystem.cs
++++ b/Content.Client/Botany/PlantTrayVisualizerSystem.cs
+@@ -29,8 +29,8 @@ private void UpdateTrayWarnings(Entity<PlantTrayComponent> ent, AppearanceCompon
+         if (!ent.Comp.DrawWarnings)
+             return;
+ 
+-        var water = ent.Comp.WaterLevel <= ent.Comp.MaxWaterLevel * 0.1f;
+-        var nutrition = ent.Comp.NutritionLevel <= ent.Comp.MaxNutritionLevel * 0.1f;
++        var water = _plantTray.GetWaterThreshold(ent.Owner);
++        var nutrition = _plantTray.GetNutrientThreshold(ent.Owner);
+         var alert = _plantTray.GetWeedThreshold(ent.Owner);
+         var health = false;
+         var harvest = false;
+diff --git a/Content.Shared/Botany/Components/PlantChemicalsComponent.cs b/Content.Shared/Botany/Components/PlantChemicalsComponent.cs
+index 9d833e0f37..ad9e07efc9 100644
+--- a/Content.Shared/Botany/Components/PlantChemicalsComponent.cs
++++ b/Content.Shared/Botany/Components/PlantChemicalsComponent.cs
+@@ -11,7 +11,7 @@ namespace Content.Shared.Botany.Components;
+ /// Component for defining what reagents harvested produce will contain for this plant species.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
+-[Access(typeof(PlantChemicalsSystem))]
++[Access(typeof(PlantChemicalsSystem), typeof(MutationSystem))]
+ public sealed partial class PlantChemicalsComponent : Component
+ {
+     /// <summary>
+diff --git a/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs b/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs
+index 1175bfe789..4db64b0560 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanyHoeSystem.cs
+@@ -43,17 +43,17 @@ private void OnTrayHoeAttempt(Entity<PlantTrayComponent> ent, ref TrayHoeAttempt
+ 
+         if (ent.Comp.WeedLevel <= 0)
+         {
+-            _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-no-weeds-message"), args.User);
++            _popup.PopupPredictedCursor(Loc.GetString("plant-hoe-component-no-weeds-popup"), args.User);
+             return;
+         }
+ 
+         _popup.PopupPredictedCursor(
+-            Loc.GetString("plant-holder-component-remove-weeds-message",
++            Loc.GetString("plant-hoe-component-already-seeded-popup",
+                 ("name", ent.Owner)),
+             args.User,
+             PopupType.Medium);
+         _popup.PopupEntity(
+-            Loc.GetString("plant-holder-component-remove-weeds-others-message",
++            Loc.GetString("plant-hoe-component-remove-weeds-others-popup",
+                 ("otherName", Identity.Entity(args.User, EntityManager))),
+             ent.Owner,
+             Filter.PvsExcept(args.User),
+diff --git a/Content.Shared/Botany/Items/Systems/BotanyProduceSystem.cs b/Content.Shared/Botany/Items/Systems/BotanyProduceSystem.cs
+index e534ccabb3..e4fa7d6916 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanyProduceSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanyProduceSystem.cs
+@@ -46,12 +46,12 @@ private void OnCompostingProduceAttempt(Entity<PlantTrayComponent> ent, ref Comp
+         if (args.Cancelled)
+             return;
+ 
+-        _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-compost-message",
++        _popup.PopupPredictedCursor(Loc.GetString("plant-produce-component-compost-popup",
+                 ("owner", ent.Owner),
+                 ("usingItem", args.Produce.Owner)),
+             args.User,
+             PopupType.Medium);
+-        _popup.PopupEntity(Loc.GetString("plant-holder-component-compost-others-message",
++        _popup.PopupEntity(Loc.GetString("plant-produce-component-compost-others-popup",
+                 ("user", Identity.Entity(args.User, EntityManager)),
+                 ("usingItem", args.Produce.Owner),
+                 ("owner", ent.Owner)),
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
+index f059904be9..71b20e2761 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySampleTakerSystem.cs
+@@ -51,11 +51,17 @@ private void OnPlantSampleAttempt(Entity<PlantComponent> ent, ref PlantSampleAtt
+             || !TryComp<PlantHarvestComponent>(ent.Owner, out var harvest))
+             return;
+ 
++        if (_plantHolder.IsDead(ent.Owner))
++        {
++            _popup.PopupPredictedCursor(Loc.GetString("plant-sample-component-dead-plant-popup"), args.User);
++            return;
++        }
++
+         // Prevent early sampling.
+         var growthStage = _plant.GetGrowthStageValue(ent.AsNullable());
+         if (growthStage <= args.Sample.Comp.MinSampleStage)
+         {
+-            _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-early-sample-message"), args.User);
++            _popup.PopupPredictedCursor(Loc.GetString("plant-sample-component-early-sample-popup"), args.User);
+             return;
+         }
+ 
+@@ -71,7 +77,7 @@ private void OnPlantSampleAttempt(Entity<PlantComponent> ent, ref PlantSampleAtt
+         _botany.SpawnSeedPacketFromPlant(ent.Owner, Transform(args.User).Coordinates, args.User, healthOverride);
+ 
+         var displayName = Loc.GetString(plantData.DisplayName);
+-        _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-take-sample-message", ("seedName", displayName)), args.User);
++        _popup.PopupPredictedCursor(Loc.GetString("plant-sample-component-take-sample-popup", ("seedName", displayName)), args.User);
+ 
+         if (rand.Prob(args.Sample.Comp.SampleProbability))
+             EnsureComp<PlantTraitSampledComponent>(ent.Owner);
+diff --git a/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs b/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
+index 5a4481efa3..4483822dfe 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanySeedSystem.cs
+@@ -49,7 +49,7 @@ private void OnPlantingSeedAttempt(Entity<PlantTrayComponent> ent, ref PlantingS
+         if (_plantTray.TryGetPlant(ent.AsNullable(), out _))
+         {
+             _popup.PopupPredictedCursor(
+-                Loc.GetString("plant-holder-component-already-seeded-message", ("name", MetaData(ent.Owner).EntityName)),
++                Loc.GetString("plant-component-already-seeded-popup", ("name", MetaData(ent.Owner).EntityName)),
+                 args.User,
+                 PopupType.Medium);
+             return;
+@@ -61,7 +61,7 @@ private void OnPlantingSeedAttempt(Entity<PlantTrayComponent> ent, ref PlantingS
+ 
+         var name = Loc.GetString(plantData.DisplayName);
+         var noun = Loc.GetString(plantData.Noun);
+-        _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-plant-success-message",
++        _popup.PopupPredictedCursor(Loc.GetString("plant-component-plant-success-popup",
+                 ("seedName", name),
+                 ("seedNoun", noun)),
+             args.User,
+diff --git a/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs b/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs
+index 1b5899a7e1..024cded0f5 100644
+--- a/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs
++++ b/Content.Shared/Botany/Items/Systems/BotanyShovelSystem.cs
+@@ -45,17 +45,17 @@ private void OnTrayShovelAttempt(Entity<PlantTrayComponent> ent, ref TrayShovelA
+         if (!_plantTray.TryGetPlant(ent.AsNullable(), out var plantUid))
+         {
+             _popup.PopupPredictedCursor(
+-                Loc.GetString("plant-holder-component-no-plant-message", ("name", ent.Owner)),
++                Loc.GetString("plant-shovel-component-no-plant-popup", ("name", ent.Owner)),
+                 args.User);
+             return;
+         }
+ 
+         _popup.PopupPredictedCursor(
+-            Loc.GetString("plant-holder-component-remove-plant-message", ("name", ent.Owner)),
++            Loc.GetString("plant-shovel-component-remove-plant-popup", ("name", ent.Owner)),
+             args.User,
+             PopupType.Medium);
+         _popup.PopupEntity(
+-            Loc.GetString("plant-holder-component-remove-plant-others-message",
++            Loc.GetString("plant-shovel-component-remove-plant-others-popup",
+                 ("name", Identity.Entity(args.User, EntityManager))),
+             ent.Owner,
+             Filter.PvsExcept(args.User),
+diff --git a/Content.Shared/Botany/Systems/MutationSystem.cs b/Content.Shared/Botany/Systems/MutationSystem.cs
+index 2b979b6bc4..b08e1c714e 100644
+--- a/Content.Shared/Botany/Systems/MutationSystem.cs
++++ b/Content.Shared/Botany/Systems/MutationSystem.cs
+@@ -60,7 +60,7 @@ public void CheckRandomMutations(Entity<PlantComponent?> ent, float severity)
+     /// preserving lifecycle state.
+     /// </summary>
+     [PublicAPI]
+-    public void SpeciesChange(Entity<PlantDataComponent?> oldPlant, EntProtoId newPlantEnt)
++    public void SpeciesChange(Entity<PlantDataComponent?> oldPlant, EntProtoId newPlantProto)
+     {
+         if (!Resolve(oldPlant, ref oldPlant.Comp, false))
+             return;
+@@ -70,7 +70,8 @@ public void SpeciesChange(Entity<PlantDataComponent?> oldPlant, EntProtoId newPl
+ 
+         // Clone state via snapshot and apply to new plant.
+         var snapshot = _botany.ClonePlantSnapshotData(oldPlant.Owner, cloneLifecycle: true);
+-        var newPlantUid = EntityManager.PredictedSpawn(newPlantEnt, _transform.GetMapCoordinates(oldPlant.Owner), snapshot);
++        var newPlantUid = EntityManager.PredictedSpawn(newPlantProto, _transform.GetMapCoordinates(oldPlant.Owner), snapshot);
++        ChemicalsSpeciesChange(newPlantUid, newPlantProto);
+ 
+         if (_plant.TryGetTray(oldPlant.Owner, out var trayEnt))
+             _plantTray.PlantingPlantInTray(trayEnt, newPlantUid);
+@@ -81,6 +82,29 @@ public void SpeciesChange(Entity<PlantDataComponent?> oldPlant, EntProtoId newPl
+         _plant.ForceUpdateByExternalCause(newPlantUid);
+     }
+ 
++    private void ChemicalsSpeciesChange(EntityUid plantUid, EntProtoId plantProto)
++    {
++        if (!_botany.TryGetPlantComponent<PlantChemicalsComponent>(null, plantProto, out var newPlantChemicals)
++            || !TryComp<PlantChemicalsComponent>(plantUid, out var oldPlantChemicals))
++            return;
++
++        var oldPlant = oldPlantChemicals.Chemicals;
++        var newPlant = newPlantChemicals.Chemicals;
++
++        // Adding the new chemicals from the new species.
++        foreach (var otherChem in newPlant)
++        {
++            oldPlant.TryAdd(otherChem.Key, otherChem.Value);
++        }
++
++        // Removing the inherent chemicals from the old species. Leaving mutated/crossbred ones intact.
++        foreach (var originalChem in oldPlant)
++        {
++            if (!newPlant.ContainsKey(originalChem.Key) && originalChem.Value.Inherent)
++                oldPlant.Remove(originalChem.Key);
++        }
++    }
++
+     [PublicAPI]
+     public void CrossMutations(ComponentRegistry pollenPlant, EntProtoId? pollenProtoId, EntityUid targetPlant)
+     {
+diff --git a/Content.Shared/Botany/Systems/PlantSystem.cs b/Content.Shared/Botany/Systems/PlantSystem.cs
+index 51d3f08f81..7013850ffe 100644
+--- a/Content.Shared/Botany/Systems/PlantSystem.cs
++++ b/Content.Shared/Botany/Systems/PlantSystem.cs
+@@ -61,28 +61,24 @@ private void OnExamined(Entity<PlantComponent> ent, ref ExaminedEvent args)
+         if (!args.IsInDetailsRange)
+             return;
+ 
+-        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder)
+-            || !TryComp<PlantDataComponent>(ent.Owner, out var plantData))
++        if (!TryComp<PlantHolderComponent>(ent.Owner, out var holder))
+             return;
+ 
+         using (args.PushGroup(nameof(PlantComponent)))
+         {
+             args.PushMarkup(GetPlantStateMarkup(ent));
+ 
+-            var displayName = Loc.GetString(plantData.DisplayName);
+-            args.PushMarkup(Loc.GetString("plant-holder-component-something-already-growing-message", ("seedName", displayName)));
+-
+             if (_plantHolder.IsDead(ent.Owner))
+-                args.PushMarkup(Loc.GetString("plant-holder-component-dead-plant-message"));
++                args.PushMarkup(Loc.GetString("plant-component-dead-plant-matter-message"));
+ 
+             if (_plantHolder.GetHealthThreshold(ent.Owner))
+             {
+                 args.PushMarkup(Loc.GetString(
+-                    "plant-holder-component-something-already-growing-low-health-message",
++                    "plant-component-something-already-growing-low-health-message",
+                     ("healthState",
+                         Loc.GetString(holder.Age > ent.Comp.Lifespan
+-                            ? "plant-holder-component-plant-old-adjective"
+-                            : "plant-holder-component-plant-unhealthy-adjective"))));
++                            ? "plant-component-plant-old-adjective"
++                            : "plant-component-plant-unhealthy-adjective"))));
+             }
+ 
+             foreach (var trait in EntityManager.GetComponents<PlantTraitsComponent>(ent.Owner))
+@@ -344,23 +340,23 @@ public string GetPlantWarningsMarkup(Entity<PlantHolderComponent?> ent)
+         if (!Resolve(ent.Owner, ref ent.Comp, false))
+             return string.Empty;
+ 
+-        var markup = string.Empty;
++        var markup = new List<string>();
+         if (_plantHolder.GetToxinsThreshold(ent))
+-            markup += "\n" + Loc.GetString("plant-holder-component-toxins-high-warning");
++            markup.Add(Loc.GetString("plant-component-toxins-high-warning"));
+ 
+         if (ent.Comp.ImproperHeat)
+-            markup += "\n" + Loc.GetString("plant-holder-component-heat-improper-warning");
++            markup.Add(Loc.GetString("plant-component-heat-improper-warning"));
+ 
+         if (ent.Comp.ImproperPressure)
+-            markup += "\n" + Loc.GetString("plant-holder-component-pressure-improper-warning");
++            markup.Add(Loc.GetString("plant-component-pressure-improper-warning"));
+ 
+         if (ent.Comp.MissingGas)
+-            markup += "\n" + Loc.GetString("plant-holder-component-gas-missing-warning");
++            markup.Add(Loc.GetString("plant-component-gas-missing-warning"));
+ 
+         if (_weedPestGrowth.GetPestThreshold(ent.Owner))
+-            markup += "\n" + Loc.GetString("plant-holder-component-pest-high-level-message");
++            markup.Add(Loc.GetString("plant-component-pest-high-level-message"));
+ 
+-        return markup;
++        return string.Join("\n", markup);
+     }
+ 
+     [PublicAPI]
+diff --git a/Content.Shared/Botany/Systems/PlantTraySystem.cs b/Content.Shared/Botany/Systems/PlantTraySystem.cs
+index fe96124811..25479e70b4 100644
+--- a/Content.Shared/Botany/Systems/PlantTraySystem.cs
++++ b/Content.Shared/Botany/Systems/PlantTraySystem.cs
+@@ -39,12 +39,19 @@ private void OnExamine(Entity<PlantTrayComponent> ent, ref ExaminedEvent args)
+         using (args.PushGroup(nameof(PlantTrayComponent)))
+         {
+             if (!TryGetPlant(ent.AsNullable(), out var plantUid))
+-                args.PushMarkup(Loc.GetString("plant-holder-component-nothing-planted-message"));
++            {
++                args.PushMarkup(Loc.GetString("tray-component-nothing-planted-message"));
++                if (TryComp<PlantDataComponent>(plantUid, out var plantData))
++                {
++                    var displayName = Loc.GetString(plantData.DisplayName);
++                    args.PushMarkup(Loc.GetString("plant-component-something-already-growing-message", ("seedName", displayName)));
++                }
++            }
+ 
+             args.PushMarkup(GetTrayWarningsMarkup(ent.AsNullable()));
+-            args.PushMarkup(Loc.GetString("plant-holder-component-water-level-message",
++            args.PushMarkup(Loc.GetString("tray-component-water-level-message",
+                 ("waterLevel", (int)ent.Comp.WaterLevel)));
+-            args.PushMarkup(Loc.GetString("plant-holder-component-nutrient-level-message",
++            args.PushMarkup(Loc.GetString("tray-component-nutrient-level-message",
+                 ("nutritionLevel", (int)ent.Comp.NutritionLevel)));
+ 
+             if (plantUid != null && ent.Comp.DrawWarnings)
+@@ -245,11 +252,17 @@ public string GetTrayWarningsMarkup(Entity<PlantTrayComponent?> ent)
+         if (!Resolve(ent.Owner, ref ent.Comp, false))
+             return string.Empty;
+ 
+-        var markup = string.Empty;
++        var markup = new List<string>(3);
+         if (GetWeedThreshold(ent))
+-            markup += "\n" + Loc.GetString("plant-holder-component-weed-high-level-message");
++            markup.Add(Loc.GetString("tray-component-weed-high-level-warning"));
+ 
+-        return markup;
++        if (GetWaterThreshold(ent))
++            markup.Add(Loc.GetString("tray-component-water-low-warning"));
++
++        if (GetNutrientThreshold(ent))
++            markup.Add(Loc.GetString("tray-component-nutrient-low-warning"));
++
++        return string.Join("\n", markup);
+     }
+ 
+     [PublicAPI]
+@@ -260,6 +273,24 @@ public bool GetWeedThreshold(Entity<PlantTrayComponent?> ent)
+ 
+         return ent.Comp.WeedLevel >= ent.Comp.MaxWeedLevel * 0.5f;
+     }
++
++    [PublicAPI]
++    public bool GetWaterThreshold(Entity<PlantTrayComponent?> ent)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return false;
++
++        return ent.Comp.WaterLevel <= ent.Comp.MaxWaterLevel * 0.1f;
++    }
++
++    [PublicAPI]
++    public bool GetNutrientThreshold(Entity<PlantTrayComponent?> ent)
++    {
++        if (!Resolve(ent.Owner, ref ent.Comp, false))
++            return false;
++
++        return ent.Comp.NutritionLevel <= ent.Comp.MaxNutritionLevel * 0.1f;
++    }
+ }
+ 
+ /// <summary>
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
+index 33ddb69325..37089889f0 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Ligneous.cs
+@@ -35,14 +35,14 @@ private void OnInteractUsing(Entity<PlantTraitLigneousComponent> ent, ref Intera
+ 
+         if (_plantHolder.IsDead(ent.Owner))
+         {
+-            _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-dead-plant-message"), args.User);
++            _popup.PopupPredictedCursor(Loc.GetString("plant-component-dead-plant-message"), args.User);
+             return;
+         }
+ 
+         // Ligneous requires sharp tool.
+         if (!HasComp<SharpComponent>(args.Used))
+         {
+-            _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-ligneous-cant-harvest-message"), args.User);
++            _popup.PopupPredictedCursor(Loc.GetString("plant-component-ligneous-cant-harvest-message"), args.User);
+             return;
+         }
+ 
+@@ -52,7 +52,7 @@ private void OnInteractUsing(Entity<PlantTraitLigneousComponent> ent, ref Intera
+ 
+     private void OnDoHarvest(Entity<PlantTraitLigneousComponent> ent, ref DoHarvestEvent args)
+     {
+-        _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-ligneous-cant-harvest-message"), args.User);
++        _popup.PopupPredictedCursor(Loc.GetString("plant-component-ligneous-cant-harvest-message"), args.User);
+         args.Cancel();
+     }
+ }
+diff --git a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
+index 944b6a017e..5d438dd522 100644
+--- a/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
++++ b/Content.Shared/Botany/Traits/Systems/PlantTraitsSystem.Sampled.cs
+@@ -16,7 +16,7 @@ public override void Initialize()
+ 
+     private void OnPlantSampleAttempt(Entity<PlantTraitSampledComponent> ent, ref PlantSampleAttemptEvent args)
+     {
+-        _popup.PopupPredictedCursor(Loc.GetString("plant-holder-component-already-sampled-message"), args.User);
++        _popup.PopupPredictedCursor(Loc.GetString("plant-sample-component-already-sampled-popup"), args.User);
+         args.Cancel();
+     }
+ }
+diff --git a/Resources/Locale/en-US/botany/components/plant-component.ftl b/Resources/Locale/en-US/botany/components/plant-component.ftl
+new file mode 100644
+index 0000000000..5cd2b556fd
+--- /dev/null
++++ b/Resources/Locale/en-US/botany/components/plant-component.ftl
+@@ -0,0 +1,16 @@
++plant-component-plant-success-popup = You plant the {$seedName} {$seedNoun}.
++plant-component-already-seeded-popup = The {$name} already has seeds in it!
++
++plant-component-something-already-growing-message = [color=green]{$seedName}[/color] growing here.
++plant-component-something-already-growing-low-health-message = The plant looks [color=red]{$healthState}[/color].
++plant-component-plant-old-adjective = old and wilting
++plant-component-plant-unhealthy-adjective = unhealthy
++plant-component-dead-plant-matter-message = It's full of [color=red]dead plant matter[/color].
++plant-component-pest-high-level-message = It's filled with [color=gray]tiny worms[/color]!
++
++plant-component-toxins-high-warning = The [color=red]toxicity level alert[/color] is flashing red.
++plant-component-light-improper-warning = The [color=yellow]improper light level alert[/color] is blinking.
++plant-component-heat-improper-warning = The [color=orange]improper temperature level alert[/color] is blinking.
++plant-component-pressure-improper-warning = The [color=lightblue]improper environment pressure alert[/color] is blinking.
++plant-component-gas-missing-warning = The [color=cyan]improper gas environment alert[/color] is blinking.
++plant-component-ligneous-cant-harvest-message = The plant is too tough to harvest with your bare hands.
+diff --git a/Resources/Locale/en-US/botany/components/plant-holder-component.ftl b/Resources/Locale/en-US/botany/components/plant-holder-component.ftl
+deleted file mode 100644
+index 7d8a615386..0000000000
+--- a/Resources/Locale/en-US/botany/components/plant-holder-component.ftl
++++ /dev/null
+@@ -1,34 +0,0 @@
+-## Entity
+-
+-plant-holder-component-plant-success-message = You plant the {$seedName} {$seedNoun}.
+-plant-holder-component-already-seeded-message = The {$name} already has seeds in it!
+-plant-holder-component-remove-weeds-message = You remove the weeds from the {$name}.
+-plant-holder-component-remove-weeds-others-message = {$otherName} starts uprooting the weeds.
+-plant-holder-component-no-weeds-message = This plot is devoid of weeds! It doesn't need uprooting.
+-plant-holder-component-remove-plant-message = You remove the plant from the {$name}.
+-plant-holder-component-remove-plant-others-message = {$name} removes the plant.
+-plant-holder-component-no-plant-message = There is no plant to remove.
+-plant-holder-component-transfer-message = You transfer {$amount}u to {$owner}.
+-plant-holder-component-nothing-to-sample-message = There is nothing to take a sample of!
+-plant-holder-component-already-sampled-message = This plant has already been sampled.
+-plant-holder-component-dead-plant-message = This plant is dead.
+-plant-holder-component-take-sample-message = You take a sample from the {$seedName}.
+-plant-holder-component-compost-message = You compost {$usingItem} into {$owner}.
+-plant-holder-component-compost-others-message = {$user} composts {$usingItem} into {$owner}.
+-plant-holder-component-nothing-planted-message = It has nothing planted in it..
+-plant-holder-component-something-already-growing-message = [color=green]{$seedName}[/color] growing here.
+-plant-holder-component-something-already-growing-low-health-message = The plant looks [color=red]{$healthState}[/color].
+-plant-holder-component-plant-old-adjective = old and wilting
+-plant-holder-component-plant-unhealthy-adjective = unhealthy
+-plant-holder-component-dead-plant-matter-message = It's full of [color=red]dead plant matter[/color].
+-plant-holder-component-weed-high-level-message = It's filled with [color=green]weeds[/color]!
+-plant-holder-component-pest-high-level-message = It's filled with [color=gray]tiny worms[/color]!
+-plant-holder-component-water-level-message = Water:     [color=cyan]{$waterLevel}[/color]
+-plant-holder-component-nutrient-level-message = Nutrient: [color=orange]{$nutritionLevel}[/color]
+-plant-holder-component-toxins-high-warning = The [color=red]toxicity level alert[/color] is flashing red.
+-plant-holder-component-light-improper-warning = The [color=yellow]improper light level alert[/color] is blinking.
+-plant-holder-component-heat-improper-warning = The [color=orange]improper temperature level alert[/color] is blinking.
+-plant-holder-component-pressure-improper-warning = The [color=lightblue]improper environment pressure alert[/color] is blinking.
+-plant-holder-component-gas-missing-warning = The [color=cyan]improper gas environment alert[/color] is blinking.
+-plant-holder-component-early-sample-message = The plant hasn't grown enough to take a sample yet.
+-plant-holder-component-ligneous-cant-harvest-message = The plant is too tough to harvest with your bare hands.
+diff --git a/Resources/Locale/en-US/botany/components/plant-item-component.ftl b/Resources/Locale/en-US/botany/components/plant-item-component.ftl
+new file mode 100644
+index 0000000000..0025536257
+--- /dev/null
++++ b/Resources/Locale/en-US/botany/components/plant-item-component.ftl
+@@ -0,0 +1,15 @@
++plant-hoe-component-already-seeded-popup = You remove the weeds from the {$name}.
++plant-hoe-component-remove-weeds-others-popup = {$otherName} starts uprooting the weeds.
++plant-hoe-component-no-weeds-popup = This plot is devoid of weeds! It doesn't need uprooting.
++
++plant-shovel-component-remove-plant-popup = You remove the plant from the {$name}.
++plant-shovel-component-remove-plant-others-popup = {$name} removes the plant.
++plant-shovel-component-no-plant-popup = There is no plant to remove.
++
++plant-sample-component-early-sample-popup = The plant hasn't grown enough to take a sample yet.
++plant-sample-component-already-sampled-popup = This plant has already been sampled.
++plant-sample-component-take-sample-popup = You take a sample from the {$seedName}.
++plant-sample-component-dead-plant-popup = This plant is dead.
++
++plant-produce-component-compost-popup = You compost {$usingItem} into {$owner}.
++plant-produce-component-compost-others-popup = {$user} composts {$usingItem} into {$owner}.
+diff --git a/Resources/Locale/en-US/botany/components/seed-component.ftl b/Resources/Locale/en-US/botany/components/seed-component.ftl
+index 3ba65be680..3bc5e2f2ab 100644
+--- a/Resources/Locale/en-US/botany/components/seed-component.ftl
++++ b/Resources/Locale/en-US/botany/components/seed-component.ftl
+@@ -1,5 +1,3 @@
+-## Entity
+-
+ seed-component-description = It looks like you can grow [color=yellow]{$seedName}[/color] from these.
+ seed-component-has-variety-tag = It's tagged as variety [color=lightgray]no. {$seedUid}[/color].
+ seed-component-plant-yield-text = Plant Yield:       [color=lightblue]{$seedYield}[/color]
+diff --git a/Resources/Locale/en-US/botany/components/seed-extractor-component.ftl b/Resources/Locale/en-US/botany/components/seed-extractor-component.ftl
+index 84d5a5ed28..90219f1c7b 100644
+--- a/Resources/Locale/en-US/botany/components/seed-extractor-component.ftl
++++ b/Resources/Locale/en-US/botany/components/seed-extractor-component.ftl
+@@ -1,4 +1,2 @@
+-## Entity
+-
+ seed-extractor-component-interact-message = You extract some seeds from the { THE($name) }.
+ seed-extractor-component-no-seeds = { CAPITALIZE(THE($name)) } has no seeds!
+diff --git a/Resources/Locale/en-US/botany/components/tray-component.ftl b/Resources/Locale/en-US/botany/components/tray-component.ftl
+new file mode 100644
+index 0000000000..12eca66799
+--- /dev/null
++++ b/Resources/Locale/en-US/botany/components/tray-component.ftl
+@@ -0,0 +1,7 @@
++tray-component-nothing-planted-message = It has nothing planted in it...
++tray-component-water-level-message = Water:     [color=cyan]{$waterLevel}[/color]
++tray-component-nutrient-level-message = Nutrient: [color=orange]{$nutritionLevel}[/color]
++
++tray-component-weed-high-level-warning = It's filled with [color=green]weeds[/color]!
++tray-component-water-low-warning = The water level is low!
++tray-component-nutrient-low-warning = The nutrient level is low!
+-- 
+2.55.0
+
