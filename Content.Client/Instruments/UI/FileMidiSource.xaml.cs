@@ -132,10 +132,10 @@ public sealed partial class FileMidiSource : InstrumentMidiSourceBase
             // TODO: SequencerTimeScale does not return the actual ticks/seconds, find solution.
             var totalTime =
                 TimeSpan.FromSeconds(Math.Ceiling(Instrument.Comp.PlayerTotalTick /
-                                                  Instrument.Comp.Renderer!.SequencerTimeScale));
+                    Instrument.Comp.Renderer!.SequencerTimeScale));
             var currentTime =
                 TimeSpan.FromSeconds(Math.Ceiling(Instrument.Comp.PlayerTick /
-                                                  Instrument.Comp.Renderer!.SequencerTimeScale));
+                    Instrument.Comp.Renderer!.SequencerTimeScale));
             TimeLabel.Text = totalTime.Hours < 1
                 ? Loc.GetString(
                     "instruments-component-menu-files-track-playtime-seconds-minutes",
