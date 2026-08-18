@@ -37,6 +37,7 @@ using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Actions.Components;
 // Starlight begin
 using Content.Shared._Starlight.TextToSpeech;
+using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Tag;
 // Starlight end
 
@@ -71,6 +72,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
     [Dependency] private SharedAccessSystem _access = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private TagSystem _tag = default!; // Starlight
+    [Dependency] private NameModifierSystem _nameModifier = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()

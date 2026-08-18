@@ -99,7 +99,7 @@ public sealed partial class RoboticsConsoleWindow : FancyWindow
         Cyborgs.Clear();
         foreach (var (address, data) in _cyborgs)
         {
-            var item = Cyborgs.AddItem(data.Name, _sprite.Frame0(data.ChassisSprite!), metadata: address);
+            var item = Cyborgs.AddItem(data.FullName, _sprite.Frame0(data.ChassisSprite!), metadata: address); // Starlight
             item.Selected = address == selected;
         }
         _selected = selected;
@@ -142,6 +142,11 @@ public sealed partial class RoboticsConsoleWindow : FancyWindow
         text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-model", ("name", model))}\n");
         text.AddMarkupOrThrow(Loc.GetString("robotics-console-designation"));
         text.AddText($" {data.Name}\n"); // prevent players trolling by naming borg [color=red]satan[/color]
+        if (data.Identifier != string.Empty) // Starlight
+            text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-identifier", ("identifier", data.Identifier))}\n");
+        // Starlight - the position is a sample from a sweep ago, so it is always out of date
+        var location = data.Location == string.Empty ? Loc.GetString("robotics-console-location-unknown") : data.Location;
+        text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-location", ("location", location))}\n"); // Starlight
         text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-battery", ("charge", (int)(data.Charge * 100f)), ("color", batteryColor))}\n");
         text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-hp", ("hp", (int)(data.HpPercent * 100f)), ("color", hpPercentColor))}\n");
         text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-brain", ("brain", data.HasBrain))}\n");
@@ -149,6 +154,7 @@ public sealed partial class RoboticsConsoleWindow : FancyWindow
         BorgInfo.SetMessage(text);
 
         // how the turntables
+        DisableButton.Text = Loc.GetString(data.LockedDown ? "robotics-console-release" : "robotics-console-lockdown"); // Starlight
         DisableButton.Disabled = !_allowBorgControl || !(data.HasBrain && data.CanDisable);
         DestroyButton.Disabled = !_allowBorgControl;
     }

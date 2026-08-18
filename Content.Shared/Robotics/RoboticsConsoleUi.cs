@@ -77,12 +77,31 @@ public partial record struct CyborgControlData
     /// </summary>
     [DataField(required: true)]
     public string ChassisName = string.Empty;
-
+// Starlight Begin
     /// <summary>
-    /// Name of the borg's entity, including its silicon id.
+    /// Name of the borg's entity, without its silicon id.
     /// </summary>
     [DataField(required: true)]
     public string Name = string.Empty;
+
+    /// <summary>
+    /// The borg's silicon id, already bracketed, or empty if it has none.
+    /// </summary>
+    [DataField]
+    public string Identifier = string.Empty;
+
+    /// <summary>
+    /// <see cref="Name"/> with <see cref="Identifier"/> after it, the way the borg reads in world.
+    /// </summary>
+    public string FullName => Identifier == string.Empty ? Name : $"{Name} {Identifier}";
+
+    /// <summary>
+    /// Grid coordinates the borg was at when it last sampled its position, or empty if it has none yet.
+    /// Deliberately stale, see <c>BorgLocationTrackerComponent</c>.
+    /// </summary>
+    [DataField]
+    public string Location = string.Empty;
+// Starlight End
 
     /// <summary>
     /// Battery charge from 0 to 1.
@@ -116,6 +135,9 @@ public partial record struct CyborgControlData
     [DataField]
     public bool CanDisable;
 
+    [DataField]
+    public bool LockedDown; // Starlight
+
     /// <summary>
     /// When this cyborg's data will be deleted.
     /// Set by the console when receiving the packet.
@@ -123,8 +145,11 @@ public partial record struct CyborgControlData
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan Timeout = TimeSpan.Zero;
 
-    public CyborgControlData(SpriteSpecifier? chassisSprite, string chassisName, string name, float charge, float hpPercent, int moduleCount, bool hasBrain, bool canDisable)
+    public CyborgControlData(SpriteSpecifier? chassisSprite, string chassisName, string name, float charge, float hpPercent, int moduleCount, bool hasBrain, bool canDisable, bool lockedDown = false, string identifier = "", string location = "") // Starlight
     {
+        LockedDown = lockedDown; // Starlight
+        Identifier = identifier; // Starlight
+        Location = location; // Starlight
         ChassisSprite = chassisSprite;
         ChassisName = chassisName;
         Name = name;
