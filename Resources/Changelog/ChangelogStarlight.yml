@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: Reduced manual valve noise volume and radius.
-    type: Tweak
-  id: 407330
-  time: '2026-08-06T10:40:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5523
-- author: OMEGA
-  changes:
   - message: Reduced signal valve noise volume and radius.
     type: Tweak
   id: 407331
@@ -2799,4 +2792,11 @@ Entries:
   id: 407729
   time: '2026-08-18T03:46:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5653
+- author: wonderfulnewworld
+  changes:
+  - message: Mobs that shouldn't roll antag will no longer roll antag.
+    type: Fix
+  id: 407730
+  time: '2026-08-18T04:09:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5704
 Order: -1
