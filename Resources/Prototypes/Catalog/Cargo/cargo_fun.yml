@@ -195,5 +195,5 @@
     state: drum
   product: BigDrumsInstrument
   cost: 750 # Starlight, make it consistent with the others
-  category: cargoproduct-category-name-fun
+  category: cargoproduct-category-name-instruments # Starlight, consistent with the others
   group: market
