@@ -1,21 +1,24 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprites by mkanke modified by ratsmageddon for https://github.com/funky-station/funky-station",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "bigboxbotany"
+      "name": "bigboxbotany",
+	  "copyright": "Sprite by mkanke for https://github.com/funky-station/funky-station, edited by Conflee for Starlight"
     },
     {
       "name": "inhand-left",
+	  "copyright": "Sprite by mkanke for https://github.com/funky-station/funky-station, edited by Conflee for Starlight",
       "directions": 4
     },
     {
       "name": "inhand-right",
+	  "copyright": "Sprite by mkanke for https://github.com/funky-station/funky-station, edited by Conflee for Starlight",
       "directions": 4
     }
   ]

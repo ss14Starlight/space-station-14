@@ -34,7 +34,7 @@
           CardboardBoxLargeInternals: { state: bigboxinternals, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_internals.rsi }
 #          CardboardBoxLargeBotany: { state: bigboxbotany, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_botany.rsi.rsi }
           CardboardBoxLargeCargo: { state: bigboxcargo, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_cargo.rsi }
-          CardboardBoxLargeChemisty: { state: bigboxchemisty, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_chemisty.rsi }
+          CardboardBoxLargeChemistry: { state: bigboxchemistry, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_chemistry.rsi }
           CardboardBoxLargeCommand: { state: bigboxcommand, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_command.rsi }
           CardboardBoxLargeEngi: { state: bigboxengi, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_engi.rsi }
           CardboardBoxLargeEvidence: { state: bigboxevidence, sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_evidence.rsi }
@@ -186,15 +186,15 @@
 
 - type: entity
   parent: CardboardBoxLarge
-  id: CardboardBoxLargeChemisty
-  name: chemisty box
+  id: CardboardBoxLargeChemistry
+  name: chemistry box
   components:
     - type: Item
       size: Ginormous
     - type: Sprite
-      sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_chemisty.rsi
+      sprite: _Funkystation/Objects/Specific/Cargo/cardboard_box_chemistry.rsi
       layers:
-        - state: bigboxchemisty
+        - state: bigboxchemistry
         - state: paper
           sprite: Structures/Storage/Crates/labels.rsi
           map: [ "enum.PaperLabelVisuals.Layer" ]
