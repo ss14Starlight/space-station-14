@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (LAGAN) Added a second window to the hop line for someone to help.
-    type: Add
-  id: 407364
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: Cvlancer
-  changes:
   - message: (LAGAN) Removed a random railing in solitary.
     type: Remove
   id: 407365
@@ -2799,4 +2792,11 @@ Entries:
   id: 407763
   time: '2026-08-18T23:21:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5546
+- author: OJG
+  changes:
+  - message: Added a mid sized Supermatter setup to Ming.
+    type: Add
+  id: 407764
+  time: '2026-08-18T23:21:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5716
 Order: -1
