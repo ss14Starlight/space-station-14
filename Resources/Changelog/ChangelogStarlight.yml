@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Pun Pun and other non-bag equippers can now actually get their Thief and SELF gear.
-    type: Fix
-  id: 407347
-  time: '2026-08-06T22:28:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5494
 - author: wonderfulnewworld, Princess-Cheeseballs
   changes:
   - message: You can now roll antag if you join in that awkward period between round start and gamerule start.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407746
   time: '2026-08-18T20:52:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5705
+- author: RedSpeeds
+  changes:
+  - message: Added Emote binding. You can now quickbind your favorite emotes by right clicking on them from the emote wheel.
+    type: Add
+  id: 407747
+  time: '2026-08-18T21:28:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5595
 Order: -1
