@@ -1,25 +1,4 @@
 Entries:
-- author: wonderfulworld
-  changes:
-  - message: Devil and Brighteye not having enough players will now no longer prevent the round from starting.
-    type: Tweak
-  id: 407343
-  time: '2026-08-06T22:28:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5491
-- author: wonderfulworld
-  changes:
-  - message: Dynamic will no longer roll invalid rule combinations together.
-    type: Fix
-  id: 407344
-  time: '2026-08-06T22:28:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5491
-- author: wonderfulworld
-  changes:
-  - message: Dynamic will no longer roll into negative budget.
-    type: Fix
-  id: 407345
-  time: '2026-08-06T22:28:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5491
 - author: wonderfulnewworld
   changes:
   - message: When you roll an antag that adds items to your inventory, if your back storage doesn't have enough room, it'll drop enough items from your back storage to fit your new gear in. If you're not wearing back storage, or your back storage is too small, it'll put them in your hands instead. Failing both of those cases, then it'll drop them on the floor.
@@ -2799,4 +2778,25 @@ Entries:
   id: 407742
   time: '2026-08-18T20:20:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5709
+- author: Way
+  changes:
+  - message: (Hotel) More decals and tiles around the map have changed.
+    type: Tweak
+  id: 407743
+  time: '2026-08-18T20:20:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5699
+- author: Way
+  changes:
+  - message: (Hotel) More Radios have been mapped, and the Mixed Lights Crate in the Radio Host's room has been replaced for a 2nd Vinyl Crate.
+    type: Tweak
+  id: 407744
+  time: '2026-08-18T20:20:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5699
+- author: Way
+  changes:
+  - message: (Hotel) Floor lights have been added in some minor spots.
+    type: Add
+  id: 407745
+  time: '2026-08-18T20:20:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5699
 Order: -1
