@@ -1,32 +1,4 @@
 Entries:
-- author: JohnJJohn, Rouden, H20we, loltart
-  changes:
-  - message: Syndicate agents can find illegal CDs in their uplinks.
-    type: Add
-  id: 407353
-  time: '2026-08-07T05:50:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5288
-- author: wonderfulnewworld
-  changes:
-  - message: Cotton cake can no longer be sliced infinitely.
-    type: Fix
-  id: 407354
-  time: '2026-08-07T07:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5548
-- author: RedSpeeds
-  changes:
-  - message: Fixed Abductors not being able to interact with their shuttle console.
-    type: Fix
-  id: 407355
-  time: '2026-08-07T08:35:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5550
-- author: Caws, Conf, Way, SevenShades
-  changes:
-  - message: Novo Lobster, a full rework of Lobster Station. Better bundle up, 'cuz it's reeeal cold. Available for playtesting, but not yet in the regular map rotation.
-    type: Add
-  id: 407356
-  time: '2026-08-07T09:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5111
 - author: Cvlancer
   changes:
   - message: (LAGAN) Added stir stir to gen pop.
@@ -2799,4 +2771,32 @@ Entries:
   id: 407752
   time: '2026-08-18T21:49:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5694
+- author: OJG
+  changes:
+  - message: Increased base electrolyzer fuel value of plasma sheets.
+    type: Tweak
+  id: 407753
+  time: '2026-08-18T22:19:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5690
+- author: OJG
+  changes:
+  - message: Adjust electrolyzer values to ensure plasma sheets last long than 2 seconds.
+    type: Tweak
+  id: 407754
+  time: '2026-08-18T22:19:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5690
+- author: OJG
+  changes:
+  - message: Lowered tesla-coil and grounding rod electrolyzing efficiency.
+    type: Tweak
+  id: 407755
+  time: '2026-08-18T22:19:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5690
+- author: OJG
+  changes:
+  - message: Made electrolyzer account for heatscale factor.
+    type: Fix
+  id: 407756
+  time: '2026-08-18T22:19:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5690
 Order: -1
