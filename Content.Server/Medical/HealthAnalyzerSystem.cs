@@ -24,6 +24,8 @@ using Content.Shared.PowerCell;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Traits.Assorted;
 using Content.Shared._Starlight.Time; // Starlight-edit
+using Content.Shared._Starlight.Medical.Body.Components; // Starlight
+using Content.Shared._Starlight.Medical.Body.Systems; // Starlight
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -49,6 +51,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private BodySystem _bodySystem = default!; // Starlight
     // Starlight-start: Printable health reports.
     [Dependency] private SharedTimeSystem _timeSystem = default!;
     [Dependency] private SharedHandsSystem _handsSystem = default!;
@@ -340,6 +343,39 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         }
         // Starlight end
 
+        // Starlight begin - Get a list of chemicals in the stomach (not yet in bloodstream)
+        List<(string ReagentId, FixedPoint2 Quantity)>? stomachReagents = null;
+        var stomachs = _bodySystem.GetBodyOrganEntityComps<StomachComponent>((entity, null));
+        foreach (var stomach in stomachs)
+        {
+            if (_solutionContainerSystem.ResolveSolution(stomach.Owner, StomachSystem.DefaultSolutionName,
+                ref stomach.Comp1.Solution, out var stomachSol))
+            {
+                foreach (var (reagent, quantity) in stomachSol.Contents)
+                {
+                    if (quantity <= FixedPoint2.Zero)
+                        continue;
+
+                    if (stomachReagents == null)
+                        stomachReagents = new List<(string, FixedPoint2)>();
+
+                    var found = false;
+                    for (var i = 0; i < stomachReagents.Count; i++)
+                    {
+                        if (stomachReagents[i].ReagentId == reagent.Prototype)
+                        {
+                            stomachReagents[i] = (stomachReagents[i].ReagentId, stomachReagents[i].Quantity + quantity);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                        stomachReagents.Add((reagent.Prototype, quantity));
+                }
+            }
+        }
+        // Starlight end
+
         return new HealthAnalyzerUiState(
             GetNetEntity(entity),
             bodyTemperature,
@@ -348,7 +384,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             null,
             bleeding,
             unrevivable,
-            metabolizingReagents // Starlight - add metabolizing chemicals to ui message
+            metabolizingReagents, // Starlight - add metabolizing chemicals to ui message
+            stomachReagents // Starlight - add stomach chemicals to ui message
         );
     }
 
@@ -415,7 +452,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                     localizedName = reagentProto.LocalizedName;
                     group = reagentProto.Group;
 
-                    // Check for OD threshold only for Medicine and Narcotics.
                     if (group is "Medicine" or "Narcotics"
                         && reagentProto.Metabolisms != null)
                     {
@@ -447,6 +483,23 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                 reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, group, isOverdosed));
             }
         }
+
+        var stomachReagents = new List<HealthAnalyzerReagentSnapshot>();
+        if (uiState.StomachReagents is { Count: > 0 } stomachChemicals)
+        {
+            foreach (var (reagentId, quantity) in stomachChemicals.OrderByDescending(r => r.Quantity))
+            {
+                var localizedName = reagentId;
+                var group = "Unknown";
+                if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var reagentProto))
+                {
+                    localizedName = reagentProto.LocalizedName;
+                    group = reagentProto.Group;
+                }
+
+                stomachReagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, group, false));
+            }
+        }
         // Starlight END
 
         return new HealthAnalyzerPatientSnapshot(
@@ -459,7 +512,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             uiState.BloodLevel,
             damageable.TotalDamage,
             groupedInjuries,
-            reagents); // Starlight
+            reagents, // Starlight
+            stomachReagents); // Starlight
     }
 
     private HealthAnalyzerDamageGroupSnapshot? BuildDamageGroupSnapshot(
@@ -553,40 +607,79 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
         // Starlight BEGIN
         message.PushNewline();
-        message.AddMarkupOrThrow($"[head=2][bold]{Loc.GetString("health-analyzer-report-section-chemicals")}[/bold][/head]");
+        message.AddMarkupOrThrow($"[head=2][bold]{Loc.GetString("health-analyzer-report-section-bloodstream")}[/bold][/head]");
         message.PushNewline();
 
         if (snapshot.Reagents.Count == 0)
         {
             message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-no-chemicals"));
-            return message.ToMarkup();
+            message.PushNewline();
+        }
+        else
+        {
+            var groupedReagents = snapshot.Reagents
+                .OrderBy(r => HealthAnalyzerFormatting.GetReagentGroupSortKey(r.Group))
+                .ThenBy(r => r.Group)
+                .ThenByDescending(r => r.Amount)
+                .GroupBy(r => r.Group);
+
+            foreach (var group in groupedReagents)
+            {
+                var locKey = $"reagent-group-{group.Key.ToLowerInvariant()}";
+                var groupName = Loc.GetString(locKey);
+                if (groupName == locKey)
+                    groupName = group.Key;
+                message.AddMarkupOrThrow($"[bold]{FormattedMessage.EscapeText(groupName)}[/bold]");
+                message.PushNewline();
+
+                foreach (var reagent in group)
+                {
+                    var reagentLine = Loc.GetString(
+                        "health-analyzer-report-chemical-line",
+                        ("name", reagent.Name),
+                        ("quantity", reagent.Amount));
+                    if (reagent.IsOverdosed)
+                        reagentLine += HealthAnalyzerFormatting.FormatOdWarningMarkup();
+                    message.AddMarkupOrThrow($"- {reagentLine}");
+                    message.PushNewline();
+                }
+            }
         }
 
-        var groupedReagents = snapshot.Reagents
-            .OrderBy(r => HealthAnalyzerFormatting.GetReagentGroupSortKey(r.Group))
-            .ThenBy(r => r.Group)
-            .ThenByDescending(r => r.Amount)
-            .GroupBy(r => r.Group);
+        message.PushNewline();
+        message.AddMarkupOrThrow($"[head=2][bold]{Loc.GetString("health-analyzer-report-section-stomach")}[/bold][/head]");
+        message.PushNewline();
 
-        foreach (var group in groupedReagents)
+        if (snapshot.StomachReagents.Count == 0)
         {
-            var locKey = $"reagent-group-{group.Key.ToLowerInvariant()}";
-            var groupName = Loc.GetString(locKey);
-            if (groupName == locKey)
-                groupName = group.Key;
-            message.AddMarkupOrThrow($"[bold]{FormattedMessage.EscapeText(groupName)}[/bold]");
-            message.PushNewline();
+            message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-no-chemicals"));
+        }
+        else
+        {
+            var groupedStomachReagents = snapshot.StomachReagents
+                .OrderBy(r => HealthAnalyzerFormatting.GetReagentGroupSortKey(r.Group))
+                .ThenBy(r => r.Group)
+                .ThenByDescending(r => r.Amount)
+                .GroupBy(r => r.Group);
 
-            foreach (var reagent in group)
+            foreach (var group in groupedStomachReagents)
             {
-                var reagentLine = Loc.GetString(
-                    "health-analyzer-report-chemical-line",
-                    ("name", reagent.Name),
-                    ("quantity", reagent.Amount));
-                if (reagent.IsOverdosed)
-                    reagentLine += HealthAnalyzerFormatting.FormatOdWarningMarkup();
-                message.AddMarkupOrThrow($"- {reagentLine}");
+                var locKey = $"reagent-group-{group.Key.ToLowerInvariant()}";
+                var groupName = Loc.GetString(locKey);
+                if (groupName == locKey)
+                    groupName = group.Key;
+                message.AddMarkupOrThrow($"[bold]{FormattedMessage.EscapeText(groupName)}[/bold]");
                 message.PushNewline();
+
+                foreach (var reagent in group)
+                {
+                    var reagentLine = Loc.GetString(
+                        "health-analyzer-report-chemical-line",
+                        ("name", reagent.Name),
+                        ("quantity", reagent.Amount));
+                    message.AddMarkupOrThrow($"- {reagentLine}");
+                    message.PushNewline();
+                }
             }
         }
         // Starlight END
@@ -604,7 +697,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         float BloodLevel,
         FixedPoint2 TotalDamage,
         List<HealthAnalyzerDamageGroupSnapshot> DamageGroups,
-        List<HealthAnalyzerReagentSnapshot> Reagents); // Starlight
+        List<HealthAnalyzerReagentSnapshot> Reagents, // Starlight
+        List<HealthAnalyzerReagentSnapshot> StomachReagents); // Starlight
 
     private sealed record HealthAnalyzerDamageGroupSnapshot(
         string Name,

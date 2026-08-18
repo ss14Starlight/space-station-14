@@ -153,6 +153,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             .ToDictionary(g => g.Key, g => g.Value);
 
         DrawMetabolizingChemicals(state.MetabolizingReagents); // Metabolizing Chemicals Section
+        DrawStomachContents(state.StomachReagents); // Stomach Contents Section
         // Starlight end
         DrawDiagnosticGroups(sortedGroups, damagePerType);
     }
@@ -275,11 +276,26 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         var hasChemicals = reagents != null && reagents.Count > 0;
 
-        ChemicalsDivider.Visible = hasChemicals;
-        ChemicalsContainer.Visible = hasChemicals;
+        ChemicalsDivider.Visible = true;
+        ChemicalsContainer.Visible = true;
+
+        var headerLabel = new Label
+        {
+            Text = Loc.GetString("health-analyzer-window-bloodstream-contents"),
+        };
+        headerLabel.StyleClasses.Add("LabelKeyText");
+        ChemicalsContainer.AddChild(headerLabel);
 
         if (!hasChemicals || reagents == null)
+        {
+            var emptyLabel = new Label
+            {
+                Text = Loc.GetString("health-analyzer-report-no-chemicals"),
+            };
+            emptyLabel.StyleClasses.Add("LabelSubText");
+            ChemicalsContainer.AddChild(emptyLabel);
             return;
+        }
 
         // Sort by quantity descending
         var sortedReagents = reagents.OrderByDescending(r => r.Quantity).ToList();
@@ -328,6 +344,82 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             rowContainer.AddChild(nameLabel);
             rowContainer.AddChild(quantityLabel);
             ChemicalsContainer.AddChild(rowContainer);
+        }
+    }
+    // Starlight end
+
+    // Starlight begin - stomach contents display
+    private void DrawStomachContents(List<(string ReagentId, FixedPoint2 Quantity)>? reagents)
+    {
+        StomachContainer.RemoveAllChildren();
+
+        var hasChemicals = reagents != null && reagents.Count > 0;
+
+        StomachDivider.Visible = true;
+        StomachContainer.Visible = true;
+
+        var headerLabel = new Label
+        {
+            Text = Loc.GetString("health-analyzer-window-stomach-contents"),
+        };
+        headerLabel.StyleClasses.Add("LabelKeyText");
+        StomachContainer.AddChild(headerLabel);
+
+        if (!hasChemicals || reagents == null)
+        {
+            var emptyLabel = new Label
+            {
+                Text = Loc.GetString("health-analyzer-report-no-chemicals"),
+            };
+            emptyLabel.StyleClasses.Add("LabelSubText");
+            StomachContainer.AddChild(emptyLabel);
+            return;
+        }
+
+        var sortedReagents = reagents.OrderByDescending(r => r.Quantity).ToList();
+
+        foreach (var reagent in sortedReagents)
+        {
+            var reagentName = reagent.ReagentId;
+            var reagentColor = Color.White;
+
+            if (_prototypes.TryIndex<ReagentPrototype>(reagent.ReagentId, out var reagentProto))
+            {
+                reagentName = reagentProto.LocalizedName;
+                reagentColor = reagentProto.SubstanceColor;
+            }
+
+            var rowContainer = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                Margin = new Thickness(0, 2),
+            };
+
+            var colorBar = new PanelContainer
+            {
+                MinWidth = 10,
+                MinHeight = 16,
+                Margin = new Thickness(0, 0, 6, 0),
+            };
+            colorBar.PanelOverride = new StyleBoxFlat(reagentColor);
+
+            var nameLabel = new Label
+            {
+                Text = reagentName,
+                HorizontalExpand = true,
+                HorizontalAlignment = HAlignment.Left,
+            };
+
+            var quantityLabel = new Label
+            {
+                Text = $"{reagent.Quantity}u",
+                HorizontalAlignment = HAlignment.Right,
+            };
+
+            rowContainer.AddChild(colorBar);
+            rowContainer.AddChild(nameLabel);
+            rowContainer.AddChild(quantityLabel);
+            StomachContainer.AddChild(rowContainer);
         }
     }
     // Starlight end

@@ -18,9 +18,12 @@ health-analyzer-report-summary-total-damage = [bold]Total Damage:[/bold] {$damag
 health-analyzer-report-injury-group = [bold]{$group}:[/bold] {$amount}
 health-analyzer-report-injury-type = {$type}: {$amount}
 health-analyzer-report-no-injuries = No injuries detected.
-health-analyzer-report-section-chemicals = Chemicals
+health-analyzer-report-section-bloodstream = Bloodstream Contents
+health-analyzer-report-section-stomach = Stomach Contents
 health-analyzer-report-chemical-line = {$name}: {$quantity}u
-health-analyzer-report-no-chemicals = No active chemicals detected.
+health-analyzer-report-no-chemicals = No chemicals detected.
+health-analyzer-window-bloodstream-contents = Bloodstream Contents
+health-analyzer-window-stomach-contents = Stomach Contents
 
 reagent-group-medicine = Medicine
 reagent-group-narcotics = Narcotics
