@@ -2,7 +2,7 @@
 - type: vendingMachineInventory
   id: AdmiMaxInventory
   startingInventory:
-    ClothingNeckCentralCommandMedal: 4
+    BoxMedalsCC: 2
     BoxStampsCCDepartments: 3
     BoxStampsCCAdministrative: 3
     PenCentcom: 4
