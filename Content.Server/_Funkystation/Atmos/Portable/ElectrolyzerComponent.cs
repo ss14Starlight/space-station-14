@@ -12,7 +12,7 @@ public sealed partial class ElectrolyzerComponent : Component
     public float CurrentFuel { get; set; } = 0f;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)] /// Starlight: Changed value
-    public float PlasmaFuelConversion { get; set; } = 400000f;
+    public float PlasmaFuelConversion { get; set; } = 1000000f;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool IsPowered { get; set; } = false;
