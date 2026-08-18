@@ -446,41 +446,13 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             {
                 var localizedName = reagentId;
                 var group = "Unknown";
-                var isOverdosed = false;
                 if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var reagentProto))
                 {
                     localizedName = reagentProto.LocalizedName;
                     group = reagentProto.Group;
-
-                    if (group is "Medicine" or "Narcotics"
-                        && reagentProto.Metabolisms != null)
-                    {
-                        FixedPoint2? odThreshold = null;
-                        foreach (var (_, entry) in reagentProto.Metabolisms.Metabolisms)
-                        {
-                            foreach (var effect in entry.Effects)
-                            {
-                                if (effect.Conditions == null)
-                                    continue;
-
-                                foreach (var condition in effect.Conditions)
-                                {
-                                    if (condition is ReagentCondition reagentCondition
-                                        && reagentCondition.Reagent == reagentId
-                                        && reagentCondition.Min > FixedPoint2.Zero)
-                                    {
-                                        if (odThreshold == null || reagentCondition.Min < odThreshold)
-                                            odThreshold = reagentCondition.Min;
-                                    }
-                                }
-                            }
-                        }
-
-                        isOverdosed = odThreshold != null && quantity >= odThreshold.Value;
-                    }
                 }
 
-                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, group, isOverdosed));
+                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, group));
             }
         }
 
@@ -497,7 +469,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                     group = reagentProto.Group;
                 }
 
-                stomachReagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, group, false));
+                stomachReagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, group));
             }
         }
         // Starlight END
@@ -638,8 +610,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                         "health-analyzer-report-chemical-line",
                         ("name", reagent.Name),
                         ("quantity", reagent.Amount));
-                    if (reagent.IsOverdosed)
-                        reagentLine += HealthAnalyzerFormatting.FormatOdWarningMarkup();
                     message.AddMarkupOrThrow($"- {reagentLine}");
                     message.PushNewline();
                 }
@@ -707,6 +677,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
     private sealed record HealthAnalyzerDamageTypeSnapshot(string Name, FixedPoint2 Amount);
 
-    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, string Group, bool IsOverdosed); // Starlight
+    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, string Group); // Starlight
     // Starlight-end
 }

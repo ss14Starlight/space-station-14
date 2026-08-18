@@ -102,14 +102,6 @@ public static class HealthAnalyzerFormatting
         return index == -1 ? ReagentGroupOrder.Length : index;
     }
 
-    /// <summary>
-    /// Returns the OD warning markup string colored with <see cref="SeverityDangerColor"/>.
-    /// </summary>
-    public static string FormatOdWarningMarkup()
-    {
-        return WrapMarkupWithColor(" !!", SeverityDangerColor);
-    }
-
     public static string WrapMarkupWithColor(string markup, Color? color)
     {
         return color is { } value
