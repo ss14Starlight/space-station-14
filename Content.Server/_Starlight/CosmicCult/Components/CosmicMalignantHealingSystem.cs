@@ -10,7 +10,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Starlight.CosmicCult.EntitySystems;
+namespace Content.Server._Starlight.CosmicCult.Components;
 
 public sealed partial class CosmicMalignantHealingSystem : EntitySystem
 {
