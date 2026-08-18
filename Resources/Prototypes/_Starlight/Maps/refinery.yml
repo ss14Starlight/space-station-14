@@ -14,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'RF'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_spacemall.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_spacemall.yml
         - type: StationJobs
           availableJobs:
             #service
