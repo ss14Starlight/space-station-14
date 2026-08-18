@@ -1,39 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (LAGAN) Removed a random railing in solitary.
-    type: Remove
-  id: 407365
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: Cvlancer
-  changes:
-  - message: (LAGAN) Removed the linking from hop window and warden windows.
-    type: Remove
-  id: 407366
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: Cvlancer
-  changes:
-  - message: (LAGAN) Changed genpop's turnstiles glass firelocks with the wall variant.
-    type: Tweak
-  id: 407367
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: Cvlancer
-  changes:
-  - message: (LAGAN) Changed moved kitchen around a bit.
-    type: Tweak
-  id: 407368
-  time: '2026-08-07T09:56:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5541
-- author: CrazyPhantom
-  changes:
-  - message: Experimental fix for alcohol lag can be enabled with the command ``cvar opt.drunk_render_fix true``.
-    type: Fix
-  id: 407369
-  time: '2026-08-07T10:24:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5532
 - author: Orange Juice Goose
   changes:
   - message: Bluespace harvester for starboard.
@@ -2799,4 +2764,39 @@ Entries:
   id: 407764
   time: '2026-08-18T23:21:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5716
+- author: wonderfulnewworld
+  changes:
+  - message: Reporters and Radio Hosts now get Theatre access on skeleton crew.
+    type: Tweak
+  id: 407765
+  time: '2026-08-18T23:43:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5719
+- author: wonderfulnewworld
+  changes:
+  - message: Some members of Service will get Clown and Mime access on skeleton crew.
+    type: Fix
+  id: 407766
+  time: '2026-08-18T23:43:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5719
+- author: wonderfulnewworld
+  changes:
+  - message: Non-smart Corgis, Admin/Mentor Mice, and ghosts will no longer roll antag.
+    type: Fix
+  id: 407767
+  time: '2026-08-18T23:43:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5719
+- author: wonderfulnewworld
+  changes:
+  - message: Ninja now actually spawns with their headset.
+    type: Fix
+  id: 407768
+  time: '2026-08-18T23:43:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5719
+- author: wonderfulnewworld
+  changes:
+  - message: Captain, HoP, BSO, NT Rep, and others in the all access group now have Clown and Mime access.
+    type: Fix
+  id: 407769
+  time: '2026-08-18T23:43:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5719
 Order: -1
