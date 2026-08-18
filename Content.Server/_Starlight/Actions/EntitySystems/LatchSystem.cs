@@ -97,6 +97,9 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         if (!_mobState.IsIncapacitated(uid))
             _standing.Stand(uid);
+
+        if (TryComp<LatchComponent>(comp.Latcher, out var latchComp) && latchComp.Active && latchComp.Target == uid)
+            EndLatch(comp.Latcher, latchComp);
     }
 
     /// <summary>
