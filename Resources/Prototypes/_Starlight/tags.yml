@@ -132,6 +132,9 @@
   id: CameraReinforced
 
 - type: Tag
+  id: CasinoChip
+
+- type: Tag
   id: CentcommVibroblade
 
 - type: Tag
@@ -588,6 +591,9 @@
 
 - type: Tag
   id: PlasteelFilament
+
+- type: Tag
+  id: PlayingCardDeckBox
 
 - type: Tag
   id: PlumbingDuct
