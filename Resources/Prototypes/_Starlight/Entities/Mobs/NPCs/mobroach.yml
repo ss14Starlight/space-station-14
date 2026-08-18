@@ -66,6 +66,16 @@
   id: MobMobroach # Oh yeah, we're going far with this one. Mobmob.
   description: This little mothroach has ... is that a pair of cuffs?
   components:
+    - type: Sprite
+      sprite: Mobs/Animals/mothroach/mothroach.rsi
+      layers:
+        - state: mothroach
+          map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
+        - state: mothroach
+          map: [ "enum.BorgVisualLayers.Light" ]
+          shader: unshaded
+          visible: false
+          color: "#FFFFFF00"
     - type: MobThresholds
       thresholds: # Lil buddy was designed to be a little more durable than the mothroach, but not by much.
         0: Alive
