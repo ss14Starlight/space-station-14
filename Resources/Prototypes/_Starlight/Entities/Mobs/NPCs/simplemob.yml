@@ -1,0 +1,23 @@
+- type: entity
+  parent: SimpleMobBaseTemplate
+  id: SimpleMobBase
+  abstract: true
+  components:
+  - type: AntagImmune
+
+- type: entity
+  parent: SimpleMobBaseTemplate
+  id: SimpleMobBaseAntag
+  abstract: true
+
+- type: entity
+  parent: SimpleSpaceMobBaseTemplate
+  id: SimpleSpaceMobBase
+  abstract: true
+  components:
+  - type: AntagImmune
+
+- type: entity
+  parent: SimpleSpaceMobBaseTemplate
+  id: SimpleSpaceMobBaseAntag
+  abstract: true

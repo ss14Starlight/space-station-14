@@ -164,6 +164,7 @@
 - type: entity
   id: AirAlarmXeno
   parent: AirAlarm
+  name: alien air alarm # Starlight-edit: name the variant so players can tell it apart
   description: An alien air alarm. Hopefully they didn't breathe poison.
   components:
   - type: Sprite
