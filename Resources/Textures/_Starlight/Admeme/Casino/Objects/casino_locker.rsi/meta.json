@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "generic",
+      "copyright": "Recoloured from the captain locker in Structures/Storage/closet.rsi by Glaud0283 (GitHub)"
+    },
+    {
+      "name": "generic_door",
+      "copyright": "Recoloured from the captain locker in Structures/Storage/closet.rsi by Glaud0283 (GitHub)"
+    },
+    {
+      "name": "generic_open",
+      "copyright": "Recoloured from the captain locker in Structures/Storage/closet.rsi by Glaud0283 (GitHub)"
+    },
+    {
+      "name": "locked",
+      "copyright": "Taken unchanged from Structures/Storage/closet.rsi"
+    },
+    {
+      "name": "unlocked",
+      "copyright": "Taken unchanged from Structures/Storage/closet.rsi"
+    },
+    {
+      "name": "welded",
+      "copyright": "Taken unchanged from Structures/Storage/closet.rsi"
+    },
+    {
+      "name": "panel_open",
+      "copyright": "Taken unchanged from Structures/Storage/closet.rsi"
+    }
+  ]
+}

@@ -35,6 +35,13 @@
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
+  - type: Vocal
+    sounds:
+      Male: Monkey
+      Female: Monkey
+      Unsexed: Monkey
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
   - type: AlwaysRevolutionaryConvertible

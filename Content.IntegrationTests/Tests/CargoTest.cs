@@ -6,6 +6,7 @@ using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
+using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Prototypes;
@@ -148,7 +149,6 @@ public sealed class CargoTest : GameTest
 
         var entManager = server.ResolveDependency<IEntityManager>();
         var mapSystem = server.System<SharedMapSystem>();
-        var mapManager = server.ResolveDependency<IMapManager>();
         var protoManager = server.ResolveDependency<IPrototypeManager>();
         var componentFactory = server.ResolveDependency<IComponentFactory>();
         var whitelist = entManager.System<EntityWhitelistSystem>();
@@ -160,7 +160,7 @@ public sealed class CargoTest : GameTest
         await server.WaitAssertion(() =>
         {
             var mapId = testMap.MapId;
-            var grid = mapManager.CreateGridEntity(mapId);
+            var grid = mapSystem.CreateGridEntity(mapId);
             var coord = new EntityCoordinates(grid.Owner, 0, 0);
 
             var sliceableEntityProtos = protoManager.EnumeratePrototypes<EntityPrototype>()

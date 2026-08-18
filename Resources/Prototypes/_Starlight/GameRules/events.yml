@@ -1,198 +1,26 @@
 - type: entity
   parent: BaseGameRule
-  id: AbductorsSpawn
-  components:
-    - type: StationEvent
-      earliestStart: 15
-      weight: 3
-      minimumPlayers: 10
-      duration: null
-    - type: RuleGrids
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/abductor_shuttle.yml
-    - type: AntagObjectives
-      objectives:
-        - AbductObjective
-    - type: AntagLoadProfileRule
-      speciesHardOverride: Abductor
-    - type: AntagSelection
-      definitions:
-        - spawnerPrototype: AbductorScientistSpawner
-          min: 1
-          playerRatio: 80 # The Scientist is more important than the Agent, but also can't do anything without them, so...
-          pickPlayer: false
-          startingGear: AbductorScientistGear
-          briefing:
-            text: abductor-role-greeting
-            color: Green
-            sound: /Audio/_Starlight/Misc/abductor.ogg
-          components:
-            - type: Abductor
-            - type: Muted
-            - type: AbductorScientist
-            - type: ActionGrant
-              actions:
-                - ActionReturnToShip
-            - type: Tag
-              tags:
-                - Abductor
-                - AbductorScientist
-                - CanPilot
-            - type: NpcFactionMember
-              factions:
-                - Abductor
-          mindRoles:
-            - MindRoleLoneAbductor
-          # Starlight-start
-          tags:
-            - CantBecomeRevolutionary
-          # Starlight-end
-        - spawnerPrototype: AbductorAgentSpawner
-          min: 1
-          playerRatio: 65 # Abductors are so weak man, throw them a bone.
-          pickPlayer: false
-          startingGear: AbductorAgentGear
-          briefing:
-            text: abductor-role-greeting
-            color: Green
-            sound: /Audio/_Starlight/Misc/abductor.ogg
-          components:
-            - type: Abductor
-            - type: Muted
-            - type: AbductorAgent
-            - type: ActionGrant
-              actions:
-                - ActionReturnToShip
-            - type: Tag
-              tags:
-                - Abductor
-                - CanPilot
-            - type: NpcFactionMember
-              factions:
-                - Abductor
-          mindRoles:
-            - MindRoleLoneAbductor
-          # Starlight-start
-          tags:
-            - CantBecomeRevolutionary
-          # Starlight-end
-    - type: DynamicRuleCost
-      cost: 100 # They're not that special.
-
-- type: entity
-  parent: BaseGameRule
   id: DerelictBorgiSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 5
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 4
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: DerelictBorgiChassis
-    - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostDerelictBorgi
-          min: 1
-          max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
-
-# Brighteye
-- type: entity
-  parent: BaseGameRule
-  id: Brighteye
-  components:
-    - type: StationEvent
-      weight: 1
-      earliestStart: 10
-      reoccurrenceDelay: 20
-      minimumPlayers: 20
-      duration: null
-    - type: RuleGrids
-    - type: GameRule
-      minPlayers: 20
-    - type: BrighteyeRule
-    - type: SubRule
-      table: !type:GroupSelector
-        children:
-          - id: TheDarkHideoutSpawn
-          - id: TheDarkGardenSpawn
-    - type: AntagLoadProfileRule
-      speciesHardOverride: Shadekin
-      applyCharacterProfile: true
-    - type: AntagObjectives
-      objectives:
-        - BirghteyeSurviveObjective
-        - BirghteyePortalObjective
-    - type: AntagSelection
-      agentName: roles-antag-brighteye-name
-      selectionTime: PrePlayerSpawn
-      definitions:
-        - prefRoles: [Brighteye]
-          min: 1
-          max: 3
-          playerRatio: 70 # Starlight. They don't do much, positive or negative. They pretty much are just RP currently.
-          spawnerPrototype: SpawnPointGhostBrighteye
-          roleLoadout:
-            - AntagBrighteye
-          briefing:
-            text: brighteye-role-greeting
-            color: "#F200FF"
-            sound: "/Audio/_Starlight/Ambience/Antag/brighteye.ogg"
-          components:
-            - type: Brighteye
-              energy: 200 # THIS IS HARDCODED BULLSHIT... i wish i could set this auto to MaxEnergy.
-            - type: NpcFactionMember
-              factions:
-                - SimpleHostile
-            - type: CombatMode
-              disarmFailChance: 0.5
-              canDisarm: true
-            - type: Railroadable
-              important: true
-          mindRoles:
-            - MindRoleBrighteye
-          tags:
-            - CantBecomeRevolutionary
-    - type: SubGamemodes
-      rules:
-        - id: RailroadingBrighteye
-    - type: DynamicRuleCost
-      cost: 150
-
-# This is used for admin/tools to spawn the dark without any antag.
-- type: entity
-  parent: BaseGameRule
-  id: TheDarkMap
-  components:
-    - type: StationEvent
-    - type: SubRule
-      table: !type:GroupSelector
-        children:
-          - id: TheDarkHideoutSpawn
-          - id: TheDarkGardenSpawn
-
-# Dark Maps
-- type: entity
-  parent: BaseGameRule
-  id: TheDarkHideoutSpawn
-  components:
-    - type: LoadMapRule
-      mapPath: /Maps/_Starlight/TheDark/Hideout.yml
-      mapTag: TheDark
-
-- type: entity
-  parent: BaseGameRule
-  id: TheDarkGardenSpawn
-  components:
-    - type: LoadMapRule
-      mapPath: /Maps/_Starlight/TheDark/Garden.yml
-      mapTag: TheDark
+  - type: StationEvent
+    globalAnnouncement: false
+    weight: 5
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 4
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: DerelictBorgiChassis
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictBorgi
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 # Derelict Cyborgs
 
@@ -201,7 +29,7 @@
   id: DerelictPurrfusCyborgSpawn
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
+    globalAnnouncement: false
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -212,127 +40,133 @@
   - type: AntagSpawner
     prototype: PlayerPurrfusBorgDerelictGhostRole
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictPurrfusCyborg
-      min: 1
-      max: 2
-      playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-      pickPlayer: false
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictPurrfusCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 - type: entity
   parent: BaseGameRule
-  id: XenoBorgHeavyDerelictSpawn
+  id: DerelictHeavyXenoborgSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 1
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 15
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: PlayerXenoBorgHeavyDerelictGhostRole
-    - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostXenoBorgHeavyDerelict
-          min: 1
-          max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
+  - type: StationEvent
+    globalAnnouncement: false
+    weight: 1
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerDerelictHeavyXenoborgGhostRole
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictHeavyXenoborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 - type: entity
   parent: BaseGameRule
-  id: XenoBorgEngiDerelictSpawn
+  id: DerelictEngiXenoborgSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 1
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 15
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: PlayerXenoBorgEngiDerelictGhostRole
-    - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostXenoborgEngiDerelict
-          min: 1
-          max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
+  - type: StationEvent
+    globalAnnouncement: false
+    weight: 1
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerDerelictEngiXenoborgGhostRole
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictEngiXenoborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 - type: entity
   parent: BaseGameRule
-  id: XenoBorgScoutDerelictSpawn
+  id: DerelictScoutXenoborgSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 1
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 15
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: PlayerXenoborgScoutDerelictGhostRole
-    - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostXenoborgScoutDerelict
-          min: 1
-          max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
+  - type: StationEvent
+    globalAnnouncement: false
+    weight: 1
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerDerelictScoutXenoborgGhostRole
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictScoutXenoborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 - type: entity
   parent: BaseGameRule
-  id: XenoBorgStealthDerelictSpawn
+  id: DerelictStealthXenoborgSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 1
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 15
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: PlayerXenoborgStealthDerelictGhostRole
-    - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostXenoborgStealthDerelict
-          min: 1
-          max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
+  - type: StationEvent
+    globalAnnouncement: false
+    weight: 1
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerDerelictStealthXenoborgGhostRole
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictStealthXenoborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 - type: entity
   parent: BaseGameRule
-  id: XenoBorgiDerelictSpawn
+  id: DerelictXenoBorgiSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 1
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 15
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: PlayerXenoBorgiDerelictGhostRole
-    - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostXenoBorgiDerelict
-          min: 1
-          max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
+  - type: StationEvent
+    globalAnnouncement: false
+    weight: 1
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerDerelictXenoBorgiGhostRole
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictXenoBorgi
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 # Syndicate dead drop
 - type: entity
@@ -372,7 +206,7 @@
   id: IonStormPlus # It's a more frequent Ion Storm, for ShitStation.
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
+    globalAnnouncement: false
     weight: 10
     reoccurrenceDelay: 15
     duration: 1
@@ -380,7 +214,7 @@
 
 # Multi Paradoxes
 - type: entity
-  parent: BaseGameRule
+  parent: ParadoxCloneSpawn
   id: ParadoxCrisisSpawn
   components:
   - type: StationEvent
@@ -389,31 +223,14 @@
     earliestStart: 35
     reoccurrenceDelay: 20
     minimumPlayers: 15
-  - type: ParadoxCloneRule
-    objectiveBlacklist:
-      tags:
-      - ParadoxCloneObjectiveBlacklist
-  - type: AntagObjectives
-    objectives:
-    - ParadoxCloneKillObjective
-    - ParadoxCloneLivingObjective
-  - type: AntagRandomSpawn # TODO: improve spawning so they only start in maints
   - type: AntagSelection
     agentName: paradox-clone-round-end-agent-name
-    definitions:
-    - spawnerPrototype: SpawnPointGhostParadoxClone
-      min: 1
-      max: 4 # Starlight. Future proofing.
-      playerRatio: 70 # Starlight. Paradoxes really aren't that impactful
-      pickPlayer: false
-      startingGear: ParadoxCloneGear
-      roleLoadout:
-      - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
-      briefing:
-        text: paradox-clone-role-greeting
-        color: lightblue
-        sound: /Audio/Misc/paradox_clone_greeting.ogg
-      mindRoles:
-      - MindRoleParadoxClone
+    antags:
+    - !type:LinearAntagCount
+      proto: ParadoxClone
+      playerRatio: 70
+      range:
+        min: 1
+        max: 4
   - type: DynamicRuleCost
     cost: 125

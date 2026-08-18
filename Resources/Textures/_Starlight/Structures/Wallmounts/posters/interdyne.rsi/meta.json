@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Conflee, based on design by Smugman",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -9,13 +9,13 @@
   "states": [
     {
       "name": "interdyne",
-	  "copyright": "Smugman, Conflee",
-	  "license": "CC-BY-SA-3.0"
+      "copyright": "Conflee, based on design by Smugman",
+      "license": "CC-BY-SA-3.0"
     },
-	{
+    {
       "name": "interdyne_syndicate",
-	  "copyright": "Smugman, Conflee",
-	  "license": "CC-BY-SA-3.0"
+      "copyright": "Conflee, based on design by Smugman",
+      "license": "CC-BY-SA-3.0"
     }
   ]
 }

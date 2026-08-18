@@ -1,10 +1,8 @@
 using Content.Server.Administration.Systems;
+using Content.Server.Antag.Selectors;
+using Content.Server.GameTicking;
 using Content.Shared.Antag;
-using Content.Shared.Destructible.Thresholds;
-using Content.Shared.Preferences.Loadouts;
-using Content.Shared.Roles;
-using Content.Shared.Whitelist;
-using Robust.Shared.Audio;
+using Content.Shared.GameTicking.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -18,10 +16,12 @@ namespace Content.Server.Antag.Components;
 public sealed partial class AntagSelectionComponent : Component
 {
     /// <summary>
-    /// Has the primary assignment of antagonists finished yet?
+    /// Has the primary assignment of antagonists been handled yet?
+    /// This is typically set to true at the start of antag assignment for a game rule.
+    /// Note that this can be true even before all antags have been assigned.
     /// </summary>
     [DataField]
-    public bool AssignmentComplete;
+    public bool AssignmentHandled;
 
     /// <summary>
     /// Has the antagonists been preselected but yet to be fully assigned?
@@ -30,34 +30,51 @@ public sealed partial class AntagSelectionComponent : Component
     public bool PreSelectionsComplete;
 
     /// <summary>
-    /// The definitions for the antagonists
+    /// If true, players that late join into a round have a chance of being converted into antagonists for this game rule.
     /// </summary>
     [DataField]
-    public List<AntagSelectionDefinition> Definitions = new();
+    public bool LateJoinAdditional;
 
     /// <summary>
-    /// The minds and original names of the players assigned to be antagonists.
+    /// The antag specifiers for the antagonists
+    /// </summary>
+    [DataField(required: true)]
+    public AntagCountSelector[] Antags;
+
+    /// <summary>
+    /// Cached sessions of antag definitions and selected players.
+    /// Players in this dict are not guaranteed to have been assigned the role yet, and may be removed if they fail to initialize as an antag.
     /// </summary>
     [DataField]
-    public List<(EntityUid, string)> AssignedMinds = new();
+    public Dictionary<ProtoId<AntagSpecifierPrototype>, HashSet<ICommonSession>> PreSelectedSessions = new();
+
+    #region Starlight
+    /// <summary>
+    /// Pre-selected antagonist slots that became vacant before the antagonist could be initialized.
+    /// These are retried against other eligible players before falling back to ghost roles.
+    /// </summary>
+    [ViewVariables]
+    public Dictionary<ProtoId<AntagSpecifierPrototype>, int> PendingReplacements = new();
+
+    /// <summary>
+    /// Target counts captured when this rule performed its primary selection. We use these
+    /// as a floor so unrelated players leaving cannot erase an already-reserved slot.
+    /// </summary>
+    [ViewVariables]
+    public Dictionary<ProtoId<AntagSpecifierPrototype>, int> SelectionTargets = new();
+    #endregion
+
+    /// <summary>
+    /// The minds and original names of the players assigned to be antagonists, as well as their assigned antag.
+    /// </summary>
+    [DataField]
+    public Dictionary<ProtoId<AntagSpecifierPrototype>, HashSet<(EntityUid uid, string name)>> AssignedMinds = new();
 
     /// <summary>
     /// When the antag selection will occur.
     /// </summary>
     [DataField]
-    public AntagSelectionTime SelectionTime = AntagSelectionTime.PostPlayerSpawn;
-
-    /// <summary>
-    /// Cached sessions of antag definitions and selected players. Players in this dict are not guaranteed to have been assigned the role yet.
-    /// </summary>
-    [DataField]
-    public Dictionary<AntagSelectionDefinition, HashSet<ICommonSession>>PreSelectedSessions = new();
-
-    /// <summary>
-    /// Cached sessions of players who are chosen. Used so we don't have to rebuild the pool multiple times in a tick.
-    /// Is not serialized.
-    /// </summary>
-    public HashSet<ICommonSession> AssignedSessions = new();
+    public AntagSelectionTime SelectionTime = AntagSelectionTime.RuleStarted;
 
     /// <summary>
     /// Locale id for the name of the antag.
@@ -72,139 +89,6 @@ public sealed partial class AntagSelectionComponent : Component
     /// </summary>
     [DataField]
     public bool RemoveUponFailedSpawn = true;
-}
-
-[DataDefinition]
-public partial struct AntagSelectionDefinition()
-{
-    /// <summary>
-    /// A list of antagonist roles that are used for selecting which players will be antagonists.
-    /// </summary>
-    [DataField]
-    public List<ProtoId<AntagPrototype>> PrefRoles = new();
-
-    /// <summary>
-    /// Fallback for <see cref="PrefRoles"/>. Useful if you need multiple role preferences for a team antagonist.
-    /// </summary>
-    [DataField]
-    public List<ProtoId<AntagPrototype>> FallbackRoles = new();
-
-    /// <summary>
-    /// Should we allow people who already have an antagonist role?
-    /// </summary>
-    [DataField]
-    public AntagAcceptability MultiAntagSetting = AntagAcceptability.None;
-
-    /// <summary>
-    /// The minimum number of this antag.
-    /// </summary>
-    [DataField]
-    public int Min = 1;
-
-    /// <summary>
-    /// The maximum number of this antag.
-    /// </summary>
-    [DataField]
-    public int Max = 1;
-
-    /// <summary>
-    /// A range used to randomly select <see cref="Min"/>
-    /// </summary>
-    [DataField]
-    public MinMax? MinRange;
-
-    /// <summary>
-    /// A range used to randomly select <see cref="Max"/>
-    /// </summary>
-    [DataField]
-    public MinMax? MaxRange;
-
-    /// <summary>
-    /// a player to antag ratio: used to determine the amount of antags that will be present.
-    /// </summary>
-    [DataField]
-    public int PlayerRatio = 10;
-
-    /// <summary>
-    /// Whether or not players should be picked to inhabit this antag or not.
-    /// If no players are left and <see cref="SpawnerPrototype"/> is set, it will make a ghost role.
-    /// </summary>
-    [DataField]
-    public bool PickPlayer = true;
-
-    /// <summary>
-    /// If true, players that latejoin into a round have a chance of being converted into antagonists.
-    /// </summary>
-    [DataField]
-    public bool LateJoinAdditional = false;
-
-    //todo: find out how to do this with minimal boilerplate: filler department, maybe?
-    //public HashSet<ProtoId<JobPrototype>> JobBlacklist = new()
-
-    /// <remarks>
-    /// Mostly just here for legacy compatibility and reducing boilerplate
-    /// </remarks>
-    [DataField]
-    public bool AllowNonHumans = false;
-
-    /// <summary>
-    /// A whitelist for selecting which players can become this antag.
-    /// </summary>
-    [DataField]
-    public EntityWhitelist? Whitelist;
-
-    /// <summary>
-    /// A blacklist for selecting which players can become this antag.
-    /// </summary>
-    [DataField]
-    public EntityWhitelist? Blacklist;
-
-    /// <summary>
-    /// Components added to the player.
-    /// </summary>
-    [DataField]
-    public ComponentRegistry Components = new();
-
-    /// <summary>
-    /// Components added to the player's mind.
-    /// Do NOT use this to add role-type components. Add those as MindRoles instead
-    /// </summary>
-    [DataField]
-    public ComponentRegistry MindComponents = new();
-
-    /// <summary>
-    /// List of Mind Role Prototypes to be added to the player's mind.
-    /// </summary>
-    [DataField]
-    public List<EntProtoId>? MindRoles;
-
-    /// <summary>
-    /// A set of starting gear that's equipped to the player.
-    /// </summary>
-    [DataField]
-    public ProtoId<StartingGearPrototype>? StartingGear;
-
-    /// <summary>
-    /// A list of role loadouts, from which a randomly selected one will be equipped.
-    /// </summary>
-    [DataField]
-    public List<ProtoId<RoleLoadoutPrototype>>? RoleLoadout;
-
-    /// <summary>
-    /// A briefing shown to the player.
-    /// </summary>
-    [DataField]
-    public BriefingData? Briefing;
-
-    /// <summary>
-    /// A spawner used to defer the selection of this particular definition.
-    /// </summary>
-    /// <remarks>
-    /// Not the cleanest way of doing this code but it's just an odd specific behavior.
-    /// Sue me.
-    /// </remarks>
-    [DataField]
-    public EntProtoId? SpawnerPrototype;
 
     #region Starlight
     /// <summary>
@@ -215,27 +99,32 @@ public partial struct AntagSelectionDefinition()
     #endregion
 }
 
-/// <summary>
-/// Contains data used to generate a briefing.
-/// </summary>
-[DataDefinition]
-public partial struct BriefingData
+/// <remarks>
+///     Regardless of this value, antags are only initialized after the game rule activates.
+///     If a game rule does not have a delayed activation, the antag will be initialized at the same time as this enum.
+///     Otherwise, it will not be initialized until the game rule becomes active.
+/// </remarks>
+public enum AntagSelectionTime : byte
 {
     /// <summary>
-    /// The text shown
+    /// Antag roles are selected at <see cref="RulePlayerSpawningEvent"/>
     /// </summary>
-    [DataField]
-    public LocId? Text;
+    PrePlayerSpawn,
 
     /// <summary>
-    /// The color of the text.
+    /// Antag roles are selected at <see cref="RulePlayerJobsAssignedEvent"/>
     /// </summary>
-    [DataField]
-    public Color? Color;
+    JobsAssigned,
 
     /// <summary>
-    /// The sound played.
+    /// Antag roles are selected at <see cref="GameRuleStartedEvent"/>
+    /// or <see cref="RulePlayerJobsAssignedEvent"/> if the game rule was started before spawning.
+    /// This is the latest an antag can be selected.
     /// </summary>
-    [DataField]
-    public SoundSpecifier? Sound;
+    RuleStarted,
+
+    /// <summary>
+    /// Antag roles are *never* selected. Instead, this definition only makes ghost roles.
+    /// </summary>
+    Never,
 }

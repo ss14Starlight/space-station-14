@@ -1,26 +1,31 @@
 {
   "version": 1,
   "license": "CC0-1.0",
-  "copyright": "Original sprite by EmoGarbage404, edited by neomoth.",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Original sprite by EmoGarbage404, edited by neomoth."
     },
     {
-      "name": "base"
+      "name": "base",
+      "copyright": "Original sprite by EmoGarbage404, edited by neomoth."
     },
     {
-      "name": "closed"
+      "name": "closed",
+      "copyright": "Original sprite by EmoGarbage404, edited by neomoth."
     },
     {
-      "name": "open"
+      "name": "open",
+      "copyright": "Original sprite by EmoGarbage404, edited by neomoth."
     },
     {
-      "name": "welded"
+      "name": "welded",
+      "copyright": "Original sprite by EmoGarbage404, edited by neomoth."
     },
     {
       "name": "sparking",
@@ -33,13 +38,16 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Original sprite by EmoGarbage404, edited by neomoth."
     },
     {
-      "name": "locked"
+      "name": "locked",
+      "copyright": "Original sprite by EmoGarbage404, edited by neomoth."
     },
     {
-      "name": "unlocked"
+      "name": "unlocked",
+      "copyright": "Original sprite by EmoGarbage404, edited by neomoth."
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Modified by Github Afrokada / Discord cooldolphin",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -16,7 +16,8 @@
           3.4,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Modified by Github Afrokada / Discord cooldolphin"
     },
     {
       "name": "broken"
@@ -29,7 +30,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Modified by Github Afrokada / Discord cooldolphin"
     },
     {
       "name": "eject-unshaded",
@@ -41,13 +43,16 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Modified by Github Afrokada / Discord cooldolphin"
     },
     {
-      "name": "off"
+      "name": "off",
+      "copyright": "Modified by Github Afrokada / Discord cooldolphin"
     },
     {
-      "name": "panel"
+      "name": "panel",
+      "copyright": "Modified by Github Afrokada / Discord cooldolphin"
     }
   ]
 }

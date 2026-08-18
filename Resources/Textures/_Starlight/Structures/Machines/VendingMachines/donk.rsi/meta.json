@@ -20,13 +20,16 @@
           1.0,
           1.0
         ]
-      ]
+      ],
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/machines/vending.dmi and modified by Conflee"
     },
     {
-      "name": "broken"
+      "name": "broken",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/machines/vending.dmi and modified by Conflee"
     },
     {
-      "name": "normal"
+      "name": "normal",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/machines/vending.dmi and modified by Conflee"
     },
     {
       "name": "deny-unshaded",
@@ -34,10 +37,11 @@
         [
           0.1,
           0.1,
-		  0.1,
+          0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/machines/vending.dmi and modified by Conflee"
     },
     {
       "name": "eject-unshaded",
@@ -49,13 +53,16 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/machines/vending.dmi and modified by Conflee"
     },
     {
-      "name": "off"
+      "name": "off",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/machines/vending.dmi and modified by Conflee"
     },
     {
-      "name": "panel"
+      "name": "panel",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/machines/vending.dmi and modified by Conflee"
     }
   ]
 }

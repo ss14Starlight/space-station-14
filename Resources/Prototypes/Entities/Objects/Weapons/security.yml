@@ -54,10 +54,12 @@
   #Starlight End
   - type: ItemToggle
     predictable: false
-    soundActivate:
-      collection: sparks
-      params:
-        variation: 0.250
+  # ES START
+#    soundActivate:
+#      collection: sparks
+#      params:
+#        variation: 0.250
+  # ES END
     soundDeactivate:
       collection: sparks
       params:
@@ -85,6 +87,11 @@
     animation: WeaponArcThrust
     soundHit: #starlight
       collection: GenericHit #starlight
+  # ES START
+  - type: ESSparkOnItemToggle
+    count: 1
+    sparkPrototype: SLEffectSparksBaton # Starlight, smaller sparks
+  # ES END
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg

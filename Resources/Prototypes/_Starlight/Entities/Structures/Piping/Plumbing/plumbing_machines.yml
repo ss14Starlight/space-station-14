@@ -450,11 +450,14 @@
   name: plumbing smart dispenser
   description: Pulls in all reagents from its inlets and stores up to 200u of each type. Use a labeled container to auto-dispense a matching reagent, or use a refillable container on it to manually dispense. Requires power.
   components:
+  - type: Transform
+    noRot: true
   - type: Sprite
     sprite: _Starlight/Structures/Machines/smart_dispenser.rsi
     noRot: true
     layers:
     - state: dispenser
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
     - state: dispenser-unshaded
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -469,9 +472,9 @@
   - type: SubFloorHide
     blockInteractions: false
     blockAmbience: false
+    allowAnchoringUnderCover: true
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
-    - enum.SubfloorLayers.SecondLayer
   - type: PointLight
     radius: 1.2
     energy: 3.0
@@ -624,7 +627,7 @@
   parent: PlumbingMachineBase
   id: PlumbingFilter
   name: plumbing filter
-  description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
+  description: Filters up to 10 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
   - type: Physics
     bodyType: Static
@@ -633,7 +636,13 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: filter
-      map: [ "enum.SubfloorLayers.FirstLayer" ]
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.PlumbingVisuals.Running:
+        enum.PlumbingVisualLayers.Base:
+          True: { state: filter_working }
+          False: { state: filter }
   - type: PlumbingDevice
     updateInterval: 2
   - type: PlumbingInlet
@@ -702,7 +711,7 @@
   parent: PlumbingFilter
   id: PlumbingFilterFlipped
   suffix: Flipped
-  description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
+  description: Filters up to 10 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
   - type: Physics
     bodyType: Static
@@ -711,7 +720,13 @@
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
     - state: filterF
-      map: [ "enum.SubfloorLayers.FirstLayer" ]
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.PlumbingVisuals.Running:
+        enum.PlumbingVisualLayers.Base:
+          True: { state: filterF_working }
+          False: { state: filterF }
   - type: NodeContainer
     nodes:
       inlet:
@@ -728,6 +743,76 @@
         pipeDirection: North
   - type: Flippable
     mirrorEntity: PlumbingFilter
+
+# =============================================================================
+# Inline Plumbing Filter - draws only specific reagents off a duct network
+# =============================================================================
+- type: entity
+  parent: PlumbingMachineBase
+  id: PlumbingInlineFilter
+  name: inline plumbing filter
+  description: Sits inline on a duct run and draws up to 10 specific reagents off it, holding 10u of each. Everything else is left on the network.
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
+    layers:
+    - state: filter_inline
+      map: [ "enum.PlumbingVisualLayers.Base", "enum.SubfloorLayers.FirstLayer" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.PlumbingVisuals.Running:
+        enum.PlumbingVisualLayers.Base:
+          True: { state: filter_inline_working }
+          False: { state: filter_inline }
+  - type: PlumbingDevice
+    updateInterval: 2
+  - type: PlumbingInlet
+    solutionName: buffer
+  - type: PlumbingInlineFilter
+  - type: Plungeable
+  - type: PlumbingOutlet
+    solutionName: buffer
+  - type: SolutionContainerManager
+    solutions:
+      buffer:
+        # 10 filtered reagents at 10u each.
+        maxVol: 100
+        canReact: false
+  - type: ExaminableSolution
+    solution: buffer
+  - type: NodeContainer
+    nodes:
+      inlet:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: North
+      outlet:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: South
+  - type: AtmosPipeColor
+    color: "#8B4513"
+  - type: UserInterface
+    interfaces:
+      enum.PlumbingFilterUiKey.Key:
+        type: PlumbingFilterBoundUserInterface
+  - type: ActivatableUI
+    key: enum.PlumbingFilterUiKey.Key
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpillBehavior
+        solution: buffer
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: StaticPrice
+    price: 125
 
 # =============================================================================
 # Plumbing Synthesizer - generates reagents from power

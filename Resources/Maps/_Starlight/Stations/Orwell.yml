@@ -197264,22 +197264,6 @@ entities:
     - type: Transform
       pos: 57.606453,31.399176
       parent: 2
-- proto: WeaponMechChainSword
-  entities:
-  - uid: 31297
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 7.6982956,-5.452984
-      parent: 2
-- proto: WeaponMechCombatFiredartLaser
-  entities:
-  - uid: 31298
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 7.2165437,-5.463933
-      parent: 2
 - proto: WeaponMeleeBoxcutter
   entities:
   - uid: 31299

@@ -13,24 +13,6 @@ namespace Content.Shared._Starlight.VentCrawl.EntitySystems;
 public sealed partial class SharedVentCrawlSystem
 {
     /// <summary>
-    /// Tries to insert an entity into the <seealso cref="VentCrawlHolderComponent"/> container.
-    /// </summary>
-    /// <returns>True if the insertion was successful, otherwise False.</returns>
-    public bool TryInsert(EntityUid uid, EntityUid toInsert)
-    {
-        if (!CanInsert(uid, toInsert))
-            return false;
-
-        if (!_containerSystem.Insert(toInsert, GetOrEnsureContainer(uid)))
-            return false;
-
-        if (TryComp<PhysicsComponent>(toInsert, out var physBody))
-            _physicsSystem.SetCanCollide(toInsert, false, body: physBody);
-
-        return true;
-    }
-
-    /// <summary>
     /// Checks whether the specified entity can be inserted into the container of the <seealso cref="VentCrawlHolderComponent"/>.
     /// </summary>
     /// <returns>True if the entity can be inserted into the container; otherwise, False.</returns>

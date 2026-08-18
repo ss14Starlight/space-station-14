@@ -1,6 +1,6 @@
 - type: entity
-  parent: EffectFlashBluespace
-  id: EffectFlashRedspace
+  parent: EffectFlashBluespaceSimple
+  id: EffectFlashRedspaceSimple
   categories: [ HideSpawnMenu ]
   components:
   - type: PointLight

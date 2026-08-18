@@ -42,6 +42,8 @@ uplink-nightvision-eyes = Night Vision Cyber Eyes
 uplink-nightvision-eyes-desc = Allows you to see in the dark but makes you more vulnerable to flashes. (Warning: You will need a surgical assistant for the procedure.)
 uplink-thermalvision-eyes = Thermal Vision Cyber Eyes
 uplink-thermalvision-eyes-desc = Allows you to see in the dark and detect creatures through walls but makes you more vulnerable to flashes. (Warning: You will need a surgical assistant for the procedure.)
+uplink-olfactory-implant-name = Olfactory Implant
+uplink-olfactory-implant-desc = Grants a partial ability to perceive and track scents. (Warning: You will need a surgical assistant for the procedure.)
 uplink-mantis-blade-arms-name = Mantis Blade Arms Bundle
 uplink-mantis-blade-arms-desc = Originally used as a simple construction tool, now turned into hidden blades that can extend from your arm while still keeping its destructive prying skill. Truly a sight to behold. (Warning: You will need a surgical assistant for the procedure.)
 uplink-advanced-claws-name = Advanced Claws Implant
@@ -157,3 +159,6 @@ uplink-syndicate-borgi-kitted-bundle-desc = A syndicate borgi, outfitted with an
 
 uplink-syndicate-borgi-speed-bundle-name = Speed Syndicate Borgi bundle
 uplink-syndicate-borgi-speed-bundle-desc = A syndicate borgi, with dagger modules and additional speed. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're the Borgi's best friends.
+
+uplink-chameleon-bundle-name = Chameleon Kit Crate
+uplink-chameleon-bundle-desc = A crate containing a backpack full of items that contain chameleon technology allowing you to disguise as pretty much anything on the station, and more!

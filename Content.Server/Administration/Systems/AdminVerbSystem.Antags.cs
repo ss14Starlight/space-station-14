@@ -47,7 +47,7 @@ public sealed partial class AdminVerbSystem
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultVampireRule = "Vampire"; //Starlight
     private static readonly EntProtoId DefaultDevilRule = "Devil"; // starlight
-    private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight
+    private static readonly EntProtoId DefaultBrighteyeRule = "SubBrighteye"; //Starlight
 	private static readonly EntProtoId DefaultSELFRule = "SiliconLiberation"; //Starlight
 
     // All antag verbs have names so invokeverb works.

@@ -13,7 +13,7 @@
 - type: entity
   parent: FloorWaterEntity
   id: FloorWaterDestructibleEntity
-  suffix: Destructible
+  suffix: Station
   name: water
   components:
   - type: Construction

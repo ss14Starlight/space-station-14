@@ -629,16 +629,6 @@
       - LoneOpsUplink
 
 - type: listing
-  id: UplinkClothingConductingGloves
-  name: uplink-clothing-conducting-gloves-name
-  description: uplink-clothing-conducting-gloves-desc
-  productEntity: ClothingHandsGlovesConducting
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkPointless
-
-- type: listing
   id: uplinkRiggedBoxingGlovesAssistant
   name: uplink-rigged-boxing-gloves-name
   description: uplink-rigged-boxing-gloves-desc

@@ -15,4 +15,13 @@ public sealed partial class SpawnOnDespawnComponent : Component
     /// </summary>
     [DataField(required: true)]
     public EntProtoId Prototype = string.Empty;
+
+    #region Starlight
+
+    /// <summary>
+    /// Component overrides for the spawned entity.
+    /// </summary>
+    [DataField] public ComponentRegistry? Overrides;
+
+    #endregion
 }

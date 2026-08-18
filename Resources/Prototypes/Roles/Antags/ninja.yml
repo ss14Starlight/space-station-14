@@ -20,6 +20,39 @@
   playTimeTracker: AntagNinja
   # Starlight end
 
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: SpaceNinja
+  prefRoles: # Starlight
+  - SpaceNinja # Starlight
+  spawnerPrototype: SpawnPointGhostSpaceNinja
+  #pickPlayer: false # Starlight, you can be a ninja.
+  startingGear: SpaceNinjaGear
+  roleLoadout:
+  - AntagSpaceNinja # Starlight
+  briefing:
+    text: ninja-role-greeting
+    color: Green
+    sound: /Audio/Misc/ninja_greeting.ogg
+  tags: # Starlight
+    - CantBecomeRevolutionary # Starlight
+  components:
+  - type: SpaceNinja
+  - type: ThermalVision # Starlight
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: AutoImplant
+    implants:
+    - DeathAcidifierImplant
+  - type: RandomMetadata
+    nameSegments:
+    - NamesNinjaTitle
+    - NamesNinja
+    nameFormat: name-format-ninja
+  mindRoles:
+  - MindRoleNinja
+
 #Ninja Gear
 - type: startingGear
   id: SpaceNinjaGear

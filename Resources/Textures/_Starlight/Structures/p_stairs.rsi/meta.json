@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -9,143 +9,178 @@
   "states": [
     {
       "name": "p_stair_full",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_full_corner",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_left_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_right_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_solo_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_kutjevo_full",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_kutjevo_full_corner",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_kutjevo_left_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_kutjevo_right_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_kutjevo_solo_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_ice_full",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_ice_full_corner",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_ice_left_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_ice_right_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_ice_solo_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_dark_full",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_dark_full_corner",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_dark_left_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_dark_right_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_dark_solo_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_red_full",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_red_full_corner",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_red_left_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_red_right_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_red_solo_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_white_full",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_white_full_corner",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_white_left_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_white_right_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_white_solo_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_wood_full",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
-	{
+    {
       "name": "p_stair_wood_full_corner",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_wood_left_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_wood_right_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     },
     {
       "name": "p_stair_wood_solo_cap",
-	  "directions": 4
+      "directions": 4,
+      "copyright": "Taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/8e8d26bbb4f1617ea1b1ffc17ffffca552ce8c11/icons/obj/structures/stairs"
     }
   ]
 }

@@ -27,6 +27,7 @@ using Robust.Shared.Prototypes;
 #region Starlight
 using Content.Shared.Body.Organ;
 using Content.Shared._Starlight.Abstract.Extensions;
+using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
 #endregion
 
@@ -381,13 +382,25 @@ public sealed partial class IngestionSystem : EntitySystem
         _reaction.DoEntityReaction(entity, split, ReactionMethod.Ingestion);
 
         // Everything is good to go item has been successfuly eaten
-        var afterEv = new IngestedEvent(args.User, entity, split, forceFed);
+        var afterEv = new IngestedEvent(args.User, entity, split, forceFed, beforeEv.Transfer >= beforeEv.Max);
         RaiseLocalEvent(food, ref afterEv);
 
-        _stomach.TryTransferSolution(stomachToUse.Value.Owner, split, stomachToUse);
+        #region Starlight
+        if (!_stomach.TryTransferSolution(stomachToUse.Value.Owner, split, stomachToUse))
+        {
+            // Stackable foods already restored the split earlier
+            if (!beforeEv.Refresh)
+                _solutionContainer.TryAddSolution(solution.Value, split);
+
+            return;
+        }
+        #endregion
 
         if (!afterEv.Destroy)
         {
+            if (beforeEv.Transfer >= beforeEv.Max)
+                return;
+
             args.Repeat = afterEv.Repeat;
             return;
         }
@@ -475,7 +488,7 @@ public sealed partial class IngestionSystem : EntitySystem
         {
             var targetName = Identity.Entity(args.Target, EntityManager);
             var userName = Identity.Entity(args.User, EntityManager);
-            _popup.PopupEntity(Loc.GetString("edible-force-feed-success", ("user", userName), ("verb", edible.Verb), ("flavors", flavors)), entity, entity);
+            _popup.PopupEntity(Loc.GetString("edible-force-feed-success", ("user", userName), ("verb", edible.Verb), ("flavors", flavors), ("satiated", args.Satiated)), entity, entity);
 
             _popup.PopupClient(Loc.GetString("edible-force-feed-success-user", ("target", targetName), ("verb", edible.Verb)), args.User, args.User);
 
@@ -485,7 +498,7 @@ public sealed partial class IngestionSystem : EntitySystem
         }
         else
         {
-            _popup.PopupPredicted(Loc.GetString(edible.Message, ("food", entity.Owner), ("flavors", flavors)),
+            _popup.PopupPredicted(Loc.GetString(edible.Message, ("food", entity.Owner), ("flavors", flavors), ("satiated", args.Satiated)),
                 Loc.GetString(edible.OtherMessage),
                 args.User,
                 args.User);

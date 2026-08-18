@@ -76,6 +76,33 @@ public sealed partial class DungeonJob
         var packTransforms = new Matrix3x2[gen.RoomPacks.Count];
         var packRotations = new Angle[gen.RoomPacks.Count];
 
+        // Starlight Start
+        void AddFillablePacks(List<DungeonRoomPackPrototype> candidatePacks)
+        {
+            foreach (var candidate in candidatePacks)
+            {
+                var fillable = true;
+
+                foreach (var candidateRoom in candidate.Rooms)
+                {
+                    var roomDims = new Vector2i(candidateRoom.Width, candidateRoom.Height);
+
+                    if (roomProtos.ContainsKey(roomDims) ||
+                        roomProtos.ContainsKey(new Vector2i(roomDims.Y, roomDims.X)))
+                    {
+                        continue;
+                    }
+
+                    fillable = false;
+                    break;
+                }
+
+                if (fillable)
+                    availablePacks.Add(candidate);
+            }
+        }
+        // Starlight End
+
         // Actually pick the room packs and rooms
         for (var i = 0; i < gen.RoomPacks.Count; i++)
         {
@@ -85,7 +112,7 @@ public sealed partial class DungeonJob
             // Try every pack rotation
             if (roomPackProtos.TryGetValue(dimensions, out var roomPacks))
             {
-                availablePacks.AddRange(roomPacks);
+                AddFillablePacks(roomPacks); // Starlight
             }
 
             // Try rotated versions if there are any.
@@ -95,7 +122,7 @@ public sealed partial class DungeonJob
 
                 if (roomPackProtos.TryGetValue(rotatedDimensions, out roomPacks))
                 {
-                    availablePacks.AddRange(roomPacks);
+                    AddFillablePacks(roomPacks); // Starlight
                 }
             }
 

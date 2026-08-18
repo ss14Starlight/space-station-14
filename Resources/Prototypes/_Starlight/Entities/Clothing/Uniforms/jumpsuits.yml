@@ -988,3 +988,25 @@
       - state: equipped-INNERCLOTHING
         color: "#3f3f3f"
       - state: trinkets-equipped-INNERCLOTHING
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentCommServiceWorker
+  name: CentComm service worker's jumpsuit
+  description: It's a jumpsuit worn by CentComm service workers. Those boots need licking.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommserviceworker.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommserviceworker.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentCommBartender
+  name: CentComm bartender's jumpsuit
+  description: It's a jumpsuit worn by CentComm bartenders. Those drinks won't serve themselves.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommbartender.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommbartender.rsi

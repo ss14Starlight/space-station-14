@@ -1,29 +1,35 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Made by BORT and JustAdler for https://github.com/ss14Starlight/space-station-14",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "banner0"
+      "name": "banner0",
+      "copyright": "Made by BORT and JustAdler for https://github.com/ss14Starlight/space-station-14"
     },
     {
-      "name": "banner1"
+      "name": "banner1",
+      "copyright": "Made by BORT and JustAdler for https://github.com/ss14Starlight/space-station-14"
     },
     {
-      "name": "banner2"
+      "name": "banner2",
+      "copyright": "Made by BORT and JustAdler for https://github.com/ss14Starlight/space-station-14"
     },
     {
-      "name": "banner3"
+      "name": "banner3",
+      "copyright": "Made by BORT and JustAdler for https://github.com/ss14Starlight/space-station-14"
     },
     {
-      "name": "banner4"
+      "name": "banner4",
+      "copyright": "Made by BORT and JustAdler for https://github.com/ss14Starlight/space-station-14"
     },
     {
-      "name": "banner5"
+      "name": "banner5",
+      "copyright": "Made by BORT and JustAdler for https://github.com/ss14Starlight/space-station-14"
     }
   ]
 }

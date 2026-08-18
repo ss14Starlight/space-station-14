@@ -735,6 +735,12 @@
           Quantity: 10
         - ReagentId: Vitamin
           Quantity: 10
+  #Starlight start
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+  #Starlight end
 
 - type: entity
   name: clown's tears

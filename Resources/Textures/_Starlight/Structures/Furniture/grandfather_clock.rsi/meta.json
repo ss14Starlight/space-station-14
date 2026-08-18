@@ -1,11 +1,11 @@
 {
-  "version": 1,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "Edit by Conflee, originals Taken from Civ13 at commit https://github.com/Civ13/Civ13/blob/HEAD/icons/obj/structures.dmi",
-  "size": {
-    "x": 32,
-    "y": 32
-  },
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
     "states": [
         {
             "name": "grandfather_clock",
@@ -24,7 +24,8 @@
                     0.15,
                     0.15
                 ]
-            ]
+            ],
+            "copyright": "Originals taken from Civ13 at commit https://github.com/Civ13/Civ13/blob/HEAD/icons/obj/structures.dmi, edits by Conflee"
         }
     ]
 }

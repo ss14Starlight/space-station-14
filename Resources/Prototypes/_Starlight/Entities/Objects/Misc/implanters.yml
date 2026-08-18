@@ -146,12 +146,12 @@
 
 #SELF
 - type: entity
-  id: SELFStorageImplanter
-  name: S.E.L.F storage implanter
+  id: BluespaceStorageImplanter
+  name: bluespace storage implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter
-    implant: SELFStorageImplant
+    implant: BluespaceStorageImplant
 # Traitor Mind control
 - type: entity
   id: MindControlImplanter

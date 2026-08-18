@@ -6,11 +6,57 @@
   objective: roles-antag-cosmiccult-description
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 86400 # 24h i really just want people to read the guidebook please please please
+    time: 24h # 86400 24h i really just want people to read the guidebook please please please
   guides: [ CosmicCult ]
+
+- type: antagSpecifier
+  parent: CosmicCultRestrictedAntag
+  id: CosmicAntagCultist
+  prefRoles:
+  - CosmicAntagCultist
+  blacklist:
+    components:
+    - AntagImmune
+    - BibleUser
+  components:
+  - type: CosmicCult
+  mindRoles:
+  - MindRoleCosmicCult
 
 - type: antag
   id: CosmicAntagColossus
   name: ghost-role-information-colossus-name
   antagonist: true
   objective: ghost-role-colossus-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 12h
+  - !type:RoleTimeRequirement
+    role: JobBorg
+    time: 6h
+  playTimeTracker: AntagCosmicColossus
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: CosmicAntagColossus
+  spawnerPrototype: SpawnPointCosmicColossus
+  pickPlayer: false
+  briefing:
+    text: ghost-role-colossus-briefing
+    color: CadetBlue
+    sound: /Audio/_Starlight/CosmicCult/antag_cosmic_briefing.ogg
+  components:
+  - type: CosmicColossus
+    timed: true
+  mindRoles:
+  - MindRoleCosmicColossus
+
+- type: antag
+  id: CosmicAntagMinion
+  name: ghost-role-information-cosmic-minion-name
+  antagonist: true
+  objective: ghost-role-information-cosmic-minion-description
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 6h
+  playTimeTracker: AntagCosmicMinion

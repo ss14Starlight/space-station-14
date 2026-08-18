@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.EntityTable;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.GameTicking.Rules;
 using Robust.Shared.Prototypes;
@@ -6,6 +7,7 @@ namespace Content.Shared.EntityTable.Conditions;
 
 /// <summary>
 /// Condition that only succeeds if a table supplies a sufficient "cost" to a given
+///  rule and the rule is not on a Dynamic cooldown. - Starlight
 /// </summary>
 public sealed partial class HasBudgetCondition : EntityTableCondition
 {
@@ -25,6 +27,13 @@ public sealed partial class HasBudgetCondition : EntityTableCondition
     {
         if (!ctx.TryGetData<float>(BudgetContextKey, out var budget))
             return false;
+
+        #region Starlight
+        if (root is EntSelector cooldownSelector &&
+            ctx.TryGetData<GameRuleTableContext>(out var gameRuleContext) &&
+            gameRuleContext.Cooldowns.Contains(cooldownSelector.Id))
+                return false;
+        #endregion
 
         int cost;
         if (CostOverride != null)

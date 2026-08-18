@@ -17,11 +17,23 @@
             <Label Name="CurrentGasLabel" />
         </BoxContainer>
 
-        <BoxContainer Orientation="Vertical" VerticalExpand="True">
+        <!-- <BoxContainer Orientation="Vertical" VerticalExpand="True">
             <Label Text="{Loc comp-gas-filter-ui-filter-gas-select}" />
             <ItemList Name="GasList" SelectMode="Single" VerticalExpand="True"
                       SizeFlagsStretchRatio="0.9" />
             <Button Name="SelectGasButton" Text="{Loc comp-gas-filter-ui-filter-gas-confirm}" HorizontalExpand="True" Disabled="True" />
-        </BoxContainer>
+        </BoxContainer> Starlight removed-->
+
+    <!--Starlight start-->
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="5" Margin="0 5 0 0">
+        <Button Name="CSelectAll" HorizontalExpand="True" Text="{Loc 'air-alarm-ui-scrubber-select-all-gases-label'}" />
+        <Button Name="CDeselectAll" HorizontalExpand="True" Text="{Loc 'air-alarm-ui-scrubber-deselect-all-gases-label'}" />
+    </BoxContainer>
+
+    <ScrollContainer VerticalExpand="True">
+        <GridContainer Name="CGasContainer" HorizontalExpand="True" HorizontalAlignment="Center" Columns="3" Margin="0 5 0 0" />
+    </ScrollContainer>
+    <!--Starlight end-->
+
     </BoxContainer>
 </DefaultWindow>

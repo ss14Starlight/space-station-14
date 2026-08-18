@@ -1,0 +1,83 @@
+﻿- type: antagSpecifier
+  abstract: true
+  id: BaseAntagSpecifier
+  jobBlacklist:
+  - CentralCommandOfficial
+  - DeathSquad
+  - ERTLeader
+  - ERTChaplain
+  - ERTEngineer
+  - ERTSecurity
+  - ERTMedical
+  - ERTJanitor
+  - CBURN
+  - CentralCommandOperator # Starlight start
+  - CentralCommandGreenShield
+  - CentCommServiceWorker
+  - CentCommChef
+  - CentCommBartender
+  - CentCommJanitor # Starlight end
+  blacklist:
+    components:
+    - AntagImmune
+
+# Command
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: CommandBlacklistedAntag
+  jobBlacklist:
+  - Captain
+  - HeadOfPersonnel
+  - HeadOfSecurity
+  - ChiefMedicalOfficer
+  - ResearchDirector
+  - ChiefEngineer
+  - Quartermaster
+  - NanoTrasenRepresentative # Starlight
+  - Magistrate # Starlight
+
+# Borgs
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: CyborgBlacklistedAntag
+  jobBlacklist:
+  - StationAi
+  - Borg
+
+# Learner Roles
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: InternBlacklistedAntag
+  jobBlacklist:
+  - SecurityCadet
+  - MedicalIntern
+  - ResearchAssistant
+  - TechnicalAssistant
+  - Visitor
+
+# Security
+- type: antagSpecifier
+  abstract: true
+  parent: BaseAntagSpecifier
+  id: SecurityBlacklistedAntag
+  jobBlacklist:
+  - HeadOfSecurity
+  - Warden
+  - Detective
+  - Brigmedic # Starlight
+  - DutyOfficer # Starlight
+  - SecurityOfficer
+  - SecurityCadet
+
+- type: antagSpecifier
+  abstract: true
+  parent: [ CommandBlacklistedAntag, SecurityBlacklistedAntag, NanoTrasenBlacklistedAntag, TSFBlacklistedAntag, GeneralMindshieldBlacklistedAntag ] # Starlight
+  id: MindshieldRestrictedAntag
+
+- type: antagSpecifier
+  abstract: true
+  parent: [ MindshieldRestrictedAntag, CyborgBlacklistedAntag, InternBlacklistedAntag ]
+  id: RestrictedAntag

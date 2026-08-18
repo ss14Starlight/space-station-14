@@ -36,6 +36,10 @@
       Unsexed: MaleVulpkanin
   - type: Damageable
     damageModifierSet: Vulpkanin
+    # Starlight Start
+  - type: Smeller
+    perception: Partial
+    # Starlight End
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Weapons/pierce.ogg

@@ -24,6 +24,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconAssistantManager
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: AssistantManager
+  jobName: job-name-assistantmanager
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconNTNCBlueShield
   icon:
     sprite: *starlight-job-icon-rsi
@@ -165,6 +173,38 @@
     sprite: *starlight-job-icon-rsi
     state: TSFOfficer
   jobName: job-name-TSF-officer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCCServiceWorker
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CCServiceWorker
+  jobName: job-name-cc-serviceworker
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCCChef
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CCChef
+  jobName: job-name-cc-chef
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCCBartender
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CCBartender
+  jobName: job-name-cc-bartender
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCCJanitor
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CCJanitor
+  jobName: job-name-cc-janitor
 
 - type: jobIcon
   parent: JobIcon

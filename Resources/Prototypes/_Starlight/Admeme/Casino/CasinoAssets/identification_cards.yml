@@ -7,6 +7,8 @@
   - type: Sprite
     sprite: _Starlight/Admeme/Casino/Objects/id_cards.rsi
   - type: IdCard
+    jobDepartments:
+      - Casino
   - type: Access
     tags:
       - Command
@@ -77,6 +79,43 @@
     - type: IdCard
       jobTitle: job-name-casino-security
       jobIcon: JobIconCasinoSecurity
+
+- type: entity
+  parent: CasinoIDCard
+  id: CasinoIDCardBrigmed
+  name: Gamorrah brigmedic ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: security
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: brigmed
+    - type: IdCard
+      jobTitle: job-name-casino-brigmed
+      jobIcon: JobIconCasinoBrigmed
+    - type: Access
+      tags:
+        - Command
+        - Maintenance
+        - Casino
+        - Medical
+        - Chemistry
+
+- type: entity
+  parent: CasinoIDCard
+  id: CasinoIDCardTreasurer
+  name: Gamorrah treasurer ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: treasurer
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: treasurer
+    - type: IdCard
+      jobTitle: job-name-casino-treasurer
+      jobIcon: JobIconCasinoTreasurer
 
 
 

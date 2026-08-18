@@ -22,7 +22,6 @@
   startingGear: QuartermasterGear
   icon: "JobIconQuartermaster" #Starlight
   supervisors: job-supervisors-captain
-  canBeAntag: false
   access:
   - Cargo
   - Salvage
@@ -36,6 +35,7 @@
   - Brig
   - Cryogenics
   - Debrief # Starlight
+  - Shuttle # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

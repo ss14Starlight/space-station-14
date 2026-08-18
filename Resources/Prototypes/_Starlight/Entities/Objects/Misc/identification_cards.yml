@@ -133,6 +133,21 @@
     job: BlueShield
 
 - type: entity
+  parent: IDCardStandard
+  id: AssistantManagerIDCard
+  name: assistant manager ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: AssistantManager
+  - type: PresetIdCard
+    job: AssistantManager
+
+- type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
   id: NTNCBlueShieldIDCard
   name: NanoTrasen navy corps marine's ID card
@@ -353,6 +368,9 @@
     jobIcon: JobIconSoviet
   - type: NanoChatCard
     listNumber: false
+  - type: Tag
+    tags:
+    - CommieID # BountySalvageCommieID
   - type: Access
     tags:
       - Communist
@@ -482,7 +500,7 @@
     tags:
     - Maintenance
     - External
-    - Research
+    - Robotics
     - Engineering
     - Atmospherics
   - type: NanoChatCard
@@ -521,6 +539,110 @@
     heldPrefix: blue
   - type: PresetIdCard
     job: NanoTrasenSpecialForces
+  - type: NanoChatCard
+    listNumber: false
+
+- type: entity
+  parent: IDCardStandard
+  id: CentCommIDCardServiceWorker
+  name: CentComm service worker ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: centcom
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#cfa500"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#876c00"
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: CCServiceWorker
+  - type: Item
+    sprite: Objects/Misc/id_cards.rsi
+    heldPrefix: green
+  - type: PresetIdCard
+    job: CentCommServiceWorker
+  - type: NanoChatCard
+    listNumber: false
+
+- type: entity
+  parent: IDCardStandard
+  id: CentCommIDCardChef
+  name: CentComm chef ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: centcom
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#cfa500"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#876c00"
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: CCChef
+  - type: Item
+    sprite: Objects/Misc/id_cards.rsi
+    heldPrefix: green
+  - type: PresetIdCard
+    job: CentCommChef
+  - type: NanoChatCard
+    listNumber: false
+
+- type: entity
+  parent: IDCardStandard
+  id: CentCommIDCardBartender
+  name: CentComm bartender ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: centcom
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#cfa500"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#876c00"
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: CCBartender
+  - type: Item
+    sprite: Objects/Misc/id_cards.rsi
+    heldPrefix: green
+  - type: PresetIdCard
+    job: CentCommBartender
+  - type: NanoChatCard
+    listNumber: false
+
+- type: entity
+  parent: IDCardStandard
+  id: CentCommIDCardJanitor
+  name: CentComm janitor ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: centcom
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#cfa500"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#876c00"
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: CCJanitor
+  - type: Item
+    sprite: Objects/Misc/id_cards.rsi
+    heldPrefix: green
+  - type: PresetIdCard
+    job: CentCommJanitor
   - type: NanoChatCard
     listNumber: false
 

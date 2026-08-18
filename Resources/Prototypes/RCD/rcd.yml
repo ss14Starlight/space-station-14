@@ -37,7 +37,7 @@
   category: WallsAndFlooring
   sprite: /Textures/Interface/Radial/RCD/plating.png
   mode: ConstructTile
-  prototype: Plating
+  prototype: PlatingRCD
   cost: 1
   delay: 1
   collisionMask: InteractImpassable
@@ -128,6 +128,7 @@
     - IsWindow
   rotation: User
   fx: EffectRCDConstruct1
+  allowMultiDirection: true
 
 - type: rcd
   id: ReinforcedWindow
@@ -157,6 +158,7 @@
     - IsWindow
   rotation: User
   fx: EffectRCDConstruct2
+  allowMultiDirection: true
 
 # Airlocks
 - type: rcd
@@ -168,6 +170,8 @@
   cost: 4
   delay: 4
   collisionMask: FullTileMask
+  rules: # Starlight
+    - IsAirlock # Starlight
   rotation: Camera
   fx: EffectRCDConstruct4
 
@@ -180,6 +184,8 @@
   cost: 4
   delay: 4
   collisionMask: FullTileMask
+  rules: # Starlight
+    - IsAirlock # Starlight
   rotation: Camera
   fx: EffectRCDConstruct4
 
@@ -192,6 +198,8 @@
   cost: 4
   delay: 3
   collisionMask: FullTileMask
+  rules: # Starlight
+    - IsFirelock # Starlight
   rotation: Camera
   fx: EffectRCDConstruct3
 
@@ -208,6 +216,7 @@
   collisionBounds: "-0.23,-0.49,0.23,-0.36"
   rotation: User
   fx: EffectRCDConstruct1
+  allowMultiDirection: true
 
 - type: rcd
   id: BulbLight
@@ -221,6 +230,7 @@
   collisionBounds: "-0.23,-0.49,0.23,-0.36"
   rotation: User
   fx: EffectRCDConstruct1
+  allowMultiDirection: true
 
 # Electrical
 - type: rcd

@@ -60,10 +60,11 @@ public sealed partial class StoreSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, StoreComponent component, MapInitEvent args)
     {
-        // STARLIGHT: Ensure the store has a StockLimitedProcessingComponent
+        // Starlight-start: Ensure the store has a StockLimitedProcessingComponent
         EnsureComp<StockLimitedProcessingComponent>(uid);
 
-        RefreshAllListings(component);
+        RefreshAllListings((uid, component));
+        // Starlight-end
         component.StartingMap = Transform(uid).MapUid;
     }
 
@@ -72,7 +73,9 @@ public sealed partial class StoreSystem : EntitySystem
         // for traitors, because the StoreComponent for the PDA can be added at any time.
         if (MetaData(uid).EntityLifeStage == EntityLifeStage.MapInitialized)
         {
-            RefreshAllListings(component);
+            // Starlight-start
+            RefreshAllListings((uid, component));
+            // Starlight-end
         }
 
         var ev = new StoreAddedEvent();

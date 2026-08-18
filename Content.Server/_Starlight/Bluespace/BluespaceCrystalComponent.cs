@@ -29,4 +29,4 @@ public sealed partial class BluespaceCrystalComponent : Component
 }
 
 [ByRefEvent]
-public record struct NullSpaceShuntEvent();
+public record struct NullSpaceShuntEvent;

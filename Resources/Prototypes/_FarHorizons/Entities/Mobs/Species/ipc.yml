@@ -217,6 +217,10 @@
       - APCHighCapacity
       - APCSuperCapacity
       - APCHyperCapacity
+      - APCXenoborg # Starlight
+      - APCShadekin # Starlight
+      - APCAdvanced # Starlight
+      - APCAdvancedConstructed # Starlight
     noPowerDeathEmote: DeathgaspIPC
   - type: Deathgasp
     prototype: DeathgaspIPC
