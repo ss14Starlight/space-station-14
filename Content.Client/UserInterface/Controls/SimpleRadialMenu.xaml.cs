@@ -144,14 +144,12 @@ public sealed partial class SimpleRadialMenu : RadialMenu
             button.AllowRightClick = actionOption.OnAlternativePressed != null;
             button.OnPressed += args =>
             {
+                // Starlight-start
                 if (args.Event.Function == EngineKeyFunctions.UIRightClick)
-                {
                     actionOption.OnAlternativePressed?.Invoke();
-                }
                 else
-                {
                     actionOption.OnPressed?.Invoke();
-                }
+                // Starlight-end
 
                 if (!haveNested)
                     Close();
