@@ -25,6 +25,7 @@ public abstract partial class SharedBorgSwitchableTypeSystem : EntitySystem
     [Dependency] protected IPrototypeManager Prototypes = default!;
     [Dependency] private InteractionPopupSystem _interactionPopup = default!;
     [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!; // Starlight-edit
+    [Dependency] private IComponentFactory _componentFactory = default!; // Starlight
 
     public static readonly EntProtoId ActionId = "ActionSelectBorgType";
 
@@ -75,15 +76,18 @@ public abstract partial class SharedBorgSwitchableTypeSystem : EntitySystem
 
     private void SelectTypeMessageHandler(Entity<BorgSwitchableTypeComponent> ent, ref BorgSelectTypeMessage args)
     {
-        if (ent.Comp.SelectedBorgType != null)
+        if (ent.Comp.SelectedBorgType is { } selected && selected != _Starlight.Silicons.Borgs.BorgChassisResetSystem.UnselectedType) // Starlight: a reset chassis may pick again
             return;
 
         if (!Prototypes.HasIndex(args.Prototype))
             return;
 
+        if (args.Prototype == _Starlight.Silicons.Borgs.BorgChassisResetSystem.UnselectedType) // Starlight
+            return;
+
         // Starlight-start: Handle subtype cost
         if (TryComp<BorgSwitchableSubtypeComponent>(ent, out var subtypeComp) && subtypeComp.BorgSubtype != null
-            && Prototypes.Index(subtypeComp.BorgSubtype.Value).TryGetComponent<BorgSubtypeDefinitionComponent>(out var subtype) && subtype.Price is not null and > 0)
+            && Prototypes.Index(subtypeComp.BorgSubtype.Value).TryComp<BorgSubtypeDefinitionComponent>(out var subtype, _componentFactory) && subtype.Price is not null and > 0) // Starlight
         {
             if (!_playerResources.TryGetResource(ent.Owner, "credits", out var balance)
                 || balance < subtype.Price)
@@ -100,7 +104,7 @@ public abstract partial class SharedBorgSwitchableTypeSystem : EntitySystem
     // Implementation
     //
 
-    protected virtual void SelectBorgModule(
+    public virtual void SelectBorgModule( // Starlight - public so the chassis reset can reapply a blank type
         Entity<BorgSwitchableTypeComponent> ent,
         ProtoId<BorgTypePrototype> borgType)
     {
@@ -120,7 +124,7 @@ public abstract partial class SharedBorgSwitchableTypeSystem : EntitySystem
         // Afterlight-end
     }
 
-    protected void UpdateEntityAppearance(Entity<BorgSwitchableTypeComponent> entity)
+    public void UpdateEntityAppearance(Entity<BorgSwitchableTypeComponent> entity) // Starlight - public so the subtype system can hand the sprite back
     {
         if (!Prototypes.Resolve(entity.Comp.SelectedBorgType, out var proto))
             return;

@@ -231,3 +231,24 @@
         - Borg
         - BorgCargo
         - Quartermaster
+
+# The blank chassis a selectable borg has before it picks a type.
+- type: borgType
+  id: unselected
+
+  dummyPrototype: BorgChassisSelectable
+
+  extraModuleCount: 0
+
+  radioChannels:
+  - Science
+
+  inventoryTemplateId: borg
+  spritePath: Mobs/Silicon/Chassis/generic.rsi
+  spriteBodyState: borg
+  spriteHasMindState: borg_e
+  spriteNoMindState: borg_e_r
+  spriteToggleLightState: borg_l
+
+  petSuccessString: petting-success-generic-cyborg
+  petFailureString: petting-failure-generic-cyborg

@@ -3,6 +3,7 @@ using Content.Client._Afterlight.Silicons.Borgs.UI; // Afterlight
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared._Afterlight.Prototypes; // Afterlight
+using Content.Shared._Starlight.Silicons.Borgs; // Starlight
 using Content.Shared._Afterlight.Silicons; // Afterlight
 using Content.Shared._Afterlight.Silicons.Borgs; // Afterlight
 using Content.Shared.Guidebook;
@@ -83,7 +84,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
             }
         else
             // Starlight-end
-            foreach (var borgType in _prototypeManager.EnumeratePrototypes<BorgTypePrototype>().OrderBy(PrototypeName))
+            foreach (var borgType in _prototypeManager.EnumeratePrototypes<BorgTypePrototype>().Where(p => p.ID != BorgChassisResetSystem.UnselectedType).OrderBy(PrototypeName)) // Starlight - the blank chassis type is not selectable
             {
                 var button = new Button
                 {
