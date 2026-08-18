@@ -173,3 +173,19 @@
     permittedAlertLevels:
       - green
       - blue
+
+- type: entity
+  parent: BaseGameRule
+  id: FullMoonHowl
+  components:
+    - type: StationEvent
+      globalAnnouncement: false
+      weight: 3
+      duration: 1
+      maxDuration: 1
+      maxOccurrences: 1
+    - type: FullMoonHowlRule
+      eligibleInventorySpecies:
+        - vulpkanin
+        - dog
+        - puppy

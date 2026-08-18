@@ -103,6 +103,17 @@
       - WeaponPistolGoldenMk58HighCapacity
       - MagazinePistolHighCapacitySPGolden
 
+- type: loadout
+  id: SecurityColdCase
+  effects:
+   - !type:GroupLoadoutEffect
+      proto: SkilledOfficer
+  dummyEntity: WeaponPistolColdCase
+  storage:
+    back:
+    - WeaponPistolColdCase
+    - MagazineBoxPistol40SP
+
 # Jumpsuit
 - type: loadout
   id: SecurityTshirt

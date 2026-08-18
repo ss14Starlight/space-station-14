@@ -14,14 +14,14 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -44,7 +44,7 @@
   flavor: medicine
   color: "#51c38c"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         conditions:
@@ -106,7 +106,7 @@
   flavor: medicine
   color: "#dadada"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:GenericStatusEffect
         key: Drunk
@@ -135,7 +135,7 @@
   color: "#850063"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:HealthChange
           conditions:
@@ -164,7 +164,7 @@
   flavor: medicine
   color: "#ff867d"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         probability: 0.3
@@ -210,7 +210,7 @@
   flavor: bitter
   color: "#DE8063"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:HealthChange
           damage:
@@ -242,7 +242,7 @@
   flavor: medicine
   color: "#ffd275"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:EvenHealthChange
         damage:
@@ -284,7 +284,7 @@
   flavor: medicine
   color: "#99ff33"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -307,7 +307,7 @@
   color: "#7DFAFF"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Bloodstream:
       metabolismRate: 0.5
       effects:
       - !type:AdjustTemperature
@@ -338,44 +338,3 @@
         visualType: Medium
         messages: [ "leporazine-effect-temperature-adjusting" ]
         probability: 0.2
-
-- type: reagent
-  id: Necrosol
-  name: reagent-name-necrosol
-  group: Medicine
-  desc: reagent-desc-necrosol
-  physicalDesc: reagent-physical-desc-necrotic
-  flavor: medicine
-  color: "#86a5bd"
-  worksOnTheDead: true
-  plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: -5
-  - !type:PlantAdjustHealth
-    amount: 5
-  - !type:PlantCryoxadone {}
-  metabolisms:
-    Medicine:
-      effects:
-        - !type:EvenHealthChange
-          conditions:
-          - !type:TemperatureCondition
-            max: 213.0
-          damage:
-            Brute: -2
-            Burn: -2
-        - !type:HealthChange
-          conditions:
-          - !type:TemperatureCondition
-            max: 213.0
-          damage:
-            types:
-              Poison: -2
-        # Starlight-Start: Cyclorite Metabolism
-        - !type:AdjustReagent
-          conditions:
-            - !type:MetabolizerTypeCondition
-             type: [ Cyclorite ]
-          reagent: Necrosol
-          amount: -0.5
-        # Starlight-End

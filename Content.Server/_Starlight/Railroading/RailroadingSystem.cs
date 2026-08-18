@@ -1,5 +1,4 @@
-﻿using Content.Server._Starlight.Objectives.Events;
-using Content.Server._Starlight.Achievement;
+﻿using Content.Server._Starlight.Achievement;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
 using Content.Server.Revolutionary.Components;
@@ -18,6 +17,7 @@ using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Components.Visual;
 using Content.Shared._Starlight.Railroading.Components.Reward;
 using Content.Shared._Starlight.Abstract;
+using Content.Shared._Starlight.Objectives.Events;
 
 namespace Content.Server._Starlight.Railroading;
 
@@ -213,26 +213,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         subject.Comp.Restricted = true;
     }
 
-    internal void InvalidateProgress(Entity<RailroadableComponent> ent)
-    {
-        if (ent.Comp.ActiveCard is null)
-            return;
-
-        var @event = new RailroadingCardCompletionQueryEvent();
-        RaiseLocalEvent(ent.Comp.ActiveCard.Value, ref @event);
-        if (@event.IsCompleted != true)
-            return;
-
-        var completedEvent = new RailroadingCardCompletedEvent(ent);
-        RaiseLocalEvent(ent.Comp.ActiveCard.Value, ref completedEvent);
-
-        _adminLogger.Add(LogType.Railroading, LogImpact.Medium, $"{ToPrettyString(ent)} completed card {ToPrettyString(ent.Comp.ActiveCard.Value)}.");
-        ent.Comp.Completed ??= [];
-        ent.Comp.Completed.Add(ent.Comp.ActiveCard.Value);
-        ent.Comp.ActiveCard = null;
-    }
-
-    internal void CardFailed(Entity<RailroadableComponent> ent)
+    public void CardFailed(Entity<RailroadableComponent> ent)
     {
         if (ent.Comp.ActiveCard is null)
             return;

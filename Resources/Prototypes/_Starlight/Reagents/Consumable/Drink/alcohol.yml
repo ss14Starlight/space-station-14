@@ -13,7 +13,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 3
@@ -28,7 +28,7 @@
           groups:
             Brute: -3
             Burn: -1.25
-    Alcohol:
+    Metabolites:
       effects:
       - !type:Drunk
         boozePower: 5
@@ -42,7 +42,7 @@
         damage:
           types:
             Poison: 0.4
-    Poison:
+    Bloodstream:
       metabolismRate: 0.5
       effects:
       # Enhanced screaming for higher doses
@@ -76,8 +76,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
           inverted: true
-    Narcotic:
-      effects:
+      # Narcotic
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.20
         sprintSpeedModifier: 1.20
@@ -118,7 +117,7 @@
   metamorphicFillBaseName: full-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -153,7 +152,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2

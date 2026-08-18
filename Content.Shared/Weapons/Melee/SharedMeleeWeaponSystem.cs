@@ -51,7 +51,7 @@ namespace Content.Shared.Weapons.Melee;
 public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 {
     [Dependency] protected IGameTiming Timing = default!;
-    [Dependency] protected IMapManager MapManager = default!;
+    [Dependency] protected SharedMapSystem MapManager = default!;
     [Dependency] private   INetManager _netMan = default!;
     [Dependency] private   IPrototypeManager _protoManager = default!;
     [Dependency] private   IRobustRandom _random = default!;

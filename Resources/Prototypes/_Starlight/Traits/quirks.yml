@@ -51,7 +51,7 @@
     - !type:SpeciesRequirement
       species:
         - Shadekin # Shadekins does not breathe... HOW DO THEY SNORE?
-        - ProtoKin
+        - NeoKin
         - IPC
       inverted: true
 

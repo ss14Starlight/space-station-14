@@ -35,6 +35,7 @@ using Robust.Shared.Utility;
 using Content.Server._NullLink.PlayerData;
 using Content.Server._Starlight.GameTicking.Events;
 using Content.Server._Starlight.NewLife;
+using Content.Shared.Spawners.Components;
 
 namespace Content.Server.GameTicking
 {
@@ -642,7 +643,7 @@ namespace Content.Server.GameTicking
                 var spawn = _robustRandom.Pick(_possiblePositions);
                 var toMap = _transform.ToMapCoordinates(spawn);
 
-                if (_mapManager.TryFindGridAt(toMap, out var gridUid, out _))
+                if (_map.TryFindGridAt(toMap, out var gridUid, out _))
                 {
                     var gridXform = Transform(gridUid);
 

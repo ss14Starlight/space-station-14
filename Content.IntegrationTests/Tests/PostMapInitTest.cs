@@ -12,7 +12,9 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
+using Content.Shared.Mobs;
 using Content.Shared.Shuttles.Components; //Starlight-edit
+using Content.Shared.Spawners.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Maps;
 using Content.Shared.Roles;
@@ -26,6 +28,7 @@ using Robust.Shared.IoC;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Events;
+using Robust.Packaging.AssetProcessing;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -74,15 +77,15 @@ namespace Content.IntegrationTests.Tests
             {"/Maps/Shuttles/ShuttleEvent/instigator.yml", ["ShuttleGunFriendship"]},
             {"/Maps/_Starlight/Stations/Cork.yml", ["RubberStampSyndicate"]}, // Starlight start
             {"/Maps/_Starlight/Shuttles/CC-NT/NTSF_Minos_Battlecruiser.yml", ["ShuttleGunPerforator"]},
-            {"/Maps/_Starlight/Shuttles/RecluseClassSHC.yml", ["RubberStampSyndicate"]},
-            {"/Maps/_Starlight/Shuttles/Signaleer.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Shuttles/Admeme/RecluseClassSHC.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Shuttles/Admeme/Signaleer.yml", ["RubberStampSyndicate"]},
             {"/Maps/_Starlight/Shuttles/ShuttleEvent/montague.yml", ["RubberStampSolgovLaw", "RubberStampSolgovRep", "RubberStampTSF", "RubberStampTSMC"]},
             {"/Maps/_Starlight/Shuttles/ShuttleEvent/syndie_evacpod.yml", ["RubberStampSyndicate"]},
             {"/Maps/_Starlight/Nonstations/nukieplanet.yml", ["RubberStampSyndicate"]},
             {"/Maps/_Starlight/Nonstations/nukiewestern.yml", ["RubberStampSyndicate"]},
             {"/Maps/_Starlight/Nonstations/geigerComplex.yml", ["RubberStampSyndicate"]},
             {"/Maps/_Starlight/Dungeon/syndie.yml", ["RubberStampSyndicate"]},
-            {"/Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml", ["RubberStampSyndicate", "TraitorCodePaper"]},
+            {"/Maps/_Starlight/Shuttles/Admeme/scarletSHCdefenderFinal.yml", ["RubberStampSyndicate", "TraitorCodePaper"]},
             {"/Maps/_Starlight/Centcomms/CC_Outpost_SC17.yml", ["BoxFolderCentComEmpty", "BoxFolderCentCom", "RubberStampCentcom", "BoxFolderCentComThreePapers"]},
             {"/Maps/_Starlight/Centcomms/CC_Outpost_G24.yml", ["BoxFolderCentCom", "RubberStampCentcom"]},
             {"/Maps/_Starlight/Centcomms/CC_Outpost_GNT9.yml", ["BoxFolderCentCom", "RubberStampCAD", "RubberStampCCD", "RubberStampCDD", "RubberStampCED", "RubberStampCentcom", "RubberStampCID", "RubberStampCMD", "RubberStampCRD", "RubberStampCSD"]}// Starlight end
@@ -99,7 +102,7 @@ namespace Content.IntegrationTests.Tests
         {
             "/Maps/Shuttles/AdminSpawn/**", // admin gaming
            #region starlight
-            "/Maps/_Starlight/Shuttles/Radiotower.yml", // Command stamps - listening post.
+            "/Maps/_Starlight/Shuttles/Admeme/Radiotower.yml", // Command stamps - listening post.
             #endregion
         };
 
@@ -378,7 +381,6 @@ namespace Content.IntegrationTests.Tests
             var pair = Pair;
             var server = pair.Server;
 
-            var mapManager = server.ResolveDependency<IMapManager>();
             var entManager = server.ResolveDependency<IEntityManager>();
             var mapLoader = entManager.System<MapLoaderSystem>();
             var mapSystem = entManager.System<SharedMapSystem>();
@@ -411,7 +413,7 @@ namespace Content.IntegrationTests.Tests
                 EntityUid? targetGrid = null;
                 var memberQuery = entManager.GetEntityQuery<StationMemberComponent>();
 
-                var grids = mapManager.GetAllGrids(mapId).ToList();
+                var grids = mapSystem.GetAllGrids(mapId).ToList();
                 var gridUids = grids.Select(o => o.Owner).ToList();
                 targetGrid = gridUids.First();
 
