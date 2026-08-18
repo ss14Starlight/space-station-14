@@ -26,7 +26,7 @@
     sprite: Objects/Fun/Instruments/bassguitar.rsi
     state: icon
   product: CrateFunInstrumentsString
-  cost: 2000
+  cost: 2250 # Starlight, because of the fretless
   category: cargoproduct-category-name-instruments
   group: market
 
@@ -56,7 +56,7 @@
     sprite: Objects/Fun/Instruments/gunpet.rsi
     state: icon
   product: CrateFunInstrumentsSpecial
-  cost: 2250 # Price is not special
+  cost: 2500 # Starlight, price can be a little higher because of the NT4 player, the real best thing in there
   category: cargoproduct-category-name-instruments
   group: market
 
