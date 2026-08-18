@@ -64,11 +64,11 @@
           components:
           - Delivery
         blacklist:
-        sizes: #disallow anything that isnt huge
-        - Large
-        - Normal
-        - Small
-        - Tiny
+          sizes: #disallow anything that isnt huge
+          - Large
+          - Normal
+          - Small
+          - Tiny
         #SL End
         insertOnInteract: true
         priority: 9
@@ -80,11 +80,11 @@
           components:
           - Delivery
         blacklist:
-        sizes: #disallow anything that isnt huge
-        - Large
-        - Normal
-        - Small
-        - Tiny
+          sizes: #disallow anything that isnt huge
+          - Large
+          - Normal
+          - Small
+          - Tiny
         #SL End
         insertOnInteract: true
         priority: 8
@@ -96,11 +96,11 @@
           components:
           - Delivery
         blacklist:
-        sizes: #disallow anything that isnt huge
-        - Large
-        - Normal
-        - Small
-        - Tiny
+          sizes: #disallow anything that isnt huge
+          - Large
+          - Normal
+          - Small
+          - Tiny
         #SL End
         insertOnInteract: true
         priority: 7
@@ -112,11 +112,11 @@
           components:
           - Delivery
         blacklist:
-        sizes: #disallow anything that isnt huge
-        - Large
-        - Normal
-        - Small
-        - Tiny
+          sizes: #disallow anything that isnt huge
+          - Large
+          - Normal
+          - Small
+          - Tiny
         #SL End
         insertOnInteract: true
         priority: 6

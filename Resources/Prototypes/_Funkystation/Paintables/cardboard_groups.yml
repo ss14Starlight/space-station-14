@@ -10,7 +10,7 @@
     internals: CardboardBoxLargeInternals
 #    botany: CardboardBoxLargeBotany
     cargo: CardboardBoxLargeCargo
-    chemistry: CardboardBoxLargeChemisty
+    chemistry: CardboardBoxLargeChemistry
     command: CardboardBoxLargeCommand
     engineering: CardboardBoxLargeEngi
     evidence: CardboardBoxLargeEvidence
