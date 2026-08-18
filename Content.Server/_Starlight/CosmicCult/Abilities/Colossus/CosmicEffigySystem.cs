@@ -83,7 +83,6 @@ public sealed partial class CosmicEffigySystem : EntitySystem
             // No station found means the Colossus gets no effigy objective.
             if (station != null)
             {
-                obj.EffigyTarget = station;
                 _codeCondition.SetCompleted(ent.Owner, ent.Comp.EffigyObjective);
             }
         }

@@ -38,7 +38,6 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
         SubscribeLocalEvent<CosmicSacrificedCrewConditionComponent, ObjectiveGetProgressEvent>(OnGetSacrificedCrewProgress);
     }
 
-
     private bool IsValidEffigyObjectiveWarp(EntityUid colossus, EntityUid warpUid, WarpPointComponent warp, EntityUid station, EntityUid? requiredGrid = null)
     {
         if (warp.Location == null)
@@ -83,6 +82,32 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
         }
 
         var station = _station.GetOwningStation(currentEntity);
+        EntityUid? nukeGrid = null;
+
+        // Find the station's nuke and grid for the fallback search.
+        var nukeQuery = EntityQueryEnumerator<NukeComponent, TransformComponent>();
+
+        while (nukeQuery.MoveNext(out var nukeUid, out _, out var nukeXform))
+        {
+            if (nukeXform.GridUid is not { } grid)
+                continue;
+
+            var nukeStation = _station.GetOwningStation(nukeUid);
+
+            if (nukeStation is null)
+                continue;
+
+            // If the Colossus already belongs to a station, only use that station's nuke.
+            if (station is not null && nukeStation != station)
+                continue;
+
+            // If the Colossus does not belong to a station, this nuke provides the station.
+            station ??= nukeStation;
+            nukeGrid = grid;
+            break;
+        }
+
+        // We need a station to determine which beacons are valid.
         if (station is null)
         {
             args.Cancelled = true;
@@ -101,41 +126,21 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
             warps.Add(warpUid);
         }
 
-        // No beacon on the current grid: fall back to the grid containing the nuke.
-        if (warps.Count == 0)
+        // Current grid has no valid beacon: fall back to the grid containing the nuke.
+        if (warps.Count == 0 && nukeGrid is { } fallbackGrid && fallbackGrid != currentGrid)
         {
-            EntityUid? nukeGrid = null;
-
-            var nukeQuery = EntityQueryEnumerator<NukeComponent, TransformComponent>();
-            while (nukeQuery.MoveNext(out var nukeUid, out _, out var nukeXform))
-            {
-                if (nukeXform.GridUid is not { } grid)
-                    continue;
-
-                if (_station.GetOwningStation(nukeUid) != station)
-                    continue;
-
-                nukeGrid = grid;
-                break;
-            }
-
-            if (nukeGrid is null)
-            {
-                args.Cancelled = true;
-                return;
-            }
-
             query = EntityQueryEnumerator<WarpPointComponent>();
 
             while (query.MoveNext(out var warpUid, out var warp))
             {
-                if (!IsValidEffigyObjectiveWarp(currentEntity, warpUid, warp, station.Value, nukeGrid))
+                if (!IsValidEffigyObjectiveWarp(currentEntity, warpUid, warp, station.Value, fallbackGrid))
                     continue;
 
                 warps.Add(warpUid);
             }
         }
-        // No valid beacon found.
+
+        // No valid beacon anywhere we are allowed to search.
         if (warps.Count == 0)
         {
             args.Cancelled = true;
