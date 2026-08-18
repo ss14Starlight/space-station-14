@@ -72,7 +72,7 @@ public sealed partial class LatchUIController : UIController
         // As the latcher.
         if (_entities.TryGetComponent<LatchComponent>(local, out var latchComp) && latchComp.Active)
         {
-            instruction = "Bite harder to deal more damage\nand extend the latch duration!";
+            instruction = Loc.GetString("latch-instruction-latcher");
             endTime = latchComp.EndTime;
             maxEndTime = latchComp.MaxEndTime;
             maxDuration = latchComp.MaxDuration;
@@ -82,7 +82,7 @@ public sealed partial class LatchUIController : UIController
                     _entities.TryGetComponent<LatchComponent>(latchedComp.Latcher, out var latcherComp) &&
                     latcherComp.Active)
         {
-            instruction = "Harm the latcher\nto break free faster!";
+            instruction = Loc.GetString("latch-instruction-latchtarget");
             endTime = latcherComp.EndTime;
             maxEndTime = latcherComp.MaxEndTime;
             maxDuration = latcherComp.MaxDuration;

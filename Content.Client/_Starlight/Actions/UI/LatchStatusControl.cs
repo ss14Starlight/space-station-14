@@ -38,7 +38,7 @@ public sealed class LatchStatusControl : PanelContainer
 
         _title = new Label
         {
-            Text = "LATCHED",
+            Text = Loc.GetString("latch-title"),
             Align = Label.AlignMode.Center,
             StyleClasses = { StyleClass.TooltipTitle },
             MouseFilter = MouseFilterMode.Ignore,
@@ -71,8 +71,8 @@ public sealed class LatchStatusControl : PanelContainer
         };
 
         layout.AddChild(_title);
-        layout.AddChild(BarRow("Time", _bar));
-        layout.AddChild(BarRow("Max", _maxBar));
+        layout.AddChild(BarRow(Loc.GetString("latch-label-timeremaining"), _bar));
+        layout.AddChild(BarRow(Loc.GetString("latch-label-timemax"), _maxBar));
         layout.AddChild(_instruction);
         AddChild(layout);
 
