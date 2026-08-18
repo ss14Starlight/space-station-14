@@ -9,7 +9,7 @@ namespace Content.Server._Starlight.Sprite;
 public sealed partial class SpriteVariantSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private readonly MobThresholdSystem _thresholds = default!;
+    [Dependency] private MobThresholdSystem _thresholds = default!;
 
     public override void Initialize()
     {
