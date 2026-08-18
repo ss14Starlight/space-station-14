@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Temperature.Components;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Examine;
 using Robust.Shared.Utility;
 
@@ -16,6 +17,9 @@ public sealed class TemperatureProtectionExamineSystem : EntitySystem
 
     private void OnExamined(Entity<TemperatureProtectionComponent> ent, ref ExaminedEvent args)
     {
+        // some entites, like Vulpkanin, use TemperatureProtection components and we don't want to add this examine text to them
+        if(!HasComp<ClothingComponent>(ent)) return;
+
         var component = ent.Comp;
         var examimeMarkup = GetTemperatureExamine(component);
 
