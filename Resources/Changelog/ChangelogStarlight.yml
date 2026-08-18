@@ -1,13 +1,6 @@
 Entries:
 - author: neomoth
   changes:
-  - message: You can now multitool the energy shield to make it RGB.
-    type: Add
-  id: 407334
-  time: '2026-08-06T10:57:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5459
-- author: neomoth
-  changes:
   - message: You can now multitool the X-03 green phase shield to make it RGB, though it requires an extra step.
     type: Add
   id: 407335
@@ -2799,4 +2792,11 @@ Entries:
   id: 407733
   time: '2026-08-18T18:05:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5693
+- author: Johnny
+  changes:
+  - message: Changed the maximum amount of DAGD that can appear in a round to three.
+    type: Tweak
+  id: 407734
+  time: '2026-08-18T18:05:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5696
 Order: -1
