@@ -8,6 +8,7 @@
   wallDestroyChance: 0.30
   windowDamageChance: 0.10
   floorToLatticeChance: 0.15
+  spawnMobs: true
   wallCost: 20
   windowCosts:
     firelock: 10
@@ -86,6 +87,7 @@
   wallDestroyChance: 0.30
   windowDamageChance: 0.10
   floorToLatticeChance: 0.15
+  spawnMobs: true
 
 - type: ruinChunkConfig
   id: Medium
@@ -94,6 +96,7 @@
   wallDestroyChance: 0.30
   windowDamageChance: 0.10
   floorToLatticeChance: 0.15
+  spawnMobs: true
 
 - type: ruinChunkConfig
   id: Large
@@ -102,3 +105,4 @@
   wallDestroyChance: 0.25
   windowDamageChance: 0.10
   floorToLatticeChance: 0.12
+  spawnMobs: true

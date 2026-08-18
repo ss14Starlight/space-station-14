@@ -9,6 +9,8 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Friction;
 using Content.Shared.Gravity;
+using Content.Shared.Item;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Physics;
 using Content.Shared.Shuttles.Components;
@@ -27,9 +29,10 @@ public sealed partial class RuinGeneratorSystem
     #region Dependencies
 
     private static readonly ProtoId<DamageTypePrototype> StructuralDamageType = "Structural";
-    // Wreck-only biome: scrap/treasure/decals without thrusters, gyros, or mob spawners.
+    // Wreck biome: scrap/treasure/mobs, but no thrusters or gyros on kinetic debris.
     private static readonly ProtoId<BiomeTemplatePrototype> SpaceRuinWreckBiome = "SpaceRuinWreck";
-    private const float WreckFrictionModifier = 0.25f; // Makes it so the wreck doesn't slow down too much before it hits the station.
+    private static readonly EntProtoId SalvageMobSpawner = "SalvageSpawnerMobMagnet";
+    private const float WreckFrictionModifier = 0.50f; // High enough to settle after impact without stalling the inbound approach.
 
     [Dependency] private AnchorableSystem _anchorable = default!;
     [Dependency] private DamageableSystem _damageable = default!;
@@ -58,7 +61,7 @@ public sealed partial class RuinGeneratorSystem
 
         foreach (var (wallPos, wallProto) in result.WallEntities)
         {
-            var wallEntity = SpawnAtPosition(wallProto, new EntityCoordinates(ruinGrid.Owner, wallPos));
+            var wallEntity = SpawnAttachedTo(wallProto, new EntityCoordinates(ruinGrid.Owner, wallPos));
             var wallXform = Transform(wallEntity);
             if (!wallXform.Anchored)
                 _transform.AnchorEntity((wallEntity, wallXform), (ruinGrid.Owner, ruinGrid.Comp), wallPos);
@@ -163,14 +166,34 @@ public sealed partial class RuinGeneratorSystem
             if (!_biome.TryGetEntity(pos, layers, tileRef.Tile, seed, (gridUid, grid), out var entityProto, noiseCache))
                 continue;
 
+            if (ruinResult.Config is { SpawnMobs: false } && IsMobSpawnerPrototype(entityProto))
+                continue;
+
             if (!_anchorable.TileFree((gridUid, grid), pos, (int)CollisionGroup.MachineLayer, (int)CollisionGroup.MachineLayer))
                 continue;
 
-            var entity = SpawnAtPosition(entityProto, new EntityCoordinates(gridUid, pos + grid.TileSizeHalfVector));
+            var entity = SpawnAttachedTo(entityProto, new EntityCoordinates(gridUid, pos + grid.TileSizeHalfVector));
+            if (TerminatingOrDeleted(entity))
+                continue;
+
             var xform = Transform(entity);
-            if (!xform.Anchored)
-                _transform.AnchorEntity((entity, xform), (gridUid, grid), pos);
+            // Spawners often MapInit and delete themselves; mobs/items must stay unanchored so they ride the wreck.
+            if (xform.Anchored || HasComp<MobStateComponent>(entity) || HasComp<ItemComponent>(entity))
+                continue;
+
+            _transform.AnchorEntity((entity, xform), (gridUid, grid), pos);
         }
+    }
+
+    private bool IsMobSpawnerPrototype(string protoId)
+    {
+        foreach (var parent in _prototypeManager.EnumerateParents<EntityPrototype>(protoId, includeSelf: true))
+        {
+            if (parent.ID == SalvageMobSpawner.Id)
+                return true;
+        }
+
+        return false;
     }
 
     #endregion

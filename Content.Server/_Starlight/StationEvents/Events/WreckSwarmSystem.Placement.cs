@@ -1,9 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Server._Starlight.StationEvents.Components;
+using Content.Server.Salvage.Magnet;
 using Content.Shared.Item;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
+using Content.Shared.Shuttles.Systems;
 using Content.Shared.Station.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -17,8 +19,20 @@ public sealed partial class WreckSwarmSystem
     #region Constants
 
     private const int PlacementAttempts = 32;
-    private const float ApproachDistance = 100f;
+    private const float MinApproachDistance = 100f;
+    private const float MaxApproachDistance = 512f;
+    /// <summary>
+    /// Extra hull standoff as a fraction of station radius so huge stations still
+    /// get a visible inbound track before impact.
+    /// </summary>
+    private const float ApproachStationScale = 0.5f;
     private const float SpawnPadding = 2f;
+    /// <summary>
+    /// Radial probe from a candidate spawn. Interior station holes and hulls closer
+    /// than this fail the candidate.
+    /// </summary>
+    private const float NearbyClearance = 10f;
+    private const int RadialClearanceRays = 16;
     private const float CorridorClearance = 2f;
     private const float RayOriginPadding = 8f;
     private const float LargeBodyMass = 50f;
@@ -50,6 +64,7 @@ public sealed partial class WreckSwarmSystem
             return false;
 
         var stationRadius = MathF.Max((stationAabb.Value.TopRight - stationAabb.Value.Center).Length(), 1f);
+        var approachDistance = GetApproachDistance(stationRadius);
         SnapshotMapGrids(mapId, stationGrids);
 
         for (var i = 0; i < PlacementAttempts; i++)
@@ -91,9 +106,9 @@ public sealed partial class WreckSwarmSystem
                 continue;
             }
 
-            var spawnCenter = hitPoint - approachDir * (ApproachDistance + footprint.Radius + SpawnPadding);
+            var spawnCenter = hitPoint - approachDir * (approachDistance + footprint.Radius + SpawnPadding);
             var placements = BuildChildPlacements(footprint, spawnCenter, spawnAngle);
-            if (SpawnIntersectsGrid(mapId, placements))
+            if (SpawnBlockedByNearbyGeometry(mapId, spawnCenter) || SpawnIntersectsGrid(mapId, placements))
                 continue;
 
             var flightDistance = (hitPoint - spawnCenter).Length();
@@ -139,6 +154,80 @@ public sealed partial class WreckSwarmSystem
         return false;
     }
 
+    /// <summary>
+    /// Salvage spawners emit loot and mobs as map children via SpawnAtPosition.
+    /// Reparent them onto the wreck grid before the temp map is deleted, and keep
+    /// their local velocity at zero so they ride the launch instead of being left in space.
+    /// </summary>
+    private void AttachLooseTempMapEntities(EntityUid wreckMap, WreckFootprint footprint)
+    {
+        if (footprint.Children.Count == 0)
+            return;
+
+        var wreckGrids = new HashSet<EntityUid>(footprint.Children.Count);
+        foreach (var child in footprint.Children)
+        {
+            wreckGrids.Add(child.Grid);
+        }
+
+        var toAttach = new List<EntityUid>();
+        var query = EntityQueryEnumerator<TransformComponent>();
+        while (query.MoveNext(out var uid, out var xform))
+        {
+            if (xform.MapUid != wreckMap || uid == wreckMap)
+                continue;
+
+            if (wreckGrids.Contains(uid) || HasComp<MapComponent>(uid) || HasComp<MapGridComponent>(uid))
+                continue;
+
+            // Already a wreck-grid rider (anchored walls, attached biome ents).
+            if (xform.GridUid is { } gridUid && wreckGrids.Contains(gridUid))
+                continue;
+
+            toAttach.Add(uid);
+        }
+
+        foreach (var entity in toAttach)
+        {
+            if (TerminatingOrDeleted(entity))
+                continue;
+
+            var xform = Transform(entity);
+            var grid = GetAttachTargetGrid(xform, footprint);
+            _transform.SetParent(entity, xform, grid);
+
+            if (TryComp<SalvageMobRestrictionsComponent>(entity, out var restrictions))
+                restrictions.LinkedEntity = grid;
+        }
+    }
+
+    private EntityUid GetAttachTargetGrid(TransformComponent xform, WreckFootprint footprint)
+    {
+        if (xform.GridUid is { } gridUid)
+        {
+            foreach (var child in footprint.Children)
+            {
+                if (child.Grid == gridUid)
+                    return gridUid;
+            }
+        }
+
+        var worldPos = _transform.GetWorldPosition(xform);
+        var nearest = footprint.Children[0].Grid;
+        var best = float.MaxValue;
+        foreach (var child in footprint.Children)
+        {
+            var dist = (worldPos - _transform.GetWorldPosition(child.Grid)).LengthSquared();
+            if (dist >= best)
+                continue;
+
+            best = dist;
+            nearest = child.Grid;
+        }
+
+        return nearest;
+    }
+
     private void ApplyLaunch(EntityUid spawnMapUid, WreckLaunchPlan plan)
     {
         foreach (var child in plan.Children)
@@ -151,6 +240,29 @@ public sealed partial class WreckSwarmSystem
                 continue;
 
             _physics.SetLinearVelocity(child.Grid, plan.LaunchVelocity, body: physics);
+            KeepRidersOnWreck(child.Grid);
+        }
+    }
+
+    /// <summary>
+    /// Unanchored mobs/items have their own physics. Zero their local velocity so they
+    /// inherit the wreck's launch instead of remaining at rest in world space.
+    /// </summary>
+    private void KeepRidersOnWreck(EntityUid grid)
+    {
+        var enumerator = Transform(grid).ChildEnumerator;
+        while (enumerator.MoveNext(out var rider))
+        {
+            if (HasComp<MapGridComponent>(rider) || !TryComp<PhysicsComponent>(rider, out var physics))
+                continue;
+
+            if (physics.BodyType == BodyType.Static)
+                continue;
+
+            // Local velocity is relative to the parent grid; zero it so map velocity matches the wreck.
+            _physics.SetLinearVelocity(rider, Vector2.Zero, body: physics);
+            _physics.SetAngularVelocity(rider, 0f, body: physics);
+            _physics.SetAwake((rider, physics), true);
         }
     }
 
@@ -179,7 +291,10 @@ public sealed partial class WreckSwarmSystem
             if (xform.MapID != mapId)
                 continue;
 
-            var aabb = _physics.GetWorldAABB(gridUid);
+            if (!TryComp(gridUid, out MapGridComponent? grid))
+                continue;
+
+            var aabb = GetGridWorldAabb(grid, xform);
             combined = combined == null ? aabb : combined.Value.Union(aabb);
         }
 
@@ -190,7 +305,7 @@ public sealed partial class WreckSwarmSystem
     {
         _gridSnapshots.Clear();
         var query = EntityQueryEnumerator<MapGridComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out _, out var xform))
+        while (query.MoveNext(out var uid, out var grid, out var xform))
         {
             if (xform.MapID != mapId)
                 continue;
@@ -200,7 +315,7 @@ public sealed partial class WreckSwarmSystem
                 : Vector2.Zero;
             _gridSnapshots.Add(new GridLaunchSnapshot(
                 uid,
-                _physics.GetWorldAABB(uid),
+                GetGridWorldAabb(grid, xform),
                 velocity,
                 stationGrids.Contains(uid)));
         }
@@ -216,7 +331,8 @@ public sealed partial class WreckSwarmSystem
         {
             var worldPos = spawnCenter + spawnAngle.RotateVec(child.LocalPosition - footprint.LocalCenter);
             var worldRot = spawnAngle + child.LocalRotation;
-            var bounds = new Box2Rotated(child.LocalAABB.Enlarged(SpawnPadding), worldRot, worldPos);
+            var localBounds = child.LocalAABB.Enlarged(SpawnPadding);
+            var bounds = new Box2Rotated(localBounds.Translated(worldPos), worldRot, worldPos);
             placements.Add(new WreckChildPlacement(child.Grid, worldPos, worldRot, bounds));
         }
 
@@ -230,7 +346,48 @@ public sealed partial class WreckSwarmSystem
         var angle = along.ToWorldAngle();
         var halfWidth = wreckRadius + CorridorClearance;
         var localBox = new Box2(0f, -halfWidth, length, halfWidth);
-        return new Box2Rotated(localBox, angle, spawnCenter);
+        return new Box2Rotated(localBox.Translated(spawnCenter), angle, spawnCenter);
+    }
+
+    private Box2 GetGridWorldAabb(MapGridComponent grid, TransformComponent xform)
+    {
+        return _transform.GetWorldMatrix(xform).TransformBox(grid.LocalAABB);
+    }
+
+    /// <summary>
+    /// Stand off far enough to enter default shuttle radar with warning time.
+    /// Huge stations add extra distance so the wreck is not glued to the hull blob.
+    /// </summary>
+    private static float GetApproachDistance(float stationRadius)
+    {
+        var desired = MathF.Max(SharedRadarConsoleSystem.DefaultMaxRange, stationRadius * ApproachStationScale);
+        return Math.Clamp(desired, MinApproachDistance, MaxApproachDistance);
+    }
+
+    /// <summary>
+    /// Rejects candidates with structure inside <see cref="NearbyClearance"/>, including
+    /// interior station voids whose tiles never overlap the wreck footprint.
+    /// </summary>
+    private bool SpawnBlockedByNearbyGeometry(MapId mapId, Vector2 spawnCenter)
+    {
+        for (var i = 0; i < RadialClearanceRays; i++)
+        {
+            var dir = new Angle(MathF.Tau * i / RadialClearanceRays).ToVec();
+            var ray = new CollisionRay(spawnCenter, dir, StructuralCollisionMask);
+            var hits = _physics.IntersectRayWithPredicate(
+                mapId,
+                ray,
+                NearbyClearance,
+                IsIgnoredRayHit,
+                returnOnFirstHit: true);
+
+            foreach (var _ in hits)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private bool SpawnIntersectsGrid(MapId mapId, List<WreckChildPlacement> placements)

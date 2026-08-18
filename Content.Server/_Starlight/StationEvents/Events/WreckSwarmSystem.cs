@@ -65,6 +65,7 @@ public sealed partial class WreckSwarmSystem : StationEventSystem<WreckSwarmComp
             return;
         }
 
+        AttachLooseTempMapEntities(wreckMap, footprint);
         ApplyLaunch(spawnMapUid.Value, plan);
         _mapSystem.DeleteMap(wreckMapXform.MapID);
 

@@ -87,7 +87,7 @@ public sealed class WreckSwarmLaunchTest : GameTest
             Assert.Multiple(() =>
             {
                 Assert.That(Pair.Server.EntMan.HasComponent<ShuttleComponent>(wreck), Is.False);
-                Assert.That(Pair.Server.EntMan.GetComponent<TileFrictionModifierComponent>(wreck).Modifier, Is.EqualTo(0.25f));
+                Assert.That(Pair.Server.EntMan.GetComponent<TileFrictionModifierComponent>(wreck).Modifier, Is.EqualTo(0.50f));
                 Assert.That(physics.LinearVelocity.Length(), Is.EqualTo(50f).Within(1f));
                 Assert.That(Vector2.Dot(physics.LinearVelocity.Normalized(), toStation.Normalized()), Is.GreaterThan(0.9f));
             });
@@ -166,6 +166,38 @@ public sealed class WreckSwarmLaunchTest : GameTest
     }
 
     [Test]
+    public async Task SpawnSkipsInteriorStationSpace()
+    {
+        var ctx = await CreateCourtyardStationAsync();
+        await StartWreckRuleAsync(ctx.Station);
+
+        await Pair.Server.WaitAssertion(() =>
+        {
+            var wrecks = GetWrecks(ctx);
+            Assert.That(wrecks, Is.Not.Empty, "Expected a wreck to spawn outside the station courtyard.");
+
+            var transform = Pair.Server.System<SharedTransformSystem>();
+            var stationGrid = Pair.Server.EntMan.GetComponent<MapGridComponent>(ctx.StationGrid);
+            var stationAabb = transform.GetWorldMatrix(ctx.StationGrid).TransformBox(stationGrid.LocalAABB);
+
+            foreach (var wreck in wrecks)
+            {
+                var wreckGrid = Pair.Server.EntMan.GetComponent<MapGridComponent>(wreck);
+                var wreckAabb = transform.GetWorldMatrix(wreck).TransformBox(wreckGrid.LocalAABB);
+                var wreckPos = transform.GetWorldPosition(wreck);
+
+                Assert.Multiple(() =>
+                {
+                    Assert.That(stationAabb.Contains(wreckPos), Is.False,
+                        "Wreck spawned in interior station space.");
+                    Assert.That(stationAabb.Intersects(wreckAabb.Enlarged(10f)), Is.False,
+                        "Wreck spawned within 10 units of station structure.");
+                });
+            }
+        });
+    }
+
+    [Test]
     public async Task AllApproachesBlockedEndsWithoutLeakingMaps()
     {
         var ctx = await CreateStationAsync();
@@ -211,6 +243,16 @@ public sealed class WreckSwarmLaunchTest : GameTest
 
     private async Task<StationContext> CreateStationAsync()
     {
+        return await CreateStationAsync(MakeSquareTiles(StationSize, default));
+    }
+
+    private async Task<StationContext> CreateCourtyardStationAsync()
+    {
+        return await CreateStationAsync(MakeCourtyardTiles(40, 12, 28, default));
+    }
+
+    private async Task<StationContext> CreateStationAsync(List<(Vector2i Position, Tile Tile)> tiles)
+    {
         var map = await Pair.CreateTestMap(true, "FloorSteel");
         var ctx = new StationContext
         {
@@ -220,6 +262,11 @@ public sealed class WreckSwarmLaunchTest : GameTest
             Tile = map.Tile.Tile,
         };
 
+        for (var i = 0; i < tiles.Count; i++)
+        {
+            tiles[i] = (tiles[i].Position, ctx.Tile);
+        }
+
         await Pair.Server.WaitAssertion(() =>
         {
             var entMan = Pair.Server.EntMan;
@@ -227,7 +274,7 @@ public sealed class WreckSwarmLaunchTest : GameTest
             var stationSystem = entMan.System<StationSystem>();
             var grid = entMan.GetComponent<MapGridComponent>(ctx.StationGrid);
 
-            mapSystem.SetTiles(ctx.StationGrid, grid, MakeSquareTiles(StationSize, ctx.Tile));
+            mapSystem.SetTiles(ctx.StationGrid, grid, tiles);
             entMan.EnsureComponent<GridAtmosphereComponent>(ctx.StationGrid);
 
             ctx.Station = entMan.SpawnEntity(TestStationProto, MapCoordinates.Nullspace);
@@ -314,6 +361,23 @@ public sealed class WreckSwarmLaunchTest : GameTest
         {
             for (var y = 0; y < sideLength; y++)
             {
+                tiles.Add((new Vector2i(x, y), tile));
+            }
+        }
+
+        return tiles;
+    }
+
+    private static List<(Vector2i Position, Tile Tile)> MakeCourtyardTiles(int outer, int holeInner, int holeOuter, Tile tile)
+    {
+        var tiles = new List<(Vector2i Position, Tile Tile)>();
+        for (var x = 0; x < outer; x++)
+        {
+            for (var y = 0; y < outer; y++)
+            {
+                if (x >= holeInner && x < holeOuter && y >= holeInner && y < holeOuter)
+                    continue;
+
                 tiles.Add((new Vector2i(x, y), tile));
             }
         }

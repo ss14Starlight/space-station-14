@@ -44,6 +44,12 @@ public sealed partial class RuinChunkConfigPrototype : IPrototype
     public float FloorToLatticeChance = 0.15f;
 
     /// <summary>
+    /// When false, salvage mob spawners are omitted from the wreck biome.
+    /// </summary>
+    [DataField]
+    public bool SpawnMobs = true;
+
+    /// <summary>
     /// Path cost for wall entities / wall tiles.
     /// </summary>
     [DataField]

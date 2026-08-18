@@ -1,6 +1,6 @@
 # Ruin-specific biome templates.
 # SpaceRuin: full salvage-style loot (structures/mobs) — kept for possible future magnet use.
-# SpaceRuinWreck: WreckSwarm-only — decals/scrap/treasure without thrusters, gyros, or carp.
+# SpaceRuinWreck: WreckSwarm-only — scrap/treasure/mobs, but no thrusters or gyros.
 
 - type: biomeTemplate
   id: SpaceRuin
@@ -63,7 +63,7 @@
     entities:
     - SalvageSpawnerMobMagnet75
 
-# Used by WreckSwarm ruin chunks — no structure/mob layers (avoids thruster/gyro/carp on kinetic debris).
+# Used by WreckSwarm ruin chunks — no structure layer (avoids thrusters/gyros on kinetic debris).
 - type: biomeTemplate
   id: SpaceRuinWreck
   layers:
@@ -103,3 +103,11 @@
     - SalvageSpawnerTreasure
     - SalvageSpawnerTreasure
     - SalvageSpawnerTreasureValuable
+  - !type:BiomeEntityLayer
+    allowAllTiles: true
+    threshold: 0.925
+    noise:
+      seed: 1
+      frequency: 1
+    entities:
+    - SalvageSpawnerMobMagnet75

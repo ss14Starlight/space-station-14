@@ -70,7 +70,7 @@ public sealed class RuinWreckImpactTest : GameTest
             Assert.Multiple(() =>
             {
                 Assert.That(entityManager.HasComponent<ShuttleComponent>(wreckGrid), Is.False);
-                Assert.That(entityManager.GetComponent<TileFrictionModifierComponent>(wreckGrid).Modifier, Is.EqualTo(0.25f));
+                Assert.That(entityManager.GetComponent<TileFrictionModifierComponent>(wreckGrid).Modifier, Is.EqualTo(0.50f));
                 Assert.That(wreckPhysics.BodyType, Is.EqualTo(BodyType.Dynamic));
                 Assert.That(stationPhysics.BodyType, Is.EqualTo(BodyType.Static));
             });
