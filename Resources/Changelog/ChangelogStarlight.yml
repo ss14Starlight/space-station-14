@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: (Cork) Remade HV, MV and LV networks.
-    type: Add
-  id: 407309
-  time: '2026-08-05T08:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5518
-- author: OMEGA
-  changes:
   - message: (Cork) Departmental Lathes.
     type: Add
   id: 407310
@@ -2799,4 +2792,11 @@ Entries:
   id: 407708
   time: '2026-08-17T20:51:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5678
+- author: Caws
+  changes:
+  - message: Fixed an issue where wall-mounted lights looked like they were 'cut off' by sharp corners - lighting should be approximately restored to how it was before.
+    type: Fix
+  id: 407709
+  time: '2026-08-18T02:39:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5702
 Order: -1
