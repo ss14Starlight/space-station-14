@@ -1,18 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Some mapped energy swords that tried to have pre-set colors now no longer reroll their color on map init.
-    type: Fix
-  id: 407340
-  time: '2026-08-06T10:57:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5459
-- author: neomoth
-  changes:
-  - message: Fix a bug where ItemUnwieldedEvent would sometimes be raised on the client after wielding an item, causing entities with ItemToggleComponent on the client to desync from the server and erroneously show an activate AND deactivate verb.
-    type: Fix
-  id: 407341
-  time: '2026-08-06T10:57:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5459
 - author: wonderfulworld
   changes:
   - message: Added rule cooldowns for Nukeops, NukeopsLate, Revolutionary, Zombie, Cosmic Cult, Wizard Duel, and Terror Spiders in dynamic.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407739
   time: '2026-08-18T19:24:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5510
+- author: Johnny
+  changes:
+  - message: Salvage shuttle now has the power it needs to run.
+    type: Tweak
+  id: 407740
+  time: '2026-08-18T20:20:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5708
+- author: Johnny
+  changes:
+  - message: Salvage shuttle has an extra vent and scrubber.
+    type: Tweak
+  id: 407741
+  time: '2026-08-18T20:20:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5708
 Order: -1
