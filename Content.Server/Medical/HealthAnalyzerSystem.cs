@@ -443,14 +443,10 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             foreach (var (reagentId, quantity, stomachQuantity) in chemicals.OrderByDescending(r => r.Quantity + r.StomachQuantity))
             {
                 var localizedName = reagentId;
-                var group = "Unknown";
                 if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var reagentProto))
-                {
                     localizedName = reagentProto.LocalizedName;
-                    group = reagentProto.Group;
-                }
 
-                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, group, stomachQuantity));
+                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, stomachQuantity));
             }
         }
         // Starlight END
@@ -609,6 +605,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
     private sealed record HealthAnalyzerDamageTypeSnapshot(string Name, FixedPoint2 Amount);
 
-    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, string Group, FixedPoint2 StomachAmount); // Starlight
+    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, FixedPoint2 StomachAmount); // Starlight
     // Starlight-end
 }
