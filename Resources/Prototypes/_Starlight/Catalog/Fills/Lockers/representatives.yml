@@ -97,6 +97,7 @@
         - id: LuxuryPen
         - id: BoxFolderNanoTrasenClipboard
         - id: BriefcaseBrown # Empty
+        - id: BoxTapeRecorder # Starlight
         - !type:NestedSelector
           tableId: CriminalDocumentTable
 

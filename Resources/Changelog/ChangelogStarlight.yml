@@ -1,74 +1,4 @@
 Entries:
-- author: Orange Juice Goose
-  changes:
-  - message: Bluespace harvester for starboard.
-    type: Add
-  id: 407370
-  time: '2026-08-07T10:43:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5533
-- author: Orange Juice Goose
-  changes:
-  - message: Supermatter for starboard. Starboardmatter.
-    type: Add
-  id: 407371
-  time: '2026-08-07T10:43:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5533
-- author: Orange Juice Goose
-  changes:
-  - message: Reworked starboard TEG.
-    type: Tweak
-  id: 407372
-  time: '2026-08-07T10:43:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5533
-- author: RedSpeeds
-  changes:
-  - message: Added glasses slots to Monkey, Kobold, Scurret.
-    type: Add
-  id: 407373
-  time: '2026-08-08T21:00:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5489
-- author: Caws
-  changes:
-  - message: The security shuttles no longer give you a blank 'no shuttle found' pilot interface when attempting to pilot them.
-    type: Fix
-  id: 407374
-  time: '2026-08-08T21:47:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5573
-- author: Conflee
-  changes:
-  - message: Resprited the Small Light, Light Tube, Emergency Light, and Strobe Light. They're all slightly cleaner, less pre-tinted so coloring stands out more, and have fake bloom added to their on states.
-    type: Tweak
-  id: 407375
-  time: '2026-08-09T10:40:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5502
-- author: Xale
-  changes:
-  - message: Cuffing no longer prevents player controlled zombies from attacking.
-    type: Fix
-  id: 407376
-  time: '2026-08-09T11:12:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5445
-- author: Conflee
-  changes:
-  - message: Added Gulthias, Birch, Snowy Oak, and non-snowy Conifer trees from Crystal Punk.
-    type: Add
-  id: 407377
-  time: '2026-08-09T11:12:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5479
-- author: Conflee
-  changes:
-  - message: Added water reeds floral decals, from Crystal Punk.
-    type: Add
-  id: 407378
-  time: '2026-08-09T11:12:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5479
-- author: Conflee
-  changes:
-  - message: Resprited Grass, Light Grass, Dark Grass, and Jungle Grass using sprites from Crystal Punk.
-    type: Tweak
-  id: 407379
-  time: '2026-08-09T11:12:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5479
 - author: Conflee
   changes:
   - message: Resprited basic trees and Snowy Conifer Trees using sprites from Crystal Punk.
@@ -2799,4 +2729,74 @@ Entries:
   id: 407769
   time: '2026-08-18T23:43:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5719
+- author: Sparlight
+  changes:
+  - message: Fixed an intermittent issue where your cursor would get stuck as a torso (especially after waking up).
+    type: Fix
+  id: 407770
+  time: '2026-08-19T08:57:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5717
+- author: Way
+  changes:
+  - message: (Hotel) Added random station radio spawners.
+    type: Add
+  id: 407771
+  time: '2026-08-19T09:29:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5722
+- author: Way
+  changes:
+  - message: (Hotel) One radio in GenPop, not random.
+    type: Add
+  id: 407772
+  time: '2026-08-19T09:29:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5722
+- author: Way
+  changes:
+  - message: (Manor) Added random station radio spawners.
+    type: Add
+  id: 407773
+  time: '2026-08-19T09:29:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5722
+- author: Conflee, pyrolizz
+  changes:
+  - message: Resprite of the AME.
+    type: Tweak
+  id: 407774
+  time: '2026-08-19T09:57:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5726
+- author: Caws
+  changes:
+  - message: Taggers and disposal routers no longer prevent you from typing the wildcard character * into them.
+    type: Fix
+  id: 407775
+  time: '2026-08-19T10:21:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5723
+- author: Caws
+  changes:
+  - message: Fixed an issue with wildcard routers which made it impossible for items to go straight-thru them. This should resolve mailing and disposal issues on maps like Oasis and Leth.
+    type: Fix
+  id: 407776
+  time: '2026-08-19T10:21:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5723
+- author: Mack
+  changes:
+  - message: Service borgs now have a Vinyl and CD slot.
+    type: Add
+  id: 407777
+  time: '2026-08-19T10:42:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5725
+- author: Common
+  changes:
+  - message: add tape recorder box to the IAA locker.
+    type: Tweak
+  id: 407778
+  time: '2026-08-19T10:42:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5724
+- author: Common
+  changes:
+  - message: add tape recorder and cassettes to the lawer's briefcase.
+    type: Tweak
+  id: 407779
+  time: '2026-08-19T10:42:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5724
 Order: -1
