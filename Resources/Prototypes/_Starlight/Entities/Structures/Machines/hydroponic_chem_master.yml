@@ -1,7 +1,7 @@
 - type: entity
   id: ChemMasterBotanical
   parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: Botanical ChemMaster
+  name: Hydroponics ChemMaster
   description: A repurposed ChemMaster 1000, made for use by botanists
   placement:
     mode: SnapgridCenter
