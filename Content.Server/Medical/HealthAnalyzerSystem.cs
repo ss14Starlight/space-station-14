@@ -442,7 +442,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         {
             foreach (var (reagentId, quantity, stomachQuantity) in chemicals.OrderByDescending(r => r.Quantity + r.StomachQuantity))
             {
-                var localizedName = reagentId;
+                var localizedName = Loc.GetString("health-analyzer-window-entity-unknown-text");
                 if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var reagentProto))
                     localizedName = reagentProto.LocalizedName;
 
