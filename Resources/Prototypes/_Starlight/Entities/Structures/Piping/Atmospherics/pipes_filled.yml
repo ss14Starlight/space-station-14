@@ -1,0 +1,336 @@
+# Subfloor gas tank (500mol) BEGIN
+
+- type: entity
+  parent: GasPipeTankSubfloor
+  id: GasPipeTankSubfloorFilledAir500
+  suffix: Air, 500mol
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankSubfloorFilledAir500
+        Secondary: GasPipeTankSubfloorFilledAir500Alt1
+        Tertiary: GasPipeTankSubfloorFilledAir500Alt2
+        Quaternary: GasPipeTankSubfloorFilledAir500Alt3
+        Quinary: GasPipeTankSubfloorFilledAir500Alt4
+    - type: PipePrefill
+      targetMoles: 500
+      mixture:
+        Oxygen: 25
+        Nitrogen: 75
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir500]
+  id: GasPipeTankSubfloorFilledAir500Alt1
+  categories: [ HideSpawnMenu ]
+  components: &subfloorAlt1
+    - type: Sprite
+      drawdepth: ThinPipeAlt1
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledAir500]
+  id: GasPipeTankSubfloorFilledAir500Alt2
+  categories: [ HideSpawnMenu ]
+  components: &subfloorAlt2
+    - type: Sprite
+      drawdepth: ThinPipeAlt2
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledAir500]
+  id: GasPipeTankSubfloorFilledAir500Alt3
+  categories: [ HideSpawnMenu ]
+  components: &subfloorAlt3
+    - type: Sprite
+      drawdepth: ThinPipeAlt3
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledAir500]
+  id: GasPipeTankSubfloorFilledAir500Alt4
+  categories: [ HideSpawnMenu ]
+  components: &subfloorAlt4
+    - type: Sprite
+      drawdepth: ThinPipeAlt4
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+
+# Subfloor gas tank (500mol) END
+# Subfloor gas tank (1000mol) BEGIN
+
+- type: entity
+  parent: GasPipeTankSubfloor
+  id: GasPipeTankSubfloorFilledAir1000
+  suffix: Air, 1000mol
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankSubfloorFilledAir1000
+        Secondary: GasPipeTankSubfloorFilledAir1000Alt1
+        Tertiary: GasPipeTankSubfloorFilledAir1000Alt2
+        Quaternary: GasPipeTankSubfloorFilledAir1000Alt3
+        Quinary: GasPipeTankSubfloorFilledAir1000Alt4
+    - type: PipePrefill
+      targetMoles: 1000
+      mixture:
+        Oxygen: 25
+        Nitrogen: 75
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir1000]
+  id: GasPipeTankSubfloorFilledAir1000Alt1
+  categories: [ HideSpawnMenu ]
+  components: *subfloorAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledAir1000]
+  id: GasPipeTankSubfloorFilledAir1000Alt2
+  categories: [ HideSpawnMenu ]
+  components: *subfloorAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledAir1000]
+  id: GasPipeTankSubfloorFilledAir1000Alt3
+  categories: [ HideSpawnMenu ]
+  components: *subfloorAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledAir1000]
+  id: GasPipeTankSubfloorFilledAir1000Alt4
+  categories: [ HideSpawnMenu ]
+  components: *subfloorAlt4
+
+# Subfloor gas tank (1000mol) END
+# Subfloor gas tank (1500mol) BEGIN
+
+- type: entity
+  parent: GasPipeTankSubfloor
+  id: GasPipeTankSubfloorFilledAir1500
+  suffix: Air, 1500mol
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankSubfloorFilledAir1500
+        Secondary: GasPipeTankSubfloorFilledAir1500Alt1
+        Tertiary: GasPipeTankSubfloorFilledAir1500Alt2
+        Quaternary: GasPipeTankSubfloorFilledAir1500Alt3
+        Quinary: GasPipeTankSubfloorFilledAir1500Alt4
+    - type: PipePrefill
+      targetMoles: 1500
+      mixture:
+        Oxygen: 25
+        Nitrogen: 75
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankSubfloorFilledAir1500]
+  id: GasPipeTankSubfloorFilledAir1500Alt1
+  categories: [ HideSpawnMenu ]
+  components: *subfloorAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankSubfloorFilledAir1500]
+  id: GasPipeTankSubfloorFilledAir1500Alt2
+  categories: [ HideSpawnMenu ]
+  components: *subfloorAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankSubfloorFilledAir1500]
+  id: GasPipeTankSubfloorFilledAir1500Alt3
+  categories: [ HideSpawnMenu ]
+  components: *subfloorAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankSubfloorFilledAir1500]
+  id: GasPipeTankSubfloorFilledAir1500Alt4
+  categories: [ HideSpawnMenu ]
+  components: *subfloorAlt4
+
+# Subfloor gas tank (1500mol) END
+# Tall gas tank (1000mol) BEGIN
+
+- type: entity
+  parent: GasPipeTankTall
+  id: GasPipeTankTallFilledAir1000
+  suffix: Air, 1000mol
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankTallFilledAir1000
+        Secondary: GasPipeTankTallFilledAir1000Alt1
+        Tertiary: GasPipeTankTallFilledAir1000Alt2
+        Quaternary: GasPipeTankTallFilledAir1000Alt3
+        Quinary: GasPipeTankTallFilledAir1000Alt4
+    - type: PipePrefill
+      targetMoles: 1000
+      mixture:
+        Oxygen: 25
+        Nitrogen: 75
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir1000]
+  id: GasPipeTankTallFilledAir1000Alt1
+  categories: [ HideSpawnMenu ]
+  components: &tallAlt1
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankTallFilledAir1000]
+  id: GasPipeTankTallFilledAir1000Alt2
+  categories: [ HideSpawnMenu ]
+  components: &tallAlt2
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankTallFilledAir1000]
+  id: GasPipeTankTallFilledAir1000Alt3
+  categories: [ HideSpawnMenu ]
+  components: &tallAlt3
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankTallFilledAir1000]
+  id: GasPipeTankTallFilledAir1000Alt4
+  categories: [ HideSpawnMenu ]
+  components: &tallAlt4
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+
+# Tall gas tank (1000mol) END
+# Tall gas tank (2500mol) BEGIN
+
+- type: entity
+  parent: GasPipeTankTall
+  id: GasPipeTankTallFilledAir2500
+  suffix: Air, 2500mol
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankTallFilledAir2500
+        Secondary: GasPipeTankTallFilledAir2500Alt1
+        Tertiary: GasPipeTankTallFilledAir2500Alt2
+        Quaternary: GasPipeTankTallFilledAir2500Alt3
+        Quinary: GasPipeTankTallFilledAir2500Alt4
+    - type: PipePrefill
+      targetMoles: 2500
+      mixture:
+        Oxygen: 25
+        Nitrogen: 75
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir2500]
+  id: GasPipeTankTallFilledAir2500Alt1
+  categories: [ HideSpawnMenu ]
+  components: *tallAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankTallFilledAir2500]
+  id: GasPipeTankTallFilledAir2500Alt2
+  categories: [ HideSpawnMenu ]
+  components: *tallAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankTallFilledAir2500]
+  id: GasPipeTankTallFilledAir2500Alt3
+  categories: [ HideSpawnMenu ]
+  components: *tallAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankTallFilledAir2500]
+  id: GasPipeTankTallFilledAir2500Alt4
+  categories: [ HideSpawnMenu ]
+  components: *tallAlt4
+
+# Tall gas tank (2500mol) END
+# Tall gas tank (4000mol) BEGIN
+
+- type: entity
+  parent: GasPipeTankTall
+  id: GasPipeTankTallFilledAir4000
+  suffix: Air, 4000mol
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankTallFilledAir4000
+        Secondary: GasPipeTankTallFilledAir4000Alt1
+        Tertiary: GasPipeTankTallFilledAir4000Alt2
+        Quaternary: GasPipeTankTallFilledAir4000Alt3
+        Quinary: GasPipeTankTallFilledAir4000Alt4
+    - type: PipePrefill
+      targetMoles: 4000
+      mixture:
+        Oxygen: 25
+        Nitrogen: 75
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir4000]
+  id: GasPipeTankTallFilledAir4000Alt1
+  categories: [ HideSpawnMenu ]
+  components: *tallAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankTallFilledAir4000]
+  id: GasPipeTankTallFilledAir4000Alt2
+  categories: [ HideSpawnMenu ]
+  components: *tallAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankTallFilledAir4000]
+  id: GasPipeTankTallFilledAir4000Alt3
+  categories: [ HideSpawnMenu ]
+  components: *tallAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankTallFilledAir4000]
+  id: GasPipeTankTallFilledAir4000Alt4
+  categories: [ HideSpawnMenu ]
+  components: *tallAlt4
+
+# Tall gas tank (4000mol) END
+# Tall gas tank (7500mol) BEGIN
+
+- type: entity
+  parent: GasPipeTankTall
+  id: GasPipeTankTallFilledAir7500
+  categories: [ DoNotMap ]
+  suffix: Air, 7500mol, DO NOT MAP
+  components:
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasPipeTankTallFilledAir7500
+        Secondary: GasPipeTankTallFilledAir7500Alt1
+        Tertiary: GasPipeTankTallFilledAir7500Alt2
+        Quaternary: GasPipeTankTallFilledAir7500Alt3
+        Quinary: GasPipeTankTallFilledAir7500Alt4
+    - type: PipePrefill
+      targetMoles: 7500
+      mixture:
+        Oxygen: 25
+        Nitrogen: 75
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankTallFilledAir7500]
+  id: GasPipeTankTallFilledAir7500Alt1
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components: *tallAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankTallFilledAir7500]
+  id: GasPipeTankTallFilledAir7500Alt2
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components: *tallAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankTallFilledAir7500]
+  id: GasPipeTankTallFilledAir7500Alt3
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components: *tallAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankTallFilledAir7500]
+  id: GasPipeTankTallFilledAir7500Alt4
+  categories: [ DoNotMap, HideSpawnMenu ]
+  components: *tallAlt4
+
+# Tall gas tank (7500mol) END

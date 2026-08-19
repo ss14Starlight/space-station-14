@@ -1,6 +1,8 @@
 ui-options-function-open-m-help = Open mentor help
 ui-escape-connect-discord = Link Discord
 server-info-connect-discord-button = Link Discord
+ui-escape-connect-steam = Link Steam
+server-info-connect-steam-button = Link Steam
 
 ## Accessibility
 
@@ -72,5 +74,9 @@ ui-options-admin-ghost-script-tooltip =
 ui-options-hud-theme-mpurp = M-Purp
 
 # Graphics
-ui-options-interaction-particles = Show interaction particles
-ui-options-interaction-particles-tooltip = Shows hand, item, and pulling effects when characters interact.
+ui-options-interaction-particles = Interaction particles:
+ui-options-interaction-particles-all = All
+ui-options-interaction-particles-without-inhand = Except In-hand
+ui-options-interaction-particles-none = None
+ui-options-interaction-particles-tooltip =
+    In-hand and inventory particles are only shown for actions performed by your character.

@@ -14,6 +14,7 @@ using Content.Shared.CCVar;
 using Content.Shared._Starlight.CCVar;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components; // Starlight
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -32,6 +33,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
 
     [SidedDependency(Side.Server)] private IRobustRandom _random = default!;
     [SidedDependency(Side.Server)] private GhostRoleSystem _ghostRole = default!;
+    [SidedDependency(Side.Server)] private SharedMapSystem _map = default!; // Starlight
 
     #region Starlight
     /// <summary>
@@ -94,6 +96,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
     {
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
         Server.CfgMan.SetCVar(CCVars.GameRoleTimers, false); // Starlight
+        var mapsBefore = MapIds(); // Starlight
         var rule = SProtoMan.Index<EntityPrototype>(ruleId);
         Assert.That(rule.TryGetComponent<AntagSelectionComponent>(out var antag, SEntMan.ComponentFactory), Is.True);
 
@@ -145,6 +148,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         // End all rules
         STicker.ClearGameRules();
         Assert.That(STicker.GetAddedGameRules(), Is.Empty);
+        foreach (var map in MapIds().Except(mapsBefore)) _map.DeleteMap(map); // Starlight
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
         Server.CfgMan.SetCVar(CCVars.GameRoleTimers, true); // Starlight
     }
@@ -157,6 +161,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
     {
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
         Server.CfgMan.SetCVar(CCVars.GameRoleTimers, false); // Starlight
+        var mapsBefore = MapIds(); // Starlight
         foreach (var ruleId in AntagGameRules)
         {
             var rule = SProtoMan.Index<EntityPrototype>(ruleId);
@@ -187,6 +192,7 @@ public sealed partial class AntagGhostRoleTest : AntagTest
         // End all rules
         STicker.ClearGameRules();
         Assert.That(STicker.GetAddedGameRules(), Is.Empty);
+        foreach (var map in MapIds().Except(mapsBefore)) _map.DeleteMap(map); // Starlight
         Server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
         Server.CfgMan.SetCVar(CCVars.GameRoleTimers, true); // Starlight
     }
@@ -261,5 +267,10 @@ public sealed partial class AntagGhostRoleTest : AntagTest
     {
         return spawner.Definition is { } definition && IgnoredAntagSpecifiers.Contains(definition.Id);
     }
+
+    /// <summary>
+    /// Returns the IDs of all loaded maps so maps created during a test can be identified and deleted afterward.
+    /// </summary>
+    private HashSet<MapId> MapIds() => SEntMan.AllComponents<MapComponent>().Select(x => x.Component.MapId).ToHashSet();
     #endregion
 }

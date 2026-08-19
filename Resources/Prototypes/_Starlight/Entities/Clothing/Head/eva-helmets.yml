@@ -127,3 +127,69 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+
+- type: entity
+  parent:  ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetsoftsuitWizardFire
+  name: wizard pyromancer hood
+  description: A hood of living fire, the inferno within stares at you.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hoods/wizardfire.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hoods/wizardfire.rsi
+    equipSound:
+      collection: storageRustle
+    unequipSound:
+      collection: storageRustle
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+  - type: FireProtection
+    reduction: 1 # you have to toggle the suit to be fire protected, having your face melt hurts
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent:  ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetsoftsuitWizardFrost
+  name: wizard cryomancer hood
+  description: A hood of magical ice, the coldest of gaze pierces your very soul.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hoods/wizardfrost.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hoods/wizardfrost.rsi
+    equipSound:
+      collection: storageRustle
+    unequipSound:
+      collection: storageRustle
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.05
+    coolingCoefficient: 0.05
+  - type: FireProtection
+    reduction: 0.05
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon

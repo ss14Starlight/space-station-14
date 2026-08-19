@@ -6,6 +6,7 @@
     components:
       - CosmicCult
       - CosmicColossus
+      - CosmicMinion
       - CosmicAstralBody
       - ShowAntagIcons
   icon:
@@ -20,6 +21,7 @@
     components:
       - CosmicCult
       - CosmicColossus
+      - CosmicMinion
       - CosmicAstralBody
       - ShowAntagIcons
   icon:

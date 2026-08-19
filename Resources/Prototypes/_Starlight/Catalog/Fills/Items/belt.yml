@@ -272,3 +272,15 @@
             - id: CombatMedipen
             - id: FlashlightSeclite
             - id: BodyBagCCFolded
+
+- type: entity
+  id: ClothingBeltHolsterColdCase
+  parent: ClothingBeltHolster
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolColdCase
+        - id: MagazineBoxPistol40SP

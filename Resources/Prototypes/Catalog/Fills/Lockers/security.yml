@@ -162,8 +162,6 @@
         prob: 1.8
     - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
       prob: 0.15
-    - id: PlushieMorgana #starlight
-    - id: PlushieKiller #starlight
     - id: JawsOfLifeMed #Starlight
 
 

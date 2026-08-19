@@ -178,7 +178,7 @@ namespace Content.Shared.Damage
                 else
                 {
                     if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
-                        newValue *= Math.Clamp((coefficient + ((1f - coefficient) * armorPenetration)), 0, 1);
+                        newValue *= Math.Max(0f, coefficient + ((1f - coefficient) * armorPenetration));
                 }
                 // ??Starlight?? end
 

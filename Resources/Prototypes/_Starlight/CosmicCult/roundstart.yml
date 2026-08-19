@@ -26,3 +26,4 @@
         max: 6
   - type: DynamicRuleCost
     cost: 200
+    cooldown: 1

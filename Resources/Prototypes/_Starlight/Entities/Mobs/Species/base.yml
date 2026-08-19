@@ -210,6 +210,9 @@
       enum.DamnationsMenuUiKey.Key:
         type: DevilDamnationsBoundUserInterface
         requireInputValidation: false
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+        requireInputValidation: false
       # starlight end
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
@@ -282,6 +285,8 @@
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
+      enum.ScentSniffUiKey.Key: # Starlight
+        type: ScentSniffBoundUserInterface
   - type: Barotrauma
     damage:
       types:

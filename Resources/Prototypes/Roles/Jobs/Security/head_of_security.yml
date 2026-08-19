@@ -20,6 +20,7 @@
       traits:
         - Iterator
         - Muted
+        - Blindness
       inverted: true
   weight: 10
   startingGear: HoSGear

@@ -3,7 +3,7 @@
   parent: BaseItem
   abstract: true
   components:
-  - type: EnergySword
+  - type: EnergyColor # SL
   - type: ItemToggle
     soundActivate:
       path: /Audio/Weapons/ebladeon.ogg
@@ -445,6 +445,7 @@
   id: EnergyDaggerLoudBlue
   suffix: blue
   components:
-  - type: EnergySword
-    colorOptions:
-    - "#2288ff" # can only be blue
+  # SL begin
+  - type: EnergyColor
+    color: "#2288ff"
+  # SL end

@@ -1,0 +1,549 @@
+- type: emoteSounds
+  id: NeoHumanMSounds
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: NeoHumanMScreams
+    Laugh:
+      collection: NeoHumanMLaugh
+    Sneeze:
+      collection: NeoHumanMSneezes
+    Cough:
+      collection: NeoHumanMCoughs
+    CatMeow:
+      collection: NeoFelionoidMeow
+    CatHisses:
+      collection: NeoFelionoidHiss
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    Purr:
+      collection: NeoFelionoidPurr
+    Yawn:
+      collection: NeoHumanMYawn
+    Snore:
+      collection: NeoHumanSnores
+    Sigh:
+      collection: NeoHumanMSigh
+    Crying:
+      collection: NeoHumanMCry
+    Whistle:
+      collection: NeoHumanWhistles
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
+    Mew:
+      collection: NeoFelionoidMew
+    Meow:
+      collection: NeoFelionoidMeow
+    Trill:
+      collection: NeoFelionoidTrill
+    Bark:
+      collection: NeoVulpkaninBark
+    Yip:
+      collection: NeoVulpkaninYip
+    Whine:
+      collection: Whine
+    Growl:
+      collection: NeoVulpkaninGrowl
+    Howl:
+      collection: NeoVulpkaninHowl
+    Liss:
+      collection: NeoReptilianHiss
+    Lurr:
+      collection: NeoReptilianPurr
+    Rattle:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
+    Squish:
+      collection: Squishes
+    Hisses:
+      collection: NeoFelionoidHiss
+    Click:
+      path: /Audio/Voice/Arachnid/arachnid_click.ogg
+    Chitter:
+      collection: NeoMothChitter
+    Squeak:
+      collection: NeoMothSqueak
+    Beep:
+      path: /Audio/Machines/twobeep.ogg
+    Chime:
+      path: /Audio/Machines/chime.ogg
+    Buzz:
+      path: /Audio/Machines/buzz-sigh.ogg
+    Buzz-Two:
+      path: /Audio/Machines/buzz-two.ogg
+    Honk:
+      path: /Audio/Items/bikehorn.ogg
+    Ping:
+      path: /Audio/Effects/Cargo/ping.ogg
+    Chirp:
+      collection: NeoResomiChirp
+    Scree:
+      collection: NeoResomiScrees
+    Call:
+      collection: NeoResomiCalls
+    Squawk:
+      collection: NeoResomiSquawk
+    Marr:
+      collection: NeoKinMarr
+    Wurble:
+      collection: NeoKinWurble
+    Snarl:
+      collection: NeoVulpkaninSnarls
+    ThavenGlub: # Starlight start
+      collection: ThavenGlub
+    ThavenHum:
+      collection: ThavenMHum
+    Squee:
+      collection: LagomorphSqueak
+    Snort:
+      collection: LagomorphSnort
+    LagomorphSneeze:
+      collection: LagomorphSneeze
+    LagomorphSnore:
+      collection: LagomorphSnore
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops # Starlight end
+
+- type: emoteSounds
+  id: NeoHumanFSounds
+  params:
+    variation: 0.125
+  sounds:
+    Snarl:
+      collection: NeoVulpkaninSnarls
+    Marr:
+      collection: NeoKinMarr
+    Wurble:
+      collection: NeoKinWurble
+    Chirp:
+      collection: NeoResomiChirp
+    Scree:
+      collection: NeoResomiScrees
+    Call:
+      collection: NeoResomiCalls
+    Squawk:
+      collection: NeoResomiSquawk
+    Scream:
+      collection: NeoHumanFScreams
+    Laugh:
+      collection: NeoHumanFLaugh
+    Sneeze:
+      collection: NeoHumanFSneezes
+    Cough:
+      collection: NeoHumanFCoughs
+    Hisses:
+      collection: NeoFelionoidHiss
+    Purr:
+      collection: NeoFelionoidPurr
+    CatMeow:
+      collection: NeoFelionoidMeow
+    CatHisses:
+      collection: NeoFelionoidHiss
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    Yawn:
+      collection: NeoHumanFYawn
+    Snore:
+      collection: NeoHumanSnores
+    Sigh:
+      collection: NeoHumanFSigh
+    Crying:
+      collection: NeoHumanFCry
+    Whistle:
+      collection: NeoHumanWhistles
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
+    Mew:
+      collection: NeoFelionoidMew
+    Meow:
+      collection: NeoFelionoidMeow
+    Trill:
+      collection: NeoFelionoidTrill
+    Bark:
+      collection: NeoVulpkaninBark
+    Yip:
+      collection: NeoVulpkaninYip
+    Whine:
+      collection: Whine # Starlight
+    Growl:
+      collection: NeoVulpkaninGrowl
+    Howl:
+      collection: NeoVulpkaninHowl
+    Liss:
+      collection: NeoReptilianHiss
+    Lurr:
+      collection: NeoReptilianPurr
+    Rattle:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
+    Squish:
+      collection: Squishes
+    Click:
+      path: /Audio/Voice/Arachnid/arachnid_click.ogg
+    Chitter:
+      collection: NeoMothChitter
+    Squeak:
+      collection: NeoMothSqueak
+    Beep:
+      path: /Audio/Machines/twobeep.ogg
+    Chime:
+      path: /Audio/Machines/chime.ogg
+    Buzz:
+      path: /Audio/Machines/buzz-sigh.ogg
+    Buzz-Two:
+      path: /Audio/Machines/buzz-two.ogg
+    Honk:
+      path: /Audio/Items/bikehorn.ogg
+    Ping:
+      path: /Audio/Effects/Cargo/ping.ogg
+    ThavenGlub: # Starlight start
+      collection: ThavenGlub
+    ThavenHum:
+      collection: ThavenFHum
+    Squee:
+      collection: LagomorphSqueak
+    Snort:
+      collection: LagomorphSnort
+    LagomorphSneeze:
+      collection: LagomorphSneeze
+    LagomorphSnore:
+      collection: LagomorphSnore
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops # Starlight end
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoResomiMSounds
+  sounds:
+    Scream:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
+    Laugh:
+      collection: NeoResomiLaugh
+    Whistle:
+      collection: NeoResomiWhistles
+    Growl:
+      collection: NeoFelionoidGrowl
+    Gasp: # Starlight start
+      path: /Audio/_Starlight/Voice/Resomi/resomi_gasp.ogg
+    DefaultDeathgasp:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_deathgrasp.ogg
+    Sigh:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_sigh.ogg
+    Cough:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_cough.ogg
+    Yawn:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_yawn.ogg # Starlight end
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoResomiFSounds
+  sounds:
+    Scream:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
+    Laugh:
+      collection: NeoResomiLaugh
+    Whistle:
+      collection: NeoResomiWhistles
+    Growl:
+      collection: NeoFelionoidGrowl
+    Gasp: # Starlight start
+      path: /Audio/_Starlight/Voice/Resomi/resomi_gasp.ogg
+    DefaultDeathgasp:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_deathgrasp.ogg
+    Sigh:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_sigh.ogg
+    Cough:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_cough.ogg
+    Yawn:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_yawn.ogg # Starlight end
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoVulpkaninMSounds
+  sounds:
+    Sneeze:
+      collection: NeoVulpkaninSneeze
+    Yawn:
+      collection: NeoVulpkaninYawns
+    Scream:
+      collection: NeoVulpkaninScreams
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoVulpkaninFSounds
+  sounds:
+    Sneeze:
+      collection: NeoVulpkaninSneeze
+    Yawn:
+      collection: NeoVulpkaninYawns
+    Scream:
+      collection: NeoVulpkaninScreams
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoReptilianMSounds
+  sounds:
+    Scream:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg # Starlight
+    Laugh:
+      collection: NeoReptilianLaugh
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoReptilianFSounds
+  sounds:
+    Scream:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg # Starlight
+    Laugh:
+      collection: NeoReptilianLaugh
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoVoxMSounds
+  sounds:
+    Scream:
+      collection: NeoVoxScreams
+    Laugh:
+      collection: NeoVoxLaugh
+    Crying:
+      collection: NeoVoxCry
+    Sigh:
+      collection: NeoVoxSigh
+    Sneeze:
+      collection: NeoVoxSneezes
+    Cough:
+      collection: NeoVoxCoughs
+    Chitter:
+      collection: NeoVoxChitter
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoVoxFSounds
+  sounds:
+    Scream:
+      collection: NeoVoxScreams
+    Laugh:
+      collection: NeoVoxLaugh
+    Crying:
+      collection: NeoVoxCry
+    Sigh:
+      collection: NeoVoxSigh
+    Sneeze:
+      collection: NeoVoxSneezes
+    Cough:
+      collection: NeoVoxCoughs
+    Chitter:
+      collection: NeoVoxChitter
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoDionaMSounds
+  sounds:
+    Laugh:
+      collection: DionaLaugh
+    Sneeze:
+      collection: DionaSneeze
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoDionaFSounds
+  sounds:
+    Laugh:
+      collection: DionaLaugh
+    Sneeze:
+      collection: DionaSneeze
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoArachnidMSounds
+  sounds:
+    Scream:
+      collection: NeoArachnidScreams
+    Laugh:
+      collection: NeoArachnidLaugh
+    Chitter:
+      collection: NeoArachnidChitter
+    Crying:
+      collection: NeoArachnidCry
+    Cough:
+      collection: NeoArachnidCoughs
+    Yawn:
+      collection: NeoArachnidYawn
+    Sigh:
+      collection: NeoArachnidSigh
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoArachnidFSounds
+  sounds:
+    Scream:
+      collection: NeoArachnidScreams
+    Laugh:
+      collection: NeoArachnidLaugh
+    Chitter:
+      collection: NeoArachnidChitter
+    Crying:
+      collection: NeoArachnidCry
+    Cough:
+      collection: NeoArachnidCoughs
+    Yawn:
+      collection: NeoArachnidYawn
+    Sigh:
+      collection: NeoArachnidSigh
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoMothMSounds
+  sounds:
+    Scream:
+      collection: NeoMothScreams
+    Laugh:
+      collection: NeoMothLaugh
+    Crying:
+      collection: NeoMothCry
+    Cough:
+      collection: NeoMothCoughs
+    Yawn:
+      collection: NeoMothYawn
+    Sigh:
+      collection: NeoMothSigh
+    DefaultDeathgasp: # Starlight
+      collection: MothDeathGasp # Starlight
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoMothFSounds
+  sounds:
+    Scream:
+      collection: NeoMothScreams
+    Laugh:
+      collection: NeoMothLaugh
+    Crying:
+      collection: NeoMothCry
+    Cough:
+      collection: NeoMothCoughs
+    Yawn:
+      collection: NeoMothYawn
+    Sigh:
+      collection: NeoMothSigh
+    DefaultDeathgasp: # Starlight
+      collection: MothDeathGasp # Starlight
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoFelionoidMSounds
+  sounds:
+    Scream:
+      collection: NeoFelionoidScreams
+    Growl:
+      collection: NeoFelionoidGrowl
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoFelionoidFSounds
+  sounds:
+    Scream:
+      collection: NeoFelionoidScreams
+    Growl:
+      collection: NeoFelionoidGrowl
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoCycloriteMSounds
+  sounds:
+    Scream:
+      collection: NeoCycloriteScreams
+    Laugh:
+      collection: NeoCycloriteLaugh
+    Sneeze:
+      collection: NeoCycloriteCoughs
+    Cough:
+      collection: NeoCycloriteCoughs
+    Crying:
+      collection: NeoCycloriteScreams
+    Whistle:
+      collection: NeoCycloriteWhistles
+    Yawn:
+      collection: NeoCycloriteYawn
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoCycloriteFSounds
+  sounds:
+    Scream:
+      collection: NeoCycloriteScreams
+    Laugh:
+      collection: NeoCycloriteLaugh
+    Sneeze:
+      collection: NeoCycloriteCoughs
+    Cough:
+      collection: NeoCycloriteCoughs
+    Crying:
+      collection: NeoCycloriteScreams
+    Whistle:
+      collection: NeoCycloriteWhistles
+    Yawn:
+      collection: NeoCycloriteYawn
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoAvaliMSounds
+  sounds:
+    Scream:
+      collection: NeoAvaliScreams
+    Laugh:
+      collection: NeoAvaliLaugh
+    Crying:
+      collection: NeoAvaliCry
+    Whistle:
+      collection: NeoResomiWhistles
+    Growl:
+      collection: NeoFelionoidGrowl
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoAvaliFSounds
+  sounds:
+    Scream:
+      collection: NeoAvaliScreams
+    Laugh:
+      collection: NeoAvaliLaugh
+    Crying:
+      collection: NeoAvaliCry
+    Whistle:
+      collection: NeoResomiWhistles
+    Growl:
+      collection: NeoFelionoidGrowl
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoKinMSounds
+  sounds:
+    Scream:
+      collection: ShadekinMaleScreams # Starlight
+    Growl:
+      collection: NeoFelionoidGrowl
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoKinFSounds
+  sounds:
+    Scream:
+      collection: ShadekinFemaleScreams # Starlight
+    Growl:
+      collection: NeoFelionoidGrowl

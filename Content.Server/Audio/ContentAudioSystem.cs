@@ -55,6 +55,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
             true);
 
         SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEnd);
+        SubscribeLocalEvent<RoundEndCancelMessageEvent>(OnRoundEndCancelMessage); // Starlight
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart);
@@ -110,6 +111,12 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
 
         RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist));
     }
+
+    #region Starlight
+
+    private void OnRoundEndCancelMessage(RoundEndCancelMessageEvent ev) => _serverAudio.ReloadPresets();
+
+    #endregion
 
     private string[] ShuffleLobbyPlaylist()
     {

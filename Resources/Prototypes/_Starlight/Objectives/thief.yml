@@ -126,13 +126,15 @@
     difficulty: 1
 
 - type: entity
-  parent: [BaseThiefStealObjective, BaseThiefSecurityStealObjective]
-  id: SecurityTechFabCircuitboardStealObjective
+  parent: BaseThiefStealObjective
+  id: DepartmentalTechFabCircuitboardStealObjective
   components:
+  - type: NotJobRequirement
+    jobs: [ ChiefEngineer, ChiefMedicalOfficer, Quartermaster, ResearchDirector, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead, ResearchAssistant, Scientist, Roboticist, StationEngineer, AtmosphericTechnician, TechnicalAssistant, MedicalDoctor, Paramedic, MedicalIntern, Surgeon, Chemist, Psychologist ]
   - type: StealCondition
-    stealGroup: SecurityTechFabCircuitboard
+    stealGroup: DepartmentalTechFabCircuitboard
   - type: Objective
-    difficulty: 1.4 # Good luck.
+    difficulty: 1
 
 - type: entity
   parent: BaseThiefStealObjective

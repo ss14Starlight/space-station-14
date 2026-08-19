@@ -969,7 +969,7 @@
     - PressureRegulator
     - PassiveGate
     - PipeSensor
-    - SubfloorGasTank
+    - GasTankSubfloor
     - Deconstruct
     - AirAlarm
     - AirSensor
@@ -1037,6 +1037,7 @@
     - PlumbingRpldReactor
     - PlumbingRpldPillPress
     - PlumbingRpldFilter
+    - PlumbingRpldInlineFilter
     - PlumbingRpldSynthesizer
     - PlumbingRpldSmartDispenser
     - PlumbingRpldDrain
@@ -1138,5 +1139,4 @@
     possibleSets:
     - SaboteurSELF
     - PressSELF
-    - LiberatorSELF
     - SpySELF
