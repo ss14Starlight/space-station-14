@@ -710,6 +710,8 @@
     - !type:NestedSelector
       tableId: AllFigurineMechsTable
       weight: 6
+    - id: EnergySword
+      weight: 0.04
 
 - type: entityTable # size: 1x2
   id: HappyHonkToyUnsafeEntityTable
