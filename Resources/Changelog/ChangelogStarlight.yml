@@ -1,25 +1,4 @@
 Entries:
-- author: Orange Juice Goose
-  changes:
-  - message: Supermatter for starboard. Starboardmatter.
-    type: Add
-  id: 407371
-  time: '2026-08-07T10:43:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5533
-- author: Orange Juice Goose
-  changes:
-  - message: Reworked starboard TEG.
-    type: Tweak
-  id: 407372
-  time: '2026-08-07T10:43:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5533
-- author: RedSpeeds
-  changes:
-  - message: Added glasses slots to Monkey, Kobold, Scurret.
-    type: Add
-  id: 407373
-  time: '2026-08-08T21:00:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5489
 - author: Caws
   changes:
   - message: The security shuttles no longer give you a blank 'no shuttle found' pilot interface when attempting to pilot them.
@@ -2799,4 +2778,25 @@ Entries:
   id: 407770
   time: '2026-08-19T08:57:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5717
+- author: Way
+  changes:
+  - message: (Hotel) Added random station radio spawners.
+    type: Add
+  id: 407771
+  time: '2026-08-19T09:29:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5722
+- author: Way
+  changes:
+  - message: (Hotel) One radio in GenPop, not random.
+    type: Add
+  id: 407772
+  time: '2026-08-19T09:29:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5722
+- author: Way
+  changes:
+  - message: (Manor) Added random station radio spawners.
+    type: Add
+  id: 407773
+  time: '2026-08-19T09:29:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5722
 Order: -1
