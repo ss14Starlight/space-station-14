@@ -49,6 +49,8 @@
               prototype: SheetPlasteel1
               amount: 4
           steps:
+            - tool: Welding
+              doAfter: 6
             - tool: Prying
               doAfter: 10
 
@@ -76,6 +78,8 @@
               prototype: SheetPlasteel1
               amount: 4
           steps:
+            - tool: Welding
+              doAfter: 6
             - tool: Prying
               doAfter: 10
 
@@ -103,6 +107,8 @@
               prototype: SheetPlasteel1
               amount: 4
           steps:
+            - tool: Welding
+              doAfter: 6
             - tool: Prying
               doAfter: 10
 
@@ -130,5 +136,7 @@
               prototype: SheetPlasteel1
               amount: 4
           steps:
+            - tool: Welding
+              doAfter: 6
             - tool: Prying
-              doAfter: 12
+              doAfter: 10
