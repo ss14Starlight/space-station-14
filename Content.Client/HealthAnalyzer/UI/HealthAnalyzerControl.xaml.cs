@@ -320,35 +320,25 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
                 HorizontalAlignment = HAlignment.Left,
             };
 
-            var hasStomach = reagent.StomachQuantity > FixedPoint2.Zero;
-            var hasBlood = reagent.Quantity > FixedPoint2.Zero;
+            var quantityLabel = new RichTextLabel
+            {
+                HorizontalAlignment = HAlignment.Right,
+            };
+
+            var msg = new FormattedMessage();
+            if (reagent.StomachQuantity > FixedPoint2.Zero)
+            {
+                msg.PushColor(Color.FromHex("#AAAAAA"));
+                msg.AddText($"({reagent.StomachQuantity}u)");
+                msg.Pop();
+                msg.AddText(" ");
+            }
+            msg.AddText($"{reagent.Quantity}u");
+            quantityLabel.SetMessage(msg);
 
             rowContainer.AddChild(colorBar);
             rowContainer.AddChild(nameLabel);
-
-            if (hasStomach)
-            {
-                var stomachLabel = new Label
-                {
-                    Text = $"({reagent.StomachQuantity}u)",
-                    HorizontalAlignment = HAlignment.Right,
-                    FontColorOverride = Color.FromHex("#AAAAAA"),
-                };
-                rowContainer.AddChild(stomachLabel);
-            }
-
-            if (hasBlood)
-            {
-                var quantityLabel = new RichTextLabel
-                {
-                    HorizontalAlignment = HAlignment.Right,
-                    Margin = new Thickness(hasStomach ? 4 : 0, 0, 0, 0),
-                };
-                var msg = new FormattedMessage();
-                msg.AddText($"{reagent.Quantity}u");
-                quantityLabel.SetMessage(msg);
-                rowContainer.AddChild(quantityLabel);
-            }
+            rowContainer.AddChild(quantityLabel);
             ChemicalsContainer.AddChild(rowContainer);
         }
     }
