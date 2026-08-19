@@ -14,7 +14,7 @@ namespace Content.Shared._Starlight.CosmicCult.Components;
     /// Higher values increase the rate of heat removal.
     /// </summary>
     [DataField] public float CoolingCoefficient = 0.3f;
-    
+
     public bool IsOccupied;
     [Serializable, NetSerializable]
     public sealed class State : ComponentState
