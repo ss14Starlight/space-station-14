@@ -71,7 +71,7 @@
   priority: 1
   productEntity: ClothingOuterSoftsuitWizardFire
   cost:
-    WizCoin: 15 #admeme for now
+    WizCoin: 11
   categories:
   - SpellbookWar
   conditions:
@@ -239,7 +239,7 @@
   priority: 11
   productEntity: ClothingOuterSoftsuitWizardFrost
   cost:
-    WizCoin: 15
+    WizCoin: 11
   categories:
   - SpellbookWar
   conditions:
@@ -302,7 +302,7 @@
   id: SpellbookArcticGlare
   name: spellbook-arcticglare-name
   description: spellbook-arcticglare-desc
-  priority: 15
+  priority: 11
   productAction: ActionArcticGlare
   cost:
     WizCoin: 0

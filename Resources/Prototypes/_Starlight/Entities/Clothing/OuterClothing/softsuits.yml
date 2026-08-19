@@ -164,7 +164,7 @@
         Blunt: 0.6
         Slash: 0.8
         Piercing: 0.50
-        Heat: 0.1
+        Heat: 0.05
         Cold: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.9
@@ -211,7 +211,7 @@
       coefficients:
         Blunt: 0.7
         Slash: 0.2
-        Piercing: 0.70
+        Piercing: 0.30
         Heat: 0.6
         Cold: 0.01
   - type: ClothingSpeedModifier
