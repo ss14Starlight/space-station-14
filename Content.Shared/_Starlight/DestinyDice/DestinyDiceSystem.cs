@@ -221,17 +221,17 @@ public sealed partial class DestinyDiceSystem : EntitySystem
 
     public override void Update(float delta)
     {
-        Log.Info("yuppers.");
         foreach (var ent in _activeDice.ToList())
             ProcessDice(ent);
     }
 
     private void ProcessDice(Entity<DestinyDiceComponent> ent)
     {
-        Log.Info($"{_timing.CurTime}, {_timing.IsFirstTimePredicted}");
+        Log.Info($"CURRENT TIME: {_timing.CurTime}, FIRST TIME PREDICTED: {_timing.IsFirstTimePredicted}");
         var (uid, comp) = ent;
         var group = comp.CurrentEffectGroup;
 
+        Log.Info($"GROUP: {(group is null ? "null" : "NOT NULL")}, ACTIVE: {comp.IsActive}, COUNT: {group?.Effects.Count.ToString() ?? "null"}, INDEX: {comp.CurrentEffectIndex}, IN PREDICTION: {_timing.InPrediction}, IN SIMULATION: {_timing.InSimulation}");
         if (group is null || !comp.IsActive || comp.CurrentEffectIndex >= group.Effects.Count)
         {
             _activeDice.Remove(ent);
