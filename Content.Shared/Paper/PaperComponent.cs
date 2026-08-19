@@ -26,6 +26,15 @@ public sealed partial class PaperComponent : Component
     [DataField, AutoNetworkedField]
     public bool EditingDisabled;
 
+    // BEGIN STARLIGHT
+    /// <summary>
+    ///     If true, stamps and signatures are forbidden and a generic error message is shown.
+    ///     Use a custom event for more interesting error messages.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool StampingDisabled;
+    // END STARLIGHT
+
     /// <summary>
     /// Sound played after writing to the paper.
     /// </summary>

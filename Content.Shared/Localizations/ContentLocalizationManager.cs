@@ -3,6 +3,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Robust.Shared.Utility;
 
+using Content.Shared._Starlight.StoryGen; // Starlight
+
 namespace Content.Shared.Localizations
 {
     public sealed partial class ContentLocalizationManager
@@ -23,7 +25,6 @@ namespace Content.Shared.Localizations
             @"mm"
         };
 
-        private CultureInfo? ActiveCultureInfo; // STARLIGHT
 
         public void Initialize()
         {
@@ -53,14 +54,19 @@ namespace Content.Shared.Localizations
             _loc.AddFunction(cultureEn, "MAKEPLURAL", FormatMakePlural);
             _loc.AddFunction(cultureEn, "MANY", FormatMany);
 
-            ActiveCultureInfo = culture; // STARLIGHT
+            /* BEGIN STARLIGHT */
+
+            // The helper functions necessary for recursive story generation can require a lot of eclectic dependencies
+            // that may not be appropriate to place directly in here (since this is called in EntryPoint.cs), so we're
+            // containing them in a separate prefixed namespace instead.
+
+            var sglm = new StoryGenLocalizationManager();
+            sglm.Initialize(_loc, culture);
+
+            /* END STARLIGHT */
         }
 
-        /* BEGIN STARLIGHT */
-        // adding fancy localization functions directly into this file necessitated too many dependencies, so here's a bag on the side
-        public CultureInfo? GetActiveCulture() => ActiveCultureInfo;
-        public ILocalizationManager GetLocalizationManager() => _loc;
-        /* END STARLIGHT */
+
 
         private ILocValue FormatMany(LocArgs args)
         {

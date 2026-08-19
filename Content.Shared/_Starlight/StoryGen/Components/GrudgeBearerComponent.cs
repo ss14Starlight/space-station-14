@@ -11,6 +11,10 @@ public sealed partial class GrudgeBearerComponent : Component
 {
     public EntityUid? Book;
 
+    /// <summary>
+    /// Probability (0.0-1.0) that the bearer will decide to begrudge someone.
+    /// 0.0 = no grudges ever, 1.0 = everyone gets a grudgin'.
+    /// </summary>
     [DataField]
     public float judginess = 1.0f;
 

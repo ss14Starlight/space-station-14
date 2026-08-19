@@ -19,3 +19,5 @@ paper-tamper-proof-modified-message = This page was written using tamper-proof i
 
 # Paper tools
 stamp-slot-component-slot-name-stamp = Stamp
+
+paper-error-unstampable = The ink won't stick to the page.

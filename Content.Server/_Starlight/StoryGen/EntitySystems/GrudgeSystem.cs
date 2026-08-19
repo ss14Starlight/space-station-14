@@ -43,7 +43,7 @@ public sealed partial class GrudgeSystem : EntitySystem
     }
     private void OnNewSubjectEncountered(Entity<GrudgeBearerComponent> entity, ref PlayerSpawnCompleteEvent ev)
     {
-        if(HasComp<HumanoidAppearanceComponent>(ev.Mob)) {
+        if (HasComp<HumanoidAppearanceComponent>(ev.Mob)) {
             // todo: check that the bearer is actually alive
             if(GenerateGrudge(entity.Owner, ev.Mob)) {
                 // play update sound
@@ -90,19 +90,19 @@ public sealed partial class GrudgeSystem : EntitySystem
             }
 
             var grudges_to_generate = bookComp.multiGrudge;
-            while(grudges_to_generate-- > 0) {
+            while (grudges_to_generate-- > 0) {
                 var dataset = _protoMan.Index(bookComp.dataset);
                 var template = _random.Pick(dataset.Values);
 
                 var relativeDataset = _protoMan.Index(bookComp.relativeDataset);
-                var relativeOwner = _random.Pick(relativeDataset.Values);
-                var relativeTarget = _random.Pick(relativeDataset.Values);
+                var relativeOwner = Loc.GetString(_random.Pick(relativeDataset.Values));
+                var relativeTarget = Loc.GetString(_random.Pick(relativeDataset.Values));
 
                 var depth = _random.NextByte() % bookComp.relativeDepth; // maximum number of generations to go back for grudging
                 while(depth-- > 0)
                 {
-                    relativeOwner = relativeOwner + "'s " + _random.Pick(relativeDataset.Values);
-                    relativeTarget = relativeTarget + "'s " + _random.Pick(relativeDataset.Values);
+                    relativeOwner = relativeOwner + "'s " + Loc.GetString(_random.Pick(relativeDataset.Values));
+                    relativeTarget = relativeTarget + "'s " + Loc.GetString(_random.Pick(relativeDataset.Values));
                 }
 
                 paperComp.Content = paperComp.Content + "\n\n" + Loc.GetString(template,
@@ -147,14 +147,14 @@ public sealed partial class GrudgeSystem : EntitySystem
         var enumerator = _entManager.AllEntityQueryEnumerator<GrudgeBearerComponent>();
         while (enumerator.MoveNext(out var uid, out _))
         {
-            if(Transform(uid).Coordinates == Transform(book).Coordinates
+            if (Transform(uid).Coordinates == Transform(book).Coordinates
             && Transform(uid).ParentUid == parent)
             {
                 _sawmill.Debug($"Book {book} shares coordinates and parent with known GrudgeBearer {uid}; attempting binding.");
                 if (BindBook(book, uid))
                     return;
                 // in the unlikely event that someone spawns a bunch of dwarfs on the same tile and their inventories all overflow,
-                // this should match them up 1:1.
+                // this should match them up 1:1... so long as this never gets multithreaded :sob:
             }
         }
     }
@@ -177,13 +177,13 @@ public sealed partial class GrudgeSystem : EntitySystem
         _inv.RelayEvent<GrudgeBindEvent>(inventoryEnt.Value, ref binding);
         var ire = new InventoryRelayedEvent<GrudgeBindEvent>(binding, entity.Owner);
 
-        if(!ire.Args.Handled)
+        if (!ire.Args.Handled)
             _audioSystem.PlayPredicted(entity.Comp.ErrorSound, entity.Owner, entity.Owner);
     }
 
     private void BindBookByEvent(Entity<GrudgeBookComponent> entity, ref GrudgeBindEvent ev)
     {
-        if(ev.Handled)
+        if (ev.Handled)
             return; // if you spawn with multiple books of grudges, something has gone wrong probably
 
         _sawmill.Debug($"GrudgeBook {entity} binding by event to GrudgeBearer {ev.Source}.");
@@ -209,7 +209,7 @@ public sealed partial class GrudgeSystem : EntitySystem
         if (!TryComp<PaperComponent>(book, out var paperComp))
             return false;
 
-        paperComp.Content = Loc.GetString(book.Comp.preamble, ("owner", (object)book.Comp.RightfulOwner));
+        paperComp.Content = Loc.GetString(book.Comp.preamble, ("owner", book.Comp.RightfulOwner));
         TryDirty(book);
 
         // iterate over crew

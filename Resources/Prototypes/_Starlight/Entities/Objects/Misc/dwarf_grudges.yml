@@ -14,7 +14,7 @@
         - state: grudges
     - type: Paper
       content: fax-machine-popup-error # replaced once an owner is assigned
-      # editingDisabled: true # suggested by wonderfulnewworld
+      stampingDisabled: true # forbid stamps and signatures, ensuring the text remains editable
     - type: PaperVisuals
       backgroundImagePath: "/Textures/_Starlight/Interface/Paper/paper_background_book_grudges.svg.96dpi.png"
       backgroundPatchMargin: 23.0, 16.0, 14.0, 15.0

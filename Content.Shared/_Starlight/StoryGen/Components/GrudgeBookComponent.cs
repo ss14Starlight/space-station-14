@@ -19,9 +19,15 @@ public sealed partial class GrudgeBookComponent : Component
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> relativeDataset = "GrudgeRelative";
 
+    /// <summary>
+    /// When generating grudges, how many generations back can they go?
+    /// </summary>
     [DataField]
-    public byte relativeDepth = 5; // maximum number of generations to go back
+    public byte relativeDepth = 1;
 
+    /// <summary>
+    /// If someone deserves a grudge, how many complaints do we have against them?
+    /// </summary>
     [DataField]
-    public byte multiGrudge = 5; // attempt to generate this number of grudges per grudging
+    public byte multiGrudge = 5;
 }
