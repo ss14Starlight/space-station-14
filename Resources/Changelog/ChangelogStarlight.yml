@@ -1,13 +1,6 @@
 Entries:
 - author: Orange Juice Goose
   changes:
-  - message: Bluespace harvester for starboard.
-    type: Add
-  id: 407370
-  time: '2026-08-07T10:43:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5533
-- author: Orange Juice Goose
-  changes:
   - message: Supermatter for starboard. Starboardmatter.
     type: Add
   id: 407371
@@ -2799,4 +2792,11 @@ Entries:
   id: 407769
   time: '2026-08-18T23:43:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5719
+- author: Sparlight
+  changes:
+  - message: Fixed an intermittent issue where your cursor would get stuck as a torso (especially after waking up).
+    type: Fix
+  id: 407770
+  time: '2026-08-19T08:57:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5717
 Order: -1
