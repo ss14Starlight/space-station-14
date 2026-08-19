@@ -165,7 +165,7 @@
   name: "vinyl: Space Jazz"
   description: "A slow pace jazzy tune reminiscent of elevator music. By: Kevin MacLeod" #SL  Addition
   components:
-  # Starlight-start 
+  # Starlight-start
   - type: Sprite
     state: default
     layers:
