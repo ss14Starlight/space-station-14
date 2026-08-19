@@ -1,0 +1,159 @@
+- type: entity
+  id: ChemMaster1k
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: ChemMaster 1000
+  description: An ancient chemical manipulator that was the precursor to the 4000. Careful of leaks.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/mixer1k.rsi
+    snapCardinals: false 
+    layers:
+    - state: mixer1k_empty
+    - state: mixer1k_screens
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: PlumbingConnectorAppearance
+    offset: 0.09375
+  - type: AtmosPipeColor
+  - type: Icon
+    sprite: _Starlight/Structures/Machines/mixer1k.rsi
+    state: mixer1k_empty
+  - type: ItemMapper
+    containerWhitelist: [beakerSlot]
+    mapLayers:
+      mixer_loaded:
+        whitelist:
+          components:
+          - FitsInDispenser
+  - type: ChemMaster
+    pillDosageLimit: 5
+    patchDosageLimit: 5
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.4,0.25,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ActivatableUI
+    key: enum.ChemMasterUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.ChemMasterUiKey.Key:
+        type: ChemMasterBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 150
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  # Machine / Construction stuff
+  - type: WiresPanel
+  - type: Machine
+    board: ChemApprenticeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      beakerSlot: !type:ContainerSlot
+      outputSlot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      pai_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          components:
+          - FitsInDispenser
+      outputSlot:
+        whitelistFailPopup: chem-master-component-cannot-put-entity-message
+        whitelist:
+          tags:
+          - Bottle
+          - PillCanister
+          - PatchPack
+      pai_slot:
+        name: Personal AI Device
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - PAI
+  - type: SolutionContainerManager
+    solutions:
+      buffer:
+        maxVol: 500 
+        canReact: false
+  - type: DumpableSolution
+    solution: buffer
+  - type: GuideHelp
+    guides:
+    - Chemicals
+    - Chemist
+  - type: PlumbingDevice
+    updateInterval: 2
+  - type: PlumbingInlet
+    solutionName: buffer
+    inletNames:
+    - inletNorth
+    - inletEast
+    - inletWest
+    transferAmount: 40
+  - type: PlumbingOutlet
+    solutionName: beaker
+    connectedOutlets: true
+    containerSlotId: beakerSlot
+    enabled: false
+  - type: NodeContainer
+    nodes:
+      inletNorth:  # Pulls reagents FROM the network (north, east, west sides)
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: North
+      inletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      inletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West
+      outlet:  # Provides reagents TO the network (south side)
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: South
+  - type: LitOnPowered
+  - type: PointLight
+    autoRot: true
+    color: "#339bc4"
+    radius: 4
+    energy: 0.5
+    enabled: false
+    castShadows: false
