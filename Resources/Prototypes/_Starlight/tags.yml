@@ -9,6 +9,9 @@
   id: AbductorScientist
 
 - type: Tag
+  id: AbyssiumOre #BountySalvageAbyssiumOre
+
+- type: Tag
   id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
 
 - type: Tag
@@ -30,7 +33,13 @@
   id: AvianFood
 
 - type: Tag
+  id: Bandolier #CargoBounty: BountySalvageBandolier
+
+- type: Tag
   id: BibleThwackRemovable
+
+- type: Tag
+  id: Birthday
 
 - type: Tag
   id: BladePlasteel
@@ -123,6 +132,9 @@
   id: CameraReinforced
 
 - type: Tag
+  id: CasinoChip
+
+- type: Tag
   id: CentcommVibroblade
 
 - type: Tag
@@ -169,6 +181,9 @@
 
 - type: Tag
   id: CombatRemote # Tag: used on the RemoteSignallerCombat
+
+- type: Tag
+  id: CommieID # BountySalvageCommieID
 
 - type: Tag
   id: Compy
@@ -384,9 +399,22 @@
 - type: Tag
   id: JetInjector
 
+# JobIcon tags below classify JobIconPrototypes for console icon pickers (see JobIconPrototype.Tags)
+- type: Tag
+  id: JobIconAssistantManager
+
+- type: Tag
+  id: JobIconCentComm
+
+- type: Tag
+  id: JobIconCrew
+
 # Used to define clothing that the security K9 can wear.
 - type: Tag
   id: K9Wearable
+
+- type: Tag
+  id: JobIconSyndicate
 
 - type: Tag
   id: L6Saw
@@ -552,6 +580,9 @@
   id: NukiePlanet
 
 - type: Tag
+  id: OldTreasure #BountySalvageOldTreasure
+
+- type: Tag
   id: OmniCyberEyes
 
 - type: Tag
@@ -577,6 +608,9 @@
 
 - type: Tag
   id: PlasteelFilament
+
+- type: Tag
+  id: PlayingCardDeckBox
 
 - type: Tag
   id: PlumbingDuct
@@ -668,6 +702,9 @@
   id: SovietWarehouse
 
 - type: Tag
+  id: SpaceBearHide #BountySalvageSpaceBearHide
+
+- type: Tag
   id: SpecialMech
 
 - type: Tag
@@ -732,6 +769,9 @@
 
 - type: Tag
   id: Wizard
+
+- type: Tag
+  id: RawXenoMeat #BountySalvageRawXenoMeat
 
 - type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.

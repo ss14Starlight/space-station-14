@@ -285,6 +285,8 @@
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
+      enum.ScentSniffUiKey.Key: # Starlight
+        type: ScentSniffBoundUserInterface
   - type: Barotrauma
     damage:
       types:

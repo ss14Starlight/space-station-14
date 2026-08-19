@@ -21,3 +21,15 @@
   parent: SimpleSpaceMobBaseTemplate
   id: SimpleSpaceMobBaseAntag
   abstract: true
+
+- type: entity
+  parent: MobCorgiBaseTemplate
+  id: MobCorgiBase
+  abstract: true
+  components:
+  - type: AntagImmune
+
+- type: entity
+  parent: MobCorgiBaseTemplate
+  id: MobCorgiBaseAntag
+  abstract: true

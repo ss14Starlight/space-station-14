@@ -368,6 +368,9 @@
     jobIcon: JobIconSoviet
   - type: NanoChatCard
     listNumber: false
+  - type: Tag
+    tags:
+    - CommieID # BountySalvageCommieID
   - type: Access
     tags:
       - Communist
