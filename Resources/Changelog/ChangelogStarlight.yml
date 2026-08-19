@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: The security shuttles no longer give you a blank 'no shuttle found' pilot interface when attempting to pilot them.
-    type: Fix
-  id: 407374
-  time: '2026-08-08T21:47:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5573
 - author: Conflee
   changes:
   - message: Resprited the Small Light, Light Tube, Emergency Light, and Strobe Light. They're all slightly cleaner, less pre-tinted so coloring stands out more, and have fake bloom added to their on states.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407773
   time: '2026-08-19T09:29:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5722
+- author: Conflee, pyrolizz
+  changes:
+  - message: Resprite of the AME.
+    type: Tweak
+  id: 407774
+  time: '2026-08-19T09:57:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5726
 Order: -1
