@@ -1,15 +1,14 @@
-using Content.Server.Spawners.Components;
-using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
-using Robust.Shared.Map; // Starlight
+using SpawnOnDespawnComponent = Content.Shared._Starlight.Spawners.Components.SpawnOnDespawnComponent;
 
-namespace Content.Server.Spawners.EntitySystems;
+namespace Content.Shared._Starlight.Spawners.EntitySystems;
 
-public sealed partial class SpawnOnDespawnSystem : EntitySystem // Starlight edit
+public sealed partial class SharedSpawnOnDespawnSystem : EntitySystem
 {
-    [Dependency] private TransformSystem _xform = default!; // Starlight
-    private readonly Queue<(EntProtoId Prototype, EntityCoordinates Coordinates, ComponentRegistry? overrides)> _queuedSpawns = new(); // Starlight
+    [Dependency] private SharedTransformSystem _xform = default!;
+    private readonly Queue<(EntProtoId Prototype, EntityCoordinates Coordinates, ComponentRegistry? overrides)> _queuedSpawns = new();
 
     public override void Initialize()
     {
@@ -18,7 +17,6 @@ public sealed partial class SpawnOnDespawnSystem : EntitySystem // Starlight edi
         SubscribeLocalEvent<SpawnOnDespawnComponent, TimedDespawnEvent>(OnDespawn);
     }
 
-    // Starlight Start
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -27,18 +25,16 @@ public sealed partial class SpawnOnDespawnSystem : EntitySystem // Starlight edi
         while (_queuedSpawns.Count > 0)
         {
             var (prototype, coordinates, overrides) = _queuedSpawns.Dequeue();
-            var uid = Spawn(prototype, overrides);
-            _xform.SetCoordinates(uid, coordinates);
+            PredictedSpawnAtPosition(prototype, coordinates, overrides);
         }
     }
-    // Starlight End
 
     private void OnDespawn(EntityUid uid, SpawnOnDespawnComponent comp, ref TimedDespawnEvent args)
     {
         if (!TryComp(uid, out TransformComponent? xform))
             return;
 
-        _queuedSpawns.Enqueue((comp.Prototype, xform.Coordinates, comp.Overrides)); // Starlight Edit: Queue the spawn to occur after the entity is fully deleted
+        _queuedSpawns.Enqueue((comp.Prototype, xform.Coordinates, comp.Overrides));
     }
 
     public void SetPrototype(Entity<SpawnOnDespawnComponent> entity, EntProtoId prototype)
@@ -46,10 +42,7 @@ public sealed partial class SpawnOnDespawnSystem : EntitySystem // Starlight edi
         entity.Comp.Prototype = prototype;
     }
 
-    #region Starlight
-
     public void SetOverrides(Entity<SpawnOnDespawnComponent> entity, ComponentRegistry? overrides) =>
         entity.Comp.Overrides = overrides;
 
-    #endregion
 }

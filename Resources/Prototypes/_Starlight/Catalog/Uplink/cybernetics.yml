@@ -33,6 +33,23 @@
     - UplinkCybernetics
 
 - type: listing
+  id: UplinkNoseImplantOlfactory
+  name: uplink-olfactory-implant-name
+  description: uplink-olfactory-implant-desc
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Specific/Medical/implants.rsi,
+      state: nose_implant_scent,
+    }
+  productEntity: NoseImplantOlfactory
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkCybernetics
+
+- type: listing
   id: UplinkMantisBladeArm
   name: uplink-mantis-blade-arms-name
   description: uplink-mantis-blade-arms-desc
