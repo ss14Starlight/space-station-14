@@ -276,7 +276,11 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         var hasChemicals = chemicals != null && chemicals.Count > 0;
 
         if (!hasChemicals || chemicals == null)
+        {
+            ChemicalsDivider.Visible = false;
+            ChemicalsContainer.Visible = false;
             return;
+        }
 
         ChemicalsDivider.Visible = true;
         ChemicalsContainer.Visible = true;
