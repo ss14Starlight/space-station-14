@@ -165,6 +165,12 @@
   name: "vinyl: Space Jazz"
   description: A slow pace jazzy tune reminiscent of elevator music. By: Kevin MacLeod #SL  Addition
   components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#67659e"
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/KevinMacleod/SpaceJazz.ogg
