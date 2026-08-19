@@ -23,13 +23,23 @@
   abstract: true
 
 - type: entity
-  parent: MobCorgiBaseTemplate
+  parent: [MobDogColdResistant, MobCorgiBaseTemplate]
   id: MobCorgiBase
   abstract: true
   components:
   - type: AntagImmune
 
 - type: entity
-  parent: MobCorgiBaseTemplate
+  parent: [MobDogColdResistant, MobCorgiBaseTemplate]
   id: MobCorgiBaseAntag
   abstract: true
+
+# Shared cold tolerance for dogs (corgis, MobFox, MobMcGriff, MobWalter).
+- type: entity
+  abstract: true
+  id: MobDogColdResistant
+  components:
+  - type: TemperatureDamage
+    coldDamageThreshold: 230
+  - type: TemperatureProtection
+    coolingCoefficient: 0.8
