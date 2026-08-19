@@ -8363,7 +8363,7 @@ entities:
     - type: Transform
       parent: 1
       pos: 12.5,2.5
-- proto: DefaultStationBeaconCargoBay
+- proto: DefaultStationBeaconATS
   entities:
   - uid: 1275
     components:
