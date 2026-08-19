@@ -102,6 +102,9 @@
   #starlight region
   - type: AccessReader
     containerAccessProvider: board
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronics ]
   - type: ContainerContainer
     containers:
       board: !type:Container
