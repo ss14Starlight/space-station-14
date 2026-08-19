@@ -23,8 +23,3 @@
   - Closet
   - WallLocker
   - WallCloset
-
-- type: paintableGroupCategory # funky start
-  id: Cardboard
-  groups:
-  - Cardboard # funky end
