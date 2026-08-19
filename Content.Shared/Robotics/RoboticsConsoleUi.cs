@@ -77,7 +77,7 @@ public partial record struct CyborgControlData
     /// </summary>
     [DataField(required: true)]
     public string ChassisName = string.Empty;
-// Starlight Begin
+#region Starlight
     /// <summary>
     /// Name of the borg's entity, without its silicon id.
     /// </summary>
@@ -101,7 +101,7 @@ public partial record struct CyborgControlData
     /// </summary>
     [DataField]
     public string Location = string.Empty;
-// Starlight End
+#endregion
 
     /// <summary>
     /// Battery charge from 0 to 1.
