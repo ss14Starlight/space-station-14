@@ -7,6 +7,7 @@ using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -37,6 +38,7 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
     private static readonly TimeSpan ResetDelay = TimeSpan.FromSeconds(3);
 
     [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private INetManager _net = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private ISharedAdminLogManager _adminLog = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
@@ -148,6 +150,9 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
     {
         if (args.Handled || args.Cancelled || !CanReset(borg))
             return;
+
+        if (_net.IsClient) // Starlight
+            return; // Starlight
 
         if (!OptionalModulesRemoved(borg.Owner))
         {
