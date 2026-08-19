@@ -1,5 +1,6 @@
-﻿using Content.Client._Starlight.Managers;
+using Content.Client._Starlight.Managers;
 using Content.Client.Administration.Managers;
+using Content.Client.FeedbackPopup;
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
@@ -29,6 +30,7 @@ public sealed partial class EscapeUIController : UIController, IOnStateEntered<G
     [Dependency] private InfoUIController _info = default!;
     [Dependency] private OptionsUIController _options = default!;
     [Dependency] private GuidebookUIController _guidebook = default!;
+    [Dependency] private FeedbackPopupUIController _feedback = null!;
 
     private Options.UI.EscapeMenu? _escapeWindow;
 
@@ -66,6 +68,12 @@ public sealed partial class EscapeUIController : UIController, IOnStateEntered<G
 
         _escapeWindow.OnClose += DeactivateButton;
         _escapeWindow.OnOpen += ActivateButton;
+
+        _escapeWindow.FeedbackButton.OnPressed += _ =>
+        {
+            CloseEscapeWindow();
+            _feedback.ToggleWindow();
+        };
 
         // NullLink start
         _escapeWindow.DiscordButton.OnPressed += _ =>

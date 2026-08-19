@@ -24,6 +24,7 @@
   - BorgModuleInflatable
   - BorgModuleArtistry
   - BorgModuleUppies # Starlight
+  - BorgModuleGaming # Starlight
 
 - type: latheRecipePack
   id: BorgLimbsStatic

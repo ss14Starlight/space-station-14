@@ -4,7 +4,32 @@
 - type: entity
   parent: AirAlarm
   id: AirAlarmUnlocked
+  name: unlocked air alarm
   suffix: Unlocked
+  description: An air alarm with its access reader deactivated. Anyone can adjust it.
   components:
   - type: AccessReader
     enabled: false
+
+# Mode None commands no vent or scrubber until one is picked, autoMode off stops
+# alarm states reapplying a mode, and group Invalid drops it from the alerts
+# console queries. All three are reversible from the UI.
+- type: entity
+  parent: AirAlarm
+  id: AirAlarmChamber
+  name: chamber air alarm
+  suffix: Chamber
+  description: An air alarm set up for use in chambers. It doesn't report to the station's alert console.
+  components:
+  - type: AirAlarm
+    currentMode: None
+    autoMode: false
+  - type: AtmosAlertsDevice
+    group: Invalid
+
+- type: entity
+  parent: [AirAlarmChamber, AirAlarmUnlocked]
+  id: AirAlarmChamberUnlocked
+  name: unlocked chamber air alarm
+  suffix: Chamber, unlocked
+  description: An air alarm set up for use in chambers. Anyone can adjust it, and it doesn't report to the station's alert console.

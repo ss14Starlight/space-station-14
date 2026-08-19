@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using Content.Client.Administration.Managers;
+using Content.Client.Construction; // Starlight
 using Content.Client.Gameplay;
 using Content.Client.Markers;
 using Content.Client.Sandbox;
@@ -39,6 +40,7 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
     [UISystemDependency] private readonly DebugPhysicsSystem _debugPhysics = default!;
     [UISystemDependency] private readonly MarkerSystem _marker = default!;
     [UISystemDependency] private readonly SandboxSystem _sandbox = default!;
+    [UISystemDependency] private readonly ConstructionSystem _construction = default!; // Starlight
 
     private SandboxWindow? _window;
 
@@ -143,6 +145,7 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         _window.SpawnTilesButton.OnPressed += _ => TileSpawningController.ToggleWindow();
         _window.SpawnEntitiesButton.OnPressed += _ => EntitySpawningController.ToggleWindow();
         _window.SpawnDecalsButton.OnPressed += _ => DecalPlacerController.ToggleWindow();
+        _window.FinishConstructionGhostsButton.OnPressed += _ => _construction.DebugFinishAllGhosts(); // Starlight
         _window.GiveFullAccessButton.OnPressed += _ => _sandbox.GiveAdminAccess();
         _window.GiveAghostButton.OnPressed += _ => _sandbox.GiveAGhost();
         _window.ToggleLightButton.OnToggled += _ => _sandbox.ToggleLight();

@@ -729,6 +729,8 @@
   - ServiceWorkerChefJumpsuit
   - ServiceWorkerChefJumpskirt
   - MaidOutfit
+  - JanitorMaidOutfit 
+  - JanitorMaidOutfitMini 
 
 # Performer
 - type: loadoutGroup
@@ -813,6 +815,57 @@
   minLimit: 0
   loadouts:
   - LizardPlushieZookeeper
+
+# Assistant Manager
+- type: loadoutGroup
+  id: AssistantManagerHead
+  name: loadout-group-assistantmanager-head
+  minLimit: 0
+  loadouts:
+  - AssistantManagerHead
+  - AssistantManagerBeret
+
+- type: loadoutGroup
+  id: AssistantManagerJumpsuit
+  name: loadout-group-assistantmanager-jumpsuit
+  loadouts:
+  - AssistantManagerJumpsuit
+  - AssistantManagerJumpskirt
+
+- type: loadoutGroup
+  id: AssistantManagerBackpack
+  name: loadout-group-assistantmanager-backpack
+  loadouts:
+  - AssistantManagerBackpack
+  - AssistantManagerSatchel
+  - AssistantManagerDuffel
+
+- type: loadoutGroup
+  id: AssistantManagerGloves
+  name: loadout-group-assistantmanager-gloves
+  minLimit: 0
+  loadouts:
+  - AssistantManagerGloves
+  - AssistantManagerMittens
+
+- type: loadoutGroup
+  id: AssistantManagerOuterClothing
+  name: loadout-group-assistantmanager-outerclothing
+  minLimit: 0
+  loadouts:
+  - AssistantManagerWintercoat
+
+- type: loadoutGroup
+  id: AssistantManagerShoes
+  name: loadout-group-assistantmanager-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BlackShoes
+  - WhiteShoes
+  - BlueShoes
+  - BlueWinterBoots
+  - Heels
 
 # Silicon Brain Type
 - type: loadoutGroup

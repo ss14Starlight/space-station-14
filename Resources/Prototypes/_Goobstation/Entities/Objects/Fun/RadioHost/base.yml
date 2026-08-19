@@ -144,6 +144,9 @@
   - type: ContainerContainer
     containers:
       vinyl: !type:ContainerSlot
+  - type: Tag # Starlight
+    tags:
+    - VinylSleeve
 
 - type: entity
   parent: BaseItem
@@ -167,6 +170,9 @@
   - type: ContainerContainer
     containers:
       vinyl: !type:ContainerSlot
+  - type: Tag # Starlight
+    tags:
+    - VinylSleeve
   - type: EntityTableContainerFill # By default just put a random one in there.
     containers:
       vinyl: !type:NestedSelector

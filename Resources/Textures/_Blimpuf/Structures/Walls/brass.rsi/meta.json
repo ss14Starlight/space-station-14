@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "full",
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "solid0",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "solid1",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "solid2",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "solid3",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "solid4",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "solid5",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "solid6",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "solid7",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_construct-0",
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_construct-1",
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_construct-2",
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_construct-3",
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_construct-4",
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_construct-5",
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_over0",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_over1",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_over2",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_over3",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_over4",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_over5",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_over6",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "reinf_over7",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "rgeneric",
+	  "copyright": "Conflee, ItsMaitake"
+    }
+  ]
+}

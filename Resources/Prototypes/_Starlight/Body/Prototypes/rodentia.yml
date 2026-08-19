@@ -36,6 +36,7 @@
         eyes: OrganRodentiaEyes
         tongue: OrganHumanTongue
         eye_implant: null
+        nose_implant: null # 🌟Starlight🌟
         brain_implant: null
     torso:
       part: TorsoRodentia

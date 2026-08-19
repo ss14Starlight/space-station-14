@@ -1,6 +1,5 @@
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Body.Components;
-using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Forensics;
 
 namespace Content.Server._Starlight.Medical.Body.Systems;
@@ -25,10 +24,14 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
                 out var bloodSolution) ||
             !SolutionContainer.EnsureSolution(entity.Owner,
                 entity.Comp.BloodTemporarySolutionName,
-                out var tempSolution))
+                out var tempSolution) ||
+            !SolutionContainer.EnsureSolution(entity.Owner,
+                entity.Comp.MetabolitesSolutionName,
+                out var metabolitesSolution))
             return;
 
         bloodSolution.MaxVolume = entity.Comp.BloodReferenceSolution.Volume * entity.Comp.MaxVolumeModifier;
+        metabolitesSolution.MaxVolume = bloodSolution.MaxVolume;
         tempSolution.MaxVolume = entity.Comp.BleedPuddleThreshold * 4; // give some leeway, for chemstream as well
         entity.Comp.BloodReferenceSolution.SetReagentData(GetEntityBloodData((entity, entity.Comp)));
 
@@ -42,19 +45,7 @@ public sealed class BloodstreamSystem : SharedBloodstreamSystem
     // forensics is not predicted yet
     private void OnDnaGenerated(Entity<BloodstreamComponent> entity, ref GenerateDnaEvent args)
     {
-        if (SolutionContainer.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))
-        {
-            var data = NewEntityBloodData(entity);
-            entity.Comp.BloodReferenceSolution.SetReagentData(data);
-
-            foreach (var reagent in bloodSolution.Contents)
-            {
-                List<ReagentData> reagentData = reagent.Reagent.EnsureReagentData();
-                reagentData.RemoveAll(x => x is DnaData);
-                reagentData.AddRange(data);
-            }
-        }
-        else
+        if (!RefreshBloodData(entity))
             Log.Error("Unable to set bloodstream DNA, solution entity could not be resolved");
     }
 }

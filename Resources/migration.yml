@@ -790,4 +790,24 @@ OrganSkeletonPersonArmRight: RightArmSkeleton
 # Starlight End: NuBody Revert
 
 # 2026-01-19
-#TowelColorOrange: null # Starlight - Towel Restoration
+# Starlight start, Towels not removed
+#TowelColorPurple: null
+#TowelColorRed: null
+#TowelColorBlue: null
+#TowelColorDarkBlue: null
+#TowelColorLightBlue: null
+#TowelColorTeal: null
+#TowelColorBrown: null
+#TowelColorLightBrown: null
+#TowelColorGray: null
+#TowelColorGreen: null
+#TowelColorDarkGreen: null
+#TowelColorGold: null
+#TowelColorOrange: null
+#TowelColorBlack: null
+#TowelColorPink: null
+#TowelColorYellow: null
+#TowelColorMaroon: null
+#TowelColorSilver: null
+#TowelColorMime: null
+# Starlight end

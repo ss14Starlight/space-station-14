@@ -70,6 +70,24 @@
   - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
+  id: JobAssistantManager
+  groups:
+  - GroupTankHarness
+  - AssistantManagerHead
+  - AssistantManagerJumpsuit
+  - AssistantManagerBackpack
+  - AssistantManagerGloves
+  - AssistantManagerOuterClothing
+  - AssistantManagerShoes
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - AssistantJobTrinkets
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
   id: JobNanotrasenCareerTrainer
   groups:
   - NanotrasenCareerTrainerJumpsuit
