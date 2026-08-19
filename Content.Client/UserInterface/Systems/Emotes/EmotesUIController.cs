@@ -1,6 +1,7 @@
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
-using Content.Shared._Starlight.CloudEmotes; // Starlight
+using Content.Shared._Starlight.Chat;
+using Content.Shared._Starlight.CloudEmotes;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Input;
@@ -162,7 +163,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
                 emotesByCategory.Add(emote.Category, list);
             }
 
-            var actionOption = new RadialMenuActionOption<EmotePrototype>(HandleRadialButtonClick, emote)
+            var actionOption = new RadialMenuActionOption<EmotePrototype>(HandleRadialButtonClick, emote, HandleAlternativeRadialButtonClick) //Starlight-edit
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(emote.Icon),
                 ToolTip = Loc.GetString(emote.Name)
@@ -205,6 +206,12 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
 
         return models;
     }
+
+    #region Starlight
+
+    private void HandleAlternativeRadialButtonClick(EmotePrototype emote) => EntityManager.RaisePredictiveEvent(new RequestBindEmoteMessage(emote.ID));
+
+    #endregion
 
     private void HandleRadialButtonClick(EmotePrototype prototype)
     {

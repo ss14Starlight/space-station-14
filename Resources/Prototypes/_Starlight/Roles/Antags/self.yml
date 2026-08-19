@@ -13,9 +13,6 @@
     role: JobBorg
     time: 6h
   - !type:RoleTimeRequirement
-    role: JobScientist
-    time: 5h # Starlight
-  - !type:RoleTimeRequirement
     role: JobRoboticist
     time: 5h # Starlight
   playTimeTracker: AntagSELFAgent

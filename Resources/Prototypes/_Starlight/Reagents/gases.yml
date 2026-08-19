@@ -6,7 +6,7 @@
   flavor: sour
   color: "#ee9568"
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:Oxygenate
         factor: 8
@@ -26,7 +26,7 @@
   flavor: sweet
   color: "#d9ecf0"
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:Emote
         conditions:

@@ -3,6 +3,7 @@
   name: magistrate stamp
   parent: [ RubberStampBase, BaseCommandContraband ]
   id: RubberStampMagistrate
+  description: A rubber stamp for stamping important documents. Your word is law. This stamp is order.
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -17,6 +18,7 @@
   name: nt representative's rubber stamp
   parent: [ RubberStampBase, BaseCommandContraband ]
   id: RubberStampNtrep
+  description: A rubber stamp for stamping important documents. Heads will roll.
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -31,6 +33,7 @@
   name: internal affairs agent's rubber stamp
   parent: [ RubberStampBase, BaseLawContraband ]
   id: RubberStampIAA
+  description: A rubber stamp for stamping important documents. For when you want your fax to CC to have that bit more authority.
   suffix: DO NOT MAP
   components:
     - type: Stamp
@@ -45,6 +48,7 @@
   name: blueshield rubber stamp
   parent: [ RubberStampBase, BaseBlueShieldContraband ]
   id: RubberStampBSO
+  description: A rubber stamp for stamping important documents. While you are stamping a document, the captain is getting his shoes stolen AGAIN.
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -60,6 +64,7 @@
   name: brigmedic's rubber stamp
   parent: RubberStampBase
   id: RubberStampBrigmedic
+  description: A rubber stamp for stamping important documents. No authority, yet you will still stamp every single document you can.
   suffix: DO NOT MAP
   components:
     - type: Stamp
@@ -75,6 +80,7 @@
   name: central administration division rubber stamp
   parent: RubberStampBase
   id: RubberStampCAD
+  description: A rubber stamp for stamping important documents. Somebody is getting fired.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -88,6 +94,7 @@
   name: central cargo division rubber stamp
   parent: RubberStampBase
   id: RubberStampCCD
+  description: A rubber stamp for stamping important documents. Used to deny the urgent medical supplies request and send over a pizza party instead.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -101,6 +108,7 @@
   name: central engineering division rubber stamp
   parent: RubberStampBase
   id: RubberStampCED
+  description: A rubber stamp for stamping important documents. Use when another multi-trillion dollar station was lost.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -114,6 +122,7 @@
   name: central intelligence division rubber stamp
   parent: RubberStampBase
   id: RubberStampCID
+  description: A rubber stamp for stamping important documents. NT-ISD will always be scarier.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -127,6 +136,7 @@
   name: central medical division rubber stamp
   parent: RubberStampBase
   id: RubberStampCMD
+  description: A rubber stamp for stamping important documents. For when the REAL doctor is in.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -140,6 +150,7 @@
   name: central research division rubber stamp
   parent: RubberStampBase
   id: RubberStampCRD
+  description: A rubber stamp for stamping important documents. Every bit as exploded as it's non-CC counterpart.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -153,6 +164,7 @@
   name: central domestic division rubber stamp
   parent: RubberStampBase
   id: RubberStampCDD
+  description: A rubber stamp for stamping important documents. What do you even do again?
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -166,6 +178,7 @@
   name: central special operations division rubber stamp
   parent: RubberStampBase
   id: RubberStampCSOD
+  description: A rubber stamp for stamping important documents. For when something is too hot for CSD.
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -180,6 +193,7 @@
   name: central security division rubber stamp
   parent: RubberStampBase
   id: RubberStampCSD
+  description: A rubber stamp for stamping important documents. They fought the law, and the law won.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -193,6 +207,7 @@
   name: cc department stamps box
   parent: BoxCardboard
   id: BoxStampsCCDepartments
+  description: A small box containing stamps. You would think by the 26th century there would be something more sophisticated than a rubber stamp.
   components:
     - type: Storage
       maxItemSize: Small
@@ -226,6 +241,7 @@
   name: ACKNOWLEDGED rubber stamp
   parent: RubberStampBase
   id: RubberStampAcknowledged
+  description: A rubber stamp for stamping important documents. Yes we hear you. No, we will not do anything.
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -240,6 +256,7 @@
   name: MISSING STAMPS rubber stamp
   parent: RubberStampBase
   id: RubberStampMissingStamps
+  description: A rubber stamp for stamping important documents. Next time, get the clown's stamp!
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -254,6 +271,7 @@
   name: INCORRECT STAMPS rubber stamp
   parent: RubberStampBase
   id: RubberStampIncorrectStamps
+  description: A rubber stamp for stamping important documents. Next time, don't get the clown's stamp!
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -268,6 +286,7 @@
   name: INCORRECT FORM rubber stamp
   parent: RubberStampBase
   id: RubberStampIncorrectForm
+  description: A rubber stamp for stamping important documents. They needed the OTHER document. No, the OTHER OTHER document.
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -282,6 +301,7 @@
   name: INCOMPLETE FORM rubber stamp
   parent: RubberStampBase
   id: RubberStampIncompleteForm
+  description: A rubber stamp for stamping important documents. If they aren't going to finish this form, then I'm not going to f
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -296,6 +316,7 @@
   name: SENT TO ATS rubber stamp
   parent: RubberStampBase
   id: RubberStampSentToATS
+  description: A rubber stamp for stamping important documents. Especially useful if the cargo shuttle is still intact.
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -310,6 +331,7 @@
   name: DEFER TO COMMAND rubber stamp
   parent: RubberStampBase
   id: RubberStampDeferToCommand
+  description: A rubber stamp for stamping important documents. Passing the buck, the CC way.
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -324,6 +346,7 @@
   name: STANDBY rubber stamp
   parent: RubberStampBase
   id: RubberStampStandby
+  description: A rubber stamp for stamping important documents. You will do something. Maybe.
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -338,6 +361,7 @@
   name: cc administrative stamps box
   parent: BoxCardboard
   id: BoxStampsCCAdministrative
+  description: A small box containing stamps. You would think by the 26th century there would be something more sophisticated than a rubber stamp.
   components:
     - type: Storage
       maxItemSize: Small
@@ -371,6 +395,7 @@
   name: salvage lead's rubber stamp
   parent: RubberStampBase
   id: RubberStampSalvageLead
+  description: A rubber stamp for stamping important documents. You should probably use this more often than you do.
   suffix: DO NOT MAP
   components:
   - type: Stamp
@@ -386,6 +411,7 @@
   name: trans-solar federation rubber stamp
   parent: RubberStampBase
   id: RubberStampTSF
+  description: A rubber stamp for stamping important documents. Oh god...
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -399,6 +425,7 @@
   name: trans-solar marine corps rubber stamp
   parent: RubberStampBase
   id: RubberStampTSMC
+  description: A rubber stamp for stamping important documents. OH GOD OH FUCK...!
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -412,6 +439,7 @@
   name: solgov law enforcement rubber stamp
   parent: RubberStampBase
   id: RubberStampSolgovLaw
+  description: A rubber stamp for stamping important documents. Oh fuck...
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -425,6 +453,7 @@
   name: solgov representative rubber stamp
   parent: RubberStampBase
   id: RubberStampSolgovRep
+  description: A rubber stamp for stamping important documents. Reminds people that CC and NT answer to somebody.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
@@ -438,6 +467,7 @@
   name: solgov traders rubber stamp
   parent: RubberStampBase
   id: RubberStampSolgovTraders
+  description: A rubber stamp for stamping important documents. Where is money to be made, that is.
   categories: [ DoNotMap ]
   components:
   - type: Stamp
