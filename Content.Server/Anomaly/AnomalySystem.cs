@@ -95,18 +95,6 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         // Starlight edit End
     }
 
-    public void ShuffleParticlesEffect(Entity<AnomalyComponent> anomaly)
-    {
-        var particles = new List<AnomalousParticleType>
-            { AnomalousParticleType.Delta, AnomalousParticleType.Epsilon, AnomalousParticleType.Zeta, AnomalousParticleType.Sigma };
-
-        anomaly.Comp.SeverityParticleType = Random.PickAndTake(particles);
-        anomaly.Comp.DestabilizingParticleType = Random.PickAndTake(particles);
-        anomaly.Comp.WeakeningParticleType = Random.PickAndTake(particles);
-        anomaly.Comp.TransformationParticleType = Random.PickAndTake(particles);
-        Dirty(anomaly);
-    }
-
     private void OnShutdown(Entity<AnomalyComponent> anomaly, ref ComponentShutdown args)
     {
         if (anomaly.Comp.CurrentBehavior is not null)
