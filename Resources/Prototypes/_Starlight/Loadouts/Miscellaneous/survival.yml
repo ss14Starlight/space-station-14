@@ -333,3 +333,11 @@
   storage:
     back:
     - BoxSurvivalMilitaryDouble # Military budget cuts mean Military Rodentia don't get cheese. Sad days.
+
+- type: loadout
+  id: LoadoutSpeciesEVACooling
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: IPC
+  equipment:
+    suitstorage: CoolingUnit

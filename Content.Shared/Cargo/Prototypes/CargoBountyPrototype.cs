@@ -23,6 +23,14 @@ public sealed partial class CargoBountyPrototype : IPrototype
     [DataField(required: true)]
     public int Reward;
 
+    #region Starlight
+    /// <summary>
+    /// The number of salvage tickets to spawn when the bounty is completed.
+    /// </summary>
+    [DataField]
+    public int Tickets = 0;
+    #endregion
+
     /// <summary>
     /// A description for flava purposes.
     /// </summary>

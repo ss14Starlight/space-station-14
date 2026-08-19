@@ -14,6 +14,7 @@
       - Paper
       - AvianFood
       - IceCream
+      - Birthday
   - type: SolutionContainerManager
     solutions:
       stomach:

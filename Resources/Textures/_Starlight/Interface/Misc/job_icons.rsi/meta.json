@@ -281,6 +281,39 @@
                     0.1
                 ]
             ]
+
+        },
+        {
+            "name": "ClericalAssistant",
+            "copyright": "Wizards Den, modified by bynddark8"
+        },
+        {
+            "name": "CookAssistant",
+            "copyright": "Wizards Den, modified by bynddark8"
+        },
+        {
+            "name": "DeliveryAssistant",
+            "copyright": "Wizards Den, modified by bynddark8"
+        },
+        {
+            "name": "GardenerAssistant",
+            "copyright": "Wizards Den, modified by bynddark8"
+        },
+        {
+            "name": "HandymanAssistant",
+            "copyright": "Wizards Den, modified by bynddark8"
+        },
+        {
+            "name": "MedicalAssistant",
+            "copyright": "Wizards Den, modified by bynddark8"
+        },
+        {
+            "name": "ReligiousAssistant",
+            "copyright": "Rhetorica, modified by bynddark8"
+        },
+        {
+            "name": "ShopkeeperAssistant",
+            "copyright": "bynddark8"
         }
     ]
 }

@@ -143,7 +143,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
                 }
 
                 var missingCharge = battery.MaxCharge - charge;
-                powerConsumer.DrawRate = Math.Min(50_000f, Math.Max(0f, missingCharge / args.dt));
+                powerConsumer.DrawRate = Math.Min(50_000f, Math.Max(0f, missingCharge));
                 _battery.ChangeCharge((uid, battery), powerConsumer.ReceivedPower * args.dt);
                 charge = _battery.GetCharge((uid, battery));
         }
@@ -175,8 +175,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             }
         }
 
-
-        var rate = (charge/battery.MaxCharge) / args.dt;
+        var rate = (charge/battery.MaxCharge) * args.dt;
         var initH2O = mixture.GetMoles(Gas.WaterVapor);
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);
         var initBZ = mixture.GetMoles(Gas.BZ);
@@ -186,11 +185,12 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         var H2OLoad = 0; ///Starlight: Dummy values, load is now combined rather than highest wins.
         var HyperNobLoad = 0;
         var BZLoad = 0;
+        var heatScale = _atmosphereSystem.HeatScale;
 
         if (initH2O > 0.05f)
         {
             var temperatureEfficiency = Math.Min(mixture.Temperature / 1123.15f, 1f); ///Starlight: For some reason combustibles have variable oxy consumption? This keeps it balanced.
-            var h2oRate = Math.Min(Math.Min(2.5f * rate, initH2O / 2f), (2f * charge / electrolyzer.Efficiency)/Atmospherics.FireHydrogenEnergyReleased);
+            var h2oRate = Math.Min(Math.Min(2.5f * rate, initH2O / 2f), (2f * charge / electrolyzer.Efficiency)/(Atmospherics.FireHydrogenEnergyReleased / heatScale));
 
             var h2oRemoved = h2oRate * 2f;
             var oxyProduced = h2oRate * temperatureEfficiency;
@@ -200,7 +200,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             mixture.AdjustMoles(Gas.Oxygen, oxyProduced);
             mixture.AdjustMoles(Gas.Hydrogen, hydrogenProduced);
 
-            H2OLoad = (int) (Atmospherics.FireHydrogenEnergyReleased * hydrogenProduced); ///Starlight: Load is determined by the energy made by re-igniting the hydrogen. Efficiency of device prevents free power.
+            H2OLoad = (int) ((Atmospherics.FireHydrogenEnergyReleased / heatScale) * hydrogenProduced); ///Starlight: Load is determined by the energy made by re-igniting the hydrogen. Efficiency of device prevents free power.
         }
 
         if (initHyperNob > 0.01f && temperature < 150f)
@@ -220,7 +220,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             mixture.AdjustMoles(Gas.BZ, -BZRate);
             mixture.AdjustMoles(Gas.Oxygen, BZRate * 0.2f);
             mixture.AdjustMoles(Gas.Halon, BZRate * 2f);
-            var energyReleased = BZRate * Atmospherics.HalonProductionEnergy;
+            var energyReleased = BZRate * (Atmospherics.HalonProductionEnergy / heatScale);
 
             var newHeatCapacity = _atmosphereSystem.GetHeatCapacity(mixture, true);
             if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
@@ -233,7 +233,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         if (finalHeatCapacity > Atmospherics.MinimumHeatCapacity && finalHeatCapacity != oldHeatCapacity)
             mixture.Temperature = Math.Max(mixture.Temperature * oldHeatCapacity / finalHeatCapacity, Atmospherics.TCMB);
 
-        var powerUsed = (500f + H2OLoad + HyperNobLoad + BZLoad); ///Starlight: Gotta consume power
+        var powerUsed = (50f + H2OLoad + HyperNobLoad + BZLoad); ///Starlight: Gotta consume power
 
         var fuelMultiplier = 1f;
 
@@ -246,7 +246,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
 
         _battery.ChangeCharge((uid, battery),-powerUsed * fuelMultiplier / electrolyzer.Efficiency);
 
-        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - powerUsed);
+        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - (powerUsed * 0.01f));
 
         if (electrolyzer.Passive == true)
         {
