@@ -19,6 +19,10 @@
           Slash: 0.9
           Piercing: 0.9
           Heat: 0.9
+        #region Starlight
+        flatReductions:
+          Structural: 10
+        #endregion Starlight
       activeBlockModifier:
         coefficients:
           Blunt: 0.8
@@ -30,6 +34,7 @@
           Slash: 1
           Piercing: 1
           Heat: 1
+          Structural: 10 # Starlight
     - type: Damageable
       damageContainer: Shield
     - type: ExaminableDamage
@@ -105,6 +110,10 @@
         coefficients:
           Blunt: 0.7
           Slash: 0.7
+        #region Starlight
+        flatReductions:
+          Structural: 20
+        #endregion Starlight
       activeBlockModifier:
         coefficients:
           Blunt: 0.5
@@ -112,6 +121,7 @@
         flatReductions:
           Blunt: 1
           Slash: 1
+          Structural: 20 # Starlight
 
 - type: entity
   name: laser shield
@@ -127,11 +137,16 @@
       passiveBlockModifier:
         coefficients:
           Heat: 0.7
+        #region Starlight
+        flatReductions:
+          Structural: 10
+        #endregion Starlight
       activeBlockModifier:
         coefficients:
           Heat: 0.5
         flatReductions:
           Heat: 1
+          Structural: 10 # Starlight
 
 - type: entity
   name: ballistic shield
@@ -147,11 +162,16 @@
       passiveBlockModifier:
         coefficients:
           Piercing: 0.7
+        #region Starlight
+        flatReductions:
+          Structural: 10
+        #endregion Starlight
       activeBlockModifier:
         coefficients:
           Piercing: 0.5
         flatReductions:
           Piercing: 1
+          Structural: 10 # Starlight
 
 #Craftable shields
 
@@ -172,6 +192,10 @@
           Slash: 0.95
           Piercing: 0.95
           Heat: 2
+        #region Starlight
+        flatReductions:
+          Structural: 10
+        #endregion Starlight
       activeBlockModifier:
         coefficients:
           Blunt: 0.85
@@ -182,6 +206,7 @@
           Blunt: 1
           Slash: 1
           Piercing: 1
+          Structural: 10 # Starlight
     - type: Construction
       graph: WoodenBuckler
       node: woodenBuckler
@@ -286,6 +311,10 @@
           Slash: 0.95
           Piercing: 0.95
           Heat: 0.9
+        #region Starlight
+        flatReductions:
+          Structural: 10
+        #endregion Starlight
       activeBlockModifier:
         coefficients:
           Blunt: 0.85
@@ -297,6 +326,7 @@
           Slash: 0.5
           Piercing: 0.5
           Heat: 1
+          Structural: 10 # Starlight
     - type: MeleeWeapon
       damage:
         types:
@@ -349,6 +379,10 @@
           Blunt: 0.95
           Slash: 0.95
           Piercing: 0.95
+        #region Starlight
+        flatReductions:
+          Structural: 10
+        #endregion Starlight
       activeBlockModifier:
         coefficients:
           Blunt: 0.85
@@ -358,6 +392,7 @@
           Blunt: 0.5
           Slash: 0.5
           Piercing: 0.5
+          Structural: 10 # Starlight
     - type: Construction
       graph: WebObjects
       node: shield
@@ -405,6 +440,10 @@
           Slash: 0.8
           Piercing: 0.8
           Heat: 1.5
+        #region Starlight
+        flatReductions:
+          Structural: 20
+        #endregion Starlight
       activeBlockModifier:
         coefficients:
           Blunt: 0.7
@@ -415,6 +454,7 @@
           Blunt: 1
           Slash: 1
           Piercing: 1
+          Structural: 20 # Starlight
       #Have it break into brass when clock cult is in
 
 - type: entity
@@ -438,6 +478,10 @@
           Slash: 1.2
           Piercing: 1.2
           Heat: .7
+        #region Starlight
+        flatReductions:
+          Structural: 5
+        #endregion Starlight
       activeBlockModifier:
         coefficients:
           Blunt: 1.2
@@ -446,6 +490,7 @@
           Heat: .6
         flatReductions:
           Heat: 1
+          Structural: 5 # Starlight
       blockSound: !type:SoundPathSpecifier
         path: /Audio/Effects/glass_step.ogg
     - type: Destructible
@@ -547,12 +592,14 @@
           Slash: 0.9
           Piercing: 0.85
           Heat: 0.6
+          Structural: 0.0 # Starlight - it's energy, it doesn't have structural integrity
       activeBlockModifier:
         coefficients:
           Blunt: 1.2
           Slash: 0.85
           Piercing: 0.5
           Heat: 0.4
+          Structural: 0.0 # Starlight
         flatReductions:
           Heat: 1
           Piercing: 1

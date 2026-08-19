@@ -42,7 +42,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: 0.35
+    armorPenetration: 0.69 # AP
     damage:
       types:
         Piercing: 75

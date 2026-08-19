@@ -38,6 +38,7 @@
     - Brute
   supportedTypes:
     - Heat
+    - Structural # Starlight
 
 - type: damageContainer
   id: Box
