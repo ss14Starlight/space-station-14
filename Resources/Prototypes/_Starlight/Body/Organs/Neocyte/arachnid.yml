@@ -13,7 +13,4 @@
     updateInterval: 1.5
     maxReagents: 2
     metabolizerTypes: [ Arachnid, Neocyte ]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]

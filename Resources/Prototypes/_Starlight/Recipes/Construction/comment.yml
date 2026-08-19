@@ -1,0 +1,12 @@
+- type: construction
+  id: Comment
+  name: construction-comment-name
+  description: construction-comment-description
+  graph: Comment
+  startNode: start
+  targetNode: comment
+  category: construction-category-misc
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  canRotate: false
