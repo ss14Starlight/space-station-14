@@ -102,6 +102,9 @@ public sealed class TickerCommand : ToolshedCommand
         ctx.WriteLine("Post-round has been cancelled.");
     }
 
+    /// <summary>
+    /// Toggles the automatic timer on round end.
+    /// </summary>
     [CommandImplementation("toggletimeronend")]
     public void ToggleTimerOnend(IInvocationContext ctx, bool state)
     {
