@@ -18,13 +18,13 @@
   id: K9BrownHealth
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown.rsi
     state: health0
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown.rsi
     state: health1
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown.rsi
     state: health2
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown.rsi
     state: health3
   name: alerts-health-name
   description: alerts-health-desc
@@ -35,7 +35,7 @@
   id: K9BrownCrit
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_critical.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown.rsi
     state: critical
   name: alerts-crit-name
   description: alerts-crit-desc
@@ -44,7 +44,7 @@
   id: K9BrownDead
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown_dead.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_brown.rsi
     state: dead
   name: alerts-dead-name
   description: alerts-dead-desc
@@ -53,13 +53,13 @@
   id: K9TanHealth
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan.rsi
     state: health0
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan.rsi
     state: health1
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan.rsi
     state: health2
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan.rsi
     state: health3
   name: alerts-health-name
   description: alerts-health-desc
@@ -70,7 +70,7 @@
   id: K9TanCrit
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_critical.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan.rsi
     state: critical
   name: alerts-crit-name
   description: alerts-crit-desc
@@ -79,7 +79,7 @@
   id: K9TanDead
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan_dead.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_tan.rsi
     state: dead
   name: alerts-dead-name
   description: alerts-dead-desc
@@ -88,13 +88,13 @@
   id: K9BlackHealth
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black.rsi
     state: health0
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black.rsi
     state: health1
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black.rsi
     state: health2
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black.rsi
     state: health3
   name: alerts-health-name
   description: alerts-health-desc
@@ -105,7 +105,7 @@
   id: K9BlackCrit
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black_critical.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black.rsi
     state: critical
   name: alerts-crit-name
   description: alerts-crit-desc
@@ -114,7 +114,7 @@
   id: K9BlackDead
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black_dead.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_black.rsi
     state: dead
   name: alerts-dead-name
   description: alerts-dead-desc
@@ -123,13 +123,13 @@
   id: K9GreyHealth
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey.rsi
     state: health0
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey.rsi
     state: health1
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey.rsi
     state: health2
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_alive.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey.rsi
     state: health3
   name: alerts-health-name
   description: alerts-health-desc
@@ -140,7 +140,7 @@
   id: K9GreyCrit
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_critical.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey.rsi
     state: critical
   name: alerts-crit-name
   description: alerts-crit-desc
@@ -149,7 +149,7 @@
   id: K9GreyDead
   category: Health
   icons:
-  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey_dead.rsi
+  - sprite: /Textures/_Starlight/Interface/Alerts/k9_grey.rsi
     state: dead
   name: alerts-dead-name
   description: alerts-dead-desc
