@@ -12,7 +12,7 @@
     rotateWhileAnchored: true
   - type: Sprite
     sprite: _Starlight/Structures/Machines/mixer1k.rsi
-    snapCardinals: false 
+    snapCardinals: false
     layers:
     - state: mixer1k_empty
     - state: mixer1k_screens
@@ -109,7 +109,7 @@
   - type: SolutionContainerManager
     solutions:
       buffer:
-        maxVol: 500 
+        maxVol: 500
         canReact: false
   - type: DumpableSolution
     solution: buffer

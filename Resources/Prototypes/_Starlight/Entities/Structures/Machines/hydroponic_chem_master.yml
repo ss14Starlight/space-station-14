@@ -2,7 +2,7 @@
   id: ChemMasterBotanical
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: Hydroponics ChemMaster
-  description: A repurposed ChemMaster 1000, made for use by botanists
+  description: A repurposed ChemMaster 1000, made for use by botanists.
   placement:
     mode: SnapgridCenter
   components:
@@ -12,7 +12,7 @@
     rotateWhileAnchored: true
   - type: Sprite
     sprite: _Starlight/Structures/Machines/mixer_hydroponic.rsi
-    snapCardinals: false 
+    snapCardinals: false
     layers:
     - state: mixerb_empty
     - state: mixerb_screens
@@ -107,7 +107,7 @@
   - type: SolutionContainerManager
     solutions:
       buffer:
-        maxVol: 200 
+        maxVol: 200
         canReact: false
   - type: DumpableSolution
     solution: buffer
