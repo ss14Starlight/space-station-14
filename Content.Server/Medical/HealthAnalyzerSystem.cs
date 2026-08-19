@@ -317,12 +317,13 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         if (TryComp<UnrevivableComponent>(entity, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
 
-        // Starlight begin - Get a list of metabolizing chemicals
-        List<(string ReagentId, FixedPoint2 Quantity)>? metabolizingReagents = null;
+        // Starlight begin - Collect bloodstream and stomach chemicals into a single merged list
+        var chemicalsDict = new Dictionary<string, (FixedPoint2 Blood, FixedPoint2 Stomach)>();
+
+        // Bloodstream chemicals
         if (TryComp<BloodstreamComponent>(entity, out var bloodstreamComp) &&
             _solutionContainerSystem.TryGetSolution(entity, bloodstreamComp.BloodSolutionName, out _, out var chemicalsSolution))
         {
-            metabolizingReagents = new List<(string, FixedPoint2)>();
             foreach (var (reagent, quantity) in chemicalsSolution.Contents)
             {
                 // Skip blood and only show actual chemicals being metabolized
@@ -338,13 +339,14 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                 if (isBlood)
                     continue;
 
-                metabolizingReagents.Add((reagent.Prototype, quantity));
+                if (chemicalsDict.TryGetValue(reagent.Prototype, out var existing))
+                    chemicalsDict[reagent.Prototype] = (existing.Blood + quantity, existing.Stomach);
+                else
+                    chemicalsDict[reagent.Prototype] = (quantity, FixedPoint2.Zero);
             }
         }
-        // Starlight end
 
-        // Starlight begin - Get a list of chemicals in the stomach (not yet in bloodstream)
-        List<(string ReagentId, FixedPoint2 Quantity)>? stomachReagents = null;
+        // Starlight begin - Stomach chemicals
         var stomachs = _bodySystem.GetBodyOrganEntityComps<StomachComponent>((entity, null));
         foreach (var stomach in stomachs)
         {
@@ -356,23 +358,20 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                     if (quantity <= FixedPoint2.Zero)
                         continue;
 
-                    if (stomachReagents == null)
-                        stomachReagents = new List<(string, FixedPoint2)>();
-
-                    var found = false;
-                    for (var i = 0; i < stomachReagents.Count; i++)
-                    {
-                        if (stomachReagents[i].ReagentId == reagent.Prototype)
-                        {
-                            stomachReagents[i] = (stomachReagents[i].ReagentId, stomachReagents[i].Quantity + quantity);
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (!found)
-                        stomachReagents.Add((reagent.Prototype, quantity));
+                    if (chemicalsDict.TryGetValue(reagent.Prototype, out var existing))
+                        chemicalsDict[reagent.Prototype] = (existing.Blood, existing.Stomach + quantity);
+                    else
+                        chemicalsDict[reagent.Prototype] = (FixedPoint2.Zero, quantity);
                 }
             }
+        }
+
+        List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? chemicals = null;
+        if (chemicalsDict.Count > 0)
+        {
+            chemicals = new List<(string, FixedPoint2, FixedPoint2)>();
+            foreach (var (reagentId, amounts) in chemicalsDict)
+                chemicals.Add((reagentId, amounts.Blood, amounts.Stomach));
         }
         // Starlight end
 
@@ -384,8 +383,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             null,
             bleeding,
             unrevivable,
-            metabolizingReagents, // Starlight - add metabolizing chemicals to ui message
-            stomachReagents // Starlight - add stomach chemicals to ui message
+            chemicals // Starlight - merged bloodstream and stomach chemicals
         );
     }
 
@@ -440,9 +438,9 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
         // Starlight BEGIN
         var reagents = new List<HealthAnalyzerReagentSnapshot>();
-        if (uiState.MetabolizingReagents is { Count: > 0 } chemicals)
+        if (uiState.Chemicals is { Count: > 0 } chemicals)
         {
-            foreach (var (reagentId, quantity) in chemicals.OrderByDescending(r => r.Quantity))
+            foreach (var (reagentId, quantity, stomachQuantity) in chemicals.OrderByDescending(r => r.Quantity + r.StomachQuantity))
             {
                 var localizedName = reagentId;
                 var group = "Unknown";
@@ -452,24 +450,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                     group = reagentProto.Group;
                 }
 
-                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, group));
-            }
-        }
-
-        var stomachReagents = new List<HealthAnalyzerReagentSnapshot>();
-        if (uiState.StomachReagents is { Count: > 0 } stomachChemicals)
-        {
-            foreach (var (reagentId, quantity) in stomachChemicals.OrderByDescending(r => r.Quantity))
-            {
-                var localizedName = reagentId;
-                var group = "Unknown";
-                if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var reagentProto))
-                {
-                    localizedName = reagentProto.LocalizedName;
-                    group = reagentProto.Group;
-                }
-
-                stomachReagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, group));
+                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, group, stomachQuantity));
             }
         }
         // Starlight END
@@ -484,8 +465,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             uiState.BloodLevel,
             damageable.TotalDamage,
             groupedInjuries,
-            reagents, // Starlight
-            stomachReagents); // Starlight
+            reagents); // Starlight
     }
 
     private HealthAnalyzerDamageGroupSnapshot? BuildDamageGroupSnapshot(
@@ -579,20 +559,19 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
         // Starlight BEGIN
         message.PushNewline();
-        message.AddMarkupOrThrow($"[head=2][bold]{Loc.GetString("health-analyzer-report-section-bloodstream")}[/bold][/head]");
+        message.AddMarkupOrThrow($"[head=2][bold]{Loc.GetString("health-analyzer-report-section-chemicals")}[/bold][/head]");
         message.PushNewline();
 
         if (snapshot.Reagents.Count == 0)
         {
             message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-no-chemicals"));
-            message.PushNewline();
         }
         else
         {
             var groupedReagents = snapshot.Reagents
                 .OrderBy(r => HealthAnalyzerFormatting.GetReagentGroupSortKey(r.Group))
                 .ThenBy(r => r.Group)
-                .ThenByDescending(r => r.Amount)
+                .ThenByDescending(r => r.Amount + r.StomachAmount)
                 .GroupBy(r => r.Group);
 
             foreach (var group in groupedReagents)
@@ -606,47 +585,13 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
                 foreach (var reagent in group)
                 {
+                    var quantityStr = reagent.StomachAmount > FixedPoint2.Zero
+                        ? $"({reagent.StomachAmount}u) {reagent.Amount}u"
+                        : $"{reagent.Amount}u";
                     var reagentLine = Loc.GetString(
                         "health-analyzer-report-chemical-line",
                         ("name", reagent.Name),
-                        ("quantity", reagent.Amount));
-                    message.AddMarkupOrThrow($"- {reagentLine}");
-                    message.PushNewline();
-                }
-            }
-        }
-
-        message.PushNewline();
-        message.AddMarkupOrThrow($"[head=2][bold]{Loc.GetString("health-analyzer-report-section-stomach")}[/bold][/head]");
-        message.PushNewline();
-
-        if (snapshot.StomachReagents.Count == 0)
-        {
-            message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-no-chemicals"));
-        }
-        else
-        {
-            var groupedStomachReagents = snapshot.StomachReagents
-                .OrderBy(r => HealthAnalyzerFormatting.GetReagentGroupSortKey(r.Group))
-                .ThenBy(r => r.Group)
-                .ThenByDescending(r => r.Amount)
-                .GroupBy(r => r.Group);
-
-            foreach (var group in groupedStomachReagents)
-            {
-                var locKey = $"reagent-group-{group.Key.ToLowerInvariant()}";
-                var groupName = Loc.GetString(locKey);
-                if (groupName == locKey)
-                    groupName = group.Key;
-                message.AddMarkupOrThrow($"[bold]{FormattedMessage.EscapeText(groupName)}[/bold]");
-                message.PushNewline();
-
-                foreach (var reagent in group)
-                {
-                    var reagentLine = Loc.GetString(
-                        "health-analyzer-report-chemical-line",
-                        ("name", reagent.Name),
-                        ("quantity", reagent.Amount));
+                        ("quantity", quantityStr));
                     message.AddMarkupOrThrow($"- {reagentLine}");
                     message.PushNewline();
                 }
@@ -667,8 +612,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         float BloodLevel,
         FixedPoint2 TotalDamage,
         List<HealthAnalyzerDamageGroupSnapshot> DamageGroups,
-        List<HealthAnalyzerReagentSnapshot> Reagents, // Starlight
-        List<HealthAnalyzerReagentSnapshot> StomachReagents); // Starlight
+        List<HealthAnalyzerReagentSnapshot> Reagents); // Starlight
 
     private sealed record HealthAnalyzerDamageGroupSnapshot(
         string Name,
@@ -677,6 +621,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
     private sealed record HealthAnalyzerDamageTypeSnapshot(string Name, FixedPoint2 Amount);
 
-    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, string Group); // Starlight
+    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, string Group, FixedPoint2 StomachAmount); // Starlight
     // Starlight-end
 }
