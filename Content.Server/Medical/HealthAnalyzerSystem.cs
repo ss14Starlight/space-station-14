@@ -568,37 +568,21 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         }
         else
         {
-            var groupedReagents = snapshot.Reagents
-                .OrderBy(r => HealthAnalyzerFormatting.GetReagentGroupSortKey(r.Group))
-                .ThenBy(r => r.Group)
-                .ThenByDescending(r => r.Amount + r.StomachAmount)
-                .GroupBy(r => r.Group);
-
-            foreach (var group in groupedReagents)
+            foreach (var reagent in snapshot.Reagents.OrderByDescending(r => r.Amount + r.StomachAmount))
             {
-                var locKey = $"reagent-group-{group.Key.ToLowerInvariant()}";
-                var groupName = Loc.GetString(locKey);
-                if (groupName == locKey)
-                    groupName = group.Key;
-                message.AddMarkupOrThrow($"[bold]{FormattedMessage.EscapeText(groupName)}[/bold]");
+                string quantityStr;
+                if (reagent.StomachAmount > FixedPoint2.Zero && reagent.Amount > FixedPoint2.Zero)
+                    quantityStr = $"[color=#AAAAAA]({reagent.StomachAmount}u)[/color] {reagent.Amount}u";
+                else if (reagent.StomachAmount > FixedPoint2.Zero)
+                    quantityStr = $"[color=#AAAAAA]({reagent.StomachAmount}u)[/color]";
+                else
+                    quantityStr = $"{reagent.Amount}u";
+                var reagentLine = Loc.GetString(
+                    "health-analyzer-report-chemical-line",
+                    ("name", reagent.Name),
+                    ("quantity", quantityStr));
+                message.AddMarkupOrThrow($"- {reagentLine}");
                 message.PushNewline();
-
-                foreach (var reagent in group)
-                {
-                    string quantityStr;
-                    if (reagent.StomachAmount > FixedPoint2.Zero && reagent.Amount > FixedPoint2.Zero)
-                        quantityStr = $"[color=#AAAAAA]({reagent.StomachAmount}u)[/color] {reagent.Amount}u";
-                    else if (reagent.StomachAmount > FixedPoint2.Zero)
-                        quantityStr = $"[color=#AAAAAA]({reagent.StomachAmount}u)[/color]";
-                    else
-                        quantityStr = $"{reagent.Amount}u";
-                    var reagentLine = Loc.GetString(
-                        "health-analyzer-report-chemical-line",
-                        ("name", reagent.Name),
-                        ("quantity", quantityStr));
-                    message.AddMarkupOrThrow($"- {reagentLine}");
-                    message.PushNewline();
-                }
             }
         }
         // Starlight END

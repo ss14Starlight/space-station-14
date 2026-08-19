@@ -281,13 +281,6 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         ChemicalsDivider.Visible = true;
         ChemicalsContainer.Visible = true;
 
-        var headerLabel = new Label
-        {
-            Text = Loc.GetString("health-analyzer-window-chemicals"),
-        };
-        headerLabel.StyleClasses.Add("LabelKeyText");
-        ChemicalsContainer.AddChild(headerLabel);
-
         var sortedReagents = chemicals.OrderByDescending(r => r.Quantity + r.StomachQuantity).ToList();
 
         foreach (var reagent in sortedReagents)
