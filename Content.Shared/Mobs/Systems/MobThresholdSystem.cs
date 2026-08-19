@@ -432,7 +432,7 @@ public sealed partial class MobThresholdSystem : EntitySystem
             {
                 percentage = FixedPoint2.Clamp(percentage.Value, 0, 1);
 
-                severity = (short)MathF.Round(
+                severity = (short) MathF.Round(
                     MathHelper.Lerp(
                         _alerts.GetMinSeverity(currentAlert),
                         _alerts.GetMaxSeverity(currentAlert),
