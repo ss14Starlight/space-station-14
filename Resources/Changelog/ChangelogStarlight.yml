@@ -1,20 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Resprited the Small Light, Light Tube, Emergency Light, and Strobe Light. They're all slightly cleaner, less pre-tinted so coloring stands out more, and have fake bloom added to their on states.
-    type: Tweak
-  id: 407375
-  time: '2026-08-09T10:40:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5502
-- author: Xale
-  changes:
-  - message: Cuffing no longer prevents player controlled zombies from attacking.
-    type: Fix
-  id: 407376
-  time: '2026-08-09T11:12:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5445
-- author: Conflee
-  changes:
   - message: Added Gulthias, Birch, Snowy Oak, and non-snowy Conifer trees from Crystal Punk.
     type: Add
   id: 407377
@@ -2799,4 +2785,18 @@ Entries:
   id: 407774
   time: '2026-08-19T09:57:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5726
+- author: Caws
+  changes:
+  - message: Taggers and disposal routers no longer prevent you from typing the wildcard character * into them.
+    type: Fix
+  id: 407775
+  time: '2026-08-19T10:21:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5723
+- author: Caws
+  changes:
+  - message: Fixed an issue with wildcard routers which made it impossible for items to go straight-thru them. This should resolve mailing and disposal issues on maps like Oasis and Leth.
+    type: Fix
+  id: 407776
+  time: '2026-08-19T10:21:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5723
 Order: -1
