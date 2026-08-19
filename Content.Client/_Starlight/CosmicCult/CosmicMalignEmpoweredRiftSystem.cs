@@ -2,7 +2,7 @@ using Content.Shared._Starlight.CosmicCult.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameStates;
 
-namespace Content.Client._Starlight.CosmicCult.EntitySystems;
+namespace Content.Client._Starlight.CosmicCult;
 
 public sealed partial class CosmicMalignEmpoweredRiftSystem : EntitySystem
 {
