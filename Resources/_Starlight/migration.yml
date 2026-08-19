@@ -341,3 +341,5 @@ WeaponShotgunRiotSawn: null
 
 #2026-08-19 - Removal of law communications console
 ComputerCommsLaw: ComputerSurveillanceCameraMonitor
+LawCommsComputerCircuitboard: null
+BoxMagiCircuitBoards: null
