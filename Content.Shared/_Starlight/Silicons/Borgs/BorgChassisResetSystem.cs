@@ -116,6 +116,8 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
         // selecting a real type again is allowed out of it.
         _switchableType.SelectBorgModule(borg, UnselectedType);
 
+        EnsureComp<BorgChassisResetComponent>(borg);
+
         _actions.AddAction(borg, ref borg.Comp.SelectTypeAction, SharedBorgSwitchableTypeSystem.ActionId);
         Dirty(borg);
     }
