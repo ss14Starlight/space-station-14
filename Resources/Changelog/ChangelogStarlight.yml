@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Added Gulthias, Birch, Snowy Oak, and non-snowy Conifer trees from Crystal Punk.
-    type: Add
-  id: 407377
-  time: '2026-08-09T11:12:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5479
-- author: Conflee
-  changes:
   - message: Added water reeds floral decals, from Crystal Punk.
     type: Add
   id: 407378
@@ -2799,4 +2792,11 @@ Entries:
   id: 407776
   time: '2026-08-19T10:21:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5723
+- author: Mack
+  changes:
+  - message: Service borgs now have a Vinyl and CD slot.
+    type: Add
+  id: 407777
+  time: '2026-08-19T10:42:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5725
 Order: -1
