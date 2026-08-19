@@ -60,8 +60,6 @@ public sealed partial class DestinyDiceSystem : EntitySystem
 
     /// List of all active destiny dice.
     private readonly List<Entity<DestinyDiceComponent>> _activeDice = [];
-    /// List of all active destiny dice that are being actively predicted as well as their effects.
-    private readonly Dictionary<Entity<DestinyDiceComponent>, DestinyDiceEffect> _predictedDice = [];
 
     public override void Initialize()
     {
