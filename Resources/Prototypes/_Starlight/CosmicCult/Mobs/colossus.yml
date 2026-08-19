@@ -149,7 +149,7 @@
         sound:
           collection: MeatLaserImpact
   - type: CosmicRiftHealth
-    healthPerCorpse: 10
+    healthPerCorpse: 20
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:

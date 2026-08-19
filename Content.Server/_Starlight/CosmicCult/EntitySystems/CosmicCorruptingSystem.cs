@@ -146,6 +146,9 @@ public sealed partial class CosmicCorruptingSystem : EntitySystem
             RecalculateStartingTiles(ent);
     }
 
+    public void Disable(Entity<CosmicCorruptingComponent> ent)
+    => ent.Comp.Enabled = false;
+
     public void RecalculateStartingTiles(Entity<CosmicCorruptingComponent> ent)
     {
         ent.Comp.CorruptableTiles.Clear();

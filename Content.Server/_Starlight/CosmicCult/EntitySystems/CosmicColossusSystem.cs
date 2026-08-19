@@ -39,6 +39,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
     [Dependency] private ThrowingSystem _throw = default!;
     [Dependency] private PointLightSystem _pointLight = default!;
     [Dependency] private CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
+    [Dependency] private CosmicCorruptingSystem _corrupting = default!;
 
     public override void Initialize()
     {
@@ -126,7 +127,9 @@ public sealed partial class CosmicColossusSystem : EntitySystem
             }
 
             EnsureComp<WarpPointComponent>(ent);
-            EnsureComp<CosmicCorruptingComponent>(ent);
+
+            if (TryComp<CosmicCorruptingComponent>(ent, out var corrupting))
+                _corrupting.Enable((ent.Owner, corrupting));
 
             // The Colossus screams as it re-emerges.
             _audio.PlayPvs(
@@ -161,7 +164,11 @@ public sealed partial class CosmicColossusSystem : EntitySystem
             _pointLight.SetRadius(ent, 1.5f, deadLight);
             _pointLight.SetEnergy(ent, 0.25f, deadLight);
         }
+
         RemComp<WarpPointComponent>(ent);
-        RemComp<CosmicCorruptingComponent>(ent);
+
+        //Turn off corruption
+        if (TryComp<CosmicCorruptingComponent>(ent, out var deathCorrupting))
+            _corrupting.Disable((ent.Owner, deathCorrupting));
     }
 }
