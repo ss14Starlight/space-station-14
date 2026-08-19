@@ -91,13 +91,8 @@
   - type: Lung
     alert: LowNitrogen
   - type: Metabolizer
-    removeEmpty: true
-    solutionOnBody: false
-    solution: "Lung"
     metabolizerTypes: [ Slime, Cyclorite ]
-    groups:
-    - id: Gas
-      rateModifier: 100.0
+    stages: [ Respiration ]
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -128,11 +123,7 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Cyclorite ]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
-
+    stages: [ Bloodstream ]
 - type: entity
   id: OrganCycloriteStomach
   parent: [BaseCycloriteOrgan, BaseOrganStomach]
@@ -159,10 +150,7 @@
     # mm yummy
     maxReagents: 3
     metabolizerTypes: [ Slime ]
-    groups:
-    - id: Food
-    - id: Drink
-
+    stages: [ Digestion ]
 - type: entity
   id: OrganCycloriteLiver
   parent: [BaseCycloriteOrgan, BaseOrganLiver]
@@ -175,9 +163,7 @@
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [ Slime ]
-    groups:
-    - id: Alcohol
-
+    stages: [ Metabolites ]
 - type: entity
   id: OrganCycloriteKidneys
   parent: [BaseCycloriteOrgan, BaseOrganKidneys]
@@ -193,4 +179,3 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [ Slime ]
-    removeEmpty: true
