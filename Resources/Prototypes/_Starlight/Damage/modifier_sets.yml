@@ -296,6 +296,7 @@
     Slash: 0.5
     Piercing: 0.55
     Cold: 0.5
+    Structural: 0.5 #From Metallic
   flatReductions:
     Blunt: 5
     Cold: 10

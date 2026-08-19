@@ -11,6 +11,7 @@ using Content.Server.Temperature.Systems;
 using Content.Shared.Temperature.Components;
 using Content.Server.Atmos.Components;
 using Robust.Shared.Map;
+using Robust.Shared.GameStates;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
@@ -29,7 +30,14 @@ public sealed partial class CosmicMalignEmpoweredRiftSystem : EntitySystem
 
         SubscribeLocalEvent<CosmicMalignEmpoweredRiftComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<CosmicMalignEmpoweredRiftComponent, EntityTerminatingEvent>(OnTerminating);
+        SubscribeLocalEvent<CosmicMalignEmpoweredRiftComponent, ComponentGetState>(OnGetState);
     }
+
+    private void OnGetState(Entity<CosmicMalignEmpoweredRiftComponent> ent, ref ComponentGetState args) =>
+    args.State = new CosmicMalignEmpoweredRiftComponent.State
+    {
+        IsOccupied = ent.Comp.IsOccupied,
+    };
 
     private void OnTerminating(Entity<CosmicMalignEmpoweredRiftComponent> ent, ref EntityTerminatingEvent args)
     {
@@ -124,6 +132,8 @@ public sealed partial class CosmicMalignEmpoweredRiftSystem : EntitySystem
                 if (_container.Insert(target, rift.CorpseContainer))
                 {
                     corpseCount++;
+                    rift.IsOccupied = true;
+                    Dirty(uid, rift);
                     EnsureComp<PressureImmunityComponent>(target);
                     break;
                 }

@@ -205,7 +205,7 @@
       NavSmash: !type:Bool
         true
   - type: Gun
-    projectileSpeed: 12
+    projectileSpeed: 15
     soundGunshot: /Audio/_Starlight/CosmicCult/projectile_razor.ogg
     soundEmpty: null
     fireRate: 1
