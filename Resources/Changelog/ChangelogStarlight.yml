@@ -1,13 +1,6 @@
 Entries:
 - author: SnappingOpossum, Princess-Cheeseballs, MilenVolf
   changes:
-  - message: Certain randomized items and decorations no longer spawn with the wrong rotation.
-    type: Fix
-  id: 407381
-  time: '2026-08-10T00:53:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5405
-- author: SnappingOpossum, Princess-Cheeseballs, MilenVolf
-  changes:
   - message: Handheld artifacts will no longer create entities glued to players.
     type: Fix
   id: 407382
@@ -2799,4 +2792,11 @@ Entries:
   id: 407780
   time: '2026-08-19T19:56:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5736
+- author: Mack
+  changes:
+  - message: Vent crawling entity deleted bug.
+    type: Fix
+  id: 407781
+  time: '2026-08-20T14:19:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5756
 Order: -1
