@@ -4,8 +4,8 @@ meta:
   engineVersion: 288.1.0
   forkId: ""
   forkVersion: ""
-  time: 08/20/2026 03:53:15
-  entityCount: 27116
+  time: 08/20/2026 03:55:09
+  entityCount: 27117
 maps:
 - 1
 grids:
@@ -69541,7 +69541,7 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: -13.360777,-17.374952
+      pos: -13.659864,-17.91602
   - uid: 10465
     components:
     - type: Transform
@@ -146194,6 +146194,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 15.5,-36.5
+  - uid: 27117
+    components:
+    - type: Transform
+      parent: 2
+      pos: -13.5,-17.5
 - proto: StationRadioRig
   entities:
   - uid: 19340
