@@ -35,3 +35,161 @@
     - type: Construction
       graph: GasTrinaryStarlight
       node: inline_filter
+
+# GasMolarMixer
+- type: entity
+  parent: [GasPipeLayerAlt1, GasMolarMixer]
+  id: GasMolarMixerAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Moffstation/Structures/Piping/Atmospherics/gas_molar_mixer.rsi
+    layers:
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+        state: pipeTrinaryConnectors
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+      - state: gasMixer
+        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Flippable
+    mirrorEntity: GasMolarMixerFlippedAlt1
+  - type: Construction
+    graph: GasTrinaryStarlight
+    node: molarmixerAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasMolarMixer]
+  id: GasMolarMixerAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Moffstation/Structures/Piping/Atmospherics/gas_molar_mixer.rsi
+    layers:
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+        state: pipeTrinaryConnectors
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+      - state: gasMixer
+        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Flippable
+    mirrorEntity: GasMolarMixerFlippedAlt2
+  - type: Construction
+    graph: GasTrinaryStarlight
+    node: molarmixerAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasMolarMixer]
+  id: GasMolarMixerAlt3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Moffstation/Structures/Piping/Atmospherics/gas_molar_mixer.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+      state: pipeTrinaryConnectors
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: gasMixer
+      map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Flippable
+    mirrorEntity: GasMolarMixerFlippedAlt3
+  - type: Construction
+    node: molarmixerAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasMolarMixer]
+  id: GasMolarMixerAlt4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Moffstation/Structures/Piping/Atmospherics/gas_molar_mixer.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+      state: pipeTrinaryConnectors
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: gasMixer
+      map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Flippable
+    mirrorEntity: GasMolarMixerFlippedAlt4
+  - type: Construction
+    node: molarmixerAlt4
+
+# GasMolarMixerFlipped
+- type: entity
+  parent: [GasPipeLayerAlt1, GasMolarMixerFlipped]
+  id: GasMolarMixerFlippedAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Moffstation/Structures/Piping/Atmospherics/gas_molar_mixer.rsi
+    layers:
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+        state: pipeTrinaryConnectors
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+      - state: gasMixerF
+        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Flippable
+    mirrorEntity: GasMolarMixerAlt1
+  - type: Construction
+    graph: GasTrinaryStarlight
+    node: molarmixerflippedAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasMolarMixerFlipped]
+  id: GasMolarMixerFlippedAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Moffstation/Structures/Piping/Atmospherics/gas_molar_mixer.rsi
+    layers:
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+        state: pipeTrinaryConnectors
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+      - state: gasMixerF
+        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Flippable
+    mirrorEntity: GasMolarMixerAlt2
+  - type: Construction
+    graph: GasTrinaryStarlight
+    node: molarmixerflippedAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasMolarMixerFlipped]
+  id: GasMolarMixerFlippedAlt3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Moffstation/Structures/Piping/Atmospherics/gas_molar_mixer.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+      state: pipeTrinaryConnectors
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: gasMixerF
+      map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Flippable
+    mirrorEntity: GasMolarMixerAlt3
+  - type: Construction
+    node: molarmixerflippedAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasMolarMixerFlipped]
+  id: GasMolarMixerFlippedAlt4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Moffstation/Structures/Piping/Atmospherics/gas_molar_mixer.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+      state: pipeTrinaryConnectors
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: gasMixerF
+      map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Flippable
+    mirrorEntity: GasMolarMixerAlt4
+  - type: Construction
+    node: molarmixerflippedAlt4

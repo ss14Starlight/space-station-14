@@ -143,6 +143,6 @@ evolutionmenu-utility-fakemindshield-desc =
     May need a few toggle attempts to get the right frequency.
     Cost 0 chemicals.
 
-#Starlight
+# Starlight
 changeling-arm-blade-name = Retractable Arm Blade
 changeling-arm-blade-desc = Transform your arm into a terrifying flesh blade. Can be toggled.

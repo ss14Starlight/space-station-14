@@ -271,6 +271,11 @@
     - objective: MassArrestObjective
       components:
       - type: CriminalRecordsHacker
+#Starlight Region Start
+    - objective: ExtractObjective
+      components:
+      - type: PodHacker
+#Starlight Region End
 
 - type: entity
   parent: [ ClothingHandsGlovesColorBlack, BaseEngineeringSecurityCommandContraband ] # SL edit: Engi/Sec/Command contra
@@ -504,7 +509,10 @@
       params:
         variation: 0.125
     animation: WeaponArcFist
-    mustBeEquippedToUse: true
+    mustBeEquippedToUse: true # SL start
+  - type: Construction
+    graph: ClothingHandsKnuckleDusters
+    node: knuckleDusters # SL end
   - type: Tag
     tags:
     - WhitelistChameleon

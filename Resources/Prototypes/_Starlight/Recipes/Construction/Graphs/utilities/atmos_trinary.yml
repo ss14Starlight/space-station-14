@@ -54,6 +54,55 @@
           amount: 2
           doAfter: 1
 
+      - to: molarmixerAlt1
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerAlt3
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerAlt4
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+
+      - to: molarmixerflippedAlt1
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerflippedAlt2
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerflippedAlt3
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
+      - to: molarmixerflippedAlt4
+        steps:
+        - material: Steel
+          amount: 2
+          doAfter: 1
+
       - to: pneumaticvalveAlt1
         steps:
         - material: Steel
@@ -213,6 +262,134 @@
 
     - node: mixerflippedAlt2
       entity: GasMixerFlippedAlt2
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: molarmixerAlt1
+      entity: GasMolarMixerAlt1
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: molarmixerAlt2
+      entity: GasMolarMixerAlt2
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: molarmixerAlt3
+      entity: GasMolarMixerAlt3
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: molarmixerAlt4
+      entity: GasMolarMixerAlt4
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: molarmixerflippedAlt1
+      entity: GasMolarMixerFlippedAlt1
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: molarmixerflippedAlt2
+      entity: GasMolarMixerFlippedAlt2
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: molarmixerflippedAlt3
+      entity: GasMolarMixerFlippedAlt3
+      edges:
+      - to: start
+        conditions:
+        - !type:EntityAnchored
+          anchored: false
+        completed:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+          amount: 2
+        - !type:DeleteEntity
+        steps:
+        - tool: Welding
+          doAfter: 1
+
+    - node: molarmixerflippedAlt4
+      entity: GasMolarMixerFlippedAlt4
       edges:
       - to: start
         conditions:

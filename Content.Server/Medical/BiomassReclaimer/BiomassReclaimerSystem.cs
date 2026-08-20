@@ -211,7 +211,11 @@ namespace Content.Server.Medical.BiomassReclaimer
                 _solution.ResolveSolution(toProcess, stream.BloodSolutionName, ref stream.BloodSolution, out var solution))
             {
                 component.BloodReagents = solution.Clone();
-                component.BloodReagents.ScaleSolution(50 / component.BloodReagents.Volume);
+                // Starlight-start: fix Biomass divide by zero and presumed incorrect fluid scaling
+                component.BloodReagents.ScaleSolution(.25f);
+                if (component.BloodReagents.Volume > 50)
+                    component.BloodReagents.ScaleTo(50f);
+                // Starlight-end
             }
             if (TryComp<ButcherableComponent>(toProcess, out var butcherableComponent))
             {

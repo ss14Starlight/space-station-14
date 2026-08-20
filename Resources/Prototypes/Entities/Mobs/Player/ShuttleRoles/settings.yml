@@ -243,7 +243,7 @@
     - type: GhostRole
       name: job-name-intern
     - type: Loadout
-      prototypes: [ VisitorMedicalIntern, VisitorMedicalInternAlt ]
+      prototypes: [ VisitorMedicalIntern ]
       roleLoadout: [ RoleSurvivalMedical ]
 
 - type: randomHumanoidSettings

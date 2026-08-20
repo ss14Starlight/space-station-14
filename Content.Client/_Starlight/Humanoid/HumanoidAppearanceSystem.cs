@@ -452,13 +452,17 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
                 _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
 
             // Starlight edit - use the actual inserted layer for displaced split markings.
-            if (humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced)
-                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), insertionIndex, layerId, out _);
+            var isDisplaced = humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced;
+            if (isDisplaced)
+                _displacement.TryAddDisplacement(displacementData!, (entity.Owner, sprite), insertionIndex, layerId, out _);
 
             //starlight start
             if (isGlowing)
             {
-                sprite.LayerSetShader(layerId, "unshaded");
+                // Displacement is applied via a shader on this layer, so a displaced layer needs the
+                // unshaded displacement variant - otherwise "unshaded" would overwrite it and the
+                // displacement map would stop applying
+                sprite.LayerSetShader(layerId, isDisplaced ? "DisplacedDrawUnshaded" : "unshaded");
             }
             //starlight end
         }

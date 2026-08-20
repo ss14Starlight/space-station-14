@@ -36,8 +36,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             if (args.Handled || !args.Complex)
                 return;
 
-            component.Enabled = !component.Enabled;
-            UpdateAppearance(uid, component);
+            Set(uid, component, !component.Enabled); // Starlight
             args.Handled = true;
         }
 
@@ -76,5 +75,17 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
             _atmosphereSystem.Merge(environment, removed);
         }
+
+        #region Starlight
+
+        public void Set(EntityUid uid, GasOutletInjectorComponent component, bool value)
+        {
+            if (component.Enabled == value) return;
+            component.Enabled = value;
+            UpdateAppearance(uid, component);
+        }
+
+        #endregion
     }
 }
+

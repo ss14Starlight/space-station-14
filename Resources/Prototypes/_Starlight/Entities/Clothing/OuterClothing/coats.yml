@@ -344,11 +344,11 @@
       coefficients:
         Blunt: 0.85
         Slash: 0.75
-        Piercing: 0.95
-        Heat: 0.65
+        Piercing: 0.90
+        Heat: 0.85
         Cold: 0.80 # Sec can get a little more
   - type: ExplosionResistance
-    damageCoefficient: 0.85
+    damageCoefficient: 0.60 # Incredibly niche explosion resist armor; it's half a joke about having "bomb" in the name, but also gives it something...
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterSecurityBomber]
@@ -624,3 +624,14 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/chef-senior.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/chef-senior.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatChefCentComm
+  name: centcomm chef's jacket
+  description: A distinct white and green jacket worn by the chefs at Central Command. Turns you into a walking advertisement.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/chef-centcomm.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/chef-centcomm.rsi

@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Configuration;
+using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
 
@@ -76,7 +76,7 @@ public sealed partial class CCVars
     /// An option to toggle the automatic filling of the highlights with the character's info, if available.
     /// </summary>
     public static readonly CVarDef<bool> ChatAutoFillHighlights =
-        CVarDef.Create("chat.auto_fill_highlights", false, CVar.CLIENTONLY | CVar.ARCHIVE, "Toggles automatically filling the highlights with the character's information.");
+        CVarDef.Create("chat.auto_fill_highlights", true, CVar.CLIENTONLY | CVar.ARCHIVE, "Toggles automatically filling the highlights with the character's information."); // Starlight-edit: changed default to true
 
     /// <summary>
     /// The color in which the highlights will be displayed.

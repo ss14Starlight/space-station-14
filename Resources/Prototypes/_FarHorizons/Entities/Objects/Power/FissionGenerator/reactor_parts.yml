@@ -8,6 +8,7 @@
   - type: Sprite
     sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: default_rod
+  - type: Appearance
   - type: Item
     size: Huge
   - type: MultiHandedItem

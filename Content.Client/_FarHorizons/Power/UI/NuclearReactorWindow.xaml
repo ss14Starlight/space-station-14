@@ -110,6 +110,12 @@
 
 					<PanelContainer SetHeight="2" VerticalAlignment="Top" SetWidth="200" Margin="2 5" />
 
+					<controls:StripeBack>
+						<Button Name="AlarmAck" Text="ACK"/>
+						<Label Name="AlarmAckLock" Text="{Loc comp-nuclear-reactor-ui-locked}" Visible="false" HorizontalAlignment="Center" VerticalAlignment="Center" />
+					</controls:StripeBack>
+
+					<PanelContainer SetHeight="2" VerticalAlignment="Top" SetWidth="200" Margin="2 5" />
 
 					<BoxContainer Name="ControlRodsText" Orientation="Horizontal">
 						<Label Name="ControlRodsLabel" Text="{Loc comp-nuclear-reactor-ui-reactor-control}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>

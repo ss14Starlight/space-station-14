@@ -27,6 +27,14 @@ public sealed partial class DynamicRuleComponent : Component
     [DataField]
     public float BudgetPerSecond = 0.1f;
 
+    #region Starlight
+    /// <summary>
+    /// The amount of budget accumulated every second after reaching <see cref="DynamicRuleComponent.VariantBudgetThreshold"/>.
+    /// </summary>
+    [DataField]
+    public float VariantBudgetPerSecond = 0.05f;
+    #endregion
+
     /// <summary>
     /// The minimum or lower bound for budgets to start at.
     /// </summary>
@@ -38,6 +46,14 @@ public sealed partial class DynamicRuleComponent : Component
     /// </summary>
     [DataField]
     public int StartingBudgetMax = 350;
+
+    #region Starlight
+    /// <summary>
+    /// The budget threshold for the variant budget to take effect.
+    /// </summary>
+    [DataField]
+    public int VariantBudgetThreshold = 300;
+    #endregion
 
     /// <summary>
     /// The time at which the next rule will start

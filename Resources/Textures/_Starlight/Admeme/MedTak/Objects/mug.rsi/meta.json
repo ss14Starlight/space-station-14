@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Base from https://github.com/discordia-space/CEV-Eris/raw/f7aa28fd4b4d0386c3393d829681ebca526f1d2d/icons/obj/drinks.dmi, MedTak sprites by SevenShades"
+    },
+    {
+      "name": "fill-1",
+      "copyright": "Base from https://github.com/discordia-space/CEV-Eris/raw/f7aa28fd4b4d0386c3393d829681ebca526f1d2d/icons/obj/drinks.dmi, MedTak sprites by SevenShades"
+    },
+    {
+      "name": "fill-2",
+      "copyright": "Base from https://github.com/discordia-space/CEV-Eris/raw/f7aa28fd4b4d0386c3393d829681ebca526f1d2d/icons/obj/drinks.dmi, MedTak sprites by SevenShades"
+    },
+    {
+      "name": "fill-3",
+      "copyright": "Base from https://github.com/discordia-space/CEV-Eris/raw/f7aa28fd4b4d0386c3393d829681ebca526f1d2d/icons/obj/drinks.dmi, MedTak sprites by SevenShades"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+      "copyright": "Base inhands by TiniestShark (github), MedTak sprites by SevenShades"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+      "copyright": "Base inhands by TiniestShark (github), MedTak sprites by SevenShades"
+    }
+  ]
+}

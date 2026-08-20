@@ -186,6 +186,7 @@
       blacklist:
         components:
         - HelpProgressCondition
+        - DieCondition # Starlight, don't help DAGDs.
     # Can't have multiple objectives to help/save the same person
     - !type:TargetObjectiveMindFilter
       blacklist:

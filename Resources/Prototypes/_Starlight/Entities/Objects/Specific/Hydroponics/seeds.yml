@@ -28,3 +28,43 @@
       seedId: resinfera
     - type: Sprite
       sprite: _Starlight/Objects/Specific/Hydroponics/resinfera.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of mint seeds
+  id: MintSeeds
+  components:
+    - type: Seed
+      seedId: mint
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/mint.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of spear mint seeds
+  id: SpearMintSeeds
+  components:
+    - type: Seed
+      seedId: spearMint
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/spearmint.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of cinnamon seeds
+  id: CinnamonSeeds
+  components:
+    - type: Seed
+      seedId: cinnamon
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/cinnamon.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of cinnaflare seeds
+  id: CinnaflareSeeds
+  components:
+    - type: Seed
+      seedId: cinnaflare
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/cinnaflare.rsi

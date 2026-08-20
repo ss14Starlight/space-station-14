@@ -42,13 +42,7 @@ public sealed partial class NuclearReactorComponent : Component
     /// <summary>
     /// 2D grid of reactor components, or null where there are no components. Size is ReactorGridWidth x ReactorGridHeight
     /// </summary>
-    public ReactorPartComponent?[,] ComponentGrid;
-
-    /// <summary>
-    /// Dictionary of the entities all the parts in the component grid belong to
-    /// </summary>
-    [AutoNetworkedField]
-    public Dictionary<Vector2i, EntityUid> GridEntities = [];
+    public Entity<ReactorPartComponent>?[,] ComponentGrid;
 
     /// <summary>
     /// Dictionary of data that determines the reactor grid's visuals
@@ -192,12 +186,17 @@ public sealed partial class NuclearReactorComponent : Component
     public int ThermalPowerCount = 0;
     public int ThermalPowerPrecision = 128;
 
+#region Alarms
+    [ViewVariables(VVAccess.ReadWrite)]
+    public NuclearReactorAlarmStates AlarmState;
+
     [ViewVariables]
     public EntityUid? AlarmAudioHighThermal;
     [ViewVariables]
     public EntityUid? AlarmAudioHighTemp;
     [ViewVariables]
     public EntityUid? AlarmAudioHighRads;
+#endregion
 
     #region Containers
     public const string PartSlotId = "part_slot";
@@ -354,4 +353,17 @@ public sealed partial class ReactorCapVisualData
 {
     public Color color = Color.Black;
     public string cap = "";
+}
+
+[Flags]
+public enum NuclearReactorAlarmStates : ushort
+{
+    HighThermal = 1 << 0,       // Alarm should sound
+    HighThermalAck = 1 << 1,    // Alarm should not sound even if it should
+    HighTemp = 1 << 2,
+    HighTempAck = 1 << 3,
+    HighRad = 1 << 4,
+    HighRadAck = 1 << 5,
+
+    Alarms = HighThermal | HighTemp | HighRad,
 }

@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "hover_unfolded",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "hover_buckled",
+      "delays": [[ 0.5, 0.5 ]],
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "hover_folded",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+      "copyright": "SevenShades"
+    }
+  ]
+}

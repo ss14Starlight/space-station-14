@@ -1,0 +1,86 @@
+- type: entity
+  parent: DeathRattleImplant
+  id: TrackingImplantMedTak
+  name: MedTak beacon
+  description: This implant will inform the nearest MedTak unit should the user fall into critical condition or die.
+  abstract: true
+  components:
+    - type: IconImplant
+      icon: MedTakOperator
+      iconType: MedTak
+    - type: RattleOnTrigger
+      radioChannel:
+      - MedTak
+    - type: SuitSensor
+      faction: MedTak
+      randomMode: false
+      controlsLocked: true
+      mode: SensorCords
+      activationContainer: "implant"
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      transmitFrequencyId: SuitSensor
+    - type: StationLimitedNetwork
+      allowNonStationPackets: true
+    - type: WirelessNetworkConnection
+      range: 1500
+
+- type: entity
+  parent: TrackingImplantMedTak
+  id: TrackingImplantMedTakBronze
+  name: MedTak bronze beacon
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: IconImplant
+      icon: MedTakBronze
+    - type: RattleOnTrigger
+      messages:
+        Critical: rattle-on-trigger-medtak-bronze-critical
+        Dead: rattle-on-trigger-medtak-bronze-dead
+
+- type: entity
+  parent: TrackingImplantMedTak
+  id: TrackingImplantMedTakSilver
+  name: MedTak silver beacon
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: IconImplant
+      icon: MedTakSilver
+    - type: RattleOnTrigger
+      messages:
+        Critical: rattle-on-trigger-medtak-silver-critical
+        Dead: rattle-on-trigger-medtak-silver-dead
+
+- type: entity
+  parent: TrackingImplantMedTak
+  id: TrackingImplantMedTakGold
+  name: MedTak gold beacon
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: IconImplant
+      icon: MedTakGold
+    - type: RattleOnTrigger
+      messages:
+        Critical: rattle-on-trigger-medtak-gold-critical
+        Dead: rattle-on-trigger-medtak-gold-dead
+
+- type: entity
+  parent: TrackingImplantMedTak
+  id: TrackingImplantMedTakTeam
+  name: MedTak team beacon
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: RattleOnTrigger
+      messages:
+        Critical: rattle-on-trigger-medtak-team-critical
+        Dead: rattle-on-trigger-medtak-team-dead
+
+- type: entity
+  parent: MindShieldImplant
+  id: MedTakMindShieldImplant
+  name: MedTak mindshield implant
+  description: This implant protects operators from mind control devices.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MindShieldImplant
+    mindShieldStatusIcon: MedTakMindShieldIcon

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Utility;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Prototypes;
@@ -10,7 +12,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.DeviceLinking;
 
-public sealed class DeviceLinkingTest
+public sealed class DeviceLinkingTest : GameTest
 {
     private const string PortTesterProtoId = "DeviceLinkingSinkPortTester";
 
@@ -31,10 +33,9 @@ public sealed class DeviceLinkingTest
     [Test]
     public async Task AllDeviceLinkSinksWorkTest()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
         var compFact = server.ResolveDependency<IComponentFactory>();
-        var mapMan = server.ResolveDependency<IMapManager>();
         var mapSys = server.System<SharedMapSystem>();
         var deviceLinkSys = server.System<DeviceLinkSystem>();
 
@@ -56,7 +57,7 @@ public sealed class DeviceLinkingTest
                     {
                         // Create a map for each entity/port combo so they can't interfere
                         mapSys.CreateMap(out var mapId);
-                        var grid = mapMan.CreateGridEntity(mapId);
+                        var grid = mapSys.CreateGridEntity(mapId);
                         mapSys.SetTile(grid.Owner, grid.Comp, Vector2i.Zero, new Tile(1));
                         var coord = new EntityCoordinates(grid.Owner, 0, 0);
 
@@ -88,7 +89,5 @@ public sealed class DeviceLinkingTest
                 }
             });
         });
-
-        await pair.CleanReturnAsync();
     }
 }

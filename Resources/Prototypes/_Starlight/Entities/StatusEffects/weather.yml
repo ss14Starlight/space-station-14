@@ -79,3 +79,19 @@
   components:
     - type: ParallaxStatusEffect
       parallax: CosmicFinaleParallax
+
+# a version of WeatherSnowfallHeavy with a LOT less fog
+- type: entity
+  parent: WeatherBase
+  id: WeatherSnowfallLobster
+  name: heavy snowfall with light fog
+  components:
+  - type: WeatherStatusEffect
+    sprite:
+      sprite: /Textures/_Starlight/Effects/weather.rsi
+      state: snowfall_lobster
+    sound:
+      path: /Audio/Effects/Weather/snowstorm.ogg
+      params:
+        loop: true
+        volume: -12 # quiet ambience rather than in-your-face wind

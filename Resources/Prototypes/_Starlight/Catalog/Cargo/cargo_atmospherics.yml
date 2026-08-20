@@ -4,6 +4,167 @@
     sprite: _Starlight/Structures/Storage/canister-ui.rsi
     state: water_vapor
   product: WaterVaporCanister
+  cost: 900 # PR #5127
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+- type: cargoProduct
+  id: AtmosphericsZXA
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: zxa
+  product: ZXACanister
+  cost: 8200 # PR #5127
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+# Bulk gases BEGIN
+
+## Oxygen
+- type: cargoProduct
+  id: AtmosphericsOxygenBulk
+  nameLoc: cargo-product-gas-oxygen
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: oxygen
+  gasType: Oxygen
+  gasMoles: 1000
+  cost: 150
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+## Oxygen (Liquid)
+- type: cargoProduct
+  id: AtmosphericsOxygenLiquidBulk
+  nameLoc: cargo-product-gas-oxygen-liquid
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: oxygen
+  gasType: Oxygen
+  gasMoles: 1000
+  gasTemperature: &liquidTemp 72.0
+  cost: 160
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+## Nitrogen
+- type: cargoProduct
+  id: AtmosphericsNitrogenBulk
+  nameLoc: cargo-product-gas-nitrogen
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: nitrogen
+  gasType: Nitrogen
+  gasMoles: 1000
+  cost: 125
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+## Nitrogen (Liquid)
+- type: cargoProduct
+  id: AtmosphericsNitrogenLiquidBulk
+  nameLoc: cargo-product-gas-nitrogen-liquid
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: nitrogen
+  gasType: Nitrogen
+  gasMoles: 1000
+  gasTemperature: *liquidTemp
+  cost: 135
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+## Carbon Dioxide
+- type: cargoProduct
+  id: AtmosphericsCarbonDioxideBulk
+  nameLoc: cargo-product-gas-carbon-dioxide
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: carbon
+  gasType: CarbonDioxide
+  gasMoles: 1000
+  cost: 175
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+## Carbon Dioxide (Liquid)
+- type: cargoProduct
+  id: AtmosphericsCarbonDioxideLiquidBulk
+  nameLoc: cargo-product-gas-carbon-dioxide-liquid
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: carbon
+  gasType: CarbonDioxide
+  gasMoles: 1000
+  gasTemperature: *liquidTemp
+  cost: 190
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+## Water Vapor
+- type: cargoProduct
+  id: AtmosphericsWaterVaporBulk
+  nameLoc: cargo-product-gas-water-vapor
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: water_vapor
+  gasType: WaterVapor
+  gasMoles: 1000
+  cost: 200
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+## Plasma
+- type: cargoProduct
+  id: AtmosphericsPlasmaBulk
+  nameLoc: cargo-product-gas-plasma
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: plasma
+  gasType: Plasma
+  gasMoles: 1000
+  cost: 1400
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+## Plasma (Liquid)
+- type: cargoProduct
+  id: AtmosphericsPlasmaLiquidBulk
+  nameLoc: cargo-product-gas-plasma-liquid
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: plasma
+  gasType: Plasma
+  gasMoles: 1000
+  gasTemperature: *liquidTemp
   cost: 2000
   category: cargoproduct-category-name-atmospherics
   group: market
+
+## BZ
+- type: cargoProduct
+  id: AtmosphericsBZBulk
+  nameLoc: cargo-product-gas-bz
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: bz
+  gasType: BZ
+  gasMoles: 1000
+  cost: 1800
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+## ZXA
+- type: cargoProduct
+  id: AtmosphericsZXABulk
+  nameLoc: cargo-product-gas-zxa
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: zxa
+  gasType: ZXA
+  gasMoles: 1000
+  cost: 2400
+  category: cargoproduct-category-name-atmospherics
+  group: market
+
+# Bulk gases END

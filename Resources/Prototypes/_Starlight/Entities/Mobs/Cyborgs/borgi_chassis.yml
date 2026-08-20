@@ -343,7 +343,7 @@
 
 - type: entity
   parent: [ BaseXenoBorgiLanguages, BaseXenoborgChassisDerelict, BaseXenoborgTransponder, DerelictBorgiChassis ]
-  id: XenoBorgiDerelictBase
+  id: DerelictXenoBorgiBase
   name: derelict xenoborgi
   description:  even after all these years. still loves the color blue.
   components:
@@ -432,8 +432,8 @@
         state: corgi
 
 - type: entity
-  parent: XenoBorgiDerelictBase
-  id: XenoBorgiDerelict
+  parent: DerelictXenoBorgiBase
+  id: DerelictXenoBorgi
   suffix: Cell
   components:
     - type: ContainerFill

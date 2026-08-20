@@ -4,6 +4,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Content.Shared.CCVar;
 using Content.Client.CharacterInfo;
+using Content.Client._Starlight.TextToSpeech;
 using static Content.Client.CharacterInfo.CharacterInfoSystem;
 
 namespace Content.Client.UserInterface.Systems.Chat;
@@ -20,6 +21,14 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
     private static readonly Regex StartDoubleQuote = new("\"$");
     private static readonly Regex EndDoubleQuote = new("^\"|(?<=^@)\"");
     private static readonly Regex StartAtSign = new("^@");
+    // Starlight Start
+    private const int MinNamePartHighlightLength = 2;
+    private static readonly Regex ParenthesesRegex = new(@"\s*\(.*?\)\s*");
+    private static readonly HashSet<string> IgnoredNameParts = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "the", "of", "and", "a", "an", "in", "on", "at", "to", "for", "with"
+    };
+    // Starlight End
 
     /// <summary>
     ///     The list of words to be highlighted in the chatbox.
@@ -32,6 +41,8 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
     private string? _highlightsColor;
 
     private bool _autoFillHighlightsEnabled;
+    private string _autoHighlights = ""; // Starlight
+    private CharacterData? _cachedCharacterData; // Starlight
 
     /// <summary>
     ///     The boolean that keeps track of the 'OnCharacterUpdated' event, whenever it's a player attaching or opening the character info panel.
@@ -39,10 +50,33 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
     private bool _charInfoIsAttach = false;
 
     public event Action<string>? HighlightsUpdated;
+    // Starlight Start
+    /// <summary>
+    ///     Event triggered when the auto-fill highlights list is updated.
+    /// </summary>
+    public event Action<string>? AutoHighlightsUpdated;
+
+    /// <summary>
+    ///     The current active auto-fill highlights list, or empty if disabled.
+    /// </summary>
+    public string AutoHighlights => _autoFillHighlightsEnabled ? _autoHighlights : string.Empty;
+    // Starlight End
 
     private void InitializeHighlights()
     {
-        _config.OnValueChanged(CCVars.ChatAutoFillHighlights, (value) => { _autoFillHighlightsEnabled = value; }, true);
+        // Starlight Start
+        _config.OnValueChanged(CCVars.ChatAutoFillHighlights, (value) =>
+        {
+            _autoFillHighlightsEnabled = value;
+            if (value)
+                UpdateAutoFillHighlights();
+            else
+            {
+                ReloadHighlights();
+                AutoHighlightsUpdated?.Invoke(AutoHighlights);
+            }
+        }, true);
+        // Starlight End
 
         _config.OnValueChanged(CCVars.ChatHighlightsColor, (value) => { _highlightsColor = value; }, true);
 
@@ -70,12 +104,27 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         if (!_autoFillHighlightsEnabled)
             return;
 
-        // If auto highlights are enabled generate a request for new character info
-        // that will be used to determine the highlights.
-        _charInfoIsAttach = true;
-        _characterInfo.RequestCharacterInfo();
+        // Starlight start
+        _autoHighlights = string.Empty;
+        ReloadHighlights();
+        AutoHighlightsUpdated?.Invoke(AutoHighlights);
+
+        if (_cachedCharacterData != null && _cachedCharacterData.Value.Entity == _player.LocalEntity)
+        {
+            _charInfoIsAttach = true;
+            OnCharacterUpdated(_cachedCharacterData.Value);
+        }
+        else
+        {
+            // If auto highlights are enabled generate a request for new character info
+            // that will be used to determine the highlights.
+            _charInfoIsAttach = true;
+            _characterInfo?.RequestCharacterInfo();
+        }
+        // Starlight end
     }
 
+    // Starlight Start
     public void UpdateHighlights(string newHighlights, bool firstLoad = false)
     {
         // Do nothing if the provided highlights are the same as the old ones and it is not the first time.
@@ -85,11 +134,26 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         _config.SetCVar(CCVars.ChatHighlights, newHighlights);
         _config.SaveToFile();
 
+        ReloadHighlights();
+        HighlightsUpdated?.Invoke(newHighlights);
+    }
+
+    public void ReloadHighlights()
+    {
         _highlights.Clear();
+
+        var combined = _config.GetCVar(CCVars.ChatHighlights);
+        if (_autoFillHighlightsEnabled && !string.IsNullOrEmpty(_autoHighlights))
+        {
+            if (string.IsNullOrEmpty(combined))
+                combined = _autoHighlights;
+            else
+                combined += "\n" + _autoHighlights;
+        }
 
         // We first subdivide the highlights based on newlines to prevent replacing
         // a valid "\n" tag and adding it to the final regex.
-        var splittedHighlights = newHighlights.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        var splittedHighlights = combined.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
         for (var i = 0; i < splittedHighlights.Length; i++)
         {
@@ -127,9 +191,12 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         // the full word (eg. "Security") gets picked before the abbreviation (eg. "Sec").
         _highlights.Sort((x, y) => y.Length.CompareTo(x.Length));
     }
+    // Starlight End
 
     private void OnCharacterUpdated(CharacterData data)
     {
+        _cachedCharacterData = data; // Starlight
+
         // If _charInfoIsAttach is false then the opening of the character panel was the one
         // to generate the event, dismiss it.
         if (!_charInfoIsAttach)
@@ -137,24 +204,55 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
 
         var (_, job, _, _, entityName) = data;
 
-        // Mark this entity's name as our character name for the "UpdateHighlights" function.
-        var newHighlights = "@" + entityName;
+        // Starlight Start
+        // Clean the entity name by removing any parenthesized details (like " (Si-8545)" or " (Ghost)").
+        var cleanName = ParenthesesRegex.Replace(entityName, "").Trim();
 
-        // Subdivide the character's name based on spaces or hyphens so that every word gets highlighted.
-        if (newHighlights.Count(c => (c == ' ' || c == '-')) == 1)
-            newHighlights = newHighlights.Replace("-", "\n@").Replace(" ", "\n@");
+        // Collect name highlights in a list.
+        var nameParts = new List<string>();
 
-        // If the character has a name with more than one hyphen assume it is a lizard name and extract the first and
-        // last name eg. "Eats-The-Food" -> "@Eats" "@Food"
-        if (newHighlights.Count(c => c == '-') > 1)
-            newHighlights = newHighlights.Split('-')[0] + "\n@" + newHighlights.Split('-')[^1];
+        if (cleanName.Length >= MinNamePartHighlightLength)
+        {
+            nameParts.Add(cleanName);
 
-        //Starlight begin
-        // If the character has a name with a single comma, assume it is an Avali name and extract the name and
-        // pack name eg. "Bird, Testdev Pack" -> "@Bird" "@Testdev Pack"
-        if (newHighlights.Count(c => c == ',') == 1)
-            newHighlights = newHighlights.Split(',')[0] + "\n@" + newHighlights.Split(',')[1].TrimStart(' ');
-        //Starlight end
+            void AddPart(string part)
+            {
+                var trimmedPart = part.Trim().Trim('"');
+                if (trimmedPart.Length >= MinNamePartHighlightLength && !trimmedPart.All(char.IsDigit) && !IgnoredNameParts.Contains(trimmedPart))
+                    nameParts.Add(trimmedPart);
+            }
+
+            // If the character has a name with a single comma, assume it is an Avali name and extract the name and pack name eg. "Bird, Testdev Pack" -> "Bird" "Testdev Pack"
+            if (cleanName.Count(c => c == ',') == 1)
+            {
+                var split = cleanName.Split(',');
+                AddPart(split[0]);
+                AddPart(split[1]);
+            }
+            // Subdivide the name based on spaces (but only if it does not contain a comma)
+            else if (cleanName.Contains(' ') && !cleanName.Contains(','))
+            {
+                foreach (var part in cleanName.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    AddPart(part);
+                }
+            }
+            // If the character has one or more hyphens, split them and extract the first and last components (e.g., "Eats-Food" -> "Eats", "Food"; "Eats-The-Food" -> "Eats", "Food")
+            else if (cleanName.Contains('-'))
+            {
+                var split = cleanName.Split('-', StringSplitOptions.RemoveEmptyEntries);
+                if (split.Length > 0)
+                {
+                    AddPart(split[0]);
+                    if (split.Length > 1)
+                        AddPart(split[^1]);
+                }
+            }
+        }
+
+        // Wrap each name part in @ and double quotes to ensure whole-word matching and prevent single characters from matching substrings (e.g. "@B" -> "@"B"").
+        var newHighlights = string.Join("\n", nameParts.Select(part => $"@\"{part}\""));
+        // Starlight End
 
         // Convert the job title to kebab-case and use it as a key for the loc file.
         var jobKey = job.Replace(' ', '-').ToLower();
@@ -162,8 +260,31 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
         if (_loc.TryGetString($"highlights-{jobKey}", out var jobMatches))
             newHighlights += '\n' + jobMatches.Replace(", ", "\n");
 
-        UpdateHighlights(newHighlights);
-        HighlightsUpdated?.Invoke(newHighlights);
+        // Starlight Start
+        _autoHighlights = newHighlights;
+        ReloadHighlights();
+        AutoHighlightsUpdated?.Invoke(AutoHighlights);
+        // Starlight End
         _charInfoIsAttach = false;
     }
+
+    // Starlight start
+    /// <summary>
+    ///     Clears the active TTS speech queue.
+    /// </summary>
+    public void ClearTTSQueue()
+    {
+        if (_ent.TrySystem<TextToSpeechSystem>(out var tts))
+            tts.ClearQueue();
+    }
+
+    /// <summary>
+    ///     Sets the mute state of a TTS radio channel.
+    /// </summary>
+    public void SetTTSChannelMuted(Robust.Shared.Prototypes.ProtoId<Content.Shared.Radio.RadioChannelPrototype> channelId, bool muted)
+    {
+        if (_ent.TrySystem<TextToSpeechStreamSystem>(out var ttsStream))
+            ttsStream.SetChannelMuted(channelId, muted);
+    }
+    // Starlight end
 }

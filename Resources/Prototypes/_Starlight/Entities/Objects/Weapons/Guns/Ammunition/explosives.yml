@@ -193,3 +193,45 @@
       tags:
         - Cartridge60mmRocket
     capacity: 30
+
+- type: entity # Starlight Grenades for the Peacekeeper
+  id: GrenadeGaslauncher
+  name: gas grenade
+  description: Able to choke a room or several of your friends.
+  parent: [ BaseGrenade, BaseSecurityContraband]
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeGas
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: gas
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: blast
+    suffix: false
+  - type: Tag
+    tags:
+    - GrenadeLessLethal
+
+- type: entity # Starlight Grenades for the sec Peacekeeper
+  id: GrenadeStingerlauncher
+  name: stinger grenade
+  description: An unruly crowd's favourite.
+  parent: [ BaseGrenade, BaseSecurityContraband]
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenadeStinger
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: stinger
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: blast
+    suffix: false
+  - type: Tag
+    tags:
+    - GrenadeLessLethal

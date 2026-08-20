@@ -68,6 +68,7 @@
     damageContainer: Biological
     damageModifierSet: Slime
   - type: Bloodstream
+    bloodReagentColor: "#52b4e9" # Blimpuf edit
     bloodReferenceSolution:
       reagents:
       - ReagentId: Slime
@@ -202,6 +203,10 @@
           Base: green_adult_slime
         Dead:
           Base: green_adult_slime_dead
+    # Blimpuf start
+    - type: Bloodstream
+      bloodReagentColor: "#2cf274"
+    # Blimpuf end
     - type: MeleeWeapon
       damage:
         types:
@@ -242,6 +247,10 @@
           Base: yellow_adult_slime
         Dead:
           Base: yellow_adult_slime_dead
+    # Blimpuf start
+    - type: Bloodstream
+      bloodReagentColor: "#f4e65a"
+    # Blimpuf end
     - type: MeleeWeapon
       damage:
         types:

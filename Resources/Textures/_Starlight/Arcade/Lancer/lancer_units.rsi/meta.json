@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "States everest_blue, everest_red, everest_blue_pistol, everest_con_pistol, everest_blue_with_pistol, everest_blue_straight_mag, everest_con_with_pistol, everest_red_straight_mag, kerberos_grunt, kerberos_sniper, kerberos_archer, kerberos_bombard, and tokugawa by allones (Black Pants Legion Discord). State urbie by joedawg39s (BPL Discord). Remaining states (raijin, grunt, cutlass, tortuga, monarch, bombard) generated via Autosprite for BPL14.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "raijin"
+    },
+    {
+      "name": "everest_blue"
+    },
+    {
+      "name": "everest_red"
+    },
+    {
+      "name": "everest_blue_pistol"
+    },
+    {
+      "name": "everest_con_pistol"
+    },
+    {
+      "name": "everest_blue_with_pistol"
+    },
+    {
+      "name": "everest_blue_straight_mag"
+    },
+    {
+      "name": "everest_con_with_pistol"
+    },
+    {
+      "name": "everest_red_straight_mag"
+    },
+    {
+      "name": "grunt"
+    },
+    {
+      "name": "urbie"
+    },
+    {
+      "name": "cutlass"
+    },
+    {
+      "name": "tortuga"
+    },
+    {
+      "name": "monarch"
+    },
+    {
+      "name": "tokugawa"
+    },
+    {
+      "name": "bombard"
+    },
+    {
+      "name": "kerberos_grunt"
+    },
+    {
+      "name": "kerberos_sniper"
+    },
+    {
+      "name": "kerberos_archer"
+    },
+    {
+      "name": "kerberos_bombard"
+    }
+  ]
+}

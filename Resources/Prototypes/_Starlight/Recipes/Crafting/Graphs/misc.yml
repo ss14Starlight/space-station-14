@@ -1,4 +1,4 @@
-﻿- type: constructionGraph
+- type: constructionGraph
   id: DrinkWaterBottleEmpty
   start: start
   graph:
@@ -12,3 +12,25 @@
   - node: waterbottle
     entity: DrinkWaterBottleEmpty
 
+- type: constructionGraph
+  id: ClothingMaskMimeSecurity
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: mask
+      steps:
+      - tag: MimeMask
+        name: construction-graph-tag-mime-mask
+        icon:
+          sprite: /Textures/Clothing/Mask/mime.rsi
+          state: icon
+        doAfter: 2
+      - tag: CheapSunglasses
+        name: construction-graph-tag-cheap-sunglasses
+        icon:
+          sprite: /Textures/Clothing/Eyes/Glasses/sunglasses.rsi
+          state: icon
+        doAfter: 2
+  - node: mask
+    entity: ClothingMaskMimeSecurity

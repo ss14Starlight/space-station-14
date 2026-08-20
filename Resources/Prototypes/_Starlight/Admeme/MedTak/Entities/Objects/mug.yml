@@ -1,0 +1,25 @@
+- type: entity
+  parent: DrinkBaseMug
+  id: DrinkMugMedTak
+  name: MedTak mug
+  description: A cheerful red mug emblazoned with the MedTak insignia.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Objects/mug.rsi
+
+- type: entity
+  parent: DrinkMugMedTak
+  id: DrinkMedTakCoffee
+  suffix: Coffee
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Coffee
+          Quantity: 20
+  - type: Sprite
+    layers:
+    - state: icon
+    - state: fill-3
+      map: ["enum.SolutionContainerLayers.Fill"]

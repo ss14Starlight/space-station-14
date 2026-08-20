@@ -23,6 +23,7 @@
   - type: Tool
     qualities:
       - Prying
+      - Tearing # Starlight
   - type: Construction
     graph: MetalHydrogenAxeConstruct
     node: icon

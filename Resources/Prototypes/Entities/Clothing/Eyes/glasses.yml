@@ -144,6 +144,7 @@
     sprite: Clothing/Eyes/Glasses/sunglasses.rsi
   - type: Tag
     tags:
+    - CheapSunglasses #Starlight
     - HamsterWearable
     - PetWearable
     - WhitelistChameleon
@@ -161,6 +162,7 @@
     protectionTime: 5
   - type: Tag
     tags:
+    - CheapSunglasses #Starlight
     - Sunglasses
     - PetWearable
     - HamsterWearable
@@ -209,6 +211,7 @@
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
+  - type: ShowAccess # Starlight
   - type: Tag
     tags:
     - HamsterWearable

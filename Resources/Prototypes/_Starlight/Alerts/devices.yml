@@ -1,0 +1,8 @@
+- type: alert
+  id: GPSAlert
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/astronav.rsi
+    state: icon
+  clickEvent: !type:GPSAlertEvent
+  name: alerts-gps-name
+  description: alerts-gps-desc

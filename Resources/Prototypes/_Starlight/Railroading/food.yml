@@ -55,7 +55,7 @@
     icon: ""
     iconColor: '#9FED5896'
     color: '#515151'
-    image: /Textures/_Starlight/Railroading/apple-pie.png
+    image: /Textures/_Starlight/Railroading/food.png
     description: rr-apple-pie-desc
   - type: RailroadConsumeTask
     objects:
@@ -82,7 +82,7 @@
     icon: ""
     iconColor: '#9FED5896'
     color: '#515151'
-    image: /Textures/_Starlight/Railroading/dumplings.png
+    image: /Textures/_Starlight/Railroading/food.png
     description: rr-dumplings-desc
   - type: RailroadConsumeTask
     objects:
@@ -109,7 +109,7 @@
     icon: ""
     iconColor: '#9FED5896'
     color: '#515151'
-    image: /Textures/_Starlight/Railroading/herb-salad.png
+    image: /Textures/_Starlight/Railroading/food.png
     description: rr-herb-salad-desc
   - type: RailroadConsumeTask
     objects:
@@ -136,7 +136,7 @@
     icon: ""
     iconColor: '#9FED5896'
     color: '#515151'
-    image: /Textures/_Starlight/Railroading/melon-fruit-bowl.png
+    image: /Textures/_Starlight/Railroading/food.png
     description: rr-melon-fruit-bowl-desc
   - type: RailroadConsumeTask
     objects:
@@ -163,7 +163,7 @@
     icon: ""
     iconColor: '#9FED5896'
     color: '#515151'
-    image: /Textures/_Starlight/Railroading/stew.png
+    image: /Textures/_Starlight/Railroading/food.png
     description: rr-stew-desc
   - type: RailroadConsumeTask
     objects:
@@ -190,7 +190,7 @@
     icon: ""
     iconColor: '#9FED5896'
     color: "#01407f"
-    image: /Textures/_Starlight/Railroading/sashimi.png
+    image: /Textures/_Starlight/Railroading/fish.png
     description: rr-sashimi-desc
   - type: RailroadConsumeTask
     objects:

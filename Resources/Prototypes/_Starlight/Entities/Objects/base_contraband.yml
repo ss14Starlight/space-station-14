@@ -168,6 +168,15 @@
     - type: Contraband
       allowedJobs: [ Reporter ]
 
+- type: entity
+  id: BaseCommandManagerContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Command ]
+    allowedJobs: [ AssistantManager ]
+
 # for ~objective items not held by command
 - type: entity
   id: BaseWardenGrandTheftContraband
@@ -202,14 +211,6 @@
   components:
   - type: Contraband
     allowedDepartments: [ Medical, Security ]
-
-# MedTak
-- type: entity
-  id: BaseMedTakContraband
-  abstract: true
-  components:
-  - type: Contraband
-    severity: MedTak
 
 - type: entity
   id: BaseSecurityScienceCommandNanoTrasenContraband

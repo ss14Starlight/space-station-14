@@ -120,6 +120,24 @@ namespace Content.Client.Decals
                 UpdateChunks(gridId, gridComp, updatedGridChunks);
             }
 
+            // Starlight Start: Diff chunks
+            foreach (var (netGrid, diffs) in ev.Diffs)
+            {
+                if (diffs.Count == 0)
+                    continue;
+
+                var gridId = GetEntity(netGrid);
+
+                if (!TryComp(gridId, out DecalGridComponent? gridComp))
+                {
+                    Log.Error($"Received decal diff for an entity without a decal component: {ToPrettyString(gridId)}");
+                    continue;
+                }
+
+                ApplyChunkDiffs(gridId, gridComp, diffs);
+            }
+            // Starlight End
+
             // Now we'll cull old chunks out of range as the server will send them to us anyway.
             foreach (var (netGrid, chunks) in ev.RemovedChunks)
             {
@@ -137,6 +155,39 @@ namespace Content.Client.Decals
                 RemoveChunks(gridId, gridComp, chunks);
             }
         }
+
+        // Starlight Start: Merge decal diffs instead of wholesale replace
+        private void ApplyChunkDiffs(EntityUid gridId, DecalGridComponent gridComp, Dictionary<Vector2i, DecalChunkDiff> diffs)
+        {
+            var chunkCollection = gridComp.ChunkCollection.ChunkCollection;
+
+            foreach (var (index, diff) in diffs)
+            {
+                if (!chunkCollection.TryGetValue(index, out var chunk))
+                {
+                    // We should always have this chunk already but if something desynced, don't crash, just start
+                    // a fresh chunk from the diff and let the next full resync correct anything missed.
+                    chunk = new DecalChunk();
+                    chunkCollection[index] = chunk;
+                }
+
+                foreach (var removedId in diff.Removed)
+                {
+                    if (chunk.Decals.ContainsKey(removedId))
+                    {
+                        OnDecalRemoved(gridId, removedId, gridComp, index, chunk);
+                        gridComp.DecalIndex.Remove(removedId);
+                    }
+                }
+
+                foreach (var (decalId, decal) in diff.Upserted)
+                {
+                    chunk.Decals[decalId] = decal;
+                    gridComp.DecalIndex[decalId] = index;
+                }
+            }
+        }
+        // Starlight End
 
         private void UpdateChunks(EntityUid gridId, DecalGridComponent gridComp, Dictionary<Vector2i, DecalChunk> updatedGridChunks)
         {

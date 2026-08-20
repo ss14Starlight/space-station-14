@@ -56,9 +56,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 260      # medium blast, ~4-5 tile radius
+    totalIntensity: 200      # medium blast, ~4 tile radius
     intensitySlope: 7
-    maxIntensity: 24
+    maxIntensity: 20
     canCreateVacuum: true
   - type: PointLight
     enabled: true
@@ -72,7 +72,7 @@
     requireInSpace: true
   - type: PDTarget
 
-# --- LEVIATHAN 240mm HE (single-shot, devastating) ---
+# --- LEVIATHAN 240mm HE (single-shot, massive AOE) ---
 - type: entity
   id: BulletLeviathan240mmHE
   name: LVT-240 240mm HE shell
@@ -83,18 +83,23 @@
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
       - state: grenade
-    scale: 3.0, 3.0
+    scale: 3.5, 3.5
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 400
+        Structural: 1000     # the shell itself hits hard before the explosion
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 900      # massive blast, ~8-9 tile radius
-    intensitySlope: 5
-    maxIntensity: 50
+    totalIntensity: 1600     # largest ballistic AoE — ~12-14 tile kill radius
+    intensitySlope: 3
+    maxIntensity: 75
     canCreateVacuum: true
   - type: PointLight
     enabled: true
-    radius: 6
-    energy: 5
+    radius: 8
+    energy: 7
     color: "#ff4400"
   - type: RadarBlip
     color: "#FF2200"
@@ -153,15 +158,15 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 500
-        Blunt: 150
-        Structural: 600
+        Piercing: 1100       # devastating direct penetration
+        Blunt: 350
+        Structural: 1500
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 350
-    intensitySlope: 10
-    maxIntensity: 28
+    totalIntensity: 120      # very tight shockwave — penetrator not a grenade
+    intensitySlope: 35
+    maxIntensity: 10
     canCreateVacuum: true
   - type: PointLight
     enabled: true
@@ -189,21 +194,21 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 600
-        Blunt: 200
-        Structural: 800
-        Radiation: 100
+        Piercing: 200
+        Blunt: 100
+        Structural: 300
+        Radiation: 400       # heavy irradiation on direct hit
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 800
-    intensitySlope: 6
-    maxIntensity: 60
+    totalIntensity: 6000     # nuclear detonation — obliterates entire vessels
+    intensitySlope: 2
+    maxIntensity: 160
     canCreateVacuum: true
   - type: PointLight
     enabled: true
-    radius: 8
-    energy: 6
+    radius: 10
+    energy: 8
     color: "#88ff00"
   - type: RadarBlip
     color: "#88FF00"

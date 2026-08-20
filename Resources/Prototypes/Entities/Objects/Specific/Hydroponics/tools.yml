@@ -144,6 +144,12 @@
       sprite: Objects/Tools/Hydroponics/spade.rsi
   - type: Shovel
     speedModifier: 0.75 # slower at digging than a full-sized shovel
+  # 🌟Starlight-start🌟
+  - type: Tool
+    qualities:
+      - Digging
+    speedModifier: 0.75 # see above
+  # 🌟Starlight-end🌟
   - type: PhysicalComposition
     materialComposition:
       Steel: 100

@@ -75,6 +75,70 @@
             - tool: Anchoring
               doAfter: 2
 
+        # Starlight Start
+
+        - to: reinforcedWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedGlass
+              amount: 2
+              doAfter: 3
+
+        - to: plasmaWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
+          steps:
+            - material: PlasmaGlass
+              amount: 2
+              doAfter: 3
+
+        - to: reinforcedPlasmaWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedPlasmaGlass
+              amount: 2
+              doAfter: 3
+
+        - to: uraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
+          steps:
+            - material: UraniumGlass
+              amount: 2
+              doAfter: 3
+
+        - to: reinforcedUraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 2
+              doAfter: 3
+
+        - to: clockworkWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetGlass1
+              amount: 2
+          steps:
+            - material: ClockworkGlass
+              amount: 2
+              doAfter: 3
+
+        # Starlight End
+
     - node: reinforcedWindow
       entity: ReinforcedWindow
       edges:
@@ -97,6 +161,50 @@
               doAfter: 1
             - tool: Anchoring
               doAfter: 2
+
+        # Starlight Start
+
+        - to: plasmaWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 2
+          steps:
+            - material: PlasmaGlass
+              amount: 2
+              doAfter: 3
+
+        - to: reinforcedPlasmaWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedPlasmaGlass
+              amount: 2
+              doAfter: 3
+
+        - to: uraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 2
+          steps:
+            - material: UraniumGlass
+              amount: 2
+              doAfter: 3
+
+        - to: reinforcedUraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 2
+              doAfter: 3
+
+        # Starlight End
 
     - node: tintedWindow
       entity: TintedWindow
@@ -136,6 +244,40 @@
             - tool: Anchoring
               doAfter: 3
 
+        # Starlight Start
+
+        - to: reinforcedPlasmaWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedPlasmaGlass
+              amount: 2
+              doAfter: 3
+
+        - to: uraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPGlass1
+              amount: 2
+          steps:
+            - material: UraniumGlass
+              amount: 2
+              doAfter: 3
+
+        - to: reinforcedUraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 2
+              doAfter: 3
+
+        # Starlight End
+
     - node: reinforcedPlasmaWindow
       entity: ReinforcedPlasmaWindow
       edges:
@@ -159,6 +301,30 @@
             - tool: Anchoring
               doAfter: 3
 
+        # Starlight Start
+
+        - to: uraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRPGlass1
+              amount: 2
+          steps:
+            - material: UraniumGlass
+              amount: 2
+              doAfter: 3
+
+        - to: reinforcedUraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetRPGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 2
+              doAfter: 3
+
+        # Starlight End
+
     - node: uraniumWindow
       entity: UraniumWindow
       edges:
@@ -177,6 +343,18 @@
               doAfter: 2
             - tool: Anchoring
               doAfter: 3
+
+        # Starlight Start
+        - to: reinforcedUraniumWindow
+          completed:
+            - !type:GivePrototype
+              prototype: SheetUGlass1
+              amount: 2
+          steps:
+            - material: ReinforcedUraniumGlass
+              amount: 2
+              doAfter: 3
+        # Starlight End
 
     - node: reinforcedUraniumWindow
       entity: ReinforcedUraniumWindow

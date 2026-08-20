@@ -6,8 +6,8 @@
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     x:Class="Content.Client._Starlight.Weapons.Gunnery.GunneryConsoleWindow"
     Title="Gunnery Console"
-    SetSize="870 680"
-    MinSize="640 500">
+    SetSize="1100 740"
+    MinSize="800 540">
 
     <BoxContainer Orientation="Horizontal">
 
@@ -21,17 +21,65 @@
             HorizontalAlignment="Center"
             Visible="false" />
 
-        <!-- Main radar display -->
-        <gunnery:GunneryRadarControl
-            Name="RadarControl"
+        <!-- Main radar + category filters -->
+        <BoxContainer
+            Orientation="Vertical"
             HorizontalExpand="True"
             VerticalExpand="True"
-            Margin="4" />
+            SeparationOverride="0">
+
+            <gunnery:GunneryRadarControl
+                Name="RadarControl"
+                HorizontalExpand="True"
+                VerticalExpand="True"
+                Margin="4" />
+
+            <!-- Category filter row -->
+            <BoxContainer
+                Orientation="Horizontal"
+                Margin="4,0,4,6"
+                SeparationOverride="4">
+
+                <Label
+                    Text="FILTER:"
+                    FontColorOverride="#888888"
+                    VerticalAlignment="Center"
+                    Margin="0,0,4,0" />
+
+                <CheckBox
+                    Name="FilterEnergy"
+                    Text="Energy"
+                    Pressed="True"
+                    ToolTip="Show energy weapons" />
+
+                <CheckBox
+                    Name="FilterRocket"
+                    Text="Rocket"
+                    Pressed="True"
+                    ToolTip="Show rocket/missile launchers" />
+
+                <CheckBox
+                    Name="FilterBallistic"
+                    Text="Ballistic"
+                    Pressed="True"
+                    ToolTip="Show ballistic artillery" />
+
+                <CheckBox
+                    Name="FilterUnknown"
+                    Text="Other"
+                    Pressed="True"
+                    ToolTip="Show uncategorised weapons" />
+
+            </BoxContainer>
+
+        </BoxContainer>
+
+        <cc:VSeparator />
 
         <!-- Right sidebar: cannon list + status -->
         <BoxContainer
             Orientation="Vertical"
-            MinWidth="170"
+            MinWidth="320"
             Margin="4,4,6,4"
             SeparationOverride="4">
 
@@ -41,33 +89,37 @@
                 FontColorOverride="#FFA040"
                 Margin="0,4,0,2" />
 
+            <!-- Legend -->
+            <BoxContainer Orientation="Horizontal" Margin="2,0,2,2" SeparationOverride="8">
+                <Label Text="■" FontColorOverride="#44FF44" />
+                <Label Text="Ready" FontColorOverride="#888888" />
+                <Label Text="■" FontColorOverride="#FF4444" />
+                <Label Text="Cooldown" FontColorOverride="#888888" />
+                <Label Text="■" FontColorOverride="#FF8800" />
+                <Label Text="No ammo" FontColorOverride="#888888" />
+            </BoxContainer>
+
             <PanelContainer VerticalExpand="True">
                 <ScrollContainer VerticalExpand="True">
-                    <ItemList
-                        Name="CannonList"
-                        VerticalExpand="True"
-                        SelectMode="Single" />
+                    <BoxContainer
+                        Name="CannonContainer"
+                        Orientation="Vertical"
+                        SeparationOverride="2" />
                 </ScrollContainer>
             </PanelContainer>
 
             <cc:HSeparator />
 
             <Label
-                Name="StatusLabel"
-                Text="No cannon selected"
-                HorizontalAlignment="Center"
-                FontColorOverride="#AAAAAA"
-                Margin="0,4,0,2" />
-
-            <Label
                 Name="GuidanceLabel"
                 Text=""
                 HorizontalAlignment="Center"
                 FontColorOverride="#44FF44"
-                Margin="0,0,0,4" />
+                Margin="0,4,0,4" />
 
         </BoxContainer>
 
     </BoxContainer>
 
 </controls:FancyWindow>
+

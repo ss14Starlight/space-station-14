@@ -15,11 +15,14 @@
       time: 3h # Lower stakes version of the same role, and forces you to get Paramed time too. Totals to about 8 hours paramed+brigmed combined.
     - !type:RolesRequirement
       proto: ExtRolesReq
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-nt-personnel
-  canBeAntag: false
   displayWeight: 4
   access:
     - Command
@@ -53,6 +56,9 @@
     - Mining
     - SalvageLead
     - Debrief
+    - Journalism
+    - Clown
+    - Mime
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

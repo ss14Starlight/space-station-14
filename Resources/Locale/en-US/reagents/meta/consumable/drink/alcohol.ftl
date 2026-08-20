@@ -177,7 +177,7 @@ reagent-desc-iced-beer = A beer which is so cold the air around it freezes.
 
 reagent-name-irish-car-bomb = Irish car bomb
 reagent-desc-irish-car-bomb = What's black and white and red all over?
-#Starlight Change Above
+# Starlight Change Above
 
 reagent-name-irish-cream = Irish cream
 reagent-desc-irish-cream = Whiskey-imbued cream. What else could you expect from the Irish.

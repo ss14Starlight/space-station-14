@@ -14,3 +14,10 @@ blindingstew-effect-eye-burn = Your eyes are burning!
 blindingstew-effect-hair = You shouldn't have eaten all that hair.
 blindingstew-effect-darkness = Everything is pitch black!
 blindingstew-effect-punished = You are definitely being punished.
+
+reagent-name-juice-mint-extract = mint extract
+reagent-desc-juice-mint-extract = Great for teas and making super water.
+reagent-physical-desc-mint-extract = minty
+reagent-name-cinnamon = Cinnamon
+reagent-desc-cinnamon = One of the spices of life. Do not try a spoonful raw.
+reagent-physical-desc-cinnamon = cinnamony

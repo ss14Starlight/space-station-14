@@ -471,16 +471,16 @@
     - MysteryLighterBox
   groupBy: "smokeables"
 
-#- type: loadout
-#  id: MagicCrayon
-#  effects:
-#    - !type:JobRequirementLoadoutEffect
-#      requirement:
-#        !type:OverallPlaytimeRequirement
-#        time: 360000 # 100hr
-#  storage:
-#    back:
-#      - CrayonMagic
+- type: loadout
+  id: MagicCrayon
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 360000 # 100 hours
+  storage:
+    back:
+      - CrayonMagic
 
 - type: loadout
   id: HappyHonk
@@ -680,6 +680,37 @@
     head: ClothingHeadHatTacticalMaidHeadband
   groupBy: "maid outfit"
 
+- type: loadout
+  id: JanitorMaidOutfit
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobJanitor
+        time: 72000 # 20 hr
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40 hr
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaid
+  groupBy: "maid outfit"
+
+- type: loadout
+  id: JanitorMaidOutfitMini
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+         role: JobJanitor
+         time: 72000 #20 hr
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40 hr
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaidmini
+  groupBy: "maid outfit"
 
 - type: loadout
   id: TreasureCoinIron

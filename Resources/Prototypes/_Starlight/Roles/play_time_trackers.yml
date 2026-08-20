@@ -23,6 +23,9 @@
   id: JobBlueShield
 
 - type: playTimeTracker
+  id: JobAssistantManager
+
+- type: playTimeTracker
   id: JobConsortiumBlueShield
 
 - type: playTimeTracker
@@ -72,6 +75,24 @@
 
 - type: playTimeTracker
   id: JobNanotrasenCareerTrainer
+
+- type: playTimeTracker
+  id: JobCentCommServiceWorker
+
+- type: playTimeTracker
+  id: JobCentCommChef
+
+- type: playTimeTracker
+  id: JobCentCommBartender
+
+- type: playTimeTracker
+  id: JobCentCommJanitor
+
+- type: playTimeTracker
+  id: JobPrisoner
+
+- type: playTimeTracker
+  id: JobStirStir
 
 # Other ghosts
 

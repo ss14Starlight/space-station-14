@@ -150,8 +150,8 @@
   - type: GhostTakeoverAvailable
 
 - type: entity
-  parent: XenoborgHeavyDerelict
-  id: PlayerXenoBorgHeavyDerelict
+  parent: DerelictHeavyXenoborg
+  id: PlayerDerelictHeavyXenoborg
   suffix: Battery, Module
   components:
     - type: ContainerFill
@@ -173,8 +173,8 @@
             - MechReactor
 
 - type: entity
-  parent: PlayerXenoBorgHeavyDerelict
-  id: PlayerXenoBorgHeavyDerelictGhostRole
+  parent: PlayerDerelictHeavyXenoborg
+  id: PlayerDerelictHeavyXenoborgGhostRole
   suffix: Ghost role
   components:
       - type: GhostRole
@@ -188,8 +188,8 @@
       - type: GhostTakeoverAvailable
 
 - type: entity
-  parent: XenoborgEngiDerelict
-  id: PlayerXenoBorgEngiDerelict
+  parent: DerelictEngiXenoborg
+  id: PlayerDerelictEngiXenoborg
   suffix: Battery, Module
   components:
     - type: ContainerFill
@@ -214,8 +214,8 @@
             - MechReactor
 
 - type: entity
-  parent: PlayerXenoBorgEngiDerelict
-  id: PlayerXenoBorgEngiDerelictGhostRole
+  parent: PlayerDerelictEngiXenoborg
+  id: PlayerDerelictEngiXenoborgGhostRole
   suffix: Ghost role
   components:
     - type: GhostRole
@@ -229,8 +229,8 @@
     - type: GhostTakeoverAvailable
 
 - type: entity
-  parent: XenoborgScoutDerelict
-  id: PlayerXenoborgScoutDerelict
+  parent: DerelictScoutXenoborg
+  id: PlayerDerelictScoutXenoborg
   suffix: Battery, Module
   components:
     - type: ContainerFill
@@ -252,8 +252,8 @@
             - MechReactor
 
 - type: entity
-  parent: PlayerXenoborgScoutDerelict
-  id: PlayerXenoborgScoutDerelictGhostRole
+  parent: PlayerDerelictScoutXenoborg
+  id: PlayerDerelictScoutXenoborgGhostRole
   suffix: Ghost role
   components:
     - type: GhostRole
@@ -267,8 +267,8 @@
     - type: GhostTakeoverAvailable
 
 - type: entity
-  parent: XenoborgStealthDerelict
-  id: PlayerXenoborgStealthDerelict
+  parent: DerelictStealthXenoborg
+  id: PlayerDerelictStealthXenoborg
   suffix: Battery, Module
   components:
     - type: ContainerFill
@@ -293,8 +293,8 @@
             - MechReactor
 
 - type: entity
-  parent: PlayerXenoborgStealthDerelict
-  id: PlayerXenoborgStealthDerelictGhostRole
+  parent: PlayerDerelictStealthXenoborg
+  id: PlayerDerelictStealthXenoborgGhostRole
   suffix: Ghost role
   components:
     - type: GhostRole
@@ -308,8 +308,8 @@
     - type: GhostTakeoverAvailable
 
 - type: entity
-  parent: XenoBorgiDerelict
-  id: PlayerXenoBorgiDerelictGhostRole
+  parent: DerelictXenoBorgi
+  id: PlayerDerelictXenoBorgiGhostRole
   suffix: Ghost role
   components:
     - type: GhostRole
@@ -426,30 +426,3 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMicroreactor
-
-# region MedTak
-
-- type: entity
-  id: PlayerBorgChassisMedTakBattery
-  parent: BorgChassisMedTak
-  suffix: Battery, Modules
-  components:
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-  - type: DefaultBorgModules
-    modules:
-      - BorgModulePrying
-      - BorgModuleTool
-      - BorgModuleMedTakMedical
-      - BorgModuleMedTakRifle
-      - BorgModuleFireExtinguisher
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
-        blacklist:
-          tags:
-          - MechReactor

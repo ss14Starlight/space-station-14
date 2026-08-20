@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Content.IntegrationTests.Fixtures;
 using Content.Shared._Starlight.Spawners.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
@@ -8,14 +9,14 @@ namespace Content.IntegrationTests.Tests._Starlight.Spawner;
 
 [TestOf(typeof(TimedDespawnComponent))]
 [TestOf(typeof(TimedSpawnerComponent))]
-public sealed partial class TimedSpawnerDespawnTest
+public sealed partial class TimedSpawnerDespawnTest : GameTest
 {
     const double Tolerance = 1.0;
 
     [Test]
     public async Task TestDespawnWhenDone()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
 
         var protoMan = pair.Server.ResolveDependency<IPrototypeManager>();
         var compFactory = pair.Server.ResolveDependency<IComponentFactory>();
@@ -35,7 +36,5 @@ public sealed partial class TimedSpawnerDespawnTest
         }
 
         Assert.That(errors, Is.Empty, string.Join("\n", errors));
-
-        await pair.CleanReturnAsync();
     }
 }

@@ -313,6 +313,9 @@ entities:
     - type: OccluderTree
     - type: Shuttle
       dampingModifier: 0.25
+    - type: Tag
+      tags:
+        - ERTShuttle
     - type: GridPathfinding
     - type: RadiationGridResistance
     - type: SpreaderGrid

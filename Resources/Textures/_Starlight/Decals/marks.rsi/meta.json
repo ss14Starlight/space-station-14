@@ -87,6 +87,14 @@
 	  "copyright": "Conflee"
     },
 	{
+      "name": "delivery_area",
+	  "copyright": "JohnTaily"
+    },
+	{
+      "name": "delivery_area_greyscale",
+	  "copyright": "JohnTaily"
+    },
+	{
       "name": "you_are_dead",
 	  "copyright": "Paradise"
     }

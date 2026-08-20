@@ -48,4 +48,14 @@ public sealed partial class RoundEndSummaryUIController : UIController,
         _input.SetInputCommand(ContentKeyFunctions.ToggleRoundEndSummaryWindow,
             InputCmdHandler.FromDelegate(ToggleScoreboardWindow));
     }
+
+    #region Starlight
+
+    public void DeleteRoundEndSummaryWindow()
+    {
+        _window?.Close();
+        _window = null;
+    }
+
+    #endregion
 }

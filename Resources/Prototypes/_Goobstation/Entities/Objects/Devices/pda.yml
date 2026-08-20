@@ -1,0 +1,18 @@
+- type: entity
+  parent: BasePDA
+  id: RadioHostPDA
+  name: radio host PDA
+  description: You're listening to the smooth sounds of 145.9 FM.
+  components:
+  - type: Pda
+    id: RadioHostIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-internservice
+  - type: PdaBorderColor
+    borderColor: "#717059"
+    accentVColor: "#00cc35"
+  - type: Icon
+    state: pda-internservice

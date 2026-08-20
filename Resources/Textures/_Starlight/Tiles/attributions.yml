@@ -80,3 +80,13 @@
   license: "CC0-1.0"
   copyright: "CawsForConcern"
   source: "https://github.com/CawsForConcern"
+
+- files: ["Lattice_NE.png, Lattice_NW.png, Lattice_SE.png, Lattice_SW.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Base lattice taken from tgstation commit 8abb19545828230d92ba18827feeb42a67a55d49, diagonalized by SevenShades"
+  source: "https://github.com/SevenShadesofStarlight"
+
+- files: ["Plating_NE.png, Plating_NW.png, Plating_SE.png, Plating_SW.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Base plating taken from CEV-Eris commit 8e74e4370f4d5885f15c3f834973b1223ddb8b1b, modified by github user @Flareguy, and diagonalized by SevenShades"
+  source: "https://github.com/SevenShadesofStarlight"

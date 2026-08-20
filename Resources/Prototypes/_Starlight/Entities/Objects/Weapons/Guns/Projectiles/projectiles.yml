@@ -260,3 +260,49 @@
     stabilityPerDestabilizingHit: 0
     healthPerWeakeningeHit: 0
     stabilityPerWeakeningeHit: 0
+
+- type: entity # Starlight Peacekeeper
+  id: BulletGrenadeStinger
+  name: armed stinger grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: SpawnOnTrigger
+    proto: Grenade20mmStinger
+  - type: DeleteOnTrigger
+
+- type: entity # Starlight Peacekeeper
+  id: BulletGrenadeGas
+  name: armed gas grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: SpawnOnTrigger
+    proto: Grenade20mmGas
+  - type: DeleteOnTrigger
+
+
+- type: entity # Lesser lethal for Peacekeeper
+  parent: BaseBullet
+  id: PelletClusterLesserRubber
+  categories: [ HideSpawnMenu ]
+  name: pellet (ball, rubber)
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+       Piercing: 0
+       Blunt: 1
+  - type: StaminaDamageOnCollide
+    damage: 20
+  - type: TimedDespawn
+    lifetime: 0.25

@@ -134,6 +134,8 @@
       bleedHealPerUpdate: 1.0
       critHealingModifier: 0.5
       stasisDamageReduction: 0.7
+      healingThreshold: 50.0
+      stasisHealth: 50.0
 
 # Chirp!
 # Chirp!

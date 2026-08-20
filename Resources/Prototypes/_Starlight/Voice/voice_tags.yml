@@ -1,0 +1,190 @@
+# Parent/Child mappings
+
+- type: voiceTag
+  id: spanish
+  parents: [european]
+
+- type: voiceTag
+  id: italian
+  parents: [european]
+
+- type: voiceTag
+  id: greek
+  parents: [european]
+
+- type: voiceTag
+  id: nordic
+  parents: [european]
+
+- type: voiceTag
+  id: southeast-asian
+  parents: [asian]
+
+- type: voiceTag
+  id: korean
+  parents: [asian]
+
+- type: voiceTag
+  id: arabic
+  parents: [asian]
+
+- type: voiceTag
+  id: indian
+  parents: [asian]
+
+- type: voiceTag
+  id: trans-atlantic
+  parents: [american, british]
+
+- type: voiceTag
+  id: mexican
+  parents: [american]
+
+- type: voiceTag
+  id: scottish
+  parents: [british]
+
+- type: voiceTag
+  id: french
+  parents: [european]
+
+- type: voiceTag
+  id: german
+  parents: [european]
+
+- type: voiceTag
+  id: japanese
+  parents: [asian]
+
+- type: voiceTag
+  id: irish
+  parents: [british, european]
+
+- type: voiceTag
+  id: southern
+  parents: [american]
+
+
+# Accent parent tags
+
+- type: voiceTag
+  id: american
+
+- type: voiceTag
+  id: british
+
+- type: voiceTag
+  id: european
+
+- type: voiceTag
+  id: asian
+
+- type: voiceTag
+  id: australian
+
+- type: voiceTag
+  id: russian
+
+
+# Quality tags
+
+- type: voiceTag
+  id: booming
+
+- type: voiceTag
+  id: breathy
+
+- type: voiceTag
+  id: clear
+
+- type: voiceTag
+  id: dramatic
+
+- type: voiceTag
+  id: fancy
+
+- type: voiceTag
+  id: fast
+
+- type: voiceTag
+  id: flamboyant
+
+- type: voiceTag
+  id: harsh
+
+- type: voiceTag
+  id: lisp
+
+- type: voiceTag
+  id: little
+
+- type: voiceTag
+  id: monotone
+
+- type: voiceTag
+  id: monstrous
+
+- type: voiceTag
+  id: muffled
+
+- type: voiceTag
+  id: nasal
+
+- type: voiceTag
+  id: old
+
+- type: voiceTag
+  id: old-timey
+
+- type: voiceTag
+  id: quiet
+
+- type: voiceTag
+  id: raspy
+
+- type: voiceTag
+  id: robotic
+
+- type: voiceTag
+  id: sad
+
+- type: voiceTag
+  id: serious
+
+- type: voiceTag
+  id: silly
+
+- type: voiceTag
+  id: sinister
+
+- type: voiceTag
+  id: slow
+
+- type: voiceTag
+  id: smooth
+
+- type: voiceTag
+  id: soft
+
+- type: voiceTag
+  id: squalky
+
+
+# Filter Configuration
+
+- type: voiceTagFilterConfig
+  id: default
+  maxPresentedTags: 25
+  explicitlyIncludedTags:
+  - american
+  - british
+  - european
+  - asian
+  - australian
+  - french
+  - russian
+  - german
+  - southern
+  excludedTags:
+  - clear
+  - serious

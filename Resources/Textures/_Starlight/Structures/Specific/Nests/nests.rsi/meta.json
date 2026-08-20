@@ -1,20 +1,23 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Beehive edited by Conflee, taken from Monkestation. Rat and Mouse Nests by Conflee for Starlight",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "bee_hive_monke"
+      "name": "bee_hive_monke",
+      "copyright": "Beehive edited by Conflee, taken from Monkestation"
     },
-	{
-      "name": "rat_nest"
+    {
+      "name": "rat_nest",
+      "copyright": "Rat and Mouse Nests by Conflee for Starlight"
     },
-	{
-      "name": "mouse_nest"
+    {
+      "name": "mouse_nest",
+      "copyright": "Rat and Mouse Nests by Conflee for Starlight"
     }
   ]
 }

@@ -33,10 +33,13 @@
   - Visitor
   - ServiceWorker
   # Starlight start
+  - AssistantManager
   - Performer
   - Lawyer
   - Boxer
   - Zookeeper
+  - Prisoner
+  - RadioHost
   # Starlight end
 
 - type: department

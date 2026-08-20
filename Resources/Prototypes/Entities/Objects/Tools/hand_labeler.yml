@@ -30,6 +30,7 @@
           - Item
         tags:
           - Structure
+          - Labelable # Starlight
     - type: PhysicalComposition
     # Starlight-start: Vending Machines Prices
     - type: ItemPrice

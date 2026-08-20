@@ -10,8 +10,9 @@
     NinjaBackup: 0.75
     Rod: 0.75
     Wizard: 0.1
-    Xenoborgs: 0.05
+    #Xenoborgs: 0.05
     Eeeplet: 0.5
+    Colossus: 0.2
     # Starlight End
 
 - type: ninjaHackingThreat

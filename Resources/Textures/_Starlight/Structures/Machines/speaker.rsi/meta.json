@@ -5,11 +5,12 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made by Conflee",
+    "copyright": "State based copyright",
     "states": [
         {
             "name": "speaker",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Made by Conflee"
         }
     ]
 }

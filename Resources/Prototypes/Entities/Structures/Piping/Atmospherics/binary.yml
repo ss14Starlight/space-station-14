@@ -101,6 +101,18 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+    prefix: device-address-prefix-gas-pump
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
+  - type: GasPressurePumpSignal
   # Starlight end
   - type: GuideHelp
     guides:
@@ -169,19 +181,24 @@
       range: 5
       sound:
         path: /Audio/Ambience/Objects/gas_pump.ogg
-    - type: DeviceNetwork
-      deviceNetId: AtmosDevices
-      receiveFrequencyId: AtmosMonitor
-      transmitFrequencyId: AtmosMonitor
-      sendBroadcastAttemptEvent: true
-      examinableAddress: true
-      prefix: device-address-prefix-volume-pump
-    - type: WiredNetworkConnection
+        # Starlight: Replaced DeviceNetwork, see Starlight block
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
     # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlTransit
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-volume-pump
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - On
+        - Off
+        - Toggle
+    - type: GasVolumePumpSignal
     # Starlight end
     - type: GuideHelp
       guides:
@@ -291,7 +308,7 @@
       graph: GasBinary
       node: passivegate
     - type: AmbientSound
-      enabled: true
+      enabled: false # Starlight-edit: Unnecessary audio feedback for an always-on device
       volume: -9
       range: 5
       sound:
@@ -361,8 +378,8 @@
       node: valve
     - type: AmbientSound
       enabled: true
-      volume: -9
-      range: 5
+      volume: -13 # Starlight-edit: half the original amplitude (-9dB)
+      range: 3 # Starlight-edit: smaller radius so valve clusters don't overlap
       sound:
         path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
@@ -441,8 +458,8 @@
     node: signalvalve
   - type: AmbientSound
     enabled: true
-    volume: -9
-    range: 5
+    volume: -13 # Starlight-edit: half the original amplitude (-9dB)
+    range: 3 # Starlight-edit: smaller radius so valve clusters don't overlap
     sound:
       path: /Audio/Ambience/Objects/gas_hiss.ogg
   - type: AtmosMonitoringConsoleDevice

@@ -15,7 +15,7 @@
   - type: ShowHealthBars
     damageContainers:
       - Biological
-      - Hybrid # Protogens
+      - Hybrid # Neocytes
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -44,7 +44,7 @@
   - type: ShowHealthBars
     damageContainers:
       - Biological
-      - Hybrid # Protogens
+      - Hybrid # Neocytes
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -112,6 +112,7 @@
   - type: ShowCriminalRecordIcons
   - type: EyeProtection
     protectionTime: 5
+  - type: ShowAccess
   - type: StealTarget
     stealGroup: RareGlassesCollection
 
@@ -165,6 +166,9 @@
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
     - type: ShowAccessReaderSettings
+    - type: ShowAccess
+      seeIdHolder: true
+      itemsOnly: false
     - type: ShowHealthBars
       damageContainers:
         - Biological
@@ -222,7 +226,7 @@
   - type: ShowHealthBars
     damageContainers:
       - Biological
-      - Hybrid # Protogens
+      - Hybrid # Neocytes
   - type: Tag
     tags:
     - WhitelistChameleon

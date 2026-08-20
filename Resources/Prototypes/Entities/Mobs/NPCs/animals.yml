@@ -559,6 +559,7 @@
     allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: FaxableObject
     insertingState: inserting_mothroach
+    outputtingText: "mothroach.txt" # Starlight-edit
   - type: MothAccent
   - type: Sprite
     sprite: Mobs/Animals/mothroach/mothroach.rsi
@@ -1341,7 +1342,7 @@
 - type: entity
   name: genetic ancestor
   id: MobBaseAncestor
-  parent: [SimpleMobBase, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal
+  parent: [SimpleMobBaseAntag, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal + inherits Antag so they can roll antags
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
@@ -1384,6 +1385,7 @@
         layer:
         - MobLayer
   - type: Stripping
+  - type: Scent # Starlight
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1519,6 +1521,13 @@
   - type: Tag
     tags:
       - Monkey
+  - type: Vocal
+    sounds:
+      Male: Monkey
+      Female: Monkey
+      Unsexed: Monkey
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
 
 - type: Tag
   id: Monkey
@@ -1541,6 +1550,13 @@
     - Ancestor
     - GalacticCommon
   - type: VentCrawler # Starlight
+  - type: Vocal
+    sounds:
+      Male: Monkey
+      Female: Monkey
+      Unsexed: Monkey
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
   # Starlight-End
   - type: NameIdentifier
     group: Monkey
@@ -1872,6 +1888,7 @@
   - type: Physics
   - type: FaxableObject
     insertingState: inserting_mouse
+    outputtingText: "mouse.txt" # Starlight-edit
   - type: Fixtures
     fixtures:
       fix1:
@@ -2414,6 +2431,14 @@
   id: MobPenguin
   description: Their lives are constant pain due to their inner-body knees.
   components:
+  # Starlight-start: Languages
+  - type: LanguageKnowledge
+    speaks:
+    - Penguin
+    understands:
+    - GalacticCommon
+    - Penguin
+  # Starlight-end
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2545,6 +2570,12 @@
         damage: 50
       behaviors:
       - !type:ExplodeBehavior
+  #SL begin
+  - type: PressureImmunity
+  - type: Respirator
+    minSaturation: 5.0
+  - type: TemperatureImmunity
+  #SL end
 
   # I have included a snake_hiss.ogg sound file so if you want to use that be my guest
 - type: entity
@@ -2700,6 +2731,7 @@
       groups:
         Brute: -0.07
         Burn: -0.07
+  - type: NightVision # Starlight
 
 - type: entity
   parent: MobSpiderBase
@@ -3070,6 +3102,14 @@
     rootTask:
       task: RuminantHostileCompound
   - type: MessyDrinker
+  # Starlight Begin
+  - type: Smeller
+  - type: Scent
+  - type: UserInterface
+    interfaces:
+      enum.ScentSniffUiKey.Key:
+        type: ScentSniffBoundUserInterface
+  # Starlight End
   - type: Puller
     needsHands: false
   - type: Tag
@@ -3078,8 +3118,8 @@
 
 - type: entity
   abstract: true
-  parent: [SimpleMobBase, StripableInventoryBase]
-  id: MobCorgiBase
+  parent: [SimpleMobBaseAntag, StripableInventoryBase] # Starlight, so they don't inherit antag immune
+  id: MobCorgiBaseTemplate # Starlight, to let smart corgis roll antag but not other corgi types
   name: corgi
   description: Finally, a space corgi!
   components:
@@ -3100,6 +3140,13 @@
       Male: Dog
       Female: Dog
       Unsexed: Dog
+  - type: UserInterface
+    interfaces:
+      enum.ScentSniffUiKey.Key:
+        type: ScentSniffBoundUserInterface
+      enum.RadarConsoleUiKey.Key: # dog descendants may potentially have mass scanners
+        type: RadarConsoleBoundUserInterface
+        requireInputValidation: false
   # Starlight End
   - type: Fixtures
     fixtures:
@@ -3142,13 +3189,15 @@
       Dead: CorgiDead
   - type: Blindable # why is this not base?
   - type: Emoting
+  - type: Scent
+  - type: Smeller
   - type: ThermalRegulator # Lower radiated heat, Corgis are smaller so their body surface area is also smaller.
     metabolismHeat: 400 # half of human's
     radiatedHeat: 35 # This affects them reallistically only when dead in a spaced room, makes the cold damage scale slower.
     implicitHeatRegulation: 250 # Add implicit heat regulation because they lacked it for some reason
     sweatHeatRegulation: 500 # Allow corgis to sweat, i dont know if dogs sweat but i am not implementing a different way of regulation just for them
     shiveringHeatRegulation: 500 # Allow corgis to shiver to warm up
-    normalBodyTemperature: 310.15 # Same as human
+    normalBodyTemperature: 311.45 # Slightly higher than human
     thermalRegulationTemperatureThreshold: 2 # Same as human
   # Starlight End
 
@@ -3700,6 +3749,7 @@
   - type: Physics
   - type: FaxableObject
     insertingState: inserting_hamster
+    outputtingText: "hamster.txt" # Starlight-edit
   - type: Fixtures
     fixtures:
       fix1:
@@ -4095,7 +4145,7 @@
         Base: reindeer_doe_dead
 
 - type: entity
-  parent: MobCorgiBase #starlight Nubody will not pass.
+  parent: MobCorgiBaseAntag # Starlight Nubody will not pass + allows them to be antags
   id: MobCorgiSmart
   name: smart corgi
   description: An unusually smart dog.

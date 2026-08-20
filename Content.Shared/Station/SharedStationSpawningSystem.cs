@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -22,6 +24,7 @@ namespace Content.Shared.Station;
 public abstract partial class SharedStationSpawningSystem : EntitySystem
 {
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] protected ISharedAdminLogManager _adminLogger = default!; // Starlight
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] protected InventorySystem InventorySystem = default!;
     [Dependency] private SharedHandsSystem _handsSystem = default!;
@@ -49,7 +52,9 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
     /// <summary>
     ///     Equips the data from a `RoleLoadout` onto an entity.
     /// </summary>
-    public void EquipRoleLoadout(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto, HumanoidCharacterProfile? profile = null) // Starlight edit
+    public void EquipRoleLoadout(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto, HumanoidCharacterProfile? profile = null) => EquipRoleLoadout(entity, loadout, roleProto, profile, null); // Starlight edit
+
+    internal void EquipRoleLoadout(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto, HumanoidCharacterProfile? profile, PriorityStorageEquipContext? priorityContext) // Starlight
     {
 
         // Starlight Start
@@ -59,7 +64,7 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
         appliedLoadout.Profile = profile;
 
 
-        if (StarlightEquipRoleLoadout(entity, loadout, [], roleProto))
+        if (StarlightEquipRoleLoadout(entity, loadout, [], roleProto, priorityContext)) // Starlight
         {
             EquipRoleName(entity, loadout, roleProto);
             return;
@@ -76,7 +81,7 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
                     continue;
                 }
 
-                EquipStartingGear(entity, loadoutProto, raiseEvent: false);
+                EquipStartingGear(entity, loadoutProto, raiseEvent: false, priorityContext: priorityContext); // Starlight
             }
         }
 
@@ -106,28 +111,31 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
         }
     }
 
-    public void EquipStartingGear(EntityUid entity, LoadoutPrototype loadout, bool raiseEvent = true)
+    public void EquipStartingGear(EntityUid entity, LoadoutPrototype loadout, bool raiseEvent = true) => EquipStartingGear(entity, loadout, raiseEvent, null); // Starlight
+
+    internal void EquipStartingGear(EntityUid entity, LoadoutPrototype loadout, bool raiseEvent, PriorityStorageEquipContext? priorityContext) // Starlight
     {
-        EquipStartingGear(entity, loadout.StartingGear, raiseEvent);
-        EquipStartingGear(entity, (IEquipmentLoadout) loadout, raiseEvent);
+        EquipStartingGear(entity, loadout.StartingGear, raiseEvent, priorityContext); // Starlight
+        EquipStartingGear(entity, (IEquipmentLoadout) loadout, raiseEvent, priorityContext); // Starlight
     }
 
     /// <summary>
     /// <see cref="EquipStartingGear(Robust.Shared.GameObjects.EntityUid,System.Nullable{Robust.Shared.Prototypes.ProtoId{Content.Shared.Roles.StartingGearPrototype}},bool)"/>
     /// </summary>
-    public void EquipStartingGear(EntityUid entity, ProtoId<StartingGearPrototype>? startingGear, bool raiseEvent = true)
+    public void EquipStartingGear(EntityUid entity, ProtoId<StartingGearPrototype>? startingGear, bool raiseEvent = true) => EquipStartingGear(entity, startingGear, raiseEvent, null); // Starlight
+
+    internal void EquipStartingGear(EntityUid entity, ProtoId<StartingGearPrototype>? startingGear, bool raiseEvent, PriorityStorageEquipContext? priorityContext) // Starlight
     {
         PrototypeManager.Resolve(startingGear, out var gearProto);
-        EquipStartingGear(entity, gearProto, raiseEvent);
+        EquipStartingGear(entity, gearProto, raiseEvent, priorityContext); // Starlight
     }
 
     /// <summary>
     /// <see cref="EquipStartingGear(Robust.Shared.GameObjects.EntityUid,System.Nullable{Robust.Shared.Prototypes.ProtoId{Content.Shared.Roles.StartingGearPrototype}},bool)"/>
     /// </summary>
-    public void EquipStartingGear(EntityUid entity, StartingGearPrototype? startingGear, bool raiseEvent = true)
-    {
-        EquipStartingGear(entity, (IEquipmentLoadout?) startingGear, raiseEvent);
-    }
+    public void EquipStartingGear(EntityUid entity, StartingGearPrototype? startingGear, bool raiseEvent = true) => EquipStartingGear(entity, startingGear, raiseEvent, null); // Starlight
+
+    internal void EquipStartingGear(EntityUid entity, StartingGearPrototype? startingGear, bool raiseEvent, PriorityStorageEquipContext? priorityContext) => EquipStartingGear(entity, (IEquipmentLoadout?)startingGear, raiseEvent, priorityContext); // Starlight
 
     /// <summary>
     /// Equips starting gear onto the given entity.
@@ -135,7 +143,9 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
     /// <param name="entity">Entity to load out.</param>
     /// <param name="startingGear">Starting gear to use.</param>
     /// <param name="raiseEvent">Should we raise the event for equipped. Set to false if you will call this manually</param>
-    public void EquipStartingGear(EntityUid entity, IEquipmentLoadout? startingGear, bool raiseEvent = true)
+    public void EquipStartingGear(EntityUid entity, IEquipmentLoadout? startingGear, bool raiseEvent = true) => EquipStartingGear(entity, startingGear, raiseEvent, null); // Starlight, so many "use expression body for method" commments...
+
+    internal void EquipStartingGear(EntityUid entity, IEquipmentLoadout? startingGear, bool raiseEvent,  PriorityStorageEquipContext? priorityContext) // Starlight
     {
         if (startingGear == null)
             return;
@@ -174,17 +184,19 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
 
                 if (_handsSystem.TryGetEmptyHand((entity, handsComponent), out var emptyHand))
                 {
-                    _handsSystem.TryPickup(entity, inhandEntity, emptyHand, checkActionBlocker: false, handsComp: handsComponent);
+                    if (_handsSystem.TryPickup(entity, inhandEntity, emptyHand, checkActionBlocker: false, handsComp: handsComponent)) // Starlight
+                        priorityContext?.IssuedGear.Add(inhandEntity); // Starlight
                 }
             }
         }
 
         if (startingGear.Storage.Count > 0)
         {
-            var coords = _xformSystem.GetMapCoordinates(entity);
+            #region Starlight
+            //var coords = _xformSystem.GetMapCoordinates(entity);
             _inventoryQuery.TryComp(entity, out var inventoryComp);
 
-            foreach (var (slotName, entProtos) in startingGear.Storage)
+            /*foreach (var (slotName, entProtos) in startingGear.Storage)
             {
                 if (entProtos == null || entProtos.Count == 0)
                     continue;
@@ -201,7 +213,6 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
                         _storage.Insert(slotEnt.Value, spawnedEntity, out _, storageComp: storage, playSound: false);
                     }
                 }
-                // Starlight start
                 else if (inventoryComp != null &&
                     InventorySystem.TryGetSlotEntity(entity, slotName, out var slotEnt2, inventoryComponent: inventoryComp) &&
                     _itemSlotsQuery.TryComp(slotEnt2, out var itemSlots))
@@ -215,8 +226,9 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
                         InsertIntoItemSlots(typed, spawnedEntity);
                     }
                 }
-                // Starlight end
-            }
+            }*/
+            EquipStorageGear(entity, startingGear, inventoryComp, priorityContext);
+            #endregion
         }
 
         if (raiseEvent)
@@ -266,7 +278,9 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
     /// <param name="otherStartingGear">Other starting gear not listed in the role loadout</param>
     /// <param name="roleProto">The base definition for the role</param>
     /// <returns>true on success, false on failure</returns>
-    public bool StarlightEquipRoleLoadout(EntityUid entity, RoleLoadout loadout, IEnumerable<IEquipmentLoadout> otherStartingGear, RoleLoadoutPrototype roleProto)
+    public bool StarlightEquipRoleLoadout(EntityUid entity, RoleLoadout loadout, IEnumerable<IEquipmentLoadout> otherStartingGear, RoleLoadoutPrototype roleProto) => StarlightEquipRoleLoadout(entity, loadout, otherStartingGear, roleProto, null); // Starlight
+
+    internal bool StarlightEquipRoleLoadout(EntityUid entity, RoleLoadout loadout, IEnumerable<IEquipmentLoadout> otherStartingGear, RoleLoadoutPrototype roleProto, PriorityStorageEquipContext? priorityContext) // Starlight
     {
         List<IEquipmentLoadout> allStartingGear = new();
 
@@ -338,7 +352,8 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
 
                     if (_handsSystem.TryGetEmptyHand((entity, handsComponent), out var emptyHand))
                     {
-                        _handsSystem.TryPickup(entity, inhandEntity, emptyHand, checkActionBlocker: false, handsComp: handsComponent);
+                        if (_handsSystem.TryPickup(entity, inhandEntity, emptyHand, checkActionBlocker: false, handsComp: handsComponent)) // Starlight
+                            priorityContext?.IssuedGear.Add(inhandEntity); // Starlight
                     }
                 }
             }
@@ -348,39 +363,228 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
 
         foreach (var startingGear in allStartingGear)
         {
-            foreach (var (slotName, entProtos) in startingGear.Storage)
-            {
-                if (entProtos == null || entProtos.Count == 0)
-                    continue;
-
-                if (inventoryComp != null &&
-                    InventorySystem.TryGetSlotEntity(entity, slotName, out var slotEnt, inventoryComponent: inventoryComp) &&
-                    _storageQuery.TryComp(slotEnt, out var storage))
-                {
-                    foreach (var entProto in entProtos)
-                    {
-                        var spawnedEntity = Spawn(entProto, coords);
-
-                        _storage.Insert(slotEnt.Value, spawnedEntity, out _, storageComp: storage, playSound: false);
-                    }
-                }
-                else if (inventoryComp != null &&
-                    InventorySystem.TryGetSlotEntity(entity, slotName, out var slotEnt2, inventoryComponent: inventoryComp) &&
-                    _itemSlotsQuery.TryComp(slotEnt2, out var itemSlots))
-                {
-
-                    foreach (var entProto in entProtos)
-                    {
-                        var spawnedEntity = Spawn(entProto, coords);
-                        // Because we need an Entity<ItemSlotsComponent?>
-                        Entity<ItemSlotsComponent?> typed = (slotEnt2.Value, itemSlots);
-                        InsertIntoItemSlots(typed, spawnedEntity);
-                    }
-                }
-            }
+            #region Starlight
+            EquipStorageGear(entity, startingGear, inventoryComp, priorityContext);
         }
         return true;
     }
+    #endregion
+
+    #region Starlight
+    // Pretty much had to rewrite all of this to get it to to work with antags rolling later without dropping their stuff on the ground.
+    private void EquipStorageGear(EntityUid entity,
+        IEquipmentLoadout startingGear,
+        InventoryComponent? inventoryComp,
+        PriorityStorageEquipContext? priorityContext)
+    {
+        var coords = _xformSystem.GetMapCoordinates(entity);
+
+        foreach (var (slotName, entProtos) in startingGear.Storage)
+        {
+            if (entProtos == null || entProtos.Count == 0)
+                continue;
+
+            var prioritize = priorityContext != null && slotName == "back";
+            EntityUid? slotEntity = null;
+            if (inventoryComp != null)
+                InventorySystem.TryGetSlotEntity(entity, slotName, out slotEntity, inventoryComponent: inventoryComp);
+
+            if (slotEntity != null && _storageQuery.TryComp(slotEntity, out var storage))
+            {
+                foreach (var entProto in entProtos)
+                {
+                    var spawnedEntity = Spawn(entProto, coords);
+
+                    if (prioritize)
+                    {
+                        if (!TryInsertPriorityStorageGear(entity,
+                                (slotEntity.Value, storage),
+                                spawnedEntity,
+                                priorityContext!))
+                        {
+                            TryPlacePriorityGearInHands(entity,
+                                spawnedEntity,
+                                slotName,
+                                priorityContext!,
+                                failedStorage: slotEntity.Value);
+                        }
+                    }
+                    else
+                    {
+                        _storage.Insert(slotEntity.Value,
+                            spawnedEntity,
+                            out _,
+                            storageComp: storage,
+                            playSound: false);
+                    }
+                }
+            }
+            else if (!prioritize && slotEntity != null && _itemSlotsQuery.TryComp(slotEntity, out var itemSlots))
+            {
+                foreach (var entProto in entProtos)
+                {
+                    var spawnedEntity = Spawn(entProto, coords);
+                    // Because we need an Entity<ItemSlotsComponent?>
+                    Entity<ItemSlotsComponent?> typed = (slotEntity.Value, itemSlots);
+                    InsertIntoItemSlots(typed, spawnedEntity);
+                }
+            }
+            else if (prioritize)
+            {
+                foreach (var entProto in entProtos)
+                {
+                    var spawnedEntity = Spawn(entProto, coords);
+                    TryPlacePriorityGearInHands(entity, spawnedEntity, slotName, priorityContext!);
+                }
+            }
+        }
+    }
+
+    private bool TryInsertPriorityStorageGear(EntityUid entity,
+        Entity<StorageComponent> storage,
+        EntityUid gear,
+        PriorityStorageEquipContext priorityContext)
+    {
+        // Check whether this storage can accept the gear regardless of its current capacity.
+        if (!_storage.CanInsert(storage,
+                gear,
+                out _,
+                storage.Comp,
+                ignoreStacks: true,
+                ignoreLocation: true))
+        {
+            return false;
+        }
+
+        if (TryInsertEntireStorageItem(storage, gear, priorityContext))
+            return true;
+
+        // Displace pre-existing contents one at a time, retrying after each removal.
+        // Gear issued during this same loadout is protected from being displaced by later gear.
+        // If placement never succeeds, restore every displaced item to its original grid location.
+        var displacedItems = new List<(EntityUid Item, ItemStorageLocation Location)>();
+        foreach (var storedItem in storage.Comp.Container.ContainedEntities.ToArray())
+        {
+            if (priorityContext.IssuedGear.Contains(storedItem) ||
+                !storage.Comp.StoredItems.TryGetValue(storedItem, out var location))
+            {
+                continue;
+            }
+
+            _xformSystem.DropNextTo(storedItem, entity);
+            displacedItems.Add((storedItem, location));
+
+            if (!TryInsertEntireStorageItem(storage, gear, priorityContext))
+                continue;
+
+            foreach (var (item, _) in displacedItems)
+            {
+                _adminLogger.Add(LogType.AntagSelection,
+                    LogImpact.Low,
+                    $"{ToPrettyString(entity):target} had {ToPrettyString(item):item} dropped from {ToPrettyString(storage):storage} to make room for antagonist gear {ToPrettyString(gear):item}");
+            }
+
+            return true;
+        }
+
+        foreach (var (item, location) in displacedItems)
+        {
+            if (_storage.InsertAt(storage.AsNullable(),
+                    item,
+                    location,
+                    out _,
+                    playSound: false,
+                    stackAutomatically: false))
+            {
+                continue;
+            }
+
+            _adminLogger.Add(LogType.AntagSelection,
+                LogImpact.Low,
+                $"{ToPrettyString(entity):target} had {ToPrettyString(item):item} left on the ground after it could not be restored to {ToPrettyString(storage):storage} following a failed attempt to make room for antagonist gear {ToPrettyString(gear):item}");
+        }
+
+        return false;
+    }
+
+    private bool TryInsertEntireStorageItem(Entity<StorageComponent> storage,
+        EntityUid gear,
+        PriorityStorageEquipContext priorityContext)
+    {
+        // Require enough grid space for the entire item and disable automatic stacking.
+        // Otherwise, a partial stack merge could report success while leaving the remainder on the floor.
+        if (!_storage.CanInsert(storage, gear, out _, storage.Comp, ignoreStacks: true) ||
+            !_storage.Insert(storage,
+                gear,
+                out _,
+                storageComp: storage.Comp,
+                playSound: false,
+                stackAutomatically: false))
+        {
+            return false;
+        }
+
+        priorityContext.IssuedGear.Add(gear);
+        return true;
+    }
+
+    private bool TryPlacePriorityGearInHands(EntityUid entity,
+        EntityUid gear,
+        string slotName,
+        PriorityStorageEquipContext priorityContext,
+        EntityUid? failedStorage = null)
+    {
+        var storageFailure = failedStorage == null
+            ? $"their {slotName} slot had no storage"
+            : $"it could not fit in {ToPrettyString(failedStorage.Value):storage}";
+
+        if (_handsQuery.TryComp(entity, out var hands))
+        {
+            if (_handsSystem.TryPickupAnyHand(entity,
+                    gear,
+                    checkActionBlocker: false,
+                    animate: false,
+                    handsComp: hands))
+            {
+                priorityContext.IssuedGear.Add(gear);
+                _adminLogger.Add(LogType.AntagSelection,
+                    LogImpact.Low,
+                    $"{ToPrettyString(entity):target} had antagonist gear {ToPrettyString(gear):item} placed in a hand because {storageFailure}");
+                return true;
+            }
+
+            foreach (var hand in _handsSystem.EnumerateHands((entity, hands)))
+            {
+                if (!_handsSystem.TryGetHeldItem((entity, hands), hand, out var heldItem) ||
+                    priorityContext.IssuedGear.Contains(heldItem.Value))
+                {
+                    continue;
+                }
+
+                if (!_handsSystem.TryForcePickup((entity, hands),
+                        gear,
+                        hand,
+                        checkActionBlocker: false,
+                        animate: false,
+                        handsComp: hands))
+                {
+                    continue;
+                }
+
+                priorityContext.IssuedGear.Add(gear);
+                _adminLogger.Add(LogType.AntagSelection,
+                    LogImpact.Low,
+                    $"{ToPrettyString(entity):target} had {ToPrettyString(heldItem):item} dropped from a hand so antagonist gear {ToPrettyString(gear):item} could be held because {storageFailure}");
+                return true;
+            }
+        }
+
+        _adminLogger.Add(LogType.AntagSelection,
+            LogImpact.Low,
+            $"{ToPrettyString(entity):target} had antagonist gear {ToPrettyString(gear):item} left on the ground because {storageFailure} and no hand could hold it");
+        return false;
+    }
+    #endregion
 
     private void InsertIntoItemSlots(Entity<ItemSlotsComponent?> typed, EntityUid entity) {
         bool foundEmpty = _itemSlots.TryInsertEmpty(typed, entity, null, excludeUserAudio: true, suppressSound: true);
@@ -415,3 +619,11 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
     }
     // Starlight end
 }
+
+#region Starlight
+/// A context object that tracks which gear has been issued to a character during the loadout process.
+internal sealed class PriorityStorageEquipContext
+{
+    public readonly HashSet<EntityUid> IssuedGear = [];
+}
+#endregion

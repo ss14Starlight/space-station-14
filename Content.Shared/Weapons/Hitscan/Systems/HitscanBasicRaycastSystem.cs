@@ -67,39 +67,37 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
         // Starlight-start
         var toMap = _transform.ToMapCoordinates(args.ToCoordinates);
         var pointer = (toMap.Position - mapCords.Position).Length();
+
+        var ray = new CollisionRay(mapCords.Position, args.ShotDirection, (int)ent.Comp.CollisionMask);
+        var rayCastResults = _physics.IntersectRay(mapCords.MapId, ray, ent.Comp.MaxDistance, shooter, false).ToList();
+
         RayCastResults? result = null;
-        for (var reflectAttempt = 0; reflectAttempt < ent.Comp.Steps; reflectAttempt++ )
+
+        if (_container.IsEntityOrParentInContainer(shooter)) // if we are inside a container hit the container
+            result = rayCastResults.Count == 0 ? null : rayCastResults[0];
+        else
         {
-            var ray = new CollisionRay(mapCords.Position, args.ShotDirection, (int)ent.Comp.CollisionMask);
-            var rayCastResults = _physics.IntersectRay(mapCords.MapId, ray, ent.Comp.MaxDistance, shooter, false).ToList();
-
-            if (rayCastResults.Count == 0)
-                break;
-
-            result = rayCastResults[0];
-
-            if (!_container.IsEntityOrParentInContainer(shooter))
+            foreach (var collide in rayCastResults)
             {
-                foreach (var collide in rayCastResults)
+                if (collide.Distance == 0) // prevent self-referential loop that results in rounds getting "trapped", awful 3x damage self-crits with guns against 0 distance walls, etc
+                    continue;
+                // FOR ANYONE TOUCHING HITSCAN ONCE MORE, DO NOT FORGET THE CHECK NullSpaceComponent, This is the Third time i have to FIX IT!
+                if (HasComp<NullSpaceComponent>(collide.HitEntity))
+                    continue;
+                if (collide.HitEntity != args.Target && (CompOrNull<RequireProjectileTargetComponent>(collide.HitEntity)?.Active == true))
+                    continue;
+                if(!(collide.Distance >= ent.Comp.MinDistance || _tag.HasAnyTag(collide.HitEntity, ent.Comp.NotArmedCollideWith)))
+                    continue;
+                if (collide.Distance < pointer - 2f && HasComp<MobMoverComponent>(collide.HitEntity))
                 {
-                    // FOR ANYONE TOUCHING HITSCAN ONCE MORE, DO NOT FORGET THE CHECK NullSpaceComponent, This is the Third time i have to FIX IT!
-                    if (CompOrNull<NullSpaceComponent>(collide.HitEntity) != null)
-                        continue;
-                    if (collide.HitEntity != args.Target && (CompOrNull<RequireProjectileTargetComponent>(collide.HitEntity)?.Active == true))
-                        continue;
-                    if(!(collide.Distance >= ent.Comp.MinDistance || _tag.HasAnyTag(collide.HitEntity, ent.Comp.NotArmedCollideWith)))
-                        continue;
-                    if (collide.Distance < pointer - 2f && HasComp<MobMoverComponent>(collide.HitEntity))
-                    {
-                        if (pointer - collide.Distance > 4f) continue;
+                    if (pointer - collide.Distance > 4f) continue;
 
-                        var chance = Math.Clamp(1f - ((collide.Distance - 2f) / 2), 0f, 1f);
-                        if (!_rand.Prob(chance)) continue;
-                    }
-
-                    result = collide;
-                    break;
+                    var chance = Math.Clamp(1f - ((collide.Distance - 2f) / 2), 0f, 1f);
+                    if (!_rand.Prob(chance)) continue;
                 }
+
+                result = collide;
+                break;
             }
         }
 

@@ -1,10 +1,10 @@
 using Content.Server.Chat.Managers;
-using Content.Server.Database.Migrations.Postgres;
+//using Content.Server.Database.Migrations.Postgres; // Starlight
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Humanoid;
+using Content.Shared.Humanoid; // Starlight
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
@@ -26,7 +26,7 @@ public sealed partial class RespawnRuleSystem : GameRuleSystem<RespawnDeadRuleCo
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private StationSystem _station = default!;
-    [Dependency] private SharedHumanoidAppearanceSystem _appearance = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _appearance = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -80,10 +80,13 @@ public sealed partial class RespawnRuleSystem : GameRuleSystem<RespawnDeadRuleCo
         if (args.NewMobState != MobState.Dead)
             return;
 
+        #region Starlight
+        // use your character appearance
         ActorComponent? actor = null;
         HumanoidAppearanceComponent? appearance = null;
         if (!Resolve(args.Target, ref actor, ref appearance, logMissing: false))
             return;
+        #endregion
 
         var query = EntityQueryEnumerator<RespawnDeadRuleComponent, RespawnTrackerComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var respawnRule, out  var tracker, out var rule))
@@ -93,7 +96,7 @@ public sealed partial class RespawnRuleSystem : GameRuleSystem<RespawnDeadRuleCo
 
             if (respawnRule.AlwaysRespawnDead)
                 AddToTracker(actor.PlayerSession.UserId, (uid, tracker));
-            if (RespawnPlayer((args.Target, actor, appearance), (uid, tracker)))
+            if (RespawnPlayer((args.Target, actor, appearance), (uid, tracker))) // Starlight
                 break;
         }
     }
@@ -110,21 +113,25 @@ public sealed partial class RespawnRuleSystem : GameRuleSystem<RespawnDeadRuleCo
         {
             if (_station.GetStations().FirstOrNull() is not { } station)
                 return false;
+
+            #region Starlight
             // Respawn the player using the profile that the original character was created with
             var profile = _appearance.GetBaseProfile((player, player.Comp2));
             if (profile is null)
                 return false;
+            #endregion
+
             if (respawnTracker.Comp.DeleteBody)
                 QueueDel(player);
-            GameTicker.MakeJoinGame(player.Comp1.PlayerSession, profile, station, silent: true);
+            GameTicker.MakeJoinGame(player.Comp1.PlayerSession, profile, station, silent: true); // Starlight
             return false;
         }
 
         var msg = Loc.GetString("rule-respawn-in-seconds", ("second", respawnTracker.Comp.RespawnDelay.TotalSeconds));
         var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
-        _chatManager.ChatMessageToOne(ChatChannel.Server, msg, wrappedMsg, respawnTracker, false, player.Comp1.PlayerSession.Channel, Color.LimeGreen);
+        _chatManager.ChatMessageToOne(ChatChannel.Server, msg, wrappedMsg, respawnTracker, false, player.Comp1.PlayerSession.Channel, Color.LimeGreen); // Starlight
 
-        respawnTracker.Comp.RespawnQueue[player.Comp1.PlayerSession.UserId] = _timing.CurTime + respawnTracker.Comp.RespawnDelay;
+        respawnTracker.Comp.RespawnQueue[player.Comp1.PlayerSession.UserId] = _timing.CurTime + respawnTracker.Comp.RespawnDelay; // Starlight
 
         return true;
     }

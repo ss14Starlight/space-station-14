@@ -17,16 +17,13 @@
         staminaMultiplier: 20
       Rodentia:
         knockback: 10
-        staminaMultiplier: 8
+        staminaMultiplier: 18
       Resomi:
         knockback: 10
-        staminaMultiplier: 8
-      Avali:
-        knockback: 5 # half of what resomi take
-        staminaMultiplier: 8
+        staminaMultiplier: 18
       Felionoid:
         knockback: 5 # half of what resomi take
-        staminaMultiplier: 8
+        staminaMultiplier: 18
   - type: Sprite
   - type: Clothing
     sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
@@ -84,7 +81,7 @@
     price: 10000
 
 - type: entity
-  parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseJanitorContraband ] # Starlight: major -> jani contra
+  parent: [ BaseWeaponLauncher, BaseJanitorContraband ] # Starlight: major -> jani contra
   id: WeaponLauncherHydra
   name: hydra
   description: PLOOP... FSSSSSS...
@@ -143,14 +140,16 @@
     doestContain:
       Skating:
         knockback: -2.5
+        staminaMultiplier: 10
       Rodentia:
         knockback: -10
+        staminaMultiplier: 20
       Resomi:
         knockback: -5
-      Avali:
-        knockback: -2.5 # half of what resomi take
+        staminaMultiplier: 20
       Felionoid:
         knockback: -2.5 # half of what resomi take
+        staminaMultiplier: 20
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
     layers:
@@ -188,16 +187,13 @@
     doestContain:
       Resomi:
         knockback: 10
-        staminaMultiplier: 8
+        staminaMultiplier: 18
       Rodentia:
         knockback: 10
-        staminaMultiplier: 8
-      Avali:
-        knockback: 5 # half of what resomi take
-        staminaMultiplier: 8
+        staminaMultiplier: 18
       Felionoid:
         knockback: 5 # half of what resomi take
-        staminaMultiplier: 8
+        staminaMultiplier: 18
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
     layers:

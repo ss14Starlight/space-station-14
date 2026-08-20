@@ -107,7 +107,9 @@ public sealed partial class DoorElectronicsConfigurationMenu : DefaultWindow
                     _pressedLevels.Add(id);
                 else
                     _pressedLevels.Remove(id);
-                OnAccessChanged?.Invoke(_pressedLevels.Where(level => levels.Contains(level)).ToList());
+                // Submit every pressed access, not just the selected group's, or switching
+                // groups would wipe the accesses set from the previous one.
+                OnAccessChanged?.Invoke(_pressedLevels.ToList());
             };
         }
     // Starlight edit End

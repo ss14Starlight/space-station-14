@@ -6,7 +6,7 @@
     - type: StationEvent
       startAnnouncement: null # It should be silent.
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/NTSV_HarrierClass.yml # no preload cause that leads to a warp point in shuttle space
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/NTSV_HarrierClass.yml # no preload cause that leads to a warp point in shuttle space
 
 - type: entity
   parent: BaseGameRule
@@ -15,7 +15,7 @@
     - type: StationEvent
       startAnnouncement: null # It should be silent.
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/NSSV_MetaClass.yml # no preload cause that leads to a warp point in shuttle space
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/NSSV_MetaClass.yml # no preload cause that leads to a warp point in shuttle space
 
 - type: entity
   parent: BaseGameRule
@@ -24,7 +24,7 @@
     - type: StationEvent
       startAnnouncement: null # It should be silent.
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/RecluseClassSHC.yml # no preload because its for event use
+      gridPath: /Maps/_Starlight/Shuttles/Admeme/RecluseClassSHC.yml # no preload because its for event use
 
 - type: entity
   parent: BaseGameRule
@@ -32,7 +32,7 @@
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/Signaleer.yml
+      gridPath: /Maps/_Starlight/Shuttles/Admeme/Signaleer.yml
 
 - type: entity
   parent: BaseGameRule
@@ -40,7 +40,7 @@
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/LancePirates.yml
+      gridPath: /Maps/_Starlight/Shuttles/Admeme/LancePirates.yml
 
 - type: entity
   parent: BaseGameRule
@@ -48,7 +48,7 @@
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/VoxATS.yml
+      gridPath: /Maps/_Starlight/Shuttles/Admeme/VoxATS.yml
 
 # Quini's
 
@@ -118,7 +118,7 @@
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/Radiotower.yml
+      gridPath: /Maps/_Starlight/Shuttles/Admeme/Radiotower.yml
 
 - type: entity
   parent: BaseGameRule
@@ -136,7 +136,7 @@
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/quantum_ark_event.yml
+      gridPath: /Maps/_Starlight/Shuttles/Admeme/quantum_ark_event.yml
 
 - type: entity
   parent: BaseGameRule
@@ -144,7 +144,7 @@
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/quantum_ark.yml
+      gridPath: /Maps/_Starlight/Shuttles/Admeme/quantum_ark.yml
 
 - type: entity
   parent: BaseGameRule
@@ -152,7 +152,7 @@
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/ss_ana.yml
+      gridPath: /Maps/_Starlight/Shuttles/Admeme/ss_ana.yml
 
 - type: entity
   parent: BaseGameRule
@@ -170,7 +170,7 @@
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/NT-Experimental-Botany-shuttle.yml
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/NT-Experimental-Botany-shuttle.yml
 
 # Teapot's
 
@@ -198,7 +198,7 @@
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/lotteryShuttleAdmeme.yml # no preload cause that leads to a warp point in shuttle space
+      gridPath: /Maps/_Starlight/Shuttles/Admeme/lotteryShuttleAdmeme.yml # no preload cause that leads to a warp point in shuttle space
 
 - type: entity
   parent: BaseGameRule
@@ -207,7 +207,7 @@
     - type: StationEvent
       startAnnouncement: null # It should be silent.
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml # no preload cause that leads to a warp point in shuttle space
+      gridPath: /Maps/_Starlight/Shuttles/Admeme/scarletSHCdefenderFinal.yml # no preload cause that leads to a warp point in shuttle space
 
 - type: entity
   parent: BaseGameRule
@@ -231,19 +231,11 @@
 
 - type: entity
   parent: BaseGameRule
-  id: SecurityShuttleSpawn_KillerTamashi
+  id: SecurityShuttleSpawn
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/KillerTamashi-SecShuttle.yml
-
-- type: entity
-  parent: BaseGameRule
-  id: SecurityShuttleSpawn_SP-4C3
-  components:
-    - type: RuleGrids
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/Security/SP-4C3.yml
+      gridPath: /Maps/_Starlight/Shuttles/Security/pursuit.yml
 
 # Solgov/TSF
 - type: entity

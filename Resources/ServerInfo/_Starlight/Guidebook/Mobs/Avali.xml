@@ -15,11 +15,24 @@
   - Can stand in tempatures of up to [color=#1e90ff]-50c before taking cold damage[/color].
   - Deal [color=red]6.25[/color] slashing damage with claws.
   - Can fly in Zero-G.
-  - [color=#ffbc48]Nanite Technology![/color] Can encase themselves in a [color=#ffbc48]Nanite Shell[/color] to heal most common types of damage.
-  - Can talk over [color=#ffbc48]The Nexus with +N.[/color]
   - 2x Hunger rate, stay fed!
   - Can only eat meat-related food items (including organs) and pills.
   - Heal airloss from Ammonia and Amoxla but..
   - Saline will burn you, and both Dexalin and Dexalin+ are lethal to you. Remember to remind doctors about it!
-  - Fall into crit at 90 and dead at 180.
+  - Fall into crit at [color=red]90[/color] and dead at [color=red]180[/color].
+
+  ## Sounds
+  Avali, like Resomi, make sounds akin to common bird noises found on Earth, such as chirping and squawking.
+
+  ## Nexus Technological Hivemind
+  Due to an implant that all Avali are given at birth, they have a neural connection to the Nexus.
+  This allows them to communicate with others of their species over a technological network.
+  Use the [color=orange]+n[/color] prefix in chat to send a message to all Avali and Resomi anonymously.
+
+  ## Nanite Shell
+  Avali can encase themselves in a [color=#ffbc48]Nanite Shell[/color] to slowly heal most common types of damage.
+  It's more effective at restoring [color=red]brute[/color] than it is [color=#ffa500]burn[/color].
+  The shell can restore up to [color=#7CFC00]50 total damage[/color] before its nanites are depleted.
+  Similar to a shield with its damage reductions (Taking [color=red]full damage[/color] from all sources while reducing incoming damage to the Avali within).
+  The shell will [color=red]break after absorbing 50 damage[/color], ending its effects early.
 </Document>

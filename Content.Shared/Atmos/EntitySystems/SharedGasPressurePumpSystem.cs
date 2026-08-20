@@ -115,4 +115,25 @@ public abstract partial class SharedGasPressurePumpSystem : EntitySystem
     protected virtual void UpdateUi(Entity<GasPressurePumpComponent> ent)
     {
     }
+
+    #region Starlight
+
+    protected void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null)
+    {
+        if (!Resolve(uid, ref pump, ref appearance, false))
+            return;
+
+        var pumpOn = pump.Enabled && _receiver.IsPowered(uid);
+        _appearance.SetData(uid, PumpVisuals.Enabled, pumpOn, appearance);
+    }
+
+    public void Set(EntityUid uid, GasPressurePumpComponent component, bool value)
+    {
+        if (component.Enabled == value) return;
+        component.Enabled = value;
+        Dirty(uid, component);
+        UpdateAppearance(uid, component);
+    }
+
+    #endregion
 }

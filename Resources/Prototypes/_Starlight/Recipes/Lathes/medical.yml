@@ -110,6 +110,26 @@
     Steel: 100
 
 - type: latheRecipe
+  id: LeftLegCyberBudget
+  result: LeftLegCyberBudget
+  categories:
+  - Cyberlimbs
+  completetime: 2.5
+  materials:
+    Plastic: 150
+    Steel: 150
+
+- type: latheRecipe
+  id: RightLegCyberBudget
+  result: RightLegCyberBudget
+  categories:
+  - Cyberlimbs
+  completetime: 2.5
+  materials:
+    Plastic: 150
+    Steel: 150
+
+- type: latheRecipe
   id: LeftLegCyber
   result: LeftLegCyber
   categories:
@@ -572,6 +592,18 @@
     Plastic: 100
     Steel: 100
     Gold: 100
+    Glass: 100
+
+- type: latheRecipe
+  id: NoseImplantOlfactory
+  result: NoseImplantOlfactory
+  categories:
+  - Implants
+  completetime: 5
+  materials:
+    Plastic: 500
+    Steel: 500
+    Gold: 200
     Glass: 100
 
 - type: latheRecipe

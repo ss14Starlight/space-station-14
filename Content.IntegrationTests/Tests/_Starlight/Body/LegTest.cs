@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Components;
@@ -12,7 +13,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
     [TestFixture]
     [TestOf(typeof(BodyPartComponent))]
     [TestOf(typeof(BodyComponent))]
-    public sealed class LegTest
+    public sealed class LegTest : GameTest
     {
         [TestPrototypes]
         private const string Prototypes = @"
@@ -29,14 +30,13 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
         [Test]
         public async Task RemoveLegsFallTest()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             EntityUid human = default!;
             AppearanceComponent appearance = null;
 
             var entityManager = server.ResolveDependency<IEntityManager>();
-            var mapManager = server.ResolveDependency<IMapManager>();
             var appearanceSystem = entityManager.System<SharedAppearanceSystem>();
             var xformSystem = entityManager.System<SharedTransformSystem>();
 
@@ -74,7 +74,6 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                 Assert.That(state, Is.EqualTo(RotationState.Horizontal));
 #pragma warning restore NUnit2045
             });
-            await pair.CleanReturnAsync();
         }
     }
 }

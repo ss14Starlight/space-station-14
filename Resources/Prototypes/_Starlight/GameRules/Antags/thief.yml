@@ -1,0 +1,19 @@
+# Thief
+# Variant of thieves that only spawn up to 3. Used in Revs/Cultists to prevent contra from being too easily obtained. Can also show up in Dynamic.
+- type: entity
+  parent: Thief
+  id: ThiefLess
+  components:
+  - type: AntagSelection
+    agentName: thief-round-end-agent-name
+    selectionTime: PrePlayerSpawn
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: Thief
+      playerRatio: 31.2
+      range:
+        min: 1
+        max: 3
+  - type: DynamicRuleCost
+    cost: 75

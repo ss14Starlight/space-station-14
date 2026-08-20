@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Administration.Managers; // NullLink-edit
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Database;
 using Robust.Server.Console;
 using Robust.Server.Player;
@@ -9,14 +10,14 @@ namespace Content.IntegrationTests.Tests.Commands
 {
     [TestFixture]
     [TestOf(typeof(PardonCommand))]
-    public sealed class PardonCommand
+    public sealed class PardonCommand : GameTest
     {
         private static readonly TimeSpan MarginOfError = TimeSpan.FromMinutes(1);
 
         [Test]
         public async Task PardonTest()
         {
-            await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true });
+            var pair = Pair;
             var server = pair.Server;
             var client = pair.Client;
 
@@ -155,8 +156,6 @@ namespace Content.IntegrationTests.Tests.Commands
             await client.WaitPost(() => netMan.ClientConnect(null!, 0, null!));
             await pair.RunTicksSync(5);
             Assert.That(sPlayerManager.Sessions, Has.Length.EqualTo(1));
-
-            await pair.CleanReturnAsync();
         }
     }
 }

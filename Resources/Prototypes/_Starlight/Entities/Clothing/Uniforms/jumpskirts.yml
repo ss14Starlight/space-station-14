@@ -143,13 +143,13 @@
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
   id: ClothingUniformJumpskirtFormalDeputy
-  name: deputy's formal jumpskirt
-  description: A formal attire for one who feels destined for the desert.
+  name: deputy's jumpskirt
+  description: An attire for one who feels destined for the desert.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/deputy_formal.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/deputy.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/deputy_formal.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/deputy.rsi
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]

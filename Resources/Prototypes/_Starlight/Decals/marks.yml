@@ -489,6 +489,20 @@
     state: trimline_sw
 
 - type: decal
+  id: DeliveryArea
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: delivery_area
+
+- type: decal
+  id: DeliveryAreaGreyscale
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: delivery_area_greyscale
+
+- type: decal
   id: trimlinewest
   tags: ["station", "markings"]
   sprite:

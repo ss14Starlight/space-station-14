@@ -128,3 +128,10 @@ ghost-role-information-kobold-advanced-description = You have a craving for file
 
 ghost-role-information-kiki-name = Kiki
 ghost-role-information-kiki-description = An honorable member of the kobold society in charge of botany and helping the botanists in any way she can.
+
+ghost-role-information-stirstir-name = Stir Stir
+ghost-role-information-stirstir-description = A disreputable monkey who should not be trusted. A real cell stuffer.
+
+ghost-role-information-icesculpture-name = Ice sculpture
+ghost-role-information-icesculpture-description = A sculpture of ice given sentience by magic, obey your master!
+ghost-role-information-icesculpture-rules = Ensure your summoner survives, defend them at all cost. You were made for this.

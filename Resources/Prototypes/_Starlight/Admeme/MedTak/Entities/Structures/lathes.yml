@@ -1,0 +1,60 @@
+- type: entity
+  id: MedTakTechFab
+  parent: BaseLatheLube
+  name: MedTak techfab
+  description: Prints equipment for a MedTak outpost.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - sprite: &base-rsi Structures/Machines/techfab.rsi
+      state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - sprite: _Starlight/Admeme/MedTak/Objects/lathe.rsi
+      state: lathe-medtak
+    - sprite: *base-rsi
+      state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - sprite: *base-rsi
+      state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - sprite: *base-rsi
+      state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    - TopicalsStatic
+    - ChemistryStatic
+    - MedicalClothingStatic
+    - StarlightMedicalStatic
+    - StarlightSurgeryDynamic
+    - StarlightAutomendersDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - StarlightBudgetCyberOrgansDynamic
+    - SecurityCyberLimbs
+  - type: OreSiloClient
+
+- type: entity
+  parent: PrinterDoc
+  id: PrinterDocMedTak
+  name: document printer
+  suffix: MedTak
+  description: Bureaucratic perfection. Stores a database of relevant MedTak documents, and lets you print them as long as you have paper.
+  components:
+  - type: Lathe
+    producingSound: /Audio/Machines/scanning.ogg
+    idleState: icon
+    runningState: building
+    staticPacks:
+    - MedTakDocs
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Document
+    storage:
+      SheetPrinter: 1000

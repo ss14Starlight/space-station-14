@@ -23,6 +23,8 @@
       - ClothMade
       - Paper
       - Pill
+      - IceCream
+      - Birthday
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -35,7 +37,4 @@
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [ Moth ]
-    removeEmpty: true
-    groups:
-      - id: Food
-      - id: Drink
+    stages: [ Digestion ]

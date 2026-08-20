@@ -39,13 +39,13 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
 
         var drawn = 0;
         var query = _entMan.EntityQueryEnumerator<TrailComponent, SpriteComponent>();
-        while (query.MoveNext(out var comp, out var sprite))
+        while (query.MoveNext(out var uid, out var comp, out var sprite))
         {
             if (comp.Mode == TrailMode.SpriteGhost)
             {
                 if (comp.Samples.Count < 2)
                     continue;
-                DrawGhostTrail(handle, comp, sprite, args);
+                DrawGhostTrail(handle, (uid, comp, sprite), args);
             }
             else
             {
@@ -171,39 +171,37 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
             handle.UseShader(null);
     }
 
-    private void DrawGhostTrail(DrawingHandleWorld handle, TrailComponent comp, SpriteComponent sprite, in OverlayDrawArgs args)
+    private void DrawGhostTrail(DrawingHandleWorld handle, Entity<TrailComponent, SpriteComponent> ent, in OverlayDrawArgs args)
     {
-        var samples = comp.Samples;
+        var samples = ent.Comp1.Samples;
         var count = samples.Count;
 
-        var oldColor = sprite.Color;
+        var oldColor = ent.Comp2.Color;
 
-        if (sprite.Icon == null || count == 0)
+        if (ent.Comp2.Icon == null || count == 0)
             return;
 
-        for (int i = 0; i < count; i++)
+        for (var i = 0; i < count; i++)
         {
-            if (comp.SkipSamples > 0 && (i % (comp.SkipSamples + 1)) != 0)
+            if (ent.Comp1.SkipSamples > 0 && (i % (ent.Comp1.SkipSamples + 1)) != 0)
                 continue;
 
             var sample = samples[i];
-            float t = i / (float)(count - 1);
+            var t = i / (float)(count - 1);
 
-            float alpha = t * t * (3f - 2f * t);
-            alpha *= comp.TrailColor.A;
+            var alpha = t * t * (3f - 2f * t);
+            alpha *= ent.Comp1.TrailColor.A;
 
             if (alpha < 0.05f)
                 continue;
 
-            var color = Color.InterpolateBetween(comp.FadeColor, comp.TrailColor, t).WithAlpha(alpha);
+            var color = Color.InterpolateBetween(ent.Comp1.FadeColor, ent.Comp1.TrailColor, t).WithAlpha(alpha);
 
-            var ent = (sprite.Owner, sprite);
+            _spriteSys.SetColor((ent, ent.Comp2), color);
 
-            ent.sprite.Color = color;
+            _spriteSys.RenderSprite((ent, ent.Comp2), handle, sample.EyeRotation, sample.Rotation, sample.Position, null);
 
-            _spriteSys.RenderSprite(ent, handle, sample.EyeRotation, sample.Rotation, sample.Position, null);
-
-            ent.sprite.Color = oldColor;
+            _spriteSys.SetColor((ent, ent.Comp2), oldColor);
         }
     }
 }

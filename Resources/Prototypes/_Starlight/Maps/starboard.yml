@@ -14,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'DS'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_starboard.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_starboard.yml
         - type: StationJobs
           availableJobs:
             #service
@@ -28,6 +28,8 @@
             Librarian: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
             ServiceWorker: [ 3, 5 ]
+            Reporter: [ 2, 2 ]
+            RadioHost: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 3 ]
@@ -35,7 +37,7 @@
             TechnicalAssistant: [ 2, 4 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
-            Chemist: [ 2, 2 ]
+            Chemist: [ 4, 4 ]
             MedicalDoctor: [ 4, 6 ]
             MedicalIntern: [ 2, 4 ]
             Paramedic: [ 2, 2 ]
@@ -68,7 +70,6 @@
             Musician: [ 2, 3 ]
             Performer: [ 3, 5 ]
             Boxer: [ 2, 2 ]
-            Reporter: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 4, 4 ]

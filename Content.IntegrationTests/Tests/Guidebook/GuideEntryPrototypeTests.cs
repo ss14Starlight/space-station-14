@@ -1,5 +1,6 @@
 using Content.Client.Guidebook;
 using Content.Client.Guidebook.Richtext;
+using Content.IntegrationTests.Fixtures;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 using System.Linq;
@@ -11,12 +12,12 @@ namespace Content.IntegrationTests.Tests.Guidebook;
 [TestOf(typeof(GuidebookSystem))]
 [TestOf(typeof(GuideEntryPrototype))]
 [TestOf(typeof(DocumentParsingManager))]
-public sealed class GuideEntryPrototypeTests
+public sealed class GuideEntryPrototypeTests : GameTest
 {
     [Test]
     public async Task ValidatePrototypeContents()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true });
+        var pair = Pair;
         var client = pair.Client;
         await client.WaitIdleAsync();
         var protoMan = client.ResolveDependency<IPrototypeManager>();
@@ -36,7 +37,5 @@ public sealed class GuideEntryPrototypeTests
             // Avoid styleguide update limit
             await client.WaitRunTicks(1);
         }
-
-        await pair.CleanReturnAsync();
     }
 }

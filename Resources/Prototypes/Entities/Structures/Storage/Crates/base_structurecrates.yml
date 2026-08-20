@@ -198,4 +198,19 @@
         enum.ElectrifiedLayers.Sparks:
           True: { visible: True }
           False: { visible: False }
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: bounty }
+          CaptainsPaper: { state: captains_paper }
+          Invoice: { state: invoice }
   # Starlight-end
+  # ES Start
+  - type: ESSparkOnHit
+    prob: 0.25
+    count: 2
+  # ES End

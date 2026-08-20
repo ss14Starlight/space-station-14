@@ -11,3 +11,52 @@
     role: JobSurgeon
     time: 3h
   playTimeTracker: AntagLoneAbductor
+
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: BaseAbductor
+  spawnerPrototype: AbductorScientistSpawner
+  pickPlayer: false
+  briefing:
+    text: abductor-role-greeting
+    color: Green
+    sound: /Audio/_Starlight/Misc/abductor.ogg
+  components:
+  - type: Abductor
+  - type: Muted
+  - type: ActionGrant
+    actions:
+      - ActionReturnToShip
+  - type: NpcFactionMember
+    factions:
+      - Abductor
+  mindRoles:
+  - MindRoleLoneAbductor
+
+- type: antagSpecifier
+  parent: BaseAbductor
+  id: AbductorScientist
+  startingGear: AbductorScientistGear
+  spawnerPrototype: AbductorScientistSpawner
+  pickPlayer: false
+  tags:
+    - Abductor
+    - AbductorScientist
+    - CanPilot
+    - CantBecomeRevolutionary
+  components:
+  - type: AbductorScientist
+
+- type: antagSpecifier
+  parent: BaseAbductor
+  id: AbductorAgent
+  startingGear: AbductorAgentGear
+  spawnerPrototype: AbductorAgentSpawner
+  pickPlayer: false
+  tags:
+    - Abductor
+    - CanPilot
+    - CantBecomeRevolutionary
+  components:
+  - type: AbductorAgent

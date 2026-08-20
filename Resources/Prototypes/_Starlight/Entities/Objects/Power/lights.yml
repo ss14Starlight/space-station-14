@@ -13,3 +13,16 @@
     PowerUse: 25
     dimmable: false
   - type: DarkLight
+
+- type: entity
+  parent: BaseLightTube
+  name: warm light tube
+  description: A warm light tube conducive to slowly bleeding out in the snow. Definitely contains sodium.
+  id: LightTubeWarm
+  components:
+  - type: LightBulb
+    color: "#ff9833" # 2200k color temp
+    lightEnergy: 0.8
+    lightRadius: 10
+    lightSoftness: 3
+    dimmable: false

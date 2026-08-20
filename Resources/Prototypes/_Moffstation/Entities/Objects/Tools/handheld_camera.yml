@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: SurveillanceWirelessCameraHandheld
-  parent: BaseItem
+  parent: [BaseItem, BaseReporterContraband]
   name: wireless camera
   description: A camera. It's watching you. Kinda.
   suffix: Handheld

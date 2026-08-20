@@ -104,6 +104,62 @@
     state: corner_4_white
 
 - type: decal
+  id: diagonalsteellarge1
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_large_1
+
+- type: decal
+  id: diagonalsteellarge2
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_large_2
+
+- type: decal
+  id: diagonalsteellarge3
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_large_3
+
+- type: decal
+  id: diagonalsteellarge4
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_large_4
+
+- type: decal
+  id: diagonalsteelcornerlarge1
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner_large_1
+
+- type: decal
+  id: diagonalsteelcornerlarge2
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner_large_2
+
+- type: decal
+  id: diagonalsteelcornerlarge3
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner_large_3
+
+- type: decal
+  id: diagonalsteelcornerlarge4
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner_large_4
+
+- type: decal
   id: diagonalsteel1
   tags: ["station", "markings"]
   sprite:

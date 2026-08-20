@@ -28,6 +28,7 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
         SubscribeLocalEvent<CosmicConversionConditionComponent, ObjectiveGetProgressEvent>(OnGetConversionProgress);
         SubscribeLocalEvent<CosmicTierConditionComponent, ObjectiveGetProgressEvent>(OnGetTierProgress);
         SubscribeLocalEvent<CosmicVictoryConditionComponent, ObjectiveGetProgressEvent>(OnGetVictoryProgress);
+        SubscribeLocalEvent<CosmicChaplainConditionComponent, ObjectiveGetProgressEvent>(OnGetChaplainProgress);
     }
 
     private void OnEffigyRequirementCheck(EntityUid uid, CosmicEffigyConditionComponent comp, ref RequirementCheckEvent args)
@@ -91,6 +92,9 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
 
     private void OnGetVictoryProgress(Entity<CosmicVictoryConditionComponent> ent, ref ObjectiveGetProgressEvent args)
         => args.Progress = ent.Comp.Victory ? 1f : 0f;
+
+    private void OnGetChaplainProgress(Entity<CosmicChaplainConditionComponent> ent, ref ObjectiveGetProgressEvent args)
+        => args.Progress = Progress(ent.Comp.Converted, _number.GetTarget(ent.Owner));
 
     private static float Progress(int recruited, int target)
     {

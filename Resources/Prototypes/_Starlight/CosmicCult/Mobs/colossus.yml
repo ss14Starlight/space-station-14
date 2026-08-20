@@ -10,6 +10,9 @@
     cultistText: cosmic-examine-text-cultentity
     othersText: cosmic-examine-text-entities
   - type: AntagImmune
+  - type: NpcFactionMember
+    factions:
+    - CosmicCult
   - type: StaminaResistance
     damageCoefficient: 0 # No more stunning colossi
   - type: Sprite
@@ -96,6 +99,7 @@
       proper: true
       gender: epicene
   - type: ProtectedFromStepTriggers
+  - type: IgnoreSpiderWeb
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3

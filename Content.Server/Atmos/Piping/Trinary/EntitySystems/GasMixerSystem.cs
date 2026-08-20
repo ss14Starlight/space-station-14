@@ -249,5 +249,18 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             args.DeviceFlipped = inletOne != null && inletTwo != null && inletOne.CurrentPipeDirection.ToDirection() == inletTwo.CurrentPipeDirection.ToDirection().GetClockwise90Degrees();
         }
+
+        #region Starlight
+
+        public void Set(EntityUid uid, GasMixerComponent component, bool value)
+        {
+            if (component.Enabled == value) return;
+            component.Enabled = value;
+            UpdateAppearance(uid, component);
+            DirtyUI(uid, component);
+        }
+
+        #endregion
     }
 }
+

@@ -699,7 +699,7 @@
     - id: FoamBlade
     - id: ClothingHeadHatBunny
     - id: PersonalAI
-    #- id: CrayonMagic # Starlight-edit commented out due to lag for now - 31-05-2026
+    #- id: CrayonMagic # Starlight-edit commented out, loadout only for now
     - id: ToySword
     - id: RevolverCapGun
     - id: ToyRubberDuck

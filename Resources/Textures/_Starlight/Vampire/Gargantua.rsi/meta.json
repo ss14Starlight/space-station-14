@@ -1,32 +1,39 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise Station 13",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "blood_rush"
+            "name": "blood_rush",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "blood_swell"
+            "name": "blood_swell",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "charge"
+            "name": "charge",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "duel"
+            "name": "duel",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "demonic_grasp"
+            "name": "demonic_grasp",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "seismic_stomp"
+            "name": "seismic_stomp",
+            "copyright": "Taken from Paradise Station 13"
         },
         {
-            "name": "overwhelming_force"
+            "name": "overwhelming_force",
+            "copyright": "Taken from Paradise Station 13"
         }
     ]
 }

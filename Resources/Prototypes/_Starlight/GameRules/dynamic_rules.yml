@@ -3,27 +3,74 @@
   id: SLDynamicRule
   components:
   - type: GameRule
-    minPlayers: 15 # Realistically you won't get many good gamemodes rolling with less than 15 players.
+    minPlayers: 40
   - type: DynamicRule
     startingBudgetMin: 250 # 200's a bit too low, can't even roll most minor antags alongside anything but traitor.
-    startingBudgetMax: 550
+    startingBudgetMax: 525
+    budgetPerSecond: 0.075
+    variantBudgetThreshold: 300 # When the budget reaches this threshold, the variant budget per second will be used instead of the normal budget per second. Aka, stop hoarding your budget!!!
     maxRuleInterval: 1500
-    minRuleInterval: 900
+    minRuleInterval: 750
     table: !type:AllSelector
       children:
+      # Event Schedulers, we roll these first so we're guaranteed to get one of them. Weird combinations of them will also eat away at our normal budget for other rules, so that's a good thing to restrict chaos.
+      - !type:GroupSelector
+        conditions:
+        - !type:RoundDurationCondition
+          max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
+        children:
+        - id: BaseDynamicEventScheduler
+          weight: 91
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: DynamicSurvivalEventScheduler
+          weight: 5
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
+        - id: DynamicKesslerSyndromeEventScheduler
+          weight: 1
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
+        - id: DynamicShitStationEventScheduler
+          weight: 3
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
       # Major Rules
       - !type:GroupSelector
         conditions:
         - !type:RoundDurationCondition
           max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
         children:
-        - id: Traitor
+        - id: TraitorLess # We'll use TraitorLess instead of Traitor, at least on Alpha, since they tend to lump in with a lot of other things.
           weight: 35
+          prob: 0.80 # Give traitor a chance to fail, since it's so common. In essence, this means we have a chance at getting Extended.
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
+        - id: Vampire
+          weight: 15
+          prob: 0.90 # Vampire can have a slightly higher chance to fail than the other gamemodes, it's the other "most likely" gamemode
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - VampireLess
+          - !type:PlayerCountCondition
+            min: 25
         - id: Nukeops
           weight: 10
+          prob: 0.95 # Every main gamemode will have a very small chance to fail
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -31,6 +78,7 @@
             min: 20
         - id: Revolutionary
           weight: 10
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -38,6 +86,7 @@
             min: 15
         - id: CosmicCult
           weight: 10
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -45,32 +94,23 @@
             min: 20
         - id: Zombie
           weight: 10
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 20
         - id: WizardDuel
-          weight: 5
+          weight: 10
+          prob: 0.95
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 35
-        - id: Xenoborgs
-          weight: 10
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 20
-        - id: TerrorSpidersSpawn
-          weight: 10
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 50
       # Minor Rules
       - !type:GroupSelector
         conditions:
@@ -82,53 +122,81 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        - id: VampireLess
-          prob: 0.15
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: SLChangeling
           prob: 0.15
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 25
         - id: SiliconLiberation
           prob: 0.15
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: SubWizard
           prob: 0.05
           conditions:
           - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 40
-          - !type:MaxRuleOccurenceCondition
         - id: Devil
           prob: 0.05
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+        #- id: SubBrighteye
+        #  prob: 0.05
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
+        #  - !type:PlayerCountCondition
+        #    min: 20
       # Dynamic Multiantag, can spawn at the start, or midround. This is the actual intended purpose of Dynamic. Exciting, no? Run across the sky!
       - !type:GroupSelector
         children:
         - id: TraitorLess
           weight: 20
-          prob: 0.50 # Have a 50% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-        - id: Nukeops
-          weight: 9
-          prob: 0.50
+          prob: 0.40 # Traitor gets a lower rate compared to other dynamic multiantags.
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
+            min: 5
+        - id: VampireLess
+          weight: 10
+          prob: 0.40
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Vampire
+          - !type:PlayerCountCondition
+            min: 25
+        - id: NukeopsLate
+          weight: 9
+          prob: 0.40 # Have a 60% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Nukeops # Just... don't roll double Nukies.
+          - !type:PlayerCountCondition
             min: 20
         - id: Revolutionary
           weight: 9
-          prob: 0.50
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -136,74 +204,79 @@
             min: 15
         - id: CosmicCult
           weight: 9
-          prob: 0.50
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 20
         - id: WizardDuel
-          weight: 5
-          prob: 0.50
+          weight: 4
+          prob: 0.40
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 35
-        - id: SubXenoborgs
-          weight: 5
-          prob: 0.50
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 20
-        - id: TerrorSpidersSpawn
-          weight: 5
-          prob: 0.50
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
-          - !type:PlayerCountCondition
-            min: 50
         - id: ThiefLess
           weight: 8
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        - id: VampireLess
-          weight: 6
-          prob: 0.50
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Thief # Don't double thieves
+          - !type:PlayerCountCondition
+            min: 5
         - id: SLChangelingLess
           weight: 6
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - SLChangeling # Don't double changelings
+          - !type:PlayerCountCondition
+            min: 25
         - id: SiliconLiberation
           weight: 8
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
         - id: SubWizard
           weight: 5
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 40
-          - !type:MaxRuleOccurenceCondition
         - id: Devil
           weight: 5
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+        #- id: SubBrighteye
+        #  weight: 5
+        #  prob: 0.50
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
+        #  - !type:PlayerCountCondition
+        #    min: 20
       # Midround rules
       - !type:GroupSelector
         conditions:
@@ -212,24 +285,28 @@
         children:
         - id: SleeperAgents
           weight: 15
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
             min: 1500 # 25 minutes
         - id: DragonSpawn
           weight: 15
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
         - id: NinjaSpawn
-          weight: 20
+          weight: 15
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
         - id: ParadoxCloneSpawn
           weight: 20
+          prob: 0.85 # Give it a small chance to fail, since it'll basically happen every round if I don't do this...
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -238,6 +315,7 @@
             min: 1200 # 20 minutes
         - id: ParadoxCrisisSpawn
           weight: 10
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -246,6 +324,7 @@
             min: 1800 # 30 minutes
         - id: LoneOpsSpawn
           weight: 5
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
@@ -254,33 +333,431 @@
             min: 3000 # 50 minutes
         - id: WizardSpawn
           weight: 1
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 40
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
         - id: AbductorsSpawn
           weight: 15
+          prob: 0.85 # Give it a small chance to fail, since it'll basically happen every round if I don't do this...
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
             min: 10
           - !type:RoundDurationCondition
-            min: 900 # 15 minutes
-        - id: Brighteye
-          weight: 1
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:PlayerCountCondition
-            min: 20
-          - !type:RoundDurationCondition
-            min: 900 # 15 minutes
+            min: 1200 # 20 minutes
+        #- id: BrighteyeSpawn
+        #  weight: 1
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
+        #  - !type:PlayerCountCondition
+        #    min: 20
+        #  - !type:RoundDurationCondition
+        #    min: 1200 # 20 minutes
         - id: EeepEvent
           weight: 1
+          prob: 0.85
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
             min: 30
           - !type:RoundDurationCondition
             min: 1200 # 20 minutes
+        - id: ColossusSpawn
+          weight: 4.5
+          prob: 0.85
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 25
+          - !type:RoundDurationCondition
+            min: 1500 # 25 minutes
+
+- type: entity
+  parent: BaseGameRule
+  id: SLDynamicRuleLP
+  components:
+  - type: GameRule
+    minPlayers: 40
+  - type: DynamicRule
+    startingBudgetMin: 200 # Beta can have a lower threshold.
+    startingBudgetMax: 400
+    budgetPerSecond: 0.075
+    variantBudgetThreshold: 300
+    maxRuleInterval: 1800
+    minRuleInterval: 1200 # 20-30 mins as opposed to alpha's 15-25.
+    table: !type:AllSelector
+      children:
+      # Event Schedulers, Beta.
+      - !type:GroupSelector
+        conditions:
+        - !type:RoundDurationCondition
+          max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
+        children:
+        - id: BaseDynamicEventScheduler
+          weight: 94
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: DynamicSurvivalEventScheduler
+          weight: 3
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
+        - id: DynamicKesslerSyndromeEventScheduler
+          weight: 1
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
+        - id: DynamicShitStationEventScheduler
+          weight: 2
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+      # Major Rules, Beta
+      - !type:GroupSelector
+        conditions:
+        - !type:RoundDurationCondition
+          max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
+        children:
+        - id: TraitorLess
+          weight: 43
+          prob: 0.75 # Beta has an innate chance at Extended, so we give TraitorLes and Vampire a higher chance to fail to roll here. It roughly equals their Secret chance at Extended.
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
+        - id: Vampire # We can count Vampires as being a major on Beta.
+          weight: 23
+          prob: 0.75
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - VampireLess
+          - !type:PlayerCountCondition
+            min: 25
+        - id: Nukeops
+          weight: 7
+          prob: 0.95 # Every main gamemode will have a very small chance to fail
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 20
+        - id: Revolutionary
+          weight: 7
+          prob: 0.95
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
+        - id: CosmicCult
+          weight: 7
+          prob: 0.95
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 20
+        - id: Zombie
+          weight: 7
+          prob: 0.95
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 20
+        - id: WizardDuel
+          weight: 6
+          prob: 0.95
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
+          - !type:PlayerCountCondition
+            min: 35
+      # Minor Rules, Beta can keep the same as Alpha since these aren't split normally anyways
+      - !type:GroupSelector
+        conditions:
+        - !type:RoundDurationCondition
+          max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
+        children:
+        - id: Thief
+          prob: 0.4
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
+        - id: SLChangeling
+          prob: 0.15
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 25
+        - id: SiliconLiberation
+          prob: 0.15
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
+        - id: SubWizard
+          prob: 0.05
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
+          - !type:PlayerCountCondition
+            min: 40
+        - id: Devil
+          prob: 0.05
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        #- id: SubBrighteye
+        #  prob: 0.05
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
+        #  - !type:PlayerCountCondition
+        #    min: 20
+      # Dynamic Multiantag, can spawn at the start, or midround. This is the actual intended purpose of Dynamic. Exciting, no? Run across the sky! Beta edition.
+      - !type:GroupSelector
+        children:
+        - id: TraitorLess
+          weight: 25
+          prob: 0.40
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
+        - id: VampireLess
+          weight: 6
+          prob: 0.40
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Vampire
+          - !type:PlayerCountCondition
+            min: 25
+        - id: NukeopsLate
+          weight: 6
+          prob: 0.40
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Nukeops # Just... don't roll double Nukies.
+          - !type:PlayerCountCondition
+            min: 20
+        - id: Revolutionary
+          weight: 6
+          prob: 0.40
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
+        - id: CosmicCult
+          weight: 6
+          prob: 0.40
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 20
+        - id: WizardDuel
+          weight: 4
+          prob: 0.40
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
+          - !type:PlayerCountCondition
+            min: 35
+        - id: ThiefLess
+          weight: 8
+          prob: 0.50
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Thief # Don't double thieves
+        - id: SLChangelingLess
+          weight: 6
+          prob: 0.50
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - SLChangeling # Don't double changelings
+          - !type:PlayerCountCondition
+            min: 25
+        - id: SiliconLiberation
+          weight: 8
+          prob: 0.50
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 5
+        - id: SubWizard
+          weight: 5
+          prob: 0.50
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
+          - !type:PlayerCountCondition
+            min: 40
+        - id: Devil
+          weight: 5
+          prob: 0.50
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        #- id: SubBrighteye
+        #  weight: 5
+        #  prob: 0.50
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
+        #  - !type:PlayerCountCondition
+        #    min: 20
+      # Midround rules, same as Alpha, because Beta has no differences on these normally anyways
+      - !type:GroupSelector
+        conditions:
+        - !type:RoundDurationCondition
+          min: 300 # minimum 5 minutes
+        children:
+        - id: SleeperAgents
+          weight: 15
+          prob: 0.85
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:RoundDurationCondition
+            min: 1500 # 25 minutes
+        - id: DragonSpawn
+          weight: 15
+          prob: 0.85
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:RoundDurationCondition
+            min: 1800 # 30 minutes
+        - id: NinjaSpawn
+          weight: 15
+          prob: 0.85
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:RoundDurationCondition
+            min: 1800 # 30 minutes
+        - id: ParadoxCloneSpawn
+          weight: 20
+          prob: 0.85 # Give it a small chance to fail, since it'll basically happen every round if I don't do this...
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+            max: 2 # We don't want this showing up too often as it's got high weight and isn't that interesting, so only 2.
+          - !type:RoundDurationCondition
+            min: 1200 # 20 minutes
+        - id: ParadoxCrisisSpawn
+          weight: 10
+          prob: 0.85
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+            max: 2
+          - !type:RoundDurationCondition
+            min: 1800 # 30 minutes
+        - id: LoneOpsSpawn
+          weight: 5
+          prob: 0.85
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 20
+          - !type:RoundDurationCondition
+            min: 3000 # 50 minutes
+        - id: WizardSpawn
+          weight: 1
+          prob: 0.85
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
+          - !type:PlayerCountCondition
+            min: 40
+          - !type:RoundDurationCondition
+            min: 1800 # 30 minutes
+        - id: AbductorsSpawn
+          weight: 15
+          prob: 0.85 # Give it a small chance to fail, since it'll basically happen every round if I don't do this...
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 10
+          - !type:RoundDurationCondition
+            min: 1200 # 20 minutes
+        #- id: BrighteyeSpawn
+        #  weight: 1
+        #  conditions:
+        #  - !type:HasBudgetCondition
+        #  - !type:MaxRuleOccurenceCondition
+        #    max: 1 # it lags the game when making more maps
+        #  - !type:PlayerCountCondition
+        #    min: 20
+        #  - !type:RoundDurationCondition
+        #    min: 1200 # 20 minutes
+        - id: EeepEvent
+          weight: 1
+          prob: 0.85
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 30
+          - !type:RoundDurationCondition
+            min: 1200 # 20 minutes
+        - id: ColossusSpawn
+          weight: 4.5
+          prob: 0.85
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 25
+          - !type:RoundDurationCondition
+            min: 1500 # 25 minutes

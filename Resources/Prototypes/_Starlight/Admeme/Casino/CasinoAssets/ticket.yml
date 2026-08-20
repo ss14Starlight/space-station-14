@@ -1,0 +1,41 @@
+- type: entity
+  name: gold ticket
+  parent: BaseItem
+  id: TicketGold
+  description: 'A golden ticket with printed number and Casino logo.'
+  suffix: ADMEME
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ticket.rsi
+    layers:
+    - state: icon_cas
+    - state: logo_cas
+    - map: [ "enum.TicketVisualLayers.Number1" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#863E11"
+    - map: [ "enum.TicketVisualLayers.Number2" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#863E11"
+      offset: -0.2, 0
+    - map: [ "enum.TicketVisualLayers.Number3" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#863E11"
+      offset: -0.4, 0
+  - type: Appearance
+  - type: Damageable
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      SheetPrinter: 100
+  - type: Item
+    size: Tiny
+  - type: Ticket

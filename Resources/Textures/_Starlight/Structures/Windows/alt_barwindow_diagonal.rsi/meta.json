@@ -5,13 +5,15 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Edit by Conflee, original windows Made by brainfood1183 (github), transparency tweaked by Ubaser.",
+    "copyright": "State based copyright",
     "states": [
         {
-            "name": "state0"
+            "name": "state0",
+            "copyright": "Original windows Made by brainfood1183 (github), transparency tweaked by Ubaser, edit by Conflee"
         },
         {
-            "name": "state1"
+            "name": "state1",
+            "copyright": "Original windows Made by brainfood1183 (github), transparency tweaked by Ubaser, edit by Conflee"
         }
     ]
 }

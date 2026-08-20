@@ -304,6 +304,28 @@
 
 - type: entity
   parent: BasePDA
+  id: AssistantManagerPDA
+  name: assistant manager PDA
+  description: The least poor among the poor.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-assistantmanager
+  - type: Pda
+    id: AssistantManagerIDCard
+  - type: PdaBorderColor
+    borderColor: "#789876"
+    accentVColor: "#447987"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-assistantmanager
+
+- type: entity
+  parent: BasePDA
   id: SalvageLeadPDA
   name: salvage lead PDA
   description: Smells like blood and ash.
@@ -526,6 +548,38 @@
   components:
   - type: Pda
     id: KikiIDCard
+
+- type: entity
+  parent: ClearPDA
+  id: StirStirPDA
+  name: stir stir's PDA
+  description: Has been used as a hammer before.
+  components:
+  - type: Pda
+    id: StirStirIDCard
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+
+- type: entity
+  parent: ClearPDA
+  id: PrisonerPDA
+  name: prisoner PDA
+  description: Has been used as a hammer before.
+  components:
+  - type: Pda
+    id: PrisonerJobIDCard
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
 
 - type: entity
   parent: BasePDA
@@ -866,63 +920,6 @@
     - type: PdaBorderColor
       borderColor: "#717059"
 
-# MedTak
-- type: entity
-  parent: [ ParamedicPDA, BaseMedTakContraband ]
-  id: MedTakMedicPDA
-  name: MedTak medic PDA
-  description: Is it blood or red paint?
-  components:
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-medtak
-  - type: Pda
-    id: MedTakMedicIDCard
-  - type: PdaBorderColor
-    accentVColor: "#d7d7d0"
-    borderColor: "#600000"
-  - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
-    state: pda-medtak
-
-- type: entity
-  parent: MedTakMedicPDA
-  id: MedTakPilotPDA
-  name: MedTak pilot PDA
-  description: It's red paint.
-  components:
-  - type: Pda
-    id: MedTakPilotIDCard
-
-- type: entity
-  parent: MedTakMedicPDA
-  id: MedTakSecurityPDA
-  name: MedTak security PDA
-  description: It's blood.
-  components:
-  - type: Pda
-    id: MedTakSecurityIDCard
-
-- type: entity
-  parent: MedTakMedicPDA
-  id: MedTakTeamLeadPDA
-  name: MedTak team leader PDA
-  description: It's blood.
-  components:
-  - type: Pda
-    id: MedTakTeamLeadIDCard
-
-- type: entity
-  parent: MedTakMedicPDA
-  id: MedTakDispatcherPDA
-  name: MedTak dispatcher PDA
-  description: It's red paint.
-  components:
-  - type: Pda
-    id: MedTakDispatcherIDCard
-
 - type: entity
   parent: ClownPDA
   id: CluwneBeastPDA
@@ -949,3 +946,62 @@
   - type: Icon
     state: pda-cluwne
   - type: Unremoveable
+
+- type: entity
+  parent: BasePDA
+  id: CentCommServiceWorkerPDA
+  name: CentComm service worker PDA
+  description: The crappy version they give to the people who make their food, mop their floors, and serve their drinks.
+  components:
+  - type: Pda
+    id: CentCommIDCardServiceWorker
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-centcom
+  - type: PdaBorderColor
+    borderColor: "#00842e"
+  - type: Icon
+    state: pda-centcom
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - NanoChatCartridge # CD
+
+- type: entity
+  parent: CentCommServiceWorkerPDA
+  id: CentCommChefPDA
+  name: CentComm chef PDA
+  description: It's slick with the oil of the fat steak you're supposed to be cooking.
+  components:
+  - type: Pda
+    id: CentCommIDCardChef
+
+- type: entity
+  parent: CentCommServiceWorkerPDA
+  id: CentCommBartenderPDA
+  name: CentComm bartender PDA
+  description: The trappings of a glorified cocktail waiter.
+  components:
+  - type: Pda
+    id: CentCommIDCardBartender
+
+- type: entity
+  parent: CentCommServiceWorkerPDA
+  id: CentCommJanitorPDA
+  name: CentComm janitor PDA
+  description: Why are you reading this instead of mopping floors?
+  components:
+  - type: Pda
+    id: CentCommIDCardJanitor

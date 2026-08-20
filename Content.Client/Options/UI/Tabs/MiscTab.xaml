@@ -27,6 +27,11 @@
                        StyleClasses="LabelKeyText"/>
                 <CheckBox Name="OpaqueStorageWindowCheckBox" Text="{Loc 'ui-options-opaque-storage-window'}" />
                 <CheckBox Name="StaticStorageUI" Text="{Loc 'ui-options-static-storage-ui'}" />
+				<!-- Starlight Start -->
+				<Label Text="{Loc 'ui-options-general-ghost-themes'}"
+                       StyleClasses="LabelKeyText"/>
+				<CheckBox Name="ForceTestersTab" Text="{Loc 'ui-options-general-ghost-themes-force-tester'}" />
+				<!-- Starlight End -->
                 <!-- <CheckBox Name="ToggleWalk" Text="{Loc 'ui-options-hotkey-toggle-walk'}" /> -->
             </BoxContainer>
         </ScrollContainer>

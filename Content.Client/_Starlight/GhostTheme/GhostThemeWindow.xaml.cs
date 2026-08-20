@@ -8,6 +8,11 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Content.Client.GameTicking.Managers;
+using Content.Shared._Starlight.CCVar;
+using Robust.Client.UserInterface;
+using Robust.Shared.Configuration;
+using Robust.Shared.Utility;
+
 namespace Content.Client._Starlight.GhostTheme;
 
 [GenerateTypedNameReferences]
@@ -16,6 +21,7 @@ public sealed partial class GhostThemeWindow : DefaultWindow
     private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IEntitySystemManager _entitySystem = default!;
+    [Dependency] private IConfigurationManager _conf = default!;
 
     private readonly ClientGameTicker _gameTicker;
     private readonly SpriteSystem _sprites;
@@ -30,6 +36,7 @@ public sealed partial class GhostThemeWindow : DefaultWindow
 
     public HashSet<string> _availableThemes = [];
     private string _searchFilter = "";
+    private int _lastTabBeforeSearch = -1;
 
     public GhostThemeWindow(IClientPreferencesManager preferencesManager)
     {
@@ -40,15 +47,23 @@ public sealed partial class GhostThemeWindow : DefaultWindow
         _sprites = _entitySystem.GetEntitySystem<SpriteSystem>();
         _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
 
-        Search.OnTextChanged += OnSearchEntered;
+        Search.OnTextTyped += OnSearchTyped;
+        Search.OnTextRemoved += OnSearchRemoved;
 
         ReloadGhostThemes();
+        CategoryTabs.CurrentTab = 1; // this shouldn't cause issues considering i know other tabs exist :3
         RefreshUI();
     }
 
-    private void OnSearchEntered(LineEdit.LineEditEventArgs obj)
+    private void OnSearchTyped(GUITextEnteredEventArgs obj)
     {
-        _searchFilter = obj.Text.Trim().ToLowerInvariant();
+        _searchFilter = Search.Text.Trim().ToLowerInvariant();
+        FilterGhostThemes(_searchFilter);
+    }
+
+    private void OnSearchRemoved(LineEdit.LineEditTextRemovedEventArgs args)
+    {
+        _searchFilter = args.NewText.Trim().ToLowerInvariant();
         FilterGhostThemes(_searchFilter);
     }
 
@@ -59,7 +74,23 @@ public sealed partial class GhostThemeWindow : DefaultWindow
                                     .Where(term => !string.IsNullOrWhiteSpace(term))
                                     .ToList();
 
-        foreach (var child in GhostThemesContainer.Children)
+        if (searchTerms.Count > 0)
+        {
+            for (var i = 0; i < CategoryTabs.ChildCount; i++)
+                CategoryTabs.SetTabVisible(i, i == 0);
+            if(_lastTabBeforeSearch == -1) _lastTabBeforeSearch = CategoryTabs.CurrentTab;
+            CategoryTabs.CurrentTab = 0;
+        }
+        else
+        {
+            for (var i = 0; i < CategoryTabs.ChildCount; i++)
+                CategoryTabs.SetTabVisible(i, i != 0);
+            CategoryTabs.CurrentTab = _lastTabBeforeSearch;
+            _lastTabBeforeSearch = -1;
+        }
+        CategoryTabs.InvalidateArrange();
+
+        foreach (var child in CategoryTabs.GetChild(0).GetChild(0).Children) // First tab is always filter tab.
         {
             if (child is GhostPicker ghostPicker)
             {
@@ -72,34 +103,109 @@ public sealed partial class GhostThemeWindow : DefaultWindow
 
     public void ReloadGhostThemes()
     {
-        GhostThemesContainer.RemoveAllChildren();
+        CategoryTabs.RemoveAllChildren();
+        // GhostThemesContainer.RemoveAllChildren();
 
         if (!_preferencesManager.ServerDataLoaded)
             return;
 
-        foreach (var ghostTheme in _prototypeManager.EnumeratePrototypes<GhostThemePrototype>())
+        List<GhostThemePrototype> themes = new();
+        List<GhostThemeCategoryPrototype> categories = new();
+        Dictionary<GhostThemePrototype, GhostThemeCategoryPrototype> sorted = new();
+        Dictionary<GhostThemeCategoryPrototype, ScrollContainer> categoryTabsDict = new();
+
+        // Collect all themes, sort alphabetically.
+        themes.AddRange(_prototypeManager.EnumeratePrototypes<GhostThemePrototype>());
+        themes.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
+
+        // Add category tabs, sort by priority.
+        categories.AddRange(_prototypeManager.EnumeratePrototypes<GhostThemeCategoryPrototype>());
+        categories = categories.OrderBy(category => category.Priority).ToList();
+
+        // Find the designated filter category and take it out of list, make tab for it.
+        var filterCategory = categories.First(category => category.IsFilter);
+        categories.Remove(filterCategory);
+        var filterTab = new ScrollContainer
         {
-            if (ghostTheme.Private && !_availableThemes.Contains(ghostTheme.ID))
+            Name = filterCategory.Name,
+            Visible = false
+        };
+        var filterThemeBox = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            VerticalExpand = true,
+        };
+        filterTab.AddChild(filterThemeBox);
+        CategoryTabs.AddChild(filterTab);
+        CategoryTabs.SetTabVisible(0, false);
+
+        // Associate theme to category to avoid needing to do unnecessary loops later
+        foreach (var theme in themes)
+        {
+            var category = categories.FirstOrDefault(category => category.ID == theme.Category);
+            if (category is null) continue;
+            sorted.Add(theme, category);
+        }
+
+        // Add tab buttons for each category, populate their lists.
+        foreach (var (theme, category) in sorted)
+        {
+            if (theme.Private && !_availableThemes.Contains(theme.ID))
                 continue;
 
-            var toolTipText = string.Join(", ", ghostTheme.Requirements.Select(x=>x.GetRequirementDescription()));
+            BoxContainer themeBox;
 
-            var ghostPicker = new GhostPicker(_sprites,
-                ghostTheme.SpriteSpecifier.Sprite,
-                ghostTheme.Name,
-                !_availableThemes.Contains(ghostTheme.ID));
-            GhostThemesContainer.AddChild(ghostPicker);
+            if (!categoryTabsDict.TryGetValue(category, out var tab))
+            {
+                tab = new ScrollContainer() { Name = category.Name, };
+                themeBox = new BoxContainer
+                {
+                    Orientation = BoxContainer.LayoutOrientation.Vertical,
+                    VerticalExpand = true,
+                };
+                tab.AddChild(themeBox);
+                categoryTabsDict.Add(category, tab);
+            }
+            else themeBox = (BoxContainer)tab.GetChild(0);
 
-            ghostPicker.ToolTip = toolTipText;
-            if (_availableThemes.Contains(ghostTheme.ID))
+            var ghostPicker = new GhostPicker(_sprites, theme.SpriteSpecifier.Sprite, theme.Name,
+                !_availableThemes.Contains(theme.ID));
+            var ghostPickerFilter = new GhostPicker(_sprites, theme.SpriteSpecifier.Sprite, theme.Name,
+                !_availableThemes.Contains(theme.ID));
+            themeBox.AddChild(ghostPicker);
+            filterThemeBox.AddChild(ghostPickerFilter);
+
+            var tooltip = string.Join(", ", theme.Requirements.Select(x => x.GetRequirementDescription()));
+            ghostPicker.ToolTip = tooltip;
+            ghostPickerFilter.ToolTip = tooltip;
+
+            if (_availableThemes.Contains(theme.ID))
             {
                 ghostPicker.OnPressed += args =>
                 {
-                    SelectedTheme = ghostTheme.ID;
+                    SelectedTheme = theme.ID;
+                    RefreshUI();
+                };
+                ghostPickerFilter.OnPressed += args =>
+                {
+                    SelectedTheme = theme.ID;
                     RefreshUI();
                 };
             }
         }
+
+        // Hide tabs with no unlocks that are set to do so by removing from dictionary entirely
+        if (!_conf.GetCVar(StarlightCCVars.ForceTestersTab)) categoryTabsDict = categoryTabsDict
+            .Where(category =>
+                !(category.Key.HideIfNoUnlocks &&
+                  category.Value.GetChild(0).Children
+                      .OfType<GhostPicker>()
+                      .All(x => x.Disabled)))
+            .ToDictionary();
+
+        // Actually append the tabs in the order of categories list
+        foreach (var category in categories.Where(category => categoryTabsDict.ContainsKey(category)))
+            CategoryTabs.AddChild(categoryTabsDict[category]);
     }
 
     public void UpdateThemes(HashSet<string> AvailableThemes)

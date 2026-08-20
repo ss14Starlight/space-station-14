@@ -92,7 +92,13 @@ public abstract partial class SharedMouthStorageSystem : EntitySystem
             var angle = rand.NextAngle().RotateVec(new Vector2(rand.NextFloat(), 0));
 #pragma warning restore CS0618 // Type or member is obsolete
 
-            _throwing.TryThrow(entity, angle);
+            var ev = new FellDownThrowAttemptEvent(entity);
+            RaiseLocalEvent(entity, ref ev);
+
+            if (ev.Cancelled)
+                return;
+
+            _throwing.PredictedFallThrowItem(uid, entity, component.BaseThrowSpeed);
         }
     }
 }

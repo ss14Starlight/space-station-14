@@ -572,6 +572,11 @@
   result: BlackLightTube
 
 - type: latheRecipe
+  parent: BaseLightRecipe
+  id: LightTubeWarm
+  result: LightTubeWarm
+
+- type: latheRecipe
   id: CassetteTape
   result: CassetteTape
   completetime: 2

@@ -1,26 +1,31 @@
 {
   "version": 1,
   "license": "CC-BY-SA-4.0",
-  "copyright": "Made by BORT for https://github.com/ss14Starlight/space-station-14",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Made by BORT for https://github.com/ss14Starlight/space-station-14"
     },
     {
-      "name": "base"
+      "name": "base",
+      "copyright": "Made by BORT for https://github.com/ss14Starlight/space-station-14"
     },
     {
-      "name": "closed"
+      "name": "closed",
+      "copyright": "Made by BORT for https://github.com/ss14Starlight/space-station-14"
     },
     {
-      "name": "open"
+      "name": "open",
+      "copyright": "Made by BORT for https://github.com/ss14Starlight/space-station-14"
     },
     {
-      "name": "welded"
+      "name": "welded",
+      "copyright": "Made by BORT for https://github.com/ss14Starlight/space-station-14"
     },
     {
       "name": "sparking",
@@ -33,7 +38,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Made by BORT for https://github.com/ss14Starlight/space-station-14"
     }
   ]
 }

@@ -7,16 +7,20 @@
   save: false # player entity, don't save this to maps
   components:
     - type: Speech
-      allowedEmotes: [ 'Mew', 'Hisses', 'Meow', 'Growl', 'Purr', 'Trill', 'Chitter', 'Squeak', 'FlapWings' ] # combine felionoid and moth emotes
+      allowedEmotes: [ 'Mew', 'Hisses', 'Meow', 'Thump', 'Marr', 'Growl', 'Purr', 'Trill', 'Chitter', 'Squeak', 'FlapWings' ] # combine felionoid and moth emotes
     - type: Vocal
       sounds:
         Male: UnisexCatMoth
         Female: UnisexCatMoth
         Unsexed: UnisexCatMoth
+    - type: BodyEmotes
+      soundsId: CatMothBodyEmotes
     - type: TextToSpeech
       voice: ICASSP48
     - type: Body
       prototype: CatMoth
+    - type: Loadout
+      postSpawnGear: [ KoniTrinkets ]
     - type: Icon
       sprite: Mobs/Species/Moth/parts.rsi
       state: full
@@ -302,3 +306,10 @@
   sprites:
     - sprite: _Starlight/Admeme/neomoth/markings.rsi
       state: koni_ears
+
+- type: startingGear
+  id: KoniTrinkets
+  storage:
+    back:
+      - PlushieSuperLizard
+      - ClothingNeckCloakTrans

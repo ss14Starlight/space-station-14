@@ -1,0 +1,27 @@
+- type: entity
+  parent: [ ClothingEyesBase, BaseMedTakContraband ]
+  id: ClothingEyesVisorMedTak
+  name: MedTak visor
+  description: A visor for MedTak operators with a built in heads up display and active flash adjustment.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Clothing/Eyes/Hud/medtak.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/MedTak/Clothing/Eyes/Hud/medtak.rsi
+  - type: FlashImmunity
+  - type: ShowImplantedIcons
+    shownIcons:
+    - MedTak
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - IPC
+    - Hybrid
+  - type: Tag
+    tags:
+    - HudMedical
+    - CorgiWearable
+  - type: EyeProtection
+    protectionTime: 5

@@ -14,7 +14,6 @@
   icon: JobIconNanoTrasenSpecialForces
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-nanotrasen
-  canBeAntag: false
   bypassEorPacification: true
   accessGroups:
   - AllAccess
@@ -192,6 +191,7 @@
     - WeaponGauntletGorilla
     - WeaponPistolCHIMPUpgraded
     - AnomalyScanner
+    - BluespaceCrystal1
 
 - type: startingGear
   id: NanoTrasenSpecialForcesQuintusGear

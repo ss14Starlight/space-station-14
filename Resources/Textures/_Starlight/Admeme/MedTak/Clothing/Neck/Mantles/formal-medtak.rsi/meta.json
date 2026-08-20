@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "equipped-NECK",
+      "directions": 4,
+      "copyright": "SevenShades"
+    }
+  ]
+}

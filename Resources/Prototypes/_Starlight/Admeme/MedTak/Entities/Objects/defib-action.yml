@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseAction
+  id: ActionDefib
+  name: Defibrillate
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Specific/Medical/defib.rsi
+      state: icon
+    itemIconStyle: BigAction
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:DefibActionEvent

@@ -1,14 +1,15 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Paradise at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/monitors.dmi",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "base"
+            "name": "base",
+            "copyright": "Taken from Paradise at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/monitors.dmi"
         },
         {
             "name": "light",
@@ -17,7 +18,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from Paradise at https://github.com/ParadiseSS13/Paradise/blob/master/icons/obj/monitors.dmi"
         }
     ]
 }

@@ -37,6 +37,21 @@
   equipment:
     pocket1: WeaponAdvancedTaser
 
+- type: loadout
+  id: SecurityPeacekeeper
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SkilledOfficer
+  dummyEntity: WeaponLauncherPeacekeeper
+  storage:
+    back:
+      - BoxPeacekeeperBaton
+      - GrenadeBaton
+      - BoxPeacekeeperFlash
+      - GrenadeGaslauncher
+      - GrenadeStingerlauncher
+      - WeaponLauncherPeacekeeper
+
 # Sidearm Options
 - type: loadout
   id: SecurityMk58
@@ -88,11 +103,27 @@
       - WeaponPistolGoldenMk58HighCapacity
       - MagazinePistolHighCapacitySPGolden
 
+- type: loadout
+  id: SecurityColdCase
+  effects:
+   - !type:GroupLoadoutEffect
+      proto: SkilledOfficer
+  dummyEntity: WeaponPistolColdCase
+  storage:
+    back:
+    - WeaponPistolColdCase
+    - MagazineBoxPistol40SP
+
 # Jumpsuit
 - type: loadout
   id: SecurityTshirt
   equipment:
     jumpsuit: ClothingUniformSecurityTshirt
+
+- type: loadout
+  id: SecurityJumpsuitBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecBlue
 
 - type: loadout
   id: SecurityJumpskirtBlue
@@ -101,11 +132,17 @@
 
 - type: loadout
   id: FormalOfficerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
   equipment:
     jumpsuit: ClothingUniformJumpsuitFormalSecoff
 
 - type: loadout
   id: FormalOfficerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
   equipment:
     jumpsuit: ClothingUniformJumpskirtFormalSecoff
 
@@ -113,7 +150,7 @@
   id: FormalSeniorOfficerJumpsuit
   effects:
   - !type:GroupLoadoutEffect
-    proto: SkilledOfficer
+    proto: SeniorOfficer
   equipment:
     jumpsuit: ClothingUniformJumpsuitFormalSeniorSecoff
 
@@ -121,7 +158,7 @@
   id: FormalSeniorOfficerJumpskirt
   effects:
   - !type:GroupLoadoutEffect
-    proto: SkilledOfficer
+    proto: SeniorOfficer
   equipment:
     jumpsuit: ClothingUniformJumpskirtFormalSeniorSecoff
 
@@ -169,11 +206,7 @@
   equipment:
     gloves: ClothingHandsMittensSecurityRed
 
-- type: loadout
-  id: SecurityJumpsuitBlue
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitSecBlue
-
+# Helmets
 - type: loadout
   id: SecurityHelmetPlate
   equipment:
@@ -184,6 +217,15 @@
   equipment:
     head: ClothingHeadHelmetStabproof
 
+- type: loadout
+  id: DeputyHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    head: ClothingHeadDeputyHat
+
+# Armor
 - type: loadout
   id: SecurityHelmetHeatAbsorbent
   equipment:
@@ -208,13 +250,6 @@
   id: WindbreakerSecurity
   equipment:
     outerClothing: ClothingOuterWindbreakerSecurity
-
-# Hats
-
-- type: loadout
-  id: DeputyHat
-  equipment:
-    head: ClothingHeadDeputyHat
 
 # Misc
 - type: loadout

@@ -91,6 +91,18 @@
         - 0
         - -90
         - 180
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-gas-filter
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - On
+        - Off
+        - Toggle
+    - type: GasFilterSignal
     # Starlight end
     - type: GuideHelp
       guides:
@@ -158,12 +170,24 @@
       - 0
       - -90
       - 180
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+    prefix: device-address-prefix-gas-filter
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
+  - type: GasFilterSignal
   # Starlight end
 
 - type: entity
   parent: GasTrinaryBase
   id: GasMixer
-  name: gas mixer
+  name: volumetric gas mixer # Moffstation Edit: Added "volumetric"
   description: Very useful for mixing gases.
   placement:
     mode: AlignAtmosPipeLayers # starlight
@@ -224,6 +248,18 @@
         - 0
         - -90
         - 180
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+      prefix: device-address-prefix-gas-mixer
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - On
+        - Off
+        - Toggle
+    - type: GasMixerSignal
     # Starlight end
     - type: GuideHelp
       guides:
@@ -232,7 +268,7 @@
 - type: entity
   parent: GasMixer
   id: GasMixerFlipped
-  name: gas mixer
+  name: volumetric gas mixer # Moffstation Edit: Added "volumetric"
   suffix: Flipped
   placement:
     mode: AlignAtmosPipeLayers # starlight
@@ -287,6 +323,18 @@
       - 0
       - -90
       - 180
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+    prefix: device-address-prefix-gas-mixer
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
+  - type: GasMixerSignal
   # Starlight end
 
 - type: entity

@@ -1,0 +1,97 @@
+- type: entity
+  id: IceCreamMaker
+  parent: [BaseMachinePowered, SmallConstructibleMachine]
+  name: ice cream maker
+  description: "Morale-boosting deserts, coming up."
+  components:
+  - type: CookingDevice
+    capacity: 10
+    deviceType: IceCreamMaker
+    foodDoneSound: "/Audio/Machines/vending_jingle.ogg"
+    loopingSound: "/Audio/Machines/machine_vend_hot_drink.ogg"
+  - type: Appearance
+  - type: WiresVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.VisualState:
+        enum.MicrowaveVisualizerLayers.Base:
+          Idle: { state: "idle" }
+        enum.MicrowaveVisualizerLayers.BaseUnlit:
+          Idle: { state: "unlit" }
+      enum.PowerDeviceVisuals.Powered:
+        enum.MicrowaveVisualizerLayers.BaseUnlit:
+          True: { visible: False }
+          False: { visible: True }
+  - type: Animateable
+  - type: WiresPanel
+  - type: LitOnPowered
+  - type: ActivatableUI
+    key: enum.MicrowaveUiKey.Key
+  - type: Machine
+    board: IceCreamMakerMachineCircuitBoard
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: UserInterface
+    interfaces:
+      enum.MicrowaveUiKey.Key:
+        type: IceCreamMakerBoundUserInterface
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.27,-0.21,0.27,0.21"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/ice_cream_maker.rsi
+    offset: "0.0,0.2"
+    snapCardinals: true
+    layers:
+    - state: idle
+      map: ["enum.MicrowaveVisualizerLayers.Base"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.MicrowaveVisualizerLayers.BaseUnlit"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    drawdepth: SmallObjects
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+  - type: ContainerContainer
+    containers:
+      microwave_entity_container: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    totalIntensity: 5
+    intensitySlope: 5
+    canCreateVacuum: false
+    deleteAfterExplosion: false
+  - type: ApcPowerReceiver
+    powerLoad: 400
+  - type: GuideHelp
+    guides:
+    - Chef
+    - FoodRecipes

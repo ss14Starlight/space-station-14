@@ -1,0 +1,243 @@
+- type: voice
+  id: ivanheadrev
+  voice: 328
+  name: tts-voice-name-328
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - booming
+  - european
+  - harsh
+  - russian
+  - serious
+
+- type: voice
+  id: jimmynanotrasen
+  voice: 329
+  name: tts-voice-name-329
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - clear
+  - fast
+  - robotic
+
+- type: voice
+  id: johnnanotrasen
+  voice: 330
+  name: tts-voice-name-330
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - muffled
+  - old-timey
+  - smooth
+  - trans-atlantic
+
+- type: voice
+  id: kaeltharion
+  voice: 331
+  name: tts-voice-name-331
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - australian
+  - british
+  - clear
+  - european
+  - serious
+
+- type: voice
+  id: ledavid
+  voice: 332
+  name: tts-voice-name-332
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - booming
+  - european
+  - french
+  - raspy
+  - serious
+
+- type: voice
+  id: pterry
+  voice: 333
+  name: tts-voice-name-333
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - harsh
+  - monstrous
+  - raspy
+  - silly
+
+- type: voice
+  id: rockman
+  voice: 334
+  name: tts-voice-name-334
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - american
+  - booming
+  - clear
+  - serious
+  - smooth
+
+- type: voice
+  id: roper
+  voice: 335
+  name: tts-voice-name-335
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - booming
+  - british
+  - clear
+  - european
+
+- type: voice
+  id: slopbad
+  voice: 336
+  name: tts-voice-name-336
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - booming
+  - harsh
+  - old
+  - raspy
+  - silly
+
+- type: voice
+  id: snorri
+  voice: 337
+  name: tts-voice-name-337
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - booming
+  - british
+  - european
+  - harsh
+  - nordic
+  - old
+  - raspy
+  - serious
+  - squalky
+
+- type: voice
+  id: walmartoog
+  voice: 338
+  name: tts-voice-name-338
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - booming
+  - monstrous
+  - silly
+  - slow
+
+- type: voice
+  id: weakgood
+  voice: 339
+  name: tts-voice-name-339
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - booming
+  - little
+  - mexican
+  - muffled
+  - raspy
+  - silly
+
+- type: voice
+  id: wheezy
+  voice: 340
+  name: tts-voice-name-340
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - harsh
+  - nasal
+  - silly
+
+- type: voice
+  id: zorp
+  voice: 341
+  name: tts-voice-name-341
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - little
+  - muffled
+  - raspy
+  - silly
+
+- type: voice
+  id: kaur
+  voice: 342
+  name: tts-voice-name-342
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+# -----------------------------------------------------------------------------

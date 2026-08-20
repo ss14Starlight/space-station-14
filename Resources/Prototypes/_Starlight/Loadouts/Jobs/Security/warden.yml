@@ -1,3 +1,12 @@
+- type: loadoutEffectGroup
+  id: SkilledWarden
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobWarden
+      time: 54000 # 15 hrs
+
 # Neck
 
 - type: loadout
@@ -9,10 +18,16 @@
 
 - type: loadout
   id: ClothingUniformJumpsuitFormalWarden
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SkilledWarden
   equipment:
     jumpsuit: ClothingUniformJumpsuitFormalWarden
 
 - type: loadout
   id: ClothingUniformJumpskirtFormalWarden
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SkilledWarden
   equipment:
     jumpsuit: ClothingUniformJumpskirtFormalWarden

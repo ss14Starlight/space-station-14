@@ -52,7 +52,7 @@
         orGroup: Guns
       - id: WeaponRifleAk
         orGroup: Guns
-      - id: WeaponRifleLawbringer
+      - id: WeaponRifleLawbringer # Starlight WeaponRifleM90GrenadeLauncher -> WeaponRifleLawbringer
         orGroup: Guns
       - id: WeaponRifleLecter
         orGroup: Guns

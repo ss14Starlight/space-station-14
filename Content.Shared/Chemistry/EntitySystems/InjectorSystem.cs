@@ -56,6 +56,8 @@ public sealed partial class InjectorSystem : EntitySystem
     #region Events Handling
     private void OnInjectorUse(Entity<InjectorComponent> injector, ref UseInHandEvent args)
     {
+        args.ShowInteractionParticles &= injector.Comp.ShowInteractionParticles; // Starlight
+
         if (args.Handled
             || !_prototypeManager.Resolve(injector.Comp.ActiveModeProtoId, out var activeProto))
             return;
@@ -71,6 +73,8 @@ public sealed partial class InjectorSystem : EntitySystem
 
     private void OnInjectorAfterInteract(Entity<InjectorComponent> injector, ref AfterInteractEvent args)
     {
+        args.SpawnInteractionParticles &= injector.Comp.ShowInteractionParticles; // Starlight
+
         if (args.Handled || !args.CanReach || args.Target is not { Valid: true } target)
             return;
 

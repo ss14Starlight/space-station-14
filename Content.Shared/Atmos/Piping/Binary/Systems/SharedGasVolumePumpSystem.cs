@@ -88,4 +88,16 @@ public abstract partial class SharedGasVolumePumpSystem : EntitySystem
         else
             _appearance.SetData(uid, GasVolumePumpVisuals.State, GasVolumePumpState.On, appearance);
     }
+
+    #region Starlight
+
+    public void Set(EntityUid uid, GasVolumePumpComponent component, bool value)
+    {
+        if (component.Enabled == value) return;
+        component.Enabled = value;
+        Dirty(uid, component);
+        UpdateAppearance(uid, component);
+    }
+
+    #endregion
 }

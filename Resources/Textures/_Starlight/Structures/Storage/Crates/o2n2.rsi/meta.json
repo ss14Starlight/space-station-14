@@ -1,26 +1,31 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Created by EmoGarbage404 (github) for Space Station 14. Edited by CawsForCocern (github) for Starlight.",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Created by EmoGarbage404 (github) for Space Station 14. Edited by CawsForConcern (github) for Starlight."
     },
     {
-      "name": "base"
+      "name": "base",
+      "copyright": "Created by EmoGarbage404 (github) for Space Station 14. Edited by CawsForConcern (github) for Starlight."
     },
     {
-      "name": "closed"
+      "name": "closed",
+      "copyright": "Created by EmoGarbage404 (github) for Space Station 14. Edited by CawsForConcern (github) for Starlight."
     },
     {
-      "name": "open"
+      "name": "open",
+      "copyright": "Created by EmoGarbage404 (github) for Space Station 14. Edited by CawsForConcern (github) for Starlight."
     },
     {
-      "name": "welded"
+      "name": "welded",
+      "copyright": "Created by EmoGarbage404 (github) for Space Station 14. Edited by CawsForConcern (github) for Starlight."
     },
     {
       "name": "sparking",
@@ -33,7 +38,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Created by EmoGarbage404 (github) for Space Station 14. Edited by CawsForConcern (github) for Starlight."
     }
   ]
 }

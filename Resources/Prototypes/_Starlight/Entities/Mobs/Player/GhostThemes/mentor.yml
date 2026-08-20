@@ -10,6 +10,7 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: MentorRolesReq
+  category: Mentor
 
 - type: ghostTheme
   id: Daemon
@@ -23,3 +24,4 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: MentorRolesReq
+  category: Mentor

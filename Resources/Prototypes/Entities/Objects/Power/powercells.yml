@@ -199,6 +199,12 @@
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
+  # Starlight-start
+  - type: Tag
+    tags:
+      - PowerCell
+      - HighTierCell
+  # Starlight-end
 
 - type: entity
   id: PowerCellHyperPrinted
@@ -236,6 +242,12 @@
     startingCharge: 720
   - type: BatterySelfRecharger
     autoRechargeRate: 12 # takes 1 minute to charge itself back to full
+  # Starlight-start
+  - type: Tag
+    tags:
+      - PowerCell
+      - HighTierCell
+  # Starlight-end
 
 - type: entity
   parent: PowerCellMicroreactor

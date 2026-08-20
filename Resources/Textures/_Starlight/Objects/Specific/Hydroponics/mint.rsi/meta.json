@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "dead",
+	  "copyright": "Created by DreadfulTaco on Starlight Discord."
+    },
+    {
+      "name": "harvest",
+	  "copyright": "Created by DreadfulTaco on Starlight Discord."
+    },
+    {
+      "name": "produce",
+	  "copyright": "Created by DreadfulTaco on Starlight Discord."
+    },
+    {
+      "name": "seed",
+	  "copyright": "Created by DreadfulTaco on Starlight Discord."
+    },
+    {
+      "name": "stage-1",
+	  "copyright": "Created by DreadfulTaco on Starlight Discord."
+    },
+    {
+      "name": "stage-2",
+	  "copyright": "Created by DreadfulTaco on Starlight Discord."
+    },
+    {
+      "name": "stage-3",
+	  "copyright": "Created by DreadfulTaco on Starlight Discord."
+    },
+    {
+      "name": "stage-4",
+	  "copyright": "Created by DreadfulTaco on Starlight Discord."
+    },
+    {
+      "name": "stage-5",
+	  "copyright": "Created by DreadfulTaco on Starlight Discord."
+    }
+  ]
+}

@@ -8,6 +8,7 @@
       sprite: Mobs/Ghosts/ghost_human.rsi
       state: animated
     color: "#ffffff"
+  category: Public
 
 - type: ghostTheme
   id: Mellow
@@ -18,6 +19,7 @@
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
       state: ghost-mellow
     color: "#ffffff"
+  category: Public
 
 - type: ghostTheme
   id: Blazeit
@@ -28,6 +30,7 @@
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
       state: ghost-blazeit
     color: "#ffffff"
+  category: Public
 
 - type: ghostTheme
   id: Funkypurp
@@ -38,6 +41,7 @@
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
       state: ghost-funkypurp
     color: "#ffffff"
+  category: Public
 
 - type: ghostTheme
   id: Moth
@@ -49,3 +53,4 @@
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
       state: ghost-moff
     color: "#ffffff"
+  category: Public

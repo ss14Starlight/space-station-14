@@ -1,3 +1,4 @@
+job-description-assistantmanager = Manage your fellow Assistants, give them small tasks or informal jobs, and cultivate their progress, so that they may work towards the station's benefit.
 job-description-blueshield = Your primary job is to protect the heads. Remember, you are not a security officer.
 job-description-boxer = Fight your way to the top! Challenge the head of personnel and get brigged when you win.
 job-description-decimus = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
@@ -17,3 +18,5 @@ job-description-salvagelead = Lead your salvage team and keep them safe. Remembe
 job-description-surgeon = Heal people, cripple enemies, and replace limbs and organs!
 job-description-zookeeper = Put on a joyful display of cute animals and space carps for all the crew to see.
 job-description-nct = Your job is to try to assist as many crew members as possible regardless of department. You are NOT permitted to give command staff advice on any command SOP questions or aid in legal advice.
+job-description-stirstir = A disreputable monkey who should not be trusted. A real cell stuffer.
+job-description-prisoner = You are a corporate owned prisoner serving out a sentence in a hard labor colony.

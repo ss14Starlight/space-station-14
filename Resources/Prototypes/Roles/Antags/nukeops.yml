@@ -74,6 +74,91 @@
   previewStartingGear: SyndicateCommanderGearFull
   playTimeTracker: AntagNukeopsCommander # Starlight
 
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: BaseNukeops
+  prefRoles:
+  - GenericTeamAntagonist # For antag ban purposes
+  roleLoadout:
+  - AntagNukeops # Starlight start
+  allowNonHumans: true
+  tags:
+    - CantBecomeRevolutionary # Starlight end
+  components:
+  - type: NukeOperative
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+
+- type: antagSpecifier
+  parent: BaseNukeops
+  id: NukeopsCommander
+  prefRoles:
+  - NukeopsCommander
+  spawnerPrototype: SpawnPointNukeopsCommander
+  startingGear: SyndicateCommanderGearFull
+  roleLoadout: # Starlight
+    - AntagNukeopsCommander # Starlight
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicateElite
+    nameFormat: name-format-nukie-commander
+  mindRoles:
+  - MindRoleNukeopsCommander
+
+- type: antagSpecifier
+  parent: BaseNukeops
+  id: NukeopsMedic
+  prefRoles:
+  - NukeopsMedic
+  spawnerPrototype: SpawnPointNukeopsMedic
+  startingGear: SyndicateOperativeMedicFull
+  roleLoadout: # Starlight
+    - AntagNukeopsMedic # Starlight
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicateNormal
+    nameFormat: name-format-nukie-agent
+  mindRoles:
+  - MindRoleNukeopsMedic
+
+- type: antagSpecifier
+  parent: BaseNukeops
+  id: NukeopsOperative
+  prefRoles:
+  - Nukeops
+  spawnerPrototype: SpawnPointNukeopsOperative
+  startingGear: SyndicateOperativeGearFull
+  roleLoadout: # Starlight
+    - AntagNukeops # Starlight
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicateNormal
+    nameFormat: name-format-nukie-operator
+  mindRoles:
+  - MindRoleNukeops
+
+- type: antagSpecifier
+  parent: BaseNukeops
+  id: LoneOp
+  prefRoles: # Starlight
+  - Nukeops # Starlight
+  spawnerPrototype: SpawnPointLoneNukeOperative
+  #pickPlayer: false # Starlight, uh, yeah, we want it to be you.
+  startingGear: SyndicateLoneOperativeGearFull
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSyndicatePrefix
+    - NamesSyndicateNormal
+    nameFormat: name-format-nukie-generic
+  mindRoles:
+  - MindRoleLoneops
+
 - type: startingGear
   id: SyndicateOperativeGearFullNoUplink
   equipment:

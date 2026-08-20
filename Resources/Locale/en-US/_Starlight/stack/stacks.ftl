@@ -133,6 +133,11 @@ stack-wizcoin = {$amount ->
     *[other] wizcoins
 }
 
+stack-casino-chip = {$amount ->
+    [1] casino chip
+    *[other] casino chips
+}
+
 stack-abyssium-ore = {$amount ->
     [1] abyssium ore
     *[other] abyssium ores

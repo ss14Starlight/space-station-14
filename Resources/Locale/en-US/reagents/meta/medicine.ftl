@@ -112,7 +112,7 @@ reagent-desc-sigynate = A thick pink syrup useful for neutralizing acids and soo
 # Starlight Start
 reagent-name-saline = saline
 reagent-desc-saline = A mixture of salt and water, highly toxic to Avali and Resomi. Commonly used to treat dehydration or low fluid presence in blood.
-#Starlight End
+# Starlight End
 
 reagent-name-lacerinol = lacerinol
 reagent-desc-lacerinol = A fairly unreactive chemical that boosts collagen synthesis to incredible levels, healing slash trauma.

@@ -10,6 +10,7 @@ using Content.Shared.PDA;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Content.Shared._CD.Records;
+using Content.Shared.Clothing;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Localization;
@@ -118,11 +119,13 @@ public sealed partial class CharacterRecordsSystem : EntitySystem
         // - Otherwise show only the base display (localized if possible).
         var speciesName = GetReadableSpeciesName(profile);
 
+        var chosenName = MetaData(player).EntityName; // Starlight
+
         // Build the composite record that consoles consume, mixing profile data with live round metadata.
         var records = new FullCharacterRecords(
             pRecords: new PlayerProvidedCharacterRecords(profileRecords),
             stationRecordsKey: stationRecordsKey?.Id,
-            name: profile.Name,
+            name: chosenName, // Starlight
             age: profile.Age,
             species: speciesName,
             jobTitle: jobTitle,

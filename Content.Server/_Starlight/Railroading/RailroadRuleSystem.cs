@@ -236,6 +236,10 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
                 ruleEnt.Comp.Pool.Add((card.Owner, card.Comp, ruleOwner));
             }
         }
+        else
+        {
+            ruleEnt.Comp.Pool.Add((card.Owner, card.Comp, ruleOwner));
+        }
     }
 
     #region ——— Helpers ———

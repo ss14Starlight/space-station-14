@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Medical.Body.Events;
+using Content.Shared._Blimpuf.Chemistry.Reagent;
 using Content.Shared.Alert;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
@@ -14,6 +15,7 @@ using Content.Shared.Fluids;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Gibbing;
 using Content.Shared.HealthExaminable;
+using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Random.Helpers;
@@ -30,6 +32,7 @@ namespace Content.Shared._Starlight.Medical.Body.Systems;
 public abstract partial class SharedBloodstreamSystem : EntitySystem
 {
     public static readonly EntProtoId Bloodloss = "StatusEffectBloodloss";
+    private static readonly ProtoId<ReagentPrototype> SlimeReagent = "Slime";
 
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
     [Dependency] protected SharedSolutionContainerSystem SolutionContainer = default!;
@@ -56,6 +59,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         SubscribeLocalEvent<BloodstreamComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
         SubscribeLocalEvent<BloodstreamComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BloodstreamComponent, MetabolismExclusionEvent>(OnMetabolismExclusion);
+        SubscribeLocalEvent<BloodstreamComponent, MarkingsUpdateEvent>(OnMarkingsUpdate);
     }
 
     public override void Update(float frameTime)
@@ -293,6 +297,17 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         {
             args.Reagents.Add(reagent);
         }
+    }
+
+    private void OnMarkingsUpdate(Entity<BloodstreamComponent> ent, ref MarkingsUpdateEvent args)
+    {
+        if (ent.Comp.BloodReagentColor != null
+            || !ent.Comp.BloodReferenceSolution.ContainsPrototype(SlimeReagent))
+        {
+            return;
+        }
+
+        RefreshBloodData(ent);
     }
 
     /// <summary>
@@ -598,8 +613,73 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
             dnaData.DNA = Loc.GetString("forensics-dna-unknown");
 
         bloodData.Add(dnaData);
+
+        // Blimpuf start
+        if (TryGetBloodReagentColor(uid, out var color))
+        {
+            bloodData.Add(new ReagentColorData
+            {
+                Color = color,
+            });
+        }
+
         return bloodData;
     }
+
+    public bool RefreshBloodData(Entity<BloodstreamComponent> ent)
+    {
+        var data = NewEntityBloodData(ent.Owner);
+        ent.Comp.BloodReferenceSolution.SetReagentData(data);
+        DirtyField(ent, ent.Comp, nameof(BloodstreamComponent.BloodReferenceSolution));
+
+        if (!SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodSolution))
+            return false;
+
+        foreach (var reagent in bloodSolution.Contents)
+        {
+            if (!ent.Comp.BloodReferenceSolution.ContainsPrototype(reagent.Reagent.Prototype))
+                continue;
+
+            var reagentData = reagent.Reagent.EnsureReagentData();
+            reagentData.RemoveAll(x => x is DnaData or ReagentColorData);
+            reagentData.AddRange(data);
+        }
+
+        SolutionContainer.UpdateChemicals(ent.Comp.BloodSolution.Value);
+        return true;
+    }
+
+    public void SetBloodReagentColor(Entity<BloodstreamComponent> ent, Color? color)
+    {
+        ent.Comp.BloodReagentColor = color;
+        DirtyField(ent, ent.Comp, nameof(BloodstreamComponent.BloodReagentColor));
+        RefreshBloodData(ent);
+    }
+
+    private bool TryGetBloodReagentColor(EntityUid uid, out Color color)
+    {
+        color = Color.White;
+
+        BloodstreamComponent? bloodstream = null;
+        if (!Resolve(uid, ref bloodstream, logMissing: false))
+            return false;
+
+        if (bloodstream.BloodReagentColor != null)
+        {
+            color = bloodstream.BloodReagentColor.Value;
+            return true;
+        }
+
+        if (!bloodstream.BloodReferenceSolution.ContainsPrototype(SlimeReagent)
+            || !TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+        {
+            return false;
+        }
+
+        color = humanoid.SkinColor;
+        return true;
+    }
+    // Blimpuf end
 
     //starlight start
     public Color GetBloodColor(Entity<BloodstreamComponent?> ent)

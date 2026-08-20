@@ -1,0 +1,248 @@
+# Subfloor gas tank BEGIN
+
+- type: entity
+  parent: GasPipeSansLayers
+  id: GasPipeTankSubfloor
+  name: subfloor gas tank
+  description: A 750L gas tank built into the subfloor. Perfect when space is at a premium.
+  placement:
+    mode: AlignAtmosPipeLayers
+  components:
+  - type: Sprite
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+    drawdepth: ThinPipe
+    layers:
+      - state: pipeHalf
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+      - sprite: _Starlight/Structures/Piping/Atmospherics/subfloortank.rsi
+        state: subFloorTank
+        map: [ "enum.SubfloorLayers.FirstLayer" ]
+  - type: AtmosPipeLayers
+    spriteLayersRsiPaths:
+      enum.PipeVisualLayers.Pipe:
+        Primary: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+        Secondary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+        Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+        Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+        Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+    alternativePrototypes:
+      Primary: GasPipeTankSubfloor
+      Secondary: GasPipeTankSubfloorAlt1
+      Tertiary: GasPipeTankSubfloorAlt2
+      Quaternary: GasPipeTankSubfloorAlt3
+      Quinary: GasPipeTankSubfloorAlt4
+  - type: StaticPrice
+    price: 75
+  - type: PipeAppearance
+    extraColoredLayers:
+    - enum.SubfloorLayers.FirstLayer
+  - type: Tag
+    tags:
+    - Pipe
+    - Unstackable
+  - type: NodeContainer
+    nodes:
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 750
+  - type: Construction
+    graph: GasPipeTankSubfloor
+    node: tank
+  - type: VentCrawlTube
+  - type: VentCrawlJunction
+    degrees:
+      - 0
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankSubfloor]
+  id: GasPipeTankSubfloorAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: ThinPipeAlt1
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+  - type: Construction
+    graph: GasPipeTankSubfloor
+    node: tankAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankSubfloor]
+  id: GasPipeTankSubfloorAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: ThinPipeAlt2
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+  - type: Construction
+    graph: GasPipeTankSubfloor
+    node: tankAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankSubfloor]
+  id: GasPipeTankSubfloorAlt3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: ThinPipeAlt3
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+  - type: Construction
+    graph: GasPipeTankSubfloor
+    node: tankAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankSubfloor]
+  id: GasPipeTankSubfloorAlt4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: ThinPipeAlt4
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+  - type: Construction
+    graph: GasPipeTankSubfloor
+    node: tankAlt4
+
+# Subfloor gas tank END
+# Tall gas tank BEGIN
+
+- type: entity
+  parent: GasPipeSansLayers
+  id: GasPipeTankTall
+  name: tall gas tank
+  description: A tank that stores 2000L of gas. It's very big. Bigger than you. The warning label reads, "If you can read this, you are standing too close!".
+  placement:
+    mode: AlignAtmosPipeLayers
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+      drawdepth: Mobs
+      offset: 0,0.55
+      noRot: true
+      layers:
+        - state: pipeUnaryConnectors # The pipe(s) coming out at the base
+          offset: 0,-0.55
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - sprite: _Starlight/Structures/Piping/Atmospherics/gastank1x1.rsi
+          state: gas_tank # The tank body, recolored with spray painter
+          map: [ "enum.SubfloorLayers.FirstLayer" ]
+        - sprite: _Starlight/Structures/Piping/Atmospherics/gastank1x1.rsi
+          state: gas_tank_overlay # The hazard stripes + warning triangle, not recolored
+          map: [ "enum.SubfloorLayers.SecondLayer" ]
+    - type: SpriteFade
+    - type: Item
+      allowDirectHandPickup: false
+    - type: Physics
+      canCollide: true
+      bodyType: static
+    - type: CollideOnAnchor
+      enable: true
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.27
+            position: 0,0.25
+          density: 500
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: AtmosPipeLayers
+      spriteLayersRsiPaths:
+        enum.PipeVisualLayers.Pipe:
+          Primary: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+          Secondary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+          Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+          Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+          Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+      alternativePrototypes:
+        Primary: GasPipeTankTall
+        Secondary: GasPipeTankTallAlt1
+        Tertiary: GasPipeTankTallAlt2
+        Quaternary: GasPipeTankTallAlt3
+        Quinary: GasPipeTankTallAlt4
+    - type: SubFloorHide
+      blockInteractions: false
+      blockAmbience: false
+      visibleLayers:
+        - enum.SubfloorLayers.FirstLayer
+        - enum.SubfloorLayers.SecondLayer
+    - type: StaticPrice
+      price: 290
+    - type: PipeAppearance
+      extraColoredLayers:
+        - enum.SubfloorLayers.FirstLayer
+    - type: Tag
+      tags:
+        - Pipe
+        - Unstackable
+    - type: NodeContainer
+      nodes:
+        pipe:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: South
+          volume: 2000
+    - type: Construction
+      graph: GasPipeTankTall
+      node: tank
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+    - type: GuideHelp
+      guides:
+        - Pipes
+        - PipeNetworks
+
+- type: entity
+  parent: [GasPipeLayerAlt1, GasPipeTankTall]
+  id: GasPipeTankTallAlt1
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+    - type: Construction
+      graph: GasPipeTankTall
+      node: tankAlt1
+
+- type: entity
+  parent: [GasPipeLayerAlt2, GasPipeTankTall]
+  id: GasPipeTankTallAlt2
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+    - type: Construction
+      graph: GasPipeTankTall
+      node: tankAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasPipeTankTall]
+  id: GasPipeTankTallAlt3
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+    - type: Construction
+      graph: GasPipeTankTall
+      node: tankAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasPipeTankTall]
+  id: GasPipeTankTallAlt4
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+    - type: Construction
+      graph: GasPipeTankTall
+      node: tankAlt4
+
+# Tall gas tank END

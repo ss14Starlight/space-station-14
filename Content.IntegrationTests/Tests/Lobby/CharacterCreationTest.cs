@@ -1,4 +1,5 @@
 using Content.Client.Lobby;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Preferences.Managers;
 using Content.Shared.Preferences;
 using Robust.Client.State;
@@ -11,12 +12,14 @@ namespace Content.IntegrationTests.Tests.Lobby;
 [TestFixture]
 [TestOf(typeof(ClientPreferencesManager))]
 [TestOf(typeof(ServerPreferencesManager))]
-public sealed class CharacterCreationTest
+public sealed class CharacterCreationTest : GameTest
 {
+    public override PoolSettings PoolSettings => new() { InLobby = true };
+
     [Test]
     public async Task CreateDeleteCreateTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { InLobby = true });
+        var pair = Pair;
         var server = pair.Server;
         var client = pair.Client;
 
@@ -108,6 +111,5 @@ public sealed class CharacterCreationTest
             Assert.That(serverCharacters, Has.Count.EqualTo(2));
             Assert.That(serverCharacters[1].MemberwiseEquals(profile));
         });
-        await pair.CleanReturnAsync();
     }
 }
