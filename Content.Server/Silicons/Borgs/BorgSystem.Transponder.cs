@@ -25,7 +25,7 @@ public sealed partial class BorgSystem
     [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
     [Dependency] private BorgLockdownSystem _lockdown = default!; // Starlight
     [Dependency] private NameModifierSystem _nameModifierSystem = default!; // Starlight
-    [Dependency] private BorgLocationTrackerSystem _borgLocation = default!; // Starlight
+    [Dependency] private BorgEmergencyBeaconSystem _borgBeacon = default!; // Starlight
 
     private void InitializeTransponder()
     {
@@ -54,6 +54,8 @@ public sealed partial class BorgSystem
             var hasBrain = CheckBrain(chassis.BrainEntity); // Starlight: the fake is reported as a lock down, not as a missing brain
             var canDisable = comp.NextDisable == null && !comp.FakeDisabling;
             var identifier = TryComp<NameIdentifierComponent>(uid, out var nameIdentifier) ? nameIdentifier.FullIdentifier : string.Empty; // Starlight
+            var lockedDown = _lockdown.IsLockedDown(uid) || comp.FakeDisabled; // Starlight
+            var brainActive = hasBrain && _mind.TryGetMind(uid, out _, out _); // Starlight
             var data = new CyborgControlData(
                 comp.Sprite,
                 comp.Name,
@@ -63,9 +65,10 @@ public sealed partial class BorgSystem
                 chassis.ModuleCount,
                 hasBrain,
                 canDisable,
-                _lockdown.IsLockedDown(uid) || comp.FakeDisabled, // Starlight
+                lockedDown, // Starlight
                 identifier, // Starlight
-                _borgLocation.GetReportedLocation(uid)); // Starlight
+                _borgBeacon.GetBeaconLocation(uid, chargeFraction, brainActive, lockedDown), // Starlight
+                brainActive); // Starlight
 
             var payload = new NetworkPayload()
             {

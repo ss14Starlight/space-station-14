@@ -96,8 +96,8 @@ public partial record struct CyborgControlData
     public string FullName => Identifier == string.Empty ? Name : $"{Name} {Identifier}";
 
     /// <summary>
-    /// Grid coordinates the borg was at when it last sampled its position, or empty if it has none yet.
-    /// Deliberately stale, see <c>BorgLocationTrackerComponent</c>.
+    /// Grid coordinates the borg is broadcasting because it needs help, or empty while it is fine.
+    /// See <c>BorgEmergencyBeaconSystem</c> for what counts as needing help.
     /// </summary>
     [DataField]
     public string Location = string.Empty;
@@ -139,17 +139,24 @@ public partial record struct CyborgControlData
     public bool LockedDown; // Starlight
 
     /// <summary>
+    /// Whether the installed brain actually has someone in it. Meaningless when <see cref="HasBrain"/> is false.
+    /// </summary>
+    [DataField]
+    public bool BrainActive = true; // Starlight
+
+    /// <summary>
     /// When this cyborg's data will be deleted.
     /// Set by the console when receiving the packet.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan Timeout = TimeSpan.Zero;
 
-    public CyborgControlData(SpriteSpecifier? chassisSprite, string chassisName, string name, float charge, float hpPercent, int moduleCount, bool hasBrain, bool canDisable, bool lockedDown = false, string identifier = "", string location = "") // Starlight
+    public CyborgControlData(SpriteSpecifier? chassisSprite, string chassisName, string name, float charge, float hpPercent, int moduleCount, bool hasBrain, bool canDisable, bool lockedDown = false, string identifier = "", string location = "", bool brainActive = true) // Starlight
     {
         LockedDown = lockedDown; // Starlight
         Identifier = identifier; // Starlight
         Location = location; // Starlight
+        BrainActive = brainActive; // Starlight
         ChassisSprite = chassisSprite;
         ChassisName = chassisName;
         Name = name;
