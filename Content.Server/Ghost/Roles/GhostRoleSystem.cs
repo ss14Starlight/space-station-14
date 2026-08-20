@@ -816,8 +816,12 @@ public sealed partial class GhostRoleSystem : EntitySystem
         var mob = Spawn(component.Prototype, Transform(uid).Coordinates);
         _transform.AttachToGridOrMap(mob);
 
+        // starlight region start
+        // Preserve the notification state when spawning a new ghost role,
+        // preventing the same important role from announcing itself again.
         if (TryComp(mob, out GhostRoleComponent? spawnedGhostRole))
             spawnedGhostRole.HasNotifiedGhosts = ghostRole.HasNotifiedGhosts;
+        // starlight region end
 
         var spawnedEvent = new GhostRoleSpawnerUsedEvent(uid, mob);
         RaiseLocalEvent(mob, spawnedEvent);
