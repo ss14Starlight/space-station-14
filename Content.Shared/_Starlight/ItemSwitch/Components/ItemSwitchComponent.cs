@@ -65,7 +65,7 @@ public sealed partial class ItemSwitchState : BoundUserInterfaceMessage
     public bool RemoveComponents = true;
 
     [DataField]
-    public bool Hiden = false;
+    public bool Hidden = false;
 
     [DataField]
     public SpriteSpecifier? Sprite;
