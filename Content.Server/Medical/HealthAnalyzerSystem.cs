@@ -568,11 +568,11 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             {
                 string quantityStr;
                 if (reagent.StomachAmount > FixedPoint2.Zero && reagent.Amount > FixedPoint2.Zero)
-                    quantityStr = $"[color=#AAAAAA]({reagent.StomachAmount}u)[/color] {reagent.Amount}u";
+                    quantityStr = Loc.GetString("health-analyzer-report-quantity-both", ("stomach", reagent.StomachAmount), ("blood", reagent.Amount));
                 else if (reagent.StomachAmount > FixedPoint2.Zero)
-                    quantityStr = $"[color=#AAAAAA]({reagent.StomachAmount}u)[/color]";
+                    quantityStr = Loc.GetString("health-analyzer-report-quantity-stomach", ("stomach", reagent.StomachAmount));
                 else
-                    quantityStr = $"{reagent.Amount}u";
+                    quantityStr = Loc.GetString("health-analyzer-report-quantity-blood", ("blood", reagent.Amount));
                 var reagentLine = Loc.GetString(
                     "health-analyzer-report-chemical-line",
                     ("name", reagent.Name),

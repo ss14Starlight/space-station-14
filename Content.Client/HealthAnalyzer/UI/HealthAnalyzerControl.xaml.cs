@@ -289,7 +289,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         foreach (var reagent in sortedReagents)
         {
-            var reagentName = reagent.ReagentId;
+            var reagentName = Loc.GetString("health-analyzer-window-entity-unknown-text");
             var reagentColor = Color.White;
 
             if (_prototypes.TryIndex<ReagentPrototype>(reagent.ReagentId, out var reagentProto))
@@ -326,16 +326,21 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             };
 
             var msg = new FormattedMessage();
-            if (reagent.StomachQuantity > FixedPoint2.Zero)
+            if (reagent.StomachQuantity > FixedPoint2.Zero && reagent.Quantity > FixedPoint2.Zero)
             {
-                msg.PushColor(Color.FromHex("#AAAAAA"));
-                msg.AddText($"({reagent.StomachQuantity}u)");
-                msg.Pop();
-                if (reagent.Quantity > FixedPoint2.Zero)
-                    msg.AddText(" ");
+                var formatted = Loc.GetString("health-analyzer-window-quantity-both", ("stomach", reagent.StomachQuantity), ("blood", reagent.Quantity));
+                msg.AddMessage(FormattedMessage.FromMarkup(formatted));
             }
-            if (reagent.Quantity > FixedPoint2.Zero)
-                msg.AddText($"{reagent.Quantity}u");
+            else if (reagent.StomachQuantity > FixedPoint2.Zero)
+            {
+                var formatted = Loc.GetString("health-analyzer-window-quantity-stomach", ("stomach", reagent.StomachQuantity));
+                msg.AddMessage(FormattedMessage.FromMarkup(formatted));
+            }
+            else if (reagent.Quantity > FixedPoint2.Zero)
+            {
+                var formatted = Loc.GetString("health-analyzer-window-quantity-blood", ("blood", reagent.Quantity));
+                msg.AddMessage(FormattedMessage.FromMarkup(formatted));
+            }
             quantityLabel.SetMessage(msg);
 
             rowContainer.AddChild(colorBar);
