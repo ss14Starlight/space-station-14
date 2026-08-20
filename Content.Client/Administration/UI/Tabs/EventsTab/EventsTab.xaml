@@ -1,0 +1,52 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:co="clr-namespace:Content.Client.UserInterface.Controls"
+         Margin="4">
+    <BoxContainer Orientation="Vertical">
+        <Label Name="SummaryLabel"
+               Text="{Loc administration-ui-events-tab-loading}" />
+        <Control MinSize="0 4" />
+        <Label Text="{Loc administration-ui-events-tab-queue-title}"
+               FontColorOverride="#8FD3FF" />
+        <Label Name="QueueStatusLabel"
+               Text="{Loc administration-ui-events-tab-loading}" />
+        <BoxContainer Name="QueueList"
+                      Orientation="Vertical"
+                      SeparationOverride="3" />
+        <Control MinSize="0 7" />
+        <Label Text="{Loc administration-ui-events-tab-active-title}"
+               FontColorOverride="#FFCA72" />
+        <Label Name="ActiveStatusLabel"
+               Text="{Loc administration-ui-events-tab-loading}" />
+        <BoxContainer Name="ActiveList"
+                      Orientation="Vertical"
+                      SeparationOverride="3" />
+        <Control MinSize="0 9" />
+        <Label Text="{Loc administration-ui-events-tab-catalog-title}"
+               FontColorOverride="#B8E986" />
+        <Control MinSize="0 3" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <Label Text="{Loc administration-ui-events-tab-search-label}"
+                   VerticalAlignment="Center" />
+            <LineEdit Name="SearchLineEdit"
+                      HorizontalExpand="True"
+                      PlaceHolder="{Loc administration-ui-events-tab-filter-placeholder}" />
+            <Label Text="{Loc administration-ui-events-tab-sort-label}"
+                   VerticalAlignment="Center" />
+            <OptionButton Name="SortOptionButton"
+                          MinWidth="170" />
+            <Button Name="SortDirectionButton"
+                    MinWidth="90" />
+        </BoxContainer>
+        <Control MinSize="0 4" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <Control HorizontalExpand="True" />
+            <Button Name="AvailableOnlyButton"
+                    Text="{Loc administration-ui-events-tab-available-only}"
+                    ToggleMode="True" />
+            <Button Name="RefreshButton"
+                    Text="{Loc administration-ui-events-tab-refresh}" />
+        </BoxContainer>
+        <Control MinSize="0 5" />
+        <co:SearchListContainer Name="SearchList" Access="Public" VerticalExpand="True" />
+    </BoxContainer>
+</Control>

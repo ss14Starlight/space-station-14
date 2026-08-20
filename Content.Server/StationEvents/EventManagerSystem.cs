@@ -80,6 +80,19 @@ public sealed partial class EventManagerSystem : EntitySystem
         GameTicker.AddGameRule(randomLimitedEvent);
     }
 
+    public bool HasEvent(string eventId)
+    {
+        return AllEvents().Keys.Any(proto => proto.ID == eventId);
+    }
+
+    public bool RunEventById(string eventId)
+    {
+        if (!HasEvent(eventId))
+            return false;
+
+        return GameTicker.AddGameRule(eventId) != EntityUid.Invalid;
+    }
+
     /// <summary>
     /// Returns true if the provided EntityTableSelector gives at least one prototype with a StationEvent comp.
     /// </summary>
@@ -227,12 +240,12 @@ public sealed partial class EventManagerSystem : EntitySystem
         return allEvents;
     }
 
-    private int GetOccurrences(EntityPrototype stationEvent)
+    public int GetOccurrences(EntityPrototype stationEvent)
     {
         return GetOccurrences(stationEvent.ID);
     }
 
-    private int GetOccurrences(string stationEvent)
+    public int GetOccurrences(string stationEvent)
     {
         return GameTicker.AllPreviousGameRules.Count(p => p.Item2 == stationEvent);
     }

@@ -9,6 +9,7 @@ using Content.Shared.GameTicking.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.TypeParsers;
 using Robust.Shared.Utility;
@@ -24,18 +25,22 @@ namespace Content.Server.StationEvents
     {
         [Dependency] private IRobustRandom _random = default!;
         [Dependency] private EventManagerSystem _event = default!;
+        [Dependency] private IGameTiming _timing = default!;
 
         protected override void Started(EntityUid uid, BasicStationEventSchedulerComponent component, GameRuleComponent gameRule,
             GameRuleStartedEvent args)
         {
             // A little starting variance so schedulers dont all proc at once.
             component.TimeUntilNextEvent = RobustRandom.NextFloat(component.MinimumTimeUntilFirstEvent, component.MinimumTimeUntilFirstEvent + 120);
+            component.EventQueue.Clear();
+            EnsureScheduledEvents(uid, component);
         }
 
         protected override void Ended(EntityUid uid, BasicStationEventSchedulerComponent component, GameRuleComponent gameRule,
             GameRuleEndedEvent args)
         {
             component.TimeUntilNextEvent = component.MinimumTimeUntilFirstEvent;
+            component.EventQueue.Clear();
         }
 
 
@@ -43,32 +48,239 @@ namespace Content.Server.StationEvents
         {
             base.Update(frameTime);
 
-            if (!_event.EventsEnabled)
-                return;
-
             var query = EntityQueryEnumerator<BasicStationEventSchedulerComponent, GameRuleComponent>();
             while (query.MoveNext(out var uid, out var eventScheduler, out var gameRule))
             {
                 if (!GameTicker.IsGameRuleActive(uid, gameRule))
                     continue;
 
-                if (eventScheduler.TimeUntilNextEvent > 0)
-                {
-                    eventScheduler.TimeUntilNextEvent -= frameTime;
-                    continue;
-                }
+                EnsureScheduledEvents(uid, eventScheduler);
 
-                _event.RunRandomEvent(eventScheduler.ScheduledGameRules);
-                ResetTimer(eventScheduler);
+                if (!_event.EventsEnabled)
+                    continue;
+
+                ProcessDueEntries(uid, eventScheduler);
             }
         }
 
         /// <summary>
-        /// Reset the event timer once the event is done.
+        /// Reset the scheduler spacing after auto-planning an event.
         /// </summary>
         private void ResetTimer(BasicStationEventSchedulerComponent component)
         {
             component.TimeUntilNextEvent = component.MinMaxEventTiming.Next(_random);
+        }
+
+        public bool HasActiveScheduler(out EntityUid schedulerUid, out BasicStationEventSchedulerComponent? scheduler)
+        {
+            var query = EntityQueryEnumerator<BasicStationEventSchedulerComponent, GameRuleComponent>();
+            while (query.MoveNext(out schedulerUid, out scheduler, out var rule))
+            {
+                if (GameTicker.IsGameRuleActive(schedulerUid, rule))
+                    return true;
+            }
+
+            schedulerUid = EntityUid.Invalid;
+            scheduler = null;
+            return false;
+        }
+
+        public IReadOnlyList<QueuedStationEventEntry> GetQueuedEvents()
+        {
+            if (!HasActiveScheduler(out _, out var scheduler) || scheduler == null)
+                return Array.Empty<QueuedStationEventEntry>();
+
+            SortQueue(scheduler);
+            return scheduler.EventQueue.ToList();
+        }
+
+        public bool ScheduleEvent(string eventId, float? delaySeconds = null)
+        {
+            if (!_event.HasEvent(eventId) ||
+                !HasActiveScheduler(out var uid, out var scheduler) ||
+                scheduler == null)
+                return false;
+
+            var triggerTime = delaySeconds.HasValue
+                ? _timing.CurTime + TimeSpan.FromSeconds(Math.Max(delaySeconds.Value, 0f))
+                : GetDefaultManualTriggerTime(scheduler);
+
+            var entry = new QueuedStationEventEntry
+            {
+                Id = scheduler.NextQueueId++,
+                EventId = eventId,
+                QueuedAt = _timing.CurTime,
+                TriggerTime = triggerTime,
+                Automatic = false
+            };
+
+            scheduler.EventQueue.Add(entry);
+            SortQueue(scheduler);
+            EnsureScheduledEvents(uid, scheduler);
+            return true;
+        }
+
+        public bool AdjustScheduledEvent(int queueId, float deltaSeconds)
+        {
+            if (!HasActiveScheduler(out _, out var scheduler) || scheduler == null)
+                return false;
+
+            var entry = scheduler.EventQueue.FirstOrDefault(ev => ev.Id == queueId);
+            if (entry == null)
+                return false;
+
+            entry.TriggerTime += TimeSpan.FromSeconds(deltaSeconds);
+            if (entry.TriggerTime < _timing.CurTime)
+                entry.TriggerTime = _timing.CurTime;
+
+            SortQueue(scheduler);
+            return true;
+        }
+
+        public bool RemoveScheduledEvent(int queueId)
+        {
+            if (!HasActiveScheduler(out var uid, out var scheduler) || scheduler == null)
+                return false;
+
+            var removed = scheduler.EventQueue.RemoveAll(ev => ev.Id == queueId) > 0;
+            if (removed)
+                EnsureScheduledEvents(uid, scheduler);
+
+            return removed;
+        }
+
+        public bool RunScheduledEventNow(int queueId)
+        {
+            if (!HasActiveScheduler(out var uid, out var scheduler) || scheduler == null)
+                return false;
+
+            var entry = scheduler.EventQueue.FirstOrDefault(ev => ev.Id == queueId);
+            if (entry == null)
+                return false;
+
+            scheduler.EventQueue.Remove(entry);
+            _event.RunEventById(entry.EventId);
+            EnsureScheduledEvents(uid, scheduler);
+            return true;
+        }
+
+        private void ProcessDueEntries(EntityUid uid, BasicStationEventSchedulerComponent component)
+        {
+            SortQueue(component);
+
+            while (component.EventQueue.Count > 0 && component.EventQueue[0].TriggerTime <= _timing.CurTime)
+            {
+                var next = component.EventQueue[0];
+                component.EventQueue.RemoveAt(0);
+                _event.RunEventById(next.EventId);
+                EnsureScheduledEvents(uid, component);
+                SortQueue(component);
+            }
+        }
+
+        private void EnsureScheduledEvents(EntityUid uid, BasicStationEventSchedulerComponent component)
+        {
+            SortQueue(component);
+
+            while (component.EventQueue.Count(ev => ev.Automatic) < component.AutoQueueLookahead)
+            {
+                var triggerTime = GetNextAutomaticTriggerTime(component);
+                if (!TryPickAutomaticEvent(component, triggerTime, out var eventId))
+                    break;
+
+                component.EventQueue.Add(new QueuedStationEventEntry
+                {
+                    Id = component.NextQueueId++,
+                    EventId = eventId,
+                    QueuedAt = _timing.CurTime,
+                    TriggerTime = triggerTime,
+                    Automatic = true
+                });
+
+                ResetTimer(component);
+                SortQueue(component);
+            }
+        }
+
+        private TimeSpan GetDefaultManualTriggerTime(BasicStationEventSchedulerComponent component)
+        {
+            SortQueue(component);
+
+            if (component.EventQueue.Count == 0)
+                return _timing.CurTime + TimeSpan.FromSeconds(component.MinMaxEventTiming.Min);
+
+            return component.EventQueue[^1].TriggerTime + TimeSpan.FromSeconds(component.MinMaxEventTiming.Min);
+        }
+
+        private TimeSpan GetNextAutomaticTriggerTime(BasicStationEventSchedulerComponent component)
+        {
+            var lastAutomatic = component.EventQueue
+                .Where(ev => ev.Automatic)
+                .OrderBy(ev => ev.TriggerTime)
+                .LastOrDefault();
+
+            if (lastAutomatic != null)
+                return lastAutomatic.TriggerTime + TimeSpan.FromSeconds(component.TimeUntilNextEvent);
+
+            return _timing.CurTime + TimeSpan.FromSeconds(component.TimeUntilNextEvent);
+        }
+
+        private bool TryPickAutomaticEvent(
+            BasicStationEventSchedulerComponent component,
+            TimeSpan triggerTime,
+            out string eventId)
+        {
+            var projectedRoundTime = GameTicker.RoundDuration() + (triggerTime - _timing.CurTime);
+            var available = _event.AvailableEvents(currentTimeOverride: projectedRoundTime);
+
+            if (!_event.TryBuildLimitedEvents(component.ScheduledGameRules, available, out var limited))
+            {
+                eventId = string.Empty;
+                return false;
+            }
+
+            var simulatedEvents = component.EventQueue
+                .Where(ev => ev.TriggerTime <= triggerTime)
+                .Select(ev => (ev.EventId, RoundTime: GameTicker.RoundDuration() + (ev.TriggerTime - _timing.CurTime)))
+                .ToList();
+
+            foreach (var (proto, stationEvent) in limited.ToList())
+            {
+                var projectedOccurrences = simulatedEvents.Count(ev => ev.EventId == proto.ID);
+                if (stationEvent.MaxOccurrences.HasValue &&
+                    _event.GetOccurrences(proto) + projectedOccurrences >= stationEvent.MaxOccurrences.Value)
+                {
+                    limited.Remove(proto);
+                    continue;
+                }
+
+                var queuedLastRun = simulatedEvents
+                    .Where(ev => ev.EventId == proto.ID)
+                    .Select(ev => ev.RoundTime)
+                    .DefaultIfEmpty(TimeSpan.Zero)
+                    .Max();
+
+                var actualLastRun = _event.TimeSinceLastEvent(proto);
+                var effectiveLastRun = queuedLastRun > actualLastRun ? queuedLastRun : actualLastRun;
+
+                if (effectiveLastRun != TimeSpan.Zero &&
+                    projectedRoundTime.TotalMinutes < stationEvent.ReoccurrenceDelay + effectiveLastRun.TotalMinutes)
+                {
+                    limited.Remove(proto);
+                }
+            }
+
+            eventId = _event.FindEvent(limited) ?? string.Empty;
+            return !string.IsNullOrWhiteSpace(eventId);
+        }
+
+        private static void SortQueue(BasicStationEventSchedulerComponent component)
+        {
+            component.EventQueue.Sort((a, b) =>
+            {
+                var timeCompare = a.TriggerTime.CompareTo(b.TriggerTime);
+                return timeCompare != 0 ? timeCompare : a.Id.CompareTo(b.Id);
+            });
         }
     }
 
