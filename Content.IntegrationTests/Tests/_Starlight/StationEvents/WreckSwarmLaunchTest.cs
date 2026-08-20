@@ -44,61 +44,61 @@ public sealed class WreckSwarmLaunchTest : GameTest
 
     [TestPrototypes]
     private const string Prototypes = @"
-- type: entity
-  id: TestWreckSwarmStation
-  parent: BaseStation
-  components:
-  - type: Transform
-  - type: StationEventEligible
+-   type: entity
+    id: TestWreckSwarmStation
+    parent: BaseStation
+    components:
+    -   type: Transform
+    -   type: StationEventEligible
 
-- type: entity
-  parent: BaseGameRule
-  id: TestWreckSwarmLaunch
-  components:
-  - type: GameRule
-  - type: StationEvent
-    duration: 60
-    earliestStart: 0
-    minimumPlayers: 0
-    weight: 0
-    globalAnnouncement: false
-  - type: WreckSwarm
-    fixedGrid: /Maps/Test/floor3x3.yml
-    velocity: 50
+-   type: entity
+    parent: BaseGameRule
+    id: TestWreckSwarmLaunch
+    components:
+    -   type: GameRule
+    -   type: StationEvent
+        duration: 60
+        earliestStart: 0
+        minimumPlayers: 0
+        weight: 0
+        globalAnnouncement: false
+    -   type: WreckSwarm
+        fixedGrid: /Maps/Test/floor3x3.yml
+        velocity: 50
 
-- type: entity
-  parent: BaseGameRule
-  id: TestWreckSwarmPlacement
-  components:
-  - type: GameRule
-  - type: StationEvent
-    duration: 60
-    earliestStart: 0
-    minimumPlayers: 0
-    weight: 0
-    globalAnnouncement: false
-  - type: WreckSwarm
-    fixedGrid: /Maps/Test/floor3x3.yml
-    velocity: 0
+-   type: entity
+    parent: BaseGameRule
+    id: TestWreckSwarmPlacement
+    components:
+    -   type: GameRule
+    -   type: StationEvent
+        duration: 60
+        earliestStart: 0
+        minimumPlayers: 0
+        weight: 0
+        globalAnnouncement: false
+    -   type: WreckSwarm
+        fixedGrid: /Maps/Test/floor3x3.yml
+        velocity: 0
 
-- type: ruinMap
-  id: TestRuinMap
-  mapPath: /Maps/Test/floor3x3.yml
+-   type: ruinMap
+    id: TestRuinMap
+    mapPath: /Maps/Test/floor3x3.yml
 
-- type: entity
-  parent: BaseGameRule
-  id: TestWreckSwarmGenerated
-  components:
-  - type: GameRule
-  - type: StationEvent
-    duration: 60
-    earliestStart: 0
-    minimumPlayers: 0
-    weight: 0
-    globalAnnouncement: false
-  - type: WreckSwarm
-    chunkConfig: Small
-    velocity: 0
+-   type: entity
+    parent: BaseGameRule
+    id: TestWreckSwarmGenerated
+    components:
+    -   type: GameRule
+    -   type: StationEvent
+        duration: 60
+        earliestStart: 0
+        minimumPlayers: 0
+        weight: 0
+        globalAnnouncement: false
+    -   type: WreckSwarm
+        chunkConfig: Small
+        velocity: 0
 ";
 
     #endregion
@@ -447,10 +447,9 @@ public sealed class WreckSwarmLaunchTest : GameTest
 
     private EntityUid CreateFilledGrid(StationContext ctx, int sideLength, Vector2 worldPosition)
     {
-        var mapMan = Pair.Server.ResolveDependency<IMapManager>();
         var mapSystem = Pair.Server.System<SharedMapSystem>();
         var transform = Pair.Server.System<SharedTransformSystem>();
-        var grid = mapMan.CreateGridEntity(ctx.MapId);
+        var grid = mapSystem.CreateGridEntity(ctx.MapId);
         mapSystem.SetTiles(grid.Owner, grid.Comp, RuinTestHelpers.MakeSquareTiles(sideLength, ctx.Tile));
         transform.SetWorldPosition(grid.Owner, worldPosition);
         return grid.Owner;
@@ -458,9 +457,8 @@ public sealed class WreckSwarmLaunchTest : GameTest
 
     private EntityUid CreateRingGrid(StationContext ctx, int inner, int outer)
     {
-        var mapMan = Pair.Server.ResolveDependency<IMapManager>();
         var mapSystem = Pair.Server.System<SharedMapSystem>();
-        var grid = mapMan.CreateGridEntity(ctx.MapId);
+        var grid = mapSystem.CreateGridEntity(ctx.MapId);
         var tiles = new List<(Vector2i Position, Tile Tile)>();
 
         for (var x = inner; x <= outer; x++)

@@ -21,7 +21,6 @@ public sealed partial class WreckSwarmSystem : StationEventSystem<WreckSwarmComp
     #region Dependencies
 
     [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private MapLoaderSystem _loader = default!;
     [Dependency] private RuinGeneratorSystem _ruinGenerator = default!;

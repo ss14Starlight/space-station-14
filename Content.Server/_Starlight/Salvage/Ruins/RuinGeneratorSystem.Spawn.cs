@@ -39,7 +39,6 @@ public sealed partial class RuinGeneratorSystem
     [Dependency] private DecalSystem _decals = default!;
     [Dependency] private TileFrictionController _friction = default!;
     [Dependency] private GravitySystem _gravity = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedBiomeSystem _biome = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
@@ -56,7 +55,7 @@ public sealed partial class RuinGeneratorSystem
     /// </summary>
     public EntityUid? SpawnRuinGrid(MapId mapId, RuinResult result, int seed)
     {
-        var ruinGrid = _mapManager.CreateGridEntity(mapId);
+        var ruinGrid = _mapSystem.CreateGridEntity(mapId);
         _mapSystem.SetTiles(ruinGrid.Owner, ruinGrid.Comp, result.FloorTiles);
 
         foreach (var (wallPos, wallProto) in result.WallEntities)
