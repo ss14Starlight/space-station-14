@@ -36,7 +36,7 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
     /// </summary>
     public static readonly ProtoId<BorgTypePrototype> UnselectedType = "unselected";
 
-    private static readonly TimeSpan ResetDelay = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan _resetDelay = TimeSpan.FromSeconds(10);
 
     [Dependency] private IComponentFactory _componentFactory = default!;
     [Dependency] private INetManager _net = default!;
@@ -135,7 +135,7 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
 
         var doAfter = new DoAfterArgs(EntityManager,
             args.Actor,
-            ResetDelay,
+            _resetDelay,
             new BorgResetChassisDoAfterEvent(),
             borg,
             target: borg)
