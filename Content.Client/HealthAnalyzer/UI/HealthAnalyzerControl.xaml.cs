@@ -53,7 +53,12 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         PrintReportButton.OnPressed += _ => PrintReportPressed?.Invoke(); // Starlight-edit: Printable health reports.
     }
 
-    public void Populate(HealthAnalyzerUiState state)
+    /// <summary>
+/// Populates the health analyzer UI with the scanned entity's state.
+/// Renders combined bloodstream and stomach chemical quantities alongside
+/// damage groups and other health information.
+/// </summary>
+public void Populate(HealthAnalyzerUiState state)
     {
         var target = _entityManager.GetEntity(state.TargetEntity);
 
@@ -63,8 +68,10 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             || !_entityManager.TryGetComponent<DamageableComponent>(target, out var damageable))
         {
             NoPatientDataText.Visible = true;
+            // Starlight begin - hide chemicals section on invalid target
             ChemicalsDivider.Visible = false;
             ChemicalsContainer.Visible = false;
+            // Starlight end
             return;
         }
 
@@ -331,17 +338,17 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             if (reagent.StomachQuantity > FixedPoint2.Zero && reagent.Quantity > FixedPoint2.Zero)
             {
                 var formatted = Loc.GetString("health-analyzer-window-quantity-both", ("stomach", reagent.StomachQuantity), ("blood", reagent.Quantity));
-                msg.AddMessage(FormattedMessage.FromMarkup(formatted));
+                msg.AddMessage(FormattedMessage.FromMarkupOrThrow(formatted));
             }
             else if (reagent.StomachQuantity > FixedPoint2.Zero)
             {
                 var formatted = Loc.GetString("health-analyzer-window-quantity-stomach", ("stomach", reagent.StomachQuantity));
-                msg.AddMessage(FormattedMessage.FromMarkup(formatted));
+                msg.AddMessage(FormattedMessage.FromMarkupOrThrow(formatted));
             }
             else if (reagent.Quantity > FixedPoint2.Zero)
             {
                 var formatted = Loc.GetString("health-analyzer-window-quantity-blood", ("blood", reagent.Quantity));
-                msg.AddMessage(FormattedMessage.FromMarkup(formatted));
+                msg.AddMessage(FormattedMessage.FromMarkupOrThrow(formatted));
             }
             quantityLabel.SetMessage(msg);
 
