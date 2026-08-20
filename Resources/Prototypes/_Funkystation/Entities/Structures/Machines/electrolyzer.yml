@@ -3,9 +3,10 @@
   id: Electrolyzer
   categories: [ ShouldMapStation ] # Starlight
   name: electrolyzer
-  description: A machine that processes and transforms gases through electrolysis. Fueled by plasma or uranium sheets. # Starlight
+  description: A machine that processes and transforms gases through electrolysis. Runs off electricity but can be turbo charged with plasma sheets. # Starlight
   components:
   - type: Electrolyzer
+    efficiency: 0.5 # Starlight
     onSound:
       path: /Audio/Weapons/click.ogg
   - type: AtmosDevice
@@ -34,7 +35,6 @@
         whitelist:
           tags:
           - SheetPlasma
-          - SheetUranium
         swap: false
   - type: DeviceLinkSink
     ports:
@@ -47,3 +47,16 @@
       machine_board: !type:Container
       machine_parts: !type:Container
       hidden_slot: !type:ContainerSlot
+  # Starlight-start
+  - type: PowerConsumer
+  - type: NodeContainer
+    examinable: true
+    nodes:
+     input:
+      !type:CableDeviceNode
+      nodeGroupID: HVPower
+  - type: Battery
+    netsync: false
+    maxCharge: 1000000
+    startingCharge: 0
+  # Starlight-end

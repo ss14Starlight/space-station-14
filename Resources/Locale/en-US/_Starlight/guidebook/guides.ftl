@@ -169,6 +169,7 @@ guide-entry-terror-spiders = Terror Spiders
 guide-entry-devil = Devil
 
 guide-entry-sl-deepfried-recipes = Deep Fried
+guide-entry-sl-dough-recipes = Dough
 guide-entry-sl-ice-cream-recipes = Ice Cream Maker
 
 # Plumbing guides
@@ -181,7 +182,6 @@ guide-entry-records = Character Records
 
 # Tools
 guide-entry-tools-combination-locks = Combination Locks
-
 
 # Roleplay
 guide-entry-roleplay-intro = How To Roleplay
@@ -205,3 +205,9 @@ guide-entry-crime-list = Crime List
 guide-entry-jurisdiction = Jurisdiction
 guide-entry-petty-disputes = Petty Disputes
 guide-entry-plea-bargains = Plea Bargains
+# Engineering
+guide-entry-gasses = Mundane Gasses
+guide-entry-gasses2 = Key Gasses
+guide-entry-gasses3 = Utility Gasses
+guide-entry-gasses4 = Advanced Gasses
+guide-entry-gasses5 = Rare Gasses
