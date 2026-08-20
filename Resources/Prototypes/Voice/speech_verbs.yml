@@ -16,6 +16,12 @@
   speechVerbStrings:
   - chat-speech-verb-stutter
 
+- type: speechVerb #Starlight start
+  id: DefaultPause
+  name: chat-speech-verb-name-pause
+  speechVerbStrings:
+  - chat-speech-verb-pause #Starlight end
+
 - type: speechVerb
   id: DefaultMumble
   name: chat-speech-verb-name-mumble

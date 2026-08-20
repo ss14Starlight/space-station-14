@@ -50,6 +50,7 @@ chat-speech-verb-suffix-exclamation = !
 chat-speech-verb-suffix-exclamation-strong = !!
 chat-speech-verb-suffix-question = ?
 chat-speech-verb-suffix-stutter = -
+chat-speech-verb-suffix-pause = ...
 chat-speech-verb-suffix-mumble = ..
 
 chat-speech-verb-name-none = None
@@ -65,6 +66,8 @@ chat-speech-verb-name-stutter = Stuttering
 chat-speech-verb-stutter = stutters
 chat-speech-verb-name-mumble = Mumbling
 chat-speech-verb-mumble = mumbles
+chat-speech-verb-name-pause = Pausing
+chat-speech-verb-pause = pauses
 
 chat-speech-verb-name-arachnid = Arachnid
 chat-speech-verb-insect-1 = chitters
