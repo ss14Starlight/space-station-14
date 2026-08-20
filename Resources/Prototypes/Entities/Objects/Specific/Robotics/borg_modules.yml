@@ -1300,6 +1300,16 @@
         whitelist:
           components:
           - Instrument
+    # Starlight start
+    - hand:
+        emptyLabel: borg-slot-music-media-empty
+        emptyRepresentative: VinylAirportLounge
+        whitelist:
+          tags:
+          - VinylSleeveFit
+          - VinylSleeve
+          - CD
+    # Starlight end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: musical-module }
 
