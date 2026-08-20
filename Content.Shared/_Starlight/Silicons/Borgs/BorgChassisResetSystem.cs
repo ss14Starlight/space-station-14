@@ -61,7 +61,7 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
     /// Whether this borg picked a type that it could pick again after a reset.
     /// </summary>
     public bool CanReset(Entity<BorgSwitchableTypeComponent> borg) =>
-        borg.Comp.SelectedBorgType is { } type && type != UnselectedType && borg.Comp.AvailableTypes.Count > 0
+        borg.Comp.SelectedBorgType is { } type && type != UnselectedType
         && HasComp<BorgObeysStationAiComponent>(borg);
 
     /// <summary>
