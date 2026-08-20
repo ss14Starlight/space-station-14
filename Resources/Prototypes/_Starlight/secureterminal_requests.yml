@@ -497,7 +497,7 @@
   announcementColor: "#ff4444"
   activationDelaySecs: 0
   fee: 10000
-  salaryPenalty: 0.0
+  salaryPenalty: 0.05
   actionType: Announcement
   sortOrder: 200
   authGroups:
