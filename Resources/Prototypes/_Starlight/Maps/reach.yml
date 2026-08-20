@@ -64,6 +64,8 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             Performer: [ 1, 1 ]
+            RadioHost: [ 1, 1 ]
+            AssistantManager: [ 1, 1 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 1, 2 ]
