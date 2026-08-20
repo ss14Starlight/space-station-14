@@ -1,0 +1,27 @@
+<Control xmlns="https://spacestation14.io" Margin="4" MinSize="50 50">
+    <BoxContainer Orientation="Vertical" SeparationOverride="6">
+        <Label Text="{Loc administration-ui-station-tab-description}" />
+        <Label Name="CurrentAlertLabel" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Label Text="{Loc administration-ui-station-tab-set-alert}" VerticalAlignment="Center" />
+            <OptionButton Name="AlertOption" HorizontalExpand="True" />
+            <CheckBox Name="LockAlertCheckBox" Text="{Loc administration-ui-station-tab-lock}" />
+            <Button Name="ApplyButton" Text="{Loc administration-ui-station-tab-apply}" />
+            <Button Name="RefreshButton" Text="{Loc administration-ui-station-tab-refresh}" />
+            <Label Name="StatusLabel" VerticalAlignment="Center" />
+        </BoxContainer>
+        <Label Name="AlertDescriptionLabel" />
+        <PanelContainer StyleClasses="PanelDark" Margin="0 8 0 0">
+            <BoxContainer Orientation="Vertical" SeparationOverride="6" Margin="8">
+                <Label Text="{Loc administration-ui-station-tab-secure-title}" />
+                <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                    <OptionButton Name="SecureActionOption" HorizontalExpand="True" />
+                    <CheckBox Name="ConfirmSecureCheckBox" Text="{Loc administration-ui-station-tab-secure-confirm}" />
+                    <Button Name="ExecuteSecureButton" Text="{Loc administration-ui-station-tab-secure-execute}" />
+                </BoxContainer>
+                <Label Name="SecureDescriptionLabel" />
+                <Label Text="{Loc administration-ui-station-tab-warning}" />
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</Control>

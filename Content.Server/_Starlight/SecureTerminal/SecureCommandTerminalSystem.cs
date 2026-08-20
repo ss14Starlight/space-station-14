@@ -722,6 +722,24 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Executes a Secure Terminal action immediately for trusted administrative tooling.
+    /// Authorization and audit logging are handled by the caller.
+    /// </summary>
+    public bool ExecuteAdminAction(EntityUid stationUid, string requestId)
+    {
+        if (!_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
+            return false;
+
+        if (proto.Announcement != null)
+            _chat.DispatchGlobalAnnouncement(
+                Loc.GetString(proto.Announcement),
+                colorOverride: proto.AnnouncementColor);
+
+        ExecuteAction(stationUid, proto);
+        return true;
+    }
+
     private static List<bool> BuildSatisfiedGroups(SecureTerminalProposalData proposal,
         SecureCommandTerminalRequestPrototype proto)
     {

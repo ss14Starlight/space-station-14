@@ -3,6 +3,7 @@
     xmlns:adminTab="clr-namespace:Content.Client.Administration.UI.Tabs.AdminTab"
     xmlns:adminbusTab="clr-namespace:Content.Client.Administration.UI.Tabs.AdminbusTab"
     xmlns:audioTab="clr-namespace:Content.Client.Administration.UI.Tabs.AdminAudioTab"
+    xmlns:stationTab="clr-namespace:Content.Client.Administration.UI.Tabs.StationTab"
     xmlns:atmosTab="clr-namespace:Content.Client.Administration.UI.Tabs.AtmosTab"
     xmlns:tabs="clr-namespace:Content.Client.Administration.UI.Tabs"
     xmlns:playerTab="clr-namespace:Content.Client.Administration.UI.Tabs.PlayerTab"
@@ -12,6 +13,7 @@
         <adminTab:AdminTab />
         <adminbusTab:AdminbusTab />
         <audioTab:AdminAudioTab />
+        <stationTab:StationTab />
         <atmosTab:AtmosTab />
         <tabs:RoundTab />
         <tabs:ServerTab />
