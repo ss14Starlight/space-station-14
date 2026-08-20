@@ -191,10 +191,13 @@
     - type: Temperature
     - type: TemperatureDamage
       heatDamageThreshold: 1200
-   #Starlight
-    - type: Flammable
+    - type: Flammable # Starlight Start
       damage:
         types: {}
+    - type: MeleeWeapon
+      damage:
+        types:
+          Slash: 12 # Starlight End
     - type: Damageable
       damageModifierSet: DragonCarpResistances
     - type: Prying

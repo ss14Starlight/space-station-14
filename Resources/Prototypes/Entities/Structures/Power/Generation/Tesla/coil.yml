@@ -121,7 +121,7 @@
     - SingularityTeslaEngine
   # Starlight-start
   - type: Electrolyzer
-    efficiency: .5
+    efficiency: .10
     passive: true
   - type: AtmosDevice
   # Starlight-end
@@ -228,7 +228,7 @@
   - type: TeslaCoil
     chargeFromLightning: 5000000
   - type: Electrolyzer
-    efficiency: 0.25
+    efficiency: 0.01
     passive: true
   - type: AtmosDevice
   # Starlight-end

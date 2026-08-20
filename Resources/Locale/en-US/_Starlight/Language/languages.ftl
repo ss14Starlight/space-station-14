@@ -55,10 +55,10 @@ language-Sylvan-name = Sylvan
 language-Sylvan-description = Plants speaks this language.
 
 language-Chittin-name = Chittin
-language-Chittin-description = The noise made by rubbing its antennae together is actually a complex form of communication.
-chat-speech-verb-chittin-1 = rubs their antennae together
-chat-speech-verb-chittin-2 = rustles with their antennae
-chat-speech-verb-chittin-3 = shakes their antennae together
+language-Chittin-description = The noise made by rubbing its chelicerae together is actually a complex form of communication.
+chat-speech-verb-chittin-1 = rubs their chelicerae together
+chat-speech-verb-chittin-2 = rustles with their chelicerae
+chat-speech-verb-chittin-3 = shakes their chelicerae together
 chat-chittin-whisper-wrap = [italic][BubbleHeader][Name]{$entityName}[/Name][/BubbleHeader] [BubbleContent]subtly rustles "[font="{$fontType}" size={$fontSize}][color={$color}]{$message}[/color][/font]"[/italic][/BubbleContent]
 
 language-VoxPidgin-name = Vox-Pidgin
