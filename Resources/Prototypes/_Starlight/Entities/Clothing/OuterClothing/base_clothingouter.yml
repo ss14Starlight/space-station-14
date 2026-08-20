@@ -1,4 +1,4 @@
-# Major temperature protection for "winter" clothing
+# Major temperature protection for winter clothing, heavy coats, etc.
 - type: entity
   abstract: true
   parent: ClothingOuterBase
@@ -14,7 +14,7 @@
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75 # thick coats protect from bites
 
-# Minor temperature protection for light clothing
+# Minor temperature protection for light clothing - hoodies, jackets, etc.
 - type: entity
   abstract: true
   parent: ClothingOuterBase
@@ -22,4 +22,4 @@
   components:
   - type: TemperatureProtection
     heatingCoefficient: 1.05 # gets hot 5% faster
-    coolingCoefficient: 0.90 # gets cold 10% slower
+    coolingCoefficient: 0.95 # gets cold 5% slower

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseBlueShieldContraband]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter, AllowSuitStorageClothing, BaseBlueShieldContraband]
   id: ClothingOuterCoatBlueShield
   name: blueshield overcoat
   description: A coat worn by Blueshield Officers who don't mind a lighter wear. Heavily reinforced, for when diplomacy won't cut it.
@@ -91,7 +91,7 @@
   name: nt representative jacket
 
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWarm]
   id: ClothingOuterCoatLabSeniorChemist
   name: senior chemist lab coat
   description: A suit that protects against minor chemical spills. Has orange sleeves, an orange waist trim, and two pink stripes on the shoulders.
@@ -151,7 +151,7 @@
     zombificationResistanceCoefficient: 0.75
 
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterCoatLabBrigmedic
   name: brigmedic's reminisced overcoat
   description: A labcoat from reminisced, peaceful days. It's been reinforced several times over.
@@ -180,7 +180,7 @@
   name: brigmedic's reminisced overcoat
 
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterCoatLabCorpsman
   name: corpsman's nostalgic overcoat
   description: A dark labcoat that's been reinforced several times over. Peaceful days died.
@@ -234,7 +234,7 @@
 
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
   id: ClothingOuterCoatSquidPrisoner
   name: last coat
   description: Will look great on your body! Oh.
@@ -245,7 +245,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/squid_prisoner.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
   id: ClothingOuterCoatInspector
   name: inspector's coat
   description: A strict inspector's coat from a bygone era.
@@ -287,7 +287,7 @@
         Cold: 0.8 # Great coat
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm, AllowSuitStorageClothing]
   id: ClothingOuterCoatGreytiderTrenchcoat
   name: greytider trenchcoat
   description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
@@ -305,7 +305,7 @@
         - id: CheapLighter
 
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterSecurityBomber
   name: security bomber
   description: A regular bomber, but with armored inserts.
@@ -332,7 +332,7 @@
 
 # Security Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterWindbreakerSecurity
   name: security windbreaker
   description: A stylish red windbreaker with additional inserted plate padding for security usage.
@@ -505,7 +505,7 @@
   name: science windbreaker
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCentcommContraband]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter, AllowSuitStorageClothing, BaseCentcommContraband]
   id: ClothingOuterCoatWardenCentcomm
   name: central command armored winter coat
   description: A extremely durable, stylish winter coat made for central command Operators to survive even in the coldest of winter
@@ -529,7 +529,7 @@
   - type: Item
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, BaseCommandContraband, AllowSuitStorageClothingGasTanks ]
+  parent: [ ClothingOuterStorageBase, ClothingOuterBaseWinter, BaseCommandContraband, AllowSuitStorageClothingGasTanks ]
   id: ClothingOuterCoatNCT
   name: nt career trainer's jacket
   description: A sharp black coat with beige trim around the cuffs and collar, offering a mix of professionalism and approachability.
@@ -549,7 +549,7 @@
         Cold: 0.8 # It's a pretty dense coat, all things considered
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm, AllowSuitStorageClothing]
   id: ClothingOuterCoatRatvarRobes
   name: ratvar robes
   description: A leathery coat adorned in dull gems, brass buttons, and brass sheets carved with clockwork patterns.
@@ -560,7 +560,7 @@
     sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, ClothingOuterBaseWinter, AllowSuitStorageClothing]
+  parent: [ ClothingOuterStorageBase, ClothingOuterBaseWarm, AllowSuitStorageClothing]
   id: ClothingOuterCoatPirateDark
   name: dark pirate garb
   description: Yarr, but dark.
@@ -571,7 +571,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/dark_pirate.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
   id: ClothingOuterCoatField
   name: field jacket
   description: A thick, well-worn field jacket.
@@ -582,7 +582,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/field_jacket.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
   id: ClothingOuterCoatChefSenior
   name: senior chef's jacket
   description: A pristine black jacket worn by the head of the kitchen. Tasteful, with a hint of authority.
@@ -593,7 +593,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/chef-senior.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
   id: ClothingOuterCoatChefCentComm
   name: centcomm chef's jacket
   description: A distinct white and green jacket worn by the chefs at Central Command. Turns you into a walking advertisement.
