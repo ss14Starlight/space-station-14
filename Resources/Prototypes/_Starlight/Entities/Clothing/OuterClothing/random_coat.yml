@@ -1,6 +1,6 @@
 ﻿
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter]
   id: ClothingOuterCoatRandomBase
   abstract: true
   components:
