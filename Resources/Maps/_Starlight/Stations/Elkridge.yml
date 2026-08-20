@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 288.0.1
+  engineVersion: 288.1.0
   forkId: ""
   forkVersion: ""
-  time: 08/19/2026 13:42:56
-  entityCount: 19303
+  time: 08/20/2026 11:58:12
+  entityCount: 19305
 maps:
 - 1
 grids:
@@ -9291,15 +9291,15 @@ entities:
         - temperature: 293.15
           volume: 2500
           moles:
-            Nitrogen: 6666.982
-        - temperature: 293.15
-          volume: 2500
-          moles:
             Plasma: 6666.982
         - temperature: 293.15
           volume: 2500
           moles:
             Oxygen: 6666.982
+        - temperature: 293.15
+          volume: 2500
+          moles:
+            Nitrogen: 6666.982
         tiles:
           0,0:
             0: 65535
@@ -9805,7 +9805,7 @@ entities:
             0: 65520
           10,-9:
             0: 16384
-            4: 1
+            6: 1
             2: 2444
             3: 1600
           11,-7:
@@ -10177,7 +10177,7 @@ entities:
           4,-10:
             3: 793
             2: 8226
-            5: 2048
+            4: 2048
           4,-13:
             3: 4369
             2: 17508
@@ -10186,7 +10186,7 @@ entities:
             3: 36096
           5,-10:
             3: 2051
-            5: 768
+            4: 768
             2: 32904
           5,-12:
             2: 40960
@@ -10419,17 +10419,17 @@ entities:
           9,-10:
             2: 4113
             3: 268
-            6: 3072
+            5: 3072
           9,-9:
             2: 1025
             3: 2832
-            4: 12
+            6: 12
           10,-11:
             2: 295
             3: 17920
           10,-10:
             3: 1025
-            6: 256
+            5: 256
             2: 18508
           10,-12:
             2: 8192
@@ -13573,7 +13573,7 @@ entities:
       pos: 14.5,32.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -66443.414
+      secondsUntilStateChange: -66776.28
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -14576,13 +14576,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -44.5,-29.5
-  - uid: 326
-    components:
-    - type: MetaData
-      name: glass airlock (Newsroom)
-    - type: Transform
-      parent: 2
-      pos: -29.5,-34.5
   - uid: 327
     components:
     - type: Transform
@@ -14716,6 +14709,16 @@ entities:
       pos: -3.5,4.5
 - proto: AirlockJournalismGlassLocked
   entities:
+  - uid: 326
+    components:
+    - type: Transform
+      parent: 2
+      pos: -29.5,-34.5
+  - uid: 474
+    components:
+    - type: Transform
+      parent: 2
+      pos: -26.5,-34.5
   - uid: 9369
     components:
     - type: Transform
@@ -14847,6 +14850,18 @@ entities:
     - type: Transform
       parent: 2
       pos: -21.5,-44.5
+- proto: AirlockMaintJournalismLocked
+  entities:
+  - uid: 431
+    components:
+    - type: Transform
+      parent: 2
+      pos: -27.5,-32.5
+  - uid: 432
+    components:
+    - type: Transform
+      parent: 2
+      pos: -27.5,-29.5
 - proto: AirlockMaintKitchenLocked
   entities:
   - uid: 362
@@ -15266,20 +15281,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -25.5,-26.5
-  - uid: 431
-    components:
-    - type: MetaData
-      name: maintenance access (Newsroom)
-    - type: Transform
-      parent: 2
-      pos: -27.5,-32.5
-  - uid: 432
-    components:
-    - type: MetaData
-      name: maintenance access (Newsroom)
-    - type: Transform
-      parent: 2
-      pos: -27.5,-29.5
 - proto: AirlockMaintTheatreLocked
   entities:
   - uid: 433
@@ -15597,15 +15598,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -2.5,-34.5
-- proto: AirlockServiceGlassLocked
-  entities:
-  - uid: 474
-    components:
-    - type: MetaData
-      name: glass airlock (Newsroom)
-    - type: Transform
-      parent: 2
-      pos: -26.5,-34.5
 - proto: AirlockServiceLocked
   entities:
   - uid: 475
@@ -17099,11 +17091,14 @@ entities:
   - uid: 662
     components:
     - type: MetaData
-      name: APC (Spacebucks)
+      name: APC (Radio Studio)
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
       pos: -15.5,-14.5
+    - type: AccessReader
+      accessListsOriginal:
+      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 663
@@ -22468,15 +22463,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 1.5,-8.5
-    - type: Fixtures
-      fixtures: {}
-- proto: BarSignSpacebucks
-  entities:
-  - uid: 1647
-    components:
-    - type: Transform
-      parent: 2
-      pos: -17.5,-11.5
     - type: Fixtures
       fixtures: {}
 - proto: BarSpoon
@@ -56021,11 +56007,11 @@ entities:
       pos: -1.5,0.5
 - proto: CommandTechFab
   entities:
-  - uid: 14185
+  - uid: 8325
     components:
     - type: Transform
       parent: 2
-      pos: -38.5,-5.5
+      pos: -34.5,-5.5
     - type: TechnologyDatabase
       supportedDisciplines:
       - Industrial
@@ -57330,11 +57316,11 @@ entities:
       pos: 38.5,5.5
 - proto: CrateNPCHamlet
   entities:
-  - uid: 8325
+  - uid: 476
     components:
     - type: Transform
       parent: 2
-      pos: -34.5,-5.5
+      pos: -28.5,-10.5
 - proto: CratePermaEscapeSpawner
   entities:
   - uid: 8326
@@ -101310,6 +101296,11 @@ entities:
       pos: -30.5,-42.5
 - proto: RandomSpawnStationRadioReceiver
   entities:
+  - uid: 1647
+    components:
+    - type: Transform
+      parent: 2
+      pos: -35.5,-35.5
   - uid: 7838
     components:
     - type: Transform
@@ -101335,11 +101326,21 @@ entities:
     - type: Transform
       parent: 2
       pos: -1.5,29.5
+  - uid: 14185
+    components:
+    - type: Transform
+      parent: 2
+      pos: -24.5,-32.5
   - uid: 19303
     components:
     - type: Transform
       parent: 2
       pos: -1.5,-24.5
+  - uid: 19305
+    components:
+    - type: Transform
+      parent: 2
+      pos: 16.5,2.5
 - proto: RandomVendingDrinks
   entities:
   - uid: 14665
