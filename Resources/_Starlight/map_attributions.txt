@@ -33,9 +33,6 @@
 - files: ["leth.yml"]
   authors: trep_maul, Starlight Team
 
-- files: ["lobster.yml"]
-  authors: PubliclyExecutedPig, Starlight Team
-
 - files: ["manor.yml"]
   authors: PubliclyExecutedPig, vonte (expansions), Starlight Team
 
