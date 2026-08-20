@@ -322,9 +322,9 @@ namespace Content.Server.RoundEnd
             // Starlight begin
             if (!StartTimerOnRestart)
             {
-	            _countdownTokenSource?.Cancel();
-	            _countdownTokenSource = null;
-	            return;
+                _countdownTokenSource?.Cancel();
+                _countdownTokenSource = null;
+                return;
             }
             StartRestartTimer(countdownTime);
             // Starlight end
