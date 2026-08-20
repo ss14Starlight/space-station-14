@@ -42,7 +42,7 @@
   - MobBloodstream
   - MobFlammable
   # - BaseMobAnimal # Starlight Edit: Reverted NuBody
-  id: SimpleSpaceMobBase # Mob without barotrauma, freezing and asphyxiation (for space carps!?)
+  id: SimpleSpaceMobBaseTemplate # Mob without barotrauma, freezing and asphyxiation (for space carps!?) + Starlight, changed to template so we can allow some things to roll antags
   suffix: AI
   components:
   - type: NpcFactionMember
@@ -74,7 +74,7 @@
   - MobRespirator
   - MobAtmosStandard
   - SimpleSpaceMobBase
-  id: SimpleMobBase # for air breathers
+  id: SimpleMobBaseTemplate # Starlight, changed so we can inherit this among antag-rolling and non-antag rolling animals
   suffix: AI
   abstract: true
   components:
