@@ -236,6 +236,24 @@
   - Medical
 
 - type: technology
+  id: NoseImplantOlfactory
+  name: research-technology-olfactory-nose
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: nose_implant_scent
+  discipline: Biochemical
+  tier: 3
+  cost: 7680
+  recipeUnlocks:
+    - NoseImplantOlfactory
+  technologyPrerequisites:
+    - CyberImplantsTech
+  radioChannels:
+  - Security
+  - Medical
+
+#starlight, moved from civilian to medical
+- type: technology
   id: BluespaceChemistry
   name: research-technology-bluespace-chemistry
   icon:

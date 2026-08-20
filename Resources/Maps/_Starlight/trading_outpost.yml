@@ -8335,7 +8335,8 @@ entities:
     components:
     - type: Transform
       parent: 1
-      pos: 43.5,7.5
+- proto: DefaultStationBeaconATS
+  entities:
   - uid: 1270
     components:
     - type: Transform

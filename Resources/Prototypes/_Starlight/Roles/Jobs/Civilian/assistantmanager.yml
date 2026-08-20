@@ -33,6 +33,7 @@
     id: AssistantManagerPDA
     eyes: ClothingEyesEyepatchHudAssistantManager
     ears: ClothingHeadsetAssistantManager
+    belt: BoxFolderAssistantManagerClipboard
 
 - type: chameleonOutfit
   id: AssistantManagerChameleonOutfit
