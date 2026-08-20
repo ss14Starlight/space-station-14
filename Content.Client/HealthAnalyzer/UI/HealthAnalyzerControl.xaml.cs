@@ -331,9 +331,11 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
                 msg.PushColor(Color.FromHex("#AAAAAA"));
                 msg.AddText($"({reagent.StomachQuantity}u)");
                 msg.Pop();
-                msg.AddText(" ");
+                if (reagent.Quantity > FixedPoint2.Zero)
+                    msg.AddText(" ");
             }
-            msg.AddText($"{reagent.Quantity}u");
+            if (reagent.Quantity > FixedPoint2.Zero)
+                msg.AddText($"{reagent.Quantity}u");
             quantityLabel.SetMessage(msg);
 
             rowContainer.AddChild(colorBar);
