@@ -57,10 +57,10 @@
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
   weights:
-    KillRandomPersonObjective: 1
-    KillRandomHeadObjective: 0.25
-    TeachRandomPersonObjective: 1 #Starlight Teach them a lesson
-    TeachRandomHeadObjective: 0.25 # Starlight Teach them a lesson
+    KillRandomPersonObjective: 0.75 # Starlight-start
+    KillRandomHeadObjective: 0.19
+    TeachRandomPersonObjective: 1.25
+    TeachRandomHeadObjective: 0.31 # Starlight-end Teach them a lesson and adjust weights
 
 - type: weightedRandom
   id: TraitorObjectiveGroupState
