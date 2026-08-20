@@ -47,10 +47,10 @@ borg-ui-lockdown = Engage lock down
 borg-ui-lockdown-release = Release lock down
 
 # Chassis reset
-borg-ui-reset-chassis = Reset chassis type
+borg-ui-reset-chassis = revert chassis type
 borg-reset-modules-installed = Remove every optional module from the cyborg first...
-borg-reset-chassis-start-popup = Your chassis is being reset!
-borg-reset-chassis-popup = {CAPITALIZE($name)} reconfigures back to a blank chassis!
+borg-reset-chassis-start-popup = Your chassis is being reverted!
+borg-reset-chassis-popup = {CAPITALIZE($name)} reverts back to a blank chassis!
 borg-type-unselected-transponder = cyborg
 borg-type-unselected-name = Unselected
 borg-type-unselected-desc = A blank chassis that has not picked a type yet.
