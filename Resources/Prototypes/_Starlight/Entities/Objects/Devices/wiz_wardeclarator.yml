@@ -2,7 +2,7 @@
   parent: [BaseItem, BaseMagicalContraband ]
   id: WizardWarTablet
   name: seal of war
-  description: Raw magic is sealed in this stone. Unleashing it will allow the use of more powerfull abilities. However, anyone with advanced sensors in proximity will detect such a magic surge as an act of aggression. If unused, the stone will crumbles to dust in 5 minutes, forever sealing the magic within.
+  description: Raw magic is sealed in this stone. Unleashing it will allow the use of more powerful abilities. However, anyone with advanced sensors in proximity will detect such a magic surge as an act of aggression. If unused, the stone will crumble to dust in 5 minutes, forever sealing the magic within.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Devices/wiz_declarationofwar.rsi

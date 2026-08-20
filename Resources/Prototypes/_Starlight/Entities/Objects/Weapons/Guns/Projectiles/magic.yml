@@ -302,7 +302,7 @@
 - type: entity
   id: ProjectileSoulKnife
   name: soul knife
-  description: A spinning etheral knife, better not get close.
+  description: A spinning ethereal knife, better not get close.
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
