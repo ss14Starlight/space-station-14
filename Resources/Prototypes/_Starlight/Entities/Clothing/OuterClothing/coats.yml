@@ -560,7 +560,7 @@
     sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, ClothingOuterBaseWarm, AllowSuitStorageClothing]
+  parent: ClothingOuterCoatPirate
   id: ClothingOuterCoatPirateDark
   name: dark pirate garb
   description: Yarr, but dark.

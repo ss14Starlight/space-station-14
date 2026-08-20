@@ -10,7 +10,7 @@
   - type: Armor
     modifiers:
       coefficients:
-        Cold: 0.85 # winter clothing = cold protection
+        Cold: 0.85 # winter clothing protects from cold
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75 # thick coats protect from bites
 
