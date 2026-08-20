@@ -143,7 +143,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
                 }
 
                 var missingCharge = battery.MaxCharge - charge;
-                powerConsumer.DrawRate = Math.Min(50000f, Math.Max(0f, missingCharge));
+                powerConsumer.DrawRate = Math.Min(100000f, Math.Max(0f, missingCharge));
                 _battery.ChangeCharge((uid, battery), powerConsumer.ReceivedPower * args.dt);
                 charge = _battery.GetCharge((uid, battery));
         }
@@ -177,7 +177,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             }
         }
 
-        var rate = 10f * (charge/battery.MaxCharge) * args.dt;
+        var rate = 100f * (charge/battery.MaxCharge) * args.dt;
         var initH2O = mixture.GetMoles(Gas.WaterVapor);
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);
         var initBZ = mixture.GetMoles(Gas.BZ);
@@ -189,10 +189,20 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         var BZLoad = 0;
         var heatScale = _atmosphereSystem.HeatScale;
 
+        var fuelMultiplier = 1f; /// Starlight: Dummy fuel multiplier for no plasma electrolysis. Check after this and overwrite it of there is actual plasma fuel.
+
+        var PlasmaFuel = electrolyzer.CurrentFuel;
+
+        if (PlasmaFuel > 0f)
+        {
+            fuelMultiplier = 0.01f;
+        }
+
         if (initH2O > 0.05f)
         {
             var temperatureEfficiency = Math.Min(mixture.Temperature / 1123.15f, 1f); ///Starlight: For some reason combustibles have variable oxy consumption? This keeps it balanced.
-            var h2oRate = Math.Min(Math.Min(2.5f * rate, initH2O / 2f), (2f * charge / electrolyzer.Efficiency)/(Atmospherics.FireHydrogenEnergyReleased / heatScale));
+            var h2oMax = (2f * charge / (electrolyzer.Efficiency * fuelMultiplier)) / (Atmospherics.FireHydrogenEnergyReleased / heatScale); ///Starlight: Current joules divided by the joules required to electrolyze.
+            var h2oRate = Math.Min(Math.Min(rate, h2oMax), initH2O / 2f); ///Starlight: Check if rate is bigger than actual capacity, than if those are bigger than ingredients available.
 
             var h2oRemoved = h2oRate * 2f;
             var oxyProduced = h2oRate * temperatureEfficiency;
@@ -236,15 +246,6 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             mixture.Temperature = Math.Max(mixture.Temperature * oldHeatCapacity / finalHeatCapacity, Atmospherics.TCMB);
 
         var powerUsed = (H2OLoad + HyperNobLoad + BZLoad); ///Starlight: Gotta consume power
-
-        var fuelMultiplier = 1f; /// Starlight: Dummy fuel multiplier for no plasma electrolysis. Check after this and overwrite it of there is actual plasma fuel.
-
-        var PlasmaFuel = electrolyzer.CurrentFuel;
-
-        if (PlasmaFuel > 0f)
-        {
-            fuelMultiplier = 0.01f;
-        }
 
         _battery.ChangeCharge((uid, battery), -500f - (powerUsed * fuelMultiplier / electrolyzer.Efficiency)); /// Starlight: Remove electricity based off idle load + the actual power used
 

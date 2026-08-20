@@ -3,7 +3,7 @@
   id: Electrolyzer
   categories: [ ShouldMapStation ] # Starlight
   name: electrolyzer
-  description: A machine that processes and transforms gases through electrolysis. Runs off electricity but can be turbo charged with plasma sheets. # Starlight
+  description: A machine that processes and transforms gases through electrolysis. Runs off massive amounts of electricity but can be turbo charged with plasma sheets. # Starlight
   components:
   - type: Electrolyzer
     efficiency: 0.95 # Starlight
@@ -57,6 +57,6 @@
       nodeGroupID: HVPower
   - type: Battery
     netsync: false
-    maxCharge: 1000000
+    maxCharge: 10000000
     startingCharge: 0
   # Starlight-end
