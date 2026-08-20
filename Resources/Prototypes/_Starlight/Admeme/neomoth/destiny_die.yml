@@ -85,6 +85,9 @@
       - !type:SpawnEntity
         predicted: true
         entity: MobKoni
+        overrides:
+          - type: ScaleVisuals
+            scale: 3, 3
   targetData:
     type: Self
 

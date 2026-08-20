@@ -14,7 +14,7 @@ public sealed partial class SpawnEntityInInventoryEntityEffectSystem : EntityEff
 
     protected override void Effect(Entity<InventoryComponent> entity, ref EntityEffectEvent<SpawnEntityInInventory> args)
     {
-        _inventory.SpawnItemInSlot(entity, args.Effect.Slot, args.Effect.Entity);
+        _inventory.SpawnItemInSlot(entity, args.Effect.Slot, args.Effect.Entity, overrides: args.Effect.Overrides); // Starlight edit
     }
 }
 
@@ -30,6 +30,15 @@ public sealed partial class SpawnEntityInInventory : EntityEffectBase<SpawnEntit
     /// <summary>
     /// Prototype ID of item to spawn.
     /// </summary>
-    [DataField(required: true)]
-    public EntProtoId Entity;
+    // Starlight edit - Allow spawning empty entity.
+    [DataField]
+    public EntProtoId? Entity;
+    // Starlight end
+
+    #region Starlight
+
+    /// Component overrides for the spawned entity.
+    [DataField] public ComponentRegistry? Overrides;
+
+    #endregion
 }

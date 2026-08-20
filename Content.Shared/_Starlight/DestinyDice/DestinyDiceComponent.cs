@@ -12,7 +12,7 @@ public sealed partial class DestinyDiceComponent : Component
      * That is why effect prototypes are handled like this, to make it easier to vvwrite once this is supported.
      */
     /// List of effect groups that may trigger when the die is rolled.
-    [DataField("groups"), AutoNetworkedField] public List<DestinyDiceEffectGroup> EffectGroups = [];
+    [DataField("groups")] public List<DestinyDiceEffectGroup> EffectGroups = []; // Not networked due to EntityEffect not being serializable.
     /// Effect group preset prototype to populate <see cref="EffectGroups"/> with, if defined to make prototyping simpler.
     [DataField, AutoNetworkedField] public ProtoId<DestinyDicePresetPrototype>? Preset;
     /// Tracker to prevent <see cref="Robust.Shared.GameObjects.ComponentStartup"/> from adding preset groups more than once.
