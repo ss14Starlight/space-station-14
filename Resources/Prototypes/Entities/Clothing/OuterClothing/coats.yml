@@ -136,7 +136,7 @@
         id: SyndieHandyFlag
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter] # Starlight
   id: ClothingOuterCoatTrench
   name: trench coat
   description: A comfy trench coat.
@@ -145,9 +145,11 @@
     sprite: Clothing/OuterClothing/Coats/trenchcoat.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/trenchcoat.rsi
-  - type: TemperatureProtection
-    heatingCoefficient: 0.1
-    coolingCoefficient: 0.1
+  #region Starlight - inherit from ClothingOuterBaseWinter
+  #- type: TemperatureProtection
+  #  heatingCoefficient: 0.1
+  #  coolingCoefficient: 0.1
+  #endregion Starlight
   - type: Pierceable
     level: Metal
   - type: Armor

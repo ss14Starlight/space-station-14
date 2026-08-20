@@ -1,7 +1,7 @@
 # Major temperature protection for "winter" clothing
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: ClothingOuterBase
   id: ClothingOuterBaseWinter
   components:
   - type: TemperatureProtection
@@ -17,7 +17,7 @@
 # Minor temperature protection for light clothing
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: ClothingOuterBase
   id: ClothingOuterBaseWarm
   components:
   - type: TemperatureProtection
