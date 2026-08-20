@@ -302,7 +302,7 @@
         Cold: 0.8 # Great coat
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter, AllowSuitStorageClothing]
   id: ClothingOuterCoatGreytiderTrenchcoat
   name: greytider trenchcoat
   description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
@@ -374,7 +374,7 @@
 
 # Cargo Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerCargo
   name: cargo windbreaker
   description: A simple windbreaker with a fur collar.
@@ -383,8 +383,6 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_cargo
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_cargo
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.75
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerCargo]
@@ -393,7 +391,7 @@
 
 # Engineering Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerEngineering
   name: engineering windbreaker
   description: A reflective windbreaker for engineers.
@@ -402,8 +400,6 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_engineering
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_engineering
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.75
   - type: Reflect
     reflectProb: 0.02
     reflects:
@@ -420,7 +416,7 @@
 
 # Medical Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerMedical
   name: medical windbreaker
   description: A light windbreaker to see when you accidentally cut an artery.
@@ -429,8 +425,6 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_medical
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_medical
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.75
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerMedical]
@@ -510,7 +504,7 @@
 
 #Science Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerScience
   name: science windbreaker
   description: a labcoat style windbreaker with a pocket for all of your pens.
@@ -519,8 +513,6 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_science
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_science
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.75
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerScience]
@@ -583,7 +575,7 @@
     sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
+  parent: [ ClothingOuterStorageBase, ClothingOuterBaseWinter, AllowSuitStorageClothing]
   id: ClothingOuterCoatPirateDark
   name: dark pirate garb
   description: Yarr, but dark.
@@ -594,7 +586,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/dark_pirate.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterBaseCold]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter]
   id: ClothingOuterCoatField
   name: field jacket
   description: A thick, well-worn field jacket.
