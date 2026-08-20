@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using Content.Shared._Blimpuf.Chemistry.Reagent;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
@@ -908,12 +909,12 @@ namespace Content.Shared.Chemistry.Components
                 if (first)
                 {
                     first = false;
-                    mixColor = proto.SubstanceColor;
+                    mixColor = GetReagentColor(proto, reagent); // Blimpuf edit
                     continue;
                 }
 
                 var interpolateValue = quantity.Float() / runningTotalQuantity.Float();
-                mixColor = Color.InterpolateBetween(mixColor, proto.SubstanceColor, interpolateValue);
+                mixColor = Color.InterpolateBetween(mixColor, GetReagentColor(proto, reagent), interpolateValue); // Blimpuf edit
             }
             return mixColor;
         }
@@ -951,15 +952,31 @@ namespace Content.Shared.Chemistry.Components
                 if (first)
                 {
                     first = false;
-                    mixColor = proto.SubstanceColor;
+                    mixColor = GetReagentColor(proto, reagent); // Blimpuf edit
                     continue;
                 }
 
                 var interpolateValue = quantity.Float() / runningTotalQuantity.Float();
-                mixColor = Color.InterpolateBetween(mixColor, proto.SubstanceColor, interpolateValue);
+                mixColor = Color.InterpolateBetween(mixColor, GetReagentColor(proto, reagent), interpolateValue); // Blimpuf edit
             }
             return mixColor;
         }
+
+        // Blimpuf start
+        private static Color GetReagentColor(ReagentPrototype proto, ReagentId reagent)
+        {
+            if (reagent.Data == null)
+                return proto.SubstanceColor;
+
+            foreach (var data in reagent.Data)
+            {
+                if (data is ReagentColorData colorData)
+                    return colorData.Color;
+            }
+
+            return proto.SubstanceColor;
+        }
+        // Blimpuf end
 
         #region Enumeration
 

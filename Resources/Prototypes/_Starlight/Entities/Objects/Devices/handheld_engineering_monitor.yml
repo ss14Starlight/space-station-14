@@ -1,0 +1,100 @@
+- type: entity
+  name: handheld engineering monitor
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer ] # Medium battery
+  id: HandheldEngineeringMonitor
+  description: A hand-held diagnostic slate. It switches between mapping the station's power network and paging through atmospheric alarms.
+  components:
+  # Explicit in-hand visuals. ItemSwitch sets a held prefix per mode ("power"/"atmos"), and the
+  # default lookup would then hunt for power-inhand-left etc, which tablets.rsi has no states for.
+  # Declaring them here short-circuits that lookup entirely.
+  - type: Item
+    sprite: Objects/Devices/tablets.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Sprite
+    sprite: Objects/Devices/tablets.rsi
+    state: tabletsol
+    layers:
+    # Tablet shell.
+    - state: tabletsol
+    # Lit screen. Only shown while a screen is actually open, and the state is swapped to
+    # match whichever ItemSwitch mode is active below.
+    - sprite: Objects/Specific/Engineering/handheldengineeringmonitor.rsi
+      state: power
+      shader: unshaded
+      visible: false
+      map: [ "screen" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      # Driven by ItemToggle, which ActivatableUIRequiresPowerCell activates while a screen is
+      # open. An idle monitor and a dead one therefore look identical: just the dark shell.
+      enum.ToggleableVisuals.Enabled:
+        screen:
+          True: { visible: true }
+          False: { visible: false }
+      # State names match the ItemSwitch mode keys, so the screen follows the mode directly.
+      enum.SwitchableVisuals.Switched:
+        screen:
+          power: { state: power }
+          atmos: { state: atmos }
+  - type: PowerCellDraw
+    drawRate: 1.5
+  # Declared here rather than per mode. The key is only ever read from the prototype and is never
+  # networked, so an ActivatableUI added at runtime arrives on the client with no key at all.
+  # ItemSwitch retargets this one instead, via each state's activatableUiKey.
+  - type: ActivatableUI
+    key: enum.PowerMonitoringConsoleUiKey.Key
+    inHandsOnly: true
+    singleUser: true
+  # Each mode swaps in its own console component and points the ActivatableUI above at its own
+  # screen, so only one is ever live. onUse is off so that using it in hand opens the screen
+  # rather than switching mode -- mode is picked from the Switch verb category.
+  - type: ItemSwitch
+    onUse: false
+    state: power
+    states:
+      power: !type:ItemSwitchState
+        verb: verb-handheld-monitor-power
+        activatableUiKey: enum.PowerMonitoringConsoleUiKey.Key
+        components:
+        - type: PowerMonitoringConsole
+        - type: PowerMonitoringCableNetworks
+      atmos: !type:ItemSwitchState
+        verb: verb-handheld-monitor-atmos
+        activatableUiKey: enum.AtmosAlertsComputerUiKey.Key
+        components:
+        - type: AtmosAlertsComputer
+  - type: UserInterface
+    interfaces:
+      enum.PowerMonitoringConsoleUiKey.Key:
+        type: PowerMonitoringConsoleBoundUserInterface
+      enum.AtmosAlertsComputerUiKey.Key:
+        type: AtmosAlertsComputerBoundUserInterface
+  - type: GuideHelp
+    guides:
+    - InspectingPower
+    - AtmosphericAlertsComputer
+    - DeviceMonitoringAndControl
+  - type: StaticPrice
+    price: 250
+  # Lets it into the engineering toolbelt whitelist.
+  - type: Tag
+    tags:
+    - HandheldEngineeringMonitor
+
+- type: entity
+  id: HandheldEngineeringMonitorEmpty
+  parent: HandheldEngineeringMonitor
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        blacklist:
+          tags:
+          - MechReactor
