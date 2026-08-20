@@ -1,14 +1,4 @@
 - type: entity
-  abstract: true
-  parent: ClothingOuterBase
-  id: ClothingOuterColdBase
-  components:
-  - type: Armor
-    modifiers:
-      coefficients:
-        Cold: 0.9
-
-- type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseBlueShieldContraband]
   id: ClothingOuterCoatBlueShield
   name: blueshield overcoat
@@ -312,7 +302,7 @@
         Cold: 0.8 # Great coat
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterColdBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
   id: ClothingOuterCoatGreytiderTrenchcoat
   name: greytider trenchcoat
   description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
@@ -384,7 +374,7 @@
 
 # Cargo Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerCargo
   name: cargo windbreaker
   description: A simple windbreaker with a fur collar.
@@ -403,7 +393,7 @@
 
 # Engineering Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerEngineering
   name: engineering windbreaker
   description: A reflective windbreaker for engineers.
@@ -430,7 +420,7 @@
 
 # Medical Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerMedical
   name: medical windbreaker
   description: A light windbreaker to see when you accidentally cut an artery.
@@ -520,7 +510,7 @@
 
 #Science Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerScience
   name: science windbreaker
   description: a labcoat style windbreaker with a pocket for all of your pens.
@@ -593,7 +583,7 @@
     sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, ClothingOuterColdBase, AllowSuitStorageClothing]
+  parent: [ ClothingOuterStorageBase, ClothingOuterBaseCold, AllowSuitStorageClothing]
   id: ClothingOuterCoatPirateDark
   name: dark pirate garb
   description: Yarr, but dark.
@@ -604,7 +594,7 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/dark_pirate.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterColdBase]
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseCold]
   id: ClothingOuterCoatField
   name: field jacket
   description: A thick, well-worn field jacket.

@@ -1,0 +1,29 @@
+# Major temperature protection for "winter" clothing
+- type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: ClothingOuterBaseWinter
+  components:
+  - type: TemperatureProtection
+    heatingCoefficient: 1.10 # gets hot 10% faster
+    coolingCoefficient: 0.35 # gets cold 65% slower
+
+# Minor temperature protection for light clothing
+- type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: ClothingOuterBaseWarm
+  components:
+  - type: TemperatureProtection
+    heatingCoefficient: 1.05 # gets hot 5% faster
+    coolingCoefficient: 0.90 # gets cold 10% slower
+
+- type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: ClothingOuterBaseCold
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.9

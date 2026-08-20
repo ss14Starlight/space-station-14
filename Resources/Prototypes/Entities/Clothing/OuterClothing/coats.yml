@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterColdBase] # Starlight
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseCold] # Starlight
   id: ClothingOuterCoatBomber
   name: bomber jacket
   description: A thick, well-worn WW2 leather bomber jacket.
@@ -57,7 +57,7 @@
         - id: FlippoLighter #Not the steal objective, only difference from normal detective trenchcoat
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterColdBase] # Starlight
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseCold] # Starlight
   id: ClothingOuterCoatGentle
   name: gentle coat
   description: A gentle coat for a gentle man, or woman.
@@ -113,7 +113,7 @@
     sprite: Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageToggleableBase, ClothingOuterColdBase] # Starlight
+  parent: [ClothingOuterStorageToggleableBase, ClothingOuterBaseCold] # Starlight
   id: ClothingOuterCoatJensen
   name: jensen coat
   description: A jensen coat.
@@ -353,7 +353,7 @@
   name: research director lab coat
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, ClothingOuterColdBase, AllowSuitStorageClothing ] # Starlight
+  parent: [ ClothingOuterStorageBase, ClothingOuterBaseCold, AllowSuitStorageClothing ] # Starlight
   id: ClothingOuterCoatPirate
   name: pirate garb
   description: Yarr.
@@ -375,7 +375,7 @@
     sprite: Clothing/OuterClothing/Coats/warden.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterColdBase] # Starlight
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseCold] # Starlight
   id: ClothingOuterDameDane
   name: yakuza coat
   description: Friday...
@@ -386,7 +386,7 @@
     sprite: Clothing/OuterClothing/Coats/damedanecoat.rsi
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterColdBase] # Starlight
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterBaseCold] # Starlight
   id: ClothingOuterClownPriest
   name: robes of the honkmother
   description: Meant for a clown of the cloth.
@@ -416,7 +416,7 @@
         Piercing: 0.85
 
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase, AllowSuitStorageClothing] # Starlight
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseCold, AllowSuitStorageClothing] # Starlight
   id: ClothingOuterCoatParamedicWB
   name: paramedic windbreaker
   description: A paramedic's trusty windbreaker, for all the space wind.
@@ -432,7 +432,7 @@
   name: paramedic windbreaker
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterColdBase, BaseMinorContraband] #SL Edit Syndie > Minor + Cold
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseCold, BaseMinorContraband] #SL Edit Syndie > Minor + Cold
   id: ClothingOuterCoatSyndieCap
   name: syndicate's coat
   description: The syndicate's coat is made of durable fabric, with gilded patterns.
@@ -538,7 +538,7 @@
         Cold: 0.85 # Starlight end
 
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase] # Starlight
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseCold] # Starlight
   id: ClothingOuterCoatExpensive
   name: expensive coat
   description: Very fluffy pink coat, made out of very expensive fur (clearly).
