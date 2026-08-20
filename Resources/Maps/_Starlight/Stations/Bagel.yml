@@ -4,7 +4,7 @@ meta:
   engineVersion: 288.1.0
   forkId: ""
   forkVersion: ""
-  time: 08/20/2026 03:55:09
+  time: 08/20/2026 12:05:30
   entityCount: 27117
 maps:
 - 1
@@ -6994,11 +6994,11 @@ entities:
             Nitrogen: 6666.982
         - temperature: 293.15
           volume: 2500
-          moles:
-            Oxygen: 6666.982
+          moles: {}
         - temperature: 293.15
           volume: 2500
-          moles: {}
+          moles:
+            Oxygen: 6666.982
         tiles:
           0,-4:
             0: 15283
@@ -8723,7 +8723,7 @@ entities:
             1: 39408
           -12,8:
             4: 12
-            5: 3072
+            6: 3072
           -11,5:
             0: 63351
           -11,6:
@@ -8734,7 +8734,7 @@ entities:
           -11,8:
             4: 1
             1: 17476
-            5: 256
+            6: 256
           -10,5:
             0: 62139
           -10,6:
@@ -8866,9 +8866,9 @@ entities:
             0: 4095
           -4,12:
             1: 15
-            6: 65280
+            5: 65280
           -4,13:
-            6: 15
+            5: 15
             1: 65280
           -5,13:
             1: 65399
@@ -8884,9 +8884,9 @@ entities:
             1: 3276
           -3,12:
             1: 32907
-            6: 4352
+            5: 4352
           -3,13:
-            6: 1
+            5: 1
             1: 45448
           -3,15:
             1: 45346
@@ -8965,7 +8965,7 @@ entities:
             0: 752
           -12,9:
             0: 16
-            6: 3084
+            5: 3084
           -13,9:
             1: 39305
           -13,10:
@@ -8975,18 +8975,18 @@ entities:
             0: 12544
           -12,10:
             3: 12
-            6: 3072
+            5: 3072
           -12,11:
-            6: 12
+            5: 12
           -11,9:
-            6: 257
+            5: 257
             1: 17476
           -11,10:
             3: 1
-            6: 256
+            5: 256
             1: 17476
           -11,11:
-            6: 1
+            5: 1
             1: 17476
           -11,12:
             1: 52431
@@ -9000,7 +9000,7 @@ entities:
             1: 30591
           -9,12:
             1: 15
-            6: 30464
+            5: 30464
           0,16:
             1: 2294
           1,12:
@@ -9053,7 +9053,7 @@ entities:
             1: 15
           -13,12:
             1: 34952
-            5: 48
+            6: 48
             4: 12288
           -12,13:
             1: 61455
@@ -9072,7 +9072,7 @@ entities:
           -10,14:
             1: 65535
           -9,13:
-            6: 7
+            5: 7
             1: 65280
           -9,14:
             1: 65535
@@ -9090,11 +9090,11 @@ entities:
             1: 65535
           -7,14:
             1: 244
-            6: 57344
+            5: 57344
             0: 1024
           -7,15:
             1: 61440
-            6: 238
+            5: 238
             0: 1024
           -7,16:
             1: 65524
@@ -9152,7 +9152,7 @@ entities:
           -14,12:
             0: 1
             1: 8738
-            5: 128
+            6: 128
             4: 32768
           -17,12:
             0: 52232
@@ -13786,6 +13786,11 @@ entities:
       pos: -9.5,-25.5
 - proto: AirlockJournalismGlassLocked
   entities:
+  - uid: 531
+    components:
+    - type: Transform
+      parent: 2
+      pos: 38.5,14.5
   - uid: 19330
     components:
     - type: Transform
@@ -13950,6 +13955,13 @@ entities:
     - type: Transform
       parent: 2
       pos: -9.5,-29.5
+- proto: AirlockMaintJournalismLocked
+  entities:
+  - uid: 529
+    components:
+    - type: Transform
+      parent: 2
+      pos: 34.5,19.5
 - proto: AirlockMaintKitchenLocked
   entities:
   - uid: 429
@@ -14616,13 +14628,6 @@ entities:
       pos: -24.5,-1.5
 - proto: AirlockServiceLocked
   entities:
-  - uid: 529
-    components:
-    - type: MetaData
-      name: Reporters News Room
-    - type: Transform
-      parent: 2
-      pos: 38.5,14.5
   - uid: 530
     components:
     - type: MetaData
@@ -14630,13 +14635,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -7.5,23.5
-  - uid: 531
-    components:
-    - type: MetaData
-      name: Reporter Maint Door
-    - type: Transform
-      parent: 2
-      pos: 34.5,19.5
 - proto: AirlockShuttle
   entities:
   - uid: 532
@@ -15365,6 +15363,8 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 61
+      configurators:
+      - invalid
 - proto: AltarSpawner
   entities:
   - uid: 629
@@ -18996,12 +18996,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 5.5,-12.5
-  - uid: 27098
+  - uid: 27099
     components:
     - type: Transform
       parent: 2
-      rot: 1.5707963267948966 rad
-      pos: -6.5,-34.5
+      pos: -2.5,-32.5
 - proto: ButtonFrameJanitor
   entities:
   - uid: 1202
@@ -111531,6 +111530,8 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 61
+      configurators:
+      - invalid
 - proto: GasVentScrubberAlt1
   entities:
   - uid: 15562
@@ -139761,17 +139762,16 @@ entities:
         - Pressed: Toggle
     - type: Fixtures
       fixtures: {}
-  - uid: 27099
+  - uid: 27098
     components:
     - type: Transform
       parent: 2
-      rot: 1.5707963267948966 rad
-      pos: -6.5,-34.5
+      pos: -2.5,-32.5
     - type: DeviceLinkSource
       linkedPorts:
-        22765:
-        - Pressed: Toggle
         27097:
+        - Pressed: Toggle
+        22765:
         - Pressed: Toggle
     - type: Fixtures
       fixtures: {}
