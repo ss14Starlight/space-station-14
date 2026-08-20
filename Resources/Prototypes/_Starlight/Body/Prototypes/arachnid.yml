@@ -12,6 +12,7 @@
         eyes: OrganArachnidEyes
         tongue: OrganArachnidTongue
         eye_implant: null
+        nose_implant: null # 🌟Starlight🌟
         brain_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoArachnid

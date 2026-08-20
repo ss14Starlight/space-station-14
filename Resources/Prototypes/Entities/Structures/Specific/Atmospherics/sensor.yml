@@ -6,7 +6,7 @@
     deviceNetId: AtmosDevices
     receiveFrequencyId: AtmosMonitor
     transmitFrequencyId: AtmosMonitor
-    prefix: device-address-prefix-sensor
+    # Starlight-edit: prefix moved to AirSensor and GasPipeSensor, vents and scrubbers inherit this base too
     sendBroadcastAttemptEvent: true
     examinableAddress: true
   - type: WiredNetworkConnection
@@ -55,6 +55,10 @@
   placement:
     mode: SnapgridCenter
   components:
+  # Starlight-start
+  - type: DeviceNetwork
+    prefix: device-address-prefix-sensor
+  # Starlight-end
   - type: Transform
     anchored: true
   - type: Damageable

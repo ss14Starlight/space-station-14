@@ -1004,9 +1004,6 @@
     - type: Loadout
       prototypes: [ CCServiceWorkerGear ]
       roleLoadout: [ RoleSurvivalStandard ]
-    - type: AutoImplant
-      implants:
-      - MindShieldImplant
     - type: AntagImmune
     - type: NoObjectiveTarget
 
@@ -1030,9 +1027,6 @@
     - type: Loadout
       prototypes: [ CCChefGear ]
       roleLoadout: [ RoleSurvivalStandard ]
-    - type: AutoImplant
-      implants:
-      - MindShieldImplant
     - type: AntagImmune
     - type: NoObjectiveTarget
 
@@ -1056,9 +1050,6 @@
     - type: Loadout
       prototypes: [ CCBartenderGear ]
       roleLoadout: [ RoleSurvivalStandard ]
-    - type: AutoImplant
-      implants:
-      - MindShieldImplant
     - type: AntagImmune
     - type: NoObjectiveTarget
 
@@ -1082,9 +1073,6 @@
     - type: Loadout
       prototypes: [ CCJanitorGear ]
       roleLoadout: [ RoleSurvivalStandard ]
-    - type: AutoImplant
-      implants:
-      - MindShieldImplant
     - type: AntagImmune
     - type: NoObjectiveTarget
 
