@@ -15365,8 +15365,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 61
-      configurators:
-      - invalid
 - proto: AltarSpawner
   entities:
   - uid: 629
@@ -111533,8 +111531,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 61
-      configurators:
-      - invalid
 - proto: GasVentScrubberAlt1
   entities:
   - uid: 15562
