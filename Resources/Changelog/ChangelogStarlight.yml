@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Resprited basic trees and Snowy Conifer Trees using sprites from Crystal Punk.
-    type: Tweak
-  id: 407380
-  time: '2026-08-09T11:12:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5479
 - author: SnappingOpossum, Princess-Cheeseballs, MilenVolf
   changes:
   - message: Certain randomized items and decorations no longer spawn with the wrong rotation.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407779
   time: '2026-08-19T10:42:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5724
+- author: Space-Wizards
+  changes:
+  - message: Engine Updated to 288.1.0(Fixes X button on windows).
+    type: Tweak
+  id: 407780
+  time: '2026-08-19T19:56:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5736
 Order: -1
