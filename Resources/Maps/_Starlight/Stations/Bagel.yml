@@ -4,8 +4,8 @@ meta:
   engineVersion: 288.1.0
   forkId: ""
   forkVersion: ""
-  time: 08/20/2026 03:19:39
-  entityCount: 27104
+  time: 08/20/2026 03:53:15
+  entityCount: 27116
 maps:
 - 1
 grids:
@@ -10012,6 +10012,15 @@ entities:
     - type: Action
       originalIconColor: '#FFFFFFFF'
       container: 11869
+  - uid: 12071
+    mapInit: true
+    paused: true
+    components:
+    - type: Transform
+      parent: 11872
+    - type: Action
+      originalIconColor: '#FFFFFFFF'
+      container: 11872
 - proto: AirAlarm
   entities:
   - uid: 7
@@ -16254,11 +16263,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -65.70355,25.732834
-  - uid: 723
-    components:
-    - type: Transform
-      parent: 2
-      pos: 15.477192,-36.587162
   - uid: 724
     components:
     - type: Transform
@@ -18717,7 +18721,7 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: -18.393341,-3.4400811
+      pos: -18.490166,-2.6298535
 - proto: BrbSign
   entities:
   - uid: 1156
@@ -79062,7 +79066,21 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: -45.607418,-4.0834746
+      pos: -45.42272,-3.824871
+    - type: HandheldLight
+      toggleActionEntity: 12071
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+          ent: null
+          showEnts: False
+          occludes: True
+        actions: !type:Container
+          ents:
+          - 12071
+          showEnts: False
+          occludes: True
+    - type: ActionsContainer
   - uid: 11873
     components:
     - type: Transform
@@ -80178,11 +80196,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 1.9199352,20.788437
-  - uid: 12071
-    components:
-    - type: Transform
-      parent: 2
-      pos: 2.541029,20.56578
 - proto: FoodPlate
   entities:
   - uid: 12072
@@ -120945,12 +120958,12 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: -45.44563,-4.3586817
+      pos: -45.70397,-3.621746
   - uid: 17342
     components:
     - type: Transform
       parent: 2
-      pos: 56.468987,8.557282
+      pos: 55.480885,8.551006
   - uid: 17343
     components:
     - type: Transform
@@ -125217,12 +125230,12 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: 43.461086,-1.1967645
+      pos: 43.55709,-0.9242941
   - uid: 17893
     components:
     - type: Transform
       parent: 2
-      pos: 43.492336,-1.235827
+      pos: 43.603806,-0.5649191
   - uid: 17954
     components:
     - type: Transform
@@ -132935,6 +132948,63 @@ entities:
     - type: Transform
       parent: 2
       pos: -10.5,-12.5
+- proto: RandomSpawnStationRadioReceiver
+  entities:
+  - uid: 723
+    components:
+    - type: Transform
+      parent: 2
+      pos: 2.5,20.5
+  - uid: 27105
+    components:
+    - type: Transform
+      parent: 2
+      pos: -45.5,-4.5
+  - uid: 27107
+    components:
+    - type: Transform
+      parent: 2
+      pos: -18.5,-3.5
+  - uid: 27108
+    components:
+    - type: Transform
+      parent: 2
+      pos: -26.5,-14.5
+  - uid: 27110
+    components:
+    - type: Transform
+      parent: 2
+      pos: 36.5,10.5
+  - uid: 27111
+    components:
+    - type: Transform
+      parent: 2
+      pos: 56.5,8.5
+  - uid: 27112
+    components:
+    - type: Transform
+      parent: 2
+      pos: 36.5,-18.5
+  - uid: 27113
+    components:
+    - type: Transform
+      parent: 2
+      pos: 49.5,-13.5
+  - uid: 27114
+    components:
+    - type: Transform
+      parent: 2
+      pos: 27.5,-30.5
+  - uid: 27115
+    components:
+    - type: Transform
+      parent: 2
+      pos: 43.5,-1.5
+  - uid: 27116
+    components:
+    - type: Transform
+      parent: 2
+      pos: -52.5,11.5
 - proto: RandomVending
   entities:
   - uid: 19113
@@ -146119,6 +146189,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -5.5,-33.5
+  - uid: 27106
+    components:
+    - type: Transform
+      parent: 2
+      pos: 15.5,-36.5
 - proto: StationRadioRig
   entities:
   - uid: 19340
@@ -149967,6 +150042,11 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 7.5,12.5
+  - uid: 27109
+    components:
+    - type: Transform
+      parent: 2
+      pos: 36.5,10.5
 - proto: TableCarpet
   entities:
   - uid: 21761
