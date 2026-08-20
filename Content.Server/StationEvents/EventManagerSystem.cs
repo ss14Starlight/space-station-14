@@ -25,11 +25,51 @@ public sealed partial class EventManagerSystem : EntitySystem
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;
 
+    /// <summary>
+    /// Cache de los prototipos de evento y de sus IDs.
+    /// </summary>
+    /// <remarks>
+    /// AllEvents() recorria TODOS los EntityPrototype del juego y armaba un diccionario nuevo
+    /// en cada llamada. Con el panel de eventos abierto eso pasaba a ocurrir varias veces por
+    /// segundo por cada admin. El conjunto solo cambia al recargar prototipos, asi que se
+    /// arma una vez y se invalida en PrototypesReloaded.
+    /// </remarks>
+    private Dictionary<EntityPrototype, StationEventComponent>? _allEventsCache;
+    private HashSet<string>? _allEventIdsCache;
+    private List<KeyValuePair<EntityPrototype, StationEventComponent>>? _allEventsOrderedCache;
+
     public override void Initialize()
     {
         base.Initialize();
 
         Subs.CVar(_configurationManager, CCVars.EventsEnabled, SetEnabled, true);
+        _prototype.PrototypesReloaded += OnPrototypesReloaded;
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _prototype.PrototypesReloaded -= OnPrototypesReloaded;
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        _allEventsCache = null;
+        _allEventIdsCache = null;
+        _allEventsOrderedCache = null;
+    }
+
+    /// <summary>
+    /// Los eventos ordenados por ID. El panel de admin los pide asi una vez por segundo;
+    /// el orden no cambia entre recargas de prototipos, asi que se ordena una sola vez.
+    /// El resultado es compartido: no mutarlo.
+    /// </summary>
+    public IReadOnlyList<KeyValuePair<EntityPrototype, StationEventComponent>> AllEventsOrdered()
+    {
+        return _allEventsOrderedCache ??= AllEvents()
+            .OrderBy(pair => pair.Key.ID)
+            .ToList();
     }
 
     /// <summary>
@@ -78,6 +118,21 @@ public sealed partial class EventManagerSystem : EntitySystem
         }
 
         GameTicker.AddGameRule(randomLimitedEvent);
+    }
+
+    public bool HasEvent(string eventId)
+    {
+        // Set cacheado en vez de recorrer las claves: esto se llama en cada Schedule y RunEventById.
+        _allEventIdsCache ??= AllEvents().Keys.Select(proto => proto.ID).ToHashSet();
+        return _allEventIdsCache.Contains(eventId);
+    }
+
+    public bool RunEventById(string eventId)
+    {
+        if (!HasEvent(eventId))
+            return false;
+
+        return GameTicker.AddGameRule(eventId) != EntityUid.Invalid;
     }
 
     /// <summary>
@@ -210,8 +265,14 @@ public sealed partial class EventManagerSystem : EntitySystem
         return result;
     }
 
+    /// <summary>
+    /// Todos los prototipos de evento. El resultado es compartido: no mutarlo.
+    /// </summary>
     public Dictionary<EntityPrototype, StationEventComponent> AllEvents()
     {
+        if (_allEventsCache != null)
+            return _allEventsCache;
+
         var allEvents = new Dictionary<EntityPrototype, StationEventComponent>();
         foreach (var prototype in _prototype.EnumeratePrototypes<EntityPrototype>())
         {
@@ -224,15 +285,16 @@ public sealed partial class EventManagerSystem : EntitySystem
             allEvents.Add(prototype, stationEvent);
         }
 
+        _allEventsCache = allEvents;
         return allEvents;
     }
 
-    private int GetOccurrences(EntityPrototype stationEvent)
+    public int GetOccurrences(EntityPrototype stationEvent)
     {
         return GetOccurrences(stationEvent.ID);
     }
 
-    private int GetOccurrences(string stationEvent)
+    public int GetOccurrences(string stationEvent)
     {
         return GameTicker.AllPreviousGameRules.Count(p => p.Item2 == stationEvent);
     }
@@ -246,6 +308,28 @@ public sealed partial class EventManagerSystem : EntitySystem
         }
 
         return TimeSpan.Zero;
+    }
+
+    /// <summary>
+    /// Si el evento puede correr ahora mismo, con las condiciones actuales.
+    /// </summary>
+    /// <remarks>
+    /// Hace falta porque los eventos automaticos se eligen minutos antes de dispararse: entre
+    /// la eleccion y el disparo pueden irse jugadores y dejar de cumplirse MinimumPlayers, o
+    /// puede haber arrancado el fin de ronda. La proyeccion del pick cubre el tiempo de ronda,
+    /// pero no la cantidad de gente, que no se puede predecir.
+    /// </remarks>
+    public bool CanRunNow(string eventId)
+    {
+        foreach (var (proto, stationEvent) in AllEvents())
+        {
+            if (proto.ID != eventId)
+                continue;
+
+            return CanRun(proto, stationEvent, _playerManager.PlayerCount, GameTicker.RoundDuration());
+        }
+
+        return false;
     }
 
     private bool CanRun(EntityPrototype prototype, StationEventComponent stationEvent, int playerCount, TimeSpan currentTime)

@@ -32,4 +32,29 @@ public sealed partial class BasicStationEventSchedulerComponent : Component
     /// As such, we want to pass a list of acceptable game rules, which are then parsed for restrictions by the <see cref="EventManagerSystem"/>.
     [DataField(required: true)]
     public EntityTableSelector ScheduledGameRules = default!;
+
+    /// <summary>
+    /// How many automatically selected future events we keep visible in the queue.
+    /// </summary>
+    [DataField]
+    public int AutoQueueLookahead = 2;
+
+    /// <summary>
+    /// The current event queue managed by the scheduler actor.
+    /// </summary>
+    public readonly List<QueuedStationEventEntry> EventQueue = new();
+
+    /// <summary>
+    /// Runtime identifier used by the admin panel to mutate queued entries.
+    /// </summary>
+    public int NextQueueId = 1;
+}
+
+public sealed class QueuedStationEventEntry
+{
+    public int Id;
+    public string EventId = string.Empty;
+    public TimeSpan QueuedAt;
+    public TimeSpan TriggerTime;
+    public bool Automatic;
 }

@@ -9,8 +9,10 @@ namespace Content.Client.Administration.Systems
     public sealed partial class AdminSystem : EntitySystem
     {
         public event Action<List<PlayerInfo>>? PlayerListChanged;
+        public event Action<StationEventsChangedEvent>? StationEventsChanged;
 
         private Dictionary<NetUserId, PlayerInfo>? _playerList;
+        public StationEventsChangedEvent? StationEventsSnapshot { get; private set; }
         public IReadOnlyList<PlayerInfo> PlayerList
         {
             get
@@ -28,6 +30,7 @@ namespace Content.Client.Administration.Systems
             InitializeOverlay();
             SubscribeNetworkEvent<FullPlayerListEvent>(OnPlayerListChanged);
             SubscribeNetworkEvent<PlayerInfoChangedEvent>(OnPlayerInfoChanged);
+            SubscribeNetworkEvent<StationEventsChangedEvent>(OnStationEventsChanged);
         }
 
         public override void Shutdown()
@@ -50,6 +53,34 @@ namespace Content.Client.Administration.Systems
         {
             _playerList = msg.PlayersInfo.ToDictionary(x => x.SessionId, x => x);
             PlayerListChanged?.Invoke(msg.PlayersInfo);
+        }
+
+        private void OnStationEventsChanged(StationEventsChangedEvent msg)
+        {
+            StationEventsSnapshot = msg;
+            StationEventsChanged?.Invoke(msg);
+        }
+
+        public void RequestStationEvents()
+        {
+            RaiseNetworkEvent(new RequestStationEventsEvent());
+        }
+
+        public void SendStationEventCommand(
+            StationEventQueueCommand command,
+            string eventId = "",
+            int queueId = 0,
+            float seconds = -1f,
+            NetEntity activeEvent = default)
+        {
+            RaiseNetworkEvent(new StationEventQueueCommandEvent
+            {
+                Command = command,
+                EventId = eventId,
+                QueueId = queueId,
+                Seconds = seconds,
+                ActiveEvent = activeEvent
+            });
         }
     }
 }
