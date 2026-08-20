@@ -1,0 +1,16 @@
+- type: gameMapPool
+  id: NixLowPopStarlightMapPool
+  maps:
+  # 0-15 jugadores: estaciones compactas.
+  - StarlightCork
+  - StarlightReach
+  # 7-40 jugadores: núcleo de la rotación baja-pop.
+  - StarlightHotel
+  - StarlightSaltern
+  - StarlightPacked
+  - StarlightCluster
+  # 15-30+ jugadores: mapas que escalan mejor cuando el server se llena un poco.
+  - StarlightElkridge
+  - StarlightLeth
+  - StarlightPlasma
+  - StarlightPrism
