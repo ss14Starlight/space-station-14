@@ -143,14 +143,16 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
                 }
 
                 var missingCharge = battery.MaxCharge - charge;
-                powerConsumer.DrawRate = Math.Min(50_000f, Math.Max(0f, missingCharge));
+                powerConsumer.DrawRate = Math.Min(50000f, Math.Max(0f, missingCharge));
                 _battery.ChangeCharge((uid, battery), powerConsumer.ReceivedPower * args.dt);
                 charge = _battery.GetCharge((uid, battery));
         }
 
-        if (electrolyzer.Passive == true)
+        if (electrolyzer.Passive == true) /// Starlight: Actions specific to passive electrolyzers.
         {
-            electrolyzer.IsPowered = true;
+            if (charge <= (battery.MaxCharge/10)) /// Starlight: Dont electrolyze over 10% to hopefully reduce power flickering issues, and ensure SOME of the energy goes to the station.
+                return;
+            electrolyzer.IsPowered = true; /// Starlight: Passives are always "on."
         }
 
         if (charge <= 0f)
@@ -175,7 +177,7 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             }
         }
 
-        var rate = (charge/battery.MaxCharge) * args.dt;
+        var rate = 10f * (charge/battery.MaxCharge) * args.dt;
         var initH2O = mixture.GetMoles(Gas.WaterVapor);
         var initHyperNob = mixture.GetMoles(Gas.HyperNoblium);
         var initBZ = mixture.GetMoles(Gas.BZ);
@@ -233,9 +235,9 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
         if (finalHeatCapacity > Atmospherics.MinimumHeatCapacity && finalHeatCapacity != oldHeatCapacity)
             mixture.Temperature = Math.Max(mixture.Temperature * oldHeatCapacity / finalHeatCapacity, Atmospherics.TCMB);
 
-        var powerUsed = (50f + H2OLoad + HyperNobLoad + BZLoad); ///Starlight: Gotta consume power
+        var powerUsed = (H2OLoad + HyperNobLoad + BZLoad); ///Starlight: Gotta consume power
 
-        var fuelMultiplier = 1f;
+        var fuelMultiplier = 1f; /// Starlight: Dummy fuel multiplier for no plasma electrolysis. Check after this and overwrite it of there is actual plasma fuel.
 
         var PlasmaFuel = electrolyzer.CurrentFuel;
 
@@ -244,11 +246,11 @@ public sealed partial class ElectrolyzerSystem : EntitySystem
             fuelMultiplier = 0.01f;
         }
 
-        _battery.ChangeCharge((uid, battery),-powerUsed * fuelMultiplier / electrolyzer.Efficiency);
+        _battery.ChangeCharge((uid, battery), -500f - (powerUsed * fuelMultiplier / electrolyzer.Efficiency)); /// Starlight: Remove electricity based off idle load + the actual power used
 
-        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - (powerUsed * 0.01f));
+        electrolyzer.CurrentFuel = Math.Max(0f, electrolyzer.CurrentFuel - powerUsed); /// Starlight: Only remove precious plasma when its actually doing something.
 
-        if (electrolyzer.Passive == true)
+        if (electrolyzer.Passive == true) /// Starlight: Clean up passive electrolyzers being on.
         {
                 electrolyzer.IsPowered = false;
         }
