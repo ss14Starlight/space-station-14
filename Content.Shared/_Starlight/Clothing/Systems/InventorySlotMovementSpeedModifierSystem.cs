@@ -47,10 +47,7 @@ public sealed partial class InventorySlotMovementSpeedModifierSystem : EntitySys
                      let query = _inventory.InSlotWithAnyFlags(slotEnt, data.AffectedFlags)
                      where query != data.Inverted
                      select data)
-            {
                 args.ModifySpeed(data.SpeedMod);
-                break;
-            }
         }
     }
 }
