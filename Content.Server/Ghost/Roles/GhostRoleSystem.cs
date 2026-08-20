@@ -816,6 +816,9 @@ public sealed partial class GhostRoleSystem : EntitySystem
         var mob = Spawn(component.Prototype, Transform(uid).Coordinates);
         _transform.AttachToGridOrMap(mob);
 
+        if (TryComp(mob, out GhostRoleComponent? spawnedGhostRole))
+            spawnedGhostRole.HasNotifiedGhosts = ghostRole.HasNotifiedGhosts;
+
         var spawnedEvent = new GhostRoleSpawnerUsedEvent(uid, mob);
         RaiseLocalEvent(mob, spawnedEvent);
 
