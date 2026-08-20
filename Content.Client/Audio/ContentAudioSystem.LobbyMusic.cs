@@ -4,6 +4,7 @@ using Content.Client.Lobby;
 using Content.Shared.Audio.Events;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
+using Robust.Shared.Audio.Components;
 using Robust.Client;
 using Robust.Client.ResourceManagement;
 using Robust.Client.State;
@@ -200,7 +201,11 @@ public sealed partial class ContentAudioSystem
         }
 
         var nextTrackOn = _timing.CurTime + audio.AudioStream.Length;
-        _lobbySoundtrackInfo = new LobbySoundtrackInfo(soundtrackFilename, nextTrackOn, playResult.Value.Entity);
+        _lobbySoundtrackInfo = new LobbySoundtrackInfo(
+            soundtrackFilename,
+            nextTrackOn,
+            playResult.Value.Entity,
+            audio.AudioStream.Length);
 
         var lobbySongChangedEvent = new LobbySoundtrackChangedEvent(soundtrackFilename);
         _lobbySoundtrackChanged?.Invoke(lobbySongChangedEvent);
@@ -260,6 +265,76 @@ public sealed partial class ContentAudioSystem
         }
     }
 
+    public int LobbyPlaylistCount => _lobbyPlaylist?.Length ?? 0;
+
+    public float GetLobbyMusicUiVolume()
+    {
+        return Math.Clamp(_configManager.GetCVar(CCVars.LobbyMusicVolume) / LobbyMultiplier, 0f, 1f);
+    }
+
+    public void SetLobbyMusicUiVolume(float value)
+    {
+        _configManager.SetCVar(CCVars.LobbyMusicVolume, Math.Clamp(value, 0f, 1f) * LobbyMultiplier);
+    }
+
+    public bool TryGetLobbyPlaybackState(out LobbyPlaybackState state)
+    {
+        state = default;
+
+        if (_lobbySoundtrackInfo == null ||
+            !TryComp(_lobbySoundtrackInfo.MusicStreamEntityUid, out AudioComponent? audio))
+        {
+            return false;
+        }
+
+        var durationSeconds = (float) _lobbySoundtrackInfo.TrackLength.TotalSeconds;
+        var playbackSeconds = Math.Clamp(audio.PlaybackPosition, 0f, durationSeconds);
+
+        state = new LobbyPlaybackState(
+            _lobbySoundtrackInfo.Filename,
+            playbackSeconds,
+            durationSeconds);
+
+        return true;
+    }
+
+    public void SkipLobbyTrack(int offset)
+    {
+        if (_lobbyPlaylist == null || _lobbyPlaylist.Length == 0)
+            return;
+
+        var currentTrack = _lobbySoundtrackInfo?.Filename;
+        var currentIndex = currentTrack == null ? 0 : Array.IndexOf(_lobbyPlaylist, currentTrack);
+        if (currentIndex < 0)
+            currentIndex = 0;
+
+        var nextIndex = (currentIndex + offset) % _lobbyPlaylist.Length;
+        if (nextIndex < 0)
+            nextIndex += _lobbyPlaylist.Length;
+
+        EndLobbyMusic();
+        PlaySoundtrack(_lobbyPlaylist[nextIndex]);
+    }
+
+    public void SetLobbyPlaybackPosition(float positionSeconds)
+    {
+        if (_lobbySoundtrackInfo == null ||
+            !TryComp(_lobbySoundtrackInfo.MusicStreamEntityUid, out AudioComponent? audio))
+        {
+            return;
+        }
+
+        var durationSeconds = (float) _lobbySoundtrackInfo.TrackLength.TotalSeconds;
+        positionSeconds = Math.Clamp(positionSeconds, 0f, durationSeconds);
+        _audio.SetPlaybackPosition((_lobbySoundtrackInfo.MusicStreamEntityUid, audio), positionSeconds);
+
+        var remaining = Math.Max(durationSeconds - positionSeconds, 0f);
+        _lobbySoundtrackInfo = _lobbySoundtrackInfo with
+        {
+            NextTrackOn = _timing.CurTime + TimeSpan.FromSeconds(remaining)
+        };
+    }
+
     private static string GetNextSoundtrackFromPlaylist(string currentSoundtrackFilename, string[] playlist)
     {
         var indexOfCurrent = Array.IndexOf(playlist, currentSoundtrackFilename);
@@ -278,7 +353,11 @@ public sealed partial class ContentAudioSystem
     /// <param name="MusicStreamEntityUid">
     /// EntityUid of launched soundtrack (from <see cref="SharedAudioSystem.PlayGlobal(string,Robust.Shared.Player.Filter,bool,System.Nullable{Robust.Shared.Audio.AudioParams})"/>).
     /// </param>
-    private sealed record LobbySoundtrackInfo(string Filename, TimeSpan NextTrackOn, EntityUid MusicStreamEntityUid);
+    private sealed record LobbySoundtrackInfo(
+        string Filename,
+        TimeSpan NextTrackOn,
+        EntityUid MusicStreamEntityUid,
+        TimeSpan TrackLength);
 }
 
 /// <summary>
@@ -287,3 +366,8 @@ public sealed partial class ContentAudioSystem
 /// </summary>
 /// <param name="SoundtrackFilename">Filename of newly set soundtrack, or null if soundtrack playback is stopped.</param>
 public sealed record LobbySoundtrackChangedEvent(string? SoundtrackFilename = null);
+
+public readonly record struct LobbyPlaybackState(
+    string Filename,
+    float PlaybackPositionSeconds,
+    float DurationSeconds);

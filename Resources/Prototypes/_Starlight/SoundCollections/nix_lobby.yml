@@ -1,0 +1,12 @@
+- type: soundCollection
+  id: NixLobbyMusic
+  files:
+    - /Audio/_Starlight/Lobby/Nix/acecombat.ogg
+    - /Audio/_Starlight/Lobby/Nix/dust.ogg
+    - /Audio/_Starlight/Lobby/Nix/fear.ogg
+    - /Audio/_Starlight/Lobby/Nix/gangsterpara.ogg
+    - /Audio/_Starlight/Lobby/Nix/hlife.ogg
+    - /Audio/_Starlight/Lobby/Nix/hollowfaces.ogg
+    - /Audio/_Starlight/Lobby/Nix/spacechannel.ogg
+    - /Audio/_Starlight/Lobby/Nix/spesscowboy.ogg
+    - /Audio/_Starlight/Lobby/Nix/virtualinsanity.ogg

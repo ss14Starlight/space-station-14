@@ -62,6 +62,37 @@
                         <PanelContainer StyleClasses="BackgroundPanel" Margin="3 3 3 3">
                             <BoxContainer Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3 3 3 3">
                                 <RichTextLabel Name="LobbySong" Access="Public" HorizontalAlignment="Left" />
+                                <BoxContainer Orientation="Horizontal" SeparationOverride="6" VerticalAlignment="Center">
+                                    <Button Name="LobbyPrevTrackButton"
+                                            Access="Public"
+                                            Text="{Loc 'lobby-state-song-prev-button'}" />
+                                    <Button Name="LobbyNextTrackButton"
+                                            Access="Public"
+                                            Text="{Loc 'lobby-state-song-next-button'}" />
+                                    <Label Text="{Loc 'lobby-state-song-volume-label'}"
+                                           VerticalAlignment="Center" />
+                                    <Slider Name="LobbyVolumeSlider"
+                                            Access="Public"
+                                            MinSize="110 16"
+                                            HorizontalExpand="True" />
+                                    <Label Name="LobbyVolumeValue"
+                                           Access="Public"
+                                           MinWidth="40"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Right"
+                                           Text="100%" />
+                                </BoxContainer>
+                                <BoxContainer Orientation="Horizontal" SeparationOverride="6" VerticalAlignment="Center">
+                                    <Slider Name="LobbyTrackSlider"
+                                            Access="Public"
+                                            HorizontalExpand="True"
+                                            MinSize="180 16" />
+                                    <Label Name="LobbyTrackTime"
+                                           Access="Public"
+                                           MinWidth="92"
+                                           VerticalAlignment="Center"
+                                           Text="--:-- / --:--" />
+                                </BoxContainer>
                                 <RichTextLabel Name="LobbyBackground" Access="Public" HorizontalAlignment="Left" />
                             </BoxContainer>
                         </PanelContainer>
@@ -91,6 +122,8 @@
                     <BoxContainer Orientation="Horizontal" MinSize="0 40" HorizontalAlignment="Right">
                         <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}"
                                 StyleClasses="ButtonBig" />
+                        <Button Name="AdminButton" Access="Public" Text="{Loc 'ui-lobby-admin-button'}"
+                                StyleClasses="ButtonBig" Visible="False" />
                         <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="ButtonBig" />
                         <Button Name="OptionsButton" Access="Public" StyleClasses="ButtonBig"
                                 Text="{Loc 'ui-lobby-options-button'}" />

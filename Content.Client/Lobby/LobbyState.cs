@@ -14,6 +14,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Range = Robust.Client.UserInterface.Controls.Range;
 
 #region Starlight
 using Content.Shared.GameTicking.Prototypes;
@@ -39,6 +40,8 @@ namespace Content.Client.Lobby
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
+        private bool _lobbyTrackSliderGrabbed;
+        private bool _updatingLobbyVolumeSlider;
 
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
         public LobbyGui? Lobby;
@@ -81,6 +84,12 @@ namespace Content.Client.Lobby
             Lobby.ReadyButton.OnPressed += OnReadyPressed;
             Lobby.ReadyButton.OnToggled += OnReadyToggled;
             Lobby.ReadyButton.TooltipSupplier = GetReadyButtonTooltip;
+            Lobby.LobbyPrevTrackButton.OnPressed += OnLobbyPrevTrackPressed;
+            Lobby.LobbyNextTrackButton.OnPressed += OnLobbyNextTrackPressed;
+            Lobby.LobbyVolumeSlider.OnValueChanged += OnLobbyVolumeSliderChanged;
+            Lobby.LobbyTrackSlider.OnGrabbed += OnLobbyTrackSliderGrabbed;
+            Lobby.LobbyTrackSlider.OnReleased += OnLobbyTrackSliderReleased;
+            Lobby.LobbyTrackSlider.OnValueChanged += OnLobbyTrackSliderChanged;
 
             _gameTicker.InfoBlobUpdated += UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated += LobbyStatusUpdated;
@@ -93,6 +102,8 @@ namespace Content.Client.Lobby
             if(_preferences.ServerDataLoaded)
                 UpdateReadyAllowed();
             _preferences.OnServerDataLoaded += UpdateReadyAllowed;
+
+            UpdateLobbyMusicControls();
         }
 
         private string GetReadyButtonTooltipText()
@@ -127,6 +138,12 @@ namespace Content.Client.Lobby
             Lobby!.CharacterPreview.CharacterSetupButton.OnPressed -= OnSetupPressed;
             Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
+            Lobby!.LobbyPrevTrackButton.OnPressed -= OnLobbyPrevTrackPressed;
+            Lobby!.LobbyNextTrackButton.OnPressed -= OnLobbyNextTrackPressed;
+            Lobby!.LobbyVolumeSlider.OnValueChanged -= OnLobbyVolumeSliderChanged;
+            Lobby!.LobbyTrackSlider.OnGrabbed -= OnLobbyTrackSliderGrabbed;
+            Lobby!.LobbyTrackSlider.OnReleased -= OnLobbyTrackSliderReleased;
+            Lobby!.LobbyTrackSlider.OnValueChanged -= OnLobbyTrackSliderChanged;
 
             Lobby = null;
         }
@@ -160,6 +177,8 @@ namespace Content.Client.Lobby
 
         public override void FrameUpdate(FrameEventArgs e)
         {
+            UpdateLobbyMusicControls();
+
             if (_gameTicker.IsGameStarted)
             {
                 Lobby!.StartTime.Text = string.Empty;
@@ -290,6 +309,8 @@ namespace Content.Client.Lobby
 
                 Lobby!.LobbySong.SetMarkup(markup);
             }
+
+            UpdateLobbyMusicControls();
         }
 
         private void UpdateLobbyBackground()
@@ -349,6 +370,103 @@ namespace Content.Client.Lobby
             }
 
             SetReady(Lobby.ReadyButton.Pressed);
+        }
+
+        private void OnLobbyVolumeSliderChanged(Range slider)
+        {
+            if (_updatingLobbyVolumeSlider)
+                return;
+
+            _contentAudioSystem.SetLobbyMusicUiVolume(slider.Value);
+            UpdateLobbyMusicControls();
+        }
+
+        private void OnLobbyTrackSliderChanged(Range slider)
+        {
+            if (!_lobbyTrackSliderGrabbed || !_contentAudioSystem.TryGetLobbyPlaybackState(out var state))
+                return;
+
+            UpdateLobbyTrackTime(slider.Value, state.DurationSeconds);
+        }
+
+        private void OnLobbyTrackSliderReleased(Slider slider)
+        {
+            _lobbyTrackSliderGrabbed = false;
+            _contentAudioSystem.SetLobbyPlaybackPosition(slider.Value);
+            UpdateLobbyMusicControls();
+        }
+
+        private void OnLobbyPrevTrackPressed(BaseButton.ButtonEventArgs args)
+        {
+            _contentAudioSystem.SkipLobbyTrack(-1);
+        }
+
+        private void OnLobbyNextTrackPressed(BaseButton.ButtonEventArgs args)
+        {
+            _contentAudioSystem.SkipLobbyTrack(1);
+        }
+
+        private void OnLobbyTrackSliderGrabbed(Slider slider)
+        {
+            _lobbyTrackSliderGrabbed = true;
+        }
+
+        private void UpdateLobbyMusicControls()
+        {
+            if (Lobby == null)
+                return;
+
+            var volumeRatio = _contentAudioSystem.GetLobbyMusicUiVolume();
+            _updatingLobbyVolumeSlider = true;
+            Lobby.LobbyVolumeSlider.MinValue = 0f;
+            Lobby.LobbyVolumeSlider.MaxValue = 1f;
+            Lobby.LobbyVolumeSlider.SetValueWithoutEvent(volumeRatio);
+            _updatingLobbyVolumeSlider = false;
+            Lobby.LobbyVolumeValue.Text = $"{MathF.Round(volumeRatio * 100)}%";
+
+            var canCycle = _contentAudioSystem.LobbyPlaylistCount > 1;
+            Lobby.LobbyPrevTrackButton.Disabled = !canCycle;
+            Lobby.LobbyNextTrackButton.Disabled = !canCycle;
+
+            if (!_contentAudioSystem.TryGetLobbyPlaybackState(out var state))
+            {
+                Lobby.LobbyTrackSlider.Disabled = true;
+                Lobby.LobbyTrackSlider.MinValue = 0f;
+                Lobby.LobbyTrackSlider.MaxValue = 1f;
+                if (!_lobbyTrackSliderGrabbed)
+                    Lobby.LobbyTrackSlider.SetValueWithoutEvent(0f);
+                Lobby.LobbyTrackTime.Text = "--:-- / --:--";
+                return;
+            }
+
+            Lobby.LobbyTrackSlider.Disabled = false;
+            Lobby.LobbyTrackSlider.MinValue = 0f;
+            Lobby.LobbyTrackSlider.MaxValue = Math.Max(state.DurationSeconds, 1f);
+
+            var playbackPosition = state.PlaybackPositionSeconds;
+            if (!_lobbyTrackSliderGrabbed)
+                Lobby.LobbyTrackSlider.SetValueWithoutEvent(playbackPosition);
+            else
+                playbackPosition = Lobby.LobbyTrackSlider.Value;
+
+            UpdateLobbyTrackTime(playbackPosition, state.DurationSeconds);
+        }
+
+        private void UpdateLobbyTrackTime(float currentSeconds, float totalSeconds)
+        {
+            if (Lobby == null)
+                return;
+
+            Lobby.LobbyTrackTime.Text = $"{FormatLobbyTrackTime(currentSeconds)} / {FormatLobbyTrackTime(totalSeconds)}";
+        }
+
+        private static string FormatLobbyTrackTime(float totalSeconds)
+        {
+            var clamped = Math.Max(totalSeconds, 0f);
+            var time = TimeSpan.FromSeconds(clamped);
+            return time.TotalHours >= 1
+                ? $"{(int) time.TotalHours}:{time.Minutes:D2}:{time.Seconds:D2}"
+                : $"{time.Minutes}:{time.Seconds:D2}";
         }
     }
 }

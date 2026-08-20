@@ -1,4 +1,4 @@
-lobby-state-paused = Paused
+lobby-state-paused = DELAYED
 lobby-state-soon = Round starting soon
 lobby-state-right-now-question = Right Now?
 lobby-state-right-now-confirmation = Right Now
@@ -21,6 +21,9 @@ lobby-state-song-text = Playing: [color=white]{$songTitle}[/color] by [color=whi
 lobby-state-song-no-song-text = No lobby song playing.
 lobby-state-song-unknown-title = [color=dimgray]Unknown title[/color]
 lobby-state-song-unknown-artist = [color=dimgray]Unknown artist[/color]
+lobby-state-song-prev-button = Previous
+lobby-state-song-next-button = Next
+lobby-state-song-volume-label = Volume
 lobby-state-background-text = Menu art: [color=white]{$backgroundTitle}[/color] by [color=white]{$backgroundArtist}[/color]
 lobby-state-background-no-background-text = No menu art loaded.
 lobby-state-background-unknown-title = [color=dimgray]Unknown title[/color]
