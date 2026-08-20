@@ -3,6 +3,7 @@
 admin-menu-title = Admin Menu
 admin-menu-admin-tab = Admin
 admin-menu-adminbus-tab = Adminbus
+admin-menu-audio-tab = Audio
 admin-menu-atmos-tab = Atmos
 admin-menu-round-tab = Round
 admin-menu-server-tab = Server

@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Audio;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
+using Content.Shared._Nix.Administration;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
@@ -26,6 +27,7 @@ public sealed partial class ClientGlobalSoundSystem : SharedGlobalSoundSystem
         base.Initialize();
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         SubscribeNetworkEvent<AdminSoundEvent>(PlayAdminSound);
+        SubscribeNetworkEvent<NixStopAdminAudioEvent>(_ => StopAdminAudio());
         Subs.CVar(_cfg, CCVars.AdminSoundsEnabled, ToggleAdminSound, true);
 
         SubscribeNetworkEvent<StationEventMusicEvent>(PlayStationEventMusic);
@@ -97,6 +99,11 @@ public sealed partial class ClientGlobalSoundSystem : SharedGlobalSoundSystem
     {
         _adminAudioEnabled = enabled;
         if (_adminAudioEnabled) return;
+        StopAdminAudio();
+    }
+
+    private void StopAdminAudio()
+    {
         foreach (var stream in _adminAudio)
         {
             _audio.Stop(stream);

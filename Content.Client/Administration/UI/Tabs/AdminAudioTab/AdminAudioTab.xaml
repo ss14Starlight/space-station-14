@@ -1,0 +1,35 @@
+<Control xmlns="https://spacestation14.io" Margin="4" MinSize="50 50">
+    <BoxContainer Orientation="Vertical" SeparationOverride="5">
+        <Label Text="{Loc administration-ui-audio-tab-description}" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="5">
+            <Label Text="{Loc administration-ui-audio-tab-search-label}" VerticalAlignment="Center" />
+            <LineEdit Name="SearchLineEdit"
+                      HorizontalExpand="True"
+                      PlaceHolder="{Loc administration-ui-audio-tab-search-placeholder}" />
+        </BoxContainer>
+        <Label Name="ResultsLabel" />
+        <ScrollContainer VerticalExpand="True">
+            <BoxContainer Name="AudioCategories" Orientation="Vertical" HorizontalExpand="True" />
+        </ScrollContainer>
+        <Label Name="SelectedPathLabel"
+               Text="{Loc administration-ui-audio-tab-no-selection}" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Label Text="{Loc administration-ui-audio-tab-volume-label}" VerticalAlignment="Center" />
+            <Slider Name="VolumeSlider" HorizontalExpand="True" MinSize="160 16" />
+            <Label Name="VolumeValueLabel" MinWidth="45" Text="100%" VerticalAlignment="Center" />
+            <Button Name="PlayButton" Text="{Loc administration-ui-audio-tab-play}" />
+            <Button Name="StopAllButton" Text="{Loc administration-ui-audio-tab-stop-all}" />
+        </BoxContainer>
+        <Label Text="{Loc administration-ui-audio-tab-local-title}" />
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Button Name="SelectLocalButton" Text="{Loc administration-ui-audio-tab-local-select}" />
+            <Button Name="PrepareLocalButton" Text="{Loc administration-ui-audio-tab-local-prepare}" />
+            <Button Name="PlayLocalButton" Text="{Loc administration-ui-audio-tab-local-play}" />
+            <Label Name="UploadFileLabel"
+                   Text="{Loc administration-ui-audio-tab-local-no-file}"
+                   VerticalAlignment="Center" />
+        </BoxContainer>
+        <Label Text="{Loc administration-ui-audio-tab-local-formats}" />
+        <Label Name="StatusLabel" />
+    </BoxContainer>
+</Control>
