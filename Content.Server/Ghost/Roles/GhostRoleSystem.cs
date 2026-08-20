@@ -834,7 +834,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
         EnsureComp<MindContainerComponent>(mob);
 
         GhostRoleInternalCreateMindAndTransfer(args.Player, uid, mob, ghostRole);
-        
+
         #region starlight
         // Reset the notification state for the next takeover.
         ghostRole.HasNotifiedGhosts = false;
