@@ -13,6 +13,7 @@
     damage:
       types:
         Heat: 50
+        Blunt: 20
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:

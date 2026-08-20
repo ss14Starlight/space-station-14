@@ -54,7 +54,7 @@
   description: Fires a solid flame in the form of an arrow. (Cooldown of 15 seconds)
   components:
   - type: Action
-    useDelay: 15
+    useDelay: 10
     itemIconStyle: BigAction
     raiseOnUser: true
     icon:

@@ -180,14 +180,6 @@
     radius: 4
     energy: 5
     color: "#DE3A3A"
-  - type: RestrictByUserTag
-    contains:
-    - Wizard
-    messages:
-    - wizard-item-restricted-1
-    - wizard-item-restricted-2
-    - wizard-item-restricted-3
-    - wizard-item-restricted-4
 
 - type: entity
   parent: ClothingOuterSoftsuitWizardFire
