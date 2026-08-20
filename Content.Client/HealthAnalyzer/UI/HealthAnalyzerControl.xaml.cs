@@ -63,6 +63,8 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             || !_entityManager.TryGetComponent<DamageableComponent>(target, out var damageable))
         {
             NoPatientDataText.Visible = true;
+            ChemicalsDivider.Visible = false;
+            ChemicalsContainer.Visible = false;
             return;
         }
 
