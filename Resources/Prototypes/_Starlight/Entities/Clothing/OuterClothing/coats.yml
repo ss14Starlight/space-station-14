@@ -66,7 +66,7 @@
         Cold: 0.85
 
 - type: entity
-  parent: [ ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter, BaseNanoTrasenContraband, AllowSuitStorageClothingGasTanks ]
+  parent: [ ClothingOuterStorageFoldableBase, ClothingOuterBaseWarm, BaseNanoTrasenContraband, AllowSuitStorageClothingGasTanks ]
   id: ClothingOuterCoatNtrep
   name: nt representative jacket
   description: A fancy black jacket, standard issue to NanoTrasen Representatives.
@@ -147,8 +147,6 @@
       toggleable-clothing: !type:ContainerSlot {}
       storagebase: !type:Container
         ents: []
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.75
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSecurityContraband]
@@ -349,8 +347,6 @@
         Piercing: 0.70
         Heat: 0.90
         Cold: 0.90
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.75
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerSecurity]

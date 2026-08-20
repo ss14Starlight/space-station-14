@@ -22,8 +22,10 @@
         Heat: 0.90
         Cold: 0.85 # Starlight, I mean, that's literally what they're for...
     priceMultiplier: 0
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.55
+  #region Starlight - inherit from ClothingOuterBaseWinter instead
+  #- type: ZombificationResistance
+  #  zombificationResistanceCoefficient: 0.55
+  #endregion Starlight
   - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
