@@ -53,10 +53,8 @@ public abstract partial class SharedArmorSystem : EntitySystem
     #endregion
 
     #region Starlight
-    private void OnInnateDamageModify(EntityUid uid, InnateArmorComponent component, ref DamageModifyEvent args)
-    {
-        args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, component.Modifiers, args.ArmorPenetration, args.CanHeal);
-    }
+    private void OnInnateDamageModify(EntityUid uid, InnateArmorComponent component, ref DamageModifyEvent args) =>
+    args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, component.Modifiers, args.ArmorPenetration, args.CanHeal);
     private void OnInnateCoefficientQuery(EntityUid uid, InnateArmorComponent component, ref CoefficientQueryEvent args)
     {
         foreach (var armorCoefficient in component.Modifiers.Coefficients)

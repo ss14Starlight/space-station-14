@@ -122,10 +122,6 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
-  - type: InnateArmor
-    modifiers:
-      coefficients:
-        Piercing: 0.65 # x amount goes through
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
