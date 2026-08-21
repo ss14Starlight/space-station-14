@@ -387,7 +387,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         );
     }
 
-    // Starlight-start: Printable health reports.
+    #region Starlight
     private void PrintPatientReport(Entity<HealthAnalyzerComponent> analyzer, EntityUid user, EntityUid patient)
     {
         var snapshot = BuildPatientSnapshot(patient);
@@ -436,7 +436,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             .Cast<HealthAnalyzerDamageGroupSnapshot>()
             .ToList();
 
-        // Starlight BEGIN
         var reagents = new List<HealthAnalyzerReagentSnapshot>();
         if (uiState.Chemicals is { Count: > 0 } chemicals)
         {
@@ -449,7 +448,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                 reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, stomachQuantity));
             }
         }
-        // Starlight END
 
         return new HealthAnalyzerPatientSnapshot(
             entityName,
@@ -461,7 +459,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             uiState.BloodLevel,
             damageable.TotalDamage,
             groupedInjuries,
-            reagents); // Starlight
+            reagents);
     }
 
     private HealthAnalyzerDamageGroupSnapshot? BuildDamageGroupSnapshot(
@@ -523,8 +521,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         if (snapshot.DamageGroups.Count == 0)
         {
             message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-no-injuries"));
-            message.PushNewline(); // Starlight
-            // return message.ToMarkup(); // Starlight - removed to allow chemicals section to render
+            message.PushNewline();
         }
 
         foreach (var group in snapshot.DamageGroups)
@@ -553,7 +550,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             }
         }
 
-        // Starlight BEGIN
         message.PushNewline();
         message.AddMarkupOrThrow($"[head=2][bold]{Loc.GetString("health-analyzer-report-section-chemicals")}[/bold][/head]");
         message.PushNewline();
@@ -581,7 +577,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                 message.PushNewline();
             }
         }
-        // Starlight END
 
         return message.ToMarkup();
     }
@@ -596,7 +591,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         float BloodLevel,
         FixedPoint2 TotalDamage,
         List<HealthAnalyzerDamageGroupSnapshot> DamageGroups,
-        List<HealthAnalyzerReagentSnapshot> Reagents); // Starlight
+        List<HealthAnalyzerReagentSnapshot> Reagents);
 
     private sealed record HealthAnalyzerDamageGroupSnapshot(
         string Name,
@@ -606,5 +601,5 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
     private sealed record HealthAnalyzerDamageTypeSnapshot(string Name, FixedPoint2 Amount);
 
     private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, FixedPoint2 StomachAmount);
-    // Starlight-end
+    #endregion
 }
