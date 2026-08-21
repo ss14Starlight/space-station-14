@@ -23,9 +23,11 @@ public sealed partial class BorgSystem
 {
     [Dependency] private EmagSystem _emag = default!;
     [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
-    [Dependency] private BorgLockdownSystem _lockdown = default!; // Starlight
-    [Dependency] private NameModifierSystem _nameModifierSystem = default!; // Starlight
-    [Dependency] private BorgEmergencyBeaconSystem _borgBeacon = default!; // Starlight
+#region Starlight
+    [Dependency] private BorgLockdownSystem _lockdown = default!;
+    [Dependency] private NameModifierSystem _nameModifierSystem = default!;
+    [Dependency] private BorgEmergencyBeaconSystem _borgBeacon = default!;
+#endregion
 
     private void InitializeTransponder()
     {
