@@ -94,4 +94,4 @@
       path: /Audio/Effects/Weather/snowstorm.ogg
       params:
         loop: true
-        volume: -12 # quiet ambience rather than in-your-face wind
+        volume: -9.5 # quiet ambience rather than in-your-face wind
