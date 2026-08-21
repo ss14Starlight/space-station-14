@@ -350,7 +350,9 @@ public abstract partial class SharedStationAiSystem : EntitySystem
                 return;
             }
 
-            _metadata.SetEntityName(uid, _nameModifier.GetBaseName(aiEntity));
+            var name = _nameModifier.GetBaseName(aiEntity);
+            _metadata.SetEntityName(uid, name);
+            _metadata.SetEntityName(borgMind, name);
             _mind.TransferTo(mindId, uid, ghostCheckOverride: true, mind: mind);
             Del(aiEntity);
             args.Handled = true;
@@ -361,8 +363,9 @@ public abstract partial class SharedStationAiSystem : EntitySystem
             var brain = SpawnInContainerOrDrop(DefaultAi, target, targetHolder.Slot.ContainerSlot.ID);
             if (!_mind.TryGetMind(borgMind, out var mindId, out var mind))
                 return;
-            _metadata.SetEntityName(brain, _nameModifier.GetBaseName(borgMind));
-            _metadata.SetEntityName(target, _nameModifier.GetBaseName(borgMind));
+            var name = _nameModifier.GetBaseName(borgMind);
+            _metadata.SetEntityName(brain, name);
+            _metadata.SetEntityName(target, name);
             _mind.TransferTo(mindId, brain, ghostCheckOverride: true, mind: mind);
             ResetNameToPrototype(uid);
         }
