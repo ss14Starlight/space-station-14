@@ -373,7 +373,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     private void ResetNameToPrototype(EntityUid entity)
     {
         if (MetaData(entity).EntityPrototype is { } prototype)
-            _metadata.SetEntityName(entity, Loc.GetString(prototype.Name));
+            _metadata.SetEntityName(entity, prototype.Name);
     }
 
     private void OnHolderInteract(Entity<StationAiHolderComponent> ent, ref AfterInteractEvent args)
