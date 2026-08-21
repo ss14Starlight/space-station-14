@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Genetics;
+namespace Content.Shared._Starlight.Genetics.Genes.Prototypes;
 
 /// <summary>
 /// Describes genes that are not procedurally generated during the round.

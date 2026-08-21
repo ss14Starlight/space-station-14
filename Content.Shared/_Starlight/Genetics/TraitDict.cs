@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Genetics.GeneticTraits.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;

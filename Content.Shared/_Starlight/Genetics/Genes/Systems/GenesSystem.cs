@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared._Starlight.Genetics.Genes.Components;
 using Content.Shared._Starlight.Genetics.GeneticTraits;
+using Content.Shared._Starlight.Genetics.GeneticTraits.Prototypes;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Genetics.Genes.Systems;

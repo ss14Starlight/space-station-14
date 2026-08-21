@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Genetics;
+using Content.Shared._Starlight.Genetics.Genes.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 

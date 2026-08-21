@@ -3,7 +3,7 @@ using Content.Shared._Starlight.Genetics.GeneticTraits.Parts;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Genetics;
+namespace Content.Shared._Starlight.Genetics.GeneticTraits.Prototypes;
 
 /// <summary>
 /// Defines a trait that can be included in a gene. Affects the entity with the associated genome through the various

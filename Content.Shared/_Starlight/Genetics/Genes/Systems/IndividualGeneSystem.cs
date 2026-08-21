@@ -2,6 +2,8 @@ using System.Linq;
 using System.Text;
 using Content.Shared._Starlight.Genetics.Components;
 using Content.Shared._Starlight.Genetics.Genes.Components;
+using Content.Shared._Starlight.Genetics.Genes.Prototypes;
+using Content.Shared._Starlight.Genetics.GeneticTraits.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
