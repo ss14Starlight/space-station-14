@@ -58,8 +58,8 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         void QueueSafeEject() => Timer.Spawn(0, () => EjectVinyl(playerUid, vinylUid)); //starlight edit: one-liner, and moved above the Validation
 
         // Check if the inserted entity has the summon rule component / A song
-        if (TryComp<VinylComponent>(vinylUid, out var vinylComp) //starlight edit: Track any vinyl playing.
-            && vinylComp.Song != null)
+        if (!TryComp<VinylComponent>(vinylUid, out var vinylComp) //starlight edit: Track any vinyl playing.
+            || vinylComp.Song == null)
         {
             QueueSafeEject();
             return;
