@@ -1,32 +1,4 @@
 Entries:
-- author: Mack
-  changes:
-  - message: Derelict Borgi's research access.
-    type: Remove
-  id: 407390
-  time: '2026-08-10T12:50:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5408
-- author: Ohelig
-  changes:
-  - message: Added a random, vulpkanin-specific event.
-    type: Add
-  id: 407391
-  time: '2026-08-10T13:27:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5453
-- author: Swonki
-  changes:
-  - message: Ninja Extraction! Ninjas are no longer expected to work a full shift to try to call the evac shuttle, instead they now use a station escape pod to leave.
-    type: Add
-  id: 407392
-  time: '2026-08-10T13:27:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5149
-- author: Drakobird, Conf
-  changes:
-  - message: A chilling new ability for the revenant.
-    type: Add
-  id: 407393
-  time: '2026-08-10T13:27:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5336
 - author: Caws, oliveoil238, & rtasva
   changes:
   - message: 'Added in-hands sprites for the following plushies: Alien grey (Abductor), Axolotl, Borb, Cow Squishims, Creature, Frog Squishims, Gnome, Goat, Kitten, Pig, Renault, Shadekin, Snail, and Sus.'
@@ -2799,4 +2771,32 @@ Entries:
   id: 407789
   time: '2026-08-21T09:52:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5691
+- author: Conflee, mkanke
+  changes:
+  - message: Added craftable and paintable Cardboard Boxes.
+    type: Add
+  id: 407790
+  time: '2026-08-21T09:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5720
+- author: Conflee, mkanke
+  changes:
+  - message: Added constructible Box Shelves for storing boxes of items in a more compact and organized way. Can hold Large Cardboard Boxes and box-based Mail Deliveries.
+    type: Add
+  id: 407791
+  time: '2026-08-21T09:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5720
+- author: Conflee, mkanke
+  changes:
+  - message: Added a dozen ish pre-filled boxes for mappers to use instead of spamming item stacks down in places.
+    type: Add
+  id: 407792
+  time: '2026-08-21T09:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5720
+- author: Conflee, mkanke
+  changes:
+  - message: Changed the Mail Trolley to accept Large Cardboard Boxes, for logical consistency.
+    type: Tweak
+  id: 407793
+  time: '2026-08-21T09:52:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5720
 Order: -1
