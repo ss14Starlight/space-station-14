@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Administration.Events;
+namespace Content.Shared._Starlight.Administration.Events;
 
 [Serializable, NetSerializable]
 public sealed class StationEventData

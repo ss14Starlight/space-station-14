@@ -1,4 +1,3 @@
-# Starlight - station events admin panel
 administration-ui-events-tab-loading = Loading station events...
 administration-ui-events-tab-search-label = Search
 administration-ui-events-tab-filter-placeholder = Filter events

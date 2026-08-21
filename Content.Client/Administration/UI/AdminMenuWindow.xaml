@@ -3,7 +3,7 @@
     xmlns:adminTab="clr-namespace:Content.Client.Administration.UI.Tabs.AdminTab"
     xmlns:adminbusTab="clr-namespace:Content.Client.Administration.UI.Tabs.AdminbusTab"
     xmlns:atmosTab="clr-namespace:Content.Client.Administration.UI.Tabs.AtmosTab"
-    xmlns:eventsTab="clr-namespace:Content.Client.Administration.UI.Tabs.EventsTab"
+    xmlns:eventsTab="clr-namespace:Content.Client._Starlight.Administration.UI.Tabs.EventsTab"
     xmlns:tabs="clr-namespace:Content.Client.Administration.UI.Tabs"
     xmlns:playerTab="clr-namespace:Content.Client.Administration.UI.Tabs.PlayerTab"
     xmlns:objectsTab="clr-namespace:Content.Client.Administration.UI.Tabs.ObjectsTab"

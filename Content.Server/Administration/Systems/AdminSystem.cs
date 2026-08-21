@@ -16,6 +16,7 @@ using Content.Server._CD.Records;
 // Cosmatic Drift Record System-end
 using Content.Shared.Administration;
 using Content.Shared.Administration.Events;
+using Content.Shared._Starlight.Administration.Events; // Starlight
 using Content.Shared.CCVar;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
