@@ -355,7 +355,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
     }
     private Texture GetTexture(string texture)
     {
-        var rsiPath = new ResPath("/Textures/_Starlight/Objects/Devices/health_analyzer.rsi"); // Starlight - new rsi for new icons :)
+        var rsiPath = new ResPath("/Textures/_Starlight/Objects/Devices/health_analyzer.rsi");
         var rsiSprite = new SpriteSpecifier.Rsi(rsiPath, texture);
 
         var rsi = _cache.GetResource<RSIResource>(rsiSprite.RsiPath).RSI;
