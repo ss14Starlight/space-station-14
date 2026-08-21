@@ -16,7 +16,7 @@ using Robust.Shared.Timing;
 using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Shared._Goobstation.StationRadio.Systems;
-using Content.Shared._Starlight.StationRadio.Events; // Starlight - Station Radio Check oved to StationRadioReceiverSystem
+using Content.Shared._Starlight.StationRadio.Events;
 
 namespace Content.Server._Goobstation.StationRadio; // Starlight - _Goob -> _Goobstation
 
@@ -229,9 +229,3 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         return gameRuleIdentifier;
     }
 }
-
-#region Starlight Event-ifying the vinyl finished
-
-
-
-#endregion
