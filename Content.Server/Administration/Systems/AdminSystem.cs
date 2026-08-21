@@ -552,6 +552,7 @@ public sealed partial class AdminSystem : EntitySystem
                     // enabled these diverge, and the number that matters is the one selection
                     // actually uses.
                     Weight = _eventManager.GetEffectiveWeight(pair.Key, pair.Value),
+                    Occurrences = _eventManager.GetOccurrences(pair.Key),
                     DurationSeconds = pair.Value.Duration is { } duration
                         ? (float) duration.TotalSeconds
                         : -1f,
