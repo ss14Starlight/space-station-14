@@ -26,5 +26,5 @@ public sealed partial class CCVars
     /// </remarks>
     [CVarControl(AdminFlags.Server)]
     public static readonly CVarDef<float>
-        EventsRepetitionFalloff = CVarDef.Create("events.repetition_falloff", 0.6f, CVar.SERVERONLY);
+        EventsRepetitionFalloff = CVarDef.Create("events.repetition_falloff", 0.6f, CVar.ARCHIVE | CVar.SERVERONLY);
 }
