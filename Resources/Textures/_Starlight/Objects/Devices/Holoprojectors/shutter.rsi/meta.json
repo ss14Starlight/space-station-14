@@ -9,7 +9,7 @@
     "states": [
         {
             "name": "icon",
-			"copyright": "Modified sprites by Conflee based on tgstation sprites at https://github.com/tgstation/tgstation/commit/f4017da82ae4de7bfaf8ebdbba33d0de81c15587. Inhands by TiniestShark (github)",
+			"copyright": "Modified sprites by Conflee based on tgstation sprites at https://github.com/tgstation/tgstation/commit/f4017da82ae4de7bfaf8ebdbba33d0de81c15587.",
             "delays": [
                 [
                     0.3,
