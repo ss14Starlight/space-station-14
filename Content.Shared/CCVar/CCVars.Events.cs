@@ -19,12 +19,12 @@ public sealed partial class CCVars
     ///     so repeats become progressively less likely without ever being ruled out.
     /// </summary>
     /// <remarks>
-    ///     Defaults to 1, which keeps the stock behaviour of weighting purely by the configured
-    ///     weight. Lower it (0.6 is a reasonable starting point) if repeated events feel too
-    ///     common; this is deliberately opt-in so it does not silently change how existing
-    ///     servers pick events. Values are clamped to 0..1.
+    ///     Weighted selection on its own has no memory, so the same event can be drawn several
+    ///     times in a row purely by chance. 0.6 matches the repetition penalty long used by
+    ///     storyteller-style schedulers in other codebases. Set to 1 to disable the penalty and
+    ///     weight purely by the configured weight. Values are clamped to 0..1.
     /// </remarks>
     [CVarControl(AdminFlags.Server)]
     public static readonly CVarDef<float>
-        EventsRepetitionFalloff = CVarDef.Create("events.repetition_falloff", 1f, CVar.SERVERONLY);
+        EventsRepetitionFalloff = CVarDef.Create("events.repetition_falloff", 0.6f, CVar.SERVERONLY);
 }
