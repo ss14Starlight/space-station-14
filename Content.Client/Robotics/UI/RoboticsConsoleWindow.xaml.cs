@@ -142,18 +142,16 @@ public sealed partial class RoboticsConsoleWindow : FancyWindow
         text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-model", ("name", model))}\n");
         text.AddMarkupOrThrow(Loc.GetString("robotics-console-designation"));
         text.AddText($" {data.Name}\n"); // prevent players trolling by naming borg [color=red]satan[/color]
-        if (data.Identifier != string.Empty) // Starlight
-            text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-identifier", ("identifier", data.Identifier))}\n");
-        if (data.Location != string.Empty) // Starlight - only a borg that needs help broadcasts where it is
-            text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-location", ("location", data.Location))}\n");
+        if (data.Identifier != string.Empty) text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-identifier", ("identifier", data.Identifier))}\n"); // Starlight
+        if (data.Location != string.Empty) text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-location", ("location", data.Location))}\n");// Starlight - only a borg that needs help broadcasts where it is
         text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-battery", ("charge", (int)(data.Charge * 100f)), ("color", batteryColor))}\n");
         text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-hp", ("hp", (int)(data.HpPercent * 100f)), ("color", hpPercentColor))}\n");
 #region Starlight
         if (data.HasBrain && !data.BrainActive)
             text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-brain-inactive")}\n");
         else
-            text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-brain", ("brain", data.HasBrain))}\n");
 #endregion
+            text.AddMarkupOrThrow($"{Loc.GetString("robotics-console-brain", ("brain", data.HasBrain))}\n");
         text.AddMarkupOrThrow(Loc.GetString("robotics-console-modules", ("count", data.ModuleCount)));
         BorgInfo.SetMessage(text);
 

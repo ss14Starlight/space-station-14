@@ -43,7 +43,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        // Starlight: All logic moved to method
+#region Starlight
 
         ConfirmTypeButton.OnPressed += ConfirmButtonPressed;
         HelpGuidebookIds = GuidebookEntries;
@@ -53,16 +53,15 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         // Afterlight end
     }
 
-    // Starlight-start: Move from BorgSelectTypeMenu to method
+    // Move from BorgSelectTypeMenu to method
     public void SetupMenu(EntityUid owner)
     {
-        // Starlight-start: Available types
+        // Available types
         if (!_entManager.TryGetComponent<BorgSwitchableTypeComponent>(owner, out var switchableType))
             return;
-        // Starlight-end
 
         var group = new ButtonGroup();
-        // Starlight-start: Available types
+        // Available types
         if (switchableType.AvailableTypes.Any())
             foreach (var borgTypeId in switchableType.AvailableTypes)
             {
@@ -83,7 +82,6 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
                 SelectionsContainer.AddChild(button);
             }
         else
-            // Starlight-end
             foreach (var borgType in _prototypeManager.EnumeratePrototypes<BorgTypePrototype>().Where(p => p.ID != BorgChassisResetSystem.UnselectedType).OrderBy(PrototypeName)) // Starlight - the blank chassis type is not selectable
             {
                 var button = new Button
@@ -101,7 +99,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
             }
 
     }
-    // Starlight-end
+#endregion
 
     private void UpdateInformation(BorgTypePrototype prototype)
     {

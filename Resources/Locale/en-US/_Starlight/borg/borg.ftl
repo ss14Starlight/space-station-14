@@ -47,7 +47,7 @@ borg-ui-lockdown = Engage lock down
 borg-ui-lockdown-release = Release lock down
 
 # Chassis reset
-borg-ui-reset-chassis = revert chassis type
+borg-ui-reset-chassis = Revert chassis type
 borg-reset-modules-installed = Remove every optional module from the cyborg first...
 borg-reset-chassis-start-popup = Your chassis is being reverted!
 borg-reset-chassis-popup = {CAPITALIZE($name)} reverts back to a blank chassis!

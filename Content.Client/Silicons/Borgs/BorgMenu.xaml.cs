@@ -107,16 +107,9 @@ public sealed partial class BorgMenu : FancyWindow
             ("charge", (int)MathF.Round(chargeFraction * 100)));
     }
 
-    // Starlight - only recomputed when the BUI is refreshed, not every render frame
-    public void UpdateLockdownButton()
-    {
-        LockdownButton.Text = Loc.GetString(_entity.HasComponent<BorgLockdownComponent>(Entity) ? "borg-ui-lockdown-release" : "borg-ui-lockdown");
-    }
+    public void UpdateLockdownButton() => LockdownButton.Text = Loc.GetString(_entity.HasComponent<BorgLockdownComponent>(Entity) ? "borg-ui-lockdown-release" : "borg-ui-lockdown"); // Starlight - only recomputed when the BUI is refreshed, not every render frame
 
-    public void UpdateResetChassisButton()
-    {
-        ResetChassisButton.Visible = _entity.TryGetComponent<BorgSwitchableTypeComponent>(Entity, out var switchable) && _chassisReset.CanReset((Entity, switchable));
-    }
+    public void UpdateResetChassisButton() => ResetChassisButton.Visible = _chassisReset.CanReset(Entity); // Starlight
 
     public void UpdateBatteryButton()
     {

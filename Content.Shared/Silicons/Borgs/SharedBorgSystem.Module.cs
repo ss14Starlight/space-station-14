@@ -230,8 +230,7 @@ public abstract partial class SharedBorgSystem
                     // Starlight edit end
                 }
             }
-            else if (hand.Item is { } itemProto // Starlight
-                && !(IsDroppableHand(hand) && HasComp<BorgChassisResetComponent>(chassis))) // Starlight - a reset chassis gets no new items.
+            else if (hand.Item is { } itemProto && !(IsDroppableHand(hand) && HasComp<BorgChassisResetComponent>(chassis))) // Starlight - a reset chassis gets no new items.
             {
                 item = PredictedSpawnAtPosition(itemProto, xform.Coordinates);
             }

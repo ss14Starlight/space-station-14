@@ -3,7 +3,6 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics; // Starlight
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
 
@@ -56,9 +55,9 @@ public sealed partial class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeS
                     out var res))
             {
                 sprite.BaseRSI = res.RSI;
-                _sprite.LayerSetRsi((entity.Owner, sprite), BorgVisualLayers.Body, (RSI?)null); // Starlight
-                _sprite.LayerSetRsi((entity.Owner, sprite), BorgVisualLayers.Light, (RSI?)null); // Starlight
-                _sprite.LayerSetRsi((entity.Owner, sprite), BorgVisualLayers.LightStatus, (RSI?)null); // Starlight
+                _sprite.LayerSetRsi((entity.Owner, sprite), BorgVisualLayers.Body, rsi: null); // Starlight
+                _sprite.LayerSetRsi((entity.Owner, sprite), BorgVisualLayers.Light, rsi: null); // Starlight
+                _sprite.LayerSetRsi((entity.Owner, sprite), BorgVisualLayers.LightStatus, rsi: null); // Starlight
             }
             _sprite.LayerSetRsiState((entity, sprite), BorgVisualLayers.Body, prototype.SpriteBodyState);
             _sprite.LayerSetRsiState((entity, sprite), BorgVisualLayers.LightStatus, prototype.SpriteToggleLightState);

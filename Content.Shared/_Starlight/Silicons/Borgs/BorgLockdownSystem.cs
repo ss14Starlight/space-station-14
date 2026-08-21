@@ -25,6 +25,13 @@ public sealed partial class BorgLockdownSystem : EntitySystem
         SubscribeLocalEvent<BorgChassisComponent, BorgToggleLockdownBuiMessage>(OnToggleLockdown);
     }
 
+    /// <summary>
+    /// Whether the given borg is currently locked down.
+    /// </summary>
+    /// <remarks>
+    /// Backed by the presence of <see cref="BorgLockdownComponent"/>, so this reads false again as soon as that
+    /// component enters removal, not when its shutdown begins.
+    /// </remarks>
     public bool IsLockedDown(EntityUid borg) => HasComp<BorgLockdownComponent>(borg);
 
     /// <summary>

@@ -135,15 +135,20 @@ public partial record struct CyborgControlData
     [DataField]
     public bool CanDisable;
 
+#region Starlight
+    /// <summary>
+    /// Whether the borg is currently locked down, which shuts it down the same way running out of power does.
+    /// Controls whether the console offers to engage or release the lockdown.
+    /// </summary>
     [DataField]
-    public bool LockedDown; // Starlight
+    public bool LockedDown;
 
     /// <summary>
     /// Whether the installed brain actually has someone in it. Meaningless when <see cref="HasBrain"/> is false.
     /// </summary>
     [DataField]
-    public bool BrainActive = true; // Starlight
-
+    public bool BrainActive = true;
+#endregion
     /// <summary>
     /// When this cyborg's data will be deleted.
     /// Set by the console when receiving the packet.

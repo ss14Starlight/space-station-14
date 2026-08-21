@@ -60,9 +60,15 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
     /// <summary>
     /// Whether this borg picked a type that it could pick again after a reset.
     /// </summary>
-    public bool CanReset(Entity<BorgSwitchableTypeComponent> borg) =>
-        borg.Comp.SelectedBorgType is { } type && type != UnselectedType
-        && HasComp<BorgObeysStationAiComponent>(borg);
+    public bool CanReset(Entity<BorgSwitchableTypeComponent?> borg)
+    {
+        // Not an error case: the UI asks this about borgs that never had a switchable type, so don't log.
+        if (!Resolve(borg, ref borg.Comp, false))
+            return false;
+
+        return borg.Comp.SelectedBorgType is { } type && type != UnselectedType
+            && HasComp<BorgObeysStationAiComponent>(borg);
+    }
 
     /// <summary>
     /// Whether every module a player is allowed to take out has been taken out.
@@ -84,8 +90,11 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
     /// <summary>
     /// Returns a borg to its unselected chassis and gives back the type selection action.
     /// </summary>
-    public void ResetChassis(Entity<BorgSwitchableTypeComponent> borg)
+    public void ResetChassis(Entity<BorgSwitchableTypeComponent?> borg)
     {
+        if (!Resolve(borg, ref borg.Comp))
+            return;
+
         // Drop the cosmetic subtype first, the appearance code skips borgs that still have one.
         if (TryComp<BorgSwitchableSubtypeComponent>(borg, out var subtype))
         {
@@ -114,17 +123,17 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
         // components and resets modules, radio channels, inventory, transponder and appearance.
         // The blank type stays selected so that appearance code keeps having a prototype to work from,
         // selecting a real type again is allowed out of it.
-        _switchableType.SelectBorgModule(borg, UnselectedType);
+        _switchableType.SelectBorgModule((borg.Owner, borg.Comp), UnselectedType);
 
         EnsureComp<BorgChassisResetComponent>(borg);
 
         _actions.AddAction(borg, ref borg.Comp.SelectTypeAction, SharedBorgSwitchableTypeSystem.ActionId);
-        Dirty(borg);
+        Dirty(borg.Owner, borg.Comp);
     }
 
     private void OnResetChassis(Entity<BorgSwitchableTypeComponent> borg, ref BorgResetChassisBuiMessage args)
     {
-        if (!CanReset(borg))
+        if (!CanReset(borg.AsNullable()))
             return;
 
         if (!OptionalModulesRemoved(borg.Owner))
@@ -152,7 +161,7 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
 
     private void OnResetChassisDoAfter(Entity<BorgSwitchableTypeComponent> borg, ref BorgResetChassisDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || !CanReset(borg))
+        if (args.Handled || args.Cancelled || !CanReset(borg.AsNullable()))
             return;
 
         if (_net.IsClient) // Starlight
@@ -166,7 +175,7 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
 
         args.Handled = true;
 
-        ResetChassis(borg);
+        ResetChassis(borg.AsNullable());
         _popup.PopupEntity(Loc.GetString("borg-reset-chassis-popup", ("name", Name(borg))), borg);
 
         _adminLog.Add(LogType.Action, LogImpact.High,
