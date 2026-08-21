@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
-using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
@@ -20,14 +19,11 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using NullLinkAdminBan = Starlight.NullLink.AdminBan;
-using System.Net.Http.Json;
 using System.Net.Http;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using Content.Server.Discord;
 using Content.Server.Connection;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.Helpers;
@@ -37,7 +33,8 @@ using CCVars = Content.Shared.CCVar.CCVars;
 using Starlight.NullLink;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-using Content.Shared.Administration;
+using System.Net;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Administration.Managers;
 
@@ -72,7 +69,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     private string _webhookName = "STARLIGHT Punishments";
     private string _webhookAvatarUrl = "https://i.imgur.com/whiqrpC.png";
 
-    private readonly Dictionary<ICommonSession, List<ServerRoleBanDef>> _cachedRoleBans = new();
+    private readonly Dictionary<ICommonSession, List<BanDef>> _cachedRoleBans = new();
     // Cached ban exemption flags are used to handle
     private readonly Dictionary<ICommonSession, ServerBanExemptFlags> _cachedBanExemptions = new();
 
@@ -173,6 +170,33 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     }
 
     #region Server Bans
+    public Task CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, uint? minutes, NoteSeverity severity, string reason)
+    {
+        var info = new CreateServerBanInfo(reason);
+
+        if (target != null)
+        {
+            ArgumentNullException.ThrowIfNull(targetUsername);
+            info.AddUser(target.Value, targetUsername);
+        }
+
+        if (addressRange != null)
+            info.AddAddressRange(addressRange.Value);
+
+        if (hwid != null)
+            info.AddHWId(hwid);
+
+        if (minutes > 0)
+            info.WithMinutes(minutes.Value);
+
+        if (banningAdmin != null)
+            info.WithBanningAdmin(banningAdmin.Value);
+
+        info.WithSeverity(severity);
+
+        return Task.Run(() => CreateServerBan(info));
+    }
+
     public async void CreateServerBan(CreateServerBanInfo banInfo)
     {
         var (banDef, expires) = await CreateBanDef(banInfo, BanType.Server, null);
@@ -224,26 +248,29 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _chat.SendAdminAlert(logMessage);
 
         // Starlight-start
-        var ban = new ServerBanDef(
-            id,
-            target,
-            addressRange,
-            hwid,
+        var ban = new BanDef(
+            banDef.Id,
+            BanType.Server,
+            banDef.UserIds,
+            banDef.Addresses,
+            banDef.HWIds,
             banDef.BanTime,
             expires,
-            roundId,
-            playtime,
-            reason,
-            severity,
-            banningAdmin,
-            null);
+            banDef.RoundIds,
+            banDef.PlaytimeAtNote,
+            banDef.Reason,
+            banDef.Severity,
+            banDef.BanningAdmin,
+            null,
+            banDef.ExemptFlags,
+            banDef.Roles);
 
         if (ban.Id == null)
             _sawmill.Error($"There's ban with id 0, this breaks webhook/ban sync logic.");
 
         try
         {
-            await SendWebhook(await GenerateBanPayload(ban, minutes));
+            await SendWebhook(await GenerateBanPayload(ban, banDef.BanTime));
         }
         catch (Exception e)
         {
@@ -327,16 +354,16 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
         if (project != null && server != null)
         {
-            var localBan = await _db.GetServerBanAsync(banId);
+            var localBan = await _db.GetBanAsync(banId);
             if (localBan == null || localBan.Unban != null)
                 return;
         }
-        await _db.AddServerUnbanAsync(new ServerUnbanDef(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
+        await _db.AddUnbanAsync(new UnbanDef(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
     }
 
-    public async Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true)
+    public async Task<List<BanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true)
     {
-        var bans = await _db.GetServerBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
+        var bans = await _db.GetBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
         if (_actor.TryGetServerGrain(out var serverGrain))
         {
             var network = await serverGrain.RequestBans(userId, address, hwId, modernHWIds, includeUnbanned);
@@ -349,31 +376,31 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         return bans;
     }
 
-    public async Task<ServerBanDef?> GetServerBanAsync(int id, string? project = null, string? server = null)
+    public async Task<BanDef?> GetServerBanAsync(int id, string? project = null, string? server = null)
     {
         var ban = project == null && server == null
-                    ? await _db.GetServerBanAsync(id)
+                    ? await _db.GetBanAsync(id)
                     : null;
         if (_actor.TryGetServerGrain(out var serverGrain))
             ban ??= (await serverGrain.RequestBanById(id, project, server))?.ToDef();
         return ban;
     }
 
-    public async Task<ServerBanDef?> GetServerBanAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds)
+    public async Task<BanDef?> GetServerBanAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds)
     {
-        var ban = await _db.GetServerBanAsync(address, userId, hwId, modernHWIds);
+        var ban = await _db.GetBanAsync(address, userId, hwId, modernHWIds);
         if (_actor.TryGetServerGrain(out var serverGrain))
             ban ??= (await serverGrain.RequestBan(address, userId, hwId, modernHWIds))?.ToDef();
         return ban;
     }
 
-    public async Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true)
+    public async Task<List<BanDef>> GetServerRoleBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true)
     {
-        var bans = await _db.GetServerRoleBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
+        var bans = await _db.GetBansAsync(address, userId, hwId, modernHWIds, includeUnbanned, BanType.Role);
         if (_actor.TryGetServerGrain(out var serverGrain))
         {
             var network = await serverGrain.RequestBans(userId, address, hwId, modernHWIds, includeUnbanned, true);
-            bans = bans.Concat(network.ToRoleDef()).ToList();
+            bans = bans.Concat(network.ToDef()).ToList();
         }
         return bans;
     }
@@ -532,7 +559,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             expires = DateTimeOffset.Now + TimeSpan.FromMinutes(minutes.Value);
         }
 
-        var banDef = new ServerRoleBanDef(
+        var banDef = new BanDef(
             null,
             target,
             addressRange,
@@ -732,7 +759,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         }
     }
 
-    private async Task<WebhookPayload> GenerateJobBanPayload(ServerRoleBanDef banDef, IReadOnlyCollection<string> roles, uint? minutes = null)
+    private async Task<WebhookPayload> GenerateJobBanPayload(BanDef banDef, IReadOnlyCollection<string> roles, uint? minutes = null)
     {
         var hwid = banDef.HWId?.ToString() ?? "null";
         var adminName = banDef.BanningAdmin == null ? Loc.GetString("system-user") : (await _db.GetPlayerRecordByUserId(banDef.BanningAdmin.Value))?.LastSeenUserName ?? Loc.GetString("system-user");
@@ -852,7 +879,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             };
     }
 
-    private async Task<WebhookPayload> GenerateBanPayload(ServerBanDef banDef, uint? minutes = null)
+    private async Task<WebhookPayload> GenerateBanPayload(BanDef banDef, DateTimeOffset? banTime = null)
     {
         var hwid = banDef.HWId?.ToString() ?? "null";
         var adminName = banDef.BanningAdmin == null ? Loc.GetString("system-user") : (await _db.GetPlayerRecordByUserId(banDef.BanningAdmin.Value))?.LastSeenUserName ?? Loc.GetString("system-user");

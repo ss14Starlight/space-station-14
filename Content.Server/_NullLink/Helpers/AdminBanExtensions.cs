@@ -21,7 +21,7 @@ public static class AdminBanExtensions
     private static NoteSeverity ParseSeverity(string? severity)
         => Enum.TryParse<NoteSeverity>(severity, out var result) ? result : NoteSeverity.None;
 
-    public static ServerBanDef ToDef(this AdminBan ban)
+    public static BanDef ToDef(this AdminBan ban)
         => new(ban.Id, ban.UserId == null ? null : new NetUserId(ban.UserId.Value), ParseAddress(ban.Address),
             ban.HWId == null ? null : new ImmutableTypedHwid(ban.HWId.Hwid.ToImmutableArray(), (HwidType)ban.HWId.Type),
             ban.BanTime,
@@ -35,26 +35,8 @@ public static class AdminBanExtensions
             ban.ServerName,
             true);
 
-    public static IEnumerable<ServerBanDef> ToDef(this IEnumerable<AdminBan> bans)
+    public static IEnumerable<BanDef> ToDef(this IEnumerable<AdminBan> bans)
         => bans.Select(b => b.ToDef());
-
-    public static ServerRoleBanDef ToRoleDef(this AdminBan ban)
-        => new(ban.Id, ban.UserId == null ? null : new NetUserId(ban.UserId.Value),
-            ParseAddress(ban.Address),
-            ban.HWId == null ? null : new ImmutableTypedHwid(ban.HWId.Hwid.ToImmutableArray(), (HwidType)ban.HWId.Type),
-            ban.BanTime,
-            ban.ExpirationTime,
-            ban.RoundId,
-            ban.PlayTimeAtNote,
-            ban.Reason ?? "", ParseSeverity(ban.Severity),
-            ban.BanningAdmin == null ? null : new NetUserId(ban.BanningAdmin.Value),
-            null,
-            ban.Role ?? "",
-            ban.ProjectName,
-            ban.ServerName);
-
-    public static IEnumerable<ServerRoleBanDef> ToRoleDef(this IEnumerable<AdminBan> bans)
-        => bans.Select(b => b.ToRoleDef());
 
     public static SharedAdminNote? ToNote(this AdminBan ban)
         => ban.UserId == null || ban.Id == null ? null : new(ban.Id.Value, new NetUserId(ban.UserId.Value),

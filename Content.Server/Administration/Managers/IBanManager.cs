@@ -114,7 +114,7 @@ public interface IBanManager
     /// <summary>
     /// Retrieves a list of server ban definitions matching the specified criteria.
     /// </summary>
-    public Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true);
+    public Task<List<BanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true);
 
     /// <summary>
     /// Creates a record of an unban action for a previously issued server ban.
@@ -124,18 +124,18 @@ public interface IBanManager
     /// <summary>
     /// Retrieves the details of a server ban with the specified identifier.
     /// </summary>
-    public Task<ServerBanDef?> GetServerBanAsync(int id, string? project = null, string? server = null);
+    public Task<BanDef?> GetServerBanAsync(int id, string? project = null, string? server = null);
 
     /// <summary>
     /// Retrieves a server ban record that matches the specified address, user ID, hardware ID, or set of
     /// modern hardware IDs.
     /// </summary>
-    public Task<ServerBanDef?> GetServerBanAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds);
+    public Task<BanDef?> GetServerBanAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds);
 
     /// <summary>
     /// Retrieves a list of server role bans that match the specified criteria.
     /// </summary>
-    public Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true);
+    public Task<List<BanDef>> GetServerRoleBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true);
     #endregion
 }
 
@@ -160,6 +160,10 @@ public abstract class CreateBanInfo
     internal NoteSeverity? Severity;
     internal string Reason;
     internal NetUserId? BanningAdmin;
+    #region Starlight
+    internal string? ProjectName;
+    internal string? ServerName;
+    #endregion
 
     protected CreateBanInfo(string reason)
     {
@@ -354,6 +358,15 @@ public abstract class CreateBanInfo
         BanningAdmin = banningAdmin;
         return this;
     }
+
+    #region Starlight
+    public CreateBanInfo WithServerInfo(string? projectName, string? serverName)
+    {
+        ProjectName = projectName;
+        ServerName = serverName;
+        return this;
+    }
+    #endregion
 }
 
 /// <summary>

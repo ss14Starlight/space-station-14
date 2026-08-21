@@ -29,7 +29,7 @@ namespace Content.Server.Database
 
     public static class UnbanDefExtensions
     {
-        public static AdminUnban ToNullLink(this ServerUnbanDef serverUnban)
+        public static AdminUnban ToNullLink(this UnbanDef serverUnban)
             => new(serverUnban.BanId, serverUnban.UnbanningAdmin, serverUnban.UnbanTime, serverUnban.ProjectName, serverUnban.ServerName);
     }
 
