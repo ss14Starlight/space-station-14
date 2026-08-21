@@ -34,6 +34,7 @@
   - Atmospherics
   - GenpopEnter
   - GenpopLeave
+  - Journalism # Goobstation
   - Cadet # Starlight start
   - Magistrate
   - Ntrep
@@ -47,7 +48,9 @@
   - SalvageLead
   - Mail
   - Debrief
-  - Shuttle # Starlight end
+  - Shuttle
+  - Clown
+  - Mime # Starlight end
 
 
 - type: accessGroup

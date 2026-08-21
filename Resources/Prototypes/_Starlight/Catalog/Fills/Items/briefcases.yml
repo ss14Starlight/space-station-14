@@ -24,6 +24,9 @@
           - id: Paper
           - id: Pen
           - id: RubberStampLawyer
+          - id: TapeRecorder
+          - id: CassetteTape
+          - id: CassetteTape
 
 # Syndicate dead drop
 - type: entity

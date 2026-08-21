@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Client.Graphics;
 using Content.Shared._Starlight.CustomSpawner;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -25,7 +26,7 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CustomSpawnerHologramComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<CustomSpawnerHologramComponent, ComponentStartup>(OnStartup, after: [typeof(SpriteSystem)]);
         SubscribeLocalEvent<CustomSpawnerHologramComponent, BeforePostShaderRenderEvent>(OnShaderRender);
     }
 
@@ -67,6 +68,9 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
 
     private void UpdateHologramSprite(EntityUid uid, CustomSpawnerHologramComponent comp)
     {
+        if (!comp.Running)
+            return;
+
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
@@ -119,7 +123,13 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
         instance.SetParameter("texHeight", texHeight);
         instance.SetParameter("t", (float)_timing.CurTime.TotalSeconds * comp.ScrollRate);
 
-        sprite.PostShader = instance;
+        _sprite.SetPostShader(sprite, new SpriteComponent.PostShaderArgs(ContentPostShaderIds.Hologram, instance)
+        {
+            GetScreenTexture = true,
+            RaiseShaderEvent = true,
+            Before = ContentPostShaderIds.BeforeOutlines,
+        });
+
         sprite.RaiseShaderEvent = true;
     }
 }

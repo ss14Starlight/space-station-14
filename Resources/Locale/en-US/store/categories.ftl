@@ -24,6 +24,7 @@ store-caregory-spellbook-defensive = Defensive Spells
 store-caregory-spellbook-utility = Utility Spells
 store-caregory-spellbook-equipment = Wizard Equipment
 store-caregory-spellbook-events = Event Spells
+store-caregory-spellbook-war = War (ask an admin)
 
 # Nukie Delivery
 store-category-nukie-delivery = Offers

@@ -11,3 +11,312 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepFloor
+
+- type: entity
+  id: TableCounterRetroSteel
+  parent: CounterBase
+  name: retro steel counter
+  description: Looks like a good place to put a drink down.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Tables/steel_counter.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Tables/steel_counter.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: counterretrosteel
+    base: state_
+  - type: Construction
+    graph: CounterRetroSteel
+    node: CounterRetroSteel
+
+- type: entity
+  id: TableCounterRetroWood
+  parent: CounterBase
+  name: retro wood counter
+  description: Looks like a good place to put a drink down.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Tables/wood_counter.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Tables/wood_counter.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: counterretrowood
+    base: state_
+  - type: Construction
+    graph: CounterRetroWood
+    node: CounterRetroWood
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWood
+
+- type: entity
+  id: TableCounterRetroKitchen
+  parent: CounterBase
+  name: retro kitchen counter
+  description: Looks like a good place to put a drink down.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Tables/kitchen_counter.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Tables/kitchen_counter.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: counterretrokitchen
+    base: state_
+  - type: Construction
+    graph: CounterRetroKitchen
+    node: CounterRetroKitchen
+
+- type: entity
+  id: TableCounterRetroSteelWood
+  parent: CounterBase
+  name: retro steel and wood counter
+  description: Looks like a good place to put a drink down.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Tables/retro_counter_sw.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Tables/retro_counter_sw.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: counterretrosteelwood
+    base: state_
+  - type: Construction
+    graph: CounterRetroSteelWood
+    node: CounterRetroSteelWood
+
+- type: entity
+  id: TableCounterRetroWhiteOrange
+  parent: CounterBase
+  name: retro white and orange counter
+  description: Looks like a good place to put a drink down.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Tables/retro_counter_wo.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Tables/retro_counter_wo.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: counterretrowhiteorange
+    base: state_
+  - type: Construction
+    graph: CounterRetroWhiteOrange
+    node: CounterRetroWhiteOrange
+
+- type: entity
+  id: TableCounterRetroWhiteTeal
+  parent: CounterBase
+  name: retro white and teal counter
+  description: Looks like a good place to put a drink down.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Tables/retro_counter_wt.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Tables/retro_counter_wt.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: counterretrowhiteteal
+    base: state_
+  - type: Construction
+    graph: CounterRetroWhiteTeal
+    node: CounterRetroWhiteTeal
+
+- type: entity
+  id: TableCounterRetroDiner
+  parent: CounterBase
+  name: retro diner counter
+  description: Looks like a good place to put a drink down.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Tables/diner_counter.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Tables/diner_counter.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: counterretrodiner
+    base: state_
+  - type: Construction
+    graph: CounterRetroDiner
+    node: CounterRetroDiner

@@ -1195,20 +1195,6 @@
         Manipulator: 1
 
 - type: entity
-  id: VinylPlayerCircuitBoard
-  parent: BaseMachineCircuitboard
-  name: vinyl player circuitboard
-  description: A machine printed circuit board for a vinyl player.
-  components:
-    - type: Sprite
-      state: service
-    - type: MachineBoard
-      prototype: VinylPlayer
-      stackRequirements:
-        Steel: 5
-        Manipulator: 1
-
-- type: entity
   id: NullspaceAnchorMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: nullspace anchor circuitboard

@@ -692,6 +692,7 @@
     tags:
     - Raw
     - Meat
+    - RawXenoMeat #starlight: BountySalvageRawXenoMeat
   - type: Sprite
     state: xeno
   - type: SolutionContainerManager

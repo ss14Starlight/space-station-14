@@ -1,0 +1,299 @@
+- type: entity
+  id: ProjectileFirebolt
+  name: firebolt
+  description: Ignis!
+  parent: ProjectileFireball
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#E25822"
+    radius: 2.0
+    energy: 5.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 50
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: firebolt
+      shader: unshaded
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 5
+    canCreateVacuum: false
+  - type: IgnitionSource
+    temperature: 10000
+    ignited: true
+  - type: IgniteOnCollide
+    fireStacks: 2
+
+- type: entity
+  id: ProjectileFireOrb
+  name: fireorb
+  description: The air twists and wraps around the orb, staying close would be ill advised.
+  parent: ProjectileFireball
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#910f0f"
+    radius: 10.0
+    energy: 20.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 5
+  - type: TimedDespawn
+    lifetime: 60
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: fireorb
+      shader: unshaded
+  - type: Explosive
+    explosionType: Incendiary
+    maxIntensity: 1
+    intensitySlope: 0.1
+    totalIntensity: 15
+    canCreateVacuum: false
+  - type: IgnitionSource
+    temperature: 10000
+    ignited: true
+
+- type: entity
+  id: ProjectileFireArrow
+  parent: BaseItem
+  name: fire arrow
+  description: Flagra!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#E25822"
+    radius: 1.0
+    energy: 10.0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,-0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    damage:
+      types:
+        Heat: 25
+        Slash: 25
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: firearrow
+  - type: TimedDespawn
+    lifetime: 6
+  - type: IgniteOnCollide
+    fireStacks: 1
+
+- type: entity
+  id: ProjectileIceGlare
+  parent: BaseBulletTrigger
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/ice_anom.rsi
+    layers:
+    - state: bullet
+  - type: Projectile
+    damage:
+      types:
+        Cold: 10
+    soundHit:
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+  - type: StaminaDamageOnCollide
+    damage: 50
+  - type: ChangeTemperatureOnCollide
+    heat: -12000
+    ignoreHeatResistance: false
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: TimedDespawn
+    lifetime: 0.1
+  - type: IceTrail
+    spawnInterval: 0.05
+    iceChance: 1
+    iceEntityId: IceCrust
+    snowTileId: FloorSnow
+  - type: IceSpawnOnTrigger
+    radius: 2
+    requireHumanoid: true
+    iceChance: 1
+    iceEntityId: IceCrust
+    snowTileId: FloorSnow
+
+- type: entity
+  id: ProjectileIceShard
+  parent: BaseBulletTrigger
+  name: ice shard
+  description: A freezing and razor sharp projectile of ice.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: iceshard
+  - type: Projectile
+    damage:
+      types:
+        Cold: 30
+        Slash: 50
+    soundHit:
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+  - type: PointLight
+    color: "#2CDDF5"
+    radius: 2.0
+    energy: 6.0
+  - type: ChangeTemperatureOnCollide
+    heat: -30000
+    ignoreHeatResistance: false
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  - type: IceTrail
+    spawnInterval: 0.05
+    iceChance: 1
+    iceEntityId: IceCrust
+  - type: IceSpawnOnTrigger
+    radius: 3
+    requireHumanoid: true
+    iceChance: 1
+    iceEntityId: IceCrust
+
+- type: entity
+  id: ProjectileIceOrb
+  parent: BaseBulletTrigger
+  name: ice orb
+  description: The freezing wrath of a cryomancer given form.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: iceorb
+  - type: Projectile
+    damage:
+      types:
+        Cold: 50
+        Slash: 100 #more because too easy to tank?
+        Structural: 800 #mechslopus deletus
+    soundHit:
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+  - type: PointLight
+    color: "#2CDDF5"
+    radius: 4.0
+    energy: 10.0
+  - type: TimedDespawn
+    lifetime: 20
+  - type: RepeatingTrigger
+    delay: 1.5
+  - type: SpawnOnTrigger
+    proto: Icefragbomb
+  - type: IceTrail
+    spawnInterval: 0.05
+    iceChance: 1
+    iceEntityId: IceCrust
+  - type: IceSpawnOnTrigger
+    radius: 3
+    requireHumanoid: true
+    iceChance: 1
+    iceEntityId: IceCrust
+
+- type: entity
+  parent: [ProjectileGrenadeBase]
+  id: Icefragbomb
+  name: ice bomb
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/ice_anom.rsi
+    layers:
+    - state: bullet
+  - type: TriggerOnSpawn
+  - type: ProjectileGrenade
+    fillPrototype: projectileIceFrag
+    capacity: 30
+    triggerKey: trigger
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Effects/glass_break1.ogg
+    positional: true
+  - type: Stealth
+    minVisibility: -1
+    lastVisibility: -1
+  - type: TimedDespawn
+    lifetime: 0.1
+
+- type: entity
+  parent: PelletClusterLessLethal
+  id: projectileIceFrag
+  categories: [ HideSpawnMenu ]
+  name: pellet (ball, less lethal)
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 5
+        Cold: 8
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  parent: [ProjectileGrenadeBase]
+  id: EruptionBomb
+  name: unstable fire
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: eruptionbomb
+  - type: TriggerOnSpawn
+  - type: ProjectileGrenade
+    fillPrototype: ProjectileEruption
+    capacity: 20
+    triggerKey: trigger
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
+    positional: true
+  - type: TimedDespawn
+    lifetime: 0.1
+
+- type: entity
+  parent: PelletClusterIncendiary
+  id: ProjectileEruption
+  categories: [ HideSpawnMenu ]
+  name: pellet (ball, less lethal)
+  components:
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 0
+        Heat: 10
+  - type: IgniteOnCollide
+    fireStacks: 1
+    count: 5
+  - type: TimedDespawn
+    lifetime: 0.25

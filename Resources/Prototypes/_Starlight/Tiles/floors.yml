@@ -920,3 +920,120 @@
   parent: FloorDevFloor
   name: tiles-floor-dev-service
   sprite: /Textures/_Starlight/Tiles/dev_service.png
+
+# Grass
+- type: tile
+  id: FloorJungleAstroGrassEdge
+  name: tiles-jungle-astro-grass
+  parent: FloorGrassJungle
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/_Starlight/Tiles/GrassTall/single_edge.png
+    NorthEast: /Textures/_Starlight/Tiles/GrassTall/single_edge.png
+    NorthWest: /Textures/_Starlight/Tiles/GrassTall/single_edge.png
+    SouthWest: /Textures/_Starlight/Tiles/GrassTall/single_edge.png
+    South: /Textures/_Starlight/Tiles/GrassTall/double_edge.png
+    East: /Textures/_Starlight/Tiles/GrassTall/double_edge.png
+    North: /Textures/_Starlight/Tiles/GrassTall/double_edge.png
+    West: /Textures/_Starlight/Tiles/GrassTall/double_edge.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Cutting ]
+  itemDrop: FloorTileItemJungleAstroGrass
+  weather: false
+
+- type: tile
+  parent: FloorGrassDark
+  id: FloorDarkAstroGrassEdge
+  name: tiles-dark-astro-grass
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/_Starlight/Tiles/GrassDark/single_edge.png
+    NorthEast: /Textures/_Starlight/Tiles/GrassDark/single_edge.png
+    NorthWest: /Textures/_Starlight/Tiles/GrassDark/single_edge.png
+    SouthWest: /Textures/_Starlight/Tiles/GrassDark/single_edge.png
+    South: /Textures/_Starlight/Tiles/GrassDark/double_edge.png
+    East: /Textures/_Starlight/Tiles/GrassDark/double_edge.png
+    North: /Textures/_Starlight/Tiles/GrassDark/double_edge.png
+    West: /Textures/_Starlight/Tiles/GrassDark/double_edge.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Cutting ]
+  itemDrop: FloorTileItemDarkAstroGrass
+  weather: false
+
+- type: tile
+  parent: FloorGrassLight
+  id: FloorLightAstroGrassEdge
+  name: tiles-light-astro-grass
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/_Starlight/Tiles/GrassLight/single_edge.png
+    NorthEast: /Textures/_Starlight/Tiles/GrassLight/single_edge.png
+    NorthWest: /Textures/_Starlight/Tiles/GrassLight/single_edge.png
+    SouthWest: /Textures/_Starlight/Tiles/GrassLight/single_edge.png
+    South: /Textures/_Starlight/Tiles/GrassLight/double_edge.png
+    East: /Textures/_Starlight/Tiles/GrassLight/double_edge.png
+    North: /Textures/_Starlight/Tiles/GrassLight/double_edge.png
+    West: /Textures/_Starlight/Tiles/GrassLight/double_edge.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Cutting ]
+  itemDrop: FloorTileItemLightAstroGrass
+  weather: false
+
+- type: tile
+  id: FloorGrassClassic
+  name: tiles-planet-grass-classic-floor
+  sprite: /Textures/Tiles/Planet/Grass/grass.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: FloorDirt
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  itemDrop: FloorTileItemGrass
+  heatCapacity: 10000
+  weather: True
+
+- type: tile
+  id: FloorGrassClassicMowed
+  name: tiles-planet-grass-classic-floor-mowed
+  sprite: /Textures/Tiles/Planet/Grass/grass.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: FloorDirt
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  itemDrop: FloorTileItemGrass
+  heatCapacity: 10000
+  weather: false
+
+- type: tile
+  id: FloorAstroGrassClassic
+  name: tiles-astro-grass-classic
+  parent: FloorGrassClassic
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png
+    NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png
+    NorthWest: /Textures/Tiles/Planet/Grass/single_edge.png
+    SouthWest: /Textures/Tiles/Planet/Grass/single_edge.png
+    South: /Textures/Tiles/Planet/Grass/double_edge.png
+    East: /Textures/Tiles/Planet/Grass/double_edge.png
+    North: /Textures/Tiles/Planet/Grass/double_edge.png
+    West: /Textures/Tiles/Planet/Grass/double_edge.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Cutting ]
+  itemDrop: FloorTileItemGrass
+  weather: false

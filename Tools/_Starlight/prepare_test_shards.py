@@ -6,16 +6,14 @@ import subprocess
 from pathlib import Path
 
 
+SHARD_COUNT = 6
+
 def main():
     script_dir = Path(__file__).resolve().parent
     project_root = script_dir.parent.parent # Project root is two folders up
     os.chdir(project_root)
 
     filter_dir = ".integration-filters"
-
-    if (project_root / filter_dir / "shard_0.runsettings").is_file():
-        print("Shard filters already generated, skipping.", file=sys.stderr)
-        return
 
     env = os.environ.copy()
 
@@ -29,7 +27,6 @@ def main():
         [
             "dotnet", "build",
             "--configuration", "DebugOpt",
-            "--no-restore",
             "/m",
             "Content.IntegrationTests/Content.IntegrationTests.csproj",
         ],
@@ -39,17 +36,13 @@ def main():
 
     # Grab the names of all tests
     print("Generating shard filters...", file=sys.stderr)
+    test_app = project_root / "bin" / "Content.IntegrationTests" / "Content.IntegrationTests"
+    if os.name == "nt":
+        test_app = test_app.with_name(test_app.name + ".exe")
     list_result = subprocess.run(
-        [
-            "dotnet", "test",
-            "--list-tests",
-            "--no-build",
-            "--configuration", "DebugOpt",
-            "Content.IntegrationTests/Content.IntegrationTests.csproj",
-        ],
+        [str(test_app), "--list-tests", "json"],
         env=env,
         stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT, # merge stderr into stdout
         text=True,
         check=True,
     )
@@ -60,7 +53,7 @@ def main():
     # depending on how it's invoked.
     filter_script = script_dir / "partition_tests.py"
     subprocess.run(
-        [sys.executable, filter_script, "generate", "8", filter_dir],
+        [sys.executable, filter_script, "generate", str(SHARD_COUNT), filter_dir],
         input=list_result.stdout,
         text=True,
         check=True,

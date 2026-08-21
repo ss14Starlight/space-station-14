@@ -313,6 +313,18 @@
 
 - type: entity
   parent: SurgeryStepBase
+  id: SurgeryStepLocateNoseImplant
+  name: Locate Implant
+  components:
+  - type: SurgeryStep
+    duration: 2
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: nose_implant_scent
+
+- type: entity
+  parent: SurgeryStepBase
   id: SurgeryStepRemoveEyeImplant
   name: Remove Eye Implant
   components:
@@ -841,6 +853,80 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
       - state: eye_implant_welding
+
+# nose implants
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPrepareImplantSiteNose
+  name: Prepare Implant Site
+  components:
+  - type: SurgeryStep
+    duration: 2
+    tools:
+    - type: Scalpel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInsertNoseImplant
+  name: Insert Nose Implant
+  components:
+  - type: SurgeryStep
+    duration: 2
+    tools:
+    - type: NoseImplant
+  - type: SurgeryStepOrganInsert
+    slot: nose_implant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: nose_implant_scent
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepConnectOlfactoryNerve
+  name: Connect Olfactory Nerve
+  components:
+  - type: SurgeryStep
+    duration: 4
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepClampOlfactoryNerve
+  name: Clamp Olfactory Nerve
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: Hemostat
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: hemostat
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveNoseImplant
+  name: Remove Nose Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: Scalpel
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: NoseImplant
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
 
 # hand implants
 

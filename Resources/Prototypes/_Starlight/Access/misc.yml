@@ -36,6 +36,9 @@
     - SalvageLead
     - Mail
     - Shuttle
+    - Journalism
+    - Clown
+    - Mime
 
 - type: accessLevel
   id: Debug1

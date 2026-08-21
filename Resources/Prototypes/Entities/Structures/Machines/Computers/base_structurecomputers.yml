@@ -17,7 +17,11 @@
       - board
   - type: Computer
   - type: ApcPowerReceiver
-    powerLoad: 200
+    powerLoad: 50
+  - type: PowerState
+    idlePowerDraw: 50
+    workingPowerDraw: 500
+  - type: UIPowerState
   - type: ExtensionCableReceiver
   - type: ActivatableUIRequiresPower
   - type: Sprite
@@ -45,7 +49,6 @@
         whitelist:
           components:
           - PAI
-  - type: LockedWiresPanel
   # Starlight End
   - type: Appearance
   - type: GenericVisualizer
@@ -74,7 +77,7 @@
     radius: 2.5 #SL 1.5 - > 2.5
     energy: 1.5 #SL 3.0 -> 1.5
     enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
     offset: "0, 0.4" # shine from the top, not bottom of the computer
     castShadows: false

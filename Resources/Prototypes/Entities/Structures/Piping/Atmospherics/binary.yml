@@ -308,7 +308,7 @@
       graph: GasBinary
       node: passivegate
     - type: AmbientSound
-      enabled: true
+      enabled: false # Starlight-edit: Unnecessary audio feedback for an always-on device
       volume: -9
       range: 5
       sound:
@@ -378,8 +378,8 @@
       node: valve
     - type: AmbientSound
       enabled: true
-      volume: -9
-      range: 5
+      volume: -13 # Starlight-edit: half the original amplitude (-9dB)
+      range: 3 # Starlight-edit: smaller radius so valve clusters don't overlap
       sound:
         path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
@@ -458,8 +458,8 @@
     node: signalvalve
   - type: AmbientSound
     enabled: true
-    volume: -9
-    range: 5
+    volume: -13 # Starlight-edit: half the original amplitude (-9dB)
+    range: 3 # Starlight-edit: smaller radius so valve clusters don't overlap
     sound:
       path: /Audio/Ambience/Objects/gas_hiss.ogg
   - type: AtmosMonitoringConsoleDevice
