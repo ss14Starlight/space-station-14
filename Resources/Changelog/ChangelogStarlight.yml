@@ -1,25 +1,4 @@
 Entries:
-- author: Caws, oliveoil238, & rtasva
-  changes:
-  - message: Abductor plushie has been renamed to "alien grey plushie" as to not bump against the Metashield.
-    type: Tweak
-  id: 407403
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
-  - message: CentComm will be re-opening the Marketable Plushie Program! Stay tuned for more details soon.
-    type: Tweak
-  id: 407404
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
-  - message: 34 plushies have been discontinued from the hug dispenser.
-    type: Remove
-  id: 407405
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
 - author: Glaud
   changes:
   - message: Purrfus cyborgs now come with an paperwork printing module, holding a document printer, an integrated fax transmitter, a clipboard and a document slot.
@@ -2799,4 +2778,25 @@ Entries:
   id: 407802
   time: '2026-08-21T15:23:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5761
+- author: wonderfulnewworld
+  changes:
+  - message: Xenoborgs (the main mode, not the submode) scale again, although they're not in rotation yet.
+    type: Tweak
+  id: 407803
+  time: '2026-08-21T15:47:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5765
+- author: wonderfulnewworld
+  changes:
+  - message: Antags that fail to roll will try to roll again.
+    type: Fix
+  id: 407804
+  time: '2026-08-21T15:47:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5765
+- author: wonderfulnewworld
+  changes:
+  - message: Wizard Duel will no longer fail to roll the green and orange wizards.
+    type: Fix
+  id: 407805
+  time: '2026-08-21T15:47:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5765
 Order: -1
