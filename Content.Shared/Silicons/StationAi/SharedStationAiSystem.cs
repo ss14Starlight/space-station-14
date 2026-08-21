@@ -488,7 +488,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         UpdateAppearance((ent.Owner, ent.Comp));
 
         if (ent.Comp.RenameOnInsert)
-            _metadata.SetEntityName(ent.Owner, _nameModifier.GetBaseName(args.Entity));
+            _metadata.SetEntityName(ent.Owner, _nameModifier.GetBaseName(args.Entity)); // Starlight-edit
     }
 
     private void OnHolderConRemove(Entity<StationAiHolderComponent> ent, ref EntRemovedFromContainerMessage args)
