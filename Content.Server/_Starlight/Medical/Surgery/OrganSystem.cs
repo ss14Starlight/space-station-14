@@ -333,7 +333,6 @@ public sealed partial class OrganSystem : EntitySystem
                 UpdateEntity(args.Body, comp.Component, ent.Owner);
             }
         }
-        _actionsSystem.AddAction(args.Body, ref shell.BreakShellActionEntity, shell.BreakShellAction);
         _actionsSystem.AddAction(args.Body, ref shell.GenerateShellPieceActionEntity, shell.GenerateShellPieceAction);
     }
 
@@ -353,7 +352,6 @@ public sealed partial class OrganSystem : EntitySystem
                 UpdateEntity(args.Body, comp.Component, ent.Owner);
             }
         }
-        _actionsSystem.RemoveAction(args.Body, shell.BreakShellActionEntity);
         _actionsSystem.RemoveAction(args.Body, shell.GenerateShellPieceActionEntity);
     }
 

@@ -47,7 +47,7 @@
 - type: guideEntry
   id: Doll
   name: species-name-doll
-  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Doll.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Doll.xml"
 
 - type: guideEntry
   id: Neocyte

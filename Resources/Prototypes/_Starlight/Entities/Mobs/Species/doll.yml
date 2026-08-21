@@ -48,11 +48,7 @@
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
   - type: Shell
-    breakShellAction: ActionShedShell
     generateShellPieceAction: ActionGenerateShellPiece
-    noShellComponents: 
-    - type: VentCrawler
-      mayCarryItems: false
 
 - type: entity
   parent: BaseSpeciesDummy

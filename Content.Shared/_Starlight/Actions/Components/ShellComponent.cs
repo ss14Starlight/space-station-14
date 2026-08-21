@@ -10,15 +10,6 @@ namespace Content.Shared._Starlight.Actions.Components;
 public sealed partial class ShellComponent : Component
 {
     /// <summary>
-    /// The entity needed to break your shell.
-    /// </summary>
-    [DataField(required: true), AutoNetworkedField]
-    public EntProtoId BreakShellAction;
-
-    [DataField, AutoNetworkedField]
-    public EntityUid? BreakShellActionEntity;
-
-    /// <summary>
     /// The entity needed to snap off a pice of your shell.
     /// </summary>
     [DataField(required: true), AutoNetworkedField]

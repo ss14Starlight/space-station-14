@@ -17,13 +17,11 @@ public sealed class ShellSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, ShellComponent comp, MapInitEvent args)
     {
-        _actionsSystem.AddAction(uid, ref comp.BreakShellActionEntity, comp.BreakShellAction);
         _actionsSystem.AddAction(uid, ref comp.GenerateShellPieceActionEntity, comp.GenerateShellPieceAction);
     }
 
     private void OnCompRemove(EntityUid uid, ShellComponent comp, ComponentShutdown args)
     {
-        _actionsSystem.RemoveAction(uid, comp.BreakShellActionEntity);
         _actionsSystem.RemoveAction(uid, comp.GenerateShellPieceActionEntity);
     }
 }
