@@ -1,0 +1,128 @@
+# Music from https://freemusicarchive.org/home, see the applicable attributions.yml for sources and such.
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylCrazyBot
+  name: "vinyl: Crazy Bot"
+  description: "By: Andrew R Codeman"
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#8b5cf6"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/CrazyBot.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylD2
+  name: "vinyl: D2"
+  description: "By: Amarent"
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#2457a6"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/D2.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylAcidRaindream
+  name: "vinyl: Acid Raindream"
+  description: "By: ROZKOL"
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#3ca6a6"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/AcidRaindream.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylUntitled7
+  name: "vinyl: Untitled #7"
+  description: "By: Tommaso Croce"
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#8a8792"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/Untitled#7.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylSmarties
+  name: "vinyl: Smarties"
+  description: "By: Birds for Scale"
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#ef4f9a"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/Smarties.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylSilverAndCold
+  name: "vinyl: Silver and Cold"
+  description: "By: Kevin Hartnell"
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#b8d9e8"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/SilverandCold.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylCirclesOfBlackAndRed
+  name: "vinyl: Circles of Black and Red"
+  description: "By: Kevin Hartnell"
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#9e2638"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/CirclesofBlackandRed.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylDepressedWawaTriesToProtest
+  name: "vinyl: Depressed Wawa tries to protest"
+  description: "By: theprofessorix"
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#64705f"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/DepressedWawatriestoprotest.ogg
