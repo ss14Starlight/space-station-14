@@ -95,7 +95,7 @@
                     <Button Name="RefreshButton"
                             Text="{Loc administration-ui-events-tab-refresh}" />
                 </BoxContainer>
-                <co:SearchListContainer Name="SearchList" Access="Public" MinHeight="260" />
+                <co:SearchListContainer Name="SearchList" Access="Public" MinHeight="260" Margin="0 0 12 0" />
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

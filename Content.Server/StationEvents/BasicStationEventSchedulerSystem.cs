@@ -38,6 +38,9 @@ namespace Content.Server.StationEvents
             component.TimeUntilNextEvent = RobustRandom.NextFloat(component.MinimumTimeUntilFirstEvent, component.MinimumTimeUntilFirstEvent + 120);
             // Starlight-start
             component.EventQueue.Clear();
+            // A pause left over from the previous round would shift this fresh queue forward
+            // by an interval that has nothing to do with it.
+            component.PausedAt = null;
             EnsureScheduledEvents(uid, component);
             // Starlight-end
         }
@@ -46,7 +49,10 @@ namespace Content.Server.StationEvents
             GameRuleEndedEvent args)
         {
             component.TimeUntilNextEvent = component.MinimumTimeUntilFirstEvent;
-            component.EventQueue.Clear(); // Starlight
+            // Starlight-start
+            component.EventQueue.Clear();
+            component.PausedAt = null;
+            // Starlight-end
         }
 
 

@@ -72,6 +72,20 @@ public sealed partial class AdminSystem : EntitySystem
     [Dependency] private CharacterRecordsSystem _characterRecords = default!; // Cosmatic Drift Record System: erase-ban helper
     [Dependency] private IGameTiming _timing = default!; // Starlight
 
+    // Starlight-start
+    /// <summary>
+    /// Shortest gap the server honours between snapshot requests from one admin.
+    /// </summary>
+    /// <remarks>
+    /// The client asks once a second and only while the tab is visible, but that is the
+    /// client restraining itself. Projecting every event prototype is not free, so a client
+    /// asking on every tick gets dropped here rather than trusted.
+    /// </remarks>
+    private static readonly TimeSpan StationEventsRequestInterval = TimeSpan.FromSeconds(0.75);
+
+    private readonly Dictionary<NetUserId, TimeSpan> _lastStationEventsRequest = new();
+    // Starlight-end
+
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
     /// <summary>
@@ -116,6 +130,7 @@ public sealed partial class AdminSystem : EntitySystem
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
     {
         _roundActivePlayers.Clear();
+        _lastStationEventsRequest.Clear(); // Starlight
 
         foreach (var (id, data) in _playerList)
         {
@@ -399,6 +414,15 @@ public sealed partial class AdminSystem : EntitySystem
         if (!_adminManager.HasAdminFlag(args.SenderSession, AdminFlags.Admin))
             return;
 
+        var now = _timing.CurTime;
+        var user = args.SenderSession.UserId;
+        if (_lastStationEventsRequest.TryGetValue(user, out var last) &&
+            now - last < StationEventsRequestInterval)
+        {
+            return;
+        }
+
+        _lastStationEventsRequest[user] = now;
         SendStationEvents(args.SenderSession);
     }
 
