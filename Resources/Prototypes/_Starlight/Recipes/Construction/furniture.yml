@@ -552,3 +552,30 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# Froggy Chair
+- type: construction
+  id: ChairFroggy
+  name: construction-recipe-froggy-chair
+  graph: ChairSL
+  startNode: start
+  targetNode: chairFroggy
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ChairLovey
+  name: construction-recipe-lovey-chair
+  graph: ChairSL
+  startNode: start
+  targetNode: chairLovey
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
