@@ -6,7 +6,7 @@
     weight: 2
     earliestStart: 30
     reoccurrenceDelay: 20
-    minimumPlayers: 35
+    minimumPlayers: 30
     duration: null
   - type: SpaceSpawnRule
   - type: AntagSpawner
