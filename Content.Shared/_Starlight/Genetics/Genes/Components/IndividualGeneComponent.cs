@@ -1,5 +1,6 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Genetics.Genes.Components;
 
@@ -26,7 +27,7 @@ public sealed partial class IndividualGeneComponent : Component
     /// The informal name set by players and/or history.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
-    public string? Name = string.Empty;
+    public string? Name;
 
     /// <summary>
     /// If non-null, the gene prototype this individual gene refers to.

@@ -34,13 +34,13 @@
   items:
     - id: SheetSteel1
       amount: 1
-  cooldown: 1
+  cooldown: 5
 
 - type: geneticTrait
   id: SteelSpawnNormal
   name: Regular Steel Spawn
   description: Spawns 5 sheets of steel every 15 seconds. Scales with trait strength.
-  threshold: 1
+  threshold: 2
   classes:
     - Slime
   parts:
@@ -53,13 +53,13 @@
   items:
     - id: SheetSteel1
       amount: 5
-  cooldown: 10
+  cooldown: 15
 
 - type: geneticTrait
   id: SteelSpawnSlow
   name: Slow Steel Spawn
   description: Spawns 15 sheets of steel every 30 seconds. Scales with trait strength.
-  threshold: 1
+  threshold: 3
   classes:
     - Slime
   parts:
@@ -72,13 +72,13 @@
   items:
     - id: SheetSteel1
       amount: 15
-  cooldown: 3
+  cooldown: 30
 
 - type: geneticTrait
   id: SteelAndGlassSpawn
   name: Steel And Glass Spawn
   description: Spawns 5 sheets of steel and 5 sheets of glass every 15 seconds. Scales with trait strength.
-  threshold: 1
+  threshold: 3
   classes:
     - Slime
   parts:
@@ -92,4 +92,4 @@
   items:
     - id: SheetGlass1
       amount: 5
-  cooldown: 10
+  cooldown: 15

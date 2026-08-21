@@ -35,6 +35,9 @@
         - Slime
       availableTraits:
         - MonkeyCubeSpawn
+        - SteelSpawnRapid
+        - SteelSpawnNormal
+        - SteelSpawnSlow
         - SteelAndGlassSpawn
     - type: GeneticSlime
       splitEntity: GeneticSlime
@@ -77,6 +80,5 @@
   traits:
     traits:
       MonkeyCubeSpawn: 1.0
-      SteelAndGlassSpawn: 1.0
   technicalName: SLmE1
   name: Base Slime Gene
