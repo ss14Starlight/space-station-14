@@ -460,6 +460,8 @@ public sealed partial class AdminSystem : EntitySystem
     private void SendStationEvents(ICommonSession session)
     {
         var available = _eventManager.AvailableEvents();
+        var occurrenceCounts = _eventManager.GetOccurrenceCounts();
+
         var runtimeStates = new Dictionary<string, EventRuntimeState>();
         var activeEvents = new List<ActiveStationEventData>();
 
@@ -549,31 +551,37 @@ public sealed partial class AdminSystem : EntitySystem
                 .ToList(),
             Events = _eventManager.AllEvents()
                 .OrderBy(pair => pair.Key.ID)
-                .Select(pair => new StationEventData
+                .Select(pair =>
                 {
-                    Id = pair.Key.ID,
-                    Available = available.ContainsKey(pair.Key),
-                    MinimumPlayers = pair.Value.MinimumPlayers,
-                    EarliestStartMinutes = pair.Value.EarliestStart,
-                    ReoccurrenceDelayMinutes = pair.Value.ReoccurrenceDelay,
-                    // The effective weight, not the configured one: with repetition falloff
-                    // enabled these diverge, and the number that matters is the one selection
-                    // actually uses.
-                    Weight = _eventManager.GetEffectiveWeight(pair.Key, pair.Value),
-                    Occurrences = _eventManager.GetOccurrences(pair.Key),
-                    DurationSeconds = pair.Value.Duration is { } duration
-                        ? (float) duration.TotalSeconds
-                        : -1f,
-                    MaxDurationSeconds = pair.Value.MaxDuration is { } maxDuration
-                        ? (float) maxDuration.TotalSeconds
-                        : pair.Value.Duration is { } fixedDuration
-                            ? (float) fixedDuration.TotalSeconds
+                    var runtime = runtimeStates.GetValueOrDefault(pair.Key.ID);
+                    var occurrences = occurrenceCounts.GetValueOrDefault(pair.Key.ID);
+
+                    return new StationEventData
+                    {
+                        Id = pair.Key.ID,
+                        Available = available.ContainsKey(pair.Key),
+                        MinimumPlayers = pair.Value.MinimumPlayers,
+                        EarliestStartMinutes = pair.Value.EarliestStart,
+                        ReoccurrenceDelayMinutes = pair.Value.ReoccurrenceDelay,
+                        // The effective weight, not the configured one: with repetition falloff
+                        // enabled these diverge, and the number that matters is the one selection
+                        // actually uses.
+                        Weight = _eventManager.GetEffectiveWeight(pair.Value, occurrences),
+                        Occurrences = occurrences,
+                        DurationSeconds = pair.Value.Duration is { } duration
+                            ? (float) duration.TotalSeconds
                             : -1f,
-                    ActiveCount = runtimeStates.TryGetValue(pair.Key.ID, out var runtime) ? runtime.ActiveCount : 0,
-                    PendingCount = runtimeStates.TryGetValue(pair.Key.ID, out runtime) ? runtime.PendingCount : 0,
-                    NextStartSeconds = runtimeStates.TryGetValue(pair.Key.ID, out runtime) ? runtime.NextStartSeconds : -1f,
-                    MinRemainingSeconds = runtimeStates.TryGetValue(pair.Key.ID, out runtime) ? runtime.MinRemainingSeconds : -1f,
-                    MaxRemainingSeconds = runtimeStates.TryGetValue(pair.Key.ID, out runtime) ? runtime.MaxRemainingSeconds : -1f
+                        MaxDurationSeconds = pair.Value.MaxDuration is { } maxDuration
+                            ? (float) maxDuration.TotalSeconds
+                            : pair.Value.Duration is { } fixedDuration
+                                ? (float) fixedDuration.TotalSeconds
+                                : -1f,
+                        ActiveCount = runtime?.ActiveCount ?? 0,
+                        PendingCount = runtime?.PendingCount ?? 0,
+                        NextStartSeconds = runtime?.NextStartSeconds ?? -1f,
+                        MinRemainingSeconds = runtime?.MinRemainingSeconds ?? -1f,
+                        MaxRemainingSeconds = runtime?.MaxRemainingSeconds ?? -1f
+                    };
                 })
                 .ToList()
         };

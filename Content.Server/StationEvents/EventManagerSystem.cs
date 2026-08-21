@@ -329,6 +329,41 @@ public sealed partial class EventManagerSystem : EntitySystem
         return GetOccurrences(stationEvent.ID);
     }
 
+    /// <summary>
+    /// How many times each event has run this round, counted in a single pass.
+    /// </summary>
+    /// <remarks>
+    /// The admin panel projects every event at once, and asking per event walked the round's
+    /// rule history twice for each of them once a second per admin watching.
+    /// </remarks>
+    public Dictionary<string, int> GetOccurrenceCounts() // Starlight
+    {
+        var counts = new Dictionary<string, int>();
+        foreach (var (_, ruleId) in GameTicker.AllPreviousGameRules)
+        {
+            counts.TryGetValue(ruleId, out var seen);
+            counts[ruleId] = seen + 1;
+        }
+
+        return counts;
+    }
+
+    /// <summary>
+    /// The effective weight when the caller already knows the occurrence count.
+    /// </summary>
+    /// <remarks>
+    /// The admin panel projects every event at once and would otherwise walk the round's
+    /// rule history twice per event, so it counts them in one pass and passes the result in.
+    /// </remarks>
+    public float GetEffectiveWeight(StationEventComponent stationEvent, int occurrences) // Starlight
+    {
+        var falloff = Math.Clamp(_configurationManager.GetCVar(CCVars.EventsRepetitionFalloff), 0f, 1f);
+        if (MathHelper.CloseTo(falloff, 1f) || occurrences <= 0)
+            return stationEvent.Weight;
+
+        return stationEvent.Weight * MathF.Pow(falloff, occurrences);
+    }
+
     public int GetOccurrences(string stationEvent) // Starlight
     {
         return GameTicker.AllPreviousGameRules.Count(p => p.Item2 == stationEvent);

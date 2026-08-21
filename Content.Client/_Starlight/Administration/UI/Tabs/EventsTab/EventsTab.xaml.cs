@@ -291,10 +291,10 @@ public sealed partial class EventsTab : Control
             };
 
             row.AddChild(details);
-            AddQueueButton(actions, "-5m", queued.Id, StationEventQueueCommand.Adjust, -300f);
-            AddQueueButton(actions, "-1m", queued.Id, StationEventQueueCommand.Adjust, -60f);
-            AddQueueButton(actions, "+1m", queued.Id, StationEventQueueCommand.Adjust, 60f);
-            AddQueueButton(actions, "+5m", queued.Id, StationEventQueueCommand.Adjust, 300f);
+            AddQueueButton(actions, Loc.GetString("administration-ui-events-tab-queue-minus-5"), queued.Id, StationEventQueueCommand.Adjust, -300f);
+            AddQueueButton(actions, Loc.GetString("administration-ui-events-tab-queue-minus-1"), queued.Id, StationEventQueueCommand.Adjust, -60f);
+            AddQueueButton(actions, Loc.GetString("administration-ui-events-tab-queue-plus-1"), queued.Id, StationEventQueueCommand.Adjust, 60f);
+            AddQueueButton(actions, Loc.GetString("administration-ui-events-tab-queue-plus-5"), queued.Id, StationEventQueueCommand.Adjust, 300f);
             AddQueueButton(actions,
                 Loc.GetString("administration-ui-events-tab-queue-now"),
                 queued.Id,
@@ -459,7 +459,16 @@ public sealed partial class EventsTab : Control
             Text = Loc.GetString("administration-ui-events-tab-force"),
             Disabled = !_admin.CanCommand("addgamerule")
         };
-        runButton.OnPressed += _ => _console.ExecuteCommand($"addgamerule {row.Info.Id}");
+        // Same network path as Schedule, so the server applies the one AdminFlags.Fun check
+        // instead of this going out as a console command.
+        runButton.OnPressed += _ =>
+        {
+            _adminSystem.SendStationEventCommand(
+                StationEventQueueCommand.Schedule,
+                eventId: row.Info.Id,
+                seconds: 0f);
+            RefreshSnapshot();
+        };
         if (runButton.Disabled)
             runButton.ToolTip = Loc.GetString("administration-ui-events-tab-force-disabled");
 
@@ -642,7 +651,9 @@ public sealed partial class EventsTab : Control
             FormatSecondsForFilter(ev.MaxDurationSeconds),
             FormatSecondsForFilter(ev.MinRemainingSeconds),
             FormatSecondsForFilter(ev.MaxRemainingSeconds),
-            ev.Available ? "available activo" : "unavailable inactivo"
+            ev.Available
+                ? Loc.GetString("administration-ui-events-tab-status-available")
+                : Loc.GetString("administration-ui-events-tab-status-unavailable")
         });
     }
 

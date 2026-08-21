@@ -19,15 +19,25 @@ administration-ui-events-tab-force-disabled = You do not have permission to run 
 administration-ui-events-tab-queue-title = Upcoming events
 administration-ui-events-tab-queue-no-scheduler = No compatible event scheduler is active this round.
 administration-ui-events-tab-queue-empty = The event queue is empty.
-administration-ui-events-tab-queue-count = {$count} event(s) queued.
+administration-ui-events-tab-queue-count = { $count ->
+    [one] { $count } event queued.
+   *[other] { $count } events queued.
+}
 administration-ui-events-tab-queue-automatic = AUTO: {$event} ({$id})
 administration-ui-events-tab-queue-manual = SCHEDULED: {$event} ({$id})
 administration-ui-events-tab-queue-starts-in = Starts in {$time}
+administration-ui-events-tab-queue-minus-5 = -5m
+administration-ui-events-tab-queue-minus-1 = -1m
+administration-ui-events-tab-queue-plus-1 = +1m
+administration-ui-events-tab-queue-plus-5 = +5m
 administration-ui-events-tab-queue-now = Now
 administration-ui-events-tab-queue-cancel = Cancel
 administration-ui-events-tab-active-title = Active events
 administration-ui-events-tab-active-empty = No station events are currently active.
-administration-ui-events-tab-active-count = {$count} station event(s) active.
+administration-ui-events-tab-active-count = { $count ->
+    [one] { $count } station event active.
+   *[other] { $count } station events active.
+}
 administration-ui-events-tab-active-remaining = {$remaining} remaining of {$duration}
 administration-ui-events-tab-active-open = Variable duration | elapsed {$elapsed}
 administration-ui-events-tab-active-end = End
@@ -51,9 +61,15 @@ administration-ui-events-tab-runtime-duration = Duration {$duration}
 administration-ui-events-tab-duration-open = variable
 administration-ui-events-tab-duration-range = {$min}-{$max}
 administration-ui-events-tab-queue-scheduler = Scheduler: { $scheduler }
-administration-ui-events-tab-queue-incomplete = Incomplete: { $count } active scheduler(s) do not expose a queue, so some events are not listed here.
+administration-ui-events-tab-queue-incomplete = { $count ->
+    [one] Incomplete: { $count } active scheduler does not expose a queue, so some events are not listed here.
+   *[other] Incomplete: { $count } active schedulers do not expose a queue, so some events are not listed here.
+}
 administration-ui-events-tab-schedule-minutes-tooltip = Delay in minutes before the event fires
 administration-ui-events-tab-schedule-minus-tooltip = One minute sooner
 administration-ui-events-tab-schedule-plus-tooltip = One minute later
 administration-ui-events-tab-collapse-tooltip = Collapse or expand this section
-administration-ui-events-tab-meta-occurrences = Ran { $count } time(s) this round
+administration-ui-events-tab-meta-occurrences = { $count ->
+    [one] Ran { $count } time this round
+   *[other] Ran { $count } times this round
+}
