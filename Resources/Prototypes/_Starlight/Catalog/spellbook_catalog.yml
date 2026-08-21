@@ -302,7 +302,7 @@
   id: SpellbookArcticGlare
   name: spellbook-arcticglare-name
   description: spellbook-arcticglare-desc
-  priority: 11
+  priority: 15
   productAction: ActionArcticGlare
   cost:
     WizCoin: 0
