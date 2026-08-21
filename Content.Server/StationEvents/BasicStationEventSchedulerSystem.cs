@@ -141,6 +141,15 @@ namespace Content.Server.StationEvents
             }
         }
 
+        /// <summary>
+        /// Whether any scheduler this panel can read is running.
+        /// </summary>
+        /// <returns>
+        /// False when no scheduler is active, and also when the only active ones keep no
+        /// queue - the ramping scheduler, for instance. Callers use it to decide whether
+        /// queueing an event is possible at all, so counting schedulers that cannot be
+        /// queued into would offer an action that quietly does nothing.
+        /// </returns>
         public bool HasActiveScheduler()
         {
             foreach (var _ in GetActiveSchedulers())
@@ -205,6 +214,18 @@ namespace Content.Server.StationEvents
             return combined;
         }
 
+        /// <summary>
+        /// Queues an event by hand, outside the scheduler's own planning.
+        /// </summary>
+        /// <param name="eventId">Prototype id of the event to queue.</param>
+        /// <param name="delaySeconds">
+        /// Seconds from now to fire it. Null lets the scheduler place it after whatever it
+        /// already holds, spaced by its own minimum.
+        /// </param>
+        /// <returns>
+        /// False when the id names no station event, or when no readable scheduler is active
+        /// to hold the entry. True means the queue changed.
+        /// </returns>
         public bool ScheduleEvent(string eventId, float? delaySeconds = null)
         {
             if (!_event.HasEvent(eventId))
@@ -235,6 +256,15 @@ namespace Content.Server.StationEvents
             return false;
         }
 
+        /// <summary>
+        /// Moves a queued entry earlier or later.
+        /// </summary>
+        /// <param name="queueId">Id of the entry, unique across every active scheduler.</param>
+        /// <param name="deltaSeconds">
+        /// Seconds to shift it by, negative to bring it forward. An entry pushed before the
+        /// present is clamped to now rather than fired retroactively.
+        /// </param>
+        /// <returns>False when no entry carries that id. True means the queue changed.</returns>
         public bool AdjustScheduledEvent(int queueId, float deltaSeconds)
         {
             if (!TryFindEntry(queueId, out _, out var scheduler, out var entry))
@@ -248,6 +278,11 @@ namespace Content.Server.StationEvents
             return true;
         }
 
+        /// <summary>
+        /// Cancels a queued entry.
+        /// </summary>
+        /// <param name="queueId">Id of the entry, unique across every active scheduler.</param>
+        /// <returns>False when no entry carries that id. True means the queue changed.</returns>
         public bool RemoveScheduledEvent(int queueId)
         {
             if (!TryFindEntry(queueId, out var uid, out var scheduler, out var entry))
@@ -304,6 +339,16 @@ namespace Content.Server.StationEvents
             }
         }
 
+        /// <summary>
+        /// Fires a queued entry immediately instead of waiting for its trigger time.
+        /// </summary>
+        /// <param name="queueId">Id of the entry, unique across every active scheduler.</param>
+        /// <returns>
+        /// Whether the event started. Note this is not the same as whether anything happened:
+        /// an entry that is found is removed from the queue either way, so a false return can
+        /// still mean the queue changed, and a caller refreshing only on true will show a
+        /// stale queue until its next poll.
+        /// </returns>
         public bool RunScheduledEventNow(int queueId)
         {
             if (!TryFindEntry(queueId, out var uid, out var scheduler, out var entry))
