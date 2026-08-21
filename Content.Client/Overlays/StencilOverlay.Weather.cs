@@ -37,7 +37,7 @@ public sealed partial class StencilOverlay
 
         foreach (var (uid, weather, status) in weathers)
         {
-            var spriteSpecifier = _spriteQuality.GetSprite(uid, weather.Sprite); // Starlight
+            var spriteSpecifier = _spriteQuality.GetSprite((uid, null), weather.Sprite); // Starlight
             if (spriteSpecifier is null) // SL
                 continue;
 

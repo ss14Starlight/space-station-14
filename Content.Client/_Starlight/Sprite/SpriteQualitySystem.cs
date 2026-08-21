@@ -68,10 +68,10 @@ public sealed partial class SpriteQualitySystem : EntitySystem
     /// <summary>
     /// Gets the active quality variant from an entity, or <paramref name="fallback"/> if it has none.
     /// </summary>
-    public SpriteSpecifier? GetSprite(EntityUid uid, SpriteSpecifier? fallback = null)
+    public SpriteSpecifier? GetSprite(Entity<SpriteQualityComponent?> ent, SpriteSpecifier? fallback = null)
     {
-        if (!TryComp<SpriteQualityComponent>(uid, out var component) ||
-            GetVariant(component) is not { } variant)
+        if (!Resolve(ent, ref ent.Comp, false) ||
+            GetVariant(ent.Comp) is not { } variant)
         {
             return fallback;
         }
