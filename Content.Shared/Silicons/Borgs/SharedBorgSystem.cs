@@ -139,9 +139,10 @@ public abstract partial class SharedBorgSystem : EntitySystem
     {
         _movementSpeedModifier.RefreshMovementSpeedModifiers(chassis.Owner);
 
-        // Starlight: If the borg has a brain, synchronize the name of the brain with the chassis.
+        // Starlight-start: If the borg has a brain, synchronize the name of the brain with the chassis.
         if (chassis.Comp.BrainEntity is { } brain)
             SynchronizeBrainName(chassis, brain);
+        // Starlight-end
     }
 
     // Starlight: function to synchronize the name of the brain with the chassis, and the other way around.
