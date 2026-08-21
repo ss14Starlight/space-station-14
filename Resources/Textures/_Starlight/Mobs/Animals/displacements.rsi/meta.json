@@ -1,7 +1,7 @@
 ﻿{
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made by TrixxedHeart, ported to Starlight from (https://github.com/moff-station/moff-station-14/pull/1094) Belt and hand displacements by wonderfulnewworld (GitHub), Monkey and Konbold OuterClothing Displacements by limblesstar",
+    "copyright": "State based copyright.",
     "size": {
         "x": 32,
         "y": 32
@@ -13,7 +13,7 @@
         {
             "name": "jumpsuit-kobold",
             "directions": 4,
-            "copyright": "TrixxedHeart",
+            "copyright": "TrixxedHeart, ported to Starlight from (https://github.com/moff-station/moff-station-14/pull/1094)",
             "license": "CC-BY-SA-3.0"
         },
         {
@@ -31,7 +31,7 @@
         {
             "name": "jumpsuit-monkey",
             "directions": 4,
-            "copyright": "TrixxedHeart",
+            "copyright": "TrixxedHeart, ported to Starlight from (https://github.com/moff-station/moff-station-14/pull/1094)",
             "license": "CC-BY-SA-3.0"
         },
         {
