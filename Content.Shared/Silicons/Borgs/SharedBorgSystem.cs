@@ -155,7 +155,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
             return;
 
         if (MetaData(brain).EntityPrototype is { } brainPrototype &&
-            brainName.Equals(Loc.GetString(brainPrototype.Name), StringComparison.InvariantCulture))
+            brainName.Equals(brainPrototype.Name, StringComparison.InvariantCulture))
         {
             _metaData.SetEntityName(brain, chassisName);
         }
