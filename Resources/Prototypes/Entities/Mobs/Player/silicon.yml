@@ -361,11 +361,13 @@
   parent: PlayerStationAiEmpty
   suffix: Job spawn
   components:
-  - type: NameIdentifier
-    group: StationAi
   - type: ContainerSpawnPoint
     containerId: station_ai_mind_slot
     job: StationAi
+  # Starlight-start
+  - type: NameIdentifier
+    group: StationAi
+  # Starlight-end
 
 # The station AI core assembly
 - type: entity
