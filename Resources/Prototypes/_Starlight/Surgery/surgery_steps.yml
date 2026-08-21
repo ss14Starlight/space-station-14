@@ -174,11 +174,16 @@
     duration: 10
     add:
     - type: IncisionOpen
+    tools:
+    - type: BoneSetter
   - type: SurgeryStepBleedEffect
     damage:
       types:
         Slash: 3
   - type: SurgeryStepEmoteEffect
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: bone-setter
 
 - type: entity
   parent: SurgeryStepBase
@@ -188,7 +193,12 @@
   - type: SurgeryStep
     add:
     - type: BleedersClamped
+    tools:
+    - type: Hemostat
   - type: SurgeryClampBleedEffect
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    state: hemostat
 
 - type: entity
   parent: SurgeryStepBase

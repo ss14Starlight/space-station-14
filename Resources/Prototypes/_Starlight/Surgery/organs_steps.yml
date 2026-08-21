@@ -1373,6 +1373,9 @@
     damage:
       types:
         Blunt: 4
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Doll/organs.rsi
+    state: shell
 
 - type: entity
   parent: SurgeryStepBase

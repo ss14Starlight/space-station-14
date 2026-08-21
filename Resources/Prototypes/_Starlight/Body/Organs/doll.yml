@@ -160,7 +160,7 @@
     entries:
       Burger: Brain
       Taco: Brain
-  
+
 - type: entity
   id: OrganDollEyes
   parent: [BaseDollOrgan, BaseOrganEyes]
@@ -213,6 +213,7 @@
     solutionOnBody: false
     solution: "Lung"
     metabolizerTypes: [ Human ]
+    stages: [ Respiration ]
     groups:
     - id: Gas
       rateModifier: 100.0
@@ -244,7 +245,8 @@
   # You're technically 'immune to poison' without a heart, but.. uhh, you'll have bigger problems on your hands.
   - type: Metabolizer
     maxReagents: 2
-    metabolizerTypes: [Human]
+    metabolizerTypes: [ Doll, Human ]
+    stages: [ Bloodstream ]
     groups:
     - id: Medicine
     - id: Poison
@@ -285,6 +287,7 @@
     # mm yummy
     maxReagents: 3
     metabolizerTypes: [ Doll ]
+    stages: [ Digestion ]
     groups:
     - id: Food
     - id: Drink
@@ -299,7 +302,8 @@
     state: liver
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
-    metabolizerTypes: [ Human ]
+    metabolizerTypes: [ Doll, Human ]
+    stages: [ Metabolites ]
     groups:
     - id: Alcohol
 

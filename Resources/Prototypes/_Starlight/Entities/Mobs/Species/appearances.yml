@@ -59,6 +59,9 @@
   components:
   - type: HumanoidAppearance
     species: Doll
+    hideLayersOnEquip:
+    - Hair
+    - Snout
 
 - type: entity
   parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
