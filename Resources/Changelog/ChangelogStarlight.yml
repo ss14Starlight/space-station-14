@@ -1,13 +1,6 @@
 Entries:
 - author: Caws, oliveoil238, & rtasva
   changes:
-  - message: The Sus plushie has been re-sprited due to the copyright trail being lost.
-    type: Tweak
-  id: 407401
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
   - message: The Gnome plushie has been re-sprited due to the copyright trail being lost.
     type: Tweak
   id: 407402
@@ -2799,4 +2792,11 @@ Entries:
   id: 407800
   time: '2026-08-21T12:19:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5746
+- author: Sparlight
+  changes:
+  - message: Canine creatures (Ian, Walter, Renault, corgis, foxes, McGriff) now resist cold temperatures moderately well.
+    type: Tweak
+  id: 407801
+  time: '2026-08-21T12:42:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5740
 Order: -1
