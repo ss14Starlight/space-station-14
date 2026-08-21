@@ -48,6 +48,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
 
         SubscribeLocalEvent<VinylPlayerComponent, VinylInsertedEvent>(OnVinylInserted);
         SubscribeLocalEvent<VinylPlayerComponent, VinylRemovedEvent>(OnVinylRemoved);
+        SubscribeLocalEvent<VinylSummonRuleComponent, VinylFinishedEvent>(OnVinylFinished);
     }
 
     private void OnVinylInserted(EntityUid uid, VinylPlayerComponent player, ref VinylInsertedEvent args)
@@ -175,36 +176,45 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
 
     private void HandleVinylFinished(EntityUid vinylUid)
     {
-        if (!TryComp<VinylSummonRuleComponent>(vinylUid, out var summonComp))
-            return;
 
+        #region Starlight lets just... make this a event?
+        if (TryComp<VinylComponent>(vinylUid, out var vinyl))
+        {
+            var ev = new VinylFinishedEvent();
+            RaiseLocalEvent(vinylUid, ref ev);
+        }
+    }
+
+    private void OnVinylFinished(Entity<VinylSummonRuleComponent> entity, ref VinylFinishedEvent _)
+    {
         // Resolve the game rule ID and get the threat prototype if available
-        var ruleId = ResolveGameRule(summonComp.GameRule, out var threat);
+        var ruleId = ResolveGameRule(entity.Comp.GameRule, out var threat);
 
         if (ruleId != null)
         {
-            _gameTicker.StartGameRule(ruleId, out _);
+            _gameTicker.StartGameRule(ruleId, out var _);
 
             // If we have a threat prototype with an announcement, send it
             if (threat != null)
                 _chat.DispatchGlobalAnnouncement(Loc.GetString(threat.Announcement), playSound: true, colorOverride: Color.Red);
         }
 
-        var vinylXform = Transform(vinylUid);
+        var vinylXform = Transform(entity);
         var vinylCoords = vinylXform.Coordinates;
 
         // Remove from container
-        if (_containers.TryGetContainingContainer((vinylUid, vinylXform, null), out var container))
-            _containers.Remove(vinylUid, container);
+        if (_containers.TryGetContainingContainer((entity, vinylXform, null), out var container))
+            _containers.Remove(entity.Owner, container);
 
         // Play sound effect
-        _audio.PlayPvs(summonComp.BurnSound, vinylCoords, summonComp.BurnSoundParams);  // Starlight - Dehardcode BurnSoundParams
+        _audio.PlayPvs(entity.Comp.BurnSound, vinylCoords, entity.Comp.BurnSoundParams);  // Starlight - Dehardcode BurnSoundParams
 
         // Spawn ash at the vinyl's location
-        Spawn(summonComp.AshPrototype, vinylCoords); // Starlight - Dehardcode ash prototype
+        Spawn(entity.Comp.AshPrototype, vinylCoords); // Starlight - Dehardcode ash prototype
 
         // Delete the vinyl
-        QueueDel(vinylUid);
+        QueueDel(entity);
+        #endregion
     }
 
     private string? ResolveGameRule(string gameRuleIdentifier, out NinjaHackingThreatPrototype? threat)
@@ -228,3 +238,9 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         return gameRuleIdentifier;
     }
 }
+
+#region Starlight Event-ifying the vinyl finished
+
+
+
+#endregion
