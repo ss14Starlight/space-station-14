@@ -3017,7 +3017,7 @@
 
 - type: entity
   name: fox
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [MobDogColdResistant, SimpleMobBase, StripableInventoryBase] # Starlight
   id: MobFox
   description: They're a fox.
   components:
@@ -3118,8 +3118,8 @@
 
 - type: entity
   abstract: true
-  parent: [SimpleMobBaseAntag, StripableInventoryBase] # Starlight, so smart corgis can still roll antag
-  id: MobCorgiBase
+  parent: [SimpleMobBaseAntag, StripableInventoryBase] # Starlight, so they don't inherit antag immune
+  id: MobCorgiBaseTemplate # Starlight, to let smart corgis roll antag but not other corgi types
   name: corgi
   description: Finally, a space corgi!
   components:
@@ -4145,7 +4145,7 @@
         Base: reindeer_doe_dead
 
 - type: entity
-  parent: MobCorgiBase #starlight Nubody will not pass.
+  parent: MobCorgiBaseAntag # Starlight Nubody will not pass + allows them to be antags
   id: MobCorgiSmart
   name: smart corgi
   description: An unusually smart dog.

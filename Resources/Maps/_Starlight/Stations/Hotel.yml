@@ -4,8 +4,8 @@ meta:
   engineVersion: 288.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/17/2026 14:16:46
-  entityCount: 22535
+  time: 08/19/2026 00:56:02
+  entityCount: 22548
 maps:
 - 1
 grids:
@@ -8129,7 +8129,7 @@ entities:
       pos: 8.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -263742.97
+      secondsUntilStateChange: -264502.1
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -9837,7 +9837,7 @@ entities:
       pos: 2.5,-7.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -225867.02
+      secondsUntilStateChange: -226626.14
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10003,7 +10003,7 @@ entities:
       pos: -38.5,10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -277918.44
+      secondsUntilStateChange: -278677.56
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10019,7 +10019,7 @@ entities:
       pos: -36.5,-10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -277817.5
+      secondsUntilStateChange: -278576.62
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -70289,11 +70289,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -12.42361,-15.404704
-  - uid: 11109
-    components:
-    - type: Transform
-      parent: 2
-      pos: 36.533817,-10.173307
 - proto: FoodBreadBaguette
   entities:
   - uid: 11110
@@ -115167,6 +115162,68 @@ entities:
     - type: Transform
       parent: 2
       pos: 13.5,22.5
+- proto: RandomSpawnStationRadioReceiver
+  entities:
+  - uid: 11109
+    components:
+    - type: Transform
+      parent: 2
+      pos: 54.5,11.5
+  - uid: 14926
+    components:
+    - type: Transform
+      parent: 2
+      pos: 16.5,-10.5
+  - uid: 22536
+    components:
+    - type: Transform
+      parent: 2
+      pos: -17.5,-17.5
+  - uid: 22537
+    components:
+    - type: Transform
+      parent: 2
+      pos: -9.5,7.5
+  - uid: 22538
+    components:
+    - type: Transform
+      parent: 2
+      pos: -15.5,14.5
+  - uid: 22540
+    components:
+    - type: Transform
+      parent: 2
+      pos: -23.5,-30.5
+  - uid: 22541
+    components:
+    - type: Transform
+      parent: 2
+      pos: 16.5,-44.5
+  - uid: 22542
+    components:
+    - type: Transform
+      parent: 2
+      pos: 44.5,-50.5
+  - uid: 22544
+    components:
+    - type: Transform
+      parent: 2
+      pos: -32.5,0.5
+  - uid: 22546
+    components:
+    - type: Transform
+      parent: 2
+      pos: -27.5,-3.5
+  - uid: 22547
+    components:
+    - type: Transform
+      parent: 2
+      pos: 45.5,-18.5
+  - uid: 22548
+    components:
+    - type: Transform
+      parent: 2
+      pos: 62.5,12.5
 - proto: RandomVending
   entities:
   - uid: 17459
@@ -122096,17 +122153,7 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: 54.5,11.5
-  - uid: 14926
-    components:
-    - type: Transform
-      parent: 2
-      pos: 16.5,-10.5
-  - uid: 17053
-    components:
-    - type: Transform
-      parent: 2
-      pos: -17.5,-17.5
+      pos: 36.5,-10.5
   - uid: 22457
     components:
     - type: Transform
@@ -123964,6 +124011,11 @@ entities:
       pos: -33.432343,16.572697
 - proto: Table
   entities:
+  - uid: 17053
+    components:
+    - type: Transform
+      parent: 2
+      pos: -9.5,7.5
   - uid: 18822
     components:
     - type: Transform
@@ -124539,6 +124591,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 9.5,25.5
+  - uid: 22539
+    components:
+    - type: Transform
+      parent: 2
+      pos: -23.5,-30.5
 - proto: TableCarpet
   entities:
   - uid: 18933
@@ -124696,6 +124753,16 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -4.5,-31.5
+  - uid: 22543
+    components:
+    - type: Transform
+      parent: 2
+      pos: -32.5,0.5
+  - uid: 22545
+    components:
+    - type: Transform
+      parent: 2
+      pos: -27.5,-3.5
 - proto: TablePlasmaGlass
   entities:
   - uid: 18962
