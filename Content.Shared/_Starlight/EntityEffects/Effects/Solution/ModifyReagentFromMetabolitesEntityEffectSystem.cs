@@ -9,13 +9,14 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.EntityEffects.Effects.Solution;
 
 /// <summary>
-/// Removes a reagent from the metabolites container on the entity's bloodstream component.
+/// Modifies a reagent in the metabolites container on the entity's bloodstream component.
+/// Positive amounts add the reagent, negative amounts remove it.
 /// </summary>
-public sealed partial class RemoveReagentFromMetabolitesEntityEffectSystem : EntityEffectSystem<BloodstreamComponent, RemoveReagentFromMetabolites>
+public sealed partial class ModifyReagentFromMetabolitesEntityEffectSystem : EntityEffectSystem<BloodstreamComponent, ModifyReagentFromMetabolites>
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
 
-    protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<RemoveReagentFromMetabolites> args)
+    protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<ModifyReagentFromMetabolites> args)
     {
         var amount = args.Effect.Amount * args.Scale;
         var reagent = args.Effect.Reagent;
@@ -38,7 +39,7 @@ public sealed partial class RemoveReagentFromMetabolitesEntityEffectSystem : Ent
 }
 
 /// <inheritdoc cref="EntityEffect"/>
-public sealed partial class RemoveReagentFromMetabolites : EntityEffectBase<RemoveReagentFromMetabolites>
+public sealed partial class ModifyReagentFromMetabolites : EntityEffectBase<ModifyReagentFromMetabolites>
 {
     /// <summary>
     ///     The reagent ID to add or remove.
@@ -46,13 +47,17 @@ public sealed partial class RemoveReagentFromMetabolites : EntityEffectBase<Remo
     [DataField(required: true)]
     public ProtoId<ReagentPrototype> Reagent;
 
+    /// <summary>
+    ///     The amount of reagent to modify. Positive values add the reagent, negative values remove it.
+    /// </summary>
     [DataField(required: true)]
     public FixedPoint2 Amount;
 
+    /// <inheritdoc />
     public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc)
     {
         return prototype.Resolve(Reagent, out ReagentPrototype? proto)
-            ? loc.GetString("entity-effect-guidebook-remove-reagent-from-metabolites",
+            ? loc.GetString("entity-effect-guidebook-modify-reagent-from-metabolites",
                 ("chance", Probability),
                 ("deltasign", MathF.Sign(Amount.Float())),
                 ("reagent", proto.LocalizedName),
