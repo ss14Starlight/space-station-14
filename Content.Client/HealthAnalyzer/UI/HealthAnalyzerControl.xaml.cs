@@ -272,7 +272,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         }
     }
 
-    // Starlight begin - combined chemicals display
+    #region Starlight begin
     private void DrawChemicals(List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? chemicals)
     {
         ChemicalsContainer.RemoveAllChildren();
