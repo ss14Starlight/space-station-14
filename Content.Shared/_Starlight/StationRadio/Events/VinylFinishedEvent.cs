@@ -1,5 +1,4 @@
-using Content.Shared._Goobstation.StationRadio.Components;
-
+namespace Content.Shared._Starlight.StationRadio.Events;
 
 /// <summary>
 /// Raised on a vinyl player when a vinyl is finished.

@@ -8,16 +8,15 @@ using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
-using Content.Shared.Radio.Components;
 using Content.Server.Chat.Systems;
-using Content.Shared._Goobstation.StationRadio.Systems; // Starlight - Station Radio Check oved to StationRadioReceiverSystem
+using Content.Shared._Goobstation.StationRadio.Systems;
+using Content.Shared._Starlight.StationRadio.Events; // Starlight - Station Radio Check oved to StationRadioReceiverSystem
 
 namespace Content.Server._Goobstation.StationRadio; // Starlight - _Goob -> _Goobstation
 

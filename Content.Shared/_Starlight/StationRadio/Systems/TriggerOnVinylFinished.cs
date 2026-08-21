@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.StationRadio.Components;
+using Content.Shared._Starlight.StationRadio.Events;
 using Content.Shared.Trigger;
 
 namespace Content.Shared._Starlight.StationRadio.Systems;
