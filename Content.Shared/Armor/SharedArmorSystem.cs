@@ -50,7 +50,6 @@ public abstract partial class SharedArmorSystem : EntitySystem
             args.Args.Cancelled = true;
         // Starlight edit end
     }
-    #endregion
 
     #region Starlight
     private void OnInnateDamageModify(EntityUid uid, InnateArmorComponent component, ref DamageModifyEvent args) =>
