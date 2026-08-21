@@ -1,13 +1,6 @@
 Entries:
 - author: Caws, oliveoil238, & rtasva
   changes:
-  - message: 'Added in-hands sprites for the following plushies: Alien grey (Abductor), Axolotl, Borb, Cow Squishims, Creature, Frog Squishims, Gnome, Goat, Kitten, Pig, Renault, Shadekin, Snail, and Sus.'
-    type: Add
-  id: 407394
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
   - message: Added a hat sprite for the Pig plushie (sprites by oliveoil238).
     type: Add
   id: 407395
@@ -2799,4 +2792,11 @@ Entries:
   id: 407793
   time: '2026-08-21T09:52:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5720
+- author: Way
+  changes:
+  - message: Artist names are now in the descriptions of music vinyls.
+    type: Add
+  id: 407794
+  time: '2026-08-21T10:14:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5727
 Order: -1
