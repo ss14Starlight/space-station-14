@@ -1,13 +1,6 @@
 Entries:
 - author: Caws, oliveoil238, & rtasva
   changes:
-  - message: The Gnome plushie has been re-sprited due to the copyright trail being lost.
-    type: Tweak
-  id: 407402
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
   - message: Abductor plushie has been renamed to "alien grey plushie" as to not bump against the Metashield.
     type: Tweak
   id: 407403
@@ -2799,4 +2792,11 @@ Entries:
   id: 407801
   time: '2026-08-21T12:42:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5740
+- author: Caws
+  changes:
+  - message: (Novo Lobster) The snowstorm now has a consistent direction on station.
+    type: Fix
+  id: 407802
+  time: '2026-08-21T15:23:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5761
 Order: -1
