@@ -28,6 +28,12 @@ public sealed class ScheduledStationEventData
     public float TriggerInSeconds;
     public float TotalDelaySeconds;
     public bool Automatic;
+
+    /// <summary>
+    /// Prototipo del scheduler que tiene esta entrada encolada. Un preset corre varios a la vez
+    /// con espaciados muy distintos, asi que sin esto la cola combinada resulta ilegible.
+    /// </summary>
+    public string Scheduler = string.Empty;
 }
 
 [Serializable, NetSerializable]
@@ -50,6 +56,13 @@ public sealed class StationEventsChangedEvent : EntityEventArgs
     public int PlayerCount;
     public float RoundDurationMinutes;
     public bool HasScheduler;
+
+    /// <summary>
+    /// Schedulers activos cuya cola este panel no sabe leer, porque usan otro componente
+    /// (el de rampa, por ejemplo). Si es mayor que cero la cola mostrada esta incompleta,
+    /// y es preferible decirlo antes que dar a entender que se ve todo.
+    /// </summary>
+    public int UnreadableSchedulers;
 }
 
 [Serializable, NetSerializable]

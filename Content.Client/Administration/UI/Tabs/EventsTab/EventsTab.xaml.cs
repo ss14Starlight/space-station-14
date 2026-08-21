@@ -166,6 +166,18 @@ public sealed partial class EventsTab : Control
             return;
         }
 
+        // Presets como Survival usan un scheduler de rampa, que no expone cola. Antes que
+        // dar a entender que se ve todo, se avisa que falta parte.
+        if (snapshot.UnreadableSchedulers > 0)
+        {
+            QueueList.AddChild(new Label
+            {
+                Text = Loc.GetString("administration-ui-events-tab-queue-incomplete",
+                    ("count", snapshot.UnreadableSchedulers)),
+                ModulateSelfOverride = Color.Orange
+            });
+        }
+
         QueueStatusLabel.Text = snapshot.Queue.Count == 0
             ? Loc.GetString("administration-ui-events-tab-queue-empty")
             : Loc.GetString("administration-ui-events-tab-queue-count", ("count", snapshot.Queue.Count));
@@ -201,6 +213,16 @@ public sealed partial class EventsTab : Control
                     ("time", FormatSeconds(queued.TriggerInSeconds))),
                 ModulateSelfOverride = Color.LightSteelBlue
             });
+            // Sin esto una cola con un evento en 4 minutos y otro en 43 parece un error.
+            if (!string.IsNullOrEmpty(queued.Scheduler))
+            {
+                details.AddChild(new Label
+                {
+                    Text = Loc.GetString("administration-ui-events-tab-queue-scheduler",
+                        ("scheduler", HumanizeId(queued.Scheduler))),
+                    ModulateSelfOverride = Color.DarkGray
+                });
+            }
             details.AddChild(new ProgressBar
             {
                 HorizontalExpand = true,

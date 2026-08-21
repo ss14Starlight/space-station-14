@@ -430,6 +430,25 @@ public sealed partial class AdminSystem : EntitySystem
         return _gameTicker.EndGameRule(uid);
     }
 
+    /// <summary>
+    /// Cuenta los schedulers activos que el panel no puede leer. Hoy es el de rampa, que usa
+    /// RampingStationEventSchedulerComponent en vez del basico y por lo tanto no expone cola.
+    /// Presets como Survival o KesslerSyndrome lo usan, asi que en esas rondas lo que se
+    /// muestra no es todo lo que va a pasar.
+    /// </summary>
+    private int CountUnreadableSchedulers()
+    {
+        var count = 0;
+        var query = EntityQueryEnumerator<RampingStationEventSchedulerComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out _, out var rule))
+        {
+            if (_gameTicker.IsGameRuleActive(uid, rule))
+                count++;
+        }
+
+        return count;
+    }
+
     private void SendStationEvents(ICommonSession session)
     {
         var available = _eventManager.AvailableEvents();
@@ -503,15 +522,17 @@ public sealed partial class AdminSystem : EntitySystem
             EventsEnabled = _eventManager.EventsEnabled,
             PlayerCount = _playerManager.PlayerCount,
             RoundDurationMinutes = (float) _gameTicker.RoundDuration().TotalMinutes,
-            HasScheduler = _eventScheduler.HasActiveScheduler(out _, out _),
+            HasScheduler = _eventScheduler.HasActiveScheduler(),
+            UnreadableSchedulers = CountUnreadableSchedulers(),
             Queue = _eventScheduler.GetQueuedEvents()
-                .Select(entry => new ScheduledStationEventData
+                .Select(queued => new ScheduledStationEventData
                 {
-                    Id = entry.Id,
-                    EventId = entry.EventId,
-                    TriggerInSeconds = Math.Max((float) (entry.TriggerTime - _timing.CurTime).TotalSeconds, 0f),
-                    TotalDelaySeconds = Math.Max((float) (entry.TriggerTime - entry.QueuedAt).TotalSeconds, 0f),
-                    Automatic = entry.Automatic
+                    Id = queued.Entry.Id,
+                    EventId = queued.Entry.EventId,
+                    TriggerInSeconds = Math.Max((float) (queued.Entry.TriggerTime - _timing.CurTime).TotalSeconds, 0f),
+                    TotalDelaySeconds = Math.Max((float) (queued.Entry.TriggerTime - queued.Entry.QueuedAt).TotalSeconds, 0f),
+                    Automatic = queued.Entry.Automatic,
+                    Scheduler = queued.Scheduler
                 })
                 .ToList(),
             ActiveEvents = activeEvents

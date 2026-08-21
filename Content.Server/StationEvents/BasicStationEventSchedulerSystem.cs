@@ -27,6 +27,8 @@ namespace Content.Server.StationEvents
         [Dependency] private EventManagerSystem _event = default!;
         [Dependency] private IGameTiming _timing = default!;
 
+        private int _queueIdCounter;
+
         protected override void Started(EntityUid uid, BasicStationEventSchedulerComponent component, GameRuleComponent gameRule,
             GameRuleStartedEvent args)
         {
@@ -76,62 +78,119 @@ namespace Content.Server.StationEvents
             component.TimeUntilNextEvent = component.MinMaxEventTiming.Next(_random);
         }
 
-        public bool HasActiveScheduler(out EntityUid schedulerUid, out BasicStationEventSchedulerComponent? scheduler)
+        /// <summary>
+        /// Todos los schedulers activos. Un preset corre varios a la vez -eventos generales,
+        /// trafico espacial, meteoritos- y cada uno tiene su propia tabla de eventos y su propio
+        /// espaciado, asi que quedarse con el primero que aparece muestra una cola arbitraria
+        /// y esconde el resto.
+        /// </summary>
+        public IEnumerable<(EntityUid Uid, BasicStationEventSchedulerComponent Scheduler)> GetActiveSchedulers()
         {
             var query = EntityQueryEnumerator<BasicStationEventSchedulerComponent, GameRuleComponent>();
-            while (query.MoveNext(out schedulerUid, out scheduler, out var rule))
+            while (query.MoveNext(out var uid, out var scheduler, out var rule))
             {
-                if (GameTicker.IsGameRuleActive(schedulerUid, rule))
-                    return true;
+                if (GameTicker.IsGameRuleActive(uid, rule))
+                    yield return (uid, scheduler);
             }
+        }
 
-            schedulerUid = EntityUid.Invalid;
-            scheduler = null;
+        public bool HasActiveScheduler()
+        {
+            foreach (var _ in GetActiveSchedulers())
+                return true;
+
             return false;
         }
 
-        public IReadOnlyList<QueuedStationEventEntry> GetQueuedEvents()
+        /// <summary>
+        /// Busca una entrada por id en cualquiera de los schedulers activos.
+        /// </summary>
+        private bool TryFindEntry(
+            int queueId,
+            out EntityUid uid,
+            out BasicStationEventSchedulerComponent scheduler,
+            out QueuedStationEventEntry entry)
         {
-            if (!HasActiveScheduler(out _, out var scheduler) || scheduler == null)
-                return Array.Empty<QueuedStationEventEntry>();
+            foreach (var (candidateUid, candidate) in GetActiveSchedulers())
+            {
+                foreach (var candidateEntry in candidate.EventQueue)
+                {
+                    if (candidateEntry.Id != queueId)
+                        continue;
 
-            SortQueue(scheduler);
-            return scheduler.EventQueue.ToList();
+                    uid = candidateUid;
+                    scheduler = candidate;
+                    entry = candidateEntry;
+                    return true;
+                }
+            }
+
+            uid = EntityUid.Invalid;
+            scheduler = default!;
+            entry = default!;
+            return false;
+        }
+
+        /// <summary>
+        /// La cola combinada de todos los schedulers activos, ordenada por tiempo de disparo.
+        /// Cada entrada viaja con el nombre de su scheduler, porque si no una cola con un evento
+        /// en 4 minutos y otro en 43 se ve arbitraria: son schedulers distintos con espaciados
+        /// distintos, y sin decirlo el panel parece roto.
+        /// </summary>
+        public IReadOnlyList<(QueuedStationEventEntry Entry, string Scheduler)> GetQueuedEvents()
+        {
+            var combined = new List<(QueuedStationEventEntry Entry, string Scheduler)>();
+
+            foreach (var (uid, scheduler) in GetActiveSchedulers())
+            {
+                SortQueue(scheduler);
+                var name = MetaData(uid).EntityPrototype?.ID ?? "Unknown";
+                foreach (var entry in scheduler.EventQueue)
+                    combined.Add((entry, name));
+            }
+
+            combined.Sort((a, b) =>
+            {
+                var timeCompare = a.Entry.TriggerTime.CompareTo(b.Entry.TriggerTime);
+                return timeCompare != 0 ? timeCompare : a.Entry.Id.CompareTo(b.Entry.Id);
+            });
+
+            return combined;
         }
 
         public bool ScheduleEvent(string eventId, float? delaySeconds = null)
         {
-            if (!_event.HasEvent(eventId) ||
-                !HasActiveScheduler(out var uid, out var scheduler) ||
-                scheduler == null)
+            if (!_event.HasEvent(eventId))
                 return false;
 
-            var triggerTime = delaySeconds.HasValue
-                ? _timing.CurTime + TimeSpan.FromSeconds(Math.Max(delaySeconds.Value, 0f))
-                : GetDefaultManualTriggerTime(scheduler);
-
-            var entry = new QueuedStationEventEntry
+            // Un evento manual se dispara con AddGameRule directo, sin importar que scheduler lo
+            // tenga encolado, asi que alcanza con ponerlo en el primero activo.
+            foreach (var (uid, scheduler) in GetActiveSchedulers())
             {
-                Id = scheduler.NextQueueId++,
-                EventId = eventId,
-                QueuedAt = _timing.CurTime,
-                TriggerTime = triggerTime,
-                Automatic = false
-            };
+                var triggerTime = delaySeconds.HasValue
+                    ? _timing.CurTime + TimeSpan.FromSeconds(Math.Max(delaySeconds.Value, 0f))
+                    : GetDefaultManualTriggerTime(scheduler);
 
-            scheduler.EventQueue.Add(entry);
-            SortQueue(scheduler);
-            EnsureScheduledEvents(uid, scheduler);
-            return true;
+                scheduler.EventQueue.Add(new QueuedStationEventEntry
+                {
+                    Id = NextQueueId(),
+                    EventId = eventId,
+                    QueuedAt = _timing.CurTime,
+                    TriggerTime = triggerTime,
+                    Automatic = false
+                });
+
+                SortQueue(scheduler);
+                EnsureScheduledEvents(uid, scheduler);
+                return true;
+            }
+
+            return false;
         }
 
         public bool AdjustScheduledEvent(int queueId, float deltaSeconds)
         {
-            if (!HasActiveScheduler(out _, out var scheduler) || scheduler == null)
-                return false;
-
-            var entry = scheduler.EventQueue.FirstOrDefault(ev => ev.Id == queueId);
-            if (entry == null)
+            if (!TryFindEntry(queueId, out _, out var scheduler, out var entry))
                 return false;
 
             entry.TriggerTime += TimeSpan.FromSeconds(deltaSeconds);
@@ -144,23 +203,17 @@ namespace Content.Server.StationEvents
 
         public bool RemoveScheduledEvent(int queueId)
         {
-            if (!HasActiveScheduler(out var uid, out var scheduler) || scheduler == null)
+            if (!TryFindEntry(queueId, out var uid, out var scheduler, out var entry))
                 return false;
 
-            var removed = scheduler.EventQueue.RemoveAll(ev => ev.Id == queueId) > 0;
-            if (removed)
-                EnsureScheduledEvents(uid, scheduler);
-
-            return removed;
+            scheduler.EventQueue.Remove(entry);
+            EnsureScheduledEvents(uid, scheduler);
+            return true;
         }
 
         public bool RunScheduledEventNow(int queueId)
         {
-            if (!HasActiveScheduler(out var uid, out var scheduler) || scheduler == null)
-                return false;
-
-            var entry = scheduler.EventQueue.FirstOrDefault(ev => ev.Id == queueId);
-            if (entry == null)
+            if (!TryFindEntry(queueId, out var uid, out var scheduler, out var entry))
                 return false;
 
             scheduler.EventQueue.Remove(entry);
@@ -168,6 +221,13 @@ namespace Content.Server.StationEvents
             EnsureScheduledEvents(uid, scheduler);
             return true;
         }
+
+        /// <summary>
+        /// Ids unicos entre schedulers. Antes cada componente llevaba su propio contador, asi
+        /// que dos schedulers activos generaban el mismo id y una accion del panel podia caer
+        /// sobre la entrada equivocada.
+        /// </summary>
+        private int NextQueueId() => ++_queueIdCounter;
 
         private void ProcessDueEntries(EntityUid uid, BasicStationEventSchedulerComponent component)
         {
@@ -208,7 +268,7 @@ namespace Content.Server.StationEvents
 
                 component.EventQueue.Add(new QueuedStationEventEntry
                 {
-                    Id = component.NextQueueId++,
+                    Id = NextQueueId(),
                     EventId = eventId,
                     QueuedAt = _timing.CurTime,
                     TriggerTime = triggerTime,

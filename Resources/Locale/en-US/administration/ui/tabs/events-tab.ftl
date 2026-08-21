@@ -50,3 +50,5 @@ administration-ui-events-tab-runtime-remaining-range = Remaining {$min}-{$max}
 administration-ui-events-tab-runtime-duration = Duration {$duration}
 administration-ui-events-tab-duration-open = variable
 administration-ui-events-tab-duration-range = {$min}-{$max}
+administration-ui-events-tab-queue-scheduler = Scheduler: { $scheduler }
+administration-ui-events-tab-queue-incomplete = Incomplete: { $count } active scheduler(s) do not expose a queue, so some events are not listed here.
