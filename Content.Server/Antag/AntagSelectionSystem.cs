@@ -756,23 +756,27 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
             UpdateAntagSelectionMetrics(gameRule, definition, target, assigned, finalGhostRoles, forcedAssignments, ghostRolesCreated);
 
-            if (uncovered > 0)
-                Log.Error(message);
-            else
-                Log.Info(message);
-
-            _adminLogger.Add(LogType.AntagSelection, $"{message}");
-
             // Do not keep retrying an if we literally don't have enough players who qualify.
             // If every currently eligible, opted-in player would still leave us below target,
-            // ghost roles (if the antag allows them) are the final result. Retry only a
+            // ghost roles (if the antag allows them) are the final result. Retry only on a
             // failed assignment or failed spawner.
             var liveRetryPossible = definition.PickPlayer &&
                 gameRule.Comp.SelectionTime != Never &&
                 assigned < target &&
                 assignedBefore + eligibleBefore >= target;
             var ghostSpawnerFailed = uncovered > 0 && definition.SpawnerPrototype is not null;
-            shouldRetry |= liveRetryPossible || ghostSpawnerFailed;
+            var repairFailed = liveRetryPossible || ghostSpawnerFailed;
+
+            // An uncovered target is expected when there are not enough eligible players and the
+            // definition has no ghost-role fallback. Only report an error when a repair path that
+            // should have worked actually failed.
+            if (repairFailed)
+                Log.Warning(message);
+            else
+                Log.Info(message);
+
+            _adminLogger.Add(LogType.AntagSelection, $"{message}");
+            shouldRetry |= repairFailed;
         }
 
         return shouldRetry;
