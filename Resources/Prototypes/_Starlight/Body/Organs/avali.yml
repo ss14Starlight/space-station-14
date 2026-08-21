@@ -14,6 +14,7 @@
       - Paper
       - AvianFood
       - IceCream
+      - Birthday
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -37,10 +38,7 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Avali]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     state: heart-on
@@ -55,8 +53,7 @@
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [Avali]
-    groups:
-    - id: Alcohol
+    stages: [ Metabolites ]
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     state: liver
@@ -82,13 +79,8 @@
   description: "The lungs of an Avali."
   components:
   - type: Metabolizer
-    removeEmpty: true
-    solutionOnBody: false
-    solution: "Lung"
     metabolizerTypes: [ Resomi, Human ] #They get both so they can still breathe oxygen without us needing to add Resomi everywhere Human is listed
-    groups:
-    - id: Gas
-      rateModifier: 100.0
+    stages: [ Respiration ]
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     layers:

@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
+using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Polymorph;
@@ -146,9 +147,9 @@ public sealed partial class VampireRejuvenateIIActionEvent : InstantActionEvent
     public FixedPoint2 ReagentPurgeAmount = FixedPoint2.New(10);
 
     [DataField]
-    public HashSet<string> PurgedMetabolismGroups = new()
+    public HashSet<ProtoId<MetabolismStagePrototype>> PurgedMetabolismStages = new()
     {
-        "Poison",
+        "Bloodstream",
     };
 
     [DataField]

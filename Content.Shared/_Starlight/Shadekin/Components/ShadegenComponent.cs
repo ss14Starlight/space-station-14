@@ -9,7 +9,7 @@ public sealed partial class ShadegenComponent : Component
     public float Range = 8f;
 
     [DataField]
-    public bool DestroyLights = false;
+    public bool DestroyLights;
 
     [ViewVariables(VVAccess.ReadOnly), AutoPausedField]
     public TimeSpan NextUpdate = TimeSpan.Zero;
