@@ -1,0 +1,182 @@
+- type: entity
+  parent: CardboardBoxLargeInternals
+  id: CardboardBoxLargeInternalsFilled
+  name: small emergency breathing supplies box
+  suffix: FILLED
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterSuitEmergency
+          amount: 1 #SL Edit
+        - id: DoubleEmergencyOxygenTankFilled
+          amount: 2
+        - id: DoubleEmergencyNitrogenTankFilled
+          amount: 2 #SL Edit
+        - id: CoolingUnit # SL Edit
+        - id: ClothingMaskBreath #SL Edit
+          amount: 2 #SL Edit
+
+- type: entity
+  parent: CardboardBoxLargeCargo
+  id: CardboardBoxLargeCargoRoundstart
+  name: cargo supplies box
+  suffix: Cargo roundstart
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SheetSteel
+          amount: 1
+        - id: SheetGlass
+          amount: 1
+        - id: SheetPlastic
+          amount: 1
+
+- type: entity
+  parent: CardboardBoxLargeEngi
+  id: CardboardBoxLargeEngiRoundstart
+  name: engineering supplies box
+  suffix: Engi roundstart
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SheetSteel
+          amount: 1
+        - id: SheetGlass
+          amount: 1
+        - id: SheetPlasteel
+          amount: 1
+        - id: PartRodMetal
+          amount: 1
+
+- type: entity
+  parent: CardboardBoxLarge
+  id: CardboardBoxLargeBureaucracy
+  name: office supplies box
+  suffix: Office
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: BoxFolderClipboardThreePapers
+          amount: 4
+        - id: HandLabeler
+        - id: BoxFolderBlueThreePapers
+          amount: 2
+        - id: BoxFolderRedThreePapers
+          amount: 2
+        - id: BoxFolderYellowThreePapers
+          amount: 2
+        - id: BoxFolderGreyThreePapers
+          amount: 2
+        - id: BoxEnvelope
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: Pen
+          amount: 3
+
+- type: entity
+  parent: CardboardBoxLargeService
+  id: CardboardBoxLargeServiceJani
+  name: janitorial supplies box
+  suffix: Jani
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Plunger
+        - id: SoapNT
+        - id: TrashBag
+        - id: WetFloorSign
+          amount: 3
+        - id: LightReplacer
+        - id: SprayBottleSpaceCleaner
+          amount: 2
+        - id: WireBrush
+
+# Starlight Start
+- type: entity
+  parent: CardboardBoxLargeSecurity
+  id: CardboardBoxLargeSecuritySupplies
+  name: security supplies box
+  suffix: Security
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Handcuffs
+          amount: 4
+        - id: TicketPad
+          amount: 2
+        - id: FlashlightSeclite
+          amount: 2
+        - id: RadioHandheldSecurity
+          amount: 2
+
+- type: entity
+  parent: CardboardBoxLargeMedical
+  id: CardboardBoxLargeMedicalTopicals
+  name: medical topicals box
+  suffix: Topicals
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Gauze
+          amount: 3
+        - id: Brutepack
+          amount: 3
+        - id: Ointment
+          amount: 3
+        - id: Bloodpack
+          amount: 3
+
+- type: entity
+  parent: CardboardBoxLargeService
+  id: CardboardBoxLargeServiceGlasses
+  name: drink glasses box
+  suffix: Drink Glasses
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkGlass
+          amount: 8
+        - id: DrinkShotGlass
+          amount: 8
+        - id: DrinkGlassCoupeShaped
+          amount: 5
+
+- type: entity
+  parent: CardboardBoxLargeService
+  id: CardboardBoxLargeServiceDinnerware
+  name: kitchen supplies box
+  suffix: Dinnerware
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: KitchenKnife
+        - id: RollingPin
+        - id: Spoon
+          amount: 4
+        - id: Fork
+          amount: 4
+        - id: FoodBowlBig
+          amount: 2
+        - id: FoodPlate
+          amount: 2
+        - id: FoodPlateSmall
+          amount: 2
+# Starlight End
