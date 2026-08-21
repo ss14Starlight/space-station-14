@@ -29,7 +29,7 @@ namespace Content.Shared._Starlight.Medical.Body.Systems;
 public sealed class MetabolizerSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private INetManager _net = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
@@ -65,7 +65,6 @@ public sealed class MetabolizerSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-
         if (!_net.IsServer)
             return;
 
