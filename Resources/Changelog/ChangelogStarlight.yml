@@ -1,41 +1,6 @@
 Entries:
 - author: Caws, oliveoil238, & rtasva
   changes:
-  - message: Added a hat sprite for the Snail plushie.
-    type: Add
-  id: 407396
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
-  - message: Added a hat sprite for the Sus plushie.
-    type: Add
-  id: 407397
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
-  - message: Added roller skates, cooler roller skates, rubber duck, toy mouse, toy Ian, Magic 9 Ball, and toy hammer to the Hug Dispenser's stock.
-    type: Add
-  id: 407398
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
-  - message: Some crew plushies have been updated with in-hands / hat sprites.
-    type: Add
-  id: 407399
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
-  - message: Plushies now cost a flat twenty bucks.
-    type: Tweak
-  id: 407400
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
   - message: The Sus plushie has been re-sprited due to the copyright trail being lost.
     type: Tweak
   id: 407401
@@ -2799,4 +2764,39 @@ Entries:
   id: 407795
   time: '2026-08-21T10:41:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5729
+- author: Conflee, Way
+  changes:
+  - message: Added Cell Bars. Come in all normal fence variants. Can not be climbed or electrified. Very durable 'fence' option made of Plasteel for mapping in Genpop and Prison areas to prevent escapes.
+    type: Add
+  id: 407796
+  time: '2026-08-21T11:09:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5737
+- author: Caws
+  changes:
+  - message: The law communications console has been removed.
+    type: Remove
+  id: 407797
+  time: '2026-08-21T11:32:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5743
+- author: Caws
+  changes:
+  - message: Internal Affairs Agents no longer have Command access.
+    type: Remove
+  id: 407798
+  time: '2026-08-21T11:58:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5744
+- author: Conflee
+  changes:
+  - message: Resprited the Makeshift Sword, Improvised Sword, Forged Sword + Parts, Dawnbreaker, and Tidebreaker + Parts. New sprites now match existing vanilla sprites (Claymore, Sabre, Cutlass) as well as other Starlight unique swords (Prototype Vibroblade and CentComm Vibroblade).
+    type: Tweak
+  id: 407799
+  time: '2026-08-21T11:58:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5745
+- author: Conflee
+  changes:
+  - message: Resprited the PA Control Box. It now matches other consoles and has proper 3/4ths perspective, so you can tell which direction it is facing now.
+    type: Tweak
+  id: 407800
+  time: '2026-08-21T12:19:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5746
 Order: -1
