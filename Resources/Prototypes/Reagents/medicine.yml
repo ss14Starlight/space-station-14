@@ -149,6 +149,11 @@
         reagent: Ethylredoxrazine
         amount: -0.5
         # Starlight-End
+      # Starlight-Start: Remove ethanol from metabolites container
+      - !type:RemoveReagentFromMetabolites
+        reagent: Ethanol
+        amount: -0.5
+        # Starlight-End
 
 - type: reagent
   id: Arithrazine
