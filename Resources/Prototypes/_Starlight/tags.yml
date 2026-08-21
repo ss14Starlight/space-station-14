@@ -345,6 +345,9 @@
   id: HandheldEngineeringMonitor #CE's handheld monitor
 
 - type: Tag
+  id: HoloprojectorCrafting # Defines which projectors can be used to craft a False Shutters Projector
+
+- type: Tag
   id: HighTierCell #Blacklist for stunprod, used by the hyper and microreactor.
 
 - type: Tag
