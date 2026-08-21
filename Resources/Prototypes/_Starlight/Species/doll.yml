@@ -5,7 +5,7 @@
   prototype: MobDoll
   sprites: MobDollSprites
   markingLimits: MobDollMarkingLimits
-  dollPrototype: MobDollDummy
+  dollPrototype: AppearanceDoll
   skinColoration: Hues
   defaultSkinTone: "#FFFFFF"
   maleFirstNames: NamesFirstDollMale
