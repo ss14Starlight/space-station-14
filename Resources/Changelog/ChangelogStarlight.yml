@@ -1,13 +1,6 @@
 Entries:
 - author: OrangeJuiceGoose
   changes:
-  - message: Changed Hydrogen price per mol from 1.2 to 0.
-    type: Tweak
-  id: 407386
-  time: '2026-08-10T12:50:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5414
-- author: OrangeJuiceGoose
-  changes:
   - message: Changed Helium price per mol from 0.8 to 0.05.
     type: Tweak
   id: 407387
@@ -2799,4 +2792,11 @@ Entries:
   id: 407785
   time: '2026-08-21T08:26:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5617
+- author: OMEGA
+  changes:
+  - message: Typo in ItemSwitch.
+    type: Fix
+  id: 407786
+  time: '2026-08-21T08:59:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5754
 Order: -1
