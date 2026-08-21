@@ -71,6 +71,8 @@ namespace Content.Server.RoundEnd
             ? DefaultCooldownDuration - (_gameTiming.CurTime - (_countdownTokenSource?.Token.CanBeCanceled ?? false ? LastCountdownStart : _gameTiming.CurTime))
             : null;
         private bool _shuttleCallsEnabled = true;
+
+        public bool StartTimerOnRestart { get; private set; } = true;
         // Starlight End
 
         public override void Initialize()
@@ -106,6 +108,8 @@ namespace Content.Server.RoundEnd
             SetAutoCallTime();
             _autoCalledBefore = false;
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
+
+            StartTimerOnRestart = true; // Starlight
         }
 
         /// <summary>
@@ -315,7 +319,15 @@ namespace Content.Server.RoundEnd
             ExpectedCountdownEnd = null;
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
             _gameTicker.EndRound();
-            StartRestartTimer(countdownTime); // Starlight
+            // Starlight begin
+            if (!StartTimerOnRestart)
+            {
+                _countdownTokenSource?.Cancel();
+                _countdownTokenSource = null;
+                return;
+            }
+            StartRestartTimer(countdownTime);
+            // Starlight end
         }
 
         /// <summary>
@@ -492,6 +504,12 @@ namespace Content.Server.RoundEnd
                     _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-result-no", ("minutes",_cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime))));
                 }
             };
+        }
+
+        public void ToggleTimerOnEnd(bool state, ICommonSession? session = null)
+        {
+            StartTimerOnRestart = state;
+            _adminLogger.Add(LogType.AdminCommands, LogImpact.Medium, $"{session?.Name ?? "unknown"} toggled {(state ? "on" : "off")} the restart timer on round end.");
         }
 
         #endregion
