@@ -92,11 +92,26 @@ public sealed partial class CosmicIngressSystem : EntitySystem
 
         _audio.PlayPvs(comp.IngressSfx, ent);
         Spawn(comp.CultVfx, coordinates);
-        foreach (var entity in _turf.GetEntitiesInTile(coordinates, LookupFlags.All))
+
+        //Remove everything within 0.9
+        if (_turf.TryGetTileRef(coordinates, out var targetTile))
         {
-            if (HasComp<DoorComponent>(entity))
+            foreach (var entity in _turf.GetEntitiesInTile(coordinates, LookupFlags.All))
+            {
+                if (!HasComp<DoorComponent>(entity))
+                    continue;
+
+                if (!_turf.TryGetTileRef(Transform(entity).Coordinates, out var entityTile))
+                    continue;
+
+                if (entityTile.Value.GridUid != targetTile.Value.GridUid ||
+                    entityTile.Value.GridIndices != targetTile.Value.GridIndices)
+                    continue;
+
                 QueueDel(entity);
+            }
         }
+
         // Spawn corrupted replacement
         var malignDoor = Spawn("DoorCosmicCult", coordinates);
         _door.StartOpening(malignDoor);
