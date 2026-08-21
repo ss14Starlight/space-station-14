@@ -431,10 +431,10 @@ public sealed partial class AdminSystem : EntitySystem
     }
 
     /// <summary>
-    /// Cuenta los schedulers activos que el panel no puede leer. Hoy es el de rampa, que usa
-    /// RampingStationEventSchedulerComponent en vez del basico y por lo tanto no expone cola.
-    /// Presets como Survival o KesslerSyndrome lo usan, asi que en esas rondas lo que se
-    /// muestra no es todo lo que va a pasar.
+    ///     Counts active schedulers the panel cannot read. Today that is the ramping one,
+    ///     which uses RampingStationEventSchedulerComponent instead of the basic one and so
+    ///     exposes no queue. Presets such as Survival and KesslerSyndrome use it, so in those
+    ///     rounds what is shown is not everything that will happen.
     /// </summary>
     private int CountUnreadableSchedulers()
     {
@@ -548,7 +548,10 @@ public sealed partial class AdminSystem : EntitySystem
                     MinimumPlayers = pair.Value.MinimumPlayers,
                     EarliestStartMinutes = pair.Value.EarliestStart,
                     ReoccurrenceDelayMinutes = pair.Value.ReoccurrenceDelay,
-                    Weight = pair.Value.Weight,
+                    // The effective weight, not the configured one: with repetition falloff
+                    // enabled these diverge, and the number that matters is the one selection
+                    // actually uses.
+                    Weight = _eventManager.GetEffectiveWeight(pair.Key, pair.Value),
                     DurationSeconds = pair.Value.Duration is { } duration
                         ? (float) duration.TotalSeconds
                         : -1f,

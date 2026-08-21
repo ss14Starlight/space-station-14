@@ -26,13 +26,13 @@ public sealed partial class EventManagerSystem : EntitySystem
     private void SetEnabled(bool value) => EventsEnabled = value;
 
     /// <summary>
-    /// Cache de los prototipos de evento y de sus IDs.
+    ///     Cache of the event prototypes and of their ids.
     /// </summary>
     /// <remarks>
-    /// AllEvents() recorria TODOS los EntityPrototype del juego y armaba un diccionario nuevo
-    /// en cada llamada. Con el panel de eventos abierto eso pasaba a ocurrir varias veces por
-    /// segundo por cada admin. El conjunto solo cambia al recargar prototipos, asi que se
-    /// arma una vez y se invalida en PrototypesReloaded.
+    ///     AllEvents() walked EVERY EntityPrototype in the game and built a fresh dictionary
+    ///     on each call. With the events panel open that started happening several times per
+    ///     second per admin. The set only changes when prototypes reload, so it is built once
+    ///     and invalidated on PrototypesReloaded.
     /// </remarks>
     private Dictionary<EntityPrototype, StationEventComponent>? _allEventsCache;
     private HashSet<string>? _allEventIdsCache;
@@ -61,9 +61,9 @@ public sealed partial class EventManagerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Los eventos ordenados por ID. El panel de admin los pide asi una vez por segundo;
-    /// el orden no cambia entre recargas de prototipos, asi que se ordena una sola vez.
-    /// El resultado es compartido: no mutarlo.
+    ///     The events ordered by id. The admin panel asks for them this way once per second
+    ///     and the order does not change between prototype reloads, so sort once.
+    ///     The returned list is shared: do not mutate it.
     /// </summary>
     public IReadOnlyList<KeyValuePair<EntityPrototype, StationEventComponent>> AllEventsOrdered()
     {
@@ -122,7 +122,7 @@ public sealed partial class EventManagerSystem : EntitySystem
 
     public bool HasEvent(string eventId)
     {
-        // Set cacheado en vez de recorrer las claves: esto se llama en cada Schedule y RunEventById.
+        // Cached set rather than scanning the keys: this runs on every Schedule and RunEventById.
         _allEventIdsCache ??= AllEvents().Keys.Select(proto => proto.ID).ToHashSet();
         return _allEventIdsCache.Contains(eventId);
     }
@@ -203,6 +203,28 @@ public sealed partial class EventManagerSystem : EntitySystem
     /// Pick a random event from the available events at this time, also considering their weightings.
     /// </summary>
     /// <returns></returns>
+    /// <summary>
+    ///     An event's weight after accounting for how often it has already run this round.
+    /// </summary>
+    /// <remarks>
+    ///     Plain weighted selection has no memory, so the same event can be drawn several times
+    ///     in a row purely by chance, which reads as the scheduler being broken. Decaying the
+    ///     weight per occurrence makes repeats progressively less likely while still leaving
+    ///     them possible. Controlled by <c>events.repetition_falloff</c> and disabled by default.
+    /// </remarks>
+    public float GetEffectiveWeight(EntityPrototype prototype, StationEventComponent stationEvent)
+    {
+        var falloff = Math.Clamp(_configurationManager.GetCVar(CCVars.EventsRepetitionFalloff), 0f, 1f);
+        if (MathHelper.CloseTo(falloff, 1f))
+            return stationEvent.Weight;
+
+        var occurrences = GetOccurrences(prototype);
+        if (occurrences <= 0)
+            return stationEvent.Weight;
+
+        return stationEvent.Weight * MathF.Pow(falloff, occurrences);
+    }
+
     public string? FindEvent(Dictionary<EntityPrototype, StationEventComponent> availableEvents)
     {
         if (availableEvents.Count == 0)
@@ -213,16 +235,16 @@ public sealed partial class EventManagerSystem : EntitySystem
 
         var sumOfWeights = 0.0f;
 
-        foreach (var stationEvent in availableEvents.Values)
+        foreach (var (proto, stationEvent) in availableEvents)
         {
-            sumOfWeights += stationEvent.Weight;
+            sumOfWeights += GetEffectiveWeight(proto, stationEvent);
         }
 
         sumOfWeights = _random.NextFloat(sumOfWeights);
 
         foreach (var (proto, stationEvent) in availableEvents)
         {
-            sumOfWeights -= stationEvent.Weight;
+            sumOfWeights -= GetEffectiveWeight(proto, stationEvent);
 
             if (sumOfWeights <= 0.0f)
             {
@@ -266,7 +288,7 @@ public sealed partial class EventManagerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Todos los prototipos de evento. El resultado es compartido: no mutarlo.
+    ///     Every event prototype. The returned dictionary is shared: do not mutate it.
     /// </summary>
     public Dictionary<EntityPrototype, StationEventComponent> AllEvents()
     {
@@ -311,13 +333,13 @@ public sealed partial class EventManagerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Si el evento puede correr ahora mismo, con las condiciones actuales.
+    ///     Whether the event can run right now, under current conditions.
     /// </summary>
     /// <remarks>
-    /// Hace falta porque los eventos automaticos se eligen minutos antes de dispararse: entre
-    /// la eleccion y el disparo pueden irse jugadores y dejar de cumplirse MinimumPlayers, o
-    /// puede haber arrancado el fin de ronda. La proyeccion del pick cubre el tiempo de ronda,
-    /// pero no la cantidad de gente, que no se puede predecir.
+    ///     Needed because automatic events are picked minutes before they fire: between the
+    ///     pick and the trigger players can leave and stop satisfying MinimumPlayers, or round
+    ///     end can begin. Projecting at pick time covers round duration but not headcount,
+    ///     which cannot be predicted.
     /// </remarks>
     public bool CanRunNow(string eventId)
     {
