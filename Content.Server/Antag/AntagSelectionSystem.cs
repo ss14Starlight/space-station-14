@@ -382,7 +382,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!Exists(uid) || HasComp<EndedGameRuleComponent>(uid))
                 continue;
 
-            AssignPendingReplacements((uid, component), players, args.Players.Length);
+            AssignPendingReplacements((uid, component), players, players.Length);
         }
 
         var selectionStats = GetInitialAntagSelectionStats(args.Players, _postSpawnRules);

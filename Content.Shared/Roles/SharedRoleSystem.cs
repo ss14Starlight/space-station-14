@@ -280,7 +280,7 @@ public abstract partial class SharedRoleSystem : EntitySystem
         #region Starlight
         var roleProto = _prototypes.Index<RoleTypePrototype>(roleTypeId);
         var roleTypeName = Loc.GetString(roleProto.Name);
-        var subtypeName = GetRoleSubtypeLabel(roleProto.Name, subtype);
+        var roleLabel = string.IsNullOrEmpty(subtype) ? roleTypeName : $"{roleTypeName}, {GetRoleSubtypeLabel(roleProto.Name, subtype)}";
         #endregion
 
         if (comp.OwnedEntity is null)
@@ -288,13 +288,13 @@ public abstract partial class SharedRoleSystem : EntitySystem
             Log.Error($"{ToPrettyString(mind)} does not have an OwnedEntity!");
             _adminLogger.Add(LogType.Mind,
                 LogImpact.Medium,
-                $"Role Type of {ToPrettyString(mind)} changed to {roleTypeName}, {subtypeName}"); // Starlight
+                $"Role Type of {ToPrettyString(mind)} changed to {roleTypeName}, {roleLabel}"); // Starlight
             return;
         }
 
         _adminLogger.Add(LogType.Mind,
             LogImpact.High,
-            $"Role Type of {ToPrettyString(comp.OwnedEntity)} changed to {roleTypeName}, {subtypeName}"); // Starlight
+            $"Role Type of {ToPrettyString(comp.OwnedEntity)} changed to {roleTypeName}, {roleLabel}"); // Starlight
     }
 
     /// <summary>
