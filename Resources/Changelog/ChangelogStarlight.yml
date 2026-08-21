@@ -1,13 +1,6 @@
 Entries:
 - author: Caws, oliveoil238, & rtasva
   changes:
-  - message: Added roller skates, cooler roller skates, rubber duck, toy mouse, toy Ian, Magic 9 Ball, and toy hammer to the Hug Dispenser's stock.
-    type: Add
-  id: 407398
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
   - message: Some crew plushies have been updated with in-hands / hat sprites.
     type: Add
   id: 407399
@@ -2799,4 +2792,11 @@ Entries:
   id: 407797
   time: '2026-08-21T11:32:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5743
+- author: Caws
+  changes:
+  - message: Internal Affairs Agents no longer have Command access.
+    type: Remove
+  id: 407798
+  time: '2026-08-21T11:58:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5744
 Order: -1
