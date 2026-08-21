@@ -47,7 +47,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
 
         SubscribeLocalEvent<VinylPlayerComponent, VinylInsertedEvent>(OnVinylInserted);
         SubscribeLocalEvent<VinylPlayerComponent, VinylRemovedEvent>(OnVinylRemoved);
-        SubscribeLocalEvent<VinylSummonRuleComponent, VinylFinishedEvent>(OnVinylFinished);
+        SubscribeLocalEvent<VinylSummonRuleComponent, VinylFinishedEvent>(OnVinylFinished);//Starlight: Eventify vinyl finishing.
     }
 
     private void OnVinylInserted(EntityUid uid, VinylPlayerComponent player, ref VinylInsertedEvent args)
@@ -56,8 +56,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         var vinylUid = args.Vinyl;
 
         // Check if the inserted entity has the summon rule component / A song
-        if (!TryComp<VinylSummonRuleComponent>(vinylUid, out _)
-            || !TryComp<VinylComponent>(vinylUid, out var vinylComp)
+        if (!TryComp<VinylComponent>(vinylUid, out var vinylComp) //starlight edit: Track any vinyl playing.
             || vinylComp.Song == null)
             return;
 
@@ -151,7 +150,10 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             // Check if playback has finished
             if (currentTime >= data.EndTime)
             {
-                HandleVinylFinished(vinylUid);
+                #region Starlight lets just... make this a event?
+                var ev = new VinylFinishedEvent(data.VinylPlayerUid);
+                RaiseLocalEvent(vinylUid, ref ev);
+                #endregion
                 _trackingVinyls.Remove(vinylUid);
             }
         }
@@ -173,17 +175,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             }
     }
 
-    private void HandleVinylFinished(EntityUid vinylUid)
-    {
-
-        #region Starlight lets just... make this a event?
-        if (TryComp<VinylComponent>(vinylUid, out var vinyl))
-        {
-            var ev = new VinylFinishedEvent();
-            RaiseLocalEvent(vinylUid, ref ev);
-        }
-    }
-
+    #region Starlight: Eventify Vinyl finishing.
     private void OnVinylFinished(Entity<VinylSummonRuleComponent> entity, ref VinylFinishedEvent _)
     {
         // Resolve the game rule ID and get the threat prototype if available

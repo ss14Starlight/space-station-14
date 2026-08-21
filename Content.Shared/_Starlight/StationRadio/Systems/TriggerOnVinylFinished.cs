@@ -12,5 +12,5 @@ public sealed partial class TriggerOnVinylFinishedSystem : TriggerOnXSystem
         SubscribeLocalEvent<TriggerOnVinylFinishedComponent, VinylFinishedEvent>(OnVinylFinished);
     }
 
-    private void OnVinylFinished(Entity<TriggerOnVinylFinishedComponent> ent, ref VinylFinishedEvent ev) => Trigger.Trigger(ent.Owner, ent.Owner, ent.Comp.KeyOut);
+    private void OnVinylFinished(Entity<TriggerOnVinylFinishedComponent> ent, ref VinylFinishedEvent ev) => Trigger.Trigger(ent.Owner, ev.Player, ent.Comp.KeyOut);
 }

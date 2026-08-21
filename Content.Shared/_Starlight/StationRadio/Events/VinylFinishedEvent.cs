@@ -4,4 +4,4 @@ namespace Content.Shared._Starlight.StationRadio.Events;
 /// Raised on a vinyl player when a vinyl is finished.
 /// </summary>
 [ByRefEvent]
-public record struct VinylFinishedEvent();
+public record struct VinylFinishedEvent(EntityUid Player);
