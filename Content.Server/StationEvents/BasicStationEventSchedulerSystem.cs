@@ -207,8 +207,54 @@ namespace Content.Server.StationEvents
                 return false;
 
             scheduler.EventQueue.Remove(entry);
+
+            if (entry.Automatic)
+                CloseAutomaticGap(scheduler, entry);
+
             EnsureScheduledEvents(uid, scheduler);
             return true;
+        }
+
+        /// <summary>
+        /// Slides the automatic entries after a cancelled one earlier, closing the gap it left.
+        /// </summary>
+        /// <remarks>
+        /// Automatic entries chain off the last one in the queue, so cancelling removed a near
+        /// event and appended its replacement behind the tail. The schedule marched into the
+        /// future and never recovered: a handful of cancellations pushed the next event over an
+        /// hour out on a scheduler meant to fire every few minutes. Manual entries are left
+        /// where they are, since an admin asked for those at a specific time.
+        /// </remarks>
+        private void CloseAutomaticGap(
+            BasicStationEventSchedulerComponent component,
+            QueuedStationEventEntry removed)
+        {
+            // The slot the cancelled event occupied: from whatever automatic event preceded it
+            // (or from now, if it was the head) up to its own trigger time.
+            var previous = _timing.CurTime;
+            foreach (var candidate in component.EventQueue)
+            {
+                if (candidate.Automatic &&
+                    candidate.TriggerTime < removed.TriggerTime &&
+                    candidate.TriggerTime > previous)
+                {
+                    previous = candidate.TriggerTime;
+                }
+            }
+
+            var gap = removed.TriggerTime - previous;
+            if (gap <= TimeSpan.Zero)
+                return;
+
+            foreach (var candidate in component.EventQueue)
+            {
+                if (!candidate.Automatic || candidate.TriggerTime <= removed.TriggerTime)
+                    continue;
+
+                candidate.TriggerTime -= gap;
+                if (candidate.TriggerTime < _timing.CurTime)
+                    candidate.TriggerTime = _timing.CurTime;
+            }
         }
 
         public bool RunScheduledEventNow(int queueId)
