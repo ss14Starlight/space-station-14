@@ -1,20 +1,6 @@
 Entries:
 - author: Glaud
   changes:
-  - message: Purrfus cyborgs now come with an paperwork printing module, holding a document printer, an integrated fax transmitter, a clipboard and a document slot.
-    type: Add
-  id: 407406
-  time: '2026-08-10T13:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5454
-- author: Glaud
-  changes:
-  - message: The clipboard have placed to the new module in purrfus.
-    type: Tweak
-  id: 407407
-  time: '2026-08-10T13:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5454
-- author: Glaud
-  changes:
   - message: Fax machines inside a container no longer lose the paper they print.
     type: Fix
   id: 407408
@@ -2799,4 +2785,18 @@ Entries:
   id: 407805
   time: '2026-08-21T15:47:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5765
+- author: Citrea
+  changes:
+  - message: The digestive system no longer destroys half the chemicals passing through it.
+    type: Tweak
+  id: 407806
+  time: '2026-08-21T16:09:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5772
+- author: Citrea
+  changes:
+  - message: You can now overdose again from drinking too much.
+    type: Tweak
+  id: 407807
+  time: '2026-08-21T16:09:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5772
 Order: -1
