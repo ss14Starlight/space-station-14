@@ -1,25 +1,4 @@
 Entries:
-- author: SnappingOpossum, Princess-Cheeseballs, MilenVolf
-  changes:
-  - message: Handheld artifacts will no longer create entities glued to players.
-    type: Fix
-  id: 407382
-  time: '2026-08-10T00:53:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5405
-- author: Caws
-  changes:
-  - message: Organized the shuttle files for both mapper and admin convenience.
-    type: Tweak
-  id: 407383
-  time: '2026-08-10T12:21:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5379
-- author: Caws
-  changes:
-  - message: Xenoborgs now use the custom Starlight Mothership once again.
-    type: Fix
-  id: 407384
-  time: '2026-08-10T12:21:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5379
 - author: Caws
   changes:
   - message: Removed a bunch of old/unused shuttle files.
@@ -2799,4 +2778,25 @@ Entries:
   id: 407781
   time: '2026-08-20T14:19:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5756
+- author: Trosling
+  changes:
+  - message: Reorganized the guides into their own category in the guidebook for less clutter.
+    type: Tweak
+  id: 407782
+  time: '2026-08-21T08:05:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5432
+- author: Trosling
+  changes:
+  - message: Moved corporate law to it's own guidebook category, instead of hiding it away in the security guide.
+    type: Tweak
+  id: 407783
+  time: '2026-08-21T08:05:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5432
+- author: Trosling
+  changes:
+  - message: Removed last mentions of "Space Law" in the guidebook, replacing them with "Corporate Law".
+    type: Fix
+  id: 407784
+  time: '2026-08-21T08:05:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5432
 Order: -1
