@@ -56,10 +56,10 @@ namespace Content.Server.StationEvents
                 if (!GameTicker.IsGameRuleActive(uid, gameRule))
                     continue;
 
-                // EnsureScheduledEvents ya corre en cada mutacion de la cola (alta, baja,
-                // adelanto y disparo). Aca solo hace falta como reintento para cuando antes
-                // no habia candidatos disponibles, asi que se chequea primero: contar es O(n)
-                // sobre unos pocos elementos y evita reordenar la cola en cada tick.
+                // EnsureScheduledEvents already runs on every queue mutation (add, remove,
+                // reschedule and fire). Here it is only needed as a retry for when no candidate
+                // was available earlier, so check first: counting is O(n) over a handful of
+                // entries and avoids re-sorting the queue every tick.
                 if (CountAutomatic(eventScheduler) < eventScheduler.AutoQueueLookahead)
                     EnsureScheduledEvents(uid, eventScheduler);
 
@@ -79,10 +79,10 @@ namespace Content.Server.StationEvents
         }
 
         /// <summary>
-        /// Todos los schedulers activos. Un preset corre varios a la vez -eventos generales,
-        /// trafico espacial, meteoritos- y cada uno tiene su propia tabla de eventos y su propio
-        /// espaciado, asi que quedarse con el primero que aparece muestra una cola arbitraria
-        /// y esconde el resto.
+        /// Every active scheduler. A preset runs several at once - general events, space
+        /// traffic, meteors - and each has its own event table and its own spacing, so taking
+        /// whichever one the enumerator happens to yield first surfaces an arbitrary queue and
+        /// hides the rest.
         /// </summary>
         public IEnumerable<(EntityUid Uid, BasicStationEventSchedulerComponent Scheduler)> GetActiveSchedulers()
         {
@@ -103,7 +103,7 @@ namespace Content.Server.StationEvents
         }
 
         /// <summary>
-        /// Busca una entrada por id en cualquiera de los schedulers activos.
+        /// Looks up a queued entry by id across every active scheduler.
         /// </summary>
         private bool TryFindEntry(
             int queueId,
@@ -132,10 +132,10 @@ namespace Content.Server.StationEvents
         }
 
         /// <summary>
-        /// La cola combinada de todos los schedulers activos, ordenada por tiempo de disparo.
-        /// Cada entrada viaja con el nombre de su scheduler, porque si no una cola con un evento
-        /// en 4 minutos y otro en 43 se ve arbitraria: son schedulers distintos con espaciados
-        /// distintos, y sin decirlo el panel parece roto.
+        /// The combined queue of every active scheduler, ordered by trigger time. Each entry
+        /// carries the name of its scheduler, because otherwise a queue holding one event in
+        /// 4 minutes and another in 43 looks arbitrary: they belong to different schedulers with
+        /// different spacing, and without saying so the panel just looks broken.
         /// </summary>
         public IReadOnlyList<(QueuedStationEventEntry Entry, string Scheduler)> GetQueuedEvents()
         {
@@ -163,8 +163,8 @@ namespace Content.Server.StationEvents
             if (!_event.HasEvent(eventId))
                 return false;
 
-            // Un evento manual se dispara con AddGameRule directo, sin importar que scheduler lo
-            // tenga encolado, asi que alcanza con ponerlo en el primero activo.
+            // A manual event fires through AddGameRule directly regardless of which scheduler
+            // holds it, so queuing it on the first active one is enough.
             foreach (var (uid, scheduler) in GetActiveSchedulers())
             {
                 var triggerTime = delaySeconds.HasValue
@@ -223,9 +223,9 @@ namespace Content.Server.StationEvents
         }
 
         /// <summary>
-        /// Ids unicos entre schedulers. Antes cada componente llevaba su propio contador, asi
-        /// que dos schedulers activos generaban el mismo id y una accion del panel podia caer
-        /// sobre la entrada equivocada.
+        /// Queue ids unique across schedulers. Each component used to keep its own counter,
+        /// so two active schedulers produced the same id and a panel action could land on the
+        /// wrong entry.
         /// </summary>
         private int NextQueueId() => ++_queueIdCounter;
 
@@ -238,13 +238,13 @@ namespace Content.Server.StationEvents
                 var next = component.EventQueue[0];
                 component.EventQueue.RemoveAt(0);
 
-                // Un evento automatico se eligio minutos antes de este momento. Si las
-                // condiciones cambiaron y ya no corresponde -tipicamente porque se fueron
-                // jugadores y no llega a MinimumPlayers- se descarta y el lookahead repone
-                // otro. Los programados por un admin disparan igual: ahi manda su intencion.
+                // An automatic event was picked minutes before this moment. If conditions
+                // changed and it no longer qualifies - typically because players left and it no
+                // longer meets MinimumPlayers - drop it and let the lookahead replace it. Admin
+                // scheduled entries fire regardless: there the admin's intent wins.
                 if (next.Automatic && !_event.CanRunNow(next.EventId))
                 {
-                    Log.Debug($"Evento automatico {next.EventId} descartado al vencer: ya no cumple condiciones.");
+                    Log.Debug($"Dropped automatic event {next.EventId} on trigger: no longer eligible.");
                     EnsureScheduledEvents(uid, component);
                     SortQueue(component);
                     continue;
@@ -353,8 +353,8 @@ namespace Content.Server.StationEvents
         }
 
         /// <summary>
-        /// Cuantos eventos automaticos hay en la cola. Es un for y no LINQ porque esto corre
-        /// en cada tick del Update.
+        /// How many automatic events the queue holds. A plain loop rather than LINQ because
+        /// this runs on every Update tick.
         /// </summary>
         private static int CountAutomatic(BasicStationEventSchedulerComponent component)
         {

@@ -43,12 +43,13 @@ public sealed partial class EventsTab : Control
     private EventSortMode _sortMode = EventSortMode.Weight;
 
     /// <summary>
-    /// Minutos tipeados por el admin, por evento.
+    ///     Minutes typed by the admin, per event.
     /// </summary>
     /// <remarks>
-    /// El ListContainer recicla los botones y vuelve a llamar a GenerateItem en cada refresco,
-    /// asi que el LineEdit de la fila se recrea una vez por segundo. Sin guardar el texto aca,
-    /// lo que el admin escribia se borraba y volvia al default antes de poder apretar Programar.
+    ///     The ListContainer recycles its buttons and calls GenerateItem again on every
+    ///     refresh, so a row's LineEdit is rebuilt once per second. Without keeping the text
+    ///     here, whatever the admin typed was wiped back to the default before they could
+    ///     press Schedule.
     /// </remarks>
     private readonly Dictionary<string, string> _delayInputs = new();
 
@@ -104,9 +105,9 @@ public sealed partial class EventsTab : Control
     {
         base.FrameUpdate(args);
 
-        // El TabContainer mantiene las pestañas ocultas dentro del arbol, asi que esto sigue
-        // corriendo aunque el admin este parado en otra pestaña. Sin este chequeo, tener el
-        // menu abierto en Players igual pedia el snapshot de eventos una vez por segundo.
+        // The TabContainer keeps hidden tabs in the tree, so this keeps running even while
+        // the admin sits on another tab. Without this check, having the menu open on Players
+        // still requested the events snapshot once per second.
         if (!Visible)
             return;
 
@@ -166,8 +167,8 @@ public sealed partial class EventsTab : Control
             return;
         }
 
-        // Presets como Survival usan un scheduler de rampa, que no expone cola. Antes que
-        // dar a entender que se ve todo, se avisa que falta parte.
+        // Presets such as Survival use a ramping scheduler, which exposes no queue. Rather
+        // than implying everything is visible, say part of it is missing.
         if (snapshot.UnreadableSchedulers > 0)
         {
             QueueList.AddChild(new Label
@@ -213,7 +214,8 @@ public sealed partial class EventsTab : Control
                     ("time", FormatSeconds(queued.TriggerInSeconds))),
                 ModulateSelfOverride = Color.LightSteelBlue
             });
-            // Sin esto una cola con un evento en 4 minutos y otro en 43 parece un error.
+            // Without this, a queue holding one event in 4 minutes and another in 43 reads
+            // as a bug.
             if (!string.IsNullOrEmpty(queued.Scheduler))
             {
                 details.AddChild(new Label
@@ -410,7 +412,7 @@ public sealed partial class EventsTab : Control
             PlaceHolder = Loc.GetString("administration-ui-events-tab-schedule-minutes-placeholder"),
             MinWidth = 48
         };
-        // Se recuerda por evento para que sobreviva al reciclado de la fila.
+        // Remembered per event so it survives the row being recycled.
         delayInput.OnTextChanged += changed => _delayInputs[row.Info.Id] = changed.Text;
         var scheduleButton = new Button
         {

@@ -30,8 +30,8 @@ public sealed class ScheduledStationEventData
     public bool Automatic;
 
     /// <summary>
-    /// Prototipo del scheduler que tiene esta entrada encolada. Un preset corre varios a la vez
-    /// con espaciados muy distintos, asi que sin esto la cola combinada resulta ilegible.
+    ///     Prototype of the scheduler holding this entry. A preset runs several at once with
+    ///     very different spacing, so without this the combined queue is unreadable.
     /// </summary>
     public string Scheduler = string.Empty;
 }
@@ -58,9 +58,9 @@ public sealed class StationEventsChangedEvent : EntityEventArgs
     public bool HasScheduler;
 
     /// <summary>
-    /// Schedulers activos cuya cola este panel no sabe leer, porque usan otro componente
-    /// (el de rampa, por ejemplo). Si es mayor que cero la cola mostrada esta incompleta,
-    /// y es preferible decirlo antes que dar a entender que se ve todo.
+    ///     Active schedulers whose queue this panel cannot read because they use a different
+    ///     component (the ramping one, for instance). When greater than zero the queue shown is
+    ///     incomplete, and saying so beats implying everything is visible.
     /// </summary>
     public int UnreadableSchedulers;
 }
