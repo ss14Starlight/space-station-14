@@ -45,9 +45,14 @@ public sealed partial class BasicStationEventSchedulerComponent : Component
     public readonly List<QueuedStationEventEntry> EventQueue = new();
 
     /// <summary>
-    /// Runtime identifier used by the admin panel to mutate queued entries.
+    /// When this scheduler was paused because station events were switched off, if it is.
     /// </summary>
-    public int NextQueueId = 1;
+    /// <remarks>
+    /// Queue entries carry absolute trigger times, so a scheduler left disabled for ten
+    /// minutes came back with every entry overdue and fired them all in a single tick. The
+    /// queue is shifted forward by the paused interval when events are turned back on.
+    /// </remarks>
+    public TimeSpan? PausedAt;
 }
 
 public sealed class QueuedStationEventEntry

@@ -210,7 +210,8 @@ public sealed partial class EventManagerSystem : EntitySystem
     ///     Plain weighted selection has no memory, so the same event can be drawn several times
     ///     in a row purely by chance, which reads as the scheduler being broken. Decaying the
     ///     weight per occurrence makes repeats progressively less likely while still leaving
-    ///     them possible. Controlled by <c>events.repetition_falloff</c> and disabled by default.
+    ///     them possible. Controlled by <c>events.repetition_falloff</c>, which ships at 0.6;
+    ///     setting it to 1 disables the penalty.
     /// </remarks>
     public float GetEffectiveWeight(EntityPrototype prototype, StationEventComponent stationEvent)
     {

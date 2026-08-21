@@ -56,6 +56,16 @@ namespace Content.Server.StationEvents
                 if (!GameTicker.IsGameRuleActive(uid, gameRule))
                     continue;
 
+                // Nothing is planned or fired while events are off, and the queue is frozen
+                // rather than left to go overdue in the background.
+                if (!_event.EventsEnabled)
+                {
+                    eventScheduler.PausedAt ??= _timing.CurTime;
+                    continue;
+                }
+
+                ThawQueue(eventScheduler);
+
                 // EnsureScheduledEvents already runs on every queue mutation (add, remove,
                 // reschedule and fire). Here it is only needed as a retry for when no candidate
                 // was available earlier, so check first: counting is O(n) over a handful of
@@ -63,11 +73,31 @@ namespace Content.Server.StationEvents
                 if (CountAutomatic(eventScheduler) < eventScheduler.AutoQueueLookahead)
                     EnsureScheduledEvents(uid, eventScheduler);
 
-                if (!_event.EventsEnabled)
-                    continue;
-
                 ProcessDueEntries(uid, eventScheduler);
             }
+        }
+
+        /// <summary>
+        /// Gives back the time a scheduler spent with station events switched off.
+        /// </summary>
+        /// <remarks>
+        /// Trigger times are absolute, so without this every entry that came due while events
+        /// were disabled fires at once the moment they are re-enabled. Manual entries shift
+        /// too: the whole queue is frozen, not just the automatic part of it.
+        /// </remarks>
+        private void ThawQueue(BasicStationEventSchedulerComponent component)
+        {
+            if (component.PausedAt is not { } pausedAt)
+                return;
+
+            var frozen = _timing.CurTime - pausedAt;
+            component.PausedAt = null;
+
+            if (frozen <= TimeSpan.Zero)
+                return;
+
+            foreach (var entry in component.EventQueue)
+                entry.TriggerTime += frozen;
         }
 
         /// <summary>
@@ -263,9 +293,9 @@ namespace Content.Server.StationEvents
                 return false;
 
             scheduler.EventQueue.Remove(entry);
-            _event.RunEventById(entry.EventId);
+            var started = _event.RunEventById(entry.EventId);
             EnsureScheduledEvents(uid, scheduler);
-            return true;
+            return started;
         }
 
         /// <summary>
@@ -296,7 +326,9 @@ namespace Content.Server.StationEvents
                     continue;
                 }
 
-                _event.RunEventById(next.EventId);
+                if (!_event.RunEventById(next.EventId))
+                    Log.Warning($"Queued event {next.EventId} came due but failed to start.");
+
                 EnsureScheduledEvents(uid, component);
                 SortQueue(component);
             }
