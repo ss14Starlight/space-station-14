@@ -19,8 +19,29 @@
     understands:
     - GalacticCommon
     - SolCommon
+  - type: DamageThresholdSounds
+    thresholds:
+      0: null
+      100:
+        sound: !type:SoundPathSpecifier
+          path: /Audio/Voice/Moth/moth_chitter.ogg
+        ambient: true
+      200:
+        sound: !type:SoundPathSpecifier
+          path: /Audio/Items/bikehorn.ogg
   - type: Hunger
     baseDecayRate: 0.12
+    starvationDamage:
+      types:
+        Caustic: 0.2
+    passiveDamage:
+      groups:
+        Brute: -0.4
+      types:
+        Heat: -0.18
+        Poison: -0.25
+    passiveThreshold: Peckish
+    passiveCap: 100
   - type: PassiveDamage
     allowedStates:
     - Alive
