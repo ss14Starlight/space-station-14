@@ -161,7 +161,7 @@
     - id: VinylTraitorousIntent
     - id: VinylViolet
     - id: VinylPeakAsshole # Space asshole but deep fried.
-    #Starlight begin
+    #Starlight-start
     - id: VinylCrazyBot
     - id: VinylD2
     - id: VinylAcidRaindream
@@ -170,7 +170,7 @@
     - id: VinylSilverAndCold
     - id: VinylCirclesOfBlackAndRed
     - id: VinylDepressedWawaTriesToProtest
-    #Starlight end
+    #Starlight-end
     weight: 0.05
 
 - type: entityTable

@@ -14,6 +14,6 @@
     sprite: _Goobstation/Objects/Fun/RadioHost/vinyl.rsi
     state: default
   product: CrateRadioHostVinyls
-  cost: 1300
+  cost: 1300 #Starlight edit, 1600 -> 1300
   category: cargoproduct-category-name-service
   group: market
