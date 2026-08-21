@@ -53,12 +53,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         PrintReportButton.OnPressed += _ => PrintReportPressed?.Invoke(); // Starlight-edit: Printable health reports.
     }
 
-    /// <summary>
-/// Populates the health analyzer UI with the scanned entity's state.
-/// Renders combined bloodstream and stomach chemical quantities alongside
-/// damage groups and other health information.
-/// </summary>
-public void Populate(HealthAnalyzerUiState state)
+    public void Populate(HealthAnalyzerUiState state)
     {
         var target = _entityManager.GetEntity(state.TargetEntity);
 
