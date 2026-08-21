@@ -1,18 +1,4 @@
 Entries:
-- author: Conflee, SevenShades
-  changes:
-  - message: Added Shipping Containers. They are large 3x1 storage structures that can not be built to avoid abuse due to their size, but can be broken. There are 30 containers, with many being corporate branded.
-    type: Add
-  id: 407388
-  time: '2026-08-10T12:50:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5404
-- author: Mack
-  changes:
-  - message: Derelict Borgi's robotics access.
-    type: Add
-  id: 407389
-  time: '2026-08-10T12:50:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5408
 - author: Mack
   changes:
   - message: Derelict Borgi's research access.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407787
   time: '2026-08-21T09:25:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5755
+- author: BriocheBear
+  changes:
+  - message: Added froggy chair as a constructible furniture.
+    type: Add
+  id: 407788
+  time: '2026-08-21T09:52:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5691
+- author: BriocheBear
+  changes:
+  - message: Added lovey chair, a pink variant of the froggy chair.
+    type: Add
+  id: 407789
+  time: '2026-08-21T09:52:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5691
 Order: -1
