@@ -54,7 +54,7 @@ public sealed class TickerCommand : ToolshedCommand
         if (_ticker.RunLevel == GameRunLevel.InRound)
         {
             _end.EndRound(time);
-            ctx.WriteLine("Round ended, restart timer enabled.");
+            ctx.WriteLine($"Round ended{(_end.StartTimerOnRestart ? ", restart timer enabled." : ".")}");
             return;
         }
 
@@ -100,5 +100,16 @@ public sealed class TickerCommand : ToolshedCommand
         _log.LogToDiscord($"Round end was cancelled by {ctx.Session?.Name ?? "unknown"}");
         _ticker.CancelPostRound(ctx.Session);
         ctx.WriteLine("Post-round has been cancelled.");
+    }
+
+    /// <summary>
+    /// Toggles the automatic timer on round end.
+    /// </summary>
+    [CommandImplementation("toggletimeronend")]
+    public void ToggleTimerOnend(IInvocationContext ctx, bool state)
+    {
+        _end ??= GetSys<RoundEndSystem>();
+        _end.ToggleTimerOnEnd(state, ctx.Session);
+        ctx.WriteLine($"The round restart timer will{(state ? " " : " NOT ")}start once round ends.");
     }
 }

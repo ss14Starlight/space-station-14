@@ -31,7 +31,7 @@
 - type: guideEntry
   id: Abductors
   name: guide-entry-abductors
-  text: "/ServerInfo/Guidebook/Antagonist/Abductors.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Antagonist/Abductors.xml"
 
 - type: guideEntry
   id: TerrorSpiders

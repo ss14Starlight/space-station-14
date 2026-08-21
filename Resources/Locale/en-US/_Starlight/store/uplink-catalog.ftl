@@ -162,3 +162,6 @@ uplink-syndicate-borgi-speed-bundle-desc = A syndicate borgi, with dagger module
 
 uplink-chameleon-bundle-name = Chameleon Kit Crate
 uplink-chameleon-bundle-desc = A crate containing a backpack full of items that contain chameleon technology allowing you to disguise as pretty much anything on the station, and more!
+
+uplink-reinforcement-radio-mothroach-name = Mothroach Reinforcement Teleporter
+uplink-reinforcement-radio-mothroach-desc =  Call in a trained mobroach to assist you. Comes with a single syndicate cigarette, a fedora, and a pair of cheap shades. Specializes in cleaning evidence and chittering.
