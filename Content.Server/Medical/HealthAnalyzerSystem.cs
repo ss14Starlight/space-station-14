@@ -605,6 +605,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
     private sealed record HealthAnalyzerDamageTypeSnapshot(string Name, FixedPoint2 Amount);
 
-    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, FixedPoint2 StomachAmount); // Starlight
+    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, FixedPoint2 StomachAmount);
     // Starlight-end
 }
