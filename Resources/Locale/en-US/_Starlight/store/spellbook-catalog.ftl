@@ -64,9 +64,3 @@ spellbook-icepillars-desc = Summon a row of somewhat sturdy ice pillars in front
 
 spellbook-eruption-name = Eruption
 spellbook-eruption-desc = Summon a rune that after 2 seconds will start sending fiery shrapnels in a wide area.
-
-spellbook-soulmancer-name = The Soulmancer path
-spellbook-soulmancer-desc = placeholder desc yes yes
-
-spellbook-soulknives-name = Rune of cutting
-spellbook-soulknives-desc = Summon several orbs that once charged, become spinning ethereal knives.

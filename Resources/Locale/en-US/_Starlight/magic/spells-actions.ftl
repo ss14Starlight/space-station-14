@@ -39,5 +39,3 @@ action-speech-spell-icepillars = TE EVOCO, GLACIES !
 action-speech-spell-icepillars-tts = TE EBOCO, GLAKIES!!
 action-speech-spell-eruption = CONCREMARE !
 action-speech-spell-eruption-tts = CONCREMARE!!
-action-speech-spell-soulknives = CAEDEMINI !!
-action-speech-spell-soulknives-tts = KAEDE MINI!

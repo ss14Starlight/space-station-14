@@ -187,28 +187,3 @@
     delay: 1.5
   - type: SpawnOnTrigger
     proto: EruptionBomb
-
-- type: entity
-  parent: ActionFreezeRune
-  id: ActionSoulKnives
-  name: Rune of soul cutting
-  description: Summons a magical rune that will place several immobile soul knives, hurting anyone who comes in contact with them.
-  components:
-  - type: Action
-    useDelay: 30
-    icon:
-        sprite: _Starlight/Objects/Magic/magicactions.rsi
-        state: soulknives
-  - type: TargetAction
-    range: 16
-    checkCanAccess: false
-  - type: WorldTargetAction
-    event: !type:WorldSpawnSpellEvent
-      prototypes:
-      - id: KnivesRune
-        amount: 1
-  - type: SpeakOnAction
-    sentence: action-speech-spell-soulknives
-    tts: action-speech-spell-soulknives-tts
-    modifier: Spell
-  - type: EorgPreventAction

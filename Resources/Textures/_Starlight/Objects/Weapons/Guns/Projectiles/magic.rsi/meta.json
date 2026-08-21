@@ -30,28 +30,6 @@
     },
     {
       "name": "eruptionbomb"
-    },
-    {
-      "name": "orbknives",
-      "delays": [
-       [
-        0.3,
-        0.3,
-        0.3,
-        0.3
-        ]
-       ]
-    },
-    {
-      "name": "soulknives",
-      "delays": [
-       [
-        0.3,
-        0.3,
-        0.3,
-        0.3
-        ]
-       ]
     }
   ]
 }
