@@ -1,13 +1,6 @@
 Entries:
 - author: Caws, oliveoil238, & rtasva
   changes:
-  - message: Added a hat sprite for the Pig plushie (sprites by oliveoil238).
-    type: Add
-  id: 407395
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
   - message: Added a hat sprite for the Snail plushie.
     type: Add
   id: 407396
@@ -2799,4 +2792,11 @@ Entries:
   id: 407794
   time: '2026-08-21T10:14:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5727
+- author: Way
+  changes:
+  - message: Radio Host and Departmental Lathes are now mapped.
+    type: Add
+  id: 407795
+  time: '2026-08-21T10:41:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5729
 Order: -1
