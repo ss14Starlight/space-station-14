@@ -37,11 +37,12 @@ public sealed partial class StencilOverlay
 
         foreach (var (uid, weather, status) in weathers)
         {
-            if (weather.Sprite is null) // SL
+            var spriteSpecifier = _spriteQuality.GetSprite(uid, weather.Sprite); // Starlight
+            if (spriteSpecifier is null) // SL
                 continue;
 
             var alpha = _weather.GetWeatherPercent((uid, status));
-            var sprite = _sprite.GetFrame(weather.Sprite, curTime);
+            var sprite = _sprite.GetFrame(spriteSpecifier, curTime); // Starlight
 
             // Draw the rain
             worldHandle.UseShader(_protoManager.Index(StencilDraw).Instance());
