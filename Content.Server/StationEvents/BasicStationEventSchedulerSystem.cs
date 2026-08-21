@@ -9,7 +9,7 @@ using Content.Shared.GameTicking.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
+using Robust.Shared.Timing; // Starlight
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.TypeParsers;
 using Robust.Shared.Utility;
@@ -25,24 +25,28 @@ namespace Content.Server.StationEvents
     {
         [Dependency] private IRobustRandom _random = default!;
         [Dependency] private EventManagerSystem _event = default!;
+        // Starlight-start
         [Dependency] private IGameTiming _timing = default!;
 
         private int _queueIdCounter;
+        // Starlight-end
 
         protected override void Started(EntityUid uid, BasicStationEventSchedulerComponent component, GameRuleComponent gameRule,
             GameRuleStartedEvent args)
         {
             // A little starting variance so schedulers dont all proc at once.
             component.TimeUntilNextEvent = RobustRandom.NextFloat(component.MinimumTimeUntilFirstEvent, component.MinimumTimeUntilFirstEvent + 120);
+            // Starlight-start
             component.EventQueue.Clear();
             EnsureScheduledEvents(uid, component);
+            // Starlight-end
         }
 
         protected override void Ended(EntityUid uid, BasicStationEventSchedulerComponent component, GameRuleComponent gameRule,
             GameRuleEndedEvent args)
         {
             component.TimeUntilNextEvent = component.MinimumTimeUntilFirstEvent;
-            component.EventQueue.Clear();
+            component.EventQueue.Clear(); // Starlight
         }
 
 
@@ -56,14 +60,17 @@ namespace Content.Server.StationEvents
                 if (!GameTicker.IsGameRuleActive(uid, gameRule))
                     continue;
 
+                // Starlight-start
                 // Nothing is planned or fired while events are off, and the queue is frozen
                 // rather than left to go overdue in the background.
                 if (!_event.EventsEnabled)
+                // Starlight-end
                 {
-                    eventScheduler.PausedAt ??= _timing.CurTime;
+                    eventScheduler.PausedAt ??= _timing.CurTime; // Starlight
                     continue;
                 }
 
+                // Starlight-start
                 ThawQueue(eventScheduler);
 
                 // EnsureScheduledEvents already runs on every queue mutation (add, remove,
@@ -74,10 +81,12 @@ namespace Content.Server.StationEvents
                     EnsureScheduledEvents(uid, eventScheduler);
 
                 ProcessDueEntries(uid, eventScheduler);
+                // Starlight-end
             }
         }
 
         /// <summary>
+        // Starlight-start
         /// Gives back the time a scheduler spent with station events switched off.
         /// </summary>
         /// <remarks>
@@ -102,11 +111,13 @@ namespace Content.Server.StationEvents
 
         /// <summary>
         /// Reset the scheduler spacing after auto-planning an event.
+        // Starlight-end
         /// </summary>
         private void ResetTimer(BasicStationEventSchedulerComponent component)
         {
             component.TimeUntilNextEvent = component.MinMaxEventTiming.Next(_random);
         }
+        // Starlight-start
 
         /// <summary>
         /// Every active scheduler. A preset runs several at once - general events, space
@@ -454,6 +465,7 @@ namespace Content.Server.StationEvents
                 return timeCompare != 0 ? timeCompare : a.Id.CompareTo(b.Id);
             });
         }
+        // Starlight-end
     }
 
     [ToolshedCommand, AdminCommand(AdminFlags.Debug)]

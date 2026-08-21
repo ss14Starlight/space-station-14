@@ -6,6 +6,7 @@ admin-menu-adminbus-tab = Adminbus
 admin-menu-atmos-tab = Atmos
 admin-menu-round-tab = Round
 admin-menu-server-tab = Server
+# Starlight
 admin-menu-events-tab = Events
 admin-menu-panic-bunker-tab = Panic Bunker
 admin-menu-baby-jail-tab = Baby Jail

@@ -25,6 +25,7 @@ public sealed partial class EventManagerSystem : EntitySystem
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;
 
+    // Starlight-start
     /// <summary>
     ///     Cache of the event prototypes and of their ids.
     /// </summary>
@@ -38,11 +39,13 @@ public sealed partial class EventManagerSystem : EntitySystem
     private HashSet<string>? _allEventIdsCache;
     private List<KeyValuePair<EntityPrototype, StationEventComponent>>? _allEventsOrderedCache;
 
+    // Starlight-end
     public override void Initialize()
     {
         base.Initialize();
 
         Subs.CVar(_configurationManager, CCVars.EventsEnabled, SetEnabled, true);
+        // Starlight-start
         _prototype.PrototypesReloaded += OnPrototypesReloaded;
     }
 
@@ -70,6 +73,7 @@ public sealed partial class EventManagerSystem : EntitySystem
         return _allEventsOrderedCache ??= AllEvents()
             .OrderBy(pair => pair.Key.ID)
             .ToList();
+        // Starlight-end
     }
 
     /// <summary>
@@ -120,6 +124,7 @@ public sealed partial class EventManagerSystem : EntitySystem
         GameTicker.AddGameRule(randomLimitedEvent);
     }
 
+    // Starlight-start
     public bool HasEvent(string eventId)
     {
         // Cached set rather than scanning the keys: this runs on every Schedule and RunEventById.
@@ -135,6 +140,7 @@ public sealed partial class EventManagerSystem : EntitySystem
         return GameTicker.AddGameRule(eventId) != EntityUid.Invalid;
     }
 
+    // Starlight-end
     /// <summary>
     /// Returns true if the provided EntityTableSelector gives at least one prototype with a StationEvent comp.
     /// </summary>
@@ -203,6 +209,7 @@ public sealed partial class EventManagerSystem : EntitySystem
     /// Pick a random event from the available events at this time, also considering their weightings.
     /// </summary>
     /// <returns></returns>
+    // Starlight-start
     /// <summary>
     ///     An event's weight after accounting for how often it has already run this round.
     /// </summary>
@@ -226,6 +233,7 @@ public sealed partial class EventManagerSystem : EntitySystem
         return stationEvent.Weight * MathF.Pow(falloff, occurrences);
     }
 
+    // Starlight-end
     public string? FindEvent(Dictionary<EntityPrototype, StationEventComponent> availableEvents)
     {
         if (availableEvents.Count == 0)
@@ -236,16 +244,16 @@ public sealed partial class EventManagerSystem : EntitySystem
 
         var sumOfWeights = 0.0f;
 
-        foreach (var (proto, stationEvent) in availableEvents)
+        foreach (var (proto, stationEvent) in availableEvents) // Starlight
         {
-            sumOfWeights += GetEffectiveWeight(proto, stationEvent);
+            sumOfWeights += GetEffectiveWeight(proto, stationEvent); // Starlight
         }
 
         sumOfWeights = _random.NextFloat(sumOfWeights);
 
         foreach (var (proto, stationEvent) in availableEvents)
         {
-            sumOfWeights -= GetEffectiveWeight(proto, stationEvent);
+            sumOfWeights -= GetEffectiveWeight(proto, stationEvent); // Starlight
 
             if (sumOfWeights <= 0.0f)
             {
@@ -288,14 +296,18 @@ public sealed partial class EventManagerSystem : EntitySystem
         return result;
     }
 
+    // Starlight-start
     /// <summary>
     ///     Every event prototype. The returned dictionary is shared: do not mutate it.
     /// </summary>
+    // Starlight-end
     public Dictionary<EntityPrototype, StationEventComponent> AllEvents()
     {
+        // Starlight-start
         if (_allEventsCache != null)
             return _allEventsCache;
 
+        // Starlight-end
         var allEvents = new Dictionary<EntityPrototype, StationEventComponent>();
         foreach (var prototype in _prototype.EnumeratePrototypes<EntityPrototype>())
         {
@@ -308,16 +320,16 @@ public sealed partial class EventManagerSystem : EntitySystem
             allEvents.Add(prototype, stationEvent);
         }
 
-        _allEventsCache = allEvents;
+        _allEventsCache = allEvents; // Starlight
         return allEvents;
     }
 
-    public int GetOccurrences(EntityPrototype stationEvent)
+    public int GetOccurrences(EntityPrototype stationEvent) // Starlight
     {
         return GetOccurrences(stationEvent.ID);
     }
 
-    public int GetOccurrences(string stationEvent)
+    public int GetOccurrences(string stationEvent) // Starlight
     {
         return GameTicker.AllPreviousGameRules.Count(p => p.Item2 == stationEvent);
     }
@@ -332,6 +344,7 @@ public sealed partial class EventManagerSystem : EntitySystem
 
         return TimeSpan.Zero;
     }
+    // Starlight-start
 
     /// <summary>
     ///     Whether the event can run right now, under current conditions.
@@ -354,6 +367,7 @@ public sealed partial class EventManagerSystem : EntitySystem
 
         return false;
     }
+    // Starlight-end
 
     private bool CanRun(EntityPrototype prototype, StationEventComponent stationEvent, int playerCount, TimeSpan currentTime)
     {

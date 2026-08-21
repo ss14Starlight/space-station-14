@@ -9,10 +9,10 @@ namespace Content.Client.Administration.Systems
     public sealed partial class AdminSystem : EntitySystem
     {
         public event Action<List<PlayerInfo>>? PlayerListChanged;
-        public event Action<StationEventsChangedEvent>? StationEventsChanged;
+        public event Action<StationEventsChangedEvent>? StationEventsChanged; // Starlight
 
         private Dictionary<NetUserId, PlayerInfo>? _playerList;
-        public StationEventsChangedEvent? StationEventsSnapshot { get; private set; }
+        public StationEventsChangedEvent? StationEventsSnapshot { get; private set; } // Starlight
         public IReadOnlyList<PlayerInfo> PlayerList
         {
             get
@@ -30,7 +30,7 @@ namespace Content.Client.Administration.Systems
             InitializeOverlay();
             SubscribeNetworkEvent<FullPlayerListEvent>(OnPlayerListChanged);
             SubscribeNetworkEvent<PlayerInfoChangedEvent>(OnPlayerInfoChanged);
-            SubscribeNetworkEvent<StationEventsChangedEvent>(OnStationEventsChanged);
+            SubscribeNetworkEvent<StationEventsChangedEvent>(OnStationEventsChanged); // Starlight
         }
 
         public override void Shutdown()
@@ -54,6 +54,7 @@ namespace Content.Client.Administration.Systems
             _playerList = msg.PlayersInfo.ToDictionary(x => x.SessionId, x => x);
             PlayerListChanged?.Invoke(msg.PlayersInfo);
         }
+        // Starlight-start
 
         private void OnStationEventsChanged(StationEventsChangedEvent msg)
         {
@@ -82,5 +83,6 @@ namespace Content.Client.Administration.Systems
                 ActiveEvent = activeEvent
             });
         }
+        // Starlight-end
     }
 }

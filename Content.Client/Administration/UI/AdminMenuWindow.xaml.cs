@@ -20,7 +20,7 @@ public sealed partial class AdminMenuWindow : DefaultWindow
         MasterTabContainer.SetTabTitle((int) TabIndex.Atmos, Loc.GetString("admin-menu-atmos-tab"));
         MasterTabContainer.SetTabTitle((int) TabIndex.Round, Loc.GetString("admin-menu-round-tab"));
         MasterTabContainer.SetTabTitle((int) TabIndex.Server, Loc.GetString("admin-menu-server-tab"));
-        MasterTabContainer.SetTabTitle((int) TabIndex.Events, Loc.GetString("admin-menu-events-tab"));
+        MasterTabContainer.SetTabTitle((int) TabIndex.Events, Loc.GetString("admin-menu-events-tab")); // Starlight
         MasterTabContainer.SetTabTitle((int) TabIndex.PanicBunker, Loc.GetString("admin-menu-panic-bunker-tab"));
         MasterTabContainer.SetTabTitle((int) TabIndex.Players, Loc.GetString("admin-menu-players-tab"));
         MasterTabContainer.SetTabTitle((int) TabIndex.Objects, Loc.GetString("admin-menu-objects-tab"));
@@ -48,7 +48,7 @@ public sealed partial class AdminMenuWindow : DefaultWindow
         Atmos,
         Round,
         Server,
-        Events,
+        Events, // Starlight
         PanicBunker,
         Players,
         Objects,

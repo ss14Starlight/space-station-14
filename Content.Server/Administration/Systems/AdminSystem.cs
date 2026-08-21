@@ -6,8 +6,10 @@ using Content.Server.Hands.Systems;
 using Content.Server.Mind;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Popups;
+// Starlight-start
 using Content.Server.StationEvents;
 using Content.Server.StationEvents.Components;
+// Starlight-end
 using Content.Server.StationRecords.Systems;
 // Cosmatic Drift Record System-start
 using Content.Server._CD.Records;
@@ -17,7 +19,7 @@ using Content.Shared.Administration.Events;
 using Content.Shared.CCVar;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
-using Content.Shared.GameTicking.Components;
+using Content.Shared.GameTicking.Components; // Starlight
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
@@ -39,7 +41,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
+using Robust.Shared.Timing; // Starlight
 
 namespace Content.Server.Administration.Systems;
 
@@ -60,12 +62,14 @@ public sealed partial class AdminSystem : EntitySystem
     [Dependency] private SharedRoleSystem _role = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
+    // Starlight-start
     [Dependency] private EventManagerSystem _eventManager = default!;
     [Dependency] private BasicStationEventSchedulerSystem _eventScheduler = default!;
+    // Starlight-end
     [Dependency] private StationRecordsSystem _stationRecords = default!;
     [Dependency] private TransformSystem _transform = default!;
     [Dependency] private CharacterRecordsSystem _characterRecords = default!; // Cosmatic Drift Record System: erase-ban helper
-    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!; // Starlight
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -102,8 +106,10 @@ public sealed partial class AdminSystem : EntitySystem
 
         SubscribeLocalEvent<ActorComponent, EntityRenamedEvent>(OnPlayerRenamed);
         SubscribeLocalEvent<ActorComponent, IdentityChangedEvent>(OnIdentityChanged);
+        // Starlight-start
         SubscribeNetworkEvent<RequestStationEventsEvent>(OnRequestStationEvents);
         SubscribeNetworkEvent<StationEventQueueCommandEvent>(OnStationEventQueueCommand);
+        // Starlight-end
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
@@ -386,6 +392,7 @@ public sealed partial class AdminSystem : EntitySystem
         }
     }
 
+    // Starlight-start
     private void OnRequestStationEvents(RequestStationEventsEvent ev, EntitySessionEventArgs args)
     {
         if (!_adminManager.HasAdminFlag(args.SenderSession, AdminFlags.Admin))
@@ -582,6 +589,7 @@ public sealed partial class AdminSystem : EntitySystem
         public float MaxRemainingSeconds = -1f;
     }
 
+    // Starlight-end
     /// <summary>
     ///     Erases a player from the round.
     ///     This removes them and any trace of them from the round, deleting their

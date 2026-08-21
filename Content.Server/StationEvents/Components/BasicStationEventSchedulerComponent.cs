@@ -32,6 +32,7 @@ public sealed partial class BasicStationEventSchedulerComponent : Component
     /// As such, we want to pass a list of acceptable game rules, which are then parsed for restrictions by the <see cref="EventManagerSystem"/>.
     [DataField(required: true)]
     public EntityTableSelector ScheduledGameRules = default!;
+    // Starlight-start
 
     /// <summary>
     /// How many automatically selected future events we keep visible in the queue.
@@ -62,4 +63,5 @@ public sealed class QueuedStationEventEntry
     public TimeSpan QueuedAt;
     public TimeSpan TriggerTime;
     public bool Automatic;
+    // Starlight-end
 }

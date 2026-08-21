@@ -14,7 +14,7 @@
         <atmosTab:AtmosTab />
         <tabs:RoundTab />
         <tabs:ServerTab />
-        <eventsTab:EventsTab />
+        <eventsTab:EventsTab /> <!-- Starlight -->
         <panic:PanicBunkerTab Name="PanicBunkerControl" Access="Public" />
         <playerTab:PlayerTab Name="PlayerTabControl" Access="Public" />
         <objectsTab:ObjectsTab Name="ObjectsTabControl" Access="Public" />
