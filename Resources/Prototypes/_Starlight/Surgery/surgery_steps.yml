@@ -182,8 +182,8 @@
         Slash: 3
   - type: SurgeryStepEmoteEffect
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
-    state: bone-setter
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: setter
 
 - type: entity
   parent: SurgeryStepBase
@@ -197,7 +197,7 @@
     - type: Hemostat
   - type: SurgeryClampBleedEffect
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
 
 - type: entity
