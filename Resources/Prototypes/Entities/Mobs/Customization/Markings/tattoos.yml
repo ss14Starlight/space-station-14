@@ -114,7 +114,7 @@
   id: TattooEyeRight
   bodyPart: Eyes
   markingCategory: [Head]
-  speciesRestriction: [Human, Doll, NeoHuman, SlimePerson, NeoSlimePerson, Reptilian, NeoReptilian, Dwarf, NeoDwarf, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Doll
+  speciesRestriction: [Human, NeoHuman, SlimePerson, NeoSlimePerson, Reptilian, NeoReptilian, Dwarf, NeoDwarf, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf
   coloring:
     default:
       type:
