@@ -21,11 +21,7 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Resomi, Neocyte ]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
-
+    stages: [ Bloodstream ]
 - type: entity
   id: OrganNeoResomiLungs
   parent: OrganNeocyteLungs
@@ -34,10 +30,5 @@
   description: Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system. #  Starlight, quotation marks removed
   components:
   - type: Metabolizer
-    removeEmpty: true
-    solutionOnBody: false
-    solution: Lung
     metabolizerTypes: [ Resomi, Neocyte ]
-    groups:
-    - id: Gas
-      rateModifier: 100.0
+    stages: [ Respiration ]

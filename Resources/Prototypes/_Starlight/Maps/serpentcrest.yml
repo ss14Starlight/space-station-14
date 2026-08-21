@@ -40,6 +40,7 @@
             ServiceWorker: [ 3, 4 ]
             Reporter: [ 1, 1 ]
             Lawyer: [ 1, 1 ]
+            RadioHost: [ 2, 2 ]
             #engineering
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 5, 6 ]

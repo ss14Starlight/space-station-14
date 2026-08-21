@@ -521,6 +521,19 @@ public abstract partial class SharedAnomalySystem : EntitySystem
 
         return AnomalyStabilityVisuals.Stable;
     }
+
+    // Starlight
+    public void ShuffleParticlesEffect(Entity<AnomalyComponent> anomaly)
+    {
+        var particles = new List<AnomalousParticleType>
+            { AnomalousParticleType.Delta, AnomalousParticleType.Epsilon, AnomalousParticleType.Zeta, AnomalousParticleType.Sigma };
+
+        anomaly.Comp.SeverityParticleType = Random.PickAndTake(particles);
+        anomaly.Comp.DestabilizingParticleType = Random.PickAndTake(particles);
+        anomaly.Comp.WeakeningParticleType = Random.PickAndTake(particles);
+        anomaly.Comp.TransformationParticleType = Random.PickAndTake(particles);
+        Dirty(anomaly);
+    }
 }
 
 [DataRecord]
