@@ -42,12 +42,6 @@
   maxValue: 999
 
 - type: nameIdentifierGroup
-  id: Intellicard #Starlight: Adding Intellicard name identifier
-  format: name-identifier-format-intellicard
-  minValue: 100
-  maxValue: 999
-
-- type: nameIdentifierGroup
   id: XenoArtifactNode
   minValue: 0
   maxValue: 999
