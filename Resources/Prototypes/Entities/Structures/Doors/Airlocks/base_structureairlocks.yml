@@ -155,7 +155,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 300 #SL
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
