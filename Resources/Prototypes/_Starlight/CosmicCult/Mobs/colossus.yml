@@ -149,7 +149,7 @@
         sound:
           collection: MeatLaserImpact
   - type: CosmicRiftHealth
-    healthPerCorpse: 20
+    healthPerCorpse: 25
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -167,6 +167,9 @@
     allowedStates:
     - Alive
     - Dead
+  - type: AntagMonsterScaling
+    minimumHealthScaling: -0.25
+    maximumHealthScaling: 0.50
   - type: Butcherable
     butcherDelay: 16
     spawned:
