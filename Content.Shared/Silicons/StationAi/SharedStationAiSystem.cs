@@ -46,7 +46,6 @@ using Content.Shared.DeviceLinking;
 using System.Numerics;
 using Content.Shared._Starlight;
 using Content.Shared.NameModifier.EntitySystems;
-#endregion Starlight
 
 namespace Content.Shared.Silicons.StationAi;
 
