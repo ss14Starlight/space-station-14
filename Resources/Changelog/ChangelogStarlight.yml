@@ -1,18 +1,4 @@
 Entries:
-- author: Glaud
-  changes:
-  - message: Fax machines inside a container no longer lose the paper they print.
-    type: Fix
-  id: 407408
-  time: '2026-08-10T13:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5454
-- author: Swonki
-  changes:
-  - message: Increased Eep on-station speed.
-    type: Tweak
-  id: 407409
-  time: '2026-08-10T14:38:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5564
 - author: Swonki
   changes:
   - message: Increased Eep melee damage.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407807
   time: '2026-08-21T16:09:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5772
+- author: Romero/Littlemen
+  changes:
+  - message: 'seal of war: an item for lone wizard that enable them to use the "War" kits at the cost of informing the station.'
+    type: Add
+  id: 407808
+  time: '2026-08-21T16:50:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5771
+- author: Romero/Littlemen
+  changes:
+  - message: Several changes to the kits, see changelogs in pr.
+    type: Tweak
+  id: 407809
+  time: '2026-08-21T16:50:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5771
 Order: -1
