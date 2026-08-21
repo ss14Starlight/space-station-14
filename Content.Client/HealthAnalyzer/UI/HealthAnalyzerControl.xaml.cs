@@ -400,5 +400,5 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         return titleRow;
     }
-    // Starlight-end
+    #endregion
 }
