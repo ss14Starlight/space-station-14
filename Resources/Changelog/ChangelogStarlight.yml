@@ -1,13 +1,6 @@
 Entries:
 - author: Caws, oliveoil238, & rtasva
   changes:
-  - message: Added a hat sprite for the Sus plushie.
-    type: Add
-  id: 407397
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
   - message: Added roller skates, cooler roller skates, rubber duck, toy mouse, toy Ian, Magic 9 Ball, and toy hammer to the Hug Dispenser's stock.
     type: Add
   id: 407398
@@ -2799,4 +2792,11 @@ Entries:
   id: 407796
   time: '2026-08-21T11:09:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5737
+- author: Caws
+  changes:
+  - message: The law communications console has been removed.
+    type: Remove
+  id: 407797
+  time: '2026-08-21T11:32:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5743
 Order: -1
