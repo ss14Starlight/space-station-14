@@ -1,13 +1,6 @@
 Entries:
 - author: Caws, oliveoil238, & rtasva
   changes:
-  - message: Added a hat sprite for the Snail plushie.
-    type: Add
-  id: 407396
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
   - message: Added a hat sprite for the Sus plushie.
     type: Add
   id: 407397
@@ -2799,4 +2792,11 @@ Entries:
   id: 407795
   time: '2026-08-21T10:41:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5729
+- author: Conflee, Way
+  changes:
+  - message: Added Cell Bars. Come in all normal fence variants. Can not be climbed or electrified. Very durable 'fence' option made of Plasteel for mapping in Genpop and Prison areas to prevent escapes.
+    type: Add
+  id: 407796
+  time: '2026-08-21T11:09:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5737
 Order: -1
