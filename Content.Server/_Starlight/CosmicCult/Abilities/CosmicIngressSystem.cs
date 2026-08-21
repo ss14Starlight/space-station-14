@@ -93,7 +93,7 @@ public sealed partial class CosmicIngressSystem : EntitySystem
         _audio.PlayPvs(comp.IngressSfx, ent);
         Spawn(comp.CultVfx, coordinates);
 
-        //Remove everything within 0.9
+        // Delete doors on the target tile to avoid removing overlapping adjacent doors.
         if (_turf.TryGetTileRef(coordinates, out var targetTile))
         {
             foreach (var entity in _turf.GetEntitiesInTile(coordinates, LookupFlags.All))
@@ -101,9 +101,11 @@ public sealed partial class CosmicIngressSystem : EntitySystem
                 if (!HasComp<DoorComponent>(entity))
                     continue;
 
+                // Get the tile the door's origin belongs to.
                 if (!_turf.TryGetTileRef(Transform(entity).Coordinates, out var entityTile))
                     continue;
 
+                // Ignore doors from adjacent tiles that merely overlap this tile.
                 if (entityTile.Value.GridUid != targetTile.Value.GridUid ||
                     entityTile.Value.GridIndices != targetTile.Value.GridIndices)
                     continue;
