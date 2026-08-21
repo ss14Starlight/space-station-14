@@ -1,13 +1,6 @@
 Entries:
 - author: Caws, oliveoil238, & rtasva
   changes:
-  - message: Plushies now cost a flat twenty bucks.
-    type: Tweak
-  id: 407400
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
   - message: The Sus plushie has been re-sprited due to the copyright trail being lost.
     type: Tweak
   id: 407401
@@ -2799,4 +2792,11 @@ Entries:
   id: 407799
   time: '2026-08-21T11:58:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5745
+- author: Conflee
+  changes:
+  - message: Resprited the PA Control Box. It now matches other consoles and has proper 3/4ths perspective, so you can tell which direction it is facing now.
+    type: Tweak
+  id: 407800
+  time: '2026-08-21T12:19:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5746
 Order: -1
