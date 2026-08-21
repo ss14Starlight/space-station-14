@@ -433,8 +433,10 @@ public sealed partial class AdminSystem : EntitySystem
 
         var changed = ev.Command switch
         {
+            // A negative delay means the caller did not name one, and the scheduler picks its
+            // own. Clamping it to zero instead turned that into "run it now".
             StationEventQueueCommand.Schedule =>
-                _eventScheduler.ScheduleEvent(ev.EventId, Math.Max(ev.Seconds, 0f)),
+                _eventScheduler.ScheduleEvent(ev.EventId, ev.Seconds < 0f ? null : ev.Seconds),
             StationEventQueueCommand.Adjust =>
                 _eventScheduler.AdjustScheduledEvent(ev.QueueId, ev.Seconds),
             StationEventQueueCommand.Remove =>

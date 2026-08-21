@@ -369,6 +369,30 @@ public sealed partial class EventManagerSystem : EntitySystem
         return GameTicker.AllPreviousGameRules.Count(p => p.Item2 == stationEvent);
     }
 
+    // Starlight-start
+    /// <summary>
+    ///     When this event last ran, and whether it ran at all.
+    /// </summary>
+    /// <remarks>
+    ///     <see cref="TimeSinceLastEvent"/> answers both with one TimeSpan, so an event that
+    ///     never ran is indistinguishable from one that ran at round time zero.
+    /// </remarks>
+    public bool TryGetLastEventTime(EntityPrototype stationEvent, out TimeSpan lastRun)
+    {
+        foreach (var (time, rule) in GameTicker.AllPreviousGameRules.Reverse())
+        {
+            if (rule != stationEvent.ID)
+                continue;
+
+            lastRun = time;
+            return true;
+        }
+
+        lastRun = TimeSpan.Zero;
+        return false;
+    }
+    // Starlight-end
+
     public TimeSpan TimeSinceLastEvent(EntityPrototype stationEvent)
     {
         foreach (var (time, rule) in GameTicker.AllPreviousGameRules.Reverse())

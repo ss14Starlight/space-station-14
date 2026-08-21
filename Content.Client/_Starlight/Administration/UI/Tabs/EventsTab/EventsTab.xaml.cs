@@ -208,14 +208,11 @@ public sealed partial class EventsTab : Control
     {
         QueueList.RemoveAllChildren();
 
-        if (!snapshot.HasScheduler)
-        {
-            QueueStatusLabel.Text = Loc.GetString("administration-ui-events-tab-queue-no-scheduler");
-            return;
-        }
-
         // Presets such as Survival use a ramping scheduler, which exposes no queue. Rather
-        // than implying everything is visible, say part of it is missing.
+        // than implying everything is visible, say part of it is missing. This runs before the
+        // no-scheduler check on purpose: a round with only ramping schedulers has nothing this
+        // panel can queue into, and reporting that as "no scheduler" with no further comment
+        // would claim events are not running when they are.
         if (snapshot.UnreadableSchedulers > 0)
         {
             QueueList.AddChild(new Label
@@ -224,6 +221,12 @@ public sealed partial class EventsTab : Control
                     ("count", snapshot.UnreadableSchedulers)),
                 ModulateSelfOverride = Color.Orange
             });
+        }
+
+        if (!snapshot.HasScheduler)
+        {
+            QueueStatusLabel.Text = Loc.GetString("administration-ui-events-tab-queue-no-scheduler");
+            return;
         }
 
         QueueStatusLabel.Text = snapshot.Queue.Count == 0

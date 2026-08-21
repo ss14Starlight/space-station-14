@@ -427,17 +427,21 @@ namespace Content.Server.StationEvents
                     continue;
                 }
 
-                var queuedLastRun = simulatedEvents
+                var queuedRuns = simulatedEvents
                     .Where(ev => ev.EventId == proto.ID)
                     .Select(ev => ev.RoundTime)
-                    .DefaultIfEmpty(TimeSpan.Zero)
-                    .Max();
+                    .ToList();
 
-                var actualLastRun = _event.TimeSinceLastEvent(proto);
+                // Whether it ran is tracked apart from when, so an event that never ran is not
+                // mistaken for one that ran at round time zero.
+                var ranBefore = _event.TryGetLastEventTime(proto, out var actualLastRun);
+                if (queuedRuns.Count == 0 && !ranBefore)
+                    continue;
+
+                var queuedLastRun = queuedRuns.Count > 0 ? queuedRuns.Max() : TimeSpan.Zero;
                 var effectiveLastRun = queuedLastRun > actualLastRun ? queuedLastRun : actualLastRun;
 
-                if (effectiveLastRun != TimeSpan.Zero &&
-                    projectedRoundTime.TotalMinutes < stationEvent.ReoccurrenceDelay + effectiveLastRun.TotalMinutes)
+                if (projectedRoundTime.TotalMinutes < stationEvent.ReoccurrenceDelay + effectiveLastRun.TotalMinutes)
                 {
                     limited.Remove(proto);
                 }

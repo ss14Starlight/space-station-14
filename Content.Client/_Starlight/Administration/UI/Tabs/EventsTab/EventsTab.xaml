@@ -8,9 +8,11 @@
 
         <!-- Everything sits inside one scroll: with the window made short the sections used
              to be cut off entirely rather than shrink, leaving the catalogue unreachable.
-             Active and upcoming size to their content and scroll once past their own cap, so a
-             single active event does not leave a large empty block behind. Each section folds
-             from its header, so an admin who only cares about one can give it the whole tab. -->
+             Active and upcoming size to their content, so a single active event leaves no
+             empty block behind and a full queue is not squeezed into a scrollbar while the
+             tab has room to spare. Overflow is the outer scroll's job, not theirs. Each
+             section folds from its header, so an admin who only cares about one can give it
+             the whole tab. -->
 
         <BoxContainer Name="ActiveSection"
                       Orientation="Vertical"
@@ -29,8 +31,7 @@
             <ScrollContainer Name="ActiveScroll"
                              Margin="0 0 12 0"
                              HScrollEnabled="False"
-                             ReturnMeasure="True"
-                             MaxHeight="220">
+                             ReturnMeasure="True">
                 <BoxContainer Name="ActiveList"
                               Orientation="Vertical"
                               SeparationOverride="3" />
@@ -54,8 +55,7 @@
             <ScrollContainer Name="QueueScroll"
                              Margin="0 0 12 0"
                              HScrollEnabled="False"
-                             ReturnMeasure="True"
-                             MaxHeight="300">
+                             ReturnMeasure="True">
                 <BoxContainer Name="QueueList"
                               Orientation="Vertical"
                               SeparationOverride="3" />
