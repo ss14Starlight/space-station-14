@@ -1,11 +1,4 @@
 Entries:
-- author: OrangeJuiceGoose
-  changes:
-  - message: Changed Helium price per mol from 0.8 to 0.05.
-    type: Tweak
-  id: 407387
-  time: '2026-08-10T12:50:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5414
 - author: Conflee, SevenShades
   changes:
   - message: Added Shipping Containers. They are large 3x1 storage structures that can not be built to avoid abuse due to their size, but can be broken. There are 30 containers, with many being corporate branded.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407786
   time: '2026-08-21T08:59:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5754
+- author: Caws
+  changes:
+  - message: The news manager console now requires Journalism access (instead of Service access).
+    type: Tweak
+  id: 407787
+  time: '2026-08-21T09:25:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5755
 Order: -1
