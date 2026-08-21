@@ -43,7 +43,6 @@ using Robust.Shared.Player;
 using System.Linq;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.DeviceLinking;
-using System.Numerics;
 using Content.Shared._Starlight;
 using Content.Shared.NameModifier.EntitySystems;
 #endregion Starlight

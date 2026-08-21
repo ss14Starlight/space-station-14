@@ -35,12 +35,10 @@ using Robust.Shared.Timing;
 using Content.Shared.Radio.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Actions.Components;
-// Starlight begin
 using Content.Shared.NameModifier.EntitySystems;
 using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared.Tag;
-// Starlight end
 
 namespace Content.Shared.Silicons.Borgs;
 
@@ -141,9 +139,10 @@ public abstract partial class SharedBorgSystem : EntitySystem
     {
         _movementSpeedModifier.RefreshMovementSpeedModifiers(chassis.Owner);
 
-        // Starlight: If the borg has a brain, synchronize the name of the brain with the chassis.
+        // Starlight-start: If the borg has a brain, synchronize the name of the brain with the chassis.
         if (chassis.Comp.BrainEntity is { } brain)
             SynchronizeBrainName(chassis, brain);
+        // Starlight-end
     }
 
     // Starlight: function to synchronize the name of the brain with the chassis, and the other way around.
