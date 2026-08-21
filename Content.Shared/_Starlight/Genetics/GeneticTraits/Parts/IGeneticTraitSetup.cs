@@ -32,8 +32,8 @@ public interface IGeneticTraitSetup
     /// This modifies the entity to "set it up" for a relevant system. Typically, you'll want to ensure the relevant
     /// component, but this can do anything necessary. Default behavior is to do nothing.
     /// </summary>
-    /// <param name="entityManager"></param>
-    /// <param name="entityUid"></param>
+    /// <param name="entityManager">The entity manager, usually obtained through IoC.</param>
+    /// <param name="entityUid">The entity that needs setting up for a trait.</param>
     void GeneticTraitSetup(EntityManager entityManager, EntityUid entityUid) { }
 }
 
