@@ -3017,7 +3017,7 @@
 
 - type: entity
   name: fox
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [MobDogColdResistant, SimpleMobBase, StripableInventoryBase] # Starlight
   id: MobFox
   description: They're a fox.
   components:
