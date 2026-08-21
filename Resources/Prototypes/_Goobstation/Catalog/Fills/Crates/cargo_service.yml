@@ -2,13 +2,13 @@
   parent: CrateGenericSteel
   id: CrateRadioHostVinyls
   name: vinyls crate
-  description: A crate with 12 randomly selected Vinyls to add to your collection.
+  description: A crate with 14 randomly selected Vinyls to add to your collection.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: RandomVinylSleeve
-        rolls: 12
+        rolls: 14
 
 - type: entity
   parent: CrateGenericSteel
