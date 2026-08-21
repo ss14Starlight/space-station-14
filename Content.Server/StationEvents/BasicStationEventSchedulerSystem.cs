@@ -333,8 +333,16 @@ namespace Content.Server.StationEvents
 
                 // An automatic event was picked minutes before this moment. If conditions
                 // changed and it no longer qualifies - typically because players left and it no
-                // longer meets MinimumPlayers - drop it and let the lookahead replace it. Admin
-                // scheduled entries fire regardless: there the admin's intent wins.
+                // longer meets MinimumPlayers - it is dropped and the slot goes quiet.
+                //
+                // Deliberately no substitute is drawn for the slot. The point of showing a
+                // queue is that an admin can read what is coming, walk away, and be right.
+                // Silently running a different event because the queued one fell through by a
+                // player or two breaks that for the sake of one more event per round, and the
+                // admin has no way to tell it happened. A quiet slot is legible; a surprise is
+                // not. The lookahead refills behind the tail as usual.
+                //
+                // Admin scheduled entries fire regardless: there the admin's intent wins.
                 if (next.Automatic && !_event.CanRunNow(next.EventId))
                 {
                     Log.Debug($"Dropped automatic event {next.EventId} on trigger: no longer eligible.");

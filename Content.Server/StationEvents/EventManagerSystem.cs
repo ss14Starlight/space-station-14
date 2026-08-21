@@ -125,6 +125,11 @@ public sealed partial class EventManagerSystem : EntitySystem
     }
 
     // Starlight-start
+    /// <summary>
+    ///     Whether a prototype with this id exists and is a station event.
+    /// </summary>
+    /// <param name="eventId">Prototype id of the event.</param>
+    /// <returns>True when the id names a known station event.</returns>
     public bool HasEvent(string eventId)
     {
         // Cached set rather than scanning the keys: this runs on every Schedule and RunEventById.
@@ -132,6 +137,15 @@ public sealed partial class EventManagerSystem : EntitySystem
         return _allEventIdsCache.Contains(eventId);
     }
 
+    /// <summary>
+    ///     Runs a station event by id, whatever the scheduler would have chosen.
+    /// </summary>
+    /// <param name="eventId">Prototype id of the event to run.</param>
+    /// <returns>
+    ///     False when no station event carries that id, or when the game rule could not be
+    ///     added. Restrictions such as minimum players are not consulted: this is the path an
+    ///     admin takes to run an event deliberately.
+    /// </returns>
     public bool RunEventById(string eventId)
     {
         if (!HasEvent(eventId))
@@ -324,6 +338,11 @@ public sealed partial class EventManagerSystem : EntitySystem
         return allEvents;
     }
 
+    /// <summary>
+    ///     How many times this event has already run in the current round.
+    /// </summary>
+    /// <param name="stationEvent">Prototype of the event to count.</param>
+    /// <returns>The number of times its game rule was added this round, zero if never.</returns>
     public int GetOccurrences(EntityPrototype stationEvent) // Starlight
     {
         return GetOccurrences(stationEvent.ID);
