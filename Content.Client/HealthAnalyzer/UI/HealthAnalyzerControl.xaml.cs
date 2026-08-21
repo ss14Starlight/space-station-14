@@ -353,7 +353,6 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             ChemicalsContainer.AddChild(rowContainer);
         }
     }
-    // Starlight end
     private Texture GetTexture(string texture)
     {
         var rsiPath = new ResPath("/Textures/_Starlight/Objects/Devices/health_analyzer.rsi"); // Starlight - new rsi for new icons :)
@@ -368,7 +367,6 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         return _spriteSystem.Frame0(rsiSprite);
     }
 
-    // Starlight-start: damage group titles use shared severity formatting.
     private BoxContainer CreateDiagnosticGroupTitleRow(string text, float damageAmount, string damageGroupId)
     {
         var titleColor = HealthAnalyzerFormatting.GetDamageSeverityColor(damageAmount);
