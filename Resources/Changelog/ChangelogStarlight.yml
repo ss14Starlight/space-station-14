@@ -1,88 +1,4 @@
 Entries:
-- author: Caws, oliveoil238, & rtasva
-  changes:
-  - message: The Gnome plushie has been re-sprited due to the copyright trail being lost.
-    type: Tweak
-  id: 407402
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
-  - message: Abductor plushie has been renamed to "alien grey plushie" as to not bump against the Metashield.
-    type: Tweak
-  id: 407403
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
-  - message: CentComm will be re-opening the Marketable Plushie Program! Stay tuned for more details soon.
-    type: Tweak
-  id: 407404
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Caws, oliveoil238, & rtasva
-  changes:
-  - message: 34 plushies have been discontinued from the hug dispenser.
-    type: Remove
-  id: 407405
-  time: '2026-08-10T13:58:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5455
-- author: Glaud
-  changes:
-  - message: Purrfus cyborgs now come with an paperwork printing module, holding a document printer, an integrated fax transmitter, a clipboard and a document slot.
-    type: Add
-  id: 407406
-  time: '2026-08-10T13:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5454
-- author: Glaud
-  changes:
-  - message: The clipboard have placed to the new module in purrfus.
-    type: Tweak
-  id: 407407
-  time: '2026-08-10T13:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5454
-- author: Glaud
-  changes:
-  - message: Fax machines inside a container no longer lose the paper they print.
-    type: Fix
-  id: 407408
-  time: '2026-08-10T13:58:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5454
-- author: Swonki
-  changes:
-  - message: Increased Eep on-station speed.
-    type: Tweak
-  id: 407409
-  time: '2026-08-10T14:38:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5564
-- author: Swonki
-  changes:
-  - message: Increased Eep melee damage.
-    type: Tweak
-  id: 407410
-  time: '2026-08-10T14:38:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5564
-- author: Mack
-  changes:
-  - message: The plumbing filter can now take up to 10 reagents.
-    type: Tweak
-  id: 407411
-  time: '2026-08-10T14:38:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5460
-- author: Mack
-  changes:
-  - message: Inline plumbing filter.
-    type: Add
-  id: 407412
-  time: '2026-08-10T14:38:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5460
-- author: BeptolCorp
-  changes:
-  - message: Added the track Null Scar Gaze by Beptol Corporation Acoustics to the game lobby.
-    type: Add
-  id: 407413
-  time: '2026-08-10T14:38:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5507
 - author: Swonki
   changes:
   - message: Exosuit drills blunt damage values reduced.
@@ -2799,4 +2715,88 @@ Entries:
   id: 407801
   time: '2026-08-21T12:42:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5740
+- author: Caws
+  changes:
+  - message: (Novo Lobster) The snowstorm now has a consistent direction on station.
+    type: Fix
+  id: 407802
+  time: '2026-08-21T15:23:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5761
+- author: wonderfulnewworld
+  changes:
+  - message: Xenoborgs (the main mode, not the submode) scale again, although they're not in rotation yet.
+    type: Tweak
+  id: 407803
+  time: '2026-08-21T15:47:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5765
+- author: wonderfulnewworld
+  changes:
+  - message: Antags that fail to roll will try to roll again.
+    type: Fix
+  id: 407804
+  time: '2026-08-21T15:47:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5765
+- author: wonderfulnewworld
+  changes:
+  - message: Wizard Duel will no longer fail to roll the green and orange wizards.
+    type: Fix
+  id: 407805
+  time: '2026-08-21T15:47:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5765
+- author: Citrea
+  changes:
+  - message: The digestive system no longer destroys half the chemicals passing through it.
+    type: Tweak
+  id: 407806
+  time: '2026-08-21T16:09:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5772
+- author: Citrea
+  changes:
+  - message: You can now overdose again from drinking too much.
+    type: Tweak
+  id: 407807
+  time: '2026-08-21T16:09:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5772
+- author: Romero/Littlemen
+  changes:
+  - message: 'seal of war: an item for lone wizard that enable them to use the "War" kits at the cost of informing the station.'
+    type: Add
+  id: 407808
+  time: '2026-08-21T16:50:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5771
+- author: Romero/Littlemen
+  changes:
+  - message: Several changes to the kits, see changelogs in pr.
+    type: Tweak
+  id: 407809
+  time: '2026-08-21T16:50:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5771
+- author: STARLIGHT TEAM
+  changes:
+  - message: Borg chassis names now synchronize with inserted brains
+    type: Add
+  id: 407810
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: STARLIGHT TEAM
+  changes:
+  - message: Entity naming (Intellicard/AI core) was unified and fixed
+    type: Tweak
+  id: 407811
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: STARLIGHT TEAM
+  changes:
+  - message: Entitys that have their intelligence removed by intellicard, reset to default names
+    type: Tweak
+  id: 407812
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: STARLIGHT TEAM
+  changes:
+  - message: Intellicard entities can now be transfered to borg/borg brains/MMI as intended
+    type: Fix
+  id: 407813
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
 Order: -1
