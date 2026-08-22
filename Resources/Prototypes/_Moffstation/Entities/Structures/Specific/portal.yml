@@ -59,29 +59,30 @@
 - type: entity
   parent: BaseHostilePortal
   id: HellPortal
-  name: hell portal
+  name: hellportal
   description: a portal letting loose the worst hell has to offer.
   components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/shadow_anom.rsi
+    layers:
+    - state: pulse
+      color: "#78090b"
+      shader: unshaded
   - type: WarpPoint
     location: moff-hell-portal-name
   - type: Hellportal
     basicSpawnTable: !type:AllSelector
       children:
-      - !type:GroupSelector
+      - !type:NestedSelector
         rolls: !type:RangeNumberSelector
           range: 3, 5
-        children:
-        - id: MobFleshLoverSmasher
-        - id: MobFleshGolemSmasher
-        - id: MobFleshClampSmasher
-        - id: MobFleshJaredSmasher
-        - id: MobAbominationSmasher
-      - !type:GroupSelector
-        prob: 0.3
-        children:
-        - id: MobHellhound
-        - id: MobHellGoliath
-        - id: MobHellspawnSmasher
-          weight: 0.05
+        tableId: MoffHellportalFleshlingsTable
+      - !type:NestedSelector
+        tableId: MoffHellportalNarsianConstructsTable
     sound:
       collection: RadiationPulse
+  - type: AmbientSound
+    range: 10
+    volume: -5
+    sound:
+      path: /Audio/_Moffstation/Ambience/hellportal_drone.ogg

@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Created by EmoGarbage404 (github) for space-station-14, credit to Aleksh#7552 (discord) for original concepts and designs, edited by Nyxilath for Moffstation",
+    "states": [
+        {
+            "name": "flesh_body",
+            "directions": 4
+        },
+        {
+            "name": "dead"
+        },
+        {
+            "name": "runes",
+            "directions": 4
+        }
+    ]
+}

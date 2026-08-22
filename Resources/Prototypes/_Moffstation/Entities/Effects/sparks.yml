@@ -72,5 +72,19 @@
   - type: PointLight
     radius: 8
     energy: 3 #SL Edit
-    color: "#960202"
+    color: "#aa1c34"
   - type: PortalBlacklist # Starlight
+
+- type: entity
+  parent: MoffEffectSparksRedspace
+  id: MoffEffectSparksNarsie
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WeaponArcVisuals
+    fadeOut: false
+  - type: Sprite
+    sprite: _ES/Effects/sparks.rsi
+    layers:
+    - state: sparks
+      shader: unshaded
+      color: "#aa1c34"

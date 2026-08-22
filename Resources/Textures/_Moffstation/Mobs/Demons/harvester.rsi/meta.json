@@ -1,0 +1,25 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Construct_body and glow_red taken from TG Station at https://github.com/tgstation/tgstation/blob/b3cfabf49e068b153f035769285802e87567f5ae/icons/mob/nonhuman-player/cult.dmi, hook and rope Created by heartofgoldfish (pcaessa) for Moffstation and edited by Nyxilath.",
+    "states": [
+        {
+            "name": "construct_body",
+            "directions": 4
+        },
+        {
+            "name": "glow_red",
+            "directions": 4
+        },
+        {
+            "name": "hook"
+        },
+        {
+            "name": "rope"
+        }
+    ]
+}

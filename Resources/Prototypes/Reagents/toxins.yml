@@ -707,7 +707,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
+          type: [ Animal, Bloodsucker, Vox, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte / Moff - add Bloodsucker
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -717,12 +717,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
+          type: [ Animal, Bloodsucker, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte / Moff - add Bloodsucker
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
+          type: [ Animal, Bloodsucker, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte / Moff - add Bloodsucker
           inverted: true
         damage:
           types:
@@ -737,7 +737,7 @@
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
+          type: [ Animal, Bloodsucker, Vampire, Avali, Rodentia, Neocyte, Doll, Experiment ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte / Moff - add Bloodsucker
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent

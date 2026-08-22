@@ -1,0 +1,36 @@
+﻿# Demonic organs, for potential future use
+- type: entity
+  parent: [ OrganBloodsucker, OrganAnimalHeart ]
+  id: MoffOrganDemonHeart
+
+- type: entity
+  parent: OrganAnimalKidneys
+  id: MoffOrganDemonKidneys
+
+- type: entity
+  parent: [ OrganBloodsucker, OrganAnimalLiver ]
+  id: MoffOrganDemonLiver
+
+- type: entity
+  parent: OrganAnimalLungs
+  id: MoffOrganDemonLungs
+
+- type: entity
+  parent: [ OrganBloodsucker, OrganAnimalStomach ]
+  id: MoffOrganDemonStomach
+
+- type: entity
+  id: MoffBaseMobDemons
+  abstract: true
+  components:
+  - type: Body
+  - type: EntityTableContainerFill
+    containers:
+      body_organs: !type:AllSelector
+        children:
+        - id: MoffOrganDemonHeart
+        - id: MoffOrganDemonKidneys
+        - id: MoffOrganDemonLiver
+        - id: MoffOrganDemonLungs
+        - id: MoffOrganDemonStomach
+
