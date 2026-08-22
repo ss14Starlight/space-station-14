@@ -54,7 +54,7 @@ public abstract partial class SharedHandsSystem
         else
         {
             // Decouples cyborgs from crawling speed changes based on hands.
-			// Cyborgs with a module out will crawl at half the speed regardless of open hands.
+            // Cyborgs with a module out will crawl at half the speed regardless of open hands.
             if (HasComp<BorgChassisComponent>(ent.Owner))
             {
                 args.SpeedModifier *= 0.5f;

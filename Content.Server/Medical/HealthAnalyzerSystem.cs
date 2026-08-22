@@ -123,7 +123,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
         var doAfterCancelled = !_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, uid.Comp.ScanDelay, new HealthAnalyzerDoAfterEvent(), uid, target: args.Target, used: uid)
         {
-			//NeedHand = true,
+            //NeedHand = true,
             NeedHand = needHand, // Starlight
             BreakOnMove = true,
         });
