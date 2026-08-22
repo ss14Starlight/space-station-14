@@ -155,6 +155,10 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
             var jobEntity = SLSpawn(prototype.JobEntity, coordinates); // Starlight edit
             _mindSystem.MakeSentient(jobEntity);
 
+            // Starlight - match Grammar gender to profile for jobEntity roles that have it (K9)
+            if (profile != null && TryComp<GrammarComponent>(jobEntity, out var jobEntityGrammar))
+                _grammarSystem.SetGender((jobEntity, jobEntityGrammar), profile.Gender);
+
             // Make sure custom names get handled, what is gameticker control flow whoopy.
             if (loadout != null)
             {
