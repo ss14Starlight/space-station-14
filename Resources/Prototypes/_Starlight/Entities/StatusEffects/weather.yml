@@ -99,12 +99,12 @@
     variants:
       Low:
         base:
-          sprite: Effects/weather.rsi
-          state: snowfall_light
+          sprite: _Starlight/Effects/weather.rsi
+          state: snowfall_lobster
       Medium:
         base:
-          sprite: Effects/weather.rsi
-          state: snowfall_med
+          sprite: _Starlight/Effects/weather.rsi
+          state: snowfall_lobster
       High:
         base:
           sprite: _Starlight/Effects/weather.rsi
