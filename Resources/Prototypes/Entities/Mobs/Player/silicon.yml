@@ -174,7 +174,11 @@
           Rebooting: { state: dead }
           Dead: { state: dead }
   - type: Intellicard
-  - type: ForceQuickDraw #Starlight don't pull the posi-brain out when the intelecard is in a pocket and hotkey used to bring it to a player hand
+  # Starlight-start
+  - type: NameIdentifier # Added to give intellicards unique identifiers
+    group: Intellicard
+  - type: ForceQuickDraw # Don't pull the posi-brain out when the intelecard is in a pocket and hotkey used to bring it to a player hand
+  # Starlight-end
 
 - type: entity
   id: PlayerStationAiPreview
@@ -360,6 +364,10 @@
   - type: ContainerSpawnPoint
     containerId: station_ai_mind_slot
     job: StationAi
+  # Starlight-start
+  - type: NameIdentifier
+    group: StationAi
+  # Starlight-end
 
 # The station AI core assembly
 - type: entity
