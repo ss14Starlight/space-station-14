@@ -53,7 +53,7 @@ public sealed partial class AmmoniaDecayReaction : IGasReactionEffect
 
             var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
-                mixture.Temperature = ((temperature * oldHeatCapacity + energyReleased) / newHeatCapacity);
+                mixture.Temperature = ((temperature * oldHeatCapacity - energyReleased) / newHeatCapacity);
         }
 
         return ReactionResult.Reacting;
