@@ -21,6 +21,10 @@ public sealed partial class ModifyReagentFromMetabolitesEntityEffectSystem : Ent
         var amount = args.Effect.Amount * args.Scale;
         var reagent = args.Effect.Reagent;
 
+        // Reject zero amounts - no operation should be performed
+        if (amount == 0)
+            return;
+
         // Ensure the metabolites solution is resolved/created
         if (!_solutionContainer.ResolveSolution(entity.Owner, entity.Comp.MetabolitesSolutionName, ref entity.Comp.MetabolitesSolution, out _))
             return;
