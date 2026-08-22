@@ -19,6 +19,12 @@
     understands:
     - GalacticCommon
     - SolCommon
+  - type: InventorySlotMovementSpeedModifier # Wearing all six pieces of hindering clothing will nullify the movespeed bonus
+    slotData:
+      - flags: OUTERCLOTHING, HEAD
+        speedMod: 0.955
+      - flags: INNERCLOTHING, GLOVES, FEET, MASK
+        speedMod: 0.97
   - type: DamageThresholdSounds
     thresholds:
       0: null
@@ -29,27 +35,28 @@
       200:
         sound: !type:SoundPathSpecifier
           path: /Audio/Items/bikehorn.ogg
-  - type: Hunger
+  - type: Hunger # while starving bonus healing is haulted, while in a critical state and starving they die faster than others.
     baseDecayRate: 0.12
     starvationDamage:
       types:
         Caustic: 0.2
     passiveDamage:
       groups:
-        Brute: -0.4
+        Brute: -0.18
       types:
-        Heat: -0.18
-        Poison: -0.25
+        Heat: -0.09
+        Poison: -0.15
     passiveThreshold: Peckish
-    passiveCap: 100
-  - type: PassiveDamage
+    passiveCap: 200
+  - type: PassiveDamage # while fed and above and below 100 damage they heal brute at three times the normal rate and heal heat at double.
     allowedStates:
     - Alive
-    damageCap: 200
+    damageCap: 100
     damage:
       groups:
-        Burn: -0.5
-        Brute: -0.5
+        Brute: -0.09
+      types:
+        Heat: -0.09
   - type: Thirst
   - type: Icon
     sprite: _Starlight/Mobs/Species/Experiment/parts.rsi

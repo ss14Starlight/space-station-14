@@ -33,3 +33,8 @@
     layer: Eyes
     prototypes:
       Default: MobExperimentEyes
+  - type: FunctionalOrgan
+    comps:
+      - type: PointLight
+      - type: InventorySlotTogglePointLight
+        offSlots: EYES
