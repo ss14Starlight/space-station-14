@@ -47,10 +47,12 @@
 - type: damageModifierSet
   id: DragonResistances
   coefficients:
-    Piercing: 0.35 # 0.3 -> 0.35 + InnateArmor
+    Piercing: 0.35 # 0.3 -> 0.35 + innateArmor
     Slash: 2
     Heat: 0.5
     Bloodloss: 0
+  innateArmor:
+    Piercing: 0.52
 
 - type: damageModifierSet
   id: DragonCarpResistances
@@ -219,26 +221,30 @@
   coefficients:
     Blunt: 0.5
     Slash: 0.5
-    Piercing: 0.7 # 0.35 -> 0.7 + InnateArmor
+    Piercing: 0.7 # 0.35 -> 0.7 + innateArmor
     Shock: 1.8
     Heat: 0.6
     Structural: 0.4
   flatReductions:
     Blunt: 15
     Heat: 15
+  innateArmor:
+    Piercing: 0.40
 
 - type: damageModifierSet
   id: MediumArmorSyndi
   coefficients:
     Blunt: 0.65
     Slash: 0.65
-    Piercing: 0.9 # 0.6 -> 0.9 + InnateArmor
+    Piercing: 0.9 # 0.6 -> 0.9 + innateArmor
     Shock: 1.4
     Heat: 0.65
     Structural: 0.7
   flatReductions:
     Blunt: 8
     Heat: 5
+  innateArmor:
+    Piercing: 0.48
 
 - type: damageModifierSet
   id: HeavyArmorSyndi # unused

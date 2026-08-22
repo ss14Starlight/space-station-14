@@ -145,7 +145,7 @@ namespace Content.Shared.Damage
         ///     Only applies resistance to a damage type if it is dealing damage, not healing.
         ///     This will never convert damage into healing.
         /// </remarks>
-        public static DamageSpecifier ApplyModifierSet(DamageSpecifier damageSpec, DamageModifierSet modifierSet, float armorPenetration = 0f, bool canHeal = true) // ??Starlight??
+        public static DamageSpecifier ApplyModifierSet(DamageSpecifier damageSpec, DamageModifierSet modifierSet, float armorPenetration = 0f, bool canHeal = true) // Starlight
         {
             // Make a copy of the given data. Don't modify the one passed to this function. I did this before, and weapons became
             // duller as you hit walls. Neat, but not FixedPoint2ended. And confusing, when you realize your fists don't work no
@@ -169,18 +169,19 @@ namespace Content.Shared.Damage
                 if (modifierSet.FlatReduction.TryGetValue(key, out var reduction))
                     newValue = Math.Max(0f, newValue - (reduction - (reduction * armorPenetration))); // flat reductions can't heal you
 
-                // ??Starlight?? start
+                #region Starlight
+                
                 if (canHeal)
                 {
                     if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
-                        newValue *= (coefficient + ((1f - coefficient) * armorPenetration)); // coefficients can heal you, e.g. cauterizing bleeding, Starlight change: removed maximum coefficent allowing for weaknesses
+                        newValue *= coefficient + ((1f - coefficient) * armorPenetration); // coefficients can heal you, e.g. cauterizing bleeding, Starlight change: removed maximum coefficent allowing for weaknesses
                 }
                 else
                 {
                     if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
                         newValue *= Math.Max(0f, coefficient + ((1f - coefficient) * armorPenetration));
                 }
-                // ??Starlight?? end
+                #endregion Starlight
 
                 if (newValue != 0)
                     newDamage.DamageDict[key] = FixedPoint2.New(newValue);

@@ -215,10 +215,6 @@
   #region Starlight
   - type: Damageable
     damageModifierSet: DragonResistances
-  - type: InnateArmor
-    modifiers:
-      coefficients:
-        Piercing: 0.52 # x amount goes through
   #endregion Starlight
 
 - type: entity

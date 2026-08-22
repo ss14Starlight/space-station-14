@@ -26,6 +26,10 @@ namespace Content.Shared.Damage
         public Dictionary<string, float> FlatReduction = new();
 
         // BEGIN STARLIGHT
+
+        [DataField("innateArmor", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<float, DamageTypePrototype>))]
+        public Dictionary<string, float> InnateArmor = new();
+
         public DamageModifierSet(DamageModifierSet dms)
         {
             // copying constructor for duplicating damage modifier sets
@@ -34,6 +38,7 @@ namespace Content.Shared.Damage
             // (may also prevent memory leaks if the prototype that creates DamageModifierSets is generated at runtime)
             Coefficients = new Dictionary<string, float>(dms.Coefficients);
             FlatReduction = new Dictionary<string, float>(dms.FlatReduction);
+            InnateArmor = new Dictionary<string, float>(dms.InnateArmor); // Starlight edit
         }
 
         // END STARLIGHT

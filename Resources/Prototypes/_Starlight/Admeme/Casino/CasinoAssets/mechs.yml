@@ -42,10 +42,6 @@
       baseSprintSpeed: 3.7
     - type: Damageable
       damageModifierSet: HeavyArmorNT
-    - type: InnateArmor
-      modifiers:
-        coefficients:
-          Piercing: 0.40 # x amount goes through
     - type: MechThrusters
     - type: Prying
       pryPowered: true
@@ -121,10 +117,6 @@
       baseSprintSpeed: 3.7
     - type: Damageable
       damageModifierSet: HeavyArmorNT
-    - type: InnateArmor
-      modifiers:
-        coefficients:
-          Piercing: 0.40 # x amount goes through
     - type: MechThrusters
     - type: Prying
       pryPowered: true

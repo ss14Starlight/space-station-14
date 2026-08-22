@@ -9,6 +9,8 @@
   flatReductions:
     Blunt: 5
     Heat: 5
+  innateArmor:
+    Piercing: 0.51
 
 - type: damageModifierSet
   id: StructuralMetallicStrong
