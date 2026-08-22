@@ -233,7 +233,7 @@ namespace Content.Shared.Atmos
         public const int AdjustedNumberOfGases = ((TotalNumberOfGases + 3) / 4) * 4;
 
         #region Starlight
-            public const float AmmoniaProductionEnergyReleased = 9e4f;
+            public const float AmmoniaProductionEnergyReleased = 67e3f;
         #endregion
 
         /// <summary>

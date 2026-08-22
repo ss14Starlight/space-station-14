@@ -49,7 +49,7 @@ public sealed partial class AmmoniaProductionReaction : IGasReactionEffect
         var energyReleased = Atmospherics.AmmoniaProductionEnergyReleased * deltaMoles / 2.0f;
 
         energyReleased /= heatScale;
-        if (energyReleased < 0)
+        if (energyReleased > 0)
         {
             var temperature = mixture.Temperature;
 
