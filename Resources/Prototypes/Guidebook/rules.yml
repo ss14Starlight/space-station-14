@@ -5,7 +5,7 @@
   id: DefaultRuleset
   name: guide-entry-rules
   ruleEntry: true
-  priority: 10
+  priority: 2 # Starlight-edit
   text: "/ServerInfo/Guidebook/ServerRules/DefaultRules.xml"
 
 - type: guideEntry

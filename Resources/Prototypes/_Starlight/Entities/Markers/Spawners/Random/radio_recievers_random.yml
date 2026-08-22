@@ -1,0 +1,15 @@
+- type: entity
+  id: RandomSpawnStationRadioReceiver
+  name: station radio
+  parent: MarkerBase
+  suffix: Random
+  components:
+  - type: Sprite
+    layers:
+      - state: pink
+      - sprite: _Goobstation/Structures/Machines/StationRadio/stationradio.rsi
+        state: icon
+  - type: RandomSpawner
+    prototypes:
+      - StationRadioReceiver
+    chance: 0.45

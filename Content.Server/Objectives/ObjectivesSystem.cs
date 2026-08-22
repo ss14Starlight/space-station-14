@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Text;
-using Content.Server._Starlight.Objectives.Events;
 using Content.Server.GameTicking;
 using Content.Server.Objectives.Commands;
 using Content.Server.Shuttles.Systems;
@@ -27,7 +26,8 @@ using Robust.Shared.Utility;
 using Content.Shared._Starlight.CustomObjectiveSummary; // Starlight
 using Content.Shared._Starlight.Station;
 using Content.Shared._Starlight.Railroading.Components;
-using Content.Shared._Starlight.Abstract; // Starlight
+using Content.Shared._Starlight.Abstract;
+using Content.Shared._Starlight.Objectives.Events; // Starlight
 
 namespace Content.Server.Objectives;
 

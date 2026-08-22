@@ -62,7 +62,6 @@
         - id: BoxFolderNanoTrasenClipboard
         - id: PrinterDocFlatpack
         - id: FaxMachineFlatpack
-        - id: BoxMagiCircuitBoards
         - !type:NestedSelector
           tableId: SecureDocumentTable
 
@@ -97,6 +96,7 @@
         - id: LuxuryPen
         - id: BoxFolderNanoTrasenClipboard
         - id: BriefcaseBrown # Empty
+        - id: BoxTapeRecorder # Starlight
         - !type:NestedSelector
           tableId: CriminalDocumentTable
 

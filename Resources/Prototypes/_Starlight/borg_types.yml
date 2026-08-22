@@ -69,6 +69,29 @@
   radioChannels:
   - Syndicate
 
+  addComponents:
+  - type: HealthAnalyzer
+    damageContainers:
+    - Biological
+    - Hybrid
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+    - ActionMedTek
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.BorgSwitchableTypeUiKey.SelectBorgType:
+        type: BorgSelectTypeUserInterface
+      enum.HealthAnalyzerUiKey.Key:
+        type: HealthAnalyzerBoundUserInterface
+
   # Visual
   inventoryTemplateId: borgShort
   spritePath: Mobs/Silicon/Chassis/synd_medical.rsi

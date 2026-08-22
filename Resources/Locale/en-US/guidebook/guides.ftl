@@ -40,7 +40,6 @@ guide-entry-fires = Fires
 guide-entry-spacing = Spacing
 guide-entry-deltapressure = Delta Pressure
 guide-entry-atmostools = Atmos Tools
-guide-entry-gasses = Gasses
 guide-entry-botany = Botany
 guide-entry-shuttle-craft = Shuttle-craft
 guide-entry-networking = Networking
@@ -94,7 +93,8 @@ guide-entry-criminal-records = Criminal Records
 guide-entry-command = Command
 guide-entry-service = Service
 
-guide-entry-newplayer = New? Start here!
+# Starlight-edit
+guide-entry-newplayer = How To Play SS14
 guide-entry-charactercreation = Creating Characters
 guide-entry-species = Species
 guide-entry-yourfirstcharacter = Your First Character

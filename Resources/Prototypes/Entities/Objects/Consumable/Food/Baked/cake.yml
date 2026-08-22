@@ -874,6 +874,12 @@
     state: birthday
   - type: SliceableFood
     slice: FoodCakeBirthdaySlice
+  # Starlight-start
+  - type: Tag
+    tags:
+    - Cake
+    - Birthday
+  # Starlight-end
   - type: Item
     heldPrefix: birthday
 
@@ -885,6 +891,13 @@
   components:
   - type: Sprite
     state: birthday-slice
+  # Starlight-start
+  - type: Tag
+    tags:
+    - Cake
+    - Birthday
+    - Slice
+  # Starlight-end
   - type: Item
     heldPrefix: birthday-slice
 # Tastes like sweetness, cake, christmas.
