@@ -23,6 +23,10 @@ public sealed partial class EventManagerSystem : EntitySystem
     [Dependency] private RoundEndSystem _roundEnd = default!;
 
     public bool EventsEnabled { get; private set; }
+
+    /// <summary>
+    /// Sets whether station events are globally enabled.
+    /// </summary>
     private void SetEnabled(bool value) => EventsEnabled = value;
 
     // Starlight-start
@@ -56,6 +60,9 @@ public sealed partial class EventManagerSystem : EntitySystem
         _prototype.PrototypesReloaded -= OnPrototypesReloaded;
     }
 
+    /// <summary>
+    /// Invalidates cached event prototype collections when prototypes are reloaded.
+    /// </summary>
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
     {
         _allEventsCache = null;
@@ -383,6 +390,9 @@ public sealed partial class EventManagerSystem : EntitySystem
         return stationEvent.Weight * MathF.Pow(falloff, occurrences);
     }
 
+    /// <summary>
+    /// Counts how many times an event with the given prototype ID has run this round.
+    /// </summary>
     public int GetOccurrences(string stationEvent) // Starlight
     {
         return GameTicker.AllPreviousGameRules.Count(p => p.Item2 == stationEvent);
@@ -412,6 +422,9 @@ public sealed partial class EventManagerSystem : EntitySystem
     }
     // Starlight-end
 
+    /// <summary>
+    /// Returns the elapsed round time when the specified event last ran, or TimeSpan.Zero if it hasn't run.
+    /// </summary>
     public TimeSpan TimeSinceLastEvent(EntityPrototype stationEvent)
     {
         foreach (var (time, rule) in GameTicker.AllPreviousGameRules.Reverse())
@@ -447,6 +460,9 @@ public sealed partial class EventManagerSystem : EntitySystem
     }
     // Starlight-end
 
+    /// <summary>
+    /// Evaluates all restrictions (active check, max occurrences, min players, earliest start, cooldown, round end) to decide if an event is allowed to run.
+    /// </summary>
     private bool CanRun(EntityPrototype prototype, StationEventComponent stationEvent, int playerCount, TimeSpan currentTime)
     {
         if (GameTicker.IsGameRuleActive(prototype.ID))

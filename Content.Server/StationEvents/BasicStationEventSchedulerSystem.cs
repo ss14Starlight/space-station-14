@@ -31,6 +31,7 @@ namespace Content.Server.StationEvents
         private int _queueIdCounter;
         // Starlight-end
 
+        /// <inheritdoc/>
         protected override void Started(EntityUid uid, BasicStationEventSchedulerComponent component, GameRuleComponent gameRule,
             GameRuleStartedEvent args)
         {
@@ -45,6 +46,7 @@ namespace Content.Server.StationEvents
             // Starlight-end
         }
 
+        /// <inheritdoc/>
         protected override void Ended(EntityUid uid, BasicStationEventSchedulerComponent component, GameRuleComponent gameRule,
             GameRuleEndedEvent args)
         {
@@ -55,7 +57,7 @@ namespace Content.Server.StationEvents
             // Starlight-end
         }
 
-
+        /// <inheritdoc/>
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
@@ -367,6 +369,9 @@ namespace Content.Server.StationEvents
         /// </summary>
         private int NextQueueId() => ++_queueIdCounter;
 
+        /// <summary>
+        /// Fires or drops queued entries that have reached their scheduled trigger time.
+        /// </summary>
         private void ProcessDueEntries(EntityUid uid, BasicStationEventSchedulerComponent component)
         {
             SortQueue(component);
@@ -404,6 +409,9 @@ namespace Content.Server.StationEvents
             }
         }
 
+        /// <summary>
+        /// Ensures the event queue has enough automatically planned future events to satisfy the lookahead threshold.
+        /// </summary>
         private void EnsureScheduledEvents(EntityUid uid, BasicStationEventSchedulerComponent component)
         {
             SortQueue(component);
@@ -428,6 +436,9 @@ namespace Content.Server.StationEvents
             }
         }
 
+        /// <summary>
+        /// Calculates the default trigger time for a manually queued event when no specific delay was provided.
+        /// </summary>
         private TimeSpan GetDefaultManualTriggerTime(BasicStationEventSchedulerComponent component)
         {
             SortQueue(component);
@@ -438,6 +449,9 @@ namespace Content.Server.StationEvents
             return component.EventQueue[^1].TriggerTime + TimeSpan.FromSeconds(component.MinMaxEventTiming.Min);
         }
 
+        /// <summary>
+        /// Calculates the scheduled trigger time for the next automatic event in the queue.
+        /// </summary>
         private TimeSpan GetNextAutomaticTriggerTime(BasicStationEventSchedulerComponent component)
         {
             var lastAutomatic = component.EventQueue
@@ -451,6 +465,9 @@ namespace Content.Server.StationEvents
             return _timing.CurTime + TimeSpan.FromSeconds(component.TimeUntilNextEvent);
         }
 
+        /// <summary>
+        /// Simulates upcoming queue state and picks an automatic event prototype that satisfies all conditions at the projected trigger time.
+        /// </summary>
         private bool TryPickAutomaticEvent(
             BasicStationEventSchedulerComponent component,
             TimeSpan triggerTime,
@@ -520,6 +537,9 @@ namespace Content.Server.StationEvents
             return total;
         }
 
+        /// <summary>
+        /// Sorts the scheduler's event queue by trigger time ascending, then by ID.
+        /// </summary>
         private static void SortQueue(BasicStationEventSchedulerComponent component)
         {
             component.EventQueue.Sort((a, b) =>
@@ -608,6 +628,9 @@ namespace Content.Server.StationEvents
             return occurrences.Select(p => (p.Key, (float)p.Value)).OrderByDescending(p => p.Item2);
         }
 
+        /// <summary>
+        /// Lists the current proportional probability of each event for a given scheduler prototype.
+        /// </summary>
         [CommandImplementation("lsprob")]
         public IEnumerable<(string, float)> LsProb([CommandArgument] EntProtoId eventSchedulerProto)
         {
@@ -632,6 +655,9 @@ namespace Content.Server.StationEvents
             }
         }
 
+        /// <summary>
+        /// Lists the theoretical probability of each event for a given scheduler at a specified player count and round time.
+        /// </summary>
         [CommandImplementation("lsprobtheoretical")]
         public IEnumerable<(string, float)> LsProbTime([CommandArgument] EntProtoId eventSchedulerProto, [CommandArgument] int playerCount, [CommandArgument] float time)
         {
@@ -660,6 +686,9 @@ namespace Content.Server.StationEvents
             }
         }
 
+        /// <summary>
+        /// Calculates the current selection probability for a specific event ID on a given scheduler prototype.
+        /// </summary>
         [CommandImplementation("prob")]
         public float Prob([CommandArgument] EntProtoId eventSchedulerProto, [CommandArgument] string eventId)
         {

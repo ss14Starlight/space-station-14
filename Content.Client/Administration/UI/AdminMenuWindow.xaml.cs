@@ -10,6 +10,9 @@ public sealed partial class AdminMenuWindow : DefaultWindow
 {
     public event Action? OnDisposed;
 
+    /// <summary>
+    /// Initializes the admin menu window and registers all tabs including the Events tab.
+    /// </summary>
     public AdminMenuWindow()
     {
         MinSize = new Vector2(650, 250);
@@ -27,6 +30,9 @@ public sealed partial class AdminMenuWindow : DefaultWindow
         MasterTabContainer.OnTabChanged += OnTabChanged;
     }
 
+    /// <summary>
+    /// Handles tab selection changes in the master tab container.
+    /// </summary>
     private void OnTabChanged(int tabIndex)
     {
         var tabEnum = (TabIndex)tabIndex;
@@ -34,6 +40,7 @@ public sealed partial class AdminMenuWindow : DefaultWindow
             ObjectsTabControl.RefreshObjectList();
     }
 
+    /// <inheritdoc/>
     protected override void Dispose(bool disposing)
     {
         OnDisposed?.Invoke();

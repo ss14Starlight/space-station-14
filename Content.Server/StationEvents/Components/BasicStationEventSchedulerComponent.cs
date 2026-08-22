@@ -56,12 +56,34 @@ public sealed partial class BasicStationEventSchedulerComponent : Component
     public TimeSpan? PausedAt;
 }
 
+/// <summary>
+/// Represents a scheduled or manually queued station event waiting to be triggered.
+/// </summary>
 public sealed class QueuedStationEventEntry
 {
+    /// <summary>
+    /// Unique identifier for this queued entry across all active schedulers.
+    /// </summary>
     public int Id;
+
+    /// <summary>
+    /// Prototype ID of the station event.
+    /// </summary>
     public string EventId = string.Empty;
+
+    /// <summary>
+    /// Timestamp when this entry was added to the queue.
+    /// </summary>
     public TimeSpan QueuedAt;
+
+    /// <summary>
+    /// Scheduled timestamp when this event should trigger.
+    /// </summary>
     public TimeSpan TriggerTime;
+
+    /// <summary>
+    /// True if automatically planned by the scheduler; false if manually added by an admin.
+    /// </summary>
     public bool Automatic;
     // Starlight-end
 }

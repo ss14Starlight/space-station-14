@@ -56,18 +56,26 @@ namespace Content.Client.Administration.Systems
             PlayerListChanged?.Invoke(msg.PlayersInfo);
         }
         // Starlight-start
-
+        /// <summary>
+        /// Handles incoming station events state snapshots from the server.
+        /// </summary>
         private void OnStationEventsChanged(StationEventsChangedEvent msg)
         {
             StationEventsSnapshot = msg;
             StationEventsChanged?.Invoke(msg);
         }
 
+        /// <summary>
+        /// Requests a fresh station events snapshot from the server.
+        /// </summary>
         public void RequestStationEvents()
         {
             RaiseNetworkEvent(new RequestStationEventsEvent());
         }
 
+        /// <summary>
+        /// Sends an administration command for the station event queue or active event management.
+        /// </summary>
         public void SendStationEventCommand(
             StationEventQueueCommand command,
             string eventId = "",

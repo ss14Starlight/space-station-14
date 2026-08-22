@@ -2,6 +2,9 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Administration.Events;
 
+/// <summary>
+/// Serializable data transfer object describing a station event prototype and its current status.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class StationEventData
 {
@@ -29,6 +32,9 @@ public sealed class StationEventData
     public int Occurrences;
 }
 
+/// <summary>
+/// Serializable data transfer object describing a scheduled future station event in the queue.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class ScheduledStationEventData
 {
@@ -45,6 +51,9 @@ public sealed class ScheduledStationEventData
     public string Scheduler = string.Empty;
 }
 
+/// <summary>
+/// Serializable data transfer object describing an active running station event gamerule.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class ActiveStationEventData
 {
@@ -55,6 +64,9 @@ public sealed class ActiveStationEventData
     public float RemainingSeconds = -1f;
 }
 
+/// <summary>
+/// Network event sent by the server to update the admin station events tab.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class StationEventsChangedEvent : EntityEventArgs
 {
@@ -74,11 +86,17 @@ public sealed class StationEventsChangedEvent : EntityEventArgs
     public int UnreadableSchedulers;
 }
 
+/// <summary>
+/// Network event sent by the client to request a fresh station events snapshot.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class RequestStationEventsEvent : EntityEventArgs
 {
 }
 
+/// <summary>
+/// Action types for managing the station event queue and active events.
+/// </summary>
 [Serializable, NetSerializable]
 public enum StationEventQueueCommand
 {
@@ -89,6 +107,9 @@ public enum StationEventQueueCommand
     EndActive
 }
 
+/// <summary>
+/// Network event sent by the client to trigger an admin action on the station event queue.
+/// </summary>
 [Serializable, NetSerializable]
 public sealed class StationEventQueueCommandEvent : EntityEventArgs
 {

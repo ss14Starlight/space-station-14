@@ -96,6 +96,9 @@ public sealed partial class EventsTab : Control
         };
     }
 
+    /// <summary>
+    /// Constructs and initializes the administration events tab, setting up UI bindings and section controllers.
+    /// </summary>
     public EventsTab()
     {
         IoCManager.InjectDependencies(this);
@@ -131,6 +134,7 @@ public sealed partial class EventsTab : Control
             RefreshSnapshot();
     }
 
+    /// <inheritdoc/>
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
@@ -141,11 +145,15 @@ public sealed partial class EventsTab : Control
         _adminSystem.StationEventsChanged -= OnStationEventsChanged;
     }
 
+    /// <summary>
+    /// Handles station events snapshot updates received from the server.
+    /// </summary>
     private void OnStationEventsChanged(StationEventsChangedEvent snapshot)
     {
         Repopulate(snapshot);
     }
 
+    /// <inheritdoc/>
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
@@ -163,6 +171,9 @@ public sealed partial class EventsTab : Control
         RefreshSnapshot();
     }
 
+    /// <summary>
+    /// Re-renders the event catalog, queue, active list, and status summary from the given snapshot.
+    /// </summary>
     private void Repopulate(StationEventsChangedEvent? snapshot)
     {
         if (snapshot == null)
@@ -204,6 +215,9 @@ public sealed partial class EventsTab : Control
         SearchList.PopulateList(rows);
     }
 
+    /// <summary>
+    /// Populates the upcoming queued events section.
+    /// </summary>
     private void PopulateQueue(StationEventsChangedEvent snapshot)
     {
         QueueList.RemoveAllChildren();
@@ -313,6 +327,9 @@ public sealed partial class EventsTab : Control
         }
     }
 
+    /// <summary>
+    /// Populates the list of currently running station events.
+    /// </summary>
     private void PopulateActiveEvents(StationEventsChangedEvent snapshot)
     {
         ActiveList.RemoveAllChildren();
@@ -388,6 +405,9 @@ public sealed partial class EventsTab : Control
         }
     }
 
+    /// <summary>
+    /// Helper to attach an action button targeting a queued event entry.
+    /// </summary>
     private void AddQueueButton(
         BoxContainer row,
         string text,
@@ -409,6 +429,9 @@ public sealed partial class EventsTab : Control
         row.AddChild(button);
     }
 
+    /// <summary>
+    /// Creates a styled flat panel container with the given background color.
+    /// </summary>
     private static PanelContainer CreatePanel(Color color)
     {
         return new PanelContainer
@@ -418,6 +441,9 @@ public sealed partial class EventsTab : Control
         };
     }
 
+    /// <summary>
+    /// Generates and binds the visual row for a station event catalog item.
+    /// </summary>
     private void GenerateItem(ListData data, ListContainerButton button)
     {
         if (data is not StationEventListData row)
@@ -556,6 +582,9 @@ public sealed partial class EventsTab : Control
         button.ToolTip = row.Info.Id;
     }
 
+    /// <summary>
+    /// Populates the sort options dropdown with all available sorting criteria.
+    /// </summary>
     private void PopulateSortOptions()
     {
         SortOptionButton.Clear();
@@ -570,11 +599,17 @@ public sealed partial class EventsTab : Control
         SortOptionButton.SelectId((int) _sortMode);
     }
 
+    /// <summary>
+    /// Adds an entry to the sort option dropdown.
+    /// </summary>
     private void AddSortOption(EventSortMode mode, string locId)
     {
         SortOptionButton.AddItem(Loc.GetString(locId), (int) mode);
     }
 
+    /// <summary>
+    /// Handles selecting a sort mode from the dropdown.
+    /// </summary>
     private void OnSortItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SortOptionButton.SelectId(args.Id);
@@ -582,6 +617,9 @@ public sealed partial class EventsTab : Control
         Repopulate(_adminSystem.StationEventsSnapshot);
     }
 
+    /// <summary>
+    /// Updates the text label on the sort direction toggle button.
+    /// </summary>
     private void UpdateSortDirectionText()
     {
         SortDirectionButton.Text = Loc.GetString(_sortAscending
@@ -589,6 +627,9 @@ public sealed partial class EventsTab : Control
             : "administration-ui-events-tab-sort-descending");
     }
 
+    /// <summary>
+    /// Sorts the list of station events according to the active sort mode and direction.
+    /// </summary>
     private List<StationEventData> SortEvents(List<StationEventData> events)
     {
         IOrderedEnumerable<StationEventData> ordered = _sortMode switch
@@ -608,6 +649,9 @@ public sealed partial class EventsTab : Control
             .ToList();
     }
 
+    /// <summary>
+    /// Orders a sequence by key taking into account the current ascending/descending setting.
+    /// </summary>
     private IOrderedEnumerable<StationEventData> Order<TKey>(
         IEnumerable<StationEventData> events,
         Func<StationEventData, TKey> selector)
@@ -618,6 +662,9 @@ public sealed partial class EventsTab : Control
             : events.OrderByDescending(selector);
     }
 
+    /// <summary>
+    /// Predicate for search bar filtering over event catalog rows.
+    /// </summary>
     private bool DataFilterCondition(string filter, ListData listData)
     {
         if (listData is not StationEventListData row)
@@ -632,12 +679,18 @@ public sealed partial class EventsTab : Control
         return row.FilteringString.Contains(filter, StringComparison.CurrentCultureIgnoreCase);
     }
 
+    /// <summary>
+    /// Manually requests an immediate station events snapshot update from the server.
+    /// </summary>
     private void RefreshSnapshot()
     {
         _refreshAccumulator = 0f;
         _adminSystem.RequestStationEvents();
     }
 
+    /// <summary>
+    /// Builds a searchable plain text representation of all event metadata for filtering.
+    /// </summary>
     private static string BuildFilterString(StationEventData ev)
     {
         return string.Join(" ", new[]
@@ -660,6 +713,9 @@ public sealed partial class EventsTab : Control
         });
     }
 
+    /// <summary>
+    /// Formats the scheduling requirements string (availability, players, start delay, cooldown, weight, occurrences).
+    /// </summary>
     private static string BuildSchedulingText(StationEventData info)
     {
         var meta = new StringBuilder();
@@ -686,6 +742,9 @@ public sealed partial class EventsTab : Control
         return meta.ToString();
     }
 
+    /// <summary>
+    /// Formats the runtime state string (active, pending, remaining duration).
+    /// </summary>
     private static string BuildRuntimeText(StationEventData info)
     {
         var parts = new List<string>();
@@ -720,6 +779,9 @@ public sealed partial class EventsTab : Control
         return string.Join(" | ", parts);
     }
 
+    /// <summary>
+    /// Formats the duration string for an event prototype.
+    /// </summary>
     private static string BuildDurationValue(StationEventData info)
     {
         if (!HasValue(info.DurationSeconds))
@@ -735,6 +797,9 @@ public sealed partial class EventsTab : Control
         return FormatSeconds(info.MaxDurationSeconds);
     }
 
+    /// <summary>
+    /// Calculates a sort score based on event state (active > pending > available > unavailable).
+    /// </summary>
     private static int GetStateSortScore(StationEventData ev)
     {
         if (ev.ActiveCount > 0)
@@ -744,6 +809,9 @@ public sealed partial class EventsTab : Control
         return ev.Available ? 1 : 0;
     }
 
+    /// <summary>
+    /// Extracts the sortable duration in seconds for an event.
+    /// </summary>
     private static float GetDurationSortSeconds(StationEventData ev)
     {
         if (HasValue(ev.MaxDurationSeconds))
@@ -753,11 +821,17 @@ public sealed partial class EventsTab : Control
         return -1f;
     }
 
+    /// <summary>
+    /// Returns whether a duration or timestamp float contains a valid non-negative value.
+    /// </summary>
     private static bool HasValue(float seconds)
     {
         return seconds >= 0f;
     }
 
+    /// <summary>
+    /// Formats a seconds float into MM:SS or HH:MM:SS format.
+    /// </summary>
     private static string FormatSeconds(float seconds)
     {
         var clamped = Math.Max((int) Math.Ceiling(seconds), 0);
@@ -769,11 +843,17 @@ public sealed partial class EventsTab : Control
         return $"{(int) span.TotalMinutes}:{span.Seconds:D2}";
     }
 
+    /// <summary>
+    /// Formats seconds as an integer string for filter matching.
+    /// </summary>
     private static string FormatSecondsForFilter(float seconds)
     {
         return HasValue(seconds) ? seconds.ToString("F0") : string.Empty;
     }
 
+    /// <summary>
+    /// Converts a PascalCase or snake_case ID into a human-readable title string.
+    /// </summary>
     private static string HumanizeId(string id)
     {
         if (string.IsNullOrWhiteSpace(id))
@@ -793,4 +873,7 @@ public sealed partial class EventsTab : Control
     }
 }
 
+/// <summary>
+/// Data row representing a station event in the list container.
+/// </summary>
 public sealed record StationEventListData(StationEventData Info, Color BackgroundColor, string FilteringString) : ListData;

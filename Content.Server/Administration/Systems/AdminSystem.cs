@@ -409,6 +409,9 @@ public sealed partial class AdminSystem : EntitySystem
     }
 
     // Starlight-start
+    /// <summary>
+    /// Handles requests from admins for a station events snapshot, rate-limited to avoid spam.
+    /// </summary>
     private void OnRequestStationEvents(RequestStationEventsEvent ev, EntitySessionEventArgs args)
     {
         if (!_adminManager.HasAdminFlag(args.SenderSession, AdminFlags.Admin))
@@ -426,6 +429,9 @@ public sealed partial class AdminSystem : EntitySystem
         SendStationEvents(args.SenderSession);
     }
 
+    /// <summary>
+    /// Handles admin queue commands such as scheduling, adjusting, removing, or running events.
+    /// </summary>
     private void OnStationEventQueueCommand(StationEventQueueCommandEvent ev, EntitySessionEventArgs args)
     {
         if (!_adminManager.HasAdminFlag(args.SenderSession, AdminFlags.Fun))
@@ -451,6 +457,9 @@ public sealed partial class AdminSystem : EntitySystem
             SendStationEvents(args.SenderSession);
     }
 
+    /// <summary>
+    /// Forcefully ends an active station event gamerule.
+    /// </summary>
     private bool EndActiveStationEvent(NetEntity netEntity)
     {
         var uid = GetEntity(netEntity);
@@ -483,6 +492,9 @@ public sealed partial class AdminSystem : EntitySystem
         return count;
     }
 
+    /// <summary>
+    /// Compiles and transmits a full station events state snapshot to the requesting admin session.
+    /// </summary>
     private void SendStationEvents(ICommonSession session)
     {
         var available = _eventManager.AvailableEvents();
@@ -615,6 +627,9 @@ public sealed partial class AdminSystem : EntitySystem
         RaiseNetworkEvent(snapshot, session.Channel);
     }
 
+    /// <summary>
+    /// Ephemeral runtime tracking metrics for an event prototype across active game rules.
+    /// </summary>
     private sealed class EventRuntimeState
     {
         public int ActiveCount;
