@@ -5,12 +5,10 @@ using Content.Server.Revolutionary.Components;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Alert;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Robust.Server.Player;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared._Starlight;
 using Content.Shared._Starlight.Railroading.Components;
@@ -31,18 +29,16 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
     [Dependency] private IAdminManager _admins = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private EuiManager _euiManager = default!;
-    [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private StarlightEntitySystem _entitySystem = default!;
     [Dependency] private RailroadRuleSystem _railroadRule = default!;
 
-    public readonly ProtoId<AlertPrototype> AlertProtoId = "RailroadingChoice";
     private readonly Dictionary<ICommonSession, CardSelectionEui> _openUis = [];
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<RailroadCardComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<RailroadableComponent, OpenCardsAlertEvent>(ShowCardsUi);
+        SubscribeNetworkEvent<OpenCardsRequestEvent>(OnOpenCardsRequest);
         SubscribeLocalEvent<RailroadableComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<RailroadableComponent, CollectObjectivesEvent>(OnCollectObjectiveInfo);
     }
@@ -116,19 +112,21 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
             HasSecretAccess = HasComp<RailroadSecretVendingAccessComponent>(entity)
         };
 
-    private void ShowCardsUi(Entity<RailroadableComponent> ent, ref OpenCardsAlertEvent args)
+    private void OnOpenCardsRequest(OpenCardsRequestEvent msg, EntitySessionEventArgs args)
     {
-        if (!_players.TryGetSessionByEntity(ent.Owner, out var user) || _openUis.ContainsKey(user))
+        var user = args.SenderSession;
+        if (user.AttachedEntity is not { } uid
+            || !TryComp<RailroadableComponent>(uid, out var comp)
+            || comp.IssuedCards is not { Count: > 0 }
+            || _openUis.ContainsKey(user))
             return;
 
         var eui = _openUis[user] = new CardSelectionEui()
         {
-            Subject = ent
+            Subject = (uid, comp)
         };
         _euiManager.OpenEui(eui, user);
         eui.StateDirty();
-        if (TryComp<AlertsComponent>(ent, out var alerts))
-            _alerts.ClearAlert((ent, alerts), AlertProtoId);
     }
 
     public void CloseEui(ICommonSession session)
@@ -142,12 +140,12 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
     }
 
     // todo: timer
-    public void ShowAlert(EntityUid owner)
+    public void NotifyCardsAvailable(EntityUid owner)
     {
         if (!_players.TryGetSessionByEntity(owner, out var user) || _openUis.ContainsKey(user))
             return;
 
-        _alerts.ShowAlert(owner, AlertProtoId);
+        EnsureComp<RailroadCardsPendingComponent>(owner);
     }
 
     public void OnCardSelected(Entity<RailroadableComponent> subject, NetEntity cardNetUid)
@@ -180,8 +178,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
                 var cardPerformer = EnsureComp<RailroadCardPerformerComponent>(card);
                 cardPerformer.Performer = subject;
 
-                if (TryComp<MetaDataComponent>(card.Owner, out var meta)
-                    && meta.EntityPrototype?.ID == CriminalCardPrototypeId)
+                if (MetaData(card.Owner).EntityPrototype?.ID == CriminalCardPrototypeId)
                 {
                     var achievementId = HasComp<CommandStaffComponent>(subject.Owner)
                         ? "wavering_loyalty"
@@ -196,21 +193,15 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
                 _railroadRule.AddCardToPool(rule, card);
 
         subject.Comp.IssuedCards = null;
+        RemComp<RailroadCardsPendingComponent>(subject);
     }
+    /// <summary>
+    /// Closing the window only gives up the UI slot. The hand stays issued so it can be reopened later.
+    /// </summary>
     public void OnCardSelectionClosed(Entity<RailroadableComponent> subject)
     {
-        if (_players.TryGetSessionByEntity(subject.Owner, out var user) && _openUis.ContainsKey(user))
+        if (_players.TryGetSessionByEntity(subject.Owner, out var user))
             _openUis.Remove(user);
-
-        if (subject.Comp.IssuedCards is null || subject.Comp.Important)
-            return;
-
-        foreach (var card in subject.Comp.IssuedCards)
-            if (_entitySystem.TryEntity<RailroadRuleComponent>(card.Comp2.RuleOwner, out var rule))
-                _railroadRule.AddCardToPool(rule, card);
-
-        subject.Comp.IssuedCards = null;
-        subject.Comp.Restricted = true;
     }
 
     public void CardFailed(Entity<RailroadableComponent> ent)

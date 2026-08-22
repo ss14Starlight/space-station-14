@@ -42,6 +42,12 @@ public sealed class CardSelectionEui : BaseEui
         if (baseState is not CardSelectionEuiState state)
             return;
 
+        if (state.Cards.Count == 0)
+        {
+            CardWindow.RenderEmpty(_window);
+            return;
+        }
+
         var size = new Vector2((_cardSize.X * state.Cards.Count) + (6 * state.Cards.Count), _cardSize.Y);
         _window.Resizable = false;
         _window.Contents.SetSize = size;

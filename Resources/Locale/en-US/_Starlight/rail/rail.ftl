@@ -1,6 +1,10 @@
 card-selection-window-title = CARD SELECTION
 cards = Cards
 
+card-selection-no-cards = No new cards available at this time.
+
+character-info-cards-button = View cards
+
 
 railroading-card-examined = ┌Active card:
     ├[color={$IconColor}][font="Icon"]{$Icon}[/font][/color] [color={$Color}]{$Title}[/color]
