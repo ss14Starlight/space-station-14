@@ -116,7 +116,7 @@
   - !type:ZXAProductionReaction {}
 
 - type: gasReaction
-  id: AmmoniaProductionReaction
+  id: AmmoniaProduction
   priority: 10
   minimumTemperature: 590
   minimumRequirements:
@@ -145,7 +145,7 @@
   - !type:AmmoniaProductionReaction {}
 
 - type: gasReaction
-  id: AmmoniaDecayReaction
+  id: AmmoniaDecay
   priority: 9
   minimumTemperature: 590
   minimumRequirements:

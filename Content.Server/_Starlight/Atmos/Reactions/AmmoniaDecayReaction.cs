@@ -6,6 +6,12 @@ using JetBrains.Annotations;
 
 namespace Content.Server._Starlight.Atmos.Reactions;
 
+/// <summary>
+///     The reverse reaction of ammonia production. Ammonia will decay at high temperatures back into its
+///     component gases. This reaction has a rate of reaction that increases with a higher temp at a
+///     faster rate than the forward reaction, as a result, it is intended that a higher temp yields more
+///     decay but at a faster rate.
+/// </summary>
 [UsedImplicitly]
 public sealed partial class AmmoniaDecayReaction : IGasReactionEffect
 {

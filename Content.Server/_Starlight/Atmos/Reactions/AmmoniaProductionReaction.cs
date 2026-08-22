@@ -6,6 +6,10 @@ using JetBrains.Annotations;
 
 namespace Content.Server._Starlight.Atmos.Reactions;
 
+/// <summary>
+///     Produces ammonia from hydrogen and nitrogen. It is a reversible reaction that occurs at the same time as
+///     the ammonia decay.
+/// </summary>
 [UsedImplicitly]
 public sealed partial class AmmoniaProductionReaction : IGasReactionEffect
 {

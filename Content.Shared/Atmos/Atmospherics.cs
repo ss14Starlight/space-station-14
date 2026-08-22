@@ -232,9 +232,7 @@ namespace Content.Shared.Atmos
         /// </summary>
         public const int AdjustedNumberOfGases = ((TotalNumberOfGases + 3) / 4) * 4;
 
-        #region Starlight
-            public const float AmmoniaProductionEnergyReleased = 67e3f;
-        #endregion
+        public const float AmmoniaProductionEnergyReleased = 67e3f; // Starlight
 
         /// <summary>
         ///     Amount of heat released per mole of burnt hydrogen or tritium (hydrogen isotope)
