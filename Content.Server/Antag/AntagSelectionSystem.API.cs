@@ -167,8 +167,14 @@ public sealed partial class AntagSelectionSystem
     /// </summary>
     public int GetTargetAntagCount(AntagCountSelector selector, int playerCount, ref int runningCount)
     {
-        var count = selector.GetTargetAntagCount(RobustRandom, playerCount - runningCount);
-        runningCount += (int)(count * selector.PlayerRatio); // Starlight
+        #region Starlight
+        // We need to calculate the player count for this selector based on whether it uses the total player count or the remaining player count after previous selectors.
+        var selectorPlayerCount = selector.UseTotalPlayerCount
+            ? playerCount
+            : playerCount - runningCount;
+        var count = selector.GetTargetAntagCount(RobustRandom, selectorPlayerCount);
+        runningCount += (int)(count * selector.PlayerRatio);
+        #endregion
         return count;
     }
 
