@@ -32,6 +32,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility; // Starlight-edit
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical;
+using Content.Shared.Silicons.Borgs.Components; // Starlight-edit
 
 namespace Content.Server.Medical;
 
@@ -118,9 +119,12 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);
 
+        var needHand = !HasComp<BorgChassisComponent>(args.User); // Starlight: Allow cyborgs to use health analyzer without needing a hand (module)
+
         var doAfterCancelled = !_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, uid.Comp.ScanDelay, new HealthAnalyzerDoAfterEvent(), uid, target: args.Target, used: uid)
         {
-            NeedHand = true,
+			//NeedHand = true,
+            NeedHand = needHand, // Starlight
             BreakOnMove = true,
         });
 
