@@ -132,17 +132,15 @@
     reagents:
     - NitrousOxide
 
-# Starlight-start
-#- type: xenoArchTrigger
-#  id: TriggerFrezon # Removing this because it just makes the node uncompletable in the majority of cases
-#  tip: xenoarch-trigger-tip-frezon
-#  components:
-#  - type: XATGas
-#    targetGas: Frezon
-#  - type: XATReactive
-#    reagents:
-#    - Frezon
-# Starlight-end
+- type: xenoArchTrigger
+  id: TriggerFrezon
+  tip: xenoarch-trigger-tip-frezon
+  components:
+  - type: XATGas
+    targetGas: Frezon
+  - type: XATReactive
+    reagents:
+    - Frezon
 
 - type: xenoArchTrigger
   id: TriggerRadiation
