@@ -1,0 +1,157 @@
+#!/usr/bin/env python3
+import os
+import re
+import sys
+from concurrent.futures import ThreadPoolExecutor
+
+FULL_DIRS = [
+    "Content.Server\_Starlight",
+    "Content.Shared\_Starlight",
+    "Resources\Prototypes\_Starlight",
+    "Content.Client\_Starlight",
+]
+
+USINGS_DIRS = [
+    "Content.Server",
+    "Content.Shared",
+    "Content.Client",
+]
+
+SKIP_DIRS = {".git", ".venv", "venv", "node_modules", "__pycache__", "dist", "build", "obj", "bin"}
+WORD = re.compile(r"starlight", re.IGNORECASE)
+NAMESPACE = re.compile(r"^\s*namespace\b")
+WORKERS = min(32, (os.cpu_count() or 4) * 4)
+
+COMMENT_SYNTAX = {
+    ".py": (["#"], [('"""', '"""'), ("'''", "'''")]),
+    ".yml": (["#"], []),
+    ".yaml": (["#"], []),
+    ".cs": (["//"], [("/*", "*/")]),
+    ".xml": ([], [("<!--", "-->")]),
+}
+
+MESSAGES = {
+    "full": "There's starlight comment in file that already in _Starlight folder: {text}",
+    "usings": "There's starlight comment in the usings block: {text}",
+}
+
+
+STRING_LITERAL = re.compile(r'"(?:\\.|[^"\\])*"' + r"|'(?:\\.|[^'\\])*'")
+
+
+def mask_strings(line):
+    return STRING_LITERAL.sub(lambda m: '"' + " " * (len(m.group()) - 2) + '"', line)
+
+
+def comment_lines(lines, line_markers, block_pairs):
+    open_marker = None
+    for num, line in enumerate(lines, 1):
+        if open_marker:
+            yield num, line
+            if open_marker[1] in line:
+                open_marker = None
+            continue
+
+        masked = mask_strings(line)
+
+        starts = [i for i in (masked.find(m) for m in line_markers) if i != -1]
+        line_idx = min(starts) if starts else -1
+
+        block_idx, pair = -1, None
+        for start, end in block_pairs:
+            i = masked.find(start)
+            if i != -1 and (block_idx == -1 or i < block_idx):
+                block_idx, pair = i, (start, end)
+
+        if line_idx != -1 and (block_idx == -1 or line_idx < block_idx):
+            yield num, line[line_idx:]
+            continue
+
+        if block_idx != -1:
+            start, end = pair
+            yield num, line[block_idx:]
+            if masked.find(end, block_idx + len(start)) == -1:
+                open_marker = pair
+
+
+def check_file(entry):
+    path, mode = entry
+    syntax = COMMENT_SYNTAX.get(os.path.splitext(path)[1].lower())
+    if not syntax:
+        return []
+
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            content = f.read()
+    except (UnicodeDecodeError, OSError):
+        return []
+
+    lines = content.splitlines()
+
+    if mode == "usings":
+        for i, line in enumerate(lines):
+            if NAMESPACE.match(line):
+                lines = lines[:i]
+                break
+        else:
+            return []
+
+    if not WORD.search("\n".join(lines)):
+        return []
+
+    found = []
+    for num, text in comment_lines(lines, *syntax):
+        if WORD.search(text):
+            found.append((path, num, text.strip(), mode))
+    return found
+
+
+def collect_paths():
+    exts = tuple(COMMENT_SYNTAX)
+    seen = set()
+
+    for mode, dirs, only_cs in (("full", FULL_DIRS, False), ("usings", USINGS_DIRS, True)):
+        for root_dir in dirs:
+            if not os.path.isdir(root_dir):
+                print(f"warning: directory can't be found: {root_dir}", file=sys.stderr)
+                continue
+            for root, subdirs, files in os.walk(root_dir):
+                subdirs[:] = [d for d in subdirs if d not in SKIP_DIRS]
+                if mode == "usings":
+                    subdirs[:] = [d for d in subdirs if d != "_Starlight"]
+                for name in files:
+                    lowered = name.lower()
+                    if only_cs:
+                        if not lowered.endswith(".cs"):
+                            continue
+                    elif not lowered.endswith(exts):
+                        continue
+                    path = os.path.join(root, name)
+                    if path in seen:
+                        continue
+                    seen.add(path)
+                    yield path, mode
+
+
+def main():
+    entries = list(collect_paths())
+
+    errors = []
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        for result in pool.map(check_file, entries, chunksize=32):
+            errors.extend(result)
+
+    errors.sort()
+    for path, num, text, mode in errors:
+        print(f"::error file={path},line={num}::" + MESSAGES[mode].format(text=text))
+
+    if errors:
+        print(f"\nFound entries: {len(errors)} (scanned {len(entries)} files)", file=sys.stderr)
+        return 1
+
+    print(f"OK: no forbidden 'Starlight' comments. Scanned {len(entries)} files.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

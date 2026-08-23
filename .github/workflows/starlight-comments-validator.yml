@@ -1,0 +1,37 @@
+name: Starlight Comments Validator
+
+# Cancel older jobs on PRs when new changes are pushed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '**.cs'
+      - '**.yml'
+      - '**.yaml'
+      - '**.xml'
+      - '**.py'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-starlight-comments:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Validate Starlight comments
+        run: python ./Tools/_Starlight/check_starlight_comments.py
+
+      - name: Report success
+        if: success()
+        run: echo "::notice::Starlight comments validation passed"
