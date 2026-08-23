@@ -15,7 +15,7 @@ using Content.Shared.Implants;
 using Content.Shared.Inventory;
 using Content.Shared.Lock;
 using Content.Shared.PDA;
-using Content.Shared._CD.NanoChat; // CD
+using Content.Shared._CD.NanoChat;
 
 namespace Content.Server.Access.Systems
 {

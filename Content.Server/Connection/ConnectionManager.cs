@@ -25,12 +25,12 @@ using Content.Server._Starlight.Connection;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
 
-/*
- * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
- */
-
 namespace Content.Server.Connection
 {
+    /*
+     * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
+     */
+
     public interface IConnectionManager
     {
         void Initialize();

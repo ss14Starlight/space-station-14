@@ -16,8 +16,6 @@ using Content.Shared.Security.Components;
 using System.Linq;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Log;
-
-// Cosmatic Drift Record System: imports
 using Content.Server._CD.Records;
 using Content.Shared._CD.Records;
 

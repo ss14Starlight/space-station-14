@@ -11,10 +11,8 @@ using Content.Server.Administration.Managers;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
-// Cosmatic Drift Record System-start
 using Content.Shared._CD.Records;
 using Content.Server._CD.Records;
-// Cosmatic Drift Record System-end
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;

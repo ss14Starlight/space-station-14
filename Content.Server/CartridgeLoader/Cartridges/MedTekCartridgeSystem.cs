@@ -1,10 +1,8 @@
 using Content.Server.Medical.Components;
 using Content.Shared.CartridgeLoader;
-//FarHorizons Start
 using Content.Shared.Interaction;
 using Content.Shared.Actions;
 using Content.Shared._Starlight.CartridgeLoader.Cartridges;
-//FarHorizons End
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 

@@ -6,7 +6,7 @@ using Content.Server.Database;
 using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;
-using Content.Server.Administration.Managers; // NullLink-edit: move to general method at Manager
+using Content.Server.Administration.Managers;
 
 namespace Content.Server.Administration.Commands;
 

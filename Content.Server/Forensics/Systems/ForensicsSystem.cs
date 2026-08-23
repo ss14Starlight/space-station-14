@@ -148,22 +148,21 @@ namespace Content.Server.Forensics
             }
         }
 
-        public List<string> GetSolutionsDNA(EntityUid uid)
+        public HashSet<string> GetSolutionsDNA(EntityUid uid)
         {
-            List<string> list = new();
+            HashSet<string> list = new();
             if (TryComp<SolutionContainerManagerComponent>(uid, out var comp))
             {
                 foreach (var (_, soln) in _solutionContainerSystem.EnumerateSolutions((uid, comp)))
-                {
-                    list.AddRange(GetSolutionsDNA(soln.Comp.Solution));
-                }
+                    foreach (var dna in GetSolutionsDNA(soln.Comp.Solution))
+                        list.Add(dna);
             }
             return list;
         }
 
-        public List<string> GetSolutionsDNA(Solution soln)
+        public HashSet<string> GetSolutionsDNA(Solution soln)
         {
-            List<string> list = new();
+            HashSet<string> list = new();
             foreach (var reagent in soln.Contents)
             {
                 foreach (var data in reagent.Reagent.EnsureReagentData())

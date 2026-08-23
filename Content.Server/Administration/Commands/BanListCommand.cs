@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Content.Server.Administration.BanList;
-using Content.Server.Administration.Managers; // NullLink-edit: move to general method at Manager
+using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Server.EUI;
 using Content.Shared.Administration;

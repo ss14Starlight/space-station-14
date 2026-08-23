@@ -7,9 +7,7 @@ using Content.Server.Mind;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Popups;
 using Content.Server.StationRecords.Systems;
-// Cosmatic Drift Record System-start
 using Content.Server._CD.Records;
-// Cosmatic Drift Record System-end
 using Content.Shared.Administration;
 using Content.Shared.Administration.Events;
 using Content.Shared.CCVar;
