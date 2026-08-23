@@ -1,7 +1,7 @@
 using Content.Shared.Instruments;
 using Robust.Client.Audio.Midi;
 using Robust.Shared.Audio.Midi;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom; // Starlight
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Client.Instruments;
 

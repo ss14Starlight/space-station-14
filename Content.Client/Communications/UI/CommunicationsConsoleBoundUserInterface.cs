@@ -3,11 +3,6 @@ using Content.Shared.Chat;
 using Content.Shared.Communications;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
-using Robust.Shared.Timing;
-// Starlight edit: Start
-using Robust.Shared.IoC;
-using Content.Client.Communications.UI;
-// Starlight edit: End
 
 namespace Content.Client.Communications.UI
 {

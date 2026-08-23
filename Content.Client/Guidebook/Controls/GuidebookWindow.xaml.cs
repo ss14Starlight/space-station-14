@@ -1,10 +1,8 @@
-using System.Diagnostics;
 using System.Linq;
-using Content.Client._Starlight.UserInterface; // Starlight
+using Content.Client._Starlight.UserInterface;
 using Content.Client._Starlight.Guidebook.Richtext;
 using Content.Client.Guidebook.RichText;
 using Content.Client.UserInterface.ControlExtensions;
-using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Controls.FancyTree;
 using Content.Client.UserInterface.Systems.Info;
 using Content.Shared.Guidebook;

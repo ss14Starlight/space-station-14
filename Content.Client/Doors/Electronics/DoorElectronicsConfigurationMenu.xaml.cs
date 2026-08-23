@@ -5,14 +5,8 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Content.Client.Access.UI;
-using Content.Client.Doors.Electronics;
 using Content.Shared.Access;
-using Content.Shared.Doors.Electronics;
-using FancyWindow = Content.Client.UserInterface.Controls.FancyWindow;
-// Starlight Start
 using Content.Client._Starlight.Access.UI;
-using System.Collections.Generic;
-// Starlight End
 
 namespace Content.Client.Doors.Electronics;
 

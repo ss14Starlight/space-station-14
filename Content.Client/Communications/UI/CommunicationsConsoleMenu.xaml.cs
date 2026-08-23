@@ -6,12 +6,10 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-// Starlight Start
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Robust.Client.UserInterface.Controls;
-// Starlight End
 
 namespace Content.Client.Communications.UI
 {

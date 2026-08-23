@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Numerics;
-using Content.Client._Starlight.Access.UI; // Starlight-edit
+using Content.Client._Starlight.Access.UI;
 using Content.Client.Stylesheets;
 using Content.Shared.Access;
 using Content.Shared.Access.Systems;

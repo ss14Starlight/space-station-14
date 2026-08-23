@@ -1,6 +1,6 @@
 using Content.Shared.Storage;
 using Content.Shared.Lock;
-using Content.Shared.Power; // Starlight-edit
+using Content.Shared.Power;
 using Robust.Client.GameObjects;
 
 namespace Content.Client.Lock.Visualizers;

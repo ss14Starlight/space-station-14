@@ -1,6 +1,4 @@
-using System.Linq;
 using Content.Client.Guidebook;
-using Content.Client.Humanoid;
 using Content.Client.Inventory;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
@@ -14,7 +12,6 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Traits;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.State;
@@ -24,15 +21,11 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Client._Starlight.Lobby.UI;
 using Content.Client._Starlight.Humanoid;
-using Content.Client._Starlight.UserInterface; // Starlight: popout support
+using Content.Client._Starlight.UserInterface;
 using Content.Shared._Starlight.CCVar;
-using Robust.Client.UserInterface.CustomControls;
 using System.Numerics;
-#endregion
 
 namespace Content.Client.Lobby;
 

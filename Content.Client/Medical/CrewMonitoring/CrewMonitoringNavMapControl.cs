@@ -1,10 +1,9 @@
 using Content.Client.Pinpointer.UI;
 using Robust.Client.Graphics;
-using Robust.Client.UserInterface; // Starlight
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
-using Robust.Shared.Map; // Starlight
-using Robust.Shared.Localization; // Starlight
+using Robust.Shared.Map;
 
 namespace Content.Client.Medical.CrewMonitoring;
 
