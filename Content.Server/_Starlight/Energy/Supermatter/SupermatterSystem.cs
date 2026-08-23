@@ -1,10 +1,14 @@
 using System.Linq;
+using Content.Server._Starlight.Achievement;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
 using Content.Server.Radio.EntitySystems;
-using Content.Server._Starlight.Achievement;
 using Content.Server.Station.Systems;
+using Content.Shared._Starlight.Abstract;
+using Content.Shared._Starlight.Energy.Supermatter;
+using Content.Shared._Starlight.Silicons.Borgs;
+using Content.Shared._Starlight.Supermatter.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -12,20 +16,17 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory;
 using Content.Shared.Projectiles;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Radio;
 using Content.Shared.Singularity.Components;
-using Content.Shared._Starlight.Energy.Supermatter;
-using Content.Shared._Starlight.Supermatter.Components;
-using Content.Shared.Inventory;
 using Microsoft.CodeAnalysis;
 using Robust.Server.Audio;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared._Starlight.Abstract;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 
@@ -77,6 +78,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
         _burn ??= _prototypes.Index<DamageGroupPrototype>("Burn");
         _damageable.TryChangeDamage(ent.Owner, new(_burn, damage), true);
 
+        Unshunt(args.User); // Starlight
         QueueDel(args.User);
     }
 
@@ -101,8 +103,43 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
         _burn ??= _prototypes.Index<DamageGroupPrototype>("Burn");
         _damageable.TryChangeDamage(ent.Owner, new(_burn, damage), true);
 
+        Unshunt(args.OtherEntity); // Starlight
         QueueDel(args.OtherEntity);
     }
+
+    // Starlight - start
+    public void Unshunt(EntityUid targetEntity)
+    {
+        // Recursively scan target and all contained entities (unlimited depth) and trigger unshunt where applicable.
+        var containerSys = EntityManager.System<Robust.Shared.Containers.SharedContainerSystem>();
+        var stack = new Stack<EntityUid>();
+        var seen = new HashSet<EntityUid>();
+        stack.Push(targetEntity);
+
+        while (stack.Count > 0)
+        {
+            var cur = stack.Pop();
+            if (!seen.Add(cur))
+                continue;
+
+            if (TryComp<StationAIShuntComponent>(cur, out var sh) && sh.Return != null)
+                RaiseLocalEvent(cur, new AIUnShuntActionEvent());
+            else if (TryComp<StationAIShuntableComponent>(cur, out var shuntable) && shuntable.Inhabited.HasValue)
+                RaiseLocalEvent(shuntable.Inhabited.Value, new AIUnShuntActionEvent());
+            else if (TryComp<Robust.Shared.Containers.ContainerManagerComponent>(cur, out var currentManager))
+            {
+                foreach (var container in containerSys.GetAllContainers(cur))
+                {
+                    foreach (var ent in container.ContainedEntities)
+                    {
+                        if (!seen.Contains(ent))
+                            stack.Push(ent);
+                    }
+                }
+            }
+        }
+    }
+    // Starlight - end
 
     // Check if entity is immune to supermatter (directly or via worn items)
     private bool IsImmune(EntityUid uid)
