@@ -42,13 +42,12 @@ namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
 public sealed partial class VampireSystem : EntitySystem
 {
-    # region Starlight data collection
     private static readonly Counter _vampireClasses = Metrics.CreateCounter(
         "Vampire_Classes",
         "Numbers of vampire classes chosen by players",
         ["class"]
     );
-    #endregion
+
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private BloodstreamSystem _blood = default!;

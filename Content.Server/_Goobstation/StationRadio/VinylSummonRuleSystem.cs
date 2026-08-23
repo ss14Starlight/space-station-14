@@ -1,5 +1,5 @@
-using Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
-using Content.Shared._Goobstation.StationRadio.Events; // Starlight - _Goob -> _Goobstation
+using Content.Shared._Goobstation.StationRadio.Components;
+using Content.Shared._Goobstation.StationRadio.Events;
 using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Shared.Communications;

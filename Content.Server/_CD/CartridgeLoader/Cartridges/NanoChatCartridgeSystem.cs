@@ -14,8 +14,8 @@ using Content.Shared.PDA;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Abilities.Mime; // Starlight
-using Content.Server.Popups; // Starlight
+using Content.Shared.Abilities.Mime;
+using Content.Server.Popups;
 
 namespace Content.Server._CD.CartridgeLoader.Cartridges;
 
