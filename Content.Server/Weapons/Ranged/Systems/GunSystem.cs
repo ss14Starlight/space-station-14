@@ -17,12 +17,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Shared.Mech.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
-#endregion Starlight
 
 namespace Content.Server.Weapons.Ranged.Systems;
 

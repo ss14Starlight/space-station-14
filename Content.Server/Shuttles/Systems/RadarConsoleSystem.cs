@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Server.Shuttles.Components; // _Starlight
+using Content.Server.Shuttles.Components;
 using Content.Server.UserInterface;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
@@ -11,7 +11,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Content.Server._Starlight.Shuttles.Systems;
 using Content.Shared._Starlight.Shuttles.Components;
-using Content.Server._Starlight.Shuttles.Components; // _Starlight
+using Content.Server._Starlight.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 

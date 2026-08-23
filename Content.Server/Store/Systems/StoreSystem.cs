@@ -11,13 +11,10 @@ using Content.Shared.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Shared.Access.Components;
 using Robust.Shared.GameObjects;
 using Content.Shared.Access.Systems;
 using Content.Shared._Starlight.Store.Components;
-#endregion Starlight
 
 namespace Content.Server.Store.Systems;
 

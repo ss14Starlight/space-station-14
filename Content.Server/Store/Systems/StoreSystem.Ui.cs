@@ -21,7 +21,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Prometheus; //Starlight
+using Prometheus;
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Store.Events;
 using Content.Shared._Starlight.Store.Conditions;

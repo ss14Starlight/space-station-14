@@ -21,12 +21,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using System.Linq;
-// Starlight Start
 using Content.Server._Starlight.Language;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Player;
 using Content.Server.Chat.Managers;
-// Starlight End
 
 namespace Content.Server.Telephone;
 

@@ -15,7 +15,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-// Starlight Start
 using Content.Server._Starlight.Station;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Shuttles.Components;
@@ -23,7 +22,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Content.Shared._Starlight.Shuttles.Components;
-// Starlight End
 
 namespace Content.Server.Station.Systems;
 

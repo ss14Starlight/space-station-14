@@ -8,11 +8,8 @@ using Content.Shared.Speech.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-
-#region starlight
 using Content.Shared.Emoting;
 using Robust.Shared.Timing;
-#endregion Starlight
 
 namespace Content.Server.Speech.EntitySystems;
 

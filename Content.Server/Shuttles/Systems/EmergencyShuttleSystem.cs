@@ -37,7 +37,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-// Starlight Start
 using Content.Server._Starlight.Station;
 using Content.Shared._Starlight.CustomObjectiveSummary;
 using Content.Shared.Station.Components;
@@ -47,7 +46,6 @@ using Content.Shared.Parallax.Biomes;
 using Content.Server.Procedural;
 using Robust.Shared.Map;
 using Content.Shared._Starlight.Shuttles.Components;
-// Starlight End
 
 namespace Content.Server.Shuttles.Systems;
 

@@ -13,7 +13,7 @@ using Content.Shared.Light.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Systems;
-using Content.Shared.Shuttles.Components; //starlight
+using Content.Shared.Shuttles.Components;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;

@@ -9,14 +9,14 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
-using Content.Shared.Popups; //Starlight
+using Content.Shared.Popups;
 using Content.Shared.Radio.Components;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
-using Content.Shared.Silicons.StationAi; // Starlight-edit
-using Content.Shared.Tag; //Starlight
+using Content.Shared.Silicons.StationAi;
+using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;

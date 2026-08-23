@@ -15,8 +15,6 @@ using Content.Shared.Wall;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-
-#region Starlight
 using Content.Shared.Emag.Components;
 using Content.Shared.Tag;
 using Content.Shared.Cargo.Components;
@@ -26,7 +24,6 @@ using Content.Shared._NullLink;
 using Robust.Shared.Player;
 using Content.Server._Starlight.Economy;
 using Content.Shared._Starlight.Economy;
-#endregion
 
 namespace Content.Server.VendingMachines
 {

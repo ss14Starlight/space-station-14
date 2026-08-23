@@ -23,7 +23,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-// Starlight Start
 using Content.Server.GameTicking;
 using Robust.Shared.GameObjects.Components.Localization;
 using Content.Server._Starlight.Medical.Limbs;
@@ -37,7 +36,6 @@ using Content.Shared._Starlight.Station;
 using Content.Shared._Starlight.Humanoid;
 using Content.Shared.Clothing.Components;
 using Robust.Server.GameObjects;
-// Starlight End
 
 namespace Content.Server.Station.Systems;
 

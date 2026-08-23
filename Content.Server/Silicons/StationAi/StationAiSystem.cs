@@ -37,8 +37,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using static Content.Server.Chat.Systems.ChatSystem;
-
-#region Starlight
 using Content.Server.Medical.SuitSensors;
 using Content.Shared.Follower.Components;
 using Content.Shared.Follower;
@@ -55,7 +53,6 @@ using Robust.Shared.Map;
 using System.Collections.Generic;
 using Content.Shared._Starlight.StationAi;
 using Content.Shared.Tag;
-#endregion Starlight
 
 namespace Content.Server.Silicons.StationAi;
 

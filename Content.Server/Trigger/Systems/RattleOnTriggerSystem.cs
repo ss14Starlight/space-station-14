@@ -1,11 +1,11 @@
-using Content.Server.Administration.Logs;  // Starlight
+using Content.Server.Administration.Logs;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Pinpointer;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components.Effects;
-using Content.Server.Chat.Systems; // Starlight
-using Content.Shared.Database; // Starlight
+using Content.Server.Chat.Systems;
+using Content.Shared.Database;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 

@@ -24,7 +24,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
-#region Starlight
 using Content.Server._Starlight.Station;
 using Content.Server.Camera;
 using Content.Shared._Starlight.Camera;
@@ -32,7 +31,6 @@ using Content.Shared.Station.Components;
 using Robust.Server.Player;
 using Content.Shared.Body.Components;
 using Content.Shared.Atmos.Components;
-#endregion
 
 namespace Content.Server.Shuttles.Systems;
 

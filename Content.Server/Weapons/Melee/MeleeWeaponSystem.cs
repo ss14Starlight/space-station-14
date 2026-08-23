@@ -2,7 +2,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Movement.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Effects;
-using Content.Shared.Physics; // Starlight-edit™
+using Content.Shared.Physics;
 using Content.Shared.Speech.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
@@ -11,8 +11,8 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using System.Linq;
 using System.Numerics;
-using Robust.Shared.Physics; // Starlight-edit™
-using Robust.Shared.Physics.Systems; // Starlight-edit™
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
 
 namespace Content.Server.Weapons.Melee;
 

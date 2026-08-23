@@ -1,6 +1,6 @@
 using System.Linq;
-using Content.Server.Objectives.Components; // funkystation
-using Content.Server._Starlight.Objectives.Components; // Starlight
+using Content.Server.Objectives.Components;
+using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Store.Systems;
 using Content.Server.StoreDiscount.Systems;
 using Content.Shared.FixedPoint;

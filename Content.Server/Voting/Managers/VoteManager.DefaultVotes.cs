@@ -21,9 +21,9 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
-using Robust.Shared.Prototypes; // Starlight
+using Robust.Shared.Prototypes;
 using Prometheus;
-using Content.Shared._Starlight.Voting; //Starlight
+using Content.Shared._Starlight.Voting;
 
 namespace Content.Server.Voting.Managers
 {

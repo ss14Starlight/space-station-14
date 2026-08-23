@@ -9,8 +9,8 @@ using Content.Shared.GameTicking.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared.Station.Components; // Starlight
-using Robust.Shared.Audio; // Starlight
+using Content.Shared.Station.Components;
+using Robust.Shared.Audio;
 
 namespace Content.Server.StationEvents.Events;
 

@@ -3,7 +3,6 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Random;
-// STARLIGHT using
 using Robust.Shared.Configuration;
 using Content.Shared.CCVar;
 

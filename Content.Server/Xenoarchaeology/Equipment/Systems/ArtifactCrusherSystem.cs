@@ -6,9 +6,7 @@ using Content.Shared.Xenoarchaeology.Equipment;
 using Content.Shared.Xenoarchaeology.Equipment.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.Random;
-#region Starlight
 using Content.Shared.Body.Components;
-#endregion
 
 namespace Content.Server.Xenoarchaeology.Equipment.Systems;
 

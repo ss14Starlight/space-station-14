@@ -6,7 +6,7 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Robust.Shared.Containers;
 using Robust.Shared.Toolshed;
-using Content.Server._Starlight.Administration.Systems.Commands; // Starlight
+using Content.Server._Starlight.Administration.Systems.Commands;
 
 namespace Content.Server.Storage;
 

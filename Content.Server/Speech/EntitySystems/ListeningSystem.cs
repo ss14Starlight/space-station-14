@@ -3,8 +3,8 @@ using Content.Shared.Chat;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared._Starlight.Chat;
-using Content.Shared._Starlight.Language; // Starlight
-using Content.Shared._Starlight.Speech; // Starlight
+using Content.Shared._Starlight.Language;
+using Content.Shared._Starlight.Speech;
 
 namespace Content.Server.Speech.EntitySystems;
 

@@ -15,7 +15,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Timer = Robust.Shared.Timing.Timer;
-// Starlght Start
 using Robust.Shared.Random;
 using Content.Shared.Screen.Components;
 using Content.Shared.Parallax.Biomes;
@@ -25,8 +24,6 @@ using Robust.Shared.Map.Components;
 using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared.Tag;
 using Content.Shared.Whitelist;
-
-// Starlight End
 
 namespace Content.Server.Shuttles.Systems;
 

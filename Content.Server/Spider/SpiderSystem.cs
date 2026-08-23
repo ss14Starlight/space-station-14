@@ -7,13 +7,10 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-
-#region Starlight
 using Content.Shared._Starlight.Spider.Events;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Containers;
 using System.Diagnostics.CodeAnalysis;
-#endregion
 
 namespace Content.Server.Spider;
 

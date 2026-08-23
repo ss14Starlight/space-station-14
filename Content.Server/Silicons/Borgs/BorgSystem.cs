@@ -13,7 +13,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-// Starlight Start
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Server.Chat.Systems;
 using Content.Shared._Starlight.Silicons.Borgs;
@@ -23,7 +22,6 @@ using Content.Server._Starlight.Silicons;
 using Content.Shared.Mind;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost;
-// Starlight End
 
 namespace Content.Server.Silicons.Borgs;
 

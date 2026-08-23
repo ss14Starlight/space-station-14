@@ -2,8 +2,7 @@
 using Robust.Shared.Player;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Errors;
-using Robust.Shared.Toolshed.Syntax;
-using System.Linq; // Starlight
+using System.Linq;
 
 namespace Content.Server.Mind.Toolshed;
 

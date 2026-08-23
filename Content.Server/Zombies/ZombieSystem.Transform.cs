@@ -42,8 +42,6 @@ using Robust.Shared.Prototypes;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
 using Content.Shared.Temperature.Components;
-
-#region Starlight
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Mobs.Systems;
@@ -54,7 +52,6 @@ using Content.Server.Animals.Components;
 using Content.Shared.Animals;
 using Content.Shared.FixedPoint;
 using Content.Shared._Starlight.Changeling;
-#endregion Starlight
 
 namespace Content.Server.Zombies;
 
