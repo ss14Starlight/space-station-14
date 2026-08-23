@@ -303,6 +303,8 @@ public sealed partial class DeepFryerSystem : EntitySystem
                     _audio.Stop(soundEntity.Value);
                     _fryerSounds[uid] = null;
                 }
+
+                continue; // Starlight
             }
 
             // Now we check for if the deep fryer has enough oil. If not, disable it and skip the loop.
