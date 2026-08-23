@@ -106,3 +106,23 @@
     - id: SyndiOperativeIDCard
     - id: SyndicateFootsoldierIDCard
     - id: SyndicateFootsoldierIDCard
+
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioSyndicateMothroach
+  name: syndicate mobroach reinforcement radio
+  description: Calls in a specially trained mobroach.
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-mothroach-reinforcement-name
+      description: ghost-role-information-syndicate-mothroach-reinforcement-description
+      rules: ghost-role-information-syndicate-reinforcement-rules
+      important: true
+      mindRoles:
+        - MindRoleGhostRoleTeamAntagonist
+      raffle:
+        settings: default
+    - type: GhostRoleMobSpawner
+      prototype: MobMobroach
+    - type: EmitSoundOnUse
+      sound: /Audio/Voice/Moth/moth_chitter.ogg

@@ -1,4 +1,5 @@
 using Content.Shared.Stealth.Components;
+using Content.Shared.Tag;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -119,6 +120,13 @@ public sealed partial class JobIconPrototype : StatusIconPrototype, IInheritingP
     /// </summary>
     [DataField]
     public bool AllowSelection = true;
+
+    /// <summary>
+    /// Starlight-edit: Categories a job icon belongs to (e.g. crew, syndicate, centcomm).
+    /// Consoles that offer a job icon picker (the ID card console, the task master/hop's digi-board, etc) can only see icons with the tags they're configured to show.
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<TagPrototype>> Tags = new();
 }
 
 /// <summary>

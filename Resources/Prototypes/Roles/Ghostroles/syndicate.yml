@@ -1,3 +1,11 @@
+#Starlight: mobroach
+- type: ghostRole
+  id: SyndicateMothroach
+  name: ghost-role-information-syndicate-mothroach-reinforcement-name
+  description: ghost-role-information-syndicate-mothroach-reinforcement-description
+  rules: ghost-role-information-syndicate-reinforcement-rules
+  entityPrototype: MobMobroach
+
 - type: ghostRole
   id: SyndicateKobold
   name: ghost-role-information-syndicate-kobold-reinforcement-name

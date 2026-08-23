@@ -13,6 +13,7 @@ using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.CosmicCult.Prototypes;
+using Content.Shared._Starlight.Spawners.EntitySystems;
 using Content.Shared.Audio;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -25,6 +26,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Serialization.Markdown.Mapping;
+using SpawnOnDespawnComponent = Content.Shared._Starlight.Spawners.Components.SpawnOnDespawnComponent;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -46,7 +48,7 @@ public sealed partial class MonumentSystem : SharedMonumentSystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private SpawnOnDespawnSystem _sod = default!;
+    [Dependency] private SharedSpawnOnDespawnSystem _sod = default!;
 
     private static readonly EntProtoId _cosmicGod = "MobCosmicGodSpawn";
     private static readonly EntProtoId _monumentCollider = "MonumentCollider";

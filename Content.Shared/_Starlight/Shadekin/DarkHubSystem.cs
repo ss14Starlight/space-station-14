@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Popups;
 using Content.Shared.Teleportation.Components;
+using Content.Shared.Verbs;
 using Content.Shared.Warps;
 using Content.Shared.Whitelist;
 using Robust.Shared.Network;
@@ -15,20 +16,17 @@ public sealed partial class DarkHubSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private INetManager _netMan = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private DarkPortalSystem _portal = default!;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<DarkHubComponent, OnAttemptPortalEvent>(OnAttemptPortal);
+        SubscribeLocalEvent<DarkHubComponent, GetVerbsEvent<InteractionVerb>>(OnGetInteractionVerbs);
     }
-    // I only one have thing to say... WHY DOES THIS WORK WHEN DARK PORTAL DOES NOT? YOU ARE BULLSHIT GAME! Thank you peoples
-    // But yes, this one is shared and its works... THE OTHERS DOES NOT AND I HAVE TO MAKE COPY AND PASTE FOR PREDICTION... FUCK YOU!
-    // I suffer by watching this.
 
-    // Note: I actully i am unsure if client is even fired on this... How? Why? right now its fucking works but... I AM CONFUSED!
-    // WHAT MAGIC IS THIS?
-
-    private void OnAttemptPortal(EntityUid uid, DarkHubComponent component, OnAttemptPortalEvent args)
+    private void OnAttemptPortal(Entity<DarkHubComponent> ent, ref OnAttemptPortalEvent args)
     {
         if (TryComp<BrighteyeComponent>(args.Subject, out var brighteye) && brighteye.Rejuvenating)
         {
@@ -43,7 +41,7 @@ public sealed partial class DarkHubSystem : EntitySystem
             return;
         }
 
-        if (TryComp<LinkedEntityComponent>(uid, out var link))
+        if (TryComp<LinkedEntityComponent>(ent, out var link))
         {
             if (link.LinkedEntities.Count != 0)
                 return;
@@ -65,10 +63,29 @@ public sealed partial class DarkHubSystem : EntitySystem
         var target = _random.Pick(warps);
 
         var coords = Transform(target).Coordinates;
-        SpawnAtPosition(component.ShadekinShadow, coords);
+        SpawnAtPosition(ent.Comp.ShadekinShadow, coords);
         _transform.SetCoordinates(args.Subject, coords);
 
 
         args.Cancel(); // Duh, we need to handle the teleport ourself!
+    }
+
+    private void OnGetInteractionVerbs(Entity<DarkHubComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
+    {
+        if (!ent.Comp.Hub || !args.CanAccess || !TryComp<BrighteyeComponent>(args.User, out var brighteye) || brighteye.Portal is null)
+            return;
+
+        var user = args.User;
+
+        args.Verbs.Add(new InteractionVerb
+        {
+            Act = () =>
+            {
+                PredictedSpawnAtPosition(ent.Comp.ShadekinShadow, Transform(brighteye.Portal.Value).Coordinates);
+                PredictedQueueDel(brighteye.Portal);
+                _portal.OnPortalShutdown((user, brighteye));
+            },
+            Text = Loc.GetString("shadekin-portal-destroy"),
+        });
     }
 }
