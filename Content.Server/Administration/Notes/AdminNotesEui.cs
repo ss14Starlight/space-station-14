@@ -5,8 +5,6 @@ using Content.Shared.Database;
 using Content.Shared.Eui;
 using Robust.Shared.Network;
 using static Content.Shared.Administration.Notes.AdminNoteEuiMsg;
-
-#region Starlight
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -21,7 +19,6 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using AdminNote = Starlight.NullLink.AdminNote;
 using Content.Server._NullLink.Helpers;
-#endregion
 
 namespace Content.Server.Administration.Notes;
 

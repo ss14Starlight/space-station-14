@@ -2,8 +2,8 @@ using Content.Server.Chat.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Robust.Shared.Console;
-using Content.Server.Administration.Managers; // Starlight
-using Content.Shared.Ghost; // Starlight
+using Content.Server.Administration.Managers;
+using Content.Shared.Ghost;
 
 namespace Content.Server.Administration.Commands;
 
@@ -11,7 +11,7 @@ namespace Content.Server.Administration.Commands;
 public sealed partial class DsayCommand : LocalizedEntityCommands
 {
     [Dependency] private ChatSystem _chatSystem = default!;
-    [Dependency] private IAdminManager _admin = default!; // Starlight
+    [Dependency] private IAdminManager _admin = default!;
 
     public override string Command => "dsay";
 
@@ -29,13 +29,11 @@ public sealed partial class DsayCommand : LocalizedEntityCommands
             return;
         }
 
-        // Starlight begin: Check if ghost or admin here instead of on the client. Both for ghost admeme reasons but also because trusting client bad.
         if (!EntityManager.HasComponent<GhostComponent>(entity) && !_admin.HasAdminFlag(player, AdminFlags.Admin))
         {
             shell.WriteError("Tried to speak on deadchat without being ghost or admin.");
             return;
         }
-        // Starlight end
 
         if (args.Length < 1)
             return;

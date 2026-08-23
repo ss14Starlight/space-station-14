@@ -39,7 +39,6 @@ using Robust.Shared.Timing;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Utility;
 using static Content.Shared.Configurable.ConfigurationComponent;
-#region Starlight
 using Content.Server._Starlight.Thaven;
 using Content.Server.Traits;
 using Content.Shared._Starlight.Character.Info;
@@ -47,7 +46,6 @@ using Content.Server._Starlight.Traits;
 using Content.Server._Starlight.GameTicking;
 using Content.Shared.Tag;
 using Content.Shared._Starlight.Thaven;
-#endregion
 
 namespace Content.Server.Administration.Systems
 {

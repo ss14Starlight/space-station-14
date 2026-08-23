@@ -36,12 +36,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Server._Starlight.Medical.Limbs;
-using Content.Server._Starlight.Thaven;
-using Content.Server.Administration.Components;
-using Content.Server.Power.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Contraband;
@@ -51,7 +46,6 @@ using Content.Shared.Overlays;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight;
 using Content.Shared._Starlight.Thaven;
-#endregion Starlight
 
 namespace Content.Server.Administration.Systems;
 

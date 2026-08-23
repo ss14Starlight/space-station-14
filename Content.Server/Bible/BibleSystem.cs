@@ -4,9 +4,9 @@ using Content.Server.Popups;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Bible;
-using Content.Shared.Clumsy; //Starlight
-using Content.Shared.Cluwne; //Starlight
-using Content.Server._Starlight.Bible; // Starlight
+using Content.Shared.Clumsy;
+using Content.Shared.Cluwne;
+using Content.Server._Starlight.Bible;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.IdentityManagement;
@@ -20,14 +20,9 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
-
-#region Starlight
 using Content.Server.Chat;
 using Content.Server.Hands.Systems;
 using Content.Shared.NameModifier.EntitySystems;
-using Content.Shared.Clumsy;
-using Content.Shared.Cluwne;
-using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Stunnable;
@@ -35,7 +30,6 @@ using Content.Shared.Tag;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Content.Shared._Starlight.Vampire.Components;
-#endregion Starlight
 
 namespace Content.Server.Bible
 {

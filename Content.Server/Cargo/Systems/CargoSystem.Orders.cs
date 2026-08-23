@@ -23,13 +23,10 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Shared._Starlight.Cargo.TamperSeal.Components;
 using Content.Server._Starlight.Cargo.TamperSeal.Components;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared.Access;
-#endregion
 
 namespace Content.Server.Cargo.Systems
 {

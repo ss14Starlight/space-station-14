@@ -7,8 +7,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Abilities.Mime; // Starlight
-using Content.Server.Popups; // Starlight
+using Content.Shared.Abilities.Mime;
+using Content.Server.Popups;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 

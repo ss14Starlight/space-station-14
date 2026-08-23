@@ -11,10 +11,8 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CCVar;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
-#region Starlight
 using Content.Server._Starlight.Cargo.Components;
 using Content.Server.Atmos.EntitySystems;
-#endregion
 
 namespace Content.Server.Cargo.Systems;
 

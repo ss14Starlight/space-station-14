@@ -18,14 +18,12 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-#region Starlight
 using Content.Shared.DoAfter;
 using Content.Shared.Projectiles;
 using Content.Shared.Singularity.Components;
 using Content.Server.Singularity.EntitySystems;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared._Starlight.CosmicCult.Components;
-#endregion
 
 namespace Content.Server.Anomaly;
 

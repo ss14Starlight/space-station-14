@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
-using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
@@ -21,16 +20,11 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using NullLinkAdminBan = Starlight.NullLink.AdminBan;
-
-#region Starlight
-using System.Net.Http.Json;
 using System.Net.Http;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using Content.Server.Discord;
 using Content.Server.Connection;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.Helpers;
@@ -40,8 +34,6 @@ using CCVars = Content.Shared.CCVar.CCVars;
 using Starlight.NullLink;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-using Content.Shared.Administration;
-#endregion Starlight
 
 namespace Content.Server.Administration.Managers;
 

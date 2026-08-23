@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq; // Starlight
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Shared.Alert;

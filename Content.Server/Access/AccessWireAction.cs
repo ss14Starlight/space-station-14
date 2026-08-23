@@ -3,8 +3,8 @@ using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Wires;
-using Content.Server.Electrocution; // Starlight-edit
-using Content.Shared.Electrocution; // Starlight-edit
+using Content.Server.Electrocution;
+using Content.Shared.Electrocution;
 
 namespace Content.Server.Access;
 
@@ -17,9 +17,9 @@ public sealed partial class AccessWireAction : ComponentWireAction<AccessReaderC
     private int _pulseTimeout = 30;
 
     [DataField("electrify")]
-    private bool _electrify = false; // Starlight-edit
+    private bool _electrify = false;
 
-    private ElectrocutionSystem _electrocution = default!; // Starlight-edit
+    private ElectrocutionSystem _electrocution = default!;
 
     public override StatusLightState? GetLightState(Wire wire, AccessReaderComponent comp)
     {
@@ -30,7 +30,7 @@ public sealed partial class AccessWireAction : ComponentWireAction<AccessReaderC
 
     public override bool Cut(EntityUid user, Wire wire, AccessReaderComponent comp)
     {
-        if (!TrySetElectrocution(user, wire)) // Starlight-edit
+        if (!TrySetElectrocution(user, wire))
             return false;
 
         WiresSystem.TryCancelWireAction(wire.Owner, PulseTimeoutKey.Key);
@@ -41,7 +41,7 @@ public sealed partial class AccessWireAction : ComponentWireAction<AccessReaderC
 
     public override bool Mend(EntityUid user, Wire wire, AccessReaderComponent comp)
     {
-        if (!TrySetElectrocution(user, wire)) // Starlight-edit
+        if (!TrySetElectrocution(user, wire))
             return false;
 
         EntityManager.System<AccessReaderSystem>().SetActive((wire.Owner, comp), true);
@@ -51,7 +51,7 @@ public sealed partial class AccessWireAction : ComponentWireAction<AccessReaderC
 
     public override void Pulse(EntityUid user, Wire wire, AccessReaderComponent comp)
     {
-        var electrified = TrySetElectrocution(user, wire, true); // Starlight-edit
+        var electrified = TrySetElectrocution(user, wire, true);
         EntityManager.System<AccessReaderSystem>().SetActive((wire.Owner, comp), false);
         WiresSystem.StartWireAction(wire.Owner, _pulseTimeout, PulseTimeoutKey.Key, new TimedWireEvent(AwaitPulseCancel, wire));
     }

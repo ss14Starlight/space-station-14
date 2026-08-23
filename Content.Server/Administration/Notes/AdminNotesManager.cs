@@ -12,11 +12,8 @@ using Content.Shared.Players.PlayTimeTracking;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-
-#region Starlight
 using Content.Server._NullLink.EventBus;
 using StarlightAdminNote = Starlight.NullLink.AdminNote;
-#endregion
 
 namespace Content.Server.Administration.Notes;
 

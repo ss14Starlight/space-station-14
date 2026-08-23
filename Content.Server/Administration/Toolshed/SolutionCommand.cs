@@ -9,8 +9,8 @@ using Robust.Shared.Toolshed.Syntax;
 using Robust.Shared.Toolshed.TypeParsers;
 using System.Linq;
 using Robust.Shared.Prototypes;
-using Content.Shared.Chemistry.Components.SolutionManager; // Starlight
-using Robust.Shared.Containers; // Starlight
+using Content.Shared.Chemistry.Components.SolutionManager;
+using Robust.Shared.Containers;
 
 namespace Content.Server.Administration.Toolshed;
 

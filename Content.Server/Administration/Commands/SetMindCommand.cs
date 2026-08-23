@@ -1,13 +1,13 @@
-using System.Linq;// Starlight
+using System.Linq;
 using Content.Shared.Administration;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Players;
-using Content.Shared.Silicons.Borgs.Components;// Starlight
-using Content.Shared.Silicons.StationAi; //Starlight
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Silicons.StationAi;
 using Robust.Server.Player;
 using Robust.Shared.Console;
-using Robust.Shared.Containers;// Starlight
+using Robust.Shared.Containers;
 
 namespace Content.Server.Administration.Commands
 {

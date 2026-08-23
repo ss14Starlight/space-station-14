@@ -50,11 +50,11 @@ using Content.Shared.Tabletop.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared._Starlight.Gnome; // starlight
-using Content.Shared.Trigger; // Starlight
-using Content.Shared.Trigger.Components.Effects; // Starlight
-using Content.Shared.NPC.Prototypes; // Starlight
-using Content.Shared.NPC.Systems; // Starlight
+using Content.Shared._Starlight.Gnome;
+using Content.Shared.Trigger;
+using Content.Shared.Trigger.Components.Effects;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
