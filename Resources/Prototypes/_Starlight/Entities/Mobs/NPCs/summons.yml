@@ -59,7 +59,7 @@
       mindRoles:
       - MindRoleGhostRoleTeamAntagonistFlock
     - type: GhostTakeoverAvailable
-    - type: Reflect #combo with pillar !
+    - type: Reflect
       reflectProb: 0.5
       reflects:
        - Energy

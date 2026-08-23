@@ -137,7 +137,7 @@
     zeroVisible: true
   - type: PointLight
     enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
     radius: 6
     netsync: false
@@ -1181,3 +1181,10 @@
     - wizard-item-restricted-2
     - wizard-item-restricted-3
     - wizard-item-restricted-4
+  - type: Tag
+    tags:
+    - WizardWand
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/frozentome.rsi
+    slots:
+    - Pocket

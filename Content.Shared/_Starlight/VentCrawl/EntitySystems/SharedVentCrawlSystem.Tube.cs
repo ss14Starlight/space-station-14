@@ -48,7 +48,10 @@ public sealed partial class SharedVentCrawlSystem
         => UpdateAnchored(component, args.Anchored);
 
     private void OnTerminating(EntityUid uid, VentCrawlTubeComponent component, ref EntityTerminatingEvent args)
-        => DisconnectTube(component);
+    {
+        DisconnectTube(component);
+        ForgetTube(uid);
+    }
 
     private void AddClimbedVerb(EntityUid uid, VentCrawlEntryComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
@@ -164,6 +167,50 @@ public sealed partial class SharedVentCrawlSystem
 
         foreach (var holder in tube.ContainedHolders.ToArray())
             ExitVentCrawl(holder);
+    }
+
+    /// <summary>
+    /// Drops the holder from the tube it is registered in, so that the tube never keeps a reference to a deleted holder.
+    /// </summary>
+    private void LeaveTube(EntityUid holderUid, EntityUid? tubeUid)
+    {
+        if (!TryComp<VentCrawlTubeComponent>(tubeUid, out var tube) || !tube.ContainedHolders.Remove(holderUid))
+            return;
+
+        Dirty(tubeUid.Value, tube);
+    }
+
+    /// <summary>
+    /// Drops every holder reference to the tube, so that no holder keeps a reference to a deleted tube.
+    /// </summary>
+    private void ForgetTube(EntityUid tubeUid)
+    {
+        var query = EntityQueryEnumerator<VentCrawlHolderComponent>();
+        while (query.MoveNext(out var uid, out var holder))
+        {
+            var forgotten = false;
+
+            if (holder.CurrentTube == tubeUid)
+            {
+                holder.CurrentTube = null;
+                forgotten = true;
+            }
+
+            if (holder.PreviousTube == tubeUid)
+            {
+                holder.PreviousTube = null;
+                forgotten = true;
+            }
+
+            if (holder.NextTube == tubeUid)
+            {
+                holder.NextTube = null;
+                forgotten = true;
+            }
+
+            if (forgotten)
+                Dirty(uid, holder);
+        }
     }
 
     public EntityUid? GetManifoldExit(
@@ -307,7 +354,10 @@ public sealed partial class SharedVentCrawlSystem
         var holderComponent = Comp<VentCrawlHolderComponent>(holder);
 
         if (!CanInsert(holder, target) || !_containerSystem.Insert(target, GetOrEnsureContainer(holder)))
+        {
+            PredictedQueueDel(holder);
             return false;
+        }
 
         if (TryComp<PhysicsComponent>(target, out var physBody))
             _physicsSystem.SetCanCollide(target, false, body: physBody);

@@ -509,7 +509,10 @@
       params:
         variation: 0.125
     animation: WeaponArcFist
-    mustBeEquippedToUse: true
+    mustBeEquippedToUse: true # SL start
+  - type: Construction
+    graph: ClothingHandsKnuckleDusters
+    node: knuckleDusters # SL end
   - type: Tag
     tags:
     - WhitelistChameleon

@@ -559,6 +559,7 @@
     allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: FaxableObject
     insertingState: inserting_mothroach
+    outputtingText: "mothroach.txt" # Starlight-edit
   - type: MothAccent
   - type: Sprite
     sprite: Mobs/Animals/mothroach/mothroach.rsi
@@ -1341,7 +1342,7 @@
 - type: entity
   name: genetic ancestor
   id: MobBaseAncestor
-  parent: [SimpleMobBase, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal
+  parent: [SimpleMobBaseAntag, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal + inherits Antag so they can roll antags
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
@@ -1887,6 +1888,7 @@
   - type: Physics
   - type: FaxableObject
     insertingState: inserting_mouse
+    outputtingText: "mouse.txt" # Starlight-edit
   - type: Fixtures
     fixtures:
       fix1:
@@ -3015,7 +3017,7 @@
 
 - type: entity
   name: fox
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [MobDogColdResistant, SimpleMobBase, StripableInventoryBase] # Starlight
   id: MobFox
   description: They're a fox.
   components:
@@ -3116,8 +3118,8 @@
 
 - type: entity
   abstract: true
-  parent: [SimpleMobBase, StripableInventoryBase]
-  id: MobCorgiBase
+  parent: [SimpleMobBaseAntag, StripableInventoryBase] # Starlight, so they don't inherit antag immune
+  id: MobCorgiBaseTemplate # Starlight, to let smart corgis roll antag but not other corgi types
   name: corgi
   description: Finally, a space corgi!
   components:
@@ -3747,6 +3749,7 @@
   - type: Physics
   - type: FaxableObject
     insertingState: inserting_hamster
+    outputtingText: "hamster.txt" # Starlight-edit
   - type: Fixtures
     fixtures:
       fix1:
@@ -4142,7 +4145,7 @@
         Base: reindeer_doe_dead
 
 - type: entity
-  parent: MobCorgiBase #starlight Nubody will not pass.
+  parent: MobCorgiBaseAntag # Starlight Nubody will not pass + allows them to be antags
   id: MobCorgiSmart
   name: smart corgi
   description: An unusually smart dog.
