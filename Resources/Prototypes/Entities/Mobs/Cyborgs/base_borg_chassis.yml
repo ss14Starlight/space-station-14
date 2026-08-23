@@ -548,9 +548,10 @@
     - Xenoborg
   - type: Destructible
     thresholds:
+#region Starlight
     - trigger:
         !type:DamageTrigger
-        damage: 90
+        damage: 65
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -559,7 +560,8 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 375
+        damage: 300
+#endregion
       behaviors:
       - !type:PlaySoundBehavior
         sound:
