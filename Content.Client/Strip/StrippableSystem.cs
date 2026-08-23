@@ -1,16 +1,16 @@
 using Content.Client.Inventory;
-using Content.Shared._Moffstation.Strip.Components; // Moffstation
+using Content.Shared._Moffstation.Strip.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Ensnaring.Components;
 using Content.Shared.Hands;
-using Content.Shared.Interaction.Components; // Moffstation
-using Content.Shared.Inventory; // Moffstation
+using Content.Shared.Interaction.Components;
+using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Strip;
 using Content.Shared.Strip.Components;
-using Robust.Client.GameObjects; // Moffstation
-using Robust.Shared.Map; // Moffstation
-using Robust.Shared.Prototypes; // Moffstation
+using Robust.Client.GameObjects;
+using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Strip;
 

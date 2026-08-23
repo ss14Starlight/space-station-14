@@ -10,8 +10,8 @@ using Robust.Shared.Physics;
 using Robust.Shared.Threading;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.Maps; // Monolith
-using Robust.Shared.Map; // Monolith
+using Content.Shared.Maps;
+using Robust.Shared.Map;
 
 namespace Content.Client.Shuttles.UI;
 
