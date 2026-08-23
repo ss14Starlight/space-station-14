@@ -6,7 +6,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Content.Shared.Body.Components;
-using Content.Server._Starlight.Medical.Body.Systems; // Starlight
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.Humanoid;
 

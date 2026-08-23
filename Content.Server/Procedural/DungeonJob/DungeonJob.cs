@@ -25,7 +25,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using IDunGenLayer = Content.Shared.Procedural.IDunGenLayer;
 using Content.Server._Starlight.Procedural.Events;
-using Content.Server._Starlight.Salvage.VGRoid; // Starlight
+using Content.Server._Starlight.Salvage.VGRoid;
 
 namespace Content.Server.Procedural.DungeonJob;
 

@@ -3,7 +3,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Input.Binding;
-using Content.Shared._Starlight.Medical.Body.Part; // Starlight
+using Content.Shared._Starlight.Medical.Body.Part;
 
 namespace Content.Server.Hands.Systems
 {

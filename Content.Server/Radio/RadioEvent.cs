@@ -1,7 +1,7 @@
 using Content.Shared.Chat;
 using Content.Shared.Radio;
-using Content.Shared._Starlight.Language; // Starlight
-using Content.Shared._Starlight.Radio; // Starlight
+using Content.Shared._Starlight.Language;
+using Content.Shared._Starlight.Radio;
 
 namespace Content.Server.Radio;
 

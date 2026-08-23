@@ -1,5 +1,5 @@
 using Content.Server.Objectives.Components;
-using Content.Shared._Starlight.Railroading.Events; // Starlight
+using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Roles.Jobs;

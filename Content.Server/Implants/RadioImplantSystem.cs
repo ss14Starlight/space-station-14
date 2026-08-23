@@ -1,7 +1,7 @@
 ﻿using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
 using Content.Shared.Radio.Components;
-using System.Linq; // Starlight
+using System.Linq;
 
 namespace Content.Server.Implants;
 

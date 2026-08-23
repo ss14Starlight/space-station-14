@@ -1,7 +1,7 @@
 using Content.Server.Power.EntitySystems;
 using Content.Server.Research.Components;
-using Content.Server._Starlight.Achievement; // Starlight: Achievements
-using Content.Server.Station.Systems; // Starlight: Achievements
+using Content.Server._Starlight.Achievement;
+using Content.Server.Station.Systems;
 using Content.Shared.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Emag.Components;

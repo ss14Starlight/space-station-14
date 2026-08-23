@@ -1,17 +1,17 @@
-using System.Linq; // Starlight (upstream #39080)
+using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Bible.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Popups;
-using Content.Shared.Administration; // Starlight (upstream #39080)
+using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Popups;
 using Content.Shared.Chat;
 using Content.Shared.Prayer;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
-using Robust.Shared.Toolshed; // Starlight (upstream #39080)
+using Robust.Shared.Toolshed;
 
 namespace Content.Server.Prayer;
 /// <summary>

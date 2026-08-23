@@ -6,7 +6,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Random;
-using Content.Server._Starlight.Station; // Starlight
+using Content.Server._Starlight.Station;
 
 namespace Content.Server.GameTicking.Rules;
 

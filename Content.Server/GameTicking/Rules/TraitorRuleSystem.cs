@@ -18,7 +18,7 @@ using Robust.Shared.Random;
 using System.Linq;
 using System.Text;
 using Content.Server.Codewords;
-using Content.Shared._Starlight.Antags.Traitor; //Starlight
+using Content.Shared._Starlight.Antags.Traitor;
 
 namespace Content.Server.GameTicking.Rules;
 

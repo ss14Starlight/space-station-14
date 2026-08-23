@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Server._Starlight.Achievement; // Starlight: Achievements
+using Content.Server._Starlight.Achievement;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.NPC;

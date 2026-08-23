@@ -1,16 +1,16 @@
-using System.Linq; // Starlight-edit
-using Content.Server.Chat.Systems; // Starlight-edit
+using System.Linq;
+using Content.Server.Chat.Systems;
 using Content.Server.Medical.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Chat; // Starlight
+using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Prototypes; // Starlight-edit
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint; // Starlight
-using Content.Shared.Hands.EntitySystems; // Starlight-edit
-using Content.Shared.Humanoid; // Starlight-edit
-using Content.Shared.Humanoid.Prototypes; // Starlight-edit
+using Content.Shared.FixedPoint;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -18,18 +18,18 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Paper; // Starlight-edit
+using Content.Shared.Paper;
 using Content.Shared.Popups;
 using Content.Shared.PowerCell;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Traits.Assorted;
-using Content.Shared._Starlight.Time; // Starlight-edit
+using Content.Shared._Starlight.Time;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Prototypes; // Starlight-edit
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility; // Starlight-edit
+using Robust.Shared.Utility;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical;
 

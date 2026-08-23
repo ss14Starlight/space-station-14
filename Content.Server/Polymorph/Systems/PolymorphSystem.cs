@@ -24,9 +24,9 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Robust.Shared.Serialization.Manager; // Starlight
-using Content.Shared._Starlight.Language.Components; // Starlight
-using System.Linq; // Starlight
+using Robust.Shared.Serialization.Manager;
+using Content.Shared._Starlight.Language.Components;
+using System.Linq;
 
 namespace Content.Server.Polymorph.Systems;
 

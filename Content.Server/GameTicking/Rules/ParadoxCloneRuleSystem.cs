@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server._Starlight.Antags;
 using Content.Server.Antag;
 using Content.Server.Chat.Managers;
 using Content.Server.Cloning;
@@ -10,18 +9,13 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Gibbing.Components;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Mind;
-using NetCord;
-using Content.Shared.Objectives.Systems;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Random;
-// Starlight start
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
 using Robust.Shared.Prototypes;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared._Starlight.Overlay.Components;
-// Starlight end
 
 namespace Content.Server.GameTicking.Rules;
 

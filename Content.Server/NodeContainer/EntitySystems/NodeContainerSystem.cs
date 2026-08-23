@@ -5,7 +5,7 @@ using Content.Shared.Examine;
 using Content.Shared.NodeContainer;
 using Content.Shared.NodeContainer.NodeGroups;
 using JetBrains.Annotations;
-using Content.Server._Starlight.Atmos.EntitySystems; // Starlight: PipeDockingSystem
+using Content.Server._Starlight.Atmos.EntitySystems;
 
 namespace Content.Server.NodeContainer.EntitySystems
 {

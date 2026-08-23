@@ -1,5 +1,5 @@
-using Content.Server.Botany.Components; // Starlight Edit
-using Content.Server.Botany.Systems;   // Starlight Edit
+using Content.Server.Botany.Components;
+using Content.Server.Botany.Systems;
 using Content.Server.Light.Components;
 using Content.Server.Stack;
 using Content.Shared.Clothing.Components;

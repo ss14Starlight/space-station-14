@@ -25,7 +25,6 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Station.Components;
 using Content.Shared.Store.Components;
-// Starlight Start
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Cuffs.Components;
@@ -39,7 +38,6 @@ using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Server.Player;
 using Content.Server._Starlight.Achievement;
-// Starlight End
 
 namespace Content.Server.GameTicking.Rules;
 

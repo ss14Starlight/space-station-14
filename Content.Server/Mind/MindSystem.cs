@@ -12,9 +12,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
-#region Starlight
 using Content.Shared._Starlight.Mind.Events;
-#endregion
 
 namespace Content.Server.Mind;
 

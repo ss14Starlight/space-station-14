@@ -8,9 +8,9 @@ using Content.Shared.Mobs.Systems;
 using Robust.Server.Console;
 using Robust.Shared.Player;
 using Content.Shared.Speech.Muting;
-using Content.Shared.StatusEffectNew; //Starlight
+using Content.Shared.StatusEffectNew;
 using Content.Shared._Starlight.BreathOrgan;
-using Content.Shared._Starlight.BreathOrgan.Systems; //Starlight
+using Content.Shared._Starlight.BreathOrgan.Systems;
 
 namespace Content.Server.Mobs;
 

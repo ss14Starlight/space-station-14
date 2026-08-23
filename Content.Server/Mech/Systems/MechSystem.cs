@@ -25,8 +25,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using System.Linq;
-
-#region Starlight
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Hands.Systems;
@@ -49,8 +47,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
 using Content.Shared.Movement.Systems;
 using Content.Server._Starlight.Medical.Body.Systems;
-using Content.Server._Starlight.Mech.Components; //Starlight
-#endregion Starlight
+using Content.Server._Starlight.Mech.Components;
 
 namespace Content.Server.Mech.Systems;
 

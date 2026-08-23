@@ -3,20 +3,17 @@ using Content.Shared.Ghost;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using AlertLevelDimmedLightComponent = Content.Shared._Starlight.Light.AlertLevelDimmedLightComponent;
-
-#region Starlight
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Server.DeviceLinking.Systems;
-using Content.Shared.Station.Components; // Starlight
+using Content.Shared.Station.Components;
 using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server._Starlight.GameTicking.Rules.Components; // SL
-using Content.Shared.GameTicking.Components; // SL
-using Content.Server.GameTicking; // SL
-using Content.Server.Chat.Systems; // SL
-using Robust.Shared.Player; // SL
-#endregion Starlight
+using Content.Server._Starlight.GameTicking.Rules.Components;
+using Content.Shared.GameTicking.Components;
+using Content.Server.GameTicking;
+using Content.Server.Chat.Systems;
+using Robust.Shared.Player;
 
 namespace Content.Server.Light.EntitySystems;
 

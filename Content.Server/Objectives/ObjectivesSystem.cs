@@ -23,11 +23,11 @@ using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.CustomObjectiveSummary; // Starlight
+using Content.Shared._Starlight.CustomObjectiveSummary;
 using Content.Shared._Starlight.Station;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Abstract;
-using Content.Shared._Starlight.Objectives.Events; // Starlight
+using Content.Shared._Starlight.Objectives.Events;
 
 namespace Content.Server.Objectives;
 

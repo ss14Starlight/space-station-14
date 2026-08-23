@@ -32,17 +32,12 @@ using Content.Shared.IoC;
 using Content.Shared.Kitchen;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
-
-#region Starlight
 using Content.Server._Starlight.BugReports;
 using Content.Shared._Starlight.Achievement;
 using Content.Server.Holiday;
 using Content.Shared._Starlight;
 using Content.Shared._Starlight.DocumentManager;
 using Content.Server._Starlight;
-#endregion Starlight
-
-#region Nulllink
 using Content.Server._NullLink;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.EventBus;
@@ -50,7 +45,6 @@ using Content.Server._NullLink.PlayerData;
 using Content.Shared._NullLink;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Server._Starlight.Economy;
-#endregion Nulllink
 
 namespace Content.Server.IoC;
 

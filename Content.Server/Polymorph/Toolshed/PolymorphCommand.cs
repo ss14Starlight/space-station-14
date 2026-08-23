@@ -5,13 +5,11 @@ using Content.Shared.Administration;
 using Content.Shared.Polymorph;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
-//Starlight begin
 using Content.Server.Polymorph.Components;
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._Starlight.Administration.Systems.Commands;
 using Robust.Shared.Audio;
 using Content.Shared._Starlight.Polymorph.Components;
-//Starlight end
 
 namespace Content.Server.Polymorph.Toolshed;
 

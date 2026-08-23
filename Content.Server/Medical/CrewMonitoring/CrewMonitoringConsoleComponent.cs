@@ -1,5 +1,5 @@
 using Content.Shared.Medical.SuitSensor;
-using Robust.Shared.Audio; // Starlight
+using Robust.Shared.Audio;
 
 namespace Content.Server.Medical.CrewMonitoring;
 

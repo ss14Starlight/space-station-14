@@ -22,14 +22,11 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
-
-#region Starlight
 using Content.Server._Starlight.Lock;
 using Content.Server.GameTicking;
 using Content.Server._NullLink.Helpers;
 using Content.Server._Starlight.Achievement;
 using Robust.Server.Player;
-#endregion Starlight
 
 namespace Content.Server.Nuke;
 

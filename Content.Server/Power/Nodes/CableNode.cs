@@ -1,11 +1,9 @@
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Map.Components;
-// Starlight Start: CableDockingSystem
 using System.Collections.Generic;
 using Robust.Shared.Utility;
 using Content.Server._Starlight.Power;
-// Starlight End: CableDockingSystem
 
 namespace Content.Server.Power.Nodes
 {

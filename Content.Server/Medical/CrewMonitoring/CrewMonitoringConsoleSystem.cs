@@ -1,4 +1,4 @@
-using System; // Starlight
+using System;
 using System.Linq;
 using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
@@ -10,7 +10,6 @@ using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Pinpointer;
 using Content.Server.Silicons.StationAi;
 using Robust.Server.GameObjects;
-#region Starlight
 using Content.Shared.Implants.Components;
 using Content.Server.Power.Components;
 using Content.Shared.Power.EntitySystems;
@@ -20,7 +19,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using System.ComponentModel.DataAnnotations;
 using Content.Shared._Starlight.Medical.CrewMonitoring;
-#endregion
 
 namespace Content.Server.Medical.CrewMonitoring;
 

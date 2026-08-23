@@ -31,9 +31,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Prying.Systems;
 using Microsoft.Extensions.ObjectPool;
 using Prometheus;
-// Starlight Start
 using Content.Server.Gravity;
-// Starlight End
 
 namespace Content.Server.NPC.Systems;
 

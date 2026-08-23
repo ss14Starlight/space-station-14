@@ -6,7 +6,7 @@ using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Zombies;
-using Content.Server._Starlight.Language; // Starlight-start: zombie language
+using Content.Server._Starlight.Language;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
@@ -36,7 +36,7 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private ZombieSystem _zombie = default!;
-    [Dependency] private LanguageSystem _language = default!; // Starlight-start: zombie language
+    [Dependency] private LanguageSystem _language = default!; // Starlight-edit: zombie language
 
     public override void Initialize()
     {
@@ -45,7 +45,7 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
         SubscribeLocalEvent<InitialInfectedRoleComponent, GetBriefingEvent>(OnGetBriefing);
         SubscribeLocalEvent<ZombieRoleComponent, GetBriefingEvent>(OnGetBriefing);
         SubscribeLocalEvent<IncurableZombieComponent, ZombifySelfActionEvent>(OnZombifySelf);
-        SubscribeLocalEvent<ZombieRuleComponent, AfterAntagEntitySelectedEvent>(OnInitialInfectedSelected); // Starlight-start: zombie language
+        SubscribeLocalEvent<ZombieRuleComponent, AfterAntagEntitySelectedEvent>(OnInitialInfectedSelected); // Starlight-edit: zombie language
     }
 
     // Starlight-start: zombie language

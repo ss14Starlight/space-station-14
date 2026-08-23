@@ -26,10 +26,7 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Gibbing;
 using Content.Shared.Humanoid;
-
-#region Starlight
 using Content.Shared._Starlight.Materials;
-#endregion Starlight
 
 namespace Content.Server.Materials;
 

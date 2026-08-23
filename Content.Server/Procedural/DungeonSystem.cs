@@ -22,7 +22,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server._Starlight.Salvage.VGRoid; // Starlight
+using Content.Server._Starlight.Salvage.VGRoid;
 
 namespace Content.Server.Procedural;
 

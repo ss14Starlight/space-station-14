@@ -9,10 +9,6 @@ using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Rejuvenate;
 
-#region Starlight
-using Content.Shared.Kitchen.Components;
-#endregion Starlight
-
 namespace Content.Server.Power.EntitySystems;
 
 /// <summary>

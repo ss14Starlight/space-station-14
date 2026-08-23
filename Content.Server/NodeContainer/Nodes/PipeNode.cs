@@ -5,7 +5,7 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Atmos; // Starlight
+using Content.Shared._Starlight.Atmos;
 
 namespace Content.Server.NodeContainer.Nodes
 {

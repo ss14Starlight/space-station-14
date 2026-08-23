@@ -8,9 +8,9 @@ using Content.Shared.Inventory;
 using Content.Shared.Movement.Events;
 using Content.Shared.Resist;
 using Content.Shared.Storage;
-using Content.Shared.Tag; // Starlight Edit
-using Robust.Server.GameObjects; // Starlight Edit
-using Robust.Shared.Prototypes; // Starlight
+using Content.Shared.Tag;
+using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Resist;

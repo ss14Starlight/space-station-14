@@ -4,10 +4,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared.CCVar;
-using Content.Shared.GameTicking; // Starlight
+using Content.Shared.GameTicking;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
-using Content.Shared.Roles; // Starlight
+using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;

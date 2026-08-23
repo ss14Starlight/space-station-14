@@ -3,13 +3,13 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.GridPreloader;
 using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Tag; // Starlight
-using Content.Shared.GameTicking.Rules; // Starlight
+using Content.Shared.Tag;
+using Content.Shared.GameTicking.Rules;
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components; // Starlight
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Configuration;

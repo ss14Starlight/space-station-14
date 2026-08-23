@@ -31,8 +31,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Cuffs.Components;
 using Robust.Shared.Player;
-
-#region Starlight
 using Content.Server._Starlight.Achievement;
 using Content.Server.AlertLevel;
 using Content.Server.Audio;
@@ -67,7 +65,6 @@ using Content.Server._Starlight.Implants;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Server._Starlight.Revolutionary.Components;
-#endregion Starlight
 
 namespace Content.Server.GameTicking.Rules;
 

@@ -14,12 +14,9 @@ using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Robust.Shared.Prototypes;
-using Content.Shared.Power.EntitySystems; // Goobstation - Radio Host
-using Content.Shared._Goobstation.StationRadio.Components; // Goobstation - Radio Host
-
-#region Starlight
+using Content.Shared.Power.EntitySystems;
+using Content.Shared._Goobstation.StationRadio.Components;
 using Content.Server._Starlight.Language;
-#endregion Starlight
 
 namespace Content.Server.Radio.EntitySystems;
 

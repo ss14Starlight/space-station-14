@@ -6,10 +6,10 @@ using Content.Shared.Popups;
 using Content.Shared.Store.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Components;
-using Content.Server.Polymorph.Systems; // Starlight
-using Content.Shared.Zombies; // Starlight
+using Content.Server.Polymorph.Systems;
+using Content.Shared.Zombies;
 using Robust.Shared.Player;
-using Content.Shared.Implants.Components; // Starlight
+using Content.Shared.Implants.Components;
 
 namespace Content.Server.Implants;
 
