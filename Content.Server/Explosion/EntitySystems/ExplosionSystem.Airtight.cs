@@ -1,5 +1,5 @@
 using System.Linq;
-ery using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 using Content.Server.Atmos.Components;
 using Content.Server.Explosion.Components;
 using Content.Shared.Atmos;

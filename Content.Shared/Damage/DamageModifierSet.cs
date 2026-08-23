@@ -33,7 +33,7 @@ namespace Content.Shared.Damage
             // therefore, we need a cheap and idiomatic way to create copies of DamageModifierSets that can be safely be modified
             // (may also prevent memory leaks if the prototype that creates DamageModifierSets is generated at runtime)
             Coefficients = new Dictionary<ProtoId<DamageTypePrototype>, float>(dms.Coefficients);
-            FlatReductions = new Dictionary<ProtoId<DamageTypePrototype>, float>(dms.FlatReduction);
+            FlatReductions = new Dictionary<ProtoId<DamageTypePrototype>, float>(dms.FlatReductions);
         }
 
         // END STARLIGHT

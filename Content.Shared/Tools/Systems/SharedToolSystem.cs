@@ -74,7 +74,7 @@ public abstract partial class SharedToolSystem : EntitySystem
         // Loop through tool qualities and add localized names to the list
         foreach (var toolQuality in ent.Comp.Qualities)
         {
-            if (_protoMan.TryIndex<ToolQualityPrototype>(toolQuality ?? string.Empty, out var protoToolQuality))
+            if (_protoMan.TryIndex(toolQuality, out var protoToolQuality))
             {
                 toolQualities.Add(Loc.GetString(protoToolQuality.Name));
             }

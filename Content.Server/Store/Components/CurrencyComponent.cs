@@ -1,4 +1,5 @@
 using Content.Shared.FixedPoint;
+using Content.Shared.Store;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Store.Components;

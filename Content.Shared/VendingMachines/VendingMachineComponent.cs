@@ -160,7 +160,7 @@ namespace Content.Shared.VendingMachines
         /// forces to restock a specific item in VendingMachineSystem#RestockRandom
         /// </summary>
         [DataField("forceRandom")]
-        public ProtoId<EntityPrototype>? RandomRestockTarget = null;
+        public EntProtoId? RandomRestockTarget = null;
         //#endregion starlight
 
         /// <summary>

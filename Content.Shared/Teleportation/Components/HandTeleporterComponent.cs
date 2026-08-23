@@ -10,7 +10,7 @@ namespace Content.Shared.Teleportation.Components;
 ///     Creates portals. If two are created, both are linked together--otherwise the first teleports randomly.
 ///     Using it with both portals active deactivates both.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class HandTeleporterComponent : Component
 {
     [DataField, AutoNetworkedField]
