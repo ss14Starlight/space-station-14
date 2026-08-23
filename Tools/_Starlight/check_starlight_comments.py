@@ -5,10 +5,10 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 
 FULL_DIRS = [
-    "Content.Server\_Starlight",
-    "Content.Shared\_Starlight",
-    "Resources\Prototypes\_Starlight",
-    "Content.Client\_Starlight",
+    "Content.Server/_Starlight",
+    "Content.Shared/_Starlight",
+    "Resources/Prototypes/_Starlight",
+    "Content.Client/_Starlight",
 ]
 
 USINGS_DIRS = [
@@ -34,6 +34,10 @@ MESSAGES = {
     "full": "There's starlight comment in file that already in _Starlight folder: {text}",
     "usings": "There's starlight comment in the usings block: {text}",
 }
+
+
+def posix(path):
+    return path.replace(os.sep, "/").replace("\\", "/")
 
 
 STRING_LITERAL = re.compile(r'"(?:\\.|[^"\\])*"' + r"|'(?:\\.|[^'\\])*'")
@@ -112,6 +116,7 @@ def collect_paths():
 
     for mode, dirs, only_cs in (("full", FULL_DIRS, False), ("usings", USINGS_DIRS, True)):
         for root_dir in dirs:
+            root_dir = posix(root_dir)
             if not os.path.isdir(root_dir):
                 print(f"warning: directory can't be found: {root_dir}", file=sys.stderr)
                 continue
@@ -126,7 +131,7 @@ def collect_paths():
                             continue
                     elif not lowered.endswith(exts):
                         continue
-                    path = os.path.join(root, name)
+                    path = posix(os.path.join(root, name))
                     if path in seen:
                         continue
                     seen.add(path)
