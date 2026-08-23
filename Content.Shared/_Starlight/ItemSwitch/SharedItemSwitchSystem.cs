@@ -7,6 +7,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Popups;
+using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
@@ -20,6 +21,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedItemSystem _item = default!;
     [Dependency] private ClothingSystem _clothing = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     private EntityQuery<ItemSwitchComponent> _query;
 
@@ -50,7 +52,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         if (args.Handled || !ent.Comp.OnUse || ent.Comp.States.Count == 0) return;
         args.Handled = true;
 
-        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hiden)
+        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hidden)
             return;
 
         Switch((ent, ent.Comp), Next(ent), args.User, predicted: ent.Comp.Predictable);
@@ -65,7 +67,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
 
         foreach (var state in ent.Comp.States)
         {
-            if (state.Value.Hiden)
+            if (state.Value.Hidden)
                 continue;
             args.Verbs.Add(new ActivationVerb()
             {
@@ -87,7 +89,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
 
         args.Handled = true;
 
-        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hiden)
+        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hidden)
             return;
 
         Switch((ent.Owner, ent.Comp), Next(ent), args.User, predicted: ent.Comp.Predictable);
@@ -134,14 +136,13 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         };
         RaiseLocalEvent(uid, ref attempt);
 
-        if (ent.Comp.States.TryGetValue(ent.Comp.State, out var prevState) && prevState.RemoveComponents && prevState.Components is not null)
-            EntityManager.RemoveComponents(ent, prevState.Components);
-
-        if (state.Components is not null)
-            EntityManager.AddComponents(ent, state.Components);
-
         if (!comp.Predictable) predicted = false;
 
+        // Bail before anything is mutated. This check used to sit after the component swap, so a
+        // cancelled switch left the entity holding the incoming state's components while
+        // comp.State still named the outgoing one -- and, once a UI close was added here, with its
+        // screen shut too. Nothing cancels this event today, but the trap was waiting for whoever
+        // first did.
         if (attempt.Cancelled)
         {
             if (predicted)
@@ -158,6 +159,28 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
             return false;
         }
 
+        // Close whatever screen is open before this state's key takes over. Anyone who had it open
+        // is remembered so the incoming state can reopen for them, making a switch read as the
+        // screen changing rather than the device shutting off.
+        var reopenFor = new List<EntityUid>();
+        TryComp<ActivatableUIComponent>(uid, out var activatable);
+        if (activatable?.Key != null)
+        {
+            reopenFor.AddRange(_ui.GetActors(uid, activatable.Key));
+            _ui.CloseUi(uid, activatable.Key);
+        }
+
+        if (ent.Comp.States.TryGetValue(ent.Comp.State, out var prevState) && prevState.RemoveComponents && prevState.Components is not null)
+            EntityManager.RemoveComponents(ent, prevState.Components);
+
+        if (state.Components is not null)
+            EntityManager.AddComponents(ent, state.Components);
+
+        // Retarget the prototype-declared ActivatableUI rather than swapping the component in and
+        // out with the rest of the state. See ItemSwitchState.ActivatableUiKey for why.
+        if (activatable != null && state.ActivatableUiKey != null)
+            activatable.Key = state.ActivatableUiKey;
+
         if (predicted)
             _audio.PlayPredicted(state.SoundStateActivate, uid, user);
         else
@@ -166,6 +189,13 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         comp.State = key;
         UpdateVisuals((uid, comp), key);
         Dirty(uid, comp);
+
+        // Reopen on the incoming state's key for whoever had the old screen up.
+        if (reopenFor.Count > 0 && activatable?.Key != null)
+        {
+            foreach (var actor in reopenFor)
+                _ui.OpenUi(uid, activatable.Key, actor);
+        }
 
         var switched = new ItemSwitchedEvent { Predicted = predicted, State = key, User = user };
         RaiseLocalEvent(uid, ref switched);

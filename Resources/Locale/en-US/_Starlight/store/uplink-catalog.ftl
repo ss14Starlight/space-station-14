@@ -42,6 +42,8 @@ uplink-nightvision-eyes = Night Vision Cyber Eyes
 uplink-nightvision-eyes-desc = Allows you to see in the dark but makes you more vulnerable to flashes. (Warning: You will need a surgical assistant for the procedure.)
 uplink-thermalvision-eyes = Thermal Vision Cyber Eyes
 uplink-thermalvision-eyes-desc = Allows you to see in the dark and detect creatures through walls but makes you more vulnerable to flashes. (Warning: You will need a surgical assistant for the procedure.)
+uplink-olfactory-implant-name = Olfactory Implant
+uplink-olfactory-implant-desc = Grants a partial ability to perceive and track scents. (Warning: You will need a surgical assistant for the procedure.)
 uplink-mantis-blade-arms-name = Mantis Blade Arms Bundle
 uplink-mantis-blade-arms-desc = Originally used as a simple construction tool, now turned into hidden blades that can extend from your arm while still keeping its destructive prying skill. Truly a sight to behold. (Warning: You will need a surgical assistant for the procedure.)
 uplink-advanced-claws-name = Advanced Claws Implant
@@ -160,3 +162,6 @@ uplink-syndicate-borgi-speed-bundle-desc = A syndicate borgi, with dagger module
 
 uplink-chameleon-bundle-name = Chameleon Kit Crate
 uplink-chameleon-bundle-desc = A crate containing a backpack full of items that contain chameleon technology allowing you to disguise as pretty much anything on the station, and more!
+
+uplink-reinforcement-radio-mothroach-name = Mothroach Reinforcement Teleporter
+uplink-reinforcement-radio-mothroach-desc =  Call in a trained mobroach to assist you. Comes with a single syndicate cigarette, a fedora, and a pair of cheap shades. Specializes in cleaning evidence and chittering.
