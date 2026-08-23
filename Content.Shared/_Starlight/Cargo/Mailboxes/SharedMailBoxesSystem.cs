@@ -60,10 +60,7 @@ public sealed partial class SharedMailBoxesSystem : EntitySystem
         args.Verbs.Add(new InteractionVerb()
         {
             Text = Loc.GetString("mailbox-get"),
-            Act = () =>
-            {
-                EjectMail(ent, user);
-            }
+            Act = () => EjectMail(ent, user);
         });
     }
 
@@ -108,8 +105,7 @@ public sealed partial class SharedMailBoxesSystem : EntitySystem
         }
 
         var delivery = Comp<DeliveryComponent>(args.EntityUid);
-        DepartmentPrototype? department;
-        if (delivery.RecipientJobTitle == null || !_jobSystem.TryGetDepartment(delivery.RecipientJobTitle, out department) || delivery.RecipientName == null)
+        if (delivery.RecipientJobTitle == null || !_jobSystem.TryGetDepartment(delivery.RecipientJobTitle, out var department) || delivery.RecipientName == null)
         {
             args.Cancel();
             return;
