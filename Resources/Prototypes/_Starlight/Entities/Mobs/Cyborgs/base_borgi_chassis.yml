@@ -42,6 +42,8 @@
         visible: false
     - type: MobThresholds
       showOverlays: false
+    - type: Damageable
+      damageModifierSet: CivilianSilicon
     - type: Destructible
       thresholds:
       - trigger:
@@ -270,6 +272,8 @@
     - type: ActiveRadio
       channels:
       - Syndicate
+    - type: Damageable
+      damageModifierSet: ArmoredSilicon
     - type: Barotrauma
       maxDamage: 10
       damage:

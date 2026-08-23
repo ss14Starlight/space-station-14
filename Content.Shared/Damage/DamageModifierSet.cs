@@ -26,8 +26,6 @@ namespace Content.Shared.Damage
         public Dictionary<string, float> FlatReduction = new();
 
         // BEGIN STARLIGHT
-
-
         public DamageModifierSet(DamageModifierSet dms)
         {
             // copying constructor for duplicating damage modifier sets

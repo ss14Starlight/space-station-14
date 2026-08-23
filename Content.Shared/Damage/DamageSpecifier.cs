@@ -191,7 +191,7 @@ namespace Content.Shared.Damage
 
                 if (canHeal)
                 {
-                    newValue *= effectiveCoefficient;
+                    newValue *= effectiveCoefficient; // coefficients can heal you, e.g. cauterizing bleeding, Starlight change: removed maximum coefficent allowing for weaknesses
                 }
                 else
                 {
