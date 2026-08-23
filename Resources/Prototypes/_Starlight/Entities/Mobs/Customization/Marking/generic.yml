@@ -95,7 +95,7 @@
   id: HeadSeptum
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Human, Doll, NeoHuman, Dwarf, NeoDwarf, Elf, Neocyte]
+  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, Elf, Neocyte]
   forcedColoring: false
   followSkinColor: false
   coloring:

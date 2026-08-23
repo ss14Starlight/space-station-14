@@ -24,7 +24,6 @@
   sprites:
     Head: MobDollHead
     HeadTop: MobHumanoidAnyMarking
-    Snout: MobHumanoidAnyMarking
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
