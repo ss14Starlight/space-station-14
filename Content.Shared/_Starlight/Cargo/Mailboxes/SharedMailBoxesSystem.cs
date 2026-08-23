@@ -57,10 +57,10 @@ public sealed partial class SharedMailBoxesSystem : EntitySystem
         if (!args.CanAccess || !args.CanComplexInteract) return;
 
         var user = args.User;
-        args.Verbs.Add(new InteractionVerb()
+        args.Verbs.Add(new InteractionVerb
         {
             Text = Loc.GetString("mailbox-get"),
-            Act = () => EjectMail(ent, user);
+            Act = () => EjectMail(ent, user)
         });
     }
 
