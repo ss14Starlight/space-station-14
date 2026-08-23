@@ -1,11 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: Exosuit drills blunt damage values reduced.
-    type: Tweak
-  id: 407414
-  time: '2026-08-10T15:07:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5562
 - author: Orhu
   changes:
   - message: (Sepultum) Added Radio Station.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407813
   time: '2026-08-22T01:27:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: Mack
+  changes:
+  - message: missing values for the reactor guidebook temps.
+    type: Fix
+  id: 407814
+  time: '2026-08-23T10:38:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5797
 Order: -1
