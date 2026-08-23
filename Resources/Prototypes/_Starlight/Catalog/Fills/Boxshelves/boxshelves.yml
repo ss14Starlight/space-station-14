@@ -169,7 +169,7 @@
           - CardboardboxLarge
         insertOnInteract: true
         priority: 7
-        startingItem: CardboardBoxLargeBureaucracy
+        startingItem: CardboardBoxLarge
       fill1:
         whitelist:
           tags:
