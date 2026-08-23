@@ -8,10 +8,11 @@ namespace Content.Shared._Starlight.Railroading.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class RailroadCardsPendingComponent : Component
 {
+    public override bool SendOnlyToOwner => true;
+
     /// <summary>
     /// When the hand is discarded if nothing has been picked. Null until the player first opens the window.
     /// </summary>
     [ViewVariables]
-    [NonSerialized]
     public TimeSpan? Deadline;
 }
