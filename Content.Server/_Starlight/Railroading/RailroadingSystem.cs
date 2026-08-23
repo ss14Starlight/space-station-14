@@ -10,6 +10,8 @@ using Content.Shared.Examine;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
+using Robust.Shared.Collections;
 using Content.Shared._Starlight;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Components.Visual;
@@ -22,6 +24,7 @@ namespace Content.Server._Starlight.Railroading;
 public sealed partial class RailroadingSystem : SharedRailroadingSystem
 {
     private const string CriminalCardPrototypeId = "RRCardCriminal";
+    private static readonly TimeSpan SelectionTime = TimeSpan.FromSeconds(40);
 
     [Dependency] private AchievementSystem _achievements = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -31,6 +34,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
     [Dependency] private EuiManager _euiManager = default!;
     [Dependency] private StarlightEntitySystem _entitySystem = default!;
     [Dependency] private RailroadRuleSystem _railroadRule = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private readonly Dictionary<ICommonSession, CardSelectionEui> _openUis = [];
 
@@ -121,12 +125,33 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
             || _openUis.ContainsKey(user))
             return;
 
+        if (!comp.Important && TryComp<RailroadCardsPendingComponent>(uid, out var pending))
+            pending.Deadline ??= _timing.CurTime + SelectionTime;
+
         var eui = _openUis[user] = new CardSelectionEui()
         {
             Subject = (uid, comp)
         };
         _euiManager.OpenEui(eui, user);
         eui.StateDirty();
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var now = _timing.CurTime;
+        var expired = new ValueList<Entity<RailroadableComponent>>();
+
+        var query = EntityQueryEnumerator<RailroadCardsPendingComponent, RailroadableComponent>();
+        while (query.MoveNext(out var uid, out var pending, out var railroadable))
+        {
+            if (pending.Deadline is { } deadline && deadline <= now)
+                expired.Add((uid, railroadable));
+        }
+
+        foreach (var subject in expired)
+            ExpireSelection(subject);
     }
 
     public void CloseEui(ICommonSession session)
@@ -196,12 +221,34 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         RemComp<RailroadCardsPendingComponent>(subject);
     }
     /// <summary>
-    /// Closing the window only gives up the UI slot. The hand stays issued so it can be reopened later.
+    /// Closing only gives up the window. The hand stays issued until its deadline runs out,
+    /// so it can be reopened as often as wanted until then.
     /// </summary>
     public void OnCardSelectionClosed(Entity<RailroadableComponent> subject)
     {
         if (_players.TryGetSessionByEntity(subject.Owner, out var user))
-            _openUis.Remove(user);
+            CloseEui(user);
+    }
+
+    /// <summary>
+    /// The deadline ran out without a pick. Returns the hand to the pool and bars further offers.
+    /// </summary>
+    private void ExpireSelection(Entity<RailroadableComponent> subject)
+    {
+        if (_players.TryGetSessionByEntity(subject.Owner, out var user))
+            CloseEui(user);
+
+        if (subject.Comp.IssuedCards is null || subject.Comp.Important)
+            return;
+
+        foreach (var card in subject.Comp.IssuedCards)
+            if (_entitySystem.TryEntity<RailroadRuleComponent>(card.Comp2.RuleOwner, out var rule))
+                _railroadRule.AddCardToPool(rule, card);
+
+        subject.Comp.IssuedCards = null;
+        subject.Comp.Restricted = true;
+        RemComp<RailroadCardsPendingComponent>(subject);
+        EnsureComp<RailroadRestrictedComponent>(subject);
     }
 
     public void CardFailed(Entity<RailroadableComponent> ent)

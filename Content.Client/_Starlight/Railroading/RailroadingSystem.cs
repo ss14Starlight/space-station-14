@@ -13,6 +13,11 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
 
     public bool CardsPending { get; private set; }
 
+    /// <summary>
+    /// Whether the local player let a hand expire and is barred from further offers.
+    /// </summary>
+    public bool CardsRestricted => HasComp<RailroadRestrictedComponent>(_player.LocalEntity);
+
     public override void Initialize()
     {
         base.Initialize();

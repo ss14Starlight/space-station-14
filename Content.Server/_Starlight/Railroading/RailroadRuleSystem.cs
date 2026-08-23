@@ -133,6 +133,7 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
         if (ruleEnt.Comp.IssuanceQueue.TryDequeue(out var subject))
         {
             if (!Deleted(subject.Owner)
+                && !subject.Comp.Restricted
                 && (subject.Comp.IssuedCards is not { } cards || cards.Count < CardPerUser)
                 && (subject.Comp.ActiveCard == null || Deleted(subject.Comp.ActiveCard)))
             {

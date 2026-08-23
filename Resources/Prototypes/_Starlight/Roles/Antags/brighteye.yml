@@ -50,5 +50,6 @@
     disarmFailChance: 0.5
     canDisarm: true
   - type: Railroadable
+    important: true
   mindRoles:
   - MindRoleBrighteye

@@ -80,7 +80,7 @@ public sealed class CardsUIController : UIController, IOnStateEntered<GameplaySt
         }
 
         _noCardsWindow ??= new SLWindow();
-        CardWindow.RenderEmpty(_noCardsWindow);
+        CardWindow.RenderEmpty(_noCardsWindow, _railroading?.CardsRestricted ?? false);
         _noCardsWindow.OpenCentered();
     }
 
