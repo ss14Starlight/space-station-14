@@ -36,6 +36,7 @@ public sealed partial class DeepFryerSystem : EntitySystem
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private PowerStateSystem _powerState = default!; // Starlight
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedItemSystem _item = default!;
@@ -259,6 +260,7 @@ public sealed partial class DeepFryerSystem : EntitySystem
             }
 
             deepFryerComp.IsEnabled = !deepFryerComp.IsEnabled;
+            _powerState.TrySetWorkingState(deepFryerEnt.Owner, deepFryerComp.IsEnabled); // Starlight
         }
 
         args.Handled = true;
@@ -314,6 +316,7 @@ public sealed partial class DeepFryerSystem : EntitySystem
             if (cookingOilAmnt <= 25 || solName.Volume <= 25)
             {
                 deepFryerComp.IsEnabled = false;
+                _powerState.TrySetWorkingState(uid, false); // Starlight
                 _appearance.SetData(uid, DeepFryerVisuals.Active, false);
                 continue;
             }
