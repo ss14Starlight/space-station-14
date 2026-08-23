@@ -8,10 +8,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
-
-#region Starlight
 using Content.Client._Starlight.Alert;
-#endregion
 
 namespace Content.Client.Silicons.Borgs;
 

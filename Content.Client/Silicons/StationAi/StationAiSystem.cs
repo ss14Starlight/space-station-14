@@ -3,10 +3,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
-
-#region Starlight
 using Content.Shared.Intellicard;
-#endregion Starlight
 
 namespace Content.Client.Silicons.StationAi;
 

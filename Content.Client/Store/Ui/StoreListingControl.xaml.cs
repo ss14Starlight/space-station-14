@@ -6,7 +6,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using System.Text.RegularExpressions; // Starlight
+using System.Text.RegularExpressions;
 
 namespace Content.Client.Store.Ui;
 

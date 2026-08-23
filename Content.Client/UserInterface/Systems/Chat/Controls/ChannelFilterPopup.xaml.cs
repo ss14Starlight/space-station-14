@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Content.Shared.Chat;
 using Content.Shared.CCVar;
@@ -10,9 +9,6 @@ using Robust.Client.UserInterface.XAML;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
-#region Starlight
-using Content.Client._Starlight.TextToSpeech;
-#endregion
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 

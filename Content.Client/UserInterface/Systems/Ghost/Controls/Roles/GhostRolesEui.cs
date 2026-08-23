@@ -5,11 +5,8 @@ using Content.Shared.Eui;
 using Content.Shared.Ghost.Roles;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
-
-#region Starlight
 using Robust.Client.Player;
 using Robust.Shared.Utility;
-#endregion Starlight
 
 namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
 {

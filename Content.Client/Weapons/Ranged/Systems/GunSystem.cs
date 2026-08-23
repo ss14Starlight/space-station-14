@@ -26,9 +26,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using SharedGunSystem = Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Content.Shared.CCVar; // Starlight | ES Screenshake
-
-#region Starlight
+using Content.Shared.CCVar;
 using Content.Client.DisplacementMap;
 using Content.Shared._Starlight.Effects;
 using Content.Shared.Mech.Components;
@@ -38,7 +36,6 @@ using Content.Shared.Weapons.Hitscan.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
-#endregion Starlight
 
 namespace Content.Client.Weapons.Ranged.Systems;
 

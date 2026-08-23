@@ -1,8 +1,8 @@
 using Content.Shared.CCVar;
 using Content.Shared.Ghost;
-using Content.Client.Administration.UI.Tabs.PlayerTab; // Starlight
-using Content.Shared._Starlight.UI; // Starlight
-using Content.Shared._Starlight.CCVar; // Starlight
+using Content.Client.Administration.UI.Tabs.PlayerTab;
+using Content.Shared._Starlight.UI;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Stealth.Components;

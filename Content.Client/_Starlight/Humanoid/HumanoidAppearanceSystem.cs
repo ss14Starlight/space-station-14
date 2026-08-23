@@ -26,7 +26,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
     {
         base.Initialize();
 
-        SubscribeLocalEvent<HumanoidAppearanceComponent, MapInitEvent>(OnMapInit); // Starlight
+        SubscribeLocalEvent<HumanoidAppearanceComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<HumanoidAppearanceComponent, AfterAutoHandleStateEvent>(OnHandleState);
         Subs.CVar(_configurationManager, CCVars.AccessibilityClientCensorNudity, OnCvarChanged, true);
         Subs.CVar(_configurationManager, CCVars.AccessibilityServerCensorNudity, OnCvarChanged, true);
@@ -51,7 +51,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         }
     }
 
-    public void UpdateSprite(Entity<HumanoidAppearanceComponent, SpriteComponent> entity) // Starlight-edit: Make public so things like tippy can force this
+    public void UpdateSprite(Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
     {
         UpdateLayers(entity);
         ApplyMarkingSet(entity);
@@ -60,7 +60,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         var sprite = entity.Comp2;
 
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
-        //starlight start
+
         if (humanoidAppearance.EyeGlowing)
             sprite.LayerSetShader(HumanoidVisualLayers.Eyes, "unshaded");
         else
@@ -68,7 +68,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
                 sprite.LayerSetShader(layerIndex, (ShaderInstance?)null);
 
         sprite.Scale = new Vector2(humanoidAppearance.Width * humanoidAppearance.Height, humanoidAppearance.Height);
-        //starlight end
+
     }
 
     private static bool IsHidden(HumanoidAppearanceComponent humanoid, HumanoidVisualLayers layer)
@@ -240,16 +240,15 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         humanoid.Gender = profile.Gender;
         humanoid.Age = profile.Age;
         humanoid.Species = profile.Species;
-        humanoid.SkinColor = profile.Appearance.SkinColor; //starlight
+        humanoid.SkinColor = profile.Appearance.SkinColor;
         humanoid.EyeColor = profile.Appearance.EyeColor;
         humanoid.EyeGlowing = profile.Appearance.EyeGlowing;
-        humanoid.Width = profile.Appearance.Width; //starlight
-        humanoid.Height = profile.Appearance.Height; //starlight
+        humanoid.Width = profile.Appearance.Width;
+        humanoid.Height = profile.Appearance.Height;
 
         UpdateSprite((uid, humanoid, Comp<SpriteComponent>(uid)));
     }
 
-    // Starlight
     // Maybe this function isn't needed
     // But I didn't find a way to draw custom base layers without calling UpdateSprite() which is private to this class
     public void AddCustomBaseLayers(EntityUid uid, Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> layers, HumanoidAppearanceComponent? humanoid = null){
@@ -283,7 +282,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             {
                 if (_markingManager.TryGetMarking(marking, out var markingPrototype))
                 {
-                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.IsGlowing, marking.Visible, entity); //starlight, glowing
+                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.IsGlowing, marking.Visible, entity);
                     if (markingPrototype.BodyPart == HumanoidVisualLayers.UndergarmentTop)
                         applyUndergarmentTop = false;
                     else if (markingPrototype.BodyPart == HumanoidVisualLayers.UndergarmentBottom)
@@ -353,29 +352,29 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
 
         if (undergarmentTop && humanoid.UndergarmentTop != null)
         {
-            var marking = new Marking(humanoid.UndergarmentTop, new List<Color> { new Color() }, false); //starlight, glowing
+            var marking = new Marking(humanoid.UndergarmentTop, new List<Color> { new Color() }, false);
             if (_markingManager.TryGetMarking(marking, out var prototype))
             {
                 // Markings are added to ClientOldMarkings because otherwise it causes issues when toggling the feature on/off.
                 humanoid.ClientOldMarkings.Markings.Add(MarkingCategories.UndergarmentTop, new List<Marking> { marking });
-                ApplyMarking(prototype, null, false, true, entity); //starlight, glowing
+                ApplyMarking(prototype, null, false, true, entity);
             }
         }
 
         if (undergarmentBottom && humanoid.UndergarmentBottom != null)
         {
-            var marking = new Marking(humanoid.UndergarmentBottom, new List<Color> { new Color() }, false); //starlight, glowing
+            var marking = new Marking(humanoid.UndergarmentBottom, new List<Color> { new Color() }, false);
             if (_markingManager.TryGetMarking(marking, out var prototype))
             {
                 humanoid.ClientOldMarkings.Markings.Add(MarkingCategories.UndergarmentBottom, new List<Marking> { marking });
-                ApplyMarking(prototype, null, false, true, entity); //starlight, glowing
+                ApplyMarking(prototype, null, false, true, entity);
             }
         }
     }
 
     private void ApplyMarking(MarkingPrototype markingPrototype,
         IReadOnlyList<Color>? colors,
-        bool isGlowing, //starlight
+        bool isGlowing,
         bool visible,
         Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
     {
@@ -389,12 +388,10 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         visible &= humanoid.BaseLayers.TryGetValue(markingPrototype.BodyPart, out var setting)
            && setting.AllowsMarkings;
 
-        // Starlight start - allow split marking sprites to render at different humanoid layer anchors.
         var layerOverrides = markingPrototype.SpriteLayers is { Count: > 0 }
             ? markingPrototype.SpriteLayers
             : null;
         var bodyPartInsertionOffset = 0;
-        // Starlight end
 
         for (var j = 0; j < markingPrototype.Sprites.Count; j++)
         {
@@ -404,7 +401,6 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
                 return;
 
             var layerId = $"{markingPrototype.ID}-{rsi.RsiState}";
-            // Starlight start - sprite layers can share color slots and custom render anchors.
             var anchorLayer = markingPrototype.BodyPart;
             var insertionIndex = targetLayer + j + 1;
             var colorIndex = markingPrototype.GetColorIndex(j);
@@ -427,7 +423,6 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
                     insertionIndex = anchorLayerIndex;
                 }
             }
-            // Starlight end
 
             if (!_sprite.LayerMapTryGet((entity.Owner, sprite), layerId, out _, false))
             {
@@ -444,19 +439,15 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             // Okay so if the marking prototype is modified but we load old marking data this may no longer be valid
             // and we need to check the index is correct.
             // So if that happens just default to white?
-            // Starlight start - color slots can be shared by multiple sprites.
             if (colors != null && colorIndex < colors.Count)
                 _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[colorIndex]);
-            // Starlight end
             else
                 _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
 
-            // Starlight edit - use the actual inserted layer for displaced split markings.
             var isDisplaced = humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced;
             if (isDisplaced)
                 _displacement.TryAddDisplacement(displacementData!, (entity.Owner, sprite), insertionIndex, layerId, out _);
 
-            //starlight start
             if (isGlowing)
             {
                 // Displacement is applied via a shader on this layer, so a displaced layer needs the
@@ -464,7 +455,6 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
                 // displacement map would stop applying
                 sprite.LayerSetShader(layerId, isDisplaced ? "DisplacedDrawUnshaded" : "unshaded");
             }
-            //starlight end
         }
     }
 

@@ -11,7 +11,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Radio; //Starlight
+using Content.Shared._Starlight.Radio;
 
 namespace Content.Client.Silicons.Laws.Ui;
 

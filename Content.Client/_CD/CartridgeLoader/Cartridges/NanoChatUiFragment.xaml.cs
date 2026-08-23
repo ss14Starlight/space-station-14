@@ -6,7 +6,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.UserInterface;
 using Robust.Shared.Timing;
-using Content.Client._Starlight.NanoChat; // Starlight
+using Content.Client._Starlight.NanoChat;
 
 namespace Content.Client._CD.CartridgeLoader.Cartridges;
 

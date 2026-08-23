@@ -1,4 +1,4 @@
-using System.Globalization; // Starlight: UTF-8 encode this file!
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.Managers;
@@ -11,7 +11,6 @@ using Content.Client.Gameplay;
 using Content.Client.Ghost;
 using Content.Client.Mind;
 using Content.Client.Roles;
-using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
@@ -41,15 +40,12 @@ using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Client._Starlight.Radio.Systems;
-//Starlight begin
 using Content.Shared._Starlight.Language;
 using System.Diagnostics.CodeAnalysis;
 using Content.Client._Starlight.Language.Systems;
 using Content.Shared._Starlight.Ghost;
 using Content.Shared._Starlight.NameConfusion;
 using Content.Shared._Starlight.Radio;
-//Starlight end
-
 
 namespace Content.Client.UserInterface.Systems.Chat;
 

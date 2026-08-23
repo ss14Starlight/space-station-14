@@ -1,4 +1,4 @@
-﻿using Content.Client._Starlight.UserInterface; // Starlight
+﻿using Content.Client._Starlight.UserInterface;
 using Content.Client.Resources;
 using Content.Client.Stylesheets.Fonts;
 using Content.Client.Stylesheets.Palette;

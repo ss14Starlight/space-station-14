@@ -1,7 +1,7 @@
-using Content.Client.Wires.Visualizers; // Starlight-edit
+using Content.Client.Wires.Visualizers;
 using Content.Shared.SprayPainter.Prototypes;
 using Content.Shared.Storage;
-using Content.Shared.Wires; // Starlight-edit
+using Content.Shared.Wires;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 

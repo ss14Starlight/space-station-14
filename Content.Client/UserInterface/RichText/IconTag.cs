@@ -1,12 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
 using Content.Shared.StatusIcon;
-using Content.Shared.CCVar; // Starlight
+using Content.Shared.CCVar;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.RichText;
-using Robust.Shared.IoC;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 

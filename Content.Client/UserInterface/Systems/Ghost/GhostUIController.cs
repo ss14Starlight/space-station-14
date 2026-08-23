@@ -1,6 +1,6 @@
 using Content.Client.Gameplay;
 using Content.Client.Ghost;
-using Content.Client.Lobby; //🌟Starlight🌟
+using Content.Client.Lobby;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Shared.Ghost;

@@ -1,6 +1,5 @@
-using Content.Client._Starlight.UserInterface; // Starlight
+using Content.Client._Starlight.UserInterface;
 using Content.Shared.StationRecords;
-using Robust.Client.UserInterface;
 
 namespace Content.Client.StationRecords;
 

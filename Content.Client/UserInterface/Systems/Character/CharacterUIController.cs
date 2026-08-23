@@ -20,7 +20,7 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Utility;
 using static Content.Client.CharacterInfo.CharacterInfoSystem;
 using static Robust.Client.UserInterface.Controls.BaseButton;
-using Content.Client._Starlight.CustomObjectiveSummary; // Starlight
+using Content.Client._Starlight.CustomObjectiveSummary;
 
 namespace Content.Client.UserInterface.Systems.Character;
 

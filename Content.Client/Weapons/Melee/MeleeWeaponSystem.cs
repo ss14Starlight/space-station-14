@@ -13,8 +13,6 @@ using Robust.Client.State;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
-
-#region Starlight
 using Content.Shared.Physics;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Systems;
@@ -23,7 +21,6 @@ using Content.Shared.Humanoid;
 using System.Numerics;
 using Robust.Client.Animations;
 using Robust.Shared.Animations;
-#endregion
 
 namespace Content.Client.Weapons.Melee;
 

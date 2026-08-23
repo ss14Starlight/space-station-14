@@ -1,5 +1,5 @@
 using Content.Shared.Tips;
-using Robust.Client.UserInterface; // Starlight
+using Robust.Client.UserInterface;
 
 namespace Content.Client.Tips;
 

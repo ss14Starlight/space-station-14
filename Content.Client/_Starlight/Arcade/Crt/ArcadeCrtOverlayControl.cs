@@ -8,7 +8,7 @@ namespace Content.Client._Starlight.Arcade.Crt;
 /// <summary>
 /// Window-scoped faux CRT glass: scanlines and a light phosphor wash.
 /// Attach as the last stacking child of a window ContentsContainer so it covers board and menus.
-/// Used by Starlight Lancer; available for other arcade UIs if desired.
+/// Used by Lancer; available for other arcade UIs if desired.
 /// </summary>
 public sealed class ArcadeCrtOverlayControl : Control
 {
