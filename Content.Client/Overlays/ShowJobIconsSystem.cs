@@ -6,13 +6,23 @@ using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 
+#region Starlight
+using Robust.Client.Player; // for IPlayerManager
+using Content.Shared.Silicons.StationAi; // for StationAiVisionSystem
+using Content.Shared.Medical.SuitSensors; // for SuitSensorComponent
+using Content.Shared.Medical.SuitSensor; // for SuitSensorMode
+#endregion
+
 namespace Content.Client.Overlays;
 
 public sealed partial class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIconsComponent>
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private AccessReaderSystem _accessReader = default!;
-
+    #region Starlight
+    [Dependency] private StationAiVisionSystem _vision = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    #endregion
     private static readonly ProtoId<JobIconPrototype> JobIconForNoId = "JobIconNoId";
 
     public override void Initialize()
@@ -50,6 +60,42 @@ public sealed partial class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIcons
                 }
             }
         }
+
+        // Starlight - start
+        // Show job icons if entity is in camera view (only relevant for AI viewers) OR they have active suit sensors.
+
+        // First, determine if the local viewer is an AI-style viewer. Only then consult the AI vision system.
+        if (_player.LocalEntity is EntityUid localEnt && TryComp(localEnt, out StationAiOverlayComponent? _))
+        {
+            
+            var inCameraView = false;
+            try
+            {
+                inCameraView = !_vision.IsOutsideCameraViewCached(uid);
+            }
+            catch
+            {
+                // If the vision system fails by race-condition, we default to false.
+            }
+            
+
+            var suitSensorsActive = false;
+            if (!inCameraView)
+            {
+                // Iterate all suit sensors and check if any are assigned to this user and active.
+                foreach (var sensor in EntityQuery<SuitSensorComponent>(true))
+                {
+                    if (sensor.User == uid && sensor.Mode == SuitSensorMode.SensorCords)
+                    {
+                        suitSensorsActive = true;
+                        break;
+                    }
+                }
+            }
+
+            if(!inCameraView && !suitSensorsActive) return;
+        }
+        // Starlight - end
 
         if (_prototype.Resolve(iconId, out var iconPrototype))
             ev.StatusIcons.Add(iconPrototype);
