@@ -29,7 +29,7 @@ namespace Content.Client._Starlight.UI.Kitchen
             IoCManager.InjectDependencies(this);
             CookTimeButtonGroup = new ButtonGroup();
 
-            CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", StartedCooktime.ToString(@"mm\:ss"))); // Starlight-edit
+            CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", StartedCooktime.ToString(@"mm\:ss")));
         }
 
         public void ToggleBusyDisableOverlayPanel(bool shouldDisable)
@@ -44,7 +44,7 @@ namespace Content.Client._Starlight.UI.Kitchen
             if (!IsBusy)
                 return;
 
-            CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", (_timing.CurTime - StartedCooktime).ToString(@"mm\:ss"))); // Starlight-edit
+            CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", (_timing.CurTime - StartedCooktime).ToString(@"mm\:ss")));
         }
 
         public sealed class MicrowaveCookTimeButton : Button

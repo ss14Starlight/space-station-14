@@ -32,10 +32,8 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         Subs.CVar(_configurationManager, CCVars.AccessibilityServerCensorNudity, OnCvarChanged, true);
     }
 
-    //Starlight begin
     private void OnMapInit(Entity<HumanoidAppearanceComponent> entity, ref MapInitEvent ev) =>
         UpdateSprite((entity, entity.Comp, Comp<SpriteComponent>(entity)));
-    //Starlight end
 
     private void OnHandleState(EntityUid uid, HumanoidAppearanceComponent component, ref AfterAutoHandleStateEvent args)
     {
@@ -161,7 +159,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             return;
         }
 
-        if (!humanoid.AllowProfileOverride) return; //Starlight
+        if (!humanoid.AllowProfileOverride) return;
 
         var customBaseLayers = new Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo>();
 
@@ -194,13 +192,13 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             ? profile.Appearance.SkinColor.WithAlpha(hairAlpha)
             : profile.Appearance.HairColor.WithAlpha(hairAlpha);
         var hair = new Marking(profile.Appearance.HairStyleId,
-            new[] { hairColor }, profile.Appearance.HairGlowing); //starlight
+            new[] { hairColor }, profile.Appearance.HairGlowing);
 
         var facialHairColor = _markingManager.MustMatchSkin(profile.Species, HumanoidVisualLayers.FacialHair, out var facialHairAlpha, _prototypeManager)
             ? profile.Appearance.SkinColor.WithAlpha(facialHairAlpha)
             : profile.Appearance.FacialHairColor;
         var facialHair = new Marking(profile.Appearance.FacialHairStyleId,
-            new[] { facialHairColor }, profile.Appearance.FacialHairGlowing); //starlight
+            new[] { facialHairColor }, profile.Appearance.FacialHairGlowing);
 
         if (_markingManager.CanBeApplied(profile.Species, profile.Sex, hair, _prototypeManager))
         {
@@ -220,7 +218,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
                 profile.Appearance.EyeColor,
                 markings
             );
-            markings.AddBack(prototype.MarkingCategory, new Marking(marking.MarkingId, markingColors, marking.IsGlowing)); //starlight, glowing
+            markings.AddBack(prototype.MarkingCategory, new Marking(marking.MarkingId, markingColors, marking.IsGlowing));
         }
 
         markings.EnsureSpecies(profile.Species, profile.Appearance.SkinColor, _markingManager, _prototypeManager);
@@ -509,7 +507,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             foreach (var marking in markingList)
             {
                 if (_markingManager.TryGetMarking(marking, out var markingPrototype) && markingPrototype.BodyPart == layer)
-                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.IsGlowing, marking.Visible, (ent, ent.Comp, sprite)); //starlight, glowing
+                    ApplyMarking(markingPrototype, marking.MarkingColors, marking.IsGlowing, marking.Visible, (ent, ent.Comp, sprite));
             }
         }
     }

@@ -301,7 +301,6 @@ namespace Content.Client._Starlight.Lobby.UI
                         // just send a -1 if there is no selected slot... catch it later
                         jobButton.OnPressed += _ => SelectedId.Invoke((id, _selectedSlot ?? -1, jobButton.JobId));
 
-                        // Starlight BEGIN
                         var allowed = _jobRequirements.IsAllowed(prototype, humanoid, out var reason);
                         jobButton.Disabled = !allowed;
 
@@ -309,7 +308,7 @@ namespace Content.Client._Starlight.Lobby.UI
                         tooltip.SetMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("job-no-requirements")));
                         jobButton.TooltipSupplier = _ => tooltip;
 
-                        if (allowed && value == 0) // Starlight END
+                        if (allowed && value == 0)
                         {
                             jobButton.Disabled = true;
                         }

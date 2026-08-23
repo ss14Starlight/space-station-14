@@ -149,7 +149,6 @@ public sealed partial class ScreenSystem : VisualizerSystem<ScreenVisualsCompone
             }
         }
 
-        // Starlight
         if (args.AppearanceData.TryGetValue(TextScreenVisuals.AlertLevel, out var alertLevel))
         {
             if (TryComp<ScreenComponent>(uid, out var screenComp) && TryComp<SpriteComponent>(uid, out var sprite))

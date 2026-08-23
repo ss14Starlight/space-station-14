@@ -38,7 +38,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
     /// </summary>
     public Action<(int slot, Marking marking)>? OnColorChanged;
 
-    public Action<(int slot, Marking marking)>? OnGlowingChanged; //starlight
+    public Action<(int slot, Marking marking)>? OnGlowingChanged;
 
     // current selected slot
     private int _slot = -1;
@@ -150,7 +150,6 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             PopulateList(args.Text);
         };
 
-        //starlight start
         Glowing.OnToggled += args =>
         {
             if (_markings == null
@@ -164,7 +163,6 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             marking.IsGlowing = args.Pressed;
             OnGlowingChanged!((_slot, marking));
         };
-        //starlight end
     }
 
     public void UpdateData(List<Marking> markings, string species, int totalPoints)
@@ -235,7 +233,6 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         ColorSelectorContainer.RemoveAllChildren();
 
-        // Starlight start - normalize old sprite-layer colors into shared color slots.
         if (marking.MarkingColors.Count != proto.ColorSlotCount)
         {
             marking = new Marking(marking.MarkingId, proto.GetColorSlotColors(marking.MarkingColors), marking.IsGlowing)
@@ -245,7 +242,6 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             };
             _markings[Slot] = marking;
         }
-        // Starlight end
 
         for (var i = 0; i < marking.MarkingColors.Count; i++)
         {
@@ -266,7 +262,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             ColorSelectorContainer.AddChild(selector);
         }
 
-        Glowing.Pressed = marking.IsGlowing; //starlight
+        Glowing.Pressed = marking.IsGlowing;
     }
 
     private void SelectMarking(ItemList.ItemListSelectedEventArgs args)

@@ -603,14 +603,12 @@ public sealed class StyleStarlight : StyleBase
                     new StyleProperty(PanelContainer.StylePropertyPanel, windowHeaderAlert),
                 }),
 
-            // 🌟Starlight🌟 start
             // Alert (cyan)(mentor) window header.
             new StyleRule(
                 new SelectorElement(typeof(PanelContainer), ["windowHeaderCyanAlert"], null, null),
                 [
                     new StyleProperty(PanelContainer.StylePropertyPanel, windowHeaderMentorAlert),
                 ]),
-            // 🌟Starlight🌟 end
 
             // Shapes for the buttons.
             Element<ContainerButton>().Class(ContainerButton.StyleClassButton)
@@ -1387,7 +1385,6 @@ public sealed class StyleStarlight : StyleBase
                 .Prop(PanelContainer.StylePropertyPanel, BaseAngleRect)
                 .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#121208")),
 
-            // 🌟Starlight🌟
             Element<PanelContainer>().Class(ClassCardHeader)
                 .Prop(PanelContainer.StylePropertyPanel, BaseHeaderRect)
                 .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#121208")),
@@ -1532,7 +1529,6 @@ public sealed class StyleStarlight : StyleBase
                 .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodDisabled),
 
             // ---
-            // 🌟Starlight🌟
             Element<Button>().Class(ClassCardBorder)
                 .Prop(ContainerButton.StylePropertyStyleBox, cardBorder),
             // Small Button ---

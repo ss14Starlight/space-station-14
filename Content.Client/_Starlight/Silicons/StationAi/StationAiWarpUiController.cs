@@ -2,9 +2,6 @@ using Content.Shared._Starlight.StationAi;
 
 namespace Content.Client._Starlight.Silicons.StationAi;
 
-/// <summary>
-/// Wraps the Station AI warp window lifecycle so UI logic can live in the Starlight namespace.
-/// </summary>
 public sealed class StationAiWarpUiController
 {
     private StationAiWarpWindow? _warpWindow;
