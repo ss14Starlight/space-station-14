@@ -153,7 +153,7 @@ public sealed partial class DamageableSystem
                 ent.Comp.DamageModifierSetId != null &&
                 _prototypeManager.Resolve(ent.Comp.DamageModifierSetId, out var modifierSet)
             )
-                damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
+                damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet, armorPenetration, canHeal); // starlight
 
             // TODO DAMAGE
             // byref struct event.

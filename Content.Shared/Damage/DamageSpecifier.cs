@@ -170,16 +170,32 @@ namespace Content.Shared.Damage
                     newValue = Math.Max(0f, newValue - (reduction - (reduction * armorPenetration))); // flat reductions can't heal you
 
                 #region Starlight
-                
+
+                var effectiveCoefficient = 1f;
+
+                // AP doesnt reduce bonus dmg
+                if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
+                {
+                    if (coefficient < 1f)
+                    {
+                        var armor = 1f - coefficient;
+                        var effectiveArmor = armor * (1f - armorPenetration);
+                        effectiveCoefficient = 1f - effectiveArmor;
+                    }
+                    else
+                    {
+                        // Coefficients >= 1 are damage bonuses and are not affected by AP.
+                        effectiveCoefficient = coefficient;
+                    }
+                }
+
                 if (canHeal)
                 {
-                    if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
-                        newValue *= coefficient + ((1f - coefficient) * armorPenetration); // coefficients can heal you, e.g. cauterizing bleeding, Starlight change: removed maximum coefficent allowing for weaknesses
+                    newValue *= effectiveCoefficient;
                 }
                 else
                 {
-                    if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
-                        newValue *= Math.Max(0f, coefficient + ((1f - coefficient) * armorPenetration));
+                    newValue *= Math.Max(0f, effectiveCoefficient);
                 }
                 #endregion Starlight
 
