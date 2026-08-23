@@ -18,7 +18,7 @@ public sealed partial class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIcons
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private AccessReaderSystem _accessReader = default!;
 
-    // Starlight - start
+    #region Starlight
     [Dependency] private StationAiVisionSystem _vision = default!;
     [Dependency] private IPlayerManager _player = default!;
     // Starlight - end
