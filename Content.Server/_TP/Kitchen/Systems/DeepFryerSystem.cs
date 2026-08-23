@@ -304,7 +304,18 @@ public sealed partial class DeepFryerSystem : EntitySystem
                     _fryerSounds[uid] = null;
                 }
 
-                continue; // Starlight
+                // Starlight start
+                if (_container.TryGetContainer(uid, deepFryerComp.ContainerId, out var pausedContainer))
+                {
+                    foreach (var paused in pausedContainer.ContainedEntities)
+                    {
+                        if (_cookingStartTimes.TryGetValue(paused, out var pausedStart))
+                            _cookingStartTimes[paused] = pausedStart + TimeSpan.FromSeconds(frameTime);
+                    }
+                }
+
+                continue;
+                // Starlight end
             }
 
             // Now we check for if the deep fryer has enough oil. If not, disable it and skip the loop.
