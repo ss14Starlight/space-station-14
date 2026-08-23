@@ -177,6 +177,9 @@
   - type: LockedWiresPanel
   - type: Damageable
     damageContainer: Silicon
+#region starlight
+    damageModifierSet: Metallic
+#endregion starlight
   - type: Destructible
     thresholds:
     - trigger:
