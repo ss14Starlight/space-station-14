@@ -6,11 +6,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
-// Starlight Start
-using Content.Client.UserInterface.RichText;
-using Robust.Client.UserInterface.RichText;
 using Content.Client.RichText;
-// Starlight End
 
 namespace Content.Client.RoundEnd
 {

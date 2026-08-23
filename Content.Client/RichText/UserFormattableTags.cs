@@ -1,8 +1,6 @@
 ﻿using Content.Client.UserInterface.RichText;
 using Robust.Client.UserInterface.RichText;
-#region Starlight
 using Content.Client._Starlight.UserInterface.RichText;
-#endregion
 
 namespace Content.Client.RichText;
 

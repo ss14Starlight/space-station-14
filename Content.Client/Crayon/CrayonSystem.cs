@@ -7,8 +7,6 @@ using Content.Shared.Crayon;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
-
-#region Starlight
 using Content.Client._Starlight.Crayon.Overlays;
 using Content.Client.Decals;
 using Content.Shared.Decals;
@@ -21,7 +19,6 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-#endregion Starlight
 
 namespace Content.Client.Crayon;
 

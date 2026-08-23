@@ -14,12 +14,8 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-
-#region Starlight
-using Content.Shared.GameTicking.Prototypes;
 using Robust.Client.UserInterface.CustomControls;
 using Content.Client._Starlight.Lobby.UI;
-#endregion Starlight
 
 namespace Content.Client.Lobby
 {

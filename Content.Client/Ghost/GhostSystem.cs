@@ -5,12 +5,10 @@ using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Player;
-#region Starlight
 using Robust.Shared.Configuration;
 using Content.Shared._Starlight.Administration.Events;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Ghost;
-#endregion
 
 namespace Content.Client.Ghost
 {

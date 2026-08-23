@@ -1,8 +1,8 @@
-using Content.Client._Starlight.Time; // Starlight
+using Content.Client._Starlight.Time;
 using Content.Client.GameTicking.Managers;
 using Content.Shared.PDA;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Time; // Starlight-edit
+using Content.Shared._Starlight.Time;
 using Content.Shared.CartridgeLoader;
 using Content.Client.Message;
 using Robust.Client.UserInterface;

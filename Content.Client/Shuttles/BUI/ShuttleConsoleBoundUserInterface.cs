@@ -1,9 +1,8 @@
-using Content.Client._Starlight.UserInterface; // Starlight
+using Content.Client._Starlight.UserInterface;
 using Content.Client.Shuttles.UI;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;
 using JetBrains.Annotations;
-using Robust.Client.UserInterface;
 using Robust.Shared.Map;
 
 namespace Content.Client.Shuttles.BUI;

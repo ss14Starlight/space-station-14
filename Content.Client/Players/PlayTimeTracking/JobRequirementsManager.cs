@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
@@ -13,12 +11,9 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Client._Starlight.Achievement;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-#endregion Starlight
 
 namespace Content.Client.Players.PlayTimeTracking;
 

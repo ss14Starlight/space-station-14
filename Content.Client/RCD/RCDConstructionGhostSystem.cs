@@ -6,13 +6,10 @@ using Robust.Client.Placement;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-// Starlight Start
 using Robust.Shared.Input;
 using Content.Client._Starlight.RCD;
 using Robust.Shared.Input.Binding;
-using Content.Client.Atmos;
 using Content.Shared.Input;
-// Starlight End
 
 namespace Content.Client.RCD;
 

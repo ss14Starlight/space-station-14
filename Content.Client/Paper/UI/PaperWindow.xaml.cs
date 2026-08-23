@@ -9,14 +9,9 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
-using Robust.Client.UserInterface.RichText;
-using Content.Client.UserInterface.RichText;
 using Robust.Shared.Input;
-
-#region Starlight
 using Robust.Client.UserInterface;
 using Content.Client._Starlight.UserInterface.RichText;
-#endregion Starlight
 
 namespace Content.Client.Paper.UI
 {
