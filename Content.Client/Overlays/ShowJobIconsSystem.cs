@@ -5,7 +5,6 @@ using Content.Shared.PDA;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
-
 using Robust.Client.Player; // for IPlayerManager
 using Content.Shared.Silicons.StationAi; // for StationAiVisionSystem
 using Content.Shared.Medical.SuitSensors; // for SuitSensorComponent
