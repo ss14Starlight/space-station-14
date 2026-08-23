@@ -20,6 +20,7 @@ USINGS_DIRS = [
 SKIP_DIRS = {".git", ".venv", "venv", "node_modules", "__pycache__", "dist", "build", "obj", "bin"}
 WORD = re.compile(r"starlight", re.IGNORECASE)
 NAMESPACE = re.compile(r"^\s*namespace\b")
+REGION = re.compile(r"^\s*#\s*(region|endregion)\b")
 WORKERS = min(32, (os.cpu_count() or 4) * 4)
 
 COMMENT_SYNTAX = {
@@ -31,8 +32,10 @@ COMMENT_SYNTAX = {
 }
 
 MESSAGES = {
-    "full": "There's starlight comment in file that already in _Starlight folder: {text}",
-    "usings": "There's starlight comment in the usings block: {text}",
+    ("full", "comment"): "There's starlight comment in file that already in _Starlight folder: {text}",
+    ("full", "region"): "There's starlight region in file that already in _Starlight folder: {text}",
+    ("usings", "comment"): "There's starlight comment in the usings block: {text}",
+    ("usings", "region"): "There's starlight region in the usings block: {text}",
 }
 
 
@@ -80,7 +83,8 @@ def comment_lines(lines, line_markers, block_pairs):
 
 def check_file(entry):
     path, mode = entry
-    syntax = COMMENT_SYNTAX.get(os.path.splitext(path)[1].lower())
+    ext = os.path.splitext(path)[1].lower()
+    syntax = COMMENT_SYNTAX.get(ext)
     if not syntax:
         return []
 
@@ -103,11 +107,18 @@ def check_file(entry):
     if not WORD.search("\n".join(lines)):
         return []
 
-    found = []
+    hits = {}
+
     for num, text in comment_lines(lines, *syntax):
         if WORD.search(text):
-            found.append((path, num, text.strip(), mode))
-    return found
+            hits[num] = (text.strip(), "comment")
+
+    if ext == ".cs":
+        for num, line in enumerate(lines, 1):
+            if REGION.match(line) and WORD.search(line):
+                hits[num] = (line.strip(), "region")
+
+    return [(path, num, text, mode, kind) for num, (text, kind) in hits.items()]
 
 
 def collect_paths():
@@ -147,17 +158,17 @@ def write_summary(errors, scanned):
     sha = os.environ.get("GITHUB_SHA", "")
 
     rows = []
-    for path, num, text, mode in errors:
+    for path, num, text, mode, kind in errors:
         location = f"{path}:{num}"
         if repo and sha:
             location = f"[{location}]({server}/{repo}/blob/{sha}/{path}#L{num})"
         snippet = text.replace("|", "\\|")
-        rows.append(f"| {location} | `{snippet}` | {mode} |")
+        rows.append(f"| {location} | `{snippet}` | {mode} / {kind} |")
 
     try:
         with open(target, "a", encoding="utf-8") as f:
             f.write(f"### Starlight comments: {len(errors)} found in {scanned} files\n\n")
-            f.write("| Location | Comment | Rule |\n|---|---|---|\n")
+            f.write("| Location | Match | Rule |\n|---|---|---|\n")
             f.write("\n".join(rows) + "\n")
     except OSError:
         pass
@@ -172,14 +183,14 @@ def main():
             errors.extend(result)
 
     errors.sort()
-    for path, num, text, mode in errors:
-        reason = MESSAGES[mode].format(text=text)
+    for path, num, text, mode, kind in errors:
+        reason = MESSAGES[(mode, kind)].format(text=text)
         print(f"::error file={path},line={num}::{path}:{num} - {reason}")
 
     if errors:
         print("", file=sys.stderr)
         print(f"Found entries: {len(errors)} (scanned {len(entries)} files)", file=sys.stderr)
-        for path, num, text, mode in errors:
+        for path, num, text, mode, kind in errors:
             print(f"  {path}:{num}: {text}", file=sys.stderr)
         write_summary(errors, len(entries))
         return 1
