@@ -66,15 +66,7 @@ public sealed partial class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIcons
         // First, determine if the local viewer is an AI-style viewer. Only then consult the AI vision system.
         if (_player.LocalEntity is EntityUid localEnt && TryComp(localEnt, out StationAiOverlayComponent? _))
         {
-            var inCameraView = false;
-            try
-            {
-                inCameraView = !_vision.IsOutsideCameraViewCached(uid);
-            }
-            catch
-            {
-                // If the vision system fails by race-condition, we default to false.
-            }
+            var inCameraView = !_vision.IsOutsideCameraViewCached(uid);
 
             var suitSensorsActive = false;
             if (!inCameraView)
