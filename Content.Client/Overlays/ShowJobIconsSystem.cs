@@ -21,7 +21,7 @@ public sealed partial class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIcons
     #region Starlight
     [Dependency] private StationAiVisionSystem _vision = default!;
     [Dependency] private IPlayerManager _player = default!;
-    // Starlight - end
+    #endregion
 
     private static readonly ProtoId<JobIconPrototype> JobIconForNoId = "JobIconNoId";
 
