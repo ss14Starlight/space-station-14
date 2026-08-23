@@ -11,7 +11,7 @@
     TriggerN2O: 0.5
     TriggerTritium: 0.1
     TriggerAmmonia: 0.1
-    TriggerFrezon: 0.1 # Starlight-edit: Removing this because it just makes the node uncompletable in the majority of cases
+    #TriggerFrezon: 0.1 # Starlight-edit: Removing this because it just makes the node uncompletable in the majority of cases
     TriggerRadiation: 1
     TriggerPressureHigh: 0.5
     TriggerPressureLow: 1
