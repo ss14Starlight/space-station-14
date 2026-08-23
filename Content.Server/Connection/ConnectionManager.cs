@@ -19,18 +19,11 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-
-#region Starlight
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.PlayerData;
 using Content.Server._Starlight.Connection;
-using Content.Server.Discord.DiscordLink;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-using Content.Shared._Starlight;
-using Content.Shared._Starlight.CCVar;
-using Robust.Shared.Utility;
-#endregion Starlight
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.

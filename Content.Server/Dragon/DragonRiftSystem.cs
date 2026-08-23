@@ -13,7 +13,7 @@ using Content.Shared.Damage.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
-using Content.Server.Station.Systems; // Starlight
+using Content.Server.Station.Systems;
 
 namespace Content.Server.Dragon;
 

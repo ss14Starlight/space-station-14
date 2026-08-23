@@ -31,7 +31,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
+using Content.Shared._Starlight.Camera;
 
 namespace Content.Server.Explosion.EntitySystems;
 

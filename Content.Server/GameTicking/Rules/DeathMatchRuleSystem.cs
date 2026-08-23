@@ -1,10 +1,10 @@
-using Content.Server.Actions; // Starlight
+using Content.Server.Actions;
 using Content.Server.Clothing.Systems;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.KillTracking;
 using Content.Server.Mind;
 using Content.Server.Points;
-using Content.Server.Preferences.Managers; // Starlight
+using Content.Server.Preferences.Managers;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.EntityTable;
@@ -13,7 +13,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Points;
 using Robust.Server.Player;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Deathmatch; // Starlight
+using Content.Shared._Starlight.Deathmatch;
 
 namespace Content.Server.GameTicking.Rules;
 

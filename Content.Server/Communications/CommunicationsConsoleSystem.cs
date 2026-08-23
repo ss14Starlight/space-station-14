@@ -1,4 +1,3 @@
-// Starlight Start
 using System;
 using System.Collections.Generic;
 using Content.Server.Administration.Logs;
@@ -27,12 +26,10 @@ using Content.Shared.Speech.Muting;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
-// Starlight Start
 using Content.Shared._Starlight.SecureTerminal;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Shared.Silicons.StationAi;
-// Starlight End
 
 namespace Content.Server.Communications
 {

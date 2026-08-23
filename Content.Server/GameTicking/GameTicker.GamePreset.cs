@@ -10,10 +10,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Database;
-
-#region Starlight
 using Content.Shared._Starlight.EntityTable;
-#endregion Starlight
 
 namespace Content.Server.GameTicking;
 

@@ -31,8 +31,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-
-#region Starlight
 using Content.Shared._Starlight.Fax;
 using Content.Shared._Starlight.Fax.UI;
 using Content.Shared._Starlight.Time;
@@ -42,7 +40,6 @@ using Content.Shared.Emag.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Inventory;
 using Robust.Shared.Utility;
-#endregion Starlight
 
 namespace Content.Server.Fax;
 

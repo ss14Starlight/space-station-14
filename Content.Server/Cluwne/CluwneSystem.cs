@@ -16,12 +16,8 @@ using Content.Shared.Stunnable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
-
-#region Starlight
-using Content.Shared.Interaction.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
-#endregion Starlight
 
 namespace Content.Server.Cluwne;
 

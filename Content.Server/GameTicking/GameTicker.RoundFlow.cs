@@ -26,7 +26,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Text.RegularExpressions;
-using Content.Server._Starlight.BugReports; // Starlight
+using Content.Server._Starlight.BugReports;
 
 namespace Content.Server.GameTicking
 {

@@ -1,6 +1,6 @@
 using Content.Server.Chat.Systems;
-using Content.Server.Popups; // Starlight
-using Content.Shared.Abilities.Mime; // Starlight
+using Content.Server.Popups;
+using Content.Shared.Abilities.Mime;
 using Content.Shared.Chat;
 using Content.Shared.DeltaV.AACTablet;
 using Content.Shared.DeltaV.QuickPhrase;

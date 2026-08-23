@@ -9,7 +9,7 @@ using Content.Shared.Doors;
 using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
-using Content.Shared.Emag.Systems; // Starlight
+using Content.Shared.Emag.Systems;
 
 namespace Content.Server.Doors.Electronics;
 

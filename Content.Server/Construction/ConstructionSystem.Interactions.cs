@@ -21,11 +21,8 @@ using Robust.Shared.Utility;
 // ReSharper disable once RedundantUsingDirective
 using Robust.Shared.Exceptions;
 #endif
-
-#region Starlight
 using Content.Shared._Starlight.Construction;
 using Content.Shared._Starlight.FiringPins;
-#endregion
 
 namespace Content.Server.Construction
 {

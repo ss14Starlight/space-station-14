@@ -10,7 +10,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Throwing;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
-using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
+using Content.Shared._Starlight.Camera;
 
 namespace Content.Server.Damage.Systems;
 
