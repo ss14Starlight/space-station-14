@@ -138,6 +138,31 @@ def collect_paths():
                     yield path, mode
 
 
+def write_summary(errors, scanned):
+    target = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not target:
+        return
+    server = os.environ.get("GITHUB_SERVER_URL", "https://github.com")
+    repo = os.environ.get("GITHUB_REPOSITORY", "")
+    sha = os.environ.get("GITHUB_SHA", "")
+
+    rows = []
+    for path, num, text, mode in errors:
+        location = f"{path}:{num}"
+        if repo and sha:
+            location = f"[{location}]({server}/{repo}/blob/{sha}/{path}#L{num})"
+        snippet = text.replace("|", "\\|")
+        rows.append(f"| {location} | `{snippet}` | {mode} |")
+
+    try:
+        with open(target, "a", encoding="utf-8") as f:
+            f.write(f"### Starlight comments: {len(errors)} found in {scanned} files\n\n")
+            f.write("| Location | Comment | Rule |\n|---|---|---|\n")
+            f.write("\n".join(rows) + "\n")
+    except OSError:
+        pass
+
+
 def main():
     entries = list(collect_paths())
 
@@ -148,10 +173,15 @@ def main():
 
     errors.sort()
     for path, num, text, mode in errors:
-        print(f"::error file={path},line={num}::" + MESSAGES[mode].format(text=text))
+        reason = MESSAGES[mode].format(text=text)
+        print(f"::error file={path},line={num}::{path}:{num} - {reason}")
 
     if errors:
-        print(f"\nFound entries: {len(errors)} (scanned {len(entries)} files)", file=sys.stderr)
+        print("", file=sys.stderr)
+        print(f"Found entries: {len(errors)} (scanned {len(entries)} files)", file=sys.stderr)
+        for path, num, text, mode in errors:
+            print(f"  {path}:{num}: {text}", file=sys.stderr)
+        write_summary(errors, len(entries))
         return 1
 
     print(f"OK: no forbidden 'Starlight' comments. Scanned {len(entries)} files.")
