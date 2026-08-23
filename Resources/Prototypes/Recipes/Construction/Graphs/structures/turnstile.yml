@@ -6,14 +6,14 @@
     actions:
     - !type:DeleteEntity { }
     edges:
-    - to: assembly #SL
+#Starlight region
+    - to: assembly
       completed:
       - !type:SnapToGrid
       - !type:SetAnchor {}
       steps:
       - material: MetalRod
         amount: 4
-#Starlight region
         doAfter: 10
 
   - node: assembly
