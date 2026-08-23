@@ -6,14 +6,10 @@ using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 
-// Starlight - start
-#region Starlight
 using Robust.Client.Player; // for IPlayerManager
 using Content.Shared.Silicons.StationAi; // for StationAiVisionSystem
 using Content.Shared.Medical.SuitSensors; // for SuitSensorComponent
-using Content.Shared.Medical.SuitSensor; // for SuitSensorMode
-#endregion
-// Starlight - end
+using Content.Shared.Medical.SuitSensor; // for SuitSensorModen
 
 namespace Content.Client.Overlays;
 
@@ -21,12 +17,12 @@ public sealed partial class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIcons
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private AccessReaderSystem _accessReader = default!;
+
     // Starlight - start
-    #region Starlight
     [Dependency] private StationAiVisionSystem _vision = default!;
     [Dependency] private IPlayerManager _player = default!;
-    #endregion
     // Starlight - end
+
     private static readonly ProtoId<JobIconPrototype> JobIconForNoId = "JobIconNoId";
 
     public override void Initialize()
