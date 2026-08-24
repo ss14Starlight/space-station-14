@@ -14,7 +14,7 @@ namespace Content.Shared._Starlight.EntityEffects.Effects.Solution;
 /// </summary>
 public sealed partial class ModifyReagentFromMetabolitesEntityEffectSystem : EntityEffectSystem<BloodstreamComponent, ModifyReagentFromMetabolites>
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<ModifyReagentFromMetabolites> args)
     {
@@ -58,14 +58,12 @@ public sealed partial class ModifyReagentFromMetabolites : EntityEffectBase<Modi
     public FixedPoint2 Amount;
 
     /// <inheritdoc />
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc)
-    {
-        return prototype.Resolve(Reagent, out ReagentPrototype? proto)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) =>
+        prototype.Resolve(Reagent, out ReagentPrototype? proto)
             ? loc.GetString("entity-effect-guidebook-modify-reagent-from-metabolites",
                 ("chance", Probability),
                 ("deltasign", MathF.Sign(Amount.Float())),
                 ("reagent", proto.LocalizedName),
                 ("amount", MathF.Abs(Amount.Float())))
             : null;
-    }
 }
