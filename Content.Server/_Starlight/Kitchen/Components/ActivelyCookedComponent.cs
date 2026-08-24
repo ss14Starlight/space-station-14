@@ -4,7 +4,7 @@ namespace Content.Server._Starlight.Kitchen.Components;
 /// Attached to an object that's actively being microwaved
 /// </summary>
 [RegisterComponent]
-public sealed partial class ActivelyCookedComponent : Component // Starlight-edit: Renamed from ActivelyMicrowavedComponent to ActivelyCookedComponent
+public sealed partial class ActivelyCookedComponent : Component
 {
     /// <summary>
     /// The microwave this entity is actively being microwaved by.

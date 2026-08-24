@@ -26,11 +26,11 @@ namespace Content.Server.Database
         public ServerUnbanDef? Unban { get; }
         public ServerBanExemptFlags ExemptFlags { get; }
 
-        public string? ProjectName { get; } // Starlight-edit
+        public string? ProjectName { get; }
 
-        public string? ServerName { get; } // Starlight-edit
+        public string? ServerName { get; }
 
-        public bool Network { get; } // Starlight-edit
+        public bool Network { get; }
 
         public ServerBanDef(int? id,
             NetUserId? userId,
@@ -96,7 +96,6 @@ namespace Content.Server.Database
                     : loc.GetString("ban-banned-permanent");
             }
 
-            // Starlight Start: Player facing Ban ID && Server/Project Names
             var banIdLine = Id is { } banId
                 ? $"{loc.GetString("ban-banned-id", ("id", banId))}\n"
                 : string.Empty;
@@ -108,20 +107,15 @@ namespace Content.Server.Database
                 serverProjectLine = $"{loc.GetString("ban-project", ("project", ProjectName ?? ""))}\n";
             else
                 serverProjectLine = $"{loc.GetString("ban-project-server", ("project", ProjectName ?? ""), ("server", ServerName ?? ""))}\n";
-            // Starlight End
 
-            // Starlight edit Start: Added banIdLine
             return $"""
                    {loc.GetString("ban-banned-1")}
                    {loc.GetString("ban-banned-2", ("reason", Reason))}
                    {banIdLine}{expires}
                    {serverProjectLine}{loc.GetString("ban-banned-3")}
                    """;
-            // Starlight edit End
         }
     }
-
-    #region Starlight
 
     public static class BanDefExtensions
     {
@@ -147,6 +141,4 @@ namespace Content.Server.Database
 
             };
     }
-
-    #endregion
 }

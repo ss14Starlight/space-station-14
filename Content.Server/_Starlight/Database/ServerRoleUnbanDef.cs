@@ -26,12 +26,8 @@ public sealed class ServerRoleUnbanDef
     }
 }
 
-#region Starlight
-
 public static class RoleUnbanDefExtensions
 {
     public static AdminUnban ToNullLink(this ServerRoleUnbanDef serverRoleUnban)
         => new(serverRoleUnban.BanId, serverRoleUnban.UnbanningAdmin, serverRoleUnban.UnbanTime, serverRoleUnban.ProjectName, serverRoleUnban.ServerName);
 }
-
-#endregion

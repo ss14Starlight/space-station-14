@@ -25,7 +25,8 @@ internal static class Const
         new (0.16f, 2.11f, 4.4f, 0f, 0f, 0f, 0f), // ammonia
         new (0.13f, 2.19f, 2.2f, 0f, -0.02f, 0f, 0f), // nitrous oxide
         new (1.00f, 0.01f, 1.1f, 0f, -0.1f, 0f, 0f), // frezon
-        new (0.25f, 1.20f, 1.80f, 0f, 0f, 0f, 0f), // BZ (catalist so an not competing gas) //FUNKY GASES
+        // FUNKY
+        new (0.25f, 1.20f, 1.80f, 0f, 0f, 0f, 0f), // BZ (catalist so an not competing gas)
         new (0.40f, 0.50f, 1.8f, 1f, -0.1f, -0.1f, 0f), // Healium (support gas) {Special effect: increase passive}
         new (0.30f, 0.50f, 1.2f, 0f, 0.75f, 0.5f, 0f), // Nitrium {Special effect: SM reacts more, cost of stability}
         new (0.30f, 1.0f, 1.7f, 0f, 0f, 0f, 0f), // Pluoxium better then o2 not insane
@@ -35,9 +36,10 @@ internal static class Const
         new (0.10f, 3.00f, 1.01f, -0.5f, 0f, 0.5f, 10f), // Zauker (Heats up quickly, why would you get this near the SM?) {Special effect:decrease passive + moddamage}
         new (0.1f, 3.0f, 3.0f, 0f, -1f, 0f, 0f), // Halon (horrible cooland, but great rad protection, flooding SM makes it stop fire anyways.)
         new (0.45f, 0.4f, 1.3f, 0f, -0.1f, 0f, 0f), // Helium (good thermal conductivity, heats quickly to molar mass)
-        new (0.10f, 4.0f, 1.1f, -0.2f, 1.0f, 0.5f, 0f), // AntiNoblium (HyNoB stable, thus "anti" highly unstable) //END FUNKY
-        new (0.25f, 1.2f, 1.7f, 0f, 0f, 0f, 0f), // Ulnitranium (close to ploux) //STARLIGHT GASES
-        new (0.35f, 1.0f, 2.0f, 0.2f, -0.2f, 0f, 0f), // ZXA (another support gas) //END STARLIGHT
+        new (0.10f, 4.0f, 1.1f, -0.2f, 1.0f, 0.5f, 0f), // AntiNoblium (HyNoB stable, thus "anti" highly unstable)
+        // SL
+        new (0.25f, 1.2f, 1.7f, 0f, 0f, 0f, 0f), // Ulnitranium (close to ploux)
+        new (0.35f, 1.0f, 2.0f, 0.2f, -0.2f, 0f, 0f), // ZXA (another support gas)
     ];
 
     /*Cooling gases: Frezon, HyperNob

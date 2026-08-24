@@ -17,7 +17,6 @@ public sealed partial class BanListCommand : LocalizedCommands
 {
     [Dependency] private IPlayerLocator _locator = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
-    //[Dependency] private readonly IServerDbManager _dbManager = default!; NullLink-edit: move to general method at Manager
     [Dependency] private IBanManager _banManager = default!; // NullLink-edit: move to general method at Manager
     [Dependency] private EuiManager _eui = default!;
 

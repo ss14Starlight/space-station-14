@@ -75,8 +75,6 @@ public sealed class ServerRoleBanDef
     }
 }
 
-#region Starlight
-
 public static class RoleBanDefExtensions
 {
     public static AdminBan ToNullLink(this ServerRoleBanDef serverRoleBan)
@@ -100,5 +98,3 @@ public static class RoleBanDefExtensions
             ServerName = serverRoleBan.ServerName
         };
 }
-
-#endregion

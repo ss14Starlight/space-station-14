@@ -5,7 +5,7 @@ using Content.Shared.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
-using Content.Server._CD.Records; // Cosmatic Drift Record System
+using Content.Server._CD.Records;
 
 namespace Content.Server.Mind.Commands;
 

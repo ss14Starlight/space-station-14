@@ -19,7 +19,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._Starlight.EnergyDome;
 
-//TODO: This is all starlight code? move it
+// TODO: PREDICT
 public sealed partial class EnergyDomeSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;

@@ -51,10 +51,8 @@ using Content.Server.Gravity;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Jittering;
 using System.Linq;
-// Starlight edit start
 using Content.Server.GameTicking;
 using Content.Shared.Body.Components;
-// Starlight edit end
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Changeling;
 using Content.Server._Starlight.Objectives.Components;
@@ -101,7 +99,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private SharedJitteringSystem _jitter = default!;
     [Dependency] private NpcFactionSystem _factionSystem = default!;
     [Dependency] private MovementModStatusSystem _movementMod = default!;
-    [Dependency] private GameTicker _gameTicker = default!; // Starlight
+    [Dependency] private GameTicker _gameTicker = default!;
 
     public static readonly EntProtoId FakeArmbladePrototype = "FakeArmBladeChangeling";
 
@@ -112,7 +110,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     public static readonly EntProtoId SpacesuitPrototype = "ChangelingClothingOuterHardsuit";
     public static readonly EntProtoId SpacesuitHelmetPrototype = "ChangelingClothingHeadHelmetHardsuit";
-    public static readonly EntProtoId NeocyteDisguisePrototype = "ChangelingClothingNeocyteArmor"; // Starlight
+    public static readonly EntProtoId NeocyteDisguisePrototype = "ChangelingClothingNeocyteArmor";
 
     public static readonly EntProtoId SlowdownPrototype = "StatusEffectStaminaLow";
 
@@ -152,7 +150,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             {
                 comp.BiomassNextUpdateTime = _timing.CurTime + comp.BiomassUpdateCooldown;
                 //subtract biomass
-                if (_gameTicker.RunLevel < GameRunLevel.PostRound) // Starlight: Only get hungrier when not EOR
+                if (_gameTicker.RunLevel < GameRunLevel.PostRound) // Only get hungrier when not EOR
                     comp.Biomass -= comp.BiomassDrain;
                 UpdateBiomass(uid, comp);
                 UpdateAbilities(uid, comp);
@@ -567,7 +565,6 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
-        //EnsureComp<ZombieImmuneComponent>(uid); Starlight, we're bringing Lings into Zombies!
 
         // add actions
         foreach (var actionId in comp.BaseChangelingActions)
@@ -582,13 +579,9 @@ public sealed partial class ChangelingSystem : EntitySystem
         UpdateBiomass(uid, comp, 0);
 
         // make their blood unreal
-        // Starlight edit start - remove deprecated method
         if (TryComp<BloodstreamComponent>(uid, out var bloodstream) &&
             bloodstream.BloodReferenceSolution is { } originalBlood)
-        {
             _blood.ChangeBloodReagents(uid, new Solution([new ReagentQuantity(BloodChangelingPrototype, originalBlood.Volume)]));
-        }
-        // Starlight edit end
     }
 
     private void OnMobStateChange(EntityUid uid, ChangelingComponent comp, ref MobStateChangedEvent args)

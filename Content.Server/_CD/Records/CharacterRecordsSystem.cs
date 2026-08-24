@@ -14,7 +14,7 @@ using Content.Shared.Clothing;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Localization;
-using Content.Shared.Preferences; // Loc.TryGetString
+using Content.Shared.Preferences;
 using Robust.Shared.Log;
 
 namespace Content.Server._CD.Records;

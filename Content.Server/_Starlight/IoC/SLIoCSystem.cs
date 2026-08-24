@@ -9,7 +9,7 @@ public sealed partial class SLIoCSystem : SharedSLIoCSystem
 
     public override void ServerInitIoC()
     {
-        // TODO STARLIGHT delete this when SharedVendingMachineSystem.OnVendingGetState is fixed
+        // TODO delete this when SharedVendingMachineSystem.OnVendingGetState is fixed
 #if DEBUG
         if (IoCManager.Instance != null)
             return;

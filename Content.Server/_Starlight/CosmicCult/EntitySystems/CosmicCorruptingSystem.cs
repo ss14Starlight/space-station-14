@@ -61,7 +61,7 @@ public sealed partial class CosmicCorruptingSystem : EntitySystem
                 }
 
                 if (comp.CorruptionTicks >= comp.CorruptionMaxTicks && comp.AutoDisable)
-                    RemCompDeferred<CosmicCorruptingComponent>(uid); // Starlight Edit: Changed to RemComp
+                    RemCompDeferred<CosmicCorruptingComponent>(uid);
             }
         }
     }

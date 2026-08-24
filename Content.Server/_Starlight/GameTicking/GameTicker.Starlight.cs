@@ -9,13 +9,10 @@ using Robust.Shared;
 namespace Content.Server.GameTicking;
 public sealed partial class GameTicker
 {
-
-    #region Starlight
     [ViewVariables]
     public string GamemodeNameOverride = "";
     [ViewVariables]
     public string GamemodeDescOverride = "";
-    #endregion
 
     private WebhookIdentifier? _statusWebhookIdentifier;
     private WebhookIdentifier? _statusWebhookStaffIdentifier;
