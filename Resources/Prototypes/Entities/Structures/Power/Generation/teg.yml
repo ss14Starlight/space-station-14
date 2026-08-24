@@ -62,8 +62,8 @@
     # It fires processing on behalf of its connected circulators.
     - type: AtmosDevice
     - type: TegGenerator
-      thermalEfficiency: 0.1
-      powerFactor: 1.75
+      thermalEfficiency: 0.95 # Starlight: 0.1 -> 0.95 Its some sorta super high tech future generator, it should get better efficiency than more mundane gas turbines. It has much lower throughput in exchange.
+      powerFactor: 0.75 # Starlight: 1.75 -> 0.75 throttling potential output because of the increased efficiency
 
     - type: DeviceNetwork
       deviceNetId: AtmosDevices
