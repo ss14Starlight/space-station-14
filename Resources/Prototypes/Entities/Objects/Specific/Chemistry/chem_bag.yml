@@ -15,7 +15,7 @@
   - type: Item
     size: Ginormous
   - type: Storage
-    maxItemSize: Normal # allow up to 5 large beakers / 10 beakers / 10 pill canisters
+    maxItemSize: Normal # allow up to 5 large beakers / 10 beakers / 10 pill canisters / 4 Jugs
     grid:
     - 0,0,4,3
     quickInsert: true
@@ -26,6 +26,7 @@
         - Pill
         - Patch
       tags:
+        - ChemDispensable
         - Document
         - PillCanister
         - Bottle
