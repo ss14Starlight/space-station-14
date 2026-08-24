@@ -6,7 +6,7 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Validation;
 using Robust.Shared.Serialization.Markdown.Value;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
 using Robust.Shared.Serialization.TypeSerializers.Interfaces;
 
 namespace Content.Shared.Damage;
@@ -14,8 +14,8 @@ namespace Content.Shared.Damage;
 //todo writing
 public sealed class DamageSpecifierDictionarySerializer : ITypeReader<Dictionary<string, FixedPoint2>, MappingDataNode>
 {
-    private ITypeValidator<Dictionary<string, FixedPoint2>, MappingDataNode> _damageTypeSerializer = new PrototypeIdDictionarySerializer<FixedPoint2, DamageTypePrototype>();
-    private ITypeValidator<Dictionary<string, FixedPoint2>, MappingDataNode> _damageGroupSerializer = new PrototypeIdDictionarySerializer<FixedPoint2, DamageGroupPrototype>();
+    private ITypeValidator<Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>, MappingDataNode> _damageTypeSerializer = new DictionarySerializer<ProtoId<DamageTypePrototype>, FixedPoint2>();
+    private ITypeValidator<Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2>, MappingDataNode> _damageGroupSerializer = new DictionarySerializer<ProtoId<DamageGroupPrototype>, FixedPoint2>();
 
     public ValidationNode Validate(ISerializationManager serializationManager, MappingDataNode node,
         IDependencyCollection dependencies, ISerializationContext? context = null)
