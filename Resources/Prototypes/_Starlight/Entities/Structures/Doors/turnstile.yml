@@ -62,8 +62,6 @@
   parent: DoorElectronics
   components:
   - type: DoorElectronics
-    accessGroups:
-    - SyndicateAgent
   - type: AccessReader
     access: [["SyndicateAgent"]]
 
@@ -134,8 +132,6 @@
   parent: DoorElectronics
   components:
   - type: DoorElectronics
-    accessGroups:
-    - Debrief
   - type: AccessReader
     access: [["Debrief"]]
 

@@ -137,7 +137,6 @@
   components:
   - type: DoorElectronics
     accessGroups:
-    - GenpopEnter
     - Security
   - type: AccessReader
     access: [["GenpopEnter"], ["Security"]]
@@ -148,7 +147,6 @@
   components:
   - type: DoorElectronics
     accessGroups:
-    - GenpopLeave
     - Security
   - type: AccessReader
     access: [["GenpopLeave"], ["Security"]]
