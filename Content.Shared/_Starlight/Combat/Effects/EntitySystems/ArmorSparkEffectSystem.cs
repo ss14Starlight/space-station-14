@@ -86,7 +86,7 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
 
         if (!IsHitscanDamage(args))
             return;
-        
+
         // AlwaysSpark and Rock bypass all armor checks.
         if (AlwaysSparks(uid, component))
         {
