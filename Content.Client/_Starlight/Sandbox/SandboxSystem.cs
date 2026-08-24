@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 using Content.Shared._Starlight.Sandbox;
 using Robust.Shared.Prototypes;
 
