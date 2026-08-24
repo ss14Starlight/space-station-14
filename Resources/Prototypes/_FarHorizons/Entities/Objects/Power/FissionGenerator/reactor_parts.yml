@@ -223,6 +223,7 @@
   components:
   - type: ReactorPart
     material: Bananium
+    reactionRate: 7.5 # Starlight: Higher reactivity than other rods, still less scary than before
 
 - type: entity
   id: PlasmaReactorFuelRod
