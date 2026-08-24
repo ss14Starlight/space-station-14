@@ -1,4 +1,4 @@
-entity-effect-guidebook-modify-reagent-from-metabolites =
+entity-effect-guidebook-modify-metabolites-from-bloodstream =
     { $chance ->
         [1] { $deltasign ->
             [1] Adds

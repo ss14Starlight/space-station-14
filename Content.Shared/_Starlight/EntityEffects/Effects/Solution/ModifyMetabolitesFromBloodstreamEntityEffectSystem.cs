@@ -12,11 +12,11 @@ namespace Content.Shared._Starlight.EntityEffects.Effects.Solution;
 /// Modifies a reagent in the metabolites container on the entity's bloodstream component.
 /// Positive amounts add the reagent, negative amounts remove it.
 /// </summary>
-public sealed partial class ModifyReagentFromMetabolitesEntityEffectSystem : EntityEffectSystem<BloodstreamComponent, ModifyReagentFromMetabolites>
+public sealed partial class ModifyMetabolitesFromBloodstreamEntityEffectSystem : EntityEffectSystem<BloodstreamComponent, ModifyMetabolitesFromBloodstream>
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
-    protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<ModifyReagentFromMetabolites> args)
+    protected override void Effect(Entity<BloodstreamComponent> entity, ref EntityEffectEvent<ModifyMetabolitesFromBloodstream> args)
     {
         var amount = args.Effect.Amount * args.Scale;
         var reagent = args.Effect.Reagent;
@@ -43,7 +43,7 @@ public sealed partial class ModifyReagentFromMetabolitesEntityEffectSystem : Ent
 }
 
 /// <inheritdoc cref="EntityEffect"/>
-public sealed partial class ModifyReagentFromMetabolites : EntityEffectBase<ModifyReagentFromMetabolites>
+public sealed partial class ModifyMetabolitesFromBloodstream : EntityEffectBase<ModifyMetabolitesFromBloodstream>
 {
     /// <summary>
     ///     The reagent ID to add or remove.
@@ -60,7 +60,7 @@ public sealed partial class ModifyReagentFromMetabolites : EntityEffectBase<Modi
     /// <inheritdoc />
     public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) =>
         prototype.Resolve(Reagent, out ReagentPrototype? proto)
-            ? loc.GetString("entity-effect-guidebook-modify-reagent-from-metabolites",
+            ? loc.GetString("entity-effect-guidebook-modify-metabolites-from-bloodstream",
                 ("chance", Probability),
                 ("deltasign", MathF.Sign(Amount.Float())),
                 ("reagent", proto.LocalizedName),

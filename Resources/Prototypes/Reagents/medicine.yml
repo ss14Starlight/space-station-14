@@ -150,7 +150,7 @@
         amount: -0.5
         # Starlight-End
       # Starlight-Start: Remove ethanol from metabolites container
-      - !type:ModifyReagentFromMetabolites
+      - !type:ModifyMetabolitesFromBloodstream
         reagent: Ethanol
         amount: -0.5
         # Starlight-End
