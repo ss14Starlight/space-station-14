@@ -6,9 +6,9 @@ using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 using Robust.Client.Player; // for IPlayerManager
-using Content.Shared.Silicons.StationAi; // for StationAiVisionSystem
-using Content.Shared.Medical.SuitSensors; // for SuitSensorComponent
-using Content.Shared.Medical.SuitSensor; // for SuitSensorModen
+using Content.Shared.Silicons.StationAi;
+using Content.Shared.Medical.SuitSensors;
+using Content.Shared.Medical.SuitSensor;
 
 namespace Content.Client.Overlays;
 
