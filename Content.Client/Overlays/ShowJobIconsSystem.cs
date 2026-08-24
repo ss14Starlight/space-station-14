@@ -64,8 +64,8 @@ public sealed partial class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIcons
         // Show job icons if entity is in camera view (only relevant for AI viewers) OR they have active suit sensors.
 
         // First, determine if the local viewer is an AI-style viewer. Only then consult the AI vision system.
-        if (_player.LocalEntity is EntityUid localEnt 
-            && TryComp(localEnt, out StationAiOverlayComponent? _) 
+        if (_player.LocalEntity is EntityUid localEnt
+            && TryComp(localEnt, out StationAiOverlayComponent? _)
             && _vision.IsOutsideCameraViewCached(uid))
         {
             var suitSensorsActive = false;
@@ -78,7 +78,7 @@ public sealed partial class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIcons
                     break;
                 }
             }
-            
+
             if(!suitSensorsActive) return;
         }
         // Starlight - end
