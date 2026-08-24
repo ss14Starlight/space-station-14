@@ -235,7 +235,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Amount of heat released per mole of burnt hydrogen or tritium (hydrogen isotope)
         /// </summary>
-        public const float FireHydrogenEnergyReleased = 284e4f;
+        public const float FireHydrogenEnergyReleased = 284e3f; /// Starlight: 284e4f -> 284e3F hydrogen no longer burns for 10x its IRL value
         public const float FireMinimumTemperatureToExist = T0C + 100f;
         public const float FireMinimumTemperatureToSpread = T0C + 150f;
         public const float FireSpreadRadiosityScale = 0.85f;
@@ -320,7 +320,7 @@ namespace Content.Shared.Atmos
         ///     Funky Atmos - /tg/ gases
         ///     The amount of energy 1 mol of Nitrium forming from Tritium, Nitrogen and BZ releases.
         /// </summary>
-        public const float NitriumProductionEnergy = -100e3f;
+        public const float NitriumProductionEnergy = -50e2f; /// Starlight: -100e2f -> -50e2f energy value of usual burnt fuels decreased, this is for keeping desirable energy consuming products in balance.
 
         /// <summary>
         ///     Funky Atmos - /tg/ gases
@@ -360,7 +360,7 @@ namespace Content.Shared.Atmos
         /// Funky Atmos - /tg/ gases
         /// The amount of energy half a mole of zauker forming from hypernoblium and nitrium consumes.
         /// </summary>
-        public const float ZaukerProductionEnergy = 5000f;
+        public const float ZaukerProductionEnergy = 5000f; /// Starlight: 5000f -> 2500f energy value of usual burnt fuels decreased, this is for keeping desirable energy consuming products in balance.
 
         /// <summary>
         /// Funky Atmos - /tg/ gases

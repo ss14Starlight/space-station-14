@@ -35,6 +35,7 @@
     neutronCrossSection: 1.0
     thermalCrossSection: 10
     thermalMass: 420000 # specific heat capacity of steel (420 J/KgK) * mass of component (1000Kg)
+    reactionRate: 5 # Starlight: Reducing reaction rate of fuel rods to stop them from melting down under the silghtest pretense
   - type: Edible # Blame Abby for making them edible
     transferAmount: null
     delay: 30
@@ -200,6 +201,7 @@
   components:
   - type: ReactorPart
     material: Plutonium
+    reactionRate: 7.5 # Starlight: Higher reactivity than other rods, still less scary than before
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
