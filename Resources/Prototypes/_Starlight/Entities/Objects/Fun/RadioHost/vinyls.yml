@@ -3,7 +3,7 @@
   parent: BaseVinylDisc
   id: VinylCrazyBot
   name: "vinyl: Crazy Bot"
-  description: "By: Andrew R Codeman"
+  description: "A somewhat slow paced instrumental hip-hop DJ mix. By: Andrew R Codeman"
   components:
   - type: Sprite
     state: default
@@ -19,7 +19,7 @@
   parent: BaseVinylDisc
   id: VinylD2
   name: "vinyl: D2"
-  description: "By: Amarent"
+  description: "A slow but futuristic sounding electronic tune. By: Amarent"
   components:
   - type: Sprite
     state: default
@@ -35,7 +35,7 @@
   parent: BaseVinylDisc
   id: VinylAcidRaindream
   name: "vinyl: Acid Raindream"
-  description: "By: ROZKOL"
+  description: "A somewhat slow sounding rock tune. By: ROZKOL"
   components:
   - type: Sprite
     state: default
@@ -51,7 +51,7 @@
   parent: BaseVinylDisc
   id: VinylUntitled7
   name: "vinyl: Untitled #7"
-  description: "By: Tommaso Croce"
+  description: "A slow paced shoegaze esque tune. Heavy synth lead. By: Tommaso Croce"
   components:
   - type: Sprite
     state: default
@@ -67,7 +67,7 @@
   parent: BaseVinylDisc
   id: VinylSmarties
   name: "vinyl: Smarties"
-  description: "By: Birds for Scale"
+  description: "An electronic tune with a distorted guitar and synth lead. By: Birds for Scale"
   components:
   - type: Sprite
     state: default
@@ -83,7 +83,7 @@
   parent: BaseVinylDisc
   id: VinylSilverAndCold
   name: "vinyl: Silver and Cold"
-  description: "By: Kevin Hartnell"
+  description: "A digital electronic sounding tune with some rock mixed in. By: Kevin Hartnell"
   components:
   - type: Sprite
     state: default
@@ -99,7 +99,7 @@
   parent: BaseVinylDisc
   id: VinylCirclesOfBlackAndRed
   name: "vinyl: Circles of Black and Red"
-  description: "By: Kevin Hartnell"
+  description: "An electronic beat with some rock mixed in and a lead synth. By: Kevin Hartnell"
   components:
   - type: Sprite
     state: default
@@ -111,11 +111,12 @@
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/CirclesofBlackandRed.ogg
 
+#Non FMA Music.
 - type: entity
   parent: BaseVinylDisc
   id: VinylDepressedWawaTriesToProtest
   name: "vinyl: Depressed Wawa tries to protest"
-  description: "By: theprofessorix"
+  description: "A slow then fast paced electronic dance tune, with lead vocals of a famous Wawa singer group that you've never heard of. By: theprofessorix"
   components:
   - type: Sprite
     state: default
