@@ -161,6 +161,7 @@
     - id: VinylTraitorousIntent
     - id: VinylViolet
     - id: VinylPeakAsshole # Space asshole but deep fried.
+      weight: 0.05
     #Starlight-start
     - id: VinylCrazyBot
     - id: VinylD2
@@ -171,7 +172,6 @@
     - id: VinylCirclesOfBlackAndRed
     - id: VinylDepressedWawaTriesToProtest
     #Starlight-end
-    weight: 0.05
 
 - type: entityTable
   id: RandomVinylDiscFart # Clown/fart songs on their own table.
