@@ -1,0 +1,18 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values: &protos
+    - GasPressurePump
+    - GasVolumePump
+    - GasPressureRegulator
+    - GasPassiveGate
+    - GasValve
+    - SignalControlledValve
+    - GasPort
+    - GasVentPump
+    - GasRecycler
+    - HeatExchanger
+    - HeatExchangerBend
+  components:
+    - type: SandboxCopyOverride
+      override: !type:CreateVariants
+        values: *protos
