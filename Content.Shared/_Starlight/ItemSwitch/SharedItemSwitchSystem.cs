@@ -52,7 +52,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         if (args.Handled || !ent.Comp.OnUse || ent.Comp.States.Count == 0) return;
         args.Handled = true;
 
-        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hiden)
+        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hidden)
             return;
 
         Switch((ent, ent.Comp), Next(ent), args.User, predicted: ent.Comp.Predictable);
@@ -67,7 +67,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
 
         foreach (var state in ent.Comp.States)
         {
-            if (state.Value.Hiden)
+            if (state.Value.Hidden)
                 continue;
             args.Verbs.Add(new ActivationVerb()
             {
@@ -89,7 +89,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
 
         args.Handled = true;
 
-        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hiden)
+        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hidden)
             return;
 
         Switch((ent.Owner, ent.Comp), Next(ent), args.User, predicted: ent.Comp.Predictable);
