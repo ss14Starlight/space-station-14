@@ -16,14 +16,12 @@ namespace Content.Server._Starlight.StoreDiscount.Systems;
 public sealed partial class SecondHandSystem : EntitySystem
 {
     private static readonly ProtoId<StoreCategoryPrototype> SecondHandStoreCategoryKey = "SecondHandItems";
-    //private static readonly ProtoId<FeedbackPopupPrototype> SecondHandFeedbackPopupId = "SecondHandFeedback"; // Starlight
     // Number of second-hand items shown per uplink per round.
     private const int MinSecondHandItems = 8;
     private const int MaxSecondHandItems = 14;
 
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-    //[Dependency] private readonly ServerFeedbackManager _feedbackManager = default!; // Starlight
 
     public override void Initialize()
     {
@@ -31,7 +29,6 @@ public sealed partial class SecondHandSystem : EntitySystem
 
         SubscribeLocalEvent<StoreInitializedEvent>(OnStoreInitialized);
         SubscribeLocalEvent<StoreBuyFinishedEvent>(OnBuyFinished);
-        //SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEnd); // Starlight
     }
 
     /// <summary>
@@ -54,17 +51,6 @@ public sealed partial class SecondHandSystem : EntitySystem
         // Remove the SecondHandItems category from this listing so it disappears from the tab.
         purchasedItem.Categories.Remove(SecondHandStoreCategoryKey);
     }
-
-    #region Starlight
-    // We don't use the feedback system.
-    /// <summary>
-    /// Sends a feedback popup to all players at round end if the second-hand feature was active this round.
-    /// </summary>
-    //private void OnRoundEnd(RoundEndMessageEvent args)
-    //{
-    //    _feedbackManager.SendToAllSessions([SecondHandFeedbackPopupId]);
-    //}
-    #endregion
 
     /// <summary>
     /// Populates the Second Hand tab when the store is initialized, if second-hand items are enabled for this uplink.

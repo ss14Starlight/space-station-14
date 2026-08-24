@@ -6,14 +6,14 @@ using Content.Shared.Paper;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Whitelist; // Starlight
-using Content.Server._Starlight.Achievement; // Starlight: Achievements
+using Content.Shared.Whitelist;
+using Content.Server._Starlight.Achievement;
 
 namespace Content.Server._Starlight.Paper;
 
 public sealed partial class AntagOnSignSystem : EntitySystem
 {
-    [Dependency] private AchievementSystem _achievements = default!; // Starlight: Achievements
+    [Dependency] private AchievementSystem _achievements = default!;
 
     [Dependency] private AntagSelectionSystem _antag = default!;
     [Dependency] private GameTicker _gameTicker = default!;
@@ -23,8 +23,8 @@ public sealed partial class AntagOnSignSystem : EntitySystem
     private ISawmill _sawmill = default!;
 
     private readonly EntProtoId _paradoxCloneRuleId = "ParadoxCloneSpawn";
-    private const string SyndicateRecruitmentLetterId = "MailSyndicateSpamLetter"; // Starlight: Achievements
-    private const string RRSyndicateRecruitmentLetterId = "RRMailSyndicateSpamLetter"; // Starlight: Achievements
+    private const string SyndicateRecruitmentLetterId = "MailSyndicateSpamLetter";
+    private const string RRSyndicateRecruitmentLetterId = "RRMailSyndicateSpamLetter";
 
     public override void Initialize()
     {
@@ -71,13 +71,11 @@ public sealed partial class AntagOnSignSystem : EntitySystem
             var generic = fmakeantag.MakeGenericMethod(targetComp.GetType());
             generic.Invoke(_antag, [session, antag.Antag]);
         }
-        // Starlight Start: Achievements
+
         if (TryComp<MetaDataComponent>(uid, out var meta)
             && meta.EntityPrototype?.ID is SyndicateRecruitmentLetterId or RRSyndicateRecruitmentLetterId)
-        {
             _achievements.QueueUnlockAchievement(signer, "treason");
-        }
-        // Starlight End
+
         if (component.ParadoxClone)
         {
             var ruleEnt = _gameTicker.AddGameRule(_paradoxCloneRuleId);

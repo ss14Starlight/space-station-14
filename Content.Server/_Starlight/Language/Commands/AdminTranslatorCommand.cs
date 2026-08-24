@@ -162,7 +162,7 @@ public sealed class AdminTranslatorCommand : ToolshedCommand
 
     private void UpdateTranslatorHolder(Entity<BaseTranslatorComponent> translator)
     {
-        // TODO STARLIGHT pass the actual component in, this not breaking is a miracle, not a feature
+        // TODO pass the actual component in, this not breaking is a miracle, not a feature
         EntityManager.Dirty(translator);
 
         _language ??= GetSys<LanguageSystem>();

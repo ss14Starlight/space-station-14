@@ -44,11 +44,11 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private ISharedPlayerManager _playerManager = default!;
     [Dependency] private IAdminManager _adminManager = default!;
-    [Dependency] private AlertLevelSystem _alert = default!; // Starlight
-    [Dependency] private StationSystem _station = default!; // starlight
-    [Dependency] private IConfigurationManager _config = default!; // Starlight
-    [Dependency] private RoundEndSystem _roundEnd = default!; // starlight
-    [Dependency] private SharedTransformSystem _transform = default!; // Starlight
+    [Dependency] private AlertLevelSystem _alert = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private static readonly ProtoId<ListingPrototype> RevSupplyRiftListingId = "RevSupplyRiftListing";
 
@@ -466,7 +466,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
     {
         // Count active rifts (those that are in Finished state)
         int activeRiftCount = 0;
-        EntityUid rift = default; // there has to be a better way to do this? (starlight)
+        EntityUid rift = default; // there has to be a better way to do this?
         var riftsQuery = EntityQueryEnumerator<RevSupplyRiftComponent, DragonRiftComponent>();
         while (riftsQuery.MoveNext(out var uid, out var revRift, out var dragonRift))
         {
@@ -478,7 +478,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
 
         }
 
-        if (activeRiftCount == _config.GetCVar(StarlightCCVars.AutogammaRiftCount) && _config.GetCVar(StarlightCCVars.AutogammaRiftEnabled)) //#region Starlight Autogamma
+        if (activeRiftCount == _config.GetCVar(StarlightCCVars.AutogammaRiftCount) && _config.GetCVar(StarlightCCVars.AutogammaRiftEnabled))
         {
             var station = _station.GetNearestStation(rift, true);
             if (station.Owner != EntityUid.Invalid)
@@ -492,7 +492,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
                     _roundEnd.SetShuttleCallsEnabled(false);
                 }
             }
-        } //#endregion Starlight Autogamma
+        }
 
         // Find all store components
         var query = EntityQueryEnumerator<StoreComponent>();

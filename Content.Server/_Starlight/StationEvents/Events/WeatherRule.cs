@@ -18,7 +18,6 @@ public sealed partial class WeatherRule : StationEventSystem<WeatherRuleComponen
     {
         base.Started(uid, component, gameRule, args);
 
-        // Starlight - Edited
         EntityUid? chosenStation = null;
         if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
         chosenStation = stationEvent.TargetStation;
@@ -34,9 +33,8 @@ public sealed partial class WeatherRule : StationEventSystem<WeatherRuleComponen
         if (grid is null)
             return;
 
-        component.Map = Transform(grid.Value).MapID; // SL
+        component.Map = Transform(grid.Value).MapID;
 
-        // Starlight - Edited
         Timer.Spawn(component.Delay, () => _weather.TryAddWeather(component.Map, component.Weather, out _));
     }
 

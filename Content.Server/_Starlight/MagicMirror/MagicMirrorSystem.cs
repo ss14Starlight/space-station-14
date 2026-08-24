@@ -165,7 +165,7 @@ public sealed partial class MagicMirrorSystem : SharedMagicMirrorSystem
             Category = message.Category,
             Slot = message.Slot,
             Colors = message.Colors,
-            IsGlowing = message.IsGlowing, //starlight
+            IsGlowing = message.IsGlowing,
         };
 
         _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, message.Actor, doafterTime, doAfter, uid, target: target, used: uid)
@@ -211,7 +211,7 @@ public sealed partial class MagicMirrorSystem : SharedMagicMirrorSystem
         }
 
         _humanoid.SetMarkingColor(component.Target.Value, category, args.Slot, args.Colors);
-        _humanoid.SetMarkingGlowing(component.Target.Value, category, args.Slot, args.IsGlowing); //starlight
+        _humanoid.SetMarkingGlowing(component.Target.Value, category, args.Slot, args.IsGlowing);
 
         // using this makes the UI feel like total ass
         // que
@@ -375,7 +375,7 @@ public sealed partial class MagicMirrorSystem : SharedMagicMirrorSystem
         if (string.IsNullOrEmpty(marking))
             return;
 
-        _humanoid.AddMarking(component.Target.Value, marking, false, Color.Black); //starlight, glowing
+        _humanoid.AddMarking(component.Target.Value, marking, false, Color.Black);
 
         UpdateInterface(uid, component.Target.Value, component);
 

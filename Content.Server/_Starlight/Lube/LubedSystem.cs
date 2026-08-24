@@ -27,7 +27,6 @@ public sealed partial class LubedSystem : EntitySystem
         SubscribeLocalEvent<LubedComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
     }
 
-    // Starlight Start
     /// <summary>
     /// Removes the lubed condition from the target.
     /// </summary>
@@ -36,7 +35,6 @@ public sealed partial class LubedSystem : EntitySystem
         if (RemComp<LubedComponent>(uid))
             _nameMod.RefreshNameModifiers(uid);
     }
-    // Starlight End
 
     private void OnInit(EntityUid uid, LubedComponent component, ComponentInit args)
     {

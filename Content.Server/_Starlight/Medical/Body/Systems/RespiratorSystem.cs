@@ -88,8 +88,8 @@ public sealed partial class RespiratorSystem : EntitySystem
             UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
 
             if (!(_mobState.IsIncapacitated(uid) // cannot breathe in crit.
-                || HasComp<HeldBreathComponent>(uid) // Starlight Edit - hold your breath
-                || HasComp<WrappedComponent>(uid))) // Starlight Edit - cannot breathe while wrapped in a web
+                || HasComp<HeldBreathComponent>(uid)
+                || HasComp<WrappedComponent>(uid)))
             {
                 switch (respirator.Status)
                 {
@@ -109,7 +109,7 @@ public sealed partial class RespiratorSystem : EntitySystem
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {
                     respirator.LastGaspEmoteTime = _gameTiming.CurTime;
-                    if(!HasComp<HeldBreathComponent>(uid) && !HasComp<WrappedComponent>(uid)) // Starlight - suppress gasp when holding breath or wrapped, but still take suffocation damage
+                    if(!HasComp<HeldBreathComponent>(uid) && !HasComp<WrappedComponent>(uid))
                         _chat.TryEmoteWithChat(uid,
                             respirator.GaspEmote,
                             ChatTransmitRange.HideChat,

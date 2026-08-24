@@ -110,7 +110,6 @@ public sealed partial class WeatherSystem
     /// </summary>
     private void ProcessGathering(WeatherEffectProcessingState state)
     {
-        // Starlight - Start
         var query = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var xform))
         {
@@ -126,14 +125,12 @@ public sealed partial class WeatherSystem
 
             state.PendingEntities.Enqueue(uid);
         }
-        // Starlight - End
 
         state.Phase = state.PendingEntities.Count > 0
             ? EffectProcessingPhase.Applying
             : EffectProcessingPhase.Idle;
     }
 
-    // Starlight
     private bool CanWeatherAffectGridTile(EntityUid gridUid, TileRef tileRef)
     {
         var roofComp = _roofQuery.TryGetComponent(gridUid, out var rc) ? rc : null;
