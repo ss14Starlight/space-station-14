@@ -7,6 +7,8 @@ using Content.Shared.Materials;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
+using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Components;
 
 namespace Content.Shared._Starlight.Combat.Effects.EntitySystems;
 
@@ -18,34 +20,70 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
 {
     [Dependency] private INetManager _net = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<ArmorSparkEffectComponent, InventoryRelayedEvent<DamageModifyEvent>>(OnArmorDamageModify);
-        SubscribeLocalEvent<CyborgSparkEffectComponent, DamageModifyEvent>(OnCyborgDamageModify);
+        SubscribeLocalEvent<DamageableComponent, DamageModifyEvent>(OnDamageableDamageModify);
+    }
+
+    private void OnDamageableDamageModify(EntityUid uid, DamageableComponent component, DamageModifyEvent args)
+    {
+        if (!TryComp<ArmorSparkEffectComponent>(uid, out var spark))
+            return;
+
+        HandleSparkHit(uid, spark, args, false);
     }
 
     private void OnArmorDamageModify(EntityUid uid, ArmorSparkEffectComponent component, InventoryRelayedEvent<DamageModifyEvent> args)
+    {
+        HandleSparkHit(uid, component, args.Args, true);
+    }
+
+    private bool HasHighPiercingResistance(EntityUid uid)
+    {
+        if (TryComp<DamageableComponent>(uid, out var damageable) &&
+            damageable.DamageModifierSetId != null &&
+            _prototypeManager.TryIndex(damageable.DamageModifierSetId, out var modifierSet) &&
+            modifierSet.Coefficients.TryGetValue("Piercing", out var pierceCoeff))
+        {
+            return pierceCoeff <= 0.2f;
+        }
+
+        return false;
+    }
+    private bool AlwaysSparks(EntityUid uid, ArmorSparkEffectComponent component)
+    {
+        if (component.AlwaysSparks)
+            return true;
+
+        if (TryComp<PhysicalCompositionComponent>(uid, out var composition) &&
+            composition.MaterialComposition.ContainsKey("Rock"))
+            return true;
+
+        return false;
+    }
+
+    private void HandleSparkHit(EntityUid uid, ArmorSparkEffectComponent component, DamageModifyEvent args, bool isWornArmor)
     {
         // Only process on server
         if (!_net.IsServer)
             return;
 
         // Check if this is a hitscan damage event
-        if (!IsHitscanDamage(args.Args))
+        if (!IsHitscanDamage(args))
             return;
 
-        // Check if the bullet type is SP or HP
-        if (!IsSPOrHPBullet(args.Args))
+        if (!IsSPOrHPBullet(args))
             return;
 
-        // Check if armor meets the criteria (80%+ pierce resist OR Rock material)
-        if (!ArmorMeetsCriteria(uid, args.Args))
+        if (!AlwaysSparks(uid, component) && (!isWornArmor || !HasHighPiercingResistance(uid)))
             return;
 
-        // Spawn the spark effect
-        SpawnSparkEffect(uid, component, args.Args.TargetSlots);
+        SpawnSparkEffect(uid, component, isWornArmor);
     }
 
     private bool IsHitscanDamage(DamageModifyEvent args)
@@ -62,79 +100,24 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
         return args.ArmorPenetration < 0;
     }
 
-    private bool ArmorMeetsCriteria(EntityUid armorUid, DamageModifyEvent args)
+    
+    private void SpawnSparkEffect(EntityUid uid, ArmorSparkEffectComponent component, bool useParent = false)
     {
-        // Check for Rock material
-        if (TryComp<PhysicalCompositionComponent>(armorUid, out var composition))
-        {
-            if (composition.MaterialComposition.ContainsKey("Rock"))
-                return true;
-        }
+        var transform = Transform(uid);
+        var target = useParent ? transform.ParentUid : uid;
 
-        // Check for 80%+ pierce resistance using CoefficientQueryEvent
-        if (HasComp<ArmorComponent>(armorUid))
-        {
-            var coeffQuery = new CoefficientQueryEvent(SlotFlags.OUTERCLOTHING);
-            var relayedEvent = new InventoryRelayedEvent<CoefficientQueryEvent>(coeffQuery, armorUid);
-            RaiseLocalEvent(armorUid, relayedEvent);
-
-            if (coeffQuery.DamageModifiers.Coefficients.TryGetValue("Piercing", out var pierceCoeff))
-            {
-                // Coefficient of 0.2 or less means 80%+ damage reduction
-                return pierceCoeff <= 0.2f;
-            }
-        }
-
-        return false;
-    }
-
-    private void SpawnSparkEffect(EntityUid armorUid, ArmorSparkEffectComponent component, SlotFlags targetSlots)
-    {
-        // Find the entity wearing the armor (the target of the damage)
-        var armorTransform = Transform(armorUid);
-        var wearer = armorTransform.ParentUid;
-
-        if (!Exists(wearer))
+        if (!Exists(target))
             return;
 
-        var wearerTransform = Transform(wearer);
+        var targetTransform = Transform(target);
 
         // Calculate random offset within the tile
         var offsetX = _random.NextFloat(-component.MaxOffset, component.MaxOffset);
         var offsetY = _random.NextFloat(-component.MaxOffset, component.MaxOffset);
         var offset = new Vector2(offsetX, offsetY);
 
-        // Spawn the effect at the wearer's position with offset
-        var effectCoords = wearerTransform.Coordinates.Offset(offset);
-
-        SparkEffectAt(effectCoords, component.SparkEffectPrototype, component.RicochetSoundCollection);
-    }
-
-    private void OnCyborgDamageModify(EntityUid uid, CyborgSparkEffectComponent component, DamageModifyEvent args)
-    {
-        // Only process on server
-        if (!_net.IsServer)
-            return;
-
-        // Check if this is a hitscan damage event
-        if (!IsHitscanDamage(args))
-            return;
-
-        // For cyborgs, trigger on ANY hitscan bullet (no armor penetration check)
-        SpawnCyborgSparkEffect(uid, component);
-    }
-
-    private void SpawnCyborgSparkEffect(EntityUid cyborgUid, CyborgSparkEffectComponent component)
-    {
-        var cyborgTransform = Transform(cyborgUid);
-
-        // Calculate random offset within the tile
-        var offsetX = _random.NextFloat(-component.MaxOffset, component.MaxOffset);
-        var offsetY = _random.NextFloat(-component.MaxOffset, component.MaxOffset);
-        var offset = new Vector2(offsetX, offsetY);
-
-        // Spawn the effect at the cyborg's position with offset
-        var effectCoords = cyborgTransform.Coordinates.Offset(offset);
+        // Spawn the effect at the targets's position with offset
+        var effectCoords = targetTransform.Coordinates.Offset(offset);
 
         SparkEffectAt(effectCoords, component.SparkEffectPrototype, component.RicochetSoundCollection);
     }
