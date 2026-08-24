@@ -1,39 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: Increased Eep melee damage.
-    type: Tweak
-  id: 407410
-  time: '2026-08-10T14:38:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5564
-- author: Mack
-  changes:
-  - message: The plumbing filter can now take up to 10 reagents.
-    type: Tweak
-  id: 407411
-  time: '2026-08-10T14:38:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5460
-- author: Mack
-  changes:
-  - message: Inline plumbing filter.
-    type: Add
-  id: 407412
-  time: '2026-08-10T14:38:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5460
-- author: BeptolCorp
-  changes:
-  - message: Added the track Null Scar Gaze by Beptol Corporation Acoustics to the game lobby.
-    type: Add
-  id: 407413
-  time: '2026-08-10T14:38:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5507
-- author: Swonki
-  changes:
-  - message: Exosuit drills blunt damage values reduced.
-    type: Tweak
-  id: 407414
-  time: '2026-08-10T15:07:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5562
 - author: Orhu
   changes:
   - message: (Sepultum) Added Radio Station.
@@ -2799,4 +2764,39 @@ Entries:
   id: 407809
   time: '2026-08-21T16:50:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5771
+- author: STARLIGHT TEAM
+  changes:
+  - message: Borg chassis names now synchronize with inserted brains
+    type: Add
+  id: 407810
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: STARLIGHT TEAM
+  changes:
+  - message: Entity naming (Intellicard/AI core) was unified and fixed
+    type: Tweak
+  id: 407811
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: STARLIGHT TEAM
+  changes:
+  - message: Entitys that have their intelligence removed by intellicard, reset to default names
+    type: Tweak
+  id: 407812
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: STARLIGHT TEAM
+  changes:
+  - message: Intellicard entities can now be transfered to borg/borg brains/MMI as intended
+    type: Fix
+  id: 407813
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: Mack
+  changes:
+  - message: missing values for the reactor guidebook temps.
+    type: Fix
+  id: 407814
+  time: '2026-08-23T10:38:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5797
 Order: -1
