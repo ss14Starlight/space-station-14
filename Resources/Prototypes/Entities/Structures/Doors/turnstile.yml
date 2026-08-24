@@ -131,19 +131,42 @@
     - HideContextMenu
 
 # Genpop
+- type: entity
+  id: DoorElectronicsGenpopEnter
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - GenpopEnter
+    - Security
+  - type: AccessReader
+    access: [["GenpopEnter"], ["Security"]]
+
+- type: entity
+  id: DoorElectronicsGenpopLeave
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - GenpopLeave
+    - Security
+  - type: AccessReader
+    access: [["GenpopLeave"], ["Security"]]
 
 - type: entity
   id: TurnstileGenpopEnter
   parent: Turnstile
   suffix: Genpop Enter
   components:
-  - type: AccessReader
-    access: [["GenpopEnter"], ["Security"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGenpopEnter ]
 
 - type: entity
   id: TurnstileGenpopLeave
   parent: Turnstile
   suffix: Genpop Leave
   components:
-  - type: AccessReader
-    access: [["GenpopLeave"], ["Security"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGenpopLeave ]
