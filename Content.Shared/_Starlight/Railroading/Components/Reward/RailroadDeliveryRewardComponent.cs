@@ -7,8 +7,8 @@ namespace Content.Shared._Starlight.Railroading.Components.Reward;
 [RegisterComponent]
 public sealed partial class RailroadDeliveryRewardComponent : Component
 {
-    [DataField("delivery", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string Delivery;
+    [DataField("delivery")]
+    public EntProtoId Delivery;
 
     [DataField]
     public ProtoId<LocalizedDatasetPrototype>? Dataset = null;
