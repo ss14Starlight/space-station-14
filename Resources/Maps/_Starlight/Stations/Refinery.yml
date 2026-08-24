@@ -131318,8 +131318,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 45
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 20815
@@ -135220,8 +135218,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 45
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentScrubberAlt3
