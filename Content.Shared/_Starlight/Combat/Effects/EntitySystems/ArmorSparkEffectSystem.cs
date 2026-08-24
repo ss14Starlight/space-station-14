@@ -100,7 +100,6 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
         return args.ArmorPenetration < 0;
     }
 
-    
     private void SpawnSparkEffect(EntityUid uid, ArmorSparkEffectComponent component, bool useParent = false)
     {
         var transform = Transform(uid);
