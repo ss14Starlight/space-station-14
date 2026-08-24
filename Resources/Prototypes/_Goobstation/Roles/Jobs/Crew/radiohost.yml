@@ -10,6 +10,8 @@
   - Maintenance
   - Journalism
   - Service
+  extendedAccess: # Starlight
+  - Theatre # Starlight
 
 - type: startingGear
   id: RadioHostGear

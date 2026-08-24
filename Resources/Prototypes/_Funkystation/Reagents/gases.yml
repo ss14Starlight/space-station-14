@@ -7,7 +7,7 @@
   flavor: bitter
   color: "#9370db"
   metabolisms:
-    Gas:
+    Respiration: # Starlight
       effects:
       - !type:Emote
         conditions:
@@ -121,7 +121,7 @@
   flavor: strange
   color: "#90560b"
   metabolisms:
-    Gas:
+    Respiration: # Starlight
       effects:
       # Starlight BEGIN
       - !type:EvenHealthChange
@@ -168,7 +168,7 @@
           min: 4
         boozePower: 35
 
-    Medicine:
+    Bloodstream: # Starlight
       effects:
       - !type:HealthChange
         damage:
@@ -202,7 +202,7 @@
   flavor: sour
   color: "#90560B"
   metabolisms:
-    Gas:
+    Respiration: # Starlight
       effects:
       - !type:NitriumMovementSpeedModifier
         conditions:
@@ -266,7 +266,7 @@
   flavor: bitter
   color: "#7b68ee"
   metabolisms:
-    Gas:
+    Respiration: # Starlight
       effects:
       - !type:Oxygenate
         factor: 8
@@ -329,7 +329,7 @@
   flavor: bitter
   color: "#1c1a1a"
   metabolisms:
-    Gas:
+    Respiration: # Starlight
       effects:
       - !type:HealthChange
         conditions:

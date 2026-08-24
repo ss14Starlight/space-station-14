@@ -132,6 +132,8 @@ ghost-role-information-kiki-description = An honorable member of the kobold soci
 ghost-role-information-stirstir-name = Stir Stir
 ghost-role-information-stirstir-description = A disreputable monkey who should not be trusted. A real cell stuffer.
 
+ghost-role-information-syndicate-mothroach-reinforcement-name = Syndicate Mobroach
+ghost-role-information-syndicate-mothroach-reinforcement-description = Someone needs reinforcements. You, a trained mobroach, will help them.
 ghost-role-information-icesculpture-name = Ice sculpture
 ghost-role-information-icesculpture-description = A sculpture of ice given sentience by magic, obey your master!
 ghost-role-information-icesculpture-rules = Ensure your summoner survives, defend them at all cost. You were made for this.

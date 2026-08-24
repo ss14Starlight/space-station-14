@@ -18,6 +18,26 @@
   text: "/ServerInfo/_Starlight/Guidebook/Engineering/PlumbingMachines.xml"
 
 - type: guideEntry
+  id: Gasses2
+  name: guide-entry-gasses2
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/Gasses2.xml"
+
+- type: guideEntry
+  id: Gasses3
+  name: guide-entry-gasses3
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/Gasses3.xml"
+
+- type: guideEntry
+  id: Gasses4
+  name: guide-entry-gasses4
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/Gasses4.xml"
+
+- type: guideEntry
+  id: Gasses5
+  name: guide-entry-gasses5
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/Gasses5.xml"
+
+- type: guideEntry
   id: Supermatter
   name: guide-entry-sl-engineering-supermatter
   text: "/ServerInfo/_Starlight/Guidebook/Engineering/Supermatter.xml"

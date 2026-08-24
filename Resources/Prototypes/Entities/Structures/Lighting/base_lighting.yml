@@ -36,7 +36,7 @@
     energy: 0.8
     radius: 10
     softness: 1
-    offset: "0, 0.495"
+    offset: "0, -0.495" # Starlight - reverts Upstream #44843, which made wall mounted lights look extremely sharp
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -324,7 +324,7 @@
     enabled: false
   - type: PointLight
     enabled: false
-    offset: "0, 0.495"
+    offset: "0, -0.495" # Starlight - reverts Upstream #44843, which made wall mounted lights look extremely sharp
   - type: ContainerContainer
     containers:
       light_bulb: !type:ContainerSlot

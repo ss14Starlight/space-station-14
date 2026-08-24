@@ -29,4 +29,4 @@
     speedModifier: 2.0
     useSound:
       collection: Welder
-    qualities: Welding
+    qualities: [ Welding ]

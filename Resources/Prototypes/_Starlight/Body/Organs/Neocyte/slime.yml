@@ -13,12 +13,7 @@
     - type: Metabolizer
       maxReagents: 6
       metabolizerTypes: [ Slime, Animal ]
-      removeEmpty: true
-      groups:
-        - id: Food
-        - id: Drink
-        - id: Alcohol
-          rateModifier: 2.5
+      stages: [ Digestion, Metabolites ]
     - type: SolutionContainerManager
       solutions:
         stomach:
@@ -38,11 +33,7 @@
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Slime, Neocyte ]
-    removeEmpty: true
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]
   - type: OrganDamage
     damage:
       types:

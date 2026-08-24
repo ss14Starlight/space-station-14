@@ -8,10 +8,7 @@
     updateInterval: 0.75
     maxReagents: 3
     metabolizerTypes: [ Animal ]
-    groups:
-    - id: Food
-    - id: Drink
-
+    stages: [ Digestion ]
 - type: entity
   id: OrganNeoLagomorphHeart
   parent: OrganNeocyteHeart
@@ -22,7 +19,4 @@
     updateInterval: 0.75
     maxReagents: 2
     metabolizerTypes: [ Neocyte ]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]

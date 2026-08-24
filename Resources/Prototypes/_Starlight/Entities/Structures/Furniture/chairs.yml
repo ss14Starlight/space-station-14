@@ -214,3 +214,42 @@
     - type: Sprite
       sprite: _Starlight/Structures/Furniture/Chairs/carp.rsi
       state: carp
+
+#Froggy Chair
+- type: entity
+  name: froggy chair
+  id: ChairFroggy
+  parent: SeatBase
+  description: The coveted froggy chair, beloved by the masses.
+  components:
+    - type: Transform
+      anchored: true
+    - type: Physics
+      bodyType: Static
+    - type: Anchorable
+    - type: Rotatable
+    - type: Sprite
+      sprite: _Starlight/Structures/Furniture/Chairs/froggy_chair.rsi
+      state: froggy_chair
+    - type: Construction
+      graph: ChairSL
+      node: chairFroggy
+
+- type: entity
+  name: lovey chair
+  id: ChairLovey
+  parent: SeatBase
+  description: Wait a second ... this isn't a froggy chair. Well, whatever it is, it's repulsively cute!
+  components:
+    - type: Transform
+      anchored: true
+    - type: Physics
+      bodyType: Static
+    - type: Anchorable
+    - type: Rotatable
+    - type: Sprite
+      sprite: _Starlight/Structures/Furniture/Chairs/lovey_chair.rsi
+      state: lovey_chair
+    - type: Construction
+      graph: ChairSL
+      node: chairLovey
