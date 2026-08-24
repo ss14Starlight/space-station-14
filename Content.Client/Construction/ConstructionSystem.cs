@@ -304,7 +304,6 @@ namespace Content.Client.Construction
             _ghosts.Add(comp.GhostId, ghost.Value);
 
             var sprite = Comp<SpriteComponent>(ghost.Value);
-            _sprite.SetColor((ghost.Value, sprite), new Color(48, 255, 48, 128));
 
             if (targetProto.TryGetComponent(out IconComponent? icon, EntityManager.ComponentFactory))
             {
@@ -319,39 +318,19 @@ namespace Content.Client.Construction
                 var targetSprite = EnsureComp<SpriteComponent>(dummy);
                 EntityManager.System<AppearanceSystem>().OnChangeData(dummy, targetSprite);
 
-                var destIndex = 0; // Starlight: Track how many layers we've actually added
-                for (var i = 0; i < targetSprite.AllLayers.Count(); i++)
+                _sprite.CopySprite((dummy, targetSprite), (ghost.Value, sprite));
+
+                for (var i = 0; i < sprite.AllLayers.Count(); i++)
                 {
-                    if (!targetSprite[i].Visible || !targetSprite[i].RsiState.IsValid)
-                        continue;
-
-                    var rsi = targetSprite[i].Rsi ?? targetSprite.BaseRSI;
-                    if (rsi is null || !rsi.TryGetState(targetSprite[i].RsiState, out var state) ||
-                        state.StateId.Name is null)
-                        continue;
-
-                    // Starlight START
-                    // Most of these lines only changed i => destIndex. By counting how many layers we add we prevent
-                    // empty layers since empty/missing layer indices causes bugs *elsewhere*. Yay.
-                    _sprite.AddBlankLayer((ghost.Value, sprite), destIndex);
-                    _sprite.LayerSetSprite((ghost.Value, sprite), destIndex, new SpriteSpecifier.Rsi(rsi.Path, state.StateId.Name));
-                    sprite.LayerSetShader(destIndex, "unshaded");
-                    _sprite.LayerSetVisible((ghost.Value, sprite), destIndex, true);
-
-                    // This is new: Fix offset not being copied
-                    _sprite.LayerSetOffset((ghost.Value, sprite), destIndex,
-                        targetSprite.Offset + ((SpriteComponent.Layer)targetSprite[i]).Offset);
-
-                    // Count the added layer
-                    destIndex++;
-                    // Starlight END
+                    sprite.LayerSetShader(i, "unshaded");
                 }
 
-                sprite.NoRotation = targetSprite.NoRotation; // Starlight: Fix NoRotation also being ignored.
                 Del(dummy);
             }
             else
                 return false;
+
+            _sprite.SetColor((ghost.Value, sprite), new Color(48, 255, 48, 128));
 
             if (prototype.CanBuildInImpassable)
                 EnsureComp<WallMountComponent>(ghost.Value).Arc = new(Math.Tau);

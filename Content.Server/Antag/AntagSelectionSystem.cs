@@ -63,12 +63,22 @@ namespace Content.Server.Antag;
 public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelectionComponent>
 {
     #region Starlight data collection
+    // Metrics for antag selection and spawning. These are used to track how many antags are spawned, how many are selected, and how many are actually assigned to players.
     private static readonly Counter _antagsSpawned = Metrics.CreateCounter(
         "sl_antags_spawned",
         "Number of antagonists spawned by type",
         ["type"]
     );
+
+    private static readonly Gauge _antagSelectionCounts = Metrics.CreateGauge(
+        "sl_antag_selection_count",
+        "Antagonist selection counts by game rule, antagonist type, and state",
+        ["rule", "type", "state"]
+    );
     #endregion
+
+    private static readonly TimeSpan InitialSelectionAuditDelay = TimeSpan.FromMinutes(5); // Starlight, audit the selection after 5 minutes to ensure that all antags have actually been selected
+    private static readonly TimeSpan SelectionAuditRetryDelay = TimeSpan.FromMinutes(1); // Starlight, retry the selection audit every 1 minute if it fails, up to MaxSelectionAuditRetries (default 3)
     [Dependency] private IBanManager _ban = default!;
     [Dependency] private IChatManager _chat = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
@@ -150,28 +160,95 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     {
         base.Started(uid, component, gameRule, args);
 
-        // If we're not in round, don't spawn or assign antags. Those will be handled by RulePlayerSpawning, and RulePlayerJobs
-        if (GameTicker.RunLevel != GameRunLevel.InRound)
+        #region Starlight
+        if (component.AssignmentHandled)
             return;
 
-        if (component.AssignmentHandled)
+        // Round-start rules get this reset after jobs are assigned. Mid-round rules are audited
+        // five minutes after activation, then retried only while another attempt can help.
+        component.NextSelectionAudit = Timing.CurTime + InitialSelectionAuditDelay;
+        component.SelectionAuditRetries = 0;
+        #endregion
+
+        // If we're not in round, don't spawn or assign antags. Those will be handled by RulePlayerSpawning, and RulePlayerJobs
+        if (GameTicker.RunLevel != GameRunLevel.InRound)
             return;
 
         // Antags haven't been selected so we need to select them! Only if we select when the game rule starts though!
         if (component.PreSelectionsComplete)
         {
             AssignPreSelectedSessions((uid, component));
+            EnforceAntagTargets((uid, component), GetActivePlayers().ToArray()); // Starlight, this is a safety check to ensure that all antags have been assigned to players, and if not, we will try to assign them again.
             return;
         }
 
-        // If pre-selections haven't completed, then we need to select and assign antags.
+        // A rule added after spawning missed its configured round-start selection event, so every
+        // player-selecting timing must fall back to selecting live players when the rule activates.
         var players = GetActivePlayers().ToArray();
 
-        if (component.SelectionTime == RuleStarted) // Only pre-select antags if we pre-select on rule start
-            AssignAntags((uid, component), players);
-        else // Otherwise, we only spawn the ghost roles!
+        #region Starlight
+        //if (component.SelectionTime == RuleStarted) // Only pre-select antags if we pre-select on rule start
+        //    AssignAntags((uid, component), players);
+        //else // Otherwise, we only spawn the ghost roles!
+        // If the selection time is set to never, we don't want to assign antags, we just want to spawn ghost roles for the game rule.
+        if (component.SelectionTime == Never)
             SpawnGhostRoles((uid, component), players.Length);
+        else
+            AssignAntags((uid, component), players);
+
+        // AssignAntags already exhausts the live pool and creates fallback ghost roles. This final
+        // pass also verifies their actual counts and catches failed spawner creation immediately.
+        EnforceAntagTargets((uid, component), players);
+        component.AssignmentHandled = true;
+        #endregion
     }
+
+    #region Starlight
+    // This is a safety check to ensure that all antags have been assigned to players, and if not, we will try to assign them again.
+    protected override void ActiveTick(EntityUid uid,
+        AntagSelectionComponent component,
+        GameRuleComponent gameRule,
+        float frameTime)
+    {
+        base.ActiveTick(uid, component, gameRule, frameTime);
+
+        if (GameTicker.RunLevel != GameRunLevel.InRound)
+            return;
+
+        // Covers rules activated in the small window after the spawning events but before the
+        // ticker changes to InRound. They must not wait for the five-minute safety audit.
+        if (!component.AssignmentHandled)
+        {
+            EnforceAntagTargets((uid, component), GetActivePlayers().ToArray());
+            component.AssignmentHandled = true;
+            return;
+        }
+
+        if (component.NextSelectionAudit is not { } nextAudit ||
+            Timing.CurTime < nextAudit)
+        {
+            return;
+        }
+
+        var shouldRetry = EnforceAntagTargets((uid, component), GetActivePlayers().ToArray());
+        if (!shouldRetry)
+        {
+            component.NextSelectionAudit = null;
+            return;
+        }
+
+        var maxRetries = Math.Max(0, component.MaxSelectionAuditRetries);
+        if (component.SelectionAuditRetries >= maxRetries)
+        {
+            Log.Error($"Antag selection audit for {ToPrettyString(uid)} exhausted its configured retry limit of {maxRetries}.");
+            component.NextSelectionAudit = null;
+            return;
+        }
+
+        component.SelectionAuditRetries++;
+        component.NextSelectionAudit = Timing.CurTime + SelectionAuditRetryDelay;
+    }
+    #endregion
 
     private void OnTakeGhostRole(Entity<GhostRoleAntagSpawnerComponent> ent, ref TakeGhostRoleEvent args)
     {
@@ -268,10 +345,9 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             GameTicker.PlayerJoinGame(session);
         }
 
-        LogInitialAntagSelectionStats(selectionStats); // Starlight
-
         // Make ghost role spawners for any remaining rules!
         SpawnGhostRoles(_preSpawnRules);
+        LogInitialAntagSelectionStats(selectionStats); // Starlight
         _preSpawnRules = null; // Clear the list, we don't want it anymore
     }
 
@@ -306,7 +382,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!Exists(uid) || HasComp<EndedGameRuleComponent>(uid))
                 continue;
 
-            AssignPendingReplacements((uid, component), players, args.Players.Length);
+            AssignPendingReplacements((uid, component), players, players.Length);
         }
 
         var selectionStats = GetInitialAntagSelectionStats(args.Players, _postSpawnRules);
@@ -320,10 +396,9 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             AssignAntag(session, ref _postSpawnRules);
         }
 
-        LogInitialAntagSelectionStats(selectionStats); // Starlight
-
         // Make ghost role spawners for any remaining rules!
         SpawnGhostRoles(_postSpawnRules);
+        LogInitialAntagSelectionStats(selectionStats); // Starlight
         _postSpawnRules = null; // Clear the list since it's been used up!
 
         #region Starlight
@@ -333,13 +408,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         var pendingQuery = QueryActiveRules();
         while (pendingQuery.MoveNext(out var pendingUid, out _, out var pendingComp, out _))
         {
-            if (pendingComp.PendingReplacements.Count == 0 ||
-                HasComp<EndedGameRuleComponent>(pendingUid))
-            {
+            if (HasComp<EndedGameRuleComponent>(pendingUid))
                 continue;
-            }
 
-            AssignPendingReplacements((pendingUid, pendingComp), players, players.Length);
+            if (pendingComp.PendingReplacements.Count > 0)
+                AssignPendingReplacements((pendingUid, pendingComp), players, players.Length);
+
+            EnforceAntagTargets((pendingUid, pendingComp), players);
+            pendingComp.AssignmentHandled = true;
+            pendingComp.SelectionAuditRetries = 0;
+            pendingComp.NextSelectionAudit = Timing.CurTime + InitialSelectionAuditDelay;
         }
 
         /*foreach (var antag in _delayedAntags)
@@ -546,14 +624,162 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         foreach (var stat in stats)
         {
             var preselected = stat.GameRule.Comp.PreSelectedSessions.TryGetValue(stat.Definition.ID, out var sessions) ? sessions.Count : 0;
-            var unfilled = Math.Max(0, stat.Target - preselected);
+            var assigned = GetAssignedAntagCount(stat.GameRule, stat.Definition.ID);
+            var ghostRoles = GetPendingAntagGhostRoleCount(stat.GameRule, stat.Definition.ID);
+            var unfilled = Math.Max(0, stat.Target - preselected - ghostRoles);
             var message = $"{stat.Definition.ID}: target={stat.Target}, eligible={stat.Eligible}, " +
-                $"preselected={preselected}, unfilled={unfilled}. " +
+                $"preselected={preselected}, assigned={assigned}, ghostRoles={ghostRoles}, unfilled={unfilled}. " +
                 $"Gamerule: {ToPrettyString(stat.GameRule)}";
 
+            UpdateAntagSelectionMetrics(stat.GameRule, stat.Definition, stat.Target, assigned, ghostRoles);
             Log.Info(message);
             _adminLogger.Add(LogType.AntagSelection, $"{message}");
         }
+    }
+
+    /// <summary>
+    /// Updates the antag selection metrics for a given game rule and antag definition.
+    /// Just for logging, pretty much.
+    /// </summary>
+    private void UpdateAntagSelectionMetrics(
+        Entity<AntagSelectionComponent> gameRule,
+        AntagSpecifierPrototype definition,
+        int expected,
+        int assigned,
+        int ghostRoles,
+        int forcedAssignments = 0,
+        int ghostRolesCreated = 0)
+    {
+        var rule = MetaData(gameRule).EntityPrototype?.ID ?? "unknown";
+        var type = definition.ID;
+
+        _antagSelectionCounts.WithLabels(rule, type, "expected").Set(expected);
+        _antagSelectionCounts.WithLabels(rule, type, "assigned").Set(assigned);
+        _antagSelectionCounts.WithLabels(rule, type, "ghost_roles").Set(ghostRoles);
+        _antagSelectionCounts.WithLabels(rule, type, "unassigned").Set(Math.Max(0, expected - assigned));
+        _antagSelectionCounts.WithLabels(rule, type, "uncovered").Set(Math.Max(0, expected - assigned - ghostRoles));
+        _antagSelectionCounts.WithLabels(rule, type, "forced_assignments").Set(forcedAssignments);
+        _antagSelectionCounts.WithLabels(rule, type, "ghost_roles_created").Set(ghostRolesCreated);
+    }
+
+    /// <summary>
+    /// Enforces each rule's cached primary-selection target, allowing latejoins to raise it
+    /// only when LateJoinAdditional is enabled. Missing live-player slots are retried through normal
+    /// antagonist selection, and any remaining slots are reserved as ghost roles only for antagonist
+    /// definitions with a configured SpawnerPrototype.
+    /// Returns true when a timed repair should be retried because an eligible live assignment
+    /// or a configured ghost-role spawner failed.
+    /// aka: "antags didn't roll correctly, screw it, try again"
+    /// </summary>
+    private bool EnforceAntagTargets(
+        Entity<AntagSelectionComponent> gameRule,
+        IList<ICommonSession> players)
+    {
+        var targets = new Dictionary<ProtoId<AntagSpecifierPrototype>,
+            (AntagSpecifierPrototype Definition, int Target, int AssignedBefore, int EligibleBefore)>();
+        var shortfalls = new List<AntagCount>();
+
+        foreach (var selector in gameRule.Comp.Antags)
+        {
+            if (!Proto.Resolve(selector.Proto, out var definition))
+                continue;
+
+            // SelectionTargets captures the rule's primary-selection target. Latejoins may
+            // only raise that target when LateJoinAdditional explicitly allows additional antags.
+            // If this rule somehow missed primary selection entirely, calculate its initial target now.
+            var hasCachedTarget = gameRule.Comp.SelectionTargets.TryGetValue(definition.ID, out var cachedTarget);
+            var target = cachedTarget;
+            if (!hasCachedTarget || gameRule.Comp.LateJoinAdditional)
+            {
+                var currentTarget = GetTargetAntagCount(gameRule, players.Count, definition);
+                target = hasCachedTarget ? Math.Max(cachedTarget, currentTarget) : currentTarget;
+            }
+
+            gameRule.Comp.SelectionTargets[definition.ID] = target;
+
+            var assigned = GetAssignedAntagCount(gameRule, definition.ID);
+            var eligible = gameRule.Comp.SelectionTime == Never || !definition.PickPlayer
+                ? 0
+                : players.Count(player =>
+                    CanBeAntag(player, gameRule, definition) &&
+                    player.AttachedEntity is { } entity &&
+                    IsSelectedProfileValidForAntag(player, entity, null, definition));
+            targets[definition.ID] = (definition, target, assigned, eligible);
+
+            if (gameRule.Comp.SelectionTime != Never && definition.PickPlayer && assigned < target)
+                shortfalls.Add((definition, target - assigned));
+        }
+
+        // AssignAntag performs the existing preference, ban, job, species/profile, entity,
+        // and multi-antag checks. Removing each session after one pass avoids retrying a player
+        // forever while still allowing later audits to consider new or newly eligible players.
+        var weightedPool = GetWeightedPlayerPool(players);
+        while (shortfalls.Count > 0 && RobustRandom.TryPickAndTake(weightedPool, out var session))
+            AssignAntag(gameRule, session, ref shortfalls);
+
+        var shouldRetry = false;
+        foreach (var (_, (definition, target, assignedBefore, eligibleBefore)) in targets)
+        {
+            var assigned = GetAssignedAntagCount(gameRule, definition.ID);
+            var forcedAssignments = Math.Max(0, assigned - assignedBefore);
+            var neededGhostRoles = Math.Max(0, target - assigned);
+            var pendingGhostRoles = _ghostRole.GhostRoles
+                .Where(role =>
+                    !role.Comp.Taken &&
+                    TryComp<GhostRoleAntagSpawnerComponent>(role.Owner, out var spawner) &&
+                    spawner.Rule == gameRule.Owner &&
+                    spawner.Definition == definition.ID)
+                .ToList();
+
+            // A live repair assignment supersedes one fallback reservation. Close only the excess
+            // roles so taking an existing ghost role can never make the rule exceed its target.
+            for (var i = neededGhostRoles; i < pendingGhostRoles.Count; i++)
+            {
+                var role = pendingGhostRoles[i];
+                _ghostRole.MarkGhostRoleTaken(role);
+                QueueDel(role.Owner);
+            }
+
+            var keptGhostRoles = Math.Min(neededGhostRoles, pendingGhostRoles.Count);
+            var missingGhostRoles = neededGhostRoles - keptGhostRoles;
+            if (missingGhostRoles > 0)
+                SpawnGhostRoles(gameRule, definition, missingGhostRoles);
+
+            var finalGhostRoles = GetPendingAntagGhostRoleCount(gameRule, definition.ID);
+            var ghostRolesCreated = Math.Max(0, finalGhostRoles - keptGhostRoles);
+            var unassigned = Math.Max(0, target - assigned);
+            var uncovered = Math.Max(0, unassigned - finalGhostRoles);
+            var message = $"{definition.ID}: target={target}, eligible={eligibleBefore}, assigned={assigned}, " +
+                $"ghostRoles={finalGhostRoles}, forced={forcedAssignments}, " +
+                $"ghostRolesCreated={ghostRolesCreated}, unassigned={unassigned}, uncovered={uncovered}. " +
+                $"Gamerule: {ToPrettyString(gameRule)}";
+
+            UpdateAntagSelectionMetrics(gameRule, definition, target, assigned, finalGhostRoles, forcedAssignments, ghostRolesCreated);
+
+            // Do not keep retrying an if we literally don't have enough players who qualify.
+            // If every currently eligible, opted-in player would still leave us below target,
+            // ghost roles (if the antag allows them) are the final result. Retry only on a
+            // failed assignment or failed spawner.
+            var liveRetryPossible = definition.PickPlayer &&
+                gameRule.Comp.SelectionTime != Never &&
+                assigned < target &&
+                assignedBefore + eligibleBefore >= target;
+            var ghostSpawnerFailed = uncovered > 0 && definition.SpawnerPrototype is not null;
+            var repairFailed = liveRetryPossible || ghostSpawnerFailed;
+
+            // An uncovered target is expected when there are not enough eligible players and the
+            // definition has no ghost-role fallback. Only report an error when a repair path that
+            // should have worked actually failed.
+            if (repairFailed)
+                Log.Warning(message);
+            else
+                Log.Info(message);
+
+            _adminLogger.Add(LogType.AntagSelection, $"{message}");
+            shouldRetry |= repairFailed;
+        }
+
+        return shouldRetry;
     }
     #endregion
 

@@ -12,6 +12,7 @@
         eyes: OrganNeocyteEyes
         tongue: OrganNeocyteTongueForked
         eye_implant: null
+        nose_implant: null # 🌟Starlight🌟
         brain_implant: BrainImplantNexus
     torso:
       part: TorsoAvali
