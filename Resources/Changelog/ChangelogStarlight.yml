@@ -1,13 +1,6 @@
 Entries:
 - author: Orhu
   changes:
-  - message: (Sepultum) Added Station Radios to various spots around the station.
-    type: Add
-  id: 407416
-  time: '2026-08-10T15:25:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5560
-- author: Orhu
-  changes:
   - message: (Sepultum) Reporter doors now require Journalism access to open.
     type: Tweak
   id: 407417
@@ -2799,4 +2792,11 @@ Entries:
   id: 407815
   time: '2026-08-24T09:00:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5804
+- author: SeaborneProto
+  changes:
+  - message: Fixed Manor brig door to not be maints access!
+    type: Fix
+  id: 407816
+  time: '2026-08-24T09:22:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5781
 Order: -1
