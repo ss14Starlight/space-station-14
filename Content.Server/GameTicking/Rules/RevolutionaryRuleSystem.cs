@@ -30,6 +30,7 @@ using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.Store;
 using Robust.Shared.Player;
 using Content.Server._Starlight.Achievement;
 using Content.Server.AlertLevel;
@@ -446,7 +447,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                     var uplinkOwnerComp = EnsureComp<USSPUplinkOwnerComponent>(uplinkUid.Value);
                     uplinkOwnerComp.OwnerUid = ev.User.Value;
 
-                    var currencyToAdd = new Dictionary<string, FixedPoint2> { { "Telebond", FixedPoint2.New(1) } };
+                    var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Telebond", FixedPoint2.New(1) } };
                     var success = storeSystem.TryAddCurrency(currencyToAdd, uplinkUid.Value);
 
                     // Debug log to see the updated telebond value
@@ -1180,7 +1181,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
         // Add Conversion to all uplinks
         foreach (var uplinkEntity in uplinkEntities)
         {
-            var currencyToAdd = new Dictionary<string, FixedPoint2> { { "Conversion", FixedPoint2.New(1) } };
+            var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Conversion", FixedPoint2.New(1) } };
             var success = storeSystem.TryAddCurrency(currencyToAdd, uplinkEntity);
         }
 
