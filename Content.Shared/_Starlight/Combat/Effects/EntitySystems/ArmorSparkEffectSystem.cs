@@ -30,31 +30,6 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
         SubscribeLocalEvent<DamageableComponent, DamageModifyEvent>(OnDamageableDamageModify);
     }
 
-    private void OnDamageableDamageModify(EntityUid uid, DamageableComponent component, DamageModifyEvent args)
-    {
-        if (!TryComp<ArmorSparkEffectComponent>(uid, out var spark))
-            return;
-
-        HandleSparkHit(uid, spark, args, false);
-    }
-
-    private void OnArmorDamageModify(EntityUid uid, ArmorSparkEffectComponent component, InventoryRelayedEvent<DamageModifyEvent> args)
-    {
-        HandleSparkHit(uid, component, args.Args, true);
-    }
-
-    private bool HasHighPiercingResistance(EntityUid uid)
-    {
-        if (TryComp<DamageableComponent>(uid, out var damageable) &&
-            damageable.DamageModifierSetId != null &&
-            _prototypeManager.TryIndex(damageable.DamageModifierSetId, out var modifierSet) &&
-            modifierSet.Coefficients.TryGetValue("Piercing", out var pierceCoeff))
-        {
-            return pierceCoeff <= 0.2f;
-        }
-
-        return false;
-    }
     private bool AlwaysSparks(EntityUid uid, ArmorSparkEffectComponent component)
     {
         if (component.AlwaysSparks)
@@ -67,7 +42,70 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
         return false;
     }
 
-    private void HandleSparkHit(EntityUid uid, ArmorSparkEffectComponent component, DamageModifyEvent args, bool isWornArmor)
+    private void OnDamageableDamageModify(EntityUid uid, DamageableComponent component, DamageModifyEvent args)
+    {
+        if (!TryComp<ArmorSparkEffectComponent>(uid, out var spark))
+            return;
+
+        HandleSparkHit(uid, spark, args);
+    }
+
+    private void OnArmorDamageModify(EntityUid uid, ArmorSparkEffectComponent component, InventoryRelayedEvent<DamageModifyEvent> args)
+    {
+        HandleSparkHit(uid, component, args.Args);
+    }
+
+    private bool HasHighPiercingResistance(EntityUid target)
+    {
+        // Determine who is actually being protected.
+        var wearer = target;
+
+        // If this is worn armor, its parent is the entity wearing it.
+        var parent = Transform(target).ParentUid;
+
+        if (TryComp<ArmorComponent>(target, out _) && Exists(parent))
+            wearer = parent;
+
+        // Get the combined Piercing coefficient of all worn armor.
+        var wornQuery = new CoefficientQueryEvent(
+            SlotFlags.HEAD |
+            SlotFlags.EYES |
+            SlotFlags.MASK |
+            SlotFlags.OUTERCLOTHING |
+            SlotFlags.INNERCLOTHING |
+            SlotFlags.GLOVES |
+            SlotFlags.FEET);
+
+        var relayedEvent = new InventoryRelayedEvent<CoefficientQueryEvent>(
+            wornQuery,
+            wearer);
+
+        RaiseLocalEvent(wearer, relayedEvent);
+
+        var wornCoefficient =
+            wornQuery.DamageModifiers.Coefficients.TryGetValue("Piercing", out var worn)
+                ? worn
+                : 1f;
+
+        // Get innate Piercing resistance.
+        var innateCoefficient = 1f;
+
+        if (TryComp<DamageableComponent>(wearer, out var damageable) &&
+            damageable.DamageModifierSetId != null &&
+            _prototypeManager.Resolve(damageable.DamageModifierSetId, out var modifierSet) &&
+            modifierSet.Coefficients.TryGetValue("Piercing", out var innate))
+        {
+            innateCoefficient = innate;
+        }
+
+        // Worn armor + innate armor stack multiplicatively.
+        var totalCoefficient = wornCoefficient * innateCoefficient;
+
+        // 0.2 coefficient = 80% damage resistance.
+        return totalCoefficient <= 0.2f;
+    }
+
+    private void HandleSparkHit(EntityUid uid, ArmorSparkEffectComponent component, DamageModifyEvent args)
     {
         // Only process on server
         if (!_net.IsServer)
@@ -80,10 +118,15 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
         if (!IsSPOrHPBullet(args))
             return;
 
-        if (!AlwaysSparks(uid, component) && (!isWornArmor || !HasHighPiercingResistance(uid)))
+        // AlwaysSpark bypasses the armor calculation.
+        if (!AlwaysSparks(uid, component) &&
+            !HasHighPiercingResistance(uid))
             return;
 
-        SpawnSparkEffect(uid, component, isWornArmor);
+        // The ONLY place where the spark is actually spawned.
+        var useParent = TryComp<ArmorComponent>(uid, out _);
+
+        SpawnSparkEffect(uid, component, useParent);
     }
 
     private bool IsHitscanDamage(DamageModifyEvent args)
