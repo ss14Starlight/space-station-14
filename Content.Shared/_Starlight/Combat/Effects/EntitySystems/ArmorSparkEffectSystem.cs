@@ -54,20 +54,27 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
         HandleSparkHit(uid, component, args.Args);
     }
 
-    private bool HasHighPiercingResistance(EntityUid armorUid)
+    private bool HasHighPiercingResistance(EntityUid uid, bool wornArmor)
     {
         var query = new CoefficientQueryEvent(SlotFlags.OUTERCLOTHING);
 
-        var relayedEvent = new InventoryRelayedEvent<CoefficientQueryEvent>(
-            query,
-            armorUid);
+        if (wornArmor)
+        {
+            var relayedEvent = new InventoryRelayedEvent<CoefficientQueryEvent>(
+                query,
+                uid);
 
-        RaiseLocalEvent(armorUid, relayedEvent);
+            RaiseLocalEvent(uid, relayedEvent);
+        }
+        else
+        {
+            RaiseLocalEvent(uid, query);
+        }
 
-        if (!query.DamageModifiers.Coefficients.TryGetValue(
-            "Piercing",
-            out var piercingCoefficient))
-            return false;
+        var piercingCoefficient =
+            query.DamageModifiers.Coefficients.TryGetValue("Piercing", out var coefficient)
+                ? coefficient
+                : 1f;
 
         return piercingCoefficient <= 0.2f;
     }
@@ -79,10 +86,7 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
 
         if (!IsHitscanDamage(args))
             return;
-
-        if (!IsSPOrHPBullet(args))
-            return;
-
+        
         // AlwaysSpark and Rock bypass all armor checks.
         if (AlwaysSparks(uid, component))
         {
@@ -91,18 +95,21 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
             return;
         }
 
-        // Worn armor: calculate the combined armor of its wearer.
+        if (!IsSPOrHPBullet(args))
+            return;
+
+        // Worn armor.
         if (TryComp<ArmorComponent>(uid, out _))
         {
-            if (!HasHighPiercingResistance(uid))
+            if (!HasHighPiercingResistance(uid, true))
                 return;
 
             SpawnSparkEffect(uid, component, true);
             return;
         }
 
-        // Innate armor: calculate the entity's armor.
-        if (!HasHighPiercingResistance(uid))
+        // Innate armor.
+        if (!HasHighPiercingResistance(uid, false))
             return;
 
         SpawnSparkEffect(uid, component);
