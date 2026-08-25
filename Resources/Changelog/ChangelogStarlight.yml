@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Packed) Added Radio Host!
-    type: Add
-  id: 407419
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
   - message: (Packed) Added Departmental Techfabs!
     type: Add
   id: 407420
@@ -2799,4 +2792,11 @@ Entries:
   id: 407818
   time: '2026-08-25T01:03:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5715
+- author: Caws
+  changes:
+  - message: Ancestors like monkeys and kobolds will no longer overheat when wearing hardsuits.
+    type: Fix
+  id: 407819
+  time: '2026-08-25T04:40:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5809
 Order: -1
