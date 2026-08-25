@@ -25,17 +25,7 @@
         speedMod: 0.955
       - flags: INNERCLOTHING, GLOVES, FEET, MASK
         speedMod: 0.97
-  - type: DamageThresholdSounds
-    thresholds:
-      0: null
-      100:
-        sound: !type:SoundPathSpecifier
-          path: /Audio/Voice/Moth/moth_chitter.ogg
-        ambient: true
-      200:
-        sound: !type:SoundPathSpecifier
-          path: /Audio/Items/bikehorn.ogg
-  - type: Hunger # while starving bonus healing is haulted, while in a critical state and starving they die faster than others.
+  - type: Hunger # while starving bonus healing is haulted. while in a critical state and starving they die faster than others.
     baseDecayRate: 0.12
     starvationDamage:
       types:

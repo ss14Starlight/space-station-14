@@ -12,7 +12,7 @@
         eyes: OrganExperimentEyes
         tongue: OrganHumanTongue
         eye_implant: null
-        brain_implant: null
+        brain_implant: BrainImplantExpiScan
     torso:
       part: TorsoExperiment
       connections:
