@@ -23,7 +23,7 @@
 
 - type: entity
   name: web cuffs
-  description: Used to slightly hinder peoples escape.
+  description: Used to slightly hinder people's escape.
   id: WebHandcuffs
   parent: Handcuffs
   components:
