@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Packed) Added Departmental Techfabs!
-    type: Add
-  id: 407420
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
   - message: (Packed) Added a Chef Closet to the Freezer.
     type: Add
   id: 407421
@@ -2799,4 +2792,11 @@ Entries:
   id: 407819
   time: '2026-08-25T04:40:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5809
+- author: Mack
+  changes:
+  - message: Fix metabolism shuffle.
+    type: Fix
+  id: 407820
+  time: '2026-08-25T04:59:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5775
 Order: -1
