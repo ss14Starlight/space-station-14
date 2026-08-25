@@ -4,165 +4,165 @@
 - type: entity
   name: scurret
   id: MobBaseScurret
-  parent: [ MobBaseAncestor, BaseSpeciesPickupable ] #Starlight - give the scurret uppies.
+  parent: [MobBaseAncestor, BaseSpeciesPickupable] #Starlight - give the scurret uppies.
   abstract: true
   components:
-  # Starlight-start: Languages
-  - type: LanguageKnowledge
-    speaks:
-    - ScurretSign
-    understands:
-    - ScurretSign
-    - GalacticCommon
-  # Starlight-end
-  # Custom names
-  - type: Sprite
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      sprite: Mobs/Animals/scurret/scurret.rsi
-      state: scurret
-    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi
-      state: body-overlay-2
-      visible: false
-  # Custom visuals for dead scurrets; be aware these do not work well with equipment.
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: scurret
-      Critical:
-        Base: scurret_oof
-      Dead:
-        Base: scurret_rip
-  #  About as tough as a monkey
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      60: Critical
-      125: Dead
-  - type: Temperature
-    currentTemperature: 310.15
-    specificHeat: 42
-  - type: TemperatureDamage
-    heatDamageThreshold: 360
-    coldDamageThreshold: 285
-  # Good eatin', you monster.
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-    - id: FoodMeat
-      amount: 4
-  # They wawa!
-  - type: Vocal
-    sounds:
-      Male: Scurret
-      Female: Scurret
-      Unsexed: Scurret
-    wilhelmProbability: 0.01 # the scug, it screams like a man
-  - type: Speech
-    speechVerb: Wawa
-    speechSounds: Wawa
-    allowedEmotes: ["Thump"] # They're 80% tail
-  - type: TypingIndicator
-    proto: moth
-  - type: InteractionPopup
-    successChance: 0.99 # Imagine not being allowed to headpat a scurret, chat
-    interactDelay: 2.25
-    interactSuccessString: petting-success-scurret
-    interactFailureString: petting-failure-scurret
-    interactSuccessSpawn: EffectHearts
-    interactSuccessSound:
-      path: /Audio/Animals/wawa_chillin.ogg
-    interactFailureSound:
-      path: /Audio/Animals/wawa_chatter.ogg
-  # They nyoom
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 5 # nyoom
-    baseSprintSpeed: 7 # NYOOOOOM
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    angle: 30
-    animation: WeaponArcBite
-    damage:
-      types:
-        Piercing: 10 # NOM
-  - type: Inventory
-    speciesId: scurret
-    templateId: scurret
-    displacements:
-      jumpsuit:
+    # Starlight-start: Languages
+    - type: LanguageKnowledge
+      speaks:
+        - ScurretSign
+      understands:
+        - ScurretSign
+        - GalacticCommon
+    # Starlight-end
+    # Custom names
+    - type: Sprite
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          sprite: Mobs/Animals/scurret/scurret.rsi
+          state: scurret
+        - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+          color: "#ffffff"
+          sprite: _Inferus/Objects/Misc/handcuffs.rsi
+          state: scurret
+          visible: false
+    # Custom visuals for dead scurrets; be aware these do not work well with equipment.
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: scurret
+        Critical:
+          Base: scurret_oof
+        Dead:
+          Base: scurret_rip
+    #  About as tough as a monkey
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        60: Critical
+        125: Dead
+    - type: Temperature
+      currentTemperature: 310.15
+      specificHeat: 42
+    - type: TemperatureDamage
+      heatDamageThreshold: 360
+      coldDamageThreshold: 285
+    # Good eatin', you monster.
+    - type: Butcherable
+      butcheringType: Spike
+      spawned:
+        - id: FoodMeat
+          amount: 4
+    # They wawa!
+    - type: Vocal
+      sounds:
+        Male: Scurret
+        Female: Scurret
+        Unsexed: Scurret
+      wilhelmProbability: 0.01 # the scug, it screams like a man
+    - type: Speech
+      speechVerb: Wawa
+      speechSounds: Wawa
+      allowedEmotes: ["Thump"] # They're 80% tail
+    - type: TypingIndicator
+      proto: moth
+    - type: InteractionPopup
+      successChance: 0.99 # Imagine not being allowed to headpat a scurret, chat
+      interactDelay: 2.25
+      interactSuccessString: petting-success-scurret
+      interactFailureString: petting-failure-scurret
+      interactSuccessSpawn: EffectHearts
+      interactSuccessSound:
+        path: /Audio/Animals/wawa_chillin.ogg
+      interactFailureSound:
+        path: /Audio/Animals/wawa_chatter.ogg
+    # They nyoom
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 5 # nyoom
+      baseSprintSpeed: 7 # NYOOOOOM
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      angle: 30
+      animation: WeaponArcBite
+      damage:
+        types:
+          Piercing: 10 # NOM
+    - type: Inventory
+      speciesId: scurret
+      templateId: scurret
+      displacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: jumpsuit
+        id:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: id
+        gloves:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: gloves
+        neck:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: neck
+        ears:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: ears
+        eyes:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: eyes
+        head:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: head
+        mask:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: mask
+        back:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: back
+    - type: Hands
+      leftHandDisplacement:
         sizeMaps:
           32:
             sprite: Mobs/Animals/scurret/displacement.rsi
-            state: jumpsuit
-      id:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/scurret/displacement.rsi
-            state: id
-      gloves:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/scurret/displacement.rsi
-            state: gloves
-      neck:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/scurret/displacement.rsi
-            state: neck
-      ears:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/scurret/displacement.rsi
-            state: ears
-      eyes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/scurret/displacement.rsi
-            state: eyes
-      head:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/scurret/displacement.rsi
-            state: head
-      mask:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/scurret/displacement.rsi
-            state: mask
-      back:
-        sizeMaps:
-          32:
-            sprite: Mobs/Animals/scurret/displacement.rsi
-            state: back
-  - type: Hands
-    leftHandDisplacement:
-      sizeMaps:
-        32:
-          sprite: Mobs/Animals/scurret/displacement.rsi
-          state: hand
+            state: hand
 
-  - type: InventorySlots
-  - type: Edible # Why? I'm not sure but I also am afraid of the answer.
-  - type: Hunger
-    baseDecayRate: 0.05 # They get a lil' hungy
-  - type: BodyEmotes # Grants them clapping and so on.
-    soundsId: Scurret
-  - type: Deathgasp
-    prototype: ScurretDeathgasp # You monster
-  - type: AlwaysRevolutionaryConvertible
-  - type: StatusIcon # marks them as crew
-    bounds: -0.5,-0.5,0.5,0.5
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - FootstepSound
-    - CanPilot
-    - VimPilot
-    - AnomalyHost
-  - type: Puller # STARLIGHT ADDITION
+    - type: InventorySlots
+    - type: Edible # Why? I'm not sure but I also am afraid of the answer.
+    - type: Hunger
+      baseDecayRate: 0.05 # They get a lil' hungy
+    - type: BodyEmotes # Grants them clapping and so on.
+      soundsId: Scurret
+    - type: Deathgasp
+      prototype: ScurretDeathgasp # You monster
+    - type: AlwaysRevolutionaryConvertible
+    - type: StatusIcon # marks them as crew
+      bounds: -0.5,-0.5,0.5,0.5
+    - type: Tag
+      tags:
+        - DoorBumpOpener
+        - FootstepSound
+        - CanPilot
+        - VimPilot
+        - AnomalyHost
+    - type: Puller # STARLIGHT ADDITION
 
 # Spawnable scurrets have a random name and colour.
 
@@ -172,25 +172,25 @@
   id: MobScurret
   parent: MobBaseScurret
   components:
-  # The have a rich culture
-  - type: RandomMetadata
-    nameSegments:
-    - NamesFirstScurret
-    - NamesLastScurret
-    nameFormat: name-format-standard
-  # They come in a variety of colours
-  - type: RandomSprite
-    available:
-    - enum.DamageStateVisualLayers.Base:
-        scurret: ScurretColors
-  # They are of a mysterious gender.
-  - type: Grammar
-    attributes:
-      gender: epicene
-      proper: true
-  # Strips the name identifier from them, so they're just "Confident Waters" rather than "Confident Waters (123)"
-  - type: NameIdentifier
-    group: null
+    # The have a rich culture
+    - type: RandomMetadata
+      nameSegments:
+        - NamesFirstScurret
+        - NamesLastScurret
+      nameFormat: name-format-standard
+    # They come in a variety of colours
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            scurret: ScurretColors
+    # They are of a mysterious gender.
+    - type: Grammar
+      attributes:
+        gender: epicene
+        proper: true
+    # Strips the name identifier from them, so they're just "Confident Waters" rather than "Confident Waters (123)"
+    - type: NameIdentifier
+      group: null
 
 # Emotional Support Scurrets have a ghost role and equipment. At the moment, these are intended to be used for admemes, but
 # feel free to hook them into random content.
@@ -201,19 +201,19 @@
   parent: MobBaseScurret
   abstract: true
   components:
-  # Starlight-start: Languages
+    # Starlight-start: Languages
     - type: LanguageKnowledge
       speaks:
-      - ScurretSign
+        - ScurretSign
       understands:
-      - ScurretSign
-      - GalacticCommon
-  # Starlight-end
+        - ScurretSign
+        - GalacticCommon
+    # Starlight-end
     - type: Loadout
-      prototypes: [ EmotionalSupportScurretGear ]
+      prototypes: [EmotionalSupportScurretGear]
     - type: NpcFactionMember
       factions:
-      - Nanotrasen
+        - Nanotrasen
     - type: GhostRole
       makeSentient: true
       name: ghost-role-information-emotional-support-scurret-name

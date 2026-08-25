@@ -1,0 +1,13 @@
+marking-ScurretFaceNormal = Normal
+marking-ScurretFaceScarred = Scarred Eye
+marking-ScurretFaceClosed = Closed Eyes
+marking-ScurretChestDewlap = Dewlap
+marking-ScurretHeadWhiskers = Whiskers
+marking-ScurretHeadEyescar = Eye Scar
+marking-ScurretHeadForehead = Forehead Coloring
+marking-ScurretHeadSealPoint = Facial Coloring
+marking-ScurretTailSpots = Spotted
+marking-ScurretTailStripes = Striped
+marking-ScurretTailmaw = Tailmaw
+marking-ScurretTailScar = Scarred
+marking-ScurretTailFrills = Frilly

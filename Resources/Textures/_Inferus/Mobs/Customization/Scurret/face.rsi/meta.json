@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "MIT",
+    "copyright": "https://github.com/InferusSS14/Inferus/blob/main/LICENSE.TXT",
+    "states": [
+      {
+          "name": "closed",
+          "directions": 4
+      },
+      {
+        "name": "normal",
+        "directions": 4
+      },
+      {
+        "name": "scarred",
+        "directions": 4
+      }
+    ]
+}

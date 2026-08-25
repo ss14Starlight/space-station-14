@@ -1,0 +1,179 @@
+- type: entity
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable, BaseInventoryScurret] #Starlight - give the scurret uppies.
+  id: BaseMobPlayerScurret
+  abstract: true
+  components:
+    - type: LanguageKnowledge
+      speaks:
+        - ScurretSign
+        - GalacticCommon
+      understands:
+        - ScurretSign
+        - GalacticCommon
+    - type: Absorbable
+    - type: Bloodstream # Starlight
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: Blood
+          Quantity: 300
+    - type: FireVisuals
+      sprite: Mobs/Effects/onfire.rsi
+      normalState: Monkey_burning
+      alternateState: Monkey_burning
+    - type: HumanoidAppearance
+      species: Scurret
+    - type: NameIdentifier
+      group: null
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 80
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: Puller
+    - type: Hunger
+      baseDecayRate: 0.05
+    - type: Thirst
+      baseDecayRate: 0.05
+    - type: Icon
+      sprite: _Inferus/Mobs/Species/Scurret/parts.rsi
+      state: full
+    # Good eatin', you monster.
+    - type: Butcherable
+      butcheringType: Spike
+      spawned:
+      - id: FoodMeat
+        amount: 4
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        60: Critical
+        125: Dead
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        36: 0.7  #Basicly 60% and 80%
+        48: 0.5
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      angle: 30
+      animation: WeaponArcBite
+      damage:
+        types:
+          Piercing: 10
+    - type: Hands
+      leftHandDisplacement:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: hand
+    - type: Sprite
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          sprite: Mobs/Animals/scurret/scurret.rsi
+          state: scurret
+        - map: [ "enum.HumanoidVisualLayers.Head" ]
+        - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+        - map: [ "jumpsuit" ]
+        - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+          color: "#ffffff"
+          sprite: _Inferus/Objects/Misc/handcuffs.rsi
+          state: scurret
+          visible: false
+#        - map: [ "enum.HumanoidVisualLayers.Chest" ]
+        - map: [ "id" ]
+        - map: [ "gloves" ]
+        - map: [ "shoes" ]
+        - map: [ "ears" ]
+        - map: [ "outerClothing" ]
+        - map: [ "eyes" ]
+        - map: [ "belt" ]
+        - map: [ "neck" ]
+        - map: [ "back" ]
+        - map: [ "enum.HumanoidVisualLayers.Special" ]
+        - map: [ "enum.HumanoidVisualLayers.Tail" ]
+        - map: [ "mask" ]
+        - map: [ "head" ]
+        - map: [ "pocket1" ]
+        - map: [ "pocket2" ]
+        - map: [ "clownedon" ]
+          sprite: "_Inferus/Effects/creampie.rsi"
+          state: "creampie_scurret"
+          visible: false
+    - type: DamageVisuals
+      thresholds: [ 10, 30, 50, 70, 100]
+      targetLayers:
+#      - "enum.HumanoidVisualLayers.Chest"
+      - "enum.HumanoidVisualLayers.Head"
+      damageOverlayGroups:
+        Brute:
+          sprite: _Inferus/Effects/scurretdamage/brute_damage.rsi
+          color: "#FF0000"
+        Burn:
+          sprite: _Inferus/Effects/scurretdamage/burn_damage.rsi
+    - type: Vocal
+      sounds:
+        Male: Scurret
+        Female: Scurret
+        Unsexed: Scurret
+      wilhelmProbability: 0.01 # the scug, it screams like a man
+    - type: Speech
+      speechVerb: Wawa
+      speechSounds: Wawa
+    - type: TypingIndicator
+      proto: moth
+    - type: Tag
+      tags:
+        - CanPilot
+        - FootstepSound
+        - DoorBumpOpener
+        - AnomalyHost
+        - NotLabelable
+    - type: Temperature
+      currentTemperature: 310.15
+      specificHeat: 42
+    - type: TemperatureDamage
+      heatDamageThreshold: 360
+      coldDamageThreshold: 285
+    - type: Emoting
+    - type: InteractionPopup
+      successChance: 0.99
+      interactDelay: 2.25
+      interactSuccessString: petting-success-scurret
+      interactFailureString: petting-failure-scurret
+      interactSuccessSpawn: EffectHearts
+      interactSuccessSound:
+        path: /Audio/Animals/wawa_chillin.ogg
+      interactFailureSound:
+        path: /Audio/Animals/wawa_chatter.ogg
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 5
+      baseSprintSpeed: 7
+    # - type: Edible
+    - type: BodyEmotes
+      soundsId: Scurret
+    - type: Deathgasp
+      prototype: ScurretDeathgasp
+    - type: StatusIcon
+      bounds: -0.5,-0.5,0.5,0.5
+    #- type: DamageStateVisuals
+    #  states:
+    #    Alive:
+    #      Base: scurret
+    #    Critical:
+    #      Base: scurret_oof
+    #    Dead:
+    #      Base: scurret_rip
+
+
+
+- type: entity
+  save: false
+  name: Urist McWawa
+  parent: BaseMobPlayerScurret
+  id: MobPlayerScurret
