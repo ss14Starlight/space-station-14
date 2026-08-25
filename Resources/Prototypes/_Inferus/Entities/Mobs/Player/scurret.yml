@@ -15,7 +15,7 @@
       bloodReferenceSolution:
         reagents:
         - ReagentId: Blood
-          Quantity: 300
+          Quantity: 150
     - type: FireVisuals
       sprite: Mobs/Effects/onfire.rsi
       normalState: Monkey_burning
@@ -37,7 +37,7 @@
           - MobLayer
     - type: Puller
     - type: Hunger
-      baseDecayRate: 0.05
+      baseDecayRate: 0.03
     - type: Thirst
       baseDecayRate: 0.05
     - type: Icon
@@ -52,12 +52,12 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        60: Critical
-        125: Dead
+        50: Critical
+        90: Dead
     - type: SlowOnDamage
       speedModifierThresholds:
-        36: 0.7  #Basicly 60% and 80%
-        48: 0.5
+        20: 0.7  #Basicly 60% and 80%
+        35: 0.5
     - type: MeleeWeapon
       soundHit:
         path: /Audio/Effects/bite.ogg
@@ -106,7 +106,7 @@
           state: "creampie_scurret"
           visible: false
     - type: DamageVisuals
-      thresholds: [ 10, 30, 50, 70, 100]
+      thresholds: [ 10, 25, 40, 60, 85]
       targetLayers:
 #      - "enum.HumanoidVisualLayers.Chest"
       - "enum.HumanoidVisualLayers.Head"
@@ -138,8 +138,8 @@
       currentTemperature: 310.15
       specificHeat: 42
     - type: TemperatureDamage
-      heatDamageThreshold: 360
-      coldDamageThreshold: 285
+      heatDamageThreshold: 340
+      coldDamageThreshold: 300
     - type: Emoting
     - type: InteractionPopup
       successChance: 0.99
