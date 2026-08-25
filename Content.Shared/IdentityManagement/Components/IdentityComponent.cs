@@ -32,8 +32,10 @@ public sealed class IdentityRepresentation
     public Gender TrueGender;
 
     public string AgeString;
+    #region Starlight
     public bool IsAnimal; // Starlight
     public string? AnimalNoun; // Starlight
+    #endregion
 
     public string? PresumedName;
     public string? PresumedJob;

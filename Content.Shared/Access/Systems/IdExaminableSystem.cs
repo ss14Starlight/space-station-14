@@ -14,7 +14,9 @@ public sealed partial class IdExaminableSystem : EntitySystem
 {
     [Dependency] private ExamineSystemShared _examineSystem = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
+    #region Starlight
     [Dependency] private IPrototypeManager _proto = default!; // Starlight
+    #endregion
 
     public override void Initialize()
     {
