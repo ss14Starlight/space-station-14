@@ -90,7 +90,7 @@
     #   tags:
     #   - ScurretWearable
   # Inferus start - give scurrets a pocket
-  - name: pocket
+  - name: pocket1
     slotTexture: pocket
     fullTextureName: template_small
     slotFlags: POCKET
