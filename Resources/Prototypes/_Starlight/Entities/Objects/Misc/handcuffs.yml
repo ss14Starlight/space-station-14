@@ -36,9 +36,8 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/webhandcuffs.rsi
     state: handcuff
-  - type: GuideHelp
-    guides:
-    - Security
-    - Antagonists
+  - type: Construction
+    graph: SilkWovenCuffs
+    node: cuffs
   - type: UseDelay
     delay: 1.5
