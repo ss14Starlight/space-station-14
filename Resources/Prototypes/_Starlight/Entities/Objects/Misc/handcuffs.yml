@@ -20,3 +20,25 @@
     - Antagonists
   - type: UseDelay
     delay: 1.5
+
+- type: entity
+  name: web cuffs
+  description: Used to slightly hinder peoples escape.
+  id: WebHandcuffs
+  parent: Handcuffs
+  components:
+  - type: Handcuff
+    cuffTime: 6
+    uncuffTime: 2
+    breakoutTime: 3
+    cuffedRSI: _Starlight/Objects/Misc/webhandcuffs.rsi
+    bodyIconState: body-overlay
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/webhandcuffs.rsi
+    state: handcuff
+  - type: GuideHelp
+    guides:
+    - Security
+    - Antagonists
+  - type: UseDelay
+    delay: 1.5
