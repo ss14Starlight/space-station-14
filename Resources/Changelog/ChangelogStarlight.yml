@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Increased the maximum linking range of the artifact analysis console from 9 tiles to 12.
-    type: Tweak
-  id: 407418
-  time: '2026-08-10T17:26:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5597
 - author: Makeshift
   changes:
   - message: (Packed) Added Radio Host!
@@ -2799,4 +2792,11 @@ Entries:
   id: 407817
   time: '2026-08-25T00:26:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5810
+- author: Sparlight, DocMoth, swonkus, ya314a, xxhotgirl69, huaqas
+  changes:
+  - message: Added security K9 role.  Not mapped yet, but you can set your loadout for now.
+    type: Add
+  id: 407818
+  time: '2026-08-25T01:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5715
 Order: -1
