@@ -22,7 +22,7 @@ using Content.Shared.Weapons.Melee.Events;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
-using Content.Shared.Disposal.Components; // Starlight
+using Content.Shared.Disposal.Components;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
