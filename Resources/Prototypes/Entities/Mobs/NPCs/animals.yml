@@ -3219,9 +3219,11 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - GalacticCommon
     - Dog
+    - DogFeral
     - Canilunzt
   # Starlight-end
   - type: DamageStateVisuals
@@ -3254,8 +3256,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight End
