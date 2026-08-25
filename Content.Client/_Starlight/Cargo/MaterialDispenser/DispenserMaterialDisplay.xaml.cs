@@ -85,17 +85,12 @@ public sealed partial class DispenserMaterialDisplay : PanelContainer
                 StyleClasses = { styleClass }
             };
 
-            button.OnPressed += _ =>
-            {
-                OnAmountButton?.Invoke(Material, sheetsToEject);
-            };
+            button.OnPressed += _ => OnAmountButton?.Invoke(Material, sheetsToEject);
 
             button.Disabled = maxEjectableSheets < sheetsToEject;
 
             if (_prototypeManager.TryIndex<MaterialPrototype>(Material, out var proto))
-            {
                 button.ToolTip = Loc.GetString("lathe-menu-tooltip-display", ("amount", sheetsToEject), ("material", Loc.GetString(proto.Name)));
-            }
 
             Content.AddChild(button);
         }

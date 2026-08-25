@@ -22,12 +22,12 @@ public sealed partial class MaterialDispenserWindow : FancyWindow
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
-    private CargoSystem _cargoSystem;
-    private SharedStationSystem _stationSystem;
-    private SharedMaterialStorageSystem _materialStorageSystem;
+    private readonly CargoSystem _cargoSystem;
+    private readonly SharedStationSystem _stationSystem;
+    private readonly SharedMaterialStorageSystem _materialStorageSystem;
 
     private EntityUid _owner;
-    private Dictionary<int, string> _departmentOptions = new();
+    private readonly Dictionary<int, string> _departmentOptions = new();
 
     public event Action<string>? OnDepartmentSelected;
     public event Action<string, int,bool>? OnAmountButton;
@@ -68,11 +68,18 @@ public sealed partial class MaterialDispenserWindow : FancyWindow
 
         SetSelectDepartment(castState.CargoAccount);
         OutputCrateInfo.RemoveAllChildren();
-        foreach (var item in castState.Buffer)
+        if (castState.Buffer.Count == 0)
         {
-            var control = new DispenserMaterialDisplay(item.Key, item.Value);
-            control.OnAmountButton += (s, i) => OnAmountButton?.Invoke(s, i, false);
-            OutputCrateInfo.AddChild(control);
+            OutputCrateInfo.AddChild(new Label { Name = "NoMatsInCrate", Text = Loc.GetString("Crate is currently empty") });
+        }
+        else
+        {
+            foreach (var item in castState.Buffer)
+            {
+                var control = new DispenserMaterialDisplay(item.Key, item.Value);
+                control.OnAmountButton += (s, i) => OnAmountButton?.Invoke(s, i, false);
+                OutputCrateInfo.AddChild(control);
+            }
         }
 
         NoMatsInCrate.Visible = OutputCrateInfo.ChildCount == 0;
@@ -84,7 +91,6 @@ public sealed partial class MaterialDispenserWindow : FancyWindow
     {
         var id = _departmentOptions.FirstOrDefault(x => x.Value == cargoAccount);
         DepartmentSelector.Select(id.Key);
-
     }
 
     private void PopulateDepartmentSelector()

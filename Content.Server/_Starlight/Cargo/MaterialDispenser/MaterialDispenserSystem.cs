@@ -32,7 +32,6 @@ namespace Content.Server._Starlight.Cargo.MaterialDispenser;
 [UsedImplicitly]
 public sealed class MaterialDispenserSystem : EntitySystem
 {
-    [Dependency] private ContainerSystem _containerSystem = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private MaterialStorageSystem _materialStorageSystem = default!;
     [Dependency] private EntityStorageSystem _storageSystem = default!;
@@ -41,7 +40,6 @@ public sealed class MaterialDispenserSystem : EntitySystem
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private PricingSystem _pricingSystem = default!;
     [Dependency] private StationSystem _stationSystem = default!;
-    [Dependency] private StackSystem _stack = default!;
 
 
     /// <inheritdoc/>
@@ -80,7 +78,6 @@ public sealed class MaterialDispenserSystem : EntitySystem
         }
 
         _materialStorageSystem.TryChangeMaterialAmount(ent, crateMaterial, -crateMaterialAmount * sheetVolume);
-
 
         var item = Spawn(ent.Comp.CrateId, new EntityCoordinates(ent.Owner, 0, 0));
         foreach (var spawnedMat in ent.Comp.Buffer.Select(material => _materialStorageSystem.SpawnMultipleFromMaterial(material.Value, material.Key, Transform(item).Coordinates)).SelectMany(spawnedMats => spawnedMats)) _storageSystem.Insert(spawnedMat, item);
@@ -134,7 +131,6 @@ public sealed class MaterialDispenserSystem : EntitySystem
                     if (!_materialStorageSystem.TryChangeMaterialAmount(ent, args.Material, amount)) return;
                     ent.Comp.Buffer[args.Material] -= amount;
 
-
                     if (ent.Comp.Buffer[args.Material] <= 0) ent.Comp.Buffer.Remove(args.Material);
                 }
             }
@@ -164,7 +160,6 @@ public sealed class MaterialDispenserSystem : EntitySystem
 
         UpdateUiState(ent);
     }
-
 
     private void OnDepartmentSelectMessage(Entity<MaterialDispenserComponent> ent,
         ref MaterialDispenserDepartmentSelected args)
