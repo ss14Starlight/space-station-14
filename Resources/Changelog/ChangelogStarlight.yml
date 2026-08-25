@@ -1,27 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Packed) Added a Chef Closet to the Freezer.
-    type: Add
-  id: 407421
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
-  - message: (Packed) AI External airlocks now have command access, too.
-    type: Fix
-  id: 407422
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
-  - message: (Packed) The stage now uses platforms. Fancy!
-    type: Tweak
-  id: 407423
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
   - message: (Packed) Science's artifact chamber now uses an unlocked Air Alarm.
     type: Tweak
   id: 407424
@@ -2799,4 +2778,25 @@ Entries:
   id: 407820
   time: '2026-08-25T04:59:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5775
+- author: SirLutz
+  changes:
+  - message: 'New uncraftable chemical: Respirazone, treats generic airloss damage.'
+    type: Add
+  id: 407821
+  time: '2026-08-25T07:55:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5497
+- author: SirLutz
+  changes:
+  - message: Airloss-Autoinjector does not anymore contain Saline and Dexalin-plus.
+    type: Remove
+  id: 407822
+  time: '2026-08-25T07:55:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5497
+- author: SirLutz
+  changes:
+  - message: Respirazone is available only in airloss-autoinjectors.
+    type: Add
+  id: 407823
+  time: '2026-08-25T07:55:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5497
 Order: -1
