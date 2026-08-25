@@ -204,3 +204,16 @@
       - state: green
       - state: nct
       - state: jobicon
+
+- type: entity
+  id: SpawnPointK9
+  parent: SpawnPointJobBase
+  name: security K9
+  components:
+  - type: SpawnPoint
+    job_id: K9
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Starlight/Mobs/Pets/k9.rsi
+      state: k9-brown

@@ -1,0 +1,102 @@
+- type: roleLoadout
+  id: JobK9
+  canCustomizeName: true
+  nameDataset: NamesCorgi
+  groups:
+  - K9Variant
+  - K9OuterClothing
+  - K9Eyes
+  - K9SuitStorage
+
+- type: loadoutGroup
+  id: K9Variant
+  name: loadout-group-k9-variant
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - k9-brown
+  - k9-black
+  - k9-tan
+  - k9-grey
+
+- type: loadout
+  id: k9-brown
+  dummyEntity: LoadoutDummyK9Brown
+
+- type: loadout
+  id: k9-black
+  dummyEntity: LoadoutDummyK9Black
+
+- type: loadout
+  id: k9-tan
+  dummyEntity: LoadoutDummyK9Tan
+
+- type: loadout
+  id: k9-grey
+  dummyEntity: LoadoutDummyK9Grey
+
+# Outer clothing
+- type: loadoutGroup
+  id: K9OuterClothing
+  name: loadout-group-k9-outerclothing
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - K9ArmorVest
+  - K9ArmorVestBulletproof
+  - K9ArmorRiot
+
+- type: loadout
+  id: K9ArmorVest
+  equipment:
+    outerClothing: ClothingOuterArmorBasic
+
+- type: loadout
+  id: K9ArmorVestBulletproof
+  equipment:
+    outerClothing: ClothingOuterArmorBulletproof
+
+- type: loadout
+  id: K9ArmorRiot
+  equipment:
+    outerClothing: ClothingOuterArmorRiot
+
+# Eyes
+- type: loadoutGroup
+  id: K9Eyes
+  name: loadout-group-k9-eyes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - K9SecHud
+  - K9SecHudEyepatch
+
+- type: loadout
+  id: K9SecHud
+  equipment:
+    eyes: ClothingEyesHudSecurity
+
+- type: loadout
+  id: K9SecHudEyepatch
+  equipment:
+    eyes: ClothingEyesEyepatchHudSecurity
+
+# Suit storage
+- type: loadoutGroup
+  id: K9SuitStorage
+  name: loadout-group-k9-suitstorage
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - K9DoubleEmergencyOxygenTank
+  - K9ExtendedEmergencyOxygenTank
+
+- type: loadout
+  id: K9DoubleEmergencyOxygenTank
+  equipment:
+    suitstorage: DoubleEmergencyOxygenTankFilled
+
+- type: loadout
+  id: K9ExtendedEmergencyOxygenTank
+  equipment:
+    suitstorage: ExtendedEmergencyOxygenTankFilled
