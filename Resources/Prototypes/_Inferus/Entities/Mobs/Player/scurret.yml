@@ -5,11 +5,11 @@
   components:
     - type: LanguageKnowledge
       speaks:
-        - ScurretSign
         - GalacticCommon
+        - ScurretSign
       understands:
-        - ScurretSign
         - GalacticCommon
+        - ScurretSign
     - type: Absorbable
     - type: Bloodstream # Starlight
       bloodReferenceSolution:
