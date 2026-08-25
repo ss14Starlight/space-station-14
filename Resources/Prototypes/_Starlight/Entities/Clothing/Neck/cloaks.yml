@@ -280,7 +280,7 @@
   parent: ClothingNeckBase
   id: ClothingNeckHorrific
   name: horrific necktie
-  description: The necktie is adorned with a garish pattern. It's disturbingly vivid. Somehow you feel as if it would be wrong to ever take it off. It's your friend now. You dont need to listen to it, but it makes some good points.
+  description: The necktie is adorned with a garish pattern. It's disturbingly vivid. Somehow you feel as if it would be wrong to ever take it off. It's your friend now. You don't need to listen to it, but it makes some good points.
   components:
   - type: GhostRole
     makeSentient: true
