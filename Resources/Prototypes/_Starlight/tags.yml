@@ -412,6 +412,10 @@
 - type: Tag
   id: JobIconSyndicate
 
+# Used to define clothing that the security K9 can wear.
+- type: Tag
+  id: K9Wearable
+
 - type: Tag
   id: L6Saw
 

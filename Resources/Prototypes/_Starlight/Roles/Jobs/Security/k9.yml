@@ -1,0 +1,30 @@
+- type: job
+  id: K9
+  name: job-name-k9
+  description: job-description-k9
+  playTimeTracker: JobK9
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 10h
+  - !type:RoleTimeRequirement
+    role: JobDetective
+    time: 3h
+  displayWeight: 1
+  icon: "JobIconK9"
+  supervisors: job-supervisors-security
+  jobEntity: MobK9
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: SkipLoadingCharacterRecords
+  - !type:AddImplantSpecial
+    implants: [ TrackingImplant, MindShieldImplant ]
+  - !type:EquipStartingGearSpecial
+    gear: K9Gear
+  applyTraits: false
+
+- type: startingGear
+  id: K9Gear
+  equipment:
+    mask: ClothingMaskGasSecurity
