@@ -328,7 +328,7 @@ public sealed partial class CookingDeviceSystem : EntitySystem
     /// Kills the user by microwaving their head
     /// TODO: Make this not awful, it keeps any items attached to your head still on and you can revive someone and cogni them so you have some dumb headless fuck running around. I've seen it happen.
     /// </summary>
-    private void OnSuicideByEnvironment(Entity<CookingDeviceComponent> ent, ref SuicideByEnvironmentEvent args) 
+    private void OnSuicideByEnvironment(Entity<CookingDeviceComponent> ent, ref SuicideByEnvironmentEvent args)
     {
         if (args.Handled)
             return;
@@ -481,7 +481,7 @@ public sealed partial class CookingDeviceSystem : EntitySystem
                 ent.Comp.CurrentCookTimerTime,
                 ent.Comp.CurrentCookTimeEnd,
                 ent.Comp.StartedCookTime
-           ));
+        ));
 
     public void SetAppearance(EntityUid uid, MicrowaveVisualState? state = null, CookingDeviceComponent? component = null, AppearanceComponent? appearanceComponent = null, bool? Opened = null)
     {
