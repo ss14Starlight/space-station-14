@@ -16,8 +16,8 @@ public sealed partial class DiskConsoleComponent : Component
     /// <summary>
     /// The prototype of what's being printed
     /// </summary>
-    [DataField("diskPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadWrite)]
-    public string DiskPrototype = "TechnologyDisk";
+    [DataField("diskPrototype"), ViewVariables(VVAccess.ReadWrite)]
+    public EntProtoId DiskPrototype = "TechnologyDisk";
 
     /// <summary>
     /// How long it takes to print <see cref="DiskPrototype"/>

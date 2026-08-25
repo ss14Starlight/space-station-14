@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Players.PlayTimeTracking;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes; // 🌟Starlight🌟
@@ -15,8 +16,8 @@ namespace Content.Shared.VendingMachines
         /// PrototypeID for the vending machine's inventory, see <see cref="VendingMachineInventoryPrototype"/>
         /// </summary>
         // Okay so not using ProtoId here is load-bearing because the ProtoId serializer will log errors if the prototype doesn't exist.
-        [DataField("pack", customTypeSerializer: typeof(PrototypeIdSerializer<VendingMachineInventoryPrototype>), required: true)]
-        public string PackPrototypeId = string.Empty;
+        [DataField("pack", required: true)]
+        public ProtoId<VendingMachineInventoryPrototype> PackPrototypeId = string.Empty;
 
         /// <summary>
         /// Used by the server to determine how long the vending machine stays in the "Deny" state.
@@ -160,7 +161,7 @@ namespace Content.Shared.VendingMachines
         /// forces to restock a specific item in VendingMachineSystem#RestockRandom
         /// </summary>
         [DataField("forceRandom")]
-        public ProtoId<EntityPrototype>? RandomRestockTarget = null;
+        public EntProtoId? RandomRestockTarget = null;
         //#endregion starlight
 
         /// <summary>

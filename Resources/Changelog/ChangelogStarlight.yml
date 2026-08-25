@@ -1,102 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: Increased Eep melee damage.
-    type: Tweak
-  id: 407410
-  time: '2026-08-10T14:38:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5564
-- author: Mack
-  changes:
-  - message: The plumbing filter can now take up to 10 reagents.
-    type: Tweak
-  id: 407411
-  time: '2026-08-10T14:38:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5460
-- author: Mack
-  changes:
-  - message: Inline plumbing filter.
-    type: Add
-  id: 407412
-  time: '2026-08-10T14:38:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5460
-- author: BeptolCorp
-  changes:
-  - message: Added the track Null Scar Gaze by Beptol Corporation Acoustics to the game lobby.
-    type: Add
-  id: 407413
-  time: '2026-08-10T14:38:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5507
-- author: Swonki
-  changes:
-  - message: Exosuit drills blunt damage values reduced.
-    type: Tweak
-  id: 407414
-  time: '2026-08-10T15:07:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5562
-- author: Orhu
-  changes:
-  - message: (Sepultum) Added Radio Station.
-    type: Add
-  id: 407415
-  time: '2026-08-10T15:25:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5560
-- author: Orhu
-  changes:
-  - message: (Sepultum) Added Station Radios to various spots around the station.
-    type: Add
-  id: 407416
-  time: '2026-08-10T15:25:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5560
-- author: Orhu
-  changes:
-  - message: (Sepultum) Reporter doors now require Journalism access to open.
-    type: Tweak
-  id: 407417
-  time: '2026-08-10T15:25:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5560
-- author: Caws
-  changes:
-  - message: Increased the maximum linking range of the artifact analysis console from 9 tiles to 12.
-    type: Tweak
-  id: 407418
-  time: '2026-08-10T17:26:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5597
-- author: Makeshift
-  changes:
-  - message: (Packed) Added Radio Host!
-    type: Add
-  id: 407419
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
-  - message: (Packed) Added Departmental Techfabs!
-    type: Add
-  id: 407420
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
-  - message: (Packed) Added a Chef Closet to the Freezer.
-    type: Add
-  id: 407421
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
-  - message: (Packed) AI External airlocks now have command access, too.
-    type: Fix
-  id: 407422
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
-  - message: (Packed) The stage now uses platforms. Fancy!
-    type: Tweak
-  id: 407423
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
 - author: Makeshift
   changes:
   - message: (Packed) Science's artifact chamber now uses an unlocked Air Alarm.
@@ -2799,4 +2701,102 @@ Entries:
   id: 407809
   time: '2026-08-21T16:50:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5771
+- author: STARLIGHT TEAM
+  changes:
+  - message: Borg chassis names now synchronize with inserted brains
+    type: Add
+  id: 407810
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: STARLIGHT TEAM
+  changes:
+  - message: Entity naming (Intellicard/AI core) was unified and fixed
+    type: Tweak
+  id: 407811
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: STARLIGHT TEAM
+  changes:
+  - message: Entitys that have their intelligence removed by intellicard, reset to default names
+    type: Tweak
+  id: 407812
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: STARLIGHT TEAM
+  changes:
+  - message: Intellicard entities can now be transfered to borg/borg brains/MMI as intended
+    type: Fix
+  id: 407813
+  time: '2026-08-22T01:27:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: Mack
+  changes:
+  - message: missing values for the reactor guidebook temps.
+    type: Fix
+  id: 407814
+  time: '2026-08-23T10:38:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5797
+- author: Johnny
+  changes:
+  - message: The syndicate bomb is less concentrated with its explosion, focusing more on making a large explosion than entirely deleting an area.
+    type: Tweak
+  id: 407815
+  time: '2026-08-24T09:00:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5804
+- author: SeaborneProto
+  changes:
+  - message: Fixed Manor brig door to not be maints access!
+    type: Fix
+  id: 407816
+  time: '2026-08-24T09:22:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5781
+- author: Caws
+  changes:
+  - message: Ghost roles like Paradox Clone and Exterminators should no longer spawn in randoms stretches of empty space far away from the station on maps that have non-space atmospheres, like Cork and Novo Lobster.
+    type: Fix
+  id: 407817
+  time: '2026-08-25T00:26:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5810
+- author: Sparlight, DocMoth, swonkus, ya314a, xxhotgirl69, huaqas
+  changes:
+  - message: Added security K9 role.  Not mapped yet, but you can set your loadout for now.
+    type: Add
+  id: 407818
+  time: '2026-08-25T01:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5715
+- author: Caws
+  changes:
+  - message: Ancestors like monkeys and kobolds will no longer overheat when wearing hardsuits.
+    type: Fix
+  id: 407819
+  time: '2026-08-25T04:40:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5809
+- author: Mack
+  changes:
+  - message: Fix metabolism shuffle.
+    type: Fix
+  id: 407820
+  time: '2026-08-25T04:59:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5775
+- author: SirLutz
+  changes:
+  - message: 'New uncraftable chemical: Respirazone, treats generic airloss damage.'
+    type: Add
+  id: 407821
+  time: '2026-08-25T07:55:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5497
+- author: SirLutz
+  changes:
+  - message: Airloss-Autoinjector does not anymore contain Saline and Dexalin-plus.
+    type: Remove
+  id: 407822
+  time: '2026-08-25T07:55:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5497
+- author: SirLutz
+  changes:
+  - message: Respirazone is available only in airloss-autoinjectors.
+    type: Add
+  id: 407823
+  time: '2026-08-25T07:55:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5497
 Order: -1

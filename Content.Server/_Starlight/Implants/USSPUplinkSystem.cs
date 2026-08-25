@@ -13,6 +13,9 @@ using Content.Server.Implants;
 using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Shared._Starlight.Store.Conditions;
 using Content.Server._Starlight.Revolutionary.Components;
+using Content.Shared.Store;
+using Robust.Shared.Prototypes;
+
 namespace Content.Server._Starlight.Implants;
 public sealed partial class USSPUplinkSystem : EntitySystem
 {
@@ -506,7 +509,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
                 }
 
                 // Add the Conversion currency back
-                var currencyToAdd = new Dictionary<string, FixedPoint2> { { "Conversion", spentAmount } };
+                var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Conversion", spentAmount } };
                 _storeSystem.TryAddCurrency(currencyToAdd, args.StoreUid);
             }
         }
@@ -554,7 +557,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
         // Add Conversion to all uplinks
         foreach (var uplinkEntity in uplinkEntities)
         {
-            var currencyToAdd = new Dictionary<string, FixedPoint2> { { "Conversion", FixedPoint2.New(1) } };
+            var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Conversion", FixedPoint2.New(1) } };
             var success = storeSystem.TryAddCurrency(currencyToAdd, uplinkEntity);
         }
 

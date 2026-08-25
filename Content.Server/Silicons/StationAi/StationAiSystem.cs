@@ -43,6 +43,7 @@ using Content.Server.Medical.SuitSensors;
 using Content.Shared.Follower.Components;
 using Content.Shared.Follower;
 using Content.Shared.Humanoid;
+using Content.Shared.Intellicard;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Medical.SuitSensors;
 using Content.Shared.Mobs.Components;
@@ -120,6 +121,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         SubscribeLocalEvent<StationAiCoreComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<StationAiCoreComponent, DoAfterAttemptEvent<IntellicardDoAfterEvent>>(OnDoAfterAttempt);
         SubscribeLocalEvent<StationAiCoreComponent, RejuvenateEvent>(OnRejuvenate);
+        SubscribeLocalEvent<GhostAttemptHandleEvent>(OnGhostAttempt); // Starlight
 
         SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandICChatRecipients);
         SubscribeLocalEvent<StationAiTurretComponent, AmmoShotEvent>(OnAmmoShot);
@@ -128,6 +130,19 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         SubscribeNetworkEvent<StationAiWarpRequestEvent>(OnStationAiWarpRequest); // Starlight
         SubscribeNetworkEvent<StationAiWarpToTargetEvent>(OnStationAiWarpToTarget); // Starlight
     }
+
+    // Starlight Start: The intellicard/AI should immediatly eject the ghost if the command ghost is used to free it for further use.
+    private void OnGhostAttempt(GhostAttemptHandleEvent args)
+    {
+        if (args.Mind.CurrentEntity is not { } entity ||
+            !_container.TryGetContainingContainer(entity, out var container) ||
+            container.ID != StationAiHolderComponent.Container ||
+            !TryComp<StationAiHolderComponent>(container.Owner, out var holder))
+            return;
+
+        _slots.TryEject(container.Owner, holder.Slot, null, out _);
+    }
+    // Starlight-end
 
     // Starlight Start: AI warping
     #region Starlight

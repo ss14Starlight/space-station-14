@@ -108,6 +108,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconK9
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: K9
+  jobName: job-name-k9
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconPerformer
   icon:
     sprite: *starlight-job-icon-rsi

@@ -1,0 +1,114 @@
+- type: entity
+  parent: MobCorgiBase
+  id: MobK9
+  name: security K9
+  description: A dog trained for station security work.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Pets/k9.rsi
+    layers:
+    - map: ["enum.SpriteVariantLayers.Base"]
+      state: k9-brown
+  - type: LanguageKnowledge
+    speaks:
+    - Dog
+    understands:
+    - GalacticCommon
+    - Dog
+    - Canilunzt
+  - type: LanguageGrantImmune
+  - type: Inventory
+    forceDisplacements: true
+    speciesId: dog
+    templateId: K9
+    displacements:
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: outerClothing
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: suitstorage
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: mask
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Pets/k9_displacement.rsi
+            state: eyes
+  - type: Stripping
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 180
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCorgi
+  - type: Grammar
+    attributes:
+      gender: epicene
+      proper: true
+  - type: Vocal
+    screamAction: null
+  - type: Access
+    tags:
+    - Security
+    - Brig
+    - Maintenance
+    - External
+    - Cryogenics
+  - type: StatusIcon
+  - type: FixedJobIcon
+    job: K9
+  - type: SpriteVariant
+    availableVariants:
+    - k9-brown
+    - k9-black
+    - k9-tan
+    - k9-grey
+    variantAlerts:
+      k9-brown:
+        alive: K9BrownHealth
+        critical: K9BrownCrit
+        dead: K9BrownDead
+      k9-black:
+        alive: K9BlackHealth
+        critical: K9BlackCrit
+        dead: K9BlackDead
+      k9-tan:
+        alive: K9TanHealth
+        critical: K9TanCrit
+        dead: K9TanDead
+      k9-grey:
+        alive: K9GreyHealth
+        critical: K9GreyCrit
+        dead: K9GreyDead
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4
+  - type: Tag
+    tags:
+    - DogEmotes
+    - DoorBumpOpener
+  - type: AlwaysRevolutionaryConvertible
+  - type: CanEnterCryostorage
+  - type: Zoomies
+    action: K9Sprint
+    speedModifier: 1.8
+    thirstDrain: null
+    hungerDrain: null
+    duration: 3
+    zoomiesAlert: K9Sprint
+  - type: Latch
+    damagePerTick:
+      types:
+        Piercing: 1.5
