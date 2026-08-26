@@ -10,4 +10,4 @@ terror-eeep = Attention crew, it appears that someone on your station has made a
 terror-strike-team = Attention crew, it appears that someone on your station has made an unexpected communication with a syndicate task force in nearby space.
 terror-abductors = Attention crew, it appears that someone on your station has made an unauthorized communication with a group of unidentified alien  life forms in nearby space.
 terror-terminator = Attention crew, it appears that someone on your station has made an unexpected communication with an unknown metal entity from nearby space.
-terror-strike-team = Attention crew, it appears that someone on your station has made an unexpected communication with a syndicate task force in nearby space.
+terror-honk = Attention crew, it appears that someone on your station has made an unexpected communication with... Oh god, what is that. WHAT IS THA-
