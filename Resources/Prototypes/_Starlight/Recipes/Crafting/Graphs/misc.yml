@@ -36,19 +36,11 @@
     entity: ClothingMaskMimeSecurity
 
 - type: constructionGraph
-  id: SilkWovenCuffs
   id: FalseShutterProjectorEmpty
   start: start
   graph:
   - node: start
     edges:
-    - to: cuffs
-      steps:
-      - material: WebSilk
-        amount: 8
-        doAfter: 20
-  - node: cuffs
-    entity: WebHandcuffs
     - to: projector
       steps:
       - tag: HoloprojectorCrafting
@@ -65,3 +57,17 @@
         doAfter: 4
   - node: projector
     entity: FalseShutterProjectorEmpty
+
+- type: constructionGraph
+  id: SilkWovenCuffs
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: cuffs
+      steps:
+      - material: WebSilk
+        amount: 8
+        doAfter: 20
+  - node: cuffs
+    entity: WebHandcuffs
