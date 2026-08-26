@@ -15,7 +15,7 @@
   id: UplinkExplosiveCollar
   name: uplink-explosive-collar-name
   description: uplink-explosive-collar-desc
-  productEntity: ClothingNeckExplosiveCollar
+  productEntity: ClothingNeckExplosiveCollarBox
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 8
