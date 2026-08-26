@@ -1,13 +1,6 @@
 Entries:
 - author: Way
   changes:
-  - message: (Hotel) Radio Host is now playable on Hotel station.
-    type: Add
-  id: 407425
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
   - message: (Hotel) Departmental lathes are mapped.
     type: Add
   id: 407426
@@ -2799,4 +2792,11 @@ Entries:
   id: 407824
   time: '2026-08-26T00:21:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5822
+- author: Swonki
+  changes:
+  - message: Horrific Necktie Role/Item Descriptions.
+    type: Tweak
+  id: 407825
+  time: '2026-08-26T00:48:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5814
 Order: -1
