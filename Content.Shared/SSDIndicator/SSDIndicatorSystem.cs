@@ -5,8 +5,6 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-
-// Starlight-start
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Bed.Sleep;
@@ -15,7 +13,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared._Starlight.CryoTeleportation;
-// Starlight-end
 
 namespace Content.Shared.SSDIndicator;
 
