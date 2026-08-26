@@ -1,11 +1,4 @@
 Entries:
-- author: Way
-  changes:
-  - message: (Hotel) Botany has a biogen.
-    type: Fix
-  id: 407431
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
 - author: Caws
   changes:
   - message: '"Brig Med" map beacon has been renamed to "Brigmedic".'
@@ -2799,4 +2792,11 @@ Entries:
   id: 407830
   time: '2026-08-26T01:54:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5780
+- author: Floximo
+  changes:
+  - message: AI's can now jump to location on Atmos/Power/Radar maps.
+    type: Add
+  id: 407831
+  time: '2026-08-26T18:36:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5831
 Order: -1
