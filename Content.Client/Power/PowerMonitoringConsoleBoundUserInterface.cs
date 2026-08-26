@@ -51,8 +51,7 @@ public sealed class PowerMonitoringConsoleBoundUserInterface : BoundUserInterfac
         SendMessage(new PowerMonitoringConsoleMessage(netEntity, group));
     }
 
-    // Starlight - start
-    // Starlight: go to clicked position for AI
+    #region Starlight
     private void SendMapClicked(EntityCoordinates coordinates)
     {
         var local = _playerManager.LocalEntity;
@@ -61,5 +60,5 @@ public sealed class PowerMonitoringConsoleBoundUserInterface : BoundUserInterfac
 
         SendMessage(new CrewMonitoringWarpRequestMessage(EntMan.GetNetCoordinates(coordinates)));
     }
-    // Starlight - end
+    #endregion
 }

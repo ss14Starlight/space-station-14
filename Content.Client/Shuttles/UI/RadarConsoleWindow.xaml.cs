@@ -28,11 +28,10 @@ public sealed partial class RadarConsoleWindow : PopOutFancyWindow, // Starlight
         RadarScreen.UpdateState(scc, dockingPortStates);  // Starlight: +dockingPortStates
     }
 
-    // Starlight - start
-    // go to location for AI
+    #region Starlight
     private void OnRadarClick(EntityCoordinates coordinates)
     {
         RadarClicked?.Invoke(coordinates);
     }
-    // Starlight - end
+    #endregion
 }

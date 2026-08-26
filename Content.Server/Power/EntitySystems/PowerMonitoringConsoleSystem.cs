@@ -63,8 +63,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
         SubscribeLocalEvent<GameRuleEndedEvent>(OnPowerGridCheckEnded);
     }
 
-    // Starlight - start
-    // go to clicked position for AI
+    #region Starlight
     private void OnWarpRequest(EntityUid uid, PowerMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
@@ -82,7 +81,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
         _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
     }
-    // Starlight - end
+    #endregion
 
     #region EventHandling
 

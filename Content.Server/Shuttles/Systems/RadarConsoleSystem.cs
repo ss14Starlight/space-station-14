@@ -51,8 +51,7 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
         SubscribeLocalEvent<RadarConsoleComponent, ComponentStartup>(OnRadarStartup);
         SubscribeLocalEvent<RadarConsoleComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight
     }
-    // Starlight - start
-    // This adds the function to the AI to jump to location. Might be the least useful map to use this, still good to have it as universal feature.
+    #region Starlight
     private void OnWarpRequest(EntityUid uid, RadarConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
@@ -70,7 +69,7 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
 
         _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
     }
-    // Starlight - end
+    #endregion
 
     public override void Update(float frameTime) // _Starlight
     {

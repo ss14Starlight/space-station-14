@@ -28,8 +28,11 @@ public sealed class AtmosMonitoringConsoleBoundUserInterface : BoundUserInterfac
         _menu.OnClose += Close;
     }
 
-    // Starlight - start
-    // go to clicked position for AI
+    #region Starlight
+    /// <summary>
+    /// Sends a map-click request to move the Station AI's remote eye to the specified coordinates.
+    /// </summary>
+    /// <param name="coordinates">The map coordinates selected by the user.</param>
     public void SendMapClicked(EntityCoordinates coordinates)
     {
         var local = _playerManager.LocalEntity;
@@ -38,7 +41,7 @@ public sealed class AtmosMonitoringConsoleBoundUserInterface : BoundUserInterfac
 
         SendMessage(new CrewMonitoringWarpRequestMessage(EntMan.GetNetCoordinates(coordinates)));
     }
-    // Starlight - end
+    #endregion
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);

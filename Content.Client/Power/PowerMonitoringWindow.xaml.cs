@@ -67,13 +67,12 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         ShowLVCable.OnToggled += _ => OnShowCableToggled(PowerMonitoringConsoleLineGroup.Apc);
     }
 
-    // Starlight - start
-    // go to clicked position for AI
+    #region Starlight
     private void OnNavMapClicked(EntityCoordinates coordinates)
     {
         MapClicked?.Invoke(coordinates);
     }
-    // Starlight - end
+    #endregion
     public void SetEntity(EntityUid uid)
     {
         Entity = uid;

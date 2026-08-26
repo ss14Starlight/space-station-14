@@ -57,7 +57,7 @@ public sealed class RadarConsoleBoundUserInterface : BoundUserInterface
             _window?.DisposePopOut();
         }
     }
-    // Starlight - start
+    #region Starlight
     private void OnRadarClicked(EntityCoordinates coordinates)
     {
         var local = _playerManager.LocalEntity;
@@ -66,5 +66,5 @@ public sealed class RadarConsoleBoundUserInterface : BoundUserInterface
 
         SendMessage(new CrewMonitoringWarpRequestMessage(EntMan.GetNetCoordinates(coordinates)));
     }
-    // Starlight - end
+    #endregion
 }

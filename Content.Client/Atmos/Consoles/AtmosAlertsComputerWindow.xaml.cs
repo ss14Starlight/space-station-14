@@ -118,13 +118,12 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
         MapClicked += userInterface.SendMapClicked; // Starlight: go to clicked location for AI
     }
 
-    // Starlight - start
-    // go to clicked location for AI
+    #region Starlight
     private void OnNavMapClicked(EntityCoordinates coordinates)
     {
         MapClicked?.Invoke(coordinates);
     }
-    // Starlight - end
+    #endregion
     #region Toggle handling
 
     private void OnShowAlarmsToggled(CheckBox toggle, AtmosAlarmType toggledAlarmState)

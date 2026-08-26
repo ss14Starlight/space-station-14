@@ -64,8 +64,7 @@ public sealed partial class AtmosMonitoringConsoleSystem : SharedAtmosMonitoring
         SubscribeLocalEvent<PipeNodeGroupRemovedEvent>(OnPipeNodeGroupRemoved);
     }
 
-    // Starlight - start
-    // go to clicked position for AI
+    #region Starlight
     private void OnWarpRequest(EntityUid uid, AtmosMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
@@ -83,7 +82,7 @@ public sealed partial class AtmosMonitoringConsoleSystem : SharedAtmosMonitoring
 
         _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
     }
-    // Starlight - end
+    #endregion
     #region Event handling
 
     private void OnConsoleInit(EntityUid uid, AtmosMonitoringConsoleComponent component, ComponentInit args)

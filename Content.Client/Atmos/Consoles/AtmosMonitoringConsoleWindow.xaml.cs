@@ -109,13 +109,12 @@ public sealed partial class AtmosMonitoringConsoleWindow : FancyWindow
         UpdateUI(consoleCoords, Array.Empty<AtmosMonitoringConsoleEntry>());
     }
 
-    // Starlight - start
-    // go to clicked position for AI
+    #region Starlight
     private void OnNavMapClicked(EntityCoordinates coordinates)
     {
         MapClicked?.Invoke(coordinates); 
     }
-    // Starlight - end
+    #endregion
 
     #region Toggle handling
 

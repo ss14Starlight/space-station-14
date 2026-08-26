@@ -57,8 +57,7 @@ public sealed partial class AtmosAlertsComputerSystem : SharedAtmosAlertsCompute
         SubscribeLocalEvent<AtmosAlertsDeviceComponent, AnchorStateChangedEvent>(OnDeviceAnchorChanged);
     }
 
-    // Starlight - start
-    // This allowes the AI to jump to the clicked location on the atmospheric map
+    #region Starlight
     private void OnWarpRequest(EntityUid uid, AtmosAlertsComputerComponent component, ref CrewMonitoringWarpRequestMessage args)
     {
         if (args.Actor is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
@@ -76,7 +75,7 @@ public sealed partial class AtmosAlertsComputerSystem : SharedAtmosAlertsCompute
 
         _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
     }
-    // Starlight - end
+    #endregion
 
     #region Event handling
 
