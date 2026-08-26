@@ -1,13 +1,6 @@
 Entries:
 - author: Way
   changes:
-  - message: (Hotel) AI cameras on the outer parts of the core viewing into space have been removed.
-    type: Tweak
-  id: 407430
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
   - message: (Hotel) Botany has a biogen.
     type: Fix
   id: 407431
@@ -2799,4 +2792,11 @@ Entries:
   id: 407829
   time: '2026-08-26T01:33:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5785
+- author: Conflee
+  changes:
+  - message: Added False Shutter Projectors, a new craftable tool for antagonists. It places a grayscale 'false shutter' projection which blocks vision, but lacking the yellow hazard stripe and visually glitching occasionally gives it away to anyone actually paying attention. Useful for break-ins so passerbys in the hallways outside don't see you.
+    type: Add
+  id: 407830
+  time: '2026-08-26T01:54:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5780
 Order: -1
