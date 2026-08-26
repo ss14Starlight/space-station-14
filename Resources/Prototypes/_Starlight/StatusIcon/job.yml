@@ -424,5 +424,5 @@
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: MakeshiftID
-  jobName: job-name-makeshiftID
+  jobName: job-name-makeshift-id
   # notice the LACK of a JobIconCrew tag
