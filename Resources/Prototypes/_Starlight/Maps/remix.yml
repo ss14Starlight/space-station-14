@@ -51,7 +51,7 @@
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
-            K9: [ 2, 2 ],
+            K9: [ 2, 2 ]
             SecurityOfficer: [ 3, 3 ]
             SecurityCadet: [ 2, 2 ]
             Detective: [ 1, 1 ]
