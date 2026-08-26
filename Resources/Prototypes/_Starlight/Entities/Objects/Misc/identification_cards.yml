@@ -824,7 +824,10 @@
       job: MakeshiftID
     - type: NanoChatCard
       listNumber: false
-
+    - type: Tags
+      tags:
+      - WhitelistChameleon
+      - WhitelistChameleonIdCard
 #ERT/Centcomm
 
 - type: entity
