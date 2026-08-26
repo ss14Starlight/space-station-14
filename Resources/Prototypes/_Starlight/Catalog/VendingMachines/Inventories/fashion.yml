@@ -642,7 +642,7 @@
   id: NT4PlayerInstrument
   productEntity: NT4PlayerInstrument
   cost:
-    NTCredit: 1500
+    NTCredit: 750
   categories:
     - SLFashionOther
   conditions:

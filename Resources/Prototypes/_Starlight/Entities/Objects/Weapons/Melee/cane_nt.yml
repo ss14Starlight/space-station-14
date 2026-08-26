@@ -50,10 +50,6 @@
       cell_slot: !type:ContainerSlot
   - type: ItemToggle
     predictable: false
-    soundActivate:
-      collection: sparks
-      params:
-        variation: 0.250
     soundDeactivate:
       collection: sparks
       params:
@@ -67,13 +63,13 @@
       types:
         Blunt: 0
   - type: MeleeWeapon
-    wideAnimationRotation: -135
+    wideAnimationRotation: 60
     damage:
       types:
         Blunt: 10
     bluntStaminaDamageFactor: 2.0
-    angle: 60
-    animation: WeaponArcSlash
+    angle: 65
+    animation: WeaponArcThrust
   - type: StaminaDamageOnHit
     damage: 40
     sound: /Audio/Weapons/egloves.ogg
@@ -90,3 +86,6 @@
   - type: MobilityAid
   - type: Prying
     speedModifier: 0.25
+  - type: ESSparkOnItemToggle
+    count: 1
+    sparkPrototype: SLEffectSparksBaton

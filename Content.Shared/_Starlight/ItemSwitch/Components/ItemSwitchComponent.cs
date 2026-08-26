@@ -64,8 +64,12 @@ public sealed partial class ItemSwitchState : BoundUserInterfaceMessage
     [DataField]
     public bool RemoveComponents = true;
 
+    /// <summary>
+    /// If true, this state is hidden from the activation verb menu and unreachable via normal cycling.
+    /// It can only be entered by direct <c>Switch</c> calls.
+    /// </summary>
     [DataField]
-    public bool Hiden = false;
+    public bool Hidden = false;
 
     [DataField]
     public SpriteSpecifier? Sprite;

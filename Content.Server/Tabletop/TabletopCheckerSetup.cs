@@ -8,18 +8,17 @@ namespace Content.Server.Tabletop
     [UsedImplicitly]
     public sealed partial class TabletopCheckerSetup : TabletopSetup
     {
+        [DataField]
+        public EntProtoId PrototypePieceWhite;
 
-        [DataField("prototypePieceWhite", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string PrototypePieceWhite = default!;
+        [DataField]
+        public EntProtoId PrototypeCrownWhite;
 
-        [DataField("prototypeCrownWhite", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string PrototypeCrownWhite = default!;
+        [DataField]
+        public EntProtoId PrototypePieceBlack;
 
-        [DataField("prototypePieceBlack", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string PrototypePieceBlack = default!;
-
-        [DataField("prototypeCrownBlack", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string PrototypeCrownBlack = default!;
+        [DataField]
+        public EntProtoId PrototypeCrownBlack;
 
         public override void SetupTabletop(TabletopSession session, IEntityManager entityManager)
         {

@@ -71,7 +71,10 @@ public sealed partial class VomitSystem : EntitySystem
         foreach (var stomach in stomachList)
         {
             if (_solutionContainer.ResolveSolution(stomach.Owner, StomachSystem.DefaultSolutionName, ref stomach.Comp1.Solution, out var sol))
-                _solutionContainer.TryTransferSolution(stomach.Comp1.Solution.Value, args.Sol, sol.AvailableVolume);
+            {
+                // _solutionContainer.TryTransferSolution(stomach.Comp1.Solution.Value, args.Sol, sol.AvailableVolume); // Starlight
+                args.Sol.AddSolution(_solutionContainer.SplitSolution(stomach.Comp1.Solution.Value, sol.Volume), _proto); // Starlight
+            }
         }
 
         args.Handled = true;

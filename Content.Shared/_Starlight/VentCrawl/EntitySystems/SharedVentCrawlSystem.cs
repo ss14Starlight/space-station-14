@@ -40,6 +40,8 @@ public sealed partial class SharedVentCrawlSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<BeingVentCrawlComponent, ExitVentActionEvent>(OnExitVentActionEvent);
+        SubscribeLocalEvent<BeingVentCrawlComponent, EntityTerminatingEvent>(OnCrawlerTerminating);
+        SubscribeLocalEvent<VentCrawlHolderComponent, EntityTerminatingEvent>(OnHolderTerminating);
 
         InitializeTubes();
         InitializeClothing();
@@ -90,11 +92,7 @@ public sealed partial class SharedVentCrawlSystem : EntitySystem
             holder.ManifoldLayer = null;
 
         holder.PreviousTube = holder.CurrentTube;
-        if (holder.PreviousTube != null && TryComp<VentCrawlTubeComponent>(holder.PreviousTube, out var prevTube))
-        {
-            prevTube.ContainedHolders.Remove(holderUid);
-            Dirty(holder.PreviousTube.Value, prevTube);
-        }
+        LeaveTube(holderUid, holder.PreviousTube);
         holder.PreviousDirection = holder.CurrentDirection;
         holder.CurrentTube = toUid;
         Dirty(holderUid, holder);
@@ -108,6 +106,28 @@ public sealed partial class SharedVentCrawlSystem : EntitySystem
 
     private void OnExitVentActionEvent(EntityUid uid, BeingVentCrawlComponent component, ExitVentActionEvent args)
         => ExitVentCrawl(component.Holder);
+
+    private void OnCrawlerTerminating(EntityUid uid, BeingVentCrawlComponent component, ref EntityTerminatingEvent args)
+    {
+        if (Terminating(component.Holder) || Deleted(component.Holder))
+            return;
+
+        if (!TryComp<VentCrawlHolderComponent>(component.Holder, out var holder) || holder.ContainedEntity != uid)
+            return;
+
+        holder.IsExitingVentCrawls = true;
+        holder.ContainedEntity = EntityUid.Invalid;
+        holder.ProvidedAction = null;
+        Dirty(component.Holder, holder);
+
+        PredictedQueueDel(component.Holder);
+    }
+
+    private void OnHolderTerminating(EntityUid uid, VentCrawlHolderComponent component, ref EntityTerminatingEvent args)
+    {
+        LeaveTube(uid, component.CurrentTube);
+        LeaveTube(uid, component.PreviousTube);
+    }
 
     /// <summary>
     /// Exits the vent craws for the specified <seealso cref="VentCrawlHolderComponent"/>, removing it and any contained entities from the craws.
@@ -128,12 +148,7 @@ public sealed partial class SharedVentCrawlSystem : EntitySystem
 
         holder.IsExitingVentCrawls = true;
 
-        if (holder.CurrentTube is { } currentTube &&
-            TryComp<VentCrawlTubeComponent>(currentTube, out var tube) &&
-            tube.ContainedHolders.Remove(uid))
-        {
-            Dirty(currentTube, tube);
-        }
+        LeaveTube(uid, holder.CurrentTube);
 
         UpdateExitAction(holder);
 
@@ -161,6 +176,12 @@ public sealed partial class SharedVentCrawlSystem : EntitySystem
                 _physicsSystem.WakeBody(entity, body: physics);
         }
 
+        holder.ContainedEntity = EntityUid.Invalid;
+        holder.CurrentTube = null;
+        holder.PreviousTube = null;
+        holder.NextTube = null;
+        Dirty(uid, holder);
+
         PredictedQueueDel(uid);
     }
 
@@ -172,10 +193,7 @@ public sealed partial class SharedVentCrawlSystem : EntitySystem
         var query = EntityQueryEnumerator<VentCrawlHolderComponent>();
         while (query.MoveNext(out var uid, out var holder))
         {
-            if (holder.CurrentTube == null)
-                continue;
-
-            if (!Exists(holder.CurrentTube.Value) || Terminating(holder.CurrentTube.Value))
+            if (holder.CurrentTube is not { } currentTube || !Exists(currentTube) || Terminating(currentTube))
             {
                 ExitVentCrawl(uid, holder);
                 continue;
@@ -185,7 +203,7 @@ public sealed partial class SharedVentCrawlSystem : EntitySystem
                 continue;
 
             if (_gameTiming.CurTime < holder.ManifoldTransitionEnd)
-                UpdateManifoldPositionInterpolated(holder.CurrentTube.Value, uid, holder);
+                UpdateManifoldPositionInterpolated(currentTube, uid, holder);
 
             if (!_gameTiming.IsFirstTimePredicted)
                 continue;
@@ -193,7 +211,7 @@ public sealed partial class SharedVentCrawlSystem : EntitySystem
             if (holder.NextTube != null)
                 UpdatePosition(uid, holder);
 
-            if (!UpdateMovementInput(holder.CurrentTube.Value, uid, holder))
+            if (!UpdateMovementInput(currentTube, uid, holder))
                 continue;
 
             if (holder.NextTube != null && _gameTiming.CurTime >= holder.MoveEndTime)
