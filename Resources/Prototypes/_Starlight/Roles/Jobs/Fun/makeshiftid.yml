@@ -1,6 +1,6 @@
 - type: job
   id: MakeshiftID
-  name: job-name-makeshiftid
+  name: job-name-makeshift-id
   overrideConsoleVisibility: false
   hidden: true
   description: job-description-assistant
