@@ -33,6 +33,8 @@ using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Flash;
+using Content.Shared.Store;
+
 // Starlight edit end
 
 namespace Content.Server._Starlight.Changeling;
@@ -190,7 +192,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         if (TryComp<StoreComponent>(uid, out var store))
         {
-            _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { "EvolutionPoint", bonusEvolutionPoints } }, uid, store);
+            _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "EvolutionPoint", bonusEvolutionPoints } }, uid, store);
             _store.UpdateUserInterface(uid, uid, store);
         }
 

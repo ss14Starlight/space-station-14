@@ -21,6 +21,7 @@ job-name-cc-janitor = CentComm Janitor
 job-name-performer = Performer
 job-name-salvagelead = Salvage Lead
 job-name-dutyofficer = Duty Officer
+job-name-k9 = Security K9
 job-name-assistantmanager = Assistant Manager
 job-name-abductor = Abductor
 job-title-borgi = Borgi
