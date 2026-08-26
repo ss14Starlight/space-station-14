@@ -15,6 +15,7 @@
   id: UplinkExplosiveCollar
   name: uplink-explosive-collar-name
   description: uplink-explosive-collar-desc
+  icon: { sprite: /Textures/_Starlight/Clothing/Neck/Misc/explosivecollar.rsi, state: icon }
   productEntity: ClothingNeckExplosiveCollarBox
   discountCategory: rareDiscounts
   discountDownTo:
