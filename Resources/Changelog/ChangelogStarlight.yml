@@ -1,13 +1,6 @@
 Entries:
 - author: Way
   changes:
-  - message: (Hotel) Departmental lathes are mapped.
-    type: Add
-  id: 407426
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
   - message: (Hotel) Reporter has been moved near evac, next to library. Their old room has been turned into the main service area for their respective lathe and fax.
     type: Tweak
   id: 407427
@@ -2799,4 +2792,11 @@ Entries:
   id: 407825
   time: '2026-08-26T00:48:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5814
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed not being able to trash medipens. You no longer need to be Kobe to clean up after yourself.
+    type: Fix
+  id: 407826
+  time: '2026-08-26T01:06:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5817
 Order: -1
