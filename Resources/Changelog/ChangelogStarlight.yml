@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: '"Brig Med" map beacon has been renamed to "Brigmedic".'
-    type: Tweak
-  id: 407432
-  time: '2026-08-10T20:15:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5590
 - author: Conflee
   changes:
   - message: Added 7 new 'Retro' Counters. Constructable by players and usable by mappers. Diner, Kitchen, Steel and Wood, Wood, Steel, Orange and White, and Teal and White.
@@ -2799,4 +2792,11 @@ Entries:
   id: 407831
   time: '2026-08-26T18:36:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5831
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: In the advanced first aid cyborg module, changed a beaker/jug slot to a chemical case slot, allowing bottles to be stored.
+    type: Tweak
+  id: 407832
+  time: '2026-08-26T18:59:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5830
 Order: -1
