@@ -1002,6 +1002,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+        Cold: 0.9 # Starlight
 #Starlight
   - type: Tag
     tags:
@@ -1022,6 +1023,11 @@
   - type: PointLight
     color: "#ffffff"
 #Starlight
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.9
+        Cold: 0.8
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -1099,6 +1105,7 @@
         Piercing: 0.9
         Heat: 0.9
 #Starlight
+        Cold: 0.9
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -1202,6 +1209,7 @@
         Radiation: 0.80
         Caustic: 0.95
 #Starlight
+        Cold: 0.80 
   - type: Tag
     tags:
     - WhitelistChameleon
