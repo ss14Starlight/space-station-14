@@ -37,6 +37,7 @@
 
 - type: constructionGraph
   id: SilkWovenCuffs
+  id: FalseShutterProjectorEmpty
   start: start
   graph:
   - node: start
@@ -48,3 +49,19 @@
         doAfter: 20
   - node: cuffs
     entity: WebHandcuffs
+    - to: projector
+      steps:
+      - tag: HoloprojectorCrafting
+        name: construction-graph-tag-holoprojector
+        icon:
+          sprite: Objects/Devices/Holoprojectors/atmos.rsi
+          state: icon
+        doAfter: 2
+      - material: Cable
+        amount: 5
+        doAfter: 4
+      - material: ReinforcedGlass
+        amount: 5
+        doAfter: 4
+  - node: projector
+    entity: FalseShutterProjectorEmpty
