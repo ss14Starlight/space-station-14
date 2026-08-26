@@ -79,6 +79,12 @@ public sealed partial class HealthAnalyzerComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan PrintCooldown = TimeSpan.FromSeconds(5);
+
+    /// <summary>
+    /// is this scanner able to print.
+    /// </summary>
+    [DataField]
+    public bool EnablePrint = true;
     // Starlight-end
 
     /// <summary>

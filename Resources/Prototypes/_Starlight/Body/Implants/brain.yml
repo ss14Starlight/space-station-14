@@ -95,6 +95,14 @@
     state: brain_implant_scan
   - type: FunctionalOrgan
     comps:
+    - type: HealthAnalyzer
+      damageContainers:
+        - Biological
+        - Hybrid
+      enablePrint: false
+    - type: ActionGrant
+      actions:
+        - ActionHealthSelfAnalyze
     - type: DamageThresholdSounds
       thresholds:
         0: null
