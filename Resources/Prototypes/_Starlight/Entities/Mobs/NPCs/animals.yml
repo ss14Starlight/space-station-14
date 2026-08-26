@@ -6,8 +6,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - Canilunzt
     - GalacticCommon
 
