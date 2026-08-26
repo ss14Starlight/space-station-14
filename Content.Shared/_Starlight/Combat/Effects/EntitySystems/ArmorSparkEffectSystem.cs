@@ -49,10 +49,8 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
         HandleSparkHit(uid, spark, args);
     }
 
-    private void OnArmorDamageModify(EntityUid uid, ArmorSparkEffectComponent component, InventoryRelayedEvent<DamageModifyEvent> args)
-    {
+    private void OnArmorDamageModify(EntityUid uid, ArmorSparkEffectComponent component, InventoryRelayedEvent<DamageModifyEvent> args) =>
         HandleSparkHit(uid, component, args.Args);
-    }
 
     private bool HasHighPiercingResistance(EntityUid uid, bool wornArmor)
     {
@@ -115,19 +113,15 @@ public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
         SpawnSparkEffect(uid, component);
     }
 
-    private bool IsHitscanDamage(DamageModifyEvent args)
-    {
-        // Check if the damage contains piercing damage (typical for bullets)
-        return args.Damage.DamageDict.ContainsKey("Piercing") && args.Damage.DamageDict["Piercing"] > 0;
-    }
+    // Check if the damage contains piercing damage (typical for bullets)
+    private bool IsHitscanDamage(DamageModifyEvent args) =>
+        args.Damage.DamageDict.ContainsKey("Piercing") && args.Damage.DamageDict["Piercing"] > 0;
 
-    private bool IsSPOrHPBullet(DamageModifyEvent args)
-    {
-        // SP bullets have negative armor penetration (-0.25 to -1)
-        // HP bullets have very negative armor penetration (-1)
-        // This is a heuristic based on the hitscan prototypes we examined
-        return args.ArmorPenetration < 0;
-    }
+    // SP bullets have negative armor penetration (-0.25 to -1)
+    // HP bullets have very negative armor penetration (-1)
+    // This is a heuristic based on the hitscan prototypes we examined
+    private bool IsSPOrHPBullet(DamageModifyEvent args) =>
+        args.ArmorPenetration < 0;
 
     private void SpawnSparkEffect(EntityUid uid, ArmorSparkEffectComponent component, bool useParent = false)
     {
