@@ -60,4 +60,4 @@ job-rules-tsf-aligned = You are {role-type-tsf-aligned-name}.
                               You are to serve the interests of the Trans-Solar Federation.
                               Remember, you do NOT serve the crew.
 
-job-name-makeshiftid = Makeshift ID Card
+job-name-makeshift-id = Makeshift ID Card
