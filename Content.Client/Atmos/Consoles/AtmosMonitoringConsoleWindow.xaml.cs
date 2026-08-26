@@ -112,7 +112,7 @@ public sealed partial class AtmosMonitoringConsoleWindow : FancyWindow
     #region Starlight
     private void OnNavMapClicked(EntityCoordinates coordinates)
     {
-        MapClicked?.Invoke(coordinates); 
+        MapClicked?.Invoke(coordinates);
     }
     #endregion
 
