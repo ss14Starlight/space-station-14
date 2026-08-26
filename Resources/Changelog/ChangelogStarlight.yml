@@ -1,13 +1,6 @@
 Entries:
 - author: Way
   changes:
-  - message: (Hotel) Added a maints route above the Radio Host's room, to prevent a dead end and better flow.
-    type: Tweak
-  id: 407429
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
   - message: (Hotel) AI cameras on the outer parts of the core viewing into space have been removed.
     type: Tweak
   id: 407430
@@ -2799,4 +2792,11 @@ Entries:
   id: 407828
   time: '2026-08-26T01:33:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5796
+- author: Conflee
+  changes:
+  - message: All wallmounts can now be labeled with a hand labeler, such as Air Alarms, Neon Signs, Signs, Fire Alarms, etc.
+    type: Tweak
+  id: 407829
+  time: '2026-08-26T01:33:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5785
 Order: -1
