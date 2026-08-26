@@ -12,6 +12,9 @@ using Robust.Shared.Timing;
 using Content.Server._Starlight.Shuttles.Systems;
 using Content.Shared._Starlight.Shuttles.Components;
 using Content.Server._Starlight.Shuttles.Components; // _Starlight
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Silicons.StationAi;
+using Content.Server.Silicons.StationAi;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -22,6 +25,7 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
     [Dependency] private SharedTransformSystem _transformSystem = default!; // _Starlight
     [Dependency] private RadarLaserSystem _laserSystem = default!; // _Starlight
     [Dependency] private IGameTiming _timing = default!; // _Starlight
+    [Dependency] private StationAiSystem _stationAiSystem = default!; // Starlight "OnWarpRequest"
 
     #region Starlight
     // Periodic blip/laser update
@@ -45,7 +49,27 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
     {
         base.Initialize();
         SubscribeLocalEvent<RadarConsoleComponent, ComponentStartup>(OnRadarStartup);
+        SubscribeLocalEvent<RadarConsoleComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight
     }
+    #region Starlight
+    private void OnWarpRequest(EntityUid uid, RadarConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
+    {
+        if (args.Actor is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
+            return;
+
+        EntityCoordinates coordinates;
+        try
+        {
+            coordinates = GetCoordinates(args.Coordinates);
+        }
+        catch
+        {
+            return;
+        }
+
+        _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
+    }
+    #endregion
 
     public override void Update(float frameTime) // _Starlight
     {

@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.StatusIcon;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Overlays;
@@ -29,7 +30,13 @@ public sealed partial class ShowJobIconsSystem : EquipmentHudSystem<ShowJobIcons
 
         var iconId = JobIconForNoId;
 
-        if (_accessReader.FindAccessItemsInventory(uid, out var items))
+        // Starlight Start
+        if (TryComp<FixedJobIconComponent>(uid, out var fixedIcon) && _prototype.Resolve(fixedIcon.Job, out var job))
+        {
+            iconId = job.Icon;
+        }
+        else if (_accessReader.FindAccessItemsInventory(uid, out var items))
+        // Starlight End
         {
             foreach (var item in items)
             {
