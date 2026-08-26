@@ -1,13 +1,6 @@
 Entries:
 - author: Way
   changes:
-  - message: (Hotel) Bar had it's dining area slightly rearranged to accommodate the new area.
-    type: Tweak
-  id: 407428
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
   - message: (Hotel) Added a maints route above the Radio Host's room, to prevent a dead end and better flow.
     type: Tweak
   id: 407429
@@ -2799,4 +2792,11 @@ Entries:
   id: 407827
   time: '2026-08-26T01:06:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5818
+- author: Mack
+  changes:
+  - message: Bring the stove, oven, ice cream maker, and deep fryer to the new idle/active power system.
+    type: Tweak
+  id: 407828
+  time: '2026-08-26T01:33:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5796
 Order: -1
