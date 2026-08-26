@@ -15,14 +15,24 @@ public sealed partial class RadarConsoleWindow : PopOutFancyWindow, // Starlight
     IComputerWindow<NavInterfaceState>
 {
     protected override Control Control => RadarScreen; // Starlight: popout support
+    public event Action<EntityCoordinates>? RadarClicked; // Starlight: go to location for AI
 
     public RadarConsoleWindow()
     {
         RobustXamlLoader.Load(this);
+        RadarScreen.OnRadarClick += OnRadarClick; // Starlight: go to location for AI
     }
 
     public void UpdateState(NavInterfaceState scc, DockingPortStates dockingPortStates)  // Starlight: +dockingPortStates
     {
         RadarScreen.UpdateState(scc, dockingPortStates);  // Starlight: +dockingPortStates
     }
+
+    // Starlight - start
+    // go to location for AI
+    private void OnRadarClick(EntityCoordinates coordinates)
+    {
+        RadarClicked?.Invoke(coordinates);
+    }
+    // Starlight - end
 }

@@ -1,13 +1,23 @@
 using Content.Shared.Atmos.Components;
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Silicons.StationAi;
+using Robust.Shared.Map;
+using Robust.Shared.Player;
 
 namespace Content.Client.Atmos.Consoles;
 
 public sealed class AtmosAlertsComputerBoundUserInterface : BoundUserInterface
 {
+    #region Starlight
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    #endregion
     [ViewVariables]
     private AtmosAlertsComputerWindow? _menu;
 
-    public AtmosAlertsComputerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
+    public AtmosAlertsComputerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    {
+        IoCManager.InjectDependencies(this); // Starlight: go to clicked location for AI
+    }
 
     protected override void Open()
     {
@@ -17,6 +27,18 @@ public sealed class AtmosAlertsComputerBoundUserInterface : BoundUserInterface
         _menu.OpenCentered();
         _menu.OnClose += Close;
     }
+
+    // Starlight - start
+    // Starlight: go to clicked location for AI
+    public void SendMapClicked(EntityCoordinates coordinates)
+    {
+        var local = _playerManager.LocalEntity;
+        if (local is null || !EntMan.HasComponent<StationAiHeldComponent>(local.Value))
+            return;
+
+        SendMessage(new CrewMonitoringWarpRequestMessage(EntMan.GetNetCoordinates(coordinates)));
+    }
+    // Starlight - end
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {

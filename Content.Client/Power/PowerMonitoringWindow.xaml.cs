@@ -24,6 +24,9 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
     private NetEntity? _focusEntity;
 
     public event Action<NetEntity?, PowerMonitoringConsoleGroup>? SendPowerMonitoringConsoleMessageAction;
+    #region Starlight
+    public event Action<EntityCoordinates>? MapClicked;
+    #endregion
 
     private Dictionary<PowerMonitoringConsoleGroup, (SpriteSpecifier.Texture, Color)> _groupBlips = new()
     {
@@ -44,6 +47,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
 
         // Set trackable entity selected action
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
+        NavMap.MapClickedAction += OnNavMapClicked; // Starlight: go to clicked position for AI
 
         // Update nav map
         NavMap.ForceNavMapUpdate();
@@ -63,6 +67,13 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         ShowLVCable.OnToggled += _ => OnShowCableToggled(PowerMonitoringConsoleLineGroup.Apc);
     }
 
+    // Starlight - start
+    // go to clicked position for AI
+    private void OnNavMapClicked(EntityCoordinates coordinates)
+    {
+        MapClicked?.Invoke(coordinates);
+    }
+    // Starlight - end
     public void SetEntity(EntityUid uid)
     {
         Entity = uid;
