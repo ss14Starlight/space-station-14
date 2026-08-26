@@ -1,25 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: Partial smellers can now faintly perceive the scent emissions of corpses inside closed containers.
-    type: Add
-  id: 407434
-  time: '2026-08-10T21:04:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5570
-- author: Caws
-  changes:
-  - message: (Starboard) Radio Hosts!
-    type: Add
-  id: 407435
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Departmental techfabs to all departments.
-    type: Add
-  id: 407436
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
 - author: Caws
   changes:
   - message: (Starboard) Stir Stir added to Genpop.
@@ -2799,4 +2778,25 @@ Entries:
   id: 407833
   time: '2026-08-26T20:31:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5799
+- author: Johnny
+  changes:
+  - message: Added more ninja threats for the communications console interaction.
+    type: Add
+  id: 407834
+  time: '2026-08-26T22:08:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5832
+- author: Johnny
+  changes:
+  - message: Removed the bombastic honks from ninja threats.
+    type: Remove
+  id: 407835
+  time: '2026-08-26T22:08:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5832
+- author: Johnny
+  changes:
+  - message: Changed the weights of some of the ninja threats.
+    type: Tweak
+  id: 407836
+  time: '2026-08-26T22:08:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5832
 Order: -1
