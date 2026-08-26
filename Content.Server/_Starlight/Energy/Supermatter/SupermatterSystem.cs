@@ -108,6 +108,10 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
     }
 
     // Starlight - start
+    /// <summary>
+    /// Raises unshunt events for shunted AIs in an entity container hierarchy.
+    /// </summary>
+    /// <param name="targetEntity">The entity at the root of the scan.</param>
     public void Unshunt(EntityUid targetEntity)
     {
         // Recursively scan target and all contained entities (unlimited depth) and trigger unshunt where applicable.
@@ -122,13 +126,9 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
             if (!seen.Add(cur))
                 continue;
 
-            if (TryComp<StationAIShuntComponent>(cur, out var sh) && sh.Return != null)
-                RaiseLocalEvent(cur, new AIUnshuntActionEvent());
-            else if (TryComp<StationAIShuntableComponent>(cur, out var shuntable) && shuntable.Inhabited.HasValue)
-                RaiseLocalEvent(shuntable.Inhabited.Value, new AIUnshuntActionEvent());
             if (TryComp<Robust.Shared.Containers.ContainerManagerComponent>(cur, out var currentManager))
             {
-                foreach (var container in containerSys.GetAllContainers(cur))
+                foreach (var container in containerSys.GetAllContainers(cur, currentManager))
                 {
                     foreach (var ent in container.ContainedEntities)
                     {
@@ -137,6 +137,11 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
                     }
                 }
             }
+
+            if (TryComp<StationAIShuntComponent>(cur, out var sh) && sh.Return != null)
+                RaiseLocalEvent(cur, new AIUnShuntActionEvent());
+            else if (TryComp<StationAIShuntableComponent>(cur, out var shuntable) && shuntable.Inhabited.HasValue)
+                RaiseLocalEvent(shuntable.Inhabited.Value, new AIUnShuntActionEvent());
         }
     }
     // Starlight - end
