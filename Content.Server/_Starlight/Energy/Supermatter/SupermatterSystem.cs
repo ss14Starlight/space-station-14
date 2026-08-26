@@ -123,10 +123,10 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
                 continue;
 
             if (TryComp<StationAIShuntComponent>(cur, out var sh) && sh.Return != null)
-                RaiseLocalEvent(cur, new AIUnShuntActionEvent());
+                RaiseLocalEvent(cur, new AIUnshuntActionEvent());
             else if (TryComp<StationAIShuntableComponent>(cur, out var shuntable) && shuntable.Inhabited.HasValue)
-                RaiseLocalEvent(shuntable.Inhabited.Value, new AIUnShuntActionEvent());
-            else if (TryComp<Robust.Shared.Containers.ContainerManagerComponent>(cur, out var currentManager))
+                RaiseLocalEvent(shuntable.Inhabited.Value, new AIUnshuntActionEvent());
+            if (TryComp<Robust.Shared.Containers.ContainerManagerComponent>(cur, out var currentManager))
             {
                 foreach (var container in containerSys.GetAllContainers(cur))
                 {
