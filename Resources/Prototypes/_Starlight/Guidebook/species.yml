@@ -67,3 +67,17 @@
   - NeoResomi
   - NeoVox
   - NeoVulpkanin
+
+- type: guideEntry
+  id: Sawians
+  name: species-name-sawian
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Sawians.xml"
+  children:
+    - Experiment
+
+- type: guideEntry
+  id: Experiment
+  name: species-name-experiment
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Experiment.xml"
+
+

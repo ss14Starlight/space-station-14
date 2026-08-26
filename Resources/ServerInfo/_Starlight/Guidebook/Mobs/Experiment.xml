@@ -1,15 +1,14 @@
 <Document>
   # Experiment
-  
+
   <Box>
-	<GuideEntityEmbed Entity="MobExperiment" Caption=""/>
+	<GuideEntityEmbed Entity="AppearanceExperiment" Caption=""/>
   </Box>
-  
+
   Experiments are simple, unremarkable Sawians, often called cannon fodder. They're officially described as a mutated mix of a human, fox and rat.
-  
+
   While being a mix of multiple species, they are mostly canine - certain foods, like [color=red]coffee or chocolate will poison them[/color]. They can, however, eat raw meat without issue.
   Their claws make them adept at unarmed combat, and their eyes emit a permanent [color=yellow]bioluminescent glow[/color], helping see in the dark.
-  They are also small enough to be picked up by others.
-  
-  Experiments are rather cowardly and anxious in nature, fitting more in worker roles rather than leading. Some would call them mischevious.
+
+  Experiments are rather cowardly and anxious in nature, fitting more in worker roles rather than leading. Some would call them mischievous.
 </Document>

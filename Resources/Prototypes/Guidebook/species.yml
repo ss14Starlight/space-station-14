@@ -17,13 +17,13 @@
   - Resomi # Starlight, switched positions with Reptilian
   - Reptilian # Starlight, switched positions with Resomi
   - Rodentia #Starlight
+  - Sawians # Starlight
   - Shadekin # Starlight
   - Thaven #Starlight
   - Vox
   - Vulpkanin
   - Neocyte # Starlight
   - IPC #FH
-  - Sawians # Starlight
 
 
 - type: guideEntry
@@ -70,15 +70,3 @@
   id: Vulpkanin
   name: species-name-vulpkanin
   text: "/ServerInfo/Guidebook/Mobs/Vulpkanin.xml"
-- type: guideEntry
-  id: Sawians
-  name: species-name-sawian
-  text: "/ServerInfo/Guidebook/Mobs/Sawians.xml"
-  children:
-    - Experiment
-
-- type: guideEntry
-  id: Experiment
-  name: species-name-experiment
-  text: "/ServerInfo/Guidebook/Mobs/Experiment.xml"
-

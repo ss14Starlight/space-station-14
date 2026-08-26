@@ -11,7 +11,7 @@
   defaultSkinTone: "#FFFFFF"
   maleFirstNames: names_experiment
   femaleFirstNames: names_experiment
-  naming: First
+  naming: IdFirst
   customName: true
   sexes:
   - Unsexed

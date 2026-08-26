@@ -1,0 +1,30 @@
+<Document>
+    # Sawians
+
+    <Box>
+	    <GuideEntityEmbed Entity="AppearanceExperiment" Caption=""/>
+    </Box>
+
+    Sawians are a group of artificially created species based off of various earth genomes, often manning Nanotrasen stations.
+    Sawians are biologically genderless, though some still sport masculine/feminine features visually.
+    They are not accustomed to wearing clothes. The less they're wearing the faster they move.
+
+    #Health
+    Sawians are remarkably durable, made to live in conditions deadly to most species
+    - Most are given brain implants allowing them an advance readout of their bodies condition.
+    - Their extremely fast metabolism makes them great at healing most wounds, though it comes at the cost of highly increased hunger.
+
+
+    #Conformity
+    - Any deviation in personality or genetic composition within a species is a rarity - differences are likely from personal trinkets, scars, or accessories.
+    - For management purposes all Sawians are given a unique Identification number and are allowed one nickname. (e.g., [color=yellow]#4466 John[/color], [color=yellow]#7201 Jimmy[/color], [color=yellow]#1793 Jane[/color])
+    All Sawians employed under Nanotrasen are expected to use their provided number in place of a name while filling paperwork.
+
+
+
+</Document>
+<!-- for soft crit
+- Their durability allows them to endure the effects of [color=red]critical condition[/color] for some time.
+they can [color=yellow]crawl, talk, and use items.[/color] they will however take [color=red]Asphyxiation[/color] Damage,
+eventually passing out before death.
+-->
