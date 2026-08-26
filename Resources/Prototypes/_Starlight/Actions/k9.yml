@@ -1,0 +1,72 @@
+- type: entity
+  parent: BaseAction
+  id: Latch
+  name: "[color=orange]Latch[/color]"
+  description: Pin a target in place. Bite harder to extend the hold; taking hits shortens it.
+  components:
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_k9.rsi
+      state: latch
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 60
+  - type: TargetAction
+    range: 1.5
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MobState
+    event: !type:LatchActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: LatchBiteHarder
+  name: "[color=orange]Bite Harder[/color]"
+  description: Deal damage and extend the latch, up to its hard cap.
+  components:
+  - type: Action
+    useDelay: 0.75
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_k9.rsi
+      state: bite-harder
+  - type: InstantAction
+    event: !type:LatchBiteHarderActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: LatchRelease
+  name: "[color=orange]Release[/color]"
+  description: Let go of the latch immediately.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_k9.rsi
+      state: release
+  - type: InstantAction
+    event: !type:LatchReleaseActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: K9Sprint
+  name: "[color=lightblue]Sprint[/color]"
+  description: A short burst of speed.
+  components:
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_k9.rsi
+      state: sprint
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 30
+  - type: InstantAction
+    event: !type:ZoomiesActionEvent

@@ -12,8 +12,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
@@ -73,8 +75,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
@@ -108,8 +112,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
@@ -155,8 +161,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
@@ -188,8 +196,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
@@ -216,8 +226,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
     - GalacticCommon
     - Nekomimetic
   # Starlight-end
@@ -254,8 +266,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
     - GalacticCommon
     - Nekomimetic
   # Starlight-end
@@ -289,8 +303,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
     - GalacticCommon
     - Nekomimetic
   # Starlight-end
@@ -346,8 +362,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
     - GalacticCommon
     - Nekomimetic
   # Starlight-end
@@ -414,8 +432,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   - type: Vocal
@@ -545,8 +565,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   - type: Vocal
