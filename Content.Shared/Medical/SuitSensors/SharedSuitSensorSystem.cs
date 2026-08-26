@@ -1,5 +1,6 @@
 using System.Numerics;
 using Robust.Shared.GameObjects; // Starlight
+using Content.Shared._Starlight.StatusIcon;
 using Content.Shared.Access.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Clothing;
@@ -16,6 +17,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Roles;
 using Content.Shared.Station;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
@@ -374,6 +376,20 @@ public abstract partial class SharedSuitSensorSystem : EntitySystem
             foreach (var department in card.Comp.JobDepartments)
                 userJobDepartments.Add(Loc.GetString(_proto.Index(department).Name));
         }
+        // Starlight Start
+        else if (TryComp<FixedJobIconComponent>(sensor.User.Value, out var fixedJob) && _proto.Resolve(fixedJob.Job, out var job))
+        {
+            userName = MetaData(sensor.User.Value).EntityName;
+            userJob = job.LocalizedName;
+            userJobIcon = job.Icon;
+
+            foreach (var department in _proto.EnumeratePrototypes<DepartmentPrototype>())
+            {
+                if (department.Roles.Contains(fixedJob.Job))
+                    userJobDepartments.Add(Loc.GetString(department.Name));
+            }
+        }
+        // Starlight End
 
         // get health mob state
         var isAlive = false;

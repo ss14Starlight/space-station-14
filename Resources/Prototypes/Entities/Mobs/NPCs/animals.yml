@@ -1483,6 +1483,16 @@
   - type: Crawler
   - type: StatusIcon
   - type: CosmicCenserTarget # Stellar - Cosmic Cult
+  # Starlight-start
+  - type: ThermalRegulator # prevents monkeys & kobolds from overheating when wearing hardsuits
+    metabolismHeat: 400 # half of a human's
+    radiatedHeat: 35
+    implicitHeatRegulation: 250
+    sweatHeatRegulation: 500
+    shiveringHeatRegulation: 500
+    normalBodyTemperature: 310.15
+    thermalRegulationTemperatureThreshold: 2
+  # Starlight-end
 
 - type: entity
   name: monkey
@@ -3209,9 +3219,11 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - GalacticCommon
     - Dog
+    - DogFeral
     - Canilunzt
   # Starlight-end
   - type: DamageStateVisuals
@@ -3244,8 +3256,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight End
@@ -3346,9 +3360,11 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - GalacticCommon
     - Cat
+    - CatFeral
     - Nekomimetic
   # Starlight-end
   - type: Sprite
@@ -3446,8 +3462,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
     - GalacticCommon
 # Starlight-end
   - type: Sprite
@@ -4155,9 +4173,11 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     - GalacticCommon
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
