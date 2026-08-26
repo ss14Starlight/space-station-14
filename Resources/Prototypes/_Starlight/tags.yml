@@ -354,6 +354,9 @@
   id: HiltWood
 
 - type: Tag
+  id: HoloprojectorCrafting # Defines which projectors can be used to craft a False Shutters Projector
+
+- type: Tag
   id: HuntedTraitBackground
 
 - type: Tag
