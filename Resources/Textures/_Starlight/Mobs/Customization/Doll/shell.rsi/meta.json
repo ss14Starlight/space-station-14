@@ -85,47 +85,47 @@
         {
             "name": "devil_l_hand",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "devil_r_arm",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "devil_l_arm",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "devil_r_leg",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "devil_l_leg",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "devil_r_foot",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "devil_l_foot",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "devil_head",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "devil_torso",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "segmented_r_hand",
@@ -135,57 +135,72 @@
         {
             "name": "segmented_l_hand",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "segmented_r_arm",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "segmented_l_arm",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "segmented_r_leg",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "segmented_l_leg",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "segmented_r_foot",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "segmented_l_foot",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "segmented_head",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "segmented_torso",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "head_fox",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
         },
         {
             "name": "head_moth",
             "directions": 4,
-    		"copyright": "Maitake"        
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "head_crested",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "head_hawk",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "head_owl",
+            "directions": 4,
+    		"copyright": "SevenShades"
         }
     ]
 }
