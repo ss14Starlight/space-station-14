@@ -1,144 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: Exosuit drills blunt damage values reduced.
-    type: Tweak
-  id: 407414
-  time: '2026-08-10T15:07:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5562
-- author: Orhu
-  changes:
-  - message: (Sepultum) Added Radio Station.
-    type: Add
-  id: 407415
-  time: '2026-08-10T15:25:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5560
-- author: Orhu
-  changes:
-  - message: (Sepultum) Added Station Radios to various spots around the station.
-    type: Add
-  id: 407416
-  time: '2026-08-10T15:25:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5560
-- author: Orhu
-  changes:
-  - message: (Sepultum) Reporter doors now require Journalism access to open.
-    type: Tweak
-  id: 407417
-  time: '2026-08-10T15:25:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5560
-- author: Caws
-  changes:
-  - message: Increased the maximum linking range of the artifact analysis console from 9 tiles to 12.
-    type: Tweak
-  id: 407418
-  time: '2026-08-10T17:26:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5597
-- author: Makeshift
-  changes:
-  - message: (Packed) Added Radio Host!
-    type: Add
-  id: 407419
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
-  - message: (Packed) Added Departmental Techfabs!
-    type: Add
-  id: 407420
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
-  - message: (Packed) Added a Chef Closet to the Freezer.
-    type: Add
-  id: 407421
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
-  - message: (Packed) AI External airlocks now have command access, too.
-    type: Fix
-  id: 407422
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
-  - message: (Packed) The stage now uses platforms. Fancy!
-    type: Tweak
-  id: 407423
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Makeshift
-  changes:
-  - message: (Packed) Science's artifact chamber now uses an unlocked Air Alarm.
-    type: Tweak
-  id: 407424
-  time: '2026-08-10T19:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5591
-- author: Way
-  changes:
-  - message: (Hotel) Radio Host is now playable on Hotel station.
-    type: Add
-  id: 407425
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
-  - message: (Hotel) Departmental lathes are mapped.
-    type: Add
-  id: 407426
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
-  - message: (Hotel) Reporter has been moved near evac, next to library. Their old room has been turned into the main service area for their respective lathe and fax.
-    type: Tweak
-  id: 407427
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
-  - message: (Hotel) Bar had it's dining area slightly rearranged to accommodate the new area.
-    type: Tweak
-  id: 407428
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
-  - message: (Hotel) Added a maints route above the Radio Host's room, to prevent a dead end and better flow.
-    type: Tweak
-  id: 407429
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
-  - message: (Hotel) AI cameras on the outer parts of the core viewing into space have been removed.
-    type: Tweak
-  id: 407430
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
-  - message: (Hotel) Botany has a biogen.
-    type: Fix
-  id: 407431
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Caws
-  changes:
-  - message: '"Brig Med" map beacon has been renamed to "Brigmedic".'
-    type: Tweak
-  id: 407432
-  time: '2026-08-10T20:15:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5590
-- author: Conflee
-  changes:
-  - message: Added 7 new 'Retro' Counters. Constructable by players and usable by mappers. Diner, Kitchen, Steel and Wood, Wood, Steel, Orange and White, and Teal and White.
-    type: Add
-  id: 407433
-  time: '2026-08-10T20:43:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5577
 - author: Sparlight
   changes:
   - message: Partial smellers can now faintly perceive the scent emissions of corpses inside closed containers.
@@ -2799,4 +2659,144 @@ Entries:
   id: 407813
   time: '2026-08-22T01:27:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5776
+- author: Mack
+  changes:
+  - message: missing values for the reactor guidebook temps.
+    type: Fix
+  id: 407814
+  time: '2026-08-23T10:38:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5797
+- author: Johnny
+  changes:
+  - message: The syndicate bomb is less concentrated with its explosion, focusing more on making a large explosion than entirely deleting an area.
+    type: Tweak
+  id: 407815
+  time: '2026-08-24T09:00:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5804
+- author: SeaborneProto
+  changes:
+  - message: Fixed Manor brig door to not be maints access!
+    type: Fix
+  id: 407816
+  time: '2026-08-24T09:22:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5781
+- author: Caws
+  changes:
+  - message: Ghost roles like Paradox Clone and Exterminators should no longer spawn in randoms stretches of empty space far away from the station on maps that have non-space atmospheres, like Cork and Novo Lobster.
+    type: Fix
+  id: 407817
+  time: '2026-08-25T00:26:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5810
+- author: Sparlight, DocMoth, swonkus, ya314a, xxhotgirl69, huaqas
+  changes:
+  - message: Added security K9 role.  Not mapped yet, but you can set your loadout for now.
+    type: Add
+  id: 407818
+  time: '2026-08-25T01:03:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5715
+- author: Caws
+  changes:
+  - message: Ancestors like monkeys and kobolds will no longer overheat when wearing hardsuits.
+    type: Fix
+  id: 407819
+  time: '2026-08-25T04:40:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5809
+- author: Mack
+  changes:
+  - message: Fix metabolism shuffle.
+    type: Fix
+  id: 407820
+  time: '2026-08-25T04:59:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5775
+- author: SirLutz
+  changes:
+  - message: 'New uncraftable chemical: Respirazone, treats generic airloss damage.'
+    type: Add
+  id: 407821
+  time: '2026-08-25T07:55:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5497
+- author: SirLutz
+  changes:
+  - message: Airloss-Autoinjector does not anymore contain Saline and Dexalin-plus.
+    type: Remove
+  id: 407822
+  time: '2026-08-25T07:55:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5497
+- author: SirLutz
+  changes:
+  - message: Respirazone is available only in airloss-autoinjectors.
+    type: Add
+  id: 407823
+  time: '2026-08-25T07:55:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5497
+- author: Sparlight
+  changes:
+  - message: K9s can now fit in pet carriers.
+    type: Fix
+  id: 407824
+  time: '2026-08-26T00:21:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5822
+- author: Swonki
+  changes:
+  - message: Horrific Necktie Role/Item Descriptions.
+    type: Tweak
+  id: 407825
+  time: '2026-08-26T00:48:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5814
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed not being able to trash medipens. You no longer need to be Kobe to clean up after yourself.
+    type: Fix
+  id: 407826
+  time: '2026-08-26T01:06:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5817
+- author: Sparlight
+  changes:
+  - message: Security K9s now speak a variant of Dog that can only be understood by other dogs.
+    type: Tweak
+  id: 407827
+  time: '2026-08-26T01:06:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5818
+- author: Mack
+  changes:
+  - message: Bring the stove, oven, ice cream maker, and deep fryer to the new idle/active power system.
+    type: Tweak
+  id: 407828
+  time: '2026-08-26T01:33:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5796
+- author: Conflee
+  changes:
+  - message: All wallmounts can now be labeled with a hand labeler, such as Air Alarms, Neon Signs, Signs, Fire Alarms, etc.
+    type: Tweak
+  id: 407829
+  time: '2026-08-26T01:33:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5785
+- author: Conflee
+  changes:
+  - message: Added False Shutter Projectors, a new craftable tool for antagonists. It places a grayscale 'false shutter' projection which blocks vision, but lacking the yellow hazard stripe and visually glitching occasionally gives it away to anyone actually paying attention. Useful for break-ins so passerbys in the hallways outside don't see you.
+    type: Add
+  id: 407830
+  time: '2026-08-26T01:54:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5780
+- author: Floximo
+  changes:
+  - message: AI's can now jump to location on Atmos/Power/Radar maps.
+    type: Add
+  id: 407831
+  time: '2026-08-26T18:36:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5831
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: In the advanced first aid cyborg module, changed a beaker/jug slot to a chemical case slot, allowing bottles to be stored.
+    type: Tweak
+  id: 407832
+  time: '2026-08-26T18:59:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5830
+- author: Floximo
+  changes:
+  - message: AI no longer sees job icons outside camera range while suit sensors are not set to coordinates.
+    type: Fix
+  id: 407833
+  time: '2026-08-26T20:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5799
 Order: -1

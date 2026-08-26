@@ -128,6 +128,7 @@
   - Detective
   - Warden
   - DutyOfficer # Starlight
+  - K9 # Starlight
 
 - type: department
   id: Science
