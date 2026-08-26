@@ -1,0 +1,15 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "per-state",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "MakeshiftID",
+            "copyright": "By rhithebirdthing"
+        }
+    ]
+}

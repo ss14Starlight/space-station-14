@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ IDCardStandard, BaseCommandContraband ]
+  parent: [IDCardStandard, BaseCommandContraband]
   id: MagistrateIDCard
   name: magistrate ID card
   components:
@@ -23,159 +23,159 @@
       job: Magistrate
 
 - type: entity
-  parent: [ IDCardStandard, BaseCentcommContraband ]
+  parent: [IDCardStandard, BaseCentcommContraband]
   id: CentcomIDCardOperator
   name: CentComm operator ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcom
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#999999"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#6b6b6b"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: CentCommOperator
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: green
-  - type: PresetIdCard
-    job: CentralCommandOperator
-  - type: NanoChatCard
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcom
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#999999"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#6b6b6b"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: CentCommOperator
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: green
+    - type: PresetIdCard
+      job: CentralCommandOperator
+    - type: NanoChatCard
+      listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseScienceContraband ]
+  parent: [IDCardStandard, BaseScienceContraband]
   id: RoboticistIDCard
   name: roboticist ID card
   components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: stripe_top
-      color: &color-science-top "#a53aaa"
-    - state: stripe_bottom
-      color: &color-science-bottom "#652368"
-    - sprite: &icon-rsi Interface/Misc/job_icons.rsi
-      offset: *icon-offset
-      state: Roboticist
-  - type: PresetIdCard
-    job: Roboticist
+    - type: Sprite
+      layers:
+        - state: default
+        - state: stripe_top
+          color: &color-science-top "#a53aaa"
+        - state: stripe_bottom
+          color: &color-science-bottom "#652368"
+        - sprite: &icon-rsi Interface/Misc/job_icons.rsi
+          offset: *icon-offset
+          state: Roboticist
+    - type: PresetIdCard
+      job: Roboticist
 
 - type: entity
-  parent: [ IDCardStandard, BaseCommandContraband ]
+  parent: [IDCardStandard, BaseCommandContraband]
   id: NanoTrasenRepresentativeIDCard
   name: NanoTrasen representative ID Card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: nanotrasen
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#cfa500"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#876c00"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: NanoTrasenRepresentative
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: blue
-  - type: PresetIdCard
-    job: NanoTrasenRepresentative
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: nanotrasen
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#cfa500"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#876c00"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: NanoTrasenRepresentative
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: blue
+    - type: PresetIdCard
+      job: NanoTrasenRepresentative
 
 - type: entity
-  parent: [ IDCardStandard, BaseLawContraband ]
+  parent: [IDCardStandard, BaseLawContraband]
   id: IAAIDCard
   name: internal affairs agent ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: silver
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#dd1b7a"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#96064c"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: IAA
-  - type: PresetIdCard
-    job: IAA
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: silver
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#dd1b7a"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#96064c"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: IAA
+    - type: PresetIdCard
+      job: IAA
 
 - type: entity
-  parent: [ IDCardStandard, BaseBlueShieldContraband ]
+  parent: [IDCardStandard, BaseBlueShieldContraband]
   id: BlueShieldIDCard
   name: blue shield ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: silver
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#134975"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#062d4d"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: BlueShield
-  - type: PresetIdCard
-    job: BlueShield
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: silver
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#134975"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#062d4d"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: BlueShield
+    - type: PresetIdCard
+      job: BlueShield
 
 - type: entity
   parent: IDCardStandard
   id: AssistantManagerIDCard
   name: assistant manager ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: silver
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: AssistantManager
-  - type: PresetIdCard
-    job: AssistantManager
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: silver
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: AssistantManager
+    - type: PresetIdCard
+      job: AssistantManager
 
 - type: entity
-  parent: [ IDCardStandard, BaseCommandContraband ]
+  parent: [IDCardStandard, BaseCommandContraband]
   id: NTNCBlueShieldIDCard
   name: NanoTrasen navy corps marine's ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: gold
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#134975"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#0d304d"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: NTNCBlueShield
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: gold
-  - type: PresetIdCard
-    job: NTNCBlueShield
-  - type: NanoChatCard
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: gold
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#134975"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#0d304d"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: NTNCBlueShield
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: gold
+    - type: PresetIdCard
+      job: NTNCBlueShield
+    - type: NanoChatCard
+      listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseCommandContraband ]
-  categories: [ DoNotMap ]
+  parent: [IDCardStandard, BaseCommandContraband]
+  categories: [DoNotMap]
   id: CCGreenShieldIDCard
   name: greenshield ID card
   description: Why are you looking at this instead of the person you're supposed to protect?
@@ -202,128 +202,128 @@
       listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseCargoContraband ]
+  parent: [IDCardStandard, BaseCargoContraband]
   id: SalvageLeadIDCard
   name: salvage lead ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: default
-    - sprite: *id-rsi
-      state: stripe_top
-      color: &color-supply-top "#b18644"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: &color-supply-bottom "#5b4523"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: SalvageLead
-  - type: PresetIdCard
-    job: SalvageLead
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - sprite: *id-rsi
+          state: stripe_top
+          color: &color-supply-top "#b18644"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: &color-supply-bottom "#5b4523"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: SalvageLead
+    - type: PresetIdCard
+      job: SalvageLead
 
 - type: entity
-  parent: [ IDCardStandard, BaseCargoContraband ]
+  parent: [IDCardStandard, BaseCargoContraband]
   id: MiningIDCard
   name: mining ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: default
-    - sprite: *id-rsi
-      state: stripe_top
-      color: *color-supply-top
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: *color-supply-bottom
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: ShaftMiner
-  - type: PresetIdCard
-    job: MiningSpecialist
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - sprite: *id-rsi
+          state: stripe_top
+          color: *color-supply-top
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: *color-supply-bottom
+        - sprite: *icon-rsi
+          offset: *icon-offset
+          state: ShaftMiner
+    - type: PresetIdCard
+      job: MiningSpecialist
 
 - type: entity
-  parent: [ IDCardStandard, BaseCargoContraband ]
+  parent: [IDCardStandard, BaseCargoContraband]
   id: MailTechIDCard
   name: mail technician ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: default
-    - sprite: *id-rsi
-      state: stripe_top
-      color: *color-supply-top
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: *color-supply-bottom
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: MailTech
-  - type: PresetIdCard
-    job: MailTech
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - sprite: *id-rsi
+          state: stripe_top
+          color: *color-supply-top
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: *color-supply-bottom
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MailTech
+    - type: PresetIdCard
+      job: MailTech
 
 - type: entity
   parent: IDCardStandard
   id: PerformerIDCard
   name: performer ID card
   components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: stripe_top
-      color: &color-service-top "#639137"
-    - state: stripe_bottom
-      color: &color-service-bottom "#446326"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: Performer
-  - type: PresetIdCard
-    job: Performer
+    - type: Sprite
+      layers:
+        - state: default
+        - state: stripe_top
+          color: &color-service-top "#639137"
+        - state: stripe_bottom
+          color: &color-service-bottom "#446326"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: Performer
+    - type: PresetIdCard
+      job: Performer
 
 - type: entity
-  parent: [ IDCardStandard, BaseSecurityContraband ]
+  parent: [IDCardStandard, BaseSecurityContraband]
   id: DutyOfficerIDCard
   name: duty officer ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: default
-    - sprite: *id-rsi
-      state: stripe_top
-      color: &color-security-top "#cb0000"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: &color-security-bottom "#830000"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: DutyOfficer
-  - type: PresetIdCard
-    job: DutyOfficer
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: default
+        - sprite: *id-rsi
+          state: stripe_top
+          color: &color-security-top "#cb0000"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: &color-security-bottom "#830000"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: DutyOfficer
+    - type: PresetIdCard
+      job: DutyOfficer
 
 - type: entity
   parent: IDCardStandard
   id: KikiIDCard
   name: kiki's ID card
   components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: stripe_top
-      color: *color-service-top
-    - state: stripe_bottom
-      color: *color-service-bottom
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: Botanist
-  - type: PresetIdCard
-    job: Botanist
-    name: Kiki
-  - type: Tag # Ignore Chameleon tags
-    tags:
-    - DoorBumpOpener
+    - type: Sprite
+      layers:
+        - state: default
+        - state: stripe_top
+          color: *color-service-top
+        - state: stripe_bottom
+          color: *color-service-bottom
+        - sprite: *icon-rsi
+          offset: *icon-offset
+          state: Botanist
+    - type: PresetIdCard
+      job: Botanist
+      name: Kiki
+    - type: Tag # Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
 
 - type: entity
   parent: IDCardStandard
@@ -331,71 +331,71 @@
   name: prisoner ID card
   suffix: Prisoner
   components:
-  - type: Sprite
-    layers:
-    - state: orange
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: Prisoner
-  - type: Item
-    heldPrefix: orange
-  - type: IdCard
-    canMicrowave: false
-  - type: PresetIdCard
-    job: Prisoner
-  - type: Tag # Ignore Chameleon tags
-    tags:
-    - DoorBumpOpener
+    - type: Sprite
+      layers:
+        - state: orange
+        - sprite: *icon-rsi
+          offset: *icon-offset
+          state: Prisoner
+    - type: Item
+      heldPrefix: orange
+    - type: IdCard
+      canMicrowave: false
+    - type: PresetIdCard
+      job: Prisoner
+    - type: Tag # Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
 
 - type: entity
   parent: PrisonerJobIDCard
   id: StirStirIDCard
   name: stir stir's ID card
   components:
-  - type: PresetIdCard
-    name: Stir Stir
+    - type: PresetIdCard
+      name: Stir Stir
 
 - type: entity
   parent: IDCardStandard
   id: SovietIdCard
   name: soviet id card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: sovietid
-  - type: IdCard
-    jobIcon: JobIconSoviet
-  - type: NanoChatCard
-    listNumber: false
-  - type: Tag
-    tags:
-    - CommieID # BountySalvageCommieID
-  - type: Access
-    tags:
-      - Communist
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: sovietid
+    - type: IdCard
+      jobIcon: JobIconSoviet
+    - type: NanoChatCard
+      listNumber: false
+    - type: Tag
+      tags:
+        - CommieID # BountySalvageCommieID
+    - type: Access
+      tags:
+        - Communist
 
 - type: entity
-  parent: [ SyndicateIDCard, BaseSyndicateContraband ]
+  parent: [SyndicateIDCard, BaseSyndicateContraband]
   id: SyndicateFootsoldierIDCard
   name: syndicate ID card
   suffix: Footsoldier, Not Agent ID
   components:
-  - type: Sprite
-    layers:
-    - state: black
-    - state: stripe_top
-      color: &color-syndicate-top "#e80c0c"
-    - state: stripe_bottom
-      color: &color-syndicate-bottom "#960606"
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: Syndicate
-  - type: IdCard
-    jobIcon: JobIconSyndicate
+    - type: Sprite
+      layers:
+        - state: black
+        - state: stripe_top
+          color: &color-syndicate-top "#e80c0c"
+        - state: stripe_bottom
+          color: &color-syndicate-bottom "#960606"
+        - sprite: *icon-rsi
+          offset: *icon-offset
+          state: Syndicate
+    - type: IdCard
+      jobIcon: JobIconSyndicate
 
 - type: entity
-  parent: [ IDCardStandard, BaseSyndicateContraband ]
+  parent: [IDCardStandard, BaseSyndicateContraband]
   id: CommanderIDCard
   name: syndicate commander ID card
   components:
@@ -423,7 +423,7 @@
       listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseSyndicateContraband ]
+  parent: [IDCardStandard, BaseSyndicateContraband]
   id: SyndicateAgentIDCard
   name: syndicate agent ID card
   components:
@@ -451,7 +451,7 @@
       listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseSyndicateContraband ]
+  parent: [IDCardStandard, BaseSyndicateContraband]
   id: OperativeIDCard
   name: syndicate operative ID card
   components:
@@ -484,27 +484,27 @@
   name: assistant ID card
   suffix: Borgi
   components:
-  - type: Sprite
-    layers:
-    - state: default
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: Assistant
-  - type: IdCard
-    jobTitle: job-title-borgi
-    jobIcon: JobIconBorg
-  - type: Tag  # not a chameleon target.
-    tags:
-    - DoorBumpOpener
-  - type: Access
-    tags:
-    - Maintenance
-    - External
-    - Robotics
-    - Engineering
-    - Atmospherics
-  - type: NanoChatCard
-    listNumber: false
+    - type: Sprite
+      layers:
+        - state: default
+        - sprite: *icon-rsi
+          offset: *icon-offset
+          state: Assistant
+    - type: IdCard
+      jobTitle: job-title-borgi
+      jobIcon: JobIconBorg
+    - type: Tag # not a chameleon target.
+      tags:
+        - DoorBumpOpener
+    - type: Access
+      tags:
+        - Maintenance
+        - External
+        - Robotics
+        - Engineering
+        - Atmospherics
+    - type: NanoChatCard
+      listNumber: false
 
 - type: entity
   parent: AssistantDerelictBorgiIDCard
@@ -521,145 +521,145 @@
   id: CentcomIDCardNTSF
   name: NTSF ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: nanotrasen
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#134975"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#0d304d"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: NTSF
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: blue
-  - type: PresetIdCard
-    job: NanoTrasenSpecialForces
-  - type: NanoChatCard
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: nanotrasen
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#134975"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#0d304d"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: NTSF
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: blue
+    - type: PresetIdCard
+      job: NanoTrasenSpecialForces
+    - type: NanoChatCard
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: CentCommIDCardServiceWorker
   name: CentComm service worker ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcom
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#cfa500"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#876c00"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: CCServiceWorker
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: green
-  - type: PresetIdCard
-    job: CentCommServiceWorker
-  - type: NanoChatCard
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcom
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#cfa500"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#876c00"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: CCServiceWorker
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: green
+    - type: PresetIdCard
+      job: CentCommServiceWorker
+    - type: NanoChatCard
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: CentCommIDCardChef
   name: CentComm chef ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcom
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#cfa500"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#876c00"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: CCChef
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: green
-  - type: PresetIdCard
-    job: CentCommChef
-  - type: NanoChatCard
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcom
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#cfa500"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#876c00"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: CCChef
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: green
+    - type: PresetIdCard
+      job: CentCommChef
+    - type: NanoChatCard
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: CentCommIDCardBartender
   name: CentComm bartender ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcom
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#cfa500"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#876c00"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: CCBartender
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: green
-  - type: PresetIdCard
-    job: CentCommBartender
-  - type: NanoChatCard
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcom
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#cfa500"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#876c00"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: CCBartender
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: green
+    - type: PresetIdCard
+      job: CentCommBartender
+    - type: NanoChatCard
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: CentCommIDCardJanitor
   name: CentComm janitor ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcom
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#cfa500"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#876c00"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: CCJanitor
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: green
-  - type: PresetIdCard
-    job: CentCommJanitor
-  - type: NanoChatCard
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcom
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#cfa500"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#876c00"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: CCJanitor
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: green
+    - type: PresetIdCard
+      job: CentCommJanitor
+    - type: NanoChatCard
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: CentcomIDCardDecimus
   name: ERROR ID card
   components:
-  - type: Sprite
-    layers:
-    - state: black
-  - type: Item
-    heldPrefix: blue
-  - type: PresetIdCard
-    job: Decimus
-  - type: NanoChatCard
-    listNumber: false
+    - type: Sprite
+      layers:
+        - state: black
+    - type: Item
+      heldPrefix: blue
+    - type: PresetIdCard
+      job: Decimus
+    - type: NanoChatCard
+      listNumber: false
 
 - type: entity
   parent: [IDCardStandard, BaseTSFContraband]
@@ -667,80 +667,80 @@
   name: SolGov ID card
   description: An identification card issued by the Trans Solar Federation.
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: tsf
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#22a7ff"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#145683"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: TSF
-  - type: Item
-    heldPrefix: silver
-  - type: IdCard
-    jobIcon: JobIconTSF
-  - type: Access
-    tags:
-      - Solgov
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: tsf
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#22a7ff"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#145683"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: TSF
+    - type: Item
+      heldPrefix: silver
+    - type: IdCard
+      jobIcon: JobIconTSF
+    - type: Access
+      tags:
+        - Solgov
 
 - type: entity
   parent: TSFIdCard
   id: TSFIdCardOfficer
   suffix: Patrol Officer
   components:
-  - type: Sprite
-    layers:
-    - state: tsf
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#22a7ff"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#145683"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: TSFOfficer
-  - type: PresetIdCard
-    job: SolGovOfficer
-  - type: IdCard
-    jobIcon: JobIconTSFOfficer
+    - type: Sprite
+      layers:
+        - state: tsf
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#22a7ff"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#145683"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: TSFOfficer
+    - type: PresetIdCard
+      job: SolGovOfficer
+    - type: IdCard
+      jobIcon: JobIconTSFOfficer
 
 - type: entity
   parent: TSFIdCardOfficer
   id: TSFIdCardOfficerSheriff
   suffix: Patrol Officer, Sheriff
   components:
-  - type: PresetIdCard
-    job: SolGovOfficerSheriff
+    - type: PresetIdCard
+      job: SolGovOfficerSheriff
 
 - type: entity
   parent: TSFIdCard
   id: TSFIdCardCrew
   suffix: Crew
   components:
-  - type: PresetIdCard
-    job: TSFMCCrew
+    - type: PresetIdCard
+      job: TSFMCCrew
 
 - type: entity
   parent: TSFIdCard
   id: TSFIdCardMarine
   suffix: Marine
   components:
-  - type: PresetIdCard
-    job: TSFMarine
+    - type: PresetIdCard
+      job: TSFMarine
 
 - type: entity
   parent: TSFIdCard
   id: TSFIdCardSpecOps
   suffix: SpecOps
   components:
-  - type: PresetIdCard
-    job: TSFMarineElite
+    - type: PresetIdCard
+      job: TSFMarineElite
 
 - type: entity
   parent: IDCardStandard
@@ -748,38 +748,38 @@
   name: cluwne ID card
   suffix: Unremoveable
   components:
-  - type: Sprite
-    layers:
-    - state: default
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: Cluwne
-  - type: IdCard
-    jobTitle: job-title-cluwne
-  - type: NanoChatCard
-    listNumber: false
+    - type: Sprite
+      layers:
+        - state: default
+        - sprite: *icon-rsi
+          offset: *icon-offset
+          state: Cluwne
+    - type: IdCard
+      jobTitle: job-title-cluwne
+    - type: NanoChatCard
+      listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseCommandContraband ]
+  parent: [IDCardStandard, BaseCommandContraband]
   id: NanoTrasenCareerTrainerIDCard
   name: NanoTrasen career trainer ID Card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - sprite: *id-rsi
-      state: silver
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#A91169"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#630232"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: NanoTrasenCareerTrainer
-  - type: PresetIdCard
-    job: NanotrasenCareerTrainer
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - sprite: *id-rsi
+          state: silver
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#A91169"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#630232"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: NanoTrasenCareerTrainer
+    - type: PresetIdCard
+      job: NanotrasenCareerTrainer
 
 - type: entity
   id: nctdatachip
@@ -787,49 +787,43 @@
   name: NCT Trainee Access Chip
   description: A small electronic access token that allows its user to copy the access of their Trainee. Only accessible by NT Career Trainers!
   components:
-  - type: Clothing
-    quickEquip: false
-    slots:
-    - idcard
-    sprite: Objects/Misc/id_cards.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Devices/nctdatachip.rsi
-    layers:
-    - state: base
-    - state: enabled
-      shader: unshaded
-      visible: false
-  - type: Item
-    size: Small
-    heldPrefix: default
-    storedRotation: -90
-  - type: Access
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-  - type: NCTDataChip
+    - type: Clothing
+      quickEquip: false
+      slots:
+        - idcard
+      sprite: Objects/Misc/id_cards.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/nctdatachip.rsi
+      layers:
+        - state: base
+        - state: enabled
+          shader: unshaded
+          visible: false
+    - type: Item
+      size: Small
+      heldPrefix: default
+      storedRotation: -90
+    - type: Access
+    - type: Tag
+      tags:
+        - DoorBumpOpener
+    - type: NCTDataChip
 
-- type: entity
-  parent: [ Clothing, BaseMinorContraband ]
+- type: entity #Overhaul - now usable like regular ID but has its own job icon, and makeshift IDs are minor contra, so you SHOULD still get in trouble by borgs
+  parent: [IDCardStandard, BaseMinorContraband]
   id: MakeshiftID
   name: makeshift ID card
   description: A set of door electronics rewired to act as an ID card.
-  components: # Noteably absent is the ID card component and nanochat component - so borgs will treat you as non crew. It also can't be used in a PDA, and cannot be reprogrammed by an ID card computer.
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    state: makeshift
-  - type: Clothing
-    slots:
-    - idcard
-    sprite: _Starlight/Objects/Misc/id_cards.rsi # Moffstation
-  - type: Access
-    tags:
-    - Maintenance
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - WhitelistChameleon
-    - WhitelistChameleonIdCard
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      state: makeshift
+    - type: Item
+      heldPrefix: makeshift
+    - type: PresetIdCard
+      job: MakeshiftID
+    - type: NanoChatCard
+      listNumber: false
 
 #ERT/Centcomm
 
@@ -838,208 +832,208 @@
   id: CentcomIDCard
   name: command officer ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcom
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#cfa500"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#876c00"
-    - sprite: *starlight-icon-rsi
-      offset: *icon-offset
-      state: CentComm
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: green
-  - type: PresetIdCard
-    job: CentralCommandOfficial
-  - type: NanoChatCard # CD
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcom
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#cfa500"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#876c00"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: CentComm
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: green
+    - type: PresetIdCard
+      job: CentralCommandOfficial
+    - type: NanoChatCard # CD
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: ERTLeaderIDCard
   name: ERT leader ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcomgold
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#0c7d1d" #Starlight
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#0a5715" #Starlight
-    - sprite: *starlight-icon-rsi #Starlight
-      offset: *icon-offset
-      state: ERTLeader
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: gold
-  - type: PresetIdCard
-    job: ERTLeader
-  - type: NanoChatCard # CD
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcomgold
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#0c7d1d" #Starlight
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#0a5715" #Starlight
+        - sprite: *starlight-icon-rsi #Starlight
+          offset: *icon-offset
+          state: ERTLeader
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: gold
+    - type: PresetIdCard
+      job: ERTLeader
+    - type: NanoChatCard # CD
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: ERTChaplainIDCard
   name: ERT chaplain ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcomsilver #Starlight
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#0c7d1d" #Starlight
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#0a5715" #Starlight
-    - sprite: *starlight-icon-rsi #Starlight
-      offset: *icon-offset
-      state: ERTChaplain
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: silver
-  - type: PresetIdCard
-    job: ERTChaplain
-  - type: NanoChatCard # CD
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcomsilver #Starlight
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#0c7d1d" #Starlight
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#0a5715" #Starlight
+        - sprite: *starlight-icon-rsi #Starlight
+          offset: *icon-offset
+          state: ERTChaplain
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: silver
+    - type: PresetIdCard
+      job: ERTChaplain
+    - type: NanoChatCard # CD
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: ERTEngineerIDCard
   name: ERT engineer ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcomsilver #Starlight
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#0c7d1d" #Starlight
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#0a5715" #Starlight
-    - sprite: *starlight-icon-rsi #Starlight
-      offset: *icon-offset
-      state: ERTEngineer
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: silver
-  - type: PresetIdCard
-    job: ERTEngineer
-  - type: NanoChatCard # CD
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcomsilver #Starlight
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#0c7d1d" #Starlight
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#0a5715" #Starlight
+        - sprite: *starlight-icon-rsi #Starlight
+          offset: *icon-offset
+          state: ERTEngineer
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: silver
+    - type: PresetIdCard
+      job: ERTEngineer
+    - type: NanoChatCard # CD
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: ERTJanitorIDCard
   name: ERT janitor ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcomsilver #Starlight
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#0c7d1d" #Starlight
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#0a5715" #Starlight
-    - sprite: *starlight-icon-rsi #Starlight
-      offset: *icon-offset
-      state: ERTJanitor
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: silver
-  - type: PresetIdCard
-    job: ERTJanitor
-  - type: NanoChatCard # CD
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcomsilver #Starlight
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#0c7d1d" #Starlight
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#0a5715" #Starlight
+        - sprite: *starlight-icon-rsi #Starlight
+          offset: *icon-offset
+          state: ERTJanitor
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: silver
+    - type: PresetIdCard
+      job: ERTJanitor
+    - type: NanoChatCard # CD
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: ERTMedicIDCard
   name: ERT medic ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcomsilver #Starlight
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#0c7d1d" #Starlight
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#0a5715" #Starlight
-    - sprite: *starlight-icon-rsi #Starlight
-      offset: *icon-offset
-      state: ERTMedical
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: silver
-  - type: PresetIdCard
-    job: ERTMedical
-  - type: NanoChatCard # CD
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcomsilver #Starlight
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#0c7d1d" #Starlight
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#0a5715" #Starlight
+        - sprite: *starlight-icon-rsi #Starlight
+          offset: *icon-offset
+          state: ERTMedical
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: silver
+    - type: PresetIdCard
+      job: ERTMedical
+    - type: NanoChatCard # CD
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: ERTSecurityIDCard
   name: ERT security ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcomsilver #Starlight
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#0c7d1d" #Starlight
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#0a5715" #Starlight
-    - sprite: *starlight-icon-rsi #Starlight
-      offset: *icon-offset
-      state: ERTSecurity
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: silver
-  - type: PresetIdCard
-    job: ERTSecurity
-  - type: NanoChatCard # CD
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcomsilver #Starlight
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#0c7d1d" #Starlight
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#0a5715" #Starlight
+        - sprite: *starlight-icon-rsi #Starlight
+          offset: *icon-offset
+          state: ERTSecurity
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: silver
+    - type: PresetIdCard
+      job: ERTSecurity
+    - type: NanoChatCard # CD
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
   id: CentcomIDCardDeathsquad
   name: death squad ID card
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: nanotrasen
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#134975"
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#0d304d"
-    - sprite: *icon-rsi
-      offset: *icon-offset
-      state: DeathSquad
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: blue
-  - type: PresetIdCard
-    job: DeathSquad
-  - type: NanoChatCard # CD
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: nanotrasen
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#134975"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#0d304d"
+        - sprite: *icon-rsi
+          offset: *icon-offset
+          state: DeathSquad
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: blue
+    - type: PresetIdCard
+      job: DeathSquad
+    - type: NanoChatCard # CD
+      listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1047,23 +1041,23 @@
   name: CBURN ID card
   suffix: CBURN
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers:
-    - state: centcomsilver #Starlight
-    - sprite: *id-rsi
-      state: stripe_top
-      color: "#0c7d1d" #Starlight
-    - sprite: *id-rsi
-      state: stripe_bottom
-      color: "#0a5715" #Starlight
-    - sprite: *starlight-icon-rsi #Starlight
-      offset: *icon-offset
-      state: CBURN
-  - type: Item
-    sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: silver
-  - type: PresetIdCard
-    job: CBURN
-  - type: NanoChatCard # CD
-    listNumber: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: centcomsilver #Starlight
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#0c7d1d" #Starlight
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#0a5715" #Starlight
+        - sprite: *starlight-icon-rsi #Starlight
+          offset: *icon-offset
+          state: CBURN
+    - type: Item
+      sprite: Objects/Misc/id_cards.rsi
+      heldPrefix: silver
+    - type: PresetIdCard
+      job: CBURN
+    - type: NanoChatCard # CD
+      listNumber: false

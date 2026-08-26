@@ -6,7 +6,7 @@
     state: IAA
   jobName: job-name-iaa
   tags:
-  - JobIconCrew
+    - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -16,7 +16,7 @@
     state: Magistrate
   jobName: job-name-magistrate
   tags:
-  - JobIconCrew
+    - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -26,7 +26,7 @@
     state: BlueShield
   jobName: job-name-blueshield
   tags:
-  - JobIconCrew
+    - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -44,7 +44,7 @@
     state: NTNCBlueShield
   jobName: job-name-ntncblueshield
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -54,7 +54,7 @@
     state: CCGreenShield
   jobName: job-name-greenshield
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -64,7 +64,7 @@
     state: Surgeon
   jobName: job-name-surgeon
   tags:
-  - JobIconCrew
+    - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -74,7 +74,7 @@
     state: SalvageLead
   jobName: job-name-salvagelead
   tags:
-  - JobIconCrew
+    - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -84,7 +84,7 @@
     state: SalvageSpecialist
   jobName: job-name-salvagespec
   tags:
-  - JobIconCrew
+    - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -94,7 +94,7 @@
     state: MailTech
   jobName: job-name-mailtech
   tags:
-  - JobIconCrew
+    - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -104,7 +104,7 @@
     state: DutyOfficer
   jobName: job-name-dutyofficer
   tags:
-  - JobIconCrew
+    - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -122,7 +122,7 @@
     state: Performer
   jobName: job-name-performer
   tags:
-  - JobIconCrew
+    - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -132,7 +132,7 @@
     state: CentComm
   jobName: job-name-centcomm
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -142,7 +142,7 @@
     state: Decimus
   jobName: job-name-Decimus
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -152,7 +152,7 @@
     state: NTSF
   jobName: job-name-NTSF
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -162,7 +162,7 @@
     state: CentCommOperator
   jobName: job-name-centcommoperator
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -172,8 +172,8 @@
     state: Commander
   jobName: job-name-Commander
   tags:
-  - JobIconCentComm
-  - JobIconSyndicate
+    - JobIconCentComm
+    - JobIconSyndicate
 
 - type: jobIcon
   parent: JobIcon
@@ -183,8 +183,8 @@
     state: SyndicateAgent
   jobName: job-name-SyndicateAgent
   tags:
-  - JobIconCentComm
-  - JobIconSyndicate
+    - JobIconCentComm
+    - JobIconSyndicate
 
 - type: jobIcon
   parent: JobIcon
@@ -194,8 +194,8 @@
     state: Operative
   jobName: job-name-Operative
   tags:
-  - JobIconCentComm
-  - JobIconSyndicate
+    - JobIconCentComm
+    - JobIconSyndicate
 
 - type: jobIcon
   parent: JobIcon
@@ -205,8 +205,8 @@
     state: Soviet
   jobName: job-name-Soviet
   tags:
-  - JobIconCentComm
-  - JobIconSyndicate
+    - JobIconCentComm
+    - JobIconSyndicate
 
 - type: jobIcon
   parent: JobIcon
@@ -216,7 +216,7 @@
     state: TSF
   jobName: job-name-TSF
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -226,7 +226,7 @@
     state: TSFOfficer
   jobName: job-name-TSF-officer
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -236,7 +236,7 @@
     state: CCServiceWorker
   jobName: job-name-cc-serviceworker
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -246,7 +246,7 @@
     state: CCChef
   jobName: job-name-cc-chef
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -256,7 +256,7 @@
     state: CCBartender
   jobName: job-name-cc-bartender
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -266,7 +266,7 @@
     state: CCJanitor
   jobName: job-name-cc-janitor
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -286,7 +286,7 @@
     state: Blackstar
   jobName: job-name-blackstar
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 # Admeme
 
@@ -316,7 +316,7 @@
     state: Xenoborg
   jobName: chat-radio-xenoborg
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -326,7 +326,7 @@
     state: Mothership
   jobName: chat-radio-mothership
   tags:
-  - JobIconCentComm
+    - JobIconCentComm
 
 # Assistant manager icons
 
@@ -338,8 +338,8 @@
     state: ClericalAssistant
   jobName: job-name-clerical-assistant
   tags:
-  - JobIconCrew
-  - JobIconAssistantManager
+    - JobIconCrew
+    - JobIconAssistantManager
 
 - type: jobIcon
   parent: JobIcon
@@ -349,8 +349,8 @@
     state: CookAssistant
   jobName: job-name-cook-assistant
   tags:
-  - JobIconCrew
-  - JobIconAssistantManager
+    - JobIconCrew
+    - JobIconAssistantManager
 
 - type: jobIcon
   parent: JobIcon
@@ -360,8 +360,8 @@
     state: DeliveryAssistant
   jobName: job-name-delivery-assistant
   tags:
-  - JobIconCrew
-  - JobIconAssistantManager
+    - JobIconCrew
+    - JobIconAssistantManager
 
 - type: jobIcon
   parent: JobIcon
@@ -371,8 +371,8 @@
     state: GardenerAssistant
   jobName: job-name-gardener-assistant
   tags:
-  - JobIconCrew
-  - JobIconAssistantManager
+    - JobIconCrew
+    - JobIconAssistantManager
 
 - type: jobIcon
   parent: JobIcon
@@ -382,8 +382,8 @@
     state: HandymanAssistant
   jobName: job-name-handyman-assistant
   tags:
-  - JobIconCrew
-  - JobIconAssistantManager
+    - JobIconCrew
+    - JobIconAssistantManager
 
 - type: jobIcon
   parent: JobIcon
@@ -393,8 +393,8 @@
     state: ReligiousAssistant
   jobName: job-name-religious-assistant
   tags:
-  - JobIconCrew
-  - JobIconAssistantManager
+    - JobIconCrew
+    - JobIconAssistantManager
 
 - type: jobIcon
   parent: JobIcon
@@ -404,8 +404,8 @@
     state: ShopkeeperAssistant
   jobName: job-name-shopkeeper-assistant
   tags:
-  - JobIconCrew
-  - JobIconAssistantManager
+    - JobIconCrew
+    - JobIconAssistantManager
 
 - type: jobIcon
   parent: JobIcon
@@ -415,5 +415,14 @@
     state: MedicalAssistant
   jobName: job-name-medical-assistant
   tags:
-  - JobIconCrew
-  - JobIconAssistantManager
+    - JobIconCrew
+    - JobIconAssistantManager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMakeshiftID
+  icon:
+    sprite: /Textures/_Inferus/Interface/Misc/job_icons.rsi
+    state: MakeshiftID
+  jobName: job-name-makeshiftID
+  # notice the LACK of a JobIconCrew tag

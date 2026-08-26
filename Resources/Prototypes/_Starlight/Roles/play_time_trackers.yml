@@ -97,6 +97,9 @@
 - type: playTimeTracker
   id: JobStirStir
 
+- type: playTimeTracker
+  id: JobMakeshiftID
+
 # Other ghosts
 
 - type: playTimeTracker
