@@ -1,13 +1,6 @@
 Entries:
 - author: Way
   changes:
-  - message: (Hotel) Reporter has been moved near evac, next to library. Their old room has been turned into the main service area for their respective lathe and fax.
-    type: Tweak
-  id: 407427
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Way
-  changes:
   - message: (Hotel) Bar had it's dining area slightly rearranged to accommodate the new area.
     type: Tweak
   id: 407428
@@ -2799,4 +2792,11 @@ Entries:
   id: 407826
   time: '2026-08-26T01:06:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5817
+- author: Sparlight
+  changes:
+  - message: Security K9s now speak a variant of Dog that can only be understood by other dogs.
+    type: Tweak
+  id: 407827
+  time: '2026-08-26T01:06:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5818
 Order: -1
