@@ -30,7 +30,7 @@ namespace Content.Server._Starlight.Cargo.MaterialDispenser;
 /// This handles the MaterialDispenserComponent and its interactions with Lathe's
 /// </summary>
 [UsedImplicitly]
-public sealed class MaterialDispenserSystem : EntitySystem
+public sealed partial class MaterialDispenserSystem : EntitySystem
 {
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private MaterialStorageSystem _materialStorageSystem = default!;
@@ -50,7 +50,6 @@ public sealed class MaterialDispenserSystem : EntitySystem
         SubscribeLocalEvent<MaterialDispenserComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
         SubscribeLocalEvent<MaterialDispenserComponent, MaterialEntityInsertedEvent>(SubscribeUpdateUiState);
         SubscribeLocalEvent<MaterialDispenserComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState);
-
 
         SubscribeLocalEvent<MaterialDispenserComponent, MaterialDispenserAmountButton>(OnAmountButtonMessage);
         SubscribeLocalEvent<MaterialDispenserComponent, MaterialDispenserDepartmentSelected>(OnDepartmentSelectMessage);
@@ -170,10 +169,8 @@ public sealed class MaterialDispenserSystem : EntitySystem
         UpdateUiState(ent);
     }
 
-    private void SubscribeUpdateUiState<T>(Entity<MaterialDispenserComponent> ent, ref T ev)
-    {
-        UpdateUiState(ent);
-    }
+    private void SubscribeUpdateUiState<T>(Entity<MaterialDispenserComponent> ent, ref T ev) 
+        => UpdateUiState(ent);
 
     private void UpdateUiState(Entity<MaterialDispenserComponent> ent)
     {
