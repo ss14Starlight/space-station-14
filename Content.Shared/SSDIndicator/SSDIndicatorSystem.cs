@@ -7,6 +7,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 // Starlight-start
+using Content.Shared.Administration.Logs;
+using Content.Shared.Database;
 using Content.Shared.Bed.Sleep;
 using Content.Shared._Starlight.SSDIndicator.Events;
 using Content.Shared.DoAfter;
@@ -30,6 +32,7 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
     [Dependency] private SleepingSystem _sleep = default!; // Starlight
     [Dependency] private SharedDoAfterSystem _doAfter = default!; // Starlight
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!; // Starlight
 
     private bool _icSsdSleep;
     private float _icSsdSleepTime;
@@ -140,6 +143,7 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
     private void SSD(EntityUid uid, SSDIndicatorComponent component, TimeSpan? sleepDelayOverride = null)
     {
         component.IsSSD = true;
+        _adminLogger.Add(LogType.Mind, LogImpact.Low, $"{ToPrettyString(uid):player} entered SSD");
 
         if (_icSsdSleep)
         {
@@ -165,6 +169,7 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
             return false;
 
         comp.IsSSD = false;
+        _adminLogger.Add(LogType.Mind, LogImpact.Low, $"{ToPrettyString(uid):player} exited SSD");
 
         if (_icSsdSleep)
         {
