@@ -815,7 +815,7 @@
   name: makeshift ID card
   description: A set of door electronics rewired to act as an ID card.
   components:
-    - type: Sprite
+  - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     state: makeshift
   - type: Item
