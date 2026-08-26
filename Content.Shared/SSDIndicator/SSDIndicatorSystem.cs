@@ -48,7 +48,7 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
     }
 
     #region Starlight
-    
+
     private void OnPlayerAttached(EntityUid uid, SSDIndicatorComponent component, PlayerAttachedEvent args) => TryRemoveSSD(uid, component);
 
     // Avoid marking temporary mind transfer shells as SSD. (Wizard Jaunt Spell, Rod Spell, Golden Mask, etc.)
@@ -65,7 +65,7 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
     private void OnMoveInput(EntityUid uid, SSDIndicatorComponent comp, MoveInputEvent args) => TryRemoveSSD(uid, comp);
 
     private void OnWakeAction(EntityUid uid, SSDIndicatorComponent comp, WakeActionEvent args) => TryRemoveSSD(uid, comp);
-    
+
     #endregion
 
     // Prevents mapped mobs to go to sleep immediately
