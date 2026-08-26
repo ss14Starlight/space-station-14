@@ -7,12 +7,12 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.NPC;
 using Content.Shared.StatusEffectNew;
+using Content.Shared._Starlight.CryoTeleportation;
+using Content.Shared._Starlight.SSDIndicator.Events;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared._Starlight.CryoTeleportation;
-using Content.Shared._Starlight.SSDIndicator.Events;
 
 namespace Content.Shared.SSDIndicator;
 
