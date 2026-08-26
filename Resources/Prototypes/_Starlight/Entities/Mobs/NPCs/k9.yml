@@ -12,10 +12,11 @@
       state: k9-brown
   - type: LanguageKnowledge
     speaks:
-    - Dog
+    - DogFeral # This language grant is intentional; K9s are meant to have communication challenges
     understands:
     - GalacticCommon
     - Dog
+    - DogFeral
     - Canilunzt
   - type: LanguageGrantImmune
   - type: Inventory
@@ -99,6 +100,7 @@
     tags:
     - DogEmotes
     - DoorBumpOpener
+    - VimPilot
   - type: AlwaysRevolutionaryConvertible
   - type: CanEnterCryostorage
   - type: Zoomies

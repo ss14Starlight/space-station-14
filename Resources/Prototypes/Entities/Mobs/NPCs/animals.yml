@@ -3219,9 +3219,11 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - GalacticCommon
     - Dog
+    - DogFeral
     - Canilunzt
   # Starlight-end
   - type: DamageStateVisuals
@@ -3254,8 +3256,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight End
@@ -3356,9 +3360,11 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - GalacticCommon
     - Cat
+    - CatFeral
     - Nekomimetic
   # Starlight-end
   - type: Sprite
@@ -3456,8 +3462,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
     - GalacticCommon
 # Starlight-end
   - type: Sprite
@@ -4165,9 +4173,11 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     - GalacticCommon
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
