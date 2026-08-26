@@ -1209,7 +1209,7 @@
         Radiation: 0.80
         Caustic: 0.95
 #Starlight
-        Cold: 0.80 
+        Cold: 0.80
   - type: Tag
     tags:
     - WhitelistChameleon
