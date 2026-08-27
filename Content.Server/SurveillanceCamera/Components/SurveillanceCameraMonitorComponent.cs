@@ -1,3 +1,6 @@
+using Content.Shared.DeviceNetwork;
+using Robust.Shared.Prototypes;
+
 namespace Content.Server.SurveillanceCamera;
 
 [RegisterComponent]
@@ -31,7 +34,7 @@ public sealed partial class SurveillanceCameraMonitorComponent : Component
 
     // Current active subnet.
     [ViewVariables]
-    public string ActiveSubnet { get; set; } = default!;
+    public ProtoId<DeviceFrequencyPrototype>? ActiveSubnet { get; set; }
 
     // Known cameras in this subnet by address with name values.
     // This is cleared when the subnet is changed.
@@ -39,6 +42,5 @@ public sealed partial class SurveillanceCameraMonitorComponent : Component
     public Dictionary<string, string> KnownCameras { get; } = new();
 
     [ViewVariables]
-    // The subnets known by this camera monitor.
-    public Dictionary<string, string> KnownSubnets { get; } = new();
+    public Dictionary<ProtoId<DeviceFrequencyPrototype>, string> KnownSubnets { get; } = new();
 }
