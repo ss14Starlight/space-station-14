@@ -218,7 +218,6 @@
       - state: salvagespecialist
       - state: jobicon # Starlight
 
-
 - type: entity
   id: SpawnPointSalvageLeadITG
   parent: SpawnPointJobBase
@@ -245,7 +244,7 @@
     layers:
     - state: green
     - state: salvagemedic
-    
+
   id: SpawnPointK9
   parent: SpawnPointJobBase
   name: security K9
