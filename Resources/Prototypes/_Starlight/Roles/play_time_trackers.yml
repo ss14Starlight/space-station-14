@@ -74,9 +74,6 @@
   id: JobBoxer
 
 - type: playTimeTracker
-  id: JobZookeeper
-
-- type: playTimeTracker
   id: JobNanotrasenCareerTrainer
 
 - type: playTimeTracker
