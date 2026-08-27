@@ -245,6 +245,7 @@
     - state: green
     - state: salvagemedic
 
+- type: entity
   id: SpawnPointK9
   parent: SpawnPointJobBase
   name: security K9
