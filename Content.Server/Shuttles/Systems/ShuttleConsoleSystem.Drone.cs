@@ -59,7 +59,10 @@ public sealed partial class ShuttleConsoleSystem
     {
         // Only if last person closed UI.
         if (!_ui.IsUiOpen(uid, args.UiKey))
+        {
             component.Entity = null;
+            _remoteGridAccess.Remove(uid); // We only remove the access to the remote grid, not changing grid access
+        }
     }
 
     private void OnCargoGetConsole(EntityUid uid, DroneConsoleComponent component, ref ConsoleShuttleEvent args)

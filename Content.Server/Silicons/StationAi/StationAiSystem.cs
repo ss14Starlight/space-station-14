@@ -306,6 +306,10 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         }
     }
 
+    /// <summary>
+    /// Attempts to warp the AI's remote eye to the specified coordinates.
+    /// The AI must have grid access to the grid containing the coordinates; returns false when access is denied.
+    /// </summary>
     public bool TryWarpEyeToCoordinates(EntityUid user, EntityCoordinates coordinates, bool popupOnFailure = true)
     {
         bool Fail()
@@ -359,6 +363,10 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         return true;
     }
 
+    /// <summary>
+    /// Attempts to warp the AI's remote eye to the specified entity.
+    /// The AI must have grid access to the grid containing the entity; returns false when access is denied.
+    /// </summary>
     public bool TryWarpEyeToEntity(EntityUid user, EntityUid target, bool popupOnFailure = true)
     {
         bool Fail()
