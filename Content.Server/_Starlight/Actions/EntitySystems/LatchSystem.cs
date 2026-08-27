@@ -368,7 +368,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
             if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance)
             {
-                if (now - comp.StartTime < comp.RefundGracePeriod)
+                if (now - comp.StartTime < comp.RefundGracePeriod && distance <= comp.MaxDriftPullDistance)
                 {
                     _transform.SetCoordinates(uid, Transform(target).Coordinates);
                 }
