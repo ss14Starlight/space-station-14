@@ -21,8 +21,7 @@ public sealed class SharedGridAccessSystem : EntitySystem
         Resolve(sourceGrid, ref sourceGrid.Comp);
         Resolve(targetGrid, ref targetGrid.Comp);
 
-        return TryComp<GridAccessComponent>(sourceGrid.Owner, out var access) &&
-               access.AccessibleGrids.Contains(targetGrid.Owner);
+        return TryComp<GridAccessComponent>(sourceGrid.Owner, out var access) && access.AccessibleGrids.Contains(targetGrid.Owner);
     }
 
     /// <summary>
