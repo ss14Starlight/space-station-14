@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Added a guidebooks crate to Library.
-    type: Add
-  id: 407442
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Added a second HOP window to HOP.
     type: Add
   id: 407443
@@ -2799,4 +2792,11 @@ Entries:
   id: 407841
   time: '2026-08-27T21:22:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5839
+- author: wonderfulnewworld
+  changes:
+  - message: Kiki, Pun Pun, Stir Stir, and other antag rolling animals can roll antag again.
+    type: Fix
+  id: 407842
+  time: '2026-08-27T21:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5840
 Order: -1
