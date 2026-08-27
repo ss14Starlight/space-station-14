@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) The Right Honorable Flippers to Courtroom.
-    type: Add
-  id: 407440
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Added a disposal bin in Botany.
-    type: Add
-  id: 407441
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Added a guidebooks crate to Library.
     type: Add
   id: 407442
@@ -2799,4 +2785,18 @@ Entries:
   id: 407839
   time: '2026-08-27T21:01:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5836
+- author: wonderfulnewworld
+  changes:
+  - message: Moved K9 in security's display.
+    type: Tweak
+  id: 407840
+  time: '2026-08-27T21:22:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5839
+- author: wonderfulnewworld
+  changes:
+  - message: K9 can no longer roll antag.
+    type: Fix
+  id: 407841
+  time: '2026-08-27T21:22:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5839
 Order: -1
