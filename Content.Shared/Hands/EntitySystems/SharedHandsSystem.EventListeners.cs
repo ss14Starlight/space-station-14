@@ -1,5 +1,5 @@
 using Content.Shared.Hands.Components;
-using Content.Shared.Silicons.Borgs.Components; // Starlight
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Stunnable;
 
 namespace Content.Shared.Hands.EntitySystems;
