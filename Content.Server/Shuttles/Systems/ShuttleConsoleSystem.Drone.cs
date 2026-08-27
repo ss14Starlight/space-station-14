@@ -13,7 +13,7 @@ public sealed partial class ShuttleConsoleSystem
     #region Starlight
     [Dependency] private SharedGridAccessSystem _gridAccess = default!;
     private readonly Dictionary<EntityUid, (EntityUid SourceGrid, EntityUid TargetGrid)> _remoteGridAccess = new();
-    
+
     private void OnDroneConsoleStartup(EntityUid uid, DroneConsoleComponent component, ComponentStartup args)
     {
         UpdateRemoteGridAccess(uid, component);
@@ -77,13 +77,11 @@ public sealed partial class ShuttleConsoleSystem
         // Starlight - start
         var targetConsole = GetShuttleConsole(uid, component);
         var sourceGrid = Transform(uid).GridUid;
-        var targetGrid = targetConsole is { } target
-            ? Transform(target).GridUid
-            : null;
+        var targetGrid = targetConsole is { } target ? Transform(target).GridUid : null;
 
-        if (_remoteGridAccess.TryGetValue(uid, out var previous) &&
-            (sourceGrid != previous.SourceGrid || targetGrid != previous.TargetGrid ||
-             !IsConsoleOperational(uid) || targetConsole is not { } currentTarget || !IsConsoleOperational(currentTarget)))
+        if (_remoteGridAccess.TryGetValue(uid, out var previous)
+            && (sourceGrid != previous.SourceGrid || targetGrid != previous.TargetGrid
+            || !IsConsoleOperational(uid) || targetConsole is not { } currentTarget || !IsConsoleOperational(currentTarget)))
         {
             RemoveRemoteGridAccess(uid);
         }
@@ -126,10 +124,9 @@ public sealed partial class ShuttleConsoleSystem
     private bool IsConsoleOperational(EntityUid uid)
     {
         // Starlight - start
-        return TryComp<ShuttleConsoleComponent>(uid, out _) &&
-               MetaData(uid).EntityLifeStage < EntityLifeStage.Terminating &&
-               Transform(uid).Anchored &&
-               this.IsPowered(uid, EntityManager);
+        return TryComp<ShuttleConsoleComponent>(uid, out _)
+            && MetaData(uid).EntityLifeStage < EntityLifeStage.Terminating
+            && Transform(uid).Anchored && this.IsPowered(uid, EntityManager);
         // Starlight - end
     }
     #endregion Starlight
