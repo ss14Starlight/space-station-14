@@ -2,12 +2,14 @@
   id: StarlightRuleset
   name: guide-entry-rules
   ruleEntry: true
+  priority: 2
   text: "/ServerInfo/Guidebook/ServerRules/StarlightRules.xml"
 
 - type: guideEntry
   id: StarlightLRPRuleset
   name: guide-entry-rules
   ruleEntry: true
+  priority: 2
   text: "/ServerInfo/_Starlight/Guidebook/ServerRules/StarlightLRPRules.xml"
 
 # LRP Rules

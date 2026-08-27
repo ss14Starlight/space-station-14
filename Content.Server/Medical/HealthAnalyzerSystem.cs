@@ -113,7 +113,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         if (uid.Comp.DamageContainers is not null
             && TryComp<DamageableComponent>(args.Target, out var damageable)
             && damageable.DamageContainerID is not null
-            && !uid.Comp.DamageContainers.Contains(damageable.DamageContainerID))
+            && !uid.Comp.DamageContainers.Contains(damageable.DamageContainerID.Value))
             return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);

@@ -78,7 +78,7 @@ public sealed partial class WeightedSpawnEntityBehavior : IThresholdBehavior
                 system.EntityManager.EnsureComponent<TimedDespawnComponent>(spawner, out var timedDespawnComponent);
                 timedDespawnComponent.Lifetime = SpawnAfter;
                 system.EntityManager.EnsureComponent<SpawnOnDespawnComponent>(spawner, out var spawnOnDespawnComponent);
-                system.EntityManager.System<SharedSpawnOnDespawnSystem>().SetPrototype((spawner, spawnOnDespawnComponent), entity); // Starlight-edit
+                system.EntityManager.System<SharedSpawnOnDespawnSystem>().SetPrototype((spawner, spawnOnDespawnComponent), entity.Id); // Starlight-edit
             }
         }
         else

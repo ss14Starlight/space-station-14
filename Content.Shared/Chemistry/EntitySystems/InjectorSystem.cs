@@ -22,6 +22,7 @@ using Content.Shared.Weapons.Melee.Events;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
+using Content.Shared.Disposal.Components;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
@@ -76,6 +77,10 @@ public sealed partial class InjectorSystem : EntitySystem
         args.SpawnInteractionParticles &= injector.Comp.ShowInteractionParticles; // Starlight
 
         if (args.Handled || !args.CanReach || args.Target is not { Valid: true } target)
+            return;
+
+        // Starlight: Don't process disposal units, fixes not being able to trash medipens
+        if (HasComp<DisposalUnitComponent>(target))
             return;
 
         // Is the target a mob? If yes, use a do-after to give them time to respond.

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "health0",
+      "copyright": "By xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "health1",
+      "copyright": "By xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "health2",
+      "copyright": "By xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "health3",
+      "copyright": "By xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "critical",
+      "copyright": "By xxhotgirl69 (GitHub)."
+    },
+    {
+      "name": "dead",
+      "copyright": "By xxhotgirl69 (GitHub)."
+    }
+  ]
+}
