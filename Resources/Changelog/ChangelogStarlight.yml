@@ -1,53 +1,4 @@
 Entries:
-- author: Way
-  changes:
-  - message: (Hotel) Botany has a biogen.
-    type: Fix
-  id: 407431
-  time: '2026-08-10T20:15:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5585
-- author: Caws
-  changes:
-  - message: '"Brig Med" map beacon has been renamed to "Brigmedic".'
-    type: Tweak
-  id: 407432
-  time: '2026-08-10T20:15:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5590
-- author: Conflee
-  changes:
-  - message: Added 7 new 'Retro' Counters. Constructable by players and usable by mappers. Diner, Kitchen, Steel and Wood, Wood, Steel, Orange and White, and Teal and White.
-    type: Add
-  id: 407433
-  time: '2026-08-10T20:43:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5577
-- author: Sparlight
-  changes:
-  - message: Partial smellers can now faintly perceive the scent emissions of corpses inside closed containers.
-    type: Add
-  id: 407434
-  time: '2026-08-10T21:04:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5570
-- author: Caws
-  changes:
-  - message: (Starboard) Radio Hosts!
-    type: Add
-  id: 407435
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Departmental techfabs to all departments.
-    type: Add
-  id: 407436
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Stir Stir added to Genpop.
-    type: Add
-  id: 407437
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
 - author: Caws
   changes:
   - message: (Starboard) Ice cream maker added to Kitchen.
@@ -2799,4 +2750,53 @@ Entries:
   id: 407830
   time: '2026-08-26T01:54:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5780
+- author: Floximo
+  changes:
+  - message: AI's can now jump to location on Atmos/Power/Radar maps.
+    type: Add
+  id: 407831
+  time: '2026-08-26T18:36:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5831
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: In the advanced first aid cyborg module, changed a beaker/jug slot to a chemical case slot, allowing bottles to be stored.
+    type: Tweak
+  id: 407832
+  time: '2026-08-26T18:59:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5830
+- author: Floximo
+  changes:
+  - message: AI no longer sees job icons outside camera range while suit sensors are not set to coordinates.
+    type: Fix
+  id: 407833
+  time: '2026-08-26T20:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5799
+- author: Johnny
+  changes:
+  - message: Added more ninja threats for the communications console interaction.
+    type: Add
+  id: 407834
+  time: '2026-08-26T22:08:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5832
+- author: Johnny
+  changes:
+  - message: Removed the bombastic honks from ninja threats.
+    type: Remove
+  id: 407835
+  time: '2026-08-26T22:08:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5832
+- author: Johnny
+  changes:
+  - message: Changed the weights of some of the ninja threats.
+    type: Tweak
+  id: 407836
+  time: '2026-08-26T22:08:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5832
+- author: OJG
+  changes:
+  - message: The uranium fuel rod no longer requires research to produce.
+    type: Tweak
+  id: 407837
+  time: '2026-08-27T01:05:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5805
 Order: -1
