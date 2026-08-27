@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Stir Stir added to Genpop.
-    type: Add
-  id: 407437
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Ice cream maker added to Kitchen.
     type: Add
   id: 407438
@@ -2799,4 +2792,11 @@ Entries:
   id: 407836
   time: '2026-08-26T22:08:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5832
+- author: OJG
+  changes:
+  - message: The uranium fuel rod no longer requires research to produce.
+    type: Tweak
+  id: 407837
+  time: '2026-08-27T01:05:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5805
 Order: -1
