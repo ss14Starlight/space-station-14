@@ -97,7 +97,7 @@ public sealed partial class ShuttleConsoleSystem
         if (_remoteGridAccess.ContainsKey(uid))
             return;
 
-        _gridAccess.AddAccessibleGrid(source, targetUid);
+        _gridAccess.AddAccessibleGrid((source, null), (targetUid, null));
         _remoteGridAccess[uid] = (source, targetUid);
         // Starlight - end
     }
@@ -116,16 +116,14 @@ public sealed partial class ShuttleConsoleSystem
             return;
         }
 
-        _gridAccess.RemoveAccessibleGrid(access.SourceGrid, access.TargetGrid);
+        _gridAccess.RemoveAccessibleGrid((access.SourceGrid, null), (access.TargetGrid, null));
         // Starlight - end
     }
 
     private bool IsConsoleOperational(EntityUid uid)
     {
         // Starlight - start
-        return TryComp<ShuttleConsoleComponent>(uid, out _)
-            && MetaData(uid).EntityLifeStage < EntityLifeStage.Terminating
-            && Transform(uid).Anchored && this.IsPowered(uid, EntityManager);
+        return TryComp<ShuttleConsoleComponent>(uid, out _) && MetaData(uid).EntityLifeStage < EntityLifeStage.Terminating && Transform(uid).Anchored && this.IsPowered(uid, EntityManager);
         // Starlight - end
     }
     #endregion Starlight

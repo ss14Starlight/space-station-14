@@ -187,7 +187,7 @@ public abstract partial class SharedStationAiSystem
         }
 
         // Starlight - start
-        if (!CanAccessGrid(args.User, Transform(args.Target).GridUid) ||
+        if (!CanAccessGrid((args.User, null), Transform(args.Target).GridUid) ||
             _vision.IsOutsideCameraViewCached(args.Target))
             return;
         // Starlight - end

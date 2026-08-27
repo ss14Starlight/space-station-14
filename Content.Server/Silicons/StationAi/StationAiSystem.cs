@@ -219,7 +219,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
             return;
         }
 
-        if (!CanAccessGrid(actor, Transform(target).GridUid))
+        if (!CanAccessGrid((actor, null), Transform(target).GridUid))
         {
             _warpSawmill.Debug($"Station AI {Name(actor)} ({actor}) attempted to warp to inaccessible target {Name(target)} ({target}).");
             return;
@@ -257,7 +257,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
                 continue;
 
             // Starlight - start
-            if (!CanAccessGrid(actor, Transform(ownerUid).GridUid))
+            if (!CanAccessGrid((actor, null), Transform(ownerUid).GridUid))
                 continue;
             // Starlight - end
 
@@ -294,7 +294,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
             // Starlight End
 
             // Starlight - start
-            if (!CanAccessGrid(actor, Transform(uid).GridUid))
+            if (!CanAccessGrid((actor, null), Transform(uid).GridUid))
             {
                 _warpSawmill.Debug($"Skipping warp point {Name(uid)} ({uid}) outside AI grid access list.");
                 continue;
@@ -345,7 +345,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
             return Fail();
 
         // Starlight - start
-        if (!CanAccessGrid(user, gridUid))
+        if (!CanAccessGrid((user, null), gridUid))
             return Fail();
         // Starlight - end
 
@@ -383,7 +383,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
         var remoteXform = Transform(remoteEye);
 
-        if (!CanAccessGrid(user, Transform(target).GridUid))
+        if (!CanAccessGrid((user, null), Transform(target).GridUid))
         {
             StopFollowingTarget(remoteEye, target);
             return Fail();

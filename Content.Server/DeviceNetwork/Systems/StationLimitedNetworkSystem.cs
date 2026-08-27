@@ -76,7 +76,7 @@ namespace Content.Server.DeviceNetwork.Systems
             var receiverGrid = Transform(receiver).GridUid;
             var senderGrid = Transform(sender).GridUid;
 
-            return receiverGrid is { } targetGrid && senderGrid is { } sourceGrid && (_gridAccess.CanAccess(sourceGrid, targetGrid) || _gridAccess.CanAccess(targetGrid, sourceGrid));
+            return receiverGrid is { } targetGrid && senderGrid is { } sourceGrid && (_gridAccess.CanAccess((sourceGrid, null), (targetGrid, null)) || _gridAccess.CanAccess((targetGrid, null), (sourceGrid, null)));
         }
         #endregion Starlight
 

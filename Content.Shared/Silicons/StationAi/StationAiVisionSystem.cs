@@ -296,7 +296,7 @@ public sealed partial class StationAiVisionSystem : EntitySystem
             // Starlight - start
             // Ensure we only render for grids we have access to
             if (sourceGrid is { } source && Transform(seed.Owner).GridUid is { } seedGrid &&
-                !_gridAccess.CanAccess(source, seedGrid))
+                !_gridAccess.CanAccess((source, null), (seedGrid, null)))
             {
                 continue;
             }

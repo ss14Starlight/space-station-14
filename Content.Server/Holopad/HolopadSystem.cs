@@ -107,7 +107,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
 
         // Starlight - start
         if (HasComp<StationAiHeldComponent>(args.Actor) &&
-            !_stationAiSystem.CanAccessGrid(args.Actor, Transform(receiver).GridUid))
+            !_stationAiSystem.CanAccessGrid((args.Actor, null), Transform(receiver).GridUid))
             return;
         // Starlight - end
         LinkHolopadToUser(source, args.Actor);
@@ -671,7 +671,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
 
         // Starlight - start
         // We check if the AI has grid access. Normal projector call are range limited, not limited by grid access. The AI is special.
-        if (!_stationAiSystem.CanAccessGrid(user, Transform(entity).GridUid))
+        if (!_stationAiSystem.CanAccessGrid((user, userAiHeld), Transform(entity).GridUid))
         {
             _popupSystem.PopupEntity(Loc.GetString("holopad-ai-is-unable-to-activate-projector"), receiver, user);
             return;

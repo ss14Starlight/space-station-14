@@ -198,16 +198,18 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     /// <summary>
     ///     Returns whether the grid containing the AI core can access the target grid.
     /// </summary>
-    public bool CanAccessGrid(EntityUid user, EntityUid? targetGrid)
+    public bool CanAccessGrid(Entity<StationAiHeldComponent?> user, EntityUid? targetGrid)
     {
+        Resolve(user, ref user.Comp);
+
         if (targetGrid is not { } target || !HasComp<MapGridComponent>(target))
             return false;
 
-        if (!TryGetCore(user, out var core) || core.Comp is null)
+        if (user.Comp is null || !TryGetCore(user.Owner, out var core) || core.Comp is null)
             return false;
 
         var sourceGrid = Transform(core.Owner).GridUid;
-        return sourceGrid is { } source && _gridAccess.CanAccess(source, target);
+        return sourceGrid is { } source && _gridAccess.CanAccess((source, null), (target, null));
     }
     #endregion
 
@@ -228,7 +230,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         var targetXform = Transform(args.Target);
 
         // Starlight - start
-        if (!CanAccessGrid(args.Actor, targetXform.GridUid))
+        if (!CanAccessGrid((args.Actor, null), targetXform.GridUid))
         {
             return;
         }
@@ -270,7 +272,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         if (HasComp<StationAiHeldComponent>(args.User))
         {
             // Starlight - start
-            if (!CanAccessGrid(args.User, targetXform.GridUid))
+            if (!CanAccessGrid((args.User, null), targetXform.GridUid))
                 return;
             // Starlight - end
         }
