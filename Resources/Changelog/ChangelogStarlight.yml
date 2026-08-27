@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Ice cream maker added to Kitchen.
-    type: Add
-  id: 407438
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Vend of Silence added to Mime.
     type: Add
   id: 407439
@@ -2799,4 +2792,11 @@ Entries:
   id: 407837
   time: '2026-08-27T01:05:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5805
+- author: OJG
+  changes:
+  - message: Adds Refinery station to the game files for testing!
+    type: Add
+  id: 407838
+  time: '2026-08-27T18:38:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5714
 Order: -1
