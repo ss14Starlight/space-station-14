@@ -29,6 +29,9 @@ using Content.Server._Starlight.Shuttles.Systems;
 using Content.Server._Starlight.Shuttles.Components;
 using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared._Starlight.Shuttles.BUIStates;
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Silicons.StationAi;
+using Content.Server.Silicons.StationAi;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -48,6 +51,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private ILogManager _log = default!;
     [Dependency] private RadarLaserSystem _laserSystem = default!; // _Starlight
     [Dependency] private IGameTiming _timing = default!; // _Starlight
+    [Dependency] private StationAiSystem _stationAiSystem = default!; // Starlight
 
     #region Starlight
     // Periodic blip/laser update
@@ -86,11 +90,18 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<ShuttleConsoleComponent, ComponentShutdown>(OnConsoleShutdown);
         SubscribeLocalEvent<ShuttleConsoleComponent, PowerChangedEvent>(OnConsolePowerChange);
         SubscribeLocalEvent<ShuttleConsoleComponent, AnchorStateChangedEvent>(OnConsoleAnchorChange);
+        // Starlight - start
+        SubscribeLocalEvent<DroneConsoleComponent, ComponentStartup>(OnDroneConsoleStartup);
+        // Starlight - end
         SubscribeLocalEvent<ShuttleConsoleComponent, AfterActivatableUIOpenEvent>(OnConsoleUIOpenAttempt);
         Subs.BuiEvents<ShuttleConsoleComponent>(ShuttleConsoleUiKey.Key, subs =>
         {
             subs.Event<ShuttleConsoleFTLBeaconMessage>(OnBeaconFTLMessage);
             subs.Event<ShuttleConsoleFTLPositionMessage>(OnPositionFTLMessage);
+            subs.Event<CrewMonitoringWarpRequestMessage>((uid, component, args) =>
+            {
+                HandleWarpRequest(args);
+            }); // Starlight
             subs.Event<BoundUIClosedEvent>(OnConsoleUIClose);
         });
 
@@ -98,6 +109,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<DroneConsoleComponent, AfterActivatableUIOpenEvent>(OnDronePilotConsoleOpen);
         Subs.BuiEvents<DroneConsoleComponent>(ShuttleConsoleUiKey.Key, subs =>
         {
+            subs.Event<CrewMonitoringWarpRequestMessage>((uid, component, args) =>
+            {
+                HandleWarpRequest(args);
+            }); // Starlight
             subs.Event<BoundUIClosedEvent>(OnDronePilotConsoleClose);
         });
 
@@ -187,6 +202,26 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         TryPilot(args.User, uid);
     }
 
+    #region Starlight
+    private void HandleWarpRequest(CrewMonitoringWarpRequestMessage args)
+    {
+        if (args.Actor is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
+            return;
+
+        EntityCoordinates coordinates;
+        try
+        {
+            coordinates = GetCoordinates(args.Coordinates);
+        }
+        catch
+        {
+            return;
+        }
+
+        _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
+    }
+    #endregion
+
     private void OnConsoleAnchorChange(EntityUid uid, ShuttleConsoleComponent component,
         ref AnchorStateChangedEvent args)
     {
@@ -200,6 +235,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         DockingInterfaceState? dockState = null;
         DockingPortStates? dockingPortStates = null; // Starlight
         UpdateState(uid, ref dockState, ref dockingPortStates); // Starlight
+        // Starlight - start
+        RefreshDroneConsoles();
+        // Starlight - end
     }
 
     private bool TryPilot(EntityUid user, EntityUid uid)
@@ -414,6 +452,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private void OnConsoleShutdown(EntityUid uid, ShuttleConsoleComponent component, ComponentShutdown args)
     {
         ClearPilots(component);
+        // Starlight - start
+        RemoveRemoteGridAccess(uid);
+        RefreshDroneConsoles();
+        // Starlight - end
     }
 
     public void AddPilot(EntityUid uid, EntityUid entity, ShuttleConsoleComponent component)

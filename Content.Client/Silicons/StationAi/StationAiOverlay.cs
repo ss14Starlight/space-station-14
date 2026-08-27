@@ -76,7 +76,7 @@ public sealed partial class StationAiOverlay : Overlay
 
         // Check for cross-grid viewing (e.g., Abductor remote eye) BEFORE getting gridUid
         if (_entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? stationAiOverlay)
-            && stationAiOverlay.AllowCrossGrid
+            && (stationAiOverlay.AllowCrossGrid || _entManager.HasComponent<StationAiHeldComponent>(playerEnt))
             && _entManager.TryGetComponent(playerEnt, out RelayInputMoverComponent? relay))
             playerEnt = relay.RelayEntity;
 
@@ -84,7 +84,10 @@ public sealed partial class StationAiOverlay : Overlay
         _entManager.TryGetComponent(playerEnt, out TransformComponent? playerXform);
 
         var gridUid = playerXform?.GridUid
-            ?? (stationAiOverlay is { AllowCrossGrid: true } ? _lastGridUid : EntityUid.Invalid);
+            ?? (stationAiOverlay is { AllowCrossGrid: true } ||
+                _entManager.HasComponent<StationAiHeldComponent>(_player.LocalEntity)
+                ? _lastGridUid
+                : EntityUid.Invalid);
         if (gridUid != EntityUid.Invalid)
             _lastGridUid = gridUid;
 

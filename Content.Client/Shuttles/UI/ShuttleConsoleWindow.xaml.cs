@@ -27,6 +27,10 @@ public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow, // Starlig
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
 
+    #region Starlight
+    public event Action<EntityCoordinates>? RadarClicked;
+    #endregion Starlight
+
     public ShuttleConsoleWindow()
     {
         RobustXamlLoader.Load(this);
@@ -46,6 +50,8 @@ public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow, // Starlig
 
         NavModeButton.Pressed = true;
         SetupMode(_mode);
+
+        NavContainer.OnRadarClick += OnRadarClick; // Starlight
 
         MapContainer.RequestFTL += (coords, angle) =>
         {
@@ -67,6 +73,13 @@ public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow, // Starlig
             UndockRequest?.Invoke(entity);
         };
     }
+
+    #region Starlight
+    private void OnRadarClick(EntityCoordinates coordinates)
+    {
+        RadarClicked?.Invoke(coordinates);
+    }
+    #endregion
 
     private void ClearModes(ShuttleConsoleMode mode)
     {

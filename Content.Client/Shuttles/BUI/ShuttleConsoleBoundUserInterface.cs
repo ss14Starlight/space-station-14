@@ -6,16 +6,27 @@ using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Shared.Map;
 
+#region Starlight
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Silicons.StationAi;
+using Robust.Shared.Player;
+#endregion Starlight
+
 namespace Content.Client.Shuttles.BUI;
 
 [UsedImplicitly]
 public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
 {
+    #region Starlight
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    #endregion Starlight
+
     [ViewVariables]
     private ShuttleConsoleWindow? _window;
 
     public ShuttleConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
+        IoCManager.InjectDependencies(this); // Starlight
     }
 
     protected override void Open()
@@ -27,6 +38,7 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
         _window.RequestBeaconFTL += OnFTLBeaconRequest;
         _window.DockRequest += OnDockRequest;
         _window.UndockRequest += OnUndockRequest;
+        _window.RadarClicked += OnRadarClicked; // Starlight
     }
 
     private void OnUndockRequest(NetEntity entity)
@@ -70,9 +82,24 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
 
         if (disposing)
         {
+            // Starlight - start
+            if (_window != null)
+                _window.RadarClicked -= OnRadarClicked;
+            // Starlight - end
             _window?.DisposePopOut(); // Starlight: close the popout if exists
         }
     }
+
+    #region Starlight
+    private void OnRadarClicked(EntityCoordinates coordinates)
+    {
+        var local = _playerManager.LocalEntity;
+        if (local is null || !EntMan.HasComponent<StationAiHeldComponent>(local.Value))
+            return;
+
+        SendMessage(new CrewMonitoringWarpRequestMessage(EntMan.GetNetCoordinates(coordinates)));
+    }
+    #endregion Starlight
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {

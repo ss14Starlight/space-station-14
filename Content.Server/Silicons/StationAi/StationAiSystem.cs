@@ -199,11 +199,12 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
             return;
         }
 
-        var aiStation = _station.GetOwningStation(coreEntity.Owner);
         var targets = new List<StationAiWarpTarget>();
 
-        CollectCrewWarpTargets(actor, aiStation, targets);
-        CollectLocationWarpTargets(actor, aiStation, coreEntity.Comp.RemoteEntity, targets);
+        // Starlight - start
+        CollectCrewWarpTargets(actor, targets);
+        CollectLocationWarpTargets(actor, coreEntity.Comp.RemoteEntity, targets);
+        // Starlight - end
 
         if (targets.Count == 0)
             _warpSawmill.Debug($"No warp targets available for Station AI {Name(actor)} ({actor}).");
@@ -233,7 +234,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
     /// <summary>
     /// Populates the warp target buffer with crew members whose suit sensors are broadcasting coordinates.
     /// </summary>
-    private void CollectCrewWarpTargets(EntityUid actor, EntityUid? aiStation, List<StationAiWarpTarget> buffer)
+    private void CollectCrewWarpTargets(EntityUid actor, List<StationAiWarpTarget> buffer)
     {
         var processed = new HashSet<EntityUid>();
         var enumerator = EntityQueryEnumerator<SuitSensorComponent, TransformComponent>();
@@ -257,12 +258,10 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
             if (!HasComp<HumanoidAppearanceComponent>(ownerUid))
                 continue;
 
-            if (aiStation is { } station)
-            {
-                var ownerStation = _station.GetOwningStation(ownerUid);
-                if (ownerStation != station)
-                    continue;
-            }
+            // Starlight - start
+            if (!CanAccessGrid(actor, Transform(ownerUid).GridUid))
+                continue;
+            // Starlight - end
 
             // Don't show crew members outside of camera view
             if (_aiVision.IsOutsideCameraViewCached(ownerUid)) // starlight
@@ -276,7 +275,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         }
     }
 
-    private void CollectLocationWarpTargets(EntityUid actor, EntityUid? aiStation, EntityUid? remoteEntity, List<StationAiWarpTarget> buffer)
+    private void CollectLocationWarpTargets(EntityUid actor, EntityUid? remoteEntity, List<StationAiWarpTarget> buffer)
     {
         var query = AllEntityQuery<WarpPointComponent, TransformComponent>();
 
@@ -296,15 +295,13 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
                 continue;
             // Starlight End
 
-            if (aiStation is { } station)
+            // Starlight - start
+            if (!CanAccessGrid(actor, Transform(uid).GridUid))
             {
-                var warpStation = _station.GetOwningStation(uid);
-                if (warpStation != station)
-                {
-                    _warpSawmill.Debug($"Skipping warp point {Name(uid)} ({uid}) outside AI station {station}.");
-                    continue;
-                }
+                _warpSawmill.Debug($"Skipping warp point {Name(uid)} ({uid}) outside AI grid access list.");
+                continue;
             }
+            // Starlight - end
 
             var name = warp.Location ?? Name(uid);
             buffer.Add(new StationAiWarpTarget(GetNetEntity(uid), name, StationAiWarpTargetType.Location));
@@ -349,15 +346,10 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         if (!_map.TryFindGridAt(mapCoordinates, out var gridUid, out _))
             return Fail();
 
-        var aiStation = _station.GetOwningStation(coreUid);
-
-        if (aiStation != null)
-        {
-            var targetStation = _station.GetOwningStation(gridUid);
-
-            if (targetStation != aiStation)
-                return Fail();
-        }
+        // Starlight - start
+        if (!CanAccessGrid(user, gridUid))
+            return Fail();
+        // Starlight - end
 
         var targetCoords = _xforms.ToCoordinates((gridUid, Transform(gridUid)), mapCoordinates);
 

@@ -1,6 +1,7 @@
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.DeviceNetwork.Events;
+using Content.Shared.Maps;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 
@@ -13,6 +14,9 @@ namespace Content.Server.DeviceNetwork.Systems
     public sealed partial class StationLimitedNetworkSystem : EntitySystem
     {
         [Dependency] private StationSystem _stationSystem = default!;
+        #region Starlight
+        [Dependency] private SharedGridAccessSystem _gridAccess = default!;
+        #endregion
         public override void Initialize()
         {
             base.Initialize();
@@ -59,11 +63,24 @@ namespace Content.Server.DeviceNetwork.Systems
             if (!component.StationId.HasValue)
                 TrySetStationId(uid, component);
 
-            if (!CheckStationId(args.Sender, component.AllowNonStationPackets, component.StationId))
+            if (!CheckStationId(args.Sender, component.AllowNonStationPackets, component.StationId) &&
+                !CanAccessSenderGrid(uid, args.Sender)) // Starlight: allow access if the sender and receiver are on grids that can access each other
             {
                 args.Cancel();
             }
         }
+
+        #region Starlight
+        private bool CanAccessSenderGrid(EntityUid receiver, EntityUid sender)
+        {
+            var receiverGrid = Transform(receiver).GridUid;
+            var senderGrid = Transform(sender).GridUid;
+
+            return receiverGrid is { } targetGrid && senderGrid is { } sourceGrid &&
+                   (_gridAccess.CanAccess(sourceGrid, targetGrid) ||
+                    _gridAccess.CanAccess(targetGrid, sourceGrid));
+        }
+        #endregion Starlight
 
         /// <summary>
         /// Compares the station IDs of the sending and receiving network components.

@@ -45,6 +45,7 @@ using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared._Starlight;
 using Content.Shared.NameModifier.EntitySystems;
+using Content.Shared.Maps;
 #endregion Starlight
 
 namespace Content.Shared.Silicons.StationAi;
@@ -75,6 +76,9 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     [Dependency] private SharedTransformSystem _xforms = default!;
     [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private StationAiVisionSystem _vision = default!;
+    #region Starlight
+    [Dependency] private SharedGridAccessSystem _gridAccess = default!;
+    #endregion Starlight
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedDeviceLinkSystem _deviceLinkSystem = default!; // Starlight
@@ -193,6 +197,22 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         args.Accessible = true;
     }
+    #region Starlight
+    /// <summary>
+    ///     Returns whether the grid containing the AI core can access the target grid.
+    /// </summary>
+    public bool CanAccessGrid(EntityUid user, EntityUid? targetGrid)
+    {
+        if (targetGrid is not { } target || !HasComp<MapGridComponent>(target))
+            return false;
+
+        if (!TryGetCore(user, out var core) || core.Comp is null)
+            return false;
+
+        var sourceGrid = Transform(core.Owner).GridUid;
+        return sourceGrid is { } source && _gridAccess.CanAccess(source, target);
+    }
+    #endregion
 
     private void OnAiMenu(Entity<StationAiOverlayComponent> ent, ref MenuVisibilityEvent args)
     {
@@ -210,11 +230,12 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         //// Similar to the inrange check but more optimised so server doesn't die.
         var targetXform = Transform(args.Target);
 
-        // No cross-grid
-        if (targetXform.GridUid != args.Actor.Comp.GridUid)
+        // Starlight - start
+        if (!CanAccessGrid(args.Actor, targetXform.GridUid))
         {
             return;
         }
+        // Starlight - end
         //
         //if (!_broadphaseQuery.TryComp(targetXform.GridUid, out var broadphase) || !_gridQuery.TryComp(targetXform.GridUid, out var grid))
         //{
@@ -248,8 +269,15 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         var targetXform = Transform(target);
 
-        // No cross-grid
-        if (targetXform.GridUid != Transform(args.User).GridUid && !ent.Comp.AllowCrossGrid)
+        // Starlight the AI can access remote grids in some situation
+        if (HasComp<StationAiHeldComponent>(args.User))
+        {
+            // Starlight - start
+            if (!CanAccessGrid(args.User, targetXform.GridUid))
+                return;
+            // Starlight - end
+        }
+        else if (targetXform.GridUid != Transform(args.User).GridUid && !ent.Comp.AllowCrossGrid)
         {
             return;
         }

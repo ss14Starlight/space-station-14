@@ -2,11 +2,24 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Station.Components;
 using Content.Shared.UserInterface;
+using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
+using Content.Shared.Maps;
 
 namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleConsoleSystem
 {
+    #region Starlight
+    [Dependency] private SharedGridAccessSystem _gridAccess = default!;
+    private readonly Dictionary<EntityUid, (EntityUid SourceGrid, EntityUid TargetGrid)> _remoteGridAccess = new();
+    
+    private void OnDroneConsoleStartup(EntityUid uid, DroneConsoleComponent component, ComponentStartup args)
+    {
+        UpdateRemoteGridAccess(uid, component);
+    }
+    #endregion Starlight
+
     /// <summary>
     /// Gets the drone console target if applicable otherwise returns itself.
     /// </summary>
@@ -30,13 +43,17 @@ public sealed partial class ShuttleConsoleSystem
 
         while (query.MoveNext(out var uid, out var comp))
         {
-            comp.Entity = GetShuttleConsole(uid, comp);
+            // Starlight - start
+            UpdateRemoteGridAccess(uid, comp);
+            // Starlight - end
         }
     }
 
     private void OnDronePilotConsoleOpen(EntityUid uid, DroneConsoleComponent component, AfterActivatableUIOpenEvent args)
     {
-        component.Entity = GetShuttleConsole(uid);
+        // Starlight - start
+        UpdateRemoteGridAccess(uid, component);
+        // Starlight - end
     }
 
     private void OnDronePilotConsoleClose(EntityUid uid, DroneConsoleComponent component, BoundUIClosedEvent args)
@@ -48,8 +65,74 @@ public sealed partial class ShuttleConsoleSystem
 
     private void OnCargoGetConsole(EntityUid uid, DroneConsoleComponent component, ref ConsoleShuttleEvent args)
     {
-        args.Console = GetShuttleConsole(uid, component);
+        // Starlight - start
+        UpdateRemoteGridAccess(uid, component);
+        // Starlight - end
+        args.Console = component.Entity;
     }
+
+    #region Starlight
+    private void UpdateRemoteGridAccess(EntityUid uid, DroneConsoleComponent component)
+    {
+        // Starlight - start
+        var targetConsole = GetShuttleConsole(uid, component);
+        var sourceGrid = Transform(uid).GridUid;
+        var targetGrid = targetConsole is { } target
+            ? Transform(target).GridUid
+            : null;
+
+        if (_remoteGridAccess.TryGetValue(uid, out var previous) &&
+            (sourceGrid != previous.SourceGrid || targetGrid != previous.TargetGrid ||
+             !IsConsoleOperational(uid) || targetConsole is not { } currentTarget || !IsConsoleOperational(currentTarget)))
+        {
+            RemoveRemoteGridAccess(uid);
+        }
+
+        component.Entity = targetConsole;
+
+        if (sourceGrid is not { } source || targetGrid is not { } targetUid ||
+            targetConsole is not { } console ||
+            !IsConsoleOperational(uid) || !IsConsoleOperational(console))
+        {
+            return;
+        }
+
+        if (_remoteGridAccess.ContainsKey(uid))
+            return;
+
+        _gridAccess.AddAccessibleGrid(source, targetUid);
+        _remoteGridAccess[uid] = (source, targetUid);
+        // Starlight - end
+    }
+
+    private void RemoveRemoteGridAccess(EntityUid uid)
+    {
+        // Starlight - start
+        if (!_remoteGridAccess.Remove(uid, out var access))
+            return;
+
+        foreach (var other in _remoteGridAccess.Values)
+        {
+            if (other != access)
+                continue;
+
+            return;
+        }
+
+        _gridAccess.RemoveAccessibleGrid(access.SourceGrid, access.TargetGrid);
+        // Starlight - end
+    }
+
+    private bool IsConsoleOperational(EntityUid uid)
+    {
+        // Starlight - start
+        return TryComp<ShuttleConsoleComponent>(uid, out _) &&
+               MetaData(uid).EntityLifeStage < EntityLifeStage.Terminating &&
+               Transform(uid).Anchored &&
+               this.IsPowered(uid, EntityManager);
+        // Starlight - end
+    }
+    #endregion Starlight
 
     /// <summary>
     /// Gets the relevant shuttle console to proxy from the drone console.

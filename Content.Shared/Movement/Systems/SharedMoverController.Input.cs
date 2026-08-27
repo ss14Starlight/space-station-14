@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using System.Security.Cryptography;
 using Content.Shared._Starlight.Actions.Handlers;
 using Content.Shared.Alert;
@@ -12,6 +12,7 @@ using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -330,8 +331,11 @@ namespace Content.Shared.Movement.Systems
 
         private void OnAnchorState(Entity<InputMoverComponent> entity, ref AnchorStateChangedEvent args)
         {
-            if (!args.Anchored)
-                PhysicsSystem.SetBodyType(entity, BodyType.KinematicController);
+            if (args.Anchored || EntityManager.IsQueuedForDeletion(entity.Owner) ||
+                !TryComp<PhysicsComponent>(entity.Owner, out _))
+                return; // Starlight: cleaner checks that prevent a lot of exceptions
+
+            PhysicsSystem.TrySetBodyType(entity, BodyType.KinematicController); // Starlight: we use try instead of set because sometimes its not available yet and causes exceptions
         }
 
         private void HandleDirChange(EntityUid entity, Direction dir, ushort subTick, bool state)
