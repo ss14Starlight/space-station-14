@@ -34,8 +34,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared._Starlight.TextToSpeech;
@@ -45,8 +43,7 @@ using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared._Starlight;
 using Content.Shared.NameModifier.EntitySystems;
-using Content.Shared.Maps;
-#endregion Starlight
+using Content.Shared._Starlight.Maps;
 
 namespace Content.Shared.Silicons.StationAi;
 

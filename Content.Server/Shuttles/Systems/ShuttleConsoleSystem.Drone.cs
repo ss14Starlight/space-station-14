@@ -2,9 +2,8 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Station.Components;
 using Content.Shared.UserInterface;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Shared.Maps;
+using Content.Shared._Starlight.Maps;
 
 namespace Content.Server.Shuttles.Systems;
 

@@ -1,7 +1,7 @@
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.DeviceNetwork.Events;
-using Content.Shared.Maps;
+using Content.Shared._Starlight.Maps;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 

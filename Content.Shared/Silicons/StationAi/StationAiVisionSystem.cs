@@ -1,6 +1,6 @@
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.StationAi;
-using Content.Shared.Maps;
+using Content.Shared._Starlight.Maps;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Threading;

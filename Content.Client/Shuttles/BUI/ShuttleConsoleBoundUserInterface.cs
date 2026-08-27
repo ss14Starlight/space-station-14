@@ -3,14 +3,10 @@ using Content.Client.Shuttles.UI;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;
 using JetBrains.Annotations;
-using Robust.Client.UserInterface;
 using Robust.Shared.Map;
-
-#region Starlight
 using Content.Shared.Medical.CrewMonitoring;
 using Content.Shared.Silicons.StationAi;
 using Robust.Shared.Player;
-#endregion Starlight
 
 namespace Content.Client.Shuttles.BUI;
 

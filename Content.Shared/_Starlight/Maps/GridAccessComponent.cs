@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Maps;
+namespace Content.Shared._Starlight.Maps;
 
 /// <summary>
 ///     Describes which grids can be accessed from this grid.

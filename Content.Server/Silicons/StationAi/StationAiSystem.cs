@@ -37,25 +37,17 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using static Content.Server.Chat.Systems.ChatSystem;
-
-#region Starlight
 using Content.Server.Medical.SuitSensors;
 using Content.Shared.Follower.Components;
 using Content.Shared.Follower;
 using Content.Shared.Humanoid;
-using Content.Shared.Intellicard;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Medical.SuitSensors;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Warps;
-using Content.Shared._Starlight.Silicons.Borgs;
-using Robust.Shared.Localization;
-using Robust.Shared.Log;
 using Robust.Shared.Map;
-using System.Collections.Generic;
 using Content.Shared._Starlight.StationAi;
 using Content.Shared.Tag;
-#endregion Starlight
 
 namespace Content.Server.Silicons.StationAi;
 
@@ -227,6 +219,12 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
             return;
         }
 
+        if (!CanAccessGrid(actor, Transform(target).GridUid))
+        {
+            _warpSawmill.Debug($"Station AI {Name(actor)} ({actor}) attempted to warp to inaccessible target {Name(target)} ({target}).");
+            return;
+        }
+
         if (!TryWarpEyeToEntity(actor, target))
             _warpSawmill.Debug($"Station AI {Name(actor)} ({actor}) warp to {Name(target)} ({target}) rejected by TryWarpEyeToEntity.");
     }
@@ -385,6 +383,12 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
         var remoteXform = Transform(remoteEye);
 
+        if (!CanAccessGrid(user, Transform(target).GridUid))
+        {
+            StopFollowingTarget(remoteEye, target);
+            return Fail();
+        }
+
         if ((TryComp(target, out WarpPointComponent? warp) && warp.Follow) || HasComp<MobStateComponent>(target))
         {
             var orbit = !HasComp<StationAiHeldComponent>(user);
@@ -408,6 +412,19 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         }
 
         return TryWarpEyeToCoordinates(user, Transform(target).Coordinates, popupOnFailure);
+    }
+
+    private void StopFollowingTarget(EntityUid remoteEye, EntityUid target)
+    {
+        if (_activeFollowTargets.TryGetValue(target, out var follower) && follower == remoteEye)
+            _activeFollowTargets.Remove(target);
+
+        if (!HasComp<FollowerComponent>(remoteEye))
+            return;
+
+        var parent = Transform(remoteEye).ParentUid;
+        if (parent == target)
+            _followerSystem.StopFollowingEntity(remoteEye, target);
     }
 
     private void OnSuitSensorModeChanged(Entity<SuitSensorComponent> ent, ref SuitSensorModeChangedEvent args)

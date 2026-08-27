@@ -1,7 +1,6 @@
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
-namespace Content.Shared.Maps;
+namespace Content.Shared._Starlight.Maps;
 
 /// <summary>
 ///     Manages access from one map grid to other map grids.

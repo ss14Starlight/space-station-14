@@ -6,9 +6,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
-#region Starlight
 using Content.Shared._Starlight.StationAi;
-#endregion
 
 namespace Content.Shared.Silicons.StationAi;
 
