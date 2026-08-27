@@ -1,6 +1,6 @@
 # Deforest Vendor stuff
 # Interstellar = Departmental, Planetary = Civilian
-# Better injectors, worse topicals and no automenders
+# Better injectors, worse topicals
 - type: vendingMachineInventory
   id: DeforestInterstellarWallInventory
   startingInventory:
