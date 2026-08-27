@@ -23,6 +23,9 @@
       "name": "energy-unshaded-1"
     },
     {
+      "name": "energy-unshaded-0"
+    },
+    {
       "name": "energypierce-unshaded-3"
     },
     {
@@ -32,6 +35,9 @@
       "name": "energypierce-unshaded-1"
     },
     {
+      "name": "energypierce-unshaded-0"
+    },
+    {
       "name": "disable-unshaded-3"
     },
     {
@@ -39,6 +45,9 @@
     },
     {
       "name": "disable-unshaded-1"
+    },
+    {
+      "name": "disable-unshaded-0"
     },
     {
       "name": "empty-inhand-left",
