@@ -93,7 +93,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
 
         var next = Next(ent);
 
-        if (!ent.Comp.States.TryGetValue(next, out var state) || state.Hiden)
+        if (!ent.Comp.States.TryGetValue(next, out var state) || state.Hidden)
             return;
 
         var user = args.User;
