@@ -8,6 +8,9 @@
   id: JobDutyOfficer
 
 - type: playTimeTracker
+  id: JobK9
+
+- type: playTimeTracker
   id: JobMagistrate
 
 - type: playTimeTracker

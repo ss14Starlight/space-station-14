@@ -4,6 +4,7 @@
   mapPath: /Maps/_Starlight/Stations/NovoLobster.yml
   minPlayers: 40
   maxPlayers: 350
+  randomRotation: false # random rotation looks weird with weather
   stations:
     StarlightNovoLobster:
       stationProto: StandardNanotrasenStation
