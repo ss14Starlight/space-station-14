@@ -1,6 +1,6 @@
 ﻿using Content.Server.Medical;
 using Content.Server.Medical.Components;
-using Content.Shared._starlight.Actions.Events;
+using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.DoAfter;
 using Content.Shared.MedicalScanner;
 using Robust.Server.GameObjects;

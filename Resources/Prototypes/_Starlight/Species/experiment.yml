@@ -6,9 +6,9 @@
   sprites: MobExperimentSprites
   markingLimits: MobExperimentMarkingLimits
   dollPrototype: AppearanceExperiment
-  skinColoration: HumanToned
-  #eyeColoration: Sawian
-  defaultSkinTone: "#FFFFFF"
+  skinColoration: ExperimentColors
+  eyeColoration: Sawian
+  defaultSkinTone: "#FFEDCCFF"
   maleFirstNames: names_experiment
   femaleFirstNames: names_experiment
   naming: IdFirst
