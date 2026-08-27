@@ -22,8 +22,7 @@ ghost-role-information-derelict-borgi-name = Derelict Borgi
 ghost-role-information-derelict-borgi-desc = You are a regular borgi that got lost in space. After years of exposure to ion storms you find yourself near a space station.
 
 ghost-role-information-horrific-tie-name = Horrific Necktie
-ghost-role-information-horrific-tie-description = You are a horrific necktie from Disco Elysium.
-ghost-role-information-horrific-tie-rules = [bold][color=cyan]ADMIN WARNING: Do not take this role if you don't know what Disco Elysium is and how to roleplay as necktie from it.[/color][/bold]
+ghost-role-information-horrific-tie-description = You are a horrific necktie, play into your wearer's hedonistic and carefree desires, a self-centered devil on their neck!
 
 ghost-role-information-space-courier-trunk-name = Space Courier Trunk pAI
 ghost-role-information-space-courier-trunk-description = You are the personal AI included inside of a space courier's trunk.

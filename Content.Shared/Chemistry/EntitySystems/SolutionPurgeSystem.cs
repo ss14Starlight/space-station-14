@@ -42,7 +42,7 @@ public sealed partial class SolutionPurgeSystem : EntitySystem
             {
                 _solutionContainer.SplitSolutionWithout(solution.Value,
                     purge.Quantity,
-                    purge.Preserve.Select(proto => proto.Id).ToArray());
+                    purge.Preserve.ToArray());
             }
         }
     }
