@@ -26,7 +26,7 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/deadmansignaller.rsi
-    state: signaller
+    state: advanced
   - type: Item
     inhandVisuals:
       left:
