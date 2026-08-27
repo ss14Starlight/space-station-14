@@ -83,6 +83,13 @@ public sealed partial class StationAiOverlay : Overlay
         _entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? relayStationAiOverlay);
         _entManager.TryGetComponent(playerEnt, out TransformComponent? playerXform);
 
+        // We try to figure out where the AI is even coming from to make sure we don't render cameras for remote grids without access
+        EntityUid? sourceGrid = null;
+        var stationAiSystem = _entManager.System<SharedStationAiSystem>();
+        if (_player.LocalEntity is EntityUid localEntity)
+            if (stationAiSystem.TryGetCore(localEntity, out var core) && core.Comp is not null)
+                sourceGrid = _entManager.GetComponent<TransformComponent>(core.Owner).GridUid;
+
         var gridUid = playerXform?.GridUid
             ?? (stationAiOverlay is { AllowCrossGrid: true } ||
                 _entManager.HasComponent<StationAiHeldComponent>(_player.LocalEntity)
@@ -116,7 +123,7 @@ public sealed partial class StationAiOverlay : Overlay
                 _visibleTiles.Clear();
                 // Starlight - start
                 _visibleTileTags.Clear();
-                _entManager.System<StationAiVisionSystem>().GetView((gridUid, broadphase, grid), worldBounds, _visibleTiles, _visibleTileTags);
+                _entManager.System<StationAiVisionSystem>().GetView((gridUid, broadphase, grid), worldBounds, _visibleTiles, _visibleTileTags, sourceGrid: sourceGrid);
                 // Starlight - end
             }
 
