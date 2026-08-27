@@ -55,10 +55,10 @@
     HandheldHealthAnalyzer: 3
     ClothingBeltMedical: 3
     ClothingBeltMedicalEMT: 2
-    Gauze: 5
+    Gauze: 4
     DeforestBrutePack: 4
     DeforestOintment: 4
-    Bloodpack: 5
+    Bloodpack: 4
     Tourniquet: 2
     ChemistryBottleEpinephrine: 3
     ChemistryBottleBicaridine: 1
@@ -77,6 +77,8 @@
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
     ClothingEyeGlassesMedicalPrescription: 2
+    AutoMenderBruteFilled: 1
+    AutoMenderBurnFilled: 1
     SpaceMedipen: 1
   contrabandInventory:
     RadAutoInjector: 2
