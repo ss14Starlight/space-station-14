@@ -57,7 +57,8 @@ public abstract partial class SharedLatchSystem : EntitySystem
     }
 
     /// <summary>
-    /// Creates the physics joint between latcher and target. 
+    /// Creates the physics joint between latcher and target.
+    /// </summary>
     protected void CreateLatchJoint(EntityUid uid, LatchComponent comp, EntityUid target)
     {
         if (Timing.ApplyingState)

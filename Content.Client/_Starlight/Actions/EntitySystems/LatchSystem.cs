@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._Starlight.Actions.Components;
 using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared._Starlight.Actions.Events;
 using Robust.Client.Animations;
@@ -8,8 +9,7 @@ using Robust.Shared.Animations;
 namespace Content.Client._Starlight.Actions.EntitySystems;
 
 /// <summary>
-/// Client-side visual effects for latching - currently just the K9's
-/// head-shake on Bite Harder. SharedLatchSystem's handlers also run here.
+/// Client-side visual effects for latching (K9 head-shake on Bite Harder).
 /// </summary>
 public sealed partial class LatchSystem : SharedLatchSystem
 {
@@ -25,6 +25,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         base.Initialize();
 
         SubscribeNetworkEvent<LatchBiteShakeEvent>(OnBiteShake);
+        SubscribeLocalEvent<LatchBiteShakeVisualsComponent, AnimationCompletedEvent>(OnShakeAnimationCompleted);
     }
 
     private void OnBiteShake(LatchBiteShakeEvent ev)
@@ -33,16 +34,26 @@ public sealed partial class LatchSystem : SharedLatchSystem
         if (!TryComp<SpriteComponent>(entity, out var sprite))
             return;
 
-        _animation.Play(entity, GetBiteShakeAnimation(sprite.Offset), BiteShakeAnimationKey);
+        var visuals = EnsureComp<LatchBiteShakeVisualsComponent>(entity);
+        if (!_animation.HasRunningAnimation(entity, BiteShakeAnimationKey))
+            visuals.BaseOffset = sprite.Offset;
+
+        _animation.Play(entity, GetBiteShakeAnimation(visuals.BaseOffset), BiteShakeAnimationKey);
+    }
+
+    private void OnShakeAnimationCompleted(Entity<LatchBiteShakeVisualsComponent> ent, ref AnimationCompletedEvent args)
+    {
+        if (args.Key == BiteShakeAnimationKey && args.Finished)
+            RemComp<LatchBiteShakeVisualsComponent>(ent);
     }
 
     /// <summary>
-    /// A quick side-to-side wiggle back to the sprite's current offset, like
-    /// a dog shaking its head mid-bite.
+    /// Quick side-to-side wiggle back to the sprite's current offset.
     /// </summary>
     private Animation GetBiteShakeAnimation(Vector2 startOffset)
     {
-        var frameLength = ShakeLength / ShakeCount;
+        // ShakeCount shakes plus one return-to-rest segment.
+        var frameLength = ShakeLength / (ShakeCount + 1);
         var keyFrames = new List<AnimationTrackProperty.KeyFrame> { new(startOffset, 0f) };
 
         for (var i = 0; i < ShakeCount; i++)

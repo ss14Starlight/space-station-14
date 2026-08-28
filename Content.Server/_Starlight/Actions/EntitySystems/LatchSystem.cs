@@ -387,8 +387,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
                 continue;
             }
 
-            // Knocked out of range; RangeTolerance avoids instant-breaking
-            // from jitter.
+            // Knocked out of range; the joint pulls it back, this just times out if it can't.
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
             if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance &&
                 now - comp.StartTime >= comp.RefundGracePeriod)
