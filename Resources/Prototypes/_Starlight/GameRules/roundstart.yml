@@ -109,7 +109,7 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.43 # Starlight. Adds up to 1.
+      prob: 0.48 # Starlight. Adds up to 1.
     - id: VampireLess # Starlight. The rework is here.
       prob: 0.25
     - id: SubWizard
@@ -151,7 +151,7 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.50 # Starlight had to lower to account for increase in devils
+      prob: 0.55 # Starlight had to lower to account for increase in devils
     - id: SLChangeling #Starlight lings
       prob: 0.20 # Can be a little higher now, since lings don't have their standalone anymore.
     - id: SubWizard
@@ -172,7 +172,7 @@
   - type: SubGamemodes
     rules:
     - id: ThiefLess # So that only 3 thieves max spawn in rev games.
-      prob: 0.23 # Starlight, to account for Wizard and Xenoborgs
+      prob: 0.28 # Starlight, to account for Wizard and Xenoborgs
     - id: SubWizard
       prob: 0.05
     - id: Devil
