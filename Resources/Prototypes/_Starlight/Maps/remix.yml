@@ -14,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'OWO'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_remix.yml #yes this is just reach...
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Shipyard/ReachButShipyard.yml # yes this is just reach
         - type: StationJobs
           availableJobs:
             #service
