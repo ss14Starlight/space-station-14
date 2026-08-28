@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Ming) Added a nuclear reactor flatpack crate inside the CE'S office.
-    type: Add
-  id: 407532
-  time: '2026-08-12T21:04:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5580
-- author: Cvlancer
-  changes:
   - message: (Ming) Added a roboticist med kit to ipc repair bay.
     type: Add
   id: 407533
@@ -2799,4 +2792,11 @@ Entries:
   id: 407931
   time: '2026-08-28T20:52:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5853
+- author: RedSpeeds
+  changes:
+  - message: Increased Devil spawn rate to 10% from 5%.
+    type: Tweak
+  id: 407932
+  time: '2026-08-28T20:52:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5850
 Order: -1
