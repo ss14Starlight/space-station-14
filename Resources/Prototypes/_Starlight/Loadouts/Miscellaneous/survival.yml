@@ -51,7 +51,7 @@
     proto: ElfOxygenBreather
   storage:
     back:
-    - BoxSurvival
+    - BoxSurvivalNonBreather
     - BookOfCantrips
 
 - type: loadout
