@@ -65,6 +65,16 @@ public sealed partial class LatchComponent : Component
     public float DriftBreakTolerance = 0.5f;
 
     /// <summary>
+    /// Hard ceiling on how far the grace-period recovery pull (see Update()) is allowed
+    /// to move the latcher to reach the target. Meant only to smooth minor jitter right
+    /// after a latch starts; if the target is farther than this, something else moved
+    /// it (or the target was wrong to begin with) and the latch should just break instead
+    /// of dragging the latcher along, however far, to reach it.
+    /// </summary>
+    [DataField]
+    public float MaxDriftPullDistance = 3f;
+
+    /// <summary>
     /// The starting, base duration of the latch, in seconds.
     /// </summary>
     [DataField]

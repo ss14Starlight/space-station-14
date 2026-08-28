@@ -80,10 +80,6 @@
   physicalDesc: reagent-physical-desc-nondescript
   allowedDepartments:
   - Medical
-  # Starlight start
-  allowedJobs:
-  - Zookeeper
-  # Starlight end
   metabolisms:
     Bloodstream:
       effects:
@@ -799,10 +795,6 @@
   allowedDepartments:
   - Security
   - Medical
-  # Starlight start
-  allowedJobs:
-  - Zookeeper
-  # Starlight end
   color: "#AAAAAA"
   metabolisms:
     Bloodstream:
