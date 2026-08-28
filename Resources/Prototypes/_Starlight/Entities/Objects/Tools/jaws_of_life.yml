@@ -40,10 +40,10 @@
     useSound: /Audio/Items/jaws_pry.ogg
   - type: Prying
     force: true
-    speedModifier: 1.0
+    speedModifier: 2.0
     useSound: /Audio/Items/jaws_pry.ogg
     pryPowered: true #SL
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry_med.ogg #SL
     playSoundOnDoafter: true #SL
   - type: MultipleTool
     statusShowBehavior: true
