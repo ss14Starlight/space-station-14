@@ -76,6 +76,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         "Antagonist selection counts by round, game rule, antagonist type, and state",
         ["round", "rule", "type", "state"]
     );
+
+    private readonly HashSet<Gauge.Child> _antagSelectionMetricChildren = [];
     #endregion
 
     private static readonly TimeSpan InitialSelectionAuditDelay = TimeSpan.FromMinutes(5); // Starlight, audit the selection after 5 minutes to ensure that all antags have actually been selected
@@ -155,6 +157,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         SubscribeLocalEvent<InvalidAntagProfileSpawningEvent>(OnInvalidAntagProfile); // Starlight
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnJobsAssigned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup); // Starlight
     }
 
     protected override void Started(EntityUid uid, AntagSelectionComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -639,6 +642,29 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     }
 
     /// <summary>
+    /// Gets an antag-selection metric child and tracks it for removal after the round.
+    /// </summary>
+    private Gauge.Child GetAntagSelectionMetric(string round, string rule, string type, string state)
+    {
+        var metric = _antagSelectionCounts.WithLabels(round, rule, type, state);
+        _antagSelectionMetricChildren.Add(metric);
+        return metric;
+    }
+
+    /// <summary>
+    /// Removes the completed round's metric children so they are not retained for the server's lifetime.
+    /// </summary>
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent _)
+    {
+        foreach (var metric in _antagSelectionMetricChildren)
+        {
+            metric.Remove();
+        }
+
+        _antagSelectionMetricChildren.Clear();
+    }
+
+    /// <summary>
     /// Updates the antag selection metrics for a given game rule and antag definition.
     /// Just for logging, pretty much.
     /// </summary>
@@ -655,14 +681,14 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         var rule = MetaData(gameRule).EntityPrototype?.ID ?? "unknown";
         var type = definition.ID;
 
-        _antagSelectionCounts.WithLabels(round, rule, type, "expected").Set(expected);
-        _antagSelectionCounts.WithLabels(round, rule, type, "assigned").Set(assigned);
-        _antagSelectionCounts.WithLabels(round, rule, type, "ghost_roles").Set(ghostRoles);
-        _antagSelectionCounts.WithLabels(round, rule, type, "unassigned").Set(Math.Max(0, expected - assigned));
-        _antagSelectionCounts.WithLabels(round, rule, type, "uncovered").Set(Math.Max(0, expected - assigned - ghostRoles));
-        _antagSelectionCounts.WithLabels(round, rule, type, "forced_assignments").Set(forcedAssignments);
-        _antagSelectionCounts.WithLabels(round, rule, type, "ghost_roles_created").Set(ghostRolesCreated);
-        _antagSelectionCounts.WithLabels(round, rule, type, "latejoin_assignments").Inc(0);
+        GetAntagSelectionMetric(round, rule, type, "expected").Set(expected);
+        GetAntagSelectionMetric(round, rule, type, "assigned").Set(assigned);
+        GetAntagSelectionMetric(round, rule, type, "ghost_roles").Set(ghostRoles);
+        GetAntagSelectionMetric(round, rule, type, "unassigned").Set(Math.Max(0, expected - assigned));
+        GetAntagSelectionMetric(round, rule, type, "uncovered").Set(Math.Max(0, expected - assigned - ghostRoles));
+        GetAntagSelectionMetric(round, rule, type, "forced_assignments").Set(forcedAssignments);
+        GetAntagSelectionMetric(round, rule, type, "ghost_roles_created").Set(ghostRolesCreated);
+        GetAntagSelectionMetric(round, rule, type, "latejoin_assignments").Inc(0);
     }
 
     /// <summary>
@@ -676,7 +702,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         var round = GameTicker.RoundId.ToString(CultureInfo.InvariantCulture);
         var rule = MetaData(gameRule).EntityPrototype?.ID ?? "unknown";
 
-        _antagSelectionCounts.WithLabels(round, rule, definition.ID, "latejoin_assignments").Inc();
+        GetAntagSelectionMetric(round, rule, definition.ID, "latejoin_assignments").Inc();
     }
 
     /// <summary>
