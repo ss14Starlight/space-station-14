@@ -1,53 +1,4 @@
 Entries:
-- author: Way
-  changes:
-  - message: (Manor) Departmental lathes are mapped.
-    type: Add
-  id: 407525
-  time: '2026-08-12T20:28:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5605
-- author: Way
-  changes:
-  - message: (Manor) Bar area facelift.
-    type: Tweak
-  id: 407526
-  time: '2026-08-12T20:28:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5605
-- author: Way
-  changes:
-  - message: (Manor) Minor kitchen facelift.
-    type: Tweak
-  id: 407527
-  time: '2026-08-12T20:28:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5605
-- author: Way
-  changes:
-  - message: (Manor) Various decal updates around the map.
-    type: Tweak
-  id: 407528
-  time: '2026-08-12T20:28:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5605
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added a radio host location alongside two radio host slots. (near evac).
-    type: Add
-  id: 407529
-  time: '2026-08-12T21:04:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5580
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added some radios around the station.
-    type: Add
-  id: 407530
-  time: '2026-08-12T21:04:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5580
-- author: Cvlancer
-  changes:
-  - message: (Ming) Added a nuclear reactor option inside the main engine area. (tesla singlo).
-    type: Add
-  id: 407531
-  time: '2026-08-12T21:04:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5580
 - author: Cvlancer
   changes:
   - message: (Ming) Added a nuclear reactor flatpack crate inside the CE'S office.
@@ -2799,4 +2750,53 @@ Entries:
   id: 407924
   time: '2026-08-28T20:30:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5852
+- author: Caws
+  changes:
+  - message: (Cluster) Radio Host.
+    type: Add
+  id: 407925
+  time: '2026-08-28T20:52:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5853
+- author: Caws
+  changes:
+  - message: (Cluster) Added Mail Tech lockers.
+    type: Add
+  id: 407926
+  time: '2026-08-28T20:52:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5853
+- author: Caws
+  changes:
+  - message: (Cluster) Added Cargo Tech lockers.
+    type: Add
+  id: 407927
+  time: '2026-08-28T20:52:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5853
+- author: Caws
+  changes:
+  - message: (Cluster) Added box shelving around the map.
+    type: Add
+  id: 407928
+  time: '2026-08-28T20:52:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5853
+- author: Caws
+  changes:
+  - message: (Cluster) Fixed an unlinked conveyor on the Cargo dock.
+    type: Fix
+  id: 407929
+  time: '2026-08-28T20:52:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5853
+- author: Caws
+  changes:
+  - message: (Cluster) Disposals now ejects stuff facing a wall, which should make it more reliably land on the belt.
+    type: Fix
+  id: 407930
+  time: '2026-08-28T20:52:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5853
+- author: Caws
+  changes:
+  - message: (Cluster) NCT Office.
+    type: Remove
+  id: 407931
+  time: '2026-08-28T20:52:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5853
 Order: -1
