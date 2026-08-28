@@ -67,7 +67,7 @@
   id: EmergencyOxygenBlood
   effects:
   - !type:GroupLoadoutEffect
-    proto: HaemovoreOxygenBreather
+    proto: OxygenBreatherHaemovore
   storage:
     back:
     - BoxSurvivalBlood
@@ -114,7 +114,7 @@
   id: EmergencyOxygenClownBlood
   effects:
   - !type:GroupLoadoutEffect
-    proto: HaemovoreOxygenBreather
+    proto: OxygenBreatherHaemovore
   storage:
     back:
     - BoxSurvivalClownBlood
@@ -142,7 +142,7 @@
   id: EmergencyOxygenMimeBlood
   effects:
   - !type:GroupLoadoutEffect
-    proto: HaemovoreOxygenBreather
+    proto: OxygenBreatherHaemovore
   storage:
     back:
     - BoxSurvivalMimeBlood
@@ -188,7 +188,7 @@
   id: EmergencyOxygenExtendedBlood
   effects:
   - !type:GroupLoadoutEffect
-    proto: HaemovoreOxygenBreather
+    proto: OxygenBreatherHaemovore
   storage:
     back:
     - BoxSurvivalEngineeringBlood
@@ -225,7 +225,7 @@
   id: EmergencyOxygenMedicalBlood
   effects:
   - !type:GroupLoadoutEffect
-    proto: HaemovoreOxygenBreather
+    proto: OxygenBreatherHaemovore
   storage:
     back:
     - BoxSurvivalMedicalBlood
@@ -270,7 +270,7 @@
   id: EmergencyOxygenSecurityBlood
   effects:
   - !type:GroupLoadoutEffect
-    proto: HaemovoreOxygenBreather
+    proto: OxygenBreatherHaemovore
   storage:
     back:
     - BoxSurvivalSecurityBlood
@@ -307,7 +307,7 @@
   id: EmergencyOxygenSyndicateBlood
   effects:
   - !type:GroupLoadoutEffect
-    proto: HaemovoreOxygenBreather
+    proto: OxygenBreatherHaemovore
   storage:
     back:
     - BoxSurvivalSyndicateBlood
@@ -335,7 +335,7 @@
   id: EmergencyOxygenMilitaryDoubleBlood
   effects:
   - !type:GroupLoadoutEffect
-    proto: HaemovoreOxygenBreather
+    proto: OxygenBreatherHaemovore
   storage:
     back:
     - BoxSurvivalMilitaryDoubleBlood
