@@ -1,0 +1,134 @@
+- type: entity
+  parent: BaseStructure
+  id: CMIV
+  name: IV stand
+  description: A stand meant to hold IV bags upright, injecting or drawing from patients attached to it.
+  suffix: IV, empty
+  components:
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - MobMask
+  - type: Transform
+    anchored: false
+    noRot: true
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Sprite
+    noRot: true
+    sprite: _RMC14/Structures/Machines/Medical/iv_drip.rsi
+    layers:
+    - state: empty
+      map: [ "enum.IVDripVisualLayers.Base" ]
+    - state: reagent0
+      map: [ "enum.IVDripVisualLayers.Reagent" ]
+  - type: IVDrip
+    transferAmount: 1.0
+    transferDelay: 2.0
+    noBagState: empty
+    unattachedState: unhooked
+    attachedState: hooked
+    lineOriginOffset: "0.19, 0.16"
+    reagentStates:
+    - 0: reagent0
+    - 10: reagent10
+    - 25: reagent25
+    - 50: reagent50
+    - 75: reagent75
+    - 80: reagent80
+    - 100: reagent100
+    ripDamage:
+      types:
+        Piercing: 3
+  - type: ItemSlots
+    slots:
+      pack:
+        whitelist:
+          components:
+          - BloodPack
+  - type: ContainerContainer
+    containers:
+      pack: !type:ContainerSlot {}
+
+- type: entity
+  parent: BaseItem
+  id: CMBloodPack
+  name: IV bag
+  description: An IV bag. Contains fluids, typically used for transfusions.
+  suffix: CM, empty
+  components:
+  - type: BloodPack
+    transferAmount: 2.0
+    transferDelay: 1.0
+  - type: Sprite
+    sprite: _RMC14/Objects/Medical/blood_pack.rsi
+    layers:
+    - state: bloodpack1
+      map: ["enum.BloodPackVisuals.Fill"]
+      visible: false
+    - state: bloodpack
+    - state: blank
+      map: ["enum.BloodPackVisuals.Label"]
+  - type: Item
+    size: Small
+    sprite: _RMC14/Objects/Medical/blood_pack.rsi
+  - type: ExaminableSolution
+    solution: pack
+  - type: FitsInDispenser
+    solution: pack
+  - type: Tag
+    tags:
+    - Bloodpack
+  - type: Solution
+    id: pack
+    solution:
+      maxVol: 100
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: Appearance
+  - type: DrawableSolution
+    solution: pack
+  - type: InjectableSolution
+    solution: pack
+  - type: RefillableSolution
+    solution: pack
+  - type: Damageable
+  - type: Injurable
+    damageContainer: Inorganic
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 2
+    damage:
+      types:
+        Blunt: 5
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:SpillBehavior
+        solution: pack
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: StaticPrice
+    price: 30
+
+- type: entity
+  parent: CMBloodPack
+  id: CMBloodPackFull
+  name: IV bag
+  suffix: CM, Full
+  components:
+  - type: Solution
+    id: pack
+    solution:
+      maxVol: 100
+      reagents:
+      - ReagentId: Saline
+        Quantity: 100

@@ -2,6 +2,7 @@
   id: ChemVendInventory
   startingInventory:
     Jug: 8 # Starlight - four jugs isn't nearly enough for high populations.
+    CMBloodPack: 10 # Funky
     JugAluminium: 2
     JugCarbon: 4
     JugChlorine: 1

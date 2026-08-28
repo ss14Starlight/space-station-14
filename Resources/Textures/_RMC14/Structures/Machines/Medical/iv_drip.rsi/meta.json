@@ -1,0 +1,44 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "By AraiMaia for FunkyStation. Base flatpack at https://github.com/Sector-Umbra/Sector-Umbra/commit/1c11332fa4b77d556e7f3db17f391dbd2664cda5",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "hooked"
+    },
+    {
+      "name": "unhooked"
+    },
+    {
+      "name": "empty"
+    },
+    {
+      "name": "reagent100"
+    },
+    {
+      "name": "reagent80"
+    },
+    {
+      "name": "reagent75"
+    },
+    {
+      "name": "reagent50"
+    },
+    {
+      "name": "reagent25"
+    },
+    {
+      "name": "reagent10"
+    },
+    {
+      "name": "reagent0"
+    },
+    {
+      "name": "flatpack"
+    }
+  ]
+}

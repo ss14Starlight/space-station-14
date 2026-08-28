@@ -96,6 +96,7 @@
     PillCanisterIron: 1 # Starlight
     PillCanisterCopper: 1 # Starlight
     PillCanisterPotassiumIodide: 1 # Starlight
+    CMBloodPackFull: 5 # Funky
   contrabandInventory:
     PillCanisterRandom: 1
     PillSpaceDrugs: 3
