@@ -4,11 +4,15 @@
     "x": 32,
     "y": 32
   },
-  "copyright": "Made with love by Shaeone",
+  "copyright": "Made with love by Shaeone. Panel state made by Person derived from base state.",
   "license": "CC-BY-SA-3.0",
   "states": [
     {
       "name": "base",
+      "directions": 1
+    },
+    {
+      "name": "panel",
       "directions": 1
     },
     {
