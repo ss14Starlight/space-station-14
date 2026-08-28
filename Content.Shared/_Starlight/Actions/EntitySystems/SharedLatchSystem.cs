@@ -1,7 +1,10 @@
 using Content.Shared._Starlight.Actions.Components;
+using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
@@ -9,6 +12,8 @@ namespace Content.Shared._Starlight.Actions.EntitySystems;
 public abstract partial class SharedLatchSystem : EntitySystem
 {
     [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private SharedJointSystem _joints = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
     public override void Initialize()
     {
@@ -19,6 +24,51 @@ public abstract partial class SharedLatchSystem : EntitySystem
 
         SubscribeLocalEvent<LatchComponent, AttackAttemptEvent>(OnLatcherAttackAttempt);
         SubscribeLocalEvent<LatchBlockedHandComponent, ContainerGettingRemovedAttemptEvent>(OnBlockedHandRemoveAttempt);
+
+        SubscribeLocalEvent<LatchActionEvent>(OnLatchAction);
+    }
+
+    private void OnLatchAction(LatchActionEvent ev)
+    {
+        if (ev.Handled)
+            return;
+
+        var uid = ev.Performer;
+        if (!TryComp<LatchComponent>(uid, out var comp) || comp.Active)
+            return;
+
+        var target = ev.Target;
+        if (target == uid || HasComp<LatchedComponent>(target))
+            return;
+
+        if (!_whitelist.IsWhitelistPassOrNull(comp.Whitelist, target))
+            return;
+
+        CreateLatchJoint(uid, comp, target);
+        StartLatch(uid, comp, target);
+        ev.Handled = true;
+    }
+
+    /// <summary>
+    /// Authoritative side-effects of starting a latch. Overridden serverside.
+    /// </summary>
+    protected virtual void StartLatch(EntityUid uid, LatchComponent comp, EntityUid target)
+    {
+    }
+
+    /// <summary>
+    /// Creates the physics joint between latcher and target. 
+    protected void CreateLatchJoint(EntityUid uid, LatchComponent comp, EntityUid target)
+    {
+        if (Timing.ApplyingState)
+            return;
+
+        comp.LatchJointId = $"latch-joint-{GetNetEntity(uid)}";
+        var joint = _joints.CreateDistanceJoint(uid, target, id: comp.LatchJointId);
+        joint.CollideConnected = false;
+        joint.MinLength = 0f;
+        joint.MaxLength = comp.MaxJointLength;
+        joint.Stiffness = 0f;
     }
 
     private void OnLatcherRefreshMovementSpeed(EntityUid uid, LatchComponent comp, RefreshMovementSpeedModifiersEvent ev)

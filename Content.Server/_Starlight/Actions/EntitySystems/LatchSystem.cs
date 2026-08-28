@@ -12,7 +12,6 @@ using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Interaction;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -22,10 +21,8 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Pulling.Events;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
-using Content.Shared.Whitelist;
 using Content.Shared.Wieldable;
 using Robust.Server.Audio;
-using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -45,8 +42,6 @@ public sealed partial class LatchSystem : SharedLatchSystem
     [Dependency] private SharedChatSystem _chat = default!;
     [Dependency] private CombatModeSystem _combatMode = default!;
     [Dependency] private DamageableSystem _damageable = default!;
-    [Dependency] private EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedJointSystem _joints = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
@@ -76,7 +71,6 @@ public sealed partial class LatchSystem : SharedLatchSystem
         SubscribeLocalEvent<LatchedComponent, MobStateChangedEvent>(OnTargetMobStateChanged);
         SubscribeLocalEvent<LatchedComponent, BeingPulledAttemptEvent>(OnTargetBeingPulledAttempt);
 
-        SubscribeLocalEvent<LatchActionEvent>(OnLatchAction);
         SubscribeLocalEvent<LatchBiteHarderActionEvent>(OnBiteHarderAction);
         SubscribeLocalEvent<LatchReleaseActionEvent>(OnReleaseAction);
     }
@@ -130,32 +124,6 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         if (TryComp<LatchComponent>(comp.Latcher, out var latchComp) && latchComp.Active && latchComp.Target == uid)
             EndLatch(comp.Latcher, latchComp);
-    }
-
-    /// <summary>
-    /// Validates and starts a latch attempt.
-    /// </summary>
-    private void OnLatchAction(LatchActionEvent ev)
-    {
-        if (ev.Handled)
-            return;
-
-        var uid = ev.Performer;
-        if (!TryComp<LatchComponent>(uid, out var comp) || comp.Active)
-            return;
-
-        var target = ev.Target;
-        if (target == uid)
-            return;
-
-        if (!_whitelist.IsWhitelistPassOrNull(comp.Whitelist, target))
-            return;
-
-        if (HasComp<LatchedComponent>(target))
-            return;
-
-        StartLatch(uid, comp, target);
-        ev.Handled = true;
     }
 
     private void OnBiteHarderAction(LatchBiteHarderActionEvent ev)
@@ -221,10 +189,11 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
     /// <summary>
     /// Begins a latch: locks movement, downs the target, blocks a hand, and
-    /// grants Bite Harder.
+    /// grants Bite Harder. The joint's already been created by the shared
+    /// base class by the time this runs.
     /// </summary>
     /// <param name="target">The entity being latched onto.</param>
-    private void StartLatch(EntityUid uid, LatchComponent comp, EntityUid target)
+    protected override void StartLatch(EntityUid uid, LatchComponent comp, EntityUid target)
     {
         comp.Active = true;
         comp.Target = target;
@@ -243,31 +212,6 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         if (TryComp<PullableComponent>(target, out var targetPullable))
             _pulling.TryStopPull(target, targetPullable);
-
-        // Engage range allows pouncing past melee range; pull the K9 in if
-        // the path is clear, else leave the joint uncapped for this latch.
-        var targetPos = _transform.GetWorldPosition(target);
-        var toLatcher = _transform.GetWorldPosition(uid) - targetPos;
-        var pounceDistance = toLatcher.Length();
-        var jointMaxLength = comp.MaxJointLength;
-
-        if (pounceDistance > comp.MaxJointLength)
-        {
-            var pullInPos = targetPos + toLatcher / pounceDistance * comp.MaxJointLength;
-            var pullInCoords = new MapCoordinates(pullInPos, Transform(target).MapID);
-
-            if (_interaction.InRangeUnobstructed(uid, pullInCoords, pounceDistance))
-                _transform.SetWorldPosition(uid, pullInPos);
-            else
-                jointMaxLength = pounceDistance; // couldn't get closer
-        }
-
-        comp.LatchJointId = $"latch-joint-{GetNetEntity(uid)}";
-        var joint = _joints.CreateDistanceJoint(uid, target, id: comp.LatchJointId);
-        joint.CollideConnected = false;
-        joint.MinLength = 0f;
-        joint.MaxLength = jointMaxLength;
-        joint.Stiffness = 0f;
 
         if (_virtualItem.TrySpawnVirtualItemInHand(uid, target, out var blockingItem))
         {
@@ -444,24 +388,13 @@ public sealed partial class LatchSystem : SharedLatchSystem
             }
 
             // Knocked out of range; RangeTolerance avoids instant-breaking
-            // from jitter. Within the grace window, pull the K9 to the
-            // target instead of breaking. After that, treat it as a real
-            // separation.  If the latch is particularly far away but not
-            // enough to completely refund the action, move the K9 closer.
+            // from jitter.
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
-            if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance)
+            if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance &&
+                now - comp.StartTime >= comp.RefundGracePeriod)
             {
-                if (now - comp.StartTime < comp.RefundGracePeriod)
-                {
-                    var midpoint = (_transform.GetWorldPosition(uid) + _transform.GetWorldPosition(target)) / 2f;
-                    _transform.SetWorldPosition(uid, midpoint);
-
-                }
-                else
-                {
-                    EndLatch(uid, comp);
-                    continue;
-                }
+                EndLatch(uid, comp);
+                continue;
             }
 
             // Re-assert every tick so this can't be toggled back on mid-latch.
