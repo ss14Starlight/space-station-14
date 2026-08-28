@@ -39,8 +39,11 @@ public sealed partial class ThrusterSystem
     /// <summary>
     /// Sets a thruster's thrust, keeping its shuttle's cached thrust totals in sync.
     /// </summary>
-    public void SetThrust(Entity<ThrusterComponent> ent, float thrust)
+    public void SetThrust(Entity<ThrusterComponent?> ent, float thrust)
     {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
         if (MathHelper.CloseTo(ent.Comp.Thrust, thrust))
             return;
 
