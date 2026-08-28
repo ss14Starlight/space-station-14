@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Added a railing in front of the Botany maintenance door so animals don't wander off into maints as easily.
-    type: Tweak
-  id: 407452
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Replaced the railings and old 'flat' stairs in Bridge with platforms and new stairs.
     type: Tweak
   id: 407453
@@ -2799,4 +2792,11 @@ Entries:
   id: 407851
   time: '2026-08-28T05:31:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5826
+- author: Born Stellar & Bibbs
+  changes:
+  - message: Added deadman remote signaller.
+    type: Add
+  id: 407852
+  time: '2026-08-28T05:55:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5823
 Order: -1
