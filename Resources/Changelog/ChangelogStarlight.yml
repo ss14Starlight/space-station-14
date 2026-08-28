@@ -1,125 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Added a ticket machine to HOP.
-    type: Add
-  id: 407444
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Made the HOP office's layout more sane and way less cramped.
-    type: Tweak
-  id: 407445
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Moved HOP's mailing unit into their office instead of being in the back room.
-    type: Tweak
-  id: 407446
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Reporter's airlocks are now Journalism access.
-    type: Tweak
-  id: 407447
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Hohohonkers vending machine moved inside of Clown's room (instead of in maints).
-    type: Tweak
-  id: 407448
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Swapped Mime and Clown lockers to the new pre-filled versions.
-    type: Tweak
-  id: 407449
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Removed the windoor to the animal pen so animals won't get loose all of the time.
-    type: Tweak
-  id: 407450
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Swapped out the trees in the animal pen for a smaller tree that blocks less of of the view of the animnals.
-    type: Tweak
-  id: 407451
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Added a railing in front of the Botany maintenance door so animals don't wander off into maints as easily.
-    type: Tweak
-  id: 407452
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Replaced the railings and old 'flat' stairs in Bridge with platforms and new stairs.
-    type: Tweak
-  id: 407453
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Moved urns from Morgue to Shrine.
-    type: Tweak
-  id: 407454
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Removed some useless boards from Robotics that can't be installed in any cyborgs.
-    type: Tweak
-  id: 407455
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Changed Surgery / Autopsy / Morgue air alarms to the new 'cold weather' variants, which should prevent temperature warnings showing up when the freezers are or are not in use.
-    type: Tweak
-  id: 407456
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Made AI Core less cramped and awful.
-    type: Tweak
-  id: 407457
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Moved the AI Upload and AI Restoration consoles into the AI Core interior, swapped positions with the Solar Control and Power Monitor consoles.
-    type: Tweak
-  id: 407458
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Moved the AI's turrets so they don't block walkable space.
-    type: Tweak
-  id: 407459
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Replaced the fuel tank in AI Core with a wallmounted fuel dispenser to prevent the AI's turrets from welderbombing themselves.
-    type: Tweak
-  id: 407460
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Botany can finally now access the freezer from their side.
     type: Fix
   id: 407461
@@ -2799,4 +2680,123 @@ Entries:
   id: 407843
   time: '2026-08-27T22:30:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5842
+- author: Citrea
+  changes:
+  - message: Fixed faulty audio unit for pAIs, enabling them to beep and buzz again.
+    type: Fix
+  id: 407844
+  time: '2026-08-28T04:48:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5782
+- author: Caws
+  changes:
+  - message: All escape pods & lifeboats have been updated with diagonal lattice.
+    type: Tweak
+  id: 407845
+  time: '2026-08-28T05:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5838
+- author: Caws
+  changes:
+  - message: Updated the name and flavour text of the escape pod console to make it clear it's "locked down" and currently doesn't support launching the pods early (outside of ninjas hacking it, of course).
+    type: Tweak
+  id: 407846
+  time: '2026-08-28T05:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5838
+- author: Caws
+  changes:
+  - message: Fixed the majority of escape pods not having the 'escape pod console' that allows ninjas to extract.
+    type: Fix
+  id: 407847
+  time: '2026-08-28T05:10:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5838
+- author: Caws
+  changes:
+  - message: Zookeepers have been removed. It was only mapped on 4 maps (out of 26 maps). The job icon is still available in the ID card computer if you want to apply to be a Zookeeper @ HOP via the "non-listed employment" form.
+    type: Remove
+  id: 407848
+  time: '2026-08-28T05:10:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5841
+- author: Caws
+  changes:
+  - message: The Safari hat and uniform are now available in the AutoDrobe (theater vending machine).
+    type: Add
+  id: 407849
+  time: '2026-08-28T05:10:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5841
+- author: STARLIGHT TEAM
+  changes:
+  - message: Overhauled Makeshift ID Cards; they can now be put in PDAs, but have their own job icon. Borgs should not treat said job icon as crew, as the Makeshift ID _is still minor contraband_.
+    type: Tweak
+  id: 407850
+  time: '2026-08-28T05:31:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5826
+- author: STARLIGHT TEAM
+  changes:
+  - message: Flipped and tweaked the Makeshift ID card sprite to move the terminals to where they are on regular ID cards.
+    type: Fix
+  id: 407851
+  time: '2026-08-28T05:31:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5826
+- author: Born Stellar & Bibbs
+  changes:
+  - message: Added deadman remote signaller.
+    type: Add
+  id: 407852
+  time: '2026-08-28T05:55:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5823
+- author: wonderfulnewworld
+  changes:
+  - message: Adds automenders to DeForest's vendor.
+    type: Tweak
+  id: 407853
+  time: '2026-08-28T05:56:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5837
+- author: Mack
+  changes:
+  - message: Cyborgs can now do-after with no module equipped.
+    type: Fix
+  id: 407854
+  time: '2026-08-28T06:24:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5825
+- author: RedSpeeds
+  changes:
+  - message: Made astral murmur no longer audible to nearby players.
+    type: Tweak
+  id: 407855
+  time: '2026-08-28T06:56:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5807
+- author: Sparlight
+  changes:
+  - message: Smart corgis and K9s can now take advantage of the identity system.  Their IDs are now examinable.
+    type: Add
+  id: 407856
+  time: '2026-08-28T06:56:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5816
+- author: Conflee, Caws, mkanke, ratsmageddon, Tea
+  changes:
+  - message: Added Evidence room sign, filled evidence boxes, and an evidence box shelf which is pre-filled with 4 evidence boxes.
+    type: Add
+  id: 407857
+  time: '2026-08-28T07:14:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5793
+- author: Conflee, Caws, mkanke, ratsmageddon, Tea
+  changes:
+  - message: Added Evidence Bags, which have a 2x3 storage space, can be labeled with a paper, and hold a dropper on the outside. Lower tier contra and other evidence that doesn't need to be behind 3 thick walls with turrets guarding it can go in here for bulk storage thats easier for Sec to access for cross referencing.
+    type: Add
+  id: 407858
+  time: '2026-08-28T07:14:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5793
+- author: Conflee, Caws, mkanke, ratsmageddon, Tea
+  changes:
+  - message: Added several more pre-filled boxes and pre-set box shelves for mapping use, including Medical, Cargo, HoP, Sec, and Engie.
+    type: Add
+  id: 407859
+  time: '2026-08-28T07:14:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5793
+- author: Conflee, Caws, mkanke, ratsmageddon, Tea
+  changes:
+  - message: Removed the Forensic Pads, Evidence Markers Box, and Hand Labeler from Detective's Cabinet and replaced them with an EXTRAS Evidence Box which has all of these things plus some Evidence Bags. Less locker clutter.
+    type: Tweak
+  id: 407860
+  time: '2026-08-28T07:14:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5793
 Order: -1

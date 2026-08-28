@@ -28,7 +28,6 @@
             Librarian: [ 2, 2 ]
             Lawyer: [ 2, 2 ]
             ServiceWorker: [ 4, 5 ]
-            Zookeeper: [ 1, 2 ]
             Reporter: [ 2, 2 ]
             RadioHost: [ 2, 2 ]
             #engineering
