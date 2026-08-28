@@ -115,7 +115,7 @@
     - type: Icon
       sprite: _Starlight/Mobs/Species/Doll/parts.rsi
       state: "l_leg"
-      
+
 - type: entity
   id: RightLegDoll
   name: "right doll leg"
