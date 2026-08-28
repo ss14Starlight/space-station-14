@@ -141,7 +141,7 @@ public sealed partial class SharedVentCrawlSystem
             return;
         }
 
-        var args = new DoAfterArgs(EntityManager, user, crawler.EnterDelay, new EnterVentDoAfterEvent(), user, user, user)
+        var args = new DoAfterArgs(EntityManager, user, crawler.EnterDelay, new EnterVentDoAfterEvent(), user, uid, user)
         {
             BreakOnMove = true,
             BreakOnDamage = true
