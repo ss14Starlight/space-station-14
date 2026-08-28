@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Moved urns from Morgue to Shrine.
-    type: Tweak
-  id: 407454
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Removed some useless boards from Robotics that can't be installed in any cyborgs.
     type: Tweak
   id: 407455
@@ -2799,4 +2792,11 @@ Entries:
   id: 407853
   time: '2026-08-28T05:56:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5837
+- author: Mack
+  changes:
+  - message: Cyborgs can now do-after with no module equipped.
+    type: Fix
+  id: 407854
+  time: '2026-08-28T06:24:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5825
 Order: -1
