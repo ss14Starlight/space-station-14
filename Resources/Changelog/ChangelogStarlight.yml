@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Changed Surgery / Autopsy / Morgue air alarms to the new 'cold weather' variants, which should prevent temperature warnings showing up when the freezers are or are not in use.
-    type: Tweak
-  id: 407456
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Made AI Core less cramped and awful.
     type: Tweak
   id: 407457
@@ -2799,4 +2792,11 @@ Entries:
   id: 407855
   time: '2026-08-28T06:56:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5807
+- author: Sparlight
+  changes:
+  - message: Smart corgis and K9s can now take advantage of the identity system.  Their IDs are now examinable.
+    type: Add
+  id: 407856
+  time: '2026-08-28T06:56:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5816
 Order: -1
