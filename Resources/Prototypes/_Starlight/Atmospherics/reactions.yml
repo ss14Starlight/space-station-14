@@ -118,36 +118,17 @@
 - type: gasReaction
   id: AmmoniaProduction
   priority: 10
-  minimumTemperature: 590
+  minimumTemperature: 590.15
   minimumRequirements:
-  - 0     # oxygen
-  - 0.01  # nitrogen
-  - 0     # carbon dioxide
-  - 0     # plasma
-  - 0     # tritium
-  - 0     # vapor
-  - 0     # miasma
-  - 0     # n2o
-  - 0     # frezon
-  - 0     # bz
-  - 0     # healium
-  - 0     # nitrium
-  - 0     # pluox
-  - 0.01  # hydrogen
-  - 0     # hypernob
-  - 0     # protonitrate
-  - 0     # zauker
-  - 0     # halon
-  - 0     # helium
-  - 0     # antinob
-  - 0     # ulnitranium
+    Nitrogen: 0.01
+    Hydrogen: 0.01
   effects:
   - !type:AmmoniaProductionReaction {}
 
 - type: gasReaction
   id: AmmoniaDecay
   priority: 9
-  minimumTemperature: 590
+  minimumTemperature: 590.15
   minimumRequirements:
     Ammonia: 0.01
   effects:
