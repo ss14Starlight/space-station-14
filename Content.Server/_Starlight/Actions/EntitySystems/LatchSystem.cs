@@ -13,12 +13,16 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Pulling.Events;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Whitelist;
 using Content.Shared.Wieldable;
 using Robust.Server.Audio;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -37,8 +41,10 @@ public sealed partial class LatchSystem : SharedLatchSystem
     [Dependency] private CombatModeSystem _combatMode = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedJointSystem _joints = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
+    [Dependency] private PullingSystem _pulling = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
@@ -54,13 +60,27 @@ public sealed partial class LatchSystem : SharedLatchSystem
         SubscribeLocalEvent<LatchComponent, ComponentShutdown>(OnLatchShutdown);
         SubscribeLocalEvent<LatchComponent, DamageChangedEvent>(OnLatcherDamaged);
         SubscribeLocalEvent<LatchComponent, MobStateChangedEvent>(OnLatcherMobStateChanged);
+        SubscribeLocalEvent<LatchComponent, BeingPulledAttemptEvent>(OnLatcherBeingPulledAttempt);
 
         SubscribeLocalEvent<LatchedComponent, ComponentShutdown>(OnLatchedShutdown);
         SubscribeLocalEvent<LatchedComponent, MobStateChangedEvent>(OnTargetMobStateChanged);
+        SubscribeLocalEvent<LatchedComponent, BeingPulledAttemptEvent>(OnTargetBeingPulledAttempt);
 
         SubscribeLocalEvent<LatchActionEvent>(OnLatchAction);
         SubscribeLocalEvent<LatchBiteHarderActionEvent>(OnBiteHarderAction);
         SubscribeLocalEvent<LatchReleaseActionEvent>(OnReleaseAction);
+    }
+
+    private void OnLatcherBeingPulledAttempt(Entity<LatchComponent> ent, ref BeingPulledAttemptEvent args)
+    {
+        if (ent.Comp.Active)
+            args.Cancel();
+    }
+
+    private void OnTargetBeingPulledAttempt(Entity<LatchedComponent> ent, ref BeingPulledAttemptEvent args)
+    {
+        if (TryComp<LatchComponent>(ent.Comp.Latcher, out var latchComp) && latchComp.Active)
+            args.Cancel();
     }
 
     /// <summary>
@@ -133,9 +153,19 @@ public sealed partial class LatchSystem : SharedLatchSystem
         if (ev.Handled)
             return;
 
-        var uid = ev.Performer;
-        if (!TryComp<LatchComponent>(uid, out var comp) || !comp.Active || comp.Target is not { } target)
+        if (!TryComp<LatchComponent>(ev.Performer, out var comp))
             return;
+
+        ev.Handled = DoBiteHarder(ev.Performer, comp);
+    }
+
+    /// <summary>
+    /// Deals one latch tick early and extends the duration.
+    /// </summary>
+    private bool DoBiteHarder(EntityUid uid, LatchComponent comp)
+    {
+        if (!comp.Active || comp.Target is not { } target)
+            return false;
 
         // Ratio of the bite's damage that got through armor.
         var effectiveness = 0f;
@@ -155,7 +185,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
         _audio.PlayPvs(comp.BiteHarderSound, uid);
 
-        ev.Handled = true;
+        return true;
     }
 
     /// <summary>
@@ -192,6 +222,19 @@ public sealed partial class LatchSystem : SharedLatchSystem
         var latched = EnsureComp<LatchedComponent>(target);
         latched.Latcher = uid;
         Dirty(target, latched);
+
+        if (TryComp<PullableComponent>(uid, out var latcherPullable))
+            _pulling.TryStopPull(uid, latcherPullable);
+
+        if (TryComp<PullableComponent>(target, out var targetPullable))
+            _pulling.TryStopPull(target, targetPullable);
+
+        comp.LatchJointId = $"latch-joint-{GetNetEntity(uid)}";
+        var joint = _joints.CreateDistanceJoint(uid, target, id: comp.LatchJointId);
+        joint.CollideConnected = false;
+        joint.MinLength = 0f;
+        joint.MaxLength = comp.MaxJointLength;
+        joint.Stiffness = 0f;
 
         if (_virtualItem.TrySpawnVirtualItemInHand(uid, target, out var blockingItem))
         {
@@ -238,6 +281,12 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.Active = false;
         comp.Target = null;
         comp.TickPaused = false;
+
+        if (comp.LatchJointId is { } jointId)
+        {
+            _joints.RemoveJoint(uid, jointId);
+            comp.LatchJointId = null;
+        }
 
         _action.RemoveAction(uid, comp.BiteHarderActionEntity);
         comp.BiteHarderActionEntity = null;
@@ -364,13 +413,16 @@ public sealed partial class LatchSystem : SharedLatchSystem
             // Knocked out of range; RangeTolerance avoids instant-breaking
             // from jitter. Within the grace window, pull the K9 to the
             // target instead of breaking. After that, treat it as a real
-            // separation.
+            // separation.  If the latch is particularly far away but not
+            // enough to completely refund the action, move the K9 closer.
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
             if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance)
             {
                 if (now - comp.StartTime < comp.RefundGracePeriod && distance <= comp.MaxDriftPullDistance)
                 {
-                    _transform.SetCoordinates(uid, Transform(target).Coordinates);
+                    var midpoint = (_transform.GetWorldPosition(uid) + _transform.GetWorldPosition(target)) / 2f;
+                    _transform.SetWorldPosition(uid, midpoint);
+
                 }
                 else
                 {

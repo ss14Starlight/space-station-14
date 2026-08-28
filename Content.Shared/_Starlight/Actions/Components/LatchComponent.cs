@@ -75,6 +75,21 @@ public sealed partial class LatchComponent : Component
     public float MaxDriftPullDistance = 3f;
 
     /// <summary>
+    /// Cap on the physics joint's max length. Matches baseline unarmed melee
+    /// range (1.5), not DriftBreakRange, so the target can always punch back.
+    /// </summary>
+    [DataField]
+    public float MaxJointLength = 1.5f;
+
+    /// <summary>
+    /// Physics joint keeping latcher and target from drifting apart (e.g. in
+    /// zero-g). Update()'s distance check remains as a backstop for physics-
+    /// bypassing separations like a hard teleport.
+    /// </summary>
+    [AutoNetworkedField, DataField]
+    public string? LatchJointId;
+
+    /// <summary>
     /// The starting, base duration of the latch, in seconds.
     /// </summary>
     [DataField]
