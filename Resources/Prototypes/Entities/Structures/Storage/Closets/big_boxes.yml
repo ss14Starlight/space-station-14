@@ -1,6 +1,5 @@
 ﻿- type: entity
-  parent: StructureHealthContainerFlimsy
-  id: BigBox
+  id: BaseBigBox
   name: cardboard box #it's still just a box
   description: Huh? Just a box...
   abstract: true
@@ -60,9 +59,9 @@
     - type: GravityAffected
 
 - type: entity
-  parent: BigBox
   id: StealthBox
   suffix: stealth
+  parent: BaseBigBox
   description: Kept ya waiting, huh?
   components:
     - type: Damageable
