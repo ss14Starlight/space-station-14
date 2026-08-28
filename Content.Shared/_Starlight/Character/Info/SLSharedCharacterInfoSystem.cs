@@ -51,7 +51,6 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
 
     private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)
     {
-        #region Starlight
         ApplyCharacterInfo(ev.Mob, ev.Profile);
     }
 
@@ -59,12 +58,12 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
     {
         var character = Profile;
         var newMind = _mindSystem.GetMind(Mob);
-        #endregion Starlight
+        var isHumanoid = HasComp<HumanoidAppearanceComponent>(Mob);
         if (newMind != null && TryComp(newMind, out MindComponent? mindComp))
         {
             mindComp.Voice = character.Voice;
             mindComp.SiliconVoice = character.SiliconVoice;
-            if (_configManager.GetCVar(CCVars.FlavorText))
+            if (isHumanoid && _configManager.GetCVar(CCVars.FlavorText))
             {
                 var personalityDescription = new CharacterDescriptionComponent
                 {
@@ -83,6 +82,9 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
                 AddComp(newMind.Value, mindSecrets);
             }
         }
+
+        if (!isHumanoid)
+            return;
 
         if (_configManager.GetCVar(CCVars.FlavorText))
         {
@@ -206,7 +208,7 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
 
         if (_exploitableSecretsEnabled
             && ent.Comp.Info != string.Empty
-            && (CanAccessExploitableData(ent,user)))
+            && (CanAccessExploitableData(ent, user)))
         {
             args.Verbs.Add(new ExamineVerb
             {
@@ -228,7 +230,7 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
     {
         return target == requester.Owner
                || HasComp<GhostComponent>(requester)
-               || (Resolve(requester.Owner,ref requester.Comp, false) && _roleSystem.MindIsAntagonist(requester.Comp.Mind));
+               || (Resolve(requester.Owner, ref requester.Comp, false) && _roleSystem.MindIsAntagonist(requester.Comp.Mind));
     }
 
     protected virtual void OpenCharacterWindow(EntityUid target, EntityUid requester)
