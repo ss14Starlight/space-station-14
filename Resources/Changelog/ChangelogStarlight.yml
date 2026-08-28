@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Removed the windoor to the animal pen so animals won't get loose all of the time.
-    type: Tweak
-  id: 407450
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Swapped out the trees in the animal pen for a smaller tree that blocks less of of the view of the animnals.
-    type: Tweak
-  id: 407451
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Added a railing in front of the Botany maintenance door so animals don't wander off into maints as easily.
     type: Tweak
   id: 407452
@@ -2799,4 +2785,18 @@ Entries:
   id: 407849
   time: '2026-08-28T05:10:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5841
+- author: STARLIGHT TEAM
+  changes:
+  - message: Overhauled Makeshift ID Cards; they can now be put in PDAs, but have their own job icon. Borgs should not treat said job icon as crew, as the Makeshift ID _is still minor contraband_.
+    type: Tweak
+  id: 407850
+  time: '2026-08-28T05:31:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5826
+- author: STARLIGHT TEAM
+  changes:
+  - message: Flipped and tweaked the Makeshift ID card sprite to move the terminals to where they are on regular ID cards.
+    type: Fix
+  id: 407851
+  time: '2026-08-28T05:31:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5826
 Order: -1
