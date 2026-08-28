@@ -10,12 +10,19 @@ namespace Content.Server._Starlight.Atmos.Reactions;
 [UsedImplicitly]
 public sealed partial class AmmoniaSynthesisShared
 {
+    /// <summary>
+    /// Calculates the equilibrium constant for the ammonia synthesis reaction
+    /// </summary>
+
     public static float CalculateKp(float temperature)
     {
         var ln_kp = (Atmospherics.AmmoniaNegativeDeltaEnthalpyOverR * (1.0f / temperature)) + Atmospherics.AmmoniaDeltaEntropyOverR;
         return float.Exp(ln_kp);
     }
 
+    /// <summary>
+    /// Calculates the equilibrium quotient for the ammonia synthesis reaction
+    /// </summary>
     public static float CalculateQp(float pAmmonia, float pNitrogen, float pHydrogen)
     {
         if (pAmmonia <= 0.00001f)

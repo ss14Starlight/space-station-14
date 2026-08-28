@@ -48,7 +48,7 @@ public sealed partial class AmmoniaProductionReaction : IGasReactionEffect
         mixture.AdjustMoles(Gas.Hydrogen, -deltaMoles * 3);
         mixture.AdjustMoles(Gas.Nitrogen, -deltaMoles);
 
-        var energyReleased = Atmospherics.AmmoniaProductionEnergyReleased * deltaMoles / 2.0f;
+        var energyReleased = Atmospherics.AmmoniaProductionEnergyReleased * deltaMoles * 2.0f;
 
         energyReleased /= heatScale;
         if (energyReleased > 0)
