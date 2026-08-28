@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Replaced the railings and old 'flat' stairs in Bridge with platforms and new stairs.
-    type: Tweak
-  id: 407453
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Moved urns from Morgue to Shrine.
     type: Tweak
   id: 407454
@@ -2799,4 +2792,11 @@ Entries:
   id: 407852
   time: '2026-08-28T05:55:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5823
+- author: wonderfulnewworld
+  changes:
+  - message: Adds automenders to DeForest's vendor.
+    type: Tweak
+  id: 407853
+  time: '2026-08-28T05:56:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5837
 Order: -1
