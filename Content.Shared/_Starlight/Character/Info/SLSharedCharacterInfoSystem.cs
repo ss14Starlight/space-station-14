@@ -51,6 +51,7 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
 
     private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)
     {
+        #region Starlight
         ApplyCharacterInfo(ev.Mob, ev.Profile);
     }
 
@@ -58,12 +59,12 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
     {
         var character = Profile;
         var newMind = _mindSystem.GetMind(Mob);
-        var isHumanoid = HasComp<HumanoidAppearanceComponent>(Mob);
+        #endregion Starlight
         if (newMind != null && TryComp(newMind, out MindComponent? mindComp))
         {
             mindComp.Voice = character.Voice;
             mindComp.SiliconVoice = character.SiliconVoice;
-            if (isHumanoid && _configManager.GetCVar(CCVars.FlavorText))
+            if (_configManager.GetCVar(CCVars.FlavorText))
             {
                 var personalityDescription = new CharacterDescriptionComponent
                 {
@@ -82,9 +83,6 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
                 AddComp(newMind.Value, mindSecrets);
             }
         }
-
-        if (!isHumanoid)
-            return;
 
         if (_configManager.GetCVar(CCVars.FlavorText))
         {

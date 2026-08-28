@@ -364,16 +364,13 @@ public sealed partial class LatchSystem : SharedLatchSystem
             // Knocked out of range; RangeTolerance avoids instant-breaking
             // from jitter. Within the grace window, pull the K9 to the
             // target instead of breaking. After that, treat it as a real
-            // separation.  If the latch is particularly far away but not
-            // enough to completely refund the action, move the K9 closer.
+            // separation.
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
             if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance)
             {
                 if (now - comp.StartTime < comp.RefundGracePeriod && distance <= comp.MaxDriftPullDistance)
                 {
-                    var midpoint = (_transform.GetWorldPosition(uid) + _transform.GetWorldPosition(target)) / 2f;
-                    _transform.SetWorldPosition(uid, midpoint);
-
+                    _transform.SetCoordinates(uid, Transform(target).Coordinates);
                 }
                 else
                 {
