@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Botany's APC is no longer backwards.
-    type: Fix
-  id: 407462
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) The grass tiles in Botany have been changed to indoor astrograss (meaning solar flares should no longer cook your animals).
-    type: Fix
-  id: 407463
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Fixed a painting that was covering the fire alarm in the HOP office.
     type: Fix
   id: 407464
@@ -2799,4 +2785,18 @@ Entries:
   id: 407861
   time: '2026-08-28T07:35:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5788
+- author: Way
+  changes:
+  - message: Radio Host now mapped on Bagel Station.
+    type: Add
+  id: 407862
+  time: '2026-08-28T19:42:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5750
+- author: Way
+  changes:
+  - message: Decal updates.
+    type: Tweak
+  id: 407863
+  time: '2026-08-28T19:42:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5750
 Order: -1
