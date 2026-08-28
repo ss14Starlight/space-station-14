@@ -1,48 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Ice cream maker added to Kitchen.
-    type: Add
-  id: 407438
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Vend of Silence added to Mime.
-    type: Add
-  id: 407439
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) The Right Honorable Flippers to Courtroom.
-    type: Add
-  id: 407440
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Added a disposal bin in Botany.
-    type: Add
-  id: 407441
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Added a guidebooks crate to Library.
-    type: Add
-  id: 407442
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Added a second HOP window to HOP.
-    type: Add
-  id: 407443
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Added a ticket machine to HOP.
     type: Add
   id: 407444
@@ -2799,4 +2757,46 @@ Entries:
   id: 407837
   time: '2026-08-27T01:05:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5805
+- author: OJG
+  changes:
+  - message: Adds Refinery station to the game files for testing!
+    type: Add
+  id: 407838
+  time: '2026-08-27T18:38:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5714
+- author: whatston3
+  changes:
+  - message: Cameras work now.
+    type: Fix
+  id: 407839
+  time: '2026-08-27T21:01:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5836
+- author: wonderfulnewworld
+  changes:
+  - message: Moved K9 in security's display.
+    type: Tweak
+  id: 407840
+  time: '2026-08-27T21:22:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5839
+- author: wonderfulnewworld
+  changes:
+  - message: K9 can no longer roll antag.
+    type: Fix
+  id: 407841
+  time: '2026-08-27T21:22:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5839
+- author: wonderfulnewworld
+  changes:
+  - message: Kiki, Pun Pun, Stir Stir, and other antag rolling animals can roll antag again.
+    type: Fix
+  id: 407842
+  time: '2026-08-27T21:44:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5840
+- author: Sparlight
+  changes:
+  - message: Fixed K9s teleporting across the station to their previous latch target.
+    type: Fix
+  id: 407843
+  time: '2026-08-27T22:30:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5842
 Order: -1
