@@ -27,7 +27,6 @@
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 3, 3 ]
-            Zookeeper: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
             RadioHost: [ 2, 2 ]
             Reporter: [ 1, 2 ]

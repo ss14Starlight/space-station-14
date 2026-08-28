@@ -10,7 +10,7 @@
   - !type:RoleTimeRequirement
     role: JobDetective
     time: 3h
-  displayWeight: 1
+  displayWeight: 2
   icon: "JobIconK9"
   supervisors: job-supervisors-security
   jobEntity: MobK9

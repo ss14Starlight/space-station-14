@@ -266,21 +266,6 @@
 
 # Wildcards
 - type: roleLoadout
-  id: JobZookeeper
-  groups:
-  - GroupTankHarness # for Vox
-  - CommonBackpack
-  - CivilianShoes
-  - Glasses
-  - Survival
-  - Trinkets
-  - Scarves
-  - Pins
-  - Pens
-  - ZookeeperJobTrinkets
-  - GroupSpeciesBreathTool
-
-- type: roleLoadout
   id: JobBoxer
   groups:
   - GroupTankHarness # for Vox

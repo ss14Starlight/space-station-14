@@ -68,3 +68,4 @@ job-rules-itg-aligned = You are {role-type-itg-aligned-name}.
                               You are to serve and protect the interests of the Interstellar Trade Guild, even if they differ from the stations'.
                               Remember, you do NOT serve the crew.
 
+job-name-makeshift-id = Makeshift ID Card

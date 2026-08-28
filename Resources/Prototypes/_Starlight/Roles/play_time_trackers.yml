@@ -77,9 +77,6 @@
   id: JobBoxer
 
 - type: playTimeTracker
-  id: JobZookeeper
-
-- type: playTimeTracker
   id: JobNanotrasenCareerTrainer
 
 - type: playTimeTracker
@@ -99,6 +96,9 @@
 
 - type: playTimeTracker
   id: JobStirStir
+
+- type: playTimeTracker
+  id: JobMakeshiftID
 
 # Other ghosts
 

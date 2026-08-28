@@ -809,27 +809,21 @@
     - DoorBumpOpener
   - type: NCTDataChip
 
-- type: entity
-  parent: [ Clothing, BaseMinorContraband ]
+- type: entity #Overhaul - now usable like regular ID but has its own job icon, and makeshift IDs are minor contra, so you SHOULD still get in trouble by borgs
+  parent: [IDCardStandard, BaseMinorContraband]
   id: MakeshiftID
   name: makeshift ID card
   description: A set of door electronics rewired to act as an ID card.
-  components: # Noteably absent is the ID card component and nanochat component - so borgs will treat you as non crew. It also can't be used in a PDA, and cannot be reprogrammed by an ID card computer.
+  components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     state: makeshift
-  - type: Clothing
-    slots:
-    - idcard
-    sprite: _Starlight/Objects/Misc/id_cards.rsi # Moffstation
-  - type: Access
-    tags:
-    - Maintenance
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - WhitelistChameleon
-    - WhitelistChameleonIdCard
+  - type: Item
+    heldPrefix: makeshift
+  - type: PresetIdCard
+    job: MakeshiftID
+  - type: NanoChatCard
+    listNumber: false
 
 #ERT/Centcomm
 
