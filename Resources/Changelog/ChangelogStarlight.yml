@@ -1,242 +1,4 @@
 Entries:
-- author: Huaqas
-  changes:
-  - message: You can now examine a Station Radio Server to tell if it is recording or not.
-    type: Add
-  id: 407481
-  time: '2026-08-10T22:37:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5554
-- author: Sparlight
-  changes:
-  - message: Individuals that can smell can now smell anything with a scent directly now, in addition to the scent traces left behind on them.
-    type: Add
-  id: 407482
-  time: '2026-08-10T22:37:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5544
-- author: Conflee, Flareguy
-  changes:
-  - message: Added Newspapers and Magazines, newpropr with worldbuilding and lore for mappers to decorate with. 11 Newspapers, 21 'legit' Magazines, and 14 'disreputable' 'Zines are implemented currently.
-    type: Add
-  id: 407483
-  time: '2026-08-10T23:12:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5538
-- author: Romero/Littlemen, with thanks to SevenShade
-  changes:
-  - message: WAR WIZARD (admeme phase).
-    type: Add
-  id: 407484
-  time: '2026-08-10T23:12:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5526
-- author: Romero/Littlemen, with thanks to SevenShade
-  changes:
-  - message: The Cryomancer.
-    type: Add
-  id: 407485
-  time: '2026-08-10T23:12:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5526
-- author: Romero/Littlemen, with thanks to SevenShade
-  changes:
-  - message: The Pyromancer.
-    type: Add
-  id: 407486
-  time: '2026-08-10T23:12:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5526
-- author: Romero/Littlemen, with thanks to SevenShade
-  changes:
-  - message: 13 new spells, 2 special robes, one spellbook for the wizards.
-    type: Add
-  id: 407487
-  time: '2026-08-10T23:12:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5526
-- author: Romero/Littlemen, with thanks to SevenShade
-  changes:
-  - message: the option for actionsystem to change the speed of a projectile.
-    type: Tweak
-  id: 407488
-  time: '2026-08-10T23:12:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5526
-- author: Sparlight
-  changes:
-  - message: Fixed reinstalled surgical implants disappearing when attempting installation.
-    type: Fix
-  id: 407489
-  time: '2026-08-11T03:09:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5569
-- author: Sparlight
-  changes:
-  - message: Partial smellers (vulpkanins) can no longer detect scent emissions from cloaked entities.
-    type: Tweak
-  id: 407490
-  time: '2026-08-11T03:09:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5557
-- author: VBlankFF
-  changes:
-  - message: Added effects that give artifacts certain accesses.
-    type: Add
-  id: 407491
-  time: '2026-08-11T06:27:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5383
-- author: Tjmaxmillion
-  changes:
-  - message: Secure Terminal now gives 30 seconds for co-authorization.
-    type: Tweak
-  id: 407492
-  time: '2026-08-11T08:00:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5002
-- author: Tjmaxmillion
-  changes:
-  - message: Secure Terminal Manual in command guidebook.
-    type: Add
-  id: 407493
-  time: '2026-08-11T08:00:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5002
-- author: Tjmaxmillion
-  changes:
-  - message: Secure Terminal Manual Item, Spawns inside command lockers and the Keycard Authentication Device, can be ejected.
-    type: Add
-  id: 407494
-  time: '2026-08-11T08:00:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5002
-- author: Tjmaxmillion
-  changes:
-  - message: Secure Terminal SOP in command SOP.
-    type: Add
-  id: 407495
-  time: '2026-08-11T08:00:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5002
-- author: Tjmaxmillion
-  changes:
-  - message: Secure Terminal shuttle based recalls now work.
-    type: Fix
-  id: 407496
-  time: '2026-08-11T08:00:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5002
-- author: Hot Mic
-  changes:
-  - message: Fixed the Spritework for the Robotist's Labcoat while in open state. Lex Newbell rejoice!
-    type: Fix
-  id: 407497
-  time: '2026-08-11T08:33:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5540
-- author: Spaghetti-Bit
-  changes:
-  - message: Added loud mode to command headsets, as well as some other commanding role headsets.
-    type: Add
-  id: 407498
-  time: '2026-08-11T08:33:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5395
-- author: Spaghetti-Bit
-  changes:
-  - message: Yelling will now make your message more noticeable on the radio.
-    type: Add
-  id: 407499
-  time: '2026-08-11T08:33:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5395
-- author: Spaghetti-Bit and ya3.14a
-  changes:
-  - message: Added new NeoAvali visors (lightless, and colorable).
-    type: Add
-  id: 407500
-  time: '2026-08-11T08:33:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5387
-- author: Spaghetti-Bit and ya3.14a
-  changes:
-  - message: Added new NeoAvali faces (diagonal, straight, square, circular, sun, and penta).
-    type: Add
-  id: 407501
-  time: '2026-08-11T08:33:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5387
-- author: Spaghetti-Bit and ya3.14a
-  changes:
-  - message: Added new NeoAvali armor (light).
-    type: Add
-  id: 407502
-  time: '2026-08-11T08:33:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5387
-- author: Spaghetti-Bit and ya3.14a
-  changes:
-  - message: Changed NeoAvali visor.
-    type: Tweak
-  id: 407503
-  time: '2026-08-11T08:33:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5387
-- author: wonderfulnewworld
-  changes:
-  - message: Avali, Reptillians, and Noctiliae can now eat Phenylpiperidine crystals.
-    type: Fix
-  id: 407504
-  time: '2026-08-11T09:13:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5547
-- author: OMEGA
-  changes:
-  - message: Access configurators and multitools can now configure access spanning multiple departments.
-    type: Fix
-  id: 407505
-  time: '2026-08-11T09:38:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5555
-- author: Romero/Littlemen
-  changes:
-  - message: Two more combat gloves in secvend.
-    type: Tweak
-  id: 407506
-  time: '2026-08-11T10:01:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5556
-- author: Spaghetti-Bit
-  changes:
-  - message: Properly fixes the rest of neo-avali female sprite displacements (Shoes, armor, backpack, mask, and head).
-    type: Fix
-  id: 407507
-  time: '2026-08-11T10:25:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5558
-- author: EWanderer
-  changes:
-  - message: Mining Borgs can now hold tickets in their hands.
-    type: Tweak
-  id: 407508
-  time: '2026-08-11T10:25:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5559
-- author: Limbesstar
-  changes:
-  - message: Tweaked the roboticist gas mask sprite.
-    type: Tweak
-  id: 407509
-  time: '2026-08-11T10:55:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5572
-- author: Forrestgod
-  changes:
-  - message: ERT Engineers now spawn with a T-ray Scanner.
-    type: Tweak
-  id: 407510
-  time: '2026-08-11T10:55:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5579
-- author: TaserTheFox
-  changes:
-  - message: More phrases to the AAC tablet.
-    type: Add
-  id: 407511
-  time: '2026-08-11T11:24:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5600
-- author: Swonki
-  changes:
-  - message: Dark Gygax Structural Armour.
-    type: Fix
-  id: 407512
-  time: '2026-08-11T11:24:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5583
-- author: Caws
-  changes:
-  - message: Renamed Radio Host's room station beacon from "Radio Host" to "Radio Studio".
-    type: Tweak
-  id: 407513
-  time: '2026-08-11T11:24:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5589
-- author: noxypaws
-  changes:
-  - message: use "Holy Book" instead of "Bible" in Cosmic Cult guidebook entries.
-    type: Tweak
-  id: 407514
-  time: '2026-08-11T19:16:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5604
 - author: Romero/Littlemen
   changes:
   - message: the cold case; a mauser C96 inspired pistol.
@@ -2799,4 +2561,242 @@ Entries:
   id: 407880
   time: '2026-08-28T20:12:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Cvlancer
+  changes:
+  - message: (Reach) Added assistant manager near hop's office.
+    type: Add
+  id: 407881
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Reach) Added ice cream machine and chefs closet to kitchen.
+    type: Add
+  id: 407882
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Reach) Added flippers (the pet) to gen pop processing room.
+    type: Add
+  id: 407883
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Reach) Added a recharger to science.
+    type: Add
+  id: 407884
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Reach) Added roboticist locker and wall fuel dispenser to "robotics".
+    type: Add
+  id: 407885
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Reach) Added a clown vend and a mime vend near HOP.
+    type: Add
+  id: 407886
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Reach) Added all the new techfabs.
+    type: Add
+  id: 407887
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Reach) Added keycard auth's to all heads bedrooms and one in bridge.
+    type: Add
+  id: 407888
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Reach) Added radio host with just a single vinyl player near kitchen.
+    type: Add
+  id: 407889
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Reach) Changed distro to begin at shift start.
+    type: Tweak
+  id: 407890
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added the new departmental techfabs to each department and service fab in the bar.
+    type: Add
+  id: 407891
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added assistant manager to conference room.
+    type: Add
+  id: 407892
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Orwell)  Added radio host south of arrivals.
+    type: Add
+  id: 407893
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added several station radios throughout the station.
+    type: Add
+  id: 407894
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added some cloth to maints surgery room.
+    type: Add
+  id: 407895
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added double hop window.
+    type: Add
+  id: 407896
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Changed the two shuttles at shuttle construction bay slightly using diagonals.
+    type: Tweak
+  id: 407897
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Changed the cmo dog bed to the new cat bed.
+    type: Tweak
+  id: 407898
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Changed reporter room to journalism access.
+    type: Tweak
+  id: 407899
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Fixed a pipe near shuttle construction bay being the wrong color.
+    type: Fix
+  id: 407900
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Fixed tiles in maints bar below medical.
+    type: Fix
+  id: 407901
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Added stir stir to gen pop.
+    type: Add
+  id: 407902
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Added ice cream maker machine to kitchen.
+    type: Add
+  id: 407903
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism)  Added the vend of silence to mime room.
+    type: Add
+  id: 407904
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Added flippers the law pet to court room.
+    type: Add
+  id: 407905
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Added all the new departmental tech fabs with service being in bar.
+    type: Add
+  id: 407906
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Added assistant manager spawn to hop line.
+    type: Add
+  id: 407907
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Added roboticist locker to roboticist.
+    type: Add
+  id: 407908
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Added coroner locker to morgue.
+    type: Add
+  id: 407909
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Added surgeon locker to surgery.
+    type: Add
+  id: 407910
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Added virology locker to viro.
+    type: Add
+  id: 407911
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Added mail access airlocks/windows and lockers to mailroom.
+    type: Add
+  id: 407912
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Added radio host near arrivals.
+    type: Add
+  id: 407913
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Cvlancer
+  changes:
+  - message: (Prism) Changed reporter office room to journalism access.
+    type: Tweak
+  id: 407914
+  time: '2026-08-28T20:12:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5751
 Order: -1
