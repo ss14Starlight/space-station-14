@@ -26,7 +26,7 @@
             Janitor: [ 1, 2 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
-            # Lawyer: [ 1, 1 ] We dont need one... we allready got 2 IAAs.
+            # Lawyer: [ 1, 1 ] We don't need one... we already have 2 IAAs.
             RadioHost: [ 1, 1 ]
             ServiceWorker: [ 2, 2 ]
             Performer: [ 2, 2 ]
@@ -65,7 +65,7 @@
             MailTech: [ 1, 2 ]
             #civilian
             Assistant: [ 1, 1 ]
-            Clown: [ -1, -1 ] #unlimited clowns but no assistants
+            Clown: [ -1, -1 ] #swap the counts of clowns and assitants.
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             Boxer: [ 2, 2 ]
