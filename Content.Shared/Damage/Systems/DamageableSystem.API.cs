@@ -163,17 +163,17 @@ public sealed partial class DamageableSystem
                     computedModifiers.FlatReduction.Add(modifier.Key, modifierSet.FlatReduction[modifier.Key]);
             }
 
-            foreach(var additiveCoefficent in ent.Comp.AdditiveCoefficients)
-                if(computedModifiers.Coefficients.ContainsKey(additiveCoefficent.Key.ModifierKey))
-                    computedModifiers.Coefficients[additiveCoefficent.Key.ModifierKey] += additiveCoefficent.Value;
+            foreach(var additiveCoefficient in ent.Comp.AdditiveCoefficients)
+                if(computedModifiers.Coefficients.ContainsKey(additiveCoefficient.Key.ModifierKey))
+                    computedModifiers.Coefficients[additiveCoefficient.Key.ModifierKey] += additiveCoefficient.Value;
                 else
-                    computedModifiers.Coefficients.Add( additiveCoefficent.Key.ModifierKey, 1.0f + additiveCoefficent.Value);
+                    computedModifiers.Coefficients.Add( additiveCoefficient.Key.ModifierKey, 1.0f + additiveCoefficient.Value);
 
             foreach(var additiveModifier in ent.Comp.AdditiveModifiers)
-                if(computedModifiers.Coefficients.ContainsKey(additiveModifier.Key.ModifierKey))
-                    computedModifiers.Coefficients[additiveModifier.Key.ModifierKey] += additiveModifier.Value;
+                if(computedModifiers.FlatReduction.ContainsKey(additiveModifier.Key.ModifierKey))
+                    computedModifiers.FlatReduction[additiveModifier.Key.ModifierKey] += additiveModifier.Value;
                 else
-                    computedModifiers.Coefficients.Add( additiveModifier.Key.ModifierKey, 0.0f + additiveModifier.Value);
+                    computedModifiers.FlatReduction.Add( additiveModifier.Key.ModifierKey, 0.0f + additiveModifier.Value);
 
             damage = DamageSpecifier.ApplyModifierSet(damage, computedModifiers);
             //Starlight End
@@ -502,13 +502,13 @@ public sealed partial class DamageableSystem
     /// <summary>
     ///     Adds to the additive damage modifiers of the DamageableComponent
     /// </summary>
-    public void AddAdditiveModifierSet(EntityUid source, Entity<DamageableComponent?> ent, DamageModifierSet mods)
+    public void AddAdditiveModifierSet(Entity<DamageableComponent?> ent, EntityUid source, DamageModifierSet mods)
     {
         if(!Resolve(ent, ref ent.Comp))
             return;
 
-        foreach (var coefficent in mods.Coefficients)
-            ent.Comp.AdditiveCoefficients.TryAdd((source, coefficent.Key), coefficent.Value);
+        foreach (var coefficient in mods.Coefficients)
+            ent.Comp.AdditiveCoefficients.TryAdd((source, coefficient.Key), coefficient.Value);
 
         foreach (var modifier in mods.FlatReduction)
             ent.Comp.AdditiveModifiers.TryAdd((source, modifier.Key), modifier.Value);
@@ -517,13 +517,13 @@ public sealed partial class DamageableSystem
     /// <summary>
     ///     Subtracts from the additive damage modifiers of the DamageableComponent
     /// </summary>
-    public void RemoveAdditiveModifierSet(EntityUid source, Entity<DamageableComponent?> ent, DamageModifierSet mods)
+    public void RemoveAdditiveModifierSet(Entity<DamageableComponent?> ent, EntityUid source, DamageModifierSet mods)
     {
         if(!Resolve(ent, ref ent.Comp))
             return;
 
-        foreach (var coefficent in mods.Coefficients)
-            ent.Comp.AdditiveCoefficients.Remove((source, coefficent.Key));
+        foreach (var coefficient in mods.Coefficients)
+            ent.Comp.AdditiveCoefficients.Remove((source, coefficient.Key));
 
         foreach (var modifier in mods.FlatReduction)
             ent.Comp.AdditiveModifiers.Remove((source, modifier.Key));

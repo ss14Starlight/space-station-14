@@ -604,16 +604,20 @@ public abstract partial class SharedMagicSystem : EntitySystem
         var user = ev.Performer;
 
         // try to put item in hand, otherwise it goes on the ground
-        var star = Spawn(ev.Spawned, Transform(user).Coordinates);
-        if (IsClientSide(star))
-            Del(star);//event has a tendency to produce client-sided cheese... this cleans those up...
+        var spawnedEntity = PredictedSpawnAtPosition(ev.Spawned, Transform(user).Coordinates);
+
+        var afterEvent = new AfterSpawnItemInHandEvent { Entity = spawnedEntity, Performer = user };
+        RaiseLocalEvent(ev.Action, afterEvent);
+
+        var result = _hands.TryPickupAnyHand(user, spawnedEntity);
+        if(!result && ev.RequiresFreeHand)
+            Del(spawnedEntity); // abort!
         else
-            _hands.TryPickupAnyHand(user, star);
-
-        if(ev.SelfDamage != null) //For dolls
-            _damageable.ChangeDamage(user, ev.SelfDamage, true);
-
-        ev.Handled = true;
+        {
+            if(ev.SelfDamage != null) //For dolls
+                _damageable.ChangeDamage(user, ev.SelfDamage, true);
+            ev.Handled = true;
+        }
     }
 
     private void OnTowerOfBabel(TowerOfBabelEvent ev)

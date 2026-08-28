@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
@@ -19,6 +20,7 @@ namespace Content.Shared.Damage.Components;
 [RegisterComponent]
 [NetworkedComponent]
 [Access(typeof(DamageableSystem), Other = AccessPermissions.ReadExecute)]
+[SuppressMessage("ReSharper", "RedundantLinebreak")]
 public sealed partial class DamageableComponent : Component
 {
     /// <summary>
@@ -91,9 +93,17 @@ public sealed partial class DamageableComponent : Component
     public FixedPoint2? HealthBarThreshold;
 
     #region Starlight
+
+    /// <summary>
+    ///     Additive changes to damage coefficients. See also: <see cref="DamageModifierSet"/>
+    /// </summary>
     [DataField]
     public Dictionary<(EntityUid Source, string ModifierKey), float> AdditiveCoefficients = [];
 
+
+    /// <summary>
+    ///     Additive changes to damage modifiers. See also: <see cref="DamageModifierSet"/>
+    /// </summary>
     [DataField]
     public Dictionary<(EntityUid Source, string ModifierKey), float> AdditiveModifiers = [];
     #endregion Starlight

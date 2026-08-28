@@ -84,12 +84,12 @@
 
 - type: entity
   parent: SurgeryCloseIncision
-  id: SurgeryCloseIncisionDollLimb
+  id: SurgeryCloseIncisionLimb
   name: Close Incision
   components:
   - type: Surgery
     requirement:
-    - SurgeryOpenIncisionDoll
+    - SurgeryOpenIncision
     priority: 100
     steps:
     - SurgeryStepRejoinBloodVessels

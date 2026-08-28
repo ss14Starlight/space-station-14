@@ -103,11 +103,11 @@ public sealed partial class MarkingOrganComponent : Component
     public List<ProtoId<MarkingPrototype>> AppliedMarkings = [];
 
     [DataField]
-    public Dictionary<MarkingPrototype, (bool isGlowing, IReadOnlyList<Color> markingColors)> Markings = [];
-    
+    public Dictionary<ProtoId<MarkingPrototype>, (bool isGlowing, IReadOnlyList<Color> markingColors)> Markings = [];
+
     [DataField]
     public bool StoreMarkings = false;
-    
+
     [DataField]
     public bool IsGlowing = false;
 }

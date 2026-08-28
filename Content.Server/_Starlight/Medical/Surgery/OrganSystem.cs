@@ -27,6 +27,7 @@ using Robust.Shared.Timing;
 using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Antags.Abductor.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server._Starlight.Medical.Surgery;
@@ -119,7 +120,7 @@ public sealed partial class OrganSystem : EntitySystem
 
     private void UpdateEntity(EntityUid ent, IComponent comp, EntityUid? implant = null)
     {
-        //For all those components where the enity needs to be updated in their own way after adding or removing a component
+        //For all those components where the entity needs to be updated in their own way after adding or removing a component
         switch (comp)
         {
             case IntrinsicTranslatorComponent _:
@@ -164,10 +165,10 @@ public sealed partial class OrganSystem : EntitySystem
     {
         if(ent.Comp.Markings.Count > 0)
         {
-            var addedMarkings = new List<MarkingPrototype>();
+            var addedMarkings = new List<ProtoId<MarkingPrototype>>();
             foreach(var marking in ent.Comp.Markings)
             {
-                _humanoidAppearanceSystem.AddMarking(args.Body, marking.Key.ID, marking.Value.markingColors, marking.Value.isGlowing, forced: true);
+                _humanoidAppearanceSystem.AddMarking(args.Body, marking.Key, marking.Value.markingColors, marking.Value.isGlowing, forced: true);
                 addedMarkings.Add(marking.Key);
             }
             foreach(var key in addedMarkings)
@@ -202,7 +203,7 @@ public sealed partial class OrganSystem : EntitySystem
                         continue;
                     if (!resolvedLayers.Contains(prototype.BodyPart))
                         continue;
-                    ent.Comp.Markings.Add(prototype, (marking.IsGlowing, marking.MarkingColors));
+                    ent.Comp.Markings.TryAdd(prototype, (marking.IsGlowing, marking.MarkingColors));
                     removedMarkings.Add(prototype.ID);
                 }
             foreach(var key in removedMarkings)
@@ -272,7 +273,7 @@ public sealed partial class OrganSystem : EntitySystem
         if (!TryComp(args.Body, out DamageableComponent? damage))
             return;
 
-        _damageableSystem.AddAdditiveModifierSet(ent, (args.Body, damage), ent.Comp.Modifiers);
+        _damageableSystem.AddAdditiveModifierSet((args.Body, damage), ent, ent.Comp.Modifiers);
 
         UpdateEntity(args.Body, ent.Comp);
     }
@@ -282,7 +283,7 @@ public sealed partial class OrganSystem : EntitySystem
         if (!TryComp(args.Body, out DamageableComponent? damage))
             return;
 
-        _damageableSystem.RemoveAdditiveModifierSet(ent, (args.Body, damage), ent.Comp.Modifiers);
+        _damageableSystem.RemoveAdditiveModifierSet((args.Body, damage), ent, ent.Comp.Modifiers);
 
         UpdateEntity(args.Body, ent.Comp);
     }
@@ -325,14 +326,9 @@ public sealed partial class OrganSystem : EntitySystem
         if(!_body.GetBodyOrgans(args.Body).Where(o => TryComp(o.Id, out OrganShellComponent? _)).Any())
             return;
 
-        foreach (var comp in ( shell.NoShellComponents ?? []).Values)
-        {
-            if (EntityManager.HasComponent(args.Body, comp.Component.GetType()))
-            {
-                EntityManager.RemoveComponent(args.Body, EntityManager.GetComponent(args.Body, comp.Component.GetType()));
-                UpdateEntity(args.Body, comp.Component, ent.Owner);
-            }
-        }
+        if(shell.NoShellComponents != null)
+            EntityManager.RemoveComponents(args.Body, shell.NoShellComponents);
+
         _actionsSystem.AddAction(args.Body, ref shell.GenerateShellPieceActionEntity, shell.GenerateShellPieceAction);
     }
 
@@ -344,14 +340,9 @@ public sealed partial class OrganSystem : EntitySystem
         if(_body.GetBodyOrgans(args.Body).Where(o => TryComp(o.Id, out OrganShellComponent? _)).Any())
             return;
 
-        foreach (var comp in ( shell.NoShellComponents ?? []).Values)
-        {
-            if (!EntityManager.HasComponent(args.Body, comp.Component.GetType()))
-            {
-                EntityManager.AddComponent(args.Body, comp.Component);
-                UpdateEntity(args.Body, comp.Component, ent.Owner);
-            }
-        }
+        if(shell.NoShellComponents != null)
+            EntityManager.AddComponents(args.Body, shell.NoShellComponents, removeExisting: false);
+
         _actionsSystem.RemoveAction(args.Body, shell.GenerateShellPieceActionEntity);
     }
 
