@@ -63,6 +63,7 @@ public sealed class StationPowerTests : GameTest
         "StarlightOasis",
         "StarlightPacked",
         "StarlightReach",
+        "StarlightRefinery",
         "StarlightSaltern",
         "StarlightSilica",
         "StarlightSpaceMall",

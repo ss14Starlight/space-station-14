@@ -1,7 +1,7 @@
 - type: ninjaHackingThreat
-  id: Clown
-  announcement: terror-clown
-  rule: UnknownShuttleHonki
+  id: DisasterSyndies
+  announcement: terror-disaster-syndies
+  rule: UnknownShuttleSyndieEvacPod
 
 - type: ninjaHackingThreat
   id: LoneOp
@@ -42,3 +42,23 @@
   id: Colossus
   announcement: terror-colossus
   rule: ColossusSpawn
+
+- type: ninjaHackingThreat
+  id: StrikeTeam
+  announcement: terror-strike-team
+  rule: UnknownShuttleInstigator
+
+- type: ninjaHackingThreat
+  id: Abductors
+  announcement: terror-abductors
+  rule: AbductorsSpawn
+
+- type: ninjaHackingThreat
+  id: Terminator
+  announcement: terror-terminator
+  rule: TerminatorSpawn
+
+- type: ninjaHackingThreat
+  id: TheClownening
+  announcement: terror-honk
+  rule: GameRuleClownSwarm
