@@ -1,123 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Starboard) Fixed a painting that was covering the fire alarm in the HOP office.
-    type: Fix
-  id: 407464
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Added missing turret control panels for AI Upload.
-    type: Fix
-  id: 407465
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: Removed Barratry from the game's files due to being unmaintained.
-    type: Remove
-  id: 407466
-  time: '2026-08-10T21:36:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5565
-- author: wonderfulnewworld, Limerent-Sun
-  changes:
-  - message: Neocytes will now appear as ghost roles, with random frames.
-    type: Add
-  id: 407467
-  time: '2026-08-10T21:36:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5457
-- author: wonderfulnewworld, Limerent-Sun
-  changes:
-  - message: Renamed all Protogen-type species to Neocytes.
-    type: Tweak
-  id: 407468
-  time: '2026-08-10T21:36:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5457
-- author: wonderfulnewworld, Limerent-Sun
-  changes:
-  - message: Neocytes will now always spawn with a frame.
-    type: Fix
-  id: 407469
-  time: '2026-08-10T21:36:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5457
-- author: wonderfulnewworld, Limerent-Sun
-  changes:
-  - message: Neo-Kin can now get ion stormed.
-    type: Fix
-  id: 407470
-  time: '2026-08-10T21:36:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5457
-- author: wonderfulnewworld, Limerent-Sun
-  changes:
-  - message: Cyclorites, Neo-Cyclorites, and Neo-Vox no longer take damage from water vapor.
-    type: Fix
-  id: 407471
-  time: '2026-08-10T21:36:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5457
-- author: wonderfulnewworld, Limerent-Sun
-  changes:
-  - message: Neocytes now restore their frames after polymorphing.
-    type: Fix
-  id: 407472
-  time: '2026-08-10T21:36:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5457
-- author: Huaqas
-  changes:
-  - message: Radio Hosts will now spawn with their PDAs.
-    type: Fix
-  id: 407473
-  time: '2026-08-10T22:37:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5554
-- author: Huaqas
-  changes:
-  - message: Radio Hosts can no longer spawn with no jumpsuit.
-    type: Fix
-  id: 407474
-  time: '2026-08-10T22:37:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5554
-- author: Huaqas
-  changes:
-  - message: Station Radios should be easier to hear and will whisper when set to Low Volume mode.
-    type: Fix
-  id: 407475
-  time: '2026-08-10T22:37:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5554
-- author: Huaqas
-  changes:
-  - message: Ghosts will no longer get spammed with messages from every station radio.
-    type: Fix
-  id: 407476
-  time: '2026-08-10T22:37:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5554
-- author: Huaqas
-  changes:
-  - message: Radio Hosts now have Service access.
-    type: Add
-  id: 407477
-  time: '2026-08-10T22:37:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5554
-- author: Huaqas
-  changes:
-  - message: BSO, NTR and the Reporter now have Journalism access. Service Workers will receive Journalism access with their extended access.
-    type: Add
-  id: 407478
-  time: '2026-08-10T22:37:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5554
-- author: Huaqas
-  changes:
-  - message: You can now examine a Vinyl Player to tell you what is currently inserted.
-    type: Add
-  id: 407479
-  time: '2026-08-10T22:37:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5554
-- author: Huaqas
-  changes:
-  - message: You can now examine a Station Radio to tell what volume it is playing at.
-    type: Add
-  id: 407480
-  time: '2026-08-10T22:37:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5554
 - author: Huaqas
   changes:
   - message: You can now examine a Station Radio Server to tell if it is recording or not.
@@ -2799,4 +2680,123 @@ Entries:
   id: 407863
   time: '2026-08-28T19:42:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5750
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added box shelving around the map, featuring various useful supplies.
+    type: Add
+  id: 407864
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fax machine added to Engineering front.
+    type: Add
+  id: 407865
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo LObster) Fax machine added to Botany.
+    type: Add
+  id: 407866
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added missing Funding Allocation computers.
+    type: Add
+  id: 407867
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added meteor protection for Science.
+    type: Add
+  id: 407868
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added a HyDrobe to Botany.
+    type: Add
+  id: 407869
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added emergency lighting to various indoor locations.
+    type: Add
+  id: 407870
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added more televisions around the station.
+    type: Add
+  id: 407871
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Updated pet beds with the new variants.
+    type: Add
+  id: 407872
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added a microwave by the 'donut' part of the kitchen, and a deep fryer by the 'general' part of the kitchen.
+    type: Add
+  id: 407873
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added a mailing unit to Brigmedic.
+    type: Add
+  id: 407874
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added boxes of office supplies and guidebooks to Librarian.
+    type: Add
+  id: 407875
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Surgery's observation area has been updated so that Medical personnel can't sneak into Surgery without Surgery access.
+    type: Tweak
+  id: 407876
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Engineering's techfab is now by Engineering front and their material silo is now by Materials.
+    type: Tweak
+  id: 407877
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) An unpowered keycard auth. device and holopad in Conference have been fixed.
+    type: Fix
+  id: 407878
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) The wall medical vending machine by HOP is now a civilian instead of departmental.
+    type: Fix
+  id: 407879
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed an overlapping fuel tank and vending machine in the Park's maints.
+    type: Fix
+  id: 407880
+  time: '2026-08-28T20:12:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5783
 Order: -1
