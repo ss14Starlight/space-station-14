@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Botany can finally now access the freezer from their side.
-    type: Fix
-  id: 407461
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Botany's APC is no longer backwards.
     type: Fix
   id: 407462
@@ -2799,4 +2792,11 @@ Entries:
   id: 407860
   time: '2026-08-28T07:14:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5793
+- author: DocMoth
+  changes:
+  - message: Added Avali wizard robe sprites.
+    type: Add
+  id: 407861
+  time: '2026-08-28T07:35:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5788
 Order: -1
