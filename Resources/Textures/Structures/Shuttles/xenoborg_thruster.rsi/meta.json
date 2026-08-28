@@ -4,11 +4,15 @@
         "x": 32,
         "y": 32
     },
-    "copyright": "Created by Samuka-C (github)",
+    "copyright": "Created by Samuka-C (github). Panel state made by Person derived from base state.",
     "license": "CC-BY-SA-3.0",
     "states": [
         {
             "name": "base",
+            "directions": 4
+        },
+        {
+            "name": "panel",
             "directions": 4
         },
         {
