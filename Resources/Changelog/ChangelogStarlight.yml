@@ -1,74 +1,4 @@
 Entries:
-- author: Romero/Littlemen
-  changes:
-  - message: the cold case; a mauser C96 inspired pistol.
-    type: Add
-  id: 407515
-  time: '2026-08-11T19:42:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5586
-- author: Romero/Littlemen
-  changes:
-  - message: det has now loadout options for his lethal sidearm.
-    type: Add
-  id: 407516
-  time: '2026-08-11T19:42:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5586
-- author: CrazyPhantom
-  changes:
-  - message: Fixed welding fuel getting in censers.
-    type: Fix
-  id: 407517
-  time: '2026-08-11T19:42:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5602
-- author: wonderfulnewworld
-  changes:
-  - message: Added 6 Wizard Duelist medallions, corresponding to each respective school.
-    type: Add
-  id: 407518
-  time: '2026-08-11T21:44:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5601
-- author: wonderfulnewworld
-  changes:
-  - message: Wizard Duelists now have many more rules to follow with regard to their duels; all duels must involve magic, they cannot change their clothing, they must always wear their medallions, victors are only decided when only one duelist has at least 3 or more medallions, outsiders who steal medallions must be dealt with harshly, and the victor must return alive to tell the tale.
-    type: Tweak
-  id: 407519
-  time: '2026-08-11T21:44:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5601
-- author: wonderfulnewworld
-  changes:
-  - message: (Wizard's Court) Added a beacon, so wizards can actually teleport back.
-    type: Tweak
-  id: 407520
-  time: '2026-08-11T21:44:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5601
-- author: wonderfulnewworld
-  changes:
-  - message: Fixed some inconsistencies in the way Space Wizards Federation is written.
-    type: Fix
-  id: 407521
-  time: '2026-08-11T21:44:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5601
-- author: wonderfulnewworld
-  changes:
-  - message: You can now take antag ghost roles with none enabled on your characters again, and it'll create a random character.
-    type: Tweak
-  id: 407522
-  time: '2026-08-12T05:29:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5624
-- author: XeroTec/Meepmerp
-  changes:
-  - message: Fixed assistant lizard plushie playtime requirement.
-    type: Fix
-  id: 407523
-  time: '2026-08-12T20:28:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5614
-- author: Way
-  changes:
-  - message: (Manor) Radio Host is now mapped.
-    type: Add
-  id: 407524
-  time: '2026-08-12T20:28:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5605
 - author: Way
   changes:
   - message: (Manor) Departmental lathes are mapped.
@@ -2799,4 +2729,74 @@ Entries:
   id: 407914
   time: '2026-08-28T20:12:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5751
+- author: Caws
+  changes:
+  - message: (Lagan) Radio Hosts.
+    type: Add
+  id: 407915
+  time: '2026-08-28T20:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5852
+- author: Caws
+  changes:
+  - message: (Lagan) Added box shelving around the map.
+    type: Add
+  id: 407916
+  time: '2026-08-28T20:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5852
+- author: Caws
+  changes:
+  - message: (Lagan) Added a crew monitor to Security's front desk.
+    type: Add
+  id: 407917
+  time: '2026-08-28T20:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5852
+- author: Caws
+  changes:
+  - message: (Lagan) Added another security records computer to Security.
+    type: Add
+  id: 407918
+  time: '2026-08-28T20:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5852
+- author: Caws
+  changes:
+  - message: (Lagan) Added an Evidence Room by Warden & moved the contraband storage box there.
+    type: Add
+  id: 407919
+  time: '2026-08-28T20:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5852
+- author: Caws
+  changes:
+  - message: (Lagan) Improved Security's front desk with new computers, evidence shelves, and widened it to make it easier for people to use it in general.
+    type: Tweak
+  id: 407920
+  time: '2026-08-28T20:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5852
+- author: Caws
+  changes:
+  - message: (Lagan) Upgraded Cargo Tech lockers to be large variants.
+    type: Tweak
+  id: 407921
+  time: '2026-08-28T20:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5852
+- author: Caws
+  changes:
+  - message: (Lagan) Upgraded Mail Tech lockers to be the large variants.
+    type: Tweak
+  id: 407922
+  time: '2026-08-28T20:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5852
+- author: Caws
+  changes:
+  - message: (Lagan) Fixed a missing disposals pipe west of HOP.
+    type: Fix
+  id: 407923
+  time: '2026-08-28T20:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5852
+- author: Caws
+  changes:
+  - message: (Lagan) Fixed a messing disposals pipe west of Arrivals.
+    type: Fix
+  id: 407924
+  time: '2026-08-28T20:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5852
 Order: -1
