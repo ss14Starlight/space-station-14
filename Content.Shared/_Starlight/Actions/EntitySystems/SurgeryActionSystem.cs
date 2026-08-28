@@ -13,11 +13,11 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Actions.EntitySystems;
 public sealed class SurgeryActionSystem : EntitySystem
 {
-        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-        [Dependency] private readonly SharedBodySystem _body = default!;
-        [Dependency] private readonly IPrototypeManager _protoManager = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly SharedSurgerySystem _surgery = default!;
+        [Dependency] private SharedDoAfterSystem _doAfter = default!;
+        [Dependency] private SharedBodySystem _body = default!;
+        [Dependency] private IPrototypeManager _protoManager = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private SharedSurgerySystem _surgery = default!;
     public override void Initialize()
     {
         base.Initialize();

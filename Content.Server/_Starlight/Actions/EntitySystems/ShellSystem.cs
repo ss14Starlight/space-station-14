@@ -5,7 +5,7 @@ namespace Content.Server._Starlight.Actions.EntitySystems;
 
 public sealed class ShellSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
 
     public override void Initialize()
     {
