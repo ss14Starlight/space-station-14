@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Removed some useless boards from Robotics that can't be installed in any cyborgs.
-    type: Tweak
-  id: 407455
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Changed Surgery / Autopsy / Morgue air alarms to the new 'cold weather' variants, which should prevent temperature warnings showing up when the freezers are or are not in use.
     type: Tweak
   id: 407456
@@ -2799,4 +2792,11 @@ Entries:
   id: 407854
   time: '2026-08-28T06:24:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5825
+- author: RedSpeeds
+  changes:
+  - message: Made astral murmur no longer audible to nearby players.
+    type: Tweak
+  id: 407855
+  time: '2026-08-28T06:56:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5807
 Order: -1
