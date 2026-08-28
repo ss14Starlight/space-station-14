@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
@@ -20,7 +19,6 @@ namespace Content.Shared.Damage.Components;
 [RegisterComponent]
 [NetworkedComponent]
 [Access(typeof(DamageableSystem), Other = AccessPermissions.ReadExecute)]
-[SuppressMessage("ReSharper", "RedundantLinebreak")]
 public sealed partial class DamageableComponent : Component
 {
     /// <summary>
