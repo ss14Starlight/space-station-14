@@ -1,6 +1,7 @@
 using Prometheus;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag.Components;
@@ -72,8 +73,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
     private static readonly Gauge _antagSelectionCounts = Metrics.CreateGauge(
         "sl_antag_selection_count",
-        "Antagonist selection counts by game rule, antagonist type, and state",
-        ["rule", "type", "state"]
+        "Antagonist selection counts by round, game rule, antagonist type, and state",
+        ["round", "rule", "type", "state"]
     );
     #endregion
 
@@ -650,16 +651,32 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         int forcedAssignments = 0,
         int ghostRolesCreated = 0)
     {
+        var round = GameTicker.RoundId.ToString(CultureInfo.InvariantCulture);
         var rule = MetaData(gameRule).EntityPrototype?.ID ?? "unknown";
         var type = definition.ID;
 
-        _antagSelectionCounts.WithLabels(rule, type, "expected").Set(expected);
-        _antagSelectionCounts.WithLabels(rule, type, "assigned").Set(assigned);
-        _antagSelectionCounts.WithLabels(rule, type, "ghost_roles").Set(ghostRoles);
-        _antagSelectionCounts.WithLabels(rule, type, "unassigned").Set(Math.Max(0, expected - assigned));
-        _antagSelectionCounts.WithLabels(rule, type, "uncovered").Set(Math.Max(0, expected - assigned - ghostRoles));
-        _antagSelectionCounts.WithLabels(rule, type, "forced_assignments").Set(forcedAssignments);
-        _antagSelectionCounts.WithLabels(rule, type, "ghost_roles_created").Set(ghostRolesCreated);
+        _antagSelectionCounts.WithLabels(round, rule, type, "expected").Set(expected);
+        _antagSelectionCounts.WithLabels(round, rule, type, "assigned").Set(assigned);
+        _antagSelectionCounts.WithLabels(round, rule, type, "ghost_roles").Set(ghostRoles);
+        _antagSelectionCounts.WithLabels(round, rule, type, "unassigned").Set(Math.Max(0, expected - assigned));
+        _antagSelectionCounts.WithLabels(round, rule, type, "uncovered").Set(Math.Max(0, expected - assigned - ghostRoles));
+        _antagSelectionCounts.WithLabels(round, rule, type, "forced_assignments").Set(forcedAssignments);
+        _antagSelectionCounts.WithLabels(round, rule, type, "ghost_roles_created").Set(ghostRolesCreated);
+        _antagSelectionCounts.WithLabels(round, rule, type, "latejoin_assignments").Inc(0);
+    }
+
+    /// <summary>
+    /// Records a successful antagonist assignment made through the late-join selection path.
+    /// Just here for logging, pretty much.
+    /// </summary>
+    private void RecordLateJoinAntagAssignment(
+        Entity<AntagSelectionComponent> gameRule,
+        AntagSpecifierPrototype definition)
+    {
+        var round = GameTicker.RoundId.ToString(CultureInfo.InvariantCulture);
+        var rule = MetaData(gameRule).EntityPrototype?.ID ?? "unknown";
+
+        _antagSelectionCounts.WithLabels(round, rule, definition.ID, "latejoin_assignments").Inc();
     }
 
     /// <summary>
