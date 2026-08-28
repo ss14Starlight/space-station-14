@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.CombatMode;
 using Content.Shared._Starlight.Actions.Components;
@@ -5,11 +6,13 @@ using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Alert;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Camera;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Interaction;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -22,7 +25,9 @@ using Content.Shared.Stunnable;
 using Content.Shared.Whitelist;
 using Content.Shared.Wieldable;
 using Robust.Server.Audio;
+using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -41,16 +46,21 @@ public sealed partial class LatchSystem : SharedLatchSystem
     [Dependency] private CombatModeSystem _combatMode = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedJointSystem _joints = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
     [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private SharedWieldableSystem _wieldable = default!;
     [Dependency] private StandingStateSystem _standing = default!;
+
+    // Subtle relative to explosions (which scale up to ~0.4f) - a jolt, not a blast.
+    private const float BiteHarderCameraKick = 0.15f;
 
     public override void Initialize()
     {
@@ -184,6 +194,11 @@ public sealed partial class LatchSystem : SharedLatchSystem
         Dirty(uid, comp);
 
         _audio.PlayPvs(comp.BiteHarderSound, uid);
+        RaiseNetworkEvent(new LatchBiteShakeEvent(GetNetEntity(uid)), Filter.Pvs(uid, entityManager: EntityManager));
+
+        var kickDirection = _transform.GetWorldPosition(target) - _transform.GetWorldPosition(uid);
+        if (kickDirection != Vector2.Zero)
+            _recoil.KickCamera(target, kickDirection.Normalized() * BiteHarderCameraKick);
 
         return true;
     }
@@ -229,11 +244,29 @@ public sealed partial class LatchSystem : SharedLatchSystem
         if (TryComp<PullableComponent>(target, out var targetPullable))
             _pulling.TryStopPull(target, targetPullable);
 
+        // Engage range allows pouncing past melee range; pull the K9 in if
+        // the path is clear, else leave the joint uncapped for this latch.
+        var targetPos = _transform.GetWorldPosition(target);
+        var toLatcher = _transform.GetWorldPosition(uid) - targetPos;
+        var pounceDistance = toLatcher.Length();
+        var jointMaxLength = comp.MaxJointLength;
+
+        if (pounceDistance > comp.MaxJointLength)
+        {
+            var pullInPos = targetPos + toLatcher / pounceDistance * comp.MaxJointLength;
+            var pullInCoords = new MapCoordinates(pullInPos, Transform(target).MapID);
+
+            if (_interaction.InRangeUnobstructed(uid, pullInCoords, pounceDistance))
+                _transform.SetWorldPosition(uid, pullInPos);
+            else
+                jointMaxLength = pounceDistance; // couldn't get closer
+        }
+
         comp.LatchJointId = $"latch-joint-{GetNetEntity(uid)}";
         var joint = _joints.CreateDistanceJoint(uid, target, id: comp.LatchJointId);
         joint.CollideConnected = false;
         joint.MinLength = 0f;
-        joint.MaxLength = comp.MaxJointLength;
+        joint.MaxLength = jointMaxLength;
         joint.Stiffness = 0f;
 
         if (_virtualItem.TrySpawnVirtualItemInHand(uid, target, out var blockingItem))
@@ -418,7 +451,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
             if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance)
             {
-                if (now - comp.StartTime < comp.RefundGracePeriod && distance <= comp.MaxDriftPullDistance)
+                if (now - comp.StartTime < comp.RefundGracePeriod)
                 {
                     var midpoint = (_transform.GetWorldPosition(uid) + _transform.GetWorldPosition(target)) / 2f;
                     _transform.SetWorldPosition(uid, midpoint);
