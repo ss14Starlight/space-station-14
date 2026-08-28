@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Hohohonkers vending machine moved inside of Clown's room (instead of in maints).
-    type: Tweak
-  id: 407448
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
-  - message: (Starboard) Swapped Mime and Clown lockers to the new pre-filled versions.
-    type: Tweak
-  id: 407449
-  time: '2026-08-10T21:36:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5566
-- author: Caws
-  changes:
   - message: (Starboard) Removed the windoor to the animal pen so animals won't get loose all of the time.
     type: Tweak
   id: 407450
@@ -2799,4 +2785,18 @@ Entries:
   id: 407847
   time: '2026-08-28T05:10:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5838
+- author: Caws
+  changes:
+  - message: Zookeepers have been removed. It was only mapped on 4 maps (out of 26 maps). The job icon is still available in the ID card computer if you want to apply to be a Zookeeper @ HOP via the "non-listed employment" form.
+    type: Remove
+  id: 407848
+  time: '2026-08-28T05:10:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5841
+- author: Caws
+  changes:
+  - message: The Safari hat and uniform are now available in the AutoDrobe (theater vending machine).
+    type: Add
+  id: 407849
+  time: '2026-08-28T05:10:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5841
 Order: -1
