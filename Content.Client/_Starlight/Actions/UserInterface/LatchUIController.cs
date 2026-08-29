@@ -67,11 +67,14 @@ public sealed partial class LatchUIController : UIController
         if (_actions is null || _player.LocalEntity is not { } local)
             return;
 
+        if (!_entities.TryGetComponent<LatchComponent>(local, out var latchComp))
+            return;
+
         // Same as clicking the action in the hotbar - find the granted
         // BiteHarder action entity and trigger it directly.
         foreach (var action in _actions.GetActions(local))
         {
-            if (_entities.GetComponent<MetaDataComponent>(action).EntityPrototype?.ID != "LatchBiteHarder")
+            if (_entities.GetComponent<MetaDataComponent>(action).EntityPrototype?.ID != latchComp.BiteHarderAction)
                 continue;
 
             _actions.TriggerAction(action);
