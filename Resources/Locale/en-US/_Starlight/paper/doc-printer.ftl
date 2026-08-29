@@ -32,7 +32,7 @@ doc-text-printer-report-research-anomaly-log =
   Date and Time: [datetime]
  Document Compiler: [signature]
 
- I, [signature], hereby acknowledge that all information in this form is true at the current time of compiling it. Alongside this, confirm that all standard operating procedures were followed when containing this anomaly.
+ I, [signature], hereby acknowledge that all information in this form is true at the current time of compiling it. I also confirm that all standard operating procedures were followed while containing this anomaly.
 
  Type of Anomaly: [form]
 
@@ -877,7 +877,7 @@ doc-text-printer-permission-research-equipment =
 
     Terms of use: [form]
 
-    I, [signature], Accept the terms of use of this item.
+    I, [signature], accept the terms of use of this item.
 
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
@@ -892,7 +892,7 @@ doc-text-printer-permission-research-silicon-conversion =
      Date and Time: [datetime]
     Document Compiler: [signature]
 
-    In sound mind I, [signature], authorize the science department to transfer my body and conciousness into a silicon unit, and acknowledge the risks that may come with doing so.
+    Being of sound mind, I, [signature], authorize the Science Department to transfer my body and consciousness into a silicon unit and acknowledge the risks of doing so.
 
     Reason for silicon conversion: [form]
 
