@@ -19,7 +19,6 @@
     - type: Paper
       content: doc-text-printer-report-morgue
 
-
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentReportStation
@@ -110,7 +109,6 @@
     - type: Paper
       content: doc-text-printer-disposal-report
 
-
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentArrestReport
@@ -139,6 +137,15 @@
   components:
     - type: Paper
       content: doc-text-printer-statement-appointment-interim-chapter
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentReportResearchAnomalyLog
+  name: Anomaly Research Log
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-report-research-anomaly-log
 
 - type: entity
   parent: PrintedDocument
@@ -333,6 +340,33 @@
   components:
     - type: Paper
       content: doc-text-printer-permission-equipment
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentPermissionResearchEquipment
+  name: Research Equipment Permit
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-permission-research-equipment
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentPermissionResearchSiliconConversion
+  name: Cyborg Conversion Form
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-permission-research-silicon-conversion
+
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentPermissionResearchAnomalyHost
+  name: Anomaly Host Form
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-permission-research-anomaly-host
 
 - type: entity
   parent: PrintedDocument
