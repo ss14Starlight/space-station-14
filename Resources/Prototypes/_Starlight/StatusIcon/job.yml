@@ -420,6 +420,17 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconJanitorAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: JanitorAssistant
+  jobName: job-name-janitor-assistant
+  tags:
+  - JobIconCrew
+  - JobIconAssistantManager
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconMakeshiftID
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
