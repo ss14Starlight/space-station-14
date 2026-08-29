@@ -123,7 +123,7 @@
     Nitrogen: 0.01
     Hydrogen: 0.01
   effects:
-  - !type:AmmoniaProductionReaction {}
+  - !type:AmmoniaSynthesisReaction {}
 
 - type: gasReaction
   id: AmmoniaDecay
@@ -132,4 +132,4 @@
   minimumRequirements:
     Ammonia: 0.01
   effects:
-  - !type:AmmoniaDecayReaction
+  - !type:AmmoniaSynthesisReaction {}
