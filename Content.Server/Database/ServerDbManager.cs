@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.IO;
 using System.Net;
 using System.Text.Json;
@@ -16,10 +16,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 using Prometheus;
+using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.Manager;
 using LogLevel = Robust.Shared.Log.LogLevel;
 using MSLogLevel = Microsoft.Extensions.Logging.LogLevel;
 
@@ -31,20 +33,24 @@ namespace Content.Server.Database
 
         void Shutdown();
 
+        Task<bool> HasPendingModelChanges();
+
         #region Preferences
         Task<PlayerPreferences> InitPrefsAsync(
             NetUserId userId,
             ICharacterProfile defaultProfile,
             CancellationToken cancel);
 
-        Task SaveCharacterSlotAsync(NetUserId userId, ICharacterProfile? profile, int slot);
+        Task SaveSelectedCharacterIndexAsync(NetUserId userId, int index);
 
-        Task SaveJobPrioritiesAsync(NetUserId userId, Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities);
+        Task SaveCharacterSlotAsync(NetUserId userId, ICharacterProfile? profile, int slot);
 
         Task SaveAdminOOCColorAsync(NetUserId userId, Color color);
 
         Task SaveConstructionFavoritesAsync(NetUserId userId, List<ProtoId<ConstructionPrototype>> constructionFavorites);
 
+        // Single method for two operations for transaction.
+        Task DeleteSlotAndSetSelectedIndex(NetUserId userId, int deleteSlot, int newSlot);
         Task<PlayerPreferences?> GetPlayerPreferencesAsync(NetUserId userId, CancellationToken cancel);
         #endregion
 
@@ -61,7 +67,7 @@ namespace Content.Server.Database
         /// </summary>
         /// <param name="id">The ban id to look for.</param>
         /// <returns>The ban with the given id or null if none exist.</returns>
-        Task<ServerBanDef?> GetServerBanAsync(int id);
+        Task<BanDef?> GetBanAsync(int id);
 
         /// <summary>
         ///     Looks up an user's most recent received un-pardoned ban.
@@ -73,11 +79,12 @@ namespace Content.Server.Database
         /// <param name="hwId">The legacy HWID of the user.</param>
         /// <param name="modernHWIds">The modern HWIDs of the user.</param>
         /// <returns>The user's latest received un-pardoned ban, or null if none exist.</returns>
-        Task<ServerBanDef?> GetServerBanAsync(
+        Task<BanDef?> GetBanAsync(
             IPAddress? address,
             NetUserId? userId,
             ImmutableArray<byte>? hwId,
-            ImmutableArray<ImmutableArray<byte>>? modernHWIds);
+            ImmutableArray<ImmutableArray<byte>>? modernHWIds,
+            BanType type = BanType.Server);
 
         /// <summary>
         ///     Looks up an user's ban history.
@@ -89,17 +96,18 @@ namespace Content.Server.Database
         /// <param name="modernHWIds">The modern HWIDs of the user.</param>
         /// <param name="includeUnbanned">If true, bans that have been expired or pardoned are also included.</param>
         /// <returns>The user's ban history.</returns>
-        Task<List<ServerBanDef>> GetServerBansAsync(
+        Task<List<BanDef>> GetBansAsync(
             IPAddress? address,
             NetUserId? userId,
             ImmutableArray<byte>? hwId,
             ImmutableArray<ImmutableArray<byte>>? modernHWIds,
-            bool includeUnbanned=true);
+            bool includeUnbanned=true,
+            BanType type = BanType.Server);
 
-        Task<int> AddServerBanAsync(ServerBanDef serverBan);
-        Task AddServerUnbanAsync(ServerUnbanDef serverBan);
+        Task<BanDef> AddBanAsync(BanDef ban);
+        Task AddUnbanAsync(UnbanDef ban);
 
-        public Task EditServerBan(
+        public Task EditBan(
             int id,
             string reason,
             NoteSeverity severity,
@@ -123,45 +131,6 @@ namespace Content.Server.Database
         /// <returns><see cref="ServerBanExemptFlags.None"/> if the user is not exempt from any bans.</returns>
         Task<ServerBanExemptFlags> GetBanExemption(NetUserId userId, CancellationToken cancel = default);
 
-        #endregion
-
-        #region Role Bans
-        /// <summary>
-        ///     Looks up a role ban by id.
-        ///     This will return a pardoned role ban as well.
-        /// </summary>
-        /// <param name="id">The role ban id to look for.</param>
-        /// <returns>The role ban with the given id or null if none exist.</returns>
-        Task<ServerRoleBanDef?> GetServerRoleBanAsync(int id);
-
-        /// <summary>
-        ///     Looks up an user's role ban history.
-        ///     This will return pardoned role bans based on the <see cref="includeUnbanned"/> bool.
-        ///     Requires one of <see cref="address"/>, <see cref="userId"/>, or <see cref="hwId"/> to not be null.
-        /// </summary>
-        /// <param name="address">The IP address of the user.</param>
-        /// <param name="userId">The NetUserId of the user.</param>
-        /// <param name="hwId">The Hardware Id of the user.</param>
-        /// <param name="modernHWIds">The modern HWIDs of the user.</param>
-        /// <param name="includeUnbanned">Whether expired and pardoned bans are included.</param>
-        /// <returns>The user's role ban history.</returns>
-        Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(
-            IPAddress? address,
-            NetUserId? userId,
-            ImmutableArray<byte>? hwId,
-            ImmutableArray<ImmutableArray<byte>>? modernHWIds,
-            bool includeUnbanned = true);
-
-        Task<ServerRoleBanDef> AddServerRoleBanAsync(ServerRoleBanDef serverBan);
-        Task AddServerRoleUnbanAsync(ServerRoleUnbanDef serverBan);
-
-        public Task EditServerRoleBan(
-            int id,
-            string reason,
-            NoteSeverity severity,
-            DateTimeOffset? expiration,
-            Guid editedBy,
-            DateTimeOffset editedAt);
         #endregion
 
         #region Playtime
@@ -203,14 +172,7 @@ namespace Content.Server.Database
             ConnectionDenyReason? denied,
             int serverId);
 
-        Task AddServerBanHitsAsync(int connection, IEnumerable<ServerBanDef> bans);
-
-        #endregion
-
-        #region Player data
-        /// 🌟Starlight🌟
-        Task SetPlayerDataForAsync(NetUserId userId, StarLightModel.PlayerDataDTO data, CancellationToken cancel = default);
-        Task<StarLightModel.PlayerDataDTO?> GetPlayerDataForAsync(NetUserId userId, CancellationToken cancel = default);
+        Task AddServerBanHitsAsync(int connection, IEnumerable<BanDef> bans);
 
         #endregion
 
@@ -302,8 +264,7 @@ namespace Content.Server.Database
         Task<AdminNoteRecord?> GetAdminNote(int id);
         Task<AdminWatchlistRecord?> GetAdminWatchlist(int id);
         Task<AdminMessageRecord?> GetAdminMessage(int id);
-        Task<ServerBanNoteRecord?> GetServerBanAsNoteAsync(int id);
-        Task<ServerRoleBanNoteRecord?> GetServerRoleBanAsNoteAsync(int id);
+        Task<BanNoteRecord?> GetBanAsNoteAsync(int id);
         Task<List<IAdminRemarksRecord>> GetAllAdminRemarks(Guid player);
         Task<List<IAdminRemarksRecord>> GetVisibleAdminNotes(Guid player);
         Task<List<AdminWatchlistRecord>> GetActiveWatchlists(Guid player);
@@ -314,8 +275,7 @@ namespace Content.Server.Database
         Task DeleteAdminNote(int id, Guid deletedBy, DateTimeOffset deletedAt);
         Task DeleteAdminWatchlist(int id, Guid deletedBy, DateTimeOffset deletedAt);
         Task DeleteAdminMessage(int id, Guid deletedBy, DateTimeOffset deletedAt);
-        Task HideServerBanFromNotes(int id, Guid deletedBy, DateTimeOffset deletedAt);
-        Task HideServerRoleBanFromNotes(int id, Guid deletedBy, DateTimeOffset deletedAt);
+        Task HideBanFromNotes(int id, Guid deletedBy, DateTimeOffset deletedAt);
 
         /// <summary>
         /// Mark an admin message as being seen by the target player.
@@ -395,7 +355,7 @@ namespace Content.Server.Database
         public string? Payload { get; set; }
     }
 
-    public sealed partial class ServerDbManager : IServerDbManager
+    public sealed class ServerDbManager : IServerDbManager
     {
         public static readonly Counter DbReadOpsMetric = Metrics.CreateCounter(
             "db_read_ops",
@@ -409,9 +369,11 @@ namespace Content.Server.Database
             "db_executing_ops",
             "Amount of active database operations. Note that some operations may be waiting for a database connection.");
 
-        [Dependency] private IConfigurationManager _cfg = default!;
-        [Dependency] private IResourceManager _res = default!;
-        [Dependency] private ILogManager _logMgr = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly IResourceManager _res = default!;
+        [Dependency] private readonly ILogManager _logMgr = default!;
+        [Dependency] private readonly ITaskManager _task = default!;
+        [Dependency] private readonly ISerializationManager _serialization = default!;
 
         private ServerDbBase _db = default!;
         private LoggingProvider _msLogProvider = default!;
@@ -443,11 +405,11 @@ namespace Content.Server.Database
             {
                 case "sqlite":
                     SetupSqlite(out var contextFunc, out var inMemory);
-                    _db = new ServerDbSqlite(contextFunc, inMemory, _cfg, _synchronous, opsLog);
+                    _db = new ServerDbSqlite(contextFunc, inMemory, _cfg, _synchronous, opsLog, _task, _serialization);
                     break;
                 case "postgres":
                     var (pgOptions, conString) = CreatePostgresOptions();
-                    _db = new ServerDbPostgres(pgOptions, conString, _cfg, opsLog, notifyLog);
+                    _db = new ServerDbPostgres(pgOptions, conString, _cfg, opsLog, notifyLog, _task, _serialization);
                     break;
                 default:
                     throw new InvalidDataException($"Unknown database engine {engine}.");
@@ -473,17 +435,22 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.InitPrefsAsync(userId, defaultProfile));
         }
 
+        public Task SaveSelectedCharacterIndexAsync(NetUserId userId, int index)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SaveSelectedCharacterIndexAsync(userId, index));
+        }
+
         public Task SaveCharacterSlotAsync(NetUserId userId, ICharacterProfile? profile, int slot)
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.SaveCharacterSlotAsync(userId, profile, slot));
         }
 
-        public Task SaveJobPrioritiesAsync(NetUserId userId,
-            Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities)
+        public Task DeleteSlotAndSetSelectedIndex(NetUserId userId, int deleteSlot, int newSlot)
         {
             DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.SaveJobPrioritiesAsync(userId, newJobPriorities));
+            return RunDbCommand(() => _db.DeleteSlotAndSetSelectedIndex(userId, deleteSlot, newSlot));
         }
 
         public Task SaveAdminOOCColorAsync(NetUserId userId, Color color)
@@ -516,49 +483,51 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.GetAssignedUserIdAsync(name));
         }
 
-        public Task<ServerBanDef?> GetServerBanAsync(int id)
+        public Task<BanDef?> GetBanAsync(int id)
         {
             DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetServerBanAsync(id));
+            return RunDbCommand(() => _db.GetBanAsync(id));
         }
 
-        public Task<ServerBanDef?> GetServerBanAsync(
-            IPAddress? address,
-            NetUserId? userId,
-            ImmutableArray<byte>? hwId,
-            ImmutableArray<ImmutableArray<byte>>? modernHWIds)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetServerBanAsync(address, userId, hwId, modernHWIds));
-        }
-
-        public Task<List<ServerBanDef>> GetServerBansAsync(
+        public Task<BanDef?> GetBanAsync(
             IPAddress? address,
             NetUserId? userId,
             ImmutableArray<byte>? hwId,
             ImmutableArray<ImmutableArray<byte>>? modernHWIds,
-            bool includeUnbanned=true)
+            BanType type = BanType.Server)
         {
             DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetServerBansAsync(address, userId, hwId, modernHWIds, includeUnbanned));
+            return RunDbCommand(() => _db.GetBanAsync(address, userId, hwId, modernHWIds, type));
         }
 
-        public Task<int> AddServerBanAsync(ServerBanDef serverBan)
+        public Task<List<BanDef>> GetBansAsync(
+            IPAddress? address,
+            NetUserId? userId,
+            ImmutableArray<byte>? hwId,
+            ImmutableArray<ImmutableArray<byte>>? modernHWIds,
+            bool includeUnbanned=true,
+            BanType type = BanType.Server)
         {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.AddServerBanAsync(serverBan));
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetBansAsync(address, userId, hwId, modernHWIds, includeUnbanned, type));
         }
 
-        public Task AddServerUnbanAsync(ServerUnbanDef serverUnban)
+        public Task<BanDef> AddBanAsync(BanDef ban)
         {
             DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.AddServerUnbanAsync(serverUnban));
+            return RunDbCommand(() => _db.AddBanAsync(ban));
         }
 
-        public Task EditServerBan(int id, string reason, NoteSeverity severity, DateTimeOffset? expiration, Guid editedBy, DateTimeOffset editedAt)
+        public Task AddUnbanAsync(UnbanDef unban)
         {
             DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.EditServerBan(id, reason, severity, expiration, editedBy, editedAt));
+            return RunDbCommand(() => _db.AddUnbanAsync(unban));
+        }
+
+        public Task EditBan(int id, string reason, NoteSeverity severity, DateTimeOffset? expiration, Guid editedBy, DateTimeOffset editedAt)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.EditBan(id, reason, severity, expiration, editedBy, editedAt));
         }
 
         public Task UpdateBanExemption(NetUserId userId, ServerBanExemptFlags flags)
@@ -572,43 +541,6 @@ namespace Content.Server.Database
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetBanExemption(userId, cancel));
         }
-
-        #region Role Ban
-        public Task<ServerRoleBanDef?> GetServerRoleBanAsync(int id)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetServerRoleBanAsync(id));
-        }
-
-        public Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(
-            IPAddress? address,
-            NetUserId? userId,
-            ImmutableArray<byte>? hwId,
-            ImmutableArray<ImmutableArray<byte>>? modernHWIds,
-            bool includeUnbanned = true)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetServerRoleBansAsync(address, userId, hwId, modernHWIds, includeUnbanned));
-        }
-
-        public Task<ServerRoleBanDef> AddServerRoleBanAsync(ServerRoleBanDef serverRoleBan)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.AddServerRoleBanAsync(serverRoleBan));
-        }
-
-        public Task AddServerRoleUnbanAsync(ServerRoleUnbanDef serverRoleUnban)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.AddServerRoleUnbanAsync(serverRoleUnban));
-        }
-
-        public Task EditServerRoleBan(int id, string reason, NoteSeverity severity, DateTimeOffset? expiration, Guid editedBy, DateTimeOffset editedAt)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.EditServerRoleBan(id, reason, severity, expiration, editedBy, editedAt));
-        }
-        #endregion
 
         #region Playtime
 
@@ -661,24 +593,11 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.AddConnectionLogAsync(userId, userName, address, hwId, trust, denied, serverId));
         }
 
-        public Task AddServerBanHitsAsync(int connection, IEnumerable<ServerBanDef> bans)
+        public Task AddServerBanHitsAsync(int connection, IEnumerable<BanDef> bans)
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.AddServerBanHitsAsync(connection, bans));
         }
-        //🌟Starlight🌟 start
-        public Task<StarLightModel.PlayerDataDTO?> GetPlayerDataForAsync(NetUserId userId, CancellationToken cancel = default)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetPlayerDataDTOForAsync(userId, cancel));
-        }
-        public Task SetPlayerDataForAsync(NetUserId userId, StarLightModel.PlayerDataDTO data, CancellationToken cancel = default)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.SetPlayerDataForAsync(userId, data, cancel));
-        }
-
-        //🌟Starlight🌟 end
 
         public Task<Admin?> GetAdminDataForAsync(NetUserId userId, CancellationToken cancel = default)
         {
@@ -935,16 +854,10 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.GetAdminMessage(id));
         }
 
-        public Task<ServerBanNoteRecord?> GetServerBanAsNoteAsync(int id)
+        public Task<BanNoteRecord?> GetBanAsNoteAsync(int id)
         {
             DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetServerBanAsNoteAsync(id));
-        }
-
-        public Task<ServerRoleBanNoteRecord?> GetServerRoleBanAsNoteAsync(int id)
-        {
-            DbReadOpsMetric.Inc();
-            return RunDbCommand(() => _db.GetServerRoleBanAsNoteAsync(id));
+            return RunDbCommand(() => _db.GetBanAsNoteAsync(id));
         }
 
         public Task<List<IAdminRemarksRecord>> GetAllAdminRemarks(Guid player)
@@ -1006,16 +919,10 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.DeleteAdminMessage(id, deletedBy, deletedAt));
         }
 
-        public Task HideServerBanFromNotes(int id, Guid deletedBy, DateTimeOffset deletedAt)
+        public Task HideBanFromNotes(int id, Guid deletedBy, DateTimeOffset deletedAt)
         {
             DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.HideServerBanFromNotes(id, deletedBy, deletedAt));
-        }
-
-        public Task HideServerRoleBanFromNotes(int id, Guid deletedBy, DateTimeOffset deletedAt)
-        {
-            DbWriteOpsMetric.Inc();
-            return RunDbCommand(() => _db.HideServerRoleBanFromNotes(id, deletedBy, deletedAt));
+            return RunDbCommand(() => _db.HideBanFromNotes(id, deletedBy, deletedAt));
         }
 
         public Task MarkMessageAsSeen(int id, bool dismissedToo)
@@ -1093,6 +1000,11 @@ namespace Content.Server.Database
                     handler(notification);
                 }
             }
+        }
+
+        public Task<bool> HasPendingModelChanges()
+        {
+            return RunDbCommand(() => _db.HasPendingModelChanges());
         }
 
         // Wrapper functions to run DB commands from the thread pool.
