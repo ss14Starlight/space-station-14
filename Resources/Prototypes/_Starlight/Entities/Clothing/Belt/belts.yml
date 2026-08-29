@@ -181,6 +181,9 @@
     sprite: _Starlight/Clothing/Belt/soviet_bandolier.rsi
   - type: Item
     size: Normal
+  - type: Tag
+    tags:
+    - Bandolier #BountySalvageBandolier
   - type: Storage
     whitelist:
       tags:

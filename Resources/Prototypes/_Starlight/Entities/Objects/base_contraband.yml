@@ -143,30 +143,21 @@
       allowedDepartments: [ Engineering, Security, Command ]
 
 - type: entity
-  id: BaseSecurityBartenderZookeeperContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Security ]
-    allowedJobs: [ Bartender, Zookeeper ]
-
-- type: entity
-  id: BaseSecurityZookeeperContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Security ]
-    allowedJobs: [ Zookeeper ]
-
-- type: entity
   id: BaseReporterContraband
   parent: BaseRestrictedContraband
   abstract: true
   components:
     - type: Contraband
       allowedJobs: [ Reporter ]
+
+- type: entity
+  id: BaseCommandManagerContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Command ]
+    allowedJobs: [ AssistantManager ]
 
 # for ~objective items not held by command
 - type: entity

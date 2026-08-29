@@ -96,3 +96,26 @@
       state: icon
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Misc/bunnygang.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckFoxfire
+  name: Foxfire Charm
+  description: Flittering ghostly flames have started following you upon donning this around your neck.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Misc/foxfire.rsi
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+        shader: unshaded
+      neck-resomi:
+      - state: equipped-NECK-resomi
+        shader: unshaded
+      neck-cyclorite:
+      - state: equipped-NECK-cyclorite
+        shader: unshaded
+      neck-rodentia:
+      - state: equipped-NECK-rodentia
+        shader: unshaded

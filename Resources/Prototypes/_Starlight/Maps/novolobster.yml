@@ -4,6 +4,7 @@
   mapPath: /Maps/_Starlight/Stations/NovoLobster.yml
   minPlayers: 40
   maxPlayers: 350
+  randomRotation: false # random rotation looks weird with weather
   stations:
     StarlightNovoLobster:
       stationProto: StandardNanotrasenStation
@@ -14,9 +15,9 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'CW'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_silica.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_silica.yml
         - type: StationCargoShuttle
-          path: /Maps/_Starlight/Shuttles/cargo_novolobster.yml
+          path: /Maps/_Starlight/Shuttles/Cargo/cargo_novolobster.yml
         - type: StationJobs
           availableJobs:
             #service
@@ -32,6 +33,7 @@
             ServiceWorker: [ 5, 5 ]
             Boxer: [ 2, 2 ]
             Lawyer: [ 2, 2 ]
+            RadioHost: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]

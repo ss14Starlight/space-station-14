@@ -127,6 +127,22 @@
       weight: 4.0
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 4.0
+    # Starlight-start
+    - id: XenoArtifactAccessEngineering
+      weight: 1.5
+    - id: XenoArtifactAccessScience # this is nearly useless for most people who can obtain it
+      weight: 2.0
+    - id: XenoArtifactAccessCargo
+      weight: 1.5
+    - id: XenoArtifactAccessService
+      weight: 1.5
+    - id: XenoArtifactAccessSecurity
+      weight: 1.5
+    - id: XenoArtifactAccessMedical
+      weight: 1.5
+    - id: XenoArtifactAccessCommand
+      weight: 1.0
+    # Starlight-end
 
 - type: entityTable
   id: XenoArtifactEffectsHandheldOnlyTable
@@ -394,27 +410,27 @@
     - type: MultipleTool
       statusShowBehavior: true
       entries:
-      - behavior: Screwing
+      - behavior: [ Screwing ]
         useSound:
           path: /Audio/Items/drill_use.ogg
         changeSound:
           path: /Audio/Items/change_drill.ogg
-      - behavior: Prying
+      - behavior: [ Prying ]
         useSound:
           path: /Audio/Items/jaws_pry.ogg
         changeSound:
           path: /Audio/Items/change_drill.ogg
-      - behavior: Anchoring
+      - behavior: [ Anchoring ]
         useSound:
           path: /Audio/Items/ratchet.ogg
         changeSound:
           path: /Audio/Items/change_drill.ogg
-      - behavior: Cutting
+      - behavior: [ Cutting ]
         useSound:
           path: /Audio/Items/jaws_cut.ogg
         changeSound:
           path: /Audio/Items/change_drill.ogg
-      - behavior: Pulsing
+      - behavior: [ Pulsing ]
         changeSound:
           path: /Audio/Items/change_drill.ogg
 

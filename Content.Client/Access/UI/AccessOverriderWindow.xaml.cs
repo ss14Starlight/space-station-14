@@ -20,6 +20,15 @@ namespace Content.Client.Access.UI
         private readonly Dictionary<string, Button> _legacyAccessButtons = new();
         // Starlight-edit: End
 
+        #region Starlight
+        /// <summary>
+        /// Every access set on the target, including those outside the selected group.
+        /// Only the selected group has buttons at any one time, so the rest are held here
+        /// and merged back in on submit rather than being dropped.
+        /// </summary>
+        private readonly HashSet<ProtoId<AccessLevelPrototype>> _pressedAccess = new();
+        #endregion
+
         public event Action<List<ProtoId<AccessLevelPrototype>>>? OnSubmit;
         public event Action<ProtoId<AccessGroupPrototype>>? OnGroupSelected; // Starlight-edit
 
@@ -57,16 +66,23 @@ namespace Content.Client.Access.UI
             // Wire up level presses -> submit list
             foreach (var (id, button) in _accessButtons.ButtonsList)
             {
-                button.OnPressed += _ =>
-                {
-                    OnSubmit?.Invoke(
-                        _accessButtons.ButtonsList.Where(x => x.Value.Pressed)
-                            .Select(x => new ProtoId<AccessLevelPrototype>(x.Key))
-                            .ToList());
-                    // Starlight-edit: End
-                };
+                button.OnPressed += _ => OnSubmit?.Invoke(BuildAccessList());
             }
         }
+        // Starlight-edit: End
+
+        #region Starlight
+        /// <summary>
+        /// Layers the visible buttons' states over the accesses belonging to the other groups.
+        /// </summary>
+        private List<ProtoId<AccessLevelPrototype>> BuildAccessList()
+        {
+            var accessList = _pressedAccess.Where(x => !_accessButtons.ButtonsList.ContainsKey(x)).ToList();
+            accessList.AddRange(_accessButtons.ButtonsList.Where(x => x.Value.Pressed).Select(x => x.Key));
+
+            return accessList;
+        }
+        #endregion
 
         public void UpdateState(IPrototypeManager protoManager, AccessOverriderBoundUserInterfaceState state)
         {
@@ -131,6 +147,9 @@ namespace Content.Client.Access.UI
             var availableAccess = state.AvailableAccessLevels?.ToList() ?? new List<ProtoId<AccessLevelPrototype>>();
             var pressedAccess = state.PressedAccessLevels?.ToList() ?? new List<ProtoId<AccessLevelPrototype>>();
 
+            _pressedAccess.Clear();
+            _pressedAccess.UnionWith(pressedAccess);
+
             var groupsWithCoverage = new List<ProtoId<AccessGroupPrototype>>();
             if (availableAccess.Count > 0 && state.AccessGroups != null)
             {
@@ -190,10 +209,7 @@ namespace Content.Client.Access.UI
 
             foreach (var (id, button) in _accessButtons.ButtonsList)
             {
-                button.OnPressed += _ => OnSubmit?.Invoke(
-                    _accessButtons.ButtonsList.Where(x => x.Value.Pressed)
-                        .Select(x => new ProtoId<AccessLevelPrototype>(x.Key))
-                        .ToList());
+                button.OnPressed += _ => OnSubmit?.Invoke(BuildAccessList());
             // Starlight-edit: End
             }
         }

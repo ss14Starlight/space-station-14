@@ -270,6 +270,7 @@
   - type: AutoImplant
     implants:
     - RedspaceImplant
+  - type: AntagImmune
 
 - type: entity
   parent: MobAdminMouse

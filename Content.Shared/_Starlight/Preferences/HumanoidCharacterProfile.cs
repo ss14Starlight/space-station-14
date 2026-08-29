@@ -1,5 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
+using Content.Shared.Humanoid.Prototypes;
+using Robust.Shared.Prototypes;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Shared.Preferences;
@@ -87,5 +89,28 @@ public sealed partial class HumanoidCharacterProfile
     public HumanoidCharacterProfile WithCybernetics(List<string> cybernetics)
     {
         return new(this) { Cybernetics = cybernetics, };
+    }
+
+    /// <summary>
+    /// Resolves the profile's current species, migrating an obsolete species ID when
+    /// a replacement species declares it in SpeciesProfileMigration.
+    /// </summary>
+    private SpeciesPrototype? ResolveSpecies(IPrototypeManager prototypeManager)
+    {
+        // If the original species still exists, just migrate to that one.
+        if (prototypeManager.TryIndex(Species, out SpeciesPrototype? species))
+            return species;
+
+        // If the original species no longer exists, find the "new" species to migrate to.
+        foreach (var candidate in prototypeManager.EnumeratePrototypes<SpeciesPrototype>())
+        {
+            if (candidate.ProfileMigration?.OldSpecies.Contains(Species.Id) != true)
+                continue;
+
+            Species = candidate.ID;
+            return candidate;
+        }
+
+        return null;
     }
 }

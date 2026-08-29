@@ -1,0 +1,12 @@
+- type: entity
+  id: ConstructionCommentMarker
+  name: comment
+  description: A note left behind by a fellow crewmember.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper_words
+  - type: Construction
+    graph: Comment
+    node: comment

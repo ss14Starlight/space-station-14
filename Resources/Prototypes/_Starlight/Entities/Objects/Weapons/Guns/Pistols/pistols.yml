@@ -600,3 +600,71 @@
     autoRefillRate: 4s
     affectedByEmp: true
   - type: AmmoCounter
+
+- type: entity
+  name: cold case
+  parent: [BaseWeaponSniper, BaseSecurityContraband]
+  id: WeaponPistolColdCase
+  description: An antiquated design of a pistol, truly a stylish choice.
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 0
+        staminaMultiplier: 0
+      Rodentia:
+        knockback: 0
+        staminaMultiplier: 0
+      Resomi:
+        knockback: 0
+        staminaMultiplier: 0
+      Felionoid:
+        knockback: 0
+        staminaMultiplier: 0
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/coldcase.rsi
+    slots:
+    - Back
+    - suitStorage
+    - Belt
+    - Pocket
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: Gun
+    pump: false
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
+  - type: BallisticAmmoProvider
+    capacity: 15
+    proto: CartridgePistol40SP
+    whitelist:
+      tags:
+      - CartridgePistolDP
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+      firing_pin: !type:Container
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 30
+  - type: FiringPinHolder
+    supportedPins: [ Pistol, GunUpgrade ]
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/coldcase.rsi
+    layers:
+    - state: base
+  - type: StealTarget
+    stealGroup: OfficerHandgun
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.01

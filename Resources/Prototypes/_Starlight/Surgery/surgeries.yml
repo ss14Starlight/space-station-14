@@ -17,7 +17,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
 
 - type: entity
@@ -34,7 +34,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
 
 - type: entity
   parent: SurgeryBase
@@ -52,7 +52,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -74,7 +74,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -96,7 +96,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -120,7 +120,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
 
 - type: entity
   parent: SurgeryCloseIncision
@@ -138,7 +138,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Head
@@ -159,7 +159,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Arm
@@ -185,7 +185,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: Sprite
     sprite: Mobs/Species/Skeleton/parts.rsi
@@ -257,7 +257,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -286,7 +286,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -313,7 +313,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -340,7 +340,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -371,7 +371,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -400,7 +400,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -429,7 +429,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -456,7 +456,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -485,7 +485,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -515,7 +515,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -544,7 +544,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -572,7 +572,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -599,7 +599,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -626,7 +626,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -652,7 +652,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -774,6 +774,66 @@
       - state: eye_implant_welding
 
 #
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractNoseImplant
+  name: Extract Nose Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    - SurgeryOpenIncisionSlime
+    steps:
+    - SurgeryStepLocateNoseImplant
+    - SurgeryStepClampOlfactoryNerve
+    - SurgeryStepRemoveNoseImplant
+  - type: SurgeryPartCondition
+    parts:
+    - Head
+  - type: SurgeryOrganExistCondition
+    organ:
+    - type: NoseImplant
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
+    - Vulpkanin
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: nose_implant_scent
+
+#
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantNoseImplant
+  name: Implant Nose Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    - SurgeryOpenIncisionSlime
+    steps:
+    - SurgeryStepPrepareImplantSiteNose
+    - SurgeryStepInsertNoseImplant
+    - SurgeryStepConnectOlfactoryNerve
+  - type: SurgeryPartCondition
+    parts:
+    - Head
+  - type: SurgeryOrganDontExistCondition
+    organ:
+    - type: NoseImplant
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
+    - Vulpkanin
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: nose_implant_scent
+
+#
 - type: entity
   parent: SurgeryBase
   id: SurgeryExtractHandImplant
@@ -860,7 +920,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -902,7 +962,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -934,7 +994,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -965,7 +1025,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -1049,7 +1109,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -1091,7 +1151,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -1122,7 +1182,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -1153,7 +1213,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -1199,7 +1259,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -1226,7 +1286,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -1256,7 +1316,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - Shadekin
-    - ProtoKin
+    - NeoKin
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -1283,7 +1343,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - Shadekin
-    - ProtoKin
+    - NeoKin
   - type: SurgeryPartCondition
     parts:
     - Torso

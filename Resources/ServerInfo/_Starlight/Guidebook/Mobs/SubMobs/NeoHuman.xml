@@ -1,0 +1,22 @@
+<Document>
+  # Neo-Human
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceNeoHuman" Caption=""/>
+  </Box>
+
+  The word Neocyte derives from the Greek word "neo" meaning "new" and the Latin word "cyte" meaning "cell".
+
+  When combined, the term "Neocyte" can be interpreted literally as "new cell", but it tends to be used in a more figurative sense to evoke transhumanist vibes, being read as "Advanced" or "Beyond" Biological.
+
+  One could argue humanity invented the Neocyte species at large by extension, but, the term was only coined after other races started undergoing the same procedure.
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceNeoVulpkanin" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceNeocyte" Caption=""/>
+  </Box>
+
+  ## Resistances
+  - Receive [color=#ffa500]10% more heat damage[/color], [color=#8147ff]25% more shock damage[/color], and [color=#FF3636]10% more blunt damage[/color].
+  - Receive [color=#1e90ff]30% less cold damage[/color].
+</Document>
