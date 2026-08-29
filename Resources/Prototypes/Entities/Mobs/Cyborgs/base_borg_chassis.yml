@@ -94,6 +94,7 @@
     showInHands: false
     disableExplosionRecursion: true
     canBeStripped: false
+  - type: HandlessDoAfter # Starlight
   - type: ComplexInteraction
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
