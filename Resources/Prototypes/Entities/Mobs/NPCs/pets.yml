@@ -12,8 +12,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
@@ -73,8 +75,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
@@ -108,8 +112,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
@@ -155,8 +161,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
@@ -188,8 +196,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end
@@ -216,8 +226,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
     - GalacticCommon
     - Nekomimetic
   # Starlight-end
@@ -254,8 +266,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
     - GalacticCommon
     - Nekomimetic
   # Starlight-end
@@ -289,8 +303,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
     - GalacticCommon
     - Nekomimetic
   # Starlight-end
@@ -346,8 +362,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
     - GalacticCommon
     - Nekomimetic
   # Starlight-end
@@ -405,7 +423,7 @@
 
 - type: entity
   name: McGriff
-  parent: [MobDogColdResistant, SimpleMobBase, StripableInventoryBase] # Starlight
+  parent: [MobDogColdResistant, MobDogIdentity, SimpleMobBase, StripableInventoryBase] # Starlight
   id: MobMcGriff
   description: This dog can tell something smells around here, and that something is CRIME!
   components:
@@ -414,8 +432,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   - type: Vocal
@@ -536,7 +556,7 @@
 
 - type: entity
   name: Walter
-  parent: [MobDogColdResistant, SimpleMobBase, StripableInventoryBase] # Starlight
+  parent: [MobDogColdResistant, MobDogIdentity, SimpleMobBase, StripableInventoryBase] # Starlight
   id: MobWalter
   description: He likes chems and treats. Walter.
   components:
@@ -545,8 +565,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   - type: Vocal
