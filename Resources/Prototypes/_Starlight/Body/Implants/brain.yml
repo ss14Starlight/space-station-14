@@ -100,6 +100,14 @@
         - Biological
         - Hybrid
       enablePrint: false
+      scanningBeginSound: !type:SoundPathSpecifier
+        path: /Audio/_Starlight/Effects/Experiment/woundon.ogg
+        params:
+          volume: -4
+      scanningEndSound: !type:SoundPathSpecifier
+        path: /Audio/_Starlight/Effects/Experiment/close.ogg
+        params:
+          volume: -1.5
     - type: ActionGrant
       actions:
         - ActionHealthSelfAnalyze

@@ -56,15 +56,28 @@
     requiredLegs: 2
   - type:  HumanoidAppearance
     species: Experiment
+  - type: MobState
+    allowedStates:
+      - Alive
+      - SoftCritical
+      - Critical
+      - Dead
   - type: MobThresholds
+    stateAlertDict:
+      Alive: "HumanHealth"
+      SoftCritical: "HumanCrit"
+      Critical: "HumanCrit"
+      Dead: "HumanDead"
     thresholds:
       0: Alive
-      100: Critical
+      100: SoftCritical
+      150: Critical
       200: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       45: 0.7
       60: 0.5
+      100: 0.1
   - type: Butcherable
     butcheringType: Spike
     spawned:

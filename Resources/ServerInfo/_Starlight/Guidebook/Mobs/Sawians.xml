@@ -12,6 +12,9 @@
     #Health
     Sawians are remarkably durable, made to live in conditions deadly to most species
     - Most are given brain implants allowing them an advance readout of their bodies condition.
+    - Their durability allows them to endure the effects of [color=red]critical condition[/color] for some time.
+    they can [color=yellow]crawl, talk, and use items.[/color] they will however take [color=red]Asphyxiation[/color] Damage,
+    eventually passing out before death.
     - Their extremely fast metabolism makes them great at healing most wounds, though it comes at the cost of highly increased hunger.
 
 
@@ -23,8 +26,5 @@
 
 
 </Document>
-<!-- for soft crit
-- Their durability allows them to endure the effects of [color=red]critical condition[/color] for some time.
-they can [color=yellow]crawl, talk, and use items.[/color] they will however take [color=red]Asphyxiation[/color] Damage,
-eventually passing out before death.
--->
+
+

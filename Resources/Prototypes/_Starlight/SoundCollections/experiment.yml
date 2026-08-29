@@ -2,6 +2,7 @@
   id: ExperimentScreams
   files:
   - /Audio/_Starlight/Voice/Experiment/canine_scream.ogg
+  - /Audio/_Starlight/Voice/Experiment/canine_arf.ogg
 
 - type: soundCollection
   id: ExperimentLaughs
@@ -22,3 +23,9 @@
   id: ExperimentArfs
   files:
   - /Audio/_Starlight/Voice/Experiment/canine_arf.ogg
+
+- type: soundCollection
+  id: ExperimentYawns
+  files:
+  - /Audio/_Starlight/Voice/Experiment/canine_yawn1.ogg
+  - /Audio/_Starlight/Voice/Experiment/canine_yawn2.ogg
