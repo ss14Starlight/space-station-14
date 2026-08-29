@@ -46,7 +46,6 @@
   parent: BorgChassisSelectable
   suffix: Battery
   components:
-  - type: RemoveFlavorText
   - type: ItemSlots
     slots:
       cell_slot:
