@@ -7,8 +7,6 @@
     - type: RandomMetadata
       nameSegments:
       - NamesBorgi
-    - type: ArmorSparkEffect
-      alwaysSparks: true
     - type: ShowJobIcons
     - type: DamageOnHighSpeedImpact
       soundHit:
@@ -191,6 +189,8 @@
       - Binary
     - type: CyborgSparkEffect
     - type: StationAIShunt
+    - type: ArmorSparkEffect
+      alwaysSparks: true
 
 - type: entity
   parent: [ BaseBorgiChassis, BaseBorgTransponder ]

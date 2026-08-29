@@ -49,15 +49,15 @@
 #region Starlight
       75: Critical
       225: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
-  - type: ArmorSparkEffect
-    alwaysSparks: true
-#endregion
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
       Dead: BorgDead
     showOverlays: false
     allowRevives: true
+  - type: ArmorSparkEffect
+    alwaysSparks: true
+#endregion
   - type: HealthExaminable
     examinableTypes:
       - Blunt
