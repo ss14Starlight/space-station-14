@@ -103,6 +103,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/AdminSpawn/**", // admin gaming
            #region starlight
             "/Maps/_Starlight/Shuttles/Admeme/Radiotower.yml", // Command stamps - listening post.
+            "/Maps/_Starlight/Stations/Remix.yml", // All stamps - listening post (extreme edition).
             #endregion
         };
 
