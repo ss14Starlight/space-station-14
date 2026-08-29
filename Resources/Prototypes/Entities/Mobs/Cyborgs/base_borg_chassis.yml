@@ -91,6 +91,8 @@
     disableExplosionRecursion: true
     canBeStripped: false
   - type: HandlessDoAfter # Starlight
+  - type: CanCrawlWithoutHands # Starlight: Allow crawling without hands
+  - type: BorgModuleCrawlModifier # Starlight: Half crawl speed when module active
   - type: ComplexInteraction
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter

@@ -1,5 +1,4 @@
 using Content.Shared.Hands.Components;
-using Content.Shared.Silicons.Borgs.Components; // Starlight
 using Content.Shared.Stunnable;
 
 namespace Content.Shared.Hands.EntitySystems;
@@ -39,28 +38,8 @@ public abstract partial class SharedHandsSystem
         // Can't crawl around without any hands.
         // Entities without the HandsComponent will always have full crawling speed.
         if (totalHands == 0)
-        {
-            // Starlight BEGIN: Allow cyborgs to crawl without hands at normal crawling speed.
-            if (HasComp<BorgChassisComponent>(ent.Owner))
-            {
-                if (TryComp<CrawlerComponent>(ent.Owner, out var crawler))
-                    args.SpeedModifier = crawler.SpeedModifier;
-                else
-                    args.SpeedModifier = 1f;
-                return;
-            }
             args.SpeedModifier = 0f;
-        }
         else
-        {
-            // Decouples cyborgs from crawling speed changes based on hands.
-            // Cyborgs with a module out will crawl at half the speed regardless of open hands.
-            if (HasComp<BorgChassisComponent>(ent.Owner))
-            {
-                args.SpeedModifier *= 0.5f;
-                return;
-            }
             args.SpeedModifier *= (float)freeHands / totalHands;
-        } // Starlight END
     }
 }
