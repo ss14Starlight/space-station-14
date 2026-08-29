@@ -112,6 +112,42 @@
   - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorSalvagePKAUpgradeDamage
+  productEntity: PKAUpgradeDamage
+  cost:
+    SalvageTicket: 300
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvagePKAUpgradeRange
+  productEntity: PKAUpgradeRange
+  cost:
+    SalvageTicket: 300
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvagePKAUpgradeFireRate
+  productEntity: PKAUpgradeFireRate
+  cost:
+    SalvageTicket: 300
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageMineralScanner
   productEntity: MineralScanner
   cost:
@@ -163,6 +199,18 @@
   categories:
     - SalvageEquipment
   conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSalvageEncryptionKey
+  productEntity: EncryptionKeySalvage
+  cost:
+    SalvageTicket: 100
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
     - !type:BuyerAccessCondition
 
 #- type: listing
@@ -458,6 +506,17 @@
   conditions:
   - !type:BuyerAccessCondition
 
+- type: listing
+  id: VendorSalvageClothingShoesBootsMagSalvage
+  productEntity: ClothingShoesBootsMagSalvage
+  cost:
+    SalvageTicket: 500
+  categories:
+    - SalvageMercenaryEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+    - !type:BuyerAccessCondition
 
 #Cybernetics
 - type: listing
@@ -489,3 +548,13 @@
   - SalvageCybernetics
   conditions:
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageDeathRattleImplanterSalvage
+  productEntity: DeathRattleImplanterSalvage
+  cost:
+    SalvageTicket: 200
+  categories:
+    - SalvageCybernetics
+  conditions:
+    - !type:BuyerAccessCondition
