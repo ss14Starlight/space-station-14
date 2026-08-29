@@ -8,7 +8,8 @@
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "The Purple Screen"
     },
     {
       "name": "equipped-HELMET",

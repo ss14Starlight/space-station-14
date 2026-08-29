@@ -9,16 +9,16 @@
   "states": [
     {
       "name": "pda",
-      "copyright": "The Purple Screen"
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen"
     },
     {
       "name": "id_overlay",
-      "copyright": "The Purple Screen"
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen"
     },
     {
       "name": "equipped-BELT",
       "directions": 4,
-      "copyright": "The Purple Screen"
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen"
     },
     {
       "name": "inhand-left",
@@ -28,24 +28,24 @@
     {
       "name": "inhand-right",
       "directions": 4,
-      "copyright": "The Purple Screen"
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen"
     },
     {
       "name": "insert_overlay",
-      "copyright": "The Purple Screen"
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen"
     },
     {
       "name": "light_overlay",
-      "copyright": "The Purple Screen"
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen"
     },
     {
       "name": "equipped-IDCARD",
       "directions": 4,
-      "copyright": "The Purple Screen"
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen"
     },
     {
       "name": "pda-ETO",
-      "copyright": "Made by The Purple Screen for Starlight",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen for Starlight",
       "delays": [
             [
             0.3,
@@ -57,7 +57,7 @@
     },
     {
       "name": "pda-ETOCorpsman",
-      "copyright": "Made by The Purple Screen for Starlight",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen for Starlight",
       "delays": [
             [
             0.3,
@@ -69,7 +69,7 @@
     },
     {
       "name": "pda-ETODemo",
-      "copyright": "Made by The Purple Screen for Starlight",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen for Starlight",
       "delays": [
             [
             0.3,
@@ -81,7 +81,7 @@
     },
     {
       "name": "pda-ETOLead",
-      "copyright": "Made by The Purple Screen for Starlight",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen for Starlight",
       "delays": [
             [
             0.3,
@@ -93,7 +93,7 @@
     },
     {
       "name": "pda-ETOMartyr",
-      "copyright": "Made by The Purple Screen for Starlight",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen for Starlight",
       "delays": [
             [
             0.3,
@@ -105,7 +105,7 @@
     },
     {
       "name": "pda-ETOTEMPLATE",
-      "copyright": "Made by The Purple Screen for Starlight",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen for Starlight",
       "delays": [
             [
             0.3,
@@ -117,7 +117,7 @@
     },
     {
       "name": "pda-ETOCombatTech",
-      "copyright": "Made by The Purple Screen for Starlight",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/59f2a4e10e5ba36033c9734ddebfbbdc6157472d, edited by The Purple Screen for Starlight",
       "delays": [
             [
             0.3,

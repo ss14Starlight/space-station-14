@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by JustAdler for https://github.com/ss14Starlight/space-station-14 | state based copyright",
+    "copyright": "state based copyright",
     "size":
     {
         "x": 32,
@@ -11,11 +11,11 @@
     [
  	{
             "name": "base_eto",
-			"copyright": "The Purple Screen"
+			"copyright": "Created by JustAdler for https://github.com/ss14Starlight/space-station-14, edited by The Purple Screen"
         },
         {
             "name": "eto_icon",
-			"copyright": "The Purple Screen"
+			"copyright": "Created by JustAdler for https://github.com/ss14Starlight/space-station-14, edited by The Purple Screen"
         }
     ]
 }
