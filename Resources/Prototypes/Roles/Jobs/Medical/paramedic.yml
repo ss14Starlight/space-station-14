@@ -19,9 +19,6 @@
   extendedAccess:
   - Chemistry
   - Surgery # Starlight BEGIN
-  special:
-    - !type:AddImplantSpecial
-      implants: [ MindShieldImplant ]  # Starlight END
 
 - type: startingGear
   id: ParamedicGear

@@ -31,7 +31,6 @@
   jobBlacklist:
   - SalvageLead
   - SalvageSpecialist
-  - Paramedic
   - AssistantManager
 
 # Zombie (Initial Infected)
