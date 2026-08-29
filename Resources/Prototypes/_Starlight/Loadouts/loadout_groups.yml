@@ -729,8 +729,8 @@
   - ServiceWorkerChefJumpsuit
   - ServiceWorkerChefJumpskirt
   - MaidOutfit
-  - JanitorMaidOutfit 
-  - JanitorMaidOutfitMini 
+  - JanitorMaidOutfit
+  - JanitorMaidOutfitMini
 
 # Performer
 - type: loadoutGroup
@@ -807,14 +807,6 @@
   - ReporterHeadphonesJob
   - ReporterHeadphonesGeneric
   - ReporterHeadphonesHighEnd
-
-# Zookeeper
-- type: loadoutGroup
-  id: ZookeeperJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieZookeeper
 
 # Assistant Manager
 - type: loadoutGroup

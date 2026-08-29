@@ -9,6 +9,7 @@ using Content.Server.Temperature.Systems;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.DeviceLinking.Events;
@@ -129,7 +130,7 @@ namespace Content.Server.Kitchen.EntitySystems
             SetAppearance(ent.Owner, MicrowaveVisualState.Cooking, CookingDeviceComponent); // Starlight-edit
 
             CookingDeviceComponent.PlayingStream = _audio.PlayPvs(CookingDeviceComponent.LoopingSound, ent, AudioParams.Default.WithLoop(true).WithMaxDistance(5))?.Entity; // Starlight-edit
-            _powerState.SetWorkingState(ent.Owner, true);
+            _powerState.TrySetWorkingState(ent.Owner, true);
         }
 
         private void OnCookStop(Entity<ActiveCookingDeviceComponent> ent, ref ComponentShutdown args) // Starlight-edit
@@ -143,7 +144,7 @@ namespace Content.Server.Kitchen.EntitySystems
             CookingDeviceComponent.StartedCookTime = TimeSpan.Zero;
             UpdateUserInterfaceState(ent.Owner, CookingDeviceComponent, false);
             // Starlight-end
-            _powerState.SetWorkingState(ent.Owner, false);
+            _powerState.TrySetWorkingState(ent.Owner, false); // Starlight-edit
         }
 
         private void OnActiveMicrowaveInsert(Entity<ActiveCookingDeviceComponent> ent, ref EntInsertedIntoContainerMessage args) // Starlight-edit
@@ -221,7 +222,7 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             // TODO Turn recipe.IngredientsReagents into a ReagentQuantity[]
 
-            var totalReagentsToRemove = new Dictionary<string, FixedPoint2>(recipe.IngredientsReagents);
+            var totalReagentsToRemove = new Dictionary<ProtoId<ReagentPrototype>, FixedPoint2>(recipe.IngredientsReagents);
 
             // Starlight-start: Check for subsract ability
             foreach (var (reagent, required) in recipe.IngredientsReagents)
