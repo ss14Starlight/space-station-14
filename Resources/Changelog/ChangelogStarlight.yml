@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Ming) Added a roboticist med kit to ipc repair bay.
-    type: Add
-  id: 407533
-  time: '2026-08-12T21:04:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5580
-- author: Cvlancer
-  changes:
   - message: (Ming) Added the new tech fab lathes to each department.
     type: Add
   id: 407534
@@ -2799,4 +2792,11 @@ Entries:
   id: 407932
   time: '2026-08-28T20:52:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5850
+- author: walksanatora
+  changes:
+  - message: Added Remix OWO station (Orbital Weapons Observatory). No it is not in rotation. No it will never be in rotation. Yes I will randomly subject people to it. Yes it has Reach as the evac shuttle.
+    type: Add
+  id: 407933
+  time: '2026-08-29T08:15:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5824
 Order: -1
