@@ -16,6 +16,7 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Players.RateLimiting;
+using Content.Shared.Database;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared;
@@ -33,16 +34,17 @@ namespace Content.Server.Administration.Systems
     {
         private const string RateLimitKey = "AdminHelp";
 
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IAdminManager _adminManager = default!;
-        [Dependency] private readonly IConfigurationManager _config = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IPlayerLocator _playerLocator = default!;
-        [Dependency] private readonly GameTicker _gameTicker = default!;
-        [Dependency] private readonly SharedMindSystem _minds = default!;
-        [Dependency] private readonly IAfkManager _afkManager = default!;
-        [Dependency] private readonly IServerDbManager _dbManager = default!;
-        [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private IAdminManager _adminManager = default!;
+        [Dependency] private IBanManager _banManager = default!;
+        [Dependency] private IConfigurationManager _config = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IPlayerLocator _playerLocator = default!;
+        [Dependency] private GameTicker _gameTicker = default!;
+        [Dependency] private SharedMindSystem _minds = default!;
+        [Dependency] private IAfkManager _afkManager = default!;
+        //[Dependency] private readonly IServerDbManager _dbManager = default!; NullLink-edit: move to general method at BanManager
+        [Dependency] private PlayerRateLimitManager _rateLimit = default!;
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -75,6 +77,12 @@ namespace Content.Server.Administration.Systems
         // Maximum length a message can be before it is cut off
         // Should be shorter than DescriptionMax
         private const ushort MessageLengthCap = 3000;
+
+        private readonly TimeSpan _messageCooldown = TimeSpan.FromSeconds(2);
+
+        private readonly Queue<(NetUserId Channel, string Text, TimeSpan Timestamp)> _recentMessages = new();
+        private const int MaxRecentMessages = 10;
+        private const int SpamCheckMessageCount = 3;
 
         // Text to be used to cut off messages that are too long. Should be shorter than MessageLengthCap
         private const string TooLongText = "... **(too long)**";
@@ -172,7 +180,7 @@ namespace Content.Server.Administration.Systems
                 }
 
                 // Check if the user has been banned
-                var ban = await _dbManager.GetBanAsync(null, e.Session.UserId, null, null);
+                var ban = await _banManager.GetServerBanAsync(null, e.Session.UserId, null, null);
                 if (ban != null)
                 {
                     var banMessage = Loc.GetString("bwoink-system-player-banned", ("banReason", ban.Reason));
@@ -647,6 +655,16 @@ namespace Content.Server.Administration.Systems
                 return;
             }
 
+            var currentTime = _timing.RealTime;
+
+            if (IsOnCooldown(message.UserId, currentTime) && senderAdmin == null)
+                return;
+
+            if (IsSpam(message.UserId, message.Text) && senderAdmin == null)
+                _banManager.CreateServerBan(senderSession.UserId, senderSession.Name, null, null, null, 0, NoteSeverity.High, "Automatic AHELP Antispam system Ban, If this ban is wrong, file an appeal.");
+
+            AddToRecentMessages(message.UserId, message.Text, currentTime);
+
             if (_rateLimit.CountAction(eventArgs.SenderSession, RateLimitKey) != RateLimitStatus.Allowed)
                 return;
 
@@ -859,6 +877,41 @@ namespace Content.Server.Administration.Systems
             /// Did we relay this interaction to OnCall previously.
             /// </summary>
             public bool OnCall;
+        }
+
+        private void AddToRecentMessages(NetUserId channelId, string text, TimeSpan timestamp)
+        {
+            _recentMessages.Enqueue((channelId, text, timestamp));
+
+            if (_recentMessages.Count > MaxRecentMessages)
+            {
+                _recentMessages.Dequeue();
+            }
+        }
+
+        private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime)
+        {
+            var lastMessage = _recentMessages
+                .Where(msg => msg.Channel == channelId)
+                .OrderByDescending(msg => msg.Timestamp)
+                .FirstOrDefault();
+
+            return lastMessage != default && (currentTime - lastMessage.Timestamp) < _messageCooldown;
+        }
+
+        private bool IsSpam(NetUserId channelId, string text)
+        {
+            var recentMessages = _recentMessages
+                .Where(msg => msg.Channel == channelId)
+                .OrderByDescending(msg => msg.Timestamp)
+                .Take(10);
+
+            return recentMessages.All(msg => msg.Text == text) && recentMessages.Count() >= 5;
+        }
+
+        public IEnumerable<(NetUserId Channel, string Text, TimeSpan Timestamp)> GetRecentMessages()
+        {
+            return _recentMessages;
         }
     }
 

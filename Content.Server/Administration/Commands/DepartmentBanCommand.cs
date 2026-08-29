@@ -10,13 +10,13 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Ban)]
-public sealed class DepartmentBanCommand : IConsoleCommand
+public sealed partial class DepartmentBanCommand : IConsoleCommand
 {
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly IPlayerLocator _locator = default!;
-    [Dependency] private readonly IBanManager _banManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private IPlayerLocator _locator = default!;
+    [Dependency] private IBanManager _banManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ILogManager _log = default!;
 
     private ISawmill? _sawmill;
 
@@ -96,20 +96,16 @@ public sealed class DepartmentBanCommand : IConsoleCommand
         var targetUid = located.UserId;
         var targetHWid = located.LastHWId;
 
-        var banInfo = new CreateRoleBanInfo(reason);
-        if (minutes > 0)
-            banInfo.WithMinutes(minutes);
-        banInfo.AddUser(targetUid, located.Username);
-        banInfo.WithBanningAdmin(shell.Player?.UserId);
-        banInfo.AddHWId(targetHWid);
-        banInfo.WithSeverity(severity);
-
+        // If you are trying to remove the following variable, please don't. It's there because the note system groups role bans by time, reason and banning admin.
+        // Without it the note list will get needlessly cluttered.
+        var now = DateTimeOffset.UtcNow;
+        var roles = new List<string>();
         foreach (var job in departmentProto.Roles)
         {
-            banInfo.AddJob(job);
+            _banManager.CreateRoleBan(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, job, minutes, severity, reason, now);
+            roles.Add(job.Id);
         }
-
-        _banManager.CreateRoleBan(banInfo);
+        _banManager.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, roles, minutes, severity, reason, now);
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)

@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Server.Administration.Managers; // NullLink-edit
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Database;
 using Robust.Server.Console;
 using Robust.Server.Player;
@@ -8,20 +10,20 @@ namespace Content.IntegrationTests.Tests.Commands
 {
     [TestFixture]
     [TestOf(typeof(PardonCommand))]
-    public sealed class PardonCommand
+    public sealed class PardonCommand : GameTest
     {
         private static readonly TimeSpan MarginOfError = TimeSpan.FromMinutes(1);
 
         [Test]
         public async Task PardonTest()
         {
-            await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true });
+            var pair = Pair;
             var server = pair.Server;
             var client = pair.Client;
 
             var sPlayerManager = server.ResolveDependency<IPlayerManager>();
             var sConsole = server.ResolveDependency<IServerConsoleHost>();
-            var sDatabase = server.ResolveDependency<IServerDbManager>();
+            var banManager = server.ResolveDependency<IBanManager>(); // NullLink-edit: move to general method at Manager
             var netMan = client.ResolveDependency<IClientNetManager>();
             var clientSession = sPlayerManager.Sessions.Single();
             var clientId = clientSession.UserId;
@@ -32,9 +34,11 @@ namespace Content.IntegrationTests.Tests.Commands
             // No bans on record
             Assert.Multiple(async () =>
             {
-                Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Null);
-                Assert.That(await sDatabase.GetBanAsync(1), Is.Null);
-                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Is.Empty);
+                // NullLink-start: move to general method at Manager
+                Assert.That(await banManager.GetServerBanAsync(null, clientId, null, null), Is.Null);
+                Assert.That(await banManager.GetServerBanAsync(1), Is.Null);
+                Assert.That(await banManager.GetServerBansAsync(null, clientId, null, null), Is.Empty);
+                // NullLink-end
             });
 
             // Try to pardon a ban that does not exist
@@ -43,9 +47,11 @@ namespace Content.IntegrationTests.Tests.Commands
             // Still no bans on record
             Assert.Multiple(async () =>
             {
-                Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Null);
-                Assert.That(await sDatabase.GetBanAsync(1), Is.Null);
-                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Is.Empty);
+                // NullLink-start: move to general method at Manager
+                Assert.That(await banManager.GetServerBanAsync(null, clientId, null, null), Is.Null);
+                Assert.That(await banManager.GetServerBanAsync(1), Is.Null);
+                Assert.That(await banManager.GetServerBansAsync(null, clientId, null, null), Is.Empty);
+                // NullLink-end
             });
 
             var banReason = "test";
@@ -57,9 +63,11 @@ namespace Content.IntegrationTests.Tests.Commands
             // Should have one ban on record now
             Assert.Multiple(async () =>
             {
-                Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Not.Null);
-                Assert.That(await sDatabase.GetBanAsync(1), Is.Not.Null);
-                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
+                // NullLink-start: move to general method at Manager
+                Assert.That(await banManager.GetServerBanAsync(null, clientId, null, null), Is.Not.Null);
+                Assert.That(await banManager.GetServerBanAsync(1), Is.Not.Null);
+                Assert.That(await banManager.GetServerBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
+                // NullLink-end
             });
 
             await pair.RunTicksSync(5);
@@ -70,17 +78,17 @@ namespace Content.IntegrationTests.Tests.Commands
             await server.WaitPost(() => sConsole.ExecuteCommand("pardon 2"));
 
             // The existing ban is unaffected
-            Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Not.Null);
+            Assert.That(await banManager.GetServerBanAsync(null, clientId, null, null), Is.Not.Null); // NullLink-edit: move to general method at Manager
 
-            var ban = await sDatabase.GetBanAsync(1);
+            var ban = await banManager.GetServerBanAsync(1); // NullLink-edit: move to general method at Manager
             Assert.Multiple(async () =>
             {
                 Assert.That(ban, Is.Not.Null);
-                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
+                Assert.That(await banManager.GetServerBansAsync(null, clientId, null, null), Has.Count.EqualTo(1)); // NullLink-edit: move to general method at Manager
 
                 // Check that it matches
                 Assert.That(ban.Id, Is.EqualTo(1));
-                Assert.That(ban.UserIds, Is.EquivalentTo([clientId]));
+                Assert.That(ban.UserId, Is.EqualTo(clientId));
                 Assert.That(ban.BanTime.UtcDateTime - DateTime.UtcNow, Is.LessThanOrEqualTo(MarginOfError));
                 Assert.That(ban.ExpirationTime, Is.Not.Null);
                 Assert.That(ban.ExpirationTime.Value.UtcDateTime - DateTime.UtcNow.AddHours(24), Is.LessThanOrEqualTo(MarginOfError));
@@ -95,20 +103,20 @@ namespace Content.IntegrationTests.Tests.Commands
             await server.WaitPost(() => sConsole.ExecuteCommand("pardon 1"));
 
             // No bans should be returned
-            Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Null);
+            Assert.That(await banManager.GetServerBanAsync(null, clientId, null, null), Is.Null); // NullLink-edit: move to general method at Manager
 
             // Direct id lookup returns a pardoned ban
-            var pardonedBan = await sDatabase.GetBanAsync(1);
+            var pardonedBan = await banManager.GetServerBanAsync(1); // NullLink-edit: move to general method at Manager
             Assert.Multiple(async () =>
             {
                 // Check that it matches
                 Assert.That(pardonedBan, Is.Not.Null);
 
                 // The list is still returned since that ignores pardons
-                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
+                Assert.That(await banManager.GetServerBansAsync(null, clientId, null, null), Has.Count.EqualTo(1)); // NullLink-edit: move to general method at Manager
 
                 Assert.That(pardonedBan.Id, Is.EqualTo(1));
-                Assert.That(pardonedBan.UserIds, Is.EquivalentTo([clientId]));
+                Assert.That(pardonedBan.UserId, Is.EqualTo(clientId));
                 Assert.That(pardonedBan.BanTime.UtcDateTime - DateTime.UtcNow, Is.LessThanOrEqualTo(MarginOfError));
                 Assert.That(pardonedBan.ExpirationTime, Is.Not.Null);
                 Assert.That(pardonedBan.ExpirationTime.Value.UtcDateTime - DateTime.UtcNow.AddHours(24), Is.LessThanOrEqualTo(MarginOfError));
@@ -133,13 +141,13 @@ namespace Content.IntegrationTests.Tests.Commands
             Assert.Multiple(async () =>
             {
                 // No bans should be returned
-                Assert.That(await sDatabase.GetBanAsync(null, clientId, null, null), Is.Null);
+                Assert.That(await banManager.GetServerBanAsync(null, clientId, null, null), Is.Null); // NullLink-edit: move to general method at Manager
 
                 // Direct id lookup returns a pardoned ban
-                Assert.That(await sDatabase.GetBanAsync(1), Is.Not.Null);
+                Assert.That(await banManager.GetServerBanAsync(1), Is.Not.Null); // NullLink-edit: move to general method at Manager
 
                 // The list is still returned since that ignores pardons
-                Assert.That(await sDatabase.GetBansAsync(null, clientId, null, null), Has.Count.EqualTo(1));
+                Assert.That(await banManager.GetServerBansAsync(null, clientId, null, null), Has.Count.EqualTo(1)); // NullLink-edit: move to general method at Manager
             });
 
             // Reconnect client. Slightly faster than dirtying the pair.
@@ -148,8 +156,6 @@ namespace Content.IntegrationTests.Tests.Commands
             await client.WaitPost(() => netMan.ClientConnect(null!, 0, null!));
             await pair.RunTicksSync(5);
             Assert.That(sPlayerManager.Sessions, Has.Length.EqualTo(1));
-
-            await pair.CleanReturnAsync();
         }
     }
 }
