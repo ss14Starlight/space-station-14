@@ -179,19 +179,6 @@
       - state: jobicon
 
 - type: entity
-  id: SpawnPointZookeeper
-  parent: SpawnPointJobBase
-  name: zookeeper
-  components:
-  - type: SpawnPoint
-    job_id: Zookeeper
-  - type: Sprite
-    layers:
-      - state: green
-      - state: zookeeper
-      - state: jobicon
-
-- type: entity
   id: SpawnPointNCT
   parent: SpawnPointJobBase
   name: NanoTrasen Career Trainer
@@ -204,3 +191,16 @@
       - state: green
       - state: nct
       - state: jobicon
+
+- type: entity
+  id: SpawnPointK9
+  parent: SpawnPointJobBase
+  name: security K9
+  components:
+  - type: SpawnPoint
+    job_id: K9
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Starlight/Mobs/Pets/k9.rsi
+      state: k9-brown
