@@ -24,6 +24,7 @@ public sealed partial class CanCrawlWithoutHandsSystem : EntitySystem
 {
     [Dependency] private SharedHandsSystem _hands = default!;
 
+    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();

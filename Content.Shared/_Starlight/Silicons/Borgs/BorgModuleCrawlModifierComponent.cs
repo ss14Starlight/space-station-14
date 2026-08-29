@@ -26,6 +26,7 @@ public sealed partial class BorgModuleCrawlModifierComponent : Component
 /// </summary>
 public sealed class BorgModuleCrawlModifierSystem : EntitySystem
 {
+    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
@@ -47,8 +48,8 @@ public sealed class BorgModuleCrawlModifierSystem : EntitySystem
         if (hands.Hands.Count == 0)
             return;
 
-        // Overrides the normal hand-based movement speed penalty. 
-		// If a cyborg has a module out, apply ActiveSpeedModifier.
+        // Overrides the normal hand-based movement speed penalty.
+        // If a cyborg has a module out, apply ActiveSpeedModifier.
         float crawlerMod = 1f;
         if (TryComp<CrawlerComponent>(ent.Owner, out var crawler))
             crawlerMod = crawler.SpeedModifier;
