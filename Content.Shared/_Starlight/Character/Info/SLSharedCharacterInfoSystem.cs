@@ -211,7 +211,7 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
 
         if (_exploitableSecretsEnabled
             && ent.Comp.Info != string.Empty
-            && (CanAccessExploitableData(ent, user)))
+            && (CanAccessExploitableData(ent,user)))
         {
             args.Verbs.Add(new ExamineVerb
             {
@@ -232,8 +232,8 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
     public bool CanAccessExploitableData(EntityUid target, Entity<MindContainerComponent?> requester)
     {
         return target == requester.Owner
-               || HasComp<GhostComponent>(requester)
-               || (Resolve(requester.Owner, ref requester.Comp, false) && _roleSystem.MindIsAntagonist(requester.Comp.Mind));
+                || HasComp<GhostComponent>(requester)
+                || (Resolve(requester.Owner,ref requester.Comp, false) && _roleSystem.MindIsAntagonist(requester.Comp.Mind));
     }
 
     protected virtual void OpenCharacterWindow(EntityUid target, EntityUid requester)
