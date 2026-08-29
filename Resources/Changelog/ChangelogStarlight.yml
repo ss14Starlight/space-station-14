@@ -2781,14 +2781,14 @@ Entries:
 - author: OJG
   changes:
   - message: tile maker and uniform printer to engi and hop respectively.
-    type: Unknown
+    type: Add
   id: 407950
   time: '2026-08-29T08:15:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5848
 - author: OJG
   changes:
   - message: cyborg charger in AI core.
-    type: Unknown
+    type: Add
   id: 407951
   time: '2026-08-29T08:15:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5848
