@@ -35,6 +35,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 #Alternate / slim basic armor vest
@@ -75,6 +76,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 - type: entity
@@ -108,6 +110,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
     - ReflectiveArmorVest # STARLIGHT: Tag for set bonus system detection
 
@@ -153,6 +156,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 - type: entity
@@ -169,6 +173,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 # Starlight End
 
@@ -347,6 +352,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
@@ -375,6 +381,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 - type: entity

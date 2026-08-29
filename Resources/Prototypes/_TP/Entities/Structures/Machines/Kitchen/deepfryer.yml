@@ -5,8 +5,13 @@
   name: deep fryer
   description: Can be used to fry delicious food, or all of sci's gold. Directions on the side say to use corn oil only.
   components:
+  # Starlight start
   - type: ApcPowerReceiver
-    powerLoad: 50 # Off by default
+    powerLoad: 5
+  - type: PowerState
+    idlePowerDraw: 5
+    workingPowerDraw: 1000
+  # Starlight end
   - type: Appearance
   # starlight start
   - type: ContainerContainer

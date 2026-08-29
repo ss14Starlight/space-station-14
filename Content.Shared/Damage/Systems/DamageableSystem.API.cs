@@ -77,12 +77,11 @@ public sealed partial class DamageableSystem
         EntityUid? origin = null,
         bool ignoreGlobalModifiers = false
     )
-    {
-        //! Empty just checks if the DamageSpecifier is _literally_ empty, as in, is internal dictionary of damage types is empty.
-        // If you deal 0.0 of some damage type, Empty will be false!
-        return TryChangeDamage(ent, damage, out _, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers);
-    }
-
+#region Starlight
+    //! Empty just checks if the DamageSpecifier is _literally_ empty, as in, is internal dictionary of damage types is empty.
+    // If you deal 0.0 of some damage type, Empty will be false!
+    => TryChangeDamage(ent, damage, out _, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers);
+#endregion
     /// <summary>
     ///     Applies damage specified via a <see cref="DamageSpecifier"/>.
     /// </summary>
@@ -175,7 +174,7 @@ public sealed partial class DamageableSystem
                 else
                     computedModifiers.FlatReduction.Add( additiveModifier.Key.ModifierKey, 0.0f + additiveModifier.Value);
 
-            damage = DamageSpecifier.ApplyModifierSet(damage, computedModifiers);
+            damage = DamageSpecifier.ApplyModifierSet(damage, computedModifiers, armorPenetration, canHeal);
             //Starlight End
 
             // TODO DAMAGE
@@ -211,7 +210,6 @@ public sealed partial class DamageableSystem
 
         if (!ignoreGlobalModifiers)
             damage = ApplyUniversalAllModifiers(damage);
-
 
         damageDone.DamageDict.EnsureCapacity(damage.DamageDict.Count);
 
@@ -442,10 +440,10 @@ public sealed partial class DamageableSystem
         return damage;
     }
 
-    public void ClearAllDamage(Entity<DamageableComponent?> ent)
-    {
+#region Starlight
+    public void ClearAllDamage(Entity<DamageableComponent?> ent) =>
         SetAllDamage(ent, FixedPoint2.Zero);
-    }
+#endregion
 
     /// <summary>
     ///     Sets all damage types supported by a <see cref="Components.DamageableComponent"/> to the specified value.

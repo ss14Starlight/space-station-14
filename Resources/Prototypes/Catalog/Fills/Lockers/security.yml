@@ -191,14 +191,15 @@
     - id: FlashlightSeclite
     - id: ForensicScanner
     - id: LogProbeCartridge
-    - id: BoxForensicPad
+    #- id: BoxForensicPad # Starlight - Condensing, duplicate of items found in the CardboardBoxLargeEvidenceFilledExtras
     - id: DrinkDetFlask
     - id: ClothingHandsGlovesForensic
     - id: RubberStampDetective
     - id: HoloprojectorSecurity
-    - id: BoxEvidenceMarkers
-    - id: HandLabeler
+    #- id: BoxEvidenceMarkers # Starlight - Condensing, duplicate of items found in the CardboardBoxLargeEvidenceFilledExtras
+    #- id: HandLabeler # Starlight - Condensing, duplicate of items found in the CardboardBoxLargeEvidenceFilledExtras
     - id: BoxTapeRecorder # Starlight
+    - id: CardboardBoxLargeEvidenceFilledExtras # Starlight
 
 - type: entity
   id: ClosetBombFilled

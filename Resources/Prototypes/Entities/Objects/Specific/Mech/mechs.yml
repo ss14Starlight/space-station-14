@@ -10,6 +10,8 @@
     batteryWhitelist:
       tags:
       - MechReactor
+  - type: ArmorSparkEffect
+    alwaysSparks: true
 # 🌟Starlight-end🌟
   - type: MechAir
   - type: DoAfter
