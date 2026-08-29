@@ -22,32 +22,6 @@ doc-text-printer-report-morgue =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
-doc-text-printer-report-research-anomaly-log =
-                          [head=3]NT-CC Consortium Services[/head]
-
-               [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
- ────────────────────────────────────────
-                             ⠀[bold]ANOMALY RESEARCH LOG[/bold]
- ────────────────────────────────────────
-  Date and Time: [datetime]
- Document Compiler: [signature]
-
- I, [signature], hereby acknowledge that all information in this form is true at the current time of compiling it. I also confirm that all standard operating procedures were followed while containing this anomaly.
-
- Type of Anomaly: [form]
-
- Stability of Anomaly: [form]
-
- Location of Anomaly: [form]
-
- Mutations of Anomaly: [form]
-
- Assigned Scientist: [signature]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
 doc-text-printer-report-station =
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -855,76 +829,6 @@ doc-text-printer-permission-equipment =
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
-doc-text-printer-permission-research-equipment =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]RESEARCH EQUIPMENT PERMIT[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    I, [signature], hereby acknowledge the risks of giving out equipment to crew, and accept that violations of corporate law via the giving of items may result in charges against me or the science department.
-
-    Equipment being given out: [form]
-
-    Authorized person: [form]
-
-    Position of authorized person: [form]
-
-    Reason for seeking permit: [form]
-
-    Terms of use: [form]
-
-    I, [signature], accept the terms of use of this item.
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-doc-text-printer-permission-research-silicon-conversion =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]CYBORG CONVERSION FORM[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Being of sound mind, I, [signature], authorize the Science Department to transfer my body and consciousness into a silicon unit and acknowledge the risks of doing so.
-
-    Reason for silicon conversion: [form]
-
-   ⠀Chassis to be used: [form]
-
-   ⠀[check] I fully understand the risks associated with the operation(s) to which I have given my consent.
-
-   ⠀[check] I authorize the Science Department to dispose or use the remaining organic tissue and flesh that is leftover after the silicon conversion.
-
-   ⠀ [italic]This form is not legal unless it has been signed by the patient and stamped by either the station's Chief Medical Officer, the station's Research Director, or one of their superiors. This form is not required in cases where the person has already given consent via their medical records post-mortem instructions.[/italic]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-doc-text-printer-permission-research-anomaly-host =
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀                           [bold]ANOMALY HOST FORM[/bold]
-    ────────────────────────────────────────
-     Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    In sound mind I, [signature], confirm that I want to keep the anomalous entity that is hosted within my body, and acknowledge the risks that come with it. I also accept that I take the proper measures and care to not endanger the rest of the crew with this anomaly.
-
-    Type of anomaly: [form]
-
-   ⠀Conditions for keeping the anomaly: [form]
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 doc-text-printer-search-permission =
                              [head=3]NT-CC Consortium Services[/head]

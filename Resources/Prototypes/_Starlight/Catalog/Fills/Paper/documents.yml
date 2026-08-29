@@ -144,8 +144,8 @@
   name: Anomaly Research Log
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-report-research-anomaly-log
+    - type: TextFilePaperContent
+      fileName: anom-research-log.txt
 
 - type: entity
   parent: PrintedDocument
@@ -347,8 +347,8 @@
   name: Research Equipment Permit
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-permission-research-equipment
+    - type: TextFilePaperContent
+      fileName: research-equipment-form.txt
 
 - type: entity
   parent: PrintedDocument
@@ -356,8 +356,8 @@
   name: Cyborg Conversion Form
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-permission-research-silicon-conversion
+    - type: TextFilePaperContent
+      fileName: cyborg-conversion-form.txt
 
 - type: entity
   parent: PrintedDocument
@@ -365,8 +365,8 @@
   name: Anomaly Host Form
   categories: [ HideSpawnMenu ]
   components:
-    - type: Paper
-      content: doc-text-printer-permission-research-anomaly-host
+    - type: TextFilePaperContent
+      fileName: anom-host-form.txt
 
 - type: entity
   parent: PrintedDocument
