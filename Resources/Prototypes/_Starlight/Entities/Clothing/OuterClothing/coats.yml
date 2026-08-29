@@ -635,3 +635,57 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/chef-centcomm.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/chef-centcomm.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterRockerHeartBomber
+  name: rocker's heart bomber
+  description: Been good to know ya...
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/rockersheartbomber.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/rockersheartbomber.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterJohnnySamuraiJacket
+  name: johnny's samurai jacket
+  description: Never fade away...
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/johnnysamurai.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/johnnysamurai.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterEdgerunnerJacket
+  name: edgerunner's jacket
+  description: I'm dead, just like disco
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Coats/edgerunners.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Coats/edgerunners.rsi
+      clothingVisuals:
+        outerClothing:
+          - state: equipped-OUTERCLOTHING
+          - state: equipped-OUTERCLOTHING-unshaded
+            shader: unshaded

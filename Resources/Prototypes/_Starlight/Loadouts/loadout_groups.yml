@@ -451,6 +451,8 @@
   - ScienceWinterBoots
   - Heels
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: CaptainShoes
@@ -476,6 +478,8 @@
   - Heels
   - LaceupShoes
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: MagistrateShoes
@@ -485,6 +489,8 @@
   loadouts:
   - LaceupShoes
   - Heels
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeShoes
@@ -495,6 +501,8 @@
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: DetectiveShoes
@@ -523,6 +531,8 @@
   - LeatherShoes
   - Heels
   - LaceupShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: LawyerShoes
@@ -534,6 +544,8 @@
   - Heels
   - LeatherShoes
   - BlackShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: IAAShoes
@@ -545,6 +557,8 @@
   - Heels
   - LeatherShoes
   - BlackShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: BlueShieldShoes
@@ -729,8 +743,8 @@
   - ServiceWorkerChefJumpsuit
   - ServiceWorkerChefJumpskirt
   - MaidOutfit
-  - JanitorMaidOutfit 
-  - JanitorMaidOutfitMini 
+  - JanitorMaidOutfit
+  - JanitorMaidOutfitMini
 
 # Performer
 - type: loadoutGroup
