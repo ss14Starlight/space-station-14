@@ -20,7 +20,7 @@ public sealed partial class CanCrawlWithoutHandsComponent : Component
 /// hands-required crawl block when the entity has zero hands.
 /// Runs after <see cref="SharedHandsSystem"/> to replace the 0 speed with normal crawl speed.
 /// </summary>
-public sealed class CanCrawlWithoutHandsSystem : EntitySystem
+public sealed partial class CanCrawlWithoutHandsSystem : EntitySystem
 {
     [Dependency] private SharedHandsSystem _hands = default!;
 
@@ -28,7 +28,7 @@ public sealed class CanCrawlWithoutHandsSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<CanCrawlWithoutHandsComponent, KnockedDownRefreshEvent>(OnRefresh,
-            after: new[] { typeof(SharedHandsSystem) });
+            after: new[] { typeof(SharedHandsSystem), typeof(SharedStunSystem) });
     }
 
     private void OnRefresh(Entity<CanCrawlWithoutHandsComponent> ent, ref KnockedDownRefreshEvent args)

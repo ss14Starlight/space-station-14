@@ -14,18 +14,15 @@ namespace Content.Shared._Starlight.Silicons.Borgs;
 public sealed partial class BorgModuleCrawlModifierComponent : Component
 {
     /// <summary>
-    /// Speed multiplier applied while knocked down and a borg module is selected.
-    /// 0.5 = half normal crawling speed.
+    /// Speed multiplier applied while knocked down and a cyborg module is selected.
     /// </summary>
     [DataField]
     public float ActiveSpeedModifier = 0.5f;
 }
 
 /// <summary>
-/// Handles crawling speed for borgs with <see cref="BorgModuleCrawlModifierComponent"/>.
-/// When any module is active (SelectedModule != null), crawl speed is set to a fixed
-/// multiplier instead of scaling with free hands, preventing hand system interference.
-/// Runs after Hands and Stun systems to completely decouple from SharedHandsSystem.EventListeners.cs.
+/// Handles crawling speed for cyborgs with <see cref="BorgModuleCrawlModifierComponent"/>.
+/// When any module is active, crawl speed is set to a fixed multiplier instead of scaling with free hands.
 /// </summary>
 public sealed class BorgModuleCrawlModifierSystem : EntitySystem
 {
@@ -38,15 +35,20 @@ public sealed class BorgModuleCrawlModifierSystem : EntitySystem
 
     private void OnKnockedDownRefresh(Entity<BorgModuleCrawlModifierComponent> ent, ref KnockedDownRefreshEvent args)
     {
-        if (!TryComp<BorgChassisComponent>(ent.Owner, out var chassis))
+        if (!TryComp<BorgChassisComponent>(ent.Owner, out _))
             return;
 
-        if (chassis.SelectedModule == null)
+        if (!TryComp<HandsComponent>(ent.Owner, out var hands))
             return;
 
-        // Completely override hand-ratio contribution: fixed half speed (plus crawler multiplier).
-        // This decouples borg logic from SharedHandsSystem.EventListeners.cs - that file now only handles
-        // generic CanCrawlWithoutHands + freeHands/totalHands ratio.
+        // Cyborgs has no hands without a module. We use hand count to detect active modules
+        // instead of SelectedModule to avoid a timing issue where HandCountChanged fires
+        // before SelectedModule is set during ProvideItems.
+        if (hands.Hands.Count == 0)
+            return;
+
+        // Overrides the normal hand-based movement speed penalty. 
+		// If a cyborg has a module out, apply ActiveSpeedModifier.
         float crawlerMod = 1f;
         if (TryComp<CrawlerComponent>(ent.Owner, out var crawler))
             crawlerMod = crawler.SpeedModifier;
