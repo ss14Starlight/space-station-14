@@ -1,14 +1,23 @@
 using Content.Shared.Power;
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Silicons.StationAi;
 using Robust.Client.UserInterface;
+using Robust.Shared.Map;
+using Robust.Shared.Player;
 
 namespace Content.Client.Power;
 
 public sealed class PowerMonitoringConsoleBoundUserInterface : BoundUserInterface
 {
+    [Dependency] private ISharedPlayerManager _playerManager = default!; // Starlight: go to clicked position for AI
+
     [ViewVariables]
     private PowerMonitoringWindow? _menu;
 
-    public PowerMonitoringConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
+    public PowerMonitoringConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    {
+        IoCManager.InjectDependencies(this); // Starlight: go to clicked position for AI
+    }
 
     protected override void Open()
     {
@@ -17,6 +26,7 @@ public sealed class PowerMonitoringConsoleBoundUserInterface : BoundUserInterfac
         _menu = this.CreateWindow<PowerMonitoringWindow>();
         _menu.SetEntity(Owner);
         _menu.SendPowerMonitoringConsoleMessageAction += SendPowerMonitoringConsoleMessage;
+        _menu.MapClicked += SendMapClicked; // Starlight: go to clicked position for AI
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -40,4 +50,15 @@ public sealed class PowerMonitoringConsoleBoundUserInterface : BoundUserInterfac
     {
         SendMessage(new PowerMonitoringConsoleMessage(netEntity, group));
     }
+
+    #region Starlight
+    private void SendMapClicked(EntityCoordinates coordinates)
+    {
+        var local = _playerManager.LocalEntity;
+        if (local is null || !EntMan.HasComponent<StationAiHeldComponent>(local.Value))
+            return;
+
+        SendMessage(new CrewMonitoringWarpRequestMessage(EntMan.GetNetCoordinates(coordinates)));
+    }
+    #endregion
 }

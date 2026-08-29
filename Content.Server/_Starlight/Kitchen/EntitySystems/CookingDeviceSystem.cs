@@ -130,7 +130,7 @@ namespace Content.Server.Kitchen.EntitySystems
             SetAppearance(ent.Owner, MicrowaveVisualState.Cooking, CookingDeviceComponent); // Starlight-edit
 
             CookingDeviceComponent.PlayingStream = _audio.PlayPvs(CookingDeviceComponent.LoopingSound, ent, AudioParams.Default.WithLoop(true).WithMaxDistance(5))?.Entity; // Starlight-edit
-            _powerState.SetWorkingState(ent.Owner, true);
+            _powerState.TrySetWorkingState(ent.Owner, true);
         }
 
         private void OnCookStop(Entity<ActiveCookingDeviceComponent> ent, ref ComponentShutdown args) // Starlight-edit
@@ -144,7 +144,7 @@ namespace Content.Server.Kitchen.EntitySystems
             CookingDeviceComponent.StartedCookTime = TimeSpan.Zero;
             UpdateUserInterfaceState(ent.Owner, CookingDeviceComponent, false);
             // Starlight-end
-            _powerState.SetWorkingState(ent.Owner, false);
+            _powerState.TrySetWorkingState(ent.Owner, false); // Starlight-edit
         }
 
         private void OnActiveMicrowaveInsert(Entity<ActiveCookingDeviceComponent> ent, ref EntInsertedIntoContainerMessage args) // Starlight-edit
