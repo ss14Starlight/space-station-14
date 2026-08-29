@@ -74,7 +74,8 @@ public sealed partial class LatchUIController : UIController
         // BiteHarder action entity and trigger it directly.
         foreach (var action in _actions.GetActions(local))
         {
-            if (_entities.GetComponent<MetaDataComponent>(action).EntityPrototype?.ID != latchComp.BiteHarderAction)
+            if (!_entities.TryGetComponent<MetaDataComponent>(action, out var metadata)
+                || metadata.EntityPrototype?.ID != latchComp.BiteHarderAction.Id)
                 continue;
 
             _actions.TriggerAction(action);
