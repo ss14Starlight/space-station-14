@@ -176,3 +176,14 @@
       price: 750
     - type: StealTarget
       stealGroup: ShipyardComputerCircuitboard
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: GeneticsComputerCircuitboard
+  name: genetics manipulation console board
+  description: A computer printed circuit board for a genetics manipulation console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerGenetics

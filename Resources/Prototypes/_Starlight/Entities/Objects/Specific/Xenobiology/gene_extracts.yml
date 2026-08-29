@@ -1,0 +1,30 @@
+- type: entity
+  parent: BaseItem
+  id: GeneticSlimeExtract
+  name: Genetic Extract
+  description: A somehow still alive chunk of a processed slime, ready to receive chemicals. Might give you cancer indirectly, and it'll kinda be your fault.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_extract.rsi
+      layers:
+        - state: extract
+    - type: SolutionContainerManager
+      solutions:
+        container:
+          maxVol: 150
+    - type: Item
+      size: Tiny
+    - type: MixableSolution
+      solution: container
+    - type: DrawableSolution
+      solution: container
+    - type: InjectableSolution
+      solution: container
+    - type: SolutionItemStatus
+      solution: container
+    - type: Genes
+      classes:
+        - SlimeExtract
+      availableTraits:
+        - MonkeyCubeSpawn
+    - type: GeneticExtract

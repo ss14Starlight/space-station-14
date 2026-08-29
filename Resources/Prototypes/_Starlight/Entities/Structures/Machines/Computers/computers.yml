@@ -791,3 +791,43 @@
     color: "#b89f25"
   - type: StealTarget
     stealGroup: ShipyardComputerCircuitboard
+
+# Genetics
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerGenetics
+  name: genetics manipulation console
+  description: Used to catalog genes, analyze samples, and create entirely new genomes.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: robot
+        - map: ["computerLayerKeys"]
+          state: rd_key
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: ActiveRadio
+      channels:
+        - Science
+    - type: ActivatableUI
+      key: enum.GeneticsConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.GeneticsConsoleUiKey.Key:
+          type: GeneticsConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+    - type: ApcPowerReceiver
+      powerLoad: 1000
+    - type: Computer
+      board: GeneticsComputerCircuitboard
+    - type: PointLight
+      radius: 2.5
+      energy: 1.5
+      color: "#d15abf"
+    - type: GeneticsConsole

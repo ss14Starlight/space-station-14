@@ -288,3 +288,8 @@
     Piercing: 0.8
     Cold: 0.8
     Shock: 1.6
+
+- type: damageModifierSet
+  id: XenoSlime
+  coefficients:
+    Cold: 100.0 # Cold for even a moment? Sorry slime, you're dead.

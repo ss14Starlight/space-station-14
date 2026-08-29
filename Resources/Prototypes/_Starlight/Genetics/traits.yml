@@ -1,0 +1,95 @@
+- type: geneticTrait
+  id: MonkeyCubeSpawn
+  name: Monkey Cube Spawn
+  description: Spawns a monkey cube every 10 seconds.
+  threshold: 1
+  classes:
+    - SlimeExtract
+  parts:
+    - !type:TraitPeriodicItemSpawnerPart
+        collections:
+          - MonkeyCubeSpawnCollection
+
+- type: spawnCollection
+  id: MonkeyCubeSpawnCollection
+  items:
+    - id: MonkeyCube
+      amount: 1
+  cooldown: 10
+
+- type: geneticTrait
+  id: SteelSpawnRapid
+  name: Rapid Steel Spawn
+  description: Spawns a sheet of steel every 5 seconds. Scales with trait strength.
+  threshold: 1
+  classes:
+    - Slime
+  parts:
+    - !type:TraitPeriodicItemSpawnerPart
+      collections:
+        - SteelSheetRapidCollection
+
+- type: spawnCollection
+  id: SteelSheetRapidCollection
+  items:
+    - id: SheetSteel1
+      amount: 1
+  cooldown: 5
+
+- type: geneticTrait
+  id: SteelSpawnNormal
+  name: Regular Steel Spawn
+  description: Spawns 5 sheets of steel every 15 seconds. Scales with trait strength.
+  threshold: 2
+  classes:
+    - Slime
+  parts:
+    - !type:TraitPeriodicItemSpawnerPart
+      collections:
+        - SteelSheetNormalCollection
+
+- type: spawnCollection
+  id: SteelSheetNormalCollection
+  items:
+    - id: SheetSteel1
+      amount: 5
+  cooldown: 15
+
+- type: geneticTrait
+  id: SteelSpawnSlow
+  name: Slow Steel Spawn
+  description: Spawns 15 sheets of steel every 30 seconds. Scales with trait strength.
+  threshold: 3
+  classes:
+    - Slime
+  parts:
+    - !type:TraitPeriodicItemSpawnerPart
+      collections:
+        - SteelSheetSlowCollection
+
+- type: spawnCollection
+  id: SteelSheetSlowCollection
+  items:
+    - id: SheetSteel1
+      amount: 15
+  cooldown: 30
+
+- type: geneticTrait
+  id: SteelAndGlassSpawn
+  name: Steel And Glass Spawn
+  description: Spawns 5 sheets of steel and 5 sheets of glass every 15 seconds. Scales with trait strength.
+  threshold: 3
+  classes:
+    - Slime
+  parts:
+    - !type:TraitPeriodicItemSpawnerPart
+      collections:
+        - SteelSheetNormalCollection
+        - GlassSheetNormalCollection
+
+- type: spawnCollection
+  id: GlassSheetNormalCollection
+  items:
+    - id: SheetGlass1
+      amount: 5
+  cooldown: 15
