@@ -58,12 +58,12 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
     {
         var character = Profile;
         var newMind = _mindSystem.GetMind(Mob);
-        var isHumanoid = HasComp<HumanoidAppearanceComponent>(Mob);
+        var applyFlavorText = !HasComp<RemoveFlavorTextComponent>(Mob);
         if (newMind != null && TryComp(newMind, out MindComponent? mindComp))
         {
             mindComp.Voice = character.Voice;
             mindComp.SiliconVoice = character.SiliconVoice;
-            if (isHumanoid && _configManager.GetCVar(CCVars.FlavorText))
+            if (applyFlavorText && _configManager.GetCVar(CCVars.FlavorText))
             {
                 var personalityDescription = new CharacterDescriptionComponent
                 {
@@ -77,13 +77,16 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
                 var roleplayInfo = new RoleplayInfoComponent { OOCNotes = character.OOCNotes };
                 AddComp(newMind.Value, roleplayInfo);
 
-                //Setup mindInfo
-                var mindSecrets = new MindSecretsComponent { PersonalNotes = character.PersonalNotes, };
-                AddComp(newMind.Value, mindSecrets);
+                if (applyFlavorText)
+                {
+                    //Setup mindInfo
+                    var mindSecrets = new MindSecretsComponent { PersonalNotes = character.PersonalNotes, };
+                    AddComp(newMind.Value, mindSecrets);
+                }
             }
         }
 
-        if (!isHumanoid)
+        if (!applyFlavorText)
             return;
 
         if (_configManager.GetCVar(CCVars.FlavorText))

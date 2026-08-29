@@ -446,6 +446,7 @@
   parent: [ BaseSiliconLanguages, PositronicBrain ] # Starlight edit: Languages
   categories: [ HideSpawnMenu, DoNotMap ]
   components:
+  - type: RemoveFlavorText # Starlight
   - type: Sprite
     # Once it's in a core it's pretty much an abstract entity at that point.
     visible: false
