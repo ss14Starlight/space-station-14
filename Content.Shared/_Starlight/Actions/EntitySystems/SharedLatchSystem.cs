@@ -2,6 +2,7 @@ using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Pulling.Events;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Systems;
@@ -24,6 +25,9 @@ public abstract partial class SharedLatchSystem : EntitySystem
 
         SubscribeLocalEvent<LatchComponent, AttackAttemptEvent>(OnLatcherAttackAttempt);
         SubscribeLocalEvent<LatchBlockedHandComponent, ContainerGettingRemovedAttemptEvent>(OnBlockedHandRemoveAttempt);
+
+        SubscribeLocalEvent<LatchComponent, BeingPulledAttemptEvent>(OnLatcherBeingPulledAttempt);
+        SubscribeLocalEvent<LatchedComponent, BeingPulledAttemptEvent>(OnTargetBeingPulledAttempt);
 
         SubscribeLocalEvent<LatchActionEvent>(OnLatchAction);
     }
@@ -90,6 +94,18 @@ public abstract partial class SharedLatchSystem : EntitySystem
     {
         if (comp.Active)
             ev.Cancel();
+    }
+
+    private void OnLatcherBeingPulledAttempt(Entity<LatchComponent> ent, ref BeingPulledAttemptEvent args)
+    {
+        if (ent.Comp.Active)
+            args.Cancel();
+    }
+
+    private void OnTargetBeingPulledAttempt(Entity<LatchedComponent> ent, ref BeingPulledAttemptEvent args)
+    {
+        if (TryComp<LatchComponent>(ent.Comp.Latcher, out var latchComp) && latchComp.Active)
+            args.Cancel();
     }
 
     /// <summary>

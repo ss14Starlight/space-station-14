@@ -18,7 +18,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Pulling.Events;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Wieldable;
@@ -65,26 +64,12 @@ public sealed partial class LatchSystem : SharedLatchSystem
         SubscribeLocalEvent<LatchComponent, ComponentShutdown>(OnLatchShutdown);
         SubscribeLocalEvent<LatchComponent, DamageChangedEvent>(OnLatcherDamaged);
         SubscribeLocalEvent<LatchComponent, MobStateChangedEvent>(OnLatcherMobStateChanged);
-        SubscribeLocalEvent<LatchComponent, BeingPulledAttemptEvent>(OnLatcherBeingPulledAttempt);
 
         SubscribeLocalEvent<LatchedComponent, ComponentShutdown>(OnLatchedShutdown);
         SubscribeLocalEvent<LatchedComponent, MobStateChangedEvent>(OnTargetMobStateChanged);
-        SubscribeLocalEvent<LatchedComponent, BeingPulledAttemptEvent>(OnTargetBeingPulledAttempt);
 
         SubscribeLocalEvent<LatchBiteHarderActionEvent>(OnBiteHarderAction);
         SubscribeLocalEvent<LatchReleaseActionEvent>(OnReleaseAction);
-    }
-
-    private void OnLatcherBeingPulledAttempt(Entity<LatchComponent> ent, ref BeingPulledAttemptEvent args)
-    {
-        if (ent.Comp.Active)
-            args.Cancel();
-    }
-
-    private void OnTargetBeingPulledAttempt(Entity<LatchedComponent> ent, ref BeingPulledAttemptEvent args)
-    {
-        if (TryComp<LatchComponent>(ent.Comp.Latcher, out var latchComp) && latchComp.Active)
-            args.Cancel();
     }
 
     /// <summary>
