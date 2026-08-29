@@ -350,3 +350,25 @@
     tags:
     - ClownSuit
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingUniformBase
+  id: CuteTurtleNeck
+  name: cute turtle neck
+  description: This won't actually keep you warm.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/cuteturtleneck.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/cuteturtleneck.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: CuteTurtleNeckBlack
+  name: cute black turtle neck
+  description: This won't actually keep you warm.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/cuteturtleneckblack.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/cuteturtleneckblack.rsi

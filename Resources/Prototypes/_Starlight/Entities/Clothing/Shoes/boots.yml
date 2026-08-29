@@ -139,3 +139,25 @@
       sprite: _Starlight/Clothing/Shoes/Boots/pawboots.rsi
     - type: Sprite
       sprite: _Starlight/Clothing/Shoes/Boots/pawboots.rsi
+
+- type: entity
+  parent: ClothingShoesHighheelShoes
+  id: ClothingShoesBlackAnkleBoots
+  name: Black Ankle Boots
+  description: These boots were made for walkin...
+  components:
+    - type: Clothing
+      sprite: _Starlight/Clothing/Shoes/Boots/blackankleboots.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Shoes/Boots/blackankleboots.rsi
+
+- type: entity
+  parent: ClothingShoesHighheelShoes
+  id: ClothingShoesWhiteAnkleBoots
+  name: White Ankle Boots
+  description: These boots were made for walkin... now in white!
+  components:
+    - type: Clothing
+      sprite: _Starlight/Clothing/Shoes/Boots/whiteankleboots.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Shoes/Boots/whiteankleboots.rsi
