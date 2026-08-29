@@ -158,8 +158,8 @@ public sealed partial class DamageableSystem
                 foreach (var coefficient in modifierSet.Coefficients)
                     computedModifiers.Coefficients.Add(coefficient.Key, modifierSet.Coefficients[coefficient.Key]);
 
-                foreach (var modifier in modifierSet.FlatReduction)
-                    computedModifiers.FlatReduction.Add(modifier.Key, modifierSet.FlatReduction[modifier.Key]);
+                foreach (var modifier in modifierSet.FlatReductions)
+                    computedModifiers.FlatReductions.Add(modifier.Key, modifierSet.FlatReductions[modifier.Key]);
             }
 
             foreach(var additiveCoefficient in ent.Comp.AdditiveCoefficients)
@@ -169,10 +169,10 @@ public sealed partial class DamageableSystem
                     computedModifiers.Coefficients.Add( additiveCoefficient.Key.ModifierKey, 1.0f + additiveCoefficient.Value);
 
             foreach(var additiveModifier in ent.Comp.AdditiveModifiers)
-                if(computedModifiers.FlatReduction.ContainsKey(additiveModifier.Key.ModifierKey))
-                    computedModifiers.FlatReduction[additiveModifier.Key.ModifierKey] += additiveModifier.Value;
+                if(computedModifiers.FlatReductions.ContainsKey(additiveModifier.Key.ModifierKey))
+                    computedModifiers.FlatReductions[additiveModifier.Key.ModifierKey] += additiveModifier.Value;
                 else
-                    computedModifiers.FlatReduction.Add( additiveModifier.Key.ModifierKey, 0.0f + additiveModifier.Value);
+                    computedModifiers.FlatReductions.Add( additiveModifier.Key.ModifierKey, 0.0f + additiveModifier.Value);
 
             damage = DamageSpecifier.ApplyModifierSet(damage, computedModifiers, armorPenetration, canHeal);
             //Starlight End
@@ -508,7 +508,7 @@ public sealed partial class DamageableSystem
         foreach (var coefficient in mods.Coefficients)
             ent.Comp.AdditiveCoefficients.TryAdd((source, coefficient.Key), coefficient.Value);
 
-        foreach (var modifier in mods.FlatReduction)
+        foreach (var modifier in mods.FlatReductions)
             ent.Comp.AdditiveModifiers.TryAdd((source, modifier.Key), modifier.Value);
     }
 
@@ -523,7 +523,7 @@ public sealed partial class DamageableSystem
         foreach (var coefficient in mods.Coefficients)
             ent.Comp.AdditiveCoefficients.Remove((source, coefficient.Key));
 
-        foreach (var modifier in mods.FlatReduction)
+        foreach (var modifier in mods.FlatReductions)
             ent.Comp.AdditiveModifiers.Remove((source, modifier.Key));
     }
 
