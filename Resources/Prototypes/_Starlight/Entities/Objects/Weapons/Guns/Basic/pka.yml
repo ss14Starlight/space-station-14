@@ -1,0 +1,117 @@
+- type: entity
+  name: SPKA
+  id: WeaponSPKA
+  parent: [WeaponProtoKineticAcceleratorBase, BaseSalvageContraband]
+  description: Fires a barrage of low-damage kinetic bolts at a short range.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/spka.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/spka.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/spka.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: UpgradeableGun
+    whitelist:
+      tags:
+      - PKAUpgrade
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 2
+    selectedMode: FullAuto
+    angleDecay: 45
+    minAngle: 21
+    maxAngle: 32
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      params:
+        pitch: 1.5
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+    rechargeSound:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        pitch: 1.8
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticSub
+    capacity: 8
+    count: 8
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 68
+  - type: GunWieldBonus
+    minAngle: -19
+    maxAngle: -16
+
+- type: entity
+  name: Regulator
+  id: WeaponRegulator
+  parent: [WeaponProtoKineticAcceleratorBase, BaseSalvageContraband]
+  description: Vulkan Industries competitor to the standard Appraisal tool, better used on more durable products.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/regulator.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/regulator.rsi
+    size: Small
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: UpgradeableGun
+    whitelist:
+      tags:
+      - PKAUpgrade
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    angleDecay: 45
+    minAngle: 44
+    maxAngle: 45
+    projectileSpeed: 20
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      params:
+        pitch: 1.5
+        variation: 0.12
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 3
+    rechargeSound:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        pitch: 1.8
+        variation: 0.08
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticSub
+    capacity: 6
+    count: 6
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 68
+  - type: Tag
+    tags:
+    - AppraisalTool
+    - Sidearm
+  - type: PriceGun
+  - type: UseDelay
+    delay: 3
