@@ -252,15 +252,7 @@
       "directions": 4
     },
     {
-      "name": "l_herakles_hand",
-      "directions": 4
-    },
-    {
       "name": "l_herakles_hand_TOOLS",
-      "directions": 4
-    },
-    {
-      "name": "r_herakles_hand",
       "directions": 4
     },
     {
@@ -549,6 +541,50 @@
       "delays": [
         [
           0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "r_leg_pilebunker",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "l_leg_cargo",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
           2.0
         ],
         [
@@ -566,7 +602,7 @@
       ]
     },
     {
-      "name": "r_leg_pilebunker",
+      "name": "r_leg_cargo",
       "directions": 4,
       "delays": [
         [
