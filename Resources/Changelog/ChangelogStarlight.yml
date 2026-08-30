@@ -1,18 +1,4 @@
 Entries:
-- author: bynddark8, Rinary1
-  changes:
-  - message: Introduces a method to document chemical reactions in the guidebook  as cooking recipes.
-    type: Add
-  id: 407587
-  time: '2026-08-16T11:48:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5354
-- author: OMEGA
-  changes:
-  - message: Air alarm variants for Chamber, ChamberUnlocked, and Sauna for mapping use.
-    type: Add
-  id: 407588
-  time: '2026-08-16T12:16:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5542
 - author: OMEGA
   changes:
   - message: Scrubber and vent variants for Chamber, ChamberUnlocked, and Sauna for mapping use.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407986
   time: '2026-08-30T03:45:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5872
+- author: Mack
+  changes:
+  - message: The supplybot can drag up to 3 things at once.
+    type: Add
+  id: 407987
+  time: '2026-08-30T06:10:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5876
+- author: Mack
+  changes:
+  - message: The supplybot can now hold paperwork.
+    type: Add
+  id: 407988
+  time: '2026-08-30T06:10:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5876
 Order: -1
