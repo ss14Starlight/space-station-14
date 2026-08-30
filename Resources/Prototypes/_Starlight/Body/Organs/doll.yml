@@ -209,14 +209,8 @@
       - state: lung-r
   - type: Lung
   - type: Metabolizer
-    removeEmpty: true
-    solutionOnBody: false
-    solution: "Lung"
     metabolizerTypes: [ Human ]
     stages: [ Respiration ]
-    groups:
-    - id: Gas
-      rateModifier: 100.0
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -321,7 +315,6 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [ Human ]
-    removeEmpty: true
 
 - type: entity
   id: ShellFragmentDoll
@@ -353,7 +346,7 @@
     damageContainer: Biological
   - type: MarkingOrgan
     storeMarkings: true
-    AppliedMarkings:
+    appliedMarkings:
       - DollShellHeadFemale
       - DollShellChestFemale
       - DollShellLArm
