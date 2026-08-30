@@ -1,0 +1,16 @@
+- type: startingGear
+  id: CentcomWhistleblowerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChameleon
+    back: ClothingBackpackSatchelHoldingCentcomWatchdogFilled
+    shoes: ClothingShoesChameleonNoSlips
+    mask: ClothingMaskGasChameleon
+    head: ClothingHeadHatChameleon
+    outerClothing: ClothingOuterArmorCentcommChameleon
+    neck: ClothingNeckChameleon
+    eyes: ClothingEyesGlassesCCDivHead
+    gloves: ClothingAdmemeHandsChameleonInsulated
+    id: ChameleonAgentPDA
+    ears: ClothingHeadsetChameleonWatchdog
+    pocket1: WeaponDisabler
+    pocket2: Centcommteleportdoohickey

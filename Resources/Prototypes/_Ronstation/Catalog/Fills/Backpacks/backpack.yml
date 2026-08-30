@@ -1,0 +1,75 @@
+# Filled modsuit for ERT Engineer admeme loadout
+- type: entity
+  id: ClothingBackpackRTEngineerFilled
+  parent: ClothingBackpackERTEngineer
+  suffix: Admeme, ERT Engineer
+  name: ERT Engineer Backpack
+  components:
+  - type: Tag
+    tags: [] # Since it just reuses a sprite, not whitelisted for chameleon
+  - type: StorageFill
+    contents:
+    - id: RCDExperimental
+    - id: BoxSurvivalNonBreatherExtended
+    - id: DoubleEmergencyNitrogenTankFilled
+    - id: DoubleEmergencyOxygenTankFilled
+    - id: BoxFlare
+    - id: PowerCellMicroreactor
+    - id: WeaponPistolN1984
+    - id: MagazineMagnumAP
+    - id: MagazineMagnumAP
+    - id: MagazineMagnumAP
+    - id: ClothingEyesGlassesCentComm
+    - id: ClothingEyesHudCentComm
+# Filled modsuit for ERT leader admeme, 12 gauge speedloaders
+- type: entity
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTLeaderShotgunFilled
+  suffix: Admeme, ERT Leader, Shotgun
+  name: ERT Leader Backpack
+  components:
+    - type: Tag
+      tags: []
+    - type: StorageFill
+      contents:
+      - id: RCDExperimental
+      - id: BoxSurvivalNonBreatherExtended
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: Flash
+      - id: ClothingEyesHudCentComm
+      - id: SpeedLoaderMagnumAP
+      - id: SpeedLoaderMagnumAP
+      - id: SpeedLoaderShotgunIncendiary
+      - id: SpeedLoaderShotgunIncendiary
+      - id: SpeedLoaderShotgunIncendiary
+      - id: JawsOfLife
+      - id: BodyBagCCFolded
+      - id: BodyBagCCFolded
+      - id: BodyBagCCFolded
+# Filled modsuit for ERT leader admeme, XL8/Lecter mags
+- type: entity
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTLeaderXL8Filled
+  suffix: Admeme, ERT Leader, XL8
+  name: ERT Leader Backpack
+  components:
+    - type: Tag
+      tags: [] # Since it just reuses a sprite, not whitelisted for chameleon
+    - type: StorageFill
+      contents:
+      - id: RCDExperimental
+      - id: BoxSurvivalNonBreatherExtended
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: Flash
+      - id: ClothingEyesHudCentComm
+      - id: SpeedLoaderMagnumAP
+      - id: MagazineRifleSP
+      - id: MagazineRifleSP
+      - id: MagazineRifleSP
+      - id: MagazineRifleSP
+      - id: JawsOfLife
+      - id: BodyBagCCFolded
+      - id: BodyBagCCFolded
+      - id: BodyBagCCFolded

@@ -1,0 +1,44 @@
+- type: entity
+  parent: [ClothingEyesBase, BaseChameleon, BaseCentcommContraband]
+  id: ClothingEyesHudCCDivHead
+  suffix: Admin, Chameleon, DO NOT MAP
+  name: CentComm Division Head Glasses
+  description: An expensive, top-of-the-line HUD utilizing both captured Syndicate technology and the best Nanotrasen has to offer. Only issued to CC Division Heads, and special operations. Handle with care.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Hud/blueshield.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Hud/blueshield.rsi
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: ShowHealthBars
+      damageContainers:
+        - Biological
+        - Inorganic
+        - Silicon
+        - IPC
+        - Hybrid
+    - type: ShowHealthIcons
+      damageContainers:
+        - Biological
+        - Inorganic
+        - Silicon
+        - IPC
+        - Hybrid
+    - type: ShowAccessReaderSettings
+    - type: ShowHungerIcons
+    - type: ShowThirstIcons
+    - type: ShowSyndicateIcons
+    - type: SolutionScanner
+    - type: ShowAccess
+      seeIdHolder: true
+      itemsOnly: false
+    - type: Tag
+      tags:
+        - HudMedical
+        - WhitelistChameleon
+    - type: ChameleonClothing
+      slot:
+        - eyes
+      default: ClothingEyesHudCCDivHead

@@ -1,0 +1,15 @@
+- type: entity
+  name: Ominous CC rubber stamp
+  description: A rubber stamp, for when someone just won't get the message otherwise.
+  parent: RubberStampBase
+  id: RubberStampIWBYA
+  suffix: Admeme, Mapping not advised
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-beatyourass
+    stampedColor: "#850000"
+    stampState: "paper_stamp-deny"
+  - type: Sprite
+    state: stamp-syndicate
+  - type: StaticPrice
+    price: 1000

@@ -1,0 +1,80 @@
+# This was written by Atakku over the span of three commits; latest version was Ronstation Commit 3e48a3f.
+# Some changes have been made to 'modernize' it in a sense, mostly just additions.
+# General CC character, rather than head of a CC department
+- type: entity
+  id: ClothingBackpackSatchelHoldingCentcomFormalFilled
+  parent: [ ClothingBackpackSatchelHolding, BaseCentcommContraband ]
+  suffix: Filled, Centcom Formal, Admeme
+  components:
+  - type: Tag
+    tags: [] # Since it just reuses a sprite, not whitelisted for chameleon.
+  - type: StorageFill
+    contents:
+      - id: ToolDebug
+      - id: WelderExperimental
+      - id: RCDExperimental
+      - id: RPDExperimental
+      - id: RPLDExperimental
+      - id: Multitool
+      - id: BoxFolderCentComClipboardThreePapers
+      - id: BoxSurvivalNonBreatherExtended
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: SpeedLoaderMagnumSP
+      - id: SpeedLoaderMagnumSP
+      - id: ClothingEyesHudCentComm
+# Written by Semper based off of Atakku's original code, further modified from contribution to Ronstation
+# This explicitly now targets a role as CC Security division
+- type: entity
+  id: ClothingBackpackSatchelHoldingCentcomOfficerFilled
+  parent: [ ClothingBackpackSatchelHolding, BaseChameleon, BaseCentcommContraband ]
+  suffix: Filled, Centcom Officer, Admeme, Chameleon
+  components:
+  - type: ChameleonClothing
+    slot: [back]
+    default: ClothingBackpackSatchelHolding
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags: []
+  - type: StorageFill
+    contents:
+      - id: RubberStampCSD
+      - id: RubberStampCentcom
+      - id: RubberStampIWBYA
+      - id: BoxStampsCCAdministrative
+      - id: ToolDebug
+      - id: WelderExperimental
+      - id: RCDExperimental
+      - id: RPDExperimental
+      - id: RPLDExperimental
+      - id: Multitool
+      - id: BoxSurvivalNonBreatherExtended
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: AgentIDCard
+      - id: BoxFolderCentComClipboardThreePapers
+      - id: WeaponDisablerSMG
+      - id: BoxHandcuff
+      - id: Flash
+      - id: FlashlightSeclite
+      - id: MagazineDMRIncendiary
+      - id: MagazineDMRIncendiary
+      - id: MagazineDMRIncendiary
+      - id: MagazineDMRIncendiary
+      - id: MagazinePistol40FMJ
+      - id: MagazinePistol40FMJ
+      - id: MagazinePistol40FMJ
+      - id: MagazinePistol40FMJ
+      - id: ClothingEyesHudCCDivHead
+      - id: BodyBagCCFolded
+      - id: BodyBagCCFolded
+      - id: BodyBagCCFolded
+      - id: WeaponLightMachineGunM492CC
+      - id: LightRifleHeavyMagazineIncendiary
+      - id: LightRifleHeavyMagazineIncendiary
+      - id: ClothingOuterHardsuitCCSDExperimental

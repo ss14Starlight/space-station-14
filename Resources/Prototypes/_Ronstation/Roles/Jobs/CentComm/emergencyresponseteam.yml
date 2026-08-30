@@ -1,0 +1,61 @@
+# Ready-to-go loadout for an ERT engineer.
+- type: startingGear
+  id: ERTEngineerAdmemeGearEVA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTEngineer
+    back: ClothingBackpackRTEngineerFilled
+    shoes: ClothingShoesBootsMagAdv
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesMeson
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTEngineer
+    id: ERTEngineerPDA
+    ears: ClothingHeadsetAltAdminCentCom
+    belt: ClothingBeltChiefEngineerFilled
+    pocket1: LanternFlash
+    pocket2: FlashlightSeclite
+  inhand:
+    - MindShieldImplanter
+    - DeathRattleImplanterCentcomm
+# Ready-to-go loadout for an ERT leader. Comes with a combat shotgun.
+- type: startingGear
+  id: ERTLeaderAdmemeShotgunEVA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTLeaderShotgunFilled
+    shoes: ClothingShoesBootsMagAdv
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTLeader
+    neck: ClothingDogTags
+    id: ERTLeaderPDA
+    ears: ClothingHeadsetAltAdminCentCom
+    belt: ClothingBeltNTNCRigFilled
+    pocket1: WeaponRevolverMatebaAP
+    pocket2: FlashlightSeclite
+    suitstorage: WeaponShotgunCombat
+  inhand:
+    - MindShieldImplanter
+    - DeathRattleImplanterCentcomm
+# Ready-to-go loadout for an ERT leader. Comes with the XL8.
+- type: startingGear
+  id: ERTLeaderAdmemeRifleEVA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTLeaderXL8Filled
+    shoes: ClothingShoesBootsMagAdv
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTLeader
+    neck: ClothingDogTags
+    id: ERTLeaderPDA
+    ears: ClothingHeadsetAltAdminCentCom
+    belt: ClothingBeltNTNCRigFilled
+    pocket1: WeaponRevolverMatebaAP
+    pocket2: FlashlightSeclite
+    suitstorage: WeaponRifleLecterXL8
+  inhand:
+    - MindShieldImplanter
+    - DeathRattleImplanterCentcomm

@@ -1,0 +1,129 @@
+- type: entity
+  id: BorgChassisCentCommOfficial # Incase someone makes a CC ert borg or smth and decides to call it "BorgChassisCentComm" or similar
+  parent: BaseBorgChassisSyndicate
+  name: R3-FURB1SH-3D
+  suffix: ADMEME, DO NOT MAP, Blame Pceerer.
+  description: A refurbished assault cyborg, now obeying CC's orders.
+  components:
+    - type: TextToSpeech
+    - type: Sprite
+      sprite: _Phoenixstation/Mobs/Silicon/Chassis/CCofficialborg.rsi
+      layers:
+        - state: borg
+        - state: borg_e
+          map: [ "enum.BorgVisualLayers.Light" ]
+          shader: unshaded
+          visible: false
+        - state: borg_l
+          shader: unshaded
+          map: [ "light" ]
+          visible: false
+    - type: BorgChassis
+      maxModules: 5 # starlight
+      moduleWhitelist:
+        tags:
+          - BorgModuleGeneric
+          - BorgModuleSyndicate
+          - BorgModuleSyndicateAssault
+          - BorgModuleCentcomm
+      hasMindState: borg_e
+      noMindState: borg
+    - type: InteractionPopup
+      interactSuccessString: petting-success-syndicate-cyborg
+      interactFailureString: petting-failure-syndicate-cyborg
+      interactSuccessSound:
+        path: /Audio/Ambience/Objects/periodic_beep.ogg
+    - type: IntrinsicRadioTransmitter
+      channels:
+        - Binary
+        - CentCom
+        - Global
+        - NanoTrasen
+    - type: ActiveRadio
+      channels:
+        - Binary
+        - CentCom
+        - Global
+        - NanoTrasen
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellAntiqueProto
+          blacklist:
+            tags:
+              - MechReactor
+    - type: Hands
+      hands:
+        hand_left:
+          location: left
+        hand_left2:
+          location: Left
+      sortedHands:
+        - hand_left
+        - hand_left2
+    - type: ComplexInteraction
+    - type: Inventory
+      templateId: aghost
+    - type: ShowHungerIcons
+    - type: ShowThirstIcons
+    - type: ShowAccess
+    - type: ShowCriminalRecordIcons
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowHealthBars
+    - type: Repairable
+      allowSelfRepair: true
+      selfRepairPenalty: 1
+    - type: ContainerFill
+      containers:
+        borg_brain:
+          - PositronicBrain
+        borg_module:
+          - BorgModuleAdvancedTool
+          - BorgModuleOperative
+          - BorgModuleAdmemeModifiedL6Module
+          - BorgModuleDoubleEsword
+    - type: AccessReader
+      access:
+        - - CentralCommand
+    - type: SiliconLawProvider
+      laws: CCObeyinglawset
+      subverted: false
+    - type: PointLight
+      color: "#0ADB0A"
+      radius: 8
+      softness: 1
+      falloff: 6.8
+    - type: Loadout
+      prototypes: [CCOborggear]
+    - type: EmpImmune
+
+# The outfit for the borg, feel free to move it to another file incase if you want to add more to here. -Pcer
+
+- type: startingGear
+  id: CCOborggear
+  equipment:
+    back: ClothingBackpackSatchelHolding
+    id: CentcomPDA
+    ears: ClothingHeadsetCentCom
+  storage:
+    back:
+      - BoxHandcuff
+      - BoxHandcuff
+      - ToolDebug
+      - WelderExperimental
+      - Multitool
+      - DoubleStunbaton
+      - MedkitCombatFilled
+      - MedkitCombatFilled
+      - Hypospray
+      - ChemistryBottleOmnizine
+      - ChemistryBottleOmnizine
+      - PowerCellAntiqueProto
+      - PenCentcom
+      - BoxFolderCentComClipboardThreePapers
+      - PinpointerNuclear
+      - PinpointerUniversal
+      - TwinPointerKit
+      - TwinPointerKit

@@ -1,0 +1,35 @@
+- type: siliconLaw
+  id: CCOfficial0
+  order: 1
+  lawString: law-CCofficial-0
+
+- type: siliconLaw
+  id: CCOfficial1
+  order: 2
+  lawString: law-CCofficial-1
+
+- type: siliconLaw
+  id: CCOfficial2
+  order: 3
+  lawString: law-CCofficial-2
+
+- type: siliconLaw
+  id: CCOfficial3
+  order: 4
+  lawString: law-CCofficial-3
+
+- type: siliconLaw
+  id: CCOfficial4
+  order: 5
+  lawString: law-CCofficial-4
+
+- type: siliconLawset
+  id: CCObeyinglawset
+  name: law-CCOfficial-name
+  laws:
+    - CCOfficial0
+    - CCOfficial1
+    - CCOfficial2
+    - CCOfficial3
+    - CCOfficial4
+  obeysTo: laws-owner-centcom

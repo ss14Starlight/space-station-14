@@ -1,0 +1,39 @@
+# A modified version of Starlight's M-81 Fireline cloak, because it looks badass.
+- type: entity
+  parent:  [ClothingNeckBase, BaseCentcommContraband]
+  id: ClothingNeckCloakCCSDFireline
+  name: CC fireline cloak
+  description: A cloak designed after the M-81 Fireline cloak, for the devoted sector CC Security Division Officer. Smells of pumpkin spice.
+  suffix: Admeme, DO NOT MAP
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Cloaks/hos_poncho.rsi
+  - type: PointLight
+    radius: 2
+    energy: 2.2
+    color: "#DE3A3A"
+  - type: StaticPrice
+    price: 2000
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellAntiqueProto
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 8
+    domePrototype: EnergyDomeSmallRed
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 2
+    useCharge: 0
+  - type: UseDelay
+    delay: 12.0

@@ -1,0 +1,95 @@
+- type: entity
+  id: Centcommteleportdoohickey
+  name: teleport doohickey
+  description: A bluespace doohickey that lets you teleport anywhere* on the station. Yes, you cannot take your favourite Avali to CC with this, but expect NT to be unhappy with you if you do.
+  suffix: ADMEME, CENTCOMM
+  parent: [ BaseItem, BaseCentcommContraband ]
+  components:
+    - type: UserInterface
+      interfaces:
+        enum.TeleportLocationUiKey.Key:
+          type: TeleportLocationsBoundUserInterface
+    - type: ActivatableUI
+      key: enum.TeleportLocationUiKey.Key
+    - type: Sprite
+      sprite: /Textures/Objects/Devices/hand_teleporter.rsi
+      layers:
+        - state: icon
+          color: green
+    - type: TeleportLocations
+      teleportEffect: MoffEffectSparksSilent
+      name: teleportation-scroll-window-title
+      closeAfterTeleport: true
+    - type: UseDelay
+      delay: 1
+      delays:
+        TeleportDelay: !type:UseDelayInfo
+          length: 60
+
+- type: entity
+  id: ClothingBeltHolsterFilledMateba
+  parent: ClothingBeltHolster
+  name: Mateba Holster
+  description: A robust looking shoulder holster made to carry the Mateba.
+  suffix: Filled, Mateba
+  components:
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+        - 0,0,3,3
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: WeaponRevolverMateba
+            - id: SpeedLoaderMagnumSP
+            - id: SpeedLoaderMagnumSP
+            - id: MagazineBoxMagnumSP
+    - type: Contraband
+      allowedDepartments: [ CentralCommand ]
+
+- type: entity
+  id: ClothingBeltHolsterFilledN1984
+  name: N1984 Holster
+  description: A robust looking shoulder holster made to carry the N1984.
+  parent: ClothingBeltHolster
+  suffix: Filled, N1984
+  components:
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+        - 0,0,3,3
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: WeaponPistolN1984
+            - id: MagazineMagnum
+            - id: MagazineMagnum
+            - id: MagazineBoxMagnumSP
+    - type: Contraband
+      allowedDepartments: [ CentralCommand ]
+
+- type: entity
+  parent: BaseHandheldInstrument
+  id: GreenPhone
+  name: Green-Phone
+  description: A lavish phone for when an official wants another pizza. Also works as a supersynth!
+  components:
+    - type: Sprite
+      sprite: _Phoenixstation/Objects/Fun/Instruments/green_phone.rsi
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/ring.ogg
+    - type: Instrument
+      allowPercussion: true
+      allowProgramChange: true
+      respectMidiLimits: true
+    - type: Item
+      size: Small
+      storedRotation: -90
+    - type: Prayable
+      sentMessage: prayer-popup-notify-nanotrasen-sent
+      notificationPrefix: prayer-chat-notify-nanotrasen
+      verb: prayer-verbs-call
+      verbImage: null

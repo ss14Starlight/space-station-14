@@ -1,0 +1,10 @@
+- type: entity
+  name: Extra Luxurious Pen
+  parent: [PenCentcom]
+  id: PenCentcomHidden
+  description: A fancy and expensive pen that few ever have the right to own. Keep prying eyes away.
+  components:
+  - type: Sprite
+    state: luxury_pen
+  - type: Item
+    heldPrefix: luxury_pen

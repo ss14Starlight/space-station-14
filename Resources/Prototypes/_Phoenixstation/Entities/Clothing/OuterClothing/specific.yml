@@ -1,0 +1,29 @@
+- type: entity
+  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
+  id: ClothingOuterArmorCentcommChameleon
+  name: CC Watchdog Carapace
+  description: An armored Carapace that provides premium protection for our favorite whistleblowers. Can be disguised into nearly anything.
+  components:
+  - type: ChameleonClothing
+    slot: [outerClothing]
+    default: ClothingOuterVest
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.5
+        Caustic: 0.9
+    staminaModifier: 0.7
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
+  - type: Tag
+    tags: [] # Since it just reuses a sprite, not whitelisted for chameleon
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+

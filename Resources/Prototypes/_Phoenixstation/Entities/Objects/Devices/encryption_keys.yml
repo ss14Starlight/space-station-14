@@ -1,0 +1,12 @@
+- type: entity
+  parent: [EncryptionKeyStationMaster]
+  id: EncryptionKeyStationMasterUnremovable # This should only be used for headsets in admemes, so that additional master keys are not unfairly added to the round to steal.
+  suffix: Unremovable
+  components:
+  - type: Unremoveable # Just like Starlight's unremovable NTP key
+- type: entity
+  parent: [EncryptionKeyCentCom]
+  id: EncryptionKeyCentcomUnremovable # Since I did this for one wizden key, adding this for other contributions to potentially use
+  suffix: Unremovable
+  components:
+  - type: Unremoveable

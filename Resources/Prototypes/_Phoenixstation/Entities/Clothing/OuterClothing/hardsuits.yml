@@ -1,0 +1,18 @@
+#CC Sec Div Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitSecurityExperimental, BaseCentcommContraband, ClothingOuterStorageBase]
+  categories: [ DoNotMap ]
+  suffix: Admeme, DO NOT MAP
+  id: ClothingOuterHardsuitCCSDExperimental
+  name: CentComm Sec Division Officer Hardsuit
+  description: A high-tech hardsuit meant to eventually replace the standard security suit, it boasts an ID-Lock and Gun-Lock system. This one has been modified further to suit the needs of the sector's CC Sec Division Officer.
+  components:
+    - type: Contraband
+      allowedDepartments: [ CentralCommand ]
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitCCSDExperimental
+    - type: IdClothingBlocker
+      allowedAccesses:
+        - CentralCommand
+    - type: Item
+      size: Huge

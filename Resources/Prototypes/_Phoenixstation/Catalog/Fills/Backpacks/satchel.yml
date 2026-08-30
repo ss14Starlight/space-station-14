@@ -1,0 +1,49 @@
+# Remastered CC Agent admeme; presenting, Corporate Watchdog
+- type: entity
+  id: ClothingBackpackSatchelHoldingCentcomWatchdogFilled
+  parent: [ClothingBackpackSatchelHolding, BaseChameleon]
+  suffix: Filled, Centcom Agent, Admeme, Chameleon
+  components:
+  - type: ChameleonClothing
+    slot: [back]
+    default: ClothingBackpackSatchelLeather
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags: [] # Since it just reuses a sprite, not whitelisted for chameleon
+  - type: StorageFill
+    contents:
+      - id: SyndicateJawsOfLifeStealth # the Nanotrasen special; reappropriated Syndicate Tech
+      - id: PowerDrill
+      - id: WelderExperimental
+      - id: Multitool
+      - id: HolofanProjector
+      - id: GasAnalyzer
+      - id: trayScanner
+      - id: FaxMachineFlatpack # Portable faxes don't exist, its perfectly possible the agent will need to discretely fax another department or CC to keep records safe
+      - id: RubberStampCentcom
+      - id: BoxStampsCCAdministrative
+      - id: BoxSurvivalNonBreatherExtended
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: BoxFolderPlasticClipboardThreePapers
+      - id: BoxHandcuff
+      - id: Flash
+      - id: FlashlightLantern
+      - id: MagazinePistol40FMJ
+      - id: MagazinePistol40FMJ
+      - id: MagazinePistol40FMJ
+      - id: WeaponPistolStechkin
+      - id: ClothingEyesHudCCDivHead
+      - id: ChameleonControllerImplanter
+      - id: VoiceMaskImplanter
+      - id: MindShieldImplanter
+      - id: DeathRattleImplanterCentcomm
+      - id: RadioImplanterCentcomm
+      - id: SELFStorageImplanter # This thing's pretty powerful... Mostly just to store blatant CC(and 'repurposed' syndie) contra such as the full ID, and the used implanters
+      - id: CentcomIDCard # To pull access from in an emergency.
+      - id: CigarGoldCase # To blend in :3
