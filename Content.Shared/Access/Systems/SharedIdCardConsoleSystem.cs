@@ -35,10 +35,6 @@ namespace Content.Shared.Access.Systems
         {
             _itemSlotsSystem.AddItemSlot(uid, IdCardConsoleComponent.PrivilegedIdCardSlotId, component.PrivilegedIdSlot);
             _itemSlotsSystem.AddItemSlot(uid, IdCardConsoleComponent.TargetIdCardSlotId, component.TargetIdSlot);
-#pragma warning disable RA0002
-            // Starlight: Target should eject first on alt-click. Need to suppress error to prevent build fail due to read/write access.
-            component.TargetIdSlot.Priority = 1;
-#pragma warning restore RA0002
         }
 
         private void OnComponentRemove(EntityUid uid, IdCardConsoleComponent component, ComponentRemove args)
