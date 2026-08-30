@@ -324,7 +324,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             SecurityStatus.Suspected => "hud_suspected",
             SecurityStatus.Hostile => "hud_hostile",
             SecurityStatus.Eliminated => "hud_eliminated",
-            SecurityStatus.Arrestonsight => "hud_aos",
+            SecurityStatus.Arrestonsight => "hud_aos", //Starlight
             _ => "SecurityIconNone"
         };
     }
