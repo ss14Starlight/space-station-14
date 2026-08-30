@@ -29,6 +29,7 @@
   pickPlayer: false
   prefRoles:
   - GenericSiliconAntagonist
+  mindRoles: [MindRoleSubvertedSilicon] # Starlight
 
 - type: antagSpecifier
   parent: DerelictCyborg
