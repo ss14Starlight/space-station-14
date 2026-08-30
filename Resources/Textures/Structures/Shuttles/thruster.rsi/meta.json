@@ -4,7 +4,7 @@
     "x": 32,
     "y": 32
   },
-  "copyright": "Taken from https://github.com/Baystation12/Baystation12/tree/7274e5654c3cf82d4104dbf818ef00fdc0082aa8. Panel state made by Person derived from base state.",
+  "copyright": "Taken from https://github.com/Baystation12/Baystation12/tree/7274e5654c3cf82d4104dbf818ef00fdc0082aa8",
   "license": "CC-BY-SA-3.0",
   "states": [
     {
@@ -13,6 +13,7 @@
     },
     {
       "name": "panel",
+      "copyright": "SevenShades",
       "directions": 4
     },
     {
