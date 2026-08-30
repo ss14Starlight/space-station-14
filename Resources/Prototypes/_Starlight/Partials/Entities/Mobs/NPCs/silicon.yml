@@ -1,0 +1,21 @@
+- type: !PartialOnly entity
+  id: MobSupplyBot
+  components:
+  - type: PullTrain
+    maxCars: 3
+  - type: Body
+    prototype: SupplyBot
+  - type: Hands
+    showInHands: false
+    hands:
+      paperwork:
+        emptyLabel: borg-slot-papers-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          tags:
+          - Document
+          components:
+          - Stamp
+    sortedHands:
+    - paperwork
+  - type: ComplexInteraction
