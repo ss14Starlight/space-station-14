@@ -44,6 +44,9 @@
         Slash: 0.9
         Piercing: 0.8
         Cold: 0.85
+  - type: Tag
+    tags:
+    - MonkeyWearable
 
 - type: entity
   parent: [ ClothingOuterBase, ClothingOuterBaseWinter, BaseNanoTrasenContraband, AllowSuitStorageClothingGasTanks ]
@@ -84,6 +87,9 @@
         Slash: 0.9
         Piercing: 0.8
         Cold: 0.85
+  - type: Tag
+    tags:
+    - MonkeyWearable
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatNtrep, BaseNanoTrasenContraband ]
@@ -107,6 +113,9 @@
       coefficients:
         Cold: 0.9
         Caustic: 0.75
+  - type: Tag
+    tags:
+    - MonkeyWearable
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorChemist]
