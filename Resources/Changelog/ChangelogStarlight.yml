@@ -1,18 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: Changed all air alarm variants to reflect their function.
-    type: Tweak
-  id: 407590
-  time: '2026-08-16T12:16:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5542
-- author: Kamila, AegisShield
-  changes:
-  - message: Added milk crates! Store your milk cartons in style, or repurpose one to file away your vinyl collection.
-    type: Add
-  id: 407591
-  time: '2026-08-16T12:17:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5561
 - author: Kamila, AegisShield
   changes:
   - message: A blood-red milk crate full of unsanctioned records has been spotted in syndicate hands.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407989
   time: '2026-08-30T07:14:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5879
+- author: wonderfulnewworld
+  changes:
+  - message: pAIs/clothes/trunks can no longer roll antags.
+    type: Fix
+  id: 407990
+  time: '2026-08-30T07:15:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5878
+- author: wonderfulnewworld
+  changes:
+  - message: Terror Spiders, Xenoborgs, and some other things are no longer crew aligned.
+    type: Fix
+  id: 407991
+  time: '2026-08-30T07:15:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5878
 Order: -1
