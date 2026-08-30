@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Added Floor Lights. Placed above carpets but below furniture. Can be walked over and objects can be dragged over them. Come in all bulb variants and colors. Can be constructed and deconstructed mid-round.
-    type: Add
-  id: 407609
-  time: '2026-08-16T14:14:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5674
 - author: DocMoth
   changes:
   - message: Foxfire Charm to fashion vend.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408008
   time: '2026-08-30T18:09:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5689
+- author: mikeysaurus, DocMoth
+  changes:
+  - message: Adds three new CentComm medals to be given to crew at CC's discretion to the AdmiMax vendor.
+    type: Add
+  id: 408009
+  time: '2026-08-30T18:37:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5701
 Order: -1
