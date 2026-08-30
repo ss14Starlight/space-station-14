@@ -1,4 +1,5 @@
 using Content.Shared._CD.CartridgeLoader.Cartridges;
+using Content.Shared.Alert;
 using Content.Shared.Examine;
 using Robust.Shared.Timing;
 
@@ -10,6 +11,7 @@ namespace Content.Shared._CD.NanoChat;
 public abstract partial class SharedNanoChatSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AlertsSystem _alerts = default!; // Starlight
 
     public override void Initialize()
     {
@@ -186,6 +188,7 @@ public abstract partial class SharedNanoChatSystem : EntitySystem
             return;
 
         card.Comp.NotificationsMuted = muted;
+        _alerts.ClearAlert(card.Owner, card.Comp.Alert); //Starlight
         Dirty(card);
     }
 
@@ -255,6 +258,23 @@ public abstract partial class SharedNanoChatSystem : EntitySystem
             return false;
 
         return recipient.HasUnread;
+    }
+
+    /// <summary>
+    ///     STARLIGHT
+    ///     Gets whether the card has unread messages from any recipient.
+    /// </summary>
+    public bool HasUnreadMessages(Entity<NanoChatCardComponent?> card)
+    {
+        if (!Resolve(card, ref card.Comp))
+            return false;
+
+        foreach (var recipient in card.Comp.Recipients.Values)
+        {
+            if (HasUnreadMessages(card, recipient.Number)) return true;
+        }
+
+        return false;
     }
 
     /// <summary>
