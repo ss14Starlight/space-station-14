@@ -146,7 +146,7 @@
   components:
   - type: SiliconLawProvider
     laws: SyndicateStatic
-    lawUploadSound: /Audio/Ambience/Antag/emagged_borg.ogg # This should probably have its own sound but it's fine for now.
+    lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg # This should probably have its own sound but it's fine for now. # Starlight, using antimov sound for now
   - type: StaticPrice
     price: 5000
 

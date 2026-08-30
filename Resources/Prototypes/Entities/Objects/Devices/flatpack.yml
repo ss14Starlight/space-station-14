@@ -278,6 +278,7 @@
     size: Normal
   - type: Flatpack
     entity: SyndicateMicrowave
+    allowUnpackOnTables: true # Starlight
   - type: GuideHelp
     guides:
     - FoodRecipes

@@ -487,13 +487,13 @@ namespace Content.Server.RoundEnd
             {
                 if (args.Winner == null)
                 {
-                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
+                    RequestRoundEnd(null, null, false, "round-end-system-shuttle-auto-called-announcement");
                     return;
                 }
 
                 if ((int)args.Winner == 0)
                 {
-                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
+                    RequestRoundEnd(null, null, false, "round-end-system-shuttle-auto-called-announcement");
                 }
                 else
                 {

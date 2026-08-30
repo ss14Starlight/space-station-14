@@ -5,10 +5,7 @@ namespace Content.Server.Radio.EntitySystems;
 
 public sealed partial class JammerSystem : SharedJammerSystem
 {
-    [Dependency] private PowerCellSystem _powerCell = default!;
-    [Dependency] private SharedBatterySystem _battery = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedDeviceNetworkJammerSystem _jammer = default!;
 
     public override void Initialize()
     {
@@ -34,7 +31,7 @@ public sealed partial class JammerSystem : SharedJammerSystem
     //Starlight begin
     private void OnCustomRadioSendAttempt(ref CustomRadioSendAttemptEvent args)
     {
-        if (ShouldCancelSend(args.RadioSource, args.Channel.Frequency))
+        if (ShouldCancel(args.RadioSource, args.Channel.Frequency))
             args.Cancelled = true;
     }
     //Starlight end
