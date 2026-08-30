@@ -47,7 +47,7 @@ public abstract class SharedCriminalRecordsSystem : EntitySystem
             SecurityStatus.Suspected => "SecurityIconSuspected",
             SecurityStatus.Hostile => "SecurityIconHostile",
             SecurityStatus.Eliminated => "SecurityIconEliminated",
-            SecurityStatus.Arrestonsight => "SecurityIconAOS", // STARLIGHT
+            SecurityStatus.Arrestonsight => "SecurityIconArrestonsight", // STARLIGHT
             _ => record.StatusIcon
         };
 
