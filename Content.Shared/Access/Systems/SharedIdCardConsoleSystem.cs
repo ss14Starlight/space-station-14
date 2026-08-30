@@ -35,6 +35,10 @@ namespace Content.Shared.Access.Systems
         {
             _itemSlotsSystem.AddItemSlot(uid, IdCardConsoleComponent.PrivilegedIdCardSlotId, component.PrivilegedIdSlot);
             _itemSlotsSystem.AddItemSlot(uid, IdCardConsoleComponent.TargetIdCardSlotId, component.TargetIdSlot);
+#pragma warning disable RA0002
+            // Target should eject first on alt-click
+            component.TargetIdSlot.Priority = 1;
+#pragma warning restore RA0002
         }
 
         private void OnComponentRemove(EntityUid uid, IdCardConsoleComponent component, ComponentRemove args)
