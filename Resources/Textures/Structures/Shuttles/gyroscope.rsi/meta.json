@@ -4,7 +4,7 @@
     "x": 32,
     "y": 32
   },
-  "copyright": "Made with love by Shaeone. Panel state made by Person derived from base state.",
+  "copyright": "Made with love by Shaeone",
   "license": "CC-BY-SA-3.0",
   "states": [
     {
@@ -13,6 +13,7 @@
     },
     {
       "name": "panel",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a",
       "directions": 1
     },
     {
