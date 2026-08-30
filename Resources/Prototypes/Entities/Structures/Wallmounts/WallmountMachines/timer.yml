@@ -103,7 +103,7 @@
 # Construction Frame
 
 - type: entity
-  parent: BaseWallmount
+  parent: BaseWallmount # Starlight
   id: TimerFrame
   name: timer frame
   description: A construction frame for a timer.
@@ -112,7 +112,7 @@
     drawdepth: WallMountedItems
     sprite: Structures/Wallmounts/signalscreen.rsi
     state: signalscreen
-    noRot: true
+    noRot: true # Starlight
   - type: Construction
     graph: Timer
     node: frame
