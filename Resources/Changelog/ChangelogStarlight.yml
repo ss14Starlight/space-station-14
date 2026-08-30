@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Added a second HOP window to HOP.
-    type: Add
-  id: 407614
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
   - message: (Novo Lobster) Added PACMAN and SUPER PACMAN to Engineering, along with fuel for both of them in a crate.
     type: Add
   id: 407615
@@ -2799,4 +2792,11 @@ Entries:
   id: 408013
   time: '2026-08-30T18:37:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5757
+- author: SirLutz
+  changes:
+  - message: remove the double ghostrole annoucment.
+    type: Fix
+  id: 408014
+  time: '2026-08-30T18:59:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5753
 Order: -1
