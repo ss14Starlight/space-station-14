@@ -1,5 +1,6 @@
 using Content.Shared.Intellicard;
 using Content.Shared.PAI;
+//ReSharper disable CheckNamespace
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
 
