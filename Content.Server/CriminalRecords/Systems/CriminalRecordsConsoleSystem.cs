@@ -185,7 +185,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             (_, SecurityStatus.Discharged) => "released",
             // going from any other state to wanted, AOS or prisonbreak / lazy secoff never set them to released and they reoffended
             (_, SecurityStatus.Wanted) => "wanted",
-            (_, SecurityStatus.Arrestonsight) => "aos",
+            (_, SecurityStatus.Arrestonsight) => "aos", // Starlight
+            (SecurityStatus.Arrestonsight, SecurityStatus.None) => "not-aos",
             (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile",
             (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated",
             // person is no longer sus
