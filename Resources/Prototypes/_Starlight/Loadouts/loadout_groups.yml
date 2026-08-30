@@ -1286,3 +1286,12 @@
   minLimit: 0
   loadouts:
   - LizardPlushieTechnicalAssistant
+
+- type: loadoutGroup
+  id: ReporterJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  maxLimit: 3 # Starlight
+  loadouts:
+  - DigiboardMassMedia # Starlight
+  - HoloReporterPin # Starlight
