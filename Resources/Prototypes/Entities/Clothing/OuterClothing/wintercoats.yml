@@ -40,7 +40,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
-    - MonkeyWearable
+    - MonkeyWearable #Starlight Edit
   - type: StaticPrice
     price: 50
 
@@ -58,9 +58,11 @@
       toggleable-clothing: !type:ContainerSlot {}
       storagebase: !type:Container
         ents: []
+  #Starlight Begin
   - type: Tag
     tags:
     - MonkeyWearable
+  #Starlight End
 
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
