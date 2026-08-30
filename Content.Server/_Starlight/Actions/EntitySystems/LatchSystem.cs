@@ -192,6 +192,16 @@ public sealed partial class LatchSystem : SharedLatchSystem
         latched.Latcher = uid;
         Dirty(target, latched);
 
+        var toLatcher = _transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target);
+        var withinObscureRange = MathF.Abs(toLatcher.Y) <= comp.UiObscureNorthRange
+            && MathF.Abs(toLatcher.X) <= comp.UiObscureHorizontalTolerance;
+
+        // K9 north of target -> K9 sits where the target's own UI would be -> target's UI flips below.
+        comp.TargetUiBelow = withinObscureRange && toLatcher.Y > 0f;
+
+        // K9 south of target -> target sits where the K9's own UI would be -> latcher's UI flips below.
+        comp.LatcherUiBelow = withinObscureRange && toLatcher.Y < 0f;
+
         if (TryComp<PullableComponent>(uid, out var latcherPullable))
             _pulling.TryStopPull(uid, latcherPullable);
 

@@ -96,7 +96,7 @@ public sealed partial class LatchUIController : UIController
 
         string instruction;
         TimeSpan endTime, maxEndTime, maxDuration;
-        bool isLatcher;
+        bool isLatcher, below;
 
         // As the latcher.
         if (_entities.TryGetComponent<LatchComponent>(local, out var latchComp) && latchComp.Active)
@@ -106,6 +106,7 @@ public sealed partial class LatchUIController : UIController
             maxEndTime = latchComp.MaxEndTime;
             maxDuration = latchComp.MaxDuration;
             isLatcher = true;
+            below = latchComp.LatcherUiBelow;
         }
         // As the target.
         else if (_entities.TryGetComponent<LatchedComponent>(local, out var latchedComp) &&
@@ -117,6 +118,7 @@ public sealed partial class LatchUIController : UIController
             maxEndTime = latcherComp.MaxEndTime;
             maxDuration = latcherComp.MaxDuration;
             isLatcher = false;
+            below = latcherComp.TargetUiBelow;
         }
         else
         {
@@ -135,10 +137,16 @@ public sealed partial class LatchUIController : UIController
         var maxFraction = GetFraction(maxEndTime, maxDuration);
         _control.UpdateState(fraction, maxFraction, instruction, isLatcher);
 
-        var worldPos = _transform.GetWorldPosition(xform) + new Vector2(0, VerticalOffset);
+        // Normally anchored to the panel's bottom edge, VerticalOffset above
+        // the target. If the K9 started behind that spot, anchor to the top
+        // edge instead, offset below, so the K9 stays visible and clickable.
+        var offset = below ? -VerticalOffset : VerticalOffset;
+        var worldPos = _transform.GetWorldPosition(xform) + new Vector2(0, offset);
         var uiScale = UIManager.RootControl.UIScale;
-        var lowerCenter = _eyeManager.WorldToScreen(worldPos) / uiScale;
-        var screenPos = lowerCenter - new Vector2(_control.Width / 2f, _control.Height);
+        var anchor = _eyeManager.WorldToScreen(worldPos) / uiScale;
+        var screenPos = below
+            ? anchor - new Vector2(_control.Width / 2f, 0f)
+            : anchor - new Vector2(_control.Width / 2f, _control.Height);
         LayoutContainer.SetPosition(_control, screenPos);
     }
 
