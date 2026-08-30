@@ -1,3 +1,5 @@
+using Content.Shared.Intellicard;
+using Content.Shared.PAI;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
 
@@ -5,6 +7,8 @@ namespace Content.Shared.Silicons.StationAi;
 
 public abstract partial class SharedStationAiSystem
 {
+    private void OnIntellicardPaiDoAfter(Entity<PAIComponent> ent, ref IntellicardDoAfterEvent args) => TransferPai(ent.Owner, args);
+
     // Starlight: wipe the name of the entity to the prototype name, used for entities when they are downloaded/uploaded
     private void ResetNameToPrototype(EntityUid entity)
     {

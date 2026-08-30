@@ -273,11 +273,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     }
 
     private void OnIntellicardDoAfter(Entity<StationAiHolderComponent> ent, ref IntellicardDoAfterEvent args) => IntellicardTransfer(ent.Owner, ent.Comp, args); // Starlight-edit
-
     private void OnIntellicardBorgDoAfter(Entity<BorgBrainComponent> ent, ref IntellicardDoAfterEvent args) => IntellicardTransfer(ent.Owner, null, args); // Starlight-edit
-    #region Starlight
-    private void OnIntellicardPaiDoAfter(Entity<PAIComponent> ent, ref IntellicardDoAfterEvent args) => TransferPai(ent.Owner, args);
-    #endregion
     private void IntellicardTransfer(EntityUid uid, StationAiHolderComponent? component, IntellicardDoAfterEvent args) // Starlight-edit
     {
         if (args.Cancelled)
