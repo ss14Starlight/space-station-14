@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Added light switches in AI Core that enable some extra lighting, if the moody lighting isn't your thing.
-    type: Add
-  id: 407617
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) News Room now uses Journalism access airlocks.
-    type: Tweak
-  id: 407618
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
   - message: (Novo Lobster) Law's heating room now has dual-access airlocks.
     type: Tweak
   id: 407619
@@ -2799,4 +2785,18 @@ Entries:
   id: 408016
   time: '2026-08-30T19:50:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5867
+- author: Caws
+  changes:
+  - message: Winter hats (beanies, ushankas, etc.) now provide cold temperature protection and 10% cold armor.
+    type: Tweak
+  id: 408017
+  time: '2026-08-30T22:23:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5891
+- author: Caws
+  changes:
+  - message: Summer hats (wide-brimmed / cowboy hats and stuff that keeps the 'sun' out of your eyes) now provide hot temperature protection and 5% heat armor.
+    type: Tweak
+  id: 408018
+  time: '2026-08-30T22:23:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5891
 Order: -1
