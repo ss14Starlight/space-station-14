@@ -27,7 +27,8 @@ public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<
         // Let affected entities speak normally to make this effect different from, say, the "random sentience" event
         // This also works on entities that already have a mind
         // We call this before the mind check to allow things like player-controlled mice to be able to benefit from the effect
-        if (args.Effect.AllowSpeech)
+        // Starlight - skip language grant for LanguageGrantImmuneComponent entities
+        if (args.Effect.AllowSpeech && !HasComp<LanguageGrantImmuneComponent>(entity))
         {
             RemComp<ReplacementAccentComponent>(entity);
             // TODO: Make MonkeyAccent a replacement accent and remove MonkeyAccent code-smell.

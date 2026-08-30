@@ -422,7 +422,7 @@ namespace Content.Server.Communications
                 return;
             }
 
-            _roundEndSystem.RequestRoundEnd(uid);
+            _roundEndSystem.RequestRoundEnd(mob, uid);
             // Starlight start
             _globalRecallCooldownRemaining = DefaultGlobalRecallCooldownSeconds;
 
@@ -436,13 +436,15 @@ namespace Content.Server.Communications
             if (!CanCallOrRecall(comp))
                 return;
 
-            if (!CanUse(message.Actor, uid))
+            var mob = message.Actor;
+
+            if (!CanUse(mob, uid))
             {
                 _popupSystem.PopupEntity(Loc.GetString("comms-console-permission-denied"), uid, message.Actor);
                 return;
             }
 
-            _roundEndSystem.CancelRoundEndCountdown(uid);
+            _roundEndSystem.CancelRoundEndCountdown(mob, uid);
             // Starlight start
             _globalRecallCooldownRemaining = DefaultGlobalRecallCooldownSeconds;
 
