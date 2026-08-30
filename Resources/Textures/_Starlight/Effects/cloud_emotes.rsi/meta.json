@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "start, end, lenny, mark Made by github.com/fqqf, the rest made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
+  "copyright": "start, end, lenny, mark Made by github.com/fqqf, the rest made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley, godo made by Johnny",
   "size": {
     "x": 16,
     "y": 16
@@ -295,6 +295,17 @@
     },
     {
       "name": "emote_smoile",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "emote_godo",
       "delays": [
         [
           0.3,
