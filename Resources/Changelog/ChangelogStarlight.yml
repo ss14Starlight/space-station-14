@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Oasis)  Added several radios around the station.
-    type: Add
-  id: 407605
-  time: '2026-08-16T13:41:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5635
-- author: Cvlancer
-  changes:
   - message: (Oasis) Added some more trash/scrap to the maints scrapyard.
     type: Add
   id: 407606
@@ -2799,4 +2792,11 @@ Entries:
   id: 408004
   time: '2026-08-30T17:49:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5747
+- author: OMEGA
+  changes:
+  - message: Alt Z now toggles monitor for the handheld engineering monitor.
+    type: Tweak
+  id: 408005
+  time: '2026-08-30T18:09:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5752
 Order: -1
