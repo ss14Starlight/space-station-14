@@ -57,6 +57,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         if (_player.LocalEntity != ent.Owner)
             return;
 
+        _vignette.BiteIntensity = 0f;
         _overlayMan.AddOverlay(_vignette);
         Highlight(ent.Comp.Latcher);
     }
@@ -75,6 +76,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         if (!TryComp<LatchedComponent>(ev.Entity, out var latched))
             return;
 
+        _vignette.BiteIntensity = 0f;
         _overlayMan.AddOverlay(_vignette);
         Highlight(latched.Latcher);
     }
