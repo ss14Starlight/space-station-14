@@ -19,6 +19,8 @@
     understands:
     - GalacticCommon
     - SolCommon
+  - type: TypingIndicator
+    proto: sawian
   - type: InventorySlotMovementSpeedModifier # Wearing all six pieces of hindering clothing will nullify the movespeed bonus
     slotData:
       - flags: OUTERCLOTHING, HEAD
