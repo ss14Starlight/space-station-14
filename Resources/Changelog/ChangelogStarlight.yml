@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: Scrubber and vent variants for Chamber, ChamberUnlocked, and Sauna for mapping use.
-    type: Add
-  id: 407589
-  time: '2026-08-16T12:16:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5542
-- author: OMEGA
-  changes:
   - message: Changed all air alarm variants to reflect their function.
     type: Tweak
   id: 407590
@@ -2799,4 +2792,11 @@ Entries:
   id: 407988
   time: '2026-08-30T06:10:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5876
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Alt interacting with the ID card computer or similar now ejects the target ID first instead of the privileged ID.
+    type: Add
+  id: 407989
+  time: '2026-08-30T07:14:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5879
 Order: -1
