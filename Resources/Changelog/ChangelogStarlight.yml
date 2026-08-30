@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Added icon indicating if the gloves are insulated or not.
-    type: Add
-  id: 407564
-  time: '2026-08-16T03:05:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5664
-- author: Wizden Team
-  changes:
   - message: Now the Medibot has a DoAfter bar, displaying injection progress.
     type: Add
   id: 407565
@@ -2799,4 +2792,11 @@ Entries:
   id: 407963
   time: '2026-08-29T21:52:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5869
+- author: xsainteer
+  changes:
+  - message: Fixed Chameleon projector not working and causing a softcrash.
+    type: Fix
+  id: 407964
+  time: '2026-08-30T01:45:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5858
 Order: -1
