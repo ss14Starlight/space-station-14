@@ -501,6 +501,9 @@
     - Supply
   - type: Puller
     needsHands: false
+  - type: PullTrain # Starlight
+    maxCars: 3
+  - type: SelfStorage # Starlight
 
 - type: entity
   parent: [ MobSiliconBase, MobCombat ] #starlight Nubody will not pass.
