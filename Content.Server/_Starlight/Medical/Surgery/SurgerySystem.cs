@@ -32,9 +32,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
-    /// <summary>
-    /// Initializes surgery systems, prototypes, and tool event subscriptions.
-    /// </summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -46,9 +43,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         LoadPrototypes();
     }
 
-    /// <summary>
-    /// Updates and synchronizes the surgery user interface for a target body.
-    /// </summary>
     protected override void RefreshUI(EntityUid body)
     {
         if (!HasComp<SurgeryTargetComponent>(body))
@@ -70,9 +64,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState() { Choices = surgeries });
     }
 
-    /// <summary>
-    /// Populates valid surgeries for a specific body part.
-    /// </summary>
     private void AddSurgeries(EntityUid part, EntityUid body, Dictionary<NetEntity, List<(EntProtoId, string suffix, bool isCompleted)>> surgeries)
     {
         if (!TryComp<SurgeryProgressComponent>(part, out var progress))
@@ -104,9 +95,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         }
     }
 
-    /// <summary>
-    /// Handles using a surgery tool on a patient to open the surgery interface.
-    /// </summary>
     private void OnToolAfterInteract(Entity<SurgeryToolComponent> ent, ref AfterInteractEvent args)
     {
         var user = args.User;
@@ -128,18 +116,12 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         RefreshUI(args.Target.Value);
     }
 
-    /// <summary>
-    /// Reloads cached surgery prototypes when prototypes are reloaded.
-    /// </summary>
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
     {
         if (args.WasModified<EntityPrototype>())
             LoadPrototypes();
     }
 
-    /// <summary>
-    /// Caches all entity prototypes that contain a SurgeryComponent.
-    /// </summary>
     private void LoadPrototypes()
     {
         _surgeries.Clear();
