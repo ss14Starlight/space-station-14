@@ -1,32 +1,4 @@
 Entries:
-- author: DocMoth
-  changes:
-  - message: Foxfire Charm to fashion vend.
-    type: Add
-  id: 407610
-  time: '2026-08-16T14:57:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5659
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added Radio Hosts and a brand new Radio Studio on the east side of the station.
-    type: Add
-  id: 407611
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added an experimental chemical fluid pipeline from Medical to Brigmedic. Please do let CentComm know if this pipeline increases your workplace productivity.
-    type: Add
-  id: 407612
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Sprinkled in the new "retro" counters around the station.
-    type: Add
-  id: 407613
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
 - author: Caws
   changes:
   - message: (Novo Lobster) Added a second HOP window to HOP.
@@ -2799,4 +2771,32 @@ Entries:
   id: 408009
   time: '2026-08-30T18:37:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5701
+- author: Caws
+  changes:
+  - message: Jackets, sweaters, light coats, and other similar clothing now provides a little protection from cold temperatures and make you warm up a little faster.
+    type: Tweak
+  id: 408010
+  time: '2026-08-30T18:37:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5757
+- author: Caws
+  changes:
+  - message: Heavy coats, bomber jackets, windbreakers, and other similar clothing now provide equivalent protection from cold temperatures as winter coats.
+    type: Tweak
+  id: 408011
+  time: '2026-08-30T18:37:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5757
+- author: Caws
+  changes:
+  - message: Anything that has "winter clothing" equivalent protection now provides 15% cold damage resistance.
+    type: Tweak
+  id: 408012
+  time: '2026-08-30T18:37:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5757
+- author: Caws
+  changes:
+  - message: Anything that has "winter clothing" equivalent protection now provides 25% infection chance resistance.
+    type: Tweak
+  id: 408013
+  time: '2026-08-30T18:37:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5757
 Order: -1
