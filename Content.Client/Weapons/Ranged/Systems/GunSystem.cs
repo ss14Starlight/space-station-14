@@ -61,7 +61,6 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private SpriteSystem _sprite = default!;
 
 #region Starlight
-    [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IComponentFactory _factory = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private DisplacementMapSystem _displacement = default!;

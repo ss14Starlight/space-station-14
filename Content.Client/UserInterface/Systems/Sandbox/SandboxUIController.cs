@@ -27,9 +27,7 @@ namespace Content.Client.UserInterface.Systems.Sandbox;
 public sealed partial class SandboxUIController : UIController, IOnStateChanged<GameplayState>, IOnSystemChanged<SandboxSystem>
 {
     [Dependency] private IConsoleHost _console = default!;
-    [Dependency] private IEyeManager _eye = default!;
     [Dependency] private IInputManager _input = default!;
-    [Dependency] private ILightManager _light = default!;
     [Dependency] private IClientAdminManager _admin = default!;
     [Dependency] private IPlayerManager _player = default!;
 
