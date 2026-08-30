@@ -2,6 +2,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
+using Content.Shared._Starlight.Cargo.Mailboxes;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Chat;
@@ -42,9 +43,17 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
         base.Initialize();
 
         SubscribeLocalEvent<DeliveryComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<DeliveryComponent, EntGotInsertedIntoContainerMessage>(OnInsertedInContainer); // Starlight
 
         InitializeSpawning();
     }
+    //Starlight-edit start
+    private void OnInsertedInContainer(Entity<DeliveryComponent> ent, ref EntGotInsertedIntoContainerMessage args)
+    {
+        var containerEntity = args.Container.Owner;
+        if (HasComp<MailBoxComponent>(containerEntity)) GrantSpesoReward(ent!);
+    }
+    //Starlight-edit end
 
     private void OnMapInit(Entity<DeliveryComponent> ent, ref MapInitEvent args)
     {
@@ -80,6 +89,8 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
         if (!TryComp<StationBankAccountComponent>(ent.Comp.RecipientStation, out var account))
             return;
 
+        if (ent.Comp.Rewarded) return; // Starlight-edit
+
         var stationAccountEnt = (ent.Comp.RecipientStation.Value, account);
 
         var multiplier = GetDeliveryMultiplier(ent!); // Resolve so we know it's got the component
@@ -88,6 +99,7 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
             stationAccountEnt,
             (int)(ent.Comp.BaseSpesoReward * multiplier),
            _cargo.CreateAccountDistribution((ent.Comp.RecipientStation.Value, account)));
+        ent.Comp.Rewarded = true; // Starlight-edit
     }
 
     /// <summary>
