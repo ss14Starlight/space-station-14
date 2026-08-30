@@ -298,11 +298,13 @@
 - type: damageModifierSet
   id: Malignstone
   coefficients:
-    Blunt: 0.7
-    Slash: 0.5
-    Piercing: 0.55
-    Cold: 0.5
-    Structural: 0.5 #From Metallic
+    Blunt: 0.5
+    Slash: 0.25
+    Piercing: 0.5
+    Cold: 0.1 # Deathcult frozen stone
+    Heat: 0.75
+    Shock: 0.6
+    Structural: 0.75 # similar to Metallic, but not as crazy as Rock
   flatReductions:
     Blunt: 5
     Cold: 10

@@ -69,7 +69,7 @@
     allowRevives: true
     thresholds:
       0: Alive
-      50: Dead
+      60: Dead
   - type: GhostOnMove
     mustBeDead: true
   - type: Damageable
@@ -81,7 +81,7 @@
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 70
+          damage: 80
         behaviors:
           - !type:SpawnEntitiesBehavior
             spawn:
