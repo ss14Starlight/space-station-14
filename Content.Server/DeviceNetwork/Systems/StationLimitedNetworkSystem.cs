@@ -1,7 +1,6 @@
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.DeviceNetwork.Events;
-using Content.Shared._Starlight.Maps;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 
@@ -14,9 +13,6 @@ namespace Content.Server.DeviceNetwork.Systems
     public sealed partial class StationLimitedNetworkSystem : EntitySystem
     {
         [Dependency] private StationSystem _stationSystem = default!;
-        #region Starlight
-        [Dependency] private SharedGridAccessSystem _gridAccess = default!;
-        #endregion
         public override void Initialize()
         {
             base.Initialize();
@@ -69,16 +65,6 @@ namespace Content.Server.DeviceNetwork.Systems
                 args.Cancel();
             }
         }
-
-        #region Starlight
-        private bool CanAccessSenderGrid(EntityUid receiver, EntityUid sender)
-        {
-            var receiverGrid = Transform(receiver).GridUid;
-            var senderGrid = Transform(sender).GridUid;
-
-            return receiverGrid is { } targetGrid && senderGrid is { } sourceGrid && (_gridAccess.CanAccess((sourceGrid, null), (targetGrid, null)) || _gridAccess.CanAccess((targetGrid, null), (sourceGrid, null)));
-        }
-        #endregion Starlight
 
         /// <summary>
         /// Compares the station IDs of the sending and receiving network components.

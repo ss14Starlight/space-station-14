@@ -1,5 +1,5 @@
-using Content.Client._Starlight.UserInterface; // Starlight
 using Content.Client.Shuttles.UI;
+using Content.Client._Starlight.UserInterface;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;
 using JetBrains.Annotations;
@@ -13,28 +13,26 @@ namespace Content.Client.Shuttles.BUI;
 [UsedImplicitly]
 public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
 {
-    #region Starlight
     [Dependency] private ISharedPlayerManager _playerManager = default!;
-    #endregion Starlight
 
     [ViewVariables]
     private ShuttleConsoleWindow? _window;
 
     public ShuttleConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
-        IoCManager.InjectDependencies(this); // Starlight
+        IoCManager.InjectDependencies(this);
     }
 
     protected override void Open()
     {
         base.Open();
-        _window = this.CreatePopOutableWindow<ShuttleConsoleWindow>(EntMan); // Starlight: popout support
+        _window = this.CreatePopOutableWindow<ShuttleConsoleWindow>(EntMan);
+        _window.RadarClicked += OnRadarClicked;
 
         _window.RequestFTL += OnFTLRequest;
         _window.RequestBeaconFTL += OnFTLBeaconRequest;
         _window.DockRequest += OnDockRequest;
         _window.UndockRequest += OnUndockRequest;
-        _window.RadarClicked += OnRadarClicked; // Starlight
     }
 
     private void OnUndockRequest(NetEntity entity)
@@ -78,15 +76,12 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
 
         if (disposing)
         {
-            // Starlight - start
             if (_window != null)
                 _window.RadarClicked -= OnRadarClicked;
-            // Starlight - end
-            _window?.DisposePopOut(); // Starlight: close the popout if exists
+            _window?.DisposePopOut();
         }
     }
 
-    #region Starlight
     private void OnRadarClicked(EntityCoordinates coordinates)
     {
         var local = _playerManager.LocalEntity;
@@ -95,7 +90,6 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
 
         SendMessage(new CrewMonitoringWarpRequestMessage(EntMan.GetNetCoordinates(coordinates)));
     }
-    #endregion Starlight
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {

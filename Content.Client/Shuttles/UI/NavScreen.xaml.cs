@@ -19,9 +19,7 @@ public sealed partial class NavScreen : BoxContainer
     private EntityUid? _consoleEntity; // Entity of controlling console
     private EntityUid? _shuttleEntity;
 
-    #region Starlight
-    public event Action<EntityCoordinates>? OnRadarClick;
-    #endregion Starlight
+    partial void InitializeStarlight(); // Starlight
 
     public NavScreen()
     {
@@ -35,9 +33,8 @@ public sealed partial class NavScreen : BoxContainer
         DockToggle.OnToggled += OnDockTogglePressed;
         DockToggle.Pressed = NavRadar.ShowDocks;
 
-        // Starlight - start
-        NavRadar.OnRadarClick += OnRadarClickPressed;
-        // Starlight - end
+        InitializeStarlight();  // Starlight
+
     }
 
     public void SetShuttle(EntityUid? shuttle)
@@ -62,13 +59,6 @@ public sealed partial class NavScreen : BoxContainer
         NavRadar.ShowDocks ^= true;
         args.Button.Pressed = NavRadar.ShowDocks;
     }
-
-    #region Starlight
-    private void OnRadarClickPressed(EntityCoordinates coordinates)
-    {
-        OnRadarClick?.Invoke(coordinates);
-    }
-    #endregion
 
     public void UpdateState(NavInterfaceState scc, DockingPortStates dockingPortStates) // Starlight: +dockingPortStates
     {

@@ -43,7 +43,6 @@ using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared._Starlight;
 using Content.Shared.NameModifier.EntitySystems;
-using Content.Shared._Starlight.Maps;
 
 namespace Content.Shared.Silicons.StationAi;
 
@@ -73,9 +72,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     [Dependency] private SharedTransformSystem _xforms = default!;
     [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private StationAiVisionSystem _vision = default!;
-    #region Starlight
-    [Dependency] private SharedGridAccessSystem _gridAccess = default!;
-    #endregion Starlight
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedDeviceLinkSystem _deviceLinkSystem = default!; // Starlight
@@ -194,25 +190,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         args.Accessible = true;
     }
-    #region Starlight
-    /// <summary>
-    ///     Returns whether the grid containing the AI core can access the target grid.
-    /// </summary>
-    public bool CanAccessGrid(Entity<StationAiHeldComponent?> user, EntityUid? targetGrid)
-    {
-        Resolve(user, ref user.Comp);
-
-        if (targetGrid is not { } target || !HasComp<MapGridComponent>(target))
-            return false;
-
-        if (user.Comp is null || !TryGetCore(user.Owner, out var core) || core.Comp is null)
-            return false;
-
-        var sourceGrid = Transform(core.Owner).GridUid;
-        return sourceGrid is { } source && _gridAccess.CanAccess((source, null), (target, null));
-    }
-    #endregion
-
     private void OnAiMenu(Entity<StationAiOverlayComponent> ent, ref MenuVisibilityEvent args)
     {
         args.Visibility &= ~MenuVisibility.NoFov;
