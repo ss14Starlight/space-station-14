@@ -792,6 +792,15 @@
   - ReporterHeadphonesGeneric
   - ReporterHeadphonesHighEnd
 
+- type: loadoutGroup
+  id: ReporterJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  maxLimit: 2
+  loadouts:
+  - DigiboardMassMedia
+  - HoloReporterPin
+
 # Assistant Manager
 - type: loadoutGroup
   id: AssistantManagerHead
@@ -1224,12 +1233,3 @@
   - BrigmedicRig
   - BrigmedicBelt
   - CorpsmanBelt
-
-- type: loadoutGroup
-  id: ReporterJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  maxLimit: 2
-  loadouts:
-  - DigiboardMassMedia
-  - HoloReporterPin
