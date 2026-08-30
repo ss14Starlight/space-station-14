@@ -1,5 +1,6 @@
 using Content.Shared.Intellicard;
 using Content.Shared.PAI;
+using Content.Shared.Popups;
 //ReSharper disable CheckNamespace
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
@@ -40,7 +41,10 @@ public abstract partial class SharedStationAiSystem
                 return;
 
             if (_mind.TryGetMind(pai, out _, out _))
+            {
+                _popup.PopupEntity(Loc.GetString("pai-target-occupied"), pai, args.User, PopupType.Large);
                 return;
+            }
 
             var name = _nameModifier.GetBaseName(stored);
             _mind.TransferTo(mindId, pai, ghostCheckOverride: true, mind: mind);
@@ -58,6 +62,7 @@ public abstract partial class SharedStationAiSystem
         _metadata.SetEntityName(brain, paiName);
         _metadata.SetEntityName(card, paiName);
         _mind.TransferTo(paiMindId, brain, ghostCheckOverride: true, mind: paiMind);
+        ResetNameToPrototype(pai);
         args.Handled = true;
     }
 }
