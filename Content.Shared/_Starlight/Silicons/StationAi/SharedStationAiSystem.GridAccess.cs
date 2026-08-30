@@ -1,3 +1,5 @@
+// ReSharper disable CheckNamespace
+
 using Content.Shared._Starlight.Maps;
 using Robust.Shared.Map.Components;
 
