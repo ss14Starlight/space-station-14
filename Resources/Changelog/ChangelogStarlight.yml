@@ -1,18 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Space koi are now pacified and should no longer angrily bite the windows of their fish tanks.
-    type: Tweak
-  id: 407603
-  time: '2026-08-16T13:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5631
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a single radio host near arrivals.
-    type: Add
-  id: 407604
-  time: '2026-08-16T13:41:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5635
 - author: Cvlancer
   changes:
   - message: (Oasis)  Added several radios around the station.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408002
   time: '2026-08-30T17:23:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5578
+- author: Musiklie
+  changes:
+  - message: Added a new verb for ending your text with ellipsis (...), so you no longer mumble your awkward pauses.
+    type: Add
+  id: 408003
+  time: '2026-08-30T17:49:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5747
+- author: Musiklie
+  changes:
+  - message: Increased the fontSize on mumbling by +1.
+    type: Tweak
+  id: 408004
+  time: '2026-08-30T17:49:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5747
 Order: -1
