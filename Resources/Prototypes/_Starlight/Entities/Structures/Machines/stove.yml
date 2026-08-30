@@ -77,7 +77,10 @@
     canCreateVacuum: false
     deleteAfterExplosion: false
   - type: ApcPowerReceiver
-    powerLoad: 400
+    powerLoad: 5
+  - type: PowerState
+    idlePowerDraw: 5
+    workingPowerDraw: 400
   - type: Machine
     board: StoveMachineCircuitboard
   - type: ContainerContainer

@@ -14,7 +14,7 @@ namespace Content.Server.Tabletop
         /// <param name="entityManager">Dependency that can be used for spawning entities.</param>
         public abstract void SetupTabletop(TabletopSession session, IEntityManager entityManager);
 
-        [DataField("boardPrototype", customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string BoardPrototype = default!;
+        [DataField]
+        public EntProtoId BoardPrototype = default!;
     }
 }

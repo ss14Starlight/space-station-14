@@ -86,3 +86,7 @@ construction-recipe-counter-retro-steel-wood = retro counter steel wood
 construction-recipe-counter-retro-white-orange = retro counter white orange
 construction-recipe-counter-retro-white-teal = retro counter white teal
 construction-recipe-counter-retro-diner = retro counter diner
+
+## Froggy Chair
+construction-recipe-froggy-chair = froggy chair
+construction-recipe-lovey-chair = lovey chair

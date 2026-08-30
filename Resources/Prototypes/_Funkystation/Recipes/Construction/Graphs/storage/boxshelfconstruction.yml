@@ -1,0 +1,32 @@
+- type: constructionGraph
+  id: BoxShelf
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DestroyEntity {}
+    edges:
+    - to: boxshelf
+      completed:
+      - !type:SnapToGrid { }
+      steps:
+      - material: Steel
+        amount: 5
+        doAfter: 10
+      - material: MetalRod
+        amount: 4
+        doAfter: 5
+  - node: boxshelf
+    entity: BoxShelf
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 5
+      - !type:SpawnPrototype
+        prototype: PartRodMetal
+        amount: 4
+      steps:
+      - tool: Screwing
+        doAfter: 10

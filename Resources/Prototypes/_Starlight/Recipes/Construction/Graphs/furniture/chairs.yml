@@ -55,6 +55,16 @@
             - material: FloorCarpetRed
               amount: 1
               doAfter: 1
+        - to: chairFroggy
+          steps:
+            - material: Plastic
+              amount: 2
+              doAfter: 2
+        - to: chairLovey
+          steps:
+            - material: Plastic
+              amount: 2
+              doAfter: 2
 
 
     - node: chairOfficeSleek
@@ -161,3 +171,27 @@
           steps:
             - tool: Screwing
               doAfter: 4
+
+    - node: chairFroggy
+      entity: ChairFroggy
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: chairLovey
+      entity: ChairLovey
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
