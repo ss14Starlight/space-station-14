@@ -320,7 +320,7 @@ namespace Content.Shared.Atmos
         ///     Funky Atmos - /tg/ gases
         ///     The amount of energy 1 mol of Nitrium forming from Tritium, Nitrogen and BZ releases.
         /// </summary>
-        public const float NitriumProductionEnergy = -50e3f; /// Starlight: -100e2f -> -50e2f energy value of usual burnt fuels decreased, this is for keeping desirable energy consuming products in balance.
+        public const float NitriumProductionEnergy = -100e3f;
 
         /// <summary>
         ///     Funky Atmos - /tg/ gases
@@ -360,7 +360,7 @@ namespace Content.Shared.Atmos
         /// Funky Atmos - /tg/ gases
         /// The amount of energy half a mole of zauker forming from hypernoblium and nitrium consumes.
         /// </summary>
-        public const float ZaukerProductionEnergy = 2500f; /// Starlight: 5000f -> 2500f energy value of usual burnt fuels decreased, this is for keeping desirable energy consuming products in balance.
+        public const float ZaukerProductionEnergy = 5000f;
 
         /// <summary>
         /// Funky Atmos - /tg/ gases
