@@ -109,7 +109,8 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
         // prevent malf client violating wanted/reason nullability
         if (msg.Status == SecurityStatus.Wanted != (msg.Reason != null) &&
             msg.Status == SecurityStatus.Suspected != (msg.Reason != null) &&
-            msg.Status == SecurityStatus.Hostile != (msg.Reason != null))
+            msg.Status == SecurityStatus.Hostile != (msg.Reason != null) &&
+            msg.Status == SecurityStatus.Arrestonsight != (msg.Reason != null))
             return;
 
         if (!CheckSelected(ent, msg.Actor, out var mob, out var key))
@@ -184,6 +185,7 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             (_, SecurityStatus.Discharged) => "released",
             // going from any other state to wanted, AOS or prisonbreak / lazy secoff never set them to released and they reoffended
             (_, SecurityStatus.Wanted) => "wanted",
+            (_, SecurityStatus.Arrestonsight) => "aos",
             (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile",
             (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated",
             // person is no longer sus
