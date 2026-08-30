@@ -250,11 +250,6 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         //starlight end
 
         return new HumanoidCharacterAppearance(newHairStyle, newHairColor, false, newFacialHairStyle, newHairColor, false, newEyeColor, false, newSkinColor, new (), newWidth, newHeight); //starlight, glowing
-
-        float RandomizeColor(float channel)
-        {
-            return MathHelper.Clamp01(channel + random.Next(-25, 25) / 100f);
-        }
     }
 
     public static Color ClampColor(Color color)
