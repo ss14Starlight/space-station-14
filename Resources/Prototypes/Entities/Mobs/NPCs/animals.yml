@@ -1266,7 +1266,7 @@
 
 - type: entity
   name: gorilla
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat, BaseSlicingRefinable ] # Starlight
   id: MobGorilla
   description: Smashes, roars, looks cool. Don't stand near one.
   components:
@@ -1307,17 +1307,45 @@
         Quantity: 300
     # if you fuck with the gorilla he will harambe you
   - type: MeleeWeapon
+    altDisarm: false # Starlight
+    angle: 0 # Starlight
     soundHit:
       collection: Punch
     damage:
       types:
-        Blunt: 20
+        Blunt: 18 # Starlight
+        Structural: 20 # Starlight
     animation: WeaponArcFist
+  # Starlight start, combat gorilla
+  - type: AmputateOnHit
+    chance: 0.1
+    parts:
+    - RightArmHuman
+    - LeftArmHuman
+    - RightHandHuman
+    - LeftHandHuman
+    - RightLegHuman
+    - LeftLegHuman
+    - RightFootHuman
+    - LeftFootHuman
+  - type: StaminaDamageOnHit
+    damage: 20
+  - type: MeleeThrowOnHit
+    speed: 20
+    distance: 5
+  # Starlight end
   - type: NPCRetaliation
   - type: FactionException
+  # Starlight start, languages
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+  # Starlight end
   - type: NpcFactionMember
     factions:
-    - Passive
+    - Gorilla # Starlight
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -1330,6 +1358,23 @@
         true
       NavSmash: !type:Bool
         true
+  # Starlight start, speed stuff and statuses
+  - type: Hands
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2
+  - type: NoSlip
+  - type: StatusEffects
+    allowed:
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+    - Flashed
+    - RadiationProtection
+    - Adrenaline
+  # Starlight end
   - type: Puller
     needsHands: false
   - type: Prying
@@ -1338,11 +1383,39 @@
     speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg # Starlight
+    playSoundOnDoafter: true # Starlight
+  - type: IgnoreSlowOnDamage # Starlight
   - type: MobThresholds
     thresholds:
       0: Alive
       200: Critical
       250: Dead
+  # Starlight start
+  - type: MeleeSpeech
+    Battlecry: Gorilla punch!
+  - type: UserInterface
+    interfaces:
+      enum.MeleeSpeechUiKey.Key:
+        type: MeleeSpeechBoundUserInterface
+  - type: Speech
+    speechVerb: Monkey
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Gorilla
+  - type: InteractionPopup
+    successChance: 0
+    interactFailureString: petting-failure-generic
+    interactFailureSound:
+      path: /Audio/_Starlight/Voice/gorilla.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - SlowImmune
+    - StunImmune
+    - KnockdownImmune
+    - CannotSuicide
+  # Starlight end
 
 - type: entity
   name: kangaroo
