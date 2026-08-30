@@ -9,13 +9,13 @@ using NUnit.Framework;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Localization;
 
-namespace Content.IntegrationTests.Tests._Starlight.Kitchen;
+namespace Content.IntegrationTests.Tests._Starlight.Kitchen.Slicing;
 
 /// <summary>
 /// Integration tests for predicted slicing/refining verb interactions.
 /// </summary>
 [TestFixture]
-public sealed class ButcherVerbTest : InteractionTest
+public sealed class SlicingVerbTest : InteractionTest
 {
     private async Task<NetEntity> SpawnDeadPig()
     {

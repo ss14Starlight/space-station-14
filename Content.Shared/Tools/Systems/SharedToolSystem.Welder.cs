@@ -46,6 +46,7 @@ public abstract partial class SharedToolSystem
             return;
 
         SolutionContainerSystem.RemoveReagent(solutionComp.Value, entity.Comp.FuelReagent, entity.Comp.FuelLitCost);
+        entity.Comp.NextUpdate = _timing.CurTime + entity.Comp.WelderUpdateTimer; // Starlight, hmm, maybe don't consume infinite fuel a second
         AdminLogger.Add(LogType.InteractActivate, LogImpact.Low,
             $"{ToPrettyString(user):user} toggled {ToPrettyString(entity.Owner):welder} on");
 
@@ -243,7 +244,7 @@ public abstract partial class SharedToolSystem
             if (curTime < welder.NextUpdate)
                 continue;
 
-            welder.NextUpdate += welder.WelderUpdateTimer;
+            welder.NextUpdate = curTime + welder.WelderUpdateTimer; // Starlight, don't consume infinite fuel dude
             Dirty(uid, welder);
 
             if (!welder.Enabled)
