@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Added PACMAN and SUPER PACMAN to Engineering, along with fuel for both of them in a crate.
-    type: Add
-  id: 407615
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added light switches in Bridge that enable some extra lighting, if the moody lighting isn't your thing.
-    type: Add
-  id: 407616
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
   - message: (Novo Lobster) Added light switches in AI Core that enable some extra lighting, if the moody lighting isn't your thing.
     type: Add
   id: 407617
@@ -2799,4 +2785,18 @@ Entries:
   id: 408014
   time: '2026-08-30T18:59:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5753
+- author: Floximo
+  changes:
+  - message: Intellicards can now target pAI and transfer in both directions.
+    type: Add
+  id: 408015
+  time: '2026-08-30T19:50:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5867
+- author: Floximo
+  changes:
+  - message: AI Interfaces or borgs with AI Interfaces can no longer be target/source of intellicard transfers.
+    type: Fix
+  id: 408016
+  time: '2026-08-30T19:50:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5867
 Order: -1
