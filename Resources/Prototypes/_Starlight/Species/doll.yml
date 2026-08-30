@@ -91,7 +91,7 @@
   id: MobDollHead
   baseSprite:
     sprite: _Starlight/Mobs/Species/Doll/parts.rsi
-    state: head_f
+    state: head
 
 - type: humanoidBaseSprite
   id: MobDollHeadMale

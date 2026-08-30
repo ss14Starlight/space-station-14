@@ -117,7 +117,7 @@
     proto: OxygenBreatherHaemovore
   storage:
     back:
-    - BoxSurvivalClownBlood
+    - BoxHugBlood
 
 - type: loadout
   id: EmergencyElfOxygenMime
@@ -145,7 +145,7 @@
     proto: OxygenBreatherHaemovore
   storage:
     back:
-    - BoxSurvivalMimeBlood
+    - BoxHugBlood
 
 - type: loadout
   id: EmergencyNonBreatherMime

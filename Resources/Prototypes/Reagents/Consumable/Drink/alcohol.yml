@@ -928,7 +928,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   metabolisms: # SL Dolls
-    Drink:
+    Digestion:
       effects:
       #Starlight Start
       - !type:HealthChange
