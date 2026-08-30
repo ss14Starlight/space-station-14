@@ -1,88 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Kiloton - Windows around Clinic can no longer be spaced as they are not space-facing, added a Crew Monitoring Console to Security.
-    type: Tweak
-  id: 407553
-  time: '2026-08-12T21:04:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5610
-- author: Conflee
-  changes:
-  - message: Space Mall - Added Radio Host, Station Radios, Department Lathes, and Magazine/Newspaper Spawners.
-    type: Add
-  id: 407554
-  time: '2026-08-12T21:04:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5610
-- author: Conflee
-  changes:
-  - message: Space Mall - Added a small gas canister storage room to Atmos to give them more to work with round start, fixed mismatched Sentry Turrets and Sentry Turret Control Pad's by AI Core.
-    type: Tweak
-  id: 407555
-  time: '2026-08-12T21:04:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5610
-- author: Forrestgod
-  changes:
-  - message: (Serpentcrest) Radio Host room as well as Station Radios.
-    type: Add
-  id: 407556
-  time: '2026-08-12T21:33:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5567
-- author: Forrestgod
-  changes:
-  - message: (Serpentcrest) Departmental Lathes are now present inside each department.
-    type: Add
-  id: 407557
-  time: '2026-08-12T21:33:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5567
-- author: Forrestgod
-  changes:
-  - message: (Serpentcrest) Added Journalisim access doors to reporters office.
-    type: Tweak
-  id: 407558
-  time: '2026-08-12T21:33:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5567
-- author: Mack
-  changes:
-  - message: You can now deconstruct bar windows.
-    type: Fix
-  id: 407559
-  time: '2026-08-13T14:07:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5647
-- author: SirLutz
-  changes:
-  - message: Supermatter guidebook entry.
-    type: Add
-  id: 407560
-  time: '2026-08-13T14:28:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5429
-- author: SirLutz
-  changes:
-  - message: Supermatter guidebook hints for valid setups.
-    type: Add
-  id: 407561
-  time: '2026-08-13T14:28:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5429
-- author: Conflee
-  changes:
-  - message: Resprited the defib cabinet.
-    type: Tweak
-  id: 407562
-  time: '2026-08-14T07:17:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5640
-- author: Rinary
-  changes:
-  - message: Added.... First ever working implementation Steam authorization in SS14.
-    type: Add
-  id: 407563
-  time: '2026-08-15T17:41:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5671
-- author: Wizden Team
-  changes:
-  - message: Added icon indicating if the gloves are insulated or not.
-    type: Add
-  id: 407564
-  time: '2026-08-16T03:05:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5664
 - author: Wizden Team
   changes:
   - message: Now the Medibot has a DoAfter bar, displaying injection progress.
@@ -2799,4 +2715,88 @@ Entries:
   id: 407952
   time: '2026-08-29T08:15:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5848
+- author: SirLutz
+  changes:
+  - message: Damage and Armor calulation take % reduction as armor, expect ingame changes.
+    type: Add
+  id: 407953
+  time: '2026-08-29T16:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5677
+- author: SirLutz
+  changes:
+  - message: Hollow Point ammunition no longer shreds heavily armored mechs, for example, Mauler damage per shot is now SP 7,64 ->  6,43; HP 12,65 -> 0; AP  5,39 -> 9,95; FMJ  5,39 -> 7,05.
+    type: Tweak
+  id: 407954
+  time: '2026-08-29T16:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5677
+- author: SirLutz
+  changes:
+  - message: Dragons and Carp now have a small flat damage reduction to compensate for the new damage calculations.
+    type: Tweak
+  id: 407955
+  time: '2026-08-29T16:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5677
+- author: SirLutz
+  changes:
+  - message: Silicon now has two damage modifier sets, CivilianSilicon for standard civilian cyborgs, ArmoredSilicon for armored cyborgs.
+    type: Add
+  id: 407956
+  time: '2026-08-29T16:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5677
+- author: SirLutz
+  changes:
+  - message: Silicon health thresholds have been reduced to compensate for the new damage calculations, Critical 100 -> 75, Dead 300 -> 225.
+    type: Tweak
+  id: 407957
+  time: '2026-08-29T16:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5677
+- author: SirLutz
+  changes:
+  - message: Xenoborg health thresholds have been reduced to compensate for the new damage calculations, Critical 125 -> 100, Dead 375 -> 300.
+    type: Tweak
+  id: 407958
+  time: '2026-08-29T16:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5677
+- author: SirLutz
+  changes:
+  - message: CivilianSilicon applies to common borgs & borgis, damagechange as follows Cyborg with CivilianSilicon SP 17 -> 10,27; HP 23 -> 6,89; AP 12 -> 10,69; FMJ 12 -> 8,84.
+    type: Tweak
+  id: 407959
+  time: '2026-08-29T16:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5677
+- author: SirLutz
+  changes:
+  - message: ArmoredSilicon applies to Syndicate and Xenoborgs, damagechange as follows Cyborg with CivilianSilicon SP 17 -> 7,39; HP 23 -> 0; AP 12 -> 10,14; FMJ 12 -> 7,5.
+    type: Tweak
+  id: 407960
+  time: '2026-08-29T16:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5677
+- author: SirLutz
+  changes:
+  - message: Added the AlwaysSparks yml option, allowing entities to spark when hit.
+    type: Add
+  id: 407961
+  time: '2026-08-29T16:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5677
+- author: SirLutz
+  changes:
+  - message: Spark effects have been adjusted to trigger for mechs, cyborgs, and entities with high armor.
+    type: Tweak
+  id: 407962
+  time: '2026-08-29T16:38:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5677
+- author: SevenShades
+  changes:
+  - message: Updated MedTak silicon to use armour.
+    type: Tweak
+  id: 407963
+  time: '2026-08-29T21:52:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5869
+- author: xsainteer
+  changes:
+  - message: Fixed Chameleon projector not working and causing a softcrash.
+    type: Fix
+  id: 407964
+  time: '2026-08-30T01:45:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5858
 Order: -1

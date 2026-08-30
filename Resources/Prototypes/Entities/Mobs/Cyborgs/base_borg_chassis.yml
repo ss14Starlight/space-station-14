@@ -46,14 +46,18 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      300: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
+#region Starlight
+      75: Critical
+      225: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
       Dead: BorgDead
     showOverlays: false
     allowRevives: true
+  - type: ArmorSparkEffect
+    alwaysSparks: true
+#endregion
   - type: HealthExaminable
     examinableTypes:
       - Blunt
@@ -178,11 +182,13 @@
   - type: LockedWiresPanel
   - type: Damageable
     damageContainer: Silicon
+#region Starlight
+    damageModifierSet: CivilianSilicon
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 50
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -191,7 +197,8 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 225
+#endregion
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -368,6 +375,10 @@
   parent: BaseBorgChassisNotIonStormable
   abstract: true
   components:
+#region Starlight
+  - type: Damageable
+    damageModifierSet: ArmoredSilicon
+#endregion
   - type: TextToSpeech
   - type: NpcFactionMember
     factions:
@@ -479,11 +490,15 @@
     group: Xenoborg
   - type: Sprite
     sprite: Mobs/Silicon/Chassis/generic.rsi
+#region Starlight
+  - type: Damageable
+    damageModifierSet: ArmoredSilicon
   - type: MobThresholds
     thresholds: # slightly tankier than a normal borg
       0: Alive
-      125: Critical
-      375: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
+      100: Critical
+      300: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
+#endregion
   - type: EmagSiliconLaw # should xenoborgs be emagable?
     stunTime: 5
   - type: SiliconLawProvider
@@ -536,9 +551,10 @@
     - Xenoborg
   - type: Destructible
     thresholds:
+#region Starlight
     - trigger:
         !type:DamageTrigger
-        damage: 90
+        damage: 65
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -547,7 +563,8 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 375
+        damage: 300
+#endregion
       behaviors:
       - !type:PlaySoundBehavior
         sound:
