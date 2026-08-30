@@ -389,10 +389,14 @@
       map: ["enum.AmmoVisualLayers.Base"]
     - state: plain
       map: ["enum.AmmoVisualLayers.Tip"]
+    - state: base
+      map: ["enum.AmmoVisualLayers.Spent"]
+      visible: false
   - type: Appearance
   - type: SpentAmmoVisuals
     state: base
     suffix: false
+    revealSpent: true
   - type: Tag
     tags:
     - ChonoLoke

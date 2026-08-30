@@ -6,6 +6,7 @@ namespace Content.Server.Nutrition.EntitySystems;
 
 public sealed partial class CreamPieSystem
 {
+    #region Starlight
     [Dependency] private SharedStunSystem _stunSystem = default!;
 
     private partial void OnProjectilePieHit(Entity<CreamPieComponent> entity, ref ProjectileHitEvent args)
@@ -18,4 +19,5 @@ public sealed partial class CreamPieSystem
 
         SplatCreamPie(entity);
     }
+    #endregion
 }

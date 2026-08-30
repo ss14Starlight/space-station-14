@@ -6,7 +6,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
-using Content.Shared.Projectiles; // Starlight: needed for CreamPie projectile hit behaviour (BulletChonoLokePie)
+using Content.Shared.Projectiles;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Throwing;
 using Content.Shared.Trigger.Components;
