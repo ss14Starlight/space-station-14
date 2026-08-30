@@ -1,92 +1,3 @@
-- type: jukebox
-  id: cueball
-  name: Christofori - Cue Ball
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/cue_ball_by_christofori.ogg
-
-- type: jukebox
-  id: drunkreflections
-  name: JAM - Drunk Reflections
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/drunk_reflections_by_JAM.ogg
-
-- type: jukebox
-  id: jazzical
-  name: Christofori - Jazzical Interpolation
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/jazzical_interpolation_by_christofori.ogg
-
-- type: jukebox
-  id: shadesoffutility
-  name: Christofori - Shades of Futility
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/shades_of_futility_by_christofori.ogg
-
-- type: jukebox
-  id: drunkenmonkey
-  name: Cristofori - The Drunken Monkey
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/the_drunken_monkey_by_christofori.ogg
-
-- type: jukebox
-  id: midnightcry
-  name: Christofori - The Midnight Cry
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/the_midnight_cry_by_christofori.ogg
-
-- type: jukebox # Start - Lobby Music added to jukebox
-  id: thestation
-  name: A-Guy173 - The Station
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/thestation.ogg
-
-- type: jukebox
-  id: thunderdome
-  name: MashedByMachines - Thunderdome
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/thunderdome.ogg
-
-- type: jukebox
-  id: spaceasshole
-  name: Chris_Remo - Space Asshole
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/space_asshole.ogg
-
-- type: jukebox
-  id: endlessspace
-  name: SolusLunes - Endless Space
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/endless_space.ogg
-
-- type: jukebox
-  id: singuloose
-  name: Schiedková - Singuloose
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/singuloose.ogg
-
-- type: jukebox
-  id: comethaley
-  name: Stellardrone - Comet Haley
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/comet_haley.ogg
-
-- type: jukebox
-  id: spacstac
-  name: Hayabusa - Spac Stac
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/Spac_Stac.ogg
-
-- type: jukebox
-  id: pwmur
-  name: Sunbeamstress - PWMUR
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/pwmur.ogg
-
-- type: jukebox
-  id: lasersripapartthebulkhead
-  name: Sunbeamstress - Lasers Rip Apart the Bulkhead
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/lasers_rip_apart_the_bulkhead.ogg
 
 - type: jukebox
   id: everylightisblinkingatonce
@@ -106,56 +17,154 @@
   path:
     path: /Audio/_Starlight/Music/Jukebox/skubstep.ogg
 
-- type: jukebox
-  id: timefracture
-  name: Bad_History - Timefracture
-  path:
-    path: /Audio/_Starlight/Music/Jukebox/timefracture.ogg
+# baby shower additions
 
 - type: jukebox
-  id: hullrupture
-  name: Haplogynae - Hull Rupture
+  id: rockthebeatii
+  name: LMFAO - Rock the Beat II
   path:
-    path: /Audio/_Starlight/Music/Jukebox/hull_rupture.ogg
+    path: /Audio/_Starlight/Music/Jukebox/RocktheBeatII.ogg 
 
 - type: jukebox
-  id: echosinthedeep
-  name: Nightyshade - Echos in the Deep
+  id: sorryforpartyrocking
+  name: LMFAO - Sorry For Party Rocking
   path:
-    path: /Audio/_Starlight/Music/Jukebox/echoes-in-the-deep.ogg
+    path: /Audio/_Starlight/Music/Jukebox/SorryforPartyRocking.ogg 
 
 - type: jukebox
-  id: 762treastise
-  name: Haplogynae - 762 Treastise
+  id: partyrockanthem
+  name: LMFAO - Party Rock Anthem
   path:
-    path: /Audio/_Starlight/Music/Jukebox/762_treastise.ogg
+    path: /Audio/_Starlight/Music/Jukebox/PartyRockAnthem.ogg 
 
 - type: jukebox
-  id: aggravatedassaultbymelcom
-  name: Melcom - Aggravated Assault
+  id: sexyandiknowit
+  name: LMFAO - Sexy and I Know It
   path:
-    path: /Audio/_Starlight/Music/Jukebox/aggravated_assault_by_melcom_.ogg
+    path: /Audio/_Starlight/Music/Jukebox/SexyAndIKnowIt.ogg
 
 - type: jukebox
-  id: bluespace
-  name: Beptol Corporation Acoustics - Bluespace
+  id: champagneshowers
+  name: LMFAO - Champagne Showers
   path:
-    path: /Audio/_Starlight/Music/Jukebox/Bluespace.ogg
+    path: /Audio/_Starlight/Music/Jukebox/ChampagneShowers.ogg
 
 - type: jukebox
-  id: redefininglines
-  name: Beptol Corporation Acoustics - Redefining Lines
+  id: oneday
+  name: LMFAO - One Day
   path:
-    path: /Audio/_Starlight/Music/Jukebox/RedefiningLines.ogg
+    path: /Audio/_Starlight/Music/Jukebox/OneDay.ogg
 
 - type: jukebox
-  id: homeburnchamber
-  name: Randy Goffe - HOME Burn Chamber
+  id: takeittothehole
+  name: LMFAO - Take It To The Hole
   path:
-    path: /Audio/_Starlight/Music/Jukebox/HOME_Burn_Chamber_Starlight.ogg
+    path: /Audio/_Starlight/Music/Jukebox/TakeItToTheHole.ogg
 
 - type: jukebox
-  id: stenchofwhiskey
-  name: Hermitsabee - Stench of Whiskey
+  id: bestnight
+  name: LMFAO - Best Night
   path:
-    path: /Audio/_Starlight/Music/Jukebox/stenchOfWhiskey.ogg # End - Lobby music added to jukebox
+    path: /Audio/_Starlight/Music/Jukebox/BestNight.ogg
+
+- type: jukebox
+  id: allnightlong
+  name: LMFAO - All Night Long
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/AllNightLong.ogg
+
+- type: jukebox
+  id: withyou
+  name: LMFAO - With You
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/WithYou.ogg
+
+- type: jukebox
+  id: spaceasshole
+  name: Chris_Remo - Space Asshole
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/space_asshole.ogg
+
+- type: jukebox
+  id: pink
+  name: Toby Fox - Pink
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/pink.ogg
+
+- type: jukebox
+  id: quietglade
+  name: Toby Fox - Quiet Glade
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/piano_ambience.ogg
+
+- type: jukebox
+  id: hometown
+  name: Toby Fox - A Town Called Hometown
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/town.ogg
+
+- type: jukebox
+  id: festival_after
+  name: Toby Fox - I Guess I'm in Love
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/festival_after.ogg
+
+- type: jukebox
+  id: scarletforest29
+  name: Toby Fox and Trevor Alan Gomes - Scarlet Forest
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/scarletforest29slower.ogg
+
+- type: jukebox
+  id: inukuma
+  name: Toby Fox - CHPT. 5 Dogcheck
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/inukuma_wip.ogg
+
+- type: jukebox
+  id: beastattack
+  name: SXCREDMANE - Attack Of The Killer Beast (Phonk Remix)
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/beastattack.ogg
+
+- type: jukebox
+  id: dreamscape
+  name: 009 Sound System - Dreamscape
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/dreamscape.ogg
+
+- type: jukebox
+  id: thederpsong
+  name: Derp Brothers - The Derp Song
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/thederpsong.ogg
+
+- type: jukebox
+  id: rainingtacos
+  name: Parry Gripp - It's Raining Tacos
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/rainingtacos.ogg
+
+- type: jukebox
+  id: hello
+  name: OMFG - Hello
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/hello.ogg
+
+- type: jukebox
+  id: funkytownalvin
+  name: Alvin and the Chipmunks - Funkytown
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/funkytownalvin.ogg
+
+- type: jukebox
+  id: pfudor
+  name: Andrew Huang - PFUDOR
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/pfudor.ogg
+
+- type: jukebox
+  id: dumdadumdoidoi
+  name: Terry Scott Taylor - Dum Da Dum Doi Doi
+  path:
+    path: /Audio/_Starlight/Music/Jukebox/dumdadumdoidoi.ogg

@@ -1363,11 +1363,11 @@
 - type: entity
   parent: BasePDA
   id: ZookeeperPDA
-  name: zookeeper PDA
-  description: Made with genuine synthetic leather. Crikey!
+  name: cyborg PDA
+  description: The latest, top-of-the-line Apple device. Show it off to all your plebian friends.
   components:
   - type: Pda
-    id: ZookeeperIDCard
+    id: AssistantIDCard
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:

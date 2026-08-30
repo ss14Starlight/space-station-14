@@ -128,8 +128,9 @@
   showInVote: true # 🌟Starlight🌟
   description: greenshift-description
   rules:
-  - SpaceTrafficControlFriendlyEventScheduler # Starlight
-  - BasicRoundstartVariation
+  #- SpaceTrafficControlFriendlyEventScheduler # Starlight
+  #- BasicRoundstartVariation
+  - RailroadingMinor
 
 - type: gamePreset
   id: Dynamic

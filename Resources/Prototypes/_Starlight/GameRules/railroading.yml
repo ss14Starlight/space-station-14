@@ -81,12 +81,12 @@
     cards:
     # antagonists
 
-    - RRCardCriminal
-    - RRCardWar
+    #- RRCardCriminal
+    #- RRCardWar
 
     # open mail
 
-    - RRCardMailOpen
+    #- RRCardMailOpen
 
     # Metabolize: Food
 
@@ -99,7 +99,7 @@
 
     # Metabolize: Smokeables
 
-    - RRCardMetabolizeNicotine
+    #- RRCardMetabolizeNicotine
 
     # Metabolize: Alcohol Drinks
 

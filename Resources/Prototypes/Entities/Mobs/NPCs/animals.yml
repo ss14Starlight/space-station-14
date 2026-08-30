@@ -2183,7 +2183,7 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
-      path: /Audio/Animals/lizard_happy.ogg
+      path: /Audio/showervoicelines/thelizard_voicelines.ogg
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:

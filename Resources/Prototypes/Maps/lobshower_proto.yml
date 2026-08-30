@@ -19,4 +19,4 @@
           availableJobs:
             #service
             Assistant: [ -1, -1 ]
-            Bartender: [ 3, 3 ]
+            Borg: [ 1, 1 ]
