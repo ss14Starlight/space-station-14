@@ -42,7 +42,7 @@ public abstract partial class SharedStationAiSystem
 
             if (_mind.TryGetMind(pai, out _, out _))
             {
-                _popup.PopupEntity(Loc.GetString("pai-target-occupied"), pai, args.User, PopupType.Large);
+                _popup.PopupEntity(Loc.GetString("intellicard-core-occupied"), pai, args.User, PopupType.Large);
                 return;
             }
 
