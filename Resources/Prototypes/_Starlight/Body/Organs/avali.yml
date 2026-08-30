@@ -15,18 +15,37 @@
       - AvianFood
       - IceCream
       - Birthday
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganAvaliStomachFood
+    - SolutionOrganAvaliStomachStomach
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     state: stomach
+
+
+- type: entity
+  parent: SolutionOrganAnimalStomachStomach
+  id: SolutionOrganAvaliStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 50
+
+- type: entity
+  parent: SolutionOrganAnimalStomachFood
+  id: SolutionOrganAvaliStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
 
 - type: entity
   id: OrganAvaliHeart

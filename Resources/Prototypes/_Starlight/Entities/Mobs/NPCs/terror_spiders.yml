@@ -99,10 +99,10 @@
     damage:
       types:
         Piercing: 18
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        maxVol: 30
+  - type: Solution
+    id: melee
+    solution:
+      maxVol: 30
   - type: SolutionRegeneration
     solution: melee
     generated:

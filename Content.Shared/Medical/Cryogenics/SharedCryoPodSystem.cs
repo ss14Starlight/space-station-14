@@ -77,7 +77,7 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         _bloodstreamQuery = GetEntityQuery<BloodstreamComponent>();
         _itemSlotsQuery = GetEntityQuery<ItemSlotsComponent>();
         _dispenserQuery = GetEntityQuery<FitsInDispenserComponent>();
-        _solutionContainerQuery = GetEntityQuery<SolutionContainerManagerComponent>();
+        //_solutionContainerQuery = GetEntityQuery<SolutionContainerManagerComponent>(); // Starlight - solution access now goes through SharedSolutionContainerSystem.
 
         InitializeInsideCryoPod();
 

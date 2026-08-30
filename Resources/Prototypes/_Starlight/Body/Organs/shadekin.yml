@@ -75,15 +75,34 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
     state: stomach
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 40
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionBaseHumanOrganOrgan
+    - SolutionOrganShadekinStomachFood
+    - SolutionOrganShadekinStomachStomach
+
+- type: entity
+  parent: SolutionOrganHumanStomachStomach
+  id: SolutionOrganShadekinStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 40
+
+- type: entity
+  parent: SolutionOrganHumanStomachFood
+  id: SolutionOrganShadekinStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
 
 - type: entity
   id: OrganShadekinLiver

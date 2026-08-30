@@ -17,17 +17,10 @@
     tags:
       - Meat
   - type: OrganBrain
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: GreyMatter
-          Quantity: 20
+    - SolutionBaseOrganBrainOrgan
+    - SolutionBaseOrganBrainFood
   - type: FlavorProfile
     flavors:
       - people
@@ -36,6 +29,32 @@
       Burger: Brain
       Taco: Brain
   - type: ActiveInputMover # Starlight
+
+
+- type: entity
+  parent: Solution
+  id: SolutionBaseOrganBrainOrgan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+
+- type: entity
+  parent: Solution
+  id: SolutionBaseOrganBrainFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: GreyMatter
+        Quantity: 20
 
 - type: entity
   id: BaseOrganEyes

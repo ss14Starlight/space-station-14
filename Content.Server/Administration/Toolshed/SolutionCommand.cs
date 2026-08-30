@@ -110,10 +110,9 @@ public sealed class SolutionCommand : ToolshedCommand
     public SolutionRef? Create([PipedArgument] EntityUid uid, string name)
     {
         _solutionContainer ??= GetSys<SharedSolutionContainerSystem>();
-        var sMgr = EnsureComp<SolutionContainerManagerComponent>(uid);
-        if(_solutionContainer.EnsureSolutionEntity((uid, sMgr), name, out var ent))
-            return new SolutionRef(ent.Value);
-        return null;
+        var sMgr = EnsureComp<SolutionManagerComponent>(uid); // Starlight
+        _solutionContainer.EnsureSolution((uid, sMgr), name, out var ent); // Starlight
+        return new SolutionRef(ent); // Starlight
     }
 
     [CommandImplementation("delete")]

@@ -5,6 +5,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
@@ -16,6 +17,7 @@ public sealed partial class RehydratableSystem : EntitySystem
     [Dependency] private SharedSolutionContainerSystem _solutions = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

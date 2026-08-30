@@ -6,13 +6,13 @@
   name: gravy boat  # short and stout
   description: A gravy boat. It simply oozes... gravy.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 50
-        reagents:
-        - ReagentId: Gravy
-          Quantity: 50
+  - type: Solution
+    id: drink
+    solution:
+      maxVol: 50
+      reagents:
+      - ReagentId: Gravy
+        Quantity: 50
   - type: Sprite
     sprite: _Starlight/Objects/Consumable/Drinks/gravyboat.rsi
   - type: FitsInDispenser

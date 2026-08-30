@@ -63,7 +63,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 300
+        Quantity: 600
   - type: Damageable
     damageContainer: Hybrid
     damageModifierSet: NeoArachnid

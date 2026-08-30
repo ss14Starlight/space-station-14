@@ -81,14 +81,10 @@
         reagents:
           - ReagentId: Water
             Quantity: 10
-    - type: SolutionContainerManager
+    - type: SolutionManager
       solutions:
-        absorbed:
-          maxVol: 50
-        food:
-          reagents:
-            - ReagentId: Slime
-              Quantity: 5
+      - SolutionMobXenomoproachAbsorbed
+      - SolutionMobXenomoproachFood
     - type: DrainableSolution
       solution: drainBuffer
     - type: SolutionPurge
@@ -442,6 +438,29 @@
     - type: ComplexInteraction
     - type: Buckle
     - type: Xenoborg
+
+
+- type: entity
+  parent: Solution
+  id: SolutionMobXenomoproachAbsorbed
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: absorbed
+    solution:
+        maxVol: 50
+
+- type: entity
+  parent: Solution
+  id: SolutionMobXenomoproachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+        reagents:
+          - ReagentId: Slime
+            Quantity: 5
 
 - type: entity
   parent: MobXenomoproach

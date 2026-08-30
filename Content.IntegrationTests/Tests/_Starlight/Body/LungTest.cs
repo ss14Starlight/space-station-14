@@ -24,7 +24,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
   name: HumanLungDummy
   id: HumanLungDummy
   components:
-  - type: SolutionContainerManager
+  - type: SolutionManager
   - type: Body
     prototype: Human
   - type: MobState

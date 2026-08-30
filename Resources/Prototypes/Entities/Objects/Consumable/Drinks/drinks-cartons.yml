@@ -19,10 +19,8 @@
   suffix: Full
   components:
   - type: Tag
-    tags: []
-  - type: Tag
-    tags:
-    - DrinkCarton #Starlight
+    tags: # Starlight
+    - DrinkCarton # Starlight
 
 - type: entity
   abstract: true
@@ -269,6 +267,22 @@
     tags:
     - DrinkCarton
     - MilkCarton
+
+- type: entity
+  parent: DrinkCartonOatMilk
+  id: DrinkOatMilkCarton
+  suffix: Full
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: MilkOat
+        Quantity: 120
+  - type: Tag # Starlight
+    tags:
+    - DrinkCarton
+    - MilkCarton
+
 
 # Xtra large
 

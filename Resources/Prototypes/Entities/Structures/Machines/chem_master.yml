@@ -103,8 +103,22 @@
           tags:
           - Bottle
           - PillCanister
+          # Starlight start - patch output and pAI slot
+          - PatchPack
+      pai_slot:
+        name: Personal AI Device
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - PAI
+          # Starlight end
   - type: Solution # Chemmaster is special in how it interacts with reagents. For now.
     id: buffer
+    # Starlight start - bounded plumbing-compatible buffer
+    solution:
+      maxVol: 10000
+      canReact: false
+    # Starlight end
   - type: DumpableSolution
     solution: buffer
     # unlimited: true # Starlight-edit: no longer unlimited

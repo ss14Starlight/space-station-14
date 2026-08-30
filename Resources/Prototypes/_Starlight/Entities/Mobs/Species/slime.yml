@@ -100,7 +100,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Slime
-        Quantity: 300
+        Quantity: 600
   - type: Barotrauma
     damage:
       types:

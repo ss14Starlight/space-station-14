@@ -2756,11 +2756,6 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [SolutionWeapon, SolutionTiny]
-  id: SolutionVenomSpider
-  categories: [ HideSpawnMenu ]
-
-- type: entity
   parent: MobSpiderBase
   id: MobSpiderAngryBase
   abstract: true
@@ -4136,7 +4131,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Blood
-        Quantity: 300
+        Quantity: 600
     # Horns though
   - type: MeleeWeapon
     damage:

@@ -18,15 +18,15 @@
     flavors:
       - cold
       - terrible
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Nicotine
-          Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Nicotine
+        Quantity: 10
 
 - type: entity
   name: spicy smokesicle
@@ -45,17 +45,17 @@
       - cold
       - terrible
       - spicy
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Nicotine
-          Quantity: 8
-        - ReagentId: CapsaicinOil
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Nicotine
+        Quantity: 8
+      - ReagentId: CapsaicinOil
+        Quantity: 2
 
 - type: entity
   name: legendsicle
@@ -74,15 +74,15 @@
       - paintthinner
       - cold
       - terrible
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 30
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: THC
-          Quantity: 20 # a joint has 20 thc
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 2
+      - ReagentId: THC
+        Quantity: 20 # a joint has 20 thc
 
 # Packaged ice-cream
 # Look, if I had an unpackaged popsicle fall out a vending machine I wouldn't touch that with a mile long stick. Or maybe I would, as long as it didn't crack.

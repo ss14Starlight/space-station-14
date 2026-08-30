@@ -9,13 +9,9 @@
     sprite: Mobs/Species/Human/organs.rsi
   - type: StaticPrice
     price: 50
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionBaseAnimalOrganFood
   - type: FlavorProfile
     flavors:
       - chicken # everything kinda tastes like chicken
@@ -24,6 +20,20 @@
   - type: Tag
     tags:
       - Meat
+
+
+- type: entity
+  parent: Solution
+  id: SolutionBaseAnimalOrganFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
 
 - type: entity
   id: OrganAnimalLungs
@@ -40,19 +50,38 @@
   - type: Metabolizer
     metabolizerTypes: [ Animal ]
     stages: [ Respiration ]
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      Lung:
-        maxVol: 100.0
-        canReact: false
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganAnimalLungsFood
+    - SolutionOrganAnimalLungsLung
   - type: Item
     size: Small
     heldPrefix: lungs
+
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganAnimalLungsLung
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: Lung
+    solution:
+      maxVol: 100.0
+      canReact: false
+
+- type: entity
+  parent: SolutionBaseAnimalOrganFood
+  id: SolutionOrganAnimalLungsFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
 
 - type: entity
   id: OrganAnimalStomach
@@ -63,15 +92,10 @@
   - type: Sprite
     state: stomach
   - type: Organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 40
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganAnimalStomachFood
+    - SolutionOrganAnimalStomachStomach
   - type: Stomach
   - type: Metabolizer
     maxReagents: 3
@@ -81,23 +105,66 @@
     size: Small
     heldPrefix: stomach
 
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganAnimalStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 40
+
+- type: entity
+  parent: SolutionBaseAnimalOrganFood
+  id: SolutionOrganAnimalStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
+
 - type: entity
   id: OrganMouseStomach
   parent: OrganAnimalStomach
   categories: [ HideSpawnMenu ]
   components:
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 30
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganMouseStomachFood
+    - SolutionOrganMouseStomachStomach
   - type: Item
     size: Small
     heldPrefix: stomach
+
+
+- type: entity
+  parent: SolutionOrganAnimalStomachStomach
+  id: SolutionOrganMouseStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 30
+
+- type: entity
+  parent: SolutionOrganAnimalStomachFood
+  id: SolutionOrganMouseStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
 
 - type: entity
   id: OrganAnimalLiver

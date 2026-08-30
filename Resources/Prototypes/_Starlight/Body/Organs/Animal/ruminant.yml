@@ -10,12 +10,30 @@
       - Ruminant
       - Wheat
       - BananaPeel
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 80
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganAnimalRuminantStomachFood
+    - SolutionOrganAnimalRuminantStomachStomach
+
+- type: entity
+  parent: SolutionOrganAnimalStomachStomach
+  id: SolutionOrganAnimalRuminantStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 80
+
+- type: entity
+  parent: SolutionOrganAnimalStomachFood
+  id: SolutionOrganAnimalRuminantStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5

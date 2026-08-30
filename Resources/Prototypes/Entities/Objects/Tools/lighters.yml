@@ -225,7 +225,7 @@
 
 - type: entity
   abstract: true
-  parent: [SolutionToolWelderMini, BaseLighter, FlippoLighter] #SL Edit: added flippolighter parent
+  parent: [SolutionToolWelderMini, BaseLighter] # Starlight
   id: BaseBrandedLighter
   components:
   - type: ItemToggle
@@ -276,6 +276,10 @@
       right:
       - state: inhand-right-lit
         shader: unshaded
+  - type: Tag # Starlight start
+    tags:
+    - Lighters # Starlight end
+
 
 - type: entity
   parent: [BaseBrandedLighter, BaseSyndicateContraband]
@@ -304,8 +308,9 @@
     radius: 2
     color: green
 
+
 - type: entity
-  parent: Lighter
+  parent: [SolutionDiscountDanLighter, Lighter] # Starlight
   id: DiscountDanLighter
   name: Discount Dan's lighter
   description: "The worst lighter ever produced, lighterburn is inevitable, do not refuel while lit."
@@ -322,8 +327,8 @@
       shader: unshaded
       map: [ "flame" ]
   - type: Welder # the single worst lighter invented by mankind
-    fuelConsumption: 0.4
-    fuelLitCost: 0.2
+    fuelConsumption: 0.2 # Starlight
+    fuelLitCost: 0.1 # Starlight
     tankSafe: false
   - type: Item
     sprite: Objects/Tools/Lighters/lighters.rsi

@@ -70,7 +70,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: CycloriteBlood
-        Quantity: 300
+        Quantity: 600
   - type: MovementSpeedModifierScale
     movementSpeedScale: 0.5
   - type: SlowOnDamage

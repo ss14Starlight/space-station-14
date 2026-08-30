@@ -25,16 +25,35 @@
       - Pill
       - IceCream
       - Birthday
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganMothStomachFood
+    - SolutionOrganMothStomachStomach
+    - SolutionBaseHumanOrganOrgan
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [ Moth ]
     stages: [ Digestion ]
+
+- type: entity
+  parent: SolutionOrganHumanStomachStomach
+  id: SolutionOrganMothStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 50
+
+- type: entity
+  parent: SolutionOrganHumanStomachFood
+  id: SolutionOrganMothStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5

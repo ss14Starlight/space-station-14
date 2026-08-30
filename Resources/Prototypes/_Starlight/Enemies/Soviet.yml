@@ -121,7 +121,7 @@
     bloodReferenceSolution:
         reagents:
         - ReagentId: Vodka
-          Quantity: 300
+          Quantity: 600
   - type: CombatMode
   - type: TemperatureDamage
     heatDamageThreshold: 500

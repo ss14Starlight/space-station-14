@@ -12,15 +12,33 @@
       - RamChip
       - Trash
     isSpecialDigestibleExclusive: false
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganNeoVoxStomachFood
+    - SolutionOrganNeoVoxStomachStomach
+
+- type: entity
+  parent: SolutionOrganNeocyteStomachStomach
+  id: SolutionOrganNeoVoxStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 50
+
+- type: entity
+  parent: SolutionOrganNeocyteStomachFood
+  id: SolutionOrganNeoVoxStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
 
 - type: entity
   id: OrganNeoVoxHeart

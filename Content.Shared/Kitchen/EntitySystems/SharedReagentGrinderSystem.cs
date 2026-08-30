@@ -1,7 +1,22 @@
+using System.Linq;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Destructible;
+using Content.Shared.FixedPoint;
+using Content.Shared.Interaction;
+using Content.Shared.Jittering;
 using Content.Shared.Kitchen.Components;
+using Content.Shared.Popups;
+using Content.Shared.Power;
+using Content.Shared.Power.EntitySystems;
+using Content.Shared.Stacks;
 using JetBrains.Annotations;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
+using Robust.Shared.Network;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Kitchen.EntitySystems;
 
@@ -215,7 +230,7 @@ public abstract class SharedReagentGrinderSystem : EntitySystem
         if (IsActive(ent.AsNullable()))
             return;
 
-        if (!_power.IsPowered(ent.Owner))
+        if (ent.Comp.NeedsPower && !_power.IsPowered(ent.Owner)) // Starlight
             return;
 
         var beaker = _itemSlotsSystem.GetItemOrNull(ent, ReagentGrinderComponent.BeakerSlotId);
@@ -239,7 +254,8 @@ public abstract class SharedReagentGrinderSystem : EntitySystem
 
         EnsureComp<ActiveReagentGrinderComponent>(ent);
         _jitter.AddJitter(ent, -10, 100);
-        _powerState.TrySetWorkingState(ent.Owner, true); // Not all grinders need power.
+        if (ent.Comp.NeedsPower) // Starlight
+            _powerState.TrySetWorkingState(ent.Owner, true); // Starlight
         ent.Comp.Program = program;
         ent.Comp.EndTime = _timing.CurTime + ent.Comp.WorkTime * ent.Comp.WorkTimeMultiplier;
         Dirty(ent);
@@ -267,7 +283,8 @@ public abstract class SharedReagentGrinderSystem : EntitySystem
         // Remove deferred to avoid modifying the component we are currently enumerating over in the update loop.
         RemCompDeferred<ActiveReagentGrinderComponent>(ent);
         RemCompDeferred<JitteringComponent>(ent);
-        _powerState.TrySetWorkingState(ent.Owner, false);
+        if (ent.Comp.NeedsPower) // Starlight
+            _powerState.TrySetWorkingState(ent.Owner, false); // Starlight
 
         var beaker = _itemSlotsSystem.GetItemOrNull(ent.Owner, ReagentGrinderComponent.BeakerSlotId);
         if (beaker is null || !_solutionContainersSystem.TryGetFitsInDispenser(beaker.Value, out var beakerSolutionEntity, out var beakerSolution))
@@ -364,10 +381,10 @@ public abstract class SharedReagentGrinderSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        if (ent.Comp.GrindableSolution == null)
+        if (ent.Comp.GrindableSolutionName == null) // Starlight
             return false;
 
-        return _solutionContainersSystem.TryGetSolution(ent.Owner, ent.Comp.GrindableSolution, out _, out _);
+        return _solutionContainersSystem.TryGetSolution(ent.Owner, ent.Comp.GrindableSolutionName, out _, out _); // Starlight
     }
 
     /// <summary>

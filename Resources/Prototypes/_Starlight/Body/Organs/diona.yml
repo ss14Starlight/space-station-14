@@ -9,21 +9,40 @@
   - type: Edible
   - type: Extractable
     grindableSolutionName: organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Cellulose
-          Quantity: 5
+    - SolutionBaseDionaOrganOrgan
+    - SolutionBaseDionaOrganFood
   - type: FlavorProfile
     flavors:
       - people
+
+
+- type: entity
+  parent: Solution
+  id: SolutionBaseDionaOrganOrgan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+
+- type: entity
+  parent: Solution
+  id: SolutionBaseDionaOrganFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Cellulose
+        Quantity: 5
 
 - type: entity
   id: OrganDionaBrain
@@ -63,15 +82,11 @@
   components:
   - type: Sprite
     state: stomach
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Cellulose
-          Quantity: 5
+    - SolutionBaseDionaOrganOrgan
+    - SolutionOrganDionaStomachFood
+    - SolutionOrganDionaStomachStomach
   - type: Stomach
   - type: Metabolizer
     maxReagents: 6
@@ -80,6 +95,30 @@
   - type: Item
     size: Small
     heldPrefix: stomach
+
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganDionaStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 50
+
+- type: entity
+  parent: SolutionBaseDionaOrganFood
+  id: SolutionOrganDionaStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Cellulose
+        Quantity: 5
 
 - type: entity
   id: OrganDionaLungs
@@ -97,23 +136,51 @@
   - type: Metabolizer
     metabolizerTypes: [ Plant ]
     stages: [ Respiration ]
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      Lung:
-        maxVol: 100
-        canReact: False
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Cellulose
-          Quantity: 5
+    - SolutionOrganDionaLungsOrgan
+    - SolutionOrganDionaLungsFood
+    - SolutionOrganDionaLungsLung
+
+- type: entity
+  parent: SolutionBaseDionaOrganOrgan
+  id: SolutionOrganDionaLungsOrgan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganDionaLungsLung
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: Lung
+    solution:
+      maxVol: 100
+      canReact: False
+
+- type: entity
+  parent: SolutionBaseDionaOrganFood
+  id: SolutionOrganDionaLungsFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Cellulose
+        Quantity: 5
 
 # Organs that turn into nymphs on removal
+
 - type: entity
   id: OrganDionaBrainNymph
   categories: [ HideSpawnMenu ]

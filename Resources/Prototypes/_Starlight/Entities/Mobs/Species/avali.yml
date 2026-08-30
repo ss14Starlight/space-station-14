@@ -112,7 +112,7 @@
       bloodReferenceSolution:
         reagents:
         - ReagentId: AvaliBlood
-          Quantity: 300
+          Quantity: 600
     - type: MeleeWeapon
       soundHit:
         path: /Audio/Weapons/pierce.ogg

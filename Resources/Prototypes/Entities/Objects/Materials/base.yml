@@ -15,8 +15,8 @@
     tags:
     - RawMaterial
   - type: Damageable
-  - type: Injurable
-    damageContainer: Inorganic
+  #- type: Injurable # Starlight
+    damageContainer: Inorganic # Starlight, no injurable/damageable split yet
   - type: Destructible
     thresholds:
     - trigger:
@@ -27,6 +27,11 @@
         acts: [ "Destruction" ]
   - type: Extractable
     grindableSolutionName: composite
+  - type: UserInterface # Starlight start - custom stack splitting
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface # Starlight end
+
 
 - type: entity
   abstract: true

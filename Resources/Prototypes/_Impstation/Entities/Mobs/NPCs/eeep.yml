@@ -112,7 +112,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ChloralHydrate
-        Quantity: 200
+        Quantity: 400 # Starlight
     bleedReductionAmount: 1
     bloodRefreshAmount: 2
   - type: Sprite
@@ -147,12 +147,12 @@
         Brute: 2
   - type: StaminaDamageOnHit
     damage: 20
-  - type: SolutionContainerManager
-    solutions:
-      chloralhydrate:
-        reagents:
-        - ReagentId: ChloralHydrate
-          Quantity: 500
+  - type: Solution
+    id: chloralhydrate
+    solution:
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 500
   - type: MeleeChemicalInjector
     solution: chloralhydrate
     transferAmount: 5

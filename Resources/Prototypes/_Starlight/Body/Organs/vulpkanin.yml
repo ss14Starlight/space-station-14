@@ -24,16 +24,34 @@
       heldPrefix: stomach
     - type: Stomach
     # Starlight end
-    - type: SolutionContainerManager
+    - type: SolutionManager
       solutions:
-        stomach:
-          maxVol: 50
-        food:
-          maxVol: 5
-          reagents:
-          - ReagentId: UncookedAnimalProteins
-            Quantity: 5
-    # Starlight start
+      - SolutionOrganVulpkaninStomachFood
+      - SolutionOrganVulpkaninStomachStomach
     - type: Metabolizer
       updateInterval: 1.5
     # Starlight end
+
+- type: entity
+  parent: SolutionOrganAnimalStomachStomach
+  id: SolutionOrganVulpkaninStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+        maxVol: 50
+
+- type: entity
+  parent: SolutionOrganAnimalStomachFood
+  id: SolutionOrganVulpkaninStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  # Starlight start

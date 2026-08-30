@@ -62,7 +62,7 @@ public abstract partial class SharedSolutionContainerSystem
     {
         SubscribeLocalEvent<ContainedSolutionComponent, SolutionOverflowEvent>(OnSolutionOverflow);
         SubscribeLocalEvent<ContainedSolutionComponent, ReactionAttemptEvent>(RelaySolutionRefEvent);
-        SubscribeLocalEvent<FitsInDispenserComponent, SolutionContainerChangedEvent>(OnFitsInDispenserSolutionChanged); // Starlight-edit: relay to parent
+        SubscribeLocalEvent<FitsInDispenserComponent, SolutionChangedEvent>(OnFitsInDispenserSolutionChanged); // Starlight
     }
 
     #region Event Handlers
@@ -81,7 +81,7 @@ public abstract partial class SharedSolutionContainerSystem
     }
 
     // Starlight-start: relay solution changes from beakers to parent dispenser
-    private void OnFitsInDispenserSolutionChanged(Entity<FitsInDispenserComponent> entity, ref SolutionContainerChangedEvent args)
+    private void OnFitsInDispenserSolutionChanged(Entity<FitsInDispenserComponent> entity, ref SolutionChangedEvent args) // Starlight
     {
         if (ContainerSystem.TryGetContainingContainer(entity.Owner, out var container))
         {

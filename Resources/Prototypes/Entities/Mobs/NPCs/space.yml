@@ -43,7 +43,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Cryoxadone
-        Quantity: 300
+        Quantity: 600
   - type: CombatMode
   - type: Temperature
   - type: TemperatureDamage

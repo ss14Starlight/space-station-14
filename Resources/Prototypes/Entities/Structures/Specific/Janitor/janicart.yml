@@ -261,8 +261,8 @@
       solution: tank
     - type: Damageable
       damageModifierSet: Metallic
-    - type: Injurable
-      damageContainer: Inorganic
+    # - type: Injurable # Starlight
+      damageContainer: Inorganic # Starlight, might change if we ever split Injurable from Damageable, at least that's something that came up while merging this, wizden might have it already idk?
     - type: Destructible
       thresholds:
         - trigger:

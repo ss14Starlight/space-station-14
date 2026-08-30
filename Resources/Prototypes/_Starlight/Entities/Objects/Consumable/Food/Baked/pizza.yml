@@ -13,15 +13,15 @@
     sprite: _Starlight/Objects/Consumable/Food/pizza.rsi
     layers:
     - state: nutri-pizza
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 80
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 70 # 40 from two bricks, 30 from pizza
-        - ReagentId: Vitamin
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 80
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 70 # 40 from two bricks, 30 from pizza
+      - ReagentId: Vitamin
+        Quantity: 5
   - type: SliceableFood
     slice: FoodPizzaNutriSlice
 
@@ -40,15 +40,15 @@
     sprite: _Starlight/Objects/Consumable/Food/pizza.rsi
     layers:
     - state: nutri-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 9.5
-        - ReagentId: Vitamin
-          Quantity: 0.5
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 9.5
+      - ReagentId: Vitamin
+        Quantity: 0.5
   - type: Item
     heldPrefix: nutri-slice
 
@@ -67,17 +67,17 @@
     sprite: _Starlight/Objects/Consumable/Food/pizza.rsi
     layers:
     - state: wrapper-pizza
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 120
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 20
-        - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Fiber
-          Quantity: 90 # 80 from two wrappers, 10 from pizza
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 120
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 20
+      - ReagentId: Vitamin
+        Quantity: 5
+      - ReagentId: Fiber
+        Quantity: 90 # 80 from two wrappers, 10 from pizza
   - type: SliceableFood
     slice: FoodPizzaWrapperSlice
   - type: Edible
@@ -98,17 +98,17 @@
     sprite: _Starlight/Objects/Consumable/Food/pizza.rsi
     layers:
     - state: wrapper-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 4.5
-        - ReagentId: Vitamin
-          Quantity: 0.5
-        - ReagentId: Fiber
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 25
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 4.5
+      - ReagentId: Vitamin
+        Quantity: 0.5
+      - ReagentId: Fiber
+        Quantity: 15
   - type: Item
     heldPrefix: wrapper-slice
   - type: Edible

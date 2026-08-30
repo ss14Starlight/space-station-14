@@ -8,13 +8,13 @@
     sprite: _Starlight/Objects/Consumable/Food/spiderjelly.rsi
     layers:
     - state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: RoyalJelly
-          Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: RoyalJelly
+        Quantity: 10
   - type: Item
     size: Tiny
   - type: FlavorProfile

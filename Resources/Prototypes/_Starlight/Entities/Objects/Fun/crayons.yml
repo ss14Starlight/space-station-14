@@ -19,11 +19,11 @@
     - Crayon
     - Recyclable
     - Trash
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 30
-        - ReagentId: MindbreakerToxin
-          Quantity: 20
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 30
+      - ReagentId: MindbreakerToxin
+        Quantity: 20

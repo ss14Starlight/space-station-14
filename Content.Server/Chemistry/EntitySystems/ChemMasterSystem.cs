@@ -304,11 +304,9 @@ namespace Content.Server.Chemistry.EntitySystems
                 _storageSystem.Insert(container, item, out _, user: user, storage);
                 _labelSystem.Label(item, message.Label);
 
-                _solutionContainerSystem.EnsureSolutionEntity(item, SharedChemMaster.PatchSolutionName,out var itemSolution, message.Dosage);
-                if (!itemSolution.HasValue)
-                    return;
-
-                _solutionContainerSystem.TryAddSolution(itemSolution.Value, withdrawal.SplitSolution(message.Dosage));
+                _solutionContainerSystem.EnsureSolution(item, SharedChemMaster.PatchSolutionName, out var itemSolution); // Starlight
+                _solutionContainerSystem.SetCapacity(itemSolution, message.Dosage); // Starlight
+                _solutionContainerSystem.TryAddSolution(itemSolution, withdrawal.SplitSolution(message.Dosage)); // Starlight
             }
 
             UpdateUiState(chemMaster);

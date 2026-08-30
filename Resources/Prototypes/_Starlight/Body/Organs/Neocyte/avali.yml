@@ -9,15 +9,33 @@
       tags:
       - RamChip
     isSpecialDigestibleExclusive: false
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganNeoAvaliStomachFood
+    - SolutionOrganNeoAvaliStomachStomach
+
+- type: entity
+  parent: SolutionOrganNeocyteStomachStomach
+  id: SolutionOrganNeoAvaliStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 50
+
+- type: entity
+  parent: SolutionOrganNeocyteStomachFood
+  id: SolutionOrganNeoAvaliStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
 
 - type: entity
   id: OrganNeoAvaliHeart

@@ -25,17 +25,36 @@
   - type: Sprite
     state: stomach
   - type: Organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 75
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionBaseHumanOrganOrgan
+    - SolutionOrganDwarfStomachFood
+    - SolutionOrganDwarfStomachStomach
   - type: Stomach
   - type: Metabolizer
     # mm very yummy
     maxReagents: 5
     metabolizerTypes: [Dwarf, Animal]
+
+- type: entity
+  parent: SolutionOrganHumanStomachStomach
+  id: SolutionOrganDwarfStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 75
+
+- type: entity
+  parent: SolutionOrganHumanStomachFood
+  id: SolutionOrganDwarfStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5

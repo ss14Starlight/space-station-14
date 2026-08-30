@@ -9,23 +9,42 @@
   - type: Edible
   - type: Extractable
     grindableSolutionName: organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionBaseAbductorOrganOrgan
+    - SolutionBaseAbductorOrganFood
   - type: FlavorProfile
     flavors:
       - people
   - type: Tag
     tags:
       - Meat
+
+
+- type: entity
+  parent: Solution
+  id: SolutionBaseAbductorOrganOrgan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+
+- type: entity
+  parent: Solution
+  id: SolutionBaseAbductorOrganFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
 
 - type: entity
   id: OrganAbductorBrain
@@ -99,15 +118,11 @@
   components:
   - type: Sprite
     state: stomach
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionBaseAbductorOrganOrgan
+    - SolutionOrganAbductorStomachFood
+    - SolutionOrganAbductorStomachStomach
   - type: Stomach
   # The stomach metabolizes stuff like foods and drinks.
   # TODO: Have it work off of the ent's solution container, and move this
@@ -117,6 +132,30 @@
     maxReagents: 3
     metabolizerTypes: [ Slime ]
     stages: [ Digestion ]
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganAbductorStomachStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 50
+
+- type: entity
+  parent: SolutionBaseAbductorOrganFood
+  id: SolutionOrganAbductorStomachFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
+
 - type: entity
   id: OrganAbductorLiver
   parent: [BaseAbductorOrgan, BaseOrganLiver]
