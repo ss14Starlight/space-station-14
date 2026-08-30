@@ -46,7 +46,6 @@
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: abductor
   - type: SolutionRegeneration
-    solution: container
     generated:
       reagents:
       - ReagentId: BoneGel
@@ -94,7 +93,6 @@
   - type: BoneSaw
   - type: BoneSetter
   - type: SolutionRegeneration
-    solution: container
     generated:
       reagents:
       - ReagentId: BoneGel

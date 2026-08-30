@@ -367,11 +367,10 @@
   - type: Fiber
     fiberMaterial: fibers-insulative-frayed
     fiberColor: fibers-yellow
-  - type: Butcherable #SL start
-    butcheringType: Knife
-    spawned:
+  - type: ToolRefinable # Starlight start
+    refineResult:
       - id: CheapInsulatedFabric
-      - id: ClothingHandsGlovesFingerlessBudget #SL end
+      - id: ClothingHandsGlovesFingerlessBudget # Starlight end
 
 # Conductive Insulated Gloves
 - type: entity

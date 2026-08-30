@@ -263,7 +263,7 @@
 
 # Turkish Delight
 - type: entity
-  parent: [SolutionNormal, FoodInjectableBase]
+  parent: [SolutionNormal, FoodInjectableBase, BaseSlicingRefinableFood]
   id: FoodTurkishDelight
   name: uncut turkish delight
   description: A massive, wobbling gelatin dessert. May contains nuts.
@@ -287,9 +287,10 @@
         Quantity: 35
       - ReagentId: Nutriment
         Quantity: 5
-  - type: SliceableFood
-    count: 8
-    slice: FoodTurkishDelightCube
+  - type: ToolRefinable
+    refineResult:
+    - id: FoodTurkishDelightCube
+      amount: 8
   - type: Item
     size: Normal
     shape:

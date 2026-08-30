@@ -1984,7 +1984,7 @@
   group: Soup
   deviceType: Stove # Starlight-edit: Cooking Devices
   reagents:
-    Blackpepper: 5 # Starlight-edit: Blackpepper
+    Blackpepper: 1 # Starlight-edit: Blackpepper
   solids:
     FoodChiliPepper: 1
     FoodCheeseSlice: 2

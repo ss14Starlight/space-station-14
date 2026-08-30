@@ -42,7 +42,6 @@
     - SiliconEmotesFH
     - NotLabelable
   - type: Butcherable
-    butcheringType: Spike
     spawned:
       - id: FoodMeatSpider
         amount: 5

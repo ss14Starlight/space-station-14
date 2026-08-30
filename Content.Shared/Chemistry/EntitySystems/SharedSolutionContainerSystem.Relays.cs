@@ -44,6 +44,19 @@ public abstract partial class SharedSolutionContainerSystem
         SubscribeLocalEvent<FitsInDispenserComponent, SolutionChangedEvent>(OnFitsInDispenserSolutionChanged); // Starlight
     }
 
+    #region Starlight
+
+    /// <summary>
+    /// Relays solution changes from an inserted beaker to its parent dispenser so its UI can refresh.
+    /// </summary>
+    private void OnFitsInDispenserSolutionChanged(Entity<FitsInDispenserComponent> entity, ref SolutionChangedEvent args)
+    {
+        if (ContainerSystem.TryGetContainingContainer(entity.Owner, out var container))
+            RaiseLocalEvent(container.Owner, ref args);
+    }
+
+    #endregion
+
     #region Relay Event Handlers
 
     private void RelaySolutionValEvent<TEvent>(EntityUid uid, ContainedSolutionComponent comp, TEvent @event)

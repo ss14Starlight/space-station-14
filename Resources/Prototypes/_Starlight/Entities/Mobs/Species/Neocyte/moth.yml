@@ -34,7 +34,6 @@
   - type: ZombieAccentOverride
     accent: zombieMoth
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 5

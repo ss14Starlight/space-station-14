@@ -1261,7 +1261,6 @@
   suffix: Water
   components:
   - type: SolutionRegeneration
-    solution: beaker
     generated:
       reagents:
       - ReagentId: Water
@@ -1275,7 +1274,6 @@
   suffix: Blood
   components:
   - type: SolutionRegeneration
-    solution: beaker
     generated:
       reagents:
       - ReagentId: Blood

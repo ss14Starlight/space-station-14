@@ -20,7 +20,6 @@
     prototype: NeoVox
     requiredLegs: 2
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatChicken
       amount: 5

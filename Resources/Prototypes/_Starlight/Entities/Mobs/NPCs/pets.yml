@@ -60,7 +60,6 @@
     job: Botanist
   - type: GhostTakeoverAvailable
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 3
@@ -110,7 +109,6 @@
     job: StirStir
   - type: GhostTakeoverAvailable
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 3

@@ -208,7 +208,6 @@
       - ReagentId: CorgiJuice
         Quantity: 30
   - type: SolutionRegeneration
-    solution: drink
     generated:
       reagents:
       - ReagentId: CorgiJuice

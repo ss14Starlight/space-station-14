@@ -1,7 +1,7 @@
 ﻿
 - type: entity
   name: roast turkey
-  parent: [SolutionHuge, FoodMealBase]
+  parent: [SolutionHuge, FoodMealBase, BaseSlicingRefinableFood]
   id: FoodFeastTurkey
   description: "An entire roast turkey. You're going to share, right?"
   components:
@@ -38,9 +38,10 @@
     - type: Tag
       tags:
         - Meat
-    - type: SliceableFood
-      count: 16
-      slice: FoodTurkeySlice
+    - type: ToolRefinable
+      refineResult:
+      - id: FoodTurkeySlice
+        amount: 16
 
 - type: entity
   name: roast turkey slice
@@ -216,7 +217,7 @@
 # mashed potatoes, full size
 - type: entity
   name: family-size mashed potatoes
-  parent: [SolutionNormal, FoodMealBase]
+  parent: [SolutionNormal, FoodMealBase, BaseSlicingRefinableFood]
   id: FoodFeastPotatoMashed
   description: Feeds five... or ten if you cut it properly.
   components:
@@ -242,9 +243,10 @@
     - type: Tag
       tags:
         - Potato
-    - type: SliceableFood
-      count: 10
-      slice: FoodPotatoMashed
+    - type: ToolRefinable
+      refineResult:
+      - id: FoodPotatoMashed
+        amount: 10
 
 # mashed potatoes, private
 - type: entity
@@ -276,7 +278,7 @@
 # mashed potatoes with gravy, full size
 - type: entity
   name: family-size gravy potatoes
-  parent: [SolutionNormal, FoodMealBase]
+  parent: [SolutionNormal, FoodMealBase, BaseSlicingRefinableFood]
   id: FoodFeastPotatoGravy
   description: Remember to serve individually!
   components:
@@ -305,9 +307,10 @@
     - type: Tag
       tags:
         - Potato
-    - type: SliceableFood
-      count: 10
-      slice: FoodPotatoGravy
+    - type: ToolRefinable
+      refineResult:
+      - id: FoodPotatoGravy
+        amount: 10
 
 # mashed potatoes with gravy, private
 - type: entity
@@ -371,7 +374,7 @@
           - ReagentId: Allicin
             Quantity: 1
           - ReagentId: TableSalt
-            Quantity: 5
+            Quantity: 1
     - type: Tag
       tags:
         - Bread
@@ -412,7 +415,7 @@
           - ReagentId: Allicin
             Quantity: 1
           - ReagentId: TableSalt
-            Quantity: 5
+            Quantity: 1
     - type: Tag
       tags:
         - Bread

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseSimpleMob, FlyingMobBase ]
+  parent: [ BaseSimpleMob, FlyingMobBase, BaseSlicingRefinable ]
   abstract: true
   id: MobCosmicColossusBase
   name: entropic colossus
@@ -141,9 +141,9 @@
     allowedStates:
     - Alive
     - Dead
-  - type: Butcherable
-    butcherDelay: 16
-    spawned:
+  - type: ToolRefinable
+    refineTime: 16
+    refineResult:
     - id: CosmicCultMindSink
       amount: 1
   - type: PointLight

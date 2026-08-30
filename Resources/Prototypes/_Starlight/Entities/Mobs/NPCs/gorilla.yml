@@ -1,6 +1,6 @@
 - type: entity
   name: gorilla
-  parent: [SimpleMobBase, MobCombat]
+  parent: [SimpleMobBase, MobCombat, BaseSlicingRefinable]
   id: BaseMobGorilla
   description: A ground-dwelling, predominantly herbivorous ape that inhabits the forests of central Africa on Earth.
   abstract: true
@@ -30,8 +30,8 @@
           Base: dead
         Dead:
           Base: dead
-    - type: Butcherable
-      spawned:
+    - type: ToolRefinable
+      refineResult:
         - id: FoodMeat
           amount: 4
     - type: Bloodstream

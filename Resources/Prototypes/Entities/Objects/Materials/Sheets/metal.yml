@@ -147,7 +147,7 @@
     count: 1
 
 - type: entity
-  parent: SheetMetalBase
+  parent: [SheetMetalBase, BaseSlicingRefinable] # Starlight
   id: SheetPlasteel
   name: plasteel
   suffix: Full
@@ -179,10 +179,9 @@
         Quantity: 9
       - ReagentId: Carbon
         Quantity: 1
-  - type: Butcherable #SL start
-    butcheringType: Knife
-    spawned:
-      - id: PlasteelFilament #SL end
+  - type: ToolRefinable # Starlight start
+    refineResult:
+      - id: PlasteelFilament # Starlight end
 
 - type: entity
   parent: SheetPlasteel

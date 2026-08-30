@@ -45,7 +45,6 @@
     solution:
       maxVol: 10
   - type: SolutionRegeneration
-    solution: hypospray
     generated:
       reagents:
       - ReagentId: Ipecac

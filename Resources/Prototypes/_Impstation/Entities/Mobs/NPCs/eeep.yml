@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ SimpleSpaceMobBase, FlyingMobBase ]
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, BaseSlicingRefinable ] # Starlight
   id: MobEeepBase
   abstract: true
   categories: [ HideSpawnMenu ]
@@ -30,8 +30,8 @@
         - FlyingMobMask
         layer:
         - FlyingMobLayer
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable # Starlight
+    refineResult: # Starlight
       - id: EeepSpark
         amount: 1
   - type: StatusEffects

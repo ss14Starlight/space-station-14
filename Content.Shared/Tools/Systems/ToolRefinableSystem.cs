@@ -184,20 +184,19 @@ public sealed partial class ToolRefinableSystem : EntitySystem
         if (!TryComp<ToolRefinableSolutionComponent>(source, out var comp))
             return;
 
-        TryGetSourceSolutionForTransfer(source, comp.SolutionToSplit, out var solutionInfo);
+        #region Starlight
+        if (!TryGetSourceSolutionForTransfer(source, comp.SolutionToSplit, out var solutionInfo))
+            return;
 
-        foreach (var spawnedUid in spawned)
+        for (var i = spawned.Count; i > 0; i--)
         {
-            // Fills refine result if original entity allows.
-            if (solutionInfo.HasValue && comp.SolutionToSet != null)
-            {
-                var (sourceSoln, sourceSolution) = solutionInfo.Value;
-                var refineResultVolume = sourceSolution.Volume / FixedPoint2.New(spawns.Count);
-
-                var lostSolution = _solutionContainer.SplitSolution(sourceSoln, refineResultVolume);
-                FillResult(spawnedUid, comp.SolutionToSet, lostSolution);
-            }
+            var spawnedUid = spawned[i - 1];
+            var (sourceSoln, sourceSolution) = solutionInfo.Value;
+            var refineResultVolume = sourceSolution.Volume / FixedPoint2.New(i);
+            var lostSolution = _solutionContainer.SplitSolution(sourceSoln, refineResultVolume);
+            FillResult(spawnedUid, comp.SolutionToSet, lostSolution);
         }
+        #endregion
     }
 
     #endregion
@@ -279,25 +278,6 @@ public sealed partial class ToolRefinableSystem : EntitySystem
             fuel: component.RefineFuel
         );
     }
-}
-
-/// <summary>
-/// Event for checking if tool refining of entity is blocked in some complex way.
-/// </summary>
-[ByRefEvent]
-public record struct AttemptToolRefineEvent(
-    EntityUid Using,
-    bool IsCancelled = false,
-    string? BlockCause = null
-);
-
-/// <summary>
-/// Called after slicing of the entity.
-/// </summary>
-[ByRefEvent]
-public record struct BeforeToolRefinedEvent(EntityUid User)
-{
-    public bool Cancelled;
 }
 
 /// <summary>

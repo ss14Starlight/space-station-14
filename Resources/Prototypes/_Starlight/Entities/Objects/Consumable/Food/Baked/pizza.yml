@@ -1,6 +1,6 @@
 ﻿- type: entity
   name: nutribrick pizza
-  parent: FoodPizzaBase
+  parent: [FoodPizzaBase, BaseSlicingRefinableFood]
   id: FoodPizzaNutribrick
   description: Topped with chunky, dense nuggets of nutribrick.
   components:
@@ -21,8 +21,10 @@
         Quantity: 80 # Flat dough and two nutribricks.
       - ReagentId: BbqSauce
         Quantity: 10
-  - type: SliceableFood
-    slice: FoodPizzaNutriSlice
+  - type: ToolRefinable
+    refineResult:
+    - id: FoodPizzaNutriSlice
+      amount: 8
 
 - type: entity
   name: slice of nutribrick pizza
@@ -75,8 +77,10 @@
         Quantity: 60 # Cotton dough and two wrappers.
       - ReagentId: Astrotame
         Quantity: 10
-  - type: SliceableFood
-    slice: FoodPizzaWrapperSlice
+  - type: ToolRefinable
+    refineResult:
+    - id: FoodPizzaWrapperSlice
+      amount: 8
   - type: Edible
     requiresSpecialDigestion: true
 

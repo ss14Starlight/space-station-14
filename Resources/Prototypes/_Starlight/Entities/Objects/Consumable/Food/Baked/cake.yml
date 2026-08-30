@@ -1,6 +1,6 @@
 ﻿- type: entity
   name: Dreaming cake
-  parent: FoodCakeBase
+  parent: [FoodCakeBase, BaseSlicingRefinableFood]
   id: FoodResomiCake
   description: The poor Resomi can no longer chase their dreams
   components:
@@ -13,9 +13,10 @@
         - hope
         - sadness
         - pilk
-    - type: SliceableFood
-      count: 8
-      slice: FoodCakeResomiSlice
+    - type: ToolRefinable
+      refineResult:
+      - id: FoodCakeResomiSlice
+        amount: 8
     - type: Solution
       id: food
       solution:
@@ -33,7 +34,7 @@
 
 - type: entity
   name: Cotton Cake
-  parent: FoodCakeBase
+  parent: [FoodCakeBase, BaseSlicingRefinableFood]
   id: FoodCottonCake
   description: A sweet treat for the moth to eat
   components:
@@ -45,9 +46,10 @@
       flavors:
         - Fiber
         - Sweetness
-    - type: SliceableFood
-      count: 8
-      slice: FoodCottonCakeSlice
+    - type: ToolRefinable
+      refineResult:
+      - id: FoodCottonCakeSlice
+        amount: 8
     - type: Solution
       id: food
       solution:

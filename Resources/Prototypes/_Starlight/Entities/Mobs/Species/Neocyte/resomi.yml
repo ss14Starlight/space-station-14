@@ -75,7 +75,6 @@
     prototype: NeoResomi
     requiredLegs: 2
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatChicken
       amount: 3
