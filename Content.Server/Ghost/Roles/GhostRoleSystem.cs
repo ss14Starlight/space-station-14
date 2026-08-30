@@ -813,7 +813,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
         if (string.IsNullOrEmpty(component.Prototype))
             throw new NullReferenceException("Prototype string cannot be null or empty!");
 
-        #region starlight
+        // Starlight-start
         // Create the mob without initializing it so we can preserve the notification
         // state before GhostRoleComponent startup registers the new ghost role.
         var mob = _ent.CreateEntityUninitialized(component.Prototype, Transform(uid).Coordinates);
@@ -823,7 +823,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
 
         _transform.AttachToGridOrMap(mob);
         _ent.InitializeAndStartEntity(mob);
-        #endregion starlight
+        // Starlight-end
 
         var spawnedEvent = new GhostRoleSpawnerUsedEvent(uid, mob);
         RaiseLocalEvent(mob, spawnedEvent);
@@ -835,10 +835,10 @@ public sealed partial class GhostRoleSystem : EntitySystem
 
         GhostRoleInternalCreateMindAndTransfer(args.Player, uid, mob, ghostRole);
 
-        #region starlight
+        // Starlight-start
         // Reset the notification state for the next takeover.
         ghostRole.HasNotifiedGhosts = false;
-        #endregion starlight
+        // Starlight-end
 
         if (++component.CurrentTakeovers < component.AvailableTakeovers)
         {
