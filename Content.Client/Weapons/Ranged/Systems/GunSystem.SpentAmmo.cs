@@ -29,7 +29,7 @@ public sealed partial class GunSystem
         else
             state = ent.Comp.State;
 
-        if (spent && ent.Comp.revealSpent) /// Starlight
+        if (spent && ent.Comp.revealSpent) // Starlight: shows a hidden Spent layer instead of changing Base state, for shells with a distinct spent visual layer
         {
             _sprite.LayerSetVisible((ent, sprite), AmmoVisualLayers.Spent, true);
             return;

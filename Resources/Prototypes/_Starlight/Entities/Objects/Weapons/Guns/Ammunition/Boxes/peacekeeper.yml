@@ -8,7 +8,6 @@
     tags:
     - MagazineGrenade
   - type: BallisticAmmoProvider
-    mayTransfer: true
     whitelist:
       tags:
         - Grenade
@@ -40,7 +39,6 @@
   components:
     - type: BallisticAmmoProvider
       proto: GrenadeFlash
-      mayTransfer: true
     - type: Sprite
       layers:
       - state: base
@@ -57,7 +55,6 @@
   components:
     - type: BallisticAmmoProvider
       proto: GrenadeStingerlauncher
-      mayTransfer: true
     - type: Sprite
       layers:
       - state: base
@@ -74,7 +71,6 @@
   components:
     - type: BallisticAmmoProvider
       proto: GrenadeGaslauncher
-      mayTransfer: true
     - type: Sprite
       layers:
       - state: base
@@ -91,7 +87,6 @@
   components:
     - type: BallisticAmmoProvider
       proto: GrenadeBaton
-      mayTransfer: true
     - type: Sprite
       layers:
       - state: base

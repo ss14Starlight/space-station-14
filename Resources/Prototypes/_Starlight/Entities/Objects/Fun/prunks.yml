@@ -337,20 +337,62 @@
     - ChonoLoke
 
 - type: entity
+  id: BulletChonoLokePie
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Objects/Consumable/Food/Baked/pie.rsi
+    layers:
+    - state: tin
+    - state: plain
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Effects/Fluids/splat.ogg
+  - type: CreamPie
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Vitamin
+          Quantity: 14
+        - ReagentId: Sugar
+          Quantity: 5
+  - type: Edible
+    trash:
+    - FoodPlateTin
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
   id: ChonoLokeCreamPieShell
-  name: Chono bannna cream pie tin
+  name: Chono bannna cream pie
   suffix: Chono Loke
   parent: BaseGrenade
   description: A DONK CO. "shell" that's literally just a banana cream pie crammed into a tube of a chono loke. Somehow, it works.
   components:
   - type: CartridgeAmmo
-    proto: FoodPieBananaCream
+    proto: BulletChonoLokePie
     soundEject:
       collection: ShellEject
   - type: Sprite
-    sprite: Objects/Consumable/Food/Baked/pie.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Shells/chono_loke_cream_pie.rsi
     layers:
-    - state: tin
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+    - state: plain
+      map: ["enum.AmmoVisualLayers.Tip"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: base
+    suffix: false
   - type: Tag
     tags:
     - ChonoLoke
