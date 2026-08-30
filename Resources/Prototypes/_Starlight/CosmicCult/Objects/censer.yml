@@ -6,13 +6,15 @@
   icon: { sprite: _Starlight/CosmicCult/Objects/censer.rsi, state: icon }
 
 - type: entity
-  parent: BaseItem
+  parent: [SolutionNormal, BaseItem]
   id: CosmicCenser
   name: ardent censer
   description: Cleanses and sanctifies the air around it.
   components:
   - type: Item
-    size: Small
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: Sprite
     sprite: _Starlight/CosmicCult/Objects/censer.rsi
     layers:
@@ -44,8 +46,7 @@
     solution:
       reagents:
       - ReagentId: Holywater
-        Quantity: 100
-      maxVol: 100
+        Quantity: 120
   - type: RefillReagentFilter
     reagents:
     - Holywater

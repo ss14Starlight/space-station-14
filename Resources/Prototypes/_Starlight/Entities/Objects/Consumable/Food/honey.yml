@@ -1,6 +1,6 @@
 - type: entity
   name: honeybar
-  parent: BaseItem
+  parent: [SolutionFood, SolutionTiny, BaseItem]
   id: FoodHoneybar
   description: A sticky and sweet grain bar coated in honey.
   components:
@@ -17,7 +17,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 10
@@ -27,7 +26,7 @@
 
 - type: entity
   name: honey frame
-  parent: BaseItem
+  parent: [SolutionFood, SolutionTiny, BaseItem]
   id: FoodHoneyFrame
   description: A wooden slate with honeycombs built inside.
   components:
@@ -45,7 +44,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -55,7 +53,7 @@
 
 - type: entity
   name: honey loaf
-  parent: BaseItem
+  parent: [SolutionFood, SolutionTiny, BaseItem]
   id: FoodHoneyLoaf
   description: A warm and soft loaf of bread drizzled with honey.
   components:
@@ -72,7 +70,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 15
@@ -82,7 +79,7 @@
 
 - type: entity
   name: honey roll
-  parent: BaseItem
+  parent: [SolutionFood, SolutionTiny, BaseItem]
   id: FoodHoneyRoll
   description: Whats the matter, someone steal your honey roll?
   components:
@@ -99,7 +96,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 10
@@ -109,7 +105,7 @@
 
 - type: entity
   name: honey slice
-  parent: BaseItem
+  parent: [SolutionFood, SolutionTiny, BaseItem]
   id: FoodHoneyLoafSlice
   description: A warm and soft slice of bread drizzled with honey.
   components:
@@ -126,7 +122,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -136,7 +131,7 @@
 
 - type: entity
   name: honeycomb
-  parent: BaseItem
+  parent: [SolutionFood, SolutionTiny, BaseItem]
   id: Honeycomb
   description: A comb of honey. It took a lot of bees a lot of time to make this.
   components:
@@ -152,7 +147,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5

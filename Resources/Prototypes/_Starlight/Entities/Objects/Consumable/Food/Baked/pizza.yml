@@ -16,12 +16,11 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 80
       reagents:
       - ReagentId: Nutriment
-        Quantity: 70 # 40 from two bricks, 30 from pizza
-      - ReagentId: Vitamin
-        Quantity: 5
+        Quantity: 80 # Flat dough and two nutribricks.
+      - ReagentId: BbqSauce
+        Quantity: 10
   - type: SliceableFood
     slice: FoodPizzaNutriSlice
 
@@ -43,12 +42,11 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 15
       reagents:
       - ReagentId: Nutriment
-        Quantity: 9.5
-      - ReagentId: Vitamin
-        Quantity: 0.5
+        Quantity: 6.6667 # isn't division fun?
+      - ReagentId: BbqSauce
+        Quantity: 0.8333
   - type: Item
     heldPrefix: nutri-slice
 
@@ -70,14 +68,13 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 120
       reagents:
       - ReagentId: Nutriment
         Quantity: 20
-      - ReagentId: Vitamin
-        Quantity: 5
       - ReagentId: Fiber
-        Quantity: 90 # 80 from two wrappers, 10 from pizza
+        Quantity: 60 # Cotton dough and two wrappers.
+      - ReagentId: Astrotame
+        Quantity: 10
   - type: SliceableFood
     slice: FoodPizzaWrapperSlice
   - type: Edible
@@ -101,14 +98,13 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 25
       reagents:
       - ReagentId: Nutriment
-        Quantity: 4.5
-      - ReagentId: Vitamin
-        Quantity: 0.5
+        Quantity: 1.6667
       - ReagentId: Fiber
-        Quantity: 15
+        Quantity: 5
+      - ReagentId: Astrotame
+        Quantity: 0.8333
   - type: Item
     heldPrefix: wrapper-slice
   - type: Edible

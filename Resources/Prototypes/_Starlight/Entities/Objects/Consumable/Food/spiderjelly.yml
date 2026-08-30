@@ -1,5 +1,5 @@
 - type: entity
-  parent: FoodBase
+  parent: [SolutionTiny, FoodBase]
   id: SpiderJelly
   name: Royal Jelly
   description: A strange jelly created by spiders possesses unreal regenerative powers.
@@ -11,7 +11,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 10
       reagents:
       - ReagentId: RoyalJelly
         Quantity: 10

@@ -22,7 +22,7 @@
 
 
 - type: entity
-  parent: SolutionOrganHumanBrainOrgan
+  parent: SolutionOrganNutriment
   id: SolutionOrganVoxBrainOrgan
   categories: [ HideSpawnMenu ]
   components:
@@ -35,7 +35,7 @@
         Quantity: 10
 
 - type: entity
-  parent: SolutionOrganHumanBrainFood
+  parent: SolutionOrganFoodGreyMatter
   id: SolutionOrganVoxBrainFood
   categories: [ HideSpawnMenu ]
   components:

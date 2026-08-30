@@ -15,31 +15,9 @@
       stages: [ Digestion, Metabolites ]
     - type: SolutionManager
       solutions:
-      - SolutionSentientSlimeCoreOrgan
-      - SolutionBaseOrganBrainFood
-      - SolutionSentientSlimeCoreStomach
-
-- type: entity
-  parent: Solution
-  id: SolutionSentientSlimeCoreStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-        maxVol: 50.0
-
-- type: entity
-  parent: SolutionBaseOrganBrainOrgan
-  id: SolutionSentientSlimeCoreOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-        reagents:
-        - ReagentId: Slime
-          Quantity: 10
+      - SolutionOrganSlime
+      - SolutionOrganFoodGreyMatterLarge
+      - SolutionOrganStomach50
 
 - type: entity
   id: OrganSlimeLungs
@@ -60,49 +38,13 @@
     stages: [ Respiration ]
   - type: SolutionManager
     solutions:
-    - SolutionOrganSlimeLungsOrgan
-    - SolutionOrganSlimeLungsFood
-    - SolutionOrganSlimeLungsLung
+    - SolutionOrganSlime
+    - SolutionOrganFoodSlime
+    - SolutionOrganLung
   - type: Item
     size: Small
     heldPrefix: lungs
 
-
-- type: entity
-  parent: SolutionBaseHumanOrganOrgan
-  id: SolutionOrganSlimeLungsOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-      reagents:
-      - ReagentId: Slime
-        Quantity: 10
-
-- type: entity
-  parent: Solution
-  id: SolutionOrganSlimeLungsLung
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: Lung
-    solution:
-      maxVol: 100.0
-      canReact: false
-
-- type: entity
-  parent: SolutionBaseHumanOrganFood
-  id: SolutionOrganSlimeLungsFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganSlimeHeart

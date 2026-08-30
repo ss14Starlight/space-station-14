@@ -18,7 +18,7 @@ public sealed partial class LungSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<LungComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<LungComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedSolutionContainerSystem)]);
         SubscribeLocalEvent<BreathToolComponent, GotEquippedEvent>(OnGotEquipped);
         SubscribeLocalEvent<BreathToolComponent, GotUnequippedEvent>(OnGotUnequipped);
     }

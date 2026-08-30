@@ -16,31 +16,9 @@
       stages: [ Digestion, Metabolites ]
     - type: SolutionManager
       solutions:
-      - SolutionSentientNeoSlimeCoreOrgan
-      - SolutionBaseOrganBrainFood
-      - SolutionSentientNeoSlimeCoreStomach
-
-- type: entity
-  parent: SolutionSentientSlimeCoreStomach
-  id: SolutionSentientNeoSlimeCoreStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-        maxVol: 50.0
-
-- type: entity
-  parent: SolutionSentientSlimeCoreOrgan
-  id: SolutionSentientNeoSlimeCoreOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-        reagents:
-        - ReagentId: Slime
-          Quantity: 10
+      - SolutionOrganSlime
+      - SolutionOrganFoodGreyMatterLarge
+      - SolutionOrganStomach50
 
 - type: entity
   id: OrganNeoSlimeHeart

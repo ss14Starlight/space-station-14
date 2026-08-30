@@ -11,8 +11,8 @@
     grindableSolutionName: organ
   - type: SolutionManager
     solutions:
-    - SolutionBaseCycloriteOrganOrgan
-    - SolutionBaseCycloriteOrganFood
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
   - type: FlavorProfile
     flavors:
       - people
@@ -20,31 +20,6 @@
     tags:
       - Meat
 
-
-- type: entity
-  parent: Solution
-  id: SolutionBaseCycloriteOrganOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-
-- type: entity
-  parent: Solution
-  id: SolutionBaseCycloriteOrganFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganCycloriteBrain
@@ -114,45 +89,9 @@
     stages: [ Respiration ]
   - type: SolutionManager
     solutions:
-    - SolutionOrganCycloriteLungsOrgan
-    - SolutionOrganCycloriteLungsFood
-    - SolutionOrganCycloriteLungsLung
-
-- type: entity
-  parent: SolutionBaseCycloriteOrganOrgan
-  id: SolutionOrganCycloriteLungsOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-
-- type: entity
-  parent: Solution
-  id: SolutionOrganCycloriteLungsLung
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: Lung
-    solution:
-      maxVol: 100.0
-      canReact: false
-
-- type: entity
-  parent: SolutionBaseCycloriteOrganFood
-  id: SolutionOrganCycloriteLungsFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganLung
 
 - type: entity
   id: OrganCycloriteHeart
@@ -181,9 +120,9 @@
     state: stomach
   - type: SolutionManager
     solutions:
-    - SolutionBaseCycloriteOrganOrgan
-    - SolutionOrganCycloriteStomachFood
-    - SolutionOrganCycloriteStomachStomach
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Stomach
   # The stomach metabolizes stuff like foods and drinks.
   # TODO: Have it work off of the ent's solution container, and move this
@@ -193,29 +132,6 @@
     maxReagents: 3
     metabolizerTypes: [ Slime ]
     stages: [ Digestion ]
-
-- type: entity
-  parent: Solution
-  id: SolutionOrganCycloriteStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionBaseCycloriteOrganFood
-  id: SolutionOrganCycloriteStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganCycloriteLiver

@@ -11,8 +11,8 @@
     grindableSolutionName: organ
   - type: SolutionManager
     solutions:
-    - SolutionBaseHumanOrganOrgan
-    - SolutionBaseHumanOrganFood
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
   - type: FlavorProfile
     flavors:
       - people
@@ -20,31 +20,6 @@
     tags:
       - Meat
 
-
-- type: entity
-  parent: Solution
-  id: SolutionBaseHumanOrganOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-
-- type: entity
-  parent: Solution
-  id: SolutionBaseHumanOrganFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganHumanBrain
@@ -67,8 +42,8 @@
       - Meat
   - type: SolutionManager
     solutions:
-    - SolutionOrganHumanBrainOrgan
-    - SolutionOrganHumanBrainFood
+    - SolutionOrganNutriment
+    - SolutionOrganFoodGreyMatter
   - type: FlavorProfile
     flavors:
       - people
@@ -80,31 +55,6 @@
     size: Small
     heldPrefix: brain
 
-
-- type: entity
-  parent: SolutionBaseHumanOrganOrgan
-  id: SolutionOrganHumanBrainOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-
-- type: entity
-  parent: SolutionBaseHumanOrganFood
-  id: SolutionOrganHumanBrainFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: GreyMatter
-        Quantity: 5
 
 - type: entity
   id: OrganHumanEyes
@@ -174,45 +124,9 @@
     stages: [ Respiration ]
   - type: SolutionManager
     solutions:
-    - SolutionOrganHumanLungsOrgan
-    - SolutionOrganHumanLungsFood
-    - SolutionOrganHumanLungsLung
-
-- type: entity
-  parent: SolutionBaseHumanOrganOrgan
-  id: SolutionOrganHumanLungsOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-
-- type: entity
-  parent: Solution
-  id: SolutionOrganHumanLungsLung
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: Lung
-    solution:
-      maxVol: 100.0
-      canReact: false
-
-- type: entity
-  parent: SolutionBaseHumanOrganFood
-  id: SolutionOrganHumanLungsFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganLung
 
 - type: entity
   id: OrganHumanHeart
@@ -246,9 +160,9 @@
     heldPrefix: stomach
   - type: SolutionManager
     solutions:
-    - SolutionBaseHumanOrganOrgan
-    - SolutionOrganHumanStomachFood
-    - SolutionOrganHumanStomachStomach
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Stomach
   # The stomach metabolizes stuff like foods and drinks.
   # TODO: Have it work off of the ent's solution container, and move this
@@ -258,29 +172,6 @@
     maxReagents: 3
     metabolizerTypes: [Human]
     stages: [ Digestion ]
-
-- type: entity
-  parent: Solution
-  id: SolutionOrganHumanStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionBaseHumanOrganFood
-  id: SolutionOrganHumanStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganHumanLiver

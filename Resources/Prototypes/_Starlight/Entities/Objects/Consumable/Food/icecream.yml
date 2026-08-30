@@ -10,7 +10,7 @@
     solution:
       reagents:
       - ReagentId: IceCream
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -24,7 +24,7 @@
     solution:
       reagents:
       - ReagentId: CocoaPowder
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   abstract: true
@@ -69,7 +69,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -93,7 +92,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -119,7 +117,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -143,7 +140,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -169,7 +165,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -195,7 +190,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -219,7 +213,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -243,7 +236,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -270,7 +262,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -294,7 +285,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -318,7 +308,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -344,7 +333,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -368,7 +356,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -394,7 +381,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -420,7 +406,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -444,7 +429,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -468,7 +452,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -494,7 +477,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -518,7 +500,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 7
@@ -542,7 +523,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -566,7 +546,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: MindbreakerToxin
         Quantity: 7
@@ -592,7 +571,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -616,7 +594,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -642,7 +619,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -668,7 +644,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -694,7 +669,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 7
@@ -720,7 +694,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -746,7 +719,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -770,7 +742,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -796,7 +767,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -820,7 +790,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -844,7 +813,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5

@@ -20,7 +20,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 30
         reagents:
           - ReagentId: Nutriment
             Quantity: 10
@@ -51,7 +50,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 20
         reagents:
           - ReagentId: Nutriment
             Quantity: 5
@@ -84,7 +82,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 20
         reagents:
           - ReagentId: Nutriment
             Quantity: 5
@@ -115,7 +112,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 30
         reagents:
           - ReagentId: Nutriment
             Quantity: 20
@@ -145,7 +141,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 38.25
         reagents:
           - ReagentId: Nutriment
             Quantity: 29.25
@@ -177,7 +172,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 20
         reagents:
           - ReagentId: Nutriment
             Quantity: 15
@@ -208,7 +202,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 48
         reagents:
           - ReagentId: BlindingStew
             Quantity: 48
@@ -236,7 +229,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Nutriment
         Quantity: 15
@@ -269,7 +261,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 24
         reagents:
           - ReagentId: Nutriment
             Quantity: 16
@@ -300,7 +291,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 24
         reagents:
           - ReagentId: Nutriment
             Quantity: 16
@@ -332,7 +322,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 24
         reagents:
           - ReagentId: Nutriment
             Quantity: 16
@@ -363,7 +352,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 24
         reagents:
           - ReagentId: Nutriment
             Quantity: 16

@@ -19,7 +19,7 @@ public sealed partial class SolutionRandomFillSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RandomFillSolutionComponent, MapInitEvent>(OnRandomSolutionFillMapInit);
+        SubscribeLocalEvent<RandomFillSolutionComponent, MapInitEvent>(OnRandomSolutionFillMapInit, after: [typeof(SharedSolutionContainerSystem)]); // Starlight
     }
 
     private void OnRandomSolutionFillMapInit(Entity<RandomFillSolutionComponent> entity, ref MapInitEvent args)

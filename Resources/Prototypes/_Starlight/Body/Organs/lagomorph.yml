@@ -25,34 +25,11 @@
     heldPrefix: stomach
   - type: SolutionManager
     solutions:
-    - SolutionOrganLagomorphStomachFood
-    - SolutionOrganLagomorphStomachStomach
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Metabolizer
     updateInterval: 0.75
 
-
-- type: entity
-  parent: SolutionOrganAnimalStomachStomach
-  id: SolutionOrganLagomorphStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionOrganAnimalStomachFood
-  id: SolutionOrganLagomorphStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganLagomorphHeart

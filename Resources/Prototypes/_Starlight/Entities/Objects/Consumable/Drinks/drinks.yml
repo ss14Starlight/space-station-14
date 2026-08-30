@@ -6,7 +6,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: DraganSpecial
         Quantity: 30
@@ -22,7 +21,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Highlander
         Quantity: 30
@@ -40,7 +38,7 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
+      reagents: []
   - type: Construction
     graph: DrinkWaterBottleEmpty
     node: waterbottle

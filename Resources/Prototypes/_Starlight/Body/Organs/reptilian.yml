@@ -17,28 +17,5 @@
       - Birthday
   - type: SolutionManager
     solutions:
-    - SolutionOrganReptilianStomachFood
-    - SolutionOrganReptilianStomachStomach
-
-- type: entity
-  parent: SolutionOrganAnimalStomachStomach
-  id: SolutionOrganReptilianStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionOrganAnimalStomachFood
-  id: SolutionOrganReptilianStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50

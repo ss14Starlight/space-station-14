@@ -27,34 +27,11 @@
   - type: Organ
   - type: SolutionManager
     solutions:
-    - SolutionBaseHumanOrganOrgan
-    - SolutionOrganDwarfStomachFood
-    - SolutionOrganDwarfStomachStomach
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach75
   - type: Stomach
   - type: Metabolizer
     # mm very yummy
     maxReagents: 5
     metabolizerTypes: [Dwarf, Animal]
-
-- type: entity
-  parent: SolutionOrganHumanStomachStomach
-  id: SolutionOrganDwarfStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 75
-
-- type: entity
-  parent: SolutionOrganHumanStomachFood
-  id: SolutionOrganDwarfStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5

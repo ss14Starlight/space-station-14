@@ -863,7 +863,7 @@
 
 - type: entity
   categories: [ HideSpawnMenu ]
-  parent: FoodPacketTrash
+  parent: [SolutionVeryTiny, FoodPacketTrash] # Starlight - the wrapper contains 10u of fiber
   id: FoodPacketMRETrash
   name: MRE wrapper
   description: A general purpose wrapper for a variety of military food goods.

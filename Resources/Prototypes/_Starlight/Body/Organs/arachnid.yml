@@ -11,38 +11,12 @@
     grindableSolutionName: organ
   - type: SolutionManager
     solutions:
-    - SolutionBaseArachnidOrganOrgan
-    - SolutionBaseArachnidOrganFood
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
   - type: Tag
     tags:
       - Meat
 
-
-- type: entity
-  parent: Solution
-  id: SolutionBaseArachnidOrganOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-      maxVol: 10
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-
-- type: entity
-  parent: Solution
-  id: SolutionBaseArachnidOrganFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganArachnidStomach
@@ -60,33 +34,10 @@
   - type: Stomach
   - type: SolutionManager
     solutions:
-    - SolutionOrganArachnidStomachFood
-    - SolutionOrganArachnidStomachStomach
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Metabolizer
 
-
-- type: entity
-  parent: SolutionOrganAnimalStomachStomach
-  id: SolutionOrganArachnidStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionOrganAnimalStomachFood
-  id: SolutionOrganArachnidStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganArachnidLungs
@@ -105,45 +56,9 @@
     stages: [ Respiration ]
   - type: SolutionManager
     solutions:
-    - SolutionOrganArachnidLungsOrgan
-    - SolutionOrganArachnidLungsFood
-    - SolutionOrganArachnidLungsLung
-
-- type: entity
-  parent: SolutionBaseArachnidOrganOrgan
-  id: SolutionOrganArachnidLungsOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-
-- type: entity
-  parent: Solution
-  id: SolutionOrganArachnidLungsLung
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: Lung
-    solution:
-      maxVol: 100.0
-      canReact: false
-
-- type: entity
-  parent: SolutionBaseArachnidOrganFood
-  id: SolutionOrganArachnidLungsFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganLung
 
 - type: entity
   id: OrganArachnidHeart

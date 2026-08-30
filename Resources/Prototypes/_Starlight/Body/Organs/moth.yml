@@ -27,33 +27,10 @@
       - Birthday
   - type: SolutionManager
     solutions:
-    - SolutionOrganMothStomachFood
-    - SolutionOrganMothStomachStomach
-    - SolutionBaseHumanOrganOrgan
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
+    - SolutionOrganNutriment
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [ Moth ]
     stages: [ Digestion ]
-
-- type: entity
-  parent: SolutionOrganHumanStomachStomach
-  id: SolutionOrganMothStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionOrganHumanStomachFood
-  id: SolutionOrganMothStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5

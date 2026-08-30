@@ -11,31 +11,8 @@
     isSpecialDigestibleExclusive: false
   - type: SolutionManager
     solutions:
-    - SolutionOrganNeoAvaliStomachFood
-    - SolutionOrganNeoAvaliStomachStomach
-
-- type: entity
-  parent: SolutionOrganNeocyteStomachStomach
-  id: SolutionOrganNeoAvaliStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionOrganNeocyteStomachFood
-  id: SolutionOrganNeoAvaliStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
 
 - type: entity
   id: OrganNeoAvaliHeart

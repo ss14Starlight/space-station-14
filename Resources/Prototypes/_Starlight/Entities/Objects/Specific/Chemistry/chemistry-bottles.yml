@@ -8,7 +8,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: ChloralHydrate
         Quantity: 30
@@ -23,7 +22,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Tazinide
         Quantity: 30
@@ -38,7 +36,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Ammonia
         Quantity: 30
@@ -53,7 +50,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Amoxla
         Quantity: 30
@@ -68,7 +64,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: DoctorsDelight
         Quantity: 30
@@ -83,7 +78,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Desoxyephedrine
         Quantity: 30
@@ -98,7 +92,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: WeldingFuel
         Quantity: 30
@@ -113,7 +106,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Oil
         Quantity: 30
@@ -128,7 +120,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Cornoil
         Quantity: 30
@@ -143,7 +134,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Acetone
         Quantity: 30
@@ -158,7 +148,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Phenol
         Quantity: 30
@@ -173,7 +162,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Phenylpiperidine
         Quantity: 30
@@ -188,7 +176,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: JuiceThatMakesYouWeh
         Quantity: 30
@@ -203,7 +190,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: JuiceThatMakesYouHew
         Quantity: 30
@@ -218,7 +204,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: CorgiJuice
         Quantity: 30

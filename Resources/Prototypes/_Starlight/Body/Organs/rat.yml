@@ -17,30 +17,7 @@
   components:
   - type: SolutionManager
     solutions:
-    - SolutionOrganRatStomachFood
-    - SolutionOrganRatStomachStomach
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Sprite
     state: stomach
-
-- type: entity
-  parent: SolutionOrganAnimalStomachStomach
-  id: SolutionOrganRatStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionOrganAnimalStomachFood
-  id: SolutionOrganRatStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5

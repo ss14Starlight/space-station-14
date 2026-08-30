@@ -7,7 +7,6 @@
   - type: Solution
     id: drink
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: JuiceCrab
         Quantity: 30

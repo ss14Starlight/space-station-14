@@ -20,7 +20,6 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 10
         reagents:
           - ReagentId: Nutriment
             Quantity: 5

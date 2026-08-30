@@ -49,7 +49,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BloodstreamComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<BloodstreamComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedSolutionContainerSystem)]);
         SubscribeLocalEvent<BloodstreamComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
         SubscribeLocalEvent<BloodstreamComponent, ReactionAttemptEvent>(OnReactionAttempt);
         SubscribeLocalEvent<BloodstreamComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttempt);

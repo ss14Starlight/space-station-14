@@ -41,7 +41,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20 # Room for extra condiments
       reagents:
       - ReagentId: Sugar
         Quantity: 15
@@ -89,7 +88,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
         - ReagentId: Sugar
           Quantity: 10
@@ -226,7 +224,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Sugar
         Quantity: 10

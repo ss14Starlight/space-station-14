@@ -14,14 +14,18 @@
         - sadness
         - pilk
     - type: SliceableFood
+      count: 8
       slice: FoodCakeResomiSlice
     - type: Solution
       id: food
       solution:
-        maxVol: 30
         reagents:
           - ReagentId: Nutriment
-            Quantity: 30
+            Quantity: 60
+          - ReagentId: Vitamin
+            Quantity: 10
+          - ReagentId: Sugar
+            Quantity: 15
     - type: Tag
       tags:
         - Cake
@@ -42,16 +46,20 @@
         - Fiber
         - Sweetness
     - type: SliceableFood
+      count: 8
       slice: FoodCottonCakeSlice
     - type: Solution
       id: food
       solution:
-        maxVol: 30
         reagents:
           - ReagentId: Nutriment
-            Quantity: 15
+            Quantity: 60
+          - ReagentId: Vitamin
+            Quantity: 10
+          - ReagentId: Sugar
+            Quantity: 10
           - ReagentId: Fiber
-            Quantity: 15
+            Quantity: 10
     - type: Tag
       tags:
         - Cake
@@ -76,12 +84,15 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 10
         reagents:
           - ReagentId: Nutriment
-            Quantity: 5
+            Quantity: 7.5
+          - ReagentId: Vitamin
+            Quantity: 1.25
+          - ReagentId: Sugar
+            Quantity: 1.25
           - ReagentId: Fiber
-            Quantity: 5
+            Quantity: 1.25
     - type: Tag
       tags:
         - Cake
@@ -109,10 +120,13 @@
     - type: Solution
       id: food
       solution:
-        maxVol: 5
         reagents:
           - ReagentId: Nutriment
-            Quantity: 5
+            Quantity: 7.5
+          - ReagentId: Vitamin
+            Quantity: 1.25
+          - ReagentId: Sugar
+            Quantity: 1.875
     - type: Tag
       tags:
         - Cake

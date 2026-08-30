@@ -19,8 +19,8 @@
     isSpecialDigestibleExclusive: false
   - type: SolutionManager
     solutions:
-    - SolutionOrganNeoMothStomachFood
-    - SolutionOrganNeoMothStomachStomach
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: OrganDamage
     damage:
       types:
@@ -29,26 +29,3 @@
         Bloodloss: 20
         Caustic: 20
         Radiation: 10
-
-- type: entity
-  parent: SolutionOrganAnimalStomachStomach
-  id: SolutionOrganNeoMothStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionOrganAnimalStomachFood
-  id: SolutionOrganNeoMothStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5

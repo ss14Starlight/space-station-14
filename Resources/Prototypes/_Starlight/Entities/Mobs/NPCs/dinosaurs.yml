@@ -65,7 +65,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Blood
-        Quantity: 250
+        Quantity: 500
     bloodlossDamage:
       types:
         Bloodloss:

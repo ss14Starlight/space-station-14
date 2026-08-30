@@ -31,7 +31,7 @@
     solution:
       reagents:
       - ReagentId: Hydrogen
-        Quantity: 20
+        Quantity: 10 # Starlight, same as the other ingots
       canReact: false
 
 - type: entity

@@ -11,8 +11,8 @@
     grindableSolutionName: organ
   - type: SolutionManager
     solutions:
-    - SolutionBaseAbductorOrganOrgan
-    - SolutionBaseAbductorOrganFood
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
   - type: FlavorProfile
     flavors:
       - people
@@ -20,31 +20,6 @@
     tags:
       - Meat
 
-
-- type: entity
-  parent: Solution
-  id: SolutionBaseAbductorOrganOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-
-- type: entity
-  parent: Solution
-  id: SolutionBaseAbductorOrganFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganAbductorBrain
@@ -120,9 +95,9 @@
     state: stomach
   - type: SolutionManager
     solutions:
-    - SolutionBaseAbductorOrganOrgan
-    - SolutionOrganAbductorStomachFood
-    - SolutionOrganAbductorStomachStomach
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Stomach
   # The stomach metabolizes stuff like foods and drinks.
   # TODO: Have it work off of the ent's solution container, and move this
@@ -132,29 +107,6 @@
     maxReagents: 3
     metabolizerTypes: [ Slime ]
     stages: [ Digestion ]
-
-- type: entity
-  parent: Solution
-  id: SolutionOrganAbductorStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionBaseAbductorOrganFood
-  id: SolutionOrganAbductorStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganAbductorLiver

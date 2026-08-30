@@ -31,8 +31,8 @@
   - type: Organ
   - type: SolutionManager
     solutions:
-    - SolutionOrganNeoDwarfStomachFood
-    - SolutionOrganNeoDwarfStomachStomach
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach75
   - type: Stomach
     specialDigestible:
       tags:
@@ -41,26 +41,3 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [Dwarf, Animal]
-
-- type: entity
-  parent: SolutionOrganNeocyteStomachStomach
-  id: SolutionOrganNeoDwarfStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 75
-
-- type: entity
-  parent: SolutionOrganNeocyteStomachFood
-  id: SolutionOrganNeoDwarfStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5

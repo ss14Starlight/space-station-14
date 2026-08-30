@@ -10,7 +10,7 @@
     solution:
       reagents:
       - ReagentId: Holywater
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: CratePlastic

@@ -14,32 +14,9 @@
       stages: [ Digestion, Bloodstream, Metabolites ]
     - type: SolutionManager
       solutions:
-      - SolutionOrganHumanBrainOrgan
-      - SolutionSentientSlimesCoreFood
-      - SolutionSentientSlimesCoreStomach
-
-- type: entity
-  parent: Solution
-  id: SolutionSentientSlimesCoreStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-        maxVol: 30.0
-
-- type: entity
-  parent: SolutionOrganHumanBrainFood
-  id: SolutionSentientSlimesCoreFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-        maxVol: 5
-        reagents:
-        - ReagentId: GreyMatter
-          Quantity: 5
+      - SolutionOrganSlime
+      - SolutionOrganFoodGreyMatter
+      - SolutionOrganStomach30
 
 - type: entity
   id: OrganSlimesLungs
@@ -60,42 +37,6 @@
       stages: [ Respiration ]
     - type: SolutionManager
       solutions:
-      - SolutionOrganSlimesLungsOrgan
-      - SolutionOrganSlimesLungsFood
-      - SolutionOrganSlimesLungsLung
-
-- type: entity
-  parent: SolutionBaseHumanOrganOrgan
-  id: SolutionOrganSlimesLungsOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-
-- type: entity
-  parent: Solution
-  id: SolutionOrganSlimesLungsLung
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: Lung
-    solution:
-        maxVol: 100.0
-        canReact: false
-
-- type: entity
-  parent: SolutionBaseHumanOrganFood
-  id: SolutionOrganSlimesLungsFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-        maxVol: 5
-        reagents:
-        - ReagentId: Slime
-          Quantity: 5
+      - SolutionOrganSlime
+      - SolutionOrganFoodSlime
+      - SolutionOrganLung

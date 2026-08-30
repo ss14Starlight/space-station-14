@@ -74,7 +74,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: FluorosulfuricAcid
-        Quantity: 650
+        Quantity: 1300
   - type: MeleeWeapon
     altDisarm: false
     angle: 0

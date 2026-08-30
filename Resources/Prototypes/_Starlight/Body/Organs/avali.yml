@@ -17,35 +17,12 @@
       - Birthday
   - type: SolutionManager
     solutions:
-    - SolutionOrganAvaliStomachFood
-    - SolutionOrganAvaliStomachStomach
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     state: stomach
 
-
-- type: entity
-  parent: SolutionOrganAnimalStomachStomach
-  id: SolutionOrganAvaliStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionOrganAnimalStomachFood
-  id: SolutionOrganAvaliStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganAvaliHeart

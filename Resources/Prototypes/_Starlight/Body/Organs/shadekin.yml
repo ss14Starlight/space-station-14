@@ -77,32 +77,9 @@
     state: stomach
   - type: SolutionManager
     solutions:
-    - SolutionBaseHumanOrganOrgan
-    - SolutionOrganShadekinStomachFood
-    - SolutionOrganShadekinStomachStomach
-
-- type: entity
-  parent: SolutionOrganHumanStomachStomach
-  id: SolutionOrganShadekinStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 40
-
-- type: entity
-  parent: SolutionOrganHumanStomachFood
-  id: SolutionOrganShadekinStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach40
 
 - type: entity
   id: OrganShadekinLiver

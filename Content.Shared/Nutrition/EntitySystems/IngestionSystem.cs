@@ -73,7 +73,7 @@ public sealed partial class IngestionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<EdibleComponent, MapInitEvent>(OnEdibleInit);
+        SubscribeLocalEvent<EdibleComponent, MapInitEvent>(OnEdibleInit, after: [typeof(SharedSolutionContainerSystem)]); // Starlight
 
         // Interactions
         SubscribeLocalEvent<EdibleComponent, UseInHandEvent>(OnUseEdibleInHand, after: [typeof(OpenableSystem), typeof(InventorySystem), typeof(ActivatableUISystem)]);

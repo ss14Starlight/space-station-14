@@ -2,7 +2,7 @@
 
 # Raw Pita
 - type: entity
-  parent: FoodBakingBase
+  parent: [SolutionNormal, FoodBakingBase]
   id: FoodDoughPita
   name: pita dough
   description: A twice-flattened piece of wheat dough.
@@ -24,7 +24,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 3
       reagents:
       - ReagentId: Nutriment
         Quantity: 2
@@ -47,7 +46,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 8
       reagents:
       - ReagentId: Nutriment
         Quantity: 2
@@ -71,7 +69,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 16
       reagents:
       - ReagentId: Nutriment
         Quantity: 7
@@ -101,7 +98,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 15
       reagents:
       - ReagentId: Hummus
         Quantity: 10
@@ -137,7 +133,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 40
       reagents:
       - ReagentId: Nutriment
         Quantity: 20
@@ -179,7 +174,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 40
       reagents:
       - ReagentId: Nutriment
         Quantity: 21.75
@@ -217,7 +211,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 40
       reagents:
       - ReagentId: Nutriment
         Quantity: 23
@@ -255,7 +248,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 41
       reagents:
       - ReagentId: Nutriment
         Quantity: 21
@@ -271,7 +263,7 @@
 
 # Turkish Delight
 - type: entity
-  parent: FoodInjectableBase
+  parent: [SolutionNormal, FoodInjectableBase]
   id: FoodTurkishDelight
   name: uncut turkish delight
   description: A massive, wobbling gelatin dessert. May contains nuts.
@@ -290,7 +282,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 48
       reagents:
       - ReagentId: Sugar
         Quantity: 35
@@ -305,7 +296,7 @@
     - 0,0,2,1
 
 - type: entity
-  parent: FoodInjectableBase
+  parent: [SolutionTiny, FoodInjectableBase]
   id: FoodTurkishDelightCube
   name: turkish delight
   description: A tiny, wobbling gelatin dessert. May contains nuts.
@@ -324,7 +315,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 6
       reagents:
       - ReagentId: Sugar
         Quantity: 4.375

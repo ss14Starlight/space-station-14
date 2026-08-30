@@ -21,7 +21,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -48,7 +47,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 20
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
@@ -59,7 +57,7 @@
 
 - type: entity
   name: legendsicle
-  parent: FoodFrozenBase
+  parent: [SolutionTiny, FoodFrozenBase]
   id: FoodFrozenPopsicleNicotineLegend
   description: I AM LEGEND
   components:
@@ -77,7 +75,6 @@
   - type: Solution
     id: food
     solution:
-      maxVol: 30
       reagents:
       - ReagentId: Nutriment
         Quantity: 2

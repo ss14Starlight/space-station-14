@@ -11,7 +11,7 @@
     solution:
       reagents:
       - ReagentId: Uranium
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -25,7 +25,7 @@
     solution:
       reagents:
       - ReagentId: Cornoil
-        Quantity: 200
+        Quantity: 240
 
 # Medicine Jugs for Chemist Locker
 - type: entity
@@ -41,7 +41,7 @@
     solution:
       reagents:
       - ReagentId: Arithrazine
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -56,7 +56,7 @@
     solution:
       reagents:
       - ReagentId: Diphenhydramine
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -71,7 +71,7 @@
     solution:
       reagents:
       - ReagentId: Cryoxadone
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -86,7 +86,7 @@
     solution:
       reagents:
       - ReagentId: Doxarubixadone
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -101,7 +101,7 @@
     solution:
       reagents:
       - ReagentId: Aloxadone
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -116,7 +116,7 @@
     solution:
       reagents:
       - ReagentId: Sigynate
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -131,7 +131,7 @@
     solution:
       reagents:
       - ReagentId: Leporazine
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -146,7 +146,7 @@
     solution:
       reagents:
       - ReagentId: Bruizine
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -161,7 +161,7 @@
     solution:
       reagents:
       - ReagentId: Lacerinol
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -176,7 +176,7 @@
     solution:
       reagents:
       - ReagentId: Pyrazine
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -191,7 +191,7 @@
     solution:
       reagents:
       - ReagentId: Insuzine
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -206,7 +206,7 @@
     solution:
       reagents:
       - ReagentId: Ambuzol
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -221,7 +221,7 @@
     solution:
       reagents:
       - ReagentId: AmbuzolPlus
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -236,7 +236,7 @@
     solution:
       reagents:
       - ReagentId: Amoxla
-        Quantity: 200
+        Quantity: 240
 
 # Golden jugs
 - type: entity
@@ -251,7 +251,7 @@
     solution:
       reagents:
       - ReagentId: Bicaridine
-        Quantity: 400
+        Quantity: 480
 
 - type: entity
   parent: GoldenJug
@@ -265,7 +265,7 @@
     solution:
       reagents:
       - ReagentId: Dermaline
-        Quantity: 400
+        Quantity: 480
 
 # Large cryo chemical beakers
 - type: entity
@@ -278,10 +278,9 @@
   - type: Solution
     id: beaker
     solution:
-      maxVol: 100
       reagents:
       - ReagentId: Cryoxadone
-        Quantity: 100
+        Quantity: 120
 
 - type: entity
   suffix: doxarubixadone
@@ -293,10 +292,9 @@
   - type: Solution
     id: beaker
     solution:
-      maxVol: 100
       reagents:
       - ReagentId: Doxarubixadone
-        Quantity: 100
+        Quantity: 120
 
 - type: entity
   suffix: arcryox
@@ -308,10 +306,9 @@
   - type: Solution
     id: beaker
     solution:
-      maxVol: 100
       reagents:
       - ReagentId: Arcryox
-        Quantity: 100
+        Quantity: 120
 
 - type: entity
   suffix: necrosol
@@ -323,10 +320,9 @@
   - type: Solution
     id: beaker
     solution:
-      maxVol: 100
       reagents:
       - ReagentId: Necrosol
-        Quantity: 100
+        Quantity: 120
 
 - type: entity
   suffix: chronexaline
@@ -338,10 +334,9 @@
   - type: Solution
     id: beaker
     solution:
-      maxVol: 100
       reagents:
       - ReagentId: Chronexaline
-        Quantity: 100
+        Quantity: 120
 
 - type: entity
   suffix: aloxadone
@@ -353,10 +348,9 @@
   - type: Solution
     id: beaker
     solution:
-      maxVol: 100
       reagents:
       - ReagentId: Aloxadone
-        Quantity: 100
+        Quantity: 120
 
 - type: entity
   suffix: opporozidone
@@ -368,10 +362,9 @@
   - type: Solution
     id: beaker
     solution:
-      maxVol: 100
       reagents:
       - ReagentId: Opporozidone
-        Quantity: 100
+        Quantity: 120
 
 - type: entity
   parent: Jug
@@ -385,4 +378,4 @@
     solution:
       reagents:
       - ReagentId: Lacerinol
-        Quantity: 200
+        Quantity: 240

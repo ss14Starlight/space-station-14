@@ -11,8 +11,8 @@
     grindableSolutionName: organ
   - type: SolutionManager
     solutions:
-    - SolutionBaseNeocyteOrganOrgan
-    - SolutionBaseNeocyteOrganFood
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
   - type: FlavorProfile
     flavors:
       - people
@@ -21,31 +21,6 @@
       - Meat
 
 
-
-- type: entity
-  parent: Solution
-  id: SolutionBaseNeocyteOrganOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-
-- type: entity
-  parent: Solution
-  id: SolutionBaseNeocyteOrganFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganNeocyteBrain
@@ -142,9 +117,9 @@
     stages: [ Respiration ]
   - type: SolutionManager
     solutions:
-    - SolutionOrganNeocyteLungsOrgan
-    - SolutionOrganNeocyteLungsFood
-    - SolutionOrganNeocyteLungsLung
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganLung
   - type: OrganDamage
     damage:
       types:
@@ -153,42 +128,6 @@
         Bloodloss: 20
         Radiation: 30
 
-
-- type: entity
-  parent: SolutionBaseNeocyteOrganOrgan
-  id: SolutionOrganNeocyteLungsOrgan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: organ
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 10
-
-- type: entity
-  parent: Solution
-  id: SolutionOrganNeocyteLungsLung
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: Lung
-    solution:
-      maxVol: 100.0
-      canReact: false
-
-- type: entity
-  parent: SolutionBaseNeocyteOrganFood
-  id: SolutionOrganNeocyteLungsFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganNeocyteHeart
@@ -235,8 +174,8 @@
     isSpecialDigestibleExclusive: false
   - type: SolutionManager
     solutions:
-    - SolutionOrganNeocyteStomachFood
-    - SolutionOrganNeocyteStomachStomach
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: OrganDamage
     damage:
       types:
@@ -246,29 +185,6 @@
         Caustic: 20
         Radiation: 10
 
-
-- type: entity
-  parent: SolutionOrganAnimalStomachStomach
-  id: SolutionOrganNeocyteStomachStomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: stomach
-    solution:
-      maxVol: 50
-
-- type: entity
-  parent: SolutionOrganAnimalStomachFood
-  id: SolutionOrganNeocyteStomachFood
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: food
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
 
 - type: entity
   id: OrganNeocyteLiver

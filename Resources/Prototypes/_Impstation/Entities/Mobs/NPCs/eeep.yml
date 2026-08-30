@@ -150,6 +150,7 @@
   - type: Solution
     id: chloralhydrate
     solution:
+      maxVol: 500 # Starlight - preserve the melee injector reservoir after the solution refactor
       reagents:
       - ReagentId: ChloralHydrate
         Quantity: 500
@@ -196,7 +197,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ChloralHydrate
-        Quantity: 400
+        Quantity: 400 # Starlight
     bleedReductionAmount: 1
     bloodRefreshAmount: 4
   - type: Electrified

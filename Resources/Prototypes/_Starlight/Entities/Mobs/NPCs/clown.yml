@@ -77,7 +77,7 @@
     bloodReferenceSolution:
         reagents:
         - ReagentId: Laughter
-          Quantity: 100
+          Quantity: 200
   - type: InjectOnHit
     limit: 20
     reagents:

@@ -1,5 +1,5 @@
 - type: entity
-  parent: Crayon
+  parent: [SolutionSmall, Crayon]
   id: CrayonMagic
   name: magic rainbow crayon
   description: A magical crayon. Looks tasty. Mmmm...
@@ -8,6 +8,9 @@
     state: rainbow
   - type: Item
     heldPrefix: magic
+    size: Small
+    shape:
+    - 0,0,1,0
   - type: Crayon
     color: Red
     selectableColor: true
