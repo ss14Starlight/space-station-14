@@ -20,4 +20,6 @@ station-radio-receiver-examine-low-volume = It's playing at low volume.
 
 station-radio-server-examine-recording = The station server is not recording.
 station-radio-server-examine-not-recording = The station server is currently recording.
+
+station-radio-server-microphone-on-use = The Microphone is { $radioState }.
 # Starlight - End
