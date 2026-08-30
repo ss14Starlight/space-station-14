@@ -1,74 +1,4 @@
 Entries:
-- author: Kamila, AegisShield
-  changes:
-  - message: A blood-red milk crate full of unsanctioned records has been spotted in syndicate hands.
-    type: Add
-  id: 407592
-  time: '2026-08-16T12:17:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5561
-- author: Orange Juice Goose
-  changes:
-  - message: Electrolyser now runs off of HV electricity, solid plasma can be used to massively boot its output.
-    type: Tweak
-  id: 407593
-  time: '2026-08-16T12:38:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5571
-- author: Orange Juice Goose
-  changes:
-  - message: Tesla coils and grounding rods can now electrolyze with very low efficiency.
-    type: Tweak
-  id: 407594
-  time: '2026-08-16T12:38:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5571
-- author: Orange Juice Goose
-  changes:
-  - message: Electrolyzer can no longer use uranium sheets as fuel.
-    type: Remove
-  id: 407595
-  time: '2026-08-16T12:38:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5571
-- author: Musiklie
-  changes:
-  - message: Removed the DoorRuntime event, NT finally solved the virus.
-    type: Remove
-  id: 407596
-  time: '2026-08-16T12:38:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5607
-- author: SirLutz
-  changes:
-  - message: Malign Minons now can fly over railings, tables, computers, thus not getting stuck.
-    type: Add
-  id: 407597
-  time: '2026-08-16T12:38:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5563
-- author: SirLutz
-  changes:
-  - message: Malign Minions now ghost after death when pressing WASD.
-    type: Add
-  id: 407598
-  time: '2026-08-16T12:38:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5563
-- author: SirLutz
-  changes:
-  - message: Malign Minions now have FlyingMobHitboxes.
-    type: Add
-  id: 407599
-  time: '2026-08-16T12:38:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5563
-- author: SirLutz
-  changes:
-  - message: Custoidan and Oracle do more struct damage so they can break reinf. windows.
-    type: Tweak
-  id: 407600
-  time: '2026-08-16T12:38:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5563
-- author: SirLutz
-  changes:
-  - message: Colossal Ingress now can also remove secure windoors and small firelocks.
-    type: Fix
-  id: 407601
-  time: '2026-08-16T12:38:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5563
 - author: SirLutz
   changes:
   - message: Malign passageway health reduced from 600->300, and RCD can remove them now.
@@ -2799,4 +2729,74 @@ Entries:
   id: 407991
   time: '2026-08-30T07:15:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5878
+- author: Sparlight
+  changes:
+  - message: K9 - Visual feedback; when K9s bite harder they shake a little, and the victim's screen shakes.
+    type: Add
+  id: 407992
+  time: '2026-08-30T14:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5859
+- author: Sparlight
+  changes:
+  - message: K9 - Visual feedback; a new vignette overlay shows you are being bitten.
+    type: Add
+  id: 407993
+  time: '2026-08-30T14:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5859
+- author: Sparlight
+  changes:
+  - message: 'K9 - Visual feedback: the K9 that is latched onto you is now prominently highlighted.'
+    type: Add
+  id: 407994
+  time: '2026-08-30T14:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5859
+- author: Sparlight
+  changes:
+  - message: K9 - A new 'bite harder' button appears directly in the Latch UI when latched onto a target.
+    type: Add
+  id: 407995
+  time: '2026-08-30T14:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5859
+- author: Sparlight
+  changes:
+  - message: K9s can now enter cryosleep on their own.
+    type: Fix
+  id: 407996
+  time: '2026-08-30T14:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5859
+- author: Sparlight
+  changes:
+  - message: K9s no longer almost immediately detach their latch when in zero grav.
+    type: Fix
+  id: 407997
+  time: '2026-08-30T14:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5859
+- author: Sparlight
+  changes:
+  - message: K9s can no longer latch outside of melee range, preventing them from being hit.
+    type: Fix
+  id: 407998
+  time: '2026-08-30T14:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5859
+- author: Sparlight
+  changes:
+  - message: K9s and their target can no longer be pulled while a latch is active.
+    type: Tweak
+  id: 407999
+  time: '2026-08-30T14:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5859
+- author: Sparlight
+  changes:
+  - message: K9s can initiate a latch from slightly farther away; this fixes network judder quietly failing latches.
+    type: Tweak
+  id: 408000
+  time: '2026-08-30T14:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5859
+- author: Sparlight
+  changes:
+  - message: The latch UI now re-positions to avoid the K9 or its target being hidden behind the UI.
+    type: Tweak
+  id: 408001
+  time: '2026-08-30T14:32:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5859
 Order: -1
