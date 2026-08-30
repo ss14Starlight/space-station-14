@@ -1,18 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Added Blue Winter Boots.
-    type: Add
-  id: 407585
-  time: '2026-08-16T11:24:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5528
-- author: bynddark8, Rinary1
-  changes:
-  - message: Introduces recipes for doughs and cake batter to the in game guidebook.
-    type: Add
-  id: 407586
-  time: '2026-08-16T11:48:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5354
 - author: bynddark8, Rinary1
   changes:
   - message: Introduces a method to document chemical reactions in the guidebook  as cooking recipes.
@@ -2799,4 +2785,18 @@ Entries:
   id: 407984
   time: '2026-08-30T03:10:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5871
+- author: Wizden Team
+  changes:
+  - message: Job lizard plushies can be found in various lockers around the station instead of being loadout items.
+    type: Tweak
+  id: 407985
+  time: '2026-08-30T03:45:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5872
+- author: Wizden Team
+  changes:
+  - message: Opporozidone no longer has instarot issues that get worse the longer the server has been running.
+    type: Fix
+  id: 407986
+  time: '2026-08-30T03:45:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5872
 Order: -1
