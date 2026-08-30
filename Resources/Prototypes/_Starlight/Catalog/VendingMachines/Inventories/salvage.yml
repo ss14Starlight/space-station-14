@@ -170,6 +170,18 @@
   - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorSalvageClothingShoesBootsMagSalvage
+  productEntity: ClothingShoesBootsMagSalvage
+  cost:
+    SalvageTicket: 500
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+    - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageWeaponMechMelleDrillDiamond
   productEntity: WeaponMechMelleDrillDiamond
   cost:
@@ -505,18 +517,6 @@
   - SalvageMercenaryEquipment
   conditions:
   - !type:BuyerAccessCondition
-
-- type: listing
-  id: VendorSalvageClothingShoesBootsMagSalvage
-  productEntity: ClothingShoesBootsMagSalvage
-  cost:
-    SalvageTicket: 500
-  categories:
-    - SalvageMercenaryEquipment
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 2
-    - !type:BuyerAccessCondition
 
 #Cybernetics
 - type: listing
