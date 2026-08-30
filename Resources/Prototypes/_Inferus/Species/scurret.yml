@@ -1,7 +1,8 @@
 - type: species
   id: Scurret
   name: species-name-scurret
-  roundStart: true
+   # temporary, while we wait for locking round-start behind an achievement to be implemented
+  roundStart: false
   prototype: MobPlayerScurret
   sprites: MobScurretSprites
   defaultSkinTone: "#e0ffd3"
