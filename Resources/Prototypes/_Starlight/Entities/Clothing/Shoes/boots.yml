@@ -16,10 +16,10 @@
   description: A pair of magboots tastefully modified following some old TSF guy's booster pack schematics. They hold 0.75L of gas.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Shoes/Boots/magboots-security.rsi
+      sprite: _Starlight/Clothing/Shoes/Boots/salvagemagboots.rsi
       state: icon
     - type: Clothing
-      sprite: _Starlight/Clothing/Shoes/Boots/magboots-security.rsi
+      sprite: _Starlight/Clothing/Shoes/Boots/salvagemagboots.rsi
     - type: ClothingSpeedModifier
       walkModifier: 0.85
       sprintModifier: 0.8
