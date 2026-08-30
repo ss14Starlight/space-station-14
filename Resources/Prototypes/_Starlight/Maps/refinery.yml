@@ -1,0 +1,83 @@
+- type: gameMap
+  id: StarlightRefinery
+  mapName: 'Refinery Starport'
+  mapPath: /Maps/_Starlight/Stations/Refinery.yml
+  minPlayers: 100
+  maxPlayers: 350
+  stations:
+    StarlightRefinery:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Refinery {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'RF'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_spacemall.yml
+        - type: StationJobs
+          availableJobs:
+            #service
+            Captain: [ 1, 1 ]
+            HeadOfPersonnel: [ 1, 1 ]
+            Bartender: [ 2, 3 ]
+            Botanist: [ 3, 4 ]
+            Chef: [ 2, 3 ]
+            Janitor: [ 3, 4 ]
+            Chaplain: [ 2, 2 ]
+            Librarian: [ 2, 2 ]
+            Lawyer: [ 2, 2 ]
+            ServiceWorker: [ 4, 5 ]
+            Reporter: [ 2, 2 ]
+            RadioHost: [ 2, 2 ]
+            #engineering
+            ChiefEngineer: [ 1, 1 ]
+            AtmosphericTechnician: [ 3, 4 ]
+            StationEngineer: [ 5, 6 ]
+            TechnicalAssistant: [ 3, 4 ]
+            #medical
+            ChiefMedicalOfficer: [ 1, 1 ]
+            Chemist: [ 3, 3 ]
+            MedicalDoctor: [ 4, 6 ]
+            Paramedic: [ 2, 3 ]
+            MedicalIntern: [ 3, 3 ]
+            Psychologist: [ 1, 1 ]
+            Surgeon: [ 2, 3 ]
+            #science
+            ResearchDirector: [ 1, 1 ]
+            Scientist: [ 5, 6 ]
+            ResearchAssistant: [ 3, 4 ]
+            Roboticist: [ 2, 3 ]
+            #security
+            HeadOfSecurity: [ 1, 1 ]
+            Warden: [ 1, 1 ]
+            DutyOfficer: [ 1, 2 ]
+            SecurityOfficer: [ 10, 12 ]
+            SecurityCadet: [ 5, 6 ]
+            Brigmedic: [ 2, 2 ]
+            Detective: [ 2, 2 ]
+            # K9: [ 2, 2 ]
+            #supply
+            Quartermaster: [ 1, 1 ]
+            SalvageSpecialist: [ 4, 4 ]
+            MiningSpecialist: [ 4, 4 ]
+            CargoTechnician: [ 5, 6 ]
+            MailTech: [ 2, 3 ]
+            SalvageLead: [ 1, 1 ]
+            #civilian
+            Assistant: [ -1, -1 ]
+            Clown: [ 1, 2 ]
+            Mime: [ 1, 2 ]
+            Musician: [ 2, 2 ]
+            Performer: [ 4, 5 ]
+            Boxer: [ 1, 2 ]
+            #silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 3, 5 ]
+            #law
+            Magistrate: [ 1, 1 ]
+            IAA: [ 1, 2 ]
+            #Representatives
+            BlueShield: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]

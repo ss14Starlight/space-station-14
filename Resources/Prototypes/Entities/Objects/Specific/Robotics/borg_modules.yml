@@ -1128,15 +1128,17 @@
           - Pill
           - PatchPack # Starlight
           - Patch # Starlight
-    - item: Beaker
-      hand:
-        emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Beaker
-        whitelist:
-          components:
-          - FitsInDispenser
-          tags:
-          - ChemDispensable
+    # Starlight-remove - replace first freeform beaker slot with built-in chemical case
+    #- item: Beaker
+    #      hand:
+    #        emptyLabel: borg-slot-chemical-containers-empty
+    #        emptyRepresentative: Beaker
+    #        whitelist:
+    #          components:
+    #          - FitsInDispenser
+    #          tags:
+    #          - ChemDispensable
+    - item: BottleCaseMedical # Starlight
     - item: Beaker
       hand:
         emptyLabel: borg-slot-chemical-containers-empty

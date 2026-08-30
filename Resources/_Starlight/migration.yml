@@ -343,3 +343,6 @@ WeaponShotgunRiotSawn: null
 ComputerCommsLaw: ComputerSurveillanceCameraMonitor
 LawCommsComputerCircuitboard: null
 BoxMagiCircuitBoards: null
+
+#2026-08-29 - Wizden Merge, new rigged boxing glove rename
+ClothingHandsGlovesBoxingRigged: ClothingHandsGlovesBoxingRiggedBlue
