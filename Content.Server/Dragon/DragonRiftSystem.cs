@@ -13,7 +13,13 @@ using Content.Shared.Damage.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
-using Content.Server.Station.Systems; // Starlight
+
+#region Starlight
+using Content.Server.Station.Systems;
+using Robust.Shared.Random;
+using Robust.Shared.Prototypes;
+using Content.Server._Starlight.Station;
+#endregion
 
 namespace Content.Server.Dragon;
 
@@ -28,7 +34,12 @@ public sealed partial class DragonRiftSystem : EntitySystem
     [Dependency] private NavMapSystem _navMap = default!;
     [Dependency] private NPCSystem _npc = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private StationSystem _station = default!; // Starlight
+
+#region Starlight
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private StationCrewCountSystem _crewCount = default!;
+#endregion
 
     public override void Initialize()
     {
@@ -78,9 +89,10 @@ public sealed partial class DragonRiftSystem : EntitySystem
             if (comp.State < DragonRiftState.AlmostFinished && comp.Accumulator > comp.MaxAccumulator / 2f)
             {
                 comp.State = DragonRiftState.AlmostFinished;
+#region Starlight
+                comp.SpawnAccumulator = 0f; //Prevent regular carpspawn, force sharkminnow later
                 Dirty(uid, comp);
 
-                //Starlight begin
                 var closestStation = _station.GetNearestStation(uid, true);
                 if (closestStation.Owner != EntityUid.Invalid)
                 {
@@ -92,27 +104,57 @@ public sealed partial class DragonRiftSystem : EntitySystem
                     _audio.PlayGlobal("/Audio/Misc/notice1.ogg", Filter.Broadcast(), true);
                     _navMap.SetBeaconEnabled(uid, true);
                 }
-                //Starlight end
+
+                // Spawn the guaranteed 50% SharkMinnow.
+                var sharkminnow = Spawn(new EntProtoId("RiftSharkminnow"), xform.Coordinates);
+
+                if (comp.Dragon != null && TryComp<DragonComponent>(comp.Dragon.Value, out var dragon))
+                {
+                    dragon.SharkMinnows.Add(sharkminnow);
+                }
             }
 
             if (comp.SpawnAccumulator > comp.SpawnCooldown)
             {
                 comp.SpawnAccumulator -= comp.SpawnCooldown;
-                var ent = Spawn(comp.SpawnPrototype, xform.Coordinates);
+
+                var canSpawnSharkminnow = true;
+
+                if (comp.Dragon != null &&
+                    TryComp<DragonComponent>(comp.Dragon.Value, out var dragon))
+                {
+                    var sharkMinnowCount = dragon.SharkMinnows.Count;
+                    var crewCount = _crewCount.GetTotalCrewCount();
+
+                    if (sharkMinnowCount >= crewCount)
+                        canSpawnSharkminnow = false;
+                }
+
+                var sharkminnowChance = comp.State == DragonRiftState.Finished ? 20 : 5;
+                var isSharkminnow = canSpawnSharkminnow && _random.Next(100) < sharkminnowChance;
+                var spawnPrototype = isSharkminnow? new EntProtoId("RiftSharkminnow"): comp.SpawnPrototype;
+
+                var ent = Spawn(spawnPrototype, xform.Coordinates);
+
+                if (isSharkminnow && comp.Dragon != null && TryComp<DragonComponent>(comp.Dragon.Value, out var dragonComp))
+                    dragonComp.SharkMinnows.Add(ent);
 
                 // Update their look to match the leader.
-                if (TryComp<RandomSpriteComponent>(comp.Dragon, out var randomSprite))
+                if (!isSharkminnow && TryComp<RandomSpriteComponent>(comp.Dragon, out var randomSprite))
                 {
                     var spawnedSprite = EnsureComp<RandomSpriteComponent>(ent);
                     _serManager.CopyTo(randomSprite, ref spawnedSprite, notNullableOverride: true);
                     Dirty(ent, spawnedSprite);
                 }
 
-                if (comp.Dragon != null)
-                    _npc.SetBlackboard(ent, NPCBlackboard.FollowTarget, new EntityCoordinates(comp.Dragon.Value, Vector2.Zero));
+                // Only normal carps follow the Dragon
+                if (!isSharkminnow && comp.Dragon != null)
+                    _npc.SetBlackboard(ent, NPCBlackboard.FollowTarget,
+                new EntityCoordinates(comp.Dragon.Value, Vector2.Zero));
             }
         }
     }
+#endregion
 
     private void OnExamined(EntityUid uid, DragonRiftComponent component, ExaminedEvent args)
     {
