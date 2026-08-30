@@ -10,7 +10,7 @@
 - type: alert
   id: NanoChatAlert
   icons:
-    - sprite: /Textures/_Starlight/Interface/Alerts/astronav.rsi
+    - sprite: /Textures/_Starlight/Interface/Alerts/nanochat.rsi
       state: icon
   name: alerts-nanochat-name
   description: alerts-nanochat-desc
