@@ -354,7 +354,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: CuteTurtleNeck
-  name: cute turtle neck
+  name: cute turtleneck
   description: This won't actually keep you warm.
   components:
     - type: Sprite
@@ -365,7 +365,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: CuteTurtleNeckBlack
-  name: cute black turtle neck
+  name: cute black turtleneck
   description: This won't actually keep you warm.
   components:
     - type: Sprite
