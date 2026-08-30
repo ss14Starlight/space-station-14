@@ -237,6 +237,9 @@
     priceMultiplier: 0
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.50
+  - type: Tag
+    tags:
+    - MonkeyWearable
 # Fashion-O-Mat END
 
 
