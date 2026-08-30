@@ -14,24 +14,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check if PR targets starlight-dev
+      - name: Check if PR targets rs-dev
         run: |
           SOURCE_BRANCH="${{ github.event.pull_request.head.ref }}"
           TARGET_BRANCH="${{ github.event.pull_request.base.ref }}"
           echo "PR from: $SOURCE_BRANCH -> $TARGET_BRANCH"
 
-          # Allow starlight-dev to starlight PRs in both directions
-          if [[ ("$SOURCE_BRANCH" == "starlight-dev" && "$TARGET_BRANCH" == "Starlight") ||
-                ("$SOURCE_BRANCH" == "Starlight" && "$TARGET_BRANCH" == "starlight-dev") ]]; then
-            echo "Allowed: PR between starlight-dev and starlight branches"
+          # Allow rs-dev to starlight PRs in both directions
+          if [[ ("$SOURCE_BRANCH" == "rs-dev" && "$TARGET_BRANCH" == "Starlight") ||
+                ("$SOURCE_BRANCH" == "Starlight" && "$TARGET_BRANCH" == "rs-dev") ]]; then
+            echo "Allowed: PR between rs-dev and starlight branches"
             exit 0
           fi
 
-          # For all other PRs, require starlight-dev as target
-          if [ "$TARGET_BRANCH" != "starlight-dev" ]; then
-            echo "Error: PR must target 'starlight-dev' branch, but targets '$TARGET_BRANCH'"
-            echo "Please change the target branch to 'starlight-dev'"
+          # For all other PRs, require rs-dev as target
+          if [ "$TARGET_BRANCH" != "rs-dev" ]; then
+            echo "Error: PR must target 'rs-dev' branch, but targets '$TARGET_BRANCH'"
+            echo "Please change the target branch to 'rs-dev'"
             exit 1
           else
-            echo "Success: PR correctly targets 'starlight-dev' branch"
+            echo "Success: PR correctly targets 'rs-dev' branch"
           fi
