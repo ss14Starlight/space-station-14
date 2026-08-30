@@ -1,11 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Malign passageway health reduced from 600->300, and RCD can remove them now.
-    type: Tweak
-  id: 407602
-  time: '2026-08-16T12:38:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5563
 - author: Caws
   changes:
   - message: Space koi are now pacified and should no longer angrily bite the windows of their fish tanks.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408001
   time: '2026-08-30T14:32:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5859
+- author: RedSpeeds
+  changes:
+  - message: Added mailboxes. Allowing your mail to be stored in a central location. Only normal mail can fit in these so no fragile, priority or bomb mails can fit.
+    type: Add
+  id: 408002
+  time: '2026-08-30T17:23:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5578
 Order: -1
