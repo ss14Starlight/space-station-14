@@ -1,25 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added some more trash/scrap to the maints scrapyard.
-    type: Add
-  id: 407606
-  time: '2026-08-16T13:41:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5635
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Changed the reporter rooms door to use journalism access.
-    type: Tweak
-  id: 407607
-  time: '2026-08-16T13:41:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5635
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Fixed a maints door near kitchen not having power.
-    type: Fix
-  id: 407608
-  time: '2026-08-16T13:41:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5635
 - author: Conflee
   changes:
   - message: Added Floor Lights. Placed above carpets but below furniture. Can be walked over and objects can be dragged over them. Come in all bulb variants and colors. Can be constructed and deconstructed mid-round.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408005
   time: '2026-08-30T18:09:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5752
+- author: SirLutz
+  changes:
+  - message: Rebuffed Turnstiles to 250HP, but now costs 4 Rods and 2 Plasteel and door eletronics.
+    type: Tweak
+  id: 408006
+  time: '2026-08-30T18:09:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5689
+- author: SirLutz
+  changes:
+  - message: Turnstile Assembly, now you can move it after deconstruction.
+    type: Add
+  id: 408007
+  time: '2026-08-30T18:09:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5689
+- author: SirLutz
+  changes:
+  - message: Turnstile can now take door eletronics, so easy config managment.
+    type: Add
+  id: 408008
+  time: '2026-08-30T18:09:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5689
 Order: -1
