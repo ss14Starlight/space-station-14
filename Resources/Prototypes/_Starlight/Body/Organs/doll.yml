@@ -241,10 +241,6 @@
     maxReagents: 2
     metabolizerTypes: [ Doll, Human ]
     stages: [ Bloodstream ]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
   - type: Item
     size: Small
     heldPrefix: heart
@@ -282,9 +278,6 @@
     maxReagents: 3
     metabolizerTypes: [ Doll ]
     stages: [ Digestion ]
-    groups:
-    - id: Food
-    - id: Drink
 
 - type: entity
   id: OrganDollLiver
@@ -298,8 +291,6 @@
     maxReagents: 1
     metabolizerTypes: [ Doll, Human ]
     stages: [ Metabolites ]
-    groups:
-    - id: Alcohol
 
 - type: entity
   id: OrganDollKidneys
