@@ -1229,7 +1229,7 @@
   id: ReporterJobTrinkets
   name: loadout-group-jobtrinkets
   minLimit: 0
-  maxLimit: 3 # Starlight
+  maxLimit: 2
   loadouts:
-  - DigiboardMassMedia # Starlight
-  - HoloReporterPin # Starlight
+  - DigiboardMassMedia
+  - HoloReporterPin
