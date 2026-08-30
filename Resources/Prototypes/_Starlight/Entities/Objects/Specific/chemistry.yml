@@ -1,6 +1,6 @@
 - type: entity
   name: golden beaker
-  parent: [SolutionLarge, BaseBeaker]
+  parent: LargeBeaker
   description: Used to contain a gigantic amount of chemicals and solutions.
   id: GoldenBeaker
   components:
@@ -13,9 +13,6 @@
         visible: false
   - type: Item
     sprite: _Starlight/Objects/Specific/Chemistry/beaker.rsi
-    size: Large
-    shape:
-    - 0,0,1,3
   - type: Spillable
     solution: beaker
   - type: StaticPrice
@@ -28,6 +25,10 @@
     fillBaseName: beaker
     inHandsMaxFillLevels: 3
     inHandsFillBaseName: -fill-
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 240
 
 - type: entity
   name: golden jug
@@ -128,7 +129,7 @@
 
 - type: entity
   name: silver beaker
-  parent: BaseBeaker
+  parent: LargeBeaker
   description: Used to contain a huge amount of chemicals and solutions.
   id: SilverBeaker
   components:
@@ -141,9 +142,6 @@
         visible: false
   - type: Item
     sprite: _Starlight/Objects/Specific/Chemistry/silverbeaker.rsi
-    size: Large
-    shape:
-    - 0,0,1,2
   - type: Spillable
     solution: beaker
   - type: StaticPrice
