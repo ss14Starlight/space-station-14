@@ -629,23 +629,6 @@
       - LoneOpsUplink
 
 - type: listing
-  id: uplinkRiggedBoxingGlovesAssistant
-  name: uplink-rigged-boxing-gloves-name
-  description: uplink-rigged-boxing-gloves-desc
-  productEntity: ClothingHandsGlovesBoxingRigged
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 5
-  categories:
-    - UplinkJob
-  conditions:
-    - !type:BuyerJobCondition
-      whitelist:
-        - Assistant
-
-- type: listing
   id: UplinkNecronomicon
   name: uplink-necronomicon-name
   description: uplink-necronomicon-desc
