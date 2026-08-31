@@ -1483,6 +1483,16 @@
   - type: Crawler
   - type: StatusIcon
   - type: CosmicCenserTarget # Stellar - Cosmic Cult
+  # Starlight-start
+  - type: ThermalRegulator # prevents monkeys & kobolds from overheating when wearing hardsuits
+    metabolismHeat: 400 # half of a human's
+    radiatedHeat: 35
+    implicitHeatRegulation: 250
+    sweatHeatRegulation: 500
+    shiveringHeatRegulation: 500
+    normalBodyTemperature: 310.15
+    thermalRegulationTemperatureThreshold: 2
+  # Starlight-end
 
 - type: entity
   name: monkey
@@ -3017,10 +3027,14 @@
 
 - type: entity
   name: fox
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [MobDogColdResistant, MobDogIdentity, SimpleMobBase, StripableInventoryBase] # Starlight
   id: MobFox
   description: They're a fox.
   components:
+  # Starlight Begin
+  - type: AnimalIdentity
+    nounId: identity-animal-noun-fox
+  # Starlight End
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
@@ -3118,8 +3132,8 @@
 
 - type: entity
   abstract: true
-  parent: [SimpleMobBaseAntag, StripableInventoryBase] # Starlight, so smart corgis can still roll antag
-  id: MobCorgiBase
+  parent: [MobDogColdResistant, MobDogIdentity, SimpleMobBaseAntag, StripableInventoryBase] # Starlight, so they don't inherit antag immune
+  id: MobCorgiBaseTemplate # Starlight, to let smart corgis roll antag but not other corgi types
   name: corgi
   description: Finally, a space corgi!
   components:
@@ -3140,6 +3154,7 @@
       Male: Dog
       Female: Dog
       Unsexed: Dog
+    screamAction: null
   - type: UserInterface
     interfaces:
       enum.ScentSniffUiKey.Key:
@@ -3209,9 +3224,11 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - GalacticCommon
     - Dog
+    - DogFeral
     - Canilunzt
   # Starlight-end
   - type: DamageStateVisuals
@@ -3244,8 +3261,10 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight End
@@ -3346,9 +3365,11 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - GalacticCommon
     - Cat
+    - CatFeral
     - Nekomimetic
   # Starlight-end
   - type: Sprite
@@ -3446,8 +3467,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
     - GalacticCommon
 # Starlight-end
   - type: Sprite
@@ -4145,7 +4168,7 @@
         Base: reindeer_doe_dead
 
 - type: entity
-  parent: MobCorgiBase #starlight Nubody will not pass.
+  parent: MobCorgiBaseAntag # Starlight Nubody will not pass + allows them to be antags
   id: MobCorgiSmart
   name: smart corgi
   description: An unusually smart dog.
@@ -4155,9 +4178,11 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     - GalacticCommon
     understands:
     - Dog
+    - DogFeral
     - GalacticCommon
     - Canilunzt
   # Starlight-end

@@ -14,6 +14,7 @@ namespace Content.Server.Atmos.Piping.EntitySystems
 
             SubscribeLocalEvent<AtmosPipeColorComponent, ComponentStartup>(OnStartup);
             SubscribeLocalEvent<AtmosPipeColorComponent, ComponentShutdown>(OnShutdown);
+            SLInitialize();//Starlight: Mapping trick to color network
         }
 
         private void OnStartup(EntityUid uid, AtmosPipeColorComponent component, ComponentStartup args)

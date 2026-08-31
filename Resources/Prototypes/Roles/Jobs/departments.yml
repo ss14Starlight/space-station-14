@@ -37,7 +37,6 @@
   - Performer
   - Lawyer
   - Boxer
-  - Zookeeper
   - Prisoner
   - RadioHost
   # Starlight end
@@ -128,6 +127,7 @@
   - Detective
   - Warden
   - DutyOfficer # Starlight
+  - K9 # Starlight
 
 - type: department
   id: Science

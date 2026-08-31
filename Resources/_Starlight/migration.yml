@@ -338,3 +338,11 @@ PlushieVirus: PlushieLizard
 #2026-08-09 - Removed unused sawoff shotty since the riot gun rework
 WeaponShotgunRiotSawnEmpty: null
 WeaponShotgunRiotSawn: null
+
+#2026-08-19 - Removal of law communications console
+ComputerCommsLaw: ComputerSurveillanceCameraMonitor
+LawCommsComputerCircuitboard: null
+BoxMagiCircuitBoards: null
+
+#2026-08-29 - Wizden Merge, new rigged boxing glove rename
+ClothingHandsGlovesBoxingRigged: ClothingHandsGlovesBoxingRiggedBlue
