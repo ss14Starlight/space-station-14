@@ -16,10 +16,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
-#region Starlight
-using Content.Shared.Gibbing;
-using Robust.Shared.Prototypes;
-#endregion Starlight
+using Content.Shared.Gibbing; // Starlight
 
 namespace Content.Server.Dragon;
 
@@ -37,8 +34,6 @@ public sealed partial class DragonSystem : EntitySystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private TurfSystem _turf = default!;
     [Dependency] private GibbingSystem _gib = default!; //starlight
-
-    private static readonly EntProtoId SharkMinnowPrototype = "RiftSharkminnow"; // Starlight
 
     private EntityQuery<CarpRiftsConditionComponent> _objQuery;
 

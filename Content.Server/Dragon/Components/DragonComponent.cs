@@ -70,12 +70,5 @@ namespace Content.Server.Dragon
         /// </summary>
         [DataField]
         public ProtoId<NpcFactionPrototype> Faction = "Dragon";
-
-#region Starlight
-        /// <summary>
-        /// NPC count for how many Sharkminnows this dragon has.
-        /// </summary>
-        public HashSet<EntityUid> SharkMinnows = new();
-#endregion
     }
 }
