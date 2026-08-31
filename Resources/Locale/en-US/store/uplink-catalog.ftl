@@ -540,11 +540,3 @@ uplink-briefcase-gun-desc = An indistinct briefcase with a highly compact C-20K 
 
 uplink-energycrossbow-name = Mini Energy Crossbow
 uplink-energycrossbow-desc = The go-to sidearm of any operative who prefers their victims not to be moving. Fires regenerating toxic arrows that floors victims in an instant.
-
-# Starlight changes
-uplink-fake-stamps-name = Box of Counterfeit Stamps
-uplink-fake-stamps-desc = Fool the station with Syndicate replicas of REAL stamps. Quality not guaranteed.
-
-uplink-joke-stamps-name = Box of Joke Stamps
-uplink-joke-stamps-desc = For if you really, REALLY, want to make fun of someone.
-# Starlight changes end
