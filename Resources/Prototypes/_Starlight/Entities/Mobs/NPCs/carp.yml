@@ -130,6 +130,9 @@
   parent: MobCarpHolo
   description: A holocarp here to protect the space dragon's rift.
   components:
+    - type: HTN
+      rootTask:
+        task: DragonCarpCompound
     - type: GhostRole
       allowMovement: true
       allowSpeech: true

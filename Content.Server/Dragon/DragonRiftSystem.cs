@@ -66,7 +66,6 @@ public sealed partial class DragonRiftSystem : EntitySystem
         var query = EntityQueryEnumerator<DragonRiftComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var xform))
         {
-            comp.TotalCrewCount = _crewCount.GetTotalCrewCount();
 
             if (comp.State != DragonRiftState.Finished && comp.Accumulator >= comp.MaxAccumulator)
             {
@@ -120,6 +119,8 @@ public sealed partial class DragonRiftSystem : EntitySystem
             {
                 comp.SpawnAccumulator -= comp.SpawnCooldown;
 
+                comp.TotalCrewCount = _crewCount.GetTotalCrewCount();
+                
                 var canSpawnSharkminnow = true;
 
                 if (comp.Dragon != null && TryComp<DragonComponent>(comp.Dragon.Value, out var dragon))
@@ -132,16 +133,20 @@ public sealed partial class DragonRiftSystem : EntitySystem
                         canSpawnSharkminnow = false;
                 }
 
-                
+                var finishedMultiplier = comp.State == DragonRiftState.Finished ? 1 : 0;
+                var rareChance = 20 * (1 + finishedMultiplier);
+                var sharkChance = 5 * (1 + finishedMultiplier);
+
                 var roll = _random.Next(1, 101);
                 var rareSpawn = false;
                 var isSharkminnow = false;
                 EntProtoId spawnPrototype;
 
-                if (roll <= 20)
+                if (roll <= rareChance)
                 {
                     rareSpawn = true;
-                    if (roll <= 5 && canSpawnSharkminnow)
+
+                    if (roll <= sharkChance && canSpawnSharkminnow)
                     {
                         spawnPrototype = new EntProtoId("RiftSharkminnow");
                         isSharkminnow = true;
@@ -169,10 +174,12 @@ public sealed partial class DragonRiftSystem : EntitySystem
                     Dirty(ent, spawnedSprite);
                 }
 
-                // Only normal carps follow the Dragon
+                // Sharkminnows do not follow the Dragon.
                 if (!isSharkminnow && comp.Dragon != null)
+                {
                     _npc.SetBlackboard(ent, NPCBlackboard.FollowTarget,
-                new EntityCoordinates(comp.Dragon.Value, Vector2.Zero));
+                        new EntityCoordinates(comp.Dragon.Value, Vector2.Zero));
+                }
             }
         }
     }
