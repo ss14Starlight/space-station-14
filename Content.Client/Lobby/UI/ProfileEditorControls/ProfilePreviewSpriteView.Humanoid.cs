@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Client.Humanoid;
 using Content.Client.Station;
 using Content.Shared.Clothing;
