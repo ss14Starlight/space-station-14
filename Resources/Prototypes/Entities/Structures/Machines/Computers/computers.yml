@@ -1348,7 +1348,7 @@
     key: enum.FundingAllocationConsoleUiKey.Key
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
-    access: [["HeadOfPersonnel"], ["Quartermaster"]] #Starlight edit: added Quatermaster
+    access: [["HeadOfPersonnel"]]
   - type: UserInterface
     interfaces:
       enum.FundingAllocationConsoleUiKey.Key:
