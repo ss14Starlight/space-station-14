@@ -27,6 +27,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     public event Action<BaseButton.ButtonEventArgs, ReagentButton>? OnReagentButtonPressed;
+    public event Action? OnToggleValveButtonPressed; // Starlight: plumbing valve
     public readonly Button[] PillTypeButtons;
 
     private const string PillsRsiPath = "/Textures/Objects/Specific/Chemistry/pills.rsi";
@@ -104,7 +105,14 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         PillDosage.InitDefaultButtons();
         PillNumber.InitDefaultButtons();
+        PatchDosage.InitDefaultButtons(); // Starlight
+        PatchNumber.InitDefaultButtons(); // Starlight
         BottleDosage.InitDefaultButtons();
+        PillDosageClassic.InitDefaultButtons();
+        PillNumberClassic.InitDefaultButtons();
+        PatchDosageClassic.InitDefaultButtons(); // Starlight
+        PatchNumberClassic.InitDefaultButtons(); // Starlight
+        BottleDosageClassic.InitDefaultButtons();
 
         LabelLineEdit.IsValid = s => s.Length <= SharedChemMaster.LabelMaxLength;
         #region Starlight
@@ -153,6 +161,10 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             _settingContainerLabelProgrammatically = false;
         };
         #endregion
+
+        // Starlight: plumbing valve.
+        ValveButton.OnPressed += _ => OnToggleValveButtonPressed?.Invoke();
+        ValveButtonClassic.OnPressed += _ => OnToggleValveButtonPressed?.Invoke();
 
         SearchBar.OnTextChanged += _ => UpdateReagentPrototypes(SearchBar.Text);
 
@@ -320,10 +332,28 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         UpdatePanelInfo(castState);
 
+        // Keep both Trieste layouts in sync with the Starlight state.
         InputEjectButton.Disabled = castState.InputContainerInfo is null;
+        InputEjectButtonClassic.Disabled = castState.InputContainerInfo is null;
+
         OutputEjectButton.Disabled = castState.OutputContainerInfo is null;
+        OutputEjectButtonClassic.Disabled = castState.OutputContainerInfo is null;
+
         CreateBottleButton.Disabled = castState.OutputContainerInfo?.Reagents == null;
+        CreateBottleButtonClassic.Disabled = castState.OutputContainerInfo?.Reagents == null;
+
         CreatePillButton.Disabled = castState.OutputContainerInfo?.PillEntities == null; // Starlight
+        CreatePillButtonClassic.Disabled = castState.OutputContainerInfo?.PillEntities == null;
+
+        CreatePatchButton.Disabled = castState.OutputContainerInfo?.PatchEntities == null;
+        CreatePatchButtonClassic.Disabled = castState.OutputContainerInfo?.PatchEntities == null;
+
+        var valveText = Loc.GetString(castState.ValveOpen
+            ? "chem-master-window-valve-open"
+            : "chem-master-window-valve-closed");
+
+        ValveButton.Text = valveText;
+        ValveButtonClassic.Text = valveText;
 
         UpdateDosageFields(castState);
     }
@@ -333,7 +363,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         var output = castState.OutputContainerInfo;
         var remainingCapacity = output is null ? 0 : (output.MaxVolume - output.CurrentVolume).Int();
         var holdsReagents = output?.Reagents != null;
-        var pillNumberMax = holdsReagents ? 0 : remainingCapacity;
+        var itemNumberMax = holdsReagents ? 0 : remainingCapacity;
         var bottleAmountMax = holdsReagents ? remainingCapacity : 0;
         var outputVolume = castState.DrawSource switch
         {
@@ -342,21 +372,42 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             _ => 0,
         };
 
-        PillDosage.Value = (int)Math.Min(outputVolume, castState.PillDosageLimit);
+        // Modern layout.
+        PillDosage.Value = (int) Math.Min(outputVolume, castState.PillDosageLimit);
+        PatchDosage.Value = (int) Math.Min(outputVolume, castState.PatchDosageLimit);
         PillTypeButtons[castState.SelectedPillType].Pressed = true;
 
-        PillNumber.IsValid = x => x >= 0 && x <= pillNumberMax;
+        PillNumber.IsValid = x => x >= 0 && x <= itemNumberMax;
         PillDosage.IsValid = x => x > 0 && x <= castState.PillDosageLimit;
+        PatchNumber.IsValid = x => x >= 0 && x <= itemNumberMax;
+        PatchDosage.IsValid = x => x > 0 && x <= castState.PatchDosageLimit;
         BottleDosage.IsValid = x => x >= 0 && x <= bottleAmountMax;
 
-        if (PillNumber.Value > pillNumberMax)
-            PillNumber.Value = pillNumberMax;
-        if (BottleDosage.Value > bottleAmountMax)
-            BottleDosage.Value = bottleAmountMax;
-
-        PillNumber.Value = PillDosage.Value > 0 ? Math.Min(outputVolume / PillDosage.Value, pillNumberMax) : 0;
-
+        PillNumber.Value = PillDosage.Value > 0
+            ? Math.Min(outputVolume / PillDosage.Value, itemNumberMax)
+            : 0;
+        PatchNumber.Value = PatchDosage.Value > 0
+            ? Math.Min(outputVolume / PatchDosage.Value, itemNumberMax)
+            : 0;
         BottleDosage.Value = Math.Min(bottleAmountMax, outputVolume);
+
+        // Classic layout.
+        PillDosageClassic.Value = (int) Math.Min(outputVolume, castState.PillDosageLimit);
+        PatchDosageClassic.Value = (int) Math.Min(outputVolume, castState.PatchDosageLimit);
+
+        PillNumberClassic.IsValid = x => x >= 0 && x <= itemNumberMax;
+        PillDosageClassic.IsValid = x => x > 0 && x <= castState.PillDosageLimit;
+        PatchNumberClassic.IsValid = x => x >= 0 && x <= itemNumberMax;
+        PatchDosageClassic.IsValid = x => x > 0 && x <= castState.PatchDosageLimit;
+        BottleDosageClassic.IsValid = x => x >= 0 && x <= bottleAmountMax;
+
+        PillNumberClassic.Value = PillDosageClassic.Value > 0
+            ? Math.Min(outputVolume / PillDosageClassic.Value, itemNumberMax)
+            : 0;
+        PatchNumberClassic.Value = PatchDosageClassic.Value > 0
+            ? Math.Min(outputVolume / PatchDosageClassic.Value, itemNumberMax)
+            : 0;
+        BottleDosageClassic.Value = Math.Min(bottleAmountMax, outputVolume);
     }
 
     private string GenerateLabel(ChemMasterBoundUserInterfaceState state)

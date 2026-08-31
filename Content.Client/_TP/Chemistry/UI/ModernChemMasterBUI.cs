@@ -30,11 +30,19 @@ public sealed class ModernChemMasterBui(EntityUid owner, Enum uiKey) : BoundUser
         // Set-up the static button actions.
         _window.InputEjectButton.OnPressed += _ => SendMessage(
             new ItemSlotButtonPressedEvent(SharedChemMaster.InputSlotName));
+        _window.InputEjectButtonClassic.OnPressed += _ => SendMessage(
+            new ItemSlotButtonPressedEvent(SharedChemMaster.InputSlotName));
         _window.OutputEjectButton.OnPressed += _ => SendMessage(
+            new ItemSlotButtonPressedEvent(SharedChemMaster.OutputSlotName));
+        _window.OutputEjectButtonClassic.OnPressed += _ => SendMessage(
             new ItemSlotButtonPressedEvent(SharedChemMaster.OutputSlotName));
         _window.BufferTransferButton.OnPressed += _ => SendMessage(
             new ChemMasterSetModeMessage(ChemMasterMode.Transfer));
+        _window.BufferTransferButtonClassic.OnPressed += _ => SendMessage(
+            new ChemMasterSetModeMessage(ChemMasterMode.Transfer));
         _window.BufferDiscardButton.OnPressed += _ => SendMessage(
+            new ChemMasterSetModeMessage(ChemMasterMode.Discard));
+        _window.BufferDiscardButtonClassic.OnPressed += _ => SendMessage(
             new ChemMasterSetModeMessage(ChemMasterMode.Discard));
         _window.CreatePillButton.OnPressed += _ => SendMessage(
             new ChemMasterCreatePillsMessage(
@@ -42,9 +50,30 @@ public sealed class ModernChemMasterBui(EntityUid owner, Enum uiKey) : BoundUser
                 (uint) _window.PillNumber.Value, // Starlight
                 _window.LabelLine, // Starlight
                 _window.ContainerLabelLine)); // Starlight
+        _window.CreatePillButtonClassic.OnPressed += _ => SendMessage(
+            new ChemMasterCreatePillsMessage(
+                (uint) _window.PillDosageClassic.Value,
+                (uint) _window.PillNumberClassic.Value,
+                _window.LabelLine,
+                _window.ContainerLabelLine));
+        _window.CreatePatchButton.OnPressed += _ => SendMessage(
+            new ChemMasterCreatePatchesMessage(
+                (uint) _window.PatchDosage.Value,
+                (uint) _window.PatchNumber.Value,
+                _window.LabelLine,
+                _window.ContainerLabelLine));
         _window.CreateBottleButton.OnPressed += _ => SendMessage(
             new ChemMasterOutputToBottleMessage(
                 (uint) _window.BottleDosage.Value, _window.LabelLine));
+        _window.CreateBottleButtonClassic.OnPressed += _ => SendMessage(
+            new ChemMasterOutputToBottleMessage(
+                (uint) _window.BottleDosageClassic.Value, _window.LabelLine));
+        _window.CreatePatchButtonClassic.OnPressed += _ => SendMessage(
+            new ChemMasterCreatePatchesMessage(
+                (uint) _window.PatchDosageClassic.Value,
+                (uint) _window.PatchNumberClassic.Value,
+                _window.LabelLine,
+                _window.ContainerLabelLine));
         _window.BufferSortButton.OnPressed += _ => SendMessage(
             new ChemMasterSortingTypeCycleMessage());
         _window.BufferSortButtonClassic.OnPressed += _ => SendMessage(
@@ -63,6 +92,9 @@ public sealed class ModernChemMasterBui(EntityUid owner, Enum uiKey) : BoundUser
         _window.OnReagentButtonPressed += (_, button) => SendMessage(new ChemMasterReagentAmountButtonMessage(button.Id, button.Amount, button.IsBuffer));
 
         _window.OnAmountSelected += amount => SendMessage(new ChemMasterSetTransferAmountMessage(amount));
+
+        _window.OnToggleValveButtonPressed += () =>
+            SendMessage(new ChemMasterToggleValveMessage());
     }
 
     /// <summary>

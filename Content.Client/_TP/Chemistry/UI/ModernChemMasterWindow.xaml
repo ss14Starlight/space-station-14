@@ -94,8 +94,15 @@
                     <BoxContainer Orientation="Horizontal">
                         <Label Text="{Loc 'chem-master-window-container-label'}" />
                         <Control HorizontalExpand="True" />
+                        <!-- Starlight: plumbing valve -->
+                        <Button MinSize="80 0"
+                                Name="ValveButton"
+                                Access="Public"
+                                Text="{Loc 'chem-master-window-valve-closed'}"
+                                StyleClasses="OpenRight" />
                         <Button MinSize="80 0" Name="InputEjectButton" Access="Public"
-                                Text="{Loc 'chem-master-window-eject-button'}" />
+                                Text="{Loc 'chem-master-window-eject-button'}"
+                                StyleClasses="OpenLeft" />
                     </BoxContainer>
 
                     <PanelContainer VerticalExpand="True" MinSize="0 160">
@@ -190,6 +197,18 @@
                                     Text="{Loc 'chem-master-window-create-button'}" />
                         </BoxContainer>
 
+                        <!-- Starlight: patches -->
+                        <BoxContainer Orientation="Horizontal">
+                            <Label Text="{Loc 'chem-master-window-patches-label'}" />
+                            <Control HorizontalExpand="True" MinSize="50 0" />
+                            <Label Text="{Loc 'chem-master-window-patches-number-label'}" Margin="5 0 0 0" StyleClasses="LabelSecondaryColor" />
+                            <SpinBox MinSize="100 0" Name="PatchNumber" Access="Public" Value="0" />
+                            <Label Text="{Loc 'chem-master-window-dose-label'}" Margin="5 0 0 0" StyleClasses="LabelSecondaryColor" />
+                            <SpinBox MinSize="100 0" Name="PatchDosage" Access="Public" Value="1" />
+                            <Button MinSize="80 0" Name="CreatePatchButton" Access="Public"
+                                    Text="{Loc 'chem-master-window-create-button'}" />
+                        </BoxContainer>
+
                         <BoxContainer Orientation="Horizontal">
                             <Label Text="{Loc 'chem-master-window-bottles-label'}" />
                             <Control HorizontalExpand="True" MinSize="50 0" />
@@ -213,7 +232,15 @@
                 <BoxContainer Orientation="Horizontal">
                     <Label Text="{Loc 'chem-master-window-container-label'}" />
                     <Control HorizontalExpand="True" />
-                    <Button MinSize="80 0" Name="InputEjectButtonClassic" Access="Public" Text="{Loc 'chem-master-window-eject-button'}" />
+                    <!-- Starlight: plumbing valve -->
+                    <Button MinSize="80 0"
+                            Name="ValveButtonClassic"
+                            Access="Public"
+                            Text="{Loc 'chem-master-window-valve-closed'}"
+                            StyleClasses="OpenRight" />
+                    <Button MinSize="80 0" Name="InputEjectButtonClassic" Access="Public"
+                            Text="{Loc 'chem-master-window-eject-button'}"
+                            StyleClasses="OpenLeft" />
                 </BoxContainer>
 
                 <PanelContainer VerticalExpand="True" MinSize="0 200">
@@ -308,6 +335,17 @@
                             <Label Text="{Loc 'chem-master-window-dose-label'}" Margin="5 0 0 0" StyleClasses="LabelWeak" />
                             <SpinBox MinSize="100 0" Name="PillDosageClassic" Access="Public" Value="1" />
                             <Button MinSize="80 0" Name="CreatePillButtonClassic" Access="Public" Text="{Loc 'chem-master-window-create-button'}" />
+                        </BoxContainer>
+
+                        <!-- Starlight: patches -->
+                        <BoxContainer Orientation="Horizontal">
+                            <Label Text="{Loc 'chem-master-window-patches-label'}" />
+                            <Control HorizontalExpand="True" MinSize="50 0" />
+                            <Label Text="{Loc 'chem-master-window-patches-number-label'}" Margin="5 0 0 0" StyleClasses="LabelSecondaryColor" />
+                            <SpinBox MinSize="100 0" Name="PatchNumberClassic" Access="Public" Value="0" />
+                            <Label Text="{Loc 'chem-master-window-dose-label'}" Margin="5 0 0 0" StyleClasses="LabelSecondaryColor" />
+                            <SpinBox MinSize="100 0" Name="PatchDosageClassic" Access="Public" Value="1" />
+                            <Button MinSize="80 0" Name="CreatePatchButtonClassic" Access="Public" Text="{Loc 'chem-master-window-create-button'}" />
                         </BoxContainer>
 
                         <BoxContainer Orientation="Horizontal">
