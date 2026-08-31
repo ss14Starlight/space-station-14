@@ -108,7 +108,7 @@
     - SpearCosmicCult
     whitelist:
       components:
-      - Sharp
+      - Tool
   - type: CosmicGlyph
     requiredCultists: 2
     activationDamage:

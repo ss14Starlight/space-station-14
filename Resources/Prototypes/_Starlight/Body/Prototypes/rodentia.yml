@@ -10,7 +10,6 @@
       maxItemSize: Small
       blacklist:
         components:
-          - Sharp
           - MindContainer
     - type: ContainerContainer
       containers:

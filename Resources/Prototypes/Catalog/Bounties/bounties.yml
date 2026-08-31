@@ -210,6 +210,9 @@
     whitelist:
       tags:
       - Knife
+    blacklist: # Starlight start
+      tags:
+      - ToyKnife # Starlight end
 
 - type: cargoBounty
   id: BountyLemon
