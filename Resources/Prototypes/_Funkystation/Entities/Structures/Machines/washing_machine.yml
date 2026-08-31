@@ -73,8 +73,8 @@
     containers: [machine_parts, machine_board, entity_storage]
   - type: Damageable
     damageModifierSet: Metallic
-  - type: Injurable
-    damageContainer: Inorganic
+  #- type: Injurable # Starlight, don't have this pr yet
+    damageContainer: Inorganic # Starlight
   - type: Destructible
     thresholds:
     - trigger:
