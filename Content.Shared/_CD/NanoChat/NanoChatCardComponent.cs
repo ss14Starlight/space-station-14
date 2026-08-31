@@ -70,9 +70,12 @@ public sealed partial class NanoChatCardComponent : Component
     [DataField]
     public bool ListNumber = true;
 
+    #region Starligt
+
     /// <summary>
-    /// STARLIGHT
     /// The alert prototype for unread messages notifications
     /// </summary>
     [DataField] public ProtoId<AlertPrototype> Alert = "NanoChatAlert";
+
+    #endregion
 }
