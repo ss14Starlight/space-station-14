@@ -51,8 +51,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private BodySystem _bodySystem = default!; // Starlight
     // Starlight-start: Printable health reports.
+    [Dependency] private BodySystem _bodySystem = default!;
     [Dependency] private SharedTimeSystem _timeSystem = default!;
     [Dependency] private SharedHandsSystem _handsSystem = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
@@ -346,7 +346,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             }
         }
 
-        // Starlight begin - Stomach chemicals
         var stomachs = _bodySystem.GetBodyOrganEntityComps<StomachComponent>((entity, null));
         foreach (var stomach in stomachs)
         {

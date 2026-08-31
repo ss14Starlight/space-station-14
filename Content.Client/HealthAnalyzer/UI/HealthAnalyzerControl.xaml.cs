@@ -156,7 +156,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             .ThenBy(g => g.Key)
             .ToDictionary(g => g.Key, g => g.Value);
 
-        DrawChemicals(state.Chemicals); // Starlight - merged bloodstream and stomach chemicals
+        DrawChemicals(state.Chemicals);
         // Starlight end
         DrawDiagnosticGroups(sortedGroups, damagePerType);
     }
