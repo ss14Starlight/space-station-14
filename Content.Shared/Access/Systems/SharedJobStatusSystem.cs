@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.StatusIcon;
 using Content.Shared.Access.Components;
 using Content.Shared.Hands;
 using Content.Shared.Inventory.Events;
@@ -8,10 +9,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Access.Systems;
 
-public abstract class SharedJobStatusSystem : EntitySystem
+public abstract partial class SharedJobStatusSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private static readonly ProtoId<JobIconPrototype> JobIconForNoId = "JobIconNoId";
 
@@ -24,6 +25,7 @@ public abstract class SharedJobStatusSystem : EntitySystem
         SubscribeLocalEvent<JobStatusComponent, DidEquipHandEvent>((uid, comp, _) => UpdateStatus((uid, comp)));
         SubscribeLocalEvent<JobStatusComponent, DidUnequipEvent>((uid, comp, _) => UpdateStatus((uid, comp)));
         SubscribeLocalEvent<JobStatusComponent, DidUnequipHandEvent>((uid, comp, _) => UpdateStatus((uid, comp)));
+        SubscribeLocalEvent<FixedJobIconComponent, ComponentStartup>(OnFixedJobIconStartup); // Starlight
     }
 
     /// <summary>
@@ -36,7 +38,15 @@ public abstract class SharedJobStatusSystem : EntitySystem
 
         var iconId = JobIconForNoId;
 
-        if (_accessReader.FindAccessItemsInventory(ent.Owner, out var items))
+        #region Starlight
+        // Entities such as K9s use a fixed job instead of an ID card.
+        if (TryComp<FixedJobIconComponent>(ent, out var fixedIcon)
+            && _prototype.Resolve(fixedIcon.Job, out var job))
+        {
+            iconId = job.Icon;
+        }
+        #endregion
+        else if (_accessReader.FindAccessItemsInventory(ent.Owner, out var items))
         {
             foreach (var item in items)
             {
