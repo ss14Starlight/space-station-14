@@ -658,7 +658,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                     VerticalExpand = true,
                     MinWidth = 4,
                     PanelOverride = new StyleBoxFlat { BackgroundColor = reagentColor },
-                    Margin = new Thickness(0, 1)
+                    Margin = new Thickness(0, 1, 4, 1)
                 },
                 new Label { Text = $"{name}: " },
                 new Label
