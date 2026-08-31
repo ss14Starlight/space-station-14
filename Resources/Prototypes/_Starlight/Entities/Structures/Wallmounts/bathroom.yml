@@ -30,7 +30,7 @@
 - type: entity
   parent: BaseWallmountMetallic
   id: HandSanitiser
-  name: hand sanitiser dispenser 
+  name: hand sanitiser dispenser
   description: Don't get any in your eyes.
   components:
   - type: Sprite
