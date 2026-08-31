@@ -1,25 +1,8 @@
 - type: entity
-  parent: PlumbingSmartDispenser
-  id: PlumbingSmartDispenserMedTakFilled
-  name: Smart dispenser
-  description: A smart dispenser prefilled with a broad set of medical reagents.
-  suffix: Filled
+  parent: Solution
+  id: SolutionPlumbingSmartDispenserMedTakFilledFridge
+  categories: [ HideSpawnMenu ]
   components:
-  - type: Sprite
-    sprite: _Starlight/Admeme/MedTak/Objects/dispenser.rsi
-    noRot: true
-    layers:
-    - state: dispenser
-      map: [ "enum.SubfloorLayers.FirstLayer" ]
-    - state: dispenser-screen
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-  - type: GenericVisualizer
-    visuals:
-      enum.PowerDeviceVisuals.Powered:
-        enum.PowerDeviceVisualLayers.Powered:
-          True: { visible: true }
-          False: { visible: false }
   - type: Solution
     id: fridge
     solution:
@@ -65,36 +48,11 @@
       - ReagentId: Epinephrine
         Quantity: 200
 
-
-  - type: SolutionManager
 - type: entity
-  parent: PlumbingSmartDispenserMedTakFilled
-  id: PlumbingSmartDispenserMedTakWallmountFilled
-  name: Wallmount dispenser
-  description: A wallmount smart dispenser filled with a broad set of medical reagents.
-  suffix: Filled
+  parent: Solution
+  id: SolutionPlumbingSmartDispenserMedTakWallmountFilledFridge
+  categories: [ HideSpawnMenu ]
   components:
-  - type: Transform
-    noRot: false
-  - type: Sprite
-    sprite: _Starlight/Admeme/MedTak/Objects/dispenser.rsi
-    noRot: false
-    layers:
-    - state: wallmount
-      map: [ "enum.SubfloorLayers.FirstLayer" ]
-    - state: wallmount-screen
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-  - type: WallMount
-  - type: SubFloorHide
-    allowAnchoringUnderCover: false
-  - type: CollideOnAnchor
-    enable: false
-  - type: Physics
-    canCollide: false
-  - type: PlumbingSmartDispenser
-    solutionName: fridge
-    maxPerReagent: 100
   - type: Solution
     id: fridge
     solution:
@@ -139,3 +97,61 @@
         Quantity: 100
       - ReagentId: Epinephrine
         Quantity: 100
+
+- type: entity
+  parent: PlumbingSmartDispenser
+  id: PlumbingSmartDispenserMedTakFilled
+  name: Smart dispenser
+  description: A smart dispenser prefilled with a broad set of medical reagents.
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Objects/dispenser.rsi
+    noRot: true
+    layers:
+    - state: dispenser
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
+    - state: dispenser-screen
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: SolutionManager
+    solutions:
+    - SolutionPlumbingSmartDispenserMedTakFilledFridge
+
+- type: entity
+  parent: PlumbingSmartDispenserMedTakFilled
+  id: PlumbingSmartDispenserMedTakWallmountFilled
+  name: Wallmount dispenser
+  description: A wallmount smart dispenser filled with a broad set of medical reagents.
+  suffix: Filled
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: _Starlight/Admeme/MedTak/Objects/dispenser.rsi
+    noRot: false
+    layers:
+    - state: wallmount
+      map: [ "enum.SubfloorLayers.FirstLayer" ]
+    - state: wallmount-screen
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: WallMount
+  - type: SubFloorHide
+    allowAnchoringUnderCover: false
+  - type: CollideOnAnchor
+    enable: false
+  - type: Physics
+    canCollide: false
+  - type: PlumbingSmartDispenser
+    solutionName: fridge
+    maxPerReagent: 100
+  - type: SolutionManager
+    solutions:
+    - SolutionPlumbingSmartDispenserMedTakWallmountFilledFridge
