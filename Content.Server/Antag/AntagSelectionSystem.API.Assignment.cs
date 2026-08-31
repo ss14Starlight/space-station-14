@@ -210,7 +210,7 @@ public sealed partial class AntagSelectionSystem
     }
 
     /// <inhereitdoc cref="IsEntityValid(EntityUid?,AntagSpecifierPrototype)"/>
-    public bool IsEntityValid([NotNullWhen(true)] EntityUid? uid, ProtoId<AntagSpecifierPrototype> def)
+    public bool IsEntityValid(EntityUid? uid, ProtoId<AntagSpecifierPrototype> def) // Starlight
     {
         if (!Proto.Resolve(def, out var antag))
             return false;
@@ -225,7 +225,7 @@ public sealed partial class AntagSelectionSystem
     /// <param name="uid">Entity whose validity we're checking.</param>
     /// <param name="def">Antag definition we want to give them.</param>
     /// <returns>True if there is nothing stopping this entity from being this antag. Or if there is no entity.</returns>
-    public bool IsEntityValid([NotNullWhen(true)] EntityUid? uid, AntagSpecifierPrototype def)
+    public bool IsEntityValid(EntityUid? uid, AntagSpecifierPrototype def) // Starlight
     {
         // If the player has not spawned in as any entity (e.g., in the lobby), they can be given an antag role/entity.
         if (!_whitelist.CheckBoth(uid, def.Blacklist, def.Whitelist))
@@ -239,7 +239,7 @@ public sealed partial class AntagSelectionSystem
         if (HasComp<GhostComponent>(uid))
             return false;
 
-        if (!def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(uid) && !HasComp<HandsComponent>(uid)) // Starlight, no visual nubody
+        if (!HasComp<HumanoidAppearanceComponent>(uid) && (!def.AllowNonHumans || !HasComp<HandsComponent>(uid))) // Starlight, Cheese, you have sent me down the path of the hell trying to get this working reliably
             return false;
 
         return true;

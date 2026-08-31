@@ -195,3 +195,61 @@
           steps:
             - tool: Screwing
               doAfter: 2
+
+# Evac
+- type: constructionGraph
+  id: ChairEvacSeat
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: ChairEvacSeat
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+    - node: ChairEvacSeat
+      entity: ChairEvacSeat
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 3
+
+# Bridge
+- type: constructionGraph
+  id: ChairBridgeSeat
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: ChairBridgeSeat
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+    - node: ChairBridgeSeat
+      entity: ChairBridgeSeat
+      edges:
+        - to: start
+          completed:
+            - !type:EmptyAllContainers
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 3

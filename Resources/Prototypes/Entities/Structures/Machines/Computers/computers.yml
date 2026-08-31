@@ -733,6 +733,7 @@
         components:
         - IdCard
     targetIdSlot:
+      priority: 1 # Starlight: Eject target ID first when alt interacting, instead of privileged ID
       name: id-card-console-target-id
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
