@@ -11,6 +11,11 @@
     modifiers:
       coefficients:
         Cold: 0.90 # winter clothing protects from cold
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 5 # average lightbulb
+        Cold: 5 # keeps ya hands safe from cold stuff too
 
 # Minor temperature protection for most other gloves that aren't super thin, like latex.
 - type: entity
