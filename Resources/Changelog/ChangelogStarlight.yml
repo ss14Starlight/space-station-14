@@ -1,160 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Law's heating room now has dual-access airlocks.
-    type: Tweak
-  id: 407619
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Changed Science lobby's front doors to generic glass airlocks so it's clear to players it's all access.
-    type: Tweak
-  id: 407620
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing cameras in Theater.
-    type: Fix
-  id: 407621
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing camera in Medical lobby.
-    type: Fix
-  id: 407622
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing camera outside Botany.
-    type: Fix
-  id: 407623
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing camera outside Robotics' Repair Bay.
-    type: Fix
-  id: 407624
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed a bunch of decals that could be cleaned by space cleaner (that shouldn't be!).
-    type: Fix
-  id: 407625
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added a crew monitoring server (I forgor) to CMO's office.
-    type: Fix
-  id: 407626
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed the airlock to CMO's bedroom being CE access.
-    type: Fix
-  id: 407627
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed an airlock in the Captain's Office being unpowered.
-    type: Fix
-  id: 407628
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed some legacy disposal pipes being mapped east of Lawyer.
-    type: Fix
-  id: 407629
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed the mining magnet being backwards.
-    type: Fix
-  id: 407630
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The kitchen freezer is actually cold now.
-    type: Fix
-  id: 407631
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Moved the kitchen shelves so you don't need to step onto tables to access them.
-    type: Fix
-  id: 407632
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Improved camera vision around Gravity & Anchor.
-    type: Fix
-  id: 407633
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added the security request computer near Security front.
-    type: Fix
-  id: 407634
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed wrong door on HOP's heating room (on the HOP side).
-    type: Fix
-  id: 407635
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed an unpowered dooor between Library and Tools Room.
-    type: Fix
-  id: 407636
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed APC in Theater that was touching another LV network.
-    type: Fix
-  id: 407637
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed APC in Mime that was touching another LV network.
-    type: Fix
-  id: 407638
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed an LV cable that was electrifying a fence in maints bar.
-    type: Fix
-  id: 407639
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added a gravity generator to the cargo shuttle because I forgor to add one.
-    type: Fix
-  id: 407640
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
   - message: (Novo Lobster) Fixed missing fire axe from Atmospherics.
     type: Fix
   id: 407641
@@ -2799,4 +2645,158 @@ Entries:
   id: 408018
   time: '2026-08-30T22:23:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5891
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: The health analyzer readout now additionally shows stomach chemical content in parenthesis and a de-emphasized gray.
+    type: Tweak
+  id: 408019
+  time: '2026-08-31T08:30:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5710
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: The health analyzer paper printout now shows bloodstream contents, as well as stomach contents (it used to not show any chemical contents at all, now it shows both bloodstream and stomach contents).
+    type: Tweak
+  id: 408020
+  time: '2026-08-31T08:30:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5710
+- author: Conflee
+  changes:
+  - message: Added Round Tables (Carpeted, Wood, Plastic, Steel, Glass, and Plasma Glass). All are constructible by players.
+    type: Add
+  id: 408021
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added Window Blinds. They can be opened and closed like curtains to block vision, and are constructible by players.
+    type: Add
+  id: 408022
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added Artsy Carpet floor tiles. Can be crafted in a tile cutter.
+    type: Add
+  id: 408023
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added the Gumball Dispenser, a new 'vending machine' that contains a variety of gumball colors. Contraband inventory contains a single Black (carpotoxin) gumball and a single Blood Red (omnizine) gumball.
+    type: Add
+  id: 408024
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added Evac Seat and Bridge Seat. Both are constructible chairs for more decorating options. Evac Seat is intended to replace to bulk of pilot seats lined up in rows on Evac Shuttles.
+    type: Add
+  id: 408025
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added the Angel Statue, for mappers to decorate with.
+    type: Add
+  id: 408026
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added Hand Sanitizer, Hand Dryer, Toilet Paper, and Toilet Paper (Offset). Hand Sanitizer can be used to 'Wash', removing pie and scent like a sink. The rest are decorative. Toilet Paper (Offset) is so it can sit next to a button in the same tile if needed.
+    type: Add
+  id: 408027
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added two new Showcase props- Pobeda (old USSP mech) and Abyssal Diving Suit (from Trieste Port). Both come with 4 rotations.
+    type: Add
+  id: 408028
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Changed existing Showcase props to have 4 rotations, and adjusted names and descriptions to add more lore. Marauder  showcase changed to a Durand MK1 showcase, featuring an earlier version of the Durand.
+    type: Tweak
+  id: 408029
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Trosling
+  changes:
+  - message: Added Arrest on Sight criminal status.
+    type: Add
+  id: 408030
+  time: '2026-08-31T18:14:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5890
+- author: Trosling
+  changes:
+  - message: Changed Hostile criminal status to Kill on Sight.
+    type: Tweak
+  id: 408031
+  time: '2026-08-31T18:14:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5890
+- author: Trosling
+  changes:
+  - message: AoS and KoS now both prompt for a reason when assigned in the computer.
+    type: Tweak
+  id: 408032
+  time: '2026-08-31T18:14:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5890
+- author: Trosling
+  changes:
+  - message: Added explicit SOP for how the criminal statuses are supposed to be used and engaged.
+    type: Add
+  id: 408033
+  time: '2026-08-31T18:14:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5890
+- author: Trosling
+  changes:
+  - message: Added in-character penalties for officers who get people killed by wrongfully assigning a criminal status.
+    type: Add
+  id: 408034
+  time: '2026-08-31T18:14:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5890
+- author: Floximo
+  changes:
+  - message: Telepads no longer wrongfully redirect bulk orders.
+    type: Fix
+  id: 408035
+  time: '2026-08-31T18:36:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5901
+- author: walksanatora
+  changes:
+  - message: Pipes can now be copied via the copy keybind for admemes/mapping (if any prototype is missing/uncopyable ping me with the prototype id so I can work on adding more).
+    type: Fix
+  id: 408036
+  time: '2026-08-31T19:02:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5811
+- author: walksanatora
+  changes:
+  - message: admins with +MAPPING now have a trick to spread a pipe color to all connected pipes.
+    type: Add
+  id: 408037
+  time: '2026-08-31T19:02:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5811
+- author: walksanatora
+  changes:
+  - message: admins with +MAPPING now have a trick to autolink air alarms controllable by the `mapping.atmos_autolink_dist` cvar.
+    type: Add
+  id: 408038
+  time: '2026-08-31T19:02:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5811
+- author: walksanatora
+  changes:
+  - message: using `!type:CreateVariant` `id`s no longer causes test using GameDataScrounger to cease to exists.
+    type: Fix
+  id: 408039
+  time: '2026-08-31T19:02:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5811
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Cyborgs can now crawl without a module active, and crawl at half speed with any module active.
+    type: Tweak
+  id: 408040
+  time: '2026-08-31T19:31:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5863
 Order: -1
