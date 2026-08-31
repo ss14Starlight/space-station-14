@@ -1,69 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Fixed missing cameras in Theater.
-    type: Fix
-  id: 407621
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing camera in Medical lobby.
-    type: Fix
-  id: 407622
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing camera outside Botany.
-    type: Fix
-  id: 407623
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing camera outside Robotics' Repair Bay.
-    type: Fix
-  id: 407624
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed a bunch of decals that could be cleaned by space cleaner (that shouldn't be!).
-    type: Fix
-  id: 407625
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added a crew monitoring server (I forgor) to CMO's office.
-    type: Fix
-  id: 407626
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed the airlock to CMO's bedroom being CE access.
-    type: Fix
-  id: 407627
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed an airlock in the Captain's Office being unpowered.
-    type: Fix
-  id: 407628
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed some legacy disposal pipes being mapped east of Lawyer.
-    type: Fix
-  id: 407629
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
   - message: (Novo Lobster) Fixed the mining magnet being backwards.
     type: Fix
   id: 407630
@@ -2799,4 +2736,67 @@ Entries:
   id: 408020
   time: '2026-08-31T08:30:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5710
+- author: Conflee
+  changes:
+  - message: Added Round Tables (Carpeted, Wood, Plastic, Steel, Glass, and Plasma Glass). All are constructible by players.
+    type: Add
+  id: 408021
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added Window Blinds. They can be opened and closed like curtains to block vision, and are constructible by players.
+    type: Add
+  id: 408022
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added Artsy Carpet floor tiles. Can be crafted in a tile cutter.
+    type: Add
+  id: 408023
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added the Gumball Dispenser, a new 'vending machine' that contains a variety of gumball colors. Contraband inventory contains a single Black (carpotoxin) gumball and a single Blood Red (omnizine) gumball.
+    type: Add
+  id: 408024
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added Evac Seat and Bridge Seat. Both are constructible chairs for more decorating options. Evac Seat is intended to replace to bulk of pilot seats lined up in rows on Evac Shuttles.
+    type: Add
+  id: 408025
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added the Angel Statue, for mappers to decorate with.
+    type: Add
+  id: 408026
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added Hand Sanitizer, Hand Dryer, Toilet Paper, and Toilet Paper (Offset). Hand Sanitizer can be used to 'Wash', removing pie and scent like a sink. The rest are decorative. Toilet Paper (Offset) is so it can sit next to a button in the same tile if needed.
+    type: Add
+  id: 408027
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Added two new Showcase props- Pobeda (old USSP mech) and Abyssal Diving Suit (from Trieste Port). Both come with 4 rotations.
+    type: Add
+  id: 408028
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Conflee
+  changes:
+  - message: Changed existing Showcase props to have 4 rotations, and adjusted names and descriptions to add more lore. Marauder  showcase changed to a Durand MK1 showcase, featuring an earlier version of the Durand.
+    type: Tweak
+  id: 408029
+  time: '2026-08-31T14:29:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5895
 Order: -1
