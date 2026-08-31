@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Fixed wrong door on HOP's heating room (on the HOP side).
-    type: Fix
-  id: 407635
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
   - message: (Novo Lobster) Fixed an unpowered dooor between Library and Tools Room.
     type: Fix
   id: 407636
@@ -2799,4 +2792,11 @@ Entries:
   id: 408034
   time: '2026-08-31T18:14:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5890
+- author: Floximo
+  changes:
+  - message: Telepads no longer wrongfully redirect bulk orders.
+    type: Fix
+  id: 408035
+  time: '2026-08-31T18:36:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5901
 Order: -1
