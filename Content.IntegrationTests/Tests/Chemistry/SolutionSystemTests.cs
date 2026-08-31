@@ -19,49 +19,49 @@ public sealed class SolutionSystemTests : GameTest
 {
     [TestPrototypes]
     private const string Prototypes = @"
-    - type: entity
-    id: SolutionTarget
-    components:
-    - type: Solution
-        id: beaker
-        solution:
-        maxVol: 50
-    - type: Spillable
+    -   type: entity
+        id: SolutionTarget
+        components:
+        -   type: Solution
+            id: beaker
+            solution:
+                maxVol: 50
+        -   type: Spillable
 
-    - type: reagent
-    id: TestReagentA
-    name: reagent-name-nothing
-    desc: reagent-desc-nothing
-    physicalDesc: reagent-physical-desc-nothing
+    -   type: reagent
+        id: TestReagentA
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-    - type: reagent
-    id: TestReagentB
-    name: reagent-name-nothing
-    desc: reagent-desc-nothing
-    physicalDesc: reagent-physical-desc-nothing
+    -   type: reagent
+        id: TestReagentB
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-    - type: reagent
-    id: TestReagentC
-    specificHeat: 2.0
-    name: reagent-name-nothing
-    desc: reagent-desc-nothing
-    physicalDesc: reagent-physical-desc-nothing
+    -   type: reagent
+        id: TestReagentC
+        specificHeat: 2.0
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-    - type: reagent
-    id: TestReagentD
-    name: reagent-name-nothing
-    desc: reagent-desc-nothing
-    physicalDesc: reagent-physical-desc-nothing
+    -   type: reagent
+        id: TestReagentD
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-    - type: reaction
-    id: TestReagentA
-    reactants:
-        TestReagentC:
-        amount: 1
-        TestReagentD:
-        amount: 1
-    products:
-        TestReagentA: 20
+    -   type: reaction
+        id: TestReagentA
+        reactants:
+            TestReagentC:
+                amount: 1
+            TestReagentD:
+                amount: 1
+        products:
+            TestReagentA: 20
     ";
 
     private const string TestReagentA = "TestReagentA";

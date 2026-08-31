@@ -144,13 +144,13 @@ public sealed class InbuiltSlicingVerbTest : InteractionTest
 {
     [TestPrototypes]
     private const string SlicingPlayerPrototype = """
-    - type: entity
-    parent: InteractionTestMob
-    id: InteractionTestSlicingMob
-    components:
-    - type: Tool
-        qualities:
-        - Slicing
+    -   type: entity
+        parent: InteractionTestMob
+        id: InteractionTestSlicingMob
+        components:
+        -   type: Tool
+            qualities:
+                - Slicing
     """;
 
     protected override string PlayerPrototype => "InteractionTestSlicingMob";

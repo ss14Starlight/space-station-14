@@ -20,32 +20,32 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
     {
         [TestPrototypes]
         private const string Prototypes = @"
-    - type: entity
-    name: HumanLungDummy
-    id: HumanLungDummy
-    components:
-    - type: SolutionManager
-    - type: Body
-        prototype: Human
-    - type: MobState
-        allowedStates:
-        - Alive
-    - type: Damageable
-    - type: ThermalRegulator
-        metabolismHeat: 5000
-        radiatedHeat: 400
-        implicitHeatRegulation: 5000
-        sweatHeatRegulation: 5000
-        shiveringHeatRegulation: 5000
-        normalBodyTemperature: 310.15
-        thermalRegulationTemperatureThreshold: 25
-    - type: Respirator
-        damage:
-        types:
-            Asphyxiation: 1.5
-        damageRecovery:
-        types:
-            Asphyxiation: -1.5
+    -   type: entity
+        name: HumanLungDummy
+        id: HumanLungDummy
+        components:
+        -   type: SolutionManager
+        -   type: Body
+            prototype: Human
+        -   type: MobState
+            allowedStates:
+                - Alive
+        -   type: Damageable
+        -   type: ThermalRegulator
+            metabolismHeat: 5000
+            radiatedHeat: 400
+            implicitHeatRegulation: 5000
+            sweatHeatRegulation: 5000
+            shiveringHeatRegulation: 5000
+            normalBodyTemperature: 310.15
+            thermalRegulationTemperatureThreshold: 25
+        -   type: Respirator
+            damage:
+                types:
+                    Asphyxiation: 1.5
+            damageRecovery:
+                types:
+                    Asphyxiation: -1.5
     ";
 
         [Test]
