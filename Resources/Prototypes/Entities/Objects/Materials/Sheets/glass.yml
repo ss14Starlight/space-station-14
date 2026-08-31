@@ -5,6 +5,11 @@
   name: glass
   description: A sheet of glass, used often on the station in various applications.
   components:
+  - type: Tag # Starlight start
+    tags:
+    - Sheet
+    - TiderAnvilParts
+    - ConstructionMaterial # Starlight end
   - type: Sprite
     sprite: Objects/Materials/Sheets/glass.rsi
   - type: Item

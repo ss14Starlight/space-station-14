@@ -132,6 +132,7 @@
     tags:
     - Plastic
     - Sheet
+    - TiderAnvilParts # Starlight
     - ConstructionMaterial
   - type: PhysicalComposition
     materialComposition:
