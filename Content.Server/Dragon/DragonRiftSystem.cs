@@ -124,6 +124,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
 
                 var totalCrewCount = _crewCount.GetTotalCrewCount();
                 comp.SharkMinnowLimit = totalCrewCount / 2;
+                Dirty(uid, comp);
 
                 var canSpawnSharkminnow = true;
 
