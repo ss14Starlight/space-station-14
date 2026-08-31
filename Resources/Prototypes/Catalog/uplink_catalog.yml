@@ -2033,7 +2033,7 @@
   - UplinkPointless
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 1
+      stock: 0 #Joke stamps should be rare. This exists to spawn in a surplus crate.
 #Starlight end
 
 # Job Specific
