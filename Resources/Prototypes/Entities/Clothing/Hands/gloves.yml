@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: ClothingHandsBase
+  parent: ClothingHandsBaseWarm # Starlight
   id: ClothingHandsGlovesBoxingBase
   components:
   - type: StaminaDamageOnHit
@@ -134,7 +134,7 @@
       - id: ClothingHandsGlovesBoxingRiggedYellow
 
 - type: entity
-  parent: [ClothingHandsBase, BaseCommandContraband]
+  parent: [ClothingHandsBase, ClothingHandsBaseWarm, BaseCommandContraband] # Starlight
   id: ClothingHandsGlovesCaptain
   name: captain gloves
   description: Regal blue gloves, with a nice gold trim. Swanky.
@@ -150,7 +150,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: ClothingHandsBase
+  parent: [ClothingHandsBase, ClothingHandsBaseWarm] # Starlight
   id: ClothingHandsGlovesHop
   name: papercut-proof gloves
   description: Perfect for dealing with paperwork and matters with bureaucracy.
@@ -210,7 +210,7 @@
     zombificationResistanceCoefficient: 0.9 # Starlight end
 
 - type: entity
-  parent: ClothingHandsButcherable
+  parent: [ClothingHandsButcherable, ClothingHandsBaseWarm] # Starlight
   id: ClothingHandsGlovesLeather
   name: botanist's leather gloves
   description: These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin. They're also quite warm.
@@ -230,7 +230,7 @@
         Caustic: 5
 
 - type: entity
-  parent: ClothingHandsBase
+  parent: [ClothingHandsBase, ClothingHandsBaseWarm] # Starlight
   id: ClothingHandsGlovesPowerglove
   name: power gloves
   description: Now I'm playin' with power! Wait... they're turned off. #Use "Now I'm playin' with power! BAM!" for when they're turned on
@@ -244,7 +244,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: ClothingHandsButcherable
+  parent: [ClothingHandsButcherable, ClothingHandsBaseWarm] # Starlight
   id: ClothingHandsGlovesRobohands
   name: robohands gloves
   description: Beep boop borp!
@@ -259,7 +259,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseHighlyIllegalContraband]
+  parent: [ClothingHandsBaseWarm, BaseToggleClothing, BaseHighlyIllegalContraband] # Starlight
   id: ClothingHandsGlovesSpaceNinja
   name: space ninja gloves
   description: These black nano-enhanced gloves insulate from electricity and provide fire resistance.
@@ -495,7 +495,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHandsBase, BaseSecurityContraband]
+  parent: [ClothingHandsBase, ClothingHandsBaseWarm, BaseSecurityContraband] # Starlight
   id: ClothingHandsGlovesForensic
   name: forensic gloves
   description: Do not leave fibers or fingerprints. If you work without them, you're A TERRIBLE DETECTIVE.
