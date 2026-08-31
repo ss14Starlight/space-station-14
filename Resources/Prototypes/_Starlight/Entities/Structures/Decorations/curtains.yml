@@ -23,8 +23,5 @@
     state: Open
   - type: Occluder
     enabled: false
-  - type: Construction
-    graph: Blinds
-    node: BlindsOpen
   - type: Physics
     canCollide: false
