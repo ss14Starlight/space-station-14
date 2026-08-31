@@ -2,6 +2,7 @@
 
 using System.Linq;
 using Content.Server.Atmos.Monitor.Components;
+using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Maps;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
@@ -20,7 +21,6 @@ public sealed partial class AirAlarmSystem
     /// </summary>
     private readonly EntityWhitelist _linkableWhitelist = new()
     {
-        Tags = new(),
         Components = [
             "AtmosMonitor",
             "AtmosAlarmable"
@@ -31,32 +31,31 @@ public sealed partial class AirAlarmSystem
     /// </summary>
     private readonly EntityWhitelist _stoppingWhitelist = new()
     {
-        Tags = ["Wall"],
         Components = [
-            "Firelock"
+            "Firelock",
+            "Airtight"
         ]
     };
     private readonly Dictionary<int, Vector2i> _offset = new()
     {
-        [0] = new Vector2i(0, -1), //South
-        [1] = new Vector2i(1, 0), //East
-        [2] = new Vector2i(0, 1), //North
-        [3] = new Vector2i(-1, 0), //West
+        [0] = Vector2i.Down, //South
+        [1] = Vector2i.Right, //East
+        [2] = Vector2i.Up, //North
+        [3] = Vector2i.Left, //West
     };
 
     [Dependency] private TurfSystem _turf = default!;
     [Dependency] private TransformSystem _xform = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
 
+
     //for testing reasons
-    private EntProtoId _lizardPlush = "PlushieLizard";
+    // private EntProtoId _lizardPlush = "PlushieLizard";
 
     private int MaxDepth = 10;
     private void SLInitialize()
     {
         SubscribeLocalEvent<AirAlarmComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
-
-
     }
 
     private void OnGetVerbs(Entity<AirAlarmComponent> ent, ref GetVerbsEvent<Verb> ev) => ev.Verbs.Add(new Verb()
@@ -66,6 +65,9 @@ public sealed partial class AirAlarmSystem
         Category = VerbCategory.Tricks,
         Act = () =>
         {
+            if (!TryComp<DeviceListComponent>(ent, out var devList))
+                return;
+
             var xform = Transform(ent);
             var offset = _offset[(int)(
                xform.LocalRotation.Degrees / 90 //make it into a mutiple of 90
@@ -77,7 +79,7 @@ public sealed partial class AirAlarmSystem
 
             var seen = new HashSet<EntityCoordinates>();
             var start = coords.Value.Offset(offset);
-            var work = new HashSet<(EntityCoordinates,int)>
+            var work = new HashSet<(EntityCoordinates, int)>
             {
                 (start,0)
             };
@@ -89,24 +91,36 @@ public sealed partial class AirAlarmSystem
                 work.Remove(part);
                 seen.Add(test);
                 //and we do checking here
-                Log.Info($"working on {test}, depth {part.Item2} ({work.Count} to process)");
-                SpawnAtPosition(_lizardPlush, test);
+                // SpawnAtPosition(_lizardPlush, test);
 
                 var tref = _turf.GetTileRef(test);
-                var stop = _turf.GetEntitiesInTile(test)
-                   .Select(x => _whitelist.IsWhitelistPass(_stoppingWhitelist, x))
-                   .Where(x => _turf.GetTileRef(_xform.GetGridTilePositionOrDefault(x)))
+                if (tref == null)
+                    continue; //in space. so we dont continue propogation
+                var stop = _turf.GetEntitiesInTile(test, LookupFlags.StaticSundries)
+                   .Where(x => //Filter for entities on the tile we are checking (stupid walls are just slightly too fat)
+                   {
+                       var tile = _xform.GetGridTilePositionOrDefault(x);
+                       return tile != Vector2i.Zero && tref.Value.GridIndices == tile;
+                   })
+                   .Select(x => {
+                        if (_whitelist.IsWhitelistPass(_linkableWhitelist, x) && TryComp<DeviceNetworkComponent>(x, out var devNetwork))
+                            _deviceList.TryAddDeviceToList(
+                                new(ent, devList),
+                                new(x, devNetwork)
+                            );
+                        Log.Info($"euid: {x} WLPass: {_whitelist.IsWhitelistPass(_linkableWhitelist,x)} DNComp: {HasComp<DeviceNetworkComponent>(x)}");
+                        return _whitelist.IsWhitelistPass(_stoppingWhitelist, x);
+                    })
                    .Any(x => x);
+
                 if (stop || part.Item2 > MaxDepth)
-                {
-                    Log.Info($"Stopping, {stop} depth: {part.Item2}");
                     continue;
-                }
+
                 foreach (var direction in _offset.Values)
                 {
                     var newWork = test.Offset(direction);
                     if (!seen.Contains(newWork))
-                        work.Add((newWork,part.Item2+2));
+                        work.Add((newWork, part.Item2 + 2));
                 }
             }
             //xform.LocalRotation
