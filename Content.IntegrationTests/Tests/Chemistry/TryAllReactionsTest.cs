@@ -17,13 +17,13 @@ namespace Content.IntegrationTests.Tests.Chemistry
     {
         [TestPrototypes]
         private const string Prototypes = @"
-- type: entity
-  id: TestSolutionContainer
-  components:
-  - type: Solution
-    id: beaker
-    solution:
-      maxVol: 120";
+    - type: entity
+    id: TestSolutionContainer
+    components:
+    - type: Solution
+        id: beaker
+        solution:
+        maxVol: 120";
 
         [Test]
         public async Task TryAllTest()

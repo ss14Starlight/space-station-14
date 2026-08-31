@@ -118,7 +118,7 @@ public sealed partial class HealingSystem : EntitySystem
         }
         #region Starlight
         else if (healing.SolutionDrain &&
-                 _solutionContainerSystem.TryGetSolution(args.Used.Value, "injector", out var solutionEntity, out var solution))
+                    _solutionContainerSystem.TryGetSolution(args.Used.Value, "injector", out var solutionEntity, out var solution))
         {
             var reagentsToRemove = new List<(ReagentQuantity Reagent, FixedPoint2 Amount)>();
             foreach(var reagent in solution.Contents)

@@ -9,7 +9,7 @@ using NUnit.Framework;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Localization;
 
-namespace Content.IntegrationTests.Tests._Starlight.Kitchen.Slicing;
+namespace Content.IntegrationTests.Tests._Starlight.Kitchen;
 
 /// <summary>
 /// Integration tests for predicted slicing/refining verb interactions.
@@ -144,14 +144,14 @@ public sealed class InbuiltSlicingVerbTest : InteractionTest
 {
     [TestPrototypes]
     private const string SlicingPlayerPrototype = """
-- type: entity
-  parent: InteractionTestMob
-  id: InteractionTestSlicingMob
-  components:
-  - type: Tool
-    qualities:
-    - Slicing
-""";
+    - type: entity
+    parent: InteractionTestMob
+    id: InteractionTestSlicingMob
+    components:
+    - type: Tool
+        qualities:
+        - Slicing
+    """;
 
     protected override string PlayerPrototype => "InteractionTestSlicingMob";
 
