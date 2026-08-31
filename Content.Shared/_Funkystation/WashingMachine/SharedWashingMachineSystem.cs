@@ -74,7 +74,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     {
         ent.Comp.State = WashingMachineState.Broken;
         ent.Comp.WashFinishTime = null;
-        _audio.Stop(ent.Comp.AudioStream);
+        ent.Comp.AudioStream = _audio.Stop(ent.Comp.AudioStream);
         Dirty(ent.Owner, ent.Comp);
         _appearance.SetData(ent.Owner, WashingMachineVisuals.State, WashingMachineState.Broken);
     }
@@ -180,8 +180,8 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         comp.WashFinishTime = null;
         comp.NextWashAllowed = _timing.CurTime + comp.Cooldown;
 
-        _audio.Stop(comp.AudioStream);
-        _audio.PlayPredicted(comp.WashFinishedSound, uid, uid);
+        comp.AudioStream = _audio.Stop(comp.AudioStream);
+        _audio.PlayLocal(comp.WashFinishedSound, uid, null);
         _appearance.SetData(uid, WashingMachineVisuals.State, WashingMachineState.Idle);
 
         HashSet<EntityUid> items = new();
@@ -251,7 +251,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             RaiseLocalEvent(item, ref itemEv);
         }
 
-        ent.Comp.AudioStream = _audio.PlayPredicted(ent.Comp.WashLoopSound, ent.Owner, ent.Owner)?.Entity;
+        ent.Comp.AudioStream ??= _audio.PlayPredicted(ent.Comp.WashLoopSound, ent.Owner, user)?.Entity;
     }
 
     protected virtual void UpdateForensics(Entity<WashingMachineComponent> ent, HashSet<EntityUid> items)
