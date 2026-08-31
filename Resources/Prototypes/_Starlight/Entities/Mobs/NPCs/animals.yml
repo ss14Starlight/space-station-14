@@ -135,3 +135,50 @@
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-kobold
 
+- type: entity
+  name: chicken
+  id: MobSmartChicken
+  parent: MobChicken
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Chicken
+    - VoxPidgin
+    - Scratch
+    understands:
+    - GalacticCommon
+    - Chicken
+    - VoxPidgin
+    - Scratch
+
+- type: entity
+  name: chicken
+  id: MobSmartChicken1
+  parent: MobChicken1
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Chicken
+    - VoxPidgin
+    - Scratch
+    understands:
+    - GalacticCommon
+    - Chicken
+    - VoxPidgin
+    - Scratch
+
+- type: entity
+  name: chicken
+  id: MobSmartChicken2
+  parent: MobChicken2
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Chicken
+    - VoxPidgin
+    - Scratch
+    understands:
+    - GalacticCommon
+    - Chicken
+    - VoxPidgin
+    - Scratch

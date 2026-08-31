@@ -361,9 +361,9 @@
     children:
       - id: MobBat
       - id: MobBee
-      - id: MobChicken
-      - id: MobChicken1
-      - id: MobChicken2
+      - id: MobSmartChicken
+      - id: MobSmartChicken1
+      - id: MobSmartChicken2
       - id: MobCockroach
       - id: MobMothroach
       - id: MobDuckMallard

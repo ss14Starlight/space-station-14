@@ -10,9 +10,9 @@
       children:
       - !type:AllSelector
         children:
-        - id: MobChicken
-        - id: MobChicken
-        - id: MobChicken
+        - id: MobSmartChicken
+        - id: MobSmartChicken
+        - id: MobSmartChicken
       - !type:AllSelector
         children:
         - id: MobDuckMallard
