@@ -4,8 +4,8 @@ meta:
   engineVersion: 289.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/31/2026 21:19:27
-  entityCount: 31304
+  time: 08/31/2026 21:28:10
+  entityCount: 31311
 maps:
 - 1
 grids:
@@ -11481,7 +11481,7 @@ entities:
       pos: -13.5,17.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -470830
+      secondsUntilStateChange: -471350.97
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -11506,7 +11506,7 @@ entities:
       pos: 29.5,19.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -466300.7
+      secondsUntilStateChange: -466821.66
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -11726,7 +11726,7 @@ entities:
       pos: 39.5,29.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -422012.7
+      secondsUntilStateChange: -422533.66
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -12177,7 +12177,7 @@ entities:
       pos: 12.5,81.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -386041.38
+      secondsUntilStateChange: -386562.34
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13000,7 +13000,7 @@ entities:
       pos: -17.5,32.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -157156.48
+      secondsUntilStateChange: -157677.45
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13164,7 +13164,7 @@ entities:
       pos: 53.5,55.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -366567.78
+      secondsUntilStateChange: -367088.75
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13375,7 +13375,7 @@ entities:
       pos: -17.5,73.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -139095.25
+      secondsUntilStateChange: -139616.22
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13887,7 +13887,7 @@ entities:
       pos: 40.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -182981.95
+      secondsUntilStateChange: -183502.92
     - type: AccessReader
       accessListsOriginal: []
     - type: DeviceLinkSource
@@ -14028,7 +14028,7 @@ entities:
       pos: 46.5,38.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -159568.1
+      secondsUntilStateChange: -160089.06
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -14338,7 +14338,7 @@ entities:
       pos: 72.5,1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -462943.62
+      secondsUntilStateChange: -463464.6
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -20269,6 +20269,12 @@ entities:
     - type: Transform
       parent: 2
       pos: 48.5,-31.5
+  - uid: 31311
+    components:
+    - type: Transform
+      parent: 2
+      rot: 3.141592653589793 rad
+      pos: 15.5,71.5
 - proto: BoxShelfEngie
   entities:
   - uid: 1497
@@ -66749,6 +66755,13 @@ entities:
     - type: Transform
       parent: 2
       pos: 84.5,-9.5
+- proto: CargoMailBox
+  entities:
+  - uid: 31310
+    components:
+    - type: Transform
+      parent: 2
+      pos: 14.5,71.5
 - proto: CargoMailTeleporter
   entities:
   - uid: 10768
@@ -81701,6 +81714,13 @@ entities:
     - type: Transform
       parent: 2
       pos: -15.5,36.5
+- proto: CommandMailBox
+  entities:
+  - uid: 22677
+    components:
+    - type: Transform
+      parent: 2
+      pos: 16.5,9.5
 - proto: CompuerShuttleSalvage
   entities:
   - uid: 13471
@@ -93154,6 +93174,13 @@ entities:
     - type: Transform
       parent: 2
       pos: 37.462063,22.623354
+- proto: EngineeringMailBox
+  entities:
+  - uid: 31306
+    components:
+    - type: Transform
+      parent: 2
+      pos: -28.5,36.5
 - proto: EngineeringTechFab
   entities:
   - uid: 15392
@@ -144559,6 +144586,13 @@ entities:
     - type: Transform
       parent: 2
       pos: -18.5,-0.5
+- proto: MedicalMailBox
+  entities:
+  - uid: 31307
+    components:
+    - type: Transform
+      parent: 2
+      pos: 35.5,6.5
 - proto: MedicalRecordsComputerCircuitboard
   entities:
   - uid: 22197
@@ -147883,11 +147917,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 20.5,9.5
-  - uid: 22677
-    components:
-    - type: Transform
-      parent: 2
-      pos: 16.5,9.5
   - uid: 22678
     components:
     - type: Transform
@@ -159765,6 +159794,13 @@ entities:
     - type: Transform
       parent: 2
       pos: -3.4960847,-5.504751
+- proto: ScienceMailBox
+  entities:
+  - uid: 31308
+    components:
+    - type: Transform
+      parent: 2
+      pos: 50.5,24.5
 - proto: ScienceTechFab
   entities:
   - uid: 24769
@@ -160106,6 +160142,13 @@ entities:
       pos: 3.5,-36.5
     - type: Fixtures
       fixtures: {}
+- proto: SecurityMailBox
+  entities:
+  - uid: 31309
+    components:
+    - type: Transform
+      parent: 2
+      pos: -12.5,18.5
 - proto: SecurityTechFab
   entities:
   - uid: 24815
@@ -160127,6 +160170,13 @@ entities:
     - type: Transform
       parent: 2
       pos: 38.5,-9.5
+- proto: ServiceMailBox
+  entities:
+  - uid: 31305
+    components:
+    - type: Transform
+      parent: 2
+      pos: 34.5,52.5
 - proto: ServiceTechFab
   entities:
   - uid: 24817
@@ -174105,12 +174155,16 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 30.5,52.5
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 26959
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 30.5,50.5
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 26960
     components:
     - type: Transform
