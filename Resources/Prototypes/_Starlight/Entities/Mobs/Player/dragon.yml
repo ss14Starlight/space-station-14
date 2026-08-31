@@ -1,0 +1,26 @@
+- type: entity
+  parent: BaseMobDragon
+  id: MobDragonClown
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Aliens/Carps/clowndragon.rsi
+    noRot: true
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive-unshaded
+      shader: unshaded
+  - type: Dragon
+    spawnRiftAction: ActionSpawnRift
+  - type: GhostRole
+    mindRoles:
+    - MindRoleDragon
+  - type: ActionGun
+    action: ActionDragonsBreath
+    gunProto: DragonsBreathGun
+  - type: GuideHelp
+    guides:
+    - MinorAntagonists
+  - type: Damageable
+    damageModifierSet: DragonResistances
