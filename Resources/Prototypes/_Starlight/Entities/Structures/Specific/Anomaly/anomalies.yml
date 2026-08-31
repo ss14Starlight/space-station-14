@@ -252,8 +252,6 @@
             maxRange: 1
           spawns:
             - AdminInstantEffectFlash
-    - type: ParticleEmitter
-      effect: ShadowMist
 
 - type: entity
   id: PortalShadekinHub
