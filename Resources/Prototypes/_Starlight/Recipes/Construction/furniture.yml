@@ -13,6 +13,18 @@
 
 #region Chairs
 - type: construction
+  id: ChairOfficeSleek
+  graph: ChairSL
+  startNode: start
+  targetNode: chairOfficeSleek
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
   id: ChairEvacSeat
   name: construction-recipe-evac-seat
   graph: ChairEvacSeat

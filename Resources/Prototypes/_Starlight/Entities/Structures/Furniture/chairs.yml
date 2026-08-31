@@ -271,7 +271,7 @@
   name: bridge seat
   id: ChairBridgeSeat
   parent: ChairOfficeSleek
-  description: A luxory chair for the Captain to sit in and giggle while BSO spins them while contemplating the nearest external airlock.
+  description: A luxury chair for the Captain to sit in and giggle while BSO spins them while contemplating the nearest external airlock.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Chairs/bridge_chair.rsi
