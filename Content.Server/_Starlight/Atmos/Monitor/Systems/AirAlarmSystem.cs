@@ -3,6 +3,7 @@
 using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Atmos.Monitor.Components;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Administration;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Maps;
@@ -51,15 +52,17 @@ public sealed partial class AirAlarmSystem
     [Dependency] private TransformSystem _xform = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
     [Dependency] private IAdminManager _adminManager = default!;
-
+    [Dependency] private IConfigurationManager _configuration = default!;
 
     //for testing reasons
     // private EntProtoId _lizardPlush = "PlushieLizard";
 
-    private int MaxDepth = 10;
+    private int _maxDepth = 10;
     private void SLInitialize()
     {
         SubscribeLocalEvent<AirAlarmComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
+
+        _configuration.OnValueChanged(StarlightCCVars.MaxAutoAtmosLinkDistance, x => _maxDepth = x);
     }
 
     private void OnGetVerbs(Entity<AirAlarmComponent> ent, ref GetVerbsEvent<Verb> ev)
@@ -127,7 +130,7 @@ public sealed partial class AirAlarmSystem
                        })
                        .Any(x => x);
 
-                    if (stop || part.Item2 > MaxDepth)
+                    if (stop || part.Item2 > _maxDepth)
                         continue;
 
                     foreach (var direction in _offset.Values)
