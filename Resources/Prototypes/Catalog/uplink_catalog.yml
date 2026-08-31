@@ -2031,9 +2031,11 @@
     Telecrystal: 1
   categories:
   - UplinkPointless
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 0 #Joke stamps should be rare. This exists to spawn in a surplus crate.
+  conditions: #Joke Stamps should be rare. This can only spawn from a Surplus Bundle.
+  - !type:BuyerWhitelistCondition
+    whitelist:
+      components:
+      - SurplusBundle
 #Starlight end
 
 # Job Specific
