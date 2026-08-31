@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: BaseMailBox
-  name: Base Mail Box
-  description: A mail box for storing and retrieving mail.
+  name: mailbox
+  description: A mailbox for storing and retrieving mail.
   parent: [BaseMachinePowered, ConstructibleMachine]
   abstract: true
   components:
@@ -54,8 +54,8 @@
 
 - type: entity
   id: CargoMailBox
-  name: Cargo Mail Box
-  description: A mail box for storing and retrieving mail. Allows for Cargo to store and retrieve their mail.
+  name: cargo mailbox
+  description: A mailbox for storing and retrieving mail. Allows for Cargo to store and retrieve their mail.
   parent: BaseMailBox
   components:
       - type: MailBox
@@ -68,8 +68,8 @@
 
 - type: entity
   id: CommandMailBox
-  name: Command Mail Box
-  description: A mail box for storing and retrieving mail. Allows for Command to store and retrieve their mail.
+  name: command mailbox
+  description: A mailbox for storing and retrieving mail. Allows for Command to store and retrieve their mail.
   parent: BaseMailBox
   components:
     - type: MailBox
@@ -82,8 +82,8 @@
 
 - type: entity
   id: EngineeringMailBox
-  name: Engineering Mail Box
-  description: A mail box for storing and retrieving mail. Allows for Engineering to store and retrieve their mail.
+  name: engineering mailbox
+  description: A mailbox for storing and retrieving mail. Allows for Engineering to store and retrieve their mail.
   parent: BaseMailBox
   components:
     - type: MailBox
@@ -96,8 +96,8 @@
 
 - type: entity
   id: MedicalMailBox
-  name: Medical Mail Box
-  description: A mail box for storing and retrieving mail. Allows for Medical to store and retrieve their mail.
+  name: medical mailbox
+  description: A mailbox for storing and retrieving mail. Allows for Medical to store and retrieve their mail.
   parent: BaseMailBox
   components:
     - type: MailBox
@@ -110,8 +110,8 @@
 
 - type: entity
   id: ScienceMailBox
-  name: Science Mail Box
-  description: A mail box for storing and retrieving mail. Allows for Science to store and retrieve their mail.
+  name: science mailBox
+  description: A mailbox for storing and retrieving mail. Allows for Science to store and retrieve their mail.
   parent: BaseMailBox
   components:
     - type: MailBox
@@ -124,8 +124,8 @@
 
 - type: entity
   id: SecurityMailBox
-  name: Security Mail Box
-  description: A mail box for storing and retrieving mail. Allows for Security to store and retrieve their mail.
+  name: security mailbox
+  description: A mailbox for storing and retrieving mail. Allows for Security to store and retrieve their mail.
   parent: BaseMailBox
   components:
     - type: MailBox
@@ -138,8 +138,8 @@
 
 - type: entity
   id: ServiceMailBox
-  name: Service Mail Box
-  description: A mail box for storing and retrieving mail. Allows for Service to store and retrieve their mail.
+  name: service mailBox
+  description: A mailbox for storing and retrieving mail. Allows for Service to store and retrieve their mail.
   parent: BaseMailBox
   components:
     - type: MailBox
