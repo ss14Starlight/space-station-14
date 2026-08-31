@@ -354,6 +354,9 @@
   id: HiltWood
 
 - type: Tag
+  id: HoloprojectorCrafting # Defines which projectors can be used to craft a False Shutters Projector
+
+- type: Tag
   id: HuntedTraitBackground
 
 - type: Tag
@@ -398,6 +401,23 @@
 # Used for the jet injector and advanced jet injector
 - type: Tag
   id: JetInjector
+
+# JobIcon tags below classify JobIconPrototypes for console icon pickers (see JobIconPrototype.Tags)
+- type: Tag
+  id: JobIconAssistantManager
+
+- type: Tag
+  id: JobIconCentComm
+
+- type: Tag
+  id: JobIconCrew
+
+- type: Tag
+  id: JobIconSyndicate
+
+# Used to define clothing that the security K9 can wear.
+- type: Tag
+  id: K9Wearable
 
 - type: Tag
   id: L6Saw
@@ -606,6 +626,9 @@
 
 - type: Tag
   id: PrototypeVibroblade
+
+- type: Tag
+  id: RemoteSignallerAdvanced # Crafting whitelist: Advanced Deadman remote trigger
 
 - type: Tag
   id: RequiredForLmgTag

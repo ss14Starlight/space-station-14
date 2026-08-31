@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter] # Starlight
   id: ClothingOuterWinterCoat
   name: winter coat
   description: A heavy jacket made from 'synthetic' animal furs.
@@ -8,9 +8,11 @@
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-  - type: TemperatureProtection
-    heatingCoefficient: 1.1
-    coolingCoefficient: 0.35 # Starlight, 0.1 -> 0.35
+  #region Starlight - inherit from ClothingOuterBaseWinter instead
+  #- type: TemperatureProtection
+  #  heatingCoefficient: 1.1
+  #  coolingCoefficient: 0.1
+  #endregion Starlight
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -20,8 +22,10 @@
         Heat: 0.90
         Cold: 0.85 # Starlight, I mean, that's literally what they're for...
     priceMultiplier: 0
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.55
+  #region Starlight - inherit from ClothingOuterBaseWinter instead
+  #- type: ZombificationResistance
+  #  zombificationResistanceCoefficient: 0.55
+  #endregion Starlight
   - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager

@@ -1,0 +1,11 @@
+- type: construction
+  id: BoxShelf
+  graph: BoxShelf
+  startNode: start
+  targetNode: boxshelf
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

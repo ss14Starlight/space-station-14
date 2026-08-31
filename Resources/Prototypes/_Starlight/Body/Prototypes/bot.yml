@@ -21,3 +21,11 @@
       part: RightArmBorg
     left_arm:
       part: LeftArmBorg
+
+- type: body
+  id: SupplyBot
+  name: "supplyBot"
+  root: chassis
+  slots:
+    chassis:
+      part: TorsoBorg

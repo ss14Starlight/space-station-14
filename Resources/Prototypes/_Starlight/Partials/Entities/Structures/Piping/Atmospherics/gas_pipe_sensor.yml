@@ -1,0 +1,14 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values: &protos
+    - GasPipeSensor
+    - GasPipeSensorDistribution
+    - GasPipeSensorWaste
+    - GasPipeSensorMixedAir
+    - GasPipeSensorTEGHot
+    - GasPipeSensorTEGCold
+  components:
+    - type: SandboxCopyOverride
+      override: !type:CreateVariants
+        values: *protos
+
