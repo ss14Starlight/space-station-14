@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Law's heating room now has dual-access airlocks.
-    type: Tweak
-  id: 407619
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Changed Science lobby's front doors to generic glass airlocks so it's clear to players it's all access.
-    type: Tweak
-  id: 407620
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
   - message: (Novo Lobster) Fixed missing cameras in Theater.
     type: Fix
   id: 407621
@@ -2799,4 +2785,18 @@ Entries:
   id: 408018
   time: '2026-08-30T22:23:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5891
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: The health analyzer readout now additionally shows stomach chemical content in parenthesis and a de-emphasized gray.
+    type: Tweak
+  id: 408019
+  time: '2026-08-31T08:30:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5710
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: The health analyzer paper printout now shows bloodstream contents, as well as stomach contents (it used to not show any chemical contents at all, now it shows both bloodstream and stomach contents).
+    type: Tweak
+  id: 408020
+  time: '2026-08-31T08:30:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5710
 Order: -1
