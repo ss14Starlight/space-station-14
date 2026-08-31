@@ -1,0 +1,27 @@
+# Temperature protection for winter hats - beanies, fur hats, etc.
+- type: entity
+  abstract: true
+  parent: ClothingHeadBase
+  id: ClothingHeadBaseWinter
+  components:
+  - type: TemperatureProtection
+    heatingCoefficient: 1.10 # gets hot 10% faster
+    coolingCoefficient: 0.80 # gets cold 20% slower
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.90
+
+# Temperature protection for summer hats - wide brimmed, cowbow, straw, etc.
+- type: entity
+  abstract: true
+  parent: ClothingHeadBase
+  id: ClothingHeadBaseSummer
+  components:
+  - type: TemperatureProtection
+    heatingCoefficient: 0.80 # gets hot 20% slower
+    coolingCoefficient: 1.00
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95

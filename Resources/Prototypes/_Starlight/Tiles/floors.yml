@@ -14,6 +14,21 @@
   heatCapacity: 10000
 
 - type: tile
+  id: FloorCarpetArt
+  name: tiles-carpet-art-floor
+  sprite: /Textures/_Starlight/Tiles/artcarpet.png
+  variants: 1
+  placementVariants:
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemCarpetArt
+  heatCapacity: 10000
+
+- type: tile
   id: FloorDarkBitile
   name: tiles-dark-bitile-floor
   sprite: /Textures/_Starlight/Tiles/dark_bitile.png
