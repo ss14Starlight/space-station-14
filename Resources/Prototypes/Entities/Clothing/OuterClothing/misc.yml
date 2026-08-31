@@ -62,7 +62,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm] # Starlight
   id: ClothingOuterJacketChef
   name: chef jacket
   description: An apron-jacket used by a high class chef.
@@ -73,7 +73,7 @@
     sprite: Clothing/OuterClothing/Misc/chef.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, ClothingOuterBaseWarm] # Starlight
   id: ClothingOuterHoodieBlack
   name: black hoodie
   description: Oh my God, it's a black hoodie!
@@ -84,7 +84,7 @@
     sprite: Clothing/OuterClothing/Misc/black_hoodie.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm # Starlight
   id: ClothingOuterHoodieGrey
   name: grey hoodie
   description: A grey hoodie.
@@ -111,7 +111,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingOuterBaseToggleable
+  parent: [ClothingOuterBaseToggleable, ClothingOuterBaseWarm] # Starlight
   id: ClothingOuterHoodieChaplain
   name: chaplain hoodie # Starlight
   description: Black and strict Chaplai hoodie. # Starlight
@@ -124,7 +124,7 @@
     clothingPrototype: ClothingHeadHatHoodChaplainHood
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm # Starlight
   id: ClothingOuterPonchoClassic
   name: classic poncho
   description: A warm and comfy classic poncho.
@@ -137,7 +137,7 @@
     accent: SpanishAccent
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm # Starlight
   id: ClothingOuterRobesCult
   name: cult robes
   description: There's no cult without classic red/crimson cult robes.
@@ -148,7 +148,7 @@
     sprite: Clothing/OuterClothing/Misc/cultrobes.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm # Starlight
   id: ClothingOuterRobesJudge
   name: judge robes
   description: This robe commands authority.
@@ -159,7 +159,7 @@
     sprite: Clothing/OuterClothing/Misc/judge.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm # Starlight
   id: ClothingOuterPoncho
   name: poncho
   description: A warm and comfy poncho.
@@ -172,7 +172,7 @@
     accent: SpanishAccent
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWinter # Starlight
   id: ClothingOuterSanta
   name: santa suit
   description: Ho ho ho!
@@ -184,7 +184,7 @@
 
 - type: entity
   abstract: true
-  parent: [ ClothingOuterBase, AllowSuitStorageClothingGasTanks, BaseMagicalContraband ]
+  parent: [ ClothingOuterBase, ClothingOuterBaseWarm, AllowSuitStorageClothingGasTanks, BaseMagicalContraband ] # Starlight
   id: ClothingOuterWizardBase
   components:
   - type: WizardClothes
@@ -247,7 +247,7 @@
     sprite: Clothing/OuterClothing/Misc/skubbody.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm # Starlight
   id: ClothingOuterPlagueSuit
   name: plague doctor suit
   description: A bad omen.
@@ -258,7 +258,7 @@
     sprite: Clothing/OuterClothing/Misc/plaguedoctorsuit.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm # Starlight
   id: ClothingOuterNunRobe
   name: nun robe
   description: Maximum piety in this star system.
@@ -295,7 +295,7 @@
     sprite: Clothing/OuterClothing/Misc/hospitalgown.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm # Starlight
   id: ClothingOuterFlannelRed
   name: red flannel jacket
   description: An old fashioned red flannel jacket for space autumn.
@@ -327,11 +327,11 @@
         color: "#670a09"
       - state: equipped-OUTERCLOTHING-lines
         color: "#000000"
-  - type: TemperatureProtection
-    coolingCoefficient: 0.3
+  #- type: TemperatureProtection # Starlight - inherit from ClothingOuterBaseWarm
+  #  coolingCoefficient: 0.3
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm # Starlight
   id: ClothingOuterFlannelBlue
   name: blue flannel jacket
   description: An old fashioned blue flannel jacket for space autumn.
@@ -363,11 +363,11 @@
         color: "#3232a6"
       - state: equipped-OUTERCLOTHING-lines
         color: "#000000"
-  - type: TemperatureProtection
-    coolingCoefficient: 0.3
+  #- type: TemperatureProtection - inherit from ClothingOuterBaseWarm
+  #  coolingCoefficient: 0.3
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm # Starlight
   id: ClothingOuterFlannelGreen
   name: green flannel jacket
   description: An old fashioned green flannel jacket for space autumn.
@@ -399,11 +399,11 @@
         color: "#164d0f"
       - state: equipped-OUTERCLOTHING-lines
         color: "#000000"
-  - type: TemperatureProtection
-    coolingCoefficient: 0.3
+  #- type: TemperatureProtection - inherit from ClothingOuterBaseWarm
+  #  coolingCoefficient: 0.3
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: ClothingOuterBaseWarm # Starlight
   id: ClothingOuterRedRacoon
   name: red racoon suit
   description: Fluffy suit of red racoon!

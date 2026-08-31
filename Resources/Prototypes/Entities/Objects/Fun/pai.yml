@@ -115,11 +115,13 @@
   - type: Tag
     tags:
     - SiliconEmotes
+    - SiliconEmotesFH #Starlight - Return silicon noises to pAIs
   # Starlight Start
     - CanPilot
   - type: Blindable
   - type: ParentCanBlockVision
   - type: ContentEye
+  - type: AntagImmune
   # Starlight End
 
 - type: entity
