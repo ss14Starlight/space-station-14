@@ -28,19 +28,19 @@ public sealed class SprayVaporTests : GameTest
 
     [TestPrototypes]
     private static readonly string Prototypes = @$"
-- type: entity
-  parent: Puddle
-  id: {BloodPuddle}
-  suffix: Blood
-  components:
-  - type: Solution
-    id: puddle
-    solution:
-      maxVol: 1000
-      reagents:
-      - ReagentId: {Blood}
-        Quantity: {BloodVolume}
-";
+    - type: entity
+    parent: Puddle
+    id: {BloodPuddle}
+    suffix: Blood
+    components:
+    - type: Solution
+        id: puddle
+        solution:
+        maxVol: 1000
+        reagents:
+        - ReagentId: {Blood}
+            Quantity: {BloodVolume}
+    ";
 
     [SidedDependency(Side.Server)] private readonly SpraySystem _spray = default!;
     [SidedDependency(Side.Server)] private readonly SolutionContainerSystem _solutionContainer = default!;

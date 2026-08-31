@@ -18,17 +18,17 @@ public sealed class WelderTests : GameTest
 
     [TestPrototypes]
     private const string Prototypes = $@"
-- type: entity
-  parent: [SolutionToolWelderMiniEmergency, Welder]
-  id: {Welder}
-  components:
-  - type: Solution
-    solution:
-      maxVol: 5
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 5
-";
+    - type: entity
+    parent: [SolutionToolWelderMiniEmergency, Welder]
+    id: {Welder}
+    components:
+    - type: Solution
+        solution:
+        maxVol: 5
+        reagents:
+        - ReagentId: WeldingFuel
+            Quantity: 5
+    ";
 
     [SidedDependency(Side.Server)] private readonly SharedToolSystem _tool = default!;
     [SidedDependency(Side.Server)] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
