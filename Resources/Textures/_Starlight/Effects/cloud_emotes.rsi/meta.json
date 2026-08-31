@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "start, end, lenny, mark Made by github.com/fqqf, the rest made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley, godo made by Johnny",
+  "copyright": "State based copyright",
   "size": {
     "x": 16,
     "y": 16
@@ -9,6 +9,7 @@
   "states": [
     {
       "name": "emote_start",
+      "copyright": "Made by github.com/fqqf",
       "delays": [
         [
           0.06,
@@ -20,6 +21,7 @@
     },
     {
       "name": "emote_end",
+      "copyright": "Made by github.com/fqqf",
       "delays": [
         [
           0.06,
@@ -31,6 +33,7 @@
     },
     {
       "name": "emote_lenny",
+      "copyright": "Made by github.com/fqqf",
       "delays": [
         [
           0.3,
@@ -42,6 +45,7 @@
     },
     {
       "name": "emote_mark",
+      "copyright": "Made by github.com/fqqf",
       "delays": [
         [
           0.3,
@@ -53,6 +57,7 @@
     },
     {
       "name": "emote_nervous",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -64,6 +69,7 @@
     },
     {
       "name": "emote_snore",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -75,6 +81,7 @@
     },
     {
       "name": "emote_stare",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -86,6 +93,7 @@
     },
     {
       "name": "emote_weh",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -97,6 +105,7 @@
     },
     {
       "name": "emote_xp",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -108,6 +117,7 @@
     },
     {
       "name": "emote_yes",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -119,6 +129,7 @@
     },
     {
       "name": "emote_abductor",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -130,6 +141,7 @@
     },
     {
       "name": "emote_amongus",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -141,6 +153,7 @@
     },
     {
       "name": "emote_cool",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -152,6 +165,7 @@
     },
     {
       "name": "emote_crying",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -163,6 +177,7 @@
     },
     {
       "name": "emote_dizzy",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -174,6 +189,7 @@
     },
     {
       "name": "emote_flustered",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -185,6 +201,7 @@
     },
     {
       "name": "emote_heart",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -196,6 +213,7 @@
     },
     {
       "name": "emote_huh",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -207,6 +225,7 @@
     },
     {
       "name": "emote_man",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -218,6 +237,7 @@
     },
     {
       "name": "emote_no",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -229,6 +249,7 @@
     },
     {
       "name": "emote_owo",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -240,6 +261,7 @@
     },
     {
       "name": "emote_pause",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -251,6 +273,7 @@
     },
     {
       "name": "emote_question",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -262,6 +285,7 @@
     },
     {
       "name": "emote_shocked",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -273,6 +297,7 @@
     },
     {
       "name": "emote_sing",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -284,6 +309,7 @@
     },
     {
       "name": "emote_smile",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -295,6 +321,7 @@
     },
     {
       "name": "emote_smoile",
+      "copyright": "Made by https://bsky.app/profile/conflee.bsky.social, inspired by Stardew Valley",
       "delays": [
         [
           0.3,
@@ -306,6 +333,7 @@
     },
     {
       "name": "emote_godo",
+      "copyright": "Made by Johnny",
       "delays": [
         [
           0.3,
