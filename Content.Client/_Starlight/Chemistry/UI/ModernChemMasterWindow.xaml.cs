@@ -15,7 +15,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 
-namespace Content.Client._TP.Chemistry.UI;
+namespace Content.Client._Starlight.Chemistry.UI;
 
 /// <summary>
 ///     Created by Cookie for multiple servers.
@@ -27,7 +27,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     public event Action<BaseButton.ButtonEventArgs, ReagentButton>? OnReagentButtonPressed;
-    public event Action? OnToggleValveButtonPressed; // Starlight: plumbing valve
+    public event Action? OnToggleValveButtonPressed;
     public readonly Button[] PillTypeButtons;
 
     private const string PillsRsiPath = "/Textures/Objects/Specific/Chemistry/pills.rsi";
@@ -35,11 +35,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     private ChemMasterBoundUserInterfaceState? _lastState;
     private static bool _classicMode; // Static since if you selected it, you probably want this. Dunno why though.
 
-    #region Starlight
     private NetEntity? _lastOutputContainer;
     private bool _containerLabelManuallySet;
     private bool _settingContainerLabelProgrammatically;
-    #endregion
 
     private ChemMasterReagentAmount _selectedAmount = ChemMasterReagentAmount.U5;
 
@@ -52,9 +50,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         ("15",  ChemMasterReagentAmount.U15),
         ("20",  ChemMasterReagentAmount.U20),
         ("30",  ChemMasterReagentAmount.U30),
-        ("40",  ChemMasterReagentAmount.U40), // Starlight
-        ("60",  ChemMasterReagentAmount.U60), // Starlight
-        ("120", ChemMasterReagentAmount.U120), // Starlight
+        ("40",  ChemMasterReagentAmount.U40),
+        ("60",  ChemMasterReagentAmount.U60),
+        ("120", ChemMasterReagentAmount.U120),
         (Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All),
     };
 
@@ -105,17 +103,16 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         PillDosage.InitDefaultButtons();
         PillNumber.InitDefaultButtons();
-        PatchDosage.InitDefaultButtons(); // Starlight
-        PatchNumber.InitDefaultButtons(); // Starlight
+        PatchDosage.InitDefaultButtons();
+        PatchNumber.InitDefaultButtons();
         BottleDosage.InitDefaultButtons();
         PillDosageClassic.InitDefaultButtons();
         PillNumberClassic.InitDefaultButtons();
-        PatchDosageClassic.InitDefaultButtons(); // Starlight
-        PatchNumberClassic.InitDefaultButtons(); // Starlight
+        PatchDosageClassic.InitDefaultButtons();
+        PatchNumberClassic.InitDefaultButtons();
         BottleDosageClassic.InitDefaultButtons();
 
         LabelLineEdit.IsValid = s => s.Length <= SharedChemMaster.LabelMaxLength;
-        #region Starlight
         LabelLineEditClassic.IsValid = s => s.Length <= SharedChemMaster.LabelMaxLength;
 
         // container labels use the same maximum length.
@@ -160,9 +157,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             ContainerLabelLineEdit.Text = ContainerLabelLineEditClassic.Text;
             _settingContainerLabelProgrammatically = false;
         };
-        #endregion
 
-        // Starlight: plumbing valve.
+        // Plumbing valve.
         ValveButton.OnPressed += _ => OnToggleValveButtonPressed?.Invoke();
         ValveButtonClassic.OnPressed += _ => OnToggleValveButtonPressed?.Invoke();
 
@@ -279,9 +275,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             ("15",  ChemMasterReagentAmount.U15,  StyleClass.ButtonOpenBoth),
             ("20",  ChemMasterReagentAmount.U20,  StyleClass.ButtonOpenBoth),
             ("30",  ChemMasterReagentAmount.U30,  StyleClass.ButtonOpenBoth),
-            ("40",  ChemMasterReagentAmount.U40,  StyleClass.ButtonOpenBoth), // Starlight
-            ("60",  ChemMasterReagentAmount.U60,  StyleClass.ButtonOpenBoth), // Starlight
-            ("120", ChemMasterReagentAmount.U120, StyleClass.ButtonOpenBoth), // Starlight
+            ("40",  ChemMasterReagentAmount.U40,  StyleClass.ButtonOpenBoth),
+            ("60",  ChemMasterReagentAmount.U60,  StyleClass.ButtonOpenBoth),
+            ("120", ChemMasterReagentAmount.U120, StyleClass.ButtonOpenBoth),
             (Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All, StyleClass.ButtonOpenLeft),
         };
 
@@ -305,7 +301,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         if (castState.UpdateLabel)
             LabelLine = GenerateLabel(castState);
 
-        #region Starlight
         // when a different pill bottle / patch box is inserted,
         // allow its container label to be populated again.
         var currentContainer = castState.OutputContainerInfo?.Uid;
@@ -328,11 +323,10 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                 ? existingLabel
                 : LabelLine;
         }
-        #endregion
 
         UpdatePanelInfo(castState);
 
-        // Keep both Trieste layouts in sync with the Starlight state.
+        // Keep both layouts in sync with the server state.
         InputEjectButton.Disabled = castState.InputContainerInfo is null;
         InputEjectButtonClassic.Disabled = castState.InputContainerInfo is null;
 
@@ -342,7 +336,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         CreateBottleButton.Disabled = castState.OutputContainerInfo?.Reagents == null;
         CreateBottleButtonClassic.Disabled = castState.OutputContainerInfo?.Reagents == null;
 
-        CreatePillButton.Disabled = castState.OutputContainerInfo?.PillEntities == null; // Starlight
+        CreatePillButton.Disabled = castState.OutputContainerInfo?.PillEntities == null;
         CreatePillButtonClassic.Disabled = castState.OutputContainerInfo?.PillEntities == null;
 
         CreatePatchButton.Disabled = castState.OutputContainerInfo?.PatchEntities == null;
@@ -536,7 +530,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         var rowCount = 0;
 
-        #region Starlight
         if (info.PillEntities != null)
         {
             foreach (var (id, quantity) in info.PillEntities)
@@ -568,7 +561,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                     modernMode));
             }
         }
-        #endregion
 
         if (info.Reagents != null)
         {
@@ -674,7 +666,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         };
     }
 
-    #region Starlight
     public string LabelLine
     {
         get => _classicMode
@@ -705,7 +696,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             _settingContainerLabelProgrammatically = false;
         }
     }
-    #endregion
 
     private void UpdateReagentPrototypes(string? filter = null)
     {
@@ -729,7 +719,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             reagentList.Add((reagent, name, reagentColor, quantity));
         }
 
-        #region Starlight
         if (!string.IsNullOrEmpty(filter))
         {
             var trimmedFilter = filter.Trim();
@@ -744,7 +733,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                         StringComparison.InvariantCultureIgnoreCase))
                 .ToList();
         }
-        #endregion
 
         reagentList = _lastState.SortingType switch
         {

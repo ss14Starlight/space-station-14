@@ -94,7 +94,7 @@
                     <BoxContainer Orientation="Horizontal">
                         <Label Text="{Loc 'chem-master-window-container-label'}" />
                         <Control HorizontalExpand="True" />
-                        <!-- Starlight: plumbing valve -->
+                        <!-- Plumbing valve -->
                         <Button MinSize="80 0"
                                 Name="ValveButton"
                                 Access="Public"
@@ -167,7 +167,7 @@
                     </PanelContainer.PanelOverride>
                     <BoxContainer Orientation="Vertical" Margin="4" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="5">
 
-                        <!-- Starlight: separate container label -->
+                        <!-- Separate container label -->
                         <BoxContainer Orientation="Horizontal">
                             <Label Text="{Loc 'chem-master-containerlabel-text-label'}" />
                             <Control HorizontalExpand="True" MinSize="50 0"/>
@@ -197,7 +197,7 @@
                                     Text="{Loc 'chem-master-window-create-button'}" />
                         </BoxContainer>
 
-                        <!-- Starlight: patches -->
+                        <!-- Patches -->
                         <BoxContainer Orientation="Horizontal">
                             <Label Text="{Loc 'chem-master-window-patches-label'}" />
                             <Control HorizontalExpand="True" MinSize="50 0" />
@@ -232,7 +232,7 @@
                 <BoxContainer Orientation="Horizontal">
                     <Label Text="{Loc 'chem-master-window-container-label'}" />
                     <Control HorizontalExpand="True" />
-                    <!-- Starlight: plumbing valve -->
+                    <!-- Plumbing valve -->
                     <Button MinSize="80 0"
                             Name="ValveButtonClassic"
                             Access="Public"
@@ -308,7 +308,7 @@
                         <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
                     </PanelContainer.PanelOverride>
                     <BoxContainer Orientation="Vertical" Margin="4" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="5">
-                        <!-- Starlight: separate container label -->
+                        <!-- Separate container label -->
                         <BoxContainer Orientation="Horizontal">
                             <Label Text="{Loc 'chem-master-containerlabel-text-label'}" />
                             <Control HorizontalExpand="True" MinSize="50 0"/>
@@ -337,7 +337,7 @@
                             <Button MinSize="80 0" Name="CreatePillButtonClassic" Access="Public" Text="{Loc 'chem-master-window-create-button'}" />
                         </BoxContainer>
 
-                        <!-- Starlight: patches -->
+                        <!-- Patches -->
                         <BoxContainer Orientation="Horizontal">
                             <Label Text="{Loc 'chem-master-window-patches-label'}" />
                             <Control HorizontalExpand="True" MinSize="50 0" />

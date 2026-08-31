@@ -3,7 +3,7 @@ using Content.Shared.Containers.ItemSlots;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
-namespace Content.Client._TP.Chemistry.UI;
+namespace Content.Client._Starlight.Chemistry.UI;
 
 /// <summary>
 ///     Created by Cookie for multiple servers.
@@ -46,10 +46,10 @@ public sealed class ModernChemMasterBui(EntityUid owner, Enum uiKey) : BoundUser
             new ChemMasterSetModeMessage(ChemMasterMode.Discard));
         _window.CreatePillButton.OnPressed += _ => SendMessage(
             new ChemMasterCreatePillsMessage(
-                (uint) _window.PillDosage.Value, // Starlight
-                (uint) _window.PillNumber.Value, // Starlight
-                _window.LabelLine, // Starlight
-                _window.ContainerLabelLine)); // Starlight
+                (uint) _window.PillDosage.Value,
+                (uint) _window.PillNumber.Value,
+                _window.LabelLine,
+                _window.ContainerLabelLine));
         _window.CreatePillButtonClassic.OnPressed += _ => SendMessage(
             new ChemMasterCreatePillsMessage(
                 (uint) _window.PillDosageClassic.Value,
