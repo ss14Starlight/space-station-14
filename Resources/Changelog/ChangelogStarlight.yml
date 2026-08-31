@@ -1,34 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Fixed an unpowered dooor between Library and Tools Room.
-    type: Fix
-  id: 407636
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed APC in Theater that was touching another LV network.
-    type: Fix
-  id: 407637
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed APC in Mime that was touching another LV network.
-    type: Fix
-  id: 407638
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed an LV cable that was electrifying a fence in maints bar.
-    type: Fix
-  id: 407639
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
   - message: (Novo Lobster) Added a gravity generator to the cargo shuttle because I forgor to add one.
     type: Fix
   id: 407640
@@ -2799,4 +2771,32 @@ Entries:
   id: 408035
   time: '2026-08-31T18:36:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5901
+- author: walksanatora
+  changes:
+  - message: Pipes can now be copied via the copy keybind for admemes/mapping (if any prototype is missing/uncopyable ping me with the prototype id so I can work on adding more).
+    type: Fix
+  id: 408036
+  time: '2026-08-31T19:02:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5811
+- author: walksanatora
+  changes:
+  - message: admins with +MAPPING now have a trick to spread a pipe color to all connected pipes.
+    type: Add
+  id: 408037
+  time: '2026-08-31T19:02:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5811
+- author: walksanatora
+  changes:
+  - message: admins with +MAPPING now have a trick to autolink air alarms controllable by the `mapping.atmos_autolink_dist` cvar.
+    type: Add
+  id: 408038
+  time: '2026-08-31T19:02:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5811
+- author: walksanatora
+  changes:
+  - message: using `!type:CreateVariant` `id`s no longer causes test using GameDataScrounger to cease to exists.
+    type: Fix
+  id: 408039
+  time: '2026-08-31T19:02:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5811
 Order: -1
