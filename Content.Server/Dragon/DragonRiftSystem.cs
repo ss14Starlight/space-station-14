@@ -41,6 +41,8 @@ public sealed partial class DragonRiftSystem : EntitySystem
     [Dependency] private StationSystem _station = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private StationCrewCountSystem _crewCount = default!;
+
+    private static readonly EntProtoId _sharkMinnowPrototype = "RiftSharkminnow";
 #endregion
 
     public override void Initialize()
@@ -110,7 +112,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
                 }
 
                 // Spawn the guaranteed 50% SharkMinnow.
-                var sharkminnow = Spawn(new EntProtoId("RiftSharkminnow"), xform.Coordinates);
+                var sharkminnow = Spawn(_sharkMinnowPrototype, xform.Coordinates);
 
                 if (comp.Dragon != null && TryComp<DragonComponent>(comp.Dragon.Value, out var dragon))
                 {
@@ -153,7 +155,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
 
                     if (roll <= sharkChance && canSpawnSharkminnow)
                     {
-                        spawnPrototype = new EntProtoId("RiftSharkminnow");
+                        spawnPrototype = _sharkMinnowPrototype;
                         isSharkminnow = true;
                     }
                     else
