@@ -847,7 +847,7 @@
     sprite: Clothing/Head/Hats/truckershat.rsi
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseMinorContraband ] #SL EDIT, Syndie to Minor
+  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] #SL EDIT, Syndie to Minor
   id: ClothingHeadPyjamaSyndicateBlack
   name: syndicate black pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -863,7 +863,7 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseMinorContraband ] #SL EDIT, Syndie to Minor
+  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] #SL EDIT, Syndie to Minor
   id: ClothingHeadPyjamaSyndicatePink
   name: syndicate pink pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -879,7 +879,7 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseMinorContraband ] #SL EDIT, Syndie to Minor
+  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] #SL EDIT, Syndie to Minor
   id: ClothingHeadPyjamaSyndicateRed
   name: syndicate red pyjama hat
   description: For keeping that traitor head of yours warm.
