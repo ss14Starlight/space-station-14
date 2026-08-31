@@ -66,7 +66,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
             if (newCard.HasValue)
             {
                 var holder = _nanoChat.GetPdaHolder(newCard.Value!);
-                if(holder.HasValue && _nanoChat.HasUnreadMessages(newCard.Value) && TryComp<NanoChatCardComponent>(newCard.Value, out var cardComp)) _alerts.ClearAlert(holder.Value, cardComp.Alert);
+                if(holder.HasValue && !_nanoChat.HasUnreadMessages(newCard.Value) && TryComp<NanoChatCardComponent>(newCard.Value, out var cardComp)) _alerts.ClearAlert(holder.Value, cardComp.Alert);
             }
             //Starlight end
 
