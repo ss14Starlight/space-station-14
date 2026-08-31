@@ -9,6 +9,10 @@ public abstract partial class SharedDragonRiftComponent : Component
 {
     [DataField("state")]
     public DragonRiftState State = DragonRiftState.Charging;
+#region Starlight
+    [DataField]
+    public int TotalCrewCount;
+#endregion
 }
 
 [Serializable, NetSerializable]

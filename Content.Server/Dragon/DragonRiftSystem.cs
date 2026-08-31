@@ -66,6 +66,8 @@ public sealed partial class DragonRiftSystem : EntitySystem
         var query = EntityQueryEnumerator<DragonRiftComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var xform))
         {
+            comp.TotalCrewCount = _crewCount.GetTotalCrewCount();
+
             if (comp.State != DragonRiftState.Finished && comp.Accumulator >= comp.MaxAccumulator)
             {
                 // TODO: When we get autocall you can buff if the rift finishes / 3 rifts are up
@@ -90,7 +92,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
             {
                 comp.State = DragonRiftState.AlmostFinished;
 #region Starlight
-                comp.SpawnAccumulator = 0f; //Prevent regular carpspawn, force sharkminnow later
+                comp.SpawnAccumulator = 0f; // Reset spawn timer after the guaranteed Sharkminnow spawn
                 Dirty(uid, comp);
 
                 var closestStation = _station.GetNearestStation(uid, true);
@@ -120,19 +122,39 @@ public sealed partial class DragonRiftSystem : EntitySystem
 
                 var canSpawnSharkminnow = true;
 
-                if (comp.Dragon != null &&
-                    TryComp<DragonComponent>(comp.Dragon.Value, out var dragon))
+                if (comp.Dragon != null && TryComp<DragonComponent>(comp.Dragon.Value, out var dragon))
                 {
-                    var sharkMinnowCount = dragon.SharkMinnows.Count;
-                    var crewCount = _crewCount.GetTotalCrewCount();
+                    CleanupSharkMinnows(dragon);
 
-                    if (sharkMinnowCount >= crewCount)
+                    var sharkMinnowCount = dragon.SharkMinnows.Count;
+
+                    if (sharkMinnowCount >= comp.TotalCrewCount / 2)
                         canSpawnSharkminnow = false;
                 }
 
-                var sharkminnowChance = comp.State == DragonRiftState.Finished ? 20 : 5;
-                var isSharkminnow = canSpawnSharkminnow && _random.Next(100) < sharkminnowChance;
-                var spawnPrototype = isSharkminnow? new EntProtoId("RiftSharkminnow"): comp.SpawnPrototype;
+                
+                var roll = _random.Next(1, 101);
+                var rareSpawn = false;
+                var isSharkminnow = false;
+                EntProtoId spawnPrototype;
+
+                if (roll <= 20)
+                {
+                    rareSpawn = true;
+                    if (roll <= 5 && canSpawnSharkminnow)
+                    {
+                        spawnPrototype = new EntProtoId("RiftSharkminnow");
+                        isSharkminnow = true;
+                    }
+                    else
+                    {
+                        spawnPrototype = new EntProtoId("RiftCarpHolo");
+                    }
+                }
+                else
+                {
+                    spawnPrototype = comp.SpawnPrototype;
+                }
 
                 var ent = Spawn(spawnPrototype, xform.Coordinates);
 
@@ -140,7 +162,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
                     dragonComp.SharkMinnows.Add(ent);
 
                 // Update their look to match the leader.
-                if (!isSharkminnow && TryComp<RandomSpriteComponent>(comp.Dragon, out var randomSprite))
+                if (!rareSpawn && TryComp<RandomSpriteComponent>(comp.Dragon, out var randomSprite))
                 {
                     var spawnedSprite = EnsureComp<RandomSpriteComponent>(ent);
                     _serManager.CopyTo(randomSprite, ref spawnedSprite, notNullableOverride: true);
@@ -153,6 +175,11 @@ public sealed partial class DragonRiftSystem : EntitySystem
                 new EntityCoordinates(comp.Dragon.Value, Vector2.Zero));
             }
         }
+    }
+
+    private void CleanupSharkMinnows(DragonComponent dragon)
+    {
+        dragon.SharkMinnows.RemoveWhere(sharkminnow => !EntityManager.EntityExists(sharkminnow));
     }
 #endregion
 

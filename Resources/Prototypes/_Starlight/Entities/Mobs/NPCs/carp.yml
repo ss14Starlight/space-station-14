@@ -104,3 +104,40 @@
     radius: 1.2
     energy: 2
     color: "#4faffb"
+
+- type: entity
+  name: sharkminnow
+  id: RiftSharkminnow
+  parent: MobShark
+  description: A sharkminnow here to protect the space dragon's rift.
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: ghost-role-information-sentient-sharkminnow-name
+      description: ghost-role-information-sentient-sharkminnow-description
+      rules: ghost-role-information-space-dragon-summoned-carp-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonistFlock
+    - type: GhostTakeoverAvailable
+    - type: Damageable
+      damageModifierSet: DragonCarpResistances
+
+- type: entity
+  name: holocarp
+  id: RiftCarpHolo
+  parent: MobCarpHolo
+  description: A holocarp here to protect the space dragon's rift.
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: ghost-role-information-sentient-holocarp-name
+      description: ghost-role-information-sentient-holocarp-description
+      rules: ghost-role-information-space-dragon-summoned-carp-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonistFlock
+    - type: GhostTakeoverAvailable
+
