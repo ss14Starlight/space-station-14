@@ -11,6 +11,8 @@
       blacklist:
         components:
           - MindContainer
+        toolQuality:
+          - Slicing
     - type: ContainerContainer
       containers:
         storagebase: !type:Container
