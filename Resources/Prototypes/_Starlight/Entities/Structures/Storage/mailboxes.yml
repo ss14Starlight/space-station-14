@@ -110,7 +110,7 @@
 
 - type: entity
   id: ScienceMailBox
-  name: science mailBox
+  name: science mailbox
   description: A mailbox for storing and retrieving mail. Allows for Science to store and retrieve their mail.
   parent: BaseMailBox
   components:
@@ -138,7 +138,7 @@
 
 - type: entity
   id: ServiceMailBox
-  name: service mailBox
+  name: service mailbox
   description: A mailbox for storing and retrieving mail. Allows for Service to store and retrieve their mail.
   parent: BaseMailBox
   components:
