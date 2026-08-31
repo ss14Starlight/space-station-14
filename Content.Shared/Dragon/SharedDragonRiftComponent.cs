@@ -11,7 +11,7 @@ public abstract partial class SharedDragonRiftComponent : Component
     public DragonRiftState State = DragonRiftState.Charging;
 #region Starlight
     [DataField]
-    public int TotalCrewCount;
+    public int SharkMinnowLimit;
 #endregion
 }
 

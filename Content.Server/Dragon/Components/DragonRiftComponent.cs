@@ -39,11 +39,4 @@ public sealed partial class DragonRiftComponent : SharedDragonRiftComponent
 
     [DataField("spawn")]
     public EntProtoId SpawnPrototype = "MobCarpDragon";
-
-    #region Starlight
-    /// <summary>
-    /// Current total crew count used for the Sharkminnow spawn limit.
-    /// </summary>
-    public int TotalCrewCount;
-    #endregion
 }

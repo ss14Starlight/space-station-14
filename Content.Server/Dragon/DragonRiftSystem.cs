@@ -19,6 +19,8 @@ using Content.Server.Station.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Content.Server._Starlight.Station;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 #endregion
 
 namespace Content.Server.Dragon;
@@ -56,6 +58,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
         args.State = new DragonRiftComponentState
         {
             State = ent.Comp.State,
+            SharkMinnowLimit = ent.Comp.SharkMinnowLimit, // Starlight
         };
     }
 
@@ -119,8 +122,9 @@ public sealed partial class DragonRiftSystem : EntitySystem
             {
                 comp.SpawnAccumulator -= comp.SpawnCooldown;
 
-                comp.TotalCrewCount = _crewCount.GetTotalCrewCount();
-                
+                var totalCrewCount = _crewCount.GetTotalCrewCount();
+                comp.SharkMinnowLimit = totalCrewCount / 2;
+
                 var canSpawnSharkminnow = true;
 
                 if (comp.Dragon != null && TryComp<DragonComponent>(comp.Dragon.Value, out var dragon))
@@ -129,7 +133,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
 
                     var sharkMinnowCount = dragon.SharkMinnows.Count;
 
-                    if (sharkMinnowCount >= comp.TotalCrewCount / 2)
+                    if (sharkMinnowCount >= comp.SharkMinnowLimit)
                         canSpawnSharkminnow = false;
                 }
 
@@ -184,10 +188,11 @@ public sealed partial class DragonRiftSystem : EntitySystem
         }
     }
 
-    private void CleanupSharkMinnows(DragonComponent dragon)
-    {
-        dragon.SharkMinnows.RemoveWhere(sharkminnow => !EntityManager.EntityExists(sharkminnow));
-    }
+    private void CleanupSharkMinnows(DragonComponent dragon) =>
+        dragon.SharkMinnows.RemoveWhere(sharkminnow =>
+            !Exists(sharkminnow) ||
+            !TryComp<MobStateComponent>(sharkminnow, out var mobState) ||
+            mobState.CurrentState == MobState.Dead);
 #endregion
 
     private void OnExamined(EntityUid uid, DragonRiftComponent component, ExaminedEvent args)
