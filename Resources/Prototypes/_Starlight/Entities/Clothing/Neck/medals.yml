@@ -1,0 +1,73 @@
+- type: entity
+  name: cc medals box
+  parent: BoxCardboard
+  id: BoxMedalsCC
+  components:
+    - type: Storage
+      maxItemSize: Small
+      grid:
+        - 0,0,3,3
+      whitelist:
+        tags:
+          - Medal
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: ClothingNeckCentralCommandMedal
+            - id: ClothingNeckCentralCommandMedal
+            - id: ClothingNeckCentralCommandMedal
+            - id: ClothingNeckCentralCommandMedalValor
+            - id: ClothingNeckCentralCommandMedalValor
+            - id: ClothingNeckCentralCommandMedalGaudy
+            - id: ClothingNeckCentralCommandMedalGaudy
+    - type: Sprite
+      sprite: _Starlight/Objects/Storage/boxes.rsi
+      layers:
+        - state: box-cc
+        - state: medals-cc
+
+- type: entity
+  parent: ClothingMiscBase
+  id: ClothingNeckCentralCommandMedal
+  name: central command medal
+  description: Given by central command to commend exemplary behavior.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Medals/Centcomm/ccmedal.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Medals/Centcomm/ccmedal.rsi
+    - type: Tag
+      tags:
+        - Medal
+        - WhitelistChameleon
+
+- type: entity
+  parent: ClothingMiscBase
+  id: ClothingNeckCentralCommandMedalValor
+  name: central command medal of valor
+  description: Given by central command to recognize valor.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Medals/Centcomm/ccmedalvalor.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Medals/Centcomm/ccmedalvalor.rsi
+    - type: Tag
+      tags:
+        - Medal
+        - WhitelistChameleon
+
+- type: entity
+  parent: ClothingMiscBase
+  id: ClothingNeckCentralCommandMedalGaudy
+  name: central command medal of excellence
+  description: Humbly given by central command to commend excellency.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Medals/Centcomm/ccmedalletters.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Medals/Centcomm/ccmedalletters.rsi
+    - type: Tag
+      tags:
+        - Medal
+        - WhitelistChameleon

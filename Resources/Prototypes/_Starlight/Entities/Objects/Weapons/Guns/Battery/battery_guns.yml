@@ -1181,3 +1181,10 @@
     - wizard-item-restricted-2
     - wizard-item-restricted-3
     - wizard-item-restricted-4
+  - type: Tag
+    tags:
+    - WizardWand
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/frozentome.rsi
+    slots:
+    - Pocket

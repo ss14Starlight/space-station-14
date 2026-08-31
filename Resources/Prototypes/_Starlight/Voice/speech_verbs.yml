@@ -46,3 +46,9 @@
   - chat-speech-verb-experiment-2
   - chat-speech-verb-experiment-3
   - chat-speech-verb-experiment-4
+ 
+- type: speechVerb
+  id: DefaultPause
+  name: chat-speech-verb-name-pause
+  speechVerbStrings:
+  - chat-speech-verb-pause

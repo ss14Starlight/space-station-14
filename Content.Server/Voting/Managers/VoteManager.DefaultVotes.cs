@@ -395,9 +395,14 @@ namespace Content.Server.Voting.Managers
                         ).Inc(args.Votes[i]);
                     }
                     #endregion
-                    if (_gameMapManager.TrySelectMapIfEligible(picked.ID))
+                    if (_gameMapManager.CheckMapExists(picked.ID))
                     {
+                        _gameMapManager.SelectMap(picked.ID);
                         ticker.UpdateInfoText();
+                    }
+                    else
+                    {
+                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-invalid", ("winner", maps[picked.ID]))); // Starlight
                     }
                 }
                 else

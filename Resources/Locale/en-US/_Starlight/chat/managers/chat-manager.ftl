@@ -17,6 +17,8 @@ chat-speech-verb-felionoid-3 = hisses
 chat-speech-verb-felionoid-4 = yowls
 chat-speech-verb-name-vulpkanin = Vulpkanin
 
+chat-speech-verb-suffix-pause = ...
+
 chat-speech-verb-marish = marrs
 
 chat-manager-language-requires-hands = You need free hands to speak this language!
@@ -44,3 +46,6 @@ chat-speech-verb-experiment-1 = squeaks
 chat-speech-verb-experiment-2 = barks
 chat-speech-verb-experiment-3 = says
 chat-speech-verb-experiment-4 = yaps
+
+chat-speech-verb-name-pause = Pausing
+chat-speech-verb-pause = pauses

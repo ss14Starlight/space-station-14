@@ -69,6 +69,7 @@
             Musician: [ 1, 1 ]
             Performer: [ 2, 2 ]
             Boxer: [ 2, 2 ]
+            RadioHost: [ 1, 1 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 4 ]

@@ -729,8 +729,8 @@
   - ServiceWorkerChefJumpsuit
   - ServiceWorkerChefJumpskirt
   - MaidOutfit
-  - JanitorMaidOutfit 
-  - JanitorMaidOutfitMini 
+  - JanitorMaidOutfit
+  - JanitorMaidOutfitMini
 
 # Performer
 - type: loadoutGroup
@@ -754,15 +754,6 @@
   - PerformerClownJumpskirt
   - PerformerMimeJumpsuit
   - PerformerMimeJumpskirt
-
-- type: loadoutGroup
-  id: PerformerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieMusician
-  - LizardPlushieClown
-  - LizardPlushieMime
 
 # Musician
 - type: loadoutGroup
@@ -791,13 +782,6 @@
   - GreenBoxingGloves
   - YellowBoxingGloves
 
-- type: loadoutGroup
-  id: BoxerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieBoxer
-
 # Reporter
 - type: loadoutGroup
   id: ReporterHead
@@ -808,13 +792,14 @@
   - ReporterHeadphonesGeneric
   - ReporterHeadphonesHighEnd
 
-# Zookeeper
 - type: loadoutGroup
-  id: ZookeeperJobTrinkets
+  id: ReporterJobTrinkets
   name: loadout-group-jobtrinkets
   minLimit: 0
+  maxLimit: 2
   loadouts:
-  - LizardPlushieZookeeper
+  - DigiboardMassMedia
+  - HoloReporterPin
 
 # Assistant Manager
 - type: loadoutGroup
@@ -1145,14 +1130,6 @@
   - ParamedicPDA
   - SeniorParamedicPDA
 
-
-- type: loadoutGroup
-  id: ResearchAssistantJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieResearchAssistant
-
 - type: loadoutGroup
   id: SalvageSpecialistJumpsuit
   name: loadout-group-salvage-specialist-jumpsuit
@@ -1163,42 +1140,11 @@
   - SalvageSpecialistJumpskirtFormal
 
 - type: loadoutGroup
-  id: LibrarianJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieLibrarian
-
-- type: loadoutGroup
-  id: ServiceWorkerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieServiceWorker
-  - LizardPlushieBartender
-  - LizardPlushieBotanist
-  - LizardPlushieChef
-
-- type: loadoutGroup
-  id: AssistantJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieAssistant
-
-- type: loadoutGroup
   id: CaptainEyewear
   name: loadout-group-captain-eyewear
   loadouts:
   - CaptainGlasses
   - CaptainHud
-
-- type: loadoutGroup
-  id: CaptainJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieCaptain
 
 - type: loadoutGroup
   id: SecurityEyewear
@@ -1287,10 +1233,3 @@
   - BrigmedicRig
   - BrigmedicBelt
   - CorpsmanBelt
-
-- type: loadoutGroup
-  id: TechnicalAssistantJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieTechnicalAssistant
