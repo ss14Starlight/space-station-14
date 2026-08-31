@@ -86,8 +86,8 @@ public sealed partial class AirAlarmSystem
 
                 var xform = Transform(ent);
                 var offset = _offset[(int)(
-                   xform.LocalRotation.Degrees / 90 //make it into a mutiple of 90
-                   % 4 //and then normalize to NSEW
+                    xform.LocalRotation.Degrees / 90 //make it into a mutiple of 90
+                    % 4 //and then normalize to NSEW
                 )];
 
                 if (!_xform.TryGetMapOrGridCoordinates(ent, out var coords, xform))
