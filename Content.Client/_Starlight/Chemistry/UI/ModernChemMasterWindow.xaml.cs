@@ -42,6 +42,18 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
     private ChemMasterReagentAmount _selectedAmount = ChemMasterReagentAmount.U5;
 
+    // Window sizes referenced from XAML MinSize attributes
+    private readonly Vector2 _modernMinSize;
+    private static Vector2 ClassicMinSize
+    {
+        get
+        {
+            // Captures ChemMasterWindow.xaml MinSize
+            using var dummy = new Content.Client.Chemistry.UI.ChemMasterWindow();
+            return dummy.MinSize;
+        }
+    }
+
     // Amount configs for the 2x5 modern grid: 9 numeric amounts + All.
     private static readonly (string Label, ChemMasterReagentAmount Amount)[] AmountConfigs =
     {
@@ -64,6 +76,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     public ModernChemMasterWindow()
     {
         RobustXamlLoader.Load(this);
+        _modernMinSize = MinSize; // Captures ModernChemMasterWindow.xaml MinSize
         IoCManager.InjectDependencies(this);
         var sprite = _entityManager.System<SpriteSystem>();
 
@@ -260,6 +273,11 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         if (FindControl<Button>("ClassicModeButton") is { } classicBtn)
             classicBtn.Disabled = _classicMode;
+
+        var targetSize = _classicMode ? ClassicMinSize : _modernMinSize;
+        MinSize = targetSize;
+        // Force window to specified dimensions, MinSize alone doesn't shrink an already larger window
+        SetSize = targetSize;
     }
 
     private ReagentButton MakeReagentButton(string text, ChemMasterReagentAmount amount, ReagentId id, bool isBuffer, string styleClass)
