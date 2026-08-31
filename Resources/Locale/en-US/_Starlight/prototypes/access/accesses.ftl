@@ -20,7 +20,6 @@ id-card-access-level-robotics = Robotics
 
 # Security
 id-card-access-level-brigmedic = Brigmedic
-id-card-access-level-cadet = Cadet
 
 # Service
 id-card-access-level-clown = Clown

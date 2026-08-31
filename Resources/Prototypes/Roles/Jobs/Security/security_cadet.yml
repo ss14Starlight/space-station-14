@@ -16,7 +16,6 @@
   supervisors: job-supervisors-security
   access:
 # - Security # Starlight change
-  - Cadet # Starlight change
   - Brig
   - Maintenance
   - External
