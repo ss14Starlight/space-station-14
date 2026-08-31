@@ -302,32 +302,6 @@ doc-text-printer-arrest-report =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
-doc-text-printer-psychological-report =
-                             [head=3]NT-CC Consortium Services[/head]
-
-            [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-    ⠀                              [bold]PSYCHOLOGICAL REPORT[/bold]
-    ────────────────────────────────────────
-    Date and Time: [datetime]
-    Document Compiler: [signature]
-
-    Patient: [form]
-    Reason for examination: [form]
-    Willingness: [form]
-
-    Symptoms: [form]
-
-    Triggers: [form]
-
-    Notes: [form]
-
-    Suggested actions and treatments: [form]
-
-    ────────────────────────────────────────
-    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
-
-
 # Statements
 
 doc-text-printer-statement-appointment-interim-chapter =
