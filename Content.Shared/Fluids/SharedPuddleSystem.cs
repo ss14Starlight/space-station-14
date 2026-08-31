@@ -47,7 +47,6 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [Dependency] private SpeedModifierContactsSystem _speedModContacts = default!;
     [Dependency] private StepTriggerSystem _stepTrigger = default!;
     [Dependency] private TileFrictionController _tile = default!;
-    [Dependency] private INetManager _net = default!;
     [Dependency] private InventorySystem _inventory = default!; // Funky - Clothing stains
     [Dependency] private StandingStateSystem _standing = default!; // Moff - Clothing stains
     [Dependency] private SharedGravitySystem _gravity = default!; // Moff - Clothing Stains
@@ -68,10 +67,6 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     // Using local deletion queue instead of the standard queue so that we can easily "undelete" if a puddle
     // loses & then gains reagents in a single tick.
     private HashSet<EntityUid> _deletionQueue = [];
-
-    private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
-    private EntityQuery<ReactiveComponent> _reactiveQuery;
-    private EntityQuery<EvaporationComponent> _evaporationQuery;
 
     public override void Initialize()
     {
