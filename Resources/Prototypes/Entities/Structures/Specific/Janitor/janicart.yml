@@ -303,10 +303,10 @@
           whitelist:
             tags:
             - TrashBag
-        cart_garbage_blue:
-          whitelist:
-            tags:
-            - TrashBagBlue
+        #cart_garbage_blue: # Starlight start
+        #  whitelist: # We don't have this sprite yet
+        #    tags:
+        #    - TrashBagBlue # Starlight end
         cart_replacer:
           whitelist:
             components:
