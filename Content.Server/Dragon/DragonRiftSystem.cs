@@ -121,7 +121,6 @@ public sealed partial class DragonRiftSystem : EntitySystem
 
                     if (TryComp<DragonComponent>(comp.Dragon.Value, out var dragon))
                         dragon.SharkMinnows.Add(sharkminnow);
-                    
                 }
             }
 
@@ -133,7 +132,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
                 var rareSpawn = false;
                 var isSharkminnow = false;
 
-                // Only Dragon Rifts with an linked Dragon use the special SharkMinnow/HoloCarp spawn rolls. 
+                // Only Dragon Rifts with an linked Dragon use the special SharkMinnow/HoloCarp spawn rolls.
                 if (comp.Dragon != null)
                 {
 
@@ -175,7 +174,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
                     }
                 }
 
-                // Non-Dragon Rifts simply spawn their configured prototype. 
+                // Non-Dragon Rifts simply spawn their configured prototype.
                 var ent = Spawn(spawnPrototype, xform.Coordinates);
 
                 if (isSharkminnow && comp.Dragon != null && TryComp<DragonComponent>(comp.Dragon.Value, out var dragonComp))
