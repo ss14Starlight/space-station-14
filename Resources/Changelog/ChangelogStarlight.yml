@@ -1,41 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Novo Lobster) Fixed the mining magnet being backwards.
-    type: Fix
-  id: 407630
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The kitchen freezer is actually cold now.
-    type: Fix
-  id: 407631
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Moved the kitchen shelves so you don't need to step onto tables to access them.
-    type: Fix
-  id: 407632
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Improved camera vision around Gravity & Anchor.
-    type: Fix
-  id: 407633
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added the security request computer near Security front.
-    type: Fix
-  id: 407634
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
   - message: (Novo Lobster) Fixed wrong door on HOP's heating room (on the HOP side).
     type: Fix
   id: 407635
@@ -2799,4 +2764,39 @@ Entries:
   id: 408029
   time: '2026-08-31T14:29:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5895
+- author: Trosling
+  changes:
+  - message: Added Arrest on Sight criminal status.
+    type: Add
+  id: 408030
+  time: '2026-08-31T18:14:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5890
+- author: Trosling
+  changes:
+  - message: Changed Hostile criminal status to Kill on Sight.
+    type: Tweak
+  id: 408031
+  time: '2026-08-31T18:14:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5890
+- author: Trosling
+  changes:
+  - message: AoS and KoS now both prompt for a reason when assigned in the computer.
+    type: Tweak
+  id: 408032
+  time: '2026-08-31T18:14:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5890
+- author: Trosling
+  changes:
+  - message: Added explicit SOP for how the criminal statuses are supposed to be used and engaged.
+    type: Add
+  id: 408033
+  time: '2026-08-31T18:14:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5890
+- author: Trosling
+  changes:
+  - message: Added in-character penalties for officers who get people killed by wrongfully assigning a criminal status.
+    type: Add
+  id: 408034
+  time: '2026-08-31T18:14:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5890
 Order: -1
