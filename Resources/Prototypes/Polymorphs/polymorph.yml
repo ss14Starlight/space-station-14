@@ -8,7 +8,7 @@
 - type: polymorph
   id: Chicken
   configuration:
-    entity: MobSmartChicken
+    entity: MobSmartChicken # Starlight
     forced: true
     inventory: Drop
 
