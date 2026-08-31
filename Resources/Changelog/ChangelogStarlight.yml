@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing fire axe from Atmospherics.
-    type: Fix
-  id: 407641
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
 - author: Forrestgod
   changes:
   - message: '[Serpentcrest] Added Pipe Docking Pipes to Cargo Dock.'
@@ -2799,4 +2792,11 @@ Entries:
   id: 408040
   time: '2026-08-31T19:31:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5863
+- author: Caws
+  changes:
+  - message: Quartermaster access from the funding allocation computer.
+    type: Remove
+  id: 408041
+  time: '2026-08-31T19:54:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5904
 Order: -1
