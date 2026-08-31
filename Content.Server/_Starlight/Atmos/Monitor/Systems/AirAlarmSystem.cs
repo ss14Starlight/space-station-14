@@ -113,22 +113,22 @@ public sealed partial class AirAlarmSystem
                     if (tref == null)
                         continue; //in space. so we dont continue propogation
                     var stop = _turf.GetEntitiesInTile(test, LookupFlags.StaticSundries)
-                       .Where(x => //Filter for entities on the tile we are checking (stupid walls are just slightly too fat)
-                       {
-                           var tile = _xform.GetGridTilePositionOrDefault(x);
-                           return tile != Vector2i.Zero && tref.Value.GridIndices == tile;
-                       })
-                       .Select(x =>
-                       {
-                           if (_whitelist.IsWhitelistPass(_linkableWhitelist, x) && TryComp<DeviceNetworkComponent>(x, out var devNetwork))
-                               _deviceList.TryAddDeviceToList(
-                               new(ent, devList),
-                               new(x, devNetwork)
-                           );
-                           Log.Info($"euid: {x} WLPass: {_whitelist.IsWhitelistPass(_linkableWhitelist, x)} DNComp: {HasComp<DeviceNetworkComponent>(x)}");
-                           return _whitelist.IsWhitelistPass(_stoppingWhitelist, x);
-                       })
-                       .Any(x => x);
+                        .Where(x => //Filter for entities on the tile we are checking (stupid walls are just slightly too fat)
+                        {
+                            var tile = _xform.GetGridTilePositionOrDefault(x);
+                            return tile != Vector2i.Zero && tref.Value.GridIndices == tile;
+                        })
+                        .Select(x =>
+                        {
+                            if (_whitelist.IsWhitelistPass(_linkableWhitelist, x) && TryComp<DeviceNetworkComponent>(x, out var devNetwork))
+                                _deviceList.TryAddDeviceToList(
+                                new(ent, devList),
+                                new(x, devNetwork)
+                            );
+                            Log.Info($"euid: {x} WLPass: {_whitelist.IsWhitelistPass(_linkableWhitelist, x)} DNComp: {HasComp<DeviceNetworkComponent>(x)}");
+                            return _whitelist.IsWhitelistPass(_stoppingWhitelist, x);
+                        })
+                        .Any(x => x);
 
                     if (stop || part.Item2 > _maxDepth)
                         continue;
@@ -145,6 +145,4 @@ public sealed partial class AirAlarmSystem
             }
         });
     }
-
-
 }
