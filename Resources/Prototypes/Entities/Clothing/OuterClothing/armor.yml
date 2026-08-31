@@ -35,6 +35,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 #Alternate / slim basic armor vest
@@ -75,6 +76,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 - type: entity
@@ -108,6 +110,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
     - ReflectiveArmorVest # STARLIGHT: Tag for set bonus system detection
 
@@ -153,6 +156,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 - type: entity
@@ -169,6 +173,7 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 # Starlight End
 
@@ -255,7 +260,7 @@
 
 # Armor covering multiple body parts including limbs
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSyndicateContraband ]
+  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSyndicateContraband ] # Starlight
   id: ClothingOuterArmorRaid
   name: syndicate raid suit
   description: A flexible and well-armored suit, made for speed, with a powerful shoulder mounted flashlight manufactured in the Gorlex Marauder's iconic blood-red color scheme, it does not protect its wearer from space. # Starlight
@@ -347,9 +352,10 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSecurityContraband] # Starlight
   id: ClothingOuterArmorRiot
   name: riot suit
   description: A suit of semi-flexible polycarbonate body armor with heavy padding to protect against melee attacks. Perfect for fighting delinquents around the station.
@@ -375,10 +381,11 @@
   - type: Tag
     tags:
     - CorgiWearable
+    - K9Wearable # Starlight
     - WhitelistChameleon
 
 - type: entity
-  parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
+  parent: [ ClothingOuterBaseLarge, ClothingOuterBaseWarm, BaseMajorContraband, AllowSuitStorageClothing ] # Starlight
   id: ClothingOuterArmorCult
   name: acolyte armor
   description: An evil-looking piece of cult armor, made of bones.
@@ -399,7 +406,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing] # Starlight
   id: ClothingOuterArmorHeavy
   name: heavy armor suit
   description: A heavily armored suit that protects against excessive damage.
@@ -498,7 +505,7 @@
     slots: WITHOUT_POCKET
 
 - type: entity
-  parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
+  parent: [ ClothingOuterBaseLarge, ClothingOuterBaseWarm, BaseMajorContraband, AllowSuitStorageClothing ] # Starlight
   id: ClothingOuterArmorBone
   name: bone armor
   description: Sits on you like a second skin.
@@ -529,7 +536,7 @@
     slots: WITHOUT_POCKET
 
 - type: entity
-  parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
+  parent: [ ClothingOuterBaseLarge, ClothingOuterBaseWarm, BaseMajorContraband, AllowSuitStorageClothing ] # Starlight
   id: ClothingOuterArmorPodWars
   name: ironclad II armor
   description: A repurposed suit of ironclad II armor, a relic of the pod wars.
