@@ -72,6 +72,7 @@
   parent: d4Dice
   name: Destiny Die
   id: DestinyDieD4RiggedTest
+  suffix: USE FOR TESTNIG
   components:
     - type: Dice
       riggedValue: 1
@@ -84,7 +85,7 @@
     effects:
       - !type:SpawnEntity
         predicted: true
-        entity: MobKoni
+        entity: FoodBurgerBacon
         overrides:
           - type: ScaleVisuals
             scale: 3, 3
