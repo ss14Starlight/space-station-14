@@ -50,17 +50,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     private static readonly Dictionary<NetEntity, (string Text, FixedPoint2? Amount, bool Selected)> _customPerChemMaster = new();
     private NetEntity? _chemMasterNetEntity;
 
-    // Window sizes referenced from XAML MinSize attributes
-    private readonly Vector2 _modernMinSize;
-    private static Vector2 ClassicMinSize
-    {
-        get
-        {
-            // Captures ChemMasterWindow.xaml MinSize
-            using var dummy = new Content.Client.Chemistry.UI.ChemMasterWindow();
-            return dummy.MinSize;
-        }
-    }
+    private readonly Vector2 _modernMinSize; // Window size referenced from MinSize attribute
+    private static readonly Vector2 ClassicMinSize = new(666, 670); // We specify the Classic MinSize here since the original value is in an upstream file and it needs to be a bit longer for spacing reasons
 
     // Amount configs for the 2x5 modern grid: 9 numeric amounts + All.
     private static readonly (string Label, ChemMasterReagentAmount Amount)[] AmountConfigs =
@@ -76,6 +67,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         ("120", ChemMasterReagentAmount.U120),
         (Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All),
     };
+
+    private static bool IsValidCustomAmount(string s) => int.TryParse(s, out var v) && v > 0 && v <= 1000;
+    private bool IsCustomAmountValid(string s) => !string.IsNullOrWhiteSpace(s) && IsValidCustomAmount(s);
 
     /// <summary>
     /// Create and initialize the chem master UI client-side. Creates the basic layout,
@@ -173,26 +167,23 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         // Build the amount 'grid' (2x5)
         BuildAmountGrid(AmountGrid);
 
-        // Custom amount selector (Modern) - textbox + # button
-        CustomAmountLineEdit.IsValid = s => int.TryParse(s, out var v) && v > 0 && v <= 1000;
-        CustomAmountLineEdit.OnTextChanged += _ =>
-        {
-            CustomAmountButton.Disabled = string.IsNullOrWhiteSpace(CustomAmountLineEdit.Text) || !CustomAmountLineEdit.IsValid(CustomAmountLineEdit.Text);
-            UpdateCustomAmountCentering();
-            SaveCustomPerChemMaster();
-        };
+        // Custom amount - shared validation and per-ChemMaster storage, Modern + Classic textboxes sync
+        CustomAmountLineEdit.IsValid = IsValidCustomAmount;
+        CustomAmountLineEditClassic.IsValid = IsValidCustomAmount;
+        CustomAmountLineEdit.OnTextChanged += _ => HandleCustomAmountTextChanged(CustomAmountLineEdit, CustomAmountLineEditClassic, isModern: true);
+        CustomAmountLineEditClassic.OnTextChanged += _ => HandleCustomAmountTextChanged(CustomAmountLineEditClassic, CustomAmountLineEdit, isModern: false);
         CustomAmountButton.Disabled = true;
         CustomAmountButton.ToggleMode = true;
         CustomAmountButton.OnPressed += _ =>
         {
-            if (!int.TryParse(CustomAmountLineEdit.Text, out var v) || v <= 0)
+            if (!IsCustomAmountValid(CustomAmountLineEdit.Text))
             {
                 _customSelected = false;
                 CustomAmountButton.Pressed = false;
                 SaveCustomPerChemMaster();
                 return;
             }
-            _customAmount = FixedPoint2.New(v);
+            _customAmount = FixedPoint2.New(int.Parse(CustomAmountLineEdit.Text));
             _customSelected = true;
             CustomAmountButton.Pressed = true;
             DeselectGrid();
@@ -356,17 +347,50 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
     private void SaveCustomPerChemMaster() { if (_chemMasterNetEntity is {} id) _customPerChemMaster[id] = (CustomAmountLineEdit.Text, _customAmount, _customSelected); }
 
+    private void HandleCustomAmountTextChanged(LineEdit source, LineEdit target, bool isModern)
+    {
+        if (target.Text != source.Text)
+            target.Text = source.Text;
+        if (isModern)
+        {
+            CustomAmountButton.Disabled = !IsCustomAmountValid(source.Text);
+            UpdateCustomAmountCentering();
+        }
+        SaveCustomPerChemMaster();
+        UpdateClassicCustomButtons();
+    }
+
+    private void UpdateClassicCustomButtons()
+    {
+        var valid = IsCustomAmountValid(CustomAmountLineEditClassic.Text);
+        void UpdateIn(Control root)
+        {
+            foreach (var child in root.Children)
+            {
+                if (child is ReagentButton rb && rb.Text == "#")
+                    rb.Disabled = !valid;
+                else if (child is Control c)
+                    UpdateIn(c);
+            }
+        }
+        UpdateIn(BufferInfoClassic);
+        UpdateIn(InputContainerInfoClassic);
+        UpdateIn(OutputContainerInfoClassic);
+    }
+
     public void SetChemMasterEntity(NetEntity id)
     {
         _chemMasterNetEntity = id;
         if (!_customPerChemMaster.TryGetValue(id, out var s)) return;
         CustomAmountLineEdit.Text = s.Text;
+        CustomAmountLineEditClassic.Text = s.Text;
         _customAmount = s.Amount;
         _customSelected = s.Selected;
         CustomAmountButton.Disabled = string.IsNullOrWhiteSpace(s.Text) || (CustomAmountLineEdit!.IsValid != null && !CustomAmountLineEdit!.IsValid(s.Text));
         CustomAmountButton.Pressed = _customSelected && !CustomAmountButton.Disabled;
         _customSelected = CustomAmountButton.Pressed;
         UpdateCustomAmountCentering();
+        UpdateClassicCustomButtons();
         SyncGrid(AmountGrid);
     }
 
@@ -379,6 +403,15 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         MinSize = targetSize;
         // Force window to specified dimensions, MinSize alone doesn't shrink an already larger window
         SetSize = targetSize;
+        if (!_classicMode)
+        {
+            UpdateCustomAmountCentering();
+            CustomAmountButton.Disabled = !IsCustomAmountValid(CustomAmountLineEdit.Text);
+        }
+        else
+        {
+            UpdateClassicCustomButtons();
+        }
     }
 
     private ReagentButton MakeReagentButton(string text, ChemMasterReagentAmount amount, ReagentId id, bool isBuffer, string styleClass)
@@ -398,7 +431,16 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         if (!addReagentButtons)
             return new List<ReagentButton>();
 
-        // Classic: full button strip
+        // Classic: full button strip with # preceding 1 for custom amount
+        var buttons = new List<ReagentButton>();
+
+        var hashButton = new ReagentButton("#", ChemMasterReagentAmount.U1, reagent, isBuffer, StyleClass.ButtonOpenRight)
+        {
+            Disabled = !IsCustomAmountValid(CustomAmountLineEditClassic.Text)
+        };
+        hashButton.OnPressed += a => { if (IsCustomAmountValid(CustomAmountLineEditClassic.Text) && int.TryParse(CustomAmountLineEditClassic.Text, out var v)) OnCustomReagentButtonPressed?.Invoke(a, reagent, FixedPoint2.New(v), isBuffer); };
+        buttons.Add(hashButton);
+
         var buttonConfigs = new (string text, ChemMasterReagentAmount amount, string styleClass)[]
         {
             ("1",   ChemMasterReagentAmount.U1,   StyleClass.ButtonOpenBoth),
@@ -413,7 +455,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             (Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All, StyleClass.ButtonOpenLeft),
         };
 
-        var buttons = new List<ReagentButton>();
         foreach (var (text, amount, styleClass) in buttonConfigs)
         {
             buttons.Add(MakeReagentButton(text, amount, reagent, isBuffer, styleClass));

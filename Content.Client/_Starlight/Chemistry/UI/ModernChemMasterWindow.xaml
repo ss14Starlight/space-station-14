@@ -266,7 +266,10 @@
                     <Button MinSize="80 0" Name="BufferDiscardButtonClassic" Access="Public" Text="{Loc 'chem-master-window-discard-button'}" ToggleMode="True" StyleClasses="OpenLeft" />
                 </BoxContainer>
 
-                <LineEdit Name="SearchBarClassic" PlaceHolder="{Loc 'chem-master-window-search-placeholder'}" HorizontalExpand="True" Margin="0 1"/>
+                <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+                    <LineEdit Name="SearchBarClassic" PlaceHolder="{Loc 'chem-master-window-search-placeholder'}" MinSize="420 0" HorizontalExpand="True" Margin="0 1"/>
+                    <LineEdit Name="CustomAmountLineEditClassic" PlaceHolder="{Loc 'chem-master-window-custom-amount-placeholder'}" MinSize="220 0" HorizontalExpand="True" ToolTip="{Loc 'chem-master-window-custom-amount-tooltip'}" />
+                </BoxContainer>
 
                 <PanelContainer VerticalExpand="True" MinSize="0 200">
                     <PanelContainer.PanelOverride>
