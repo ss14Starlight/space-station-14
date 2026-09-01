@@ -197,6 +197,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             CustomAmountButton.Pressed = true;
             DeselectGrid();
             SaveCustomPerChemMaster();
+            OnAmountSelected?.Invoke(_selectedAmount);
         };
         UpdateCustomAmountCentering();
 
