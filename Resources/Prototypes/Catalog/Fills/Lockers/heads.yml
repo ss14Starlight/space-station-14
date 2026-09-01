@@ -58,6 +58,8 @@
         - Greenshift
         - Sandbox
     #Starlight end
+    - id: PlushieLizardJobQuartermaster
+      prob: 0.02
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -117,6 +119,8 @@
     #     - Greenshift
     #     - Sandbox
     #endregion Starlight
+    - id: PlushieLizardJobCaptain
+      prob: 0.02
 
 
 # No laser table + Laser table
@@ -230,6 +234,8 @@
     - id: PrintedDocumentEndymionMemorial
     - id: Multitool
     # Starlight End
+    - id: PlushieLizardJobHeadofpersonnel
+      prob: 0.02
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -276,6 +282,8 @@
         presets: #SL
         - Greenshift #SL
         - Sandbox #SL
+    - id: PlushieLizardJobChiefengineer
+      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -351,6 +359,8 @@
         - Greenshift
         - Sandbox
     - id: JawsOfLifeMed #Starlight end
+    - id: PlushieLizardJobChiefmedicalofficer
+      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -419,6 +429,8 @@
     #- id: PaperIonstormBorgs
     #  prob: 0.10 #1/10 rounds will have this paper that can be signed repeatedly for no discernable effect!
     # Starlight end
+    - id: PlushieLizardJobResearchdirector
+      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -496,6 +508,8 @@
         presets:
         - Greenshift
         - Sandbox # Starlight end
+    - id: PlushieLizardJobHeadofsecurity
+      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

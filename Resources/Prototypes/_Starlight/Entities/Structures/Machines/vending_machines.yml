@@ -354,6 +354,34 @@
 
 - type: entity
   parent: VendingMachine
+  id: VendingMachineGumballs
+  name: gumball dispenser
+  description: Full of tasty gumballs.
+  components:
+  - type: VendingMachine
+    pack: GumballInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Machine
+    board: VendingMachineGumballsCircuitboard
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/gumball_disp.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: VendingMachine
   id: VendingMachineLegalDrobe
   name: LegalDrobe
   description: Objection! This wardrobe dispenses the rule of law... wait, haven't you seen this before?
@@ -1386,6 +1414,13 @@
 - type: entity
   parent: VendingMachineIceCream
   id: VendingMachineIceCreamEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineGumballs
+  id: VendingMachineGumballsEmpty
   suffix: Empty
   components:
     - type: EmptyVendingMachine

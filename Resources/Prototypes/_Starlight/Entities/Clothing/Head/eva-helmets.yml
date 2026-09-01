@@ -157,9 +157,11 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+        Cold: 0.9
   - type: Tag
     tags:
     - WhitelistChameleon
+  - type: FlashImmunity
 
 - type: entity
   parent:  ClothingHeadHardsuitBase
@@ -190,6 +192,8 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+        Cold: 0.9
   - type: Tag
     tags:
     - WhitelistChameleon
+  - type: FlashImmunity

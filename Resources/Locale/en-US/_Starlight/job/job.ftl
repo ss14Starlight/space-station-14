@@ -21,6 +21,7 @@ job-name-cc-janitor = CentComm Janitor
 job-name-performer = Performer
 job-name-salvagelead = Salvage Lead
 job-name-dutyofficer = Duty Officer
+job-name-k9 = Security K9
 job-name-assistantmanager = Assistant Manager
 job-name-abductor = Abductor
 job-title-borgi = Borgi
@@ -58,3 +59,5 @@ role-type-tsf-aligned-color = #22a7ff
 job-rules-tsf-aligned = You are {role-type-tsf-aligned-name}.
                               You are to serve the interests of the Trans-Solar Federation.
                               Remember, you do NOT serve the crew.
+
+job-name-makeshift-id = Makeshift ID Card

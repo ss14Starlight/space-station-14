@@ -17,10 +17,10 @@
           emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_cluster.yml
         - type: StationJobs
           availableJobs:
-            # 54 jobs (not counting interns)
-            #service (10-12)
+            # Service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
+
             Bartender: [ 1, 2 ]
             Botanist: [ 1, 1 ]
             Chef: [ 1, 1 ]
@@ -28,52 +28,62 @@
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             Lawyer: [ 1, 1 ]
+            RadioHost: [ 1, 1 ]
             ServiceWorker: [ 2, 2 ]
-            #engineering (6)
+
+            # Engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 2 ]
             StationEngineer: [ 3, 3 ]
             TechnicalAssistant: [ 2, 2 ]
-            #medical (8)
+
+            # Medical
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 3, 3 ]
             Paramedic: [ 1, 1 ]
             MedicalIntern: [ 2, 2 ]
             Surgeon: [ 1, 1 ]
-            #science (5)
+
+            # Science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 3, 3 ]
             ResearchAssistant: [ 2, 2 ]
             Roboticist: [ 1, 1 ]
-            #security (7)
+
+            # Security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
-            SecurityOfficer: [ 3, 3 ]
-            SecurityCadet: [ 2, 2 ]
             Brigmedic: [ 1, 1 ]
             Detective: [ 1, 1 ]
-            #supply (8)
+            #K9: [ 1, 1 ]
+            SecurityOfficer: [ 3, 3 ]
+            SecurityCadet: [ 2, 2 ]
+
+            # Supply
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
             MiningSpecialist: [ 2, 2 ]
             CargoTechnician: [ 2, 2 ]
             MailTech: [ 1, 1 ]
-            #civilian (3+)
+
+            # Civilian
+            #AssistantManager [ 1, 1 ]
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             Performer: [ 2, 2 ]
-            #silicon (3)
+
+            # Silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
-            #law (3)
-            Magistrate: [ 1, 1 ]
-            IAA: [ 2, 2 ]
-            #Representatives (2)
+
+            # Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]
+            Magistrate: [ 1, 1 ]
+            IAA: [ 2, 2 ]
