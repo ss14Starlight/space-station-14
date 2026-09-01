@@ -157,22 +157,45 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         ApplyLayout();
 
-        if (FindControl<Button>("ModernModeButton") is { } modernBtn)
+        // Layout toggle in title bar, left of close button (same pattern as PopOutFancyWindow).
+        if (CloseButton.Parent is { } header)
         {
-            modernBtn.OnPressed += _ =>
+            var layoutLabel = new Label
             {
-                _classicMode = false;
-                ApplyLayout();
+                Text = _classicMode
+                    ? Loc.GetString("chem-master-window-mode-classic")
+                    : Loc.GetString("chem-master-window-mode-modern"),
+                VerticalAlignment = VAlignment.Center,
+                Margin = new Thickness(0, 0, 8, 0),
             };
-        }
 
-        if (FindControl<Button>("ClassicModeButton") is { } classicBtn)
-        {
-            classicBtn.OnPressed += _ =>
+            var layoutToggle = new SwitchButton
             {
-                _classicMode = true;
+                VerticalAlignment = VAlignment.Center,
+                OffStateText = string.Empty,
+                OnStateText = string.Empty,
+                Pressed = _classicMode,
+            };
+
+            layoutToggle.OnPressed += args =>
+            {
+                _classicMode = layoutToggle.Pressed;
+                layoutLabel.Text = _classicMode
+                    ? Loc.GetString("chem-master-window-mode-classic")
+                    : Loc.GetString("chem-master-window-mode-modern");
                 ApplyLayout();
             };
+
+            var layoutContainer = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Horizontal,
+                VerticalAlignment = VAlignment.Center,
+                Margin = new Thickness(0, 0, 6, 0),
+                Children = { layoutLabel, layoutToggle },
+            };
+
+            header.AddChild(layoutContainer);
+            layoutContainer.SetPositionInParent(header.ChildCount - 2);
         }
     }
 
@@ -268,11 +291,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     {
         ModernTabs.Visible = !_classicMode;
         ClassicTabs.Visible = _classicMode;
-        if (FindControl<Button>("ModernModeButton") is { } modernBtn)
-            modernBtn.Disabled = !_classicMode;
-
-        if (FindControl<Button>("ClassicModeButton") is { } classicBtn)
-            classicBtn.Disabled = _classicMode;
 
         var targetSize = _classicMode ? ClassicMinSize : _modernMinSize;
         MinSize = targetSize;

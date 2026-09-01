@@ -7,12 +7,6 @@
 
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
 
-        <!-- Layout Toggle Buttons -->
-        <BoxContainer Orientation="Horizontal" Margin="5 3 5 0">
-            <Button Name="ModernModeButton" MinSize="100 0" Text="{Loc 'chem-master-window-mode-modern'}" />
-            <Button Name="ClassicModeButton" MinSize="100 0" Text="{Loc 'chem-master-window-mode-classic'}" />
-        </BoxContainer>
-
         <!-- ===== MODERN LAYOUT ===== -->
         <TabContainer Name="ModernTabs" Margin="5 5 7 5" HorizontalExpand="True" VerticalExpand="True">
 
