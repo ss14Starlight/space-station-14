@@ -68,8 +68,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         (Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All),
     };
 
-    private static bool IsValidCustomAmount(string s) => int.TryParse(s, out var v) && v > 0 && v <= 1000;
-    private bool IsCustomAmountValid(string s) => !string.IsNullOrWhiteSpace(s) && IsValidCustomAmount(s);
+    private static bool IsInCustomAmountRange(string s) => int.TryParse(s, out var v) && v > 0 && v <= 1000;
+    private bool IsCustomAmountValid(string s) => !string.IsNullOrWhiteSpace(s) && IsInCustomAmountRange(s);
 
     /// <summary>
     /// Create and initialize the chem master UI client-side. Creates the basic layout,
@@ -168,8 +168,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         BuildAmountGrid(AmountGrid);
 
         // Custom amount - shared validation and per-ChemMaster storage, Modern + Classic textboxes sync
-        CustomAmountLineEdit.IsValid = IsValidCustomAmount;
-        CustomAmountLineEditClassic.IsValid = IsValidCustomAmount;
+        CustomAmountLineEdit.IsValid = IsInCustomAmountRange;
+        CustomAmountLineEditClassic.IsValid = IsInCustomAmountRange;
         CustomAmountLineEdit.OnTextChanged += _ => HandleCustomAmountTextChanged(CustomAmountLineEdit, CustomAmountLineEditClassic, isModern: true);
         CustomAmountLineEditClassic.OnTextChanged += _ => HandleCustomAmountTextChanged(CustomAmountLineEditClassic, CustomAmountLineEdit, isModern: false);
         CustomAmountButton.Disabled = true;
