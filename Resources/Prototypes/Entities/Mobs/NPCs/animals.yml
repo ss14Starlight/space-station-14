@@ -3027,10 +3027,14 @@
 
 - type: entity
   name: fox
-  parent: [MobDogColdResistant, SimpleMobBase, StripableInventoryBase] # Starlight
+  parent: [MobDogColdResistant, MobDogIdentity, SimpleMobBase, StripableInventoryBase] # Starlight
   id: MobFox
   description: They're a fox.
   components:
+  # Starlight Begin
+  - type: AnimalIdentity
+    nounId: identity-animal-noun-fox
+  # Starlight End
   # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
@@ -3128,7 +3132,7 @@
 
 - type: entity
   abstract: true
-  parent: [SimpleMobBaseAntag, StripableInventoryBase] # Starlight, so they don't inherit antag immune
+  parent: [MobDogColdResistant, MobDogIdentity, SimpleMobBaseAntag, StripableInventoryBase] # Starlight, so they don't inherit antag immune
   id: MobCorgiBaseTemplate # Starlight, to let smart corgis roll antag but not other corgi types
   name: corgi
   description: Finally, a space corgi!
@@ -3150,6 +3154,7 @@
       Male: Dog
       Female: Dog
       Unsexed: Dog
+    screamAction: null
   - type: UserInterface
     interfaces:
       enum.ScentSniffUiKey.Key:

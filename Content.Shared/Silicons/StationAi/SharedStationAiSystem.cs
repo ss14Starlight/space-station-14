@@ -16,6 +16,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components; // Starlight-edit
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.PAI;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
@@ -119,6 +120,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         SubscribeLocalEvent<StationAiHolderComponent, IntellicardDoAfterEvent>(OnIntellicardDoAfter);
 
         SubscribeLocalEvent<BorgBrainComponent, IntellicardDoAfterEvent>(OnIntellicardBorgDoAfter); // Starlight-edit
+        SubscribeLocalEvent<PAIComponent, IntellicardDoAfterEvent>(OnIntellicardPaiDoAfter); // Starlight-edit
 
         SubscribeLocalEvent<StationAiCoreComponent, EntInsertedIntoContainerMessage>(OnAiInsert);
         SubscribeLocalEvent<StationAiCoreComponent, EntRemovedFromContainerMessage>(OnAiRemove);
@@ -275,9 +277,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     }
 
     private void OnIntellicardDoAfter(Entity<StationAiHolderComponent> ent, ref IntellicardDoAfterEvent args) => IntellicardTransfer(ent.Owner, ent.Comp, args); // Starlight-edit
-
     private void OnIntellicardBorgDoAfter(Entity<BorgBrainComponent> ent, ref IntellicardDoAfterEvent args) => IntellicardTransfer(ent.Owner, null, args); // Starlight-edit
-
     private void IntellicardTransfer(EntityUid uid, StationAiHolderComponent? component, IntellicardDoAfterEvent args) // Starlight-edit
     {
         if (args.Cancelled)
@@ -290,6 +290,9 @@ public abstract partial class SharedStationAiSystem : EntitySystem
             return;
 
         var target = args.Args.Target.Value;
+        if (IsAiInterface(target)) // Starlight-edit
+            return;
+
         if (TryComp<BorgChassisComponent>(target, out var chassis) && chassis.BrainEntity is { } chassisBrain)
             target = chassisBrain;
 
@@ -375,14 +378,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         }
         // Starlight-end
     }
-
-    // Starlight: wipe the name of the entity to the prototype name, used for entities when they are downloaded/uploaded
-    private void ResetNameToPrototype(EntityUid entity)
-    {
-        if (MetaData(entity).EntityPrototype is { } prototype)
-            _metadata.SetEntityName(entity, prototype.Name);
-    }
-
     private void OnHolderInteract(Entity<StationAiHolderComponent> ent, ref AfterInteractEvent args)
     {
         if (args.Handled || !args.CanReach || args.Target == null)
@@ -405,15 +400,19 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         // Starlight-start: Downloadable borgs
 
         var borgTarget = args.Target.Value;
-        var borgMindTarget = borgTarget; // Starlight-edit
+        var borgMindTarget = borgTarget;
+        if (IsAiInterface(borgTarget))
+            return;
+
         if (TryComp<BorgChassisComponent>(borgTarget, out var chassis) && chassis.BrainEntity is { } chassisBrain)
             borgTarget = chassisBrain;
 
         var isBorg = HasComp<BorgBrainComponent>(borgTarget);
+        var isPai = HasComp<PAIComponent>(borgTarget);
         var isShunted = TryComp<StationAIShuntComponent>(borgTarget, out var shunt) && shunt.Return != null;
         var borgHaveMind = TryComp<MindContainerComponent>(borgMindTarget, out var mindContainer) && mindContainer.HasMind; // Starlight-edit
 
-        if (targetHolder == null && !isBorg)
+        if (targetHolder == null && !isBorg && !isPai)
         {
             var message = cardHasAi ? "intellicard-cannot-transfer-to" : "intellicard-core-empty";
             _popup.PopupClient(Loc.GetString(message), args.User, args.User, PopupType.Medium);
@@ -429,7 +428,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
             args.Handled = true;
             return;
         }
-        if (!cardHasAi && !coreHasAi && !(isBorg && borgHaveMind)) // Starlight-edit
+        if (!cardHasAi && !coreHasAi && !(isBorg && borgHaveMind) && !isPai) // Starlight: pai is also possible
         {
             _popup.PopupClient(Loc.GetString("intellicard-core-empty"), args.User, args.User, PopupType.Medium);
             args.Handled = true;
@@ -438,7 +437,8 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         // Starlight-start: Downloadable borgs
         if (isShunted)
         {
-            _popup.PopupClient(Loc.GetString("intellicard-shunted"), args.User, args.User, PopupType.Medium);
+            if (HasComp<BorgBrainComponent>(ent.Owner))
+                _popup.PopupClient(Loc.GetString("intellicard-shunted"), args.User, args.User, PopupType.Medium);
             args.Handled = true;
             return;
         }
@@ -449,8 +449,8 @@ public abstract partial class SharedStationAiSystem : EntitySystem
             var ev = new ChatNotificationEvent(_downloadChatNotificationPrototype, args.Used, args.User);
             RaiseLocalEvent(held.Value, ref ev);
         }
-        // Starlight-start: borgs can be downloaded/uploaded
-        else if (isBorg)
+        // Starlight-start: borgs/pAI can be downloaded/uploaded
+        else if (isBorg || isPai)
         {
             var ev = new ChatNotificationEvent(_downloadChatNotificationPrototype, args.Used, args.User);
             RaiseLocalEvent(args.Target.Value, ref ev);

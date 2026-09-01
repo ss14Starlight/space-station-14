@@ -83,7 +83,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseSummer # Starlight
   id: ClothingHeadHatCasa
   name: casa
   description: Cone-shaped hat.
@@ -537,7 +537,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadBase, BaseFoldable]
+  parent: [ClothingHeadBaseWinter, BaseFoldable] # Starlight
   id: ClothingHeadHatSantahat
   name: santa hat
   description: A festive hat worn by Santa Claus. Now with a foldable beard.
@@ -572,7 +572,7 @@
     - CorgiWearable
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseSummer # Starlight
   id: ClothingHeadHatSombrero
   name: sombrero
   description: "\"Perfect for Space Mexico, si?\""
@@ -662,7 +662,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadBase, BaseFoldable]
+  parent: [ClothingHeadBaseWinter, BaseFoldable] # Starlight
   id: ClothingHeadHatUshanka
   name: ushanka
   description: "\"Perfect for winter in Siberia, da?\""
@@ -687,7 +687,7 @@
       visible: false
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseWinter # Starlight
   id: ClothingHeadHatCanadaBeanie
   name: beanie
   description: Red, white and snug. It radiates a homely feeling, if your home happens to be chilly and filled with coffeehouses.
@@ -723,13 +723,6 @@
         color: "#a60b0b"
       - state: pompom-equipped-HELMET
         color: "#a60b0b"
-  - type: TemperatureProtection # Starlight start
-    heatingCoefficient: 1
-    coolingCoefficient: 0.75
-  - type: Armor
-    modifiers:
-      coefficients:
-        Cold: 0.9 # Starlight end
 
 - type: entity
   parent: ClothingHeadHatWizardBase
@@ -1124,7 +1117,7 @@
     sprite: Clothing/Head/Hats/tacticalmaidheadband.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseWinter # Starlight
   id: ClothingHeadHatHetmanHat
   name: hetman hat
   description: From the Zaporozhian Sich with love.
@@ -1328,7 +1321,7 @@
     sprite: Clothing/Head/Hats/brownflatcap.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseSummer # Starlight
   id: ClothingHeadHatCowboyBrown
   name: brown cowboy hat
   description: "\"This hat ain't big enough for the two of us.\""
@@ -1428,7 +1421,7 @@
       - HamsterWearable
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseSummer # Starlight
   id: ClothingHeadHatStrawHat
   name: straw hat
   description: A fancy hat for hot days! Not recommended to wear near fires.
