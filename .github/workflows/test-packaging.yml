@@ -54,10 +54,10 @@ jobs:
           git submodule update --init --recursive
 
       # ubuntu-latest has .NET 10
-      # - name: Setup .NET Core
-      #   uses: actions/setup-dotnet@v5
-      #   with:
-      #     dotnet-version: 10.0.x
+      - name: Setup .NET Core # Starlight start
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x # Starlight end
 
       - name: Install dependencies
         run: dotnet restore
