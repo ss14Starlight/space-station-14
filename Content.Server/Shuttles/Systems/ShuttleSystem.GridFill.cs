@@ -194,8 +194,27 @@ public sealed partial class ShuttleSystem
 
         if (_loader.TryLoadGrid(mapId, path, out var grid))
         {
-            if (HasComp<ShuttleComponent>(grid))
-                TryFTLProximity(grid.Value, targetGrid);
+            //Starlight start - Make the spawning system respect the minimum and maximum distance
+            var targetPhysics = _physicsQuery.Comp(targetGrid);
+            var targetCoordinates = new EntityCoordinates(targetGrid, targetPhysics.LocalCenter);
+
+            if (group.MinimumDistance > 0f || group.MaximumDistance > 0f)
+            {
+                if (group.MaximumDistance <= group.MinimumDistance)
+                {
+                    Log.Error($"Invalid grid spawn distance range for {ToPrettyString(stationUid)} / {path}: " +
+                              $"{group.MinimumDistance} to {group.MaximumDistance}");
+                    return false;
+                }
+
+                if (!TryGetFTLProximity(grid.Value, targetCoordinates, out var coordinates, out var angle,
+                        group.MinimumDistance, group.MaximumDistance))
+                    return false;
+
+                _transform.SetCoordinates(grid.Value, Transform(grid.Value), coordinates, rotation: angle);
+            }
+            else if (HasComp<ShuttleComponent>(grid)) TryFTLProximity(grid.Value, targetGrid);
+            //Starlight end
 
             if (group.NameGrid)
             {

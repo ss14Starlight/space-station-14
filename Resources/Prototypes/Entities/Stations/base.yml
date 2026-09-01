@@ -60,6 +60,8 @@
             - type: TradeStation
           paths:
             - /Maps/_Starlight/trading_outpost.yml # Starlight Edit, new ATS
+          minimumDistance: 100
+          maximumDistance: 200
 #        mining: !type:GridSpawnGroup # 🌟Starlight begin🌟
 #          paths:
 #            - /Maps/Shuttles/mining.yml
