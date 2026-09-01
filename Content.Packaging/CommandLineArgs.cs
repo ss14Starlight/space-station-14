@@ -142,12 +142,12 @@ public sealed class CommandLineArgs
 Usage: Content.Packaging [client/server] [options]
 
 Options:
-  --skip-build          Should we skip building the project and use what's already there.
-  --no-wipe-release     Don't wipe the release folder before creating files.
-  --hybrid-acz          Use HybridACZ for server builds.
-  --platform            Platform for server builds. Default will output several x64 targets.
-  --configuration       Configuration to use for building the server (Release, Debug, Tools). Default is Release.
-  --log-build           Log builds with MSBuild binlog. Logs get saved to release/
+    --skip-build          Should we skip building the project and use what's already there.
+    --no-wipe-release     Don't wipe the release folder before creating files.
+    --hybrid-acz          Use HybridACZ for server builds.
+    --platform            Platform for server builds. Default will output several x64 targets.
+    --configuration       Configuration to use for building the server (Release, Debug, Tools). Default is Release.
+    --log-build           Log builds with MSBuild binlog. Logs get saved to release/
 ");
     }
 
