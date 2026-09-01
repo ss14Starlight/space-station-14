@@ -51,6 +51,7 @@ public enum CollisionGroup
     // Machines, computers
     MachineMask = Impassable | MidImpassable | LowImpassable,
     MachineLayer = Opaque | MidImpassable | LowImpassable | BulletImpassable,
+    SovietLayer = Opaque | MidImpassable | LowImpassable | BulletImpassable, //Starlight - Unique layer for soviet crates to prevent lag thru collisions
     ConveyorMask = Impassable | MidImpassable | LowImpassable | DoorPassable,
 
     // Crates

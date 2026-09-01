@@ -42,6 +42,7 @@
         density: 50
         mask:
         - CrateMask #this is so they can go under plastic flaps
+        - SovietLayer #Starlight: make generics collide with soviet crates
         layer:
         - MachineLayer
   - type: EntityStorage
