@@ -1,13 +1,6 @@
 Entries:
 - author: Forrestgod
   changes:
-  - message: '[Serpentcrest] Added Pipe Docking Pipes to Cargo Dock.'
-    type: Add
-  id: 407642
-  time: '2026-08-16T15:22:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5668
-- author: Forrestgod
-  changes:
   - message: '[Serpentcrest] Added Waste/Distro Pipes to Evac Docks.'
     type: Add
   id: 407643
@@ -2799,4 +2792,11 @@ Entries:
   id: 408041
   time: '2026-08-31T19:54:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5904
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed welders a eswords causing reality to collapse in their local area when turned on/off.
+    type: Fix
+  id: 408042
+  time: '2026-08-31T23:52:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5913
 Order: -1
