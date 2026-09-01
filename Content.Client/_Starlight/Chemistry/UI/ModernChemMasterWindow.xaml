@@ -19,6 +19,12 @@
                     <BoxContainer Orientation="Horizontal">
                         <Label Text="{Loc 'chem-master-window-buffer-text'}" />
                         <Control HorizontalExpand="True" />
+                        <Button MinSize="68 0" Name="BufferTransferButton" Access="Public"
+                                Text="{Loc 'chem-master-window-transfer-button'}"
+                                ToggleMode="True" StyleClasses="OpenRight" />
+                        <Button MinSize="68 0" Name="BufferDiscardButton" Access="Public"
+                                Text="{Loc 'chem-master-window-discard-button'}"
+                                ToggleMode="True" StyleClasses="OpenLeft" />
                     </BoxContainer>
 
                     <!-- Search bar -->
@@ -48,14 +54,8 @@
                     </PanelContainer.PanelOverride>
                 </PanelContainer>
 
-                <!-- Amount grid n' Transfer modes -->
+                <!-- Amount grid -->
                 <BoxContainer Orientation="Vertical" SeparationOverride="4" VerticalAlignment="Center" Margin="4 0">
-                    <Button MinSize="68 0" Name="BufferTransferButton" Access="Public"
-                            Text="{Loc 'chem-master-window-transfer-button'}"
-                            ToggleMode="True" StyleClasses="OpenRight" />
-                    <Button MinSize="68 0" Name="BufferDiscardButton" Access="Public"
-                            Text="{Loc 'chem-master-window-discard-button'}"
-                            ToggleMode="True" StyleClasses="OpenLeft" />
 
                     <!-- Amount Divider Top -->
                     <PanelContainer Name="AmountModeDividerTop" MinSize="0 4" Margin="4 4 4 0">
