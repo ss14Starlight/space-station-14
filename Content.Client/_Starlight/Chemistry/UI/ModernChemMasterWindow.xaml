@@ -55,7 +55,8 @@
                 </PanelContainer>
 
                 <!-- Amount grid -->
-                <BoxContainer Orientation="Vertical" SeparationOverride="4" VerticalAlignment="Center" Margin="4 0">
+                <Control VerticalAlignment="Center" Margin="4 0">
+                <BoxContainer Orientation="Vertical" SeparationOverride="4" VerticalAlignment="Center">
 
                     <!-- Amount Divider Top -->
                     <PanelContainer Name="AmountModeDividerTop" MinSize="0 4" Margin="4 4 4 0">
@@ -74,6 +75,8 @@
                         </PanelContainer.PanelOverride>
                     </PanelContainer>
                 </BoxContainer>
+                <Label Text="{Loc 'chem-master-window-amount-label'}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 -18 0 0" StyleClasses="LabelSecondaryColor" />
+                </Control>
 
                 <!-- Divider -->
                 <PanelContainer Name="ButtonDivider2" MinSize="4 0">
