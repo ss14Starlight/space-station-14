@@ -130,10 +130,12 @@ public sealed partial class DestinyDiceSystem : EntitySystem
                 _popup.PopupPredicted(Loc.GetString(comp.BusyMessage), uid, comp.ActiveRoller, comp.BusyPopupType);
             return;
         }
+
         if (_timing.CurTime < comp.NextAllowedRollTime)
         {
             if (comp.CooldownMessage is not null)
-                _popup.PopupPredicted(Loc.GetString(comp.CooldownMessage), uid, comp.ActiveRoller, comp.CooldownPopupType);
+                _popup.PopupPredicted(Loc.GetString(comp.CooldownMessage), uid, comp.ActiveRoller,
+                    comp.CooldownPopupType);
             return;
         }
 
@@ -142,31 +144,32 @@ public sealed partial class DestinyDiceSystem : EntitySystem
         // Now we check which groups are eligible based on current value, and pick from the set.
         Dictionary<DestinyDiceEffectGroup, float> targetGroups = [];
         foreach (var group in comp.EffectGroups)
-            foreach (var data in group.RollData)
+        foreach (var data in group.RollData)
+        {
+            if (data.TargetValue == comp.CurrentValue)
             {
-                if (data.TargetValue == comp.CurrentValue)
-                {
-                    targetGroups.Add(group, group.Weight ?? 1);
-                    break;
-                }
-
-                if (!data.MinValue.HasValue && !data.MaxValue.HasValue)
-                    continue;
-
-                if (data.MinValue.HasValue != data.MaxValue.HasValue)
-                    throw new Exception("MinMax is used for destiny die effect, but either min or max is not set.");
-
-                if (comp.CurrentValue < data.MinValue!.Value || comp.CurrentValue > data.MaxValue!.Value)
-                    continue;
-
                 targetGroups.Add(group, group.Weight ?? 1);
                 break;
             }
 
+            if (!data.MinValue.HasValue && !data.MaxValue.HasValue)
+                continue;
+
+            if (data.MinValue.HasValue != data.MaxValue.HasValue)
+                throw new Exception("MinMax is used for destiny die effect, but either min or max is not set.");
+
+            if (comp.CurrentValue < data.MinValue!.Value || comp.CurrentValue > data.MaxValue!.Value)
+                continue;
+
+            targetGroups.Add(group, group.Weight ?? 1);
+            break;
+        }
+
         if (targetGroups.Count == 0)
         {
             if (comp.NoEffectMessage is not null)
-                _popup.PopupPredicted(Loc.GetString(comp.NoEffectMessage), uid, comp.ActiveRoller, comp.NoEffectPopupType);
+                _popup.PopupPredicted(Loc.GetString(comp.NoEffectMessage), uid, comp.ActiveRoller,
+                    comp.NoEffectPopupType);
             return;
         }
 
@@ -178,7 +181,8 @@ public sealed partial class DestinyDiceSystem : EntitySystem
             (rolledGroup.MaxTriggers > -1 && rolledGroup.TimesTriggered >= rolledGroup.MaxTriggers))
         {
             if (rolledGroup.ExhaustedMessage is not null)
-                _popup.PopupPredicted(Loc.GetString(rolledGroup.ExhaustedMessage), uid, comp.ActiveRoller, rolledGroup.ExhaustedPopupType);
+                _popup.PopupPredicted(Loc.GetString(rolledGroup.ExhaustedMessage), uid, comp.ActiveRoller,
+                    rolledGroup.ExhaustedPopupType);
             return;
         }
 
@@ -189,7 +193,8 @@ public sealed partial class DestinyDiceSystem : EntitySystem
                 case false when !_conditions.TryAnyCondition(uid, rolledGroup.Conditions.ToArray()):
                     {
                         if (rolledGroup.FailureMessage is not null)
-                            _popup.PopupPredicted(Loc.GetString(rolledGroup.FailureMessage), uid, comp.ActiveRoller, rolledGroup.FailurePopupType);
+                            _popup.PopupPredicted(Loc.GetString(rolledGroup.FailureMessage), uid, comp.ActiveRoller,
+                                rolledGroup.FailurePopupType);
                         return;
                     }
             }
@@ -197,14 +202,19 @@ public sealed partial class DestinyDiceSystem : EntitySystem
         if (!_random.ProbPredicted(_timing, rolledGroup.Probability))
         {
             if (rolledGroup.FailureMessage is not null)
-                _popup.PopupPredicted(Loc.GetString(rolledGroup.FailureMessage), uid, comp.ActiveRoller, rolledGroup.FailurePopupType);
+                _popup.PopupPredicted(Loc.GetString(rolledGroup.FailureMessage), uid, comp.ActiveRoller,
+                    rolledGroup.FailurePopupType);
             return;
         }
 
         rolledGroup.TimesTriggered++;
-        comp.CurrentEffectIndex = 0;
         comp.CurrentEffectGroup = rolledGroup;
         comp.IsActive = true;
+
+        comp.EffectQueue.Clear();
+        foreach (var effect in rolledGroup.Effects)
+            comp.EffectQueue.Enqueue(effect);
+
         if (comp.GroupDelay.HasValue)
         {
             comp.GroupStartTime = _timing.CurTime + TimeSpan.FromSeconds(comp.GroupDelay.Value);
@@ -216,7 +226,8 @@ public sealed partial class DestinyDiceSystem : EntitySystem
             : TimeSpan.Zero;
 
         _activeDice.Add((uid, comp));
-        _aLog.Add(LogType.Action, LogImpact.Low, $"Entity {ToPrettyString(uid)} rolled a Destiny Die and triggered an effect group.");
+        _aLog.Add(LogType.Action, LogImpact.Low,
+            $"Entity {ToPrettyString(uid)} rolled a Destiny Die and triggered an effect group.");
     }
 
     public override void Update(float delta)
@@ -231,13 +242,14 @@ public sealed partial class DestinyDiceSystem : EntitySystem
         var (uid, comp) = ent;
         var group = comp.CurrentEffectGroup;
 
-        Log.Info($"GROUP: {(group is null ? "null" : "NOT NULL")}, ACTIVE: {comp.IsActive}, COUNT: {group?.Effects.Count.ToString() ?? "null"}, INDEX: {comp.CurrentEffectIndex}, IN PREDICTION: {_timing.InPrediction}, IN SIMULATION: {_timing.InSimulation}");
-        if (group is null || !comp.IsActive || comp.CurrentEffectIndex >= group.Effects.Count)
+        Log.Info(
+            $"GROUP: {(group is null ? "null" : "NOT NULL")}, ACTIVE: {comp.IsActive}, COUNT: {group?.Effects.Count.ToString() ?? "null"}, IN PREDICTION: {_timing.InPrediction}, IN SIMULATION: {_timing.InSimulation}");
+        if (group is null || !comp.IsActive || comp.EffectQueue.Count == 0)
         {
             _activeDice.Remove(ent);
             comp.IsActive = false;
             comp.IsPending = false;
-            comp.CurrentEffectIndex = 0;
+            comp.EffectQueue.Clear();
             comp.CurrentEffectGroup = null;
             comp.CurrentEffect = null;
             comp.EffectResults.Clear();
@@ -270,11 +282,10 @@ public sealed partial class DestinyDiceSystem : EntitySystem
 
         // If one effect fails we want to try and start the next one immediately if possible.
         // Basically just going until we find an effect that passes checks or until we exhaust the list.
-        var index = comp.CurrentEffectIndex;
 
-        while (index < group.Effects.Count)
+        while (comp.EffectQueue.Count > 0)
         {
-            effect = group.Effects[index++];
+            effect = comp.EffectQueue.Dequeue();
             effect.TimesRolled++;
 
             if (effect.EntityEffect is null) continue; // Not valid.
@@ -365,9 +376,7 @@ public sealed partial class DestinyDiceSystem : EntitySystem
             _popup.PopupPredicted(Loc.GetString(effect.SuccessMessage), uid, comp.ActiveRoller,
                 effect.SuccessPopupType);
         // Effect is applied unconditionally here as effects are checked manually earlier.
-        Log.Info("RUNNING EFFECT!!!!!!!");
         _effects.ApplyEffect(uid, effect.EntityEffect, user: uid);
-        comp.CurrentEffectIndex = index;
     }
 
     /// Quick helper to assign active values to the component for the current effect to reference.
@@ -388,7 +397,8 @@ public sealed partial class DestinyDiceSystem : EntitySystem
     /// <param name="ent">The destiny die entity.</param>
     /// <param name="targets">An <see cref="IEnumerable{EntityUid}"/> containing the target entities.</param>
     /// <returns>Boolean value based on if there are valid targets or not.</returns>
-    public bool GetEffectTargets(Entity<DestinyDiceComponent> ent, [NotNullWhen(true)] out IEnumerable<EntityUid>? targets)
+    public bool GetEffectTargets(Entity<DestinyDiceComponent> ent,
+        [NotNullWhen(true)] out IEnumerable<EntityUid>? targets)
     {
         var (uid, comp) = ent;
         targets = null;
@@ -398,7 +408,7 @@ public sealed partial class DestinyDiceSystem : EntitySystem
             case DestinyDiceTargetType.None:
                 return false;
             case DestinyDiceTargetType.Self:
-                targets = new [] { uid };
+                targets = new[] { uid };
                 return true;
             case DestinyDiceTargetType.Roller:
                 targets = new[] { comp.ActiveRoller ?? EntityUid.Invalid };

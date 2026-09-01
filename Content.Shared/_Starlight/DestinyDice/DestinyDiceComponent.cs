@@ -72,6 +72,6 @@ public sealed partial class DestinyDiceComponent : Component
     [ViewVariables(VVAccess.ReadOnly)] public DestinyDiceEffectGroup? CurrentEffectGroup;
     /// Tracks the current active effect.
     [ViewVariables(VVAccess.ReadOnly)] public DestinyDiceEffect? CurrentEffect;
-    /// Tracks the current effect index in the active group.
-    [ViewVariables(VVAccess.ReadOnly)] public int CurrentEffectIndex;
+    /// Tracks the remaining effects that need to be executed
+    [ViewVariables(VVAccess.ReadOnly)] public Queue<DestinyDiceEffect> EffectQueue = [];
 }
