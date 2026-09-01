@@ -13,3 +13,4 @@ chem-master-window-mode-tooltip = Toggle UI layout
 chem-master-window-mode-classic = Classic Layout
 chem-master-window-mode-modern = Modern Layout
 chem-master-window-amount-label = Amount
+chem-master-window-custom-amount-tooltip = Enter custom amount and press # to dispense that amount

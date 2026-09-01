@@ -62,6 +62,7 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterSortingTypeCycleMessage>(OnCycleSortingTypeMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterSetPillTypeMessage>(OnSetPillTypeMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterReagentAmountButtonMessage>(OnReagentButtonMessage);
+            SubscribeLocalEvent<ChemMasterComponent, ChemMasterReagentCustomAmountButtonMessage>(OnCustomReagentButtonMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterCreatePillsMessage>(OnCreatePillsMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterCreatePatchesMessage>(OnCreatePatchesMessage); // Starlight
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterOutputToBottleMessage>(OnOutputToBottleMessage);
@@ -142,6 +143,26 @@ namespace Content.Server.Chemistry.EntitySystems
                     break;
                 default:
                     // Invalid mode.
+                    return;
+            }
+
+            ClickSound(chemMaster);
+        }
+
+        private void OnCustomReagentButtonMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterReagentCustomAmountButtonMessage message)
+        {
+            if (message.Amount <= FixedPoint2.Zero || message.Amount > FixedPoint2.New(1000))
+                return;
+
+            switch (chemMaster.Comp.Mode)
+            {
+                case ChemMasterMode.Transfer:
+                    TransferReagents(chemMaster, message.ReagentId, message.Amount, message.FromBuffer);
+                    break;
+                case ChemMasterMode.Discard:
+                    DiscardReagents(chemMaster, message.ReagentId, message.Amount, message.FromBuffer);
+                    break;
+                default:
                     return;
             }
 
