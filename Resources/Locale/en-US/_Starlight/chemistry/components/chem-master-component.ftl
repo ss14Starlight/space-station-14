@@ -9,5 +9,6 @@ chem-master-window-valve-closed = Valve: Closed
 
 # Modern ChemMaster UI
 chem-master-window-search-placeholder = Filter ...
+chem-master-window-mode-tooltip = Toggle UI layout
 chem-master-window-mode-classic = Classic Layout
 chem-master-window-mode-modern = Modern Layout
