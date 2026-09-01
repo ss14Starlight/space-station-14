@@ -57,6 +57,21 @@ namespace Content.Shared.Chemistry
     }
 
     [Serializable, NetSerializable]
+    public sealed class ChemMasterReagentCustomAmountButtonMessage : BoundUserInterfaceMessage
+    {
+        public readonly ReagentId ReagentId;
+        public readonly FixedPoint2 Amount;
+        public readonly bool FromBuffer;
+
+        public ChemMasterReagentCustomAmountButtonMessage(ReagentId reagentId, FixedPoint2 amount, bool fromBuffer)
+        {
+            ReagentId = reagentId;
+            Amount = amount;
+            FromBuffer = fromBuffer;
+        }
+    }
+
+    [Serializable, NetSerializable]
     public sealed class ChemMasterCreatePillsMessage : BoundUserInterfaceMessage
     {
         public readonly uint Dosage;
