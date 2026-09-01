@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Non-recolor sprites by DogeyOT (discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "voxbeakcolor",
+            "directions": 4
+        },
+        {
+            "name": "voxbeakhookedcolor",
+            "directions": 4
+        },
+        {
+            "name": "voxbeakshavedcolor",
+            "directions": 4
+        },
+        {
+            "name": "voxbeaksquarecolor",
+            "directions": 4
+        },
+        {
+            "name": "voxfeatheredfeet",
+            "directions": 4
+        },
+        {
+            "name": "voxplumage",
+            "directions": 4
+        },
+        {
+            "name": "voxshaggytail",
+            "directions": 4
+        },
+        {
+            "name": "leftlegfeathered",
+            "directions": 4
+        },
+        {
+            "name": "rightlegfeathered",
+            "directions": 4
+        },
+        {
+            "name": "leftarm",
+            "directions": 4
+        },
+        {
+            "name": "leftfoot",
+            "directions": 4
+        },
+        {
+            "name": "lefthand",
+            "directions": 4
+        },
+        {
+            "name": "leftleg",
+            "directions": 4
+        },
+        {
+            "name": "rightarm",
+            "directions": 4
+        },
+        {
+            "name": "rightfoot",
+            "directions": 4
+        },
+        {
+            "name": "righthand",
+            "directions": 4
+        },
+        {
+            "name": "rightleg",
+            "directions": 4
+        }
+    ]
+}
