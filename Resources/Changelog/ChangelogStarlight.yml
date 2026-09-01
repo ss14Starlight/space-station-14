@@ -1,25 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added a gravity generator to the cargo shuttle because I forgor to add one.
-    type: Fix
-  id: 407640
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Fixed missing fire axe from Atmospherics.
-    type: Fix
-  id: 407641
-  time: '2026-08-16T15:22:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5629
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Added Pipe Docking Pipes to Cargo Dock.'
-    type: Add
-  id: 407642
-  time: '2026-08-16T15:22:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5668
 - author: Forrestgod
   changes:
   - message: '[Serpentcrest] Added Waste/Distro Pipes to Evac Docks.'
@@ -2799,4 +2778,25 @@ Entries:
   id: 408039
   time: '2026-08-31T19:02:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5811
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Cyborgs can now crawl without a module active, and crawl at half speed with any module active.
+    type: Tweak
+  id: 408040
+  time: '2026-08-31T19:31:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5863
+- author: Caws
+  changes:
+  - message: Quartermaster access from the funding allocation computer.
+    type: Remove
+  id: 408041
+  time: '2026-08-31T19:54:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5904
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed welders a eswords causing reality to collapse in their local area when turned on/off.
+    type: Fix
+  id: 408042
+  time: '2026-08-31T23:52:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5913
 Order: -1
