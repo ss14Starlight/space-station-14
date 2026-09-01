@@ -27,9 +27,6 @@
                                 ToggleMode="True" StyleClasses="OpenLeft" />
                     </BoxContainer>
 
-                    <!-- Search bar -->
-                    <LineEdit Name="SearchBar" PlaceHolder="{Loc 'chem-master-window-search-placeholder'}" HorizontalExpand="True" Margin="0 1"/>
-
                     <PanelContainer VerticalExpand="True" MinSize="0 160">
                         <PanelContainer.PanelOverride>
                             <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
@@ -40,6 +37,9 @@
                             </BoxContainer>
                         </ScrollContainer>
                     </PanelContainer>
+
+                    <!-- Search bar -->
+                    <LineEdit Name="SearchBar" PlaceHolder="{Loc 'chem-master-window-search-placeholder'}" HorizontalExpand="True" Margin="0 1"/>
 
                     <Button Name="BufferSortButton" Access="Public"
                             Text="{Loc 'chem-master-window-sort-type-none'}"
