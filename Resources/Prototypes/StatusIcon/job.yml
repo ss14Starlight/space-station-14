@@ -452,6 +452,7 @@
     sprite: *icon-rsi
     state: Visitor
   jobName: job-name-visitor
+  isCrewJob: false # Starlight
   tags: # Starlight-edit
   - JobIconCentComm
 
