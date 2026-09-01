@@ -144,7 +144,17 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         ValveButton.OnPressed += _ => OnToggleValveButtonPressed?.Invoke();
         ValveButtonClassic.OnPressed += _ => OnToggleValveButtonPressed?.Invoke();
 
-        SearchBar.OnTextChanged += _ => UpdateReagentPrototypes(SearchBar.Text);
+        SearchBar.OnTextChanged += _ =>
+        {
+            SearchBarClassic.Text = SearchBar.Text;
+            UpdateReagentPrototypes(SearchBar.Text);
+        };
+
+        SearchBarClassic.OnTextChanged += _ =>
+        {
+            SearchBar.Text = SearchBarClassic.Text;
+            UpdateReagentPrototypes(SearchBarClassic.Text);
+        };
 
         ClassicTabs.SetTabTitle(0, Loc.GetString("chem-master-window-input-tab"));
         ClassicTabs.SetTabTitle(1, Loc.GetString("chem-master-window-output-tab"));
@@ -755,10 +765,12 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             return;
 
         BufferInfo.Children.Clear();
+        BufferInfoClassic.Children.Clear();
 
         if (!_lastState.BufferReagents.Any())
         {
             BufferInfo.Children.Add(new Label { Text = Loc.GetString("chem-master-window-buffer-empty-text") });
+            BufferInfoClassic.Children.Add(new Label { Text = Loc.GetString("chem-master-window-buffer-empty-text") });
             return;
         }
 
@@ -797,7 +809,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         var rowCount = 0;
         foreach (var reagent in reagentList)
         {
-            BufferInfo.Children.Add(BuildReagentRow(reagent.color, rowCount++, reagent.name, reagent.reagentId, reagent.quantity, true, true, modernMode: true));
+            BufferInfo.Children.Add(BuildReagentRow(reagent.color, rowCount, reagent.name, reagent.reagentId, reagent.quantity, true, true, modernMode: true));
+            BufferInfoClassic.Children.Add(BuildReagentRow(reagent.color, rowCount, reagent.name, reagent.reagentId, reagent.quantity, true, true, modernMode: false));
+            rowCount++;
         }
     }
 
