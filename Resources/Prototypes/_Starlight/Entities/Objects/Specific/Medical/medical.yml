@@ -105,6 +105,8 @@
   - type: Tag
     tags:
     - Medkit
+  - type: ExplosionResistance
+    damageCoefficient: 0
 
 - type: entity
   parent: OilPack
