@@ -32896,7 +32896,6 @@ entities:
     - type: Transform
       parent: 47
     - type: SuitSensor
-      station: invalid
       nextUpdate: 0.5435327
       mode: SensorCords
     - type: DeviceNetwork
@@ -32938,7 +32937,6 @@ entities:
     - type: Transform
       parent: 16
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.672648
       mode: SensorCords
     - type: DeviceNetwork
@@ -32980,7 +32978,6 @@ entities:
     - type: Transform
       parent: 3
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.7435315
       mode: SensorVitals
     - type: DeviceNetwork
@@ -33022,7 +33019,6 @@ entities:
     - type: Transform
       parent: 113
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.3101986
       mode: SensorBinary
     - type: DeviceNetwork
@@ -33064,7 +33060,6 @@ entities:
     - type: Transform
       parent: 94
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.576865
       mode: SensorBinary
     - type: DeviceNetwork
@@ -33106,7 +33101,6 @@ entities:
     - type: Transform
       parent: 94
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.576865
     - type: DeviceNetwork
       transmitFrequency: 1262
@@ -33147,7 +33141,6 @@ entities:
     - type: Transform
       parent: 77
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.4768651
       mode: SensorCords
     - type: DeviceNetwork
@@ -33189,7 +33182,6 @@ entities:
     - type: Transform
       parent: 47
     - type: SuitSensor
-      station: invalid
       nextUpdate: 0.5435327
       mode: SensorVitals
     - type: DeviceNetwork
@@ -33231,7 +33223,6 @@ entities:
     - type: Transform
       parent: 16
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.0726486
       mode: SensorVitals
     - type: DeviceNetwork
@@ -33273,7 +33264,6 @@ entities:
     - type: Transform
       parent: 3
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.7435315
       mode: SensorBinary
     - type: DeviceNetwork
@@ -33315,7 +33305,6 @@ entities:
     - type: Transform
       parent: 113
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.3101986
       mode: SensorVitals
     - type: DeviceNetwork
@@ -33357,7 +33346,6 @@ entities:
     - type: Transform
       parent: 94
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.576865
       mode: SensorCords
     - type: DeviceNetwork
@@ -33399,7 +33387,6 @@ entities:
     - type: Transform
       parent: 94
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.576865
     - type: DeviceNetwork
       transmitFrequency: 1262
@@ -33440,7 +33427,6 @@ entities:
     - type: Transform
       parent: 77
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.4768651
       mode: SensorCords
     - type: DeviceNetwork
@@ -33482,7 +33468,6 @@ entities:
     - type: Transform
       parent: 77
     - type: SuitSensor
-      station: invalid
       nextUpdate: 1.4768651
     - type: DeviceNetwork
       transmitFrequency: 1262
