@@ -1,0 +1,144 @@
+- type: marking
+  id: VoxBeakColor
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Vox, NeoVox] 
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: voxbeakcolor
+
+- type: marking
+  # The cere is the base of the top part of the beak, the cere on this beak, is a square.
+  id: VoxBeakSquareCereColor
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: voxbeaksquarecolor
+
+- type: marking
+  id: VoxBeakShavedColor
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: voxbeakshavedcolor
+
+- type: marking
+  id: VoxBeakHookedColor
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: voxbeakhookedcolor
+    
+- type: marking
+  id: VoxColorableLeftHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: lefthand
+    
+- type: marking
+  id: VoxColorableRightHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: righthand
+    
+- type: marking
+  id: VoxColorableLeftFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: leftfoot
+    
+- type: marking
+  id: VoxColorableRightFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: rightfoot
+
+- type: marking
+  id: VoxFeatheredLegLeft
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: leftlegfeathered
+
+- type: marking
+  id: VoxFeatheredLegRight
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: rightlegfeathered
+
+- type: marking
+  id: VoxColorableLeftArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: leftarm
+
+- type: marking
+  id: VoxColorableRightArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: rightarm
+
+- type: marking
+  id: VoxColorableRightLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: rightleg
+
+- type: marking
+  id: VoxColorableLeftLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: leftleg
+
+- type: marking
+  id: VoxShaggyTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: voxshaggytail
+
+- type: marking
+  id: VoxPlumage
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vox, NeoVox]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/vox.rsi
+    state: voxplumage
