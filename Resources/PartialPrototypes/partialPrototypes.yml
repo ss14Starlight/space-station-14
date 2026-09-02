@@ -11,3 +11,5 @@
 
 # You can also use multiple files in this directory instead of only this one.
 # Files are ordered by their name, so prototypes found in paths specified inside a.yml will be applied first, and b.yml second.
+
+- /Prototypes/_Starlight/Partials
