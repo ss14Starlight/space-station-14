@@ -4,6 +4,21 @@
   name: atmos fire extinguisher
   description: A bright, pressurized fire extinguisher for the brave warriors of atmosia.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/fire_extinguisher_atmos.rsi
+    layers:
+    - state: fire_extinguisher_closed
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Item
+    sprite: _Starlight/Objects/Misc/fire_extinguisher_atmos.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 12 # They can get 2 more damage, in case they need to smash something. It's like a variant fire axe.
+        Structural: 5 # totals to 17, still 8 less than fireaxe
+    soundHit:
+      path: /Audio/Weapons/smash.ogg
   - type: Spray
     transferAmount: 10
     pushbackAmount: 60
