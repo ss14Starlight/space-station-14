@@ -463,6 +463,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         OutputBufferDraw.Pressed = state.DrawSource == ChemMasterDrawSource.Internal;
         OutputBeakerDraw.Pressed = state.DrawSource == ChemMasterDrawSource.External;
+        OutputBufferDrawClassic.Pressed = state.DrawSource == ChemMasterDrawSource.Internal;
+        OutputBeakerDrawClassic.Pressed = state.DrawSource == ChemMasterDrawSource.External;
 
         if (!state.BufferReagents.Any())
         {
