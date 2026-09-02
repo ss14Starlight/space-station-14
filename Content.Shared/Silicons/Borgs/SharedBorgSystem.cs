@@ -216,7 +216,9 @@ public abstract partial class SharedBorgSystem : EntitySystem
                 EnsureComp<StationAIShuntComponent>(chassis, out var borgShunt)
                 )
                 {
-                    shuntable.Inhabited = chassis;
+                    shuntable.Inhabited = chassis; // Starlight
+                    shuntable.LastShunt = chassis; // Starlight
+                    Dirty(shunt.Return.Value, shuntable); // Starlight
                     borgShunt.Return = shunt.Return;
                     borgShunt.ReturnAction = _actions.AddAction(chassis, shuntable.UnshuntAction);
                 }
@@ -254,7 +256,9 @@ public abstract partial class SharedBorgSystem : EntitySystem
                 TryComp<StationAIShuntableComponent>(shunt.Return, out var shuntable) &&
                 TryComp<StationAIShuntComponent>(chassis, out var borgShunt))
                 {
-                    shuntable.Inhabited = args.Entity;
+                    shuntable.Inhabited = args.Entity; // Starlight
+                    shuntable.LastShunt = args.Entity; // Starlight
+                    Dirty(shunt.Return.Value, shuntable); // Starlight
                     if (TryComp<ActionComponent>(borgShunt.ReturnAction, out var action))
                         _actions.RemoveAction((borgShunt.ReturnAction.Value, action)); //delete the action as we leave the body
                     borgShunt.Return = null;
