@@ -75,6 +75,13 @@ public sealed class StationPowerTests : GameTest
         #endregion
     ];
 
+    /// <summary>
+    /// Starlight: allows specific maps to skip having a upper bound on power in the case of admeme maps or where it is deemed acceptable by head mapper
+    /// </summary>
+    private static readonly HashSet<string> NoUpperBoundedPowerMaps = [
+        "StarlightRemix"
+    ];
+
     public override PoolSettings PoolSettings => new ()
     {
         Dirty = true,
@@ -257,6 +264,8 @@ public sealed class StationPowerTests : GameTest
             Assert.That(totalStartingCharge, Is.GreaterThanOrEqualTo(requiredStoredPower),
                 $"Needs at least {requiredStoredPower - totalStartingCharge} more stored power!");
             // Starlight start
+            if (NoUpperBoundedPowerMaps.Contains(mapProtoId))
+                return; //skip the section below if it is a no upper bound map.
             Assert.That(estimatedDuration, Is.LessThanOrEqualTo(MaximumPowerDurationSeconds),
                 $"Initial power for {mapProtoId} lasts too long! Max allowed {MaximumPowerDurationSeconds}s " +
                 $"but estimated to last {estimatedDuration}s remove some stored power!");
