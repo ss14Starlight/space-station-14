@@ -20,7 +20,7 @@
     soundHit:
       path: /Audio/Weapons/smash.ogg
   - type: Spray
-    transferAmount: 10
+    transferAmount: 20
     pushbackAmount: 60
     spraySound:
       path: /Audio/Effects/extinguish.ogg
