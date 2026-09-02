@@ -30,8 +30,8 @@
   - 0     # n2o
   - 0     # frezon
   - 0    # bz
-  - 1     # nitrium
-  - 0     # pluox
+  - 0     # nitrium
+  - 1     # pluox
   effects:
   - !type:NitriumProductionReaction {}
 
