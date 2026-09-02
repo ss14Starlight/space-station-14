@@ -43,7 +43,7 @@ public sealed partial class UtilityLineRuptureRule : StationEventSystem<UtilityL
         {
             // Announce 10 seconds before it happens (if you weren't paying attention you get round removed bye)
             var msg = Loc.GetString("utility-line-rupture-announcement", ("location", locationName));
-            _chat.DispatchStationAnnouncement(targetStation.Value, msg, Loc.GetString("central-command-center"), playDefaultSound: true, colorOverride: Color.FromHex("#f9a524")); // Starlight, SISTER -> CentComm
+            _chat.DispatchStationAnnouncement(targetStation.Value, msg, Loc.GetString("central-command-sender"), playDefaultSound: true, colorOverride: Color.FromHex("#f9a524")); // Starlight, SISTER -> CentComm
         }
     }
 
