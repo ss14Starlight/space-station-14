@@ -13,8 +13,6 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: alive-unshaded
       shader: unshaded
-  - type: Dragon
-    spawnRiftAction: ActionSpawnRift
   - type: GhostRole
     mindRoles:
     - MindRoleDragon
@@ -24,9 +22,30 @@
       amount: 1
   - type: ActionGun
     action: ActionDragonsBreath
-    gunProto: DragonsBreathGun
+    gunProto: ClownsBreathGun
   - type: GuideHelp
     guides:
     - MinorAntagonists
+  - type: Slippery
   - type: Damageable
     damageModifierSet: DragonResistances
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: ClownsBreathGun
+  name: clown's lung
+  description: For funny breathing.
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 10
+    rechargeSound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ClusterBananaPeel
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Animals/space_dragon_roar.ogg
+    soundEmpty: null
+    projectileSpeed: 5
