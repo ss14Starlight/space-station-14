@@ -79,7 +79,7 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
         {
             if (_window != null)
                 _window.RadarClicked -= OnRadarClicked;
-            _window?.DisposePopOut();
+            _window?.DisposePopOut(); // Starlight: close the popout if exists
         }
     }
 
