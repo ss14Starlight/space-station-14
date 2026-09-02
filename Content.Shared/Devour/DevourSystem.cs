@@ -1,4 +1,7 @@
 using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical.Body.Components;
+using Content.Shared.Body.Systems;
+using Content.Shared.Body.Components;
 using Content.Shared.Actions;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Devour.Components;
@@ -26,7 +29,8 @@ public sealed partial class DevourSystem : EntitySystem
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
-    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private StomachSystem _stomach = default!;
+    [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;
@@ -143,7 +147,15 @@ public sealed partial class DevourSystem : EntitySystem
         // Grant ichor if the devoured thing meets the dragon's food preference
         if (target != null && _whitelistSystem.IsWhitelistPassOrNull(ent.Comp.FoodPreferenceWhitelist, (EntityUid)target)) //Starlight, args.Args.Target replaced with target
         {
-            _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjection);
+            
+            var stomachs = _body.GetBodyOrganEntityComps<StomachComponent>(ent.Owner);
+            
+            if (stomachs.Count > 0) 
+            { 
+                var stomach = stomachs[0]; 
+                var success = _stomach.TryTransferSolution( stomach.Owner, ichorInjection); 
+            }
+
             ent.Comp.Devoured++; //Starlight devour counter.
         }
 
