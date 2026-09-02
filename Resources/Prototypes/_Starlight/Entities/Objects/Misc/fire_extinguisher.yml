@@ -2,7 +2,7 @@
   parent: [SolutionFireExtinguisherVeryLarge, FireExtinguisher, BaseAtmosContraband]
   id: FireExtinguisherAtmos
   name: atmos fire extinguisher
-  description: A bright, pressurized fire extinguisher for the brave warriors of atmosia.
+  description: A bright, pressurized fire extinguisher for the brave warriors of atmosia. Refill with your selection of water and space cleaner at your leisure.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/fire_extinguisher_atmos.rsi
