@@ -113,7 +113,7 @@
         reagent: BZMetabolites
         amount: 1.8
 
-- type: reagent
+- type: reagent # Starlight Start: Nitrium basically completely rewroked.
   id: Nitrium
   name: reagent-name-nitrium
   desc: reagent-desc-nitrium
@@ -121,25 +121,27 @@
   flavor: sour
   color: "#fa8072"
   metabolisms:
-    Respiration: # Starlight
+    Respiration:
       effects:
       - !type:AddReagentToBloodstream
         conditions:
         - !type:ReagentCondition
           reagent: Nitrium
           min: 1
+          max: 5
         reagent: NitrosylPlasmide
         amount: .5
-        maxScale: 2 # Starlight
+        maxScale: 2 
 
       - !type:AddReagentToBloodstream
         conditions:
         - !type:ReagentCondition
           reagent: Nitrium
           min: 5
+          max: 10
         reagent: NitrosylPlasmide
         amount: 1
-        maxScale: 2 # Starlight
+        maxScale: 2
 
       - !type:AddReagentToBloodstream
         conditions:
@@ -148,16 +150,16 @@
           min: 10
         reagent: NitrosylPlasmide
         amount: 1.5
-        maxScale: 2 # Starlight
+        maxScale: 2
 
       - !type:GenericStatusEffect
         conditions:
         - !type:ReagentCondition
           reagent: Nitrium
-          min: 8
+          min: 5
         key: Stutter
         component: StutteringAccent
-        time: 5
+        time: 5 # Starlight End
 
 - type: reagent
   id: Pluoxium

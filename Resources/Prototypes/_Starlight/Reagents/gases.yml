@@ -46,7 +46,7 @@
         maxScale: 5
         damage:
           types:
-            Cellular: -0.01 # It can heal you a *tiny* amount, if you wanna sleep it off.
+            Cellular: -0.1 # It can heal you a *tiny* amount, if you wanna sleep it off.
 
 
       - !type:ModifyStatusEffect

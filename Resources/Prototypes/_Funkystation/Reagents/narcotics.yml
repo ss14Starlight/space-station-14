@@ -30,28 +30,85 @@
         key: ForcedSleep
         type: Remove
         time: 10
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 0.1
       # Starlight BEGIN
-      - !type:AdjustReagent
+      - !type:ModifyBleed
+        amount: -0.12
+      - !type:AdjustReagent # Level 1 effectiveness
         reagent: NitrosylPlasmide
         amount: -.5
         conditions:
-          - !type:ReagentCondition
-            reagent: NitrosylPlasmide
-            min: 5
-      - !type:AdjustReagent
-        reagent: NitrosylPlasmide
-        amount: -1.5
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 1
+          max: 5
+      - !type:EvenHealthChange
+        ignoreResistances: true
+        damage:
+          Brute: -0.25
+          Burn: -0.25
+          Toxin: -0.25
         conditions:
-          - !type:ReagentCondition
-            reagent: NitrosylPlasmide
-            min: 10
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 5
+          max: 5
+      - !type:AdjustReagent # Level 2 effectiveness
+        reagent: NitrosylPlasmide
+        amount: -.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 5
+          max: 10
+      - !type:EvenHealthChange
+        ignoreResistances: true
+        damage:
+          Brute: -0.5
+          Burn: -0.5
+          Toxin: -0.5
+          Genetic: 0.09
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 5
+          max: 10
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.15
+        sprintSpeedModifier: 1.15
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 5
+          max: 10
+      - !type:AdjustReagent # Level 3 effectiveness
+        reagent: NitrosylPlasmide
+        amount: -.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 1
+      - !type:EvenHealthChange
+        ignoreResistances: true
+        damage:
+          Brute: -2
+          Burn: -2
+          Toxin: -2
+          Genetic: 0.27
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 1
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.3
+        sprintSpeedModifier: 1.3
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 10
       # Starlight END
       - !type:ResetNarcolepsy
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
           min: 0.1
+

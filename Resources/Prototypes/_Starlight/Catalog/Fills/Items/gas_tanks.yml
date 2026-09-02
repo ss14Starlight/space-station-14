@@ -14,7 +14,7 @@
   - type: Clothing
     sprite: _Starlight/Objects/Tanks/anesthetic2.rsi
   - type: GasTank
-    outputPressure: 65
+    outputPressure: 22
 
 - type: entity
   id: StimTankFilled
@@ -22,13 +22,14 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 65
+    outputPressure: 22
     air:
       # Will only last around 10-11 minutes.
       volume: 5
       moles:
         Pluoxium: 0.4861768349 # 23.7% Pluoxium, so voxes don't get poisoned
         Nitrogen: 0.4861768349 # 23.7% Nitrogen
+        Nitrium: 0.3737682167      # 4.3 kPa (18.22%)
       temperature: 293.15
 
 - type: entity
