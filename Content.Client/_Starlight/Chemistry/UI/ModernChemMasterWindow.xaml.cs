@@ -588,10 +588,12 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         // Modern layout containers
         BuildContainerUI(InputContainerInfo, state.InputContainerInfo, true, modernMode: true);
         BuildContainerUI(OutputContainerInfo, state.OutputContainerInfo, false, modernMode: true);
+        BuildContainerUI(OutputInputContainerInfo, state.InputContainerInfo, false, modernMode: false);
 
         // Classic layout containers
         BuildContainerUI(InputContainerInfoClassic, state.InputContainerInfo, true, modernMode: false);
         BuildContainerUI(OutputContainerInfoClassic, state.OutputContainerInfo, false, modernMode: false);
+        BuildContainerUI(OutputInputContainerInfoClassic, state.InputContainerInfo, false, modernMode: false);
 
         BufferInfo.Children.Clear();
         BufferInfoClassic.Children.Clear();
