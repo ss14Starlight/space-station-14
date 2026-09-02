@@ -303,24 +303,6 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurity
-  - type: ActivatableUI
-    key: enum.SharedGasTankUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.SharedGasTankUiKey.Key:
-        type: GasTankBoundUserInterface
-  - type: UseDelay
-    delays:
-      gasTank:
-        length: 1.0
-  - type: GasTank
-    outputPressure: 42.6
-    air:
-      volume: 5
-      temperature: 293.15
-      moles:
-        - 1.025689525 # oxygen
-        - 1.025689525 # nitrogen
   - type: Tag
     tags:
     - CorgiWearable
