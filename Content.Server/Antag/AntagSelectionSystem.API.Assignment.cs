@@ -338,6 +338,18 @@ public sealed partial class AntagSelectionSystem
         ICommonSession session,
         int players)
     {
+        #region Starlight
+        return TryAssignNextAvailableAntag(gameRule, session, players, out _);
+    }
+
+    /// <summary>
+    /// Tries to find an open antag slot for a given player and returns the definition that was assigned.
+    /// </summary>
+    private bool TryAssignNextAvailableAntag(Entity<AntagSelectionComponent> gameRule, ICommonSession session, int players, [NotNullWhen(true)] out AntagSpecifierPrototype? assignedAntag)
+    {
+        assignedAntag = null;
+        #endregion
+
         foreach (var selector in gameRule.Comp.Antags)
         {
             if (!Proto.Resolve(selector.Proto, out var antag))
@@ -348,8 +360,13 @@ public sealed partial class AntagSelectionSystem
                 continue;
 
             // Try and assign this antag, if we fail, then try the next definition!
-            if (TryMakeAntag(gameRule, antag, session))
-                return true;
+            #region Starlight
+            if (!TryMakeAntag(gameRule, antag, session))
+                continue;
+
+            assignedAntag = antag;
+            return true;
+            #endregion
         }
 
         return false;
@@ -385,8 +402,13 @@ public sealed partial class AntagSelectionSystem
 
         foreach (var (uid, antag) in rules)
         {
-            if (TryAssignNextAvailableAntag((uid, antag), session, players))
-                return true;
+            #region Starlight
+            if (!TryAssignNextAvailableAntag((uid, antag), session, players, out var assignedAntag))
+                continue;
+
+            RecordLateJoinAntagAssignment((uid, antag), assignedAntag); // logging
+            return true;
+            #endregion
         }
 
         return false;
