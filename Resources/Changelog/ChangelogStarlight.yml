@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: The EngiDrobe and AtmosDrobe now stock a utility belt and a gas mask.
-    type: Add
-  id: 407654
-  time: '2026-08-16T15:53:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5638
-- author: OMEGA
-  changes:
   - message: The Chief Engineer's access configurator now starts in their toolbelt instead of their locker.
     type: Tweak
   id: 407655
@@ -2799,4 +2792,11 @@ Entries:
   id: 408053
   time: '2026-09-02T18:18:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5934
+- author: Arkanic
+  changes:
+  - message: Ethanol lag bugfix (hopefully) (likely) (for real this time).
+    type: Fix
+  id: 408054
+  time: '2026-09-02T22:50:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5950
 Order: -1
