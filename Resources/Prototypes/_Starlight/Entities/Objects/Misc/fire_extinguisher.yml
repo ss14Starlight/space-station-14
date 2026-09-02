@@ -1,0 +1,15 @@
+- type: entity
+  parent: [SolutionFireExtinguisherLarge, FireExtinguisher, BaseAtmosContraband]
+  id: FireExtinguisherAtmos
+  name: atmos fire extinguisher
+  description: A bright, pressurized fire extinguisher for the brave warriors of atmosia.
+  components:
+  - type: Spray
+    transferAmount: 10
+    pushbackAmount: 60
+    spraySound:
+      path: /Audio/Effects/extinguish.ogg
+    sprayedPrototype: ExtinguisherSpray
+    vaporAmount: 5
+    vaporSpread: 110
+    sprayVelocity: 5.0

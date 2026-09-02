@@ -5,11 +5,11 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Funkystation.ReagentFires.Systems
 {
-    public sealed class ReagentPuddleFireVisualsSystem : EntitySystem
+    public sealed partial class ReagentPuddleFireVisualsSystem : EntitySystem
     {
-        [Dependency] private readonly AppearanceSystem _appearance = null!;
-        [Dependency] private readonly ParticleSystem _particles = null!;
-        [Dependency] private readonly SharedTransformSystem _transform = null!;
+        [Dependency] private AppearanceSystem _appearance = null!;
+        [Dependency] private ParticleSystem _particles = null!;
+        [Dependency] private SharedTransformSystem _transform = null!;
 
         private readonly Dictionary<EntityUid, (ActiveEmitter? Fire, ActiveEmitter? Smoke)> _emitters = new();
 
