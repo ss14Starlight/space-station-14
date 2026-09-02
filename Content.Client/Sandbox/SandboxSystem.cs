@@ -92,7 +92,9 @@ namespace Content.Client.Sandbox
                 && TryComp(uid, out MetaDataComponent? comp)
                 && !comp.EntityDeleted)
             {
-                if (comp.EntityPrototype == null || comp.EntityPrototype.HideSpawnMenu || comp.EntityPrototype.Abstract)
+                var entProto = comp.EntityPrototype; //Starlight: redirect the gas pipes to parent
+                SLOverrideCopy(uid, ref entProto, out bool overriden); //Starlight: redirect the gas pipes to parent
+                if (entProto == null || (entProto.HideSpawnMenu && !overriden) || entProto.Abstract) //Starlight: redirect the gas pipes to parent
                     return false;
 
                 if (_placement.Eraser)
@@ -100,10 +102,10 @@ namespace Content.Client.Sandbox
 
                 _placement.BeginPlacing(new()
                 {
-                    EntityType = comp.EntityPrototype.ID,
+                    EntityType = entProto.ID, //Starlight: redirect the gas pipes to parent
                     IsTile = false,
                     TileType = 0,
-                    PlacementOption = comp.EntityPrototype.PlacementMode
+                    PlacementOption = entProto.PlacementMode //Starlight: redirect the gas pipes to parent
                 });
                 return true;
             }
