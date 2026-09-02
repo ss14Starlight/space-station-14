@@ -16,6 +16,10 @@
   - type: GhostRole
     mindRoles:
     - MindRoleDragon
+  - type: Butcherable
+    spawned:
+    - id: FoodCakeClown
+      amount: 1
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun

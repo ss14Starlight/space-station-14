@@ -1,0 +1,20 @@
+- type: !PartialOnly entity
+  id: BaseMobDragon
+  components:
+  - type: !Remove RandomSprite
+
+- type: !PartialOnly entity
+  id: MobDragon
+  components:
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
+
+- type: !PartialOnly entity
+  id: MobDragonDungeon
+  components:
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
