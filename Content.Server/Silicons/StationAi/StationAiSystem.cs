@@ -304,10 +304,6 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         }
     }
 
-    /// <summary>
-    /// Attempts to warp the AI's remote eye to the specified coordinates.
-    /// The AI must have grid access to the grid containing the coordinates; returns false when access is denied.
-    /// </summary>
     public bool TryWarpEyeToCoordinates(EntityUid user, EntityCoordinates coordinates, bool popupOnFailure = true)
     {
         bool Fail()
