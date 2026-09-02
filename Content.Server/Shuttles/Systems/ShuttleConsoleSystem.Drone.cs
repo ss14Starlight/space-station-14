@@ -42,9 +42,7 @@ public sealed partial class ShuttleConsoleSystem
 
         while (query.MoveNext(out var uid, out var comp))
         {
-            // Starlight - start
-            UpdateRemoteGridAccess(uid, comp);
-            // Starlight - end
+            UpdateRemoteGridAccess(uid, comp); // Starlight
         }
     }
 
