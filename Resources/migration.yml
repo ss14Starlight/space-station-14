@@ -813,5 +813,5 @@ OrganSkeletonPersonArmRight: RightArmSkeleton
 # Starlight end
 
 # 2026-09-2
-HealiumCanister: null
-HealiumCanisterEmpty: null
+HealiumCanister: ZXACanister
+HealiumCanisterEmpty: ZXACanisterEmpty
