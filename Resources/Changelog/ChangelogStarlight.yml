@@ -1,32 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Removed Scientist playtime requirement from S.E.L.F Agent.
-    type: Remove
-  id: 407647
-  time: '2026-08-16T15:22:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5651
-- author: SirLutz
-  changes:
-  - message: Turnstile HP reduced from 500-> 150.
-    type: Tweak
-  id: 407648
-  time: '2026-08-16T15:53:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5672
-- author: SirLutz
-  changes:
-  - message: Airlocks HP reduced from 500 -> 300.
-    type: Tweak
-  id: 407649
-  time: '2026-08-16T15:53:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5672
-- author: SirLutz
-  changes:
-  - message: Firelocks HP reduced from 500 -> 250.
-    type: Tweak
-  id: 407650
-  time: '2026-08-16T15:53:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5672
 - author: SirLutz
   changes:
   - message: Reinf. Windoors HP reduced from 400 -> 300.
@@ -2799,4 +2771,32 @@ Entries:
   id: 408046
   time: '2026-09-02T05:00:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5778
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added 2 K9 Spawn Slots in Security.'
+    type: Add
+  id: 408047
+  time: '2026-09-02T09:10:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5883
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added a water cooler in Security.'
+    type: Add
+  id: 408048
+  time: '2026-09-02T09:10:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5883
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added a Pet Carrier in Security.'
+    type: Add
+  id: 408049
+  time: '2026-09-02T09:10:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5883
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Sec front is now brig access, cadets allowed in now.'
+    type: Fix
+  id: 408050
+  time: '2026-09-02T09:10:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5883
 Order: -1
