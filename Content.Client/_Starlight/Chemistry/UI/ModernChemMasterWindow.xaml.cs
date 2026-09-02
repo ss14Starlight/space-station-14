@@ -190,7 +190,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             SaveCustomPerChemMaster();
             OnAmountSelected?.Invoke(_selectedAmount);
         };
-        UpdateCustomAmountCentering();
 
         ApplyLayout();
 
@@ -336,15 +335,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         }
     }
 
-    private void UpdateCustomAmountCentering()
-    {
-        var t = string.IsNullOrEmpty(CustomAmountLineEdit.Text) ? CustomAmountLineEdit.PlaceHolder ?? "" : CustomAmountLineEdit.Text;
-        var p = Math.Max(0, (40 - Math.Max(1, t.Length) * 8) / 2);
-        var b = new StyleBoxTexture { Texture = IoCManager.Resolve<IResourceCache>().GetResource<TextureResource>(new ResPath("/Textures/Interface/Nano/lineedit.png")).Texture };
-        b.SetPatchMargin(StyleBox.Margin.All, 3); b.SetContentMarginOverride(StyleBox.Margin.Left, p); b.SetContentMarginOverride(StyleBox.Margin.Right, p); b.SetContentMarginOverride(StyleBox.Margin.Vertical, 2);
-        CustomAmountLineEdit.StyleBoxOverride = b;
-    }
-
     private void SaveCustomPerChemMaster() { if (_chemMasterNetEntity is {} id) _customPerChemMaster[id] = (CustomAmountLineEdit.Text, _customAmount, _customSelected); }
 
     private void HandleCustomAmountTextChanged(LineEdit source, LineEdit target, bool isModern)
@@ -352,10 +342,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         if (target.Text != source.Text)
             target.Text = source.Text;
         if (isModern)
-        {
             CustomAmountButton.Disabled = !IsCustomAmountValid(source.Text);
-            UpdateCustomAmountCentering();
-        }
         SaveCustomPerChemMaster();
         UpdateClassicCustomButtons();
     }
@@ -389,7 +376,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         CustomAmountButton.Disabled = string.IsNullOrWhiteSpace(s.Text) || (CustomAmountLineEdit!.IsValid != null && !CustomAmountLineEdit!.IsValid(s.Text));
         CustomAmountButton.Pressed = _customSelected && !CustomAmountButton.Disabled;
         _customSelected = CustomAmountButton.Pressed;
-        UpdateCustomAmountCentering();
         UpdateClassicCustomButtons();
         SyncGrid(AmountGrid);
     }
@@ -405,7 +391,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         SetSize = targetSize;
         if (!_classicMode)
         {
-            UpdateCustomAmountCentering();
             CustomAmountButton.Disabled = !IsCustomAmountValid(CustomAmountLineEdit.Text);
         }
         else
