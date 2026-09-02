@@ -8,7 +8,7 @@ namespace Content.Server._Funkystation.Atmos.Reactions;
 
 /// <summary>
 ///     Funky Atmos - /tg/ gases
-///     Produces Nitrium by mixing Tritium, Nitrogen and BZ at temperatures above 1500K.
+///     Produces Nitrium by mixing Tritium, Nitrogen and Pluoxium at temperatures above 500K.
 /// </summary>
 [UsedImplicitly]
 public sealed partial class NitriumProductionReaction : IGasReactionEffect
@@ -20,24 +20,34 @@ public sealed partial class NitriumProductionReaction : IGasReactionEffect
 
         var initTritium = mixture.GetMoles(Gas.Tritium);
         var initNitrogen = mixture.GetMoles(Gas.Nitrogen);
+        var initPluox = mixture.GetMoles(Gas.Pluoxium);
         var initBZ = mixture.GetMoles(Gas.BZ);
+        var pressure = mixture.Pressure;
+        var volume = mixture.Volume;
+        var temperature = mixture.Temperature;
 
-        var efficiency = Math.Min(mixture.Temperature / 2984f, Math.Min(initBZ * 20f, Math.Min(initTritium, initNitrogen)));
+/// Produces faster with higher temperature, lower pressure, and higher concetrations of BZ. BZ also magnifies the nitrogen consumption so watch out.
 
-        var tritiumRemoved = efficiency;
-        var nitrogenRemoved = efficiency;
-        var bzRemoved = efficiency * 0.05f;
-        var nitriumProduced = efficiency;
+        var tempRate = temperature/ 500f ;
 
-        if (efficiency <= 0 || initTritium - tritiumRemoved < 0 || initNitrogen - nitrogenRemoved < 0 || initBZ - bzRemoved < 0)
-            return ReactionResult.NoReaction;
+        var pressureRate = 100f / pressure;
+
+        var catalyze = initBZ;
+
+        var rate = 1F * tempRate * pressureRate * catalyze;
+
+        var tritiumRemoved = 2f * rate;
+        var nitrogenRemoved = 3f * rate * catalyze;
+        var pluoxRemoved = 1f * rate;
+
+        var nitriumProduced = 3f * rate;
 
         mixture.AdjustMoles(Gas.Tritium, -tritiumRemoved);
         mixture.AdjustMoles(Gas.Nitrogen, -nitrogenRemoved);
-        mixture.AdjustMoles(Gas.BZ, -bzRemoved);
+        mixture.AdjustMoles(Gas.Pluoxium, -pluoxRemoved);
         mixture.AdjustMoles(Gas.Nitrium, nitriumProduced);
 
-        var energyReleased = efficiency * Atmospherics.NitriumProductionEnergy;
+        var energyReleased = rate * Atmospherics.NitriumProductionEnergy / heatScale;
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (heatCap > Atmospherics.MinimumHeatCapacity)
             mixture.Temperature = Math.Max((mixture.Temperature * heatCap + energyReleased) / heatCap, Atmospherics.TCMB);
