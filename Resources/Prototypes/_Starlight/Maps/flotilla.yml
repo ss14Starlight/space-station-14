@@ -1,6 +1,6 @@
 - type: gameMap
   id: StarlightFlotilla
-  mapName: 'Flotilla Station'
+  mapName: 'Flotilla Spaceport'
   mapPath: /Maps/_Starlight/Stations/Flotilla.yml
   minPlayers: 150
   maxPlayers: 250
@@ -9,7 +9,7 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Flotilla Station {1}'
+          mapNameTemplate: '{0} Flotilla Spaceport {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'HM'
