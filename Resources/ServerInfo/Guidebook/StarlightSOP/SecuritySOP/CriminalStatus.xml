@@ -1,0 +1,150 @@
+<Document>
+# Criminal Statuses
+
+<GuideEntityEmbed Entity="ComputerCriminalRecordsDesktop" Caption="Criminal Statuses"/>
+The Criminal Records system on-board all NT-CC stations allows for the profiling of individual crewmembers into categories, visible next to the crewmember if one is wearing security glasses.
+
+All Criminal Statuses should be accompanied by a description as to why the status has been applied. This is to be done in the Criminal Records system. The exception to this is Discharged, which is self-explanatory.
+
+All Criminal Statuses should be removed or changed when no longer relevant. Failure to do so is a violation of Standard Operating Procedure.
+
+Should an Officer fail to change or remove a criminal status when they are obligated to as per their SOP, and this failure results in injury to the crewmember in question, then the Officer is guilty of Endangerment. Should the crewmember be killed as a result of this failure, the Officer is then guilty of Negligent Homicide; charged under Manslaughter in Corporate Law.
+
+ <Table Columns="3">
+    <ColorBox>
+      <Box>
+        [bold]Status[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [bold]Requirement[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [bold]Protocol[/bold]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=lightblue]Suspect[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Crewmember suspected of being party to a crime.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Watch closely. On Blue Alert, prioritize for searches.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=pink]Wanted[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Crewmember is a confirmed criminal.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Bring to Security, following standard escalation as per §4 of Security SOP.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=red]Arrest On Sight[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Crewmember has resisted arrest successfully.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Engage with non-lethals on sight, then bring to Security.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=darkred]Kill On Sight[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Crewmember is an established threat to arresting officers.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Engage with lethals on sight, then bring to Security.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=gray]Eliminated[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Crewmember is confirmed dead.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        If seen walking about, treat as Wanted.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=brown]Incarcerated[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Crewmember has been imprisoned.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        If seen outside the brig, treat as Wanted.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=green]Paroled[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Crewmember has made a parole deal.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Varies, review chapter on [textlink="Parole" link="Parole"].
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=blue]Discharged[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Crewmember has been released from the brig.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        None, treat as regular crew.
+      </Box>
+    </ColorBox>
+  </Table>
+</Document>

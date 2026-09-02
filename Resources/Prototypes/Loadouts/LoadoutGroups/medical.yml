@@ -98,6 +98,12 @@
   - LaceupShoes # 🌟Starlight🌟
   - LeatherShoes # 🌟Starlight🌟
 
+#- type: loadoutGroup
+#  id: ChiefMedicalOfficerJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
+
 # Medical Doctor
 
 - type: loadoutGroup
@@ -160,6 +166,12 @@
   - MedicalDoctorPDA
   - SeniorPhysicianPDA
 
+#- type: loadoutGroup
+#  id: MedicalDoctorJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
+
 # Medical Intern
 
 - type: loadoutGroup
@@ -168,6 +180,12 @@
   loadouts:
   - WhiteJumpsuit
   - WhiteJumpskirt
+
+#- type: loadoutGroup
+#  id: MedicalInternJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
 
 # Chemist
 
@@ -205,6 +223,12 @@
   - SeniorChemistSatchel # Starlight
   - SeniorChemistDuffel # Starlight
   - LeatherSatchel # starlight
+
+#- type: loadoutGroup
+#  id: ChemistJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:
 
 # Paramedic
 
@@ -244,3 +268,9 @@
   - MedicalWinterBoots
   - Heels # Starlight
   - HighHeelBoots # Starlight
+
+#- type: loadoutGroup
+#  id: ParamedicJobTrinkets
+#  name: loadout-group-jobtrinkets
+#  minLimit: 0
+#  loadouts:

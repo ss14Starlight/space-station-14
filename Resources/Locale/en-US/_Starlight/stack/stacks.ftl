@@ -1,4 +1,5 @@
 stack-carpet-deco-tile = deco carpet tile
+stack-carpet-art-tile = artsy carpet tile
 stack-dark-bitile-tile = dark bi tile
 stack-steel-bitile-tile = steel bi tile
 stack-white-bitile-tile = white bi tile
