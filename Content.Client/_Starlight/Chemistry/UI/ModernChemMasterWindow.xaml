@@ -336,9 +336,9 @@
                         <BoxContainer Orientation="Horizontal">
                             <Label Text="{Loc 'chem-master-window-pills-label'}" />
                             <Control HorizontalExpand="True" MinSize="50 0" />
-                            <Label Text="{Loc 'chem-master-window-pills-number-label'}" Margin="5 0 0 0" StyleClasses="LabelWeak" />
+                            <Label Text="{Loc 'chem-master-window-pills-number-label'}" Margin="5 0 0 0" StyleClasses="LabelSecondaryColor" />
                             <SpinBox MinSize="100 0" Name="PillNumberClassic" Access="Public" Value="0" />
-                            <Label Text="{Loc 'chem-master-window-dose-label'}" Margin="5 0 0 0" StyleClasses="LabelWeak" />
+                            <Label Text="{Loc 'chem-master-window-dose-label'}" Margin="5 0 0 0" StyleClasses="LabelSecondaryColor" />
                             <SpinBox MinSize="100 0" Name="PillDosageClassic" Access="Public" Value="1" />
                             <Button MinSize="80 0" Name="CreatePillButtonClassic" Access="Public" Text="{Loc 'chem-master-window-create-button'}" />
                         </BoxContainer>
@@ -357,7 +357,7 @@
                         <BoxContainer Orientation="Horizontal">
                             <Label Text="{Loc 'chem-master-window-bottles-label'}" />
                             <Control HorizontalExpand="True" MinSize="50 0" />
-                            <Label Text="{Loc 'chem-master-window-dose-label'}" Margin="5 0 0 0" StyleClasses="LabelWeak" />
+                            <Label Text="{Loc 'chem-master-window-dose-label'}" Margin="5 0 0 0" StyleClasses="LabelSecondaryColor" />
                             <SpinBox MinSize="100 0" Name="BottleDosageClassic" Access="Public" Value="0" />
                             <Button MinSize="80 0" Name="CreateBottleButtonClassic" Access="Public" Text="{Loc 'chem-master-window-create-button'}" />
                         </BoxContainer>
