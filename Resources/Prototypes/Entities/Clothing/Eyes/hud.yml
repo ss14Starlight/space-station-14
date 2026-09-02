@@ -27,6 +27,9 @@
     - Biological
     - Hybrid # Starlight end, Neocytes
   - type: ShowHealthIcons
+    damageContainers: # Starlight start
+      - Biological
+      - Hybrid # Starlight end, Neocytes
 
 - type: entity
   parent: ClothingEyesHudBase

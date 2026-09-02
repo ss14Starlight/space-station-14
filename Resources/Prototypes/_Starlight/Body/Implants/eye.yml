@@ -57,6 +57,9 @@
       - Biological
       - Hybrid # Neocytes
     - type: ShowHealthIcons
+      damageContainers:
+        - Biological
+        - Hybrid
 
 - type: entity
   id: EyeImplantChemistry
