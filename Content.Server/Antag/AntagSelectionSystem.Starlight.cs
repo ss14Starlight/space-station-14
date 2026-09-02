@@ -346,9 +346,9 @@ public partial class AntagSelectionSystem
 
     /// <summary>
     /// Enforces each rule's cached primary-selection target, allowing latejoins to raise it
-    /// only when LateJoinAdditional is enabled. Missing live-player slots are retried through normal
-    /// antagonist selection, and any remaining slots are reserved as ghost roles only for antagonist
-    /// definitions with a configured SpawnerPrototype.
+    /// only when LateJoinAdditional is enabled. Missing slots without a ghost-role spawner are retried
+    /// through normal antagonist selection, while definitions with a configured SpawnerPrototype
+    /// reserve their missing slots as ghost roles.
     /// Returns true when a timed repair should be retried because an eligible live assignment
     /// or a configured ghost-role spawner failed.
     /// aka: "antags didn't roll correctly, screw it, try again"
@@ -388,7 +388,10 @@ public partial class AntagSelectionSystem
                     IsSelectedProfileValidForAntag(player, entity, null, definition));
             targets[definition.ID] = (definition, target, assigned, eligible);
 
-            if (gameRule.Comp.SelectionTime != Never && definition.PickPlayer && assigned < target)
+            if (gameRule.Comp.SelectionTime != Never &&
+                definition.PickPlayer &&
+                definition.SpawnerPrototype is null &&
+                assigned < target)
                 shortfalls.Add((definition, target - assigned));
         }
 
@@ -443,6 +446,7 @@ public partial class AntagSelectionSystem
             // ghost roles (if the antag allows them) are the final result. Retry only on a
             // failed assignment or failed spawner.
             var liveRetryPossible = definition.PickPlayer &&
+                definition.SpawnerPrototype is null &&
                 gameRule.Comp.SelectionTime != Never &&
                 assigned < target &&
                 assignedBefore + eligibleBefore >= target;
