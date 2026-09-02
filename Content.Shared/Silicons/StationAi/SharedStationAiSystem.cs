@@ -209,7 +209,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         var targetXform = Transform(args.Target);
 
         // Starlight - start
-        if (!CanAccessGrid((args.Actor, null), targetXform.GridUid))
+        if (!CanAccessGrid((args.Actor, null), targetXform.GridUid)) // Starlight
         {
             return;
         }
