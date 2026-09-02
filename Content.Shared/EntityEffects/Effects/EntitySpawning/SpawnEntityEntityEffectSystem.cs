@@ -13,6 +13,7 @@ public sealed partial class SpawnEntityEntityEffectSystem : EntityEffectSystem<T
 
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<SpawnEntity> args)
     {
+        Log.Info("THIS RAN. SCREAM AND CRY.");
         var quantity = args.Effect.Number * (int)Math.Floor(args.Scale);
         var proto = args.Effect.Entity;
 

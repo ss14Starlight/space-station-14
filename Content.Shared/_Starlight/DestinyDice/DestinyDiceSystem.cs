@@ -70,6 +70,7 @@ public sealed partial class DestinyDiceSystem : EntitySystem
         SubscribeLocalEvent<DestinyDiceComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<DestinyDiceComponent, ThrownEvent>(OnThrown);
         SubscribeLocalEvent<DestinyDiceComponent, LandEvent>(OnLand);
+        SubscribeLocalEvent<DestinyDiceComponent, DestinyDiceExecuteEffectEvent>(OnExecuteEffect);
         SubscribeLocalEvent<DestinyDiceComponent, DestinyDiceEffectEndEvent>(OnEffectEnd);
         SubscribeLocalEvent<DestinyDiceComponent, DiceRolledEvent>(OnDiceRolled);
     }
@@ -82,15 +83,15 @@ public sealed partial class DestinyDiceSystem : EntitySystem
         List<DestinyDiceEffectGroup> groups = [];
         foreach (var groupProtoId in preset.Groups)
         {
-            Log.Info($"{groupProtoId}");
+            // Log.Info($"{groupProtoId}");
             if (!_proto.TryIndex(groupProtoId, out var groupProto)) return;
-            Log.Info($"exists");
+            // Log.Info($"exists");
             var group = ProtoToGroup(groupProto);
             foreach (var effectProtoId in groupProto.Effects)
             {
-                Log.Info($"{effectProtoId}");
+                // Log.Info($"{effectProtoId}");
                 if (!_proto.TryIndex(effectProtoId, out var effectProto)) return;
-                Log.Info("exists");
+                // Log.Info("exists");
                 group.Effects.Add(ProtoToEffect(effectProto));
             }
 
@@ -115,6 +116,19 @@ public sealed partial class DestinyDiceSystem : EntitySystem
 
     private void OnLand(Entity<DestinyDiceComponent> ent, ref LandEvent args) =>
         AssignActiveValues(ent, ent, args.User);
+
+    private void OnExecuteEffect(Entity<DestinyDiceComponent> ent, ref DestinyDiceExecuteEffectEvent args)
+    {
+        Log.Info("DD EFFECT EVENT TRIGGERED");
+        if (args.Effect.EntityEffect is null) return;
+        var (uid, comp) = ent;
+        comp.CurrentEffect = args.Effect;
+        if (args.Effect.SuccessMessage is not null)
+            _popup.PopupPredicted(Loc.GetString(args.Effect.SuccessMessage), uid, comp.ActiveRoller,
+                args.Effect.SuccessPopupType);
+        // Effect is applied unconditionally here as effects are checked manually earlier.
+        _effects.ApplyEffect(uid, args.Effect.EntityEffect, user: uid);
+    }
 
     private void OnEffectEnd(Entity<DestinyDiceComponent> ent, ref DestinyDiceEffectEndEvent args) =>
         ent.Comp.WaitingForEffectEnd = false;
@@ -238,12 +252,12 @@ public sealed partial class DestinyDiceSystem : EntitySystem
 
     private void ProcessDice(Entity<DestinyDiceComponent> ent)
     {
-        Log.Info($"CURRENT TIME: {_timing.CurTime}, FIRST TIME PREDICTED: {_timing.IsFirstTimePredicted}");
+        // Log.Info($"CURRENT TIME: {_timing.CurTime}, FIRST TIME PREDICTED: {_timing.IsFirstTimePredicted}");
         var (uid, comp) = ent;
         var group = comp.CurrentEffectGroup;
 
-        Log.Info(
-            $"GROUP: {(group is null ? "null" : "NOT NULL")}, ACTIVE: {comp.IsActive}, COUNT: {group?.Effects.Count.ToString() ?? "null"}, IN PREDICTION: {_timing.InPrediction}, IN SIMULATION: {_timing.InSimulation}");
+        // Log.Info(
+        //     $"GROUP: {(group is null ? "null" : "NOT NULL")}, ACTIVE: {comp.IsActive}, COUNT: {group?.Effects.Count.ToString() ?? "null"}, IN PREDICTION: {_timing.InPrediction}, IN SIMULATION: {_timing.InSimulation}");
         if (group is null || !comp.IsActive || comp.EffectQueue.Count == 0)
         {
             _activeDice.Remove(ent);
@@ -253,13 +267,13 @@ public sealed partial class DestinyDiceSystem : EntitySystem
             comp.CurrentEffectGroup = null;
             comp.CurrentEffect = null;
             comp.EffectResults.Clear();
-            Log.Info("CLEARING EVERYTHING!!!!");
+            // Log.Info("CLEARING EVERYTHING!!!!");
             return;
         }
 
         // Skip if waiting for delay or for event.
         if (_timing.CurTime < comp.GroupStartTime) return;
-        Log.Info("GROUP TIME PASS");
+        // Log.Info("GROUP TIME PASS");
 
         if (comp is { IsPending: true, CurrentEffectGroup: not null })
         {
@@ -274,7 +288,7 @@ public sealed partial class DestinyDiceSystem : EntitySystem
 
         if (_timing.CurTime < comp.NextEffectTriggerTime) return;
         if (comp.WaitingForEffectEnd) return;
-        Log.Info("EFFECT TIME PASS");
+        // Log.Info("EFFECT TIME PASS");
 
         DestinyDiceEffect? effect = null;
         var earlyFinish = false;
@@ -289,7 +303,7 @@ public sealed partial class DestinyDiceSystem : EntitySystem
             effect.TimesRolled++;
 
             if (effect.EntityEffect is null) continue; // Not valid.
-            Log.Info("EFFECT NULL PASS");
+            // Log.Info("EFFECT NULL PASS");
 
             // Check for probability and conditions etc
             if ((effect.MaxRolls > -1 && effect.TimesRolled >= effect.MaxRolls) ||
@@ -369,14 +383,9 @@ public sealed partial class DestinyDiceSystem : EntitySystem
 
         effect.TimesTriggered++;
         comp.EffectResults.Add(effect, true);
-        comp.CurrentEffect = effect;
         if (effect.EndOnEvent) comp.WaitingForEffectEnd = true;
         else comp.NextEffectTriggerTime = _timing.CurTime + TimeSpan.FromSeconds(effect.Delay);
-        if (effect.SuccessMessage is not null)
-            _popup.PopupPredicted(Loc.GetString(effect.SuccessMessage), uid, comp.ActiveRoller,
-                effect.SuccessPopupType);
-        // Effect is applied unconditionally here as effects are checked manually earlier.
-        _effects.ApplyEffect(uid, effect.EntityEffect, user: uid);
+        RaiseLocalEvent(uid, new DestinyDiceExecuteEffectEvent(effect)); // test to see if events will cause it to fucking work
     }
 
     /// Quick helper to assign active values to the component for the current effect to reference.
