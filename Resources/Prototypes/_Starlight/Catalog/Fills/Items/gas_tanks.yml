@@ -3,7 +3,7 @@
   parent: AirTank
   suffix: Empty
   name: stimpack tank
-  description: Contains a mixture of air and healium. Keep the pressure at 65 and it should put even those nitrogen breathers to sleep. It can hold 5 L of gas.
+  description: Contains a mixture of performance enhancing nitrium and respirating gasses.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Tanks/anesthetic2.rsi
@@ -24,11 +24,10 @@
   - type: GasTank
     outputPressure: 22
     air:
-      # Will only last around 10-11 minutes.
       volume: 5
       moles:
         Pluoxium: 0.4861768349 # 23.7% Pluoxium, so voxes don't get poisoned
-        Nitrogen: 0.4861768349 # 23.7% Nitrogen
+        Ulnitranium: 0.4861768349 # 23.7% Ulnitranium
         Nitrium: 0.3737682167      # 4.3 kPa (18.22%)
       temperature: 293.15
 
