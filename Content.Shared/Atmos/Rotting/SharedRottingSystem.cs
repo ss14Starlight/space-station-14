@@ -166,18 +166,4 @@ public abstract partial class SharedRottingSystem : EntitySystem
 
         return (int) (comp.TotalRotTime.TotalSeconds / perishable.RotAfter.TotalSeconds);
     }
-<<<<<<< HEAD
-
-    #region Starlight
-    public bool SetRotAfter(EntityUid uid, TimeSpan newTime, PerishableComponent? perishable = null)
-    {
-        if (!Resolve(uid, ref perishable))
-            return false;
-
-        perishable.RotAfter = newTime;
-        return true;
-    }
-    #endregion Starlight
-=======
->>>>>>> 5792ab3c55 (partial class stuff)
 }
