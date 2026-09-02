@@ -1,20 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: The engi dispenser now has a separate Atmospherics tab, and sells a mini jetpack, double emergency oxygen and nitrogen tanks, and a holofan projector.
-    type: Add
-  id: 407652
-  time: '2026-08-16T15:53:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5638
-- author: OMEGA
-  changes:
-  - message: The EngiVend now stocks a handheld radio, Geiger counter and hand labeler.
-    type: Add
-  id: 407653
-  time: '2026-08-16T15:53:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5638
-- author: OMEGA
-  changes:
   - message: The EngiDrobe and AtmosDrobe now stock a utility belt and a gas mask.
     type: Add
   id: 407654
@@ -2799,4 +2785,18 @@ Entries:
   id: 408051
   time: '2026-09-02T17:44:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5943
+- author: wonderfulnewworld
+  changes:
+  - message: You will no longer spontaneously become a Nukie.
+    type: Fix
+  id: 408052
+  time: '2026-09-02T18:18:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5934
+- author: wonderfulnewworld
+  changes:
+  - message: Borgs can no longer roll antag.
+    type: Fix
+  id: 408053
+  time: '2026-09-02T18:18:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5934
 Order: -1
