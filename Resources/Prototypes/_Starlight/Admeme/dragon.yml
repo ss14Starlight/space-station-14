@@ -21,7 +21,7 @@
     - id: FoodCakeClown
       amount: 1
   - type: ActionGun
-    action: ActionDragonsBreath
+    action: ActionClownsBreath
     gunProto: ClownsBreathGun
   - type: GuideHelp
     guides:
@@ -29,6 +29,23 @@
   - type: Slippery
   - type: Damageable
     damageModifierSet: DragonResistances
+
+- type: entity
+  parent: BaseAction
+  id: ActionClownsBreath
+  name: "[color=pink]Cluster Banana![/color]"
+  description: Throw out a banana that splits into multiple explosive peels!
+  components:
+  - type: Action
+    icon: { sprite : Objects/Specific/Hydroponics/banana.rsi, state: produce }
+    itemIconStyle: BigAction
+    priority: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+  - type: EorgPreventAction
 
 - type: entity
   categories: [ HideSpawnMenu ]
