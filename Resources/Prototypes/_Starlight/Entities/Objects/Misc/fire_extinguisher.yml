@@ -14,6 +14,12 @@
     size: Large
     shape:
     - 0,0,1,2
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Misc/fire_extinguisher_atmos.rsi
+    slots:
+    - Back
+    - suitStorage
   - type: MeleeWeapon
     wideAnimationRotation: 0
     damage:
