@@ -193,10 +193,8 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
         var targets = new List<StationAiWarpTarget>();
 
-        // Starlight - start
-        CollectCrewWarpTargets(actor, targets);
-        CollectLocationWarpTargets(actor, coreEntity.Comp.RemoteEntity, targets);
-        // Starlight - end
+        CollectCrewWarpTargets(actor, targets); // Starlight
+        CollectLocationWarpTargets(actor, coreEntity.Comp.RemoteEntity, targets); // Starlight
 
         if (targets.Count == 0)
             _warpSawmill.Debug($"No warp targets available for Station AI {Name(actor)} ({actor}).");
