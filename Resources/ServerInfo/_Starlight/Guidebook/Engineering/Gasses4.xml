@@ -7,11 +7,11 @@
     <GuideEntityEmbed Entity="NitriumCanister" Caption=""/>
   </Box>
 
-  An incredibly valuable gas that rapidly accelerates biological functions when inhaled, causing incredible muscle speed, reaction times, and counteracting sleep. Inhalation causes mild toxic buildup.
+  An incredibly valuable gas that rapidly accelerates biological functions when inhaled, causing wounds to rapidly heal themselves and boosting reaction speeds. Heavy intake causes genetic degradation from uncontrolled cellular replication.
 
-  When exposed to oxygen nitrium decays into hydrogen and releases a small amount of energy.
+  Nitrium is created by combining 3 nitrogen, 2 tritium, and 1 pluoxium to create 3 nitrium.
 
-  Nitrium is created by combining 1 tritium with 1 nitrogen and 0.05 BZ at over 1500 K consuming heat.
+  Nitrium forms over 500K and forms slower the higher the pressure is. The presence of BZ acts as a catalyst which speeds up the reaction but also increases nitrogen consumption.
 
   ## Hyper-Noblium
   <Box>

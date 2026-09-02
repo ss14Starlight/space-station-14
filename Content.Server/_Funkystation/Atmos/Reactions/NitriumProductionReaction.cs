@@ -30,7 +30,7 @@ public sealed partial class NitriumProductionReaction : IGasReactionEffect
 
         var tempRate = temperature/ 500f ;
 
-        var pressureRate = 100f / pressure;
+        var pressureRate = (100f / pressure) * 2f ;
 
         var catalyze = initBZ;
 
