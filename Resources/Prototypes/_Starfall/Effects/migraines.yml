@@ -1,0 +1,17 @@
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectMigraine
+  name: migraine
+  components:
+  - type: MigraineEffect
+  - type: MovementModStatusEffect
+    walkSpeedModifier: 0.7
+    sprintSpeedModifier: 0.7
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectMigrainePrevention
+  name: migraine prevention
+  components:
+  - type: MigrainePreventionEffect
+    incidentDelay: 15m

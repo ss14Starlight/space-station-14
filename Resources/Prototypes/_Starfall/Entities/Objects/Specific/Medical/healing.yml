@@ -1,0 +1,31 @@
+- type: entity
+  name: pill
+  parent: Pill
+  id: PillChepagepant
+  suffix: Chepagepant 5u
+  components:
+  - type: Pill
+    pillType: 15
+  - type: Sprite
+    state: pill16
+  - type: Label
+    currentLabel: chepagepant 5u
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Chepagepant
+        Quantity: 5
+
+- type: entity
+  name: pill canister
+  parent: PillCanister
+  id: PillCanisterChepagepant
+  suffix: Chepagepant 5u, 5
+  components:
+  - type: Label
+    currentLabel: chepagepant 5u
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: PillChepagepant
+        amount: 5

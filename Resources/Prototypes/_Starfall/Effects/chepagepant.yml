@@ -1,0 +1,8 @@
+- type: entityEffect
+  id: ChepagepantMigrainePrevention
+  guidebookText: chepagepant-guidebook-prevention
+  effects:
+  - !type:ModifyStatusEffect
+    effectProto: StatusEffectMigrainePrevention
+    time: 4
+    type: Update

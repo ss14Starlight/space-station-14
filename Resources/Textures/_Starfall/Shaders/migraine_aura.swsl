@@ -1,0 +1,108 @@
+// I don't know what the fuck I'm doing.
+// dont let me ever touch a shader again.
+// I dont know how any of this works
+// get me out of here
+uniform sampler2D SCREEN_TEXTURE;
+
+uniform highp float Strength;
+uniform highp float ReducedMotion;
+
+highp float luminance(highp vec3 color)
+{
+    return dot(color, vec3(0.299, 0.587, 0.114));
+}
+
+void fragment()
+{
+    highp vec2 pixel = SCREEN_PIXEL_SIZE;
+    highp vec2 screenUv = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
+    highp vec2 centered = screenUv - vec2(0.5);
+
+    centered.x *= SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x;
+
+    highp float distanceFromCenter = length(centered);
+    highp float peripheralMask = smoothstep(0.015, 0.16, distanceFromCenter);
+    highp float cataractsEdgeMask = smoothstep(0.20, 0.55, distanceFromCenter);
+    highp vec2 outerCoordinates = screenUv * 10.0 * 0.1125;
+    highp vec2 cataractsCoordinates = screenUv * mix(1.0, 7.0, cataractsEdgeMask) * 10.0 * 0.1125;
+
+    highp float timeX = (sin(TIME * 0.006) + 0.5) * 0.08;
+    highp float timeY = (cos(TIME * 0.005) + 0.5) * 0.08;
+    highp float tunnelNoiseX = zFBM(cataractsCoordinates + timeX) - 0.5;
+    highp float tunnelNoiseY = zFBM(cataractsCoordinates + timeY) - 0.5;
+
+    highp vec2 cataractsDistortion = vec2(tunnelNoiseX, tunnelNoiseY) * cataractsEdgeMask * 4.5;
+    highp vec2 distortion = cataractsDistortion * 0.075 * Strength * (1.0 - ReducedMotion);
+    highp vec2 samplePosition = Pos + distortion;
+    highp vec4 original = zTextureSpec(SCREEN_TEXTURE, samplePosition);
+    highp vec3 finalColor = original.rgb;
+
+    highp vec2 ghostDirection = normalize(cataractsDistortion + vec2(0.0001));
+    ghostDirection = mix(ghostDirection, vec2(1.0, 0.0), ReducedMotion);
+
+    highp vec2 ghostOffset = ghostDirection * pixel * 2.4;
+    highp vec2 ghostDrift = vec2(cos(TIME * 0.05), sin(TIME * 0.014)) * pixel * 2.4 * 0.75 * (1.0 - ReducedMotion);
+    highp vec3 ghostColor = zTextureSpec(SCREEN_TEXTURE, samplePosition + ghostOffset + ghostDrift).rgb;
+
+    ghostColor += zTextureSpec(SCREEN_TEXTURE, samplePosition - ghostOffset * 0.65 - ghostDrift * 0.8).rgb;
+    ghostColor *= 0.5;
+
+    highp float ghostAmount = clamp(cataractsEdgeMask * 0.7 * Strength, 0.0, 1.0);
+    finalColor = mix(finalColor, ghostColor, ghostAmount);
+
+    highp vec2 hazeOffset = pixel * 12.0 * (1.0 + peripheralMask * 2.0);
+    highp vec3 blurredColor = finalColor;
+
+    blurredColor += zTextureSpec(SCREEN_TEXTURE, samplePosition + vec2(hazeOffset.x, 0.0)).rgb;
+    blurredColor += zTextureSpec(SCREEN_TEXTURE, samplePosition - vec2(hazeOffset.x, 0.0)).rgb;
+    blurredColor += zTextureSpec(SCREEN_TEXTURE, samplePosition + vec2(0.0, hazeOffset.y)).rgb;
+    blurredColor += zTextureSpec(SCREEN_TEXTURE, samplePosition - vec2(0.0, hazeOffset.y)).rgb;
+    blurredColor /= 5.0;
+
+    highp float hazeAmount = clamp(peripheralMask * Strength, 0.0, 1.0);
+    finalColor = mix(finalColor, blurredColor, hazeAmount);
+
+    highp float gray = luminance(finalColor);
+    highp float grayscaleAmount = clamp(peripheralMask * Strength, 0.0, 1.0);
+    finalColor = mix(finalColor, vec3(gray), grayscaleAmount);
+
+    highp float cloudiness = clamp(peripheralMask * Strength, 0.0, 1.0);
+    highp vec3 cloudyColor = vec3(gray * 0.55 + 0.18);
+    finalColor = mix(finalColor, cloudyColor, cloudiness * 0.55);
+
+    highp float darkResponse = 1.0 - smoothstep(0.025, 0.22, luminance(finalColor));
+    highp vec2 edgeOffset = pixel * 2.0;
+
+    highp float topLeft = luminance(zTextureSpec(SCREEN_TEXTURE, samplePosition + vec2(-edgeOffset.x, -edgeOffset.y)).rgb);
+    highp float top = luminance(zTextureSpec(SCREEN_TEXTURE, samplePosition + vec2(0.0, -edgeOffset.y)).rgb);
+    highp float topRight = luminance(zTextureSpec(SCREEN_TEXTURE, samplePosition + vec2(edgeOffset.x, -edgeOffset.y)).rgb);
+    highp float left = luminance(zTextureSpec(SCREEN_TEXTURE, samplePosition + vec2(-edgeOffset.x, 0.0)).rgb);
+    highp float right = luminance(zTextureSpec(SCREEN_TEXTURE, samplePosition + vec2(edgeOffset.x, 0.0)).rgb);
+    highp float bottomLeft = luminance(zTextureSpec(SCREEN_TEXTURE, samplePosition + vec2(-edgeOffset.x, edgeOffset.y)).rgb);
+    highp float bottom = luminance(zTextureSpec(SCREEN_TEXTURE, samplePosition + vec2(0.0, edgeOffset.y)).rgb);
+    highp float bottomRight = luminance(zTextureSpec(SCREEN_TEXTURE, samplePosition + vec2(edgeOffset.x, edgeOffset.y)).rgb);
+
+    highp float gradientX = -topLeft + topRight - 2.0 * left + 2.0 * right - bottomLeft + bottomRight;
+    highp float gradientY = -topLeft - 2.0 * top - topRight + bottomLeft + 2.0 * bottom + bottomRight;
+    highp float edge = clamp(length(vec2(gradientX, gradientY)) * 2.5 * (1.0 + darkResponse * 2.5) * Strength * peripheralMask, 0.0, 1.0);
+    highp float obscuredEdge = edge * (1.0 - cloudiness * 0.72);
+
+    finalColor = mix(finalColor, vec3(0.85), clamp(obscuredEdge * 0.35, 0.0, 0.4));
+
+    highp float hazeNoise = zFBM(outerCoordinates * 0.65 + vec2(TIME * 0.0015 * (1.0 - ReducedMotion)));
+    highp float hazeBrightness = mix(0.16, 0.38, hazeNoise);
+    highp vec3 opaqueHaze = vec3(hazeBrightness);
+    highp float opaqueHazeAmount = clamp(cloudiness * peripheralMask * 0.48, 0.0, 0.48);
+
+    finalColor = mix(finalColor, opaqueHaze, opaqueHazeAmount);
+
+    highp float tonePower = 1.0 + cloudiness * 1.15;
+    finalColor = pow(max(finalColor, vec3(0.0)), vec3(tonePower));
+    finalColor += vec3(0.065) * darkResponse * peripheralMask * Strength;
+
+    highp float vignetteMask = smoothstep(0.2, 0.55, distanceFromCenter);
+    highp float darkness = clamp(vignetteMask * 0.55 * Strength, 0.0, 0.65);
+    finalColor *= 1.0 - darkness;
+
+    COLOR = vec4(finalColor, original.a);
+}

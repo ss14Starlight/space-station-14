@@ -1,0 +1,11 @@
+- type: reaction
+  id: Chepagepant
+  reactants:
+    Carbon:
+      amount: 2
+    Nitrogen:
+      amount: 1
+    Fluorine:
+      amount: 1
+  products:
+    Chepagepant: 4

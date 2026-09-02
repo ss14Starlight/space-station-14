@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: 2026 Mora <trixxedheart@gmail.com>
+#
+# SPDX-License-Identifier: MIT
+
+- files: ["migraine.ogg"]
+  license: CC0-1.0
+  copyright: "Made using heartbeat-150bpm.wav by loudernoises on freesound.org"
+  source: "https://freesound.org/people/loudernoises/sounds/332810/"
+
+- files: ["migraine.ogg"]
+  license: CC0-1.0
+  copyright: "Made using Emptiness 1.0_VL.mp3 by xinthus on freesound.org"
+  source: "https://freesound.org/people/xinthus/sounds/706988/"

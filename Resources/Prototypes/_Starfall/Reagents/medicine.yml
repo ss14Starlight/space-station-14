@@ -1,0 +1,39 @@
+- type: reagent
+  id: Chepagepant
+  name: reagent-name-chepagepant
+  desc: reagent-desc-chepagepant
+  group: Medicine
+  physicalDesc: reagent-physical-desc-chalky
+  flavor: medicine
+  color: "#8cb6c7"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.5
+      effects:
+      - !type:NestedEffect
+        proto: ChepagepantMigrainePrevention
+        conditions:
+        - !type:ReagentCondition
+          reagent: Chepagepant
+          min: 0.10
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectMigraine
+        time: 0.5
+        type: Remove
+      # Overdose above 15u
+      - !type:Emote
+        emote: Yawn
+        showInChat: true
+        probability: 0.1
+        conditions:
+        - !type:ReagentCondition
+          reagent: Chepagepant
+          min: 15
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 3
+        type: Update
+        conditions:
+        - !type:ReagentCondition
+          reagent: Chepagepant
+          min: 15

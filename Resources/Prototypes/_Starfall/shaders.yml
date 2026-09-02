@@ -1,0 +1,7 @@
+- type: shader
+  id: MigraineAura
+  kind: source
+  path: "/Textures/_Starfall/Shaders/migraine_aura.swsl"
+  params:
+    Strength: 0.0
+    ReducedMotion: 0.0
