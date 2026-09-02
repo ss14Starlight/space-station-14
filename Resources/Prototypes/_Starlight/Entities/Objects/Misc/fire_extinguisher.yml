@@ -1,5 +1,5 @@
 - type: entity
-  parent: [SolutionFireExtinguisherLarge, FireExtinguisher, BaseAtmosContraband]
+  parent: [SolutionFireExtinguisherVeryLarge, FireExtinguisher, BaseAtmosContraband]
   id: FireExtinguisherAtmos
   name: atmos fire extinguisher
   description: A bright, pressurized fire extinguisher for the brave warriors of atmosia.
@@ -11,6 +11,9 @@
       map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Item
     sprite: _Starlight/Objects/Misc/fire_extinguisher_atmos.rsi
+    size: Large
+    shape:
+    - 0,0,1,2
   - type: MeleeWeapon
     wideAnimationRotation: 0
     damage:
@@ -28,3 +31,16 @@
     vaporAmount: 5
     vaporSpread: 110
     sprayVelocity: 5.0
+  - type: RefillableSolution # We don't want this to be filled with other things or it'll become a flamethrower
+    solution: Water
+
+- type: entity
+  parent: [SolutionSpray, SolutionVeryLarge]
+  id: SolutionFireExtinguisherVeryLarge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Water
+        Quantity: 360
