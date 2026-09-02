@@ -248,12 +248,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         for (uint i = 0; i < buttons.Length; i++)
         {
             var styleBase = StyleClass.ButtonOpenBoth;
-            var modulo = i % 10;
-            if (i > 0 && modulo == 0)
-                styleBase = StyleClass.ButtonOpenRight;
-            else if (i > 0 && modulo == 9)
+            if (i == 9)
                 styleBase = StyleClass.ButtonOpenLeft;
-            else if (i == 0)
+            else if (i == 10)
                 styleBase = StyleClass.ButtonOpenRight;
 
             buttons[i] = new Button
