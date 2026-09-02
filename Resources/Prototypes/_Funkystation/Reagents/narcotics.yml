@@ -18,9 +18,17 @@
         effectProto: StatusEffectStunned
         time: 0.3 # Starlight
         type: Remove
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 5
       - !type:ModifyKnockdown
         time: 0.3 # Starlight
         type: Remove
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 5
       - !type:GenericStatusEffect
         key: Drowsiness
         time: 10
@@ -30,6 +38,10 @@
         key: ForcedSleep
         type: Remove
         time: 10
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 5
       # Starlight BEGIN
       - !type:ModifyBleed
         amount: -0.12

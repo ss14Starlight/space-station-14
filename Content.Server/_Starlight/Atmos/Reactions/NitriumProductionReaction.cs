@@ -26,7 +26,7 @@ public sealed partial class NitriumProductionReaction : IGasReactionEffect
         var volume = mixture.Volume;
         var temperature = mixture.Temperature;
 
-        var catalyze = initBZ;   
+        var catalyze = initBZ / 100f ;   
 
 /// Check what ingredient is smallest relative to its un-catalyzed demand. Use it as a limiter.
 

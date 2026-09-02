@@ -113,7 +113,7 @@
         reagent: BZMetabolites
         amount: 1.8
 
-- type: reagent # Starlight Start: Nitrium basically completely rewroked.
+- type: reagent # Starlight Start: Nitrium basically completely reworked. Nitrosyl plasmide does the actual heavy lifting mechanically.
   id: Nitrium
   name: reagent-name-nitrium
   desc: reagent-desc-nitrium
