@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Client.SubFloor;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -30,7 +31,11 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
         var numberOfPipeLayers = GetNumberOfPipeLayers(uid, out _);
 
         // Starlight START
-        _sprite.LayerMapTryGet((uid, sprite), PipeVisualLayers.Pipe, out var pipeIndex, false);
+        // Prefer inserting the generated connections directly after the main pipe layer. If a prototype does not
+        // have one, fall back to appending them like LayerMapReserve would instead of using an invalid layer index.
+        var insertionIndex = sprite.AllLayers.Count();
+        if (_sprite.LayerMapTryGet((uid, sprite), PipeVisualLayers.Pipe, out var pipeIndex, false))
+            insertionIndex = pipeIndex + 1;
         // Starlight END
 
         foreach (var layerKey in Enum.GetValues<PipeConnectionLayer>())
@@ -40,10 +45,10 @@ public sealed partial class AtmosPipeAppearanceSystem : SharedAtmosPipeAppearanc
                 var layerName = layerKey.ToString() + i.ToString();
 
                 // Starlight START
-                // The generated layer should go directly after the main pipe layer, not at the end, hence the pipeIndex+1.
+                // The generated layer should go directly after the main pipe layer when it exists, not at the end.
                 if (!_sprite.LayerMapTryGet((uid, sprite), layerName, out var layer, false))
                 {
-                    layer = pipeIndex + 1;
+                    layer = insertionIndex;
                     _sprite.AddBlankLayer((uid, sprite), layer);
                     _sprite.LayerMapSet((uid, sprite), layerName, layer);
                 }

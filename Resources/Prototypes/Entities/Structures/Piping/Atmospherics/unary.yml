@@ -222,6 +222,10 @@
   placement:
     mode: AlignAtmosPipeLayers # starlight
   components:
+    # Starlight start
+    - type: SandboxCopyOverride
+      override: GasOutletInjector
+    # Starlight end
     - type: Sprite
       drawdepth: FloorObjects
       sprite: _Carpmosia/Structures/Piping/Atmospherics/outletinjector.rsi # Carpmosia-edit - 5 pipe layers
@@ -491,6 +495,10 @@
   placement:
     mode: SnapgridCenter
   components:
+  # Starlight start
+  - type: SandboxCopyOverride
+    override: BaseGasCondenser
+  # Starlight end
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/condenser.rsi
     snapCardinals: true

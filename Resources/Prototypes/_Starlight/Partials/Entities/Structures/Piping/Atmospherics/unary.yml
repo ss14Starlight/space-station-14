@@ -4,17 +4,15 @@
     - GasVentPump
     - GasPassiveVent
     - GasVentScrubber
-    - GasOutletInjector
+    # GasOutletInjector and BaseGasCondenser define this component inline instead.
+    # Adding it through a partial would replace their first component, Sprite, due to index-based sequence merging.
     - GasThermoMachineFreezer
     - GasThermoMachineFreezerEnabled
     - GasThermoMachineHeater
     - GasThermoMachineHeaterEnabled
     - GasThermoMachineHellfireFreezer
     - GasThermoMachineHellfireHeater
-    - BaseGasCondenser
   components:
     - type: SandboxCopyOverride
       override: !type:CreateVariants
         values: *protos
-
-
