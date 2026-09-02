@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values: &protos
+    - GasPipeStraight
+    - GasPipeBend
+    - GasPipeTJunction
+    - GasPipeFourway
+  components:
+    - type: SandboxCopyOverride
+      override: !type:CreateVariants
+        values: *protos
