@@ -31,8 +31,12 @@
     vaporAmount: 5
     vaporSpread: 110
     sprayVelocity: 5.0
-  - type: RefillableSolution # We don't want this to be filled with other things or it'll become a flamethrower
-    solution: Water
+  - type: RefillableSolution
+    solution: spray
+    reagentWhitelist:
+    - Water
+    - SpaceCleaner
+    - SyndicateSpaceCleaner
 
 - type: entity
   parent: [SolutionSpray, SolutionVeryLarge]
