@@ -19,7 +19,6 @@ public sealed partial class AbsorbedSystem : EntitySystem
     private void OnExamine(Entity<AbsorbedComponent> ent, ref ExaminedEvent args)
     {
         args.PushMarkup(Loc.GetString("changeling-absorb-onexamine"));
-        args.PushMarkup(Loc.GetString("changeling-absorb-onexamine-fluid"));
     }
 
     private void OnMobStateChange(Entity<AbsorbedComponent> ent, ref MobStateChangedEvent args)
@@ -27,12 +26,11 @@ public sealed partial class AbsorbedSystem : EntitySystem
         // in case one somehow manages to dehusk someone
         if (args.NewMobState != MobState.Dead) {
             RemComp<AbsorbedComponent>(ent);
-            // starlight edit - start: The changeling devour changes the rot timer, so we need to reset it when reviving someone
+            // The changeling devour changes the rot timer, so we need to reset it when reviving someone
             if (TryComp<PerishableComponent>(ent, out var perishable))
             {
                 _rotting.SetRotAfter(ent, TimeSpan.FromMinutes(10), perishable);
             }
         }
-            // starlight edit - end
     }
 }
