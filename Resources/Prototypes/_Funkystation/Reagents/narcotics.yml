@@ -33,15 +33,7 @@
       # Starlight BEGIN
       - !type:ModifyBleed
         amount: -0.12
-      - !type:AdjustReagent # Level 1 effectiveness
-        reagent: NitrosylPlasmide
-        amount: -.5
-        conditions:
-        - !type:ReagentCondition
-          reagent: NitrosylPlasmide
-          min: 1
-          max: 5
-      - !type:EvenHealthChange
+      - !type:EvenHealthChange # Level 1 effectiveness
         ignoreResistances: true
         damage:
           Brute: -0.25
@@ -52,15 +44,15 @@
           reagent: NitrosylPlasmide
           min: 1
           max: 5
-      - !type:AdjustReagent # Level 2 effectiveness
+      - !type:AdjustReagent
         reagent: NitrosylPlasmide
         amount: -.5
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 5
-          max: 10
-      - !type:EvenHealthChange
+          min: 1
+          max: 5
+      - !type:EvenHealthChange # Level 2 effectiveness
         ignoreResistances: true
         damage:
           Brute: -0.5
@@ -80,14 +72,15 @@
           reagent: NitrosylPlasmide
           min: 5
           max: 10
-      - !type:AdjustReagent # Level 3 effectiveness
+      - !type:AdjustReagent
         reagent: NitrosylPlasmide
         amount: -.5
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 10
-      - !type:EvenHealthChange
+          min: 5
+          max: 10
+      - !type:EvenHealthChange # Level 3 effectiveness
         ignoreResistances: true
         damage:
           Brute: -2
@@ -101,6 +94,13 @@
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.3
         sprintSpeedModifier: 1.3
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 10
+      - !type:AdjustReagent
+        reagent: NitrosylPlasmide
+        amount: -.5
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
