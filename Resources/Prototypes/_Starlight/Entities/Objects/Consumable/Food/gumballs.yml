@@ -1,0 +1,122 @@
+- type: entity
+  parent: FoodSnackBase
+  id: FoodSnackGumballWhite
+  name: gumball
+  description: So many flavors of sugar!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/gumball.rsi
+    state: gumball
+    color: "#ffffff"
+  - type: Item
+    storedOffset: -1,-1
+  - type: Tag
+    tags:
+    - FoodSnack
+    - ReptilianFood
+    - ClothMade
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - sweet
+
+- type: entity
+  parent: FoodSnackGumballWhite
+  id: FoodSnackGumballRed
+  components:
+  - type: Sprite
+    color: "#eb3434"
+
+- type: entity
+  parent: FoodSnackGumballWhite
+  id: FoodSnackGumballOrange
+  components:
+  - type: Sprite
+    color: "#ffaa17"
+
+- type: entity
+  parent: FoodSnackGumballWhite
+  id: FoodSnackGumballYellow
+  components:
+  - type: Sprite
+    color: "#fff370"
+
+- type: entity
+  parent: FoodSnackGumballWhite
+  id: FoodSnackGumballLime
+  components:
+  - type: Sprite
+    color: "#7aff4a"
+
+- type: entity
+  parent: FoodSnackGumballWhite
+  id: FoodSnackGumballGreen
+  components:
+  - type: Sprite
+    color: "#00d90b"
+
+- type: entity
+  parent: FoodSnackGumballWhite
+  id: FoodSnackGumballLightBlue
+  components:
+  - type: Sprite
+    color: "#24fbff"
+
+- type: entity
+  parent: FoodSnackGumballWhite
+  id: FoodSnackGumballBlue
+  components:
+  - type: Sprite
+    color: "#1472ff"
+
+- type: entity
+  parent: FoodSnackGumballWhite
+  id: FoodSnackGumballPurple
+  components:
+  - type: Sprite
+    color: "#8636ff"
+
+- type: entity
+  parent: FoodSnackGumballWhite
+  id: FoodSnackGumballPink
+  components:
+  - type: Sprite
+    color: "#fa6ef8"
+
+- type: entity
+  parent: FoodSnackGumballWhite
+  id: FoodSnackGumballBlack
+  components:
+  - type: Sprite
+    color: "#3d3d3d"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 10
+        - ReagentId: CarpoToxin
+          Quantity: 10
+
+- type: entity
+  parent: FoodSnackGumballWhite
+  id: FoodSnackGumballBloodRed
+  components:
+  - type: Sprite
+    color: "#b30000"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 10

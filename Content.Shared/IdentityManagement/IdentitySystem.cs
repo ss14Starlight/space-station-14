@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.IdentityManagement.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Clothing;
@@ -8,6 +9,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.VoiceMask;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
@@ -196,6 +198,11 @@ public sealed partial class IdentitySystem : EntitySystem
     /// </returns>
     private string GetIdentityName(EntityUid target, IdentityRepresentation representation)
     {
+        // Starlight Begin - borgs are always identifiable, chassis shape aside (e.g. Borgi)
+        if (HasComp<BorgChassisComponent>(target))
+            return representation.ToStringKnown(true, null);
+        // Starlight End
+
         var ev = new SeeIdentityAttemptEvent();
 
         RaiseLocalEvent(target, ev);
@@ -211,6 +218,7 @@ public sealed partial class IdentitySystem : EntitySystem
         var age = 18;
         var gender = Gender.Epicene;
         var species = SharedHumanoidAppearanceSystem.DefaultSpecies;
+        var isAnimal = TryComp<AnimalIdentityComponent>(target, out var animalIdentity); // Starlight
 
         // Always use their actual age and gender, since that can't really be changed by an ID.
         if (Resolve(target, ref target.Comp2, false))
@@ -219,11 +227,21 @@ public sealed partial class IdentitySystem : EntitySystem
             age = target.Comp2.Age;
             species = target.Comp2.Species;
         }
+        // Starlight Begin - no HumanoidAppearanceComponent to read gender from; fall back to Grammar
+        else if (isAnimal
+            && TryComp<GrammarComponent>(target, out var grammar)
+            && _grammarSystem.TryGet((target.Owner, grammar), "gender", out var genderStr)
+            && Enum.TryParse<Gender>(genderStr, out var parsedGender))
+        {
+            gender = parsedGender;
+        }
+        // Starlight End
 
-        var ageString = _humanoid.GetAgeRepresentation(species, age);
+        var ageString = isAnimal ? string.Empty : _humanoid.GetAgeRepresentation(species, age); // Starlight
+        var animalNoun = isAnimal ? Loc.GetString(animalIdentity!.NounId) : null; // Starlight
         var trueName = Name(target);
         if (!Resolve(target, ref target.Comp1, false))
-            return new(trueName, gender, ageString, string.Empty);
+            return new(trueName, gender, ageString, string.Empty, isAnimal: isAnimal, animalNoun: animalNoun); // Starlight
 
         string? presumedJob = null;
         string? presumedName = null;
@@ -236,7 +254,7 @@ public sealed partial class IdentitySystem : EntitySystem
         }
 
         // If it didn't find a job, that's fine.
-        return new(trueName, gender, ageString, presumedName, presumedJob);
+        return new(trueName, gender, ageString, presumedName, presumedJob, isAnimal, animalNoun); // Starlight
     }
 
     #endregion

@@ -343,6 +343,7 @@
         components:
         - IdCard
     targetIdSlot:
+      priority: 1
       name: UniversalIdConsole-targetId
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg

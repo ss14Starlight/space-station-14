@@ -2,6 +2,7 @@
   parent: BaseItem
   id: CardboardBoxLarge
   name: large cardboard box
+  description: A large cardboard box for storing things. # Starlight
   components:
   - type: Item
     size: Ginormous
