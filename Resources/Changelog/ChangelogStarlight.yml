@@ -1,60 +1,4 @@
 Entries:
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Added Waste/Distro Pipes to Evac Docks.'
-    type: Add
-  id: 407643
-  time: '2026-08-16T15:22:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5668
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Added Waste/Distro Pipes to Arrival Docks.'
-    type: Add
-  id: 407644
-  time: '2026-08-16T15:22:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5668
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Added Waste/Distro Pipes to Docking Arm.'
-    type: Add
-  id: 407645
-  time: '2026-08-16T15:22:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5668
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Small waste system for Top East maintance Tunnels.'
-    type: Add
-  id: 407646
-  time: '2026-08-16T15:22:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5668
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Removed Scientist playtime requirement from S.E.L.F Agent.
-    type: Remove
-  id: 407647
-  time: '2026-08-16T15:22:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5651
-- author: SirLutz
-  changes:
-  - message: Turnstile HP reduced from 500-> 150.
-    type: Tweak
-  id: 407648
-  time: '2026-08-16T15:53:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5672
-- author: SirLutz
-  changes:
-  - message: Airlocks HP reduced from 500 -> 300.
-    type: Tweak
-  id: 407649
-  time: '2026-08-16T15:53:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5672
-- author: SirLutz
-  changes:
-  - message: Firelocks HP reduced from 500 -> 250.
-    type: Tweak
-  id: 407650
-  time: '2026-08-16T15:53:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5672
 - author: SirLutz
   changes:
   - message: Reinf. Windoors HP reduced from 400 -> 300.
@@ -2799,4 +2743,60 @@ Entries:
   id: 408042
   time: '2026-08-31T23:52:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5913
+- author: STARLIGHT TEAM
+  changes:
+  - message: Actually updated the engine this time. Actually fixing what it said it would fix.
+    type: Fix
+  id: 408043
+  time: '2026-09-02T02:14:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5931
+- author: Conflee
+  changes:
+  - message: Added a Guidebook entry for Stir Stir adding more information on how to play as Stir Stir, interact with him as Security, and basic information to help RP as/with him. Their crime is vague on purpose, so RPers can decide in round. He can be paroled for good behavior, try to involve Lawyers and Magi, and he is NOT an Antag (unless he rolls an antag role).
+    type: Add
+  id: 408044
+  time: '2026-09-02T05:00:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5778
+- author: Conflee
+  changes:
+  - message: Changed Stir Stir's playtime requirement from 15 minutes of Security Department to 2 hours of Security Officer. Maybe people will hesitate to be a shitter as Stir Stir if they've been on the receiving end as a Secoff before.
+    type: Tweak
+  id: 408045
+  time: '2026-09-02T05:00:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5778
+- author: Conflee
+  changes:
+  - message: Added Starlight jobs to the Jobs and Security pages in the Guidebook.
+    type: Tweak
+  id: 408046
+  time: '2026-09-02T05:00:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5778
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added 2 K9 Spawn Slots in Security.'
+    type: Add
+  id: 408047
+  time: '2026-09-02T09:10:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5883
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added a water cooler in Security.'
+    type: Add
+  id: 408048
+  time: '2026-09-02T09:10:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5883
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added a Pet Carrier in Security.'
+    type: Add
+  id: 408049
+  time: '2026-09-02T09:10:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5883
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Sec front is now brig access, cadets allowed in now.'
+    type: Fix
+  id: 408050
+  time: '2026-09-02T09:10:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5883
 Order: -1
