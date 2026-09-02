@@ -65,9 +65,9 @@
                         </PanelContainer.PanelOverride>
                     </PanelContainer>
 
-                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" SeparationOverride="4">
-                        <LineEdit Name="CustomAmountLineEdit" PlaceHolder="#" MinSize="46 0" ToolTip="{Loc 'chem-master-window-custom-amount-tooltip'}" />
-                        <Button Name="CustomAmountButton" Text="#" MinSize="46 0" StyleClasses="OpenLeft" />
+                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" SeparationOverride="4" Margin="1 0 0 0">
+                        <LineEdit Name="CustomAmountLineEdit" PlaceHolder="#" MinSize="49 0" ToolTip="{Loc 'chem-master-window-custom-amount-tooltip'}" />
+                        <Button Name="CustomAmountButton" Text="#" MinSize="46 0" StyleClasses="OpenLeft" TextAlign="Center" Margin="0 0 0 0" />
                     </BoxContainer>
 
                     <!-- 2x5 grid, generated in code -->
