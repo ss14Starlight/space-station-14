@@ -153,7 +153,7 @@ public sealed partial class DevourSystem : EntitySystem
             if (stomachs.Count > 0) 
             { 
                 var stomach = stomachs[0]; 
-                var success = _stomach.TryTransferSolution( stomach.Owner, ichorInjection); 
+                _stomach.TryTransferSolution( stomach.Owner, ichorInjection); 
             }
 
             ent.Comp.Devoured++; //Starlight devour counter.
