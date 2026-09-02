@@ -164,12 +164,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         // Starlight edit end
 
         EnsureComp<AbsorbedComponent>(target);
-        // Starlight edit start - doubles the length of the rotting timer from 10 to 20
         if (TryComp<PerishableComponent>(target, out var perishable))
         {
             _rotting.SetRotAfter(target, TimeSpan.FromMinutes(20), perishable);
         }
-        // Starlight edit end
 
         var popup = Loc.GetString("changeling-absorb-end-self-ling");
         var bonusChemicals = 0f;
@@ -315,7 +313,6 @@ public sealed partial class ChangelingSystem : EntitySystem
         DoScreech(uid, comp);
 
         var power = comp.ShriekPower;
-        // Starlight edit - ignores the changeling doing the shriek so you dont flash yourself
         List<EntityUid> ignoreList = new() { uid };
         _flash.FlashArea(uid, uid, power, TimeSpan.FromMilliseconds(power * 2f * 1000f), 0.8f, false, 1f, null, ignoreList);
 
