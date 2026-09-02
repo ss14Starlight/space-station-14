@@ -48,9 +48,7 @@ public sealed partial class ShuttleConsoleSystem
 
     private void OnDronePilotConsoleOpen(EntityUid uid, DroneConsoleComponent component, AfterActivatableUIOpenEvent args)
     {
-        // Starlight - start
-        UpdateRemoteGridAccess(uid, component);
-        // Starlight - end
+        UpdateRemoteGridAccess(uid, component); // Starlight
     }
 
     private void OnDronePilotConsoleClose(EntityUid uid, DroneConsoleComponent component, BoundUIClosedEvent args)
@@ -65,16 +63,13 @@ public sealed partial class ShuttleConsoleSystem
 
     private void OnCargoGetConsole(EntityUid uid, DroneConsoleComponent component, ref ConsoleShuttleEvent args)
     {
-        // Starlight - start
-        UpdateRemoteGridAccess(uid, component);
-        // Starlight - end
+        UpdateRemoteGridAccess(uid, component);  // Starlight
         args.Console = component.Entity;
     }
 
     #region Starlight
     private void UpdateRemoteGridAccess(EntityUid uid, DroneConsoleComponent component)
     {
-        // Starlight - start
         var targetConsole = GetShuttleConsole(uid, component);
         var sourceGrid = Transform(uid).GridUid;
         var targetGrid = targetConsole is { } target ? Transform(target).GridUid : null;
@@ -100,12 +95,10 @@ public sealed partial class ShuttleConsoleSystem
 
         _gridAccess.AddAccessibleGrid((source, null), (targetUid, null));
         _remoteGridAccess[uid] = (source, targetUid);
-        // Starlight - end
     }
 
     private void RemoveRemoteGridAccess(EntityUid uid)
     {
-        // Starlight - start
         if (!_remoteGridAccess.Remove(uid, out var access))
             return;
 
@@ -118,14 +111,11 @@ public sealed partial class ShuttleConsoleSystem
         }
 
         _gridAccess.RemoveAccessibleGrid((access.SourceGrid, null), (access.TargetGrid, null));
-        // Starlight - end
     }
 
     private bool IsConsoleOperational(EntityUid uid)
     {
-        // Starlight - start
         return TryComp<ShuttleConsoleComponent>(uid, out _) && MetaData(uid).EntityLifeStage < EntityLifeStage.Terminating && Transform(uid).Anchored && this.IsPowered(uid, EntityManager);
-        // Starlight - end
     }
     #endregion Starlight
 

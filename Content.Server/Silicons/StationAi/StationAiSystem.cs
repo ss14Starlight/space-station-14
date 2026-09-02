@@ -217,7 +217,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
             return;
         }
 
-        if (!CanAccessGrid((actor, null), Transform(target).GridUid))
+        if (!CanAccessGrid((actor, null), Transform(target).GridUid)) // Starlight
         {
             _warpSawmill.Debug($"Station AI {Name(actor)} ({actor}) attempted to warp to inaccessible target {Name(target)} ({target}).");
             return;
@@ -357,10 +357,6 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         return true;
     }
 
-    /// <summary>
-    /// Attempts to warp the AI's remote eye to the specified entity.
-    /// The AI must have grid access to the grid containing the entity; returns false when access is denied.
-    /// </summary>
     public bool TryWarpEyeToEntity(EntityUid user, EntityUid target, bool popupOnFailure = true)
     {
         bool Fail()
