@@ -4,7 +4,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 
-namespace Content.Server._Funkystation.Atmos.Reactions;
+namespace Content.Server._Starlight.Atmos.Reactions;
 
 /// <summary>
 ///     Funky Atmos - /tg/ gases
@@ -26,7 +26,7 @@ public sealed partial class NitriumProductionReaction : IGasReactionEffect
         var volume = mixture.Volume;
         var temperature = mixture.Temperature;
 
-        var catalyze = initBZ / 100f ;   
+        var catalyze = initBZ / 100f ;
 
 /// Check what ingredient is smallest relative to its un-catalyzed demand. Use it as a limiter.
 
