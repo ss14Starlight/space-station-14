@@ -32,7 +32,6 @@ namespace Content.Server.Atmos.Portable
             Gas.Frezon,
             // Funkystation Start: Funky atmos - /tg/ gases
             Gas.BZ,
-            Gas.Healium,
             Gas.Nitrium,
             Gas.Hydrogen,
             Gas.HyperNoblium,

@@ -1,8 +1,8 @@
 - type: entity
-  id: HealiumTankEmpty
+  id: StimTankEmpty
   parent: AirTank
   suffix: Empty
-  name: healium tank
+  name: stimpack tank
   description: Contains a mixture of air and healium. Keep the pressure at 65 and it should put even those nitrogen breathers to sleep. It can hold 5 L of gas.
   components:
   - type: Sprite
@@ -17,8 +17,8 @@
     outputPressure: 65
 
 - type: entity
-  id: HealiumTankFilled
-  parent: HealiumTankEmpty
+  id: StimTankFilled
+  parent: StimTankEmpty
   suffix: Filled
   components:
   - type: GasTank
@@ -29,8 +29,6 @@
       moles:
         Pluoxium: 0.4861768349 # 23.7% Pluoxium, so voxes don't get poisoned
         Nitrogen: 0.4861768349 # 23.7% Nitrogen
-        Healium: 1.07902538 # 52.6% Healium
-        # 2.051379050       total
       temperature: 293.15
 
 - type: entity

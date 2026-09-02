@@ -37,11 +37,18 @@
       # Starlight BEGIN
       - !type:AdjustReagent
         reagent: NitrosylPlasmide
+        amount: -.5
+        conditions:
+          - !type:ReagentCondition
+            reagent: NitrosylPlasmide
+            min: 5
+      - !type:AdjustReagent
+        reagent: NitrosylPlasmide
         amount: -1.5
         conditions:
           - !type:ReagentCondition
             reagent: NitrosylPlasmide
-            min: 30
+            min: 10
       # Starlight END
       - !type:ResetNarcolepsy
         conditions:

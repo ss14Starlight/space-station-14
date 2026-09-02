@@ -10,17 +10,7 @@
   reagent: BZ
   pricePerMole: 1.2
 
-- type: gas
-  id: Healium
-  name: gases-healium
-  specificHeat: 10
-  heatCapacityRatio: 1.4
-  molarMass: 15
-  gasOverlaySprite: /Textures/_Funkystation/Effects/atmospherics.rsi
-  gasOverlayState: healium
-  color: fa8072
-  reagent: Healium
-  pricePerMole: 2.7
+# Starlight: Healium removed
 
 - type: gas
   id: Nitrium
@@ -30,7 +20,7 @@
   gasOverlaySprite: /Textures/_Funkystation/Effects/atmospherics.rsi
   gasOverlayState: nitrium
   molarMass: 8
-  color: a52a2a
+  color: fa8072
   reagent: Nitrium
   pricePerMole: 4
 

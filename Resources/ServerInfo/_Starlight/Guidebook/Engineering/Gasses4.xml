@@ -2,17 +2,6 @@
   # Gasses 4
   Advanced gasses that have highly unique properties that make them highly sought after.
 
-  ## Healium
-  <Box>
-    <GuideEntityEmbed Entity="HealiumCanister" Caption=""/>
-  </Box>
-
-  A humourously named gas that true to its name, is capable of healing most types of damage when inhaled.
-
-  Excessive inhalation causes drowsiness, with sufficient quantities causing outright unconsciousness.
-
-  Healium is created by combining 1 BZ and 11 Frezon to create 12 Healium and releases heat. Formation rate increases at lower temperatures and stops above 293 K.
-
   ## Nitrium
   <Box>
     <GuideEntityEmbed Entity="NitriumCanister" Caption=""/>
