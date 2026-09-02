@@ -584,13 +584,13 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         // Modern layout containers
         BuildContainerUI(InputContainerInfo, state.InputContainerInfo, true, modernMode: true);
-        BuildContainerUI(OutputContainerInfo, state.OutputContainerInfo, false, modernMode: true);
-        BuildContainerUI(OutputInputContainerInfo, state.InputContainerInfo, false, modernMode: false);
+        BuildContainerUI(OutputContainerInfo, state.OutputContainerInfo, false, modernMode: true, "chem-master-window-no-output-container-loaded-text");
+        BuildContainerUI(OutputInputContainerInfo, state.InputContainerInfo, false, modernMode: false, "chem-master-window-no-input-container-loaded-text");
 
         // Classic layout containers
         BuildContainerUI(InputContainerInfoClassic, state.InputContainerInfo, true, modernMode: false);
-        BuildContainerUI(OutputContainerInfoClassic, state.OutputContainerInfo, false, modernMode: false);
-        BuildContainerUI(OutputInputContainerInfoClassic, state.InputContainerInfo, false, modernMode: false);
+        BuildContainerUI(OutputContainerInfoClassic, state.OutputContainerInfo, false, modernMode: false, "chem-master-window-no-output-container-loaded-text");
+        BuildContainerUI(OutputInputContainerInfoClassic, state.InputContainerInfo, false, modernMode: false, "chem-master-window-no-input-container-loaded-text");
 
         BufferInfo.Children.Clear();
         BufferInfoClassic.Children.Clear();
@@ -664,13 +664,13 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             UpdateReagentPrototypes(SearchBar.Text);
     }
 
-    private void BuildContainerUI(Control control, ContainerInfo? info, bool addReagentButtons, bool modernMode)
+    private void BuildContainerUI(Control control, ContainerInfo? info, bool addReagentButtons, bool modernMode, string emptyLoc = "chem-master-window-no-container-loaded-text")
     {
         control.Children.Clear();
 
         if (info is null)
         {
-            control.Children.Add(new Label { Text = Loc.GetString("chem-master-window-no-container-loaded-text") });
+            control.Children.Add(new Label { Text = Loc.GetString(emptyLoc) });
             return;
         }
 

@@ -125,9 +125,9 @@
             <!-- TAB: Output / Pills n' Bottles -->
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="5" SeparationOverride="10">
 
-                <!-- Output container header + eject -->
+                <!-- Output containers header + eject -->
                 <BoxContainer Orientation="Horizontal">
-                    <Label Text="{Loc 'chem-master-window-container-label'}" />
+                    <Label Text="{Loc 'chem-master-window-containers-label'}" />
                     <Control HorizontalExpand="True" />
                     <Button MinSize="80 0" Name="OutputEjectButton" Access="Public"
                             Text="{Loc 'chem-master-window-eject-button'}" />
@@ -141,7 +141,7 @@
                         </PanelContainer.PanelOverride>
                         <ScrollContainer HorizontalExpand="True">
                             <BoxContainer Name="OutputInputContainerInfo" Orientation="Vertical" Margin="4" HorizontalExpand="True">
-                                <Label Text="{Loc 'chem-master-window-no-container-loaded-text'}" />
+                                <Label Text="{Loc 'chem-master-window-no-input-container-loaded-text'}" />
                             </BoxContainer>
                         </ScrollContainer>
                     </PanelContainer>
@@ -151,7 +151,7 @@
                         </PanelContainer.PanelOverride>
                         <ScrollContainer HorizontalExpand="True">
                             <BoxContainer Name="OutputContainerInfo" Orientation="Vertical" Margin="4" HorizontalExpand="True">
-                                <Label Text="{Loc 'chem-master-window-no-container-loaded-text'}" />
+                                <Label Text="{Loc 'chem-master-window-no-output-container-loaded-text'}" />
                             </BoxContainer>
                         </ScrollContainer>
                     </PanelContainer>
@@ -294,7 +294,7 @@
 
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="5" SeparationOverride="10">
                 <BoxContainer Orientation="Horizontal">
-                    <Label Text="{Loc 'chem-master-window-container-label'}" />
+                    <Label Text="{Loc 'chem-master-window-containers-label'}" />
                     <Control HorizontalExpand="True" />
                     <Button MinSize="80 0" Name="OutputEjectButtonClassic" Access="Public" Text="{Loc 'chem-master-window-eject-button'}" />
                 </BoxContainer>
@@ -306,7 +306,7 @@
                         </PanelContainer.PanelOverride>
                         <ScrollContainer HorizontalExpand="True">
                             <BoxContainer Name="OutputInputContainerInfoClassic" Orientation="Vertical" Margin="4" HorizontalExpand="True">
-                                <Label Text="{Loc 'chem-master-window-no-container-loaded-text'}" />
+                                <Label Text="{Loc 'chem-master-window-no-input-container-loaded-text'}" />
                             </BoxContainer>
                         </ScrollContainer>
                     </PanelContainer>
@@ -316,7 +316,7 @@
                         </PanelContainer.PanelOverride>
                         <ScrollContainer HorizontalExpand="True">
                             <BoxContainer Name="OutputContainerInfoClassic" Orientation="Vertical" Margin="4" HorizontalExpand="True">
-                                <Label Text="{Loc 'chem-master-window-no-container-loaded-text'}" />
+                                <Label Text="{Loc 'chem-master-window-no-output-container-loaded-text'}" />
                             </BoxContainer>
                         </ScrollContainer>
                     </PanelContainer>
