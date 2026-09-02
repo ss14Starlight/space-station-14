@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace Content.Server._Starlight.Atmos.Reactions;
 
 /// <summary>
-///     Funky Atmos - /tg/ gases
+///     Funky Atmos - /tg/ gases - Starlight Overhaul
 ///     Produces Nitrium by mixing Tritium, Nitrogen and Pluoxium at temperatures above 500K.
 /// </summary>
 [UsedImplicitly]

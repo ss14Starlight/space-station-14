@@ -38,19 +38,14 @@
         key: ForcedSleep
         type: Remove
         time: 10
-        conditions:
-        - !type:ReagentCondition
-          reagent: NitrosylPlasmide
-          min: 5
-      # Starlight BEGIN
       - !type:ModifyBleed
         amount: -0.12
       - !type:EvenHealthChange # Level 1 effectiveness
         ignoreResistances: true
         damage:
-          Brute: -0.25
-          Burn: -0.25
-          Toxin: -0.25
+          Brute: -0.5
+          Burn: -0.5
+          Toxin: -0.5
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
@@ -67,9 +62,9 @@
       - !type:EvenHealthChange # Level 2 effectiveness
         ignoreResistances: true
         damage:
-          Brute: -0.5
-          Burn: -0.5
-          Toxin: -0.5
+          Brute: -1.0
+          Burn: -1.0
+          Toxin: -1.0
           Genetic: 0.09
         conditions:
         - !type:ReagentCondition
@@ -95,10 +90,10 @@
       - !type:EvenHealthChange # Level 3 effectiveness
         ignoreResistances: true
         damage:
-          Brute: -2
-          Burn: -2
-          Toxin: -2
-          Genetic: 0.27
+          Brute: -2.0
+          Burn: -2.0
+          Toxin: -2.0
+          Genetic: 0.18
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
