@@ -135,7 +135,16 @@
 
                 <!-- Output container reagent list + amount grid side by side -->
                 <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="8">
-
+                    <PanelContainer HorizontalExpand="True" MinSize="0 140">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                        </PanelContainer.PanelOverride>
+                        <ScrollContainer HorizontalExpand="True">
+                            <BoxContainer Name="OutputInputContainerInfo" Orientation="Vertical" Margin="4" HorizontalExpand="True">
+                                <Label Text="{Loc 'chem-master-window-no-container-loaded-text'}" />
+                            </BoxContainer>
+                        </ScrollContainer>
+                    </PanelContainer>
                     <PanelContainer HorizontalExpand="True" MinSize="0 140">
                         <PanelContainer.PanelOverride>
                             <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
@@ -291,6 +300,16 @@
                 </BoxContainer>
 
                 <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="8">
+                    <PanelContainer HorizontalExpand="True" MinSize="0 140">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                        </PanelContainer.PanelOverride>
+                        <ScrollContainer HorizontalExpand="True">
+                            <BoxContainer Name="OutputInputContainerInfoClassic" Orientation="Vertical" Margin="4" HorizontalExpand="True">
+                                <Label Text="{Loc 'chem-master-window-no-container-loaded-text'}" />
+                            </BoxContainer>
+                        </ScrollContainer>
+                    </PanelContainer>
                     <PanelContainer HorizontalExpand="True" MinSize="0 140">
                         <PanelContainer.PanelOverride>
                             <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
