@@ -109,7 +109,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         shunt.ReturnAction = _actionSystem.AddAction(target, shuntable.UnshuntAction.Id);
         shuntable.Inhabited = target;
         shuntable.LastShunt = target;
-        Dirty(uid, shuntable); // Starlight
+        Dirty(uid, shuntable);
 
         if (TryComp<SiliconLawProviderComponent>(uid, out var coreLaws))
         {
