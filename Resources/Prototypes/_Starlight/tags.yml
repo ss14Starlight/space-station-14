@@ -138,6 +138,9 @@
   id: CentcommVibroblade
 
 - type: Tag
+  id: ChangelingEncounterTraitBackground
+
+- type: Tag
   id: CheapInsulatedFabric
 
 - type: Tag

@@ -162,3 +162,12 @@
     - !type:BackgroundEffect
       background: USSP
 
+- type: trait
+  id: ChangelingEncounter
+  name: trait-background-lings-name
+  description: trait-background-lings-description
+  category: BackgroundTraits
+  cost: 0
+  effects:
+    - !type:BackgroundEffect
+      background: ChangelingEncounter
