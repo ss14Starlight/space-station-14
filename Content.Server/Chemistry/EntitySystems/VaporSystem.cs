@@ -43,7 +43,7 @@ namespace Content.Server.Chemistry.EntitySystems
         {
             // Funky Wall Stains
             var hitWall = (args.OtherFixture.CollisionLayer & (int)CollisionGroup.Impassable) != 0
-                          && args.OtherFixture.Hard;
+                    && args.OtherFixture.Hard;
 
             foreach (var (_, soln) in _solutionContainer.EnumerateSolutions(entity.Owner))
             {
