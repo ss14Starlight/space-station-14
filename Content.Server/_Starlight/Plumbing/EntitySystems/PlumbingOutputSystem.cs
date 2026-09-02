@@ -1,10 +1,13 @@
+using System.Linq;
 using Content.Server.Popups;
+using Content.Shared._Starlight.Chemistry.Components;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using JetBrains.Annotations;
+using NetCord;
 
 namespace Content.Server._Starlight.Plumbing.EntitySystems;
 
@@ -34,6 +37,19 @@ public sealed partial class PlumbingOutputSystem : EntitySystem
 
         if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var outputSolutionEnt, out var outputSolution))
             return;
+
+        // Starlight Start
+        if (TryComp<RefillReagentFilterComponent>(args.Used, out var filter)
+            && outputSolution.Contents.Any(sol => !filter.Reagents.Contains(sol.Reagent.Prototype)))
+        {
+            // Incorrect reagents being put into our lovely automenders (and anything with filters)!
+            if (args.User is { Valid: true })
+                _popup.PopupEntity(Loc.GetString(filter.Popup), ent.Owner, args.User);
+
+            args.Handled = true;
+            return;
+        }
+        // Starlight End
 
         var transferAmount = outputSolution.Volume;
         if (TryComp<SolutionTransferComponent>(args.Used, out var transferComp))

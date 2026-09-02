@@ -1,4 +1,6 @@
 using Content.Server._Starlight.Plumbing.Components;
+using Content.Server.Hands.Systems;
+using Content.Shared._Starlight.Chemistry.Components;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry;
@@ -12,7 +14,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Popups;
 using JetBrains.Annotations;
-using Content.Server.Hands.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -453,6 +454,18 @@ public sealed partial class PlumbingSmartDispenserSystem : EntitySystem
 
         if (sourceReagent is not { } sourceReagentValue)
             return false;
+
+        // Starlight Start
+        if (TryComp<RefillReagentFilterComponent>(targetContainer, out var filter)
+            && !filter.Reagents.Contains(reagentId))
+        {
+            // Incorrect reagents being put into our lovely automenders (and anything with filters)!
+            if (showPopup && user is { Valid: true })
+                _popup.PopupEntity(Loc.GetString(filter.Popup), ent.Owner, user.Value);
+
+            return false;
+        }
+        // Starlight End
 
         if (!_solutionSystem.TryGetFitsInDispenser(targetContainer, out var targetEnt, out var targetSolution)
             && !_solutionSystem.TryGetRefillableSolution(targetContainer, out targetEnt, out targetSolution)
