@@ -1,11 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Reinf. Windoors HP reduced from 400 -> 300.
-    type: Tweak
-  id: 407651
-  time: '2026-08-16T15:53:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5672
 - author: OMEGA
   changes:
   - message: The engi dispenser now has a separate Atmospherics tab, and sells a mini jetpack, double emergency oxygen and nitrogen tanks, and a holofan projector.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408050
   time: '2026-09-02T09:10:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5883
+- author: Johnny
+  changes:
+  - message: Changed the portable recharger, now you can put it in a suitslot.
+    type: Tweak
+  id: 408051
+  time: '2026-09-02T17:44:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5943
 Order: -1
