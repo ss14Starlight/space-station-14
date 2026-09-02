@@ -102,6 +102,9 @@
       - Biological
       - Hybrid # Neocytes
     - type: ShowHealthIcons
+      damageContainers:
+        - Biological
+        - Hybrid
     - type: ShowJobIcons
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons
