@@ -156,19 +156,13 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             return;
         }
 
-        // A rule added after spawning missed its configured round-start selection event, so every
-        // player-selecting timing must fall back to selecting live players when the rule activates.
         var players = GetActivePlayers().ToArray();
 
         #region Starlight
-        //if (component.SelectionTime == RuleStarted) // Only pre-select antags if we pre-select on rule start
-        //    AssignAntags((uid, component), players);
-        //else // Otherwise, we only spawn the ghost roles!
-        // If the selection time is set to never, we don't want to assign antags, we just want to spawn ghost roles for the game rule.
-        if (component.SelectionTime == Never)
-            SpawnGhostRoles((uid, component), players.Length);
-        else
+        if (component.SelectionTime == RuleStarted)
             AssignAntags((uid, component), players);
+        else
+            SpawnGhostRoles((uid, component), players.Length);
 
         // AssignAntags already exhausts the live pool and creates fallback ghost roles. This final
         // pass also verifies their actual counts and catches failed spawner creation immediately.
