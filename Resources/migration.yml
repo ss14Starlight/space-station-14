@@ -815,3 +815,4 @@ OrganSkeletonPersonArmRight: RightArmSkeleton
 # 2026-09-2
 HealiumCanister: ZXACanister
 HealiumCanisterEmpty: ZXACanisterEmpty
+HealiumTankFilled: ZXATankFilled
