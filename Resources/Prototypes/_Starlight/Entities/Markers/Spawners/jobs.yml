@@ -179,19 +179,6 @@
       - state: jobicon
 
 - type: entity
-  id: SpawnPointZookeeper
-  parent: SpawnPointJobBase
-  name: zookeeper
-  components:
-  - type: SpawnPoint
-    job_id: Zookeeper
-  - type: Sprite
-    layers:
-      - state: green
-      - state: zookeeper
-      - state: jobicon
-
-- type: entity
   id: SpawnPointNCT
   parent: SpawnPointJobBase
   name: NanoTrasen Career Trainer

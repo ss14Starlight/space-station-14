@@ -253,3 +253,29 @@
     - type: Construction
       graph: ChairSL
       node: chairLovey
+
+- type: entity
+  name: evac seat
+  id: ChairEvacSeat
+  parent: ChairBase
+  description: A reclining seat for maximum comfort while you get the hell out of Barratry.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Chairs/evac_chair.rsi
+    state: evac_chair
+  - type: Construction
+    graph: ChairEvacSeat
+    node: ChairEvacSeat
+
+- type: entity
+  name: bridge seat
+  id: ChairBridgeSeat
+  parent: ChairOfficeSleek
+  description: A luxury chair for the Captain to sit in and giggle while BSO spins them while contemplating the nearest external airlock.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Chairs/bridge_chair.rsi
+    state: bridge_chair
+  - type: Construction
+    graph: ChairBridgeSeat
+    node: ChairBridgeSeat

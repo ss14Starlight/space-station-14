@@ -189,6 +189,8 @@ public sealed partial class AirAlarmSystem : EntitySystem
             subs.Event<AirAlarmUpdateDeviceDataMessage>(OnUpdateDeviceData);
             subs.Event<AirAlarmCopyDeviceDataMessage>(OnCopyDeviceData);
         });
+
+        SLInitialize();//Starlight: Air Alarm floodfill
     }
 
     private void OnDeviceListUpdate(EntityUid uid, AirAlarmComponent component, DeviceListUpdateEvent args)
