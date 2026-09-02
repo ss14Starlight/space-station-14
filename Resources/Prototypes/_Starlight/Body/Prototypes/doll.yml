@@ -71,3 +71,77 @@
       part: LeftFootDoll
       organs:
         shell: ShellFragmentDoll
+
+- type: body
+  id: DollFresh
+  name: "doll"
+  root: torso
+  slots:
+    head:
+      part: HeadDoll
+      connections:
+      - torso
+      organs:
+        brain: null
+        eyes: OrganDollEyes
+        tongue: OrganDollTongue
+        eye_implant: null
+        brain_implant: null
+        shell: null
+    torso:
+      part: TorsoDoll
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganDollHeart
+        lungs: OrganDollLungs
+        stomach: OrganDollStomach
+        liver:  OrganDollLiver
+        kidneys: OrganDollKidneys
+        cavity: null
+        shell: null
+    right arm:
+      part: RightArmDoll
+      connections:
+      - right hand
+      organs:
+        shell: null
+    left arm:
+      part: LeftArmDoll
+      connections:
+      - left hand
+      organs:
+        shell: null
+    right hand:
+      part: RightHandDoll
+      organs:
+        hand_implant: null
+        shell: null
+    left hand:
+      part: LeftHandDoll
+      organs:
+        hand_implant: null
+        shell: null
+    right leg:
+      part: RightLegDoll
+      connections:
+      - right foot
+      organs:
+        shell: null
+    left leg:
+      part: LeftLegDoll
+      connections:
+      - left foot
+      organs:
+        shell: null
+    right foot:
+      part: RightFootDoll
+      organs:
+        shell: null
+    left foot:
+      part: LeftFootDoll
+      organs:
+        shell: null
