@@ -50,7 +50,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 5
+          min: 1
           max: 5
       - !type:AdjustReagent # Level 2 effectiveness
         reagent: NitrosylPlasmide
@@ -86,7 +86,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 1
+          min: 10
       - !type:EvenHealthChange
         ignoreResistances: true
         damage:
@@ -97,7 +97,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 1
+          min: 10
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.3
         sprintSpeedModifier: 1.3

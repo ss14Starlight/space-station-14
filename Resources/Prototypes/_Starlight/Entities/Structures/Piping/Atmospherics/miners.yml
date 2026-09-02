@@ -11,16 +11,6 @@
       spawnGas: BZ
       maxExternalPressure: 4500
 
-- type: entity
-  parent: GasMinerBase
-  id: GasMinerHealium
-  name: healium gas miner
-  categories: [ DoNotMap ]
-  suffix: 4500kPa, DO NOT MAP
-  components:
-    - type: GasMiner
-      spawnGas: Healium
-      maxExternalPressure: 4500
 
 - type: entity
   parent: GasMinerBase
