@@ -131,7 +131,7 @@
           max: 5
         reagent: NitrosylPlasmide
         amount: .5
-        maxScale: 2 
+        maxScale: 2
 
       - !type:AddReagentToBloodstream
         conditions:

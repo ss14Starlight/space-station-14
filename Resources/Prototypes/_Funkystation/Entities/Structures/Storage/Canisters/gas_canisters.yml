@@ -429,13 +429,6 @@
 
 - type: entity
   parent: GasCanisterBrokenBase
-  id: HealiumCanisterBroken
-  components:
-  - type: Sprite
-    state: healium_broken # Starlight Edit: healium-1 -> healium_broken
-
-- type: entity
-  parent: GasCanisterBrokenBase
   id: NitriumCanisterBroken
   components:
   - type: Sprite
