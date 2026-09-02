@@ -136,7 +136,7 @@
 
                     <PanelContainer HorizontalExpand="True" MinSize="0 140">
                         <PanelContainer.PanelOverride>
-                            <gfx:StyleBoxFlat BackgroundColor="#1B1E1B" />
+                            <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
                         </PanelContainer.PanelOverride>
                         <ScrollContainer HorizontalExpand="True">
                             <BoxContainer Name="OutputContainerInfo" Orientation="Vertical" Margin="4" HorizontalExpand="True">
@@ -163,7 +163,7 @@
                 <!-- Packaging panel -->
                 <PanelContainer>
                     <PanelContainer.PanelOverride>
-                        <gfx:StyleBoxFlat BackgroundColor="#1B1E1B" />
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
                     </PanelContainer.PanelOverride>
                     <BoxContainer Orientation="Vertical" Margin="4" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="5">
 

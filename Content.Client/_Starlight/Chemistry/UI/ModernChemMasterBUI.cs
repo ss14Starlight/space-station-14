@@ -87,6 +87,7 @@ public sealed class ModernChemMasterBui(EntityUid owner, Enum uiKey) : BoundUser
         {
             var pillType = i;
             _window.PillTypeButtons[i].OnPressed += _ => SendMessage(new ChemMasterSetPillTypeMessage(pillType));
+            _window.PillTypeButtonsClassic[i].OnPressed += _ => SendMessage(new ChemMasterSetPillTypeMessage(pillType));
         }
 
         _window.OnReagentButtonPressed += (_, button) => SendMessage(new ChemMasterReagentAmountButtonMessage(button.Id, button.Amount, button.IsBuffer));

@@ -29,6 +29,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     public event Action<BaseButton.ButtonEventArgs, ReagentButton>? OnReagentButtonPressed;
     public event Action? OnToggleValveButtonPressed;
     public readonly Button[] PillTypeButtons;
+    public readonly Button[] PillTypeButtonsClassic;
 
     private const string PillsRsiPath = "/Textures/Objects/Specific/Chemistry/pills.rsi";
 
@@ -66,40 +67,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         IoCManager.InjectDependencies(this);
         var sprite = _entityManager.System<SpriteSystem>();
 
-        // Pill type selection buttons, in total there are 20 pills.
-        var resourcePath = new ResPath(PillsRsiPath);
-        var pillTypeGroup = new ButtonGroup();
-        PillTypeButtons = new Button[20];
-        for (uint i = 0; i < PillTypeButtons.Length; i++)
-        {
-            var styleBase = StyleClass.ButtonOpenBoth;
-            var modulo = i % 10;
-            if (i > 0 && modulo == 0)
-                styleBase = StyleClass.ButtonOpenRight;
-            else if (i > 0 && modulo == 9)
-                styleBase = StyleClass.ButtonOpenLeft;
-            else if (i == 0)
-                styleBase = StyleClass.ButtonOpenRight;
-
-            PillTypeButtons[i] = new Button
-            {
-                Access = AccessLevel.Public,
-                StyleClasses = { styleBase },
-                MaxSize = new Vector2(42, 28),
-                Group = pillTypeGroup
-            };
-
-            var specifier = new SpriteSpecifier.Rsi(resourcePath, "pill" + (i + 1));
-            var pillTypeTexture = new TextureRect
-            {
-                Texture = sprite.Frame0(specifier),
-                TextureScale = new Vector2(1.75f, 1.75f),
-                Stretch = TextureRect.StretchMode.KeepCentered,
-            };
-
-            PillTypeButtons[i].AddChild(pillTypeTexture);
-            Grid.AddChild(PillTypeButtons[i]);
-        }
+        PillTypeButtons = BuildPillTypeButtons(Grid, sprite);
+        PillTypeButtonsClassic = BuildPillTypeButtons(GridClassic, sprite);
 
         PillDosage.InitDefaultButtons();
         PillNumber.InitDefaultButtons();
@@ -192,6 +161,50 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                 ApplyLayout();
             };
         }
+    }
+
+    /// <summary>
+    /// Builds the pill type selector for one layout.
+    /// </summary>
+    private static Button[] BuildPillTypeButtons(GridContainer grid, SpriteSystem sprite)
+    {
+        const int pillTypeCount = 20;
+        var resourcePath = new ResPath(PillsRsiPath);
+        var pillTypeGroup = new ButtonGroup();
+        var buttons = new Button[pillTypeCount];
+
+        for (uint i = 0; i < buttons.Length; i++)
+        {
+            var styleBase = StyleClass.ButtonOpenBoth;
+            var modulo = i % 10;
+            if (i > 0 && modulo == 0)
+                styleBase = StyleClass.ButtonOpenRight;
+            else if (i > 0 && modulo == 9)
+                styleBase = StyleClass.ButtonOpenLeft;
+            else if (i == 0)
+                styleBase = StyleClass.ButtonOpenRight;
+
+            buttons[i] = new Button
+            {
+                Access = AccessLevel.Public,
+                StyleClasses = { styleBase },
+                MaxSize = new Vector2(42, 28),
+                Group = pillTypeGroup,
+            };
+
+            var specifier = new SpriteSpecifier.Rsi(resourcePath, "pill" + (i + 1));
+            var pillTypeTexture = new TextureRect
+            {
+                Texture = sprite.Frame0(specifier),
+                TextureScale = new Vector2(1.75f, 1.75f),
+                Stretch = TextureRect.StretchMode.KeepCentered,
+            };
+
+            buttons[i].AddChild(pillTypeTexture);
+            grid.AddChild(buttons[i]);
+        }
+
+        return buttons;
     }
 
     /// <summary>
@@ -370,6 +383,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         PillDosage.Value = (int) Math.Min(outputVolume, castState.PillDosageLimit);
         PatchDosage.Value = (int) Math.Min(outputVolume, castState.PatchDosageLimit);
         PillTypeButtons[castState.SelectedPillType].Pressed = true;
+        PillTypeButtonsClassic[castState.SelectedPillType].Pressed = true;
 
         PillNumber.IsValid = x => x >= 0 && x <= itemNumberMax;
         PillDosage.IsValid = x => x > 0 && x <= castState.PillDosageLimit;
