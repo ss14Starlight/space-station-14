@@ -62,7 +62,7 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterSortingTypeCycleMessage>(OnCycleSortingTypeMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterSetPillTypeMessage>(OnSetPillTypeMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterReagentAmountButtonMessage>(OnReagentButtonMessage);
-            SubscribeLocalEvent<ChemMasterComponent, ChemMasterReagentCustomAmountButtonMessage>(OnCustomReagentButtonMessage);
+            SubscribeLocalEvent<ChemMasterComponent, ChemMasterReagentCustomAmountButtonMessage>(OnCustomReagentButtonMessage); // Starlight
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterCreatePillsMessage>(OnCreatePillsMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterCreatePatchesMessage>(OnCreatePatchesMessage); // Starlight
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterOutputToBottleMessage>(OnOutputToBottleMessage);
@@ -149,6 +149,7 @@ namespace Content.Server.Chemistry.EntitySystems
             ClickSound(chemMaster);
         }
 
+        // Starlight BEGIN
         private void OnCustomReagentButtonMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterReagentCustomAmountButtonMessage message)
         {
             if (message.Amount <= FixedPoint2.Zero || message.Amount > FixedPoint2.New(1000))
@@ -168,6 +169,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
             ClickSound(chemMaster);
         }
+        // Starlight END
 
         private void OnSetDrawSourceMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterOutputDrawSourceMessage message)
         {

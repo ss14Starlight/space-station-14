@@ -56,6 +56,7 @@ namespace Content.Shared.Chemistry
         }
     }
 
+    // Starlight BEGIN
     [Serializable, NetSerializable]
     public sealed class ChemMasterReagentCustomAmountButtonMessage : BoundUserInterfaceMessage
     {
@@ -70,6 +71,7 @@ namespace Content.Shared.Chemistry
             FromBuffer = fromBuffer;
         }
     }
+    // Starlight END
 
     [Serializable, NetSerializable]
     public sealed class ChemMasterCreatePillsMessage : BoundUserInterfaceMessage
