@@ -183,8 +183,6 @@
     interactSuccessString: petting-success-reptile
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
-    interactSuccessSound:
-      path: /Audio/Animals/lizard_happy.ogg
 
 - type: entity
   id: FoodEggCompyFertilized

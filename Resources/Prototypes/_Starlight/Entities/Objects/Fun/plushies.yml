@@ -124,12 +124,6 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Animals/lizard_happy.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Animals/lizard_happy.ogg
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
