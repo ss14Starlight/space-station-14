@@ -20,6 +20,12 @@ public sealed class LatchStatusControl : PanelContainer
     private readonly ProgressBar _bar;
     private readonly ProgressBar _maxBar;
     private readonly Label _instruction;
+    private readonly Button _biteHarderButton;
+
+    /// <summary>
+    /// Raised when the Bite Harder button is pressed.
+    /// </summary>
+    public event Action? BiteHarderPressed;
 
     public LatchStatusControl()
     {
@@ -70,10 +76,19 @@ public sealed class LatchStatusControl : PanelContainer
             MouseFilter = MouseFilterMode.Ignore,
         };
 
+        _biteHarderButton = new Button
+        {
+            Text = Loc.GetString("latch-bite-harder-button"),
+            HorizontalExpand = true,
+            Visible = false,
+        };
+        _biteHarderButton.OnPressed += _ => BiteHarderPressed?.Invoke();
+
         layout.AddChild(_title);
+        layout.AddChild(_instruction);
+        layout.AddChild(_biteHarderButton);
         layout.AddChild(BarRow(Loc.GetString("latch-label-timeremaining"), _bar));
         layout.AddChild(BarRow(Loc.GetString("latch-label-timemax"), _maxBar));
-        layout.AddChild(_instruction);
         AddChild(layout);
 
         Visible = false;
@@ -101,16 +116,18 @@ public sealed class LatchStatusControl : PanelContainer
     }
 
     /// <summary>
-    /// Updates both bars and the instruction text.
+    /// Updates both bars, the instruction text, and whether the Bite Harder
+    /// button is shown (only relevant to the latcher, not the target).
     /// </summary>
     /// <param name="fraction">Remaining time before the current end time, 0 to 1.</param>
     /// <param name="maxFraction">Remaining time before the hard cap, 0 to 1.</param>
-    public void UpdateState(float fraction, float maxFraction, string instruction)
+    public void UpdateState(float fraction, float maxFraction, string instruction, bool showBiteHarder)
     {
         Visible = true;
         _bar.Value = fraction;
         _maxBar.Value = maxFraction;
         _instruction.Text = instruction;
+        _biteHarderButton.Visible = showBiteHarder;
     }
 
     /// <summary>
