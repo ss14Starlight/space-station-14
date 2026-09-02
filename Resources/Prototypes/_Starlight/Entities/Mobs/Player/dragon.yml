@@ -1,6 +1,8 @@
 - type: entity
   parent: BaseMobDragon
   id: MobDragonClown
+  name: clown dragon
+  description: A perfect life form created by the honk mother.
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Aliens/Carps/clowndragon.rsi
