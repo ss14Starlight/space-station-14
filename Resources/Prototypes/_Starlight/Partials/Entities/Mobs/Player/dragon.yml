@@ -1,4 +1,0 @@
-- type: !PartialOnly entity
-  id: BaseMobDragon
-  components:
-  - type: !Remove RandomSprite

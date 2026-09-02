@@ -64,10 +64,10 @@
     baseWalkSpeed: 3
     baseSprintSpeed: 5
     baseWeightlessModifier: 1.5
-  - type: RandomSprite
-    available:
-    - enum.DamageStateVisualLayers.Base:
-        alive: Rainbow
+#  - type: RandomSprite # Starlight - Disabled from base mob to allow specific dragon variants to have their own sprites
+#    available:
+#    - enum.DamageStateVisualLayers.Base:
+#        alive: Rainbow
   - type: Sprite
     sprite: Mobs/Aliens/Carps/dragon.rsi
     noRot: true
@@ -213,6 +213,10 @@
   #region Starlight
   - type: Damageable
     damageModifierSet: DragonResistances
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow
   #endregion Starlight
 
 - type: entity
@@ -258,6 +262,10 @@
     spawned:
     - id: FoodMeatDragon
       amount: 1
+  - type: RandomSprite # Starlight start
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        alive: Rainbow # Starlight end
   - type: MeleeWeapon
     damage:
       groups:
