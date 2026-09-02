@@ -10,6 +10,7 @@
   id: ReactorPartsBasic
   recipes:
   - CerenkiteReactorFuelRod
+  - UraniumReactorFuelRod # Starlight
   - BohrumReactorControlRod
   - SteelReactorControlRod
   - BrassReactorControlRod
@@ -26,7 +27,6 @@
 - type: latheRecipePack
   id: ReactorFuelRods
   recipes:
-  - UraniumReactorFuelRod
   - PlutoniumReactorFuelRod
   - BananiumReactorFuelRod
   - PlasmaReactorFuelRod
