@@ -52,6 +52,8 @@
     - id: Binoculars
     - id: NeuralLinkDisruptor # Starlight
     - id: TicketPad # Starlight
+    - id: PlushieLizardJobWarden
+      prob: 0.02
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -101,6 +103,10 @@
       prob: 0.6
     - id: BookSpaceLaw
       prob: 0.5
+    - id: PlushieLizardJobSecuritycadet
+      prob: 0.02
+    - id: PlushieLizardJobSecurityofficer
+      prob: 0.02
 
 - type: entity
   id: LockerBrigmedicFilled
@@ -191,14 +197,17 @@
     - id: FlashlightSeclite
     - id: ForensicScanner
     - id: LogProbeCartridge
-    - id: BoxForensicPad
+    #- id: BoxForensicPad # Starlight - Condensing, duplicate of items found in the CardboardBoxLargeEvidenceFilledExtras
     - id: DrinkDetFlask
     - id: ClothingHandsGlovesForensic
     - id: RubberStampDetective
     - id: HoloprojectorSecurity
-    - id: BoxEvidenceMarkers
-    - id: HandLabeler
+    #- id: BoxEvidenceMarkers # Starlight - Condensing, duplicate of items found in the CardboardBoxLargeEvidenceFilledExtras
+    #- id: HandLabeler # Starlight - Condensing, duplicate of items found in the CardboardBoxLargeEvidenceFilledExtras
     - id: BoxTapeRecorder # Starlight
+    - id: CardboardBoxLargeEvidenceFilledExtras # Starlight
+    - id: PlushieLizardJobDetective
+      prob: 0.02
 
 - type: entity
   id: ClosetBombFilled

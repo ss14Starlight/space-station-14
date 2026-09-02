@@ -159,18 +159,6 @@
 
 - type: entity
   parent: BaseFlatpack
-  id: SyndicateMicrowaveFlatpack
-  name: microwave flatpack
-  description: A flatpack used for constructing a microwave.
-  components:
-  - type: Sprite
-    layers:
-    - state: microwave
-  - type: Flatpack
-    allowUnpackOnTables: true
-
-- type: entity
-  parent: BaseFlatpack
   id: EndymionMonumentFlatpack
   name: Endymion Memorial flatpack
   description: A flatpack sent to the station by the TSF to commemorate the 2123 loss of the NTSS Endymion, and the 2116 people lost to the endless stars.
