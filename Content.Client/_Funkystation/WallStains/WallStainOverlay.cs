@@ -6,7 +6,6 @@ using Content.Shared.Tag;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -28,7 +27,7 @@ public sealed partial class WallStainOverlay : Overlay
     [Dependency] private IEntityManager _entityManager = null!;
     [Dependency] private IPrototypeManager _prototypeManager = null!;
     [Dependency] private IGameTiming _gameTiming = null!;
-    [Dependency] public IMapManager MapManager = null!;
+    private readonly SharedMapSystem _maps;
 
     private readonly TransformSystem _transformSystem;
     private readonly SpriteSystem _spriteSystem;
@@ -50,6 +49,7 @@ public sealed partial class WallStainOverlay : Overlay
     {
         IoCManager.InjectDependencies(this);
 
+        _maps = _entityManager.System<SharedMapSystem>();
         _transformSystem = _entityManager.System<TransformSystem>();
         _spriteSystem = _entityManager.System<SpriteSystem>();
         _entityLookupSystem = _entityManager.System<EntityLookupSystem>();
