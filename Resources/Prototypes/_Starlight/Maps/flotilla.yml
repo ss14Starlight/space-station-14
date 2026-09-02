@@ -1,5 +1,5 @@
 - type: gameMap
-  id: StarlightMing
+  id: StarlightFlotilla
   mapName: 'Flotilla Station'
   mapPath: /Maps/_Starlight/Stations/Flotilla.yml
   minPlayers: 150
