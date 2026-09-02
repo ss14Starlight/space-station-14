@@ -64,7 +64,7 @@ public sealed class StationPowerTests : GameTest
         "StarlightPacked",
         "StarlightReach",
         "StarlightRefinery",
-        "StarlightFlotilla"
+        "StarlightFlotilla",
         "StarlightSaltern",
         "StarlightSilica",
         "StarlightSpaceMall",
