@@ -606,3 +606,24 @@
   completetime: 1
   materials:
     Plastic: 50
+
+- type: latheRecipe
+  id: RubberStampApproved
+  result: RubberStampApproved
+  completetime: 1
+  materials:
+    Plastic: 100
+
+- type: latheRecipe
+  id: RubberStampDenied
+  result: RubberStampDenied
+  completetime: 1
+  materials:
+    Plastic: 100
+
+- type: latheRecipe
+  id: BoxStamps
+  result: BoxStamps
+  completetime: 2
+  materials:
+    Cardboard: 500

@@ -2,3 +2,6 @@
   id: StarlightCommandSuppliesStatic
   recipes:
   - HandheldStationMap
+  - RubberStampApproved
+  - RubberStampDenied
+  - BoxStamps
