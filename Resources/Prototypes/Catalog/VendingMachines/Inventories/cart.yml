@@ -22,3 +22,8 @@
   contrabandInventory:
     BalloonNT: 2
     LuxuryPen: 1
+  emaggedInventory: # Blimpuf
+    SyndicateIDCard: 2 # Blimpuf
+    SyndicatePersonalAI: 1 # Blimpuf
+    ClothingHeadsetAltSyndicate: 1 # Blimpuf
+    SharpPaper: 2 # Blimpuf

@@ -25,4 +25,9 @@
     # Starlight end
   contrabandInventory:
     ToyFigurineChemist: 1
-
+  emaggedInventory: # Blimpuf
+    OminousPill: 1 # Blimpuf
+    ClothingHeadHatSyndie: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf
+    ClothingUniformJumpskirtOperative: 1 # Blimpuf
+    ClothingUniformJumpsuitOperative: 1 # Blimpuf

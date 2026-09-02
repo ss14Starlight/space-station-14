@@ -4,22 +4,26 @@
     MagazineBoxCaselessRifle: 5 # Starlight
     MagazineBoxCaselessRiflePractice: 3
     MagazineBoxCaselessRifleRubber: 1 # Starlight
-
     MagazineBoxLightRifleBig: 5 # Starlight
     MagazineBoxLightRiflePractice: 3
     MagazineBoxLightRifleRubber: 1 # Starlight
-
     MagazineBoxMagnumSP: 5 # Starlight
     MagazineBoxMagnumPractice: 3
     MagazineBoxMagnumRubber: 1 # Starlight
-
     MagazineBoxPistolSP: 5 # Starlight
     MagazineBoxPistolPractice: 3
     MagazineBoxPistolRubber: 1 # Starlight
-
     MagazineBoxRifleSP: 5 # Starlight
     MagazineBoxRiflePractice: 3
     MagazineBoxRifleRubber: 1 # Starlight
-
     BoxLethalshot: 6
     BoxShotgunPractice: 3
+  emaggedInventory: # Blimpuf
+    MagazineBoxRifleUranium: 1 # Blimpuf
+    MagazineBoxRifleIncendiary: 1 # Blimpuf
+    MagazineBoxPistolUranium: 1 # Blimpuf
+    MagazineBoxPistolIncendiary: 1 # Blimpuf
+    MagazineBoxMagnumUranium: 1 # Blimpuf
+    MagazineBoxMagnumIncendiary: 1 # Blimpuf
+    MagazineBoxLightRifleUranium: 1 # Blimpuf
+    MagazineBoxLightRifleIncendiary: 1 # Blimpuf

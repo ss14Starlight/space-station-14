@@ -1418,6 +1418,14 @@
   - sprite: Objects/Fun/Plushies/shark.rsi
     state: grey
 
+- type: foodSequenceElement
+  id: RedSharkPlushie
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-shark
+  sprites:
+    - sprite: Objects/Fun/Plushies/shark.rsi
+      state: red
+
 #Ratvar Plushie
 
 - type: foodSequenceElement

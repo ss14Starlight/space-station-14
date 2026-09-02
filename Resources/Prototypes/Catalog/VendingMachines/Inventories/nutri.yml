@@ -24,3 +24,6 @@
     ChemistryBottleUnstableMutagen: 1
     Joint: 1
     ChemistryBottleLeft4Zed: 1
+  emaggedInventory: # Blimpuf
+    ChemistryBottleUnstableMutagen: 2 # Blimpuf
+    CowToolboxFilled: 1 # Blimpuf

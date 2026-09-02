@@ -18,3 +18,7 @@
   contrabandInventory:
     Multitool: 1
     ClothingHandsGlovesColorYellow: 1
+  emaggedInventory: # Blimpuf
+    ClothingHandsGlovesConducting: 1 # Blimpuf
+    ClothingBeltUtility: 1 # Blimpuf
+    Omnitool: 0 # Blimpuf

@@ -9,3 +9,6 @@
   contrabandInventory:
     DrinkTeapot: 2
     DrinkNothing: 2
+  emaggedInventory: # Blimpuf
+    DrinkHotterCoco: 2 # Blimpuf
+    DrinkIceBucket: 4 # Blimpuf

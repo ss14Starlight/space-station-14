@@ -27,6 +27,25 @@
   - type: UseDelay
     delay: 1
 
+# Blimpuf
+- type: entity
+  parent: Cane
+  id: HeavyCane
+  description: A dense wooden cane with a prong at that seems perfectly suited for sliding into the crack of an airlock.
+  components:
+    - type: MeleeWeapon
+      wideAnimationRotation: 45
+      damage:
+        types:
+          Blunt: 8
+    - type: IncreaseDamageOnWield
+      damage:
+        types:
+          Blunt: 4
+    - type: Tool
+      qualities:
+        - Prying
+
 - type: entity
   name: cane blade
   parent: [BaseSword, BaseSyndicateContraband]

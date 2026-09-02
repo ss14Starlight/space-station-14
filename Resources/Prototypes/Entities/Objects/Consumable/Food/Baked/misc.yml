@@ -108,6 +108,20 @@
       - ReagentId: CocoaPowder
         Quantity: 1
 
+# Blimpuf - Poison Chocolate Muffin
+- type: entity
+  parent: FoodBakedMuffinChocolate
+  id: FoodBakedMuffinChocolatePoison
+  suffix: Poison
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 10
+          reagents:
+            - ReagentId: Amatoxin
+              Quantity: 10
+
 - type: entity
   name: banana muffin
   parent: FoodBakedMuffin

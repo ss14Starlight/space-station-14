@@ -20,3 +20,8 @@
     SlimeExtractBag: 5 # Starlight
   contrabandInventory:
     ToyFigurineResearchDirector: 1
+  emaggedInventory: # Blimpuf
+    ClothingHeadHatSyndie: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf
+    ClothingUniformJumpskirtOperative: 1 # Blimpuf
+    ClothingUniformJumpsuitOperative: 1 # Blimpuf

@@ -33,7 +33,9 @@
     ToyFigurineSalvage: 1
     ToyFigurineQuartermaster: 1
     ClothingBackpackTrunkMail: 1 # Starlight start
-  emaggedInventory:
-    ClothingBackpackSalvage: 1
-    ClothingBackpackSatchelSalvage: 1
-    ClothingBackpackDuffelSalvage: 1 # Starlight end
+  emaggedInventory: # Blimpuf
+    ClothingBackpackDuffelSyndicate: 1 # Blimpuf
+    ClothingHeadHatSyndie: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf
+    ClothingUniformJumpskirtOperative: 1 # Blimpuf
+    ClothingUniformJumpsuitOperative: 1 # Blimpuf

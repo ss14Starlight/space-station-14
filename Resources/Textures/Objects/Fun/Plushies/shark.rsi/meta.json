@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprited for SS14 by GitHub user Willhelm53, later overhauledby GitHub user Psychpsyo",
+  "copyright": "Sprited for SS14 by GitHub user Willhelm53, later overhauledby GitHub user Psychpsyo, red syndicate variant by ItsMaitake on Blimpuf Station",
   "size": {
     "x": 32,
     "y": 32
@@ -30,6 +30,17 @@
       "directions": 4
     },
     {
+      "name": "red"
+    },
+    {
+      "name": "red-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "red-inhand-right",
+      "directions": 4
+    },
+    {
       "name": "grey"
     },
     {
@@ -39,6 +50,7 @@
     {
       "name": "grey-inhand-right",
       "directions": 4
+
     }
   ]
 }

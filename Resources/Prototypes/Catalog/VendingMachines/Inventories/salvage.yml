@@ -13,3 +13,7 @@
     WeaponProtoKineticAccelerator: 10 # starlight end
   contrabandInventory:
     PlushieCarp: 1
+  emaggedInventory: # Blimpuf
+    WeaponGrapplingGunSyndie: 1 # Blimpuf
+    PickaxeDiamond: 1 # Blimpuf
+    DullPickaxe: 1 # Blimpuf

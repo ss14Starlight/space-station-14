@@ -1921,6 +1921,24 @@
   solids:
     FoodDonkpocketMoth: 1
 
+# Blimpuf Start
+- type: microwaveMealRecipe
+  id: RecipeDonkpocketMime
+  name: warm mime-pocket recipe
+  result: FoodDonkpocketMimeWarm
+  time: 5
+  solids:
+    FoodDonkpocketMime: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkpocketWonk
+  name: warm wonk-pocket recipe
+  result: FoodDonkpocketWonkWarm
+  time: 5
+  solids:
+    FoodDonkpocketWonk: 1
+# Blimpuf End
+
 - type: microwaveMealRecipe
   id: RecipeHotChili
   name: hot chili recipe

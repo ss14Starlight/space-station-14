@@ -14,3 +14,6 @@
   contrabandInventory:
     FoodSnackDanDanNoodles: 3
     FoodBakedBunHoney: 3
+  emaggedInventory:
+    FoodSnackHighEnergy: 2
+    FoodSnackPopcornBoom: 2

@@ -13,9 +13,6 @@
     ropeSprite:
       sprite: _Moffstation/Objects/Weapons/Guns/Launchers/chainsickle.rsi
       state: rope
-  - type: EmbeddableProjectile
-    sound: /Audio/Weapons/bolathrow.ogg
-    offset: -0.15,0.0
   - type: LandAtCursor
   - type: Ensnaring
     freeTime: 2.0

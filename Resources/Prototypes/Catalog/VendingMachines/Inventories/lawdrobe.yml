@@ -27,3 +27,8 @@
     # "Legally" obtained currency
     SpaceCash100: 2
     ToyFigurineLawyer: 1
+  emaggedInventory: # Blimpuf
+    SpaceCash1000: 2 # Blimpuf
+    ClothingUniformJumpsuitSyndieFormal: 2 # Blimpuf
+    ClothingNeckBrassLawyerbadge: 1 # Blimpuf
+    HeavyGavelHammer: 1 # Blimpuf

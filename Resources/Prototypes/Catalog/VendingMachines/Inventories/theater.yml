@@ -112,3 +112,7 @@
     ClothingMaskBlushingMime: 1
     ClothingMaskSusMime: 1 #Starlight
     ClothingHeadHatCowboyBountyHunter: 1
+  emaggedInventory: # Blimpuf
+    LittleBlackDressUniformSuit: 1 # Blimpuf
+    ClothingMaskGoldenCursed: 1 # Blimpuf
+    ClothingMaskMuzzle: 2 # Blimpuf

@@ -133,4 +133,14 @@
     ClothingNeckTatteredHood: 1 #Starlight
     CuteTurtleNeckBlack: 2 #Starlight
     CuteTurtleNeck: 2 #Starlight
-  # DO NOT ADD MORE, USE UNIFORM DYING
+  emaggedInventory: # Blimpuf
+    ClothingBackpackSatchelSmugglerUnanchored: 1 # Blimpuf
+    ClothingUniformJumpsuitRecruitSyndie: 2 # Blimpuf
+    ClothingUniformJumpsuitPyjamaSyndicateRed: 2 # Blimpuf
+    ClothingUniformJumpsuitPyjamaSyndicateBlack: 2 # Blimpuf
+    ClothingUniformJumpsuitPyjamaSyndicatePink: 2 # Blimpuf
+    ClothingHeadPyjamaSyndicateRed: 2 # Blimpuf
+    ClothingHeadPyjamaSyndicateBlack: 2 # Blimpuf
+    ClothingHeadPyjamaSyndicatePink: 2 # Blimpuf
+    BedsheetSyndie: 2 # Blimpuf
+

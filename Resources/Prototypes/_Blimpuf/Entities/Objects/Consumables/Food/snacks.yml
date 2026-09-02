@@ -1,0 +1,60 @@
+﻿- type: entity
+  parent: BaseItem
+  id: FoodSnackMeltedChocolate
+  name: melted gorlex chocolate bar
+  description: The chocolate inside the packaging feels like it's just barely solid.
+  components:
+    - type: Sprite
+      sprite: _Blimpuf/Objects/Consumable/Food/snacks.rsi
+      state: meltedchocolatebar
+    - type: Item
+      heldPrefix: meltedchocolatebar
+      size: Tiny
+      storedOffset: 1,-1
+    - type: Tag
+      tags:
+        - FoodSnack
+    - type: SpawnItemsOnUse
+      items:
+        - id: FoodPacketChocolateTrash
+        - id: FoodSnackMeltedChocolateBar
+      sound:
+        path: /Audio/Effects/unwrap.ogg
+      requireHands: false # 🌟Starlight🌟
+    # Starlight-start: Vending Machines Prices
+    - type: ItemPrice
+      priceCategory: food_medium
+  # Starlight-end
+
+- type: entity
+  parent: FoodSnackBase
+  id: FoodSnackMeltedChocolateBar
+  name: melted gorlex chocolate bar
+  description: You had better eat it quickly before it all drips onto the floor!
+  components:
+    - type: FlavorProfile
+      flavors:
+        - chocolate
+    - type: Sprite
+      sprite: _Blimpuf/Objects/Consumable/Food/snacks.rsi
+      state: meltedchocolatebar-open
+    - type: Item
+      heldPrefix: meltedchocolatebar-open
+      storedOffset: 1,-2
+    - type: Tag
+      tags:
+        - FoodSnack
+        - ReptilianFood
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 30
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 8
+            - ReagentId: Stimulants
+              Quantity: 5
+            - ReagentId: Theobromine
+              Quantity: 3
+            - ReagentId: CocoaPowder
+              Quantity: 1

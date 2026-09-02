@@ -201,6 +201,21 @@
   - type: Sprite
     sprite: Objects/Consumable/Drinks/mug_red.rsi
 
+# Blimpuf - Emagged Plasteel Chef's Dinnerware Vendor
+- type: entity
+  parent: DrinkMugRed
+  id: DrinkMugRedSyndiePax
+  name: peaceful red mug
+  description: A red and black mug with remnants of something that smells soothing, calming, and relaxing.
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        drink:
+          maxVol: 20
+          reagents:
+            - ReagentId: Pax
+              Quantity: 10
+
 ## Filled
 
 - type: entity
@@ -225,6 +240,23 @@
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: TrashOnSolutionEmpty
     solution: drink
+
+# Blimpuf - Emagged Hot Drink's vendor
+- type: entity
+  parent: DrinkHotCoco
+  id: DrinkHotterCoco
+  name: hotter chocolate
+  suffix: Full
+  description: Even the handle of this mug is boiling hot, it hurts to hold.
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        drink:
+          reagents:
+            - ReagentId: HotCocoa
+              Quantity: 15
+            - ReagentId: Phlogiston
+              Quantity: 5
 
 - type: entity
   parent: DrinkBaseMug

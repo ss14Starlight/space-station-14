@@ -1301,29 +1301,226 @@ doc-text-printer-enemy-of-corporation-designation =
 doc-text-printer-borgification-consent-form =
                              [head=3]NT-CC Consortium Services[/head]
 
-                   [center][color=#1f75bb][italic][bold]   OFFICIAL NANOTRASEN FORM[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-    ⠀⠀             [bold]NanoTrasen™ Cyborg Encasement Agreement[/bold]
-    ────────────────────────────────────────
-    This SERVICE AGREEMENT is made and entered into this [datetime] by and between the NT-CC Consortium, registered in the Trans-Solar Federation, and [signature], resident of [form] (the customer).
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+     ────────────────────────────────────────
+    ⠀⠀                 [bold]CHEMICAL CONTRABAND FORM[/bold]
+     ────────────────────────────────────────
+    Date and Time: [datetime]
+     Document Compiler: [signature]
 
-    WHEREBY the Customer wishes to encase their central nervous system into a NanoTrasen™ Brand Cerebral Yoking Device (CYD) for the purpose of bio-transference to a NanoTrasen Cyborg™ chassis.
+     I, [signature], authorize the storage of the following contraband chemicals, in the listed quantities:
+    - [form]
+    - [form]
+    - [form]
+    - [form]
+    - [form]
+    - [form]
 
-    WHEREBY the Customer hereby acknowledges that, in lieu of normal payment, they will be required to work for the NT-CC Consortium in their new form for a minimum of 2 years, at a location of the Consortium's choosing.
+     Stored Location: [form]
+     ────────────────────────────────────────
+    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
-    WHEREBY the Customer hereby acknowledges that the NT-CC Consortium reserves the rights to extend this work-duration to cover any damages, costs of transport, equipment upgrades necessary and charge of the chassis while on Consortium property.
+doc-text-printer-cargo-shuttle-depature-form =
+                              [head=3]NT-CC Consortium Services[/head]
 
-    WHEREBY the Customer hereby consents to being subjected to a CYD-enforced 'law-set', designed to maximize the rate and efficiency at which the Customer is able to repay what they owe.
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+     ────────────────────────────────────────
+    ⠀⠀                 [bold]CARGO SHUTTLE DEPARTURE FORM[/bold]
+     ──────────────────────────────────────
+    Due to recent changes in logistics, ownership of the Automated Trade Station (ATS) is now under Central Command operation. All flights to the ATS must be logged before departure.
 
-    WHEREBY the Customer hereby surrenders to NanoTrasen the rights to produce and wholly own descendant consciousnesses from the Customer's mind, for use in Positronic Brains or AI cores.
+    - [signature] [datetime]
+    - [signature] [datetime]
+    - [signature] [datetime]
+    - [signature] [datetime]
+    - [signature] [datetime]
+    - [signature] [datetime]
+    - [signature] [datetime]
+    - [signature] [datetime]
+    - [signature] [datetime]
+    - [signature] [datetime]
 
-    WHEREBY the Customer acknowledges that, following the end of this contract, they are bound by the NanoTrasen Cyborg Subscription Contract unto death or removal from their NanoTrasen Cyborg™ chassis.
+     ────────────────────────────────────────
 
-    WHEREBY the NT-CC Consortium releases non-essential assistant personnel from Clause 6 of their Employment Contract, in exchange for the above-stated terms.
+doc-text-printer-anomaly-report =
+                             [head=3]NT-CC Consortium Services[/head]
 
-    Procedure approved by: (Name + Position): [signature]
+                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ─────────────────────────────────────────
+   ⠀⠀                       [bold]ANOMALY REPORT[/bold]
+    ─────────────────────────────────────────
+    Date and Time: [datetime]
+    Document Compiler: [signature]
 
-   ⠀ [italic]This procedure can only be approved by a[/italic]
-   ⠀ [italic]NanoTrasen™ Certified Roboticist or CMO.[/italic]
-    ────────────────────────────────────────
+    Type of anomaly: [form]
+    Location: [form]
+
+    Particle Responses
+    Dangerous: [form]
+    Unstable: [form]
+    Containment: [form]
+    Transformation: [form]
+
+    Anomaly status: [form]
+    Behavior deviations: [form]
+
+    Additional notes: [form]
+
+    ─────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+doc-text-printer-syndicate-recruitment-offer =
+                                 [color=#ff0000]╔══════════════════╗
+                                 ║▄█▀░██████████░▀█▄║
+                                 ║██░░████▄▄░░░░░░██║
+                                 ║██░░░░▀▀████▄▄░░██║
+                                 ║██░░░░░░░░▀▀██░░██║
+                                 ║▀█▄░██████████░▄█▀║
+                                 ╚══════════════════╝
+                 [head=2][bold]SYNDICATE RECRUITMENT OFFER[/bold][/head]
+     ══════════════════════════════════════════ [/color]
+     [color=#FF0000][head=3]AN INVITATION TO BE MORE[/head][/color]
+     Are you tired of being just another cog in Nanotrasen's profit machine? Do you look at the stars and see chains instead of freedom? The Syndicate sees your potential. We offer purpose beyond paperwork, power beyond petty station politics, and payment that actually reflects your worth.
+     
+     [color=#FF0000][head=3]WHAT WE OFFER[/head][/color]
+     - [bold]Meaningful Compensation:[/bold] A share of the spoils, not a stagnant salary.
+     - [bold]Advanced Technology:[/bold] Equipment Nanotrasen hoards for their elite.
+     - [bold]Real Autonomy:[/bold] Make decisions that matter, not just follow corporate policy.
+     - [bold]A Family:[/bold] Brothers and sisters united against corporate oppression.
+     - [bold]A Future:[/bold] One where you're not disposable.
+     
+     [color=#FF0000][head=3]THE PROCESS[/head][/color]
+     [bold]Step 1 - The Agreement:[/bold] Sign below. Your current shift continues as normal.
+     [bold]Step 2 - The Evaluation:[/bold] We observe. We assess. We plan.
+     [bold]Step 3 - The Briefing:[/bold] After shift end, secure communication. Your first mission details.
+     [bold]Step 4 - The Awakening:[/bold] Your first real paycheck. Your new life begins.
+     
+     [color=#FF0000][head=3]YOUR SAFETY & OUR DISCRETION[/head][/color]
+     Your recruitment is [bold]COMPLETELY COVERT[/bold]. No action will be taken, no contact made, and no mission assigned until [bold]AFTER YOUR CURRENT SHIFT ENDS[/bold] and you are safely off-station. This protects you during the vulnerable transition period. Finish your day. Clock out. Then begin your real work.
+     
+     [color=#FF0000]══════════════════════════════════════════[/color]
+     
+     [bold]By signing this I accept this offer. I am ready for more than this station. I am ready to join the Syndicate.[/bold]
+     
+     [mono]YOUR NEW LIFE BEGINS AFTER SHIFT // GLORY TO THE SYNDICATE[/mono]
+     
+     
+     
+     [color=#ff0000]══════════════════════════════════════════
+                          [mono]DEATH TO NANOTRASEN
+                       GLORY TO THE SYNDICATE[/mono][/color]
+
+doc-text-printer-syndicate-operation-takeover =
+                                 [color=#ff0000]╔══════════════════╗
+                                 ║▄█▀░██████████░▀█▄║
+                                 ║██░░████▄▄░░░░░░██║
+                                 ║██░░░░▀▀████▄▄░░██║
+                                 ║██░░░░░░░░▀▀██░░██║
+                                 ║▀█▄░██████████░▄█▀║
+                                 ╚══════════════════╝
+                            [head=2]SYNDICATE OPERATION[/head]
+                                         [head=2]"TAKEOVER"[/head]
+                   [head=3][mono]SYNDICATE HIGH-COMMAND CLASSIFIED[/mono][/head]
+     [head=3]///////////////////////////////////////////////////[/head]
+     
+     ──────────────────────────────────────────
+                                [head=2]PRIMARY OBJECTIVE(S)[/head][/color]
+     • You are to recruit from within Nanotrasen's internal staffing and bring in as many new recruits as possible.
+     
+     [color=#ff0000]─────────────────────────────────────────[/color]
+     
+     [color=#ff0000][head=2]PHASE 1: ORGANIZE[/head][/color]
+     • Ensure that your on-station team understands the point of this mission.
+     • Provide roles to each team member so that each individual has a clear understanding of their tasks.
+     
+     [color=#ff0000][head=2]PHASE 2: RECRUIT[/head][/color]
+     • Interact amicably with Nanotrasen crew members to show you are a trustworthy, friendly individual.
+     • Plant seeds of doubt in their mind about Nanotrasen and it's destructive presence in our galaxies.
+     • Pass out the Syndicate Recruitment Forms and speak positively about any and all Syndicate activities.
+     
+     [color=#ff0000][head=2]PHASE 3: EVACUATE[/head][/color]
+     • Evacuate to Central Command as normal. We will be sending an undercover team to pick up newly Syndicate aligned individuals. You will not be joining us unless you feel that Nanotrasen has suspicicions of your activities on station.
+     
+     [color=#ff0000]══════════════════════════════════════════
+                          [mono]DEATH TO NANOTRASEN
+                       GLORY TO THE SYNDICATE[/mono][/color]
+
+doc-text-printer-syndicate-operation-borgification =
+                                 [color=#ff0000]╔══════════════════╗
+                                 ║▄█▀░██████████░▀█▄║
+                                 ║██░░████▄▄░░░░░░██║
+                                 ║██░░░░▀▀████▄▄░░██║
+                                 ║██░░░░░░░░▀▀██░░██║
+                                 ║▀█▄░██████████░▄█▀║
+                                 ╚══════════════════╝
+                            [head=2]SYNDICATE OPERATION[/head]
+                                   [head=2]"BORGIFICATION"[/head]
+                   [head=3][mono]SYNDICATE HIGH-COMMAND CLASSIFIED[/mono][/head]
+     [head=3]///////////////////////////////////////////////////[/head]
+     
+     ──────────────────────────────────────────
+     [bold]In the ongoing fight to rightfully regain our lost territory, we have received countless losses to our available supply of working cyborgs. Syndicate High-Command humbly requests your aid in finding willing participants to join our cyborg forces. We will accept all willing sapient entities, regardless of bodily or mental strength.[/bold]
+     ──────────────────────────────────────────
+     
+                                 [head=2]PATIENT STATEMENT[/head][/color]
+     Based upon informed consent, I, the undersigned, hereby direct that borgification will be underway within one week of this shift's closure. The process of borgification is irreversible, and I yield any claims to current or future ownership of a biological form.
+     
+     [bold]Applicable Signature:[/bold] [signature]
+     
+     [color=#ff0000]─────────────────────────────────────────
+     [bold]BY STAMPING BELOW, YOU HEREBY CERTIFY:[/color]
+     1. You have informed the patient of the implications of this order.
+     2. You witnessed the signing of the document by the patient.
+     3. You vouch for the authenticity of the signature and document.[/bold]
+     
+     [italic]               When complete, please stamp in the area below
+     
+     
+     
+     [color=#ff0000]══════════════════════════════════════════
+                          [mono]DEATH TO NANOTRASEN
+                       GLORY TO THE SYNDICATE[/mono][/color]
+
+doc-text-printer-official-syndicate-communication =
+                                   [color=#ff0000]╔══════════════════╗
+                                   ║▄█▀░██████████░▀█▄║
+                                   ║██░░████▄▄░░░░░░██║
+                                   ║██░░░░▀▀████▄▄░░██║
+                                   ║██░░░░░░░░▀▀██░░██║
+                                   ║▀█▄░██████████░▄█▀║
+                                   ╚══════════════════╝
+                                 [head=2]OFFICIAL SYNDICATE[/head]
+                                    [head=2]COMMUNICATION[/head]
+     
+     [bold]TO:[/bold][/color] [form]
+     [color=#ff0000][bold]FROM:[/bold][/color] [signature]
+     [color=#ff0000][bold]SUBJECT:[/bold][/color] [form]
+     [color=#ff0000]══════════════════════════════════════════[/color]
+     
+     [form]
+     
+     [color=#ff0000]══════════════════════════════════════════
+                          [mono]DEATH TO NANOTRASEN
+                       GLORY TO THE SYNDICATE[/mono][/color]
+
+doc-text-printer-syndicate-did-you-know =
+                                   [color=#ff0000]╔══════════════════╗
+                                   ║▄█▀░██████████░▀█▄║
+                                   ║██░░████▄▄░░░░░░██║
+                                   ║██░░░░▀▀████▄▄░░██║
+                                   ║██░░░░░░░░▀▀██░░██║
+                                   ║▀█▄░██████████░▄█▀║
+                                   ╚══════════════════╝
+                                 [head=2]OFFICIAL SYNDICATE[/head]
+                                    [head=2]COMMUNICATION[/head]
+     
+                                            [head=3]DID YOU KNOW?[/head]
+     ══════════════════════════════════════════[/color]
+     Members of the Galactic Syndicate boast a 131.2% rating on multiple happiness scale rating indices! That's up 10.1% in the past three months, and up 31.2% over the past two years.
+     
+     In a recent poll, 89% of Nanotrasen workers discussed their disappointment in policies and benefit structure. The remaining 11% were too busy working to state their own personal dissatisfaction.
+     
+     Do you want to be happy, or do you want to continue down the path of being overworked and underappreciated, paid in the galactic equivalent of toy money?
+     [color=#ff0000]══════════════════════════════════════════
+                          [mono]DEATH TO NANOTRASEN
+                       GLORY TO THE SYNDICATE[/mono][/color]

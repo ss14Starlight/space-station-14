@@ -19,3 +19,9 @@
     ToolboxRoboticist: 1 # Starlight
     ClothingMaskRoboticist: 1 # Starlight
     ToyFigurineRoboticist: 1 # Starlight
+  emaggedInventory: # Blimpuf
+    ClothingMaskGasSyndicate: 1 # Blimpuf
+    ClothingHeadHatSyndie: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf
+    ClothingUniformJumpskirtOperative: 1 # Blimpuf
+    ClothingUniformJumpsuitOperative: 1 # Blimpuf

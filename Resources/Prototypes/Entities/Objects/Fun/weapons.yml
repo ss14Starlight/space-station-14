@@ -332,6 +332,16 @@
       types:
         Heat: 0.3
 
+# Blimpuf - Rainbow Toy Sword
+- type: entity
+  parent: ToySword
+  id: RainbowToySword
+  name: rainbow toy sword
+  description: An even newer Sandy-Cat plastic sword! Comes with realistic sound and full rotating rainbow coloration! Looks almost like the real thing!
+  components:
+    - type: RgbLightController
+      cycleRate: 1
+
 - type: entity
   parent: [ BaseItem, BaseToySword ]
   id: CardSword

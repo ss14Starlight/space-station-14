@@ -17,4 +17,9 @@
     ClothingOuterWinterHydro: 2
   contrabandInventory:
     ToyFigurineBotanist: 1
-
+  emaggedInventory: # Blimpuf
+    ClothingEyesGlassesChemical: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf
+    ClothingUniformJumpskirtOperative: 1 # Blimpuf
+    ClothingUniformJumpsuitOperative: 1 # Blimpuf
+    ClothingNeckScarfStripedSyndieGreen: 1 # Blimpuf

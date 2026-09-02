@@ -558,3 +558,50 @@
   components:
     - type: Paper
       content: doc-text-printer-endymion-memorial
+
+# Blimpuf Emag Additions
+
+- type: entity
+  parent: Paper
+  id: PrintedDocumentSyndicateRecruitmentOffer
+  name: Syndicate Recruitment Offer
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-syndicate-recruitment-offer
+
+- type: entity
+  parent: Paper
+  id: PrintedDocumentSyndicateOperationTakeover
+  name: Syndicate Operation - Takeover
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-syndicate-operation-takeover
+
+- type: entity
+  parent: Paper
+  id: PrintedDocumentSyndicateOperationBorgification
+  name: Syndicate Operation - Borgification
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-syndicate-operation-borgification
+
+- type: entity
+  parent: Paper
+  id: PrintedDocumentOfficialSyndicateCommunication
+  name: Official Syndicate Communication
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-official-syndicate-communication
+
+- type: entity
+  parent: Paper
+  id: PrintedDocumentSyndicateDidYouKnow
+  name: Did You Know?
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-syndicate-did-you-know

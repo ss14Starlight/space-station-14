@@ -33,3 +33,7 @@
     CandyBowl: 1
     BarSpoon: 2
     DrinkShaker: 2
+  emaggedInventory: # Blimpuf
+    ThrowingKnife: 1 # Blimpuf
+    CigaretteSyndicate: 2 # Blimpuf
+    DrinkMugRedSyndiePax: 1 # Blimpuf - it might be too much to put a free 10 units of liquid pax in a mug. It doesn't last super long, though.

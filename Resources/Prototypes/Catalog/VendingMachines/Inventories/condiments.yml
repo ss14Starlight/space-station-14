@@ -23,3 +23,7 @@
     FoodShakerPepper: 1
     FoodCondimentBottleKetchup: 1
     ReagentContainerMayo: 1
+  emaggedInventory: # Blimpuf
+    OminousPill: 1 # Blimpuf
+    FoodCondimentPacketHottersauce: 2 # Blimpuf
+    FoodCondimentPacketColdersauce: 2 # Blimpuf

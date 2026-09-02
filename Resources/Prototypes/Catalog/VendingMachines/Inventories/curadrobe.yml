@@ -18,4 +18,6 @@
     PrinterDocFlatpack: 2
   contrabandInventory:
     ToyFigurineLibrarian: 1
-
+  emaggedInventory: # Blimpuf
+    HeavyCane: 1 # Blimpuf
+    SharpPaper: 2 # Blimpuf

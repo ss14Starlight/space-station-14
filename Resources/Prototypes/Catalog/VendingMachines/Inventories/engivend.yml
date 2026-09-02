@@ -25,3 +25,7 @@
   contrabandInventory:
     CowToolboxFilled: 1
     DrinkBeerCan: 3
+  emaggedInventory: # Blimpuf
+    ClothingMaskGasSyndicate: 1 # Blimpuf
+    ClothingHandsGlovesConducting: 1 # Blimpuf
+    BaseDoorElectronicsSyndicate: 1 # Blimpuf

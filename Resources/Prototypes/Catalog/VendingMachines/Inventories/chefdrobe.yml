@@ -16,3 +16,8 @@
     ClothingBeltChef: 2
   contrabandInventory:
     ToyFigurineChef: 1
+  emaggedInventory: # Blimpuf
+    ClothingHeadHatChefLarge: 1 # Blimpuf
+    ClothingOuterWinterSyndieCap: 1 # Blimpuf
+    ClothingUniformJumpskirtOperative: 1 # Blimpuf
+    ClothingUniformJumpsuitOperative: 1 # Blimpuf

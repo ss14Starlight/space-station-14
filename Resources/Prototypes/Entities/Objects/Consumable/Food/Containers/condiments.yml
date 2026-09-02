@@ -164,6 +164,23 @@
     maxFillLevels: 2
     fillBaseName: packet-trans-
 
+# Blimpuf - Emagged Condiment Station
+- type: entity
+  parent: FoodCondimentPacketColdsauce
+  id: FoodCondimentPacketColdersauce
+  name: coldersauce
+  description: Coldersauce. Leaves the tongue completely, entirely numb in its passage.
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 10
+          reagents:
+            - ReagentId: Coldsauce
+              Quantity: 7
+            - ReagentId: Fresium
+              Quantity: 3
+
 - type: entity
   parent: BaseFoodCondimentPacketDrink
   id: FoodCondimentPacketHorseradish
@@ -199,6 +216,23 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 2
     fillBaseName: packet-trans-
+
+# Blimpuf - Emag Condiment Station
+- type: entity
+  parent: FoodCondimentPacketHotsauce
+  id: FoodCondimentPacketHottersauce
+  name: hottersauce
+  description: You can TASTE the stomach ulcers now, guaranteed!
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 10
+          reagents:
+            - ReagentId: Hotsauce
+              Quantity: 8
+            - ReagentId: Phlogiston
+              Quantity: 2
 
 - type: entity
   parent: BaseFoodCondimentPacketDrink
