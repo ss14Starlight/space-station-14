@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Hands will no longer sometimes display in the wrong order.
-    type: Fix
-  id: 407704
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
   - message: Fixed construction preview ghost sprite offset not matching the original entity.
     type: Fix
   id: 407705
@@ -2799,4 +2792,11 @@ Entries:
   id: 408103
   time: '2026-09-03T21:14:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5951
+- author: Limerent-Sun
+  changes:
+  - message: NPCs will no longer seek out liquids to satisfy hunger.
+    type: Fix
+  id: 408104
+  time: '2026-09-03T21:35:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5966
 Order: -1
