@@ -1,13 +1,6 @@
 Entries:
 - author: OMEGA
   changes:
-  - message: The Chief Engineer's access configurator now starts in their toolbelt instead of their locker.
-    type: Tweak
-  id: 407655
-  time: '2026-08-16T15:53:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5638
-- author: OMEGA
-  changes:
   - message: Removed duplicate items from the Chief Engineer's locker.
     type: Remove
   id: 407656
@@ -2799,4 +2792,11 @@ Entries:
   id: 408054
   time: '2026-09-02T22:50:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5950
+- author: walksanatora
+  changes:
+  - message: Remix admeme station no-longer has a ghost of dev station providing unlimited captain slots and a 2nd arrivals shuttle.
+    type: Fix
+  id: 408055
+  time: '2026-09-03T01:39:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5914
 Order: -1
