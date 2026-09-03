@@ -7,7 +7,7 @@ namespace Content.Shared.Chemistry
     /// <summary>
     /// This class holds constants that are shared between client and server.
     /// </summary>
-    public sealed class SharedChemMaster
+    public sealed partial class SharedChemMaster
     {
         public const uint PillTypes = 20;
         public const string BufferSolutionName = "buffer";
@@ -90,25 +90,6 @@ namespace Content.Shared.Chemistry
         }
     }
 
-    //Starlight-start
-    [Serializable, NetSerializable]
-    public sealed class ChemMasterCreatePatchesMessage : BoundUserInterfaceMessage
-    {
-        public readonly uint Dosage;
-        public readonly uint Number;
-        public readonly string Label;
-        public readonly string? ContainerLabel;
-
-        public ChemMasterCreatePatchesMessage(uint dosage, uint number, string label, string containerLabel)
-        {
-            Dosage = dosage;
-            Number = number;
-            Label = label;
-            ContainerLabel = containerLabel;
-        }
-    }
-    //Starlight-end
-
     [Serializable, NetSerializable]
     public sealed class ChemMasterOutputToBottleMessage : BoundUserInterfaceMessage
     {
@@ -127,13 +108,6 @@ namespace Content.Shared.Chemistry
     {
         public readonly ChemMasterDrawSource DrawSource = drawSource;
     }
-
-    // Starlight-start: Plumbing valve toggle
-    [Serializable, NetSerializable]
-    public sealed class ChemMasterToggleValveMessage : BoundUserInterfaceMessage
-    {
-    }
-    // Starlight-end
 
     public enum ChemMasterMode
     {
@@ -188,7 +162,7 @@ namespace Content.Shared.Chemistry
     /// Information about the capacity and contents of a container for display in the UI
     /// </summary>
     [Serializable, NetSerializable]
-    public sealed class ContainerInfo
+    public sealed partial class ContainerInfo
     {
         /// <summary>
         /// The container name to show to the player
@@ -212,12 +186,6 @@ namespace Content.Shared.Chemistry
         public List<(string Id, FixedPoint2 Quantity)>? PillEntities { get; init; }
 
         /// <summary>
-        /// A list of the patch entities and their sizes within the container
-        /// STARLIGHT: Added specifically for patches
-        /// </summary>
-        public List<(string Id, FixedPoint2 Quantity)>? PatchEntities { get; init; } // Starlight
-
-        /// <summary>
         /// The label of the container, if one exists at all, to allow us to change the label of the container separate from the pills/patches.
         /// STARLIGHT:  Affects both pills and patches.
         /// </summary>
@@ -236,7 +204,7 @@ namespace Content.Shared.Chemistry
     }
 
     [Serializable, NetSerializable]
-    public sealed class ChemMasterBoundUserInterfaceState : BoundUserInterfaceState
+    public sealed partial class ChemMasterBoundUserInterfaceState : BoundUserInterfaceState
     {
         public readonly ContainerInfo? InputContainerInfo;
         public readonly ContainerInfo? OutputContainerInfo;
@@ -256,15 +224,9 @@ namespace Content.Shared.Chemistry
 
         public readonly uint PillDosageLimit;
 
-        public readonly uint PatchDosageLimit; //Starlight-edit
-
         public readonly bool UpdateLabel;
 
         public readonly ChemMasterDrawSource DrawSource;
-
-        // Starlight-start: Plumbing valve
-        public readonly bool ValveOpen;
-        // Starlight-end
 
         public ChemMasterBoundUserInterfaceState(
             ChemMasterMode mode, ChemMasterSortingType sortingType, ContainerInfo? inputContainerInfo, ContainerInfo? outputContainerInfo,
@@ -291,17 +253,5 @@ namespace Content.Shared.Chemistry
     public enum ChemMasterUiKey
     {
         Key
-    }
-
-    /// TRIESTE SPECIFIC
-    [Serializable, NetSerializable]
-    public sealed class ChemMasterSetTransferAmountMessage : BoundUserInterfaceMessage
-    {
-        public ChemMasterReagentAmount Amount;
-
-        public ChemMasterSetTransferAmountMessage(ChemMasterReagentAmount amount)
-        {
-            Amount = amount;
-        }
     }
 }
