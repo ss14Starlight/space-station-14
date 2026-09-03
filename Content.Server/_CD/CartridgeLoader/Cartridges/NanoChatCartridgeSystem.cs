@@ -542,10 +542,10 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
 
         _nanoChat.AddMessage((recipient, recipient.Comp), recipientNumber, message with { DeliveryFailed = false });
 
-        if (recipient.Comp.IsClosed || _nanoChat.GetCurrentChat((recipient, recipient.Comp)) != recipientNumber)
-            HandleUnreadNotification(recipient, message, recipientNumber);
+        if (TryComp<CartridgeComponent>(recipient, out var cartridge) && cartridge.LoaderUid is {} pda && _nanoChat.GetCurrentChat((recipient, recipient.Comp)) != recipientNumber)
+            HandleUnreadNotification(recipient, message, pda);
 
-        var msgEv = new NanoChatMessageReceivedEvent(recipient);
+        var msgEv = new NanoChatMessageReceivedEvent(recipient, message);
         RaiseLocalEvent(ref msgEv);
         UpdateUIForCard(recipient);
     }
@@ -613,10 +613,12 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     /// <summary>
     ///     Handles message notifications and updates unread status.
     /// </summary>
-    private void HandleUnreadNotification(Entity<NanoChatCardComponent> recipient, NanoChatMessage message, EntityUid pda)
+    private void HandleUnreadNotification(Entity<NanoChatCardComponent> recipient,
+        NanoChatMessage message, EntityUid pda)
     {
         // Get sender name from contacts or fall back to number
         var recipients = _nanoChat.GetRecipients((recipient, recipient.Comp));
+        var senderNumber = message.SenderId;
         var senderName = recipients.TryGetValue(senderNumber, out var senderRecipient)
             ? senderRecipient.Name
             : $"#{senderNumber:D4}"; // Funky Station - senderNumber is used now in order to support group chats.
@@ -629,31 +631,22 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
                 senderRecipient with { HasUnread = true });
 
         // Temporary local to avoid trouble with read-only access; Contains doesn't modify the collection
-        HashSet<uint> mutedChats = recipient.Comp.MutedChats;
-        if (recipient.Comp.NotificationsMuted ||
-            mutedChats.Contains(senderNumber) || // Funky Station - senderNumber is used now in order to support group chats.
-            recipient.Comp.PdaUid is not { } pdaUid ||
-            !TryComp<CartridgeLoaderComponent>(pdaUid, out var loader) ||
-            // Don't notify if the recipient has the NanoChat program open with this chat selected.
-            (hasSelectedCurrentChat &&
-                _ui.IsUiOpen(pdaUid, PdaUiKey.Key) &&
-                HasComp<NanoChatCartridgeComponent>(loader.ActiveProgram)))
+        if (recipient.Comp.NotificationsMuted)
             return;
 
         var title = "";
         if (!string.IsNullOrEmpty(senderRecipient.JobTitle))
         {
             var titleRecipient = SharedNanoChatSystem.Truncate(Loc.GetString("nano-chat-new-message-title-recipient",
-                ("sender", senderName), ("jobTitle", senderRecipient.JobTitle)), NotificationTitleMaxLength, " \\[...\\]");
+                ("sender", senderName), ("jobTitle", senderRecipient.JobTitle)), NotificationMaxLength, " \\[...\\]");
             title = Loc.GetString("nano-chat-new-message-title", ("sender", titleRecipient));
         }
         else
             title = Loc.GetString("nano-chat-new-message-title", ("sender", senderName));
 
-        _cartridge.SendNotification(pdaUid,
+        _cartridge.SendNotification(pda,
             title,
-            Loc.GetString("nano-chat-new-message-body", ("message", SharedNanoChatSystem.Truncate(message.Content, NotificationMaxLength, " [...]"))),
-            loader);
+            Loc.GetString("nano-chat-new-message-body", ("message", SharedNanoChatSystem.Truncate(message.Content, NotificationMaxLength, " [...]"))));
     }
 
     /// <summary>
@@ -792,12 +785,6 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
             return;
 
         var name = msg.Content;
-        if (!string.IsNullOrWhiteSpace(name))
-        {
-            name = name.Trim();
-            if (name.Length > IdCardConsoleComponent.MaxFullNameLength)
-                name = name[..IdCardConsoleComponent.MaxFullNameLength];
-        }
 
         // Generate a unique group number (surely unique I actually have no idea how to generate good unique numbers.)
         var groupNumber = (uint) (HashCode.Combine(card.Comp.Number.Value, _timing.CurTime.Ticks) & 0x7FFFFFFF);
