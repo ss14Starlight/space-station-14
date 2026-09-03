@@ -210,10 +210,3 @@
   components:
   - type: Contraband
     allowedDepartments: [ Security, Science, Command, Representatives ]
-
-- type: entity
-  id: BaseETOContraband
-  abstract: true
-  components:
-  - type: Contraband
-    severity: ETO

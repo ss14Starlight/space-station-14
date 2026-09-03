@@ -466,9 +466,6 @@
   id: MagazinePistolImprovised
 
 - type: Tag
-  id: MagazinePistolSubMachineGunBottomMountedDD
-
-- type: Tag
   id: MagazinePistolSubMachineGunSP
 
 - type: Tag
