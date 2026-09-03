@@ -762,6 +762,9 @@
   id: TiderAnvilParts
 
 - type: Tag
+  id: TrashBagBlue
+
+- type: Tag
   id: UnDissolvable
 
 - type: Tag
