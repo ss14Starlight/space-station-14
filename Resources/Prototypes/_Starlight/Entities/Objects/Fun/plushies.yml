@@ -293,7 +293,7 @@
   parent: BaseLizardPlushie
   id: PlushieVictorJr #ty flamey!
   name: Victor Jr plushie
-  description: Most likely to prioritize a mouses life over yours. Yip!
+  description: Junior's marketable attempt at making chefs reconsider using kobolds as food source. It looks tasty tho...
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/victorjr_plushie.rsi
@@ -327,7 +327,9 @@
     juiceSolution:
       reagents:
       - ReagentId: JuiceThatMakesYouWeh
-        Quantity: 30
+        Quantity: 15
+      - ReagentId: Saline
+        Quantity: 15
   - type: SolutionContainerManager
     solutions:
       food:
@@ -335,7 +337,7 @@
         reagents:
         - ReagentId: Fiber
           Quantity: 10
-        - ReagentId: JuiceThatMakesYouWeh
+        - ReagentId: Saline
           Quantity: 10
   - type: Clothing
     quickEquip: false
