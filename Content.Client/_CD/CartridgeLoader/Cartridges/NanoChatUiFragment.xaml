@@ -202,25 +202,6 @@
                                         Stretch="KeepAspectCentered"
                                         MinSize="18 18" />
                         </Button>
-                        <Button Name="MuteChatButton"
-                                MaxSize="32 32"
-                                StyleClasses="OpenBoth"
-                                Margin="0 0 4 0"
-                                ToolTip="{Loc nano-chat-toggle-mute-chat}">
-                            <Control HorizontalExpand="True" VerticalExpand="True">
-                                <TextureRect Name="BellIconContact"
-                                             StyleClasses="ButtonSquare"
-                                             TexturePath="/Textures/_DV/Interface/VerbIcons/bell.svg.png"
-                                             Stretch="KeepAspectCentered"
-                                             MinSize="18 18" />
-                                <TextureRect Name="BellMutedIconContact"
-                                             StyleClasses="ButtonSquare"
-                                             TexturePath="/Textures/_DV/Interface/VerbIcons/bell_muted.png"
-                                             Stretch="KeepAspectCentered"
-                                             Visible="False"
-                                             MinSize="18 18" />
-                            </Control>
-                        </Button>
                         <!-- Funky Station - Group Chats (Invite button) -->
                         <Button Name="InviteToGroupButton"
                                 MaxSize="32 32"

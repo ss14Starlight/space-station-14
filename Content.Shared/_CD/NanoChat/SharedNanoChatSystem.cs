@@ -32,7 +32,6 @@ public abstract partial class SharedNanoChatSystem : EntitySystem
     }
 
     // Starlight Start
-    public static string Truncate(string? text, int maxLength, string overflowText = "...")
     /// <summary>
     ///     Helper Method for truncating a string to maximum length
     /// </summary>
