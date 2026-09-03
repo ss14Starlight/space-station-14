@@ -1,3 +1,5 @@
+# !! TRIESTE MODIFIED !! #
+
 - type: vendingMachineInventory
   id: ChemVendInventory
   startingInventory:

@@ -1,4 +1,6 @@
-﻿- type: entity
+﻿# !! TRIESTE MODIFIED !! #
+
+- type: entity
   id: AutolatheMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: autolathe machine board
@@ -549,8 +551,8 @@
 - type: entity
   id: ChemDispenserMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: chemical dispenser machine board # TRIESTE: "chem dispenser" -> "chemical dispenser
-  description: A machine printed circuit board for a chemical dispenser. # TRIESTE: "chem dispenser" -> "chemical dispenser"
+  name: chemical dispenser machine board                                  # TRIESTE: "chem dispenser" -> "chemical dispenser
+  description: A machine printed circuit board for a chemical dispenser.  # TRIESTE: "chem dispenser" -> "chemical dispenser"
   components:
     - type: Sprite
       state: medical
