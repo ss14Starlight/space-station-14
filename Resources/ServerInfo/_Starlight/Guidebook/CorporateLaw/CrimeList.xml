@@ -901,7 +901,7 @@
     </ColorBox>
     <ColorBox Color="#4d2e2e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To kill three or more sentient entitys with malicious intent. This only applies when there have been multiple killings with intention.
+        To kill three or more sentient entities with malicious intent. This only applies when there have been multiple killings with intention.
       </Box>
     </ColorBox>
   </Table>
