@@ -27,16 +27,17 @@
             ResearchDirector: [ 1, 1 ]
             HeadOfSecurity: [ 1, 1 ]
             Quartermaster: [ 1, 1 ]
-            #service (15 - 17)
+            #service (17)
             Bartender: [ 2, 2 ]
-            Botanist: [ 2, 3 ]
+            Botanist: [ 2, 2 ]
             Chef: [ 2, 2 ]
             Janitor: [ 3, 3 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 2, 2 ]
             Performer: [ 2, 2 ]
-            Reporter: [ 2, 3 ]
+            Reporter: [ 2, 2 ]
+            RadioHost: [ 2, 2 ]
             Lawyer: [ 1, 1 ]
             #engineering (8)
             AtmosphericTechnician: [ 4, 4 ]
