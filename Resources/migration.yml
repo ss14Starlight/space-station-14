@@ -816,3 +816,7 @@ OrganSkeletonPersonArmRight: RightArmSkeleton
 HealiumCanister: ZXACanister
 HealiumCanisterEmpty: ZXACanisterEmpty
 HealiumTankFilled: ZXATankFilled
+
+# 2026-03-28
+# The great solutions YAML nuke
+FoodMeatSnail: MobSnail

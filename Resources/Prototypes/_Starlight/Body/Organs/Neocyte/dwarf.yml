@@ -29,15 +29,10 @@
     sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
     state: stomach
   - type: Organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 75
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach75
   - type: Stomach
     specialDigestible:
       tags:

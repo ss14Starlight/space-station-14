@@ -23,17 +23,13 @@
   - type: Item
     size: Small
     heldPrefix: stomach
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Metabolizer
     updateInterval: 0.75
+
 
 - type: entity
   id: OrganLagomorphHeart

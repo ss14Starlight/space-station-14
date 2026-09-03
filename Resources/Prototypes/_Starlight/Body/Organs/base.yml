@@ -1,3 +1,169 @@
+# Shared organ solutions. Species only need their own prototype when the contents differ.
+- type: entity
+  parent: Solution
+  id: SolutionOrganNutriment
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganSlime
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Slime
+        Quantity: 10
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganSap
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Sap
+        Quantity: 10
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganFoodMeat
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganFoodCellulose
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Cellulose
+        Quantity: 5
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganFoodSlime
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Slime
+        Quantity: 5
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganFoodGreyMatter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: GreyMatter
+        Quantity: 5
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganFoodGreyMatterLarge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: GreyMatter
+        Quantity: 20
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganLung
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: Lung
+    solution:
+      maxVol: 100
+      canReact: false
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganStomach30
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 30
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganStomach40
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 40
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganStomach50
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 50
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganStomach75
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 75
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganStomach80
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 80
+
 - type: entity
   id: BaseOrganBrain
   abstract: true
@@ -17,17 +183,10 @@
     tags:
       - Meat
   - type: OrganBrain
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: GreyMatter
-          Quantity: 20
+    - SolutionOrganNutriment
+    - SolutionOrganFoodGreyMatterLarge
   - type: FlavorProfile
     flavors:
       - people
@@ -36,6 +195,7 @@
       Burger: Brain
       Taco: Brain
   - type: ActiveInputMover # Starlight
+
 
 - type: entity
   id: BaseOrganEyes

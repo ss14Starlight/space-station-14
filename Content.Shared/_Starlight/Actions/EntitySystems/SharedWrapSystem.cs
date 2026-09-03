@@ -4,14 +4,16 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
-using Content.Shared.Kitchen.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Humanoid;
+using Content.Shared.Tools;
+using Content.Shared.Tools.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Robust.Shared.Network;
 using Content.Shared.Alert;
 using Content.Shared.Hands.EntitySystems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
 
@@ -25,6 +27,9 @@ public sealed partial class SharedWrapSystem : EntitySystem
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedToolSystem _toolSystem = default!;
+
+    private static readonly ProtoId<ToolQualityPrototype> SlicingQuality = "Slicing";
 
     public override void Initialize()
     {
@@ -57,7 +62,7 @@ public sealed partial class SharedWrapSystem : EntitySystem
     /// </summary>
     private void OnInteract(EntityUid uid, WrapEntityHolderComponent component, InteractUsingEvent args)
     {
-        if (args.Handled || !HasComp<SharpComponent>(args.Used))
+        if (args.Handled || !_toolSystem.HasQuality(args.Used, SlicingQuality))
             return;
 
         args.Handled = true;
@@ -102,7 +107,9 @@ public sealed partial class SharedWrapSystem : EntitySystem
         }
 
         var activeItem = _handsSystem.GetActiveItem(uid);
-        TimeSpan time = activeItem == null ? holderComp.UnWrapHandTime : HasComp<SharpComponent>(activeItem) ? holderComp.UnWrapItemTime : holderComp.UnWrapHandTime;
+        var time = activeItem != null && _toolSystem.HasQuality(activeItem.Value, SlicingQuality)
+            ? holderComp.UnWrapItemTime
+            : holderComp.UnWrapHandTime;
 
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, time, new UnwrapDoAfterEvent(), component.Holder.Value, component.Holder.Value)
         {

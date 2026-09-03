@@ -38,13 +38,12 @@
     tags:
     - FoodSnack
     - ReptilianFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20 # Room for extra condiments
-        reagents:
-        - ReagentId: Sugar
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 15
   - type: FlavorProfile
     flavors:
     - sweet
@@ -86,13 +85,12 @@
     size: Small
     storedRotation: -45
     storedOffset: 0,-1
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-          - ReagentId: Sugar
-            Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+        - ReagentId: Sugar
+          Quantity: 10
   - type: RefillableSolution
     solution: food
   - type: SolutionContainerVisuals
@@ -223,15 +221,14 @@
   - type: Tag
     tags:
     - FoodSnack
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Sugar
-          Quantity: 10
-        - ReagentId: Nutriment
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 10
+      - ReagentId: Nutriment
+        Quantity: 5
   - type: FlavorProfile
     flavors:
     - sweet
