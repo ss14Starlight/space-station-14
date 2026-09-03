@@ -801,6 +801,7 @@
   physicalDesc: reagent-physical-desc-cloudy
   flavor: atomicbomb
   color: "#666300"
+  flammability: 4 # Starlight, has bomb in the name and takes uranium to make
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/atomicbombglass.rsi
     state: icon_empty
@@ -821,6 +822,7 @@
   physicalDesc: reagent-physical-desc-bubbly
   flavor: b52
   color: "#664300"
+  flammability: 3 # Starlight, it's a bomber
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/b52glass.rsi
     state: icon_empty
@@ -1585,6 +1587,7 @@
   physicalDesc: reagent-physical-desc-bubbly
   flavor: irishcarbomb
   color: "#2E6671"
+  flammability: 2 # Starlight, has bomb in the name lmao
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/irishslammer.rsi
     state: icon_empty
@@ -2271,6 +2274,7 @@
   physicalDesc: reagent-physical-desc-opaque
   flavor: syndiebomb
   color: "#e3e77b"
+  flammability: 2 # Starlight, has bomb in the name lmao
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/syndicatebomb.rsi
     state: icon_empty
