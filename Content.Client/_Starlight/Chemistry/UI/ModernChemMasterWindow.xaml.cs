@@ -911,6 +911,17 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             return;
         }
 
+        // Re-add header (mirrors UpdatePanelInfo) so search doesn't hide buffer volume
+        void AddHeader(BoxContainer target)
+        {
+            var h = new BoxContainer { Orientation = LayoutOrientation.Horizontal };
+            h.AddChild(new Label { Text = $"{Loc.GetString("chem-master-window-buffer-label")} " });
+            h.AddChild(new Label { Text = $"{_lastState.BufferCurrentVolume}u", StyleClasses = { StyleClass.LabelWeak } });
+            target.AddChild(h);
+        }
+        AddHeader(BufferInfo);
+        AddHeader(BufferInfoClassic);
+
         var reagentList = new List<(ReagentId reagentId, string name, Color color, FixedPoint2 quantity)>();
         foreach (var (reagent, quantity) in _lastState.BufferReagents)
         {
