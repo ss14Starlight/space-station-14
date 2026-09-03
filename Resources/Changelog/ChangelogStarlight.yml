@@ -1,123 +1,4 @@
 Entries:
-- author: Mack
-  changes:
-  - message: Construction ghosts templates.
-    type: Add
-  id: 407657
-  time: '2026-08-16T16:24:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5649
-- author: Conflee
-  changes:
-  - message: increased Max Title Length from 25 to 35, and Max Content Length from 2048 to 3072, for News Articles.
-    type: Tweak
-  id: 407658
-  time: '2026-08-16T16:24:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5636
-- author: Johnny
-  changes:
-  - message: Added some extra spawners for mappers to use for EVA ERT.
-    type: Add
-  id: 407659
-  time: '2026-08-16T16:24:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5654
-- author: Johnny
-  changes:
-  - message: Changed the ERT chaplain to be more in line with what its meant to do.
-    type: Tweak
-  id: 407660
-  time: '2026-08-16T16:24:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5654
-- author: Johnny
-  changes:
-  - message: Changed some other loadouts slightly based off feedback.
-    type: Tweak
-  id: 407661
-  time: '2026-08-16T16:24:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5654
-- author: Johnny
-  changes:
-  - message: ERT Now actually get knives in their boots (including magboots).
-    type: Tweak
-  id: 407662
-  time: '2026-08-16T16:24:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5654
-- author: Musiklie
-  changes:
-  - message: Mumbling (ending the message with ..) will now make your text smaller.
-    type: Tweak
-  id: 407663
-  time: '2026-08-16T16:57:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5663
-- author: Common
-  changes:
-  - message: Specific accesses added for Clown and Mime.
-    type: Add
-  id: 407664
-  time: '2026-08-16T16:57:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5665
-- author: Common
-  changes:
-  - message: Change access on Clown Vend and Locker from theatre to Clown.
-    type: Tweak
-  id: 407665
-  time: '2026-08-16T16:57:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5665
-- author: Common
-  changes:
-  - message: Change access on Mime Vend and Locker from theatre to Mime.
-    type: Tweak
-  id: 407666
-  time: '2026-08-16T16:57:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5665
-- author: Conflee
-  changes:
-  - message: Added a Cat Bed, Raccoon Bed, generic Pet Bed, and 9 colored Soft Pet Beds, for more decorating options for mappers.
-    type: Add
-  id: 407667
-  time: '2026-08-16T17:31:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5666
-- author: Conflee
-  changes:
-  - message: Resprited the Dog Bed slightly to match the new Pet Beds.
-    type: Tweak
-  id: 407668
-  time: '2026-08-16T17:31:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5666
-- author: briochebear
-  changes:
-  - message: Added janitorial maid dress to janitor jumpsuit loadout.
-    type: Add
-  id: 407669
-  time: '2026-08-16T17:32:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5643
-- author: briochebear
-  changes:
-  - message: Added janitorial maid dress to service worker loadout.
-    type: Add
-  id: 407670
-  time: '2026-08-16T17:32:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5643
-- author: briochebear
-  changes:
-  - message: Added janitorial maid dress to trinkets category, under maid dresses.
-    type: Add
-  id: 407671
-  time: '2026-08-16T17:32:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5643
-- author: briochebear
-  changes:
-  - message: Janidrobe now offers the janitorial maid dress under the contraband catalogue, instead of the emagged catalogue.
-    type: Tweak
-  id: 407672
-  time: '2026-08-16T17:32:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5643
-- author: wonderfulnewworld, ItsMaitake
-  changes:
-  - message: Added Brass Walls and Reinforced Brass Walls.
-    type: Add
-  id: 407673
-  time: '2026-08-16T17:32:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5613
 - author: wonderfulnewworld, ItsMaitake
   changes:
   - message: Added Brass Windows and Reinforced Brass Windows.
@@ -2799,4 +2680,123 @@ Entries:
   id: 408056
   time: '2026-09-03T02:04:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5954
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: You can now boil snails alive in the microwave.
+    type: Add
+  id: 408057
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Blood volume has been doubled.
+    type: Tweak
+  id: 408058
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Many chef recipes have been changed so the final result better matches the ingredients put in. This means overall the nutritional value of the chef's meals have increased.
+    type: Tweak
+  id: 408059
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Many chef recipes have had their ingredients changed.
+    type: Tweak
+  id: 408060
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Most sliceable foods now give a lot more slices.
+    type: Tweak
+  id: 408061
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Reagent container sizes have been standardized, at a base of 30 units per inventory square. Most containers can now hold more than they did before.
+    type: Tweak
+  id: 408062
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Changed the size of the silver and gold beakers; they don't fit the standards of the others, since they cost credits.
+    type: Tweak
+  id: 408063
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Chemical jugs and bar jugs are now Large (2x4) items.
+    type: Tweak
+  id: 408064
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Buckets now hold 360u and are 3x4 items.
+    type: Tweak
+  id: 408065
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Nukie medical duffel bag now comes with a bicaridine jug, a mixed puncturase & tranexamic acid jug, a mixed dermaline & pyrazine jug, and a mixed saline & dexalin plus jug.
+    type: Tweak
+  id: 408066
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Most items with slicing tool quality now can be used for butchering.
+    type: Tweak
+  id: 408067
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Butchering is now predicted and called slicing!
+    type: Tweak
+  id: 408068
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Butter and butter slices can be mixed into solutions.
+    type: Tweak
+  id: 408069
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Chemical dispenser and ChemMaster transfer increments have been changed to 1u, 5u, 10u, 15u, 20u, 30u, 40u, 60u, and 120u.
+    type: Tweak
+  id: 408070
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Hyposprays and jet injectors no longer spill when thrown.
+    type: Tweak
+  id: 408071
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: The salt and pepper requirements for several recipes have been heavily reduced.
+    type: Tweak
+  id: 408072
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
+- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
+  changes:
+  - message: Butter now requires Cream instead of Milk to create.
+    type: Tweak
+  id: 408073
+  time: '2026-09-03T03:51:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5893
 Order: -1
