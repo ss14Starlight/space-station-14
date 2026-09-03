@@ -4,7 +4,7 @@ meta:
   engineVersion: 289.0.2
   forkId: ""
   forkVersion: ""
-  time: 09/03/2026 18:03:00
+  time: 09/03/2026 19:09:20
   entityCount: 28196
 maps:
 - 1
@@ -16141,12 +16141,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -131.5,-45.5
-    - type: Door
-      state: Opening
-      secondsUntilStateChange: -252750.53
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
   - uid: 554
     components:
     - type: Transform
@@ -158862,6 +158856,11 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -36.5,7.5
+    - type: DeviceLinkSource
+      linkedPorts:
+        12928:
+        - - StationRadioServerPort
+          - StationRadioRigPort
 - proto: StationRadioServerCircuitboard
   entities:
   - uid: 28027
@@ -166411,6 +166410,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -35.5,8.5
+    - type: DeviceLinkSource
+      linkedPorts:
+        12928:
+        - - VinylPlayerPort
+          - StationRadioRigPort
 - proto: ViolinInstrument
   entities:
   - uid: 24439
@@ -183508,12 +183512,6 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -54.5,-25.5
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
-    - type: Door
-      state: Opening
-      secondsUntilStateChange: -452857.3
     - type: Airlock
       autoClose: False
   - uid: 27761
