@@ -1,11 +1,4 @@
 Entries:
-- author: OMEGA
-  changes:
-  - message: Removed duplicate items from the Chief Engineer's locker.
-    type: Remove
-  id: 407656
-  time: '2026-08-16T15:53:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5638
 - author: Mack
   changes:
   - message: Construction ghosts templates.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408055
   time: '2026-09-03T01:39:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5914
+- author: Sparlight
+  changes:
+  - message: K9s will no longer suffer abject identity concealment issues.
+    type: Fix
+  id: 408056
+  time: '2026-09-03T02:04:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5954
 Order: -1
