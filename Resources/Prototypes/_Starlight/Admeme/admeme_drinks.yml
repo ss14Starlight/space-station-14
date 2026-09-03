@@ -35,12 +35,12 @@
   name: Uncle Git's Cannonball Courage
   description: A battered amber bottle bearing a skull-and-anchor label. The faded text reads "Uncle Git's Cannonball Courage Rumizine — Drink before battle, not after." Smells like rum, gunpowder, and questionable medical practice.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Rumizine
-          Quantity: 100
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Rumizine
+        Quantity: 100
   - type: Label
     currentLabel: reagent-name-rumizine
   - type: Sprite

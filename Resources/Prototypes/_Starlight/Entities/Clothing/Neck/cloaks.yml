@@ -300,6 +300,7 @@
     sprite: _Starlight/Clothing/Neck/Ties/disco.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Neck/Ties/disco.rsi
+  - type: AntagImmune
 
 - type: entity
   parent: ClothingNeckBase

@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "normal-unshaded",
+      "copyright": "Made by Conflee for Starlight"
+    },
+    {
+      "name": "broken",
+      "copyright": "Made by Conflee for Starlight"
+    },
+    {
+      "name": "normal",
+      "copyright": "Made by Conflee for Starlight"
+    },
+    {
+      "name": "deny-unshaded",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ],
+      "copyright": "Made by Conflee for Starlight"
+    },
+    {
+      "name": "eject-unshaded",
+      "delays": [
+        [
+          0.5,
+          0.1,
+          5.0,
+          0.1
+        ]
+      ],
+      "copyright": "Made by Conflee for Starlight"
+    },
+    {
+      "name": "off",
+      "copyright": "Made by Conflee for Starlight"
+    },
+    {
+      "name": "panel",
+      "copyright": "Made by Conflee for Starlight"
+    }
+  ]
+}

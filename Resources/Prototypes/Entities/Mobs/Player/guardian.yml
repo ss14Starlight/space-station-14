@@ -113,6 +113,7 @@
         - CannotSuicide
         - StunImmune
         - SlowImmune
+    - type: AntagImmune # Starlight
 
 # From the uplink injector
 - type: entity

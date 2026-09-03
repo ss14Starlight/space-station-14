@@ -62,6 +62,7 @@
             SecurityCadet: [ 3, 4 ] #intern, not counted
             Brigmedic: [ 1, 1 ]
             Detective: [ 1, 1 ]
+            # K9: [ 2, 2 ]
             #supply
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]

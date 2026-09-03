@@ -50,7 +50,6 @@
       prototype: NeoAvali
       requiredLegs: 2
     - type: Butcherable
-      butcheringType: Spike
       spawned:
         - id: FoodMeatChicken
           amount: 3
@@ -87,7 +86,7 @@
       bloodReferenceSolution:
         reagents:
         - ReagentId: AvaliBlood
-          Quantity: 300
+          Quantity: 600
     - type: MeleeWeapon
       soundHit:
         path: /Audio/Weapons/pierce.ogg
