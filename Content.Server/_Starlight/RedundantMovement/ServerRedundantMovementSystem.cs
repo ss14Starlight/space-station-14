@@ -22,6 +22,14 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
     {
         _netManager.RegisterNetMessage<RedundantMovementMessage>(HandleMovementMessage, accept: NetMessageAccept.Server);
         _netManager.RegisterNetMessage<RedundantMovementAckMessage>(accept: NetMessageAccept.Client);
+        _netManager.Disconnect += OnDisconnect;
+    }
+
+    private void OnDisconnect(object? sender, NetDisconnectedArgs e)
+    {
+        var channel = _playerManager.GetSessionByChannel(e.Channel);
+        if (channel != null)
+            _trackers.Remove(channel);
     }
 
     private void HandleMovementMessage(RedundantMovementMessage msg)
