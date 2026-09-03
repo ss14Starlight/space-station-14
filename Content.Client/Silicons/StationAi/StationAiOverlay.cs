@@ -48,7 +48,7 @@ public sealed partial class StationAiOverlay : Overlay
     public StationAiOverlay()
     {
         IoCManager.InjectDependencies(this);
-        ZIndex = (int) Content.Shared.DrawDepth.DrawDepth.CyberspaceOverlays; // Starlight: above all normal DrawDepths (max=13), below CyberspaceObjects (100)
+        ZIndex = (int)Content.Shared.DrawDepth.DrawDepth.CyberspaceOverlays; // Starlight: above all normal DrawDepths (max=13), below CyberspaceObjects (100)
         _cyberspaceRenderer = new CyberspaceNavMapRenderer(_proto); // Starlight
     }
 
@@ -95,7 +95,7 @@ public sealed partial class StationAiOverlay : Overlay
                 _entManager.HasComponent<StationAiHeldComponent>(_player.LocalEntity)
                 ? _lastGridUid
                 : EntityUid.Invalid);
-       
+
         if (gridUid != EntityUid.Invalid)
             _lastGridUid = gridUid;
 
@@ -215,4 +215,4 @@ public sealed partial class StationAiOverlay : Overlay
             StencilTexture?.Dispose();
         }
     }
-    }
+}

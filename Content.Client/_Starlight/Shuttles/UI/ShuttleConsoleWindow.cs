@@ -10,7 +10,6 @@ public sealed partial class ShuttleConsoleWindow
 
     partial void InitializeStarlight()
         => NavContainer.OnRadarClick += OnRadarClick;
-    
 
     private void OnRadarClick(EntityCoordinates coordinates)
         => RadarClicked?.Invoke(coordinates);
