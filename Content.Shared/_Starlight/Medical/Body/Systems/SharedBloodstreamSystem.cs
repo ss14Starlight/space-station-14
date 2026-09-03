@@ -49,7 +49,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BloodstreamComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<BloodstreamComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedSolutionContainerSystem)]);
         SubscribeLocalEvent<BloodstreamComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
         SubscribeLocalEvent<BloodstreamComponent, ReactionAttemptEvent>(OnReactionAttempt);
         SubscribeLocalEvent<BloodstreamComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttempt);
@@ -115,10 +115,25 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         }
     }
 
-    private void OnMapInit(Entity<BloodstreamComponent> ent, ref MapInitEvent args)
+    private void OnMapInit(Entity<BloodstreamComponent> entity, ref MapInitEvent args)
     {
-        ent.Comp.NextUpdate = _timing.CurTime + ent.Comp.AdjustedUpdateInterval;
-        DirtyField(ent, ent.Comp, nameof(BloodstreamComponent.NextUpdate));
+        entity.Comp.NextUpdate = _timing.CurTime + entity.Comp.AdjustedUpdateInterval;
+        DirtyField(entity, entity.Comp, nameof(BloodstreamComponent.NextUpdate));
+
+        SolutionContainer.EnsureSolution(entity.Owner, entity.Comp.BloodSolutionName, out var bloodSolution);
+        SolutionContainer.EnsureSolution(entity.Owner, entity.Comp.BloodTemporarySolutionName, out var tempSolution);
+        SolutionContainer.EnsureSolution(entity.Owner, entity.Comp.MetabolitesSolutionName, out var metabolitesSolution);
+
+        bloodSolution.Comp.Solution.MaxVolume = entity.Comp.BloodReferenceSolution.Volume * entity.Comp.MaxVolumeModifier;
+        metabolitesSolution.Comp.Solution.MaxVolume = bloodSolution.Comp.Solution.MaxVolume;
+        tempSolution.Comp.Solution.MaxVolume = entity.Comp.BleedPuddleThreshold * 4; // give some leeway, for chemstream as well
+        entity.Comp.BloodReferenceSolution.SetReagentData(GetEntityBloodData((entity, entity.Comp)));
+
+        // Fill blood solution with BLOOD
+        // The DNA string might not be initialized yet, but the reagent data gets updated in the GenerateDnaEvent subscription
+        var solution = entity.Comp.BloodReferenceSolution.Clone();
+        solution.ScaleTo(entity.Comp.BloodReferenceSolution.Volume - bloodSolution.Comp.Solution.Volume);
+        bloodSolution.Comp.Solution.AddSolution(solution, PrototypeManager);
     }
 
     // prevent the infamous UdderSystem debug assert, see https://github.com/space-wizards/space-station-14/pull/35314
@@ -162,8 +177,8 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
 
     private void OnReactionAttempt(Entity<BloodstreamComponent> ent, ref SolutionRelayEvent<ReactionAttemptEvent> args)
     {
-        if (args.Name != ent.Comp.BloodSolutionName
-            && args.Name != ent.Comp.BloodTemporarySolutionName)
+        if (args.Solution.Comp.Id != ent.Comp.BloodSolutionName
+            && args.Solution.Comp.Id != ent.Comp.BloodTemporarySolutionName)
         {
             return;
         }
@@ -286,7 +301,8 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         if (SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution))
         {
             SolutionContainer.RemoveAllSolution(ent.Comp.BloodSolution.Value);
-            TryModifyBloodLevel(ent.AsNullable(), ent.Comp.BloodReferenceSolution.Volume);
+            // TODO: Use Solutions API for this when it exists
+            TryRegulateBloodLevel(ent.AsNullable(), ent.Comp.BloodReferenceSolution.Volume);
         }
     }
 
@@ -422,12 +438,15 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
             || amount == 0)
             return false;
 
+        // TODO: Either make this percentage based regeneration and pre-pass the percentage.
+        // TODO: Solution regulation API that doesn't result in very minor FixedPoint2 errors (Currently gingerbreadman only regenerates 0.99u instead of 1.00u)
         referenceFactor = Math.Clamp(referenceFactor, 0f, ent.Comp.MaxVolumeModifier);
+        var ratio = (float)amount / (float)ent.Comp.BloodReferenceSolution.Volume;
 
         foreach (var (referenceReagent, referenceQuantity) in ent.Comp.BloodReferenceSolution)
         {
             var error = referenceQuantity * referenceFactor - bloodSolution.GetTotalPrototypeQuantity(referenceReagent.Prototype);
-            var adjustedAmount = amount * referenceQuantity / ent.Comp.BloodReferenceSolution.Volume;
+            var adjustedAmount = referenceQuantity * ratio;
 
             if (error > 0)
             {

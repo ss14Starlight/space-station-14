@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ SimpleSpaceMobBase, FlyingMobBase ]
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, BaseSlicingRefinable ] # Starlight
   id: MobEeepBase
   abstract: true
   categories: [ HideSpawnMenu ]
@@ -30,8 +30,8 @@
         - FlyingMobMask
         layer:
         - FlyingMobLayer
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable # Starlight
+    refineResult: # Starlight
       - id: EeepSpark
         amount: 1
   - type: StatusEffects
@@ -112,7 +112,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ChloralHydrate
-        Quantity: 200
+        Quantity: 400 # Starlight
     bleedReductionAmount: 1
     bloodRefreshAmount: 2
   - type: Sprite
@@ -147,12 +147,13 @@
         Brute: 2
   - type: StaminaDamageOnHit
     damage: 20
-  - type: SolutionContainerManager
-    solutions:
-      chloralhydrate:
-        reagents:
-        - ReagentId: ChloralHydrate
-          Quantity: 500
+  - type: Solution
+    id: chloralhydrate
+    solution:
+      maxVol: 500 # Starlight - preserve the melee injector reservoir after the solution refactor
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 500
   - type: MeleeChemicalInjector
     solution: chloralhydrate
     transferAmount: 5
@@ -196,7 +197,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ChloralHydrate
-        Quantity: 400
+        Quantity: 400 # Starlight
     bleedReductionAmount: 1
     bloodRefreshAmount: 4
   - type: Electrified

@@ -17,17 +17,16 @@
       layers:
         - state: plate
         - state: baked_vulpkanin
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 30
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 10
-            - ReagentId: Protein
-              Quantity: 15
-            - ReagentId: Vitamin
-              Quantity: 5
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 10
+          - ReagentId: Protein
+            Quantity: 15
+          - ReagentId: Vitamin
+            Quantity: 5
     - type: Tag
       tags:
       - Meat
