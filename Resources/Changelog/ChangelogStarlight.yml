@@ -1,34 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: The cargo request console UI has been redesigned.
-    type: Tweak
-  id: 407700
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
-  - message: Made a few other tweaks to the Spraypainter's UI as well.
-    type: Tweak
-  id: 407701
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
-  - message: APC power toggle and midi channel window "show track names" button now use switch-style buttons.
-    type: Tweak
-  id: 407702
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
-  - message: Aloe Cream now has a proper in-inventory icon.
-    type: Fix
-  id: 407703
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
   - message: Hands will no longer sometimes display in the wrong order.
     type: Fix
   id: 407704
@@ -2799,4 +2771,32 @@ Entries:
   id: 408099
   time: '2026-09-03T20:14:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5963
+- author: wonderfulnewworld, YaraaraY
+  changes:
+  - message: Added reagent fires. Please be careful around welding fuel spills. Or vodka spills. Or napalm spills. Oh, and mind your clothes, too.
+    type: Add
+  id: 408100
+  time: '2026-09-03T21:14:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5951
+- author: wonderfulnewworld, YaraaraY
+  changes:
+  - message: Liquids can now splash onto and stain adjacent walls, retaining forensics and reagent flammability.
+    type: Add
+  id: 408101
+  time: '2026-09-03T21:14:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5951
+- author: wonderfulnewworld, YaraaraY
+  changes:
+  - message: New station event that causes large fires in a random part of the station. Keep an extinguisher handy.
+    type: Add
+  id: 408102
+  time: '2026-09-03T21:14:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5951
+- author: wonderfulnewworld, YaraaraY
+  changes:
+  - message: Added an atmos fire extinguisher to Atmos Tech and CE's lockers. It contains more water than the normal ones, sprays more water at once, and is faster. It can also be worn on the back. It only accepts water and space cleaners, so no huge flamethrowers for you.
+    type: Add
+  id: 408103
+  time: '2026-09-03T21:14:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5951
 Order: -1
