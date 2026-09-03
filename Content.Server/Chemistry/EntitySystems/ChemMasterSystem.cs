@@ -269,54 +269,6 @@ namespace Content.Server.Chemistry.EntitySystems
             ClickSound(chemMaster);
         }
 
-        //Starlight-start
-        private void OnCreatePatchesMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterCreatePatchesMessage message)
-        {
-            var user = message.Actor;
-            var maybeContainer = _itemSlotsSystem.GetItemOrNull(chemMaster, SharedChemMaster.OutputSlotName);
-            if (maybeContainer is not { Valid: true } container || !TryComp(container, out StorageComponent? storage))
-                return; // output can't fit pills
-
-            // Ensure the number is valid.
-            if (message.Number == 0 || !_storageSystem.HasSpace((container, storage)))
-                return;
-
-            // Ensure the amount is valid.
-            if (message.Dosage == 0 || message.Dosage > chemMaster.Comp.PillDosageLimit)
-                return;
-
-            // Ensure label length is within the character limit.
-            if (message.Label.Length > SharedChemMaster.LabelMaxLength)
-                return;
-
-            var needed = message.Dosage * message.Number;
-            if (!WithdrawFromSource(chemMaster, needed, user, out var withdrawal))
-                return;
-
-            // Starlight-start
-            var containerLabel = string.IsNullOrWhiteSpace(message.ContainerLabel)
-                ? message.Label
-                : message.ContainerLabel;
-            // Starlight-end
-
-            _labelSystem.Label(container, containerLabel); // Starlight: message.Label -> containerLabel
-
-            for (var i = 0; i < message.Number; i++)
-            {
-                var item = Spawn(PatchPrototypeId, Transform(container).Coordinates);
-                _storageSystem.Insert(container, item, out _, user: user, storage);
-                _labelSystem.Label(item, message.Label);
-
-                _solutionContainerSystem.EnsureSolution(item, SharedChemMaster.PatchSolutionName, out var itemSolution); // Starlight
-                _solutionContainerSystem.SetCapacity(itemSolution, message.Dosage); // Starlight
-                _solutionContainerSystem.TryAddSolution(itemSolution, withdrawal.SplitSolution(message.Dosage)); // Starlight
-            }
-
-            UpdateUiState(chemMaster);
-            ClickSound(chemMaster);
-        }
-        //Starlight-end
-
         private void OnOutputToBottleMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterOutputToBottleMessage message)
         {
             var user = message.Actor;
@@ -506,32 +458,6 @@ namespace Content.Server.Chemistry.EntitySystems
             {
                 Reagents = solution.Contents
             };
-        }
-
-        // Starlight-start: Plumbing valve toggle
-        private void OnToggleValveMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterToggleValveMessage message)
-        {
-            if (!TryComp<PlumbingOutletComponent>(chemMaster.Owner, out var plumbingOutlet))
-                return;
-
-            plumbingOutlet.Enabled = !plumbingOutlet.Enabled;
-            Dirty(chemMaster.Owner, plumbingOutlet);
-            UpdateUiState(chemMaster);
-            ClickSound(chemMaster);
-        }
-        // Starlight-end
-
-        // TRIESTE SPECIFIC
-        private void OnSetTransferAmountMessage(
-            Entity<ChemMasterComponent> chemMaster,
-            ref ChemMasterSetTransferAmountMessage message)
-        {
-            if (!Enum.IsDefined(typeof(ChemMasterReagentAmount), message.Amount))
-                return;
-
-            chemMaster.Comp.TransferAmount = message.Amount;
-            UpdateUiState(chemMaster);
-            ClickSound(chemMaster);
         }
     }
 }
