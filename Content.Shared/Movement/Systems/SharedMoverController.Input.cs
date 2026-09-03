@@ -334,6 +334,7 @@ namespace Content.Shared.Movement.Systems
                 PhysicsSystem.SetBodyType(entity, BodyType.KinematicController);
         }
 
+        // Starlight: changed from private to protected virtual
         protected virtual void HandleDirChange(EntityUid entity, Direction dir, ushort subTick, bool state)
         {
             // Relayed movement just uses the same keybinds given we're moving the relayed entity
@@ -389,6 +390,7 @@ namespace Content.Shared.Movement.Systems
             entity.Comp.TargetRelativeRotation = Angle.Zero;
         }
 
+        // Starlight: changed from private to protected virtual
         protected virtual void HandleRunChange(EntityUid uid, ushort subTick, bool walking)
         {
             MoverQuery.TryGetComponent(uid, out var moverComp);

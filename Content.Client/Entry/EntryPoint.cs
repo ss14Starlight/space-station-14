@@ -160,7 +160,7 @@ namespace Content.Client.Entry
             //_jobRequirements.Initialize(); //🌟Starlight🌟 - Moved to PostInit
             _playbackMan.Initialize();
             _clientsidePlaytimeManager.Initialize();
-            _redundantMovement.Initialize();
+            _redundantMovement.Initialize(); // Starlight
 
             //AUTOSCALING default Setup!
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffX", 1080);
