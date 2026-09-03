@@ -1,0 +1,7 @@
+# In case this actually gets a PROPER distinguishment like a custom sprite, or if we need to tweak values for it
+- type: entity
+  parent: [ClothingHeadHelmetHardsuitSecurityExperimental, BaseCentcommContraband]
+  suffix: Admeme, DO NOT MAP
+  categories: [ DoNotMap ]
+  id: ClothingHeadHelmetHardsuitCCSDExperimental
+  name: CentComm Sec Division Officer Hardsuit

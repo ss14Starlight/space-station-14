@@ -1,0 +1,69 @@
+- type: entity
+  name: M492-CC Smart LMG
+  id: WeaponLightMachineGunM492CC
+  parent: [WeaponLightMachineGunM492, BaseCentcommContraband]
+  description: A greener varient of the smart LMG issued to stations. If this is in use, something is horribly wrong. Uses .30 ammo.
+  suffix: Admeme, DO NOT MAP
+  components:
+  - type: Contraband
+    allowedDepartments: [ CentralCommand ]
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleIncendiary
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+      gun_magazine:
+        name: Magazine
+        startingItem: LightRifleHeavyMagazineIncendiary
+        whitelist:
+          tags:
+            - LightRifleHeavy
+#This is effectively the WizDen L6C ROW, since SL removes ammo fabrication. Mostly re-added since it allows for silly custom payloads like soda cans.
+#Hence why its CC contra.
+- type: entity
+  name: Modified L6C ROW
+  id: WeaponLightMachineGunL6CModified
+  parent: [BaseItem, BaseCentcommContraband]
+  description: A L6C ROW imported from another sector, notably has internal ammo fabrication. How did you get this..?
+  suffix: Admeme, DO NOT MAP
+  components:
+    - type: Gun
+      minAngle: 4
+      maxAngle: 25
+      angleIncrease: 4
+      angleDecay: 16
+      fireRate: 8
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+      soundEmpty:
+        path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+      layers:
+        - state: base
+          map: [ "enum.GunVisualLayers.Base" ]
+        - state: mag-3
+          map: [ "enum.GunVisualLayers.Mag" ]
+    - type: Item
+      size: Huge
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+    - type: BallisticAmmoProvider
+      whitelist:
+        tags:
+          - CartridgeLightRifle
+      capacity: 100
+      proto: CartridgeLightRifleSP
+      cycleable: false # No synthesizing ammo for your CC officials.
+    - type: BallisticAmmoSelfRefiller
+      autoRefillRate: 2s
+      affectedByEmp: true
+    - type: AmmoCounter

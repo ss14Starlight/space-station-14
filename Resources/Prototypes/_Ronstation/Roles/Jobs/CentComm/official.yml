@@ -1,0 +1,59 @@
+- type: startingGear
+  id: CentcomFormalGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomFormal
+    back: ClothingBackpackSatchelHoldingCentcomFormalFilled
+    shoes: ClothingShoesBootsCombatFilled
+    mask: ClothingMaskGasCentcom
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentComDivHead
+    belt: BoxFolderCentComClipboardThreePapers
+    pocket1: WeaponDisabler
+    pocket2: WeaponRevolverMateba
+  inhand:
+  - MindShieldImplanter
+  - DeathRattleImplanterCentcomm
+
+- type: startingGear
+  id: CentcomInspectorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcomFormalDress
+    shoes: ClothingShoesBootsJackFilled
+    mask: ClothingMaskGasCentcom
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentComDivHead
+    pocket1: WeaponDisabler
+    pocket2: FlashlightSeclite
+    suitstorage: OxygenTankFilled
+  inhand:
+  - BriefcaseCentcomInspector
+- type: startingGear
+# This loadout is meant for very specific circumstances, or if the relevant character will remain on CentComm.
+# Due to the items inside, any character ON STATION with this loadout should have ERT Sec guards.
+# This explicitly now targets a role as CC Security division
+  id: CentcomOfficerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcommSecurityFormalWear
+    back: ClothingBackpackSatchelHoldingCentcomOfficerFilled
+    shoes: ClothingShoesBootsJackFilled
+    head: ClothingHeadHatCentcomcap
+    mask: ClothingMaskGasCentcom
+    neck: ClothingNeckCloakCCSDFireline
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    gloves: ClothingHandsGlovesCombat
+    eyes: ClothingEyesGlassesCentComm
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentComDivHead
+    belt: CentcommVibrobladeSheathFilled
+    pocket1: WeaponEnergyMagnumGunGreenshield
+    pocket2: WeaponPistolStechkin
+    suitstorage: WeaponRifleL10
+  inhand:
+  - MindShieldImplanter
+  - DeathRattleImplanterCentcomm

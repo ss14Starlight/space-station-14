@@ -1,0 +1,41 @@
+# This points to other files, which is out of the scope of my PR; its being commented and left here for now for easier restoration if desired.
+#- type: entity
+#  id: BriefcasePokerSet
+#  parent: BriefcaseBrown
+#  suffix: Filled, Poker
+#  name: poker set
+#  description: Comes with two decks of playing cards and enough chips for a full table of 8 players, or two tables of 4. What game you play is still up to you.
+#  components:
+#  - type: Sprite
+#    sprite: _Ronstation/Objects/Storage/Briefcases/briefcase_poker.rsi
+#    state: icon
+#  - type: Item
+#    sprite: _Ronstation/Objects/Storage/Briefcases/briefcase_poker.rsi
+#  - type: StorageFill
+#    contents:
+#      - id: CardBoxPokerFilled
+#      - id: PokerChipRed
+#      - id: PokerChipBlue
+#      - id: PokerChipWhite
+#      - id: PokerChipGreen
+#      - id: PokerChipBlack
+#      - id: CardBoxPokerFilled
+- type: entity
+  id: BriefcaseCentcomInspector
+  parent: BriefcaseBrown
+  suffix: Filled, Centcom Inspector, Admeme
+  name: inspector's briefcase
+  components:
+  - type: StorageFill
+    contents:
+      - id: CrowbarGreen
+      - id: FoodSnackNutribrick
+      - id: DrinkMREFlask
+      - id: PinpointerNuclear
+      - id: MedkitCombatFilled
+      - id: BoxFolderCentComClipboardThreePapers
+      - id: RubberStampCentcom
+      - id: RubberStampApproved
+      - id: RubberStampDenied
+      - id: WeaponRevolverMatebaAP
+      - id: SpeedLoaderMagnumAP

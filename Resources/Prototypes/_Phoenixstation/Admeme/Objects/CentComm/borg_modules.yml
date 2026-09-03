@@ -1,0 +1,17 @@
+- type: entity
+  id: BorgModuleAdmemeModifiedL6Module
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule ]
+  name: Modified L6C ROW Module
+  description: A one-of-a-kind modified L6 ROW module from a refurbished assault borg- wait... where did you get this?
+  components:
+    - type: Sprite
+      layers:
+        - state: centcomm
+        - state: icon-centcomm
+    - type: ItemBorgModule
+      hands:
+        - item: WeaponLightMachineGunL6CModified
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
+    - type: Contraband
+      allowedDepartments: [ CentralCommand ]

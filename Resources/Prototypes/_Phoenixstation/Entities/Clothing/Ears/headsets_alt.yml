@@ -1,0 +1,20 @@
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCentcommContraband]
+  id: ClothingHeadsetAltCentComDivHead
+  name: CC Official over-ear headset
+  suffix: Admin Only, DO NOT MAP
+  description: A special-issue headset meant for Central Command Division heads and trusted Officials, has all its channels built-in. Not cheap; Don't let it out of your sight.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCentcomUnremovable
+      - EncryptionKeyNanoTrasenUnremovable
+      - EncryptionKeyStationMasterUnremovable
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/cc.ogg

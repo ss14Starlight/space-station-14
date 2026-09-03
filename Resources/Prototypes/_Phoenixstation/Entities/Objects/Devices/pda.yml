@@ -1,0 +1,13 @@
+- type: entity
+  parent: ChameleonPDA
+  id: ChameleonCCAgentPDA
+  suffix: CC Agent Admeme, Chameleon, Agent ID
+  components:
+  - type: Pda
+    id: AgentIDCard
+    penSlot:
+      startingItem: PenCentcomHidden
+      priority: -1
+      whitelist:
+        tags:
+        - Write

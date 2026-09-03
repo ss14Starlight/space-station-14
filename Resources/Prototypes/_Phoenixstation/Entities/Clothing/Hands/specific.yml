@@ -1,0 +1,7 @@
+- type: entity
+  parent: ClothingHandsChameleon
+  id: ClothingAdmemeHandsChameleonInsulated
+  name: black gloves
+  suffix: Chameleon, Admeme, DO NOT MAP
+  components:
+    - type: Insulated
