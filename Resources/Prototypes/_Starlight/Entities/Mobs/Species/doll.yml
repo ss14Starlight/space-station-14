@@ -160,6 +160,8 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: Shell
+    generateShellPieceAction: ActionGenerateShellPiece
 
 - type: entity
   parent: BaseSpeciesDummy
