@@ -19,6 +19,7 @@ using Content.Shared._Funkystation.Fluids;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
 using Content.Shared.StepTrigger.Systems;
+using Content.Shared._Funkystation.Footprints;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -43,7 +44,10 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
-    private EntityQuery<PuddleComponent> _puddleQuery;
+    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!; // Moff
+    [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!; // Moff
+
+    [Dependency] private EntityQuery<FootprintComponent> _footprintQuery; // Moff - Funky footprints
 
     /*
      * TODO: Need some sort of way to do blood slash / vomit solution spill on its own
@@ -552,6 +556,11 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
             if (!puddleQuery.TryGetComponent(ent, out var puddle))
                 continue;
 
+            // Funky start - footprints
+            if (_footprintQuery.HasComponent(ent.Value))
+                continue;
+            // Funky end
+
             if (TryAddSolution(ent.Value, solution, sound, puddleComponent: puddle))
             {
                 EnsureComp<ActiveEdgeSpreaderComponent>(ent.Value);
@@ -591,6 +600,11 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         {
             if (!puddleQuery.HasComponent(ent.Value))
                 continue;
+
+            // Funky start - footprints
+            if (_footprintQuery.HasComponent(ent.Value))
+                continue;
+            // Funky end
 
             puddleUid = ent.Value;
             return true;
