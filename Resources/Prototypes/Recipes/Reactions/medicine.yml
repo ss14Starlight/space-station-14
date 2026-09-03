@@ -572,7 +572,7 @@
 
 - type: reaction # Starlight: Alternate recipe to give atmos a way to help chemistry.
   id: OpporozidoneAlt
-  minTemp: 400 
+  minTemp: 400
   reactants:
     ZXA:
       amount: 10
