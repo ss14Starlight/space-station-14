@@ -224,6 +224,7 @@
       sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: sunder
   - type: TargetAction
+    checkCanAccess: false
     range: 7
   - type: WorldTargetAction
     event: !type:EventCosmicColossusSunder
@@ -231,7 +232,7 @@
 - type: entity
   id: ActionCosmicColossusIngress
   name: Colossal Ingress
-  description: Use your colossal strength to force open a doorway.
+  description: Use your colossal strength to rend false doorways apart and reshape them into true passages.
   components:
   - type: Action
     useDelay: 8
@@ -254,6 +255,8 @@
   components:
   - type: LimitedCharges
     maxCharges: 2
+  - type: AutoRecharge
+    rechargeDuration: 480 #8minutes
   - type: Action
     useDelay: 120
     checkCanInteract: false
@@ -269,8 +272,10 @@
   name: Beckon an Effigy
   description: Draw out an Effigy of Entropy into realspace.
   components:
+  - type: LimitedCharges
+    maxCharges: 1
   - type: Action
-    useDelay: 999
+    useDelay: 1
     itemIconStyle: NoItem
     icon:
       sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi

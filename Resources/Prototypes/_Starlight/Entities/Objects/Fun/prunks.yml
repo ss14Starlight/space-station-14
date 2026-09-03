@@ -40,12 +40,11 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/hypospray.rsi
     state: combat_hypo
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 10
+  - type: Solution
+    id: hypospray
+    solution:
+      maxVol: 10
   - type: SolutionRegeneration
-    solution: hypospray
     generated:
       reagents:
       - ReagentId: Ipecac
@@ -67,13 +66,7 @@
   parent: ToySword
   components:
   - type: Wieldable
-  - type: EnergySword
-    colorOptions:
-      - DodgerBlue
-      - Aqua
-      - Tomato
-      - MediumSpringGreen
-      - MediumOrchid
+  - type: EnergyColor
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_sword_double.rsi
     layers:

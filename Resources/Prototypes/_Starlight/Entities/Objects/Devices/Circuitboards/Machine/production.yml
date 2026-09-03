@@ -280,6 +280,19 @@
         Glass: 2
 
 - type: entity
+  id: VendingMachineGumballsCircuitboard
+  parent: BaseMachineCircuitboard
+  name: gumball dispenser circuitboard
+  description: A machine printed circuit board for a gumball dispenser
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineGumballsEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
   id: VendingMachineLegalDrobeCircuitboard
   parent: BaseMachineCircuitboard
   name: LegalDrobe circuitboard
@@ -1190,20 +1203,6 @@
       state: service
     - type: MachineBoard
       prototype: Gramophone
-      stackRequirements:
-        Steel: 5
-        Manipulator: 1
-
-- type: entity
-  id: VinylPlayerCircuitBoard
-  parent: BaseMachineCircuitboard
-  name: vinyl player circuitboard
-  description: A machine printed circuit board for a vinyl player.
-  components:
-    - type: Sprite
-      state: service
-    - type: MachineBoard
-      prototype: VinylPlayer
       stackRequirements:
         Steel: 5
         Manipulator: 1

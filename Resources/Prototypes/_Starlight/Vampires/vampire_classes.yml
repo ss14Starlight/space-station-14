@@ -18,7 +18,7 @@
   id: Umbrae
   tooltip: vampire-class-umbrae-tooltip
   icon:
-    sprite: _Starlight/Vampire/Umbrae.rsi
+    sprite: _Starlight/Vampire/umbrae.rsi
     state: cloak_of_darkness
   classComponent: Umbrae
   actions:

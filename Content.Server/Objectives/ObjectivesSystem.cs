@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Text;
-using Content.Server._Starlight.Objectives.Events;
 using Content.Server.GameTicking;
 using Content.Server.Objectives.Commands;
 using Content.Server.Shuttles.Systems;
@@ -15,8 +14,11 @@ using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Server.Antag;
-using Content.Server.Antag.Components;
+using System.Linq;
+using System.Text;
+using Content.Server.Objectives.Commands;
+using Content.Shared.CCVar;
+using Content.Shared.Prototypes;
 using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -24,19 +26,19 @@ using Robust.Shared.Utility;
 using Content.Shared._Starlight.CustomObjectiveSummary; // Starlight
 using Content.Shared._Starlight.Station;
 using Content.Shared._Starlight.Railroading.Components;
-using Content.Shared._Starlight.Abstract; // Starlight
+using Content.Shared._Starlight.Abstract;
+using Content.Shared._Starlight.Objectives.Events; // Starlight
 
 namespace Content.Server.Objectives;
 
 public sealed partial class ObjectivesSystem : SharedObjectivesSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
-    [Dependency] private readonly SharedJobSystem _job = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private EmergencyShuttleSystem _emergencyShuttle = default!;
+    [Dependency] private SharedJobSystem _job = default!;
 
     private IEnumerable<string>? _objectives;
 
@@ -67,14 +69,16 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
     {
         // go through each gamerule getting data for the roundend summary.
         var summaries = new Dictionary<string, Dictionary<string, List<(EntityUid, string)>>>();
-        var query = EntityQueryEnumerator<ActiveGameRuleComponent, AntagSelectionComponent>();
+        var query = EntityQueryEnumerator<ActiveGameRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out _, out var comp))
         {
-            if (comp.AgentName is not { } agent)
+            var info = new ObjectivesTextGetInfoEvent(new List<(EntityUid, string)>(), string.Empty);
+            RaiseLocalEvent(uid, ref info);
+            if (info.Minds.Count == 0)
                 continue;
 
-            var minds = _antag.GetAntagIdentities((uid, comp));
-
+            // first group the gamerules by their agents, for example 2 different dragons
+            var agent = info.AgentName;
             if (!summaries.ContainsKey(agent))
                 summaries[agent] = new Dictionary<string, List<(EntityUid, string)>>();
 
@@ -87,11 +91,11 @@ public sealed partial class ObjectivesSystem : SharedObjectivesSystem
             if (summary.ContainsKey(prepend.Text))
             {
                 // same prepended text (usually empty) so combine them
-                summary[prepend.Text].AddRange(minds);
+                summary[prepend.Text].AddRange(info.Minds);
             }
             else
             {
-                summary[prepend.Text] = minds.ToList();
+                summary[prepend.Text] = info.Minds.ToList();
             }
         }
 

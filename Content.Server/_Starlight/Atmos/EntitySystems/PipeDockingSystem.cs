@@ -53,11 +53,8 @@ public sealed partial class PipeDockingSystem : EntitySystem
         if (!DockPipes)
             return;
 
-        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
-            return;
-
-        GetDockConnectingPipes(dockA, _dockAPipes);
-        GetDockConnectingPipes(dockB, _dockBPipes);
+        GetDockConnectingPipes(ev.DockA, _dockAPipes);
+        GetDockConnectingPipes(ev.DockB, _dockBPipes);
 
         foreach (var pipeA in _dockAPipes)
         {
@@ -73,11 +70,8 @@ public sealed partial class PipeDockingSystem : EntitySystem
 
     private void OnUndocked(UndockEvent ev)
     {
-        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
-            return;
-
-        GetDockConnectingPipes(dockA, _dockAPipes, includeDisabled: true);
-        GetDockConnectingPipes(dockB, _dockBPipes, includeDisabled: true);
+        GetDockConnectingPipes(ev.DockA, _dockAPipes, includeDisabled: true);
+        GetDockConnectingPipes(ev.DockB, _dockBPipes, includeDisabled: true);
 
         foreach (var pipeA in _dockAPipes)
         {
@@ -334,14 +328,6 @@ public sealed partial class PipeDockingSystem : EntitySystem
         tile = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
         return true;
     }
-
-#pragma warning disable CS0618 // Using .Owner for Performance.
-    private static bool TryGetDockEntity(DockingComponent component, out EntityUid uid)
-    {
-        uid = component.Owner;
-        return true;
-    }
-#pragma warning restore CS0618
 
     private void LinkPipes(PipeNode a, PipeNode b)
     {

@@ -1,36 +1,59 @@
 using Content.Shared._Starlight.Scent.Components;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Database;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Starlight.Scent.Systems;
 
-// See ClientScentSystem for the concrete client-side subclass.
-public abstract class SharedScentSystem : EntitySystem
+/// <summary>
+/// See ClientScentSystem for the concrete client-side subclass.
+/// </summary>
+public abstract partial class SharedScentSystem : EntitySystem
 {
-    [Dependency] protected readonly SharedActionsSystem Actions = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
-    [Dependency] protected readonly MobStateSystem MobState = default!;
+    [Dependency] protected SharedActionsSystem Actions = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] protected SharedPopupSystem Popup = default!;
+    [Dependency] protected MobStateSystem MobState = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SmellerComponent, MapInitEvent>(OnSmellerMapInit);
+        SubscribeLocalEvent<SmellerComponent, ComponentInit>(OnSmellerInit);
         SubscribeLocalEvent<SmellerComponent, ComponentShutdown>(OnSmellerShutdown);
         SubscribeLocalEvent<SmellerComponent, ToggleSniffActionEvent>(OnToggleSniff);
         SubscribeLocalEvent<SmellerComponent, SneezeActionEvent>(OnSneeze);
+        SubscribeLocalEvent<SmellerComponent, MobStateChangedEvent>(OnMobStateChanged);
     }
 
-    private void OnSmellerMapInit(Entity<SmellerComponent> ent, ref MapInitEvent args)
+    private void OnMobStateChanged(Entity<SmellerComponent> ent, ref MobStateChangedEvent args)
     {
-        Actions.AddAction(ent.Owner, ref ent.Comp.ToggleActionEntity, ent.Comp.ToggleAction);
+        if (args.NewMobState == Content.Shared.Mobs.MobState.Dead)
+            ClearTrackedScent(ent);
     }
 
-    private void OnSmellerShutdown(Entity<SmellerComponent> ent, ref ComponentShutdown args)
+    /// <summary>
+    /// Runs when SmellerComponent initializes, whether it was present at spawn or granted later
+    /// (i.e. an implant, a species change)
+    /// </summary>
+    /// <param name="uid">The entity the SmellerComponent was added to.</param>
+    /// <param name="component">The newly added SmellerComponent.</param>
+    /// <param name="args">Component initialization event args.</param>
+    protected virtual void OnSmellerInit(EntityUid uid, SmellerComponent component, ComponentInit args)
+        => Actions.AddAction(uid, ref component.ToggleActionEntity, component.ToggleAction);
+
+    /// <summary>
+    /// virtual so ClientScentSystem can override instead of subscribing to ComponentShutdown again.
+    /// </summary>
+    /// <param name="ent">The entity and SmellerComponent being removed.</param>
+    /// <param name="args">Component shutdown event args.</param>
+    protected virtual void OnSmellerShutdown(Entity<SmellerComponent> ent, ref ComponentShutdown args)
     {
         Actions.RemoveAction(ent.Owner, ent.Comp.ToggleActionEntity);
         Actions.RemoveAction(ent.Owner, ent.Comp.SneezeActionEntity);
@@ -55,7 +78,11 @@ public abstract class SharedScentSystem : EntitySystem
         args.Handled = true;
     }
 
-    // predicted excludes the performer from the server's broadcast; ForceSneeze doesn't want that.
+    /// <summary>
+    /// predicted excludes the performer from the server's broadcast; ForceSneeze doesn't want that.
+    /// </summary>
+    /// <param name="ent">Entity with a Smeller component.</param>
+    /// <param name="predicted">Whether this is a predicted, player-initiated sneeze.</param>
     public void Sneeze(Entity<SmellerComponent> ent, bool predicted = false)
     {
         ClearTrackedScent(ent);
@@ -68,7 +95,11 @@ public abstract class SharedScentSystem : EntitySystem
             Popup.PopupEntity(message, ent.Owner, ent.Owner);
     }
 
-    // Not the voluntary sneeze action. Locks out Toggle Smelling for 'lockout'.
+    /// <summary>
+    /// Not the voluntary sneeze action. Locks out Toggle Smelling for 'lockout'
+    /// </summary>
+    /// <param name="ent">Entity with a Smeller component.</param>
+    /// <param name="lockout">Lockout period, in seconds, to disable the smelling ability.</param>
     public void ForceSneeze(Entity<SmellerComponent> ent, TimeSpan lockout)
     {
         if (MobState.IsDead(ent.Owner))
@@ -86,31 +117,85 @@ public abstract class SharedScentSystem : EntitySystem
         Actions.SetCooldown(ent.Comp.ToggleActionEntity, lockout);
     }
 
-    public void SetTrackedScent(Entity<SmellerComponent> ent, string scentId)
+    public void SetTrackedScent(Entity<SmellerComponent> ent, string scentId, EntityUid? source = null)
     {
         if (ent.Comp.TrackedScentId == scentId)
             return;
 
-        var hadTracked = ent.Comp.TrackedScentId != null;
+        var previousScentId = ent.Comp.TrackedScentId;
+        var hadTracked = previousScentId != null;
         ent.Comp.TrackedScentId = scentId;
 
         if (!hadTracked)
             Actions.AddAction(ent.Owner, ref ent.Comp.SneezeActionEntity, ent.Comp.SneezeAction);
+
+        if (previousScentId != null)
+            LogTrackedScent(ent.Owner, previousScentId, began: false);
+
+        LogTrackedScent(ent.Owner, scentId, began: true, source);
 
         Dirty(ent);
     }
 
     public void ClearTrackedScent(Entity<SmellerComponent> ent)
     {
-        if (ent.Comp.TrackedScentId == null)
+        if (ent.Comp.TrackedScentId is not { } scentId)
             return;
 
         ent.Comp.TrackedScentId = null;
         Actions.RemoveAction(ent.Owner, ent.Comp.SneezeActionEntity);
+
+        LogTrackedScent(ent.Owner, scentId, began: false);
+
         Dirty(ent);
     }
 
-    // Sneeze action grant/revoke happens in SetTrackedScent/ClearTrackedScent instead.
+    private void LogTrackedScent(EntityUid smeller, string scentId, bool began, EntityUid? source = null)
+    {
+        var verb = began ? "began" : "stopped";
+        var hasOwner = TryResolveScentOwner(scentId, out var owner);
+
+        if (source is { } src)
+        {
+            if (hasOwner)
+                _adminLogger.Add(LogType.Scent,
+                    $"{ToPrettyString(smeller):user} sniffed {ToPrettyString(src):source} and {verb} following scent trace belonging to {ToPrettyString(owner):target}.");
+            else
+                _adminLogger.Add(LogType.Scent,
+                    $"{ToPrettyString(smeller):user} sniffed {ToPrettyString(src):source} and {verb} following an untraceable scent trace.");
+        }
+        else if (hasOwner)
+        {
+            _adminLogger.Add(LogType.Scent,
+                $"{ToPrettyString(smeller):user} {verb} following scent trace belonging to {ToPrettyString(owner):target}.");
+        }
+        else
+        {
+            _adminLogger.Add(LogType.Scent, $"{ToPrettyString(smeller):user} {verb} following an untraceable scent trace.");
+        }
+    }
+
+    private bool TryResolveScentOwner(string scentId, out EntityUid owner)
+    {
+        var query = EntityQueryEnumerator<ScentComponent>();
+        while (query.MoveNext(out var uid, out var scent))
+        {
+            if (scent.ScentId == scentId)
+            {
+                owner = uid;
+                return true;
+            }
+        }
+
+        owner = default;
+        return false;
+    }
+
+    /// <summary>
+    /// Sneeze action grant/revoke happens in SetTrackedScent/ClearTrackedScent instead.
+    /// </summary>
+    /// <param name="ent">Entity with a Smeller component.</param>
+    /// <param name="sniffing">Whether sniffing should be turned on or off.</param>
     public virtual void SetSniffing(Entity<SmellerComponent> ent, bool sniffing)
     {
         if (ent.Comp.Sniffing == sniffing)
@@ -123,6 +208,10 @@ public abstract class SharedScentSystem : EntitySystem
             Actions.AddAction(ent.Owner, ref ent.Comp.SniffObjectActionEntity, ent.Comp.SniffObjectAction);
         else
             Actions.RemoveAction(ent.Owner, ent.Comp.SniffObjectActionEntity);
+
+        // The generic action-use log already covers Action; this adds the on/off detail under Scent.
+        var state = sniffing ? "on" : "off";
+        _adminLogger.Add(LogType.Scent, $"{ToPrettyString(ent.Owner):user} toggled sniffing {state}.");
 
         Dirty(ent);
     }

@@ -9,6 +9,8 @@ using Content.Shared.Ghost;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Players;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Xenoborgs.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -58,7 +60,10 @@ public sealed partial class AntagSelectionSystem
         if (!IsSessionValid(player, gameRule, def))
             return false;
 
-        if (IsAssignedAntag(gameRule, def, player))
+        // Starlight - A player may only occupy one definition within a game rule. The global multi-antag
+        // check above deliberately ignores this rule so a player's own reservation remains valid
+        // while it is being initialized, so check same-rule reservations separately here.
+        if (gameRule.Comp.PreSelectedSessions.Values.Any(sessions => sessions.Contains(player))) // Starlight, IsAssignedAntag check replaced
             return false;
 
         // Add player to the appropriate antag pool
@@ -159,7 +164,7 @@ public sealed partial class AntagSelectionSystem
     }
 
     /// <inhereitdoc cref="IsEntityValid(EntityUid?,AntagSpecifierPrototype)"/>
-    public bool IsEntityValid([NotNullWhen(true)] EntityUid? uid, ProtoId<AntagSpecifierPrototype> def)
+    public bool IsEntityValid(EntityUid? uid, ProtoId<AntagSpecifierPrototype> def) // Starlight
     {
         if (!Proto.Resolve(def, out var antag))
             return false;
@@ -174,7 +179,7 @@ public sealed partial class AntagSelectionSystem
     /// <param name="uid">Entity whose validity we're checking.</param>
     /// <param name="def">Antag definition we want to give them.</param>
     /// <returns>True if there is nothing stopping this entity from being this antag. Or if there is no entity.</returns>
-    public bool IsEntityValid([NotNullWhen(true)] EntityUid? uid, AntagSpecifierPrototype def)
+    public bool IsEntityValid(EntityUid? uid, AntagSpecifierPrototype def) // Starlight
     {
         // If the player has not spawned in as any entity (e.g., in the lobby), they can be given an antag role/entity.
         if (!_whitelist.CheckBoth(uid, def.Blacklist, def.Whitelist))
@@ -188,7 +193,10 @@ public sealed partial class AntagSelectionSystem
         if (HasComp<GhostComponent>(uid))
             return false;
 
-        if (!def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(uid) && !HasComp<HandsComponent>(uid)) // Starlight, no visual nubody
+        if (HasComp<BorgChassisComponent>(uid) && !HasComp<XenoborgComponent>(uid)) // Starlight, we should really make this look better in the future if we add more borg antags
+            return false; // Starlight
+
+        if (!HasComp<HumanoidAppearanceComponent>(uid) && (!def.AllowNonHumans || !HasComp<HandsComponent>(uid))) // Starlight, Cheese, you have sent me down the path of the hell trying to get this working reliably
             return false;
 
         return true;
@@ -216,27 +224,6 @@ public sealed partial class AntagSelectionSystem
 
         return false;
     }
-
-    #region Starlight
-    /// <summary>
-    /// Returns whether a player may claim an antagonist ghost role.
-    /// This intentionally does not require the antag preference to be enabled.
-    /// </summary>
-    [PublicAPI]
-    public bool CanTakeAntagGhostRole(ICommonSession session, ProtoId<AntagSpecifierPrototype> definition)
-    {
-        return Proto.Resolve(definition, out var antag) && CanTakeAntagGhostRole(session, antag);
-    }
-
-    /// <summary>
-    /// Returns whether a player may claim an antagonist ghost role.
-    /// </summary>
-    [PublicAPI]
-    public bool CanTakeAntagGhostRole(ICommonSession session, AntagSpecifierPrototype definition)
-    {
-        return !IsAntagBanned(session, definition) && _playTime.IsAllowed(session, definition.PrefRoles);
-    }
-    #endregion
 
     /// <inheritdoc cref="TryMakeAntag(Entity{AntagSelectionComponent},AntagSpecifierPrototype,ICommonSession,bool)"/>
     [PublicAPI]
@@ -267,7 +254,7 @@ public sealed partial class AntagSelectionSystem
             return false;
 
         PreSelectSession(gameRule, prototype, session);
-        return TryInitializeAntag(gameRule, prototype, session);
+        return TryInitializeAntag(gameRule, prototype, session, checkPref); // Starlight
     }
 
     /// <inheritdoc cref="TryAssignNextAvailableAntag(Entity{AntagSelectionComponent},ICommonSession,int)"/>
@@ -287,6 +274,18 @@ public sealed partial class AntagSelectionSystem
         ICommonSession session,
         int players)
     {
+        #region Starlight
+        return TryAssignNextAvailableAntag(gameRule, session, players, out _);
+    }
+
+    /// <summary>
+    /// Tries to find an open antag slot for a given player and returns the definition that was assigned.
+    /// </summary>
+    private bool TryAssignNextAvailableAntag(Entity<AntagSelectionComponent> gameRule, ICommonSession session, int players, [NotNullWhen(true)] out AntagSpecifierPrototype? assignedAntag)
+    {
+        assignedAntag = null;
+        #endregion
+
         foreach (var selector in gameRule.Comp.Antags)
         {
             if (!Proto.Resolve(selector.Proto, out var antag))
@@ -297,8 +296,13 @@ public sealed partial class AntagSelectionSystem
                 continue;
 
             // Try and assign this antag, if we fail, then try the next definition!
-            if (TryMakeAntag(gameRule, antag, session))
-                return true;
+            #region Starlight
+            if (!TryMakeAntag(gameRule, antag, session))
+                continue;
+
+            assignedAntag = antag;
+            return true;
+            #endregion
         }
 
         return false;
@@ -334,8 +338,13 @@ public sealed partial class AntagSelectionSystem
 
         foreach (var (uid, antag) in rules)
         {
-            if (TryAssignNextAvailableAntag((uid, antag), session, players))
-                return true;
+            #region Starlight
+            if (!TryAssignNextAvailableAntag((uid, antag), session, players, out var assignedAntag))
+                continue;
+
+            RecordLateJoinAntagAssignment((uid, antag), assignedAntag); // logging
+            return true;
+            #endregion
         }
 
         return false;
@@ -460,7 +469,7 @@ public sealed partial class AntagSelectionSystem
             return;
 
         PreSelectSession(rule, proto, player);
-        TryInitializeAntag(rule, proto, player);
+        TryInitializeAntag(rule, proto, player, checkPref: false, revalidate: false); // Starlight
     }
 
     /// <inhereitdoc cref="ForceMakeAntag{T}(ICommonSession,EntProtoId,AntagSpecifierPrototype)"/>
@@ -494,7 +503,7 @@ public sealed partial class AntagSelectionSystem
 
             // Try and assign this antag, if we fail, then try the next definition!
             PreSelectSession(rule, proto, player);
-            if (TryInitializeAntag(rule, proto, player))
+            if (TryInitializeAntag(rule, proto, player, checkPref: false, revalidate: false)) // Starlight
                 return;
         }
 

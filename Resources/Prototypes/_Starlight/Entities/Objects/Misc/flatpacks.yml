@@ -89,7 +89,7 @@
   description: A flatpack used for constructing a medical techfab.
   components:
   - type: Flatpack
-    entity: MedicalTechFabCircuitboard
+    entity: MedicalTechFab
 
 - type: entity
   parent: [BaseFlatpack, BaseSecurityContraband]
@@ -98,7 +98,7 @@
   description: A flatpack used for constructing a security techfab.
   components:
   - type: Flatpack
-    entity: SecurityTechFabCircuitboard
+    entity: SecurityTechFab
 
 - type: entity
   parent: [BaseFlatpack, BaseCargoContraband]
@@ -107,7 +107,7 @@
   description: A flatpack used for constructing a cargo techfab.
   components:
   - type: Flatpack
-    entity: CargoTechFabCircuitboard
+    entity: CargoTechFab
 
 - type: entity
   parent: [BaseFlatpack, BaseEngineeringContraband]
@@ -116,7 +116,7 @@
   description: A flatpack used for constructing an engineering techfab.
   components:
   - type: Flatpack
-    entity: EngineeringTechFabCircuitboard
+    entity: EngineeringTechFab
 
 - type: entity
   parent: [BaseFlatpack, BaseCivilianContraband]
@@ -125,7 +125,7 @@
   description: A flatpack used for constructing a service techfab.
   components:
   - type: Flatpack
-    entity: ServiceTechFabCircuitboard
+    entity: ServiceTechFab
 
 - type: entity
   parent: [BaseFlatpack, BaseScienceContraband]
@@ -134,7 +134,7 @@
   description: A flatpack used for constructing a science techfab.
   components:
   - type: Flatpack
-    entity: ScienceTechFabCircuitboard
+    entity: ScienceTechFab
 
 - type: entity
   parent: [BaseFlatpack, BaseCommandContraband]
@@ -143,7 +143,7 @@
   description: A flatpack used for constructing a command techfab.
   components:
   - type: Flatpack
-    entity: CommandTechFabCircuitboard
+    entity: CommandTechFab
 
 - type: entity
   parent: [BaseFlatpack, BaseNanoTrasenContraband]
@@ -152,7 +152,7 @@
   description: A flatpack used for constructing a NanoTrasen techfab.
   components:
   - type: Flatpack
-    entity: NanoTrasenTechFabCircuitboard
+    entity: NanoTrasenTechFab
 
 - type: entity
   parent: [BaseFlatpack, BaseCentcommContraband]
@@ -161,7 +161,7 @@
   description: A flatpack used for constructing a Central Command techfab.
   components:
   - type: Flatpack
-    entity: CentralCommandTechFabCircuitboard
+    entity: CentralCommandTechFab
 
 - type: entity
   parent: [BaseFlatpack, BaseSyndicateContraband]
@@ -170,4 +170,4 @@
   description: A flatpack used for constructing a Syndicate techfab.
   components:
   - type: Flatpack
-    entity: SyndicateTechFabCircuitboard
+    entity: SyndicateTechFab

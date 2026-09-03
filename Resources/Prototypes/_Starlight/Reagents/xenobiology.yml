@@ -25,7 +25,7 @@
   flavor: medicine
   color: "#a579b5"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:EvenHealthChange
           damage:
@@ -51,7 +51,7 @@
   flavor: medicine
   color: "#50d977"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:ChangeSpeciesFromList
           speciesList:
@@ -75,23 +75,23 @@
             - Thaven
             - Elf
             - Lagomorph
-            - ProtoArachnid
-            - ProtoDiona
-            - ProtoDwarf
-            - ProtoHuman
-            - ProtoMoth
-            - ProtoReptilian
-            - ProtoResomi
-            - ProtoSlimePerson
-            - ProtoVox
-            - ProtoVulp
-            - ProtoAvali
-            - ProtoCyclorite
-            - ProtoFelionoid
-            - ProtoKin
-            - ProtoThaven
-            - ProtoElf
-            - ProtoLagomorph
+            - NeoArachnid
+            - NeoDiona
+            - NeoDwarf
+            - NeoHuman
+            - NeoMoth
+            - NeoReptilian
+            - NeoResomi
+            - NeoSlimePerson
+            - NeoVox
+            - NeoVulpkanin
+            - NeoAvali
+            - NeoCyclorite
+            - NeoFelionoid
+            - NeoKin
+            - NeoThaven
+            - NeoElf
+            - NeoLagomorph
         # Starlight-Start: Cyclorite Metabolism
         - !type:AdjustReagent
           conditions:
@@ -110,7 +110,7 @@
   flavor: medicine
   color: "#50d977"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:ChangeSpecies
           species: SlimePerson
@@ -132,7 +132,7 @@
   flavor: medicine
   color: "#50d977"
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
         - !type:MutateIntoEntity
           entity: XenobiologySlimeGray

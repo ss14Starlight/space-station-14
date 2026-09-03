@@ -1,0 +1,11 @@
+- type: entity
+  parent: CdRack
+  id: CdRackFilled
+  suffix: random filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: RandomCDDisc
+        rolls: !type:RangeNumberSelector
+          range: 4, 8

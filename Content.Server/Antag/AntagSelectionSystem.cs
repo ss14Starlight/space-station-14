@@ -4,9 +4,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag.Components;
+using Content.Server._Starlight.Humanoid;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
+using Content.Server._Starlight.GameTicking.Events;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
@@ -26,7 +28,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
-using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.Tag;
@@ -60,13 +61,8 @@ namespace Content.Server.Antag;
 /// </remarks>
 public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelectionComponent>
 {
-    #region Starlight data collection
-    private static readonly Counter _antagsSpawned = Metrics.CreateCounter(
-        "sl_antags_spawned",
-        "Number of antagonists spawned by type",
-        ["type"]
-    );
-    #endregion
+    private static readonly TimeSpan InitialSelectionAuditDelay = TimeSpan.FromMinutes(5); // Starlight, audit the selection after 5 minutes to ensure that all antags have actually been selected
+    private static readonly TimeSpan SelectionAuditRetryDelay = TimeSpan.FromMinutes(1); // Starlight, retry the selection audit every 1 minute if it fails, up to MaxSelectionAuditRetries (default 3)
     [Dependency] private IBanManager _ban = default!;
     [Dependency] private IChatManager _chat = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
@@ -81,11 +77,13 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private LoadoutSystem _loadout = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private PlayTimeTrackingSystem _playTime = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearance = default!; // Starlight
     [Dependency] private RoleSystem _role = default!;
     [Dependency] private TransformSystem _transform = default!;
 
     #region Starlight
     [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private NeocyteSystem _neocyte = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     #endregion
 
@@ -126,35 +124,51 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         // In order of how these occur.
         SubscribeLocalEvent<RulePlayerSpawningEvent>(OnPlayerSpawning);
         SubscribeLocalEvent<NoJobsAvailableSpawningEvent>(OnJobNotAssigned);
+        SubscribeLocalEvent<InvalidAntagProfileSpawningEvent>(OnInvalidAntagProfile); // Starlight
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnJobsAssigned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup); // Starlight
     }
 
     protected override void Started(EntityUid uid, AntagSelectionComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
 
-        // If we're not in round, don't spawn or assign antags. Those will be handled by RulePlayerSpawning, and RulePlayerJobs
-        if (GameTicker.RunLevel != GameRunLevel.InRound)
+        #region Starlight
+        if (component.AssignmentHandled)
             return;
 
-        if (component.AssignmentHandled)
+        // Round-start rules get this reset after jobs are assigned. Mid-round rules are audited
+        // five minutes after activation, then retried only while another attempt can help.
+        component.NextSelectionAudit = Timing.CurTime + InitialSelectionAuditDelay;
+        component.SelectionAuditRetries = 0;
+        #endregion
+
+        // If we're not in round, don't spawn or assign antags. Those will be handled by RulePlayerSpawning, and RulePlayerJobs
+        if (GameTicker.RunLevel != GameRunLevel.InRound)
             return;
 
         // Antags haven't been selected so we need to select them! Only if we select when the game rule starts though!
         if (component.PreSelectionsComplete)
         {
             AssignPreSelectedSessions((uid, component));
+            EnforceAntagTargets((uid, component), GetActivePlayers().ToArray()); // Starlight, this is a safety check to ensure that all antags have been assigned to players, and if not, we will try to assign them again.
             return;
         }
 
-        // If pre-selections haven't completed, then we need to select and assign antags.
         var players = GetActivePlayers().ToArray();
 
-        if (component.SelectionTime == RuleStarted) // Only pre-select antags if we pre-select on rule start
+        #region Starlight
+        if (component.SelectionTime == RuleStarted)
             AssignAntags((uid, component), players);
-        else // Otherwise, we only spawn the ghost roles!
+        else
             SpawnGhostRoles((uid, component), players.Length);
+
+        // AssignAntags already exhausts the live pool and creates fallback ghost roles. This final
+        // pass also verifies their actual counts and catches failed spawner creation immediately.
+        EnforceAntagTargets((uid, component), players);
+        component.AssignmentHandled = true;
+        #endregion
     }
 
     private void OnTakeGhostRole(Entity<GhostRoleAntagSpawnerComponent> ent, ref TakeGhostRoleEvent args)
@@ -209,7 +223,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         // Move ghosts that were watching the raffle on the spawner over to the freshly spawned antag.
         _follower.TransferFollowers(ent.Owner, uid.Value);
 
-        _ghostRole.UnregisterGhostRole((ent, Comp<GhostRoleComponent>(ent)));
+        _ghostRole.MarkGhostRoleTaken((ent, Comp<GhostRoleComponent>(ent))); // Starlight, use helper
     }
 
     private void OnSpawnComplete(PlayerSpawnCompleteEvent args)
@@ -237,6 +251,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             antag.PreSelectionsComplete = true;
         }
 
+        var selectionStats = GetInitialAntagSelectionStats(pool, _preSpawnRules); // Starlight
+
         // Pick a random player session and then try to assign the currently available antags from it!
         // This means each player has the same chance at rolling antag, with minimal alterations to the odds by number of antags selected.
         var weightedPool = GetWeightedPlayerPool(pool);
@@ -252,6 +268,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         // Make ghost role spawners for any remaining rules!
         SpawnGhostRoles(_preSpawnRules);
+        LogInitialAntagSelectionStats(selectionStats); // Starlight
         _preSpawnRules = null; // Clear the list, we don't want it anymore
     }
 
@@ -263,9 +280,38 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             return;
         }
 
+        #region Starlight
+        var players = GetActivePlayers(args.Players).ToArray();
+
+        // Finish active pre-spawn reservations before selecting post-spawn antags. If a
+        // reservation became invalid after jobs/profile selection, restore that exact slot first.
+        var failedRules = new Dictionary<EntityUid, AntagSelectionComponent>();
+        foreach (var antag in _delayedAntags)
+        {
+            if (TryInitializeAntag(antag.gameRule, antag.antag, antag.player))
+                continue;
+
+            Log.Error($"Gamerule {ToPrettyString(antag.gameRule)} failed to spawn {antag.player.Name} as antag {antag.antag.ID} after spawning. Attempting a replacement.");
+            QueueReplacement(antag.gameRule, antag.antag.ID);
+            failedRules[antag.gameRule.Owner] = antag.gameRule.Comp;
+        }
+
+        _delayedAntags.Clear();
+
+        foreach (var (uid, component) in failedRules)
+        {
+            if (!Exists(uid) || HasComp<EndedGameRuleComponent>(uid))
+                continue;
+
+            AssignPendingReplacements((uid, component), players, players.Length);
+        }
+
+        var selectionStats = GetInitialAntagSelectionStats(args.Players, _postSpawnRules);
+        #endregion
+
         // Pick a random player session and then try to assign the currently available antags from it!
         // This means each player has the same chance at rolling antag, with minimal alterations to the odds by number of antags selected.
-        var weightedPool = GetWeightedPlayerPool(args.Players);
+        var weightedPool = GetWeightedPlayerPool(players); // Starlight, args.Players -> Players
         while (RobustRandom.TryPickAndTake(weightedPool, out var session))
         {
             AssignAntag(session, ref _postSpawnRules);
@@ -273,64 +319,41 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         // Make ghost role spawners for any remaining rules!
         SpawnGhostRoles(_postSpawnRules);
+        LogInitialAntagSelectionStats(selectionStats); // Starlight
         _postSpawnRules = null; // Clear the list since it's been used up!
 
-        foreach (var antag in _delayedAntags)
+        #region Starlight
+        // No active rule may leave a queued vacancy behind after the post-spawn pass.
+        // Inactive rules keep their vacancies until AssignPreSelectedSessions runs when
+        // the rule starts, so delayed antags are not initialized ahead of schedule.
+        var pendingQuery = QueryActiveRules();
+        while (pendingQuery.MoveNext(out var pendingUid, out _, out var pendingComp, out _))
+        {
+            if (HasComp<EndedGameRuleComponent>(pendingUid))
+                continue;
+
+            if (pendingComp.PendingReplacements.Count > 0)
+                AssignPendingReplacements((pendingUid, pendingComp), players, players.Length);
+
+            EnforceAntagTargets((pendingUid, pendingComp), players);
+            pendingComp.AssignmentHandled = true;
+            pendingComp.SelectionAuditRetries = 0;
+            pendingComp.NextSelectionAudit = Timing.CurTime + InitialSelectionAuditDelay;
+        }
+
+        /*foreach (var antag in _delayedAntags)
         {
             if (!TryInitializeAntag(antag.gameRule, antag.antag, antag.player))
                 Log.Error($"Gamerule {ToPrettyString(antag.gameRule)} failed to spawn {antag.player.Name} as antag {antag.antag.ID} after spawning.");
         }
 
-        _delayedAntags.Clear();
+        _delayedAntags.Clear();*/
+        #endregion
     }
 
-    private void OnJobNotAssigned(NoJobsAvailableSpawningEvent args)
-    {
-        // If someone fails to spawn in due to there being no jobs, they should be removed from any preselected antags.
-        // We only care about delayed rules, since if they're active the player should have already been removed via MakeAntag.
-        var query = QueryDelayedRules();
-        while (query.MoveNext(out var uid, out _, out var comp, out _))
-        {
-            if (comp.SelectionTime == RuleStarted)
-                continue;
+    private void OnJobNotAssigned(NoJobsAvailableSpawningEvent args) => ReleaseFailedPreSelections(args.Player); // Starlight
 
-            Debug.Assert(comp.SelectionTime != Never, $"Player: {args.Player.Name}, was pre selected for an game rule {ToPrettyString(uid)} which does not do pre-selections");
-
-            if (!comp.RemoveUponFailedSpawn)
-                continue;
-
-            foreach (var antag in comp.Antags)
-            {
-                if (!comp.PreSelectedSessions.TryGetValue(antag, out var session))
-                    break;
-                session.Remove(args.Player);
-            }
-        }
-    }
-
-    private void AddGameRuleDefinitions(Entity<AntagSelectionComponent> gameRule,
-        int playerCount,
-        ref List<AntagRule> preSpawnRoles,
-        ref List<AntagRule> postSpawnRoles,
-        bool active)
-    {
-        switch (gameRule.Comp.SelectionTime)
-        {
-            case PrePlayerSpawn:
-                AddGameRuleDefinitions(gameRule, playerCount, ref preSpawnRoles, active);
-                break;
-            case JobsAssigned:
-                AddGameRuleDefinitions(gameRule, playerCount, ref postSpawnRoles, active);
-                break;
-            case RuleStarted:
-                if (active) // Only if the game rule is active to we preselect, since the event for activation already ran and was skipped.
-                    AddGameRuleDefinitions(gameRule, playerCount, ref postSpawnRoles, active);
-                break;
-            case Never:
-                SpawnGhostRoles(gameRule, playerCount, true);
-                break;
-        }
-    }
+    private void OnInvalidAntagProfile(InvalidAntagProfileSpawningEvent args) => ReleaseFailedPreSelections(args.Player, args.InvalidAntags); // Starlight
 
     private void AddGameRuleDefinitions(Entity<AntagSelectionComponent> gameRule,
         int playerCount,
@@ -338,6 +361,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         bool active)
     {
         var runningCount = 0;
+        var effectivePlayers = GetEffectivePlayerCountPlayerRatio(playerCount); // Starlight
 
         foreach (var antag in gameRule.Comp.Antags)
         {
@@ -348,7 +372,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             // We do it this way in case our resolve fails.
             //roles.Add((gameRule, proto, active, GetTargetAntagCount(antag, playerCount, ref runningCount)));
 
-            var count = GetTargetAntagCount(antag, playerCount, ref runningCount);
+            var count = GetTargetAntagCount(antag, effectivePlayers, ref runningCount);
+            gameRule.Comp.SelectionTargets[antag.Proto] = count; // Starlight
             if (count <= 0)
                 continue;
 
@@ -361,6 +386,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         int playerCount)
     {
         var runningCount = 0;
+        var effectivePlayers = GetEffectivePlayerCountPlayerRatio(playerCount); // Starlight
         var antags = new List<AntagCount>(gameRule.Comp.Antags.Length);
 
         // We assume that antag definitions are prioritized by order, and take up slots that other roles may take.
@@ -371,7 +397,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!Proto.Resolve(antag.Proto, out var definition))
                 continue;
 
-            var count = GetTargetAntagCount(antag, playerCount, ref runningCount);
+            var count = GetTargetAntagCount(antag, effectivePlayers, ref runningCount); // Starlight
+            gameRule.Comp.SelectionTargets[antag.Proto] = count; // Starlight
             if (count <= 0)
                 continue;
 
@@ -459,6 +486,34 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!CanBeAntag(player, antag.GameRule, antag.Definition, false))
                 continue;
 
+            #region Starlight
+            EntityUid? antagEnt = null;
+            HumanoidCharacterProfile? selectedProfile = null;
+            MapCoordinates? fallbackCoordinates = null;
+
+            // Active off-station antags may be spawned immediately. Validate the entity and
+            // exact selected profile before reserving a slot, so a bad spawn cannot consume it.
+            if (antag.Active &&
+                TryGetAntagEntity(
+                    antag.GameRule,
+                    antag.Definition,
+                    player,
+                    out var spawnedEnt,
+                    out selectedProfile,
+                    out fallbackCoordinates))
+            {
+                if (!IsEntityValid(spawnedEnt.Value, antag.Definition) ||
+                    !IsSelectedProfileValidForAntag(player, spawnedEnt.Value, selectedProfile, antag.Definition))
+                {
+                    if (spawnedEnt.Value != player.AttachedEntity)
+                        QueueDel(spawnedEnt.Value);
+                    continue;
+                }
+
+                antagEnt = spawnedEnt;
+            }
+            #endregion
+
             // Pre-select the session then deprecate the selection count.
             PreSelectSession(antag.GameRule, antag.Definition, player);
 
@@ -473,10 +528,22 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!antag.Active)
                 return false;
 
-            // Try to assign them an entity if the game rule allows it.
-            // We don't deselect fails since we may have to wait until the player has spawned first!
-            if (TryGetAntagEntity(antag.GameRule, antag.Definition, player, out var antagEnt, out var selectedProfile)) // Starlight
+            #region Starlight
+            // If no entity was available, this is an on-station antag and initialization has
+            // to wait until after jobs and character profiles have been assigned.
+            if (antagEnt != null)
+            #endregion
             {
+                #region Starlight
+                // GetAntagEntity only records fallback movement for an existing body.
+                // Apply it after validation succeeds so a rejected player is never teleported.
+                if (fallbackCoordinates is { } coordinates)
+                {
+                    var xform = Transform(antagEnt.Value);
+                    _transform.SetMapCoordinates((antagEnt.Value, xform), coordinates);
+                }
+                #endregion
+
                 InitializeAntag(antag.GameRule, antag.Definition, antagEnt.Value, player, selectedProfile); // Starlight
                 return true;
             }
@@ -519,13 +586,17 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!CanBeAntag(player, antag, false))
                 continue;
 
+            #region Starlight
             // Try to get a valid antag entity.
-            if (!TryGetAntagEntity(antag.GameRule, antag.Definition, player, out var antagEnt, out var selectedProfile)) // Starlight
-                continue; // Something has gone horribly wrong if this happens, check your error log!
+            //if (!TryGetAntagEntity(antag.GameRule, antag.Definition, player, out var antagEnt, out var selectedProfile))
+            //    continue; // Something has gone horribly wrong if this happens, check your error log!
 
-            // Pre-select the sesssion, then initialize the antag!
+            // Reserve the slot, then initialize it. A failed initialization removes the
+            // reservation and leaves this count untouched so another player can fill it.
             PreSelectSession(antag.GameRule, antag.Definition, player);
-            InitializeAntag(antag.GameRule, antag.Definition, antagEnt.Value, player, selectedProfile); // Starlight
+            if (!TryInitializeAntag(antag.GameRule, antag.Definition, player))
+                continue;
+            #endregion
 
             // Reduce the slots left by one
             // If we finish assigning all slots
@@ -571,13 +642,17 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!CanBeAntag(player, gameRule, antag.Definition, false))
                 continue;
 
+            #region Starlight
             // Try to get a valid antag entity.
-            if (!TryGetAntagEntity(gameRule, antag.Definition, player, out var antagEnt, out var selectedProfile)) // Starlight
-                continue; // Something has likely gone horribly wrong if this happens, check your error log!
+            //if (!TryGetAntagEntity(gameRule, antag.Definition, player, out var antagEnt, out var selectedProfile)) // Starlight
+            //    continue; // Something has likely gone horribly wrong if this happens, check your error log!
 
-            // Pre-select the session, then initialize the antag!
+            // Reserve the slot, then initialize it. A failed initialization removes the
+            // reservation and leaves this count untouched so another player can fill it.
             PreSelectSession(gameRule, antag.Definition, player);
-            InitializeAntag(gameRule, antag.Definition, antagEnt.Value, player, selectedProfile); // Starlight
+            if (!TryInitializeAntag(gameRule, antag.Definition, player))
+                continue;
+            #endregion
 
             // Reduce the slots left by one
             // If we finish assigning all slots
@@ -678,10 +753,25 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     /// <returns>True if the player initialized as the selected antag.</returns>
     private bool TryInitializeAntag(Entity<AntagSelectionComponent> gameRule,
         AntagSpecifierPrototype prototype,
-        ICommonSession player)
+        ICommonSession player,
+        bool checkPref = true, // Starlight
+        bool revalidate = true) // Starlight
     {
+        #region Starlight
+        // A reservation is not an assignment. Revalidate everything that may have changed
+        // between pre-selection and initialization (connection, bans, other antags, job,
+        // entity restrictions, and the character profile that actually spawned).
+        if (revalidate &&
+            (!IsSessionValid(player, gameRule, prototype) ||
+             HasConflictingPreSelection(gameRule, prototype.ID, player)))
+        {
+            DeSelectSession(gameRule, prototype, player);
+            return false;
+        }
+        #endregion
+
         // Get a valid entity to initialize
-        if (!TryGetAntagEntity(gameRule, prototype, player, out var antagEnt, out var selectedProfile)) // Starlight
+        if (!TryGetAntagEntity(gameRule, prototype, player, out var antagEnt, out var selectedProfile, out var fallbackCoordinates)) // Starlight
         {
             DeSelectSession(gameRule, prototype, player);
             return false;
@@ -690,13 +780,25 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         // Re-check entity validity now that the player has spawned.
         // Pre-selection bypasses the blacklist (AttachedEntity was null at that time),
         // so we must verify here before applying antag components.
-        if (!IsEntityValid(antagEnt.Value, prototype))
+        if (!IsEntityValid(antagEnt.Value, prototype) ||
+            (revalidate && checkPref && // Starlight
+            !IsSelectedProfileValidForAntag(player, antagEnt.Value, selectedProfile, prototype))) // Starlight
         {
             if (antagEnt.Value != player.AttachedEntity)
                 QueueDel(antagEnt.Value);
             DeSelectSession(gameRule, prototype, player);
             return false;
         }
+
+        #region Starlight
+        // Delay fallback movement of an existing body until every entity and profile check
+        // has succeeded. This keeps a rejected crew member at their original location.
+        if (fallbackCoordinates is { } coordinates)
+        {
+            var xform = Transform(antagEnt.Value);
+            _transform.SetMapCoordinates((antagEnt.Value, xform), coordinates);
+        }
+        #endregion
 
         InitializeAntag(gameRule, prototype, antagEnt.Value, player, selectedProfile); // Starlight
         return true;
@@ -706,9 +808,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         AntagSpecifierPrototype prototype,
         ICommonSession player,
         [NotNullWhen(true)]out EntityUid? antagEnt,
-        out HumanoidCharacterProfile? selectedProfile) // Starlight
+        out HumanoidCharacterProfile? selectedProfile,
+        out MapCoordinates? fallbackCoordinates) // Starlight
     {
-        antagEnt = GetAntagEntity(gameRule, prototype, player, out selectedProfile); // Starlight
+        antagEnt = GetAntagEntity(gameRule, prototype, player, out selectedProfile, out fallbackCoordinates); // Starlight
         return antagEnt != null;
     }
 
@@ -725,9 +828,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     private EntityUid? GetAntagEntity(Entity<AntagSelectionComponent> gameRule,
         AntagSpecifierPrototype prototype,
         ICommonSession player,
-        out HumanoidCharacterProfile? selectedProfile) // Starlight
+        out HumanoidCharacterProfile? selectedProfile,
+        out MapCoordinates? fallbackCoordinates) // Starlight
     {
         selectedProfile = null; // Starlight
+        fallbackCoordinates = null; // Starlight
 
         // If there's no valid position for us to be moved to, then just return the entity currently attached to the session.
         // We need a position to spawn a new entity so we can't spawn a new entity without a proper position.
@@ -746,9 +851,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             return null;
         }
 
-        // Move our entity to the new coordinates we found!
-        var xform = Transform(uid);
-        _transform.SetMapCoordinates((uid, xform), coordinates.Value);
+        // Starlight, the caller moves an existing body only after entity and profile validation succeeds.
+        fallbackCoordinates = coordinates.Value; // Starlight
         return uid;
     }
 
@@ -782,20 +886,38 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!Proto.Resolve(proto, out var def))
                 continue;
 
-            foreach (var session in set)
+            foreach (var session in set.ToArray()) // Starlight, we make a copy of the set so we can modify it while iterating to avoid an obscure error that makes it stop selecting people when it reaches someone who disconnected
             {
                 _adminLogger.Add(LogType.AntagSelection, $"Start trying to make {session} become the antagonist: {ToPrettyString(gameRule)}, {proto}");
 
                 if (!IsSessionValid(session, gameRule, def))
                 {
+                    //SpawnGhostRole(gameRule, def); // Starlight
                     DeSelectSession(gameRule, proto, session, set);
-                    SpawnGhostRole(gameRule, def);
+                    QueueReplacement(gameRule, proto);
                     continue;
                 }
 
-                TryInitializeAntag(gameRule, def, session);
+                if (!TryInitializeAntag(gameRule, def, session))
+                    QueueReplacement(gameRule, proto); // Starlight
             }
         }
+
+        #region Starlight
+        var players = GetActivePlayers().ToArray();
+
+        // Failed slots are restored regardless of whether this rule allows additional
+        // late-join antags. LateJoinAdditional only controls population-growth assignments. (ie, if we have playerRatio for 5 at shift start but 6 later)
+        AssignPendingReplacements(gameRule, players, players.Length);
+
+        if (gameRule.Comp.LateJoinAdditional)
+        {
+            var weightedPool = GetWeightedPlayerPool(players);
+
+            while (RobustRandom.TryPickAndTake(weightedPool, out var session))
+                TryAssignNextAvailableAntag(gameRule, session, players.Length);
+        }
+        #endregion
 
         gameRule.Comp.AssignmentHandled = true;
     }
@@ -848,8 +970,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (prototype.StartingGear is not null)
             gear.Add(prototype.StartingGear.Value);
 
-        var selectedLoadout = GetSelectedLoadout(player, selectedProfile, prototype.RoleLoadout, out var selectedLoadoutProto); // Starlight, antag loadouts
-        _loadout.Equip(antag, gear, prototype.RoleLoadout, selectedLoadout, selectedLoadoutProto); // Starlight
+        #region Starlight
+        var selectedLoadout = GetSelectedLoadout(player, selectedProfile, prototype.RoleLoadout, out var selectedLoadoutProto); // Antag loadouts
+        _neocyte.EquipSpeciesLoadoutForAntag(antag, selectedProfile, player, selectedLoadout, prototype.StartingGear);
+        _loadout.Equip(antag, gear, prototype.RoleLoadout, selectedLoadout, selectedLoadoutProto, prioritizeBackStorage: true);
+        #endregion
 
         // Ensure that we have the right mind for our entity.
         if (!_mind.TryGetMind(player, out var mind, out var mindComp) || mindComp.OwnedEntity != antag)
@@ -861,6 +986,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         Log.Debug($"Assigned {ToPrettyString(antag):target}, mind {ToPrettyString(mind):target} as antagonist: {ToPrettyString(gameRule):user}");
         _adminLogger.Add(LogType.AntagSelection, $"Assigned {ToPrettyString(antag):target}, mind {ToPrettyString(mind):target} as antagonist: {ToPrettyString(gameRule):user}");
+
+        _antagsSpawned.WithLabels(prototype.ID ?? "unknown").Inc(); // Starlight
 
         SendBriefing(player, prototype.Briefing);
 
@@ -890,27 +1017,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         args.Minds = GetAntagIdentities(ent.AsNullable()).ToList();
         args.AgentName = Loc.GetString(name);
     }
-
-    #region Starlight
-    // Starlight - Antag Loadouts
-        private RoleLoadout? GetSelectedLoadout(ICommonSession? session, HumanoidCharacterProfile? profile, List<ProtoId<RoleLoadoutPrototype>>? roleLoadouts, out RoleLoadoutPrototype? proto)
-    {
-        proto = null;
-
-        if (profile == null || roleLoadouts == null || roleLoadouts.Count == 0)
-            return null;
-
-        foreach (var candidate in roleLoadouts)
-        {
-            if (!_prototypeManager.TryIndex(candidate, out proto))
-                continue;
-
-            return profile.GetLoadoutOrDefault(candidate, session, profile.Species, EntityManager, _prototypeManager).Clone();
-        }
-
-        return null;
-    }
-    #endregion
 }
 
 /// <summary>

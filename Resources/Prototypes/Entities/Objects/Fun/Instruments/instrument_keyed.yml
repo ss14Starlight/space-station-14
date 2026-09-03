@@ -18,6 +18,8 @@
     instrumentList:
       "Electro": {62: 0} #i needed generic sounding synth presets, sue me
       "Bubbles": {63: 0}
+      "Tine Piano": {4: 0} # Starlight, actually give a way to access these instruments
+      "FM Piano": {5: 0} # Starlight
   - type: Sprite
     sprite: Objects/Fun/Instruments/h_synthesizer.rsi
   - type: StaticPrice

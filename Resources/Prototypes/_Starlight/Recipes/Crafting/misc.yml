@@ -13,3 +13,29 @@
   targetNode: mask
   category: construction-category-misc
   objectType: Item
+
+- type: construction
+  name: crafting-menu-name-false-projector
+  id: FalseShutterProjectorEmpty
+  graph: FalseShutterProjectorEmpty
+  startNode: start
+  targetNode: projector
+  category: construction-category-misc
+  objectType: Item
+  description: crafting-menu-text-false-projector
+
+- type: construction
+  id: DeadManRemoteSignaller
+  graph: makeshiftdeadmansignaler
+  startNode: start
+  targetNode: msdeadmansignaler
+  category: construction-category-misc
+  objectType: Item
+
+- type: construction
+  id: DeadManRemoteSignallerAdvanced
+  graph: makeshiftdeadmansignaleradvanced
+  startNode: start
+  targetNode: msdeadmansignaleradvanced
+  category: construction-category-misc
+  objectType: Item

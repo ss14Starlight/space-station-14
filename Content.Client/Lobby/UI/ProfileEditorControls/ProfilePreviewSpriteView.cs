@@ -1,4 +1,4 @@
-﻿using Content.Shared.Humanoid;
+using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Client.UserInterface.Controls;
@@ -41,9 +41,9 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
     public string? FullDescription { get; private set; }
 
     /// <summary>
-    /// The Uid of the currently loaded dummy
+    /// Entity used for the profile editor preview
     /// </summary>
-    public EntityUid PreviewDummy { get; private set; } = EntityUid.Invalid;
+    public EntityUid PreviewDummy;
 
     /// <summary>
     /// This MUST be called before loading a profile to initialize the managers.
@@ -129,6 +129,12 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
         return string.Join("\n", descriptionLines);
     }
 
+    public void ClearPreview()
+    {
+        EntMan.DeleteEntity(PreviewDummy);
+        PreviewDummy = EntityUid.Invalid;
+    }
+
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
@@ -137,5 +143,11 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
 
         EntMan.DeleteEntity(PreviewDummy);
         PreviewDummy = EntityUid.Invalid;
+    }
+
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+        ClearPreview();
     }
 }

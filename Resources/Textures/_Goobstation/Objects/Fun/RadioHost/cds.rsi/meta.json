@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "SlamBamActionman"
+        },
+        {
+            "name": "synd-cd",
+            "copyright": "Jvne"
+        },
+        {
+            "name": "jne-cd",
+            "copyright": "Jvne"
+        },
+        {
+            "name": "nt-cd",
+            "copyright": "Huaqas (GitHub)"
+        }
+    ]
+}

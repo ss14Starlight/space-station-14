@@ -10,6 +10,7 @@ public sealed partial class BrighteyeSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private TagSystem _tag = default!;
+
     private static readonly ProtoId<TagPrototype> _bowTag = "Bow";
 
     public override void Initialize()

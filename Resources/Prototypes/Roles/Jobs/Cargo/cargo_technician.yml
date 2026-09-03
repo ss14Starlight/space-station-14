@@ -10,11 +10,11 @@
   access:
   - Cargo
   - Maintenance
+  - Shuttle # Starlight
   extendedAccess:
   - Salvage
   - Mining # Starlight
   - Mail # Starlight
-  - Shuttle # Starlight
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay

@@ -287,3 +287,8 @@ dotnet_naming_style.begin_s_.required_prefix = s_
 dotnet_naming_style.begin_s_.required_suffix =
 dotnet_naming_style.begin_s_.word_separator =
 dotnet_naming_style.begin_s_.capitalization = camel_case
+
+
+# Overrides
+[{**/{Content.Tests.csproj,Content.IntegrationTests.csproj},Directory.Build.targets}]
+indent_size = 2

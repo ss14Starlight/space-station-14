@@ -17,7 +17,7 @@
         "!type:ActionGunShootEvent mapping",
         "!type:ActionHivemindAccessEvent mapping",
         "!type:ActionLesserFormEvent mapping",
-        "!type:ActionProtogenDisguiseEvent mapping",
+        "!type:ActionNeocyteDisguiseEvent mapping",
         "!type:ActionSpacesuitEvent mapping",
         "!type:ActivateImplantEvent mapping",
         "!type:ActivateWireAction mapping",

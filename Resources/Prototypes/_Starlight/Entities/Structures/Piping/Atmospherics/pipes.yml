@@ -54,9 +54,6 @@
   - type: VentCrawlJunction
     degrees:
       - 0
-      - 90
-      - -90
-      - 180
   - type: GuideHelp
     guides:
     - Pipes

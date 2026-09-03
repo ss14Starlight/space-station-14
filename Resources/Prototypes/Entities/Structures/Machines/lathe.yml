@@ -49,6 +49,11 @@
     price: 800
   - type: ResearchClient
   - type: TechnologyDatabase
+  - type: ApcPowerReceiver
+    powerLoad: 150
+  - type: PowerState
+    idlePowerDraw: 150
+    workingPowerDraw: 1000
   - type: StationAiWhitelist #Starlight
 # SL Start: Lighting Update
   - type: LitOnPowered
@@ -72,16 +77,20 @@
     modifiers:
       SpaceLube: 0.25
       SpaceGlue: 5
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      lube:
-        maxVol: 250
+    - SolutionLatheLube
   - type: Spillable
     solution: lube
   - type: RefillableSolution
     solution: lube
   - type: ExaminableSolution
     solution: lube
+
+- type: entity
+  parent: [SolutionLube, SolutionLarge]
+  id: SolutionLatheLube # Its own prototype since some lathes might interface with solutions in other ways
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   abstract: true
@@ -145,6 +154,7 @@
     - StarlightContainersStatic # Starlight
     - PowerCellsStatic
     - ElectronicsStatic
+    - ServiceBoardsStaticGoob # Goobstation - Radio Host boards
     # Starlight Start
     - CassetteTape
     - TapeRecorder
@@ -311,6 +321,7 @@
     - ReactorCircuitboards # FH edit
     - OublietteCircuitBoard # Starlight
     - ScienceDarkBreacher # Starlight
+    - ServiceBoardsGoob # Goobstation - Radio Host boards
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards

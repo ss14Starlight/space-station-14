@@ -18,9 +18,6 @@ namespace Content.Server.Antag;
 
 public sealed partial class AntagSelectionSystem
 {
-    readonly int _effectivePlayerCutoff = 30; // Starlight, the number of online players at which unready players start counting as effectively ready
-    readonly double _unreadyPlayerMultiplier = 0.25; // Starlight, the fraction of unready players that count as effectively ready when above the cutoff
-
     /// <inhereitdoc cref="GetActivePlayerCount(IList{ICommonSession})"/>
     [PublicAPI]
     public int GetActivePlayerCount()
@@ -51,21 +48,6 @@ public sealed partial class AntagSelectionSystem
 
         return count;
     }
-
-    #region Starlight
-    private int GetEffectivePlayerCount(int activePlayers)
-    {
-        var onlinePlayers = _playerManager.Sessions.Length;
-
-        if (onlinePlayers < _effectivePlayerCutoff)
-            return activePlayers;
-
-        var inactivePlayers = Math.Max(0, onlinePlayers - activePlayers);
-
-        // Count 60% of lobby/spectating/unready players.
-        return activePlayers + (int)(inactivePlayers * _unreadyPlayerMultiplier);
-    }
-    #endregion
 
     [PublicAPI]
     public IEnumerable<ICommonSession> GetActivePlayers()
@@ -104,7 +86,7 @@ public sealed partial class AntagSelectionSystem
     {
         var runningCount = 0;
         var count = 0;
-        var effectivePlayers = GetEffectivePlayerCount(playerCount); // Starlight, effective players to include *some* people who don't ready up
+        var effectivePlayers = GetEffectivePlayerCountPlayerRatio(playerCount); // Starlight, effective players to include *some* people who don't ready up
 
         // We assume that antag definitions are prioritized by order, and take up slots that other roles may take.
         // I.E for Nukies, it selects 1 commander which takes up 10 players, then one corpsman which takes up another 10, then we select X nukies based on the remaining player count.
@@ -141,7 +123,7 @@ public sealed partial class AntagSelectionSystem
     public int GetTargetAntagCount(Entity<AntagSelectionComponent> gameRule, int playerCount, AntagSpecifierPrototype proto)
     {
         var runningCount = 0;
-        var effectivePlayers = GetEffectivePlayerCount(playerCount); // Starlight, effective players to include *some* people who don't ready up
+        var effectivePlayers = GetEffectivePlayerCountPlayerRatio(playerCount); // Starlight, effective players to include *some* people who don't ready up
 
         // We assume that antag definitions are prioritized by order, and take up slots that other roles may take.
         // I.E for Nukies, it selects 1 commander which takes up 10 players, then one corpsman which takes up another 10, then we select X nukies based on the remaining player count.
@@ -167,8 +149,14 @@ public sealed partial class AntagSelectionSystem
     /// </summary>
     public int GetTargetAntagCount(AntagCountSelector selector, int playerCount, ref int runningCount)
     {
-        var count = selector.GetTargetAntagCount(RobustRandom, playerCount - runningCount);
-        runningCount += (int)(count * selector.PlayerRatio); // Starlight
+        #region Starlight
+        // We need to calculate the player count for this selector based on whether it uses the total player count or the remaining player count after previous selectors.
+        var selectorPlayerCount = selector.UseTotalPlayerCount
+            ? playerCount
+            : playerCount - runningCount;
+        var count = selector.GetTargetAntagCount(RobustRandom, selectorPlayerCount);
+        runningCount += (int)(count * selector.PlayerRatio);
+        #endregion
         return count;
     }
 
@@ -190,7 +178,14 @@ public sealed partial class AntagSelectionSystem
     [PublicAPI]
     public bool AllAntagsAssigned(Entity<AntagSelectionComponent> gameRule, AntagSpecifierPrototype proto, int players)
     {
-        return GetAssignedAntagCount(gameRule, proto) >= GetTargetAntagCount(gameRule, players, proto);
+        #region Starlight
+        var assigned = GetAssignedAntagCount(gameRule, proto);
+        var pendingGhostRoles = GetPendingAntagGhostRoleCount(gameRule, proto);
+        var target = Math.Max(gameRule.Comp.SelectionTargets.GetValueOrDefault(proto.ID), GetTargetAntagCount(gameRule, players, proto));
+
+        return assigned + pendingGhostRoles >= target;
+        // return GetAssignedAntagCount(gameRule, proto) >= GetTargetAntagCount(gameRule, players, proto);
+        #endregion
     }
 
     /// <summary>
@@ -434,7 +429,8 @@ public sealed partial class AntagSelectionSystem
 
                 foreach (var player in set)
                 {
-                    if (result.TryGetValue(player, out var jobs))
+                    #region Starlight
+                    /*if (result.TryGetValue(player, out var jobs))
                     {
                         if (proto.JobWhitelist != null)
                         {
@@ -455,7 +451,10 @@ public sealed partial class AntagSelectionSystem
                     else
                     {
                         result.Add(player, (proto.JobWhitelist, proto.JobBlacklist));
-                    }
+                    }*/
+                    var jobs = result.GetValueOrDefault(player);
+                    result[player] = MergeAntagJobs(jobs, proto);
+                    #endregion
                 }
             }
         }
@@ -492,7 +491,8 @@ public sealed partial class AntagSelectionSystem
                 if (!Proto.Resolve(antag.Proto, out var proto))
                     continue;
 
-                if (proto.JobWhitelist != null)
+                #region Starlight
+                /*if (proto.JobWhitelist != null)
                 {
                     if (whitelist == null)
                         whitelist = proto.JobWhitelist;
@@ -506,7 +506,9 @@ public sealed partial class AntagSelectionSystem
                         blacklist = proto.JobBlacklist;
                     else
                         blacklist.UnionWith(proto.JobBlacklist);
-                }
+                }*/
+                (whitelist, blacklist) = MergeAntagJobs((whitelist, blacklist), proto);
+                #endregion
             }
         }
 
@@ -692,29 +694,4 @@ public sealed partial class AntagSelectionSystem
 
         return false;
     }
-
-    #region Starlight
-    /// <summary>
-    /// Returns the antag specifier prototypes this session has been preselected for.
-    /// </summary>
-    [PublicAPI]
-    public HashSet<ProtoId<AntagSpecifierPrototype>> GetPreSelectedAntagSpecifiers(ICommonSession session)
-    {
-        var result = new HashSet<ProtoId<AntagSpecifierPrototype>>();
-        var query = QueryAllRules();
-        while (query.MoveNext(out var uid, out var comp, out _))
-        {
-            if (HasComp<EndedGameRuleComponent>(uid))
-                continue;
-
-            foreach (var antag in comp.Antags)
-            {
-                if (comp.PreSelectedSessions.TryGetValue(antag, out var set) && set.Contains(session))
-                    result.Add(antag);
-            }
-        }
-
-        return result;
-    }
-    #endregion
 }

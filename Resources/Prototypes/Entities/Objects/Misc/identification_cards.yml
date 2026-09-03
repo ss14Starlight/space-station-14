@@ -810,10 +810,6 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Zookeeper
-  # Starlight start
-  - type: PresetIdCard
-    job: Zookeeper
-  # Starlight end
 
 #Supply
 

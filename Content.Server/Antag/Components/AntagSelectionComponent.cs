@@ -3,13 +3,9 @@ using Content.Server.Antag.Selectors;
 using Content.Server.GameTicking;
 using Content.Shared.Antag;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Tag;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-
-// Starlight-start
-using Content.Shared.Tag;
-// Starlight-end
-
 namespace Content.Server.Antag.Components;
 
 [RegisterComponent, Access(typeof(AntagSelectionSystem), typeof(AdminVerbSystem))]
@@ -47,6 +43,42 @@ public sealed partial class AntagSelectionComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<ProtoId<AntagSpecifierPrototype>, HashSet<ICommonSession>> PreSelectedSessions = new();
+
+    #region Starlight
+    /// <summary>
+    /// Pre-selected antagonist slots that became vacant before the antagonist could be initialized.
+    /// These are retried against other eligible players before falling back to ghost roles.
+    /// </summary>
+    [ViewVariables]
+    public Dictionary<ProtoId<AntagSpecifierPrototype>, int> PendingReplacements = new();
+
+    /// <summary>
+    /// Target counts captured when this rule performed its primary selection. We use these
+    /// as a floor so unrelated players leaving cannot erase an already-reserved slot.
+    /// </summary>
+    [ViewVariables]
+    public Dictionary<ProtoId<AntagSpecifierPrototype>, int> SelectionTargets = new();
+
+    /// <summary>
+    /// When this active rule should next verify that its calculated antagonist targets were
+    /// actually assigned. Null when no useful retry remains.
+    /// </summary>
+    [ViewVariables]
+    public TimeSpan? NextSelectionAudit;
+
+    /// <summary>
+    /// Maximum number of one-minute repair attempts after the initial timed selection audit.
+    /// Set to 0 to keep the initial audit but disable timed retries.
+    /// </summary>
+    [DataField]
+    public int MaxSelectionAuditRetries = 3;
+
+    /// <summary>
+    /// Number of timed repair retries scheduled for this rule after its initial audit.
+    /// </summary>
+    [ViewVariables]
+    public int SelectionAuditRetries;
+    #endregion
 
     /// <summary>
     /// The minds and original names of the players assigned to be antagonists, as well as their assigned antag.

@@ -52,6 +52,9 @@
     - Surgery
     - Paramedic
     - Debrief
+    - Journalism
+    - Clown
+    - Mime
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

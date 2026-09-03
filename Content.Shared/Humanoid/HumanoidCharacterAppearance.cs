@@ -243,18 +243,19 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             _ => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
         };
 
-        //starlight start
+        #region Starlight
         var speciesPrototype = IoCManager.Resolve<IPrototypeManager>().Index<SpeciesPrototype>(species);
         var newWidth = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth);
         var newHeight = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
-        //starlight end
 
-        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, false, newFacialHairStyle, newHairColor, false, newEyeColor, false, newSkinColor, new (), newWidth, newHeight); //starlight, glowing
+        return new HumanoidCharacterAppearance(newHairStyle, newHairColor, false, newFacialHairStyle, newHairColor, false, newEyeColor, false, newSkinColor, new (), newWidth, newHeight); // glowing
 
+        // We still need randomize color since no visual nubody
         float RandomizeColor(float channel)
         {
             return MathHelper.Clamp01(channel + random.Next(-25, 25) / 100f);
         }
+        #endregion
     }
 
     public static Color ClampColor(Color color)
@@ -277,15 +278,29 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         var proto = IoCManager.Resolve<IPrototypeManager>();
         var markingManager = IoCManager.Resolve<MarkingManager>();
 
-        if (!markingManager.MarkingsByCategory(MarkingCategories.Hair).ContainsKey(hairStyleId))
+        if (!markingManager.TryResolveMarkingId(hairStyleId, out var migratedHairStyleId) || // Starlight
+            !markingManager.MarkingsByCategory(MarkingCategories.Hair).ContainsKey(migratedHairStyleId)) // Starlight
         {
             hairStyleId = HairStyles.DefaultHairStyle;
         }
+        #region Starlight
+        else
+        {
+            hairStyleId = migratedHairStyleId;
+        }
+        #endregion
 
-        if (!markingManager.MarkingsByCategory(MarkingCategories.FacialHair).ContainsKey(facialHairStyleId))
+        if (!markingManager.TryResolveMarkingId(facialHairStyleId, out var migratedFacialHairStyleId) || // Starlight
+            !markingManager.MarkingsByCategory(MarkingCategories.FacialHair).ContainsKey(migratedFacialHairStyleId)) // Starlight
         {
             facialHairStyleId = HairStyles.DefaultFacialHairStyle;
         }
+        #region Starlight
+        else
+        {
+            facialHairStyleId = migratedFacialHairStyleId;
+        }
+        #endregion
 
         var markingSet = new MarkingSet();
         var skinColor = appearance.SkinColor;

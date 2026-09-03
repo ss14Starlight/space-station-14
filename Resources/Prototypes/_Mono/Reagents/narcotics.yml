@@ -16,7 +16,7 @@
     - !type:PlantDiethylamine {}
   # Starlight end
   metabolisms:
-    Medicine:
+    Bloodstream: # Starlight
       metabolismRate: 0.2
       effects:
       - !type:HealthChange
@@ -43,9 +43,6 @@
         reagent: Phenylpiperidine
         amount: -0.1
         # Starlight-End
-    Narcotic:
-      metabolismRate: 0.2
-      effects:
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.40
         sprintSpeedModifier: 0.40
@@ -53,10 +50,10 @@
         key: Stutter
         component: StutteringAccent
       - !type:Jitter
-      - !type:GenericStatusEffect
-        key: ForcedSleep
-        time: 5
-        type: Add
+      #- !type:GenericStatusEffect # Starlight start
+      #  key: ForcedSleep # It doesn't work due to using the wrong status effect, but I think fixing it would just make it noct 2, so I'd rather just not have the effect.
+      #  time: 5
+      #  type: Add # Starlight end
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
         type: Add
