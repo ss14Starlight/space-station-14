@@ -14,14 +14,11 @@
       maxReagents: 6
       metabolizerTypes: [ Slime, Animal ]
       stages: [ Digestion, Metabolites ]
-    - type: SolutionContainerManager
+    - type: SolutionManager
       solutions:
-        stomach:
-          maxVol: 50.0
-        organ:
-          reagents:
-          - ReagentId: Slime
-            Quantity: 10
+      - SolutionOrganSlime
+      - SolutionOrganFoodGreyMatterLarge
+      - SolutionOrganStomach50
 
 - type: entity
   id: OrganNeoSlimeHeart
