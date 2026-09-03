@@ -41,7 +41,7 @@
 
 - type: markingPoints
   id: MobDollMarkingLimits
-  onlyWhitelisted: true
+  onlyWhitelisted: false
   points:
     Head:
       points: 1
