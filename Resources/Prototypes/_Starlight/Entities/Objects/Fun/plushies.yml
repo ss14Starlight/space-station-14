@@ -341,8 +341,10 @@
     quickEquip: false
     sprite: _Starlight/Objects/Fun/Plushies/victorjr_plushie.rsi
     slots:
-    - HEAD
-      - state: equipped-HELMET
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
   - type: Speech
     speechVerb: Reptilian # for pais (In the secret stash)
   - type: Tag
