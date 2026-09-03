@@ -55,6 +55,10 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [Dependency] private EntityQuery<ReactiveComponent> _reactiveQuery = default!;
     [Dependency] private EntityQuery<EvaporationComponent> _evaporationQuery = default!;
 
+    [Dependency] private EntityQuery<StepTriggerComponent> _stepTriggerQuery = default!;
+    [Dependency] private EntityQuery<ReactiveComponent> _reactiveQuery = default!;
+    [Dependency] private EntityQuery<EvaporationComponent> _evaporationQuery = default!;
+
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
     /// <summary>
