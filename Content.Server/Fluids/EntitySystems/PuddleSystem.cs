@@ -44,8 +44,8 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
-    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!;
-    [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!;
+    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!; // Moff
+    [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!; // Moff
 
     [Dependency] private EntityQuery<FootprintComponent> _footprintQuery; // Moff - Funky footprints
 
