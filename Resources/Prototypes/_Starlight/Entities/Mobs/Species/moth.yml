@@ -43,7 +43,6 @@
   - type: TypingIndicator
     proto: moth
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 5
@@ -51,7 +50,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 300
+        Quantity: 600
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

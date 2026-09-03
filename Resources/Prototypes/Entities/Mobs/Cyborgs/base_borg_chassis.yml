@@ -95,6 +95,8 @@
     disableExplosionRecursion: true
     canBeStripped: false
   - type: HandlessDoAfter # Starlight
+  - type: CanCrawlWithoutHands # Starlight: Allow crawling without hands
+  - type: BorgModuleCrawlModifier # Starlight: Half crawl speed when module active
   - type: ComplexInteraction
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
@@ -366,6 +368,7 @@
   - type: AccessReader
     access: [["Command"], ["Robotics"]] # Starlight
   - type: ShowJobIcons
+  - type: ShowCrewIcons
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
@@ -432,6 +435,7 @@
   - type: IonStormTarget
     chance: 1
   - type: ShowJobIcons
+  - type: ShowCrewIcons
 
 - type: entity
   id: BaseBorgChassisSyndicateDerelict #For assault borg and maybe others in time
@@ -445,6 +449,7 @@
   - type: IonStormTarget
     chance: 1
   - type: ShowJobIcons
+  - type: ShowCrewIcons
 #  region starlight - reverting syndicate derelict cyborg 1984
 #  - type: NpcFactionMember # They're still syndicate even if they can't listen to the radio or see icons
 #      factions:
@@ -595,6 +600,7 @@
   - type: AccessReader
     access: [["Xenoborg"]]
   - type: ShowJobIcons # not sure if it is needed
+  - type: ShowCrewIcons
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg

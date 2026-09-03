@@ -78,7 +78,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Slime
-        Quantity: 300
+        Quantity: 600
   - type: Barotrauma
     protectionSlots:
     - head
@@ -110,7 +110,6 @@
         messages: [ "slime-hurt-by-water-popup" ]
         probability: 0.25
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatSlime
       amount: 5

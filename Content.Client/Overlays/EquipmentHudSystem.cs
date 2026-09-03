@@ -15,7 +15,7 @@ public abstract partial class EquipmentHudSystem<T> : EntitySystem where T : ICo
     [Dependency] private IPlayerManager _player = default!;
 
     [ViewVariables]
-    protected bool IsActive;
+    public bool IsActive { get; private set; }
     protected virtual SlotFlags TargetSlots => ~SlotFlags.POCKET;
 
     public override void Initialize()

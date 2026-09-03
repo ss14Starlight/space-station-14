@@ -1,0 +1,31 @@
+<Document>
+  # Doll
+
+  <Box>
+    <GuideEntityEmbed Entity="MobDoll" Caption=""/>
+  </Box>
+
+  The common perception of Dolls is one of cold, unmoving faces and eerily fluid motion. This is, of course, a deliberately chosen look - as they fear being outcast or even hunted, were people to look underneath their shell.
+
+  In reality, Dolls are a recently discovered, sapient strain of meat anomaly creatures, hiding their rather disturbing forms underneath a hard, ceramic-like shell. It is more than just a suit - a Doll's shell is a core part of their very self. While they are able to leave it behind, they are unwilling to do so, save for extreme emergencies, and outside attempts to remove it are oft met with violent resistance.
+
+  ## Diet
+  Dolls are anomalous creatures of flesh. As such, their diet consists of meat and blood, though they do not care whether it has been cooked beforehand. Consuming blood will also slowly heal a Doll, including their shell - though the mechanism for this is unknown.
+
+  ## Racial Features
+  - [color=#00aa00]Slowly heal from consuming blood[/color]
+  - [color=#FFA500]Organs move independently[/color]
+  - [color=#aa0000]Takes 30% more blunt damage[/color]
+
+  ## The Shell
+  You have an outer shell hiding away your meaty tendrils. You should keep it on at all times! At need, you can break off small, spare pieces of your shell - which is a pretty painful process - to use as a makeshift knife, or to give to another doll, should the worst happen and their shell was [italics]stolen[/italics].
+
+  [bold]With Shell[/bold]
+  - [color=#00aa00]Takes 30% less slashing damage[/color]
+  - [color=#00aa00]Takes 30% less piercing damage[/color]
+  - [color=#aa0000]Takes 30% more heat damage[/color]
+
+  [bold]Without Shell[/bold]
+  - [color=#aa0000]Takes 30% more slashing damage[/color]
+  - [color=#aa0000]Takes 30% more piercing damage[/color]
+</Document>
