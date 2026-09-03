@@ -543,9 +543,9 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
         _nanoChat.AddMessage((recipient, recipient.Comp), recipientNumber, message with { DeliveryFailed = false });
 
         if (TryComp<CartridgeComponent>(recipient, out var cartridge) && cartridge.LoaderUid is {} pda && _nanoChat.GetCurrentChat((recipient, recipient.Comp)) != recipientNumber)
-            HandleUnreadNotification(recipient, message, pda);
+            HandleUnreadNotification(recipient, message, pda, recipientNumber);
 
-        var msgEv = new NanoChatMessageReceivedEvent(recipient, message);
+        var msgEv = new NanoChatMessageReceivedEvent(recipient, message, recipientNumber);
         RaiseLocalEvent(ref msgEv);
         UpdateUIForCard(recipient);
     }
@@ -603,7 +603,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
                 // Starlight edit Start: Notifications always send
                 // if (recipient.Comp.CurrentChat != args.Message.SenderId && loader.ActiveProgram != uid || !_ui.IsUiOpen(pda, PdaUiKey.Key))
                 // {
-                    HandleUnreadNotification(recipient, args.Message, pda);
+                    HandleUnreadNotification(recipient, args.Message, pda, args.ChatId);
                 // }
                 // Starlight edit End
             }
@@ -614,18 +614,19 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     ///     Handles message notifications and updates unread status.
     /// </summary>
     private void HandleUnreadNotification(Entity<NanoChatCardComponent> recipient,
-        NanoChatMessage message, EntityUid pda)
+        NanoChatMessage message, EntityUid pda, uint? chatId = null)
     {
         // Get sender name from contacts or fall back to number
         var recipients = _nanoChat.GetRecipients((recipient, recipient.Comp));
-        var senderNumber = message.SenderId;
-        var senderName = recipients.TryGetValue(senderNumber, out var senderRecipient)
+        var senderNumber = chatId ?? message.SenderId;
+        var hasSenderRecipient = recipients.TryGetValue(senderNumber, out var senderRecipient);
+        var senderName = hasSenderRecipient && senderRecipient.Name != null
             ? senderRecipient.Name
             : $"#{senderNumber:D4}"; // Funky Station - senderNumber is used now in order to support group chats.
         var hasSelectedCurrentChat = _nanoChat.GetCurrentChat((recipient, recipient.Comp)) == senderNumber;
 
         // Update unread status
-        if (!hasSelectedCurrentChat)
+        if (!hasSelectedCurrentChat && hasSenderRecipient)
             _nanoChat.SetRecipient((recipient, recipient.Comp),
                 senderNumber, // Funky Station - senderNumber is used now in order to support group chats.
                 senderRecipient with { HasUnread = true });
@@ -635,7 +636,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
             return;
 
         var title = "";
-        if (!string.IsNullOrEmpty(senderRecipient.JobTitle))
+        if (hasSenderRecipient && !string.IsNullOrEmpty(senderRecipient.JobTitle))
         {
             var titleRecipient = SharedNanoChatSystem.Truncate(Loc.GetString("nano-chat-new-message-title-recipient",
                 ("sender", senderName), ("jobTitle", senderRecipient.JobTitle)), NotificationMaxLength, " \\[...\\]");
@@ -1079,4 +1080,3 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
         UpdateUIForCard(card);
     }
 }
-

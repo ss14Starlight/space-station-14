@@ -205,4 +205,4 @@ public readonly record struct NanoChatRecipientUpdatedEvent(EntityUid CardUid);
 ///     Raised on the NanoChat card whenever it receives or tries sending a messsage
 /// </summary>
 [ByRefEvent]
-public readonly record struct NanoChatMessageReceivedEvent(EntityUid CardUid, NanoChatMessage Message);
+public readonly record struct NanoChatMessageReceivedEvent(EntityUid CardUid, NanoChatMessage Message, uint? ChatId = null);

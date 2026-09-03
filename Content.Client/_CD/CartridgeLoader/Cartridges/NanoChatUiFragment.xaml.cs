@@ -167,7 +167,6 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         MessageInput.OnTextEntered += _ => SendMessage();
         SendButton.OnPressed += _ => SendMessage();
         EmojiButton.OnPressed += _ => OpenEmojiPicker(); // Funky Station - Emoji Picker
-        EditChatButton.OnPressed += _ => BeginEditChat();
         DeleteChatButton.OnPressed += _ => DeleteCurrentChat();
         InviteToGroupButton.OnPressed += _ => OpenInvitePopup(); // Funky Station - Group Chat Invite Popup
         ViewMembersButton.OnPressed += _ => OpenMembersPopup(); // Funky Station - Group Chat Members Popup
@@ -436,7 +435,6 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         CurrentChatName.Visible = !hasActiveChat;
         MessageInputContainer.Visible = hasActiveChat;
         DeleteChatButton.Visible = hasActiveChat;
-        EditChatButton.Visible = hasActiveChat && !isGroupChat; // Funky Station - Edit chat button only available for non-group chats
         DeleteChatButton.Disabled = !hasActiveChat;
 
 
