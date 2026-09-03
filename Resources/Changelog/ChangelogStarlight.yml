@@ -1,32 +1,4 @@
 Entries:
-- author: XeroTec/Meepmerp
-  changes:
-  - message: Plasteel knuckle dusters crafting recipe.
-    type: Add
-  id: 407675
-  time: '2026-08-16T18:06:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5609
-- author: XeroTec/Meepmerp
-  changes:
-  - message: Plasteel knuckle dusters makeshift anvil recipe.
-    type: Add
-  id: 407676
-  time: '2026-08-16T18:06:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5609
-- author: Conflee
-  changes:
-  - message: Changed the EntityHealthBarOverlay (Med HUD health bar) to not render if the entity is full health. This removes some visual clutter and should make parsing who is hurt in medbay easier for med staff.
-    type: Tweak
-  id: 407677
-  time: '2026-08-16T18:06:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5625
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Removed medical analyzer from medical cyborg modules.
-    type: Remove
-  id: 407678
-  time: '2026-08-16T19:58:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5622
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Medical cyborgs can now scan from the action hotbar, like with medical PDAs.
@@ -2799,4 +2771,32 @@ Entries:
   id: 408074
   time: '2026-09-03T07:59:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5013
+- author: wonderfulnewworld, DuckManZach, YaraaraY
+  changes:
+  - message: Added a Clothing stain system; your clothes can now get dirty with reagents.
+    type: Add
+  id: 408075
+  time: '2026-09-03T17:52:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5898
+- author: wonderfulnewworld, DuckManZach, YaraaraY
+  changes:
+  - message: A washing machine with which to wash your clothes. You can also clean them by wringing them out manually.
+    type: Add
+  id: 408076
+  time: '2026-09-03T17:52:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5898
+- author: wonderfulnewworld, DuckManZach, YaraaraY
+  changes:
+  - message: Added washing machine flatpacks to HoP and CMO's lockers, and the Janitor closet.
+    type: Add
+  id: 408077
+  time: '2026-09-03T17:52:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5898
+- author: Citrea & AegisShield
+  changes:
+  - message: Dolls can now see roughly how many pieces of shell they have at a glance.
+    type: Add
+  id: 408078
+  time: '2026-09-03T18:19:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5958
 Order: -1
