@@ -5,7 +5,7 @@ namespace Content.Shared._Starlight.RedundantMovement;
 [CVarDefs]
 public static class RedundantMovementCVars
 {
-    public readonly static CVarDef<bool> Enabled = CVarDef.Create("net.redundant.enabled", false, flag: CVar.SERVER | CVar.REPLICATED,
+    public readonly static CVarDef<bool> Enabled = CVarDef.Create("net.redundant.enabled", true, flag: CVar.SERVER | CVar.REPLICATED,
         desc: "Whether to enable redundant movement sync");
 
     public readonly static CVarDef<int> MaxHistoryTicks = CVarDef.Create("net.redundant.max_history_ticks", 5, flag: CVar.SERVER | CVar.REPLICATED,
