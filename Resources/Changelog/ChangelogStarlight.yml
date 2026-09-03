@@ -1,48 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Added a colour picker and colour palette selector to the Spraypainter's decal menu.
-    type: Add
-  id: 407693
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
-  - message: Defibrillator cabinets can now be constructed and deconstructed.
-    type: Add
-  id: 407694
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
-  - message: Added feedback popups that players get at the end of the round! They will list all "test" PRs or PRs that people want feedback on. Right now they're empty.
-    type: Add
-  id: 407695
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
-  - message: Extra-bright lantern has been removed from the traitor uplink.
-    type: Remove
-  id: 407696
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
-  - message: Stealthbox has been buffed significantly, you'll be able to remain in stealth for much longer when moving at speed.
-    type: Tweak
-  id: 407697
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
-  - message: Decoy bundle has been moved to the Useless category and reduced to 1 TC in the traitor uplink.
-    type: Tweak
-  id: 407698
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
   - message: Force-prying crit borgs now also opens their panel.
     type: Tweak
   id: 407699
@@ -2799,4 +2757,46 @@ Entries:
   id: 408092
   time: '2026-09-03T19:25:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5899
+- author: Citrea
+  changes:
+  - message: Dolls can have hair now.
+    type: Fix
+  id: 408093
+  time: '2026-09-03T19:44:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5962
+- author: Citrea
+  changes:
+  - message: Doll organs no longer suffocate in their body when spaced.
+    type: Fix
+  id: 408094
+  time: '2026-09-03T19:44:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5962
+- author: Citrea
+  changes:
+  - message: Dolls can eat and drink again.
+    type: Fix
+  id: 408095
+  time: '2026-09-03T19:44:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5962
+- author: Citrea
+  changes:
+  - message: Dolls can be carried.
+    type: Fix
+  id: 408096
+  time: '2026-09-03T19:44:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5962
+- author: Citrea
+  changes:
+  - message: Horrible eldritch meat creatures don't get roundstart cybernetics.
+    type: Tweak
+  id: 408097
+  time: '2026-09-03T19:44:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5962
+- author: Citrea
+  changes:
+  - message: Doll shells are no longer made of excessive amounts of plasteel.
+    type: Tweak
+  id: 408098
+  time: '2026-09-03T19:44:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5962
 Order: -1
