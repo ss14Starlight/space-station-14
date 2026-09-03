@@ -549,8 +549,8 @@
 - type: entity
   id: ChemDispenserMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: chem dispenser machine board
-  description: A machine printed circuit board for a chem dispenser.
+  name: chemical dispenser machine board # TRIESTE: "chem dispenser" -> "chemical dispenser
+  description: A machine printed circuit board for a chemical dispenser. # TRIESTE: "chem dispenser" -> "chemical dispenser"
   components:
     - type: Sprite
       state: medical

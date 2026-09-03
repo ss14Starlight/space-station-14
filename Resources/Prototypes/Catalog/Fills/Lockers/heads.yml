@@ -233,6 +233,7 @@
       - id: EndymionMonumentFlatpack
     - id: PrintedDocumentEndymionMemorial
     - id: Multitool
+    - id: WashingMachineFlatpack
     # Starlight End
     - id: PlushieLizardJobHeadofpersonnel
       prob: 0.02
@@ -274,6 +275,7 @@
 #    - id: RCDAmmo # Starlight-edit: CE RCD self-recharges
     - id: RubberStampCE
 #    - id: MetalFoamGrenade # Starlight-edit: in the EngiVend
+    - id: FireExtinguisherAtmos # Starlight
     - id: EngineeringTechFabFlatpack # Starlight
     - id: BookSecureTerminalManual # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
@@ -358,7 +360,8 @@
         presets:
         - Greenshift
         - Sandbox
-    - id: JawsOfLifeMed #Starlight end
+    - id: JawsOfLifeMed
+    - id: WashingMachineFlatpack #Starlight end
     - id: PlushieLizardJobChiefmedicalofficer
       prob: 0.02
 
