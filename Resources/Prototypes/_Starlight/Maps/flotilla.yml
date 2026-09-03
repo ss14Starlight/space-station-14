@@ -5,7 +5,7 @@
   minPlayers: 150
   maxPlayers: 250
   stations:
-    StarlightMing:
+    StarlightFlotilla:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
