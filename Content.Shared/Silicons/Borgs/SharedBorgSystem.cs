@@ -216,7 +216,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
                 EnsureComp<StationAIShuntComponent>(chassis, out var borgShunt)
                 )
                 {
-                    shuntable.Inhabited = chassis; // Starlight
+                    shuntable.Inhabited = chassis;
                     shuntable.LastShunt = chassis; // Starlight
                     Dirty(shunt.Return.Value, shuntable); // Starlight
                     borgShunt.Return = shunt.Return;
