@@ -336,40 +336,11 @@
     tags:
     - ChonoLoke
 
+# Thrown by the gun instead of shot (no Projectile component), so upstream CreamPie splat handles hit and landing
 - type: entity
   id: BulletChonoLokePie
-  parent: BaseBullet
+  parent: FoodPieBananaCream
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    noRot: true
-    sprite: Objects/Consumable/Food/Baked/pie.rsi
-    layers:
-    - state: tin
-    - state: plain
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 5
-    soundHit:
-      path: /Audio/Effects/Fluids/splat.ogg
-  - type: CreamPie
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 50
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 30
-        - ReagentId: Vitamin
-          Quantity: 14
-        - ReagentId: Sugar
-          Quantity: 5
-  - type: Edible
-    trash:
-    - FoodPlateTin
-  - type: Ammo
-    muzzleFlash: null
 
 - type: entity
   id: ChonoLokeCreamPieShell
@@ -387,16 +358,10 @@
     layers:
     - state: base
       map: ["enum.AmmoVisualLayers.Base"]
-    - state: plain
-      map: ["enum.AmmoVisualLayers.Tip"]
-    - state: base
-      map: ["enum.AmmoVisualLayers.Spent"]
-      visible: false
   - type: Appearance
   - type: SpentAmmoVisuals
     state: base
     suffix: false
-    revealSpent: true
   - type: Tag
     tags:
     - ChonoLoke

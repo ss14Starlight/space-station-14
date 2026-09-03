@@ -6,7 +6,6 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
-using Content.Shared.Projectiles;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Throwing;
 using Content.Shared.Trigger.Components;
@@ -35,7 +34,6 @@ namespace Content.Server.Nutrition.EntitySystems
             base.Initialize();
 
             SubscribeLocalEvent<CreamPieComponent, SliceFoodEvent>(OnSlice);
-            SubscribeLocalEvent<CreamPieComponent, ProjectileHitEvent>(OnProjectilePieHit); // Starlight: splat cream pie on projectile hit, not just on throw
 
             SubscribeLocalEvent<CreamPiedComponent, RejuvenateEvent>(OnRejuvenate);
         }
@@ -63,8 +61,6 @@ namespace Content.Server.Nutrition.EntitySystems
         // A regression occured here. Previously creampies would activate their hidden payload if you tried to eat them.
         // However, the refactor to IngestionSystem caused the event to not be reached,
         // because eating is blocked if an item is inside the food.
-
-        private partial void OnProjectilePieHit(Entity<CreamPieComponent> entity, ref ProjectileHitEvent args); // Starlight: implemented in CreamPieSystem.Starlight.cs — applies CreamPied effect and splat when fired as a projectile
 
         private void OnSlice(Entity<CreamPieComponent> entity, ref SliceFoodEvent args)
         {

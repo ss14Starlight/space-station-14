@@ -29,10 +29,9 @@ public sealed partial class GunSystem
         else
             state = ent.Comp.State;
 
-        if (spent && ent.Comp.revealSpent) // Starlight: shows a hidden Spent layer instead of changing Base state, for shells with a distinct spent visual layer
+        if (spent && ent.Comp.revealSpent) /// Starlight
         {
             _sprite.LayerSetVisible((ent, sprite), AmmoVisualLayers.Spent, true);
-            _sprite.LayerSetVisible((ent, sprite), AmmoVisualLayers.Tip, false); // Starlight: hide cream layer so only the spent overlay shows added because of chonoloke cream pie. pull/5882
             return;
         }
 

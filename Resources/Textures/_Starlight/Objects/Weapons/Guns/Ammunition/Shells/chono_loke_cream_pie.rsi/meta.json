@@ -11,9 +11,6 @@
             "name": "base"
         },
         {
-            "name": "plain"
-        },
-        {
             "name": "spent"
         }
     ]
