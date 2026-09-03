@@ -7,7 +7,6 @@ namespace Content.Shared.Fluids.Components
     /// </summary>
     public sealed partial class PuddleComponent : Component
     {
-
         // Funky start - Footprints
         /// <summary>
         /// Whether or not this puddle applies the effects of its contents' <see cref="ReagentPrototype.Viscosity"/> and

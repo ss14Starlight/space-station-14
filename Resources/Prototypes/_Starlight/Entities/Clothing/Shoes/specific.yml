@@ -10,8 +10,8 @@
   - type: Clothing
     sprite: Clothing/Shoes/Specific/galoshes.rsi
   - type: NoFootprints # Tangible benefit, I guess.
-  - type: StealTarget # Starlight
-    stealGroup: GaloshesCollection # Starlight
+  - type: StealTarget
+    stealGroup: GaloshesCollection
 
 - type: entity
   parent: ClothingShoesBase
