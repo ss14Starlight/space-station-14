@@ -1022,8 +1022,8 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/firefighter.rsi
   - type: TemperatureProtection
-    heatingCoefficient: 0.20
-    coolingCoefficient: 0.10
+    heatingCoefficient: 0.8
+    coolingCoefficient: 0.9
   - type: FireProtection
     reduction: 0.3
   - type: Pierceable
