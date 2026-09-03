@@ -1,4 +1,3 @@
-using Content.Server._Funkystation.ReagentFires.Systems;
 using Content.Server.Fluids.Components;
 using Content.Server.Spreader;
 using Content.Shared.Chemistry;
@@ -43,7 +42,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!; // Moff
 
     [Dependency] private EntityQuery<FootprintComponent> _footprintQuery; // Moff - Funky footprints
-    [Dependency] private ReagentFireSystem _fireSystem = default!; // Funky - Reagent Fires
 
     /*
      * TODO: Need some sort of way to do blood slash / vomit solution spill on its own
@@ -616,13 +614,4 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         return false;
     }
-
-    // Funky edit - handle reagent fire
-    protected override void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args)
-    {
-        base.OnSolutionUpdate(entity, ref args);
-        _fireSystem.UpdateFire(entity);
-    }
-    // Funky edit end
-
 }
