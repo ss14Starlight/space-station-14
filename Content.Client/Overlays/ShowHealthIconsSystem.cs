@@ -88,7 +88,7 @@ public sealed partial class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealt
                 else if (damageableComponent.HealthIcons.TryGetValue(state.CurrentState, out var value) && _prototypeMan.Resolve(value, out var icon))
                     result.Add(icon);
             }
-        /*
+        /* Starlight
         }
         */
 
