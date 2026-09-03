@@ -6,3 +6,8 @@ chem-master-pillpatch-text-label = Pill/Patch Label:
 # Plumbing valve
 chem-master-window-valve-open = Valve: Open
 chem-master-window-valve-closed = Valve: Closed
+
+# Modern ChemMaster UI
+chem-master-window-search-placeholder = Filter ...
+chem-master-window-mode-classic = Classic Layout
+chem-master-window-mode-modern = Modern Layout

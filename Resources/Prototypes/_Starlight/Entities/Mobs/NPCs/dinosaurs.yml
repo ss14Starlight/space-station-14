@@ -2,7 +2,7 @@
 
 # Base for dinos
 - type: entity
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat, BaseSlicingRefinable ]
   id: BaseMobDinosaur
   name: dinosaur
   description: Dinos
@@ -45,8 +45,8 @@
         Base: dead
       Dead:
         Base: dead
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
       - id: FoodMeat
         amount: 4
   - type: CombatMode
@@ -65,7 +65,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Blood
-        Quantity: 250
+        Quantity: 500
     bloodlossDamage:
       types:
         Bloodloss:

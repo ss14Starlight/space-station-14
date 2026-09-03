@@ -68,7 +68,6 @@
   storage:
     back:
     - BoxSurvivalNitrogen
-
 # Clown
 - type: loadout
   id: EmergencyOxygenClown

@@ -233,6 +233,7 @@
       - id: EndymionMonumentFlatpack
     - id: PrintedDocumentEndymionMemorial
     - id: Multitool
+    - id: WashingMachineFlatpack
     # Starlight End
     - id: PlushieLizardJobHeadofpersonnel
       prob: 0.02
@@ -358,7 +359,8 @@
         presets:
         - Greenshift
         - Sandbox
-    - id: JawsOfLifeMed #Starlight end
+    - id: JawsOfLifeMed
+    - id: WashingMachineFlatpack #Starlight end
     - id: PlushieLizardJobChiefmedicalofficer
       prob: 0.02
 

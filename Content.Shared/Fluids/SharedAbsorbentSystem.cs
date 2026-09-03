@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
@@ -11,6 +12,7 @@ using Content.Shared.Weapons.Melee;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Fluids;
 
@@ -29,6 +31,7 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
     [Dependency] private UseDelaySystem _useDelay = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -36,7 +39,7 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
 
         SubscribeLocalEvent<AbsorbentComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<AbsorbentComponent, UserActivateInWorldEvent>(OnActivateInWorld);
-        SubscribeLocalEvent<AbsorbentComponent, SolutionContainerChangedEvent>(OnAbsorbentSolutionChange);
+        SubscribeLocalEvent<AbsorbentComponent, SolutionChangedEvent>(OnAbsorbentSolutionChange);
     }
 
     private void OnActivateInWorld(Entity<AbsorbentComponent> ent, ref UserActivateInWorldEvent args)
@@ -57,8 +60,12 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnAbsorbentSolutionChange(Entity<AbsorbentComponent> ent, ref SolutionContainerChangedEvent args)
+    private void OnAbsorbentSolutionChange(Entity<AbsorbentComponent> ent, ref SolutionChangedEvent args)
     {
+        // The changes are already networked as part of the same game state.
+        if (_timing.ApplyingState)
+            return;
+
         if (!SolutionContainer.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out _, out var solution))
             return;
 
@@ -350,6 +357,18 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         localPos = userXform.LocalRotation.RotateVec(localPos);
 
         _melee.DoLunge(user, absorbEnt, Angle.Zero, localPos, null);
+
+        // Funky start - Footprints
+        var ev = new FootprintCleanEvent();
+        RaiseLocalEvent(target, ref ev);
+        // Funky end
+
+        // Moff start - Footprint cleaning sounds
+        if (ev.Handled)
+        {
+            _audio.PlayPredicted(absorber.PickupSound, user, user);
+        }
+        // Moff end
 
         return true;
     }
