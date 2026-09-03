@@ -25,6 +25,11 @@
     {
       "name": "inhand-right",
       "directions": 4
+    },
+    {
+      "name": "equipped-INNERCLOTHING-experiment",
+      "copyright": "Modified state by DocMoth",
+      "directions": 4
     }
   ]
 }

@@ -411,6 +411,42 @@
     pitch: 1.25
 
 - type: emoteSounds
+  id: Experiment
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: ExperimentScreams
+    Laugh:
+      collection: ExperimentLaughs
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    Crying:
+      collection: ExperimentCries
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: ExperimentSighs
+    Yawn:
+      collection: ExperimentYawns
+    Snore:
+      collection: Snores
+    Honk:
+      collection: BikeHorn
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Arf:
+      collection: ExperimentArfs
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
+
+- type: emoteSounds
   id: FemaleThaven
   sounds:
     Scream:

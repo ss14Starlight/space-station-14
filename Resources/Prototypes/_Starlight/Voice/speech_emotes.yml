@@ -588,3 +588,26 @@
     - hums.
     - hums!
     - hums?
+
+- type: emote
+  id: Arf
+  name: chat-emote-name-arf
+  category: Vocal
+  available: false
+  icon: Interface/Actions/scream.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-arf"]
+  chatTriggers:
+  - arf
+  - arf.
+  - arf!
+  - arf?
+  - arfs
+  - arfs.
+  - arfs!
+  - arfs?

@@ -1,0 +1,31 @@
+- type: soundCollection
+  id: ExperimentScreams
+  files:
+  - /Audio/_Starlight/Voice/Experiment/canine_scream.ogg
+  - /Audio/_Starlight/Voice/Experiment/canine_arf.ogg
+
+- type: soundCollection
+  id: ExperimentLaughs
+  files:
+  - /Audio/_Starlight/Voice/Experiment/canine_laugh.ogg
+
+- type: soundCollection
+  id: ExperimentSighs
+  files:
+  - /Audio/_Starlight/Voice/Experiment/canine_sigh.ogg
+
+- type: soundCollection
+  id: ExperimentCries
+  files:
+  - /Audio/_Starlight/Voice/Experiment/canine_cry.ogg
+
+- type: soundCollection
+  id: ExperimentArfs
+  files:
+  - /Audio/_Starlight/Voice/Experiment/canine_arf.ogg
+
+- type: soundCollection
+  id: ExperimentYawns
+  files:
+  - /Audio/_Starlight/Voice/Experiment/canine_yawn1.ogg
+  - /Audio/_Starlight/Voice/Experiment/canine_yawn2.ogg

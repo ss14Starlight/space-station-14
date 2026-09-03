@@ -1669,6 +1669,20 @@ namespace Content.Client.Lobby.UI
 
                         break;
                     }
+                /* case HumanoidSkinColor.SawianHues:
+                    {
+                        if (!RgbSkinColorContainer.Visible)
+                        {
+                            Skin.Visible = false;
+                            RgbSkinColorContainer.Visible = true;
+                        }
+
+                        var color = SkinColor.ClosestSawianColor(_rgbSkinColorSelector.Color);
+
+                        Markings.CurrentSkinColor = color;
+                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+                        break;
+                    } */
             }
 
             ReloadProfilePreview();

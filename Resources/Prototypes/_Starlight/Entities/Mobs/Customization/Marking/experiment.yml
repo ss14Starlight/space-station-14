@@ -1,0 +1,75 @@
+# Chest
+- type: marking
+  id: chestexpiescar
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Experiment]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Experiment/chest.rsi
+    state: chestscar
+
+- type: marking
+  id: backexpiescar
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Experiment]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Experiment/chest.rsi
+    state: backscar
+
+# Head
+- type: marking
+  id: eyeexpiescar
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Experiment]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Experiment/head.rsi
+    state: eyescar
+
+- type: marking
+  id: noseexpiescar
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Experiment]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Experiment/head.rsi
+    state: nosescar
+
+# Arm
+- type: marking
+  id: armexpiescar
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Experiment]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Experiment/arm.rsi
+    state: armscar
+
+- type: marking
+  id: armexpiebandage
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Experiment]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Experiment/arm.rsi
+    state: armbandage
+
+# Leg
+- type: marking
+  id: legexpiescar
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Experiment]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Experiment/leg.rsi
+    state: legscar
+
+- type: marking
+  id: legexpiebandage
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Experiment]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Experiment/leg.rsi
+    state: legbandage

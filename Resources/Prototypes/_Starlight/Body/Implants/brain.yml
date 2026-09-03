@@ -84,3 +84,39 @@
       - Nexus
       understood:
       - Nexus
+
+- type: entity
+  id: BrainImplantExpiScan
+  name: health scanner implant
+  description: An implant the provides a readout of your present physical health.
+  parent: BaseEntityBrainImplant
+  components:
+  - type: Sprite
+    state: brain_implant_scan
+  - type: FunctionalOrgan
+    comps:
+    - type: HealthAnalyzer
+      damageContainers:
+        - Biological
+        - Hybrid
+      enablePrint: false
+      scanningBeginSound: !type:SoundPathSpecifier
+        path: /Audio/_Starlight/Effects/Experiment/woundon.ogg
+        params:
+          volume: -4
+      scanningEndSound: !type:SoundPathSpecifier
+        path: /Audio/_Starlight/Effects/Experiment/close.ogg
+        params:
+          volume: -1.5
+    - type: ActionGrant
+      actions:
+        - ActionHealthSelfAnalyze
+    - type: DamageThresholdSounds
+      thresholds:
+        0: null
+        100:
+          sound: !type:SoundPathSpecifier
+            path: /Audio/_FarHorizons/Effects/Alerts/healthpanel-alert.ogg
+        200:
+          sound: !type:SoundPathSpecifier
+            path: /Audio/_Starlight/Effects/Experiment/flatline.ogg

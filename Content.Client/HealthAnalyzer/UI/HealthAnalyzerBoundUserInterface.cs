@@ -20,7 +20,6 @@ namespace Content.Client.HealthAnalyzer.UI
 
             _window = this.CreateWindow<HealthAnalyzerWindow>();
             // Starlight-start: Printable health reports.
-            _window.SetPrintReportVisible(true);
             _window.PrintReportPressed += OnPrintReportPressed;
             // Starlight-end
 

@@ -230,3 +230,13 @@
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
             state: facialhair
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryExperiment]
+  id: AppearanceExperiment
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Experiment
+  - type: Body
+    prototype: Experiment

@@ -705,3 +705,83 @@
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
             state: suitStorage
+
+- type: entity
+  abstract: true
+  save: false
+  id: BaseInventoryExperiment
+  components:
+  - type: Inventory
+    speciesId: experiment
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: jumpsuit
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: outer
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: hands
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: feet
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: neck
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: mask
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: belt
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+            state: suit_storage
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+          state: in_hand
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Species/Experiment/displacement.rsi
+          state: in_hand

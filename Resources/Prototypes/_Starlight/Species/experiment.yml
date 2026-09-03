@@ -1,0 +1,165 @@
+- type: species
+  id: Experiment
+  name: species-name-experiment
+  roundStart: true
+  prototype: MobExperiment
+  sprites: MobExperimentSprites
+  markingLimits: MobExperimentMarkingLimits
+  dollPrototype: AppearanceExperiment
+  skinColoration: ExperimentColors
+  eyeColoration: Sawian
+  defaultSkinTone: "#FFEDCCFF"
+  maleFirstNames: names_experiment
+  femaleFirstNames: names_experiment
+  naming: IdFirst
+  customName: true
+  sexes:
+  - Unsexed
+  minHeight: 0.8
+  defaultHeight: 1
+  maxHeight: 1.1
+  standardSize: 145
+  standardWeight: 50
+  standardDensity: 45
+  minAge: 16
+  maxAge: 29
+  youngAge: 16
+  oldAge: 23
+
+- type: speciesBaseSprites
+  id: MobExperimentSprites
+  sprites:
+    Head: MobExperimentHead
+    Snout: MobHumanoidAnyMarking
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Chest: MobExperimentTorso
+    Eyes: MobExperimentEyes
+    LArm: MobExperimentLArm
+    RArm: MobExperimentRArm
+    LHand: MobExperimentLHand
+    RHand: MobExperimentRHand
+    LLeg: MobExperimentLLeg
+    RLeg: MobExperimentRLeg
+    LFoot: MobExperimentLFoot
+    RFoot: MobExperimentRFoot
+    Tail: MobHumanoidAnyMarking
+
+- type: markingPoints
+  id: MobExperimentMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Hair:
+      points: 0
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Head:
+      points: 2
+      required: false
+    Snout:
+      points: 0
+      required: false
+    Arms:
+      points: 2
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Chest:
+      points: 2
+      required: false
+    Tail:
+      points: 0
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobExperimentEyes
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: eyes
+
+- type: humanoidBaseSprite
+  id: MobExperimentHead
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: MobExperimentHeadMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: MobExperimentHeadFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: head
+
+- type: humanoidBaseSprite
+  id: MobExperimentTorso
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: MobExperimentTorsoMale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: MobExperimentTorsoFemale
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: torso
+
+- type: humanoidBaseSprite
+  id: MobExperimentLLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobExperimentLArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobExperimentLHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobExperimentLFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobExperimentRLeg
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobExperimentRArm
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobExperimentRHand
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobExperimentRFoot
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: r_foot

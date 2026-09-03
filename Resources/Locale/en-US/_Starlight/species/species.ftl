@@ -8,3 +8,6 @@ species-name-resomi = Resomi
 species-name-shadekin = Shadekin
 species-name-thaven = Thaven
 species-name-rodentia = Rodentia
+species-name-experiment = Experiment
+
+species-name-sawian = Sawian

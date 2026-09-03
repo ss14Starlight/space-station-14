@@ -1,0 +1,145 @@
+﻿- type: entity
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable, BaseInventoryExperiment]
+  id: BaseMobExperiment
+  abstract: true
+  components:
+  - type: Absorbable
+  - type: Speech
+    speechVerb: Experiment
+    allowedEmotes: ['Arf']
+  - type: Vocal
+    sounds:
+      Unsexed: Experiment
+      Male: Experiment
+      Female: Experiment
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - SolCommon
+    understands:
+    - GalacticCommon
+    - SolCommon
+  - type: TypingIndicator
+    proto: sawian
+  - type: InventorySlotMovementSpeedModifier # Wearing all six pieces of hindering clothing will nullify the movespeed bonus
+    slotData:
+      - flags: OUTERCLOTHING, HEAD
+        speedMod: 0.955
+      - flags: INNERCLOTHING, GLOVES, FEET, MASK
+        speedMod: 0.97
+  - type: Hunger # while starving bonus healing is haulted. while in a critical state and starving they die faster than others.
+    baseDecayRate: 0.12
+    starvationDamage:
+      types:
+        Caustic: 0.2
+    passiveDamage:
+      groups:
+        Brute: -0.18
+      types:
+        Heat: -0.09
+        Poison: -0.15
+    passiveThreshold: Peckish
+    passiveCap: 200
+  - type: PassiveDamage # while fed and above and below 100 damage they heal brute at three times the normal rate and heal heat at double.
+    allowedStates:
+    - Alive
+    damageCap: 100
+    damage:
+      groups:
+        Brute: -0.09
+      types:
+        Heat: -0.09
+  - type: Thirst
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Experiment/parts.rsi
+    state: full
+  - type: Body
+    prototype: Experiment
+    requiredLegs: 2
+  - type:  HumanoidAppearance
+    species: Experiment
+  - type: MobState
+    allowedStates:
+      - Alive
+      - SoftCritical
+      - Critical
+      - Dead
+  - type: MobThresholds
+    stateAlertDict:
+      Alive: "HumanHealth"
+      SoftCritical: "HumanCrit"
+      Critical: "HumanCrit"
+      Dead: "HumanDead"
+    thresholds:
+      0: Alive
+      100: SoftCritical
+      150: Critical
+      200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      45: 0.7
+      60: 0.5
+      100: 0.1
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 3
+  - type: Damageable
+    damageContainer: Biological
+  - type: DamageVisuals
+    thresholds: [ 10, 30, 50, 70, 100]
+    targetLayers:
+      - "enum.HumanoidVisualLayers.Chest"
+      - "enum.HumanoidVisualLayers.Head"
+      - "enum.HumanoidVisualLayers.LArm"
+      - "enum.HumanoidVisualLayers.LLeg"
+      - "enum.HumanoidVisualLayers.RArm"
+      - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: _Starlight/Mobs/Effects/Experiment/brute_damage.rsi
+        color: "#ffbb00"
+      Burn:
+        sprite: _Starlight/Mobs/Effects/Experiment/burn_damage.rsi
+  - type: FireVisuals
+    sprite: _Starlight/Mobs/Effects/onfire.rsi
+    normalState: Resomi_minor_burning
+    alternateState: Experiment_burning
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: SawianBlood
+        Quantity: 300
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 2
+    damage:
+      types:
+        Slash: 4
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Experiment
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 110
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer

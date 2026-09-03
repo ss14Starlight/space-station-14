@@ -362,7 +362,8 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
     /// <param name="sync">Whether to synchronize this to the humanoid mob, or not.</param>
     /// <param name="verify">Whether to verify the eye color can be set on this humanoid or not</param>
     /// <param name="humanoid">Humanoid component of the entity</param>
-    public virtual void SetEyeColor(EntityUid uid, Color eyeColor, bool sync = true, bool verify = true, HumanoidAppearanceComponent? humanoid = null)
+    /// <param name="glow">Whether the humanoid mob has glowing eyes.</param>
+    public virtual void SetEyeColor(EntityUid uid, Color eyeColor, bool sync = true, bool verify = true, HumanoidAppearanceComponent? humanoid = null, bool? glow = null)
     {
         if (!Resolve(uid, ref humanoid))
             return;
@@ -370,8 +371,14 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
         if (!_proto.TryIndex<SpeciesPrototype>(humanoid.Species, out var species))
             return;
 
-        if (verify && !EyeColor.VerifyEyeColor(species.EyeColoration, eyeColor))
+        if (verify && !EyeColor.VerifyEyeColor(species.EyeColoration, eyeColor, glow))
+        {
             eyeColor = EyeColor.ValidEyeColor(species.EyeColoration, eyeColor);
+            glow = EyeColor.ValidEyeGlow(species.EyeColoration, glow);
+        }
+
+        if (glow is not null)
+            humanoid.EyeGlowing = (glow ?? false);
 
         humanoid.EyeColor = eyeColor;
 
@@ -473,9 +480,10 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
         SetSex(uid, profile.Sex, false, humanoid);
         humanoid.EyeColor = profile.Appearance.EyeColor;
 
-        SetEyeColor(uid, humanoid.EyeColor, false); // Starlight
-
         humanoid.EyeGlowing = profile.Appearance.EyeGlowing; //starlight
+
+        SetEyeColor(uid, humanoid.EyeColor, false, glow: humanoid.EyeGlowing); // Starlight
+
 
         var ev = new EyeColorInitEvent(); //starlight
         RaiseLocalEvent(uid, ref ev); //starlight

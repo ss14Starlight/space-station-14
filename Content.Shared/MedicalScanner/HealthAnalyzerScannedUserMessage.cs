@@ -34,6 +34,7 @@ public struct HealthAnalyzerUiState
     public float Temperature;
     public float BloodLevel;
     public bool? CanPrint; // Starlight-edit: Printable health reports.
+    public bool? EnablePrint; // Starlight-edit: Printable health reports.
     public bool? ScanMode;
     public bool? Bleeding;
     public bool? Unrevivable;
@@ -41,12 +42,13 @@ public struct HealthAnalyzerUiState
 
     public HealthAnalyzerUiState() {}
 
-    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? canPrint, bool? scanMode, bool? bleeding, bool? unrevivable, List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? chemicals = null) // Starlight - merged chemicals parameter
+    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? canPrint, bool? enablePrint, bool? scanMode, bool? bleeding, bool? unrevivable, List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? chemicals = null) // Starlight - merged chemicals parameter
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
         BloodLevel = bloodLevel;
         CanPrint = canPrint; // Starlight-edit: Printable health reports.
+        EnablePrint = enablePrint; // Starlight-edit: Printable health reports.
         ScanMode = scanMode;
         Bleeding = bleeding;
         Unrevivable = unrevivable;
