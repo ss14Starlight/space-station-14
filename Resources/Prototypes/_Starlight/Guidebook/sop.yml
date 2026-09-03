@@ -305,6 +305,7 @@
   - security-sop-parole
   - security-sop-permitacquisition
   - security-sop-specialsituations
+  - security-sop-criminal-status
 
 
 - type: guideEntry
@@ -387,6 +388,12 @@
   name: guide-entry-sl-security-sop-hostage-situations
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations/HostageSituations.xml"
   priority: 2
+
+- type: guideEntry
+  id: security-sop-criminal-status
+  name: guide-entry-sl-security-sop-criminal-status
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/CriminalStatus.xml"
+  priority: 12
 
 - type: guideEntry
   id: legal-sop-intro

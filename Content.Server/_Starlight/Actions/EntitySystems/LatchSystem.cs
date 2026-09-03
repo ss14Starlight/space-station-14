@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.CombatMode;
 using Content.Shared._Starlight.Actions.Components;
@@ -5,6 +6,7 @@ using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Alert;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Camera;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
@@ -13,12 +15,15 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
-using Content.Shared.Whitelist;
 using Content.Shared.Wieldable;
 using Robust.Server.Audio;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -36,15 +41,20 @@ public sealed partial class LatchSystem : SharedLatchSystem
     [Dependency] private SharedChatSystem _chat = default!;
     [Dependency] private CombatModeSystem _combatMode = default!;
     [Dependency] private DamageableSystem _damageable = default!;
-    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedJointSystem _joints = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MovementSpeedModifierSystem _speed = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private SharedWieldableSystem _wieldable = default!;
     [Dependency] private StandingStateSystem _standing = default!;
+
+    // Subtle relative to explosions (which scale up to ~0.4f) - a jolt, not a blast.
+    private const float BiteHarderCameraKick = 0.15f;
 
     public override void Initialize()
     {
@@ -58,7 +68,6 @@ public sealed partial class LatchSystem : SharedLatchSystem
         SubscribeLocalEvent<LatchedComponent, ComponentShutdown>(OnLatchedShutdown);
         SubscribeLocalEvent<LatchedComponent, MobStateChangedEvent>(OnTargetMobStateChanged);
 
-        SubscribeLocalEvent<LatchActionEvent>(OnLatchAction);
         SubscribeLocalEvent<LatchBiteHarderActionEvent>(OnBiteHarderAction);
         SubscribeLocalEvent<LatchReleaseActionEvent>(OnReleaseAction);
     }
@@ -102,40 +111,24 @@ public sealed partial class LatchSystem : SharedLatchSystem
             EndLatch(comp.Latcher, latchComp);
     }
 
-    /// <summary>
-    /// Validates and starts a latch attempt.
-    /// </summary>
-    private void OnLatchAction(LatchActionEvent ev)
-    {
-        if (ev.Handled)
-            return;
-
-        var uid = ev.Performer;
-        if (!TryComp<LatchComponent>(uid, out var comp) || comp.Active)
-            return;
-
-        var target = ev.Target;
-        if (target == uid)
-            return;
-
-        if (!_whitelist.IsWhitelistPassOrNull(comp.Whitelist, target))
-            return;
-
-        if (HasComp<LatchedComponent>(target))
-            return;
-
-        StartLatch(uid, comp, target);
-        ev.Handled = true;
-    }
-
     private void OnBiteHarderAction(LatchBiteHarderActionEvent ev)
     {
         if (ev.Handled)
             return;
 
-        var uid = ev.Performer;
-        if (!TryComp<LatchComponent>(uid, out var comp) || !comp.Active || comp.Target is not { } target)
+        if (!TryComp<LatchComponent>(ev.Performer, out var comp))
             return;
+
+        ev.Handled = DoBiteHarder(ev.Performer, comp);
+    }
+
+    /// <summary>
+    /// Deals one latch tick early and extends the duration.
+    /// </summary>
+    private bool DoBiteHarder(EntityUid uid, LatchComponent comp)
+    {
+        if (!comp.Active || comp.Target is not { } target)
+            return false;
 
         // Ratio of the bite's damage that got through armor.
         var effectiveness = 0f;
@@ -154,8 +147,13 @@ public sealed partial class LatchSystem : SharedLatchSystem
         Dirty(uid, comp);
 
         _audio.PlayPvs(comp.BiteHarderSound, uid);
+        RaiseNetworkEvent(new LatchBiteShakeEvent(GetNetEntity(uid)), Filter.Pvs(uid, entityManager: EntityManager));
 
-        ev.Handled = true;
+        var kickDirection = _transform.GetWorldPosition(target) - _transform.GetWorldPosition(uid);
+        if (kickDirection != Vector2.Zero)
+            _recoil.KickCamera(target, kickDirection.Normalized() * BiteHarderCameraKick);
+
+        return true;
     }
 
     /// <summary>
@@ -176,10 +174,11 @@ public sealed partial class LatchSystem : SharedLatchSystem
 
     /// <summary>
     /// Begins a latch: locks movement, downs the target, blocks a hand, and
-    /// grants Bite Harder.
+    /// grants Bite Harder. The joint's already been created by the shared
+    /// base class by the time this runs.
     /// </summary>
     /// <param name="target">The entity being latched onto.</param>
-    private void StartLatch(EntityUid uid, LatchComponent comp, EntityUid target)
+    protected override void StartLatch(EntityUid uid, LatchComponent comp, EntityUid target)
     {
         comp.Active = true;
         comp.Target = target;
@@ -192,6 +191,22 @@ public sealed partial class LatchSystem : SharedLatchSystem
         var latched = EnsureComp<LatchedComponent>(target);
         latched.Latcher = uid;
         Dirty(target, latched);
+
+        var toLatcher = _transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target);
+        var withinObscureRange = MathF.Abs(toLatcher.Y) <= comp.UiObscureNorthRange
+            && MathF.Abs(toLatcher.X) <= comp.UiObscureHorizontalTolerance;
+
+        // K9 north of target -> K9 sits where the target's own UI would be -> target's UI flips below.
+        comp.TargetUiBelow = withinObscureRange && toLatcher.Y > 0f;
+
+        // K9 south of target -> target sits where the K9's own UI would be -> latcher's UI flips below.
+        comp.LatcherUiBelow = withinObscureRange && toLatcher.Y < 0f;
+
+        if (TryComp<PullableComponent>(uid, out var latcherPullable))
+            _pulling.TryStopPull(uid, latcherPullable);
+
+        if (TryComp<PullableComponent>(target, out var targetPullable))
+            _pulling.TryStopPull(target, targetPullable);
 
         if (_virtualItem.TrySpawnVirtualItemInHand(uid, target, out var blockingItem))
         {
@@ -238,6 +253,12 @@ public sealed partial class LatchSystem : SharedLatchSystem
         comp.Active = false;
         comp.Target = null;
         comp.TickPaused = false;
+
+        if (comp.LatchJointId is { } jointId)
+        {
+            _joints.RemoveJoint(uid, jointId);
+            comp.LatchJointId = null;
+        }
 
         _action.RemoveAction(uid, comp.BiteHarderActionEntity);
         comp.BiteHarderActionEntity = null;
@@ -361,22 +382,13 @@ public sealed partial class LatchSystem : SharedLatchSystem
                 continue;
             }
 
-            // Knocked out of range; RangeTolerance avoids instant-breaking
-            // from jitter. Within the grace window, pull the K9 to the
-            // target instead of breaking. After that, treat it as a real
-            // separation.
+            // Knocked out of range; the joint pulls it back, this just times out if it can't.
             var distance = (_transform.GetWorldPosition(uid) - _transform.GetWorldPosition(target)).Length();
-            if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance)
+            if (distance > comp.DriftBreakRange + comp.DriftBreakTolerance &&
+                now - comp.StartTime >= comp.RefundGracePeriod)
             {
-                if (now - comp.StartTime < comp.RefundGracePeriod)
-                {
-                    _transform.SetCoordinates(uid, Transform(target).Coordinates);
-                }
-                else
-                {
-                    EndLatch(uid, comp);
-                    continue;
-                }
+                EndLatch(uid, comp);
+                continue;
             }
 
             // Re-assert every tick so this can't be toggled back on mid-latch.

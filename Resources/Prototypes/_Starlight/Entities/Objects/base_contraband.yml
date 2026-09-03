@@ -143,24 +143,6 @@
       allowedDepartments: [ Engineering, Security, Command ]
 
 - type: entity
-  id: BaseSecurityBartenderZookeeperContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Security ]
-    allowedJobs: [ Bartender, Zookeeper ]
-
-- type: entity
-  id: BaseSecurityZookeeperContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-  - type: Contraband
-    allowedDepartments: [ Security ]
-    allowedJobs: [ Zookeeper ]
-
-- type: entity
   id: BaseReporterContraband
   parent: BaseRestrictedContraband
   abstract: true

@@ -17,24 +17,34 @@
           emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_raven.yml
         - type: StationJobs
           availableJobs:
-            #service
+            # Service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
+
             Bartender: [ 3, 3 ]
             Botanist: [ 3, 3 ]
             Boxer: [ 2, 2 ]
-            Chef: [ 2, 3 ]
-            Janitor: [ 2, 3 ]
             Chaplain: [ 1, 1 ]
-            Librarian: [ 1, 1 ]
+            Chef: [ 2, 3 ]
             Lawyer: [ 2, 2 ]
+            Librarian: [ 1, 1 ]
+            Janitor: [ 2, 3 ]
+            RadioHost: [ 2, 2 ]
             ServiceWorker: [ 7, 7 ]
-            #engineering
+
+            Clown: [ 1, 1 ]
+            Mime: [ 1, 1 ]
+            Musician: [ 2, 2 ]
+            Reporter: [ 2, 2 ]
+            Performer: [ 3, 3 ]
+
+            # Engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 6, 6 ]
             TechnicalAssistant: [ 2, 3 ]
-            #medical
+
+            # Medical
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 3 ]
             Paramedic: [ 2, 2 ]
@@ -42,41 +52,42 @@
             MedicalDoctor: [ 7, 8 ]
             MedicalIntern: [ 3, 4 ]
             Surgeon: [ 2, 2 ]
-            #science
+
+            # Science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 6, 7 ]
             ResearchAssistant: [ 4, 4 ]
             Roboticist: [ 2, 2 ]
-            #security
+
+            # Security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 2 ]
             Detective: [ 2, 2 ]
+            # K9: [ 2, 2 ]
             Brigmedic: [ 2, 2 ]
             SecurityOfficer: [ 10, 12 ]
             SecurityCadet: [ 4, 6 ]
-            #supply
+
+            # Cargo
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 4, 4 ]
             MiningSpecialist: [ 4, 4 ]
             CargoTechnician: [ 5, 7 ]
             MailTech: [ 2, 2 ]
-            #civillian
+
+            # Civilian
+            # AssistantManager [ 1, 1 ]
             Assistant: [ -1, -1 ]
-            Clown: [ 1, 1 ]
-            Mime: [ 1, 1 ]
-            Musician: [ 2, 2 ]
-            Reporter: [ 2, 2 ]
-            Performer: [ 3, 3 ]
-            #silicon
+
+            # Silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 4 ]
-            #law
-            Magistrate: [ 1, 1 ]
-            IAA: [ 2, 2 ]
-            #Representatives
+
+            # Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]
-
+            Magistrate: [ 1, 1 ]
+            IAA: [ 2, 2 ]
