@@ -3,11 +3,8 @@
   parent:
   - BaseMob
   - MobPolymorphable
-  - MobAtmosExposed
   - MobBloodstream
   - MobFlammable
-  - MobRespirator
-  - MobAtmosStandard
   - BaseItem
   abstract: true
   components:
