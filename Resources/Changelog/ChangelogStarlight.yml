@@ -1,88 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Medical cyborgs can now scan from the action hotbar, like with medical PDAs.
-    type: Add
-  id: 407679
-  time: '2026-08-16T19:58:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5622
-- author: wonderfulnewworld, DivineHoBo
-  changes:
-  - message: Added plastitanium airlocks.
-    type: Add
-  id: 407680
-  time: '2026-08-16T20:18:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5620
-- author: KarmaKitsuna
-  changes:
-  - message: Librarians Rejoice! 17 new stories from Starlight's first writing contest are coming to your library.
-    type: Add
-  id: 407681
-  time: '2026-08-16T20:39:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5588
-- author: KarmaKitsuna
-  changes:
-  - message: Book bans.
-    type: Add
-  id: 407682
-  time: '2026-08-16T20:39:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5588
-- author: Born Stellar, Hermit, SevenShades, Naterthegreater
-  changes:
-  - message: Added Endymion event prelude content.
-    type: Add
-  id: 407683
-  time: '2026-08-17T02:04:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5669
-- author: Born Stellar, Hermit, SevenShades, Naterthegreater
-  changes:
-  - message: Endymion memorial flatpack to HOP's locker fill.
-    type: Add
-  id: 407684
-  time: '2026-08-17T02:04:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5669
-- author: STARLIGHT TEAM
-  changes:
-  - message: Guidebook entries with basic information on how to create for all existing atmospheric gasses AND metal hydrogen.
-    type: Add
-  id: 407685
-  time: '2026-08-17T11:23:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5219
-- author: STARLIGHT TEAM
-  changes:
-  - message: Lizard plushie and lizard sword chemistry recipes.
-    type: Add
-  id: 407686
-  time: '2026-08-17T11:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5412
-- author: STARLIGHT TEAM
-  changes:
-  - message: Amethyst Lizitar. Hew!
-    type: Add
-  id: 407687
-  time: '2026-08-17T11:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5412
-- author: STARLIGHT TEAM
-  changes:
-  - message: Lizard swords inject a little bit of juice on hit. Weh!
-    type: Tweak
-  id: 407688
-  time: '2026-08-17T11:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5412
-- author: STARLIGHT TEAM
-  changes:
-  - message: Amethyst lizard sword added to maints weapon pool and grand lottery loot pool.
-    type: Tweak
-  id: 407689
-  time: '2026-08-17T11:47:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5412
-- author: OMEGA
-  changes:
-  - message: handheld engineering monitor to Chief Engineer's locker.
-    type: Add
-  id: 407690
-  time: '2026-08-17T12:07:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5431
 - author: Rinary
   changes:
   - message: Removed glass and steel sheets from CE's locker.
@@ -2799,4 +2715,88 @@ Entries:
   id: 408078
   time: '2026-09-03T18:19:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5958
+- author: wonderfulnewworld, DaCookieCakes
+  changes:
+  - message: Added a new ChemMaster UI. Comes with a search filter, toggle for the old mode, and is much friendlier to use.
+    type: Add
+  id: 408079
+  time: '2026-09-03T19:00:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5894
+- author: wonderfulnewworld, DaCookieCakes
+  changes:
+  - message: Renamed the 'chem dispenser circuit board' to the 'chemical dispenser circuit board'.
+    type: Tweak
+  id: 408080
+  time: '2026-09-03T19:00:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5894
+- author: OJG
+  changes:
+  - message: Adds Refinery Starport to rotation. God help us all.
+    type: Add
+  id: 408081
+  time: '2026-09-03T19:00:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5875
+- author: OJG
+  changes:
+  - message: (Refinery) Lots and lots of decal work that is difficult to keep track of.
+    type: Tweak
+  id: 408082
+  time: '2026-09-03T19:00:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5875
+- author: OJG
+  changes:
+  - message: (Refinery) Lots of extinguisher cabinets and wallmount closets.
+    type: Tweak
+  id: 408083
+  time: '2026-09-03T19:00:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5875
+- author: OJG
+  changes:
+  - message: (Refinery) Changed the zookeeper office to a more generic setup any service worker can take over due to the roles removal.
+    type: Tweak
+  id: 408084
+  time: '2026-09-03T19:00:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5875
+- author: OJG
+  changes:
+  - message: (Refinery) Added and changed a bunch of decor.
+    type: Tweak
+  id: 408085
+  time: '2026-09-03T19:00:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5875
+- author: OJG
+  changes:
+  - message: (Refinery) gave sec a better access to maints through their substation.
+    type: Tweak
+  id: 408086
+  time: '2026-09-03T19:00:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5875
+- author: OJG
+  changes:
+  - message: (Refinery) adding missing items like jetpacks and keycard auth devices.
+    type: Tweak
+  id: 408087
+  time: '2026-09-03T19:00:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5875
+- author: OJG
+  changes:
+  - message: (Refinery) more dispos chutes in sec for clowns to escape with.
+    type: Tweak
+  id: 408088
+  time: '2026-09-03T19:00:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5875
+- author: OJG
+  changes:
+  - message: (Refinery) a new docking arm between sci and bridge.
+    type: Tweak
+  id: 408089
+  time: '2026-09-03T19:00:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5875
+- author: OJG
+  changes:
+  - message: (Refinery) RD has a proper bedroom with an interesting entrance.
+    type: Tweak
+  id: 408090
+  time: '2026-09-03T19:00:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5875
 Order: -1
