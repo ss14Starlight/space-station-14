@@ -123,7 +123,8 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         SubscribeNetworkEvent<StationAiWarpToTargetEvent>(OnStationAiWarpToTarget); // Starlight
     }
 
-    // Starlight Start: The intellicard/AI should immediatly eject the ghost if the command ghost is used to free it for further use.
+    #region Starlight
+    // The intellicard/AI should immediatly eject the ghost if the command ghost is used to free it for further use.
     private void OnGhostAttempt(GhostAttemptHandleEvent args)
     {
         if (args.Mind.CurrentEntity is not { } entity ||
@@ -134,10 +135,6 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
         _slots.TryEject(container.Owner, holder.Slot, null, out _);
     }
-    // Starlight-end
-
-    // Starlight Start: AI warping
-    #region Starlight
     public override void Update(float frameTime)
     {
         base.Update(frameTime);

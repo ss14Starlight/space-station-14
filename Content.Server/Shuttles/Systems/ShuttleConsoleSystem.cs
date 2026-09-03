@@ -90,18 +90,13 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<ShuttleConsoleComponent, ComponentShutdown>(OnConsoleShutdown);
         SubscribeLocalEvent<ShuttleConsoleComponent, PowerChangedEvent>(OnConsolePowerChange);
         SubscribeLocalEvent<ShuttleConsoleComponent, AnchorStateChangedEvent>(OnConsoleAnchorChange);
-        // Starlight - start
-        SubscribeLocalEvent<DroneConsoleComponent, ComponentStartup>(OnDroneConsoleStartup);
-        // Starlight - end
+        SubscribeLocalEvent<DroneConsoleComponent, ComponentStartup>(OnDroneConsoleStartup); // Starlight
         SubscribeLocalEvent<ShuttleConsoleComponent, AfterActivatableUIOpenEvent>(OnConsoleUIOpenAttempt);
         Subs.BuiEvents<ShuttleConsoleComponent>(ShuttleConsoleUiKey.Key, subs =>
         {
             subs.Event<ShuttleConsoleFTLBeaconMessage>(OnBeaconFTLMessage);
             subs.Event<ShuttleConsoleFTLPositionMessage>(OnPositionFTLMessage);
-            subs.Event<CrewMonitoringWarpRequestMessage>((uid, component, args) =>
-            {
-                HandleWarpRequest(args);
-            }); // Starlight
+            subs.Event<CrewMonitoringWarpRequestMessage>((uid, component, args) => HandleWarpRequest(args)); // Starlight
             subs.Event<BoundUIClosedEvent>(OnConsoleUIClose);
         });
 
@@ -109,10 +104,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<DroneConsoleComponent, AfterActivatableUIOpenEvent>(OnDronePilotConsoleOpen);
         Subs.BuiEvents<DroneConsoleComponent>(ShuttleConsoleUiKey.Key, subs =>
         {
-            subs.Event<CrewMonitoringWarpRequestMessage>((uid, component, args) =>
-            {
-                HandleWarpRequest(args);
-            }); // Starlight
+            subs.Event<CrewMonitoringWarpRequestMessage>((uid, component, args) => HandleWarpRequest(args)); // Starlight
             subs.Event<BoundUIClosedEvent>(OnDronePilotConsoleClose);
         });
 
@@ -235,9 +227,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         DockingInterfaceState? dockState = null;
         DockingPortStates? dockingPortStates = null; // Starlight
         UpdateState(uid, ref dockState, ref dockingPortStates); // Starlight
-        // Starlight - start
-        RefreshDroneConsoles();
-        // Starlight - end
+        RefreshDroneConsoles(); // Starlight
     }
 
     private bool TryPilot(EntityUid user, EntityUid uid)

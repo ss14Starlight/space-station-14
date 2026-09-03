@@ -8,13 +8,9 @@ public sealed partial class NavScreen
 {
     public event Action<EntityCoordinates>? OnRadarClick;
 
-    partial void InitializeStarlight()
-    {
+    partial void InitializeStarlight() =>
         NavRadar.OnRadarClick += OnRadarClickPressed;
-    }
 
-    private void OnRadarClickPressed(EntityCoordinates coordinates)
-    {
+    private void OnRadarClickPressed(EntityCoordinates coordinates) =>
         OnRadarClick?.Invoke(coordinates);
-    }
 }

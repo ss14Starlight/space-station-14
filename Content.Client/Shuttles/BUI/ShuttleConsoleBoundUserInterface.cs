@@ -14,21 +14,21 @@ namespace Content.Client.Shuttles.BUI;
 [UsedImplicitly]
 public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!; // Starlight
 
     [ViewVariables]
     private ShuttleConsoleWindow? _window;
 
     public ShuttleConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
-        IoCManager.InjectDependencies(this);
+        IoCManager.InjectDependencies(this); // Starlight
     }
 
     protected override void Open()
     {
         base.Open();
         _window = this.CreatePopOutableWindow<ShuttleConsoleWindow>(EntMan); // Starlight: popout support
-        _window.RadarClicked += OnRadarClicked;
+        _window.RadarClicked += OnRadarClicked; // Starlight
 
         _window.RequestFTL += OnFTLRequest;
         _window.RequestBeaconFTL += OnFTLBeaconRequest;
@@ -78,11 +78,11 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
         if (disposing)
         {
             if (_window != null)
-                _window.RadarClicked -= OnRadarClicked;
+                _window.RadarClicked -= OnRadarClicked; // Starlight
             _window?.DisposePopOut(); // Starlight: close the popout if exists
         }
     }
-
+    #region Starlight
     private void OnRadarClicked(EntityCoordinates coordinates)
     {
         var local = _playerManager.LocalEntity;
@@ -91,6 +91,7 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
 
         SendMessage(new CrewMonitoringWarpRequestMessage(EntMan.GetNetCoordinates(coordinates)));
     }
+    #endregion
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {

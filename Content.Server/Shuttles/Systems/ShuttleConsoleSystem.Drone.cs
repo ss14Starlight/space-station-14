@@ -13,10 +13,7 @@ public sealed partial class ShuttleConsoleSystem
     [Dependency] private SharedGridAccessSystem _gridAccess = default!;
     private readonly Dictionary<EntityUid, (EntityUid SourceGrid, EntityUid TargetGrid)> _remoteGridAccess = new();
 
-    private void OnDroneConsoleStartup(EntityUid uid, DroneConsoleComponent component, ComponentStartup args)
-    {
-        UpdateRemoteGridAccess(uid, component);
-    }
+    private void OnDroneConsoleStartup(EntityUid uid, DroneConsoleComponent component, ComponentStartup args) => UpdateRemoteGridAccess(uid, component);
     #endregion Starlight
 
     /// <summary>
@@ -57,14 +54,14 @@ public sealed partial class ShuttleConsoleSystem
         if (!_ui.IsUiOpen(uid, args.UiKey))
         {
             component.Entity = null;
-            _remoteGridAccess.Remove(uid); // We only remove the access to the remote grid, not changing grid access
+            _remoteGridAccess.Remove(uid); // Starlight: We only remove the access to the remote grid, not changing grid access
         }
     }
 
     private void OnCargoGetConsole(EntityUid uid, DroneConsoleComponent component, ref ConsoleShuttleEvent args)
     {
         UpdateRemoteGridAccess(uid, component);  // Starlight
-        args.Console = component.Entity;
+        args.Console = component.Entity; // Starlight
     }
 
     #region Starlight

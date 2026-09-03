@@ -95,6 +95,7 @@ public sealed partial class StationAiOverlay : Overlay
                 _entManager.HasComponent<StationAiHeldComponent>(_player.LocalEntity)
                 ? _lastGridUid
                 : EntityUid.Invalid);
+       
         if (gridUid != EntityUid.Invalid)
             _lastGridUid = gridUid;
 
