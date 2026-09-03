@@ -293,7 +293,7 @@
   parent: BaseLizardPlushie
   id: PlushieVictorJr #ty flamey!
   name: Victor Jr plushie
-  description: Something something kobold noise
+  description: Most likely to prioritize a mouses life over yours. Yip!
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/victorjr_plushie.rsi
