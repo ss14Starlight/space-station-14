@@ -1,7 +1,7 @@
 ﻿- type: entity
   name: basic slime
   id: BaseMobAdultSlimes
-  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobSlimes
+  parent: [ SimpleMobBase, MobCombat, BaseSlicingRefinable ] # Starlight Edit: Removed BaseMobSlimes
   abstract: true
   description: It looks so much like jelly. I wonder what it tastes like?
   components:
@@ -51,9 +51,8 @@
     tags:
     - FootstepSound
     - DoorBumpOpener
-  - type: Butcherable
-    butcheringType: Knife
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatSlime
       amount: 2
   - type: Respirator

@@ -1,6 +1,6 @@
 - type: entity
   name: terror spider
-  parent: [ SimpleSpaceMobBaseAntag, MobRespirator ]
+  parent: [ SimpleSpaceMobBaseAntag, MobRespirator, BaseSlicingRefinable ]
   id: MobTerrorSpider
   description: a deadly hybrid of a giant spider and xenomorph.
   abstract: true
@@ -76,8 +76,8 @@
         Base: dead
       Dead:
         Base: dead
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatSpider
       amount: 4
   - type: CombatMode
@@ -99,12 +99,11 @@
     damage:
       types:
         Piercing: 18
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        maxVol: 30
+  - type: Solution
+    id: melee
+    solution:
+      maxVol: 30
   - type: SolutionRegeneration
-    solution: melee
     generated:
       reagents:
       - ReagentId: Mechanotoxin
@@ -122,7 +121,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 150
+        Quantity: 300
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
