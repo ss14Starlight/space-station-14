@@ -22,15 +22,20 @@ public sealed partial class NitriumProductionReaction : IGasReactionEffect
         var initNitrogen = mixture.GetMoles(Gas.Nitrogen);
         var initPluox = mixture.GetMoles(Gas.Pluoxium);
         var initBZ = mixture.GetMoles(Gas.BZ);
+        var initHydrogen = mixture.GetMoles(Gas.Hydrogen);
         var pressure = mixture.Pressure;
         var volume = mixture.Volume;
         var temperature = mixture.Temperature;
 
         var catalyze = 1f + (initBZ / 100f) ;
 
+///Hydrogen can substitute tritium so long as some trit is present to act as the special magic sauce
+
+        var hydrogenRatio = initHydrogen / initTritium;
+
 /// Check what ingredient is smallest relative to its un-catalyzed demand. Use it as a limiter.
 
-        var limit = Math.Min(initTritium / 2f, Math.Min(initNitrogen * catalyze / 3f, initPluox));
+        var limit = Math.Min( (initTritium + initHydrogen) / 2f, Math.Min(initNitrogen / 3f * catalyze, initPluox));
 
 /// Produces faster with higher temperature, lower pressure, and higher concetrations of BZ. BZ also magnifies the nitrogen consumption so watch out.
 
@@ -40,13 +45,15 @@ public sealed partial class NitriumProductionReaction : IGasReactionEffect
 
         var rate = Math.Min(0.5F * tempRate * pressureRate * catalyze, limit);
 
-        var tritiumRemoved = 2f * rate;
+        var tritiumRemoved = Math.Max(0f, (2f - hydrogenRatio) * rate);
+        var hydrogenRemoved = Math.Max(0f, (0f + hydrogenRatio) * rate);
         var nitrogenRemoved = 3f * rate * catalyze;
         var pluoxRemoved = 1f * rate;
 
         var nitriumProduced = 3f * rate;
 
         mixture.AdjustMoles(Gas.Tritium, -tritiumRemoved);
+        mixture.AdjustMoles(Gas.Hydrogen, -hydrogenRemoved);
         mixture.AdjustMoles(Gas.Nitrogen, -nitrogenRemoved);
         mixture.AdjustMoles(Gas.Pluoxium, -pluoxRemoved);
         mixture.AdjustMoles(Gas.Nitrium, nitriumProduced);
