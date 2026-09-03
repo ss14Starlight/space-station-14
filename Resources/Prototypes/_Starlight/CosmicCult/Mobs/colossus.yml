@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseSimpleMob, FlyingMobBase ]
+  parent: [ BaseSimpleMob, FlyingMobBase, BaseSlicingRefinable ]
   abstract: true
   id: MobCosmicColossusBase
   name: entropic colossus
@@ -154,7 +154,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Entropy
-        Quantity: 650
+        Quantity: 1300
     maxBleedAmount: 0.1
     bleedReductionAmount: 0.1
     bloodlossDamage:
@@ -170,9 +170,9 @@
   - type: AntagMonsterScaling
     minimumHealthScaling: -0.25
     maximumHealthScaling: 0.50
-  - type: Butcherable
-    butcherDelay: 16
-    spawned:
+  - type: ToolRefinable
+    refineTime: 16
+    refineResult:
     - id: CosmicCultMindSink
       amount: 1
   - type: PointLight

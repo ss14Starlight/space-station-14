@@ -12,13 +12,13 @@
       size: Normal
     - type: Edible
       requiresSpecialDigestion: true
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 10
-          reagents:
-            - ReagentId: Fiber
-              Quantity: 10
+    - type: Solution
+      id: food
+      solution:
+        maxVol: 10
+        reagents:
+          - ReagentId: Fiber
+            Quantity: 10
     - type: OverrideShoesHinder
       Modifier: 0 # remove hinder debuff by default
     - type: Tag
