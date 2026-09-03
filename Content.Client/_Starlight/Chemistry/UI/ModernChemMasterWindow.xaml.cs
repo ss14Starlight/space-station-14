@@ -488,14 +488,25 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         OutputEjectButton.Disabled = castState.OutputContainerInfo is null;
         OutputEjectButtonClassic.Disabled = castState.OutputContainerInfo is null;
 
-        CreateBottleButton.Disabled = castState.OutputContainerInfo?.Reagents == null;
-        CreateBottleButtonClassic.Disabled = castState.OutputContainerInfo?.Reagents == null;
+        var output = castState.OutputContainerInfo;
+        var bottleFull = output?.Reagents != null && output.CurrentVolume >= output.MaxVolume;
+        var pillFull = output?.PillEntities != null && output.CurrentVolume >= output.MaxVolume;
+        var patchFull = output?.PatchEntities != null && output.CurrentVolume >= output.MaxVolume;
 
-        CreatePillButton.Disabled = castState.OutputContainerInfo?.PillEntities == null;
-        CreatePillButtonClassic.Disabled = castState.OutputContainerInfo?.PillEntities == null;
+        CreateBottleButton.Disabled = castState.OutputContainerInfo?.Reagents == null || bottleFull;
+        CreateBottleButtonClassic.Disabled = castState.OutputContainerInfo?.Reagents == null || bottleFull;
+        CreateBottleButton.ToolTip = !CreateBottleButton.Disabled ? null : bottleFull ? Loc.GetString("chem-master-window-create-bottle-full-tooltip") : Loc.GetString("chem-master-window-create-bottle-tooltip");
+        CreateBottleButtonClassic.ToolTip = !CreateBottleButtonClassic.Disabled ? null : bottleFull ? Loc.GetString("chem-master-window-create-bottle-full-tooltip") : Loc.GetString("chem-master-window-create-bottle-tooltip");
 
-        CreatePatchButton.Disabled = castState.OutputContainerInfo?.PatchEntities == null;
-        CreatePatchButtonClassic.Disabled = castState.OutputContainerInfo?.PatchEntities == null;
+        CreatePillButton.Disabled = castState.OutputContainerInfo?.PillEntities == null || pillFull;
+        CreatePillButtonClassic.Disabled = castState.OutputContainerInfo?.PillEntities == null || pillFull;
+        CreatePillButton.ToolTip = !CreatePillButton.Disabled ? null : pillFull ? Loc.GetString("chem-master-window-create-pill-full-tooltip") : Loc.GetString("chem-master-window-create-pill-tooltip");
+        CreatePillButtonClassic.ToolTip = !CreatePillButtonClassic.Disabled ? null : pillFull ? Loc.GetString("chem-master-window-create-pill-full-tooltip") : Loc.GetString("chem-master-window-create-pill-tooltip");
+
+        CreatePatchButton.Disabled = castState.OutputContainerInfo?.PatchEntities == null || patchFull;
+        CreatePatchButtonClassic.Disabled = castState.OutputContainerInfo?.PatchEntities == null || patchFull;
+        CreatePatchButton.ToolTip = !CreatePatchButton.Disabled ? null : patchFull ? Loc.GetString("chem-master-window-create-patch-full-tooltip") : Loc.GetString("chem-master-window-create-patch-tooltip");
+        CreatePatchButtonClassic.ToolTip = !CreatePatchButtonClassic.Disabled ? null : patchFull ? Loc.GetString("chem-master-window-create-patch-full-tooltip") : Loc.GetString("chem-master-window-create-patch-tooltip");
 
         var valveText = Loc.GetString(castState.ValveOpen
             ? "chem-master-window-valve-open"
@@ -585,12 +596,12 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         // Modern layout containers
         BuildContainerUI(InputContainerInfo, state.InputContainerInfo, true, modernMode: true);
         BuildContainerUI(OutputContainerInfo, state.OutputContainerInfo, false, modernMode: true, "chem-master-window-no-output-container-loaded-text");
-        BuildContainerUI(OutputInputContainerInfo, state.InputContainerInfo, false, modernMode: false, "chem-master-window-no-input-container-loaded-text");
+        BuildOutputLeftContainer(OutputInputContainerInfo, state, modernMode: false);
 
         // Classic layout containers
         BuildContainerUI(InputContainerInfoClassic, state.InputContainerInfo, true, modernMode: false);
         BuildContainerUI(OutputContainerInfoClassic, state.OutputContainerInfo, false, modernMode: false, "chem-master-window-no-output-container-loaded-text");
-        BuildContainerUI(OutputInputContainerInfoClassic, state.InputContainerInfo, false, modernMode: false, "chem-master-window-no-input-container-loaded-text");
+        BuildOutputLeftContainer(OutputInputContainerInfoClassic, state, modernMode: false);
 
         BufferInfo.Children.Clear();
         BufferInfoClassic.Children.Clear();
@@ -662,6 +673,38 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         // A bit messy, but it fixes the search resetting on click.
         if (!string.IsNullOrEmpty(SearchBar.Text))
             UpdateReagentPrototypes(SearchBar.Text);
+    }
+
+    private void BuildOutputLeftContainer(Control control, ChemMasterBoundUserInterfaceState state, bool modernMode)
+    {
+        if (state.DrawSource == ChemMasterDrawSource.Internal)
+        {
+            // Show buffer contents when packaging from buffer
+            control.Children.Clear();
+            if (!state.BufferReagents.Any())
+            {
+                control.Children.Add(new Label { Text = Loc.GetString("chem-master-window-buffer-empty-text") });
+                return;
+            }
+            control.Children.Add(new BoxContainer
+            {
+                Orientation = LayoutOrientation.Horizontal,
+                Children =
+                {
+                    new Label { Text = $"{Loc.GetString("chem-master-window-buffer-label")} " },
+                    new Label { Text = $"{state.BufferCurrentVolume}u", StyleClasses = { StyleClass.LabelWeak } }
+                }
+            });
+            var rowCount = 0;
+            foreach (var (reagent, quantity) in state.BufferReagents)
+            {
+                _prototypeManager.TryIndex(reagent.Prototype, out ReagentPrototype? proto);
+                var name = proto?.LocalizedName ?? Loc.GetString("chem-master-window-unknown-reagent-text");
+                control.Children.Add(BuildReagentRow(default, rowCount++, name, reagent, quantity, true, false, modernMode));
+            }
+            return;
+        }
+        BuildContainerUI(control, state.InputContainerInfo, false, modernMode, "chem-master-window-no-input-container-loaded-text");
     }
 
     private void BuildContainerUI(Control control, ContainerInfo? info, bool addReagentButtons, bool modernMode, string emptyLoc = "chem-master-window-no-container-loaded-text")
