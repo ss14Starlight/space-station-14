@@ -30,6 +30,3 @@ nano-chat-group-members-title = Group Members
 nano-chat-owner-suffix = (Owner)
 nano-chat-admin-suffix = (Admin)
 
-# Emoji picker
-nano-chat-emoji-picker = Emoji Picker
-nano-chat-emoji-search = Search emojis...
