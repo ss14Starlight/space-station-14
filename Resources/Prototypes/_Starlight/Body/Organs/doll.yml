@@ -289,7 +289,8 @@
   - type: Organ
   - type: PhysicalComposition
     materialComposition:
-      Plasteel: 500
+      Plasteel: 25
+      Steel: 100
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 1.0
