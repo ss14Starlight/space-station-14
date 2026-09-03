@@ -370,7 +370,7 @@
     Bloodstream:
       effects:
       - !type:HealthChange
-        conditions: # Starlight: Vox immune to frezon. Caw!
+        conditions: # Starlight: Vox immune to frezon damage. Caw!
         - !type:MetabolizerTypeCondition
           type: [ Human, Animal, Rat, Plant, Arachnid, Moth, Neocyte, Slime ] 
         ignoreResistances: true
