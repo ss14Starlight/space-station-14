@@ -1,13 +1,6 @@
 Entries:
 - author: Rhapsody (Pepta Vismahl)
   changes:
-  - message: Removed medical analyzer from medical cyborg modules.
-    type: Remove
-  id: 407678
-  time: '2026-08-16T19:58:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5622
-- author: Rhapsody (Pepta Vismahl)
-  changes:
   - message: Medical cyborgs can now scan from the action hotbar, like with medical PDAs.
     type: Add
   id: 407679
@@ -2799,4 +2792,11 @@ Entries:
   id: 408077
   time: '2026-09-03T17:52:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5898
+- author: Citrea & AegisShield
+  changes:
+  - message: Dolls can now see roughly how many pieces of shell they have at a glance.
+    type: Add
+  id: 408078
+  time: '2026-09-03T18:19:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5958
 Order: -1
