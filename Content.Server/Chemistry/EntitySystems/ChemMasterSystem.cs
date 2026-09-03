@@ -149,28 +149,6 @@ namespace Content.Server.Chemistry.EntitySystems
             ClickSound(chemMaster);
         }
 
-        // Starlight BEGIN
-        private void OnCustomReagentButtonMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterReagentCustomAmountButtonMessage message)
-        {
-            if (message.Amount <= FixedPoint2.Zero || message.Amount > FixedPoint2.New(1000))
-                return;
-
-            switch (chemMaster.Comp.Mode)
-            {
-                case ChemMasterMode.Transfer:
-                    TransferReagents(chemMaster, message.ReagentId, message.Amount, message.FromBuffer);
-                    break;
-                case ChemMasterMode.Discard:
-                    DiscardReagents(chemMaster, message.ReagentId, message.Amount, message.FromBuffer);
-                    break;
-                default:
-                    return;
-            }
-
-            ClickSound(chemMaster);
-        }
-        // Starlight END
-
         private void OnSetDrawSourceMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterOutputDrawSourceMessage message)
         {
             //Ensure draw source is valid, either from the internal buffer or the inserted beaker
