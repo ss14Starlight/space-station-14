@@ -1,3 +1,4 @@
+using Content.Shared.Alert;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -20,4 +21,10 @@ public sealed partial class ShellComponent : Component
 
     [DataField]
     public ComponentRegistry? NoShellComponents;
+
+    /// <summary>
+    /// The alert for notifying the shelled creature about the integrity of their shell.
+    /// </summary>
+    [DataField]
+    public ProtoId<AlertPrototype> ShellAlert = "DollShellIntegrity";
 }

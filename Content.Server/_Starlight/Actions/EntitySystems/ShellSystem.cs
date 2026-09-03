@@ -1,9 +1,9 @@
 using Content.Shared.Actions;
 using Content.Shared._Starlight.Actions.Components;
 
-namespace Content.Server._Starlight.Actions.EntitySystems;
+namespace Content.Server._Starlight.Dolls;
 
-public sealed class ShellSystem : EntitySystem
+public sealed partial class ShellSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
 
