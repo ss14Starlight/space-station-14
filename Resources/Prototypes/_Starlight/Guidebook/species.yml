@@ -43,6 +43,12 @@
   name: species-name-rodentia
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/Rodentia.xml"
 
+
+- type: guideEntry
+  id: Doll
+  name: species-name-doll
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Doll.xml"
+
 - type: guideEntry
   id: Neocyte
   name: species-name-neocyte

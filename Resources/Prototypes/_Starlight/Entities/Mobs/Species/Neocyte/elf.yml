@@ -15,7 +15,6 @@
     sprite: _FarHorizons/Mobs/Species/Proto-Humie/parts.rsi
     state: full
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatHuman
       amount: 5

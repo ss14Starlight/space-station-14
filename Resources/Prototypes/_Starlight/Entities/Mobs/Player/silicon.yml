@@ -36,6 +36,7 @@
       name: ghost-role-information-syndicate-cyborg-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist]
       important: true # SL
       raffle:
         settings: default
@@ -101,6 +102,7 @@
       name: ghost-role-information-syndicate-cyborg-medical-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist]
       important: true
       raffle:
         settings: default
@@ -143,6 +145,7 @@
     name: ghost-role-information-derelict-purrfus-cyborg-name
     description: ghost-role-information-derelict-purrfus-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles: [MindRoleSubvertedSilicon]
     raffle:
       settings: default
     reregister: false
@@ -181,6 +184,7 @@
         name: ghostrole-information-derelict-heavy-xenoborg-name
         description: ghostrole-information-derelict-heavy-xenoborg-description
         rules: ghost-role-information-silicon-rules
+        mindRoles: [MindRoleSubvertedSilicon]
         raffle:
           settings: default
         reregister: false
@@ -222,6 +226,7 @@
       name: ghostrole-information-derelict-engi-xenoborg-name
       description: ghostrole-information-derelict-engi-xenoborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleSubvertedSilicon]
       raffle:
         settings: default
       reregister: false
@@ -260,6 +265,7 @@
       name: ghostrole-information-derelict-scout-xenoborg-name
       description: ghostrole-information-derelict-scout-xenoborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleSubvertedSilicon]
       raffle:
         settings: default
       reregister: false
@@ -301,6 +307,7 @@
       name: ghostrole-information-derelict-stealth-xenoborg-name
       description: ghostrole-information-derelict-stealth-xenoborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleSubvertedSilicon]
       raffle:
         settings: default
       reregister: false
@@ -316,6 +323,7 @@
       name: ghostrole-information-derelict-borgi-xenoborg-name
       description: ghostrole-information-derelict-borgi-xenoborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleSubvertedSilicon]
       raffle:
         settings: default
       reregister: false

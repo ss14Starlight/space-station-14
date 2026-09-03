@@ -812,7 +812,11 @@ OrganSkeletonPersonArmRight: RightArmSkeleton
 #TowelColorMime: null
 # Starlight end
 
-# 2026-08-17
+# 2026-03-28
+# The great solutions YAML nuke
+FoodMeatSnail: MobSnail
+
+# 2026-09-03
 # Starlight start, Salvage relocation to ATS
 LockerSalvageLead: null
 LockerSalvageLeadFilled: null

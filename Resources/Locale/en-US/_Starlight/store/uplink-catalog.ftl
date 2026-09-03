@@ -81,10 +81,6 @@ uplink-reinforcement-radio-saboteur-cyborg-desc = A saboteur cyborg, complete wi
 uplink-reinforcement-radio-stealth-cyborg-name = Syndicate Stealth Cyborg Teleporter
 uplink-reinforcement-radio-stealth-cyborg-desc = A stealth cyborg. Whilst it is incapable of fighting, it has the ability to disguise, go invisible and move through vents. Comes with standard hacking tools.
 
-
-uplink-syndimov-law-name = Syndimov Law Circuit
-uplink-syndimov-law-desc = A modified version of crewismov that defines syndicate agents as crew.
-
 uplink-ecronizer-name = Ecronizer
 uplink-ecronizer-desc = A small device that can be used to bypass most scanning devices, making you and your items invisible to them.
 
