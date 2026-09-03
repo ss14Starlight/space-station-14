@@ -2669,6 +2669,7 @@
   physicalDesc: reagent-physical-desc-sweet
   flavor: watermelonwakeup
   color: "#d49dca"
+  flammability: 0 # Starlight, vaguely related to water
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/champagneglass.rsi
     state: icon_empty
