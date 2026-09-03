@@ -32,25 +32,13 @@
         conditions:
         - !type:ReagentCondition
           reagent: ZXA
-          min: 0.2
+          min: 0.5
         emote: Cough
         showInChat: true
         probability: 0.05
 
-      - !type:HealthChange
-        conditions:
-        - !type:ReagentCondition
-          reagent: ZXA
-          min: 1
-        ignoreResistances: true
-        maxScale: 5
-        damage:
-          types:
-            Cellular: -0.1 # It can heal you a *tiny* amount, if you wanna sleep it off.
-
-
       - !type:ModifyStatusEffect
-        minScale: 0.6
+        minScale: 1.0
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 5
@@ -59,7 +47,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: ZXA
-          min: 0.2
+          min: 0.5
         emote: Laugh
         showInChat: true
         probability: 0.05
@@ -68,7 +56,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: ZXA
-          min: 0.2
+          min: 1.0
         emote: Scream
         showInChat: true
         probability: 0.005
@@ -85,7 +73,6 @@
         visualType: Medium
         messages: [ "effect-sleepy" ]
         probability: 0.1
-
 
       - !type:MovementSpeedModifier
         minScale: 1
@@ -112,6 +99,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: ZXA
-          min: 0.1
+          min: 0.01
         reagent: ZXAMetabolites
-        amount: 1.8
+        amount: 5
+        maxScale: 2

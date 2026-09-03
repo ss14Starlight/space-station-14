@@ -26,7 +26,7 @@ public sealed partial class NitriumProductionReaction : IGasReactionEffect
         var volume = mixture.Volume;
         var temperature = mixture.Temperature;
 
-        var catalyze = initBZ / 100f ;
+        var catalyze = 1f + (initBZ / 100f) ;
 
 /// Check what ingredient is smallest relative to its un-catalyzed demand. Use it as a limiter.
 
@@ -34,11 +34,11 @@ public sealed partial class NitriumProductionReaction : IGasReactionEffect
 
 /// Produces faster with higher temperature, lower pressure, and higher concetrations of BZ. BZ also magnifies the nitrogen consumption so watch out.
 
-        var tempRate = temperature/ 500f ;
+        var tempRate = temperature / 500f ;
 
-        var pressureRate = (100f / pressure) * 2f ;
+        var pressureRate = (10f / pressure) * 2f ;
 
-        var rate = Math.Min(1F * tempRate * pressureRate * catalyze, limit);
+        var rate = Math.Min(0.5F * tempRate * pressureRate * catalyze, limit);
 
         var tritiumRemoved = 2f * rate;
         var nitrogenRemoved = 3f * rate * catalyze;

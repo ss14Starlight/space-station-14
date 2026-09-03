@@ -18,7 +18,7 @@
   specificHeat: 10
   heatCapacityRatio: 1.4
   gasOverlaySprite: /Textures/_Funkystation/Effects/atmospherics.rsi
-  gasOverlayState: nitrium
+  gasOverlayState: healium # Starlight: Nitrium gets healium's old color.
   molarMass: 8
   color: fa8072
   reagent: Nitrium

@@ -3,7 +3,7 @@
   parent: AirTank
   suffix: Empty
   name: stimpack tank
-  description: Contains a mixture of performance enhancing nitrium and respirating gasses.
+  description: A tank containing a performance enhancing mixture of gasses designed to boost physical capabilities. Typically issued to those who get into heavy combat.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Tanks/anesthetic2.rsi
@@ -22,13 +22,14 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 22
+    outputPressure: 25
     air:
       volume: 5
       moles:
-        Pluoxium: 0.4861768349 # 23.7% Pluoxium, so voxes don't get poisoned
-        Ulnitranium: 0.4861768349 # 23.7% Ulnitranium
-        Nitrium: 0.3737682167      # 4.3 kPa (18.22%)
+        Pluoxium: 0.3
+        Ulnitranium: 0.3
+        Nitrium: 0.8
+        ZXA: 0.2
       temperature: 293.15
 
 - type: entity

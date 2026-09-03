@@ -1,5 +1,5 @@
 # Funky atmos - /tg/ gases
-- type: reagent
+- type: reagent  # Starlight START: Basically this whole reagant has been edited
   id: NitrosylPlasmide
   name: reagent-name-nitrosyl-plasmide
   group: Narcotics
@@ -8,22 +8,26 @@
   flavor: sour
   color: "#e1a116"
   metabolisms:
-    Respiration: # Starlight
+    Respiration:
       effects:
       - !type:Jitter
-    Bloodstream: # Starlight
+    Bloodstream:
       effects:
       - !type:Jitter
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 5
       - !type:ModifyStatusEffect
         effectProto: StatusEffectStunned
-        time: 0.3 # Starlight
+        time: 0.3
         type: Remove
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
           min: 5
       - !type:ModifyKnockdown
-        time: 0.3 # Starlight
+        time: 0.3
         type: Remove
         conditions:
         - !type:ReagentCondition
@@ -62,10 +66,18 @@
       - !type:EvenHealthChange # Level 2 effectiveness
         ignoreResistances: true
         damage:
-          Brute: -1.0
-          Burn: -1.0
-          Toxin: -1.0
-          Genetic: 0.09
+          Brute: -1.5
+          Burn: -1.5
+          Toxin: -1.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 5
+          max: 10
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 0.6
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
@@ -77,23 +89,30 @@
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 5
-          max: 10
+          min: 4.5
+          max: 9.5
       - !type:AdjustReagent
         reagent: NitrosylPlasmide
         amount: -1.5
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 5
-          max: 10
+          min: 4.5
+          max: 9.5
       - !type:EvenHealthChange # Level 3 effectiveness
         ignoreResistances: true
         damage:
-          Brute: -2.0
-          Burn: -2.0
-          Toxin: -2.0
-          Genetic: 0.18
+          Brute: -2.5
+          Burn: -2.5
+          Toxin: -2.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 10
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 0.12
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
@@ -112,10 +131,9 @@
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
           min: 10
-      # Starlight END
       - !type:ResetNarcolepsy
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
           min: 0.1
-
+      # Starlight END
