@@ -721,7 +721,7 @@
     </ColorBox>
     <ColorBox Color="#4d2e2e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      	To incidentally kill a sentient humanoid without intent. This includes manslaughter in self-defense and negligent manslaughter.
+      	To incidentally kill a sentient entity without intent. This includes manslaughter in self-defense and negligent manslaughter.
       </Box>
     </ColorBox>
     <ColorBox Color="#3b4354">
@@ -796,7 +796,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To unlawfully restrain, transport, control, or confine a sentient humanoid being against that individual's will. This is a catchall to cover any form of kidnapping or forced control.
+        To unlawfully restrain, transport, control, or confine a sentient entity being against that individual's will. This is a catchall to cover any form of kidnapping or forced control.
       </Box>
     </ColorBox>
     <ColorBox Color="#4d2e2e">
@@ -816,7 +816,7 @@
     </ColorBox>
     <ColorBox Color="#4d2e2e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To kill a sentient humanoid with malicious intent. If the victim must be revived, it is murder and not attempted murder.
+        To kill a sentient entity with malicious intent. If the victim must be revived, it is murder and not attempted murder.
       </Box>
     </ColorBox>
     <ColorBox Color="#475c7d">
@@ -836,7 +836,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To consume any part of a sentient humanoid. Consumption of vital components should be treated more harshly. This can be charged on top of other charges such as Murder or Assault if the suspect committed these crimes to obtain the parts consumed.
+        To consume any part of a sentient entity. Consumption of vital components should be treated more harshly. This can be charged on top of other charges such as Murder or Assault if the suspect committed these crimes to obtain the parts consumed.
       </Box>
     </ColorBox>
   </Table>
@@ -901,7 +901,7 @@
     </ColorBox>
     <ColorBox Color="#4d2e2e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To kill three or more sentient humanoids with malicious intent. This only applies when there have been multiple killings with intention.
+        To kill three or more sentient entitys with malicious intent. This only applies when there have been multiple killings with intention.
       </Box>
     </ColorBox>
   </Table>
