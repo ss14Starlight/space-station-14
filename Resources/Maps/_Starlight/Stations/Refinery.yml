@@ -139495,8 +139495,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 110
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentPumpFreezer
@@ -141381,8 +141379,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 110
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentScrubberAlt3
