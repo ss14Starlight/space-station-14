@@ -79,17 +79,25 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
             .Bind(ContentKeyFunctions.ShuttleRotateRight, new ShuttleInputCmdHandler(this, ShuttleButtons.RotateRight))
             .Bind(ContentKeyFunctions.ShuttleBrake, new ShuttleInputCmdHandler(this, ShuttleButtons.Brake))
             .Register<ClientRedundantMovementSystem>();
+
+        _netManager.Connected += OnConnected;
+        _netManager.Disconnect += OnDisconnect;
     }
 
     public override void Shutdown()
     {
         CommandBinds.Unregister<ClientRedundantMovementSystem>();
+        _netManager.Connected -= OnConnected;
+        _netManager.Disconnect -= OnDisconnect;
     }
 
     public override void Update(float frameTime)
     {
         if (!_cfg.GetCVar(RedundantMovementCVars.Enabled))
+        {
+            ClearState();
             return;
+        }
 
         var tick = _timing.CurTick;
 
@@ -99,7 +107,10 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
         _lastSentTick = tick;
 
         if (!_netManager.IsConnected)
+        {
+            ClearState();
             return;
+        }
 
         // sleep logic
         bool validForSleep = !_currentState.HasInput && _frameChanges.Count == 0;
@@ -115,8 +126,7 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
 
         if (_sleepPeriodStart.HasValue && _sleepPeriodStart.Value <= _manager.ServerAckTick)
         {
-            _frameChanges.Clear();
-            _storedInputData.Clear();
+            ClearState();
             return;
         }
 
@@ -179,6 +189,16 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
         _shuttleState = state;
 
         if (IsPilot(session)) OnInputChange(new(state), subtick);
+    }
+
+    private void OnDisconnect(object? sender, NetDisconnectedArgs e) => ClearState();
+    private void OnConnected(object? sender, NetChannelArgs e) => ClearState();
+
+    private void ClearState()
+    {
+        _frameChanges.Clear();
+        _storedInputData.Clear();
+        _sleepPeriodStart = null;
     }
 
     private sealed class MovementInputHandler(ClientRedundantMovementSystem system, MoveButtons bit) : InputCmdHandler
