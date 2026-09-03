@@ -1,74 +1,4 @@
 Entries:
-- author: Wizden Team
-  changes:
-  - message: Fixed construction preview ghost sprite offset not matching the original entity.
-    type: Fix
-  id: 407705
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: wonderulnewworld, sowelipililimute
-  changes:
-  - message: Drinking or eating things now gradually trickles into the bloodstream, instead of being a fixed delay.
-    type: Tweak
-  id: 407706
-  time: '2026-08-17T20:51:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5678
-- author: wonderulnewworld, sowelipililimute
-  changes:
-  - message: Reagent effect groups are now stages of metabolism in the guidebook.
-    type: Tweak
-  id: 407707
-  time: '2026-08-17T20:51:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5678
-- author: wonderulnewworld, sowelipililimute
-  changes:
-  - message: Many reagents that break down into other ones have clearer guidebook descriptions and slightly adjusted behavior.
-    type: Tweak
-  id: 407708
-  time: '2026-08-17T20:51:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5678
-- author: Caws
-  changes:
-  - message: Fixed an issue where wall-mounted lights looked like they were 'cut off' by sharp corners - lighting should be approximately restored to how it was before.
-    type: Fix
-  id: 407709
-  time: '2026-08-18T02:39:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5702
-- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
-  changes:
-  - message: Wires, the Atmospherics Console, Shuttle Consoles, Stamps, now correctly render again.
-    type: Fix
-  id: 407710
-  time: '2026-08-18T02:59:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5697
-- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
-  changes:
-  - message: Fixed melee attack and interaction particle animations being rotated wrong if your camera is rotated.
-    type: Fix
-  id: 407711
-  time: '2026-08-18T02:59:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5697
-- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
-  changes:
-  - message: Revenants no longer collide with regular ghosts.
-    type: Fix
-  id: 407712
-  time: '2026-08-18T02:59:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5697
-- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
-  changes:
-  - message: Airlock animations no longer break when you walk through them as they're closing.
-    type: Fix
-  id: 407713
-  time: '2026-08-18T02:59:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5697
-- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
-  changes:
-  - message: Sheathes and the NT Rep/normal Cane now have better melee attack animations on normal attack and wide swing.
-    type: Fix
-  id: 407714
-  time: '2026-08-18T02:59:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5697
 - author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
   changes:
   - message: NT Rep's cane now generates sparks.
@@ -2799,4 +2729,74 @@ Entries:
   id: 408104
   time: '2026-09-03T21:35:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5966
+- author: Wizden Team
+  changes:
+  - message: Admin logger for criminal status changes.
+    type: Add
+  id: 408105
+  time: '2026-09-03T21:35:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5919
+- author: Wizden Team
+  changes:
+  - message: Silicons now see an indicator for jobs that are considered "crew" under the normal crewsimov lawset.
+    type: Add
+  id: 408106
+  time: '2026-09-03T21:35:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5919
+- author: Wizden Team
+  changes:
+  - message: Removed the Reptilian laugh sound effect due to copyright concerns.
+    type: Remove
+  id: 408107
+  time: '2026-09-03T21:35:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5919
+- author: Wizden Team
+  changes:
+  - message: The health analyzer and the MedTek PDA app now reactivate once you get back in range of your patient.
+    type: Tweak
+  id: 408108
+  time: '2026-09-03T21:35:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5919
+- author: Wizden Team
+  changes:
+  - message: Log for buying from a store will be High instead of Low if user is not of an expected faction for that store, or Extreme if they also have mindshield.
+    type: Tweak
+  id: 408109
+  time: '2026-09-03T21:35:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5919
+- author: Wizden Team
+  changes:
+  - message: Fireplaces can now ignite gases.
+    type: Tweak
+  id: 408110
+  time: '2026-09-03T21:35:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5919
+- author: Wizden Team
+  changes:
+  - message: Entities buckled to the bonfire with stake no longer suffocate in the walls above the bonfire.
+    type: Fix
+  id: 408111
+  time: '2026-09-03T21:35:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5919
+- author: Wizden Team
+  changes:
+  - message: Fixed an exploit where deconstructing a meat spike with the correct timing could delete someone being hooked onto it.
+    type: Fix
+  id: 408112
+  time: '2026-09-03T21:35:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5919
+- author: Wizden Team
+  changes:
+  - message: Fixed some explosions ignoring indestructible tiles.
+    type: Fix
+  id: 408113
+  time: '2026-09-03T21:35:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5919
+- author: Wizden Team
+  changes:
+  - message: Diona minds are now correctly transferred to their nymphs when they gib.
+    type: Fix
+  id: 408114
+  time: '2026-09-03T21:35:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5919
 Order: -1
