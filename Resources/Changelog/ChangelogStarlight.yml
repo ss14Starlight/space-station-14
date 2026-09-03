@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Force-prying crit borgs now also opens their panel.
-    type: Tweak
-  id: 407699
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
-- author: Wizden Team
-  changes:
   - message: The cargo request console UI has been redesigned.
     type: Tweak
   id: 407700
@@ -2799,4 +2792,11 @@ Entries:
   id: 408098
   time: '2026-09-03T19:44:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5962
+- author: wonderfulnewworld
+  changes:
+  - message: Moproaches (and other regenerating reagent mobs) generate reagents again.
+    type: Fix
+  id: 408099
+  time: '2026-09-03T20:14:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5963
 Order: -1
