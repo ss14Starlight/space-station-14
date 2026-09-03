@@ -1,5 +1,3 @@
-# !! TRIESTE MODIFIED !! #
-
 - type: entity
   id: ChemMaster
   parent: [ BaseMachinePowered, ConstructibleMachine ]
