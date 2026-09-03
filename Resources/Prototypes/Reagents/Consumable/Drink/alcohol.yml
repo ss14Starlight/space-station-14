@@ -1672,6 +1672,7 @@
   physicalDesc: reagent-physical-desc-tart
   flavor: jackrose
   color: "#f53b3b"
+  flammability: 0 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/jackrose.rsi
     state: icon_empty

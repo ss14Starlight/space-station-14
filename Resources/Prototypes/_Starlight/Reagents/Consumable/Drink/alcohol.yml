@@ -162,7 +162,7 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: thelastcall
   color: "#9450c7"
-  flammability: 3
+  flammability: 2
   metamorphicSprite:
     sprite: _Starlight/Objects/Consumable/Drinks/thelastcall.rsi
     state: icon_empty
