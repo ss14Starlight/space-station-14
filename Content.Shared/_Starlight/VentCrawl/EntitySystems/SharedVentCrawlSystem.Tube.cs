@@ -7,11 +7,14 @@ using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
+using Content.Shared.Inventory;
 
 namespace Content.Shared._Starlight.VentCrawl.EntitySystems;
 
 public sealed partial class SharedVentCrawlSystem
 {
+    [Dependency] private readonly InventorySystem _inventory = default!;
+
     public void InitializeTubes()
     {
         SubscribeLocalEvent<VentCrawlTubeComponent, ComponentRemove>(OnComponentRemove);
@@ -131,6 +134,11 @@ public sealed partial class SharedVentCrawlSystem
                 _popup.PopupPredicted(Loc.GetString("entity-storage-component-welded-shut-message"), user, null);
                 return;
             }
+        }
+        if (!crawler.MayCarryItems && _inventory.GetHandOrInventoryEntities(uid).Any())
+        {
+            _popup.PopupPredicted(Loc.GetString("entity-storage-component-already-contains-user-message"), user, null);
+            return;
         }
 
         var args = new DoAfterArgs(EntityManager, user, crawler.EnterDelay, new EnterVentDoAfterEvent(), user, uid, user)
