@@ -127,6 +127,7 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
 
         // enforce the max queue size
         int maxSize = _cfg.GetCVar(RedundantMovementCVars.MaxHistoryTicks);
+        maxSize = int.Clamp(maxSize, 1, 64);
         while (_storedInputData.Count > maxSize) _storedInputData.Dequeue();
 
         // remove all packets that were acknowledged by the server
