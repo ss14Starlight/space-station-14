@@ -16,7 +16,7 @@ RELEASE_DIR = "release"
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "https://cdn.starlight.network/"
+ROBUST_CDN_URL = "https://ss14cdn.projectphoenix.space/"
 FORK_ID = os.environ.get("FORK_ID", "starlight")
 
 def main():
