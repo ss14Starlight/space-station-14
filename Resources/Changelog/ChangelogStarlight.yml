@@ -1,18 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Removed glass and steel sheets from CE's locker.
-    type: Remove
-  id: 407691
-  time: '2026-08-17T12:07:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5431
-- author: Wizden Team
-  changes:
-  - message: Powernet consumers like lathes, computers, blenders, centrifuges, electrolyzers, grinders, holopads, microwaves, etc. now have simple dynamic power consumption behavior. When not in use, they will consume either little or no power, and while in use, they will consume a sane amount of power.
-    type: Add
-  id: 407692
-  time: '2026-08-17T18:48:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5675
 - author: Wizden Team
   changes:
   - message: Added a colour picker and colour palette selector to the Spraypainter's decal menu.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408090
   time: '2026-09-03T19:00:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5875
+- author: wonderfulnewworld, DuckManZach
+  changes:
+  - message: Added reagent footprints and crawling marks!
+    type: Add
+  id: 408091
+  time: '2026-09-03T19:25:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5899
+- author: wonderfulnewworld, DuckManZach
+  changes:
+  - message: Galoshes and Galoshnts don't leave footprints.
+    type: Tweak
+  id: 408092
+  time: '2026-09-03T19:25:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5899
 Order: -1
