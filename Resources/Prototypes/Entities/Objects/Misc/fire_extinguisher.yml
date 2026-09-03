@@ -64,7 +64,7 @@
     sprite: Objects/Misc/fire_extinguisher.rsi
     size: Normal
   - type: MeleeWeapon
-    wideAnimationRotation: 180
+    wideAnimationRotation: 0 # Starlight, you actually want to be able to grab this thing...
     damage:
       types:
         Blunt: 10
