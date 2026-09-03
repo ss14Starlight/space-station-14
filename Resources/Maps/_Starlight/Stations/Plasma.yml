@@ -4,7 +4,7 @@ meta:
   engineVersion: 289.0.2
   forkId: ""
   forkVersion: ""
-  time: 09/03/2026 19:09:20
+  time: 09/03/2026 19:32:47
   entityCount: 28196
 maps:
 - 1
@@ -16141,6 +16141,12 @@ entities:
     - type: Transform
       parent: 2
       pos: -131.5,-45.5
+    - type: Door
+      state: Opening
+      secondsUntilStateChange: -258092.58
+    - type: DeviceLinkSource
+      lastSignals:
+        DoorStatus: True
   - uid: 554
     components:
     - type: Transform
@@ -25643,13 +25649,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -116.5044,-32.550922
-- proto: Autolathe
-  entities:
-  - uid: 2249
-    components:
-    - type: Transform
-      parent: 2
-      pos: -103.5,16.5
 - proto: AutolatheMachineCircuitboard
   entities:
   - uid: 2251
@@ -60073,6 +60072,20 @@ entities:
     - type: Transform
       parent: 2
       pos: -102.5,16.5
+- proto: CargoTechFab
+  entities:
+  - uid: 1772
+    components:
+    - type: Transform
+      parent: 2
+      pos: -103.5,16.5
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
 - proto: Carpet
   entities:
   - uid: 9014
@@ -119354,7 +119367,7 @@ entities:
       color: '#DAB73AFF'
 - proto: GasPipeStraightAlt2
   entities:
-  - uid: 1779
+  - uid: 2249
     components:
     - type: Transform
       parent: 2
@@ -156227,7 +156240,7 @@ entities:
       pos: -75.5,3.5
 - proto: SofaEndLeftBrown
   entities:
-  - uid: 1772
+  - uid: 1779
     components:
     - type: Transform
       parent: 2
@@ -183512,6 +183525,12 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -54.5,-25.5
+    - type: DeviceLinkSource
+      lastSignals:
+        DoorStatus: True
+    - type: Door
+      state: Opening
+      secondsUntilStateChange: -458199.34
     - type: Airlock
       autoClose: False
   - uid: 27761
