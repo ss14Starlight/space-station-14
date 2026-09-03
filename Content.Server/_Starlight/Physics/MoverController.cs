@@ -84,6 +84,9 @@ public sealed partial class SLMoverController : SharedMoverController
 
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, TransformComponent)>)> _shuttlePilots = new();
 
+    // flag that the redundant movement system uses to skip the block for the old movement input
+    private bool _applyingRedundantInput = false;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -980,7 +983,7 @@ public sealed partial class SLMoverController : SharedMoverController
         // which means i can't access my cvar that is in content, unless we do something a tiny bit cursed
         // (cancel InputSystem.HandleInputCommand by returning false from HandleCmdMessage in the input cmd handlers,
         // and then separately do all the functionality of it except for actually sending the net message)
-        if (_cfg.GetCVar(RedundantMovementCVars.Enabled))
+        if (!_applyingRedundantInput && _cfg.GetCVar(RedundantMovementCVars.Enabled))
         {
             return;
         }
@@ -990,7 +993,7 @@ public sealed partial class SLMoverController : SharedMoverController
 
     protected override void HandleRunChange(EntityUid uid, ushort subTick, bool walking)
     {
-        if (_cfg.GetCVar(RedundantMovementCVars.Enabled))
+        if (!_applyingRedundantInput && _cfg.GetCVar(RedundantMovementCVars.Enabled))
         {
             return;
         }
@@ -998,28 +1001,39 @@ public sealed partial class SLMoverController : SharedMoverController
         base.HandleRunChange(uid, subTick, walking);
     }
 
+    /// <summary>
+    /// Move button change called by the serverside component of the redundant movement system (skips the check that suppresses normal input message packets when redundant movement packet system is enabled)
+    /// </summary>
     public void OnMoveButtonChange(EntityUid entity, MoveButtons changedButton, bool pressed, ushort subtick)
     {
-        // we call straight through to the base method here so our override doesn't skip it
-        switch (changedButton)
+        _applyingRedundantInput = true;
+
+        try
         {
-            case MoveButtons.Up:
-                base.HandleDirChange(entity, Direction.North, subtick, pressed);
-                break;
-            case MoveButtons.Down:
-                base.HandleDirChange(entity, Direction.South, subtick, pressed);
-                break;
-            case MoveButtons.Left:
-                base.HandleDirChange(entity, Direction.West, subtick, pressed);
-                break;
-            case MoveButtons.Right:
-                base.HandleDirChange(entity, Direction.East, subtick, pressed);
-                break;
-            case MoveButtons.Walk:
-                base.HandleRunChange(entity, subtick, pressed);
-                break;
-            default:
-                throw new ArgumentException("Unknown button", nameof(changedButton));
+            switch (changedButton)
+            {
+                case MoveButtons.Up:
+                    HandleDirChange(entity, Direction.North, subtick, pressed);
+                    break;
+                case MoveButtons.Down:
+                    HandleDirChange(entity, Direction.South, subtick, pressed);
+                    break;
+                case MoveButtons.Left:
+                    HandleDirChange(entity, Direction.West, subtick, pressed);
+                    break;
+                case MoveButtons.Right:
+                    HandleDirChange(entity, Direction.East, subtick, pressed);
+                    break;
+                case MoveButtons.Walk:
+                    HandleRunChange(entity, subtick, pressed);
+                    break;
+                default:
+                    throw new ArgumentException($"Unknown button {changedButton}", nameof(changedButton));
+            }
+        }
+        finally
+        {
+            _applyingRedundantInput = false;
         }
     }
 }
