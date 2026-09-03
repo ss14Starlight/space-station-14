@@ -13,7 +13,7 @@
   lastNames: NamesLastDoll
   naming: FirstLast
   customName: true
-  roundstartCyberwareCapacity: 3
+  roundstartCyberwareCapacity: 0
   minAge: 20
   youngAge: 30
   oldAge: 50
