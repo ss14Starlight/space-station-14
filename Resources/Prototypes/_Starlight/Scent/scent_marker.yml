@@ -1,0 +1,23 @@
+- type: entity
+  id: ScentMarker
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 60
+  - type: QuantityDespawn # serves as a hard cap for the number of entities, 5k, this is unlikely to be hit but is protective
+    category: QuantityDespawnScent
+  - type: ScentMarker
+  - type: Transform
+    gridTraversal: false
+  - type: Visibility
+    layer: 64 # VisibilityFlags.Scent
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - sprite: Effects/chemsmoke.rsi
+      state: chemsmoke
+      shader: unshaded
+  - type: AnimationPlayer
+  - type: Tag
+    tags:
+    - HideContextMenu

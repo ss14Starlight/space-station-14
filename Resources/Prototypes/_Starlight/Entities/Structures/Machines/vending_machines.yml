@@ -102,6 +102,7 @@
     name: vendor-hug-dispenser
     categories:
     - SLPlushies
+    - SLToys
     - SLSpecies
     - SLCrew
     - SLSecret
@@ -156,7 +157,8 @@
   - type: Store
     name: vendor-engineering-dispenser
     categories:
-    - SLEnginery
+    - SLEngineering
+    - SLAtmospherics
     - SLSecret
 
 - type: entity
@@ -167,7 +169,7 @@
   description: Get your honk fix here! Surprise the station with HohohonkersVend — the ultimate machine for hilarious pranks. Hack it, and you'll unlock something special!
   components:
   - type: AccessReader
-    access: [["Theatre"]]
+    access: [["Clown"]]
   - type: Store
     name: vendor-clown-dispenser
     categories:
@@ -184,7 +186,7 @@
   description: All the gear a mime could need. Go put the captain in an invisible box!
   components:
   - type: AccessReader
-    access: [["Theatre"]]
+    access: [["Mime"]]
   - type: Store
     name: vendor-mime-dispenser
     categories:
@@ -349,6 +351,34 @@
     radius: 1.5
     energy: 1.6
     color: "#aee8f5"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineGumballs
+  name: gumball dispenser
+  description: Full of tasty gumballs.
+  components:
+  - type: VendingMachine
+    pack: GumballInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Machine
+    board: VendingMachineGumballsCircuitboard
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/gumball_disp.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
 
 - type: entity
   parent: VendingMachine
@@ -1384,6 +1414,13 @@
 - type: entity
   parent: VendingMachineIceCream
   id: VendingMachineIceCreamEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineGumballs
+  id: VendingMachineGumballsEmpty
   suffix: Empty
   components:
     - type: EmptyVendingMachine

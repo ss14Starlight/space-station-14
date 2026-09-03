@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Antag;
 using Content.Server.EUI;
@@ -29,6 +30,7 @@ using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.Store;
 using Robust.Shared.Player;
 
 #region Starlight
@@ -153,7 +155,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
             #region Starlight
             if (CheckCommandLose(component))
             {
-                _roundEnd.CancelRoundEndCountdown(null, false);
+                _roundEnd.CancelRoundEndCountdown(null, null, false);
                 AwardRevolutionaryVictoryAchievements();
 
                 // Play the revolutionary end sound globally
@@ -168,7 +170,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                 {
                     // If the shuttle is already called, we need to recall it
                     // Cancel the current shuttle call - force it with false for checkCooldown
-                    _roundEnd.CancelRoundEndCountdown(null, false);
+                    _roundEnd.CancelRoundEndCountdown(null, null, false);
                 }
 
                 // Use a safer approach for scheduling the announcements
@@ -246,7 +248,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
         var index = (commandLost ? 1 : 0) | (revsLost ? 2 : 0);
         args.AddLine(Loc.GetString(Outcomes[index]));
 
-        var sessionData = _antag.GetAntagIdentifiers(uid);
+        var sessionData = _antag.GetAntagIdentifiers(uid).ToList();
         args.AddLine(Loc.GetString("rev-headrev-count", ("initialCount", sessionData.Count)));
         foreach (var (mind, data, name) in sessionData)
         {
@@ -448,7 +450,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
                     var uplinkOwnerComp = EnsureComp<USSPUplinkOwnerComponent>(uplinkUid.Value);
                     uplinkOwnerComp.OwnerUid = ev.User.Value;
 
-                    var currencyToAdd = new Dictionary<string, FixedPoint2> { { "Telebond", FixedPoint2.New(1) } };
+                    var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Telebond", FixedPoint2.New(1) } };
                     var success = storeSystem.TryAddCurrency(currencyToAdd, uplinkUid.Value);
 
                     // Debug log to see the updated telebond value
@@ -1182,7 +1184,7 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
         // Add Conversion to all uplinks
         foreach (var uplinkEntity in uplinkEntities)
         {
-            var currencyToAdd = new Dictionary<string, FixedPoint2> { { "Conversion", FixedPoint2.New(1) } };
+            var currencyToAdd = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "Conversion", FixedPoint2.New(1) } };
             var success = storeSystem.TryAddCurrency(currencyToAdd, uplinkEntity);
         }
 

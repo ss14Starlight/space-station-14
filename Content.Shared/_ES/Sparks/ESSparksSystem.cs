@@ -1,3 +1,5 @@
+using Content.Shared.Administration.Logs;
+using Content.Shared.Database;
 using Content.Shared._ES.Physics.PreventCollide;
 using Content.Shared._ES.Sparks.Components;
 using Content.Shared.Power.Components;
@@ -24,6 +26,7 @@ public sealed partial class ESSparksSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
 
     [Dependency] private EntityQuery<TransformComponent> _transformQuery; // Moff
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!; // Starlight
 
     public static readonly EntProtoId DefaultSparks = "ESEffectSparks";
 
@@ -81,6 +84,8 @@ public sealed partial class ESSparksSystem : EntitySystem
         comp.LastSparkTime = _timing.CurTime;
 
         var coords = Transform(source).Coordinates;
+        var sparkLabel = number == 1 ? "spark" : "sparks"; // Starlight
+        _adminLogger.Add(LogType.Sparks, LogImpact.Low, $"{ToPrettyString(source)} spawned {number} {sparkLabel} at {coords}"); // Starlight
         DoSparks(coords, number, sparksPrototype, user, source, tileFireChance);
     }
 

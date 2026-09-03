@@ -498,6 +498,9 @@ entities:
     - type: OccluderTree
     - type: Shuttle
       dampingModifier: 0.25
+    - type: Tag
+      tags:
+        - ERTShuttle
     - type: RadiationGridResistance
     - type: GravityShake
       shakeTimes: 10

@@ -11,6 +11,8 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Implants.Components;
 using Content.Shared.Mind;
+using Content.Shared.Mindshield.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.PDA.Ringer;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
@@ -51,6 +53,7 @@ public sealed partial class StoreSystem
     [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private RevSupplyRiftSystem _revSupplyRift = default!; // Starlight
     [Dependency] private LanguageSystem _languageSystem = default!; //Starlight
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
 
     private void InitializeUi()
     {
@@ -110,7 +113,7 @@ public sealed partial class StoreSystem
 
         // STARLIGHT: Check if a rift has been destroyed and update the listing accordingly
         // This ensures the rift listing remains unavailable even when the UI is refreshed
-        _revSupplyRift.CheckRiftDestroyedAndUpdateListing(component);
+        _revSupplyRift.CheckRiftDestroyedAndUpdateListing((store, component));
 
         //this is the person who will be passed into logic for all listing filtering.
         if (user != null) //if we have no "buyer" for this update, then don't update the listings
@@ -315,9 +318,23 @@ public sealed partial class StoreSystem
             resolvedName = resolvedName.Substring(0, resolvedName.IndexOf(" ("));
         }
 
+        var logImpact = LogImpact.Low;
+        var logExtraInfo = "";
+        if (component.ExpectedFaction?.Count > 0 && !_npcFaction.IsMemberOfAny(buyer, component.ExpectedFaction))
+        {
+            logImpact = LogImpact.High;
+            logExtraInfo = ", but was not from an expected faction";
+
+            if (HasComp<MindShieldComponent>(buyer))
+            {
+                logImpact = LogImpact.Extreme;
+                logExtraInfo += " while also possessing a mindshield";
+            }
+        }
+
         _admin.Add(LogType.StorePurchase,
-            LogImpact.Low,
-            $"{ToPrettyString(buyer):player} purchased listing \"{resolvedName}\" from {ToPrettyString(uid)}"); // Starlight
+            logImpact,
+            $"{ToPrettyString(buyer):player} purchased listing \"{resolvedName}\" from {ToPrettyString(uid)}{logExtraInfo}."); // Starlight
 
         listing.PurchaseAmount++; //track how many times something has been purchased
         _audio.PlayEntity(component.BuySuccessSound, msg.Actor, uid); //cha-ching!
@@ -391,7 +408,9 @@ public sealed partial class StoreSystem
                 continue;
 
             // Refresh all listings to ensure they have the latest stock count and last purchaser information
-            RefreshAllListings(storeComp);
+            // Starlight-start
+            RefreshAllListings((uid, storeComp));
+            // Starlight-end
 
             // Force a refresh of the available listings
             if (storeComp.AccountOwner != null)
@@ -543,7 +562,9 @@ public sealed partial class StoreSystem
         }
 
         // Reset store back to its original state
-        RefreshAllListings(component);
+        // Starlight-start
+        RefreshAllListings((uid, component));
+        // Starlight-end
         component.BalanceSpent = new();
         UpdateUserInterface(buyer, uid, component);
     }

@@ -9,6 +9,7 @@ public sealed partial class CosmicSunderSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private OccluderSystem _occluder = default!;
 
     public override void Initialize()
     {
@@ -19,6 +20,13 @@ public sealed partial class CosmicSunderSystem : EntitySystem
 
     private void OnColossusSunder(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusSunder args)
     {
+        var origin = _transform.GetMapCoordinates(ent);
+        var target = _transform.ToMapCoordinates(args.Target);
+
+        // Range is validated by the action prototype; this only checks line of sight.
+        if (!_occluder.InRangeUnoccluded(origin, target, 0f, ignoreTouching: true))
+            return;
+
         args.Handled = true;
 
         var comp = ent.Comp;

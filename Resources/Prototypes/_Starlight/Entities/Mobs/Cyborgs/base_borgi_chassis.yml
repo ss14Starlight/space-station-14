@@ -42,6 +42,8 @@
         visible: false
     - type: MobThresholds
       showOverlays: false
+    - type: Damageable
+      damageModifierSet: CivilianSilicon
     - type: Destructible
       thresholds:
       - trigger:
@@ -187,6 +189,8 @@
       - Binary
     - type: CyborgSparkEffect
     - type: StationAIShunt
+    - type: ArmorSparkEffect
+      alwaysSparks: true
 
 - type: entity
   parent: [ BaseBorgiChassis, BaseBorgTransponder ]
@@ -246,6 +250,7 @@
       name: A Syndicate Borgi.
       description: The Syndicate needs reinforcements. You, a cold, BUT LOVINGLY ADORABLE, silicon killing machine, will help them... And bork.  An unusual choice, but it was made nonetheless.
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist]
       important: true # SL
       raffle:
         settings: default
@@ -270,6 +275,8 @@
     - type: ActiveRadio
       channels:
       - Syndicate
+    - type: Damageable
+      damageModifierSet: ArmoredSilicon
     - type: Barotrauma
       maxDamage: 10
       damage:

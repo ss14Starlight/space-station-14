@@ -48,7 +48,6 @@
     - RadioImplant
     - ChameleonControllerImplant
     - VoiceMaskImplant
-    - SELFStorageImplant #Starlight
     - MindControlImplant #Starlight
     - CommandTrackingImplant #Starlight
     deimplantFailureDamage:
@@ -262,7 +261,7 @@
 
 - type: entity
   id: VoiceMaskImplanter
-  name: voice mask implanter
+  name: identity mask implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter

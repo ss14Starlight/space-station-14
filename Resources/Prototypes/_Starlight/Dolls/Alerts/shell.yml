@@ -1,0 +1,17 @@
+- type: alert
+  id: DollShellIntegrity
+  icons:
+  - sprite: _Starlight/Interface/Alerts/doll_shell.rsi
+    state: base5
+  alertViewEntity: AlertDollShellIntegritySpriteView
+  name: alerts-doll-shell-integrity-name
+  description: alerts-doll-shell-integrity-desc
+
+- type: entity
+  id: AlertDollShellIntegritySpriteView
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Interface/Alerts/doll_shell.rsi
+    layers:
+    - map: [ "enum.AlertVisualLayers.Base" ]

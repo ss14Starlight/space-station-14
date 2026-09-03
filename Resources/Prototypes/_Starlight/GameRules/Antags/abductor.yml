@@ -1,0 +1,26 @@
+# Abductors
+- type: entity
+  parent: BaseAntagGhostRoleRule
+  id: AbductorsSpawn
+  components:
+  - type: StationEvent
+    earliestStart: 15
+    weight: 3
+    minimumPlayers: 10
+    duration: null
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/abductor_shuttle.yml
+  - type: AntagObjectives
+    objectives:
+    - AbductObjective
+  - type: AntagLoadProfileRule
+    speciesHardOverride: Abductor
+  - type: AntagSelection
+    antags:
+    - !type:FixedAntagCount
+      proto: AbductorScientist
+    - !type:FixedAntagCount
+      proto: AbductorAgent
+  - type: DynamicRuleCost
+    cost: 100

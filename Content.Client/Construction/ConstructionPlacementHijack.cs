@@ -10,6 +10,8 @@ namespace Content.Client.Construction
 {
     public sealed class ConstructionPlacementHijack : PlacementHijack
     {
+        [Dependency] private IEntityManager _entityManager = default!; // Starlight
+        private readonly SpriteSystem _spriteSystem; // Starlight
         private readonly ConstructionSystem _constructionSystem;
         private readonly ConstructionPrototype? _prototype;
 
@@ -20,6 +22,8 @@ namespace Content.Client.Construction
 
         public ConstructionPlacementHijack(ConstructionSystem constructionSystem, ConstructionPrototype? prototype)
         {
+            IoCManager.InjectDependencies(this); // Starlight
+            _spriteSystem = _entityManager.System<SpriteSystem>(); // Starlight
             _constructionSystem = constructionSystem;
             _prototype = prototype;
             CanRotate = prototype?.CanRotate ?? true;
@@ -39,7 +43,7 @@ namespace Content.Client.Construction
         /// <inheritdoc />
         public override bool HijackDeletion(EntityUid entity)
         {
-            if (IoCManager.Resolve<IEntityManager>().HasComponent<ConstructionGhostComponent>(entity))
+            if (_entityManager.HasComponent<ConstructionGhostComponent>(entity)) // Starlight
             {
                 _constructionSystem.ClearGhost(entity.GetHashCode());
             }
@@ -58,6 +62,37 @@ namespace Content.Client.Construction
                 return;
 
             manager.CurrentTextures = SpriteComponent.GetPrototypeTextures(proto, IoCManager.Resolve<IResourceCache>()).ToList();
+
+            // Starlight START
+
+            // Make the whole thing transparent just like a placed ghost. It's impossible to see e.g. pipes if they're
+            // obscured by the main sprite body.
+            if (manager.CurrentMode is { } mode)
+            {
+                mode.ValidPlaceColor = mode.ValidPlaceColor.WithAlpha(0.5f);
+                mode.InvalidPlaceColor = mode.InvalidPlaceColor.WithAlpha(0.5f);
+            }
+
+            // Fix per-layer/sprite Offset being lost by manually applying it to the ghost layers directly.
+            if (proto.TryGetComponent<SpriteComponent>(out var sprite, _entityManager.ComponentFactory)
+                && manager.CurrentPlacementOverlayEntity is { } overlay
+                && _entityManager.TryGetComponent<SpriteComponent>(overlay, out var overlaySprite))
+            {
+                var i = 0;
+
+                foreach (var layer in sprite.AllLayers)
+                {
+                    if (layer.ActualRsi?.Path == null || layer.RsiState.Name == null)
+                        continue;
+
+                    _spriteSystem.LayerSetOffset((overlay, overlaySprite), i, sprite.Offset + ((SpriteComponent.Layer)layer).Offset);
+                    i++;
+                }
+
+                // Fix NoRotation also being ignored.
+                overlaySprite.NoRotation = sprite.NoRotation;
+            }
+            // Starlight END
         }
     }
 }

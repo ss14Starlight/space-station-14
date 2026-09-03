@@ -21,7 +21,6 @@
   icon: "JobIconMagistrate"
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-nanotrasen
-  canBeAntag: false
   setPreference: true
   displayWeight: 5
   access:

@@ -12,7 +12,9 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
+using Content.Shared.Mobs;
 using Content.Shared.Shuttles.Components; //Starlight-edit
+using Content.Shared.Spawners.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Maps;
 using Content.Shared.Roles;
@@ -26,15 +28,9 @@ using Robust.Shared.IoC;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Events;
+using Robust.Packaging.AssetProcessing;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-
-// Starlight-start
-using YamlDotNet.RepresentationModel;
-using Robust.Shared.Map.Events;
-using Robust.Packaging.AssetProcessing;
-using Content.Shared.Mobs;
-// Starlight-end
 
 namespace Content.IntegrationTests.Tests
 {
@@ -81,15 +77,15 @@ namespace Content.IntegrationTests.Tests
             {"/Maps/Shuttles/ShuttleEvent/instigator.yml", ["ShuttleGunFriendship"]},
             {"/Maps/_Starlight/Stations/Cork.yml", ["RubberStampSyndicate"]}, // Starlight start
             {"/Maps/_Starlight/Shuttles/CC-NT/NTSF_Minos_Battlecruiser.yml", ["ShuttleGunPerforator"]},
-            {"/Maps/_Starlight/Shuttles/RecluseClassSHC.yml", ["RubberStampSyndicate"]},
-            {"/Maps/_Starlight/Shuttles/Signaleer.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Shuttles/Admeme/RecluseClassSHC.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Shuttles/Admeme/Signaleer.yml", ["RubberStampSyndicate"]},
             {"/Maps/_Starlight/Shuttles/ShuttleEvent/montague.yml", ["RubberStampSolgovLaw", "RubberStampSolgovRep", "RubberStampTSF", "RubberStampTSMC"]},
             {"/Maps/_Starlight/Shuttles/ShuttleEvent/syndie_evacpod.yml", ["RubberStampSyndicate"]},
             {"/Maps/_Starlight/Nonstations/nukieplanet.yml", ["RubberStampSyndicate"]},
             {"/Maps/_Starlight/Nonstations/nukiewestern.yml", ["RubberStampSyndicate"]},
             {"/Maps/_Starlight/Nonstations/geigerComplex.yml", ["RubberStampSyndicate"]},
             {"/Maps/_Starlight/Dungeon/syndie.yml", ["RubberStampSyndicate"]},
-            {"/Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml", ["RubberStampSyndicate", "TraitorCodePaper"]},
+            {"/Maps/_Starlight/Shuttles/Admeme/scarletSHCdefenderFinal.yml", ["RubberStampSyndicate", "TraitorCodePaper"]},
             {"/Maps/_Starlight/Centcomms/CC_Outpost_SC17.yml", ["BoxFolderCentComEmpty", "BoxFolderCentCom", "RubberStampCentcom", "BoxFolderCentComThreePapers"]},
             {"/Maps/_Starlight/Centcomms/CC_Outpost_G24.yml", ["BoxFolderCentCom", "RubberStampCentcom"]},
             {"/Maps/_Starlight/Centcomms/CC_Outpost_GNT9.yml", ["BoxFolderCentCom", "RubberStampCAD", "RubberStampCCD", "RubberStampCDD", "RubberStampCED", "RubberStampCentcom", "RubberStampCID", "RubberStampCMD", "RubberStampCRD", "RubberStampCSD"]}// Starlight end
@@ -106,24 +102,12 @@ namespace Content.IntegrationTests.Tests
         {
             "/Maps/Shuttles/AdminSpawn/**", // admin gaming
            #region starlight
-            "/Maps/_Starlight/Shuttles/Radiotower.yml", // Command stamps - listening post.
+            "/Maps/_Starlight/Shuttles/Admeme/Radiotower.yml", // Command stamps - listening post.
+            "/Maps/_Starlight/Stations/Remix.yml", // All stamps - listening post (extreme edition).
             #endregion
         };
 
-        // starlight start
-        private static readonly ProtoId<EntityCategoryPrototype> ShouldMapCategory = "ShouldMapStation";
-
-        /// <summary>
-        /// list of map filenames that shouldn't be checked against necessary entities
-        /// </summary>
-        private static readonly string[] ShouldMapWhitelist =
-        {
-            "/Maps/_Starlight/Stations/StationBuilding.yml", // event map
-            "/Maps/_Starlight/Stations/Reach.yml",           // very small, can't fit everything
-            "/Maps/_Starlight/Stations/Cork.yml",            // very small, can't fit everything
-            "/Maps/_Starlight/Stations/Boxcars.yml",         // no longer in map rotation / admeme only
-        };
-        // starlight end
+        private static readonly ProtoId<EntityCategoryPrototype> ShouldMapCategory = "ShouldMapStation"; // Starlight
 
         /// <summary>
         /// Converts the above globs into regex so your eyes dont bleed trying to add filepaths.
@@ -288,6 +272,8 @@ namespace Content.IntegrationTests.Tests
             await server.WaitPost(() => mapSys.InitializeMap(id));
             Assert.That(loader.TrySaveMap(id, path));
             Assert.That(IsPreInit(path, loader, deps, ev.RenamedPrototypes, ev.DeletedPrototypes), Is.False);
+
+            await server.WaitPost(() => mapSys.DeleteMap(id)); // Starlight
         }
 
         private bool IsWhitelistedForMap(EntProtoId protoId, ResPath map)
@@ -396,7 +382,6 @@ namespace Content.IntegrationTests.Tests
             var pair = Pair;
             var server = pair.Server;
 
-            var mapManager = server.ResolveDependency<IMapManager>();
             var entManager = server.ResolveDependency<IEntityManager>();
             var mapLoader = entManager.System<MapLoaderSystem>();
             var mapSystem = entManager.System<SharedMapSystem>();
@@ -429,7 +414,7 @@ namespace Content.IntegrationTests.Tests
                 EntityUid? targetGrid = null;
                 var memberQuery = entManager.GetEntityQuery<StationMemberComponent>();
 
-                var grids = mapManager.GetAllGrids(mapId).ToList();
+                var grids = mapSystem.GetAllGrids(mapId).ToList();
                 var gridUids = grids.Select(o => o.Owner).ToList();
                 targetGrid = gridUids.First();
 
@@ -517,9 +502,8 @@ namespace Content.IntegrationTests.Tests
 
                 TestContext.Out.WriteLine($"{sw.Elapsed.TotalMilliseconds} ms: Deleted map {mapProto}");
             });
+
         }
-
-
 
         private static int GetCountLateSpawn<T>(List<EntityUid> gridUids, IEntityManager entManager)
             where T : ISpawnPoint, IComponent

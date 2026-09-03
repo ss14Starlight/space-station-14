@@ -14,9 +14,9 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'B'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_syndicate.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_syndicate.yml
         - type: StationCargoShuttle
-          path: /Maps/_Starlight/Shuttles/cargo_syndicate.yml
+          path: /Maps/_Starlight/Shuttles/Cargo/cargo_syndicate.yml
         - type: StationJobs
           availableJobs:
             #command (7)
@@ -40,6 +40,7 @@
             ServiceWorker: [ 3, 4 ]
             Reporter: [ 1, 1 ]
             Lawyer: [ 1, 1 ]
+            RadioHost: [ 2, 2 ]
             #engineering
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 5, 6 ]
@@ -61,6 +62,7 @@
             SecurityCadet: [ 3, 4 ] #intern, not counted
             Brigmedic: [ 1, 1 ]
             Detective: [ 1, 1 ]
+            # K9: [ 2, 2 ]
             #supply
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]

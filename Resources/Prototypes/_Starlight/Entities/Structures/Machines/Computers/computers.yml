@@ -254,6 +254,8 @@
     board: SalvageShuttleConsoleCircuitboard
   - type: StealTarget
     stealGroup: SalvageShuttleConsoleCircuitboard
+  - type: AccessReader
+    access: [ [ "Shuttle" ], [ "Salvage" ] ]
 
 # Mass Driver
 
@@ -314,6 +316,7 @@
   description: A terminal for programming NanoTrasen and non-NanoTrasen ID cards with extended access levels.
   components:
   - type: IdCardConsole
+    allIconsUnlocked: true # Starlight-edit
     accessGroups:
     - General
     - Security
@@ -340,6 +343,7 @@
         components:
         - IdCard
     targetIdSlot:
+      priority: 1
       name: UniversalIdConsole-targetId
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
@@ -434,6 +438,8 @@
       board: MiningShuttleConsoleCircuitboard
     - type: StealTarget
       stealGroup: MiningShuttleConsoleCircuitboard
+    - type: AccessReader
+      access: [["Shuttle"], ["Mining"]]
 
 # Security Shuttle Console
 - type: entity
@@ -469,6 +475,8 @@
     # Starlight End
     - type: Computer
       board: SecurityShuttleConsoleCircuitboard
+    - type: AccessReader
+      access: [["Security"]]
 
 - type: entity
   parent: ComputerComms
@@ -744,45 +752,6 @@
       radius: 2.5
       energy: 1.5
       color: "#b48b57"
-
-# Law
-- type: entity
-  parent: ComputerComms
-  id: ComputerCommsLaw
-  categories: [ ShouldMapStation ]
-  name: law communications console
-  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
-  components:
-    - type: Sprite
-      layers:
-        - map: ["computerLayerBody"]
-          state: computer
-        - map: ["computerLayerKeyboard"]
-          state: generic_keyboard
-        - map: ["computerLayerScreen"]
-          state: comm-law
-          sprite: _Starlight/Structures/Machines/computers.rsi
-        - map: ["computerLayerKeys"]
-          state: generic_keys
-        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-          state: generic_panel_open
-    - type: AccessReader
-      access: [[ "Magistrate", "IAA" ]]
-    - type: CommunicationsConsole
-      title: comms-console-announcement-title-law
-      sound: /Audio/_Starlight/Announcements/announce2.ogg
-      color: "#ff178b"
-      settableAlertLevels: []
-      canBroadcast: false
-      canShuttle: false
-    - type: SecureCommandTerminalConsole
-      enabled: false
-    - type: Computer
-      board: LawCommsComputerCircuitboard
-    - type: PointLight
-      radius: 2.5
-      energy: 1.5
-      color: "#ff178b"
 
 ## Departmental Communications Consoles END
 

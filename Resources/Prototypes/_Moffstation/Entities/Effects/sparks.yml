@@ -40,8 +40,8 @@
   - type: IgnitionSource
     ignited: false
   - type: PointLight
-    radius: 8
-    energy: 4
+    radius: 4 #SL Edit
+    energy: 1 #SL Edit
     color: "#18abf5"
   # story time
   # the bluespace effect is added to portals
@@ -71,5 +71,6 @@
     ignited: false
   - type: PointLight
     radius: 8
-    energy: 4
+    energy: 3 #SL Edit
     color: "#960202"
+  - type: PortalBlacklist # Starlight

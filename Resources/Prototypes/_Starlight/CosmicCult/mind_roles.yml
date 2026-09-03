@@ -13,7 +13,7 @@
     briefing: cosmiccult-role-short-briefing
 
 - type: entity
-  parent: BaseMindRoleAntag
+  parent: MindRoleGhostRoleTeamAntagonist
   id: MindRoleCosmicColossus
   name: Colossus Role
   components:
@@ -25,3 +25,15 @@
   - type: CosmicColossusRole
   - type: RoleBriefing
     briefing: ghost-role-colossus-charactermenu
+
+- type: entity
+  parent: MindRoleGhostRoleTeamAntagonistFlock
+  id: MindRoleCosmicMinion
+  name: Cosmic Minion Role
+  components:
+  - type: MindRole
+    antagPrototype: CosmicAntagMinion
+    roleType: TeamAntagonist
+    subtype: role-subtype-cosmic-minion
+  - type: RoleBriefing
+    briefing: ghost-role-information-cosmic-minion-description

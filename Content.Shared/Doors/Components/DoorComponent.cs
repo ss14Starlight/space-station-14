@@ -15,11 +15,12 @@ namespace Content.Shared.Doors.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class DoorComponent : Component
 {
+    // Starlight: cref below updated for SetState's added optional user parameter
     /// <summary>
     /// The current state of the door -- whether it is open, closed, opening, or closing.
     /// </summary>
     /// <remarks>
-    /// This should never be set directly, use <see cref="SharedDoorSystem.SetState(EntityUid, DoorState, DoorComponent?)"/> instead.
+    /// This should never be set directly, use <see cref="SharedDoorSystem.SetState(EntityUid, DoorState, DoorComponent?, EntityUid?)"/> instead.
     /// </remarks>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField, AutoNetworkedField]
@@ -237,6 +238,14 @@ public sealed partial class DoorComponent : Component
     /// The animation used when the door is emagged.
     /// </summary>
     public object EmaggingAnimation = default!;
+
+    #region Starlight
+    /// <summary>
+    /// Whether activating this door displays an interaction particle.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool ShowInteractionParticles = true;
+    #endregion
 
     #endregion Graphics
 

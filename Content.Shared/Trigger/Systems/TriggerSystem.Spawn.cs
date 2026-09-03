@@ -38,7 +38,7 @@ public sealed partial class TriggerSystem
             return;
 
         var xform = Transform(target.Value);
-        SpawnTriggerHelper((target.Value, xform), ent.Comp.Proto, ent.Comp.UseMapCoords, ent.Comp.Predicted);
+        SpawnTriggerHelper((target.Value, xform), ent.Comp.Proto, ent.Comp.UseMapCoords, ent.Comp.Predicted, ent.Comp.Overrides); // Starlight edit
     }
 
     private void HandleSpawnTableOnTrigger(Entity<SpawnEntityTableOnTriggerComponent> ent, ref TriggerEvent args)
@@ -66,15 +66,15 @@ public sealed partial class TriggerSystem
     /// <param name="proto">The entity to spawn.</param>
     /// <param name="useMapCoords">If true, spawn at target's MapCoordinates. If false, spawn attached to target.</param>
     /// <param name="predicted">Whether to use predicted spawning.</param>
-    private void SpawnTriggerHelper(Entity<TransformComponent> target, EntProtoId proto, bool useMapCoords, bool predicted)
+    private void SpawnTriggerHelper(Entity<TransformComponent> target, EntProtoId proto, bool useMapCoords, bool predicted, ComponentRegistry? overrides = null) // Starlight edit
     {
         if (useMapCoords)
         {
             var mapCoords = _transform.GetMapCoordinates(target);
             if (predicted)
-                EntityManager.PredictedSpawn(proto, mapCoords);
+                EntityManager.PredictedSpawn(proto, mapCoords, overrides); // Starlight edit
             else if (_net.IsServer)
-                Spawn(proto, mapCoords);
+                Spawn(proto, mapCoords, overrides); // Starlight edit
         }
 
         else

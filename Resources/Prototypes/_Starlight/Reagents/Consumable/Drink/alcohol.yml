@@ -6,6 +6,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: draganspecial
   color: "#610e20"
+  flammability: 4
   metamorphicSprite:
     sprite: _Starlight/Objects/Consumable/Drinks/dragan_special.rsi
     state: icon_empty
@@ -13,7 +14,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 3
@@ -28,7 +29,21 @@
           groups:
             Brute: -3
             Burn: -1.25
-    Alcohol:
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: UncookedAnimalProteins
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
+    Metabolites:
       effects:
       - !type:Drunk
         boozePower: 5
@@ -42,7 +57,7 @@
         damage:
           types:
             Poison: 0.4
-    Poison:
+    Bloodstream:
       metabolismRate: 0.5
       effects:
       # Enhanced screaming for higher doses
@@ -76,8 +91,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
           inverted: true
-    Narcotic:
-      effects:
+      # Narcotic
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.20
         sprintSpeedModifier: 1.20
@@ -111,6 +125,8 @@
   physicalDesc: reagent-physical-desc-highlander
   flavor: highlander
   color: "#95530f"
+  flammability: 5
+  selfOxidizing: true
   metamorphicSprite:
     sprite: _Starlight/Objects/Consumable/Drinks/highlander.rsi
     state: empty
@@ -118,7 +134,7 @@
   metamorphicFillBaseName: full-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2
@@ -146,6 +162,7 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: thelastcall
   color: "#9450c7"
+  flammability: 2
   metamorphicSprite:
     sprite: _Starlight/Objects/Consumable/Drinks/thelastcall.rsi
     state: icon_empty
@@ -153,7 +170,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2

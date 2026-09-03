@@ -1,0 +1,34 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "By ya3.14a (Discord)",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {
+            "name": "circular",
+            "directions": 4
+        },
+        {
+            "name": "diagonal",
+            "directions": 4
+        },
+        {
+            "name": "square",
+            "directions": 4
+        },
+        {
+            "name": "straight",
+            "directions": 4
+        },
+        {
+            "name": "penta",
+            "directions": 4,
+            "copyright": "By Spaghetti-bit (github)"
+        },
+        {
+            "name": "sun",
+            "directions": 4,
+            "copyright": "By Spaghetti-bit (github)"
+        }
+    ]
+}

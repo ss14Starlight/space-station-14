@@ -6,6 +6,14 @@
 
 - type: entity
   parent: BaseGameRule
+  id: BaseRoundstartAntagRule
+  abstract: true
+  components:
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+
+- type: entity
+  parent: BaseGameRule
   id: RespawnDeadRule
   components:
   - type: RespawnDeadRule
@@ -30,7 +38,7 @@
       prob: 0.05 # Starlight. We can go back down to 0.05, since they scale now.
     #- id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
     #  prob: 0.05 # Starlight start, Equalizing subgamemodes
-    #- id: Brighteye # Brighteye is disabled until more work is put in.
+    #- id: SubBrighteye # Brighteye is disabled until more work is put in.
     #  prob: 0.05
     - id: SiliconLiberation
       prob: 0.20 #Starlight end
@@ -49,7 +57,7 @@
       prob: 0.20
     #- id: SubXenoborgs # Starlight, subgamemode replaced with SubXenoborgs
     #  prob: 0.05
-    #- id: Brighteye # Starlight - disabled from rolling
+    #- id: SubBrighteye
     #  prob: 0.05
     - id: SiliconLiberation
       prob: 0.20 #Starlight end
@@ -68,7 +76,7 @@
       prob: 0.20 # Starlight, Xenoborgs need a little bit of a distraction
     - id: SubWizard
       prob: 0.05 # Starlight Space is dangerous, yo.
-    #- id: Brighteye # Starlight - disabled from rolling
+    #- id: SubBrighteye # Starlight
     #  prob: 0.05
     - id: SiliconLiberation #Starlight
       prob: 0.20 #Starlight
@@ -85,7 +93,7 @@
       prob: 0.15
     - id: VampireLess # Reworked
       prob: 0.15
-    #- id: Brighteye # Starlight - disabled from rolling
+    #- id: SubBrighteye
     #  prob: 0.05
     - id: SiliconLiberation
       prob: 0.2 #Starlight end
@@ -161,7 +169,7 @@
     #- Vox
 
 - type: entity
-  parent: BaseNukeopsRule
+  parent: [ BaseNukeopsRule, BaseRoundstartAntagRule ]
   id: Nukeops
   components:
   - type: GameRule
@@ -180,78 +188,30 @@
   #- type: LoadMapRule
   #  mapPath: /Maps/_Starlight/nukieplanet.yml
   - type: AntagSelection
-    selectionTime: PrePlayerSpawn
-    definitions:
-    - prefRoles: [ NukeopsCommander ]
-      fallbackRoles: [ Nukeops, NukeopsMedic ]
-      spawnerPrototype: SpawnPointNukeopsCommander
-      startingGear: SyndicateCommanderGearFull
-      roleLoadout:
-      - AntagNukeopsCommander # Starlight
-      components:
-      - type: NukeOperative
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicateElite
-        nameFormat: name-format-nukie-commander
-      - type: NpcFactionMember
-        factions:
-        - Syndicate
-      mindRoles:
-      - MindRoleNukeopsCommander
-      # Starlight-start
-      allowNonHumans: true
-      tags:
-        - CantBecomeRevolutionary
-      # Starlight-end
-    - prefRoles: [ NukeopsMedic ]
-      fallbackRoles: [ Nukeops, NukeopsCommander ]
-      spawnerPrototype: SpawnPointNukeopsMedic
-      startingGear: SyndicateOperativeMedicFull
-      roleLoadout:
-      - AntagNukeopsMedic # Starlight
-      components:
-      - type: NukeOperative
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicateNormal
-        nameFormat: name-format-nukie-agent
-      - type: NpcFactionMember
-        factions:
-        - Syndicate
-      mindRoles:
-      - MindRoleNukeopsMedic
-      # Starlight-start
-      allowNonHumans: true
-      tags:
-        - CantBecomeRevolutionary
-      # Starlight-end
-    - prefRoles: [ Nukeops ]
-      fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
-      spawnerPrototype: SpawnPointNukeopsOperative
-      max: 4
-      playerRatio: 16
-      startingGear: SyndicateOperativeGearFull
-      roleLoadout:
-      - AntagNukeops # Starlight
-      components:
-      - type: NukeOperative
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicateNormal
-        nameFormat: name-format-nukie-operator
-      - type: NpcFactionMember
-        factions:
-        - Syndicate
-      mindRoles:
-      - MindRoleNukeops
-      # Starlight-start
-      allowNonHumans: true
-      tags:
-        - CantBecomeRevolutionary
-      # Starlight-end
+    antags:
+    - !type:FixedAntagCount
+      proto: NukeopsCommander
+    - !type:FixedAntagCount
+      proto: NukeopsMedic
+    - !type:LinearAntagCount
+      proto: NukeopsOperative
+      range:
+        min: 1
+        max: 4 # Starlight
   - type: DynamicRuleCost
     cost: 200
+    cooldown: 1 # Starlight
+
+# Starlight start
+# Such a small entry, not worth putting in its own file
+- type: entity
+  parent: Nukeops
+  id: NukeopsLate
+  components:
+  - type: DynamicRuleCost
+    cost: 300
+    cooldown: 1
+# Starlight end
 
 - type: entity
   abstract: true
@@ -268,134 +228,90 @@
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
   - type: DynamicRuleCost
-    cost: 100
+    cost: 125 # Starlight
 
 - type: entity
-  parent: BaseTraitorRule
+  parent: [ BaseTraitorRule, BaseRoundstartAntagRule ]
   id: Traitor
   components:
   - type: GameRule
-    minPlayers: 0 # Starlight-edit
+    minPlayers: 5
     delay:
       min: 240
       max: 420
   - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - prefRoles: [ Traitor ]
-      max: 24 # Starlight. More of future proofing. If we ever actually average 240 pop then we'll need to actually do something else.
-      playerRatio: 12 # Starlight. Beta loses 1 traitor, since it's impossible for them to have 6 now at a 1:12 ratio with 65 as their max.
-      blacklist:
-        components:
-        - AntagImmune
-      lateJoinAdditional: false
-      allowNonHumans: true # Starlight; we have playable non-humanoids
-      mindRoles:
-      - MindRoleTraitor
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: Traitor
+      playerRatio: 14.5 # Starlight
+      range:
+        min: 1
+        max: 24 # Starlight
 
 - type: entity
-  id: TraitorReinforcement
+  id: TraitorReinforcement # This shouldn't be in here but I'm not sure where to put it :(
   parent: BaseTraitorRule
   components:
   - type: TraitorRule
     giveUplink: false
-    giveCodewords: false # It would actually give them a different set of codewords than the regular traitors, anyway
     giveBriefing: false
   - type: AntagSelection
-    definitions:
-    - prefRoles: [ Traitor ]
-      allowNonHumans: true # Starlight; we have playable non-humanoids
-      mindRoles:
-      - MindRoleTraitorReinforcement
+    antags:
+    - !type:FixedAntagCount
+      proto: TraitorReinforcement
 
 - type: entity
   id: Changeling
-  parent: BaseGameRule
+  parent: [BaseGameRule, BaseRoundstartAntagRule]
   components:
   - type: GameRule
-    minPlayers: 25
+    minPlayers: 25 # Starlight start
+    delay: # It doesn't really make lore sense that you can "remember" you're a Changeling, but it should give everyone some calm at the start.
+      min: 240
+      max: 420 # Starlight end
   - type: AntagSelection
+    lateJoinAdditional: true # Starlight
     agentName: changeling-round-end-agent-name
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - prefRoles: [ Changeling ]
-      max: 6 # Starlight. Not a huge increase, but allows lings to actually become a force on alpha that doesn't get wiped out immediately.
-      playerRatio: 26 # Starlight. Beta now has 2 lings.
-      briefing:
-        text: changeling-role-greeting
-        color: Red
-        sound: /Audio/Ambience/Antag/changeling_start.ogg
-      components:
-      - type: ChangelingDevour
-      - type: ChangelingIdentity
-      - type: ChangelingTransform
-      - type: ActionGrant
-        actions:
-        - ActionChangelingStore
-      # TODO: Make it so the changeling gamerule changeling can inherit from the changeling store preset somehow
-      - type: Store
-        name: store-preset-name-changeling
-        categories:
-        - ChangelingAbilities
-        currencyWhitelist:
-        - ChangelingDNA
-        balance:
-          ChangelingDNA: 50
-      - type: UserInterface
-        interfaces:
-          enum.StoreUiKey.Key:
-            type: StoreBoundUserInterface
-            requireInputValidation: false
-      mindRoles:
-      - MindRoleChangeling
-      # Starlight-start
-      allowNonHumans: false # unanticipated behavior possible for non-humanoid -> humanoid lings
-      tags:
-        - CantBecomeRevolutionary
-      # Starlight-end
+    antags:
+    - !type:LinearAntagCount
+      proto: Changeling
+      playerRatio: 31.2 # Starlight
+      range:
+        min: 1
+        max: 6 # Starlight
   - type: AntagObjectives
     objectives:
     - ChangelingSurviveObjective
+  - type: DynamicRuleCost # Starlight
+    cost: 150 # Starlight
 
 - type: entity
   id: Revolutionary
-  parent: BaseGameRule
+  parent: [BaseGameRule, BaseRoundstartAntagRule]
   components:
   - type: GameRule
     minPlayers: 15
+    delay: # Starlight start
+      min: 240 # Delay it so people can have some calm at the start.
+      max: 420 # Starlight end
   - type: RevolutionaryRule
   - type: SpecialLobbyContent
     music: "/Audio/_Starlight/Lobby/Liberation.ogg"
     background: RevClown
   - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - prefRoles: [ HeadRev ]
-      min: 2 #Starlight edit, made it 2 since one person dying shouldnt end a major gamemode, praying it breaks nothing
-      max: 3
-      playerRatio: 15
-      startingGear: HeadRevGear
-      allowNonHumans: true # Starlight; we have playable non-humanoids
-      components:
-      - type: Revolutionary
-      - type: HeadRevolutionary
-        # Starlight-start
-        blacklist:
-          components:
-          - Revolutionary
-          - BorgChassis
-          - MindShield
-          - Zombie
-          tags:
-          - CantBecomeRevolutionary
-        whitelist:
-          components:
-          - HumanoidAppearance
-        # Starlight-end
-      mindRoles:
-      - MindRoleHeadRevolutionary
+    selectionTime: PrePlayerSpawn
+    lateJoinAdditional: true # Starlight
+    antags:
+    - !type:LinearAntagCount
+      proto: HeadRev
+      playerRatio: 18 # Starlight
+      range:
+        min: 2 # Starlight
+        max: 3
   - type: DynamicRuleCost
     cost: 200
+    cooldown: 1 # Starlight
 
 - type: entity
   id: Sandbox
@@ -411,7 +327,7 @@
 
 - type: entity
   abstract: true
-  parent: BaseGameRule
+  parent: BaseRoundstartAntagRule # Starlight
   id: BaseWizardRule
   components:
   - type: AntagObjectives
@@ -422,55 +338,27 @@
     mapPath: /Maps/_Starlight/WizardShuttle.yml #Starlight. wizard deserves their shuttle. and it had to be re-saved as a map to get it to work.
   - type: RuleGrids
   - type: AntagSelection
+    agentName: wizard-round-end-name
+    antags:
+    - !type:FixedAntagCount
+      proto: Wizard
   - type: AntagLoadProfileRule
     speciesOverride: Human
+  - type: DynamicRuleCost # Starlight
+    cost: 150 # Starlight
 
 - type: entity
-  parent: BaseWizardRule
+  parent: [ BaseWizardRule, BaseRoundstartAntagRule ]
   id: Wizard
   components:
   - type: GameRule
-    minPlayers: 40 # Starlight. So a Wizard can actually spawn on Beta.
-  - type: AntagSelection
-    agentName: wizard-round-end-name
-    selectionTime: PrePlayerSpawn
-    definitions:
-    - prefRoles: [ Wizard ]
-      max: 6 # Starlight. If Wizard is to be its own Gamemode, then...
-      playerRatio: 40 # Starlight, ensures Beta only has 1 wizard.
-      spawnerPrototype: SpawnPointGhostWizard
-      roleLoadout:
-       - AntagWizard # Starlight
-      briefing:
-        text: wizard-role-greeting
-        color: Turquoise
-        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
-      startingGear: WizardBlueGear
-      # TODO: WizardComp as needed
-      components:
-      - type: UniversalLanguageSpeaker # Starlight-edit: Languages
-      - type: NpcFactionMember
-        factions:
-        - Wizard
-      - type: RandomMetadata
-        nameSegments:
-        - NamesWizardFirst
-        - NamesWizardLast
-        nameFormat: name-format-wizard
-      mindRoles:
-      - MindRoleWizard
-      # Starlight-start
-      allowNonHumans: true # We have playable non-humanoids
-      tags:
-        - CantBecomeRevolutionary
-        - Wizard
-      # Starlight-end
+    minPlayers: 40 # Starlight
   - type: DynamicRuleCost
     cost: 150
 
 - type: entity
   id: Zombie
-  parent: BaseGameRule
+  parent: [ BaseGameRule, BaseRoundstartAntagRule]
   components:
   - type: GameRule
     minPlayers: 20
@@ -479,29 +367,53 @@
       max: 900
   - type: ZombieRule
   - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - prefRoles: [ InitialInfected ]
-      max: 6
-      playerRatio: 10
-      allowNonHumans: true # Starlight; we have playable non-humanoids
-      blacklist:
-        components:
-        - ZombieImmune
-        - AntagImmune
-      briefing:
-        text: zombie-patientzero-role-greeting
-        color: Plum
-        sound: "/Audio/Ambience/Antag/zombie_start.ogg"
-      components:
-      - type: PendingZombie
-      - type: ZombifyOnDeath
-      - type: IncurableZombie
-      - type: InitialInfected
-      mindRoles:
-      - MindRoleInitialInfected
+    lateJoinAdditional: true # Starlight
+    antags:
+    - !type:LinearAntagCount
+      proto: InitialInfected
+      playerRatio: 18 # Starlight
+      range:
+        min: 1
+        max: 6
   - type: DynamicRuleCost
     cost: 200
+    cooldown: 1 # Starlight
+
+- type: entity
+  abstract: true
+  parent: BaseGameRule
+  id: BaseXenoborgsRule
+  components:
+  - type: XenoborgsRule
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/mothership.yml # Starlight
+  - type: AntagMultipleRoleSpawner
+    antagRoleToPrototypes:
+      MothershipCore: [ MothershipCore ]
+      Xenoborg: [ XenoborgEngi, XenoborgHeavy, XenoborgScout, XenoborgStealth, XenoborgEngi, XenoborgHeavy, XenoborgScout, XenoborgStealth ] # Starlight
+    pickAndTake: true
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    antags:
+    - !type:FixedAntagCount
+      proto: MothershipCore
+    - !type:LinearAntagCount # Starlight
+      proto: Xenoborg
+      playerRatio: 20 # Starlight start
+      useTotalPlayerCount: true # Don't count the Core for scaling
+      range:
+        min: 4
+        max: 8 # Starlight end
+  - type: DynamicRuleCost
+    cost: 200
+
+- type: entity
+  parent: [ BaseXenoborgsRule, BaseRoundstartAntagRule]
+  id: Xenoborgs
+  components:
+  - type: GameRule
+    minPlayers: 30
 
 # This rule makes the chosen players unable to get other antag rules, as a way to prevent metagaming job rolls.
 # Put this before antags assigned to station jobs, but after non-job antags (NukeOps/Wiz).
@@ -512,12 +424,29 @@
   - type: GameRule
     minPlayers: 5
   - type: AntagSelection
-    selectionTime: IntraPlayerSpawn # Pre-selection before jobs; assignment doesn't really matter though, we only care about the pre-selection to block other antags.
+    selectionTime: PrePlayerSpawn # Pre-selection before jobs; assignment doesn't really matter though, we only care about the pre-selection to block other antags.
     removeUponFailedSpawn: false
-    definitions:
-    - prefRoles: [ InitialInfected, Traitor, Thief, HeadRev ]
-      max: 2
+    antags:
+    - !type:LinearAntagCount
+      proto: DummyAntag
       playerRatio: 30
+      range:
+        min: 1
+        max: 2
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: DummyAntag
+  prefRoles: # Only Station bound roles.
+  - InitialInfected
+  - Traitor
+  - Thief
+  - HeadRev
+  - Changeling # Starlight start
+  - CosmicAntagCultist
+  - Devil
+  - SELFAgent
+  - Vampire # Starlight end
 
 # event schedulers
 

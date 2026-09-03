@@ -1,6 +1,6 @@
 ﻿- type: entity
   name: emergency flare
-  parent: BaseItem
+  parent: [SolutionComposite, SolutionTiny, BaseItem]
   id: Flare
   description: A flare that produces a very bright light for a short while. Point the flame away from yourself.
   components:
@@ -48,8 +48,8 @@
   - type: PointLight
     enabled: false
     color: "#FF8080"
-    radius: 1.0
-    energy: 9.0
+    radius: 3.0 #SL Edit 1.0 -> 3.0
+    energy: 2.0 #SL Edit 9.0 -> 2.0
     netsync: false
   - type: IgnitionSource
     temperature: 1000
@@ -74,8 +74,8 @@
         interpolate: Nearest
         minDuration: 0.001
         maxDuration: 0.001
-        startValue: 4.0
-        endValue: 8.0
+        startValue: 1.0 #SL
+        endValue: 2.0 #SL
         property: Energy
         isLooped: true
       - !type:FadeBehaviour # fade out radius as it burns out
@@ -84,24 +84,22 @@
         startValue: 10.0
         endValue: 1.0
   - type: Extractable
-    grindableSolutionName: flare
-  - type: SolutionContainerManager
-    solutions:
-      flare:
-        maxVol: 20
-        reagents:
-        # flare casing
-        - ReagentId: Iron
-          Quantity: 10
-        # red phosphorus = red flare trust
-        - ReagentId: Phosphorus
-          Quantity: 3
-        - ReagentId: Carbon
-          Quantity: 1
-        - ReagentId: Oxygen
-          Quantity: 2
-        # fuel or something
-        - ReagentId: Charcoal
-          Quantity: 2
-        - ReagentId: Sulfur
-          Quantity: 2
+    grindableSolutionName: composite
+  - type: Solution
+    solution:
+      reagents:
+      # flare casing
+      - ReagentId: Iron
+        Quantity: 10
+      # red phosphorus = red flare trust
+      - ReagentId: Phosphorus
+        Quantity: 6
+      - ReagentId: Carbon
+        Quantity: 2
+      - ReagentId: Oxygen
+        Quantity: 4
+      # fuel or something
+      - ReagentId: Charcoal
+        Quantity: 4
+      - ReagentId: Sulfur
+        Quantity: 4

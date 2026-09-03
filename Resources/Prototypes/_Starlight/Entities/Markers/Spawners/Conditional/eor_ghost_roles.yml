@@ -101,6 +101,9 @@
     - type: Loadout
       prototypes: [ CCServiceWorkerGear ]
       roleLoadout: [ RoleSurvivalStandard ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
 
 - type: entity
   id: MobHumanCCChefEOR
@@ -113,6 +116,9 @@
     - type: Loadout
       prototypes: [ CCChefGear ]
       roleLoadout: [ RoleSurvivalStandard ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
 
 - type: entity
   id: MobHumanCCBartenderEOR
@@ -125,6 +131,9 @@
     - type: Loadout
       prototypes: [ CCBartenderGear ]
       roleLoadout: [ RoleSurvivalStandard ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
 
 - type: entity
   id: MobHumanCCJanitorEOR
@@ -137,3 +146,6 @@
     - type: Loadout
       prototypes: [ CCJanitorGear ]
       roleLoadout: [ RoleSurvivalStandard ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant

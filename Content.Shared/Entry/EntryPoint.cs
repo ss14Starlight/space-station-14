@@ -2,11 +2,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using Content.Shared.Humanoid.Markings;
-using Content.Shared.Maps;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Sequence;
@@ -18,34 +16,29 @@ namespace Content.Shared.Entry
     public sealed partial class EntryPoint : GameShared
     {
         [Dependency] private IPrototypeManager _prototypeManager = default!;
-        [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
         [Dependency] private IResourceManager _resMan = default!;
 #if DEBUG
         [Dependency] private IConfigurationManager _configurationManager = default!;
 #endif
 
         private readonly ResPath _ignoreFileDirectory = new("/IgnoredPrototypes/");
+        private readonly ResPath _partialFileDirectory = new("/PartialPrototypes/");
 
         public override void PreInit()
         {
             Dependencies.InjectDependencies(this);
         }
 
-        public override void Shutdown()
-        {
-            _prototypeManager.PrototypesReloaded -= PrototypeReload;
-        }
-
         public override void Init()
         {
             IgnorePrototypes();
+            PartialPrototypes();
         }
 
         public override void PostInit()
         {
             base.PostInit();
 
-            InitTileDefinitions();
             Dependencies.Resolve<MarkingManager>().Initialize();
 
 #if DEBUG
@@ -55,82 +48,32 @@ namespace Content.Shared.Entry
 #endif
         }
 
-        private void InitTileDefinitions()
-        {
-            _prototypeManager.PrototypesReloaded += PrototypeReload;
-
-            // Register space first because I'm a hard coding hack.
-            var spaceDef = _prototypeManager.Index<ContentTileDefinition>(ContentTileDefinition.SpaceID);
-
-            _tileDefinitionManager.Register(spaceDef);
-
-            var prototypeList = new List<ContentTileDefinition>();
-            foreach (var tileDef in _prototypeManager.EnumeratePrototypes<ContentTileDefinition>())
-            {
-                if (tileDef.ID == ContentTileDefinition.SpaceID)
-                {
-                    continue;
-                }
-
-                prototypeList.Add(tileDef);
-            }
-
-            // Sort ordinal to ensure it's consistent client and server.
-            // So that tile IDs match up.
-            prototypeList.Sort((a, b) => string.Compare(a.ID, b.ID, StringComparison.Ordinal));
-
-            foreach (var tileDef in prototypeList)
-            {
-                _tileDefinitionManager.Register(tileDef);
-            }
-
-            _tileDefinitionManager.Initialize();
-        }
-
-        private void PrototypeReload(PrototypesReloadedEventArgs obj)
-        {
-            /* I am leaving this here commented out to re-iterate
-             - our game is shitcode
-             - tiledefmanager no likey proto reloads and you must re-assign the tile ids.
-            if (!obj.WasModified<ContentTileDefinition>())
-                return;
-                */
-
-            // Need to re-allocate tiledefs due to how prototype reloads work
-            foreach (var def in _prototypeManager.EnumeratePrototypes<ContentTileDefinition>())
-            {
-                def.AssignTileId(_tileDefinitionManager[def.ID].TileId);
-            }
-        }
-
         private void IgnorePrototypes()
         {
-            if (!TryReadFile(out var sequences))
-                return;
-
-            foreach (var sequence in sequences)
+            foreach (var path in TryReadFilesPaths(_ignoreFileDirectory))
             {
-                foreach (var node in sequence.Sequence)
-                {
-                    var path = new ResPath(((ValueDataNode) node).Value);
-
-                    if (string.IsNullOrEmpty(path.Extension))
-                    {
-                        _prototypeManager.AbstractDirectory(path);
-                    }
-                    else
-                    {
-                        _prototypeManager.AbstractFile(path);
-                    }
-                }
+                if (string.IsNullOrEmpty(path.Extension))
+                    _prototypeManager.AbstractDirectory(path);
+                else
+                    _prototypeManager.AbstractFile(path);
             }
         }
 
-        private bool TryReadFile([NotNullWhen(true)] out List<SequenceDataNode>? sequence)
+        private void PartialPrototypes()
         {
-            sequence = new();
+            var i = 0;
+            foreach (var path in TryReadFilesPaths(_partialFileDirectory))
+            {
+                if (string.IsNullOrEmpty(path.Extension))
+                    _prototypeManager.PartialDirectory(path, i++);
+                else
+                    _prototypeManager.PartialFile(path, i++);
+            }
+        }
 
-            foreach (var path in _resMan.ContentFindFiles(_ignoreFileDirectory))
+        private IEnumerable<ResPath> TryReadFilesPaths(ResPath directory)
+        {
+            foreach (var path in _resMan.ContentFindFiles(directory).OrderBy(p => p.CanonPath))
             {
                 if (!_resMan.TryContentFileRead(path, out var stream))
                     continue;
@@ -141,9 +84,12 @@ namespace Content.Shared.Entry
                 if (documents == null)
                     continue;
 
-                sequence.Add((SequenceDataNode) documents.Root);
+                var sequence = (SequenceDataNode) documents.Root;
+                foreach (var node in sequence.Sequence)
+                {
+                    yield return new ResPath(((ValueDataNode) node).Value);
+                }
             }
-            return true;
         }
     }
 }
