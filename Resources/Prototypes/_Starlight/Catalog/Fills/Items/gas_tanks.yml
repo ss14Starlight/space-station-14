@@ -26,10 +26,10 @@
     air:
       volume: 5
       moles:
-        Pluoxium: 0.3
-        Ulnitranium: 0.3
-        Nitrium: 0.8
-        ZXA: 0.2
+        Pluoxium: 0.5
+        Ulnitranium: 0.5
+        Nitrium: 0.6
+        ZXA: 0.4
       temperature: 293.15
 
 - type: entity

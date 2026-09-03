@@ -13,11 +13,11 @@
       - !type:Jitter
     Bloodstream:
       effects:
-      - !type:Jitter
+      - !type:Jitter # Misc adjustments
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 5
+          min: 3
       - !type:ModifyStatusEffect
         effectProto: StatusEffectStunned
         time: 0.3
@@ -44,26 +44,37 @@
         time: 10
       - !type:ModifyBleed
         amount: -0.12
-      - !type:EvenHealthChange # Level 1 effectiveness
+      - !type:ResetNarcolepsy
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 0.1
+      - !type:ModifyBleed
+        amount: -0.5
+
+      - !type:EvenHealthChange # Health Changes
         ignoreResistances: true
         damage:
-          Brute: -0.5
-          Burn: -0.5
-          Toxin: -0.5
+          Brute: -0.25
+          Burn: -0.25
+          Toxin: -0.25
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 1
-          max: 5
-      - !type:AdjustReagent
-        reagent: NitrosylPlasmide
-        amount: -0.5
+          min: .5
+          max: 2.5
+      - !type:EvenHealthChange
+        ignoreResistances: true
+        damage:
+          Brute: -0.75
+          Burn: -0.75
+          Toxin: -0.75
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 1
+          min: 2.5
           max: 5
-      - !type:EvenHealthChange # Level 2 effectiveness
+      - !type:EvenHealthChange #Cellular damage starts here
         ignoreResistances: true
         damage:
           Brute: -1.5
@@ -83,23 +94,7 @@
           reagent: NitrosylPlasmide
           min: 5
           max: 10
-      - !type:MovementSpeedModifier
-        walkSpeedModifier: 1.15
-        sprintSpeedModifier: 1.15
-        conditions:
-        - !type:ReagentCondition
-          reagent: NitrosylPlasmide
-          min: 4.5
-          max: 9.5
-      - !type:AdjustReagent
-        reagent: NitrosylPlasmide
-        amount: -1.5
-        conditions:
-        - !type:ReagentCondition
-          reagent: NitrosylPlasmide
-          min: 4.5
-          max: 9.5
-      - !type:EvenHealthChange # Level 3 effectiveness
+      - !type:EvenHealthChange
         ignoreResistances: true
         damage:
           Brute: -2.5
@@ -117,23 +112,101 @@
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
           min: 10
+
+      - !type:MovementSpeedModifier #Speed Changes
+        walkSpeedModifier: 1.05
+        sprintSpeedModifier: 1.05
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 1.5
+          max: 2.5
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.1
+        sprintSpeedModifier: 1.1
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 2.5
+          max: 3.5
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.15
+        sprintSpeedModifier: 1.15
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 3.5
+          max: 4.5
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.2
+        sprintSpeedModifier: 1.2
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 4.5
+          max: 5.5
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.25
+        sprintSpeedModifier: 1.25
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 5.5
+          max: 6.5
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.3
         sprintSpeedModifier: 1.3
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 10
+          min: 6.5
+          max: 7.5
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.35
+        sprintSpeedModifier: 1.35
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 7.5
+          max: 8.5
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.4
+        sprintSpeedModifier: 1.4
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 8.5
+          max: 9.5
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.45
+        sprintSpeedModifier: 1.45
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 9.5
+
+
+      - !type:AdjustReagent #Reagent Adjustment
+        reagent: NitrosylPlasmide
+        amount: -0.2
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 1
+          max: 4.5
       - !type:AdjustReagent
         reagent: NitrosylPlasmide
-        amount: -3.5
+        amount: -0.4
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 10
-      - !type:ResetNarcolepsy
+          min: 4.5
+          max: 9.5
+      - !type:AdjustReagent
+        reagent: NitrosylPlasmide
+        amount: -0.8
         conditions:
         - !type:ReagentCondition
           reagent: NitrosylPlasmide
-          min: 0.1
+          min: 9.5
       # Starlight END

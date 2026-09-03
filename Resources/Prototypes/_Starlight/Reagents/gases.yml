@@ -28,17 +28,26 @@
   metabolisms:
     Respiration:
       effects:
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: ZXA
+          min: 0.01
+        reagent: ZXAMetabolites
+        amount: 5
+        maxScale: 5
+
       - !type:Emote
         conditions:
         - !type:ReagentCondition
           reagent: ZXA
-          min: 0.5
+          min: 1.5
         emote: Cough
         showInChat: true
         probability: 0.05
 
       - !type:ModifyStatusEffect
-        minScale: 1.0
+        minScale: 0.25
         effectProto: StatusEffectSeeingRainbow
         type: Add
         time: 5
@@ -47,7 +56,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: ZXA
-          min: 0.5
+          min: 1.5
         emote: Laugh
         showInChat: true
         probability: 0.05
@@ -56,7 +65,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: ZXA
-          min: 1.0
+          min: 1.5
         emote: Scream
         showInChat: true
         probability: 0.005
@@ -65,10 +74,10 @@
         conditions:
         - !type:ReagentCondition
           reagent: ZXA
-          min: 0.5
+          min: 1
         - !type:BloodReagentCondition
           reagent: NitrosylPlasmide
-          max: 0.1
+          max: 0.01
         type: Local
         visualType: Medium
         messages: [ "effect-sleepy" ]
@@ -79,7 +88,7 @@
         conditions:
         - !type:BloodReagentCondition
           reagent: NitrosylPlasmide
-          max: 0.1
+          max: 0.01
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
 
@@ -90,16 +99,7 @@
           min: 1
         - !type:BloodReagentCondition
           reagent: NitrosylPlasmide
-          max: 0.1
+          max: 0.01
         effectProto: StatusEffectForcedSleeping
         type: Update
         time: 10
-
-      - !type:AdjustReagent
-        conditions:
-        - !type:ReagentCondition
-          reagent: ZXA
-          min: 0.01
-        reagent: ZXAMetabolites
-        amount: 5
-        maxScale: 2

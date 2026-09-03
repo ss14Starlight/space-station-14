@@ -137,8 +137,8 @@
         conditions:
         - !type:ReagentCondition
           reagent: Nitrium
-          min: .5
-          max: 1
+          min: 1
+          max: 1.5
         reagent: NitrosylPlasmide
         amount: 1
         maxScale: 2
@@ -147,7 +147,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: Nitrium
-          min: 1
+          min: 1.5
         reagent: NitrosylPlasmide
         amount: 1.5
         maxScale: 2
