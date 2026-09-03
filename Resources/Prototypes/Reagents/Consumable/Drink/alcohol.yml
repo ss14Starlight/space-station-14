@@ -3062,6 +3062,7 @@
   physicalDesc: reagent-physical-desc-unidentifiable
   flavor: bacchusblessing
   color: "#331303"
+  flammability: 3 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/bacchusblessing.rsi
     state: icon_empty

@@ -6,6 +6,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: draganspecial
   color: "#610e20"
+  flammability: 4
   metamorphicSprite:
     sprite: _Starlight/Objects/Consumable/Drinks/dragan_special.rsi
     state: icon_empty
@@ -124,6 +125,8 @@
   physicalDesc: reagent-physical-desc-highlander
   flavor: highlander
   color: "#95530f"
+  flammability: 5
+  selfOxidizing: true
   metamorphicSprite:
     sprite: _Starlight/Objects/Consumable/Drinks/highlander.rsi
     state: empty
@@ -159,6 +162,7 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: thelastcall
   color: "#9450c7"
+  flammability: 3
   metamorphicSprite:
     sprite: _Starlight/Objects/Consumable/Drinks/thelastcall.rsi
     state: icon_empty
