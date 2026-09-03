@@ -3,7 +3,7 @@
   mapName: 'Flotilla Spaceport'
   mapPath: /Maps/_Starlight/Stations/Flotilla.yml
   minPlayers: 150
-  maxPlayers: 250
+  maxPlayers: 350
   stations:
     StarlightFlotilla:
       stationProto: StandardNanotrasenStation
