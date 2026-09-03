@@ -109,4 +109,6 @@ public record struct PackedMovementButtons(byte RawValue)
     }
 
     public readonly bool IsShuttleInputActive => (RawValue & ShuttleModeBit) != 0;
+
+    public readonly bool HasInput => (RawValue & ~ShuttleModeBit) != 0;
 }

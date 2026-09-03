@@ -59,6 +59,8 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
     private readonly Queue<TickInputData> _storedInputData = [];
     private readonly List<InputChange> _frameChanges = [];
 
+    private GameTick? _sleepPeriodStart = null;
+
     public override void Initialize()
     {
         _manager.ServerAckTick = GameTick.Zero;
@@ -98,6 +100,25 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
 
         if (!_netManager.IsConnected)
             return;
+
+        // sleep logic
+        bool validForSleep = !_currentState.HasInput && _frameChanges.Count == 0;
+
+        if (!validForSleep)
+        {
+            _sleepPeriodStart = null;
+        }
+        else if (!_sleepPeriodStart.HasValue)
+        {
+            _sleepPeriodStart = tick;
+        }
+
+        if (_sleepPeriodStart.HasValue && _sleepPeriodStart.Value <= _manager.ServerAckTick)
+        {
+            _frameChanges.Clear();
+            _storedInputData.Clear();
+            return;
+        }
 
         var thisTickInput = new TickInputData(tick, _currentState, _frameChanges.ToArray());
         _frameChanges.Clear();
