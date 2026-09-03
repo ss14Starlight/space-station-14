@@ -1,18 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Medical cyborgs can now scan from the action hotbar, like with medical PDAs.
-    type: Add
-  id: 407679
-  time: '2026-08-16T19:58:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5622
-- author: wonderfulnewworld, DivineHoBo
-  changes:
-  - message: Added plastitanium airlocks.
-    type: Add
-  id: 407680
-  time: '2026-08-16T20:18:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5620
 - author: KarmaKitsuna
   changes:
   - message: Librarians Rejoice! 17 new stories from Starlight's first writing contest are coming to your library.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408078
   time: '2026-09-03T18:19:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5958
+- author: wonderfulnewworld, DaCookieCakes
+  changes:
+  - message: Added a new ChemMaster UI. Comes with a search filter, toggle for the old mode, and is much friendlier to use.
+    type: Add
+  id: 408079
+  time: '2026-09-03T19:00:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5894
+- author: wonderfulnewworld, DaCookieCakes
+  changes:
+  - message: Renamed the 'chem dispenser circuit board' to the 'chemical dispenser circuit board'.
+    type: Tweak
+  id: 408080
+  time: '2026-09-03T19:00:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5894
 Order: -1
