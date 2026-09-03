@@ -28,13 +28,15 @@ using Content.Server.Changeling.Systems;
 // Starlight edit start
 using Content.Shared.Humanoid;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Flash;
 using Content.Shared.Store;
-
+using Content.Shared._Starlight.Medical.Body.Components;
+using Content.Shared._Starlight.Medical.Body.Systems;
 // Starlight edit end
 
 namespace Content.Server._Starlight.Changeling;
@@ -45,6 +47,10 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private LanguageSystem _language = default!;
     [Dependency] private SharedFlashSystem _flashSystem = default!;
+    #region "Starlight"
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private StomachSystem _stomach = default!;
+    #endregion
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
@@ -562,12 +568,16 @@ public sealed partial class ChangelingSystem : EntitySystem
     // john space made me do this
     private void OnHealUltraSwag(EntityUid uid, ChangelingComponent comp, ref ActionFleshmendEvent args)
     {
+        var stomachs = _body.GetBodyOrganEntityComps<StomachComponent>(uid);
+        if (stomachs.Count == 0)
+            return;
+        var stomach = stomachs[0]; 
+        var ichorInjection = new Solution("Ichor", 10f);
         var reagents = new Dictionary<string, FixedPoint2>
         {
-            { "Ichor", 10f },
             { "TranexamicAcid", 5f }
         };
-        if (TryInjectReagents(uid, reagents))
+        if (_stomach.TryTransferSolution(stomach.Owner, ichorInjection) && TryInjectReagents(uid, reagents))
             _popup.PopupEntity(Loc.GetString("changeling-fleshmend"), uid, uid);
         else return;
         PlayMeatySound(uid, comp);
