@@ -244,7 +244,7 @@
   - type: UtilityLineRuptureRule
   - type: StationEvent
     earliestStart: 15
-    weight: 6.5
+    weight: 5
     duration: null
   - type: GameRule
     delay:

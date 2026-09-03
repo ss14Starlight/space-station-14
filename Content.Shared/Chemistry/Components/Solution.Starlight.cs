@@ -87,4 +87,5 @@ namespace Content.Shared.Chemistry.Components
             return proto.SubstanceColor;
         }
         // Blimpuf end
+    }
 }
