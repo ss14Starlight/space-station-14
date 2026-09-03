@@ -47,22 +47,44 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
         foreach (var (session, tracker) in _trackers)
         {
             if (!tracker.TryFetch(tick, out var data)) continue;
-            var curState = tracker.State;
+            var curMoveState = tracker.MoveState;
+            var curShuttleState = tracker.ShuttleState;
             if (!session.AttachedEntity.HasValue) continue;
             var entity = session.AttachedEntity.Value;
 
-            void EmitStateChange(MoveButtons buttons, ushort subtick)
+            void EmitStateChange(PackedMovementButtons buttons, ushort subtick)
             {
-                if (buttons == curState) return;
-                var changedButtons = buttons ^ curState;
-                curState = buttons;
-                for (int i = 0; i < 5; i++)
+                var move = buttons.MoveButtons;
+                var shuttle = buttons.ShuttleButtons;
+
+                if (move != curMoveState)
                 {
-                    var toCheck = (MoveButtons)(1 << i);
-                    if ((changedButtons & toCheck) != 0)
+                    var changedBits = move ^ curMoveState;
+                    for (int i = 0; i < 5; i++)
                     {
-                        mover.OnMoveButtonChange(entity, toCheck, (toCheck & buttons) != 0, subtick);
+                        var toCheck = (MoveButtons)(1 << i);
+                        if ((changedBits & toCheck) != 0)
+                        {
+                            mover.OnMoveButtonChange(entity, toCheck, (toCheck & move) != 0, subtick);
+                        }
                     }
+
+                    curMoveState = move;
+                }
+
+                if (shuttle != curShuttleState)
+                {
+                    var changedBits = shuttle ^ curShuttleState;
+                    for (int i = 0; i < 7; i++)
+                    {
+                        var toCheck = (ShuttleButtons)(1 << i);
+                        if ((changedBits & toCheck) != 0)
+                        {
+                            mover.OnShuttleButtonChange(entity, toCheck, (toCheck & shuttle) != 0, subtick);
+                        }
+                    }
+
+                    curShuttleState = shuttle;
                 }
             }
 
@@ -72,7 +94,8 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
             }
 
             EmitStateChange(data.FinalInput, ushort.MaxValue);
-            tracker.State = curState;
+            tracker.MoveState = curMoveState;
+            tracker.ShuttleState = curShuttleState;
         }
     }
 
@@ -81,7 +104,8 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
         private readonly Queue<TickInputData> _queue = [];
         private GameTick _mostRecentTick;
 
-        public MoveButtons State { get; set; }
+        public MoveButtons MoveState { get; set; }
+        public ShuttleButtons ShuttleState { get; set; }
 
         public void Ingest(List<TickInputData> list)
         {

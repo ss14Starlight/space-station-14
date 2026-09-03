@@ -1,5 +1,7 @@
 ﻿using Content.Shared._Starlight.RedundantMovement;
+using Content.Shared.Input;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Shuttles.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
@@ -49,7 +51,10 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IClientRedundantMovementManager _manager = default!;
 
-    private MoveButtons _inputState = MoveButtons.None;
+    private MoveButtons _movementState = MoveButtons.None;
+    private ShuttleButtons _shuttleState = ShuttleButtons.None;
+    private PackedMovementButtons _currentState = default;
+
     private GameTick _lastSentTick = GameTick.Zero;
     private readonly Queue<TickInputData> _storedInputData = [];
     private readonly List<InputChange> _frameChanges = [];
@@ -64,6 +69,13 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
             .Bind(EngineKeyFunctions.MoveLeft, new MovementInputHandler(this, MoveButtons.Left))
             .Bind(EngineKeyFunctions.MoveRight, new MovementInputHandler(this, MoveButtons.Right))
             .Bind(EngineKeyFunctions.Walk, new MovementInputHandler(this, MoveButtons.Walk))
+            .Bind(ContentKeyFunctions.ShuttleStrafeUp, new ShuttleInputCmdHandler(this, ShuttleButtons.StrafeUp))
+            .Bind(ContentKeyFunctions.ShuttleStrafeLeft, new ShuttleInputCmdHandler(this, ShuttleButtons.StrafeLeft))
+            .Bind(ContentKeyFunctions.ShuttleStrafeRight, new ShuttleInputCmdHandler(this, ShuttleButtons.StrafeRight))
+            .Bind(ContentKeyFunctions.ShuttleStrafeDown, new ShuttleInputCmdHandler(this, ShuttleButtons.StrafeDown))
+            .Bind(ContentKeyFunctions.ShuttleRotateLeft, new ShuttleInputCmdHandler(this, ShuttleButtons.RotateLeft))
+            .Bind(ContentKeyFunctions.ShuttleRotateRight, new ShuttleInputCmdHandler(this, ShuttleButtons.RotateRight))
+            .Bind(ContentKeyFunctions.ShuttleBrake, new ShuttleInputCmdHandler(this, ShuttleButtons.Brake))
             .Register<ClientRedundantMovementSystem>();
     }
 
@@ -87,7 +99,7 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
         if (!_netManager.IsConnected)
             return;
 
-        var thisTickInput = new TickInputData(tick, _inputState, _frameChanges.ToArray());
+        var thisTickInput = new TickInputData(tick, _currentState, _frameChanges.ToArray());
         _frameChanges.Clear();
 
         _storedInputData.Enqueue(thisTickInput);
@@ -108,30 +120,59 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
         _manager.SendTickData(tick, _storedInputData);
     }
 
-    private void OnInputChange(MoveButtons newInput, ushort subtick)
+    private bool IsPilot(ICommonSession? session)
     {
-        if (_input.Predicted) return;
+        var uid = session?.AttachedEntity;
+        return uid != null && TryComp<PilotComponent>(uid, out var pilot) && pilot.Console != null;
+    }
 
-        if (newInput != _inputState)
+    private void OnInputChange(PackedMovementButtons newInput, ushort subtick)
+    {
+        if (_currentState != newInput)
         {
-            _inputState = newInput;
+            _currentState = newInput;
             _frameChanges.Add(new(subtick, newInput));
         }
     }
 
-    private void OnInputEvent(MoveButtons bit, bool pressed, ushort subtick)
+    private void OnInputEvent(ICommonSession? session, MoveButtons bit, bool pressed, ushort subtick)
     {
-        var state = _inputState;
+        if (_input.Predicted) return;
+
+        var state = _movementState;
         if (pressed) state |= bit;
         else state &= ~bit;
-        OnInputChange(state, subtick);
+        _movementState = state;
+
+        if (!IsPilot(session)) OnInputChange(new(state), subtick);
+    }
+
+    private void OnInputEvent(ICommonSession? session, ShuttleButtons bit, bool pressed, ushort subtick)
+    {
+        if (_input.Predicted) return;
+
+        var state = _shuttleState;
+        if (pressed) state |= bit;
+        else state &= ~bit;
+        _shuttleState = state;
+
+        if (IsPilot(session)) OnInputChange(new(state), subtick);
     }
 
     private sealed class MovementInputHandler(ClientRedundantMovementSystem system, MoveButtons bit) : InputCmdHandler
     {
         public override bool HandleCmdMessage(IEntityManager entManager, ICommonSession? session, IFullInputCmdMessage message)
         {
-            system.OnInputEvent(bit, message.State == BoundKeyState.Down, message.SubTick);
+            system.OnInputEvent(session, bit, message.State == BoundKeyState.Down, message.SubTick);
+            return false;
+        }
+    }
+
+    private sealed class ShuttleInputCmdHandler(ClientRedundantMovementSystem system, ShuttleButtons bit) : InputCmdHandler
+    {
+        public override bool HandleCmdMessage(IEntityManager entManager, ICommonSession? session, IFullInputCmdMessage message)
+        {
+            system.OnInputEvent(session, bit, message.State == BoundKeyState.Down, message.SubTick);
             return false;
         }
     }

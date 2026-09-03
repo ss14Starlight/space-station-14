@@ -45,10 +45,10 @@ public sealed class RedundantMovementMessage : NetMessage
             var changes = new InputChange[buffer.ReadByte()];
             for (int j = 0; j < changes.Length; j++)
             {
-                changes[j] = new(buffer.ReadUInt16(), (MoveButtons)buffer.ReadByte());
+                changes[j] = new(buffer.ReadUInt16(), new(buffer.ReadByte()));
             }
 
-            TickData.Add(new(tick, finalState, changes));
+            TickData.Add(new(tick, new(finalState), changes));
         }
     }
 
@@ -66,14 +66,14 @@ public sealed class RedundantMovementMessage : NetMessage
         {
             var data = TickData[i];
             buffer.Write(data.Tick);
-            buffer.Write((byte)data.FinalInput);
+            buffer.Write(data.FinalInput.RawValue);
             int numChanges = int.Min(data.Changes.Length, byte.MaxValue);
             buffer.Write((byte)numChanges);
             for (int j = data.Changes.Length - numChanges; j < data.Changes.Length; j++)
             {
                 var change = data.Changes[j];
                 buffer.Write(change.Subtick);
-                buffer.Write((byte)change.HeldButtons);
+                buffer.Write(change.HeldButtons.RawValue);
             }
         }
     }
@@ -84,6 +84,29 @@ public sealed class RedundantMovementMessage : NetMessage
     }
 }
 
-public record struct InputChange(ushort Subtick, MoveButtons HeldButtons);
+public record struct InputChange(ushort Subtick, PackedMovementButtons HeldButtons);
 
-public record struct TickInputData(GameTick Tick, MoveButtons FinalInput, InputChange[] Changes);
+public record struct TickInputData(GameTick Tick, PackedMovementButtons FinalInput, InputChange[] Changes);
+
+public record struct PackedMovementButtons(byte RawValue)
+{
+    public const int ShuttleModeBit = 1 << 7;
+
+    public PackedMovementButtons(MoveButtons move) : this((byte)move) { }
+
+    public PackedMovementButtons(ShuttleButtons shuttle) : this((byte)((int)shuttle | ShuttleModeBit)) { }
+
+    public MoveButtons MoveButtons
+    {
+        readonly get => (RawValue & ShuttleModeBit) == 0 ? (MoveButtons)RawValue : MoveButtons.None;
+        set => RawValue = (byte)value;
+    }
+
+    public ShuttleButtons ShuttleButtons
+    {
+        readonly get => (RawValue & ShuttleModeBit) == ShuttleModeBit ? (ShuttleButtons)(RawValue & ~ShuttleModeBit) : ShuttleButtons.None;
+        set => RawValue = (byte)((int)value | ShuttleModeBit);
+    }
+
+    public readonly bool IsShuttleInputActive => (RawValue & ShuttleModeBit) != 0;
+}

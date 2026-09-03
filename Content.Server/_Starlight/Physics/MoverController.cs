@@ -556,6 +556,9 @@ public sealed partial class SLMoverController : SharedMoverController
 
     protected override void HandleShuttleInput(EntityUid uid, ShuttleButtons button, ushort subTick, bool state)
     {
+        if (!_applyingRedundantInput && _cfg.GetCVar(RedundantMovementCVars.Enabled))
+            return;
+
         if (!TryComp<PilotComponent>(uid, out var pilot) || pilot.Console == null)
             return;
 
@@ -994,11 +997,26 @@ public sealed partial class SLMoverController : SharedMoverController
     protected override void HandleRunChange(EntityUid uid, ushort subTick, bool walking)
     {
         if (!_applyingRedundantInput && _cfg.GetCVar(RedundantMovementCVars.Enabled))
-        {
             return;
-        }
 
         base.HandleRunChange(uid, subTick, walking);
+    }
+
+    /// <summary>
+    /// Shuttle button change called by the serverside component of the redundant input networking system (skips the check that suppresses normal input message packets when it's enabled)
+    /// </summary>
+    public void OnShuttleButtonChange(EntityUid uid, ShuttleButtons button, bool pressed, ushort subTick)
+    {
+        _applyingRedundantInput = true;
+
+        try
+        {
+            HandleShuttleInput(uid, button, subTick, pressed);
+        }
+        finally
+        {
+            _applyingRedundantInput = false;
+        }
     }
 
     /// <summary>
