@@ -17,7 +17,6 @@
     state: doll
   - type: Thirst
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatAnomaly # Actual anomaly meat, since players probably won't be butchered too often. Yes, that does mean Dolls do not have "people" meat.
       amount: 5
