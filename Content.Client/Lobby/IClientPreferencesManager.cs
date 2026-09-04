@@ -15,9 +15,9 @@ namespace Content.Client.Lobby
         PlayerPreferences? Preferences { get; }
         void Initialize();
         void SetCharacterEnable(int slot, bool enable);
-        void UpdateCharacter(ICharacterProfile profile, int slot);
-        void CreateCharacter(ICharacterProfile profile);
-        void DeleteCharacter(ICharacterProfile profile);
+        void UpdateCharacter(HumanoidCharacterProfile profile, int slot);
+        void CreateCharacter(HumanoidCharacterProfile profile);
+        void DeleteCharacter(HumanoidCharacterProfile profile);
         void DeleteCharacter(int slot);
         void UpdateConstructionFavorites(List<ProtoId<ConstructionPrototype>> favorites);
         void UpdateJobPriorities(Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities);

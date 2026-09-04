@@ -9,21 +9,14 @@
   - type: Edible
   - type: Extractable
     grindableSolutionName: organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Cellulose
-          Quantity: 5
+    - SolutionOrganSap
+    - SolutionOrganFoodCellulose
   - type: FlavorProfile
     flavors:
       - people
+
 
 - type: entity
   id: OrganDionaBrain
@@ -63,15 +56,11 @@
   components:
   - type: Sprite
     state: stomach
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Cellulose
-          Quantity: 5
+    - SolutionOrganSap
+    - SolutionOrganFoodCellulose
+    - SolutionOrganStomach50
   - type: Stomach
   - type: Metabolizer
     maxReagents: 6
@@ -80,6 +69,7 @@
   - type: Item
     size: Small
     heldPrefix: stomach
+
 
 - type: entity
   id: OrganDionaLungs
@@ -97,23 +87,12 @@
   - type: Metabolizer
     metabolizerTypes: [ Plant ]
     stages: [ Respiration ]
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      Lung:
-        maxVol: 100
-        canReact: False
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Cellulose
-          Quantity: 5
+    - SolutionOrganSap
+    - SolutionOrganFoodCellulose
+    - SolutionOrganLung
 
-# Organs that turn into nymphs on removal
 - type: entity
   id: OrganDionaBrainNymph
   categories: [ HideSpawnMenu ]
