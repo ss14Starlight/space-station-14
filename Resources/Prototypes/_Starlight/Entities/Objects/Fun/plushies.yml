@@ -287,7 +287,7 @@
   parent: BaseLizardPlushie
   id: PlushieVictor #ty flamey!
   name: Victor Jr plushie
-  description: Junior's marketable attempt at making chefs reconsider using kobolds as food source. It looks tasty tho...
+  description: Junior's marketable attempt at making chefs reconsider using kobolds as a food source. It looks tasty tho...
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/victor_plushie.rsi
