@@ -127,10 +127,7 @@ namespace Content.Server.Voting.Managers
         {
             var eligibleCount = CalculateEligibleVoterNumber(eligibility, filter); // Starlight edit
 
-            // Starlight begin
-            var totalPlayers = filter?.Count(session => session.Status != SessionStatus.Disconnected) ??
-                               _playerManager.Sessions.Count(session => session.Status != SessionStatus.Disconnected);
-            // Starlight end
+            var totalPlayers = filter?.Count(session => session.Status != SessionStatus.Disconnected) ?? _playerManager.Sessions.Count(session => session.Status != SessionStatus.Disconnected); // Starlight edit - This would have been two lines but that somehow trips up the .editorconfig check on GitHub. So now I'm adding this comment to explain that because I thought the gag of making this line even longer would be hilarious.
 
             var eligiblePercentage = 0.0;
             if (totalPlayers > 0)
