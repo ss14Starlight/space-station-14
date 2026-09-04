@@ -1,4 +1,5 @@
 tiles-carpet-deco-floor = deco carpet
+tiles-carpet-art-floor = artsy carpet
 tiles-dark-bitile-floor = dark bi tile
 tiles-steel-bitile-floor = steel bi tile
 tiles-white-bitile-floor = white bi tile

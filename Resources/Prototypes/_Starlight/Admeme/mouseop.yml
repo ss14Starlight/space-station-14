@@ -67,7 +67,7 @@
 
 - type: entity
   name: mouff operative
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [SimpleMobBase, StripableInventoryBase, BaseSlicingRefinable]
   id: MobNyrMouseOps
   suffix: DO NOT MAP, Admeme
   description: THAT'S THE FUCKING MOUSE IT CAME FOR A FUCKING CHEESE
@@ -136,8 +136,8 @@
     needsHands: false
   - type: Hands
     showInHands: false
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatRat
       amount: 2
   - type: FactionException

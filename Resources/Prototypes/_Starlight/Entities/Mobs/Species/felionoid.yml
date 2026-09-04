@@ -41,7 +41,6 @@
       51: 0.7 # 60%
       68: 0.5 # 80%
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 3

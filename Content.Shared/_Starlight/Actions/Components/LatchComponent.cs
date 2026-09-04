@@ -65,6 +65,35 @@ public sealed partial class LatchComponent : Component
     public float DriftBreakTolerance = 0.5f;
 
     /// <summary>
+    /// Cap on the physics joint's max length. Matches baseline unarmed melee
+    /// range (1.5), not DriftBreakRange, so the target can always punch back.
+    /// </summary>
+    [DataField]
+    public float MaxJointLength = 1.5f;
+
+    /// <summary>
+    /// How far north the latcher can start and still count as behind the status
+    /// UI, which flips the panel to draw below the target instead.
+    /// </summary>
+    [DataField]
+    public float UiObscureNorthRange = 2.5f;
+
+    /// <summary>
+    /// Horizontal tolerance for the above check - latcher must start roughly
+    /// straight north, not far off to either side.
+    /// </summary>
+    [DataField]
+    public float UiObscureHorizontalTolerance = 2.5f;
+
+    /// <summary>
+    /// Physics joint keeping latcher and target from drifting apart (e.g. in
+    /// zero-g). Update()'s distance check remains as a backstop for physics-
+    /// bypassing separations like a hard teleport.
+    /// </summary>
+    [AutoNetworkedField, DataField]
+    public string? LatchJointId;
+
+    /// <summary>
     /// The starting, base duration of the latch, in seconds.
     /// </summary>
     [DataField]
@@ -146,6 +175,24 @@ public sealed partial class LatchComponent : Component
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public EntityUid? Target;
+
+    /// <summary>
+    /// Set once at latch start if the K9 began roughly north of the target,
+    /// which would put the K9 behind the TARGET's status UI. Target's client
+    /// draws its own panel below itself instead of above when this is true.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public bool TargetUiBelow;
+
+    /// <summary>
+    /// Set once at latch start if the target began roughly north of the K9
+    /// (i.e. the K9 started south of the target), which would put the target
+    /// behind the LATCHER's own status UI. Latcher's client draws its own
+    /// panel below itself instead of above when this is true.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public bool LatcherUiBelow;
+
 
     /// <summary>
     /// The specific, discrete end time designated for the latch.

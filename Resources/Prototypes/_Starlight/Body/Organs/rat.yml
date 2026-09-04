@@ -15,14 +15,9 @@
   description: "Yearns for cheese."
   suffix: Rat
   components:
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Sprite
     state: stomach

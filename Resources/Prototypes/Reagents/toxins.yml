@@ -80,10 +80,6 @@
   physicalDesc: reagent-physical-desc-nondescript
   allowedDepartments:
   - Medical
-  # Starlight start
-  allowedJobs:
-  - Zookeeper
-  # Starlight end
   metabolisms:
     Bloodstream:
       effects:
@@ -693,7 +689,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Vampire, Rodentia, Neocyte ] # SL - add Vampire, Rodentia / FH - add Neocyte
+          type: [ Animal, Vox, Vampire, Rodentia, Neocyte, Doll ] # SL - add Vampire, Rodentia and Doll / FH - add Neocyte
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -703,12 +699,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Rodentia, Neocyte ] # Starlight - add Vampire, Rodentia / FH - add Neocyte
+          type: [ Animal, Vox, Plant, Vampire, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Rodentia and Doll / FH - add Neocyte
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Rodentia, Neocyte ] # Starlight - add Vampire, Rodentia / FH - add Neocyte
+          type: [ Animal, Vox, Plant, Vampire, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Rodentia and Doll / FH - add Neocyte
           inverted: true
         damage:
           types:
@@ -744,7 +740,14 @@
           type: [ Neocyte ] # FH + Starlight
         reagent: Protein #FH
         amount: 0.5 #FH
-      # Starlight-Start: Cyclorite Metabolism
+      # Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: Protein
+        amount: 0.5
+      # Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
         - !type:ReagentCondition
@@ -799,10 +802,6 @@
   allowedDepartments:
   - Security
   - Medical
-  # Starlight start
-  allowedJobs:
-  - Zookeeper
-  # Starlight end
   color: "#AAAAAA"
   metabolisms:
     Bloodstream:
