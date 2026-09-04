@@ -390,6 +390,10 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         SyncGrid(AmountGrid);
     }
 
+    /// <summary>
+    /// Removes cached custom-amount state for the specified ChemMaster entity.
+    /// </summary>
+    /// <param name="id">The ChemMaster entity whose custom-amount state should be removed.</param>
     public static void ClearCustomForEntity(NetEntity id) => _customPerChemMaster.Remove(id);
 
     protected override void Dispose(bool disposing)
