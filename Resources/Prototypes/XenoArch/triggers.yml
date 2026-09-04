@@ -51,7 +51,7 @@
     TriggerLightbulb: 1
     TriggerPAI: 0.25
     TriggerMatch: 0.5
-    TriggerDice: 0.5
+    TriggerDice: 0.5 # Funky end
 
 - type: xenoArchTrigger
   id: TriggerMusic
