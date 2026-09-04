@@ -41,7 +41,7 @@
   - type: ZombieImmune
   - type: Climbing
   - type: Damageable
-  - type: Injurable
+  #- type: Injurable # Starlight, no Injurable component for now
     damageContainer: Biological
   - type: Destructible
     thresholds:

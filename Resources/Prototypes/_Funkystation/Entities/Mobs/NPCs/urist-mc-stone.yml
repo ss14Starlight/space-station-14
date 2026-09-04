@@ -32,7 +32,7 @@
   - type: Climbing
   - type: Damageable
     damageModifierSet: Rock
-  - type: Injurable
+  #- type: Injurable # Starlight, no Injurable component for now
     damageContainer: Inorganic
   - type: Destructible
     thresholds:

@@ -29,7 +29,7 @@
   - type: Climbing
   - type: Damageable
     damageModifierSet: Skeleton
-  - type: Injurable
+  #- type: Injurable # Starlight, no Injurable component for now
     damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
