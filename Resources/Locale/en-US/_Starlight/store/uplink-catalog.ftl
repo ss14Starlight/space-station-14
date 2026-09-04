@@ -161,3 +161,6 @@ uplink-chameleon-bundle-desc = A crate containing a backpack full of items that 
 
 uplink-reinforcement-radio-mothroach-name = Mothroach Reinforcement Teleporter
 uplink-reinforcement-radio-mothroach-desc =  Call in a trained mobroach to assist you. Comes with a single syndicate cigarette, a fedora, and a pair of cheap shades. Specializes in cleaning evidence and chittering.
+
+uplink-estoc-name = Estoc DMR
+uplink-estoc-desc = A designated marksman rifle, fitted with a mid-range optic for longer-range combat.
