@@ -56,7 +56,7 @@
             SecurityCadet: [ 5, 6 ]
             Brigmedic: [ 2, 2 ]
             Detective: [ 2, 2 ]
-            # K9: [ 2, 2 ]
+            K9: [ 2, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 4, 4 ]

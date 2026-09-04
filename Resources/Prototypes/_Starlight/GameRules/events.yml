@@ -234,3 +234,19 @@
         max: 4
   - type: DynamicRuleCost
     cost: 125
+
+# Funky Station
+- type: entity
+  parent: BaseStationEvent
+  id: UtilityLineRupture
+  name: Utility Line Rupture
+  components:
+  - type: UtilityLineRuptureRule
+  - type: StationEvent
+    earliestStart: 15
+    weight: 5
+    duration: null
+  - type: GameRule
+    delay:
+      min: 0
+      max: 0
