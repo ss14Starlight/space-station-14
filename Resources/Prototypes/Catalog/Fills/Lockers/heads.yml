@@ -106,19 +106,18 @@
       conditions:
       - !type:PlayerCountCondition
         max: 15
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
     # - id: PaperEndGreenshift
     #   conditions:
     #   - !type:GamemodeCondition
     #     presets:
     #     - Greenshift
-    #     - Sandbox
-    #endregion Starlight
+    #     - Sandbox # Starlight end
     - id: PlushieLizardJobCaptain
       prob: 0.02
 
