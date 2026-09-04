@@ -59,4 +59,4 @@
   suffix: Science
   components:
   - type: AccessReader
-    access: [["Science"]]
+    access: [["Research"]]
