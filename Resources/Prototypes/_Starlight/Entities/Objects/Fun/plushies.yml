@@ -286,7 +286,7 @@
 - type: entity
   parent: BaseLizardPlushie
   id: PlushieVictor # A_pet_tick
-  name: Victor Jr plushie
+  name: victor jr. plushie
   description: Junior's marketable attempt at making chefs reconsider using kobolds as a food source. It looks tasty though...
   components:
   - type: Sprite
