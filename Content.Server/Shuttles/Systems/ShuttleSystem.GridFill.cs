@@ -202,8 +202,7 @@ public sealed partial class ShuttleSystem
             {
                 if (group.MaximumDistance <= group.MinimumDistance)
                 {
-                    Log.Error($"Invalid grid spawn distance range for {ToPrettyString(stationUid)} / {path}: " +
-                              $"{group.MinimumDistance} to {group.MaximumDistance}");
+                    Log.Error($"Invalid grid spawn distance range for {ToPrettyString(stationUid)} / {path}: " + $"{group.MinimumDistance} to {group.MaximumDistance}");
                     return false;
                 }
 
