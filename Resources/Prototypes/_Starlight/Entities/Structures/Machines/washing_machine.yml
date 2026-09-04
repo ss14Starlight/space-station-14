@@ -27,7 +27,7 @@
 
 - type: entity
   id: WashingMachineEngineering
-  parent: [WashingMachine, BaseCivilianContraband]
+  parent: [WashingMachine, BaseEngineeringContraband]
   name: NanoTrasen Commercial Model-E washing machine
   suffix: Engineering
   components:
@@ -36,7 +36,7 @@
 
 - type: entity
   id: WashingMachineCargo
-  parent: [WashingMachine, BaseCivilianContraband]
+  parent: [WashingMachine, BaseCargoContraband]
   name: NanoTrasen Commercial Model-G washing machine
   suffix: Cargo
   components:
@@ -45,7 +45,7 @@
 
 - type: entity
   id: WashingMachineMedical
-  parent: [WashingMachine, BaseCivilianContraband]
+  parent: [WashingMachine, BaseMedicalContraband]
   name: NanoTrasen Commercial Model-M washing machine
   suffix: Medical
   components:
@@ -54,7 +54,7 @@
 
 - type: entity
   id: WashingMachineScience
-  parent: [WashingMachine, BaseCivilianContraband]
+  parent: [WashingMachine, BaseScienceContraband]
   name: NanoTrasen Commercial Model-R washing machine
   suffix: Science
   components:
