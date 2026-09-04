@@ -115,25 +115,25 @@
           range: 1, 2
         children:
         - id: MobMouse
-          weight: 50
-        - id: MobMouseBlue
-          weight: 10
-        - id: MobMouseRed
-          weight: 10
-        - id: MobMousePurple
-          weight: 10
-        - id: MobMouseOrange
-          weight: 10
-        - id: MobMouseGreen
-          weight: 10
+          weight: 29 # Starlight start
+        - id: MobMouse1
+          weight: 28
+        - id: MobMouse2
+          weight: 28
+        #- id: MobMousePurple
+        #  weight: 10
+        #- id: MobMouseOrange # Don't have these mice
+        #  weight: 10
+        #- id: MobMouseGreen
+        #  weight: 10 #  Starlight end
         - id: MobMouseStealth
           weight: 5
         - id: MobMouseRGB
           weight: 5
-        - id: MobMouseSnouse
+        - id: MobMouseCancer # Starlight, replace Snouse with Cancer Mouse
           weight: 5
-        - id: MobMouseBurnt
-          weight: 1
+        #- id: MobMouseBurnt # Starlight
+        #  weight: 1 # Starlight
 
 - type: entity
   id: XenoArtifactPetLikeSpawn
@@ -221,30 +221,6 @@
           - id: SparlightMobUristMcCorgi
 
 - type: entity
-  id: XenoArtifactEffectCowSpawn
-  parent: BaseXenoArtifactEffect
-  description: Spontaneous organic creation
-  components:
-  - type: XAEApplyComponents
-    applyIfAlreadyHave: true
-    refreshOnReactivate: true
-    components:
-    - type: EntityTableSpawner
-      deleteSpawnerAfterSpawn: false
-      table: !type:GroupSelector
-        children:
-        - id: MobCow
-          weight: 20
-        - id: MobCowChocolate
-          weight: 10
-        - id: MobCowStrawberry
-          weight: 10
-        - id: MobCowBanana
-          weight: 10
-        - id: MobCowPilk
-          weight: 5
-
-- type: entity
   id: XenoArtifactEffectFleshMonsterSpawn
   parent: BaseXenoArtifactEffect
   description: Spontaneous organic creation
@@ -298,6 +274,7 @@
         - id: ReagentSlimeNorepinephricAcid
         - id: ReagentSlimeEphedrine
         - id: ReagentSlimeRobustHarvest
+        - id: ReagentSlimePhenylpiperidine # Starlight
 
 - type: entity
   id: XenoArtifactEffectUristMcStoneSpawn
@@ -816,23 +793,31 @@
       table: !type:GroupSelector
         children:
         - id: GassyStoneWaterVapor
-          weight: 20
+          weight: 15 # Starlight
         - id: GassyStoneCarbonDioxide
-          weight: 20
+          weight: 15 # Starlight
         - id: GassyStoneAmmonia
-          weight: 20
+          weight: 15 # Starlight
         - id: GassyStonePlasma
-          weight: 10
+          weight: 15 # Starlight
         - id: GassyStoneNitrousOxide
           weight: 10
+        - id: GassyStonePluoxium # Starlight start
+          weight: 9
+        - id: GassyStoneUlnitranium
+          weight: 9
+        - id: GassyStoneHalon
+          weight: 9 # Starlight end
         - id: GassyStoneFrezon
-          weight: 5
+          weight: 4 # Starlight
         - id: GassyStoneBZ
-          weight: 5
+          weight: 4 # Starlight
         - id: GassyStoneTritium
           weight: 1
         - id: GassyStoneHealium
           weight: 1
+        - id: GassyStoneZXA # Starlight
+          weight: 1 # Starlight
 
 - type: entity
   id: XenoArtifactEffectEndlessPitcherSpawn
