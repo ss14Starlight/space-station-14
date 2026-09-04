@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._Starlight.Commands;
+using Content.Server._Starlight.Toolshed;
 using Content.Server.Administration;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -25,7 +27,7 @@ public sealed class AtmosCommand : ToolshedCommand
 
         if (!TryComp<AtmosDeviceComponent>(uid, out var device))
         {
-            ctx.WriteMarkup($"[color=red]Entity {uid} either doesn't exist or is not an atmos device.[/color]");
+            CommandMarkup.Error(ctx, $"Entity {uid} either doesn't exist or is not an atmos device.");
             return uid;
         }
 
@@ -80,7 +82,7 @@ public sealed class AtmosCommand : ToolshedCommand
         atmos = null;
         if (!TryComp(uid, out grid))
         {
-            ctx.WriteMarkup($"[color=red]Entity {uid} doesn't exist or is not a grid.[/color]");
+            CommandMarkup.Error(ctx, $"Entity {uid} doesn't exist or is not a grid.");
             return false;
         }
         atmos = EnsureComp<GridAtmosphereComponent>(uid);

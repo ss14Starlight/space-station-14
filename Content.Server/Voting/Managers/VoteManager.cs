@@ -214,7 +214,7 @@ namespace Content.Server.Voting.Managers
             var start = _timing.RealTime;
             var end = start + options.Duration;
             var reg = new VoteReg(id, entries, options.Title, options.InitiatorText,
-                options.InitiatorPlayer, start, end, options.VoterEligibility, options.DisplayVotes, options.TargetEntity);
+                options.InitiatorPlayer, start, end, options.VoterEligibility, options.DisplayVotes, options.TargetEntity, options.PlayerFilter); // Starlight edit
 
             var handle = new VoteHandle(this, reg);
 
@@ -250,7 +250,7 @@ namespace Content.Server.Voting.Managers
             msg.VoteId = v.Id;
             msg.VoteActive = !v.Finished;
 
-            if (!CheckVoterEligibility(player, v.VoterEligibility))
+            if (!CheckVoterEligibility(player, v.VoterEligibility, v.PlayerFilter)) // Starlight edit
             {
                 msg.VoteActive = false;
                 player.Channel.SendMessage(msg);
@@ -388,7 +388,7 @@ namespace Content.Server.Voting.Managers
             // Remove ineligible votes that somehow slipped through
             foreach (var playerVote in v.CastVotes.ToList()) //Starlight-edit - Who at upstream forgot to test this?!
             {
-                if (!CheckVoterEligibility(playerVote.Key, v.VoterEligibility))
+                if (!CheckVoterEligibility(playerVote.Key, v.VoterEligibility, v.PlayerFilter)) // Starlight edit
                 {
                     v.Entries[playerVote.Value].Votes -= 1;
                     v.CastVotes.Remove(playerVote.Key);
@@ -428,7 +428,7 @@ namespace Content.Server.Voting.Managers
             DirtyCanCallVoteAll();
         }
 
-        public bool CheckVoterEligibility(ICommonSession player, VoterEligibility eligibility)
+        public bool CheckVoterEligibility(ICommonSession player, VoterEligibility eligibility, List<ICommonSession>? filter = null) // Starlight edit
         {
             if (eligibility == VoterEligibility.All)
                 return true;
@@ -478,6 +478,13 @@ namespace Content.Server.Voting.Managers
 
             }
             // End Starlight - Cosmic Cult & Crew
+            // Starlight begin - Filter
+            if (eligibility == VoterEligibility.Filter && filter is not null)
+            {
+                if (!filter.Contains(player))
+                    return false;
+            }
+            // Starlight end
 
             return true;
         }
@@ -532,6 +539,7 @@ namespace Content.Server.Voting.Managers
             public readonly VoterEligibility VoterEligibility;
             public readonly bool DisplayVotes;
             public readonly NetEntity? TargetEntity;
+            public readonly List<ICommonSession>? PlayerFilter; // Starlight
 
             public bool Cancelled;
             public bool Finished;
@@ -542,7 +550,7 @@ namespace Content.Server.Voting.Managers
             public ICommonSession? Initiator { get; }
 
             public VoteReg(int id, VoteEntry[] entries, string title, string initiatorText,
-                ICommonSession? initiator, TimeSpan start, TimeSpan end, VoterEligibility voterEligibility, bool displayVotes, NetEntity? targetEntity)
+                ICommonSession? initiator, TimeSpan start, TimeSpan end, VoterEligibility voterEligibility, bool displayVotes, NetEntity? targetEntity, List<ICommonSession>? playerFilter = null) // Starlight edit
             {
                 Id = id;
                 Entries = entries;
@@ -554,6 +562,7 @@ namespace Content.Server.Voting.Managers
                 VoterEligibility = voterEligibility;
                 DisplayVotes = displayVotes;
                 TargetEntity = targetEntity;
+                PlayerFilter = playerFilter; // Starlight
             }
         }
 
@@ -578,7 +587,8 @@ namespace Content.Server.Voting.Managers
             GhostMinimumPlaytime, // Player needs to be a ghost, with a minimum playtime and deathtime as defined by votekick CCvars.
             MinimumPlaytime, //Player needs to have a minimum playtime and deathtime as defined by votekick CCvars.
             CosmicCult, // Starlight - Cosmic Cult
-            NonAntag // Starlight - Exclude antags
+            NonAntag, // Starlight - Exclude antags
+            Filter // Starlight - Use a filter instead of a preset like the options above.
         }
 
         #endregion
