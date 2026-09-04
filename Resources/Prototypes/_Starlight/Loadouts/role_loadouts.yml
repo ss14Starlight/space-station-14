@@ -45,7 +45,7 @@
   - Scarves
   - Pins
   - LuxuryPens
-  - LawyerJobTrinkets
+  #- LawyerJobTrinkets
   - Survival
   - GroupSpeciesBreathTool
 
@@ -84,7 +84,7 @@
   - Scarves
   - Pins
   - Pens
-  - AssistantJobTrinkets
+  #- AssistantJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -261,25 +261,10 @@
   - Scarves
   - Pins
   - Pens
-  - PerformerJobTrinkets
+  #- PerformerJobTrinkets
   - GroupSpeciesBreathTool
 
 # Wildcards
-- type: roleLoadout
-  id: JobZookeeper
-  groups:
-  - GroupTankHarness # for Vox
-  - CommonBackpack
-  - CivilianShoes
-  - Glasses
-  - Survival
-  - Trinkets
-  - Scarves
-  - Pins
-  - Pens
-  - ZookeeperJobTrinkets
-  - GroupSpeciesBreathTool
-
 - type: roleLoadout
   id: JobBoxer
   groups:
@@ -293,7 +278,7 @@
   - Scarves
   - Pins
   - Pens
-  - BoxerJobTrinkets
+  #- BoxerJobTrinkets
   - GroupSpeciesBreathTool
 
 # Antagonist Loadouts

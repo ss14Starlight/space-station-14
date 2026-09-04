@@ -149,7 +149,7 @@
           - !type:PlayerCountCondition
             min: 40
         - id: Devil
-          prob: 0.05
+          prob: 0.10
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -532,7 +532,7 @@
           - !type:PlayerCountCondition
             min: 40
         - id: Devil
-          prob: 0.05
+          prob: 0.10
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition

@@ -90,8 +90,10 @@ guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
 guide-entry-sl-security-sop-specialsituations = Special Situations
 guide-entry-sl-security-sop-enemy-of-corporation = Enemies of the Corporation
 guide-entry-sl-security-sop-hostage-situations = Hostage Situations
+guide-entry-sl-security-sop-criminal-status = Criminal Status
 
 guide-entry-rules-supernatural-entities = Supernatural Entities
+guide-entry-stirstir = Stir Stir
 
 guide-entry-sl-legal-sop-intro = Legal
 
@@ -184,12 +186,27 @@ guide-entry-records = Character Records
 guide-entry-tools-combination-locks = Combination Locks
 
 # Roleplay
-guide-entry-roleplay-intro = Roleplay Guides
+guide-entry-roleplay-intro = How To Roleplay
 guide-entry-roleplay-01 = The Basics
 guide-entry-roleplay-02 = Collaborative Storytelling
 guide-entry-roleplay-03 = Losing Is Fun
 guide-entry-roleplay-04 = Acting With Mechanics
 
+# Corporate Law
+guide-entry-corporate-law = Corporate Law
+guide-entry-treatment-of-prisoners = Treatment of Prisoners
+guide-entry-search-and-seizure = Search and Seizure
+guide-entry-permits = Permits
+guide-entry-implantation = Implantation
+guide-entry-sentencing = Sentencing
+guide-entry-parole = Parole
+guide-entry-legal-representation = Legal Representation
+guide-entry-penal-code = Penal Code
+guide-entry-civil-code = Civil Code
+guide-entry-crime-list = Crime List
+guide-entry-jurisdiction = Jurisdiction
+guide-entry-petty-disputes = Petty Disputes
+guide-entry-plea-bargains = Plea Bargains
 # Engineering
 guide-entry-gasses = Mundane Gasses
 guide-entry-gasses2 = Key Gasses
