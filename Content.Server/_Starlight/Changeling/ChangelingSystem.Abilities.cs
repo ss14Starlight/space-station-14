@@ -47,10 +47,8 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private LanguageSystem _language = default!;
     [Dependency] private SharedFlashSystem _flashSystem = default!;
-    #region "Starlight"
     [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private StomachSystem _stomach = default!;
-    #endregion
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
@@ -571,7 +569,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         var stomachs = _body.GetBodyOrganEntityComps<StomachComponent>(uid);
         if (stomachs.Count == 0)
             return;
-        var stomach = stomachs[0]; 
+        var stomach = stomachs[0];
         var ichorInjection = new Solution("Ichor", 10f);
         var reagents = new Dictionary<string, FixedPoint2>
         {
