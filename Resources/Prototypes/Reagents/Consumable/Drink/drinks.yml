@@ -607,6 +607,13 @@
       effects:
       - !type:SatiateHunger
         factor: 4
+      # Starlight start, add drink temperature adjustment
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          max: 323.15
+        amount: 500
+      # Starlight end
 
 - type: reagent
   id: ArnoldPalmer
