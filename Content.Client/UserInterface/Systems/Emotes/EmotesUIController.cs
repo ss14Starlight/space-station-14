@@ -184,7 +184,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
             var actionOption = new RadialMenuActionOption<CloudEmotePrototype>(HandleCloudRadialButtonClick, emote)
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(emote.Icon),
-                ToolTip = emote.ID // Fixing double localization, not Loc.GetString
+                ToolTip = Loc.GetString(emote.Name)
             };
             list.Add(actionOption);
         }
