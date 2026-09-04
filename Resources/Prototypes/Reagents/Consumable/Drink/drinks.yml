@@ -18,6 +18,11 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          max: 323.15
+        amount: 2000
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/coffeeglass.rsi
     state: icon_empty
@@ -38,6 +43,14 @@
     Digestion:
       metabolites:
         Theobromine: 0.1
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          max: 323.15
+        amount: 2000
 
 - type: reagent
   id: Cream
@@ -109,6 +122,11 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          max: 323.15
+        amount: 2000
 
 - type: reagent
   id: GreenTea
@@ -124,6 +142,16 @@
   metamorphicMaxFillLevels: 4
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          max: 323.15
+        amount: 2000
 
 - type: reagent
   id: Grenadine
@@ -406,6 +434,14 @@
     Digestion:
       metabolites:
         Theobromine: 0.1
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          max: 323.15
+        amount: 2000
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/teaglass.rsi
     state: icon_empty
@@ -516,6 +552,11 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Plant ]
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 248.15
+        amount: -2000
       # Starlight end
   plantMetabolism:
   - !type:PlantAdjustWater
