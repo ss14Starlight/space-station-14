@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge]
   id: BaseMobDoll
   abstract: true
   components:
@@ -50,7 +50,7 @@
     generateShellPieceAction: ActionGenerateShellPiece
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge]
   id: BaseMobDollFresh
   description: Where did that shell come from? It is all soft and spongy...
   abstract: true

@@ -112,7 +112,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         _standoutReagents = [.. _prototypeManager.EnumeratePrototypes<ReagentPrototype>().Where(x => x.Standsout).Select(x => x.ID)];
     }
 
-    private void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args)
+    protected virtual void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args) // Starlight
     {
         // The changes are already networked as part of the same game state.
         if (_timing.ApplyingState)

@@ -14,6 +14,19 @@
 
 - type: entity
   parent: Solution
+  id: SolutionOrganNutrimentDoll
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 15
+
+- type: entity
+  parent: Solution
   id: SolutionOrganSlime
   categories: [ HideSpawnMenu ]
   components:
@@ -50,6 +63,19 @@
       reagents:
       - ReagentId: UncookedAnimalProteins
         Quantity: 5
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganFoodMeatDoll
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 15
 
 - type: entity
   parent: Solution
@@ -163,6 +189,16 @@
     id: stomach
     solution:
       maxVol: 80
+
+- type: entity
+  parent: Solution
+  id: SolutionOrganStomach100
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 100
 
 - type: entity
   id: BaseOrganBrain

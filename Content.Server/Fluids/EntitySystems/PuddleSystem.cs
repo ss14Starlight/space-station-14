@@ -2,7 +2,6 @@ using Content.Server.Fluids.Components;
 using Content.Server.Spreader;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Database;
@@ -14,17 +13,12 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
-using Content.Shared.Inventory;
 using Content.Shared._Funkystation.Fluids;
-using Content.Shared.Gravity;
-using Content.Shared.Standing;
-using Content.Shared.StepTrigger.Systems;
 using Content.Shared._Funkystation.Footprints;
+using Content.Shared._Funkystation.WallStains;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -281,6 +275,10 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         {
             var stainEv = new SpilledOnEvent(entity.Owner, splitSol.Clone());
             RaiseLocalEvent(args.Slipped, stainEv);
+
+            // Funky Wall Stains
+            var splashEv = new SplashOnWallEvent(Transform(entity.Owner).Coordinates, splitSol.Clone());
+            RaiseLocalEvent(ref splashEv);
         }
         // Funky - End
     }
@@ -463,6 +461,10 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         _color.RaiseEffect(spilled.GetColor(_prototypeManager), targets,
             Filter.Pvs(entity, entityManager: EntityManager));
+
+        // Funky Wall Stains
+        var splashEv = new SplashOnWallEvent(coordinates, spilled.Clone());
+        RaiseLocalEvent(ref splashEv);
 
         return TrySpillAt(coordinates, spilled, out puddleUid, sound);
     }
