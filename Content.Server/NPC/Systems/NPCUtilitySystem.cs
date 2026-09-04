@@ -179,6 +179,10 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 if (!_ingestion.CanConsume(owner, targetUid))
                     return 0f;
 
+                // Starlight - do not drink liquids to attempt to satiate hunger
+                if (_ingestion.GetEdibleType(targetUid) == IngestionSystem.Drink)
+                    return 0f;
+
                 var avoidBadFood = !HasComp<IgnoreBadFoodComponent>(owner);
 
                 // only eat when hungry or if it will eat anything

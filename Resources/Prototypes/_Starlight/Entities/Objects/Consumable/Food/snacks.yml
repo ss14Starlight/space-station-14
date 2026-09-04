@@ -38,13 +38,12 @@
     tags:
     - FoodSnack
     - ReptilianFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20 # Room for extra condiments
-        reagents:
-        - ReagentId: Sugar
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 15
   - type: FlavorProfile
     flavors:
     - sweet
@@ -86,13 +85,12 @@
     size: Small
     storedRotation: -45
     storedOffset: 0,-1
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-          - ReagentId: Sugar
-            Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+        - ReagentId: Sugar
+          Quantity: 10
   - type: RefillableSolution
     solution: food
   - type: SolutionContainerVisuals
@@ -210,6 +208,61 @@
       - stinky
 
 - type: entity
+  parent: BaseItem
+  id: FoodSnackBloodBrick
+  name: haemobrick
+  description: A carefully synthesized brick of condensed blood. Tastes like you would expect.
+  components:
+  - type: Item
+    size: Small
+    storedOffset: -1,0
+    heldPrefix: nutribrick
+  - type: Tag
+    tags:
+      - FoodSnack
+  - type: Sprite
+    sprite: Objects/Consumable/Food/snacks.rsi
+    state: nutribrick
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodPacketMRETrash
+      - id: FoodSnackBloodBrickOpen
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+    requireHands: false
+  - type: ItemPrice
+    priceCategory: food_medium
+
+- type: entity
+  parent: FoodSnackBase
+  id: FoodSnackBloodBrickOpen
+  name: haemobrick
+  description: A carefully synthesized brick of condensed blood. Tastes like you would expect.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - blood
+  - type: Item
+    size: Small
+    storedOffset: -1,0
+    heldPrefix: nutribrick-open
+  - type: Tag
+    tags:
+      - Blood
+  - type: Sprite
+    state: nutribrick-open
+    color: '#880000'
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 25
+      reagents:
+      - ReagentId: Blood
+        Quantity: 20
+  - type: ItemPrice
+    priceCategory: food_medium
+
+- type: entity
   parent: FoodSnackBase
   id: FoodSnackCandyApple
   name: toffee apple
@@ -223,15 +276,14 @@
   - type: Tag
     tags:
     - FoodSnack
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Sugar
-          Quantity: 10
-        - ReagentId: Nutriment
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 10
+      - ReagentId: Nutriment
+        Quantity: 5
   - type: FlavorProfile
     flavors:
     - sweet
