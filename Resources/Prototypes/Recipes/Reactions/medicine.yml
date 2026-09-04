@@ -576,7 +576,7 @@
   reactants:
     ZXA:
       amount: 10
-    Salt:
+    TableSalt:
       amount: 10
     Doxarubixadone:
       amount: 1
