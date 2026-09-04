@@ -4135,6 +4135,17 @@
     understands:
     - GalacticCommon
     - Sylvan
+  # Starlight Start
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-nymph-name
+    description: ghost-role-information-nymph-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleCritterHarmless # Starlight-edit - FreeAgentHarmless -> CritterHarmless
+  - type: GhostTakeoverAvailable
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs

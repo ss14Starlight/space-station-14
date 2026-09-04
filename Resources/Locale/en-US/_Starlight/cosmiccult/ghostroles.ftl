@@ -76,3 +76,7 @@ ghost-role-mindsink-wiped-device = The mind was snuffed out.
 ghost-role-mindsink-stop-searching-verb-text = Stop Seeking
 ghost-role-mindsink-stopped-searching = Noöspheric resonance halted.
 ghost-role-mindsink-slot-component-slot-name-brain = Brain
+
+# OTHER
+ghost-role-information-nymph-name = Diona Nymph
+ghost-role-information-nymph-description = A feral diona nymph that has found it's way into the station.

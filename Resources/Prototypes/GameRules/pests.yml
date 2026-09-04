@@ -9,6 +9,7 @@
     - id: MouseMigration
     - id: MoproachMigration
     - id: NymphMigration # Starlight
+    - id: CrabMigration # Starlight
 
 - type: entityTable
   id: SpicyPestEventsTable
@@ -161,10 +162,27 @@
     startAudio:
       path: /Audio/Announcements/attention.ogg
     earliestStart: 15
-    weight: 6
+    weight: 3
     duration: 50
   - type: VentCrittersRule
     entries:
     - id: MobDionaNymph
+      prob: 0.02
+
+- type: entity
+  id: CrabMigration
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    globalAnnouncement: false
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 15
+    weight: 3
+    duration: 50
+  - type: VentCrittersRule
+    entries:
+    - id: MobCrab
       prob: 0.02
 # Starlight End
