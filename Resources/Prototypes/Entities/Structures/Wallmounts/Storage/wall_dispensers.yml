@@ -46,7 +46,7 @@
     solution: tank
 
 - type: entity
-  parent: BaseDispenser
+  parent: [Solution3840, BaseDispenser] # Starlight - was BaseDispenser (960u)
   id: CleanerDispenser
   categories: [ ShouldMapStation ] # Starlight
   name: space cleaner dispenser
@@ -65,7 +65,7 @@
     solution:
       reagents:
       - ReagentId: SpaceCleaner
-        Quantity: 960
+        Quantity: 3840 # Starlight
 
 - type: entity
   parent: BaseDispenser
