@@ -19,6 +19,8 @@
     - MilkChocolate
     - MilkStrawberry
     - MilkBanana
+    - MilkOat # Starlight, I mean, it's technically Milk
+    - MilkSoy # Starlight
 
 - type: xenoArchTrigger
   id: TriggerBleach

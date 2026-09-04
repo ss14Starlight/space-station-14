@@ -4,7 +4,7 @@
   group: Drinks
   desc: reagent-desc-milk-chocolate
   physicalDesc: reagent-physical-desc-opaque
-  flavor: milk
+  flavor: chocolateMilk # Starlight
   color: "#81522D"
   recognizable: true
   plantMetabolism:
@@ -24,7 +24,7 @@
   group: Drinks
   desc: reagent-desc-milk-strawberry
   physicalDesc: reagent-physical-desc-opaque
-  flavor: milk
+  flavor: strawberryMilk # Starlight
   color: "#FFA5C6"
   recognizable: true
   plantMetabolism:
@@ -44,7 +44,7 @@
   group: Drinks
   desc: reagent-desc-milk-banana
   physicalDesc: reagent-physical-desc-opaque
-  flavor: milk
+  flavor: bananaMilk # Starlight
   color: "#FFF7AD"
   recognizable: true
   plantMetabolism:

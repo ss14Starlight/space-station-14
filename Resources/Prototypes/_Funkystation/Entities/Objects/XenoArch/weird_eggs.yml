@@ -31,7 +31,7 @@
   parent: WeirdEggBase
   id: WeirdEggGold
   name: golden egg
-  description: An golden egg!
+  description: A golden egg! # Starlight
   components:
   - type: Sprite
     sprite: _Funkystation/Objects/XenoArch/weirdeggs.rsi
@@ -47,7 +47,7 @@
   parent: WeirdEggBase
   id: WeirdEggUranium
   name: uranium egg
-  description: An uranium egg!
+  description: A uranium egg! # Starlight
   components:
   - type: Sprite
     sprite: _Funkystation/Objects/XenoArch/weirdeggs.rsi
@@ -63,7 +63,7 @@
   parent: WeirdEggBase
   id: WeirdEggPlasma
   name: plasma egg
-  description: An plasma egg!
+  description: A plasma egg! # Starlight
   components:
   - type: Sprite
     sprite: _Funkystation/Objects/XenoArch/weirdeggs.rsi
