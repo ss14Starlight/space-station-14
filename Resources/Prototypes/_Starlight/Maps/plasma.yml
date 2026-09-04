@@ -54,13 +54,14 @@
             Scientist: [ 3, 3 ]
             Roboticist: [ 1, 1 ]
             ResearchAssistant: [ 4, 4 ] #intern, not counted
-            #security (11 - 13)
+            #security (12 - 14)
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
             SecurityOfficer: [ 4, 6 ]
             SecurityCadet: [ 2, 3 ] #intern, not counted
             Brigmedic: [ 1, 1 ]
             Detective: [ 1, 2 ] #good cop, bad cop
+            K9: [ 1, 1 ]
             #supply (12 - 15)
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ] #the salvagers yearn for the mines
