@@ -528,7 +528,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
                     break;
                 }
-			// Persistence End
+            // Persistence End
 
             default:
                 throw new NotImplementedException();
