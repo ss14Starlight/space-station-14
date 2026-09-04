@@ -6,7 +6,6 @@
   - type: Tag
     tags:
     - Knife
-  - type: Sharp
   - type: Utensil
     types:
       - Knife
@@ -411,7 +410,6 @@
     components:
     - type: Execution
       #doAfterDuration: 4.0 # Starlight - commented out as our ExecutionComponent is somehow wildly different from upstream's
-    - type: Sharp
     - type: Utensil
       types:
       - Knife

@@ -5,15 +5,18 @@ using Content.Shared.DoAfter;
 using Content.Shared.Execution;
 using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Kitchen.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Tools;
+using Content.Shared.Tools.Components;
+using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Execution;
 
@@ -28,19 +31,23 @@ public sealed class SharedExecutionSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedGunSystem _gunSystem = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedToolSystem _toolSystem = default!;
+
+    private static readonly ProtoId<ToolQualityPrototype> SlicingQuality = "Slicing";
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SharpComponent, GetVerbsEvent<UtilityVerb>>(OnGetInteractionVerbsMelee);
+        SubscribeLocalEvent<ToolComponent, GetVerbsEvent<UtilityVerb>>(OnGetInteractionVerbsMelee);
         SubscribeLocalEvent<GunComponent, GetVerbsEvent<UtilityVerb>>(OnGetInteractionVerbsGun);
     }
 
-    private void OnGetInteractionVerbsMelee(EntityUid uid, SharpComponent comp, GetVerbsEvent<UtilityVerb> args)
+    private void OnGetInteractionVerbsMelee(EntityUid uid, ToolComponent comp, GetVerbsEvent<UtilityVerb> args)
     {
-        if (args.Hands == null || args.Using == null || !args.CanAccess || !args.CanInteract)
+        if (args.Hands == null || args.Using == null || !args.CanAccess || !args.CanInteract ||
+            !_toolSystem.HasQuality(uid, SlicingQuality, comp))
             return;
 
         var attacker = args.User;
@@ -179,6 +186,9 @@ public sealed class SharedExecutionSystem : EntitySystem
     public bool CanBeExecutedWithMelee(EntityUid weapon, EntityUid victim, EntityUid user)
     {
         if (!CanBeExecutedWithAny(victim, user))
+            return false;
+
+        if (!TryComp<ToolComponent>(weapon, out var tool) || !_toolSystem.HasQuality(weapon, SlicingQuality, tool))
             return false;
 
         // We must be able to actually hurt people with the weapon

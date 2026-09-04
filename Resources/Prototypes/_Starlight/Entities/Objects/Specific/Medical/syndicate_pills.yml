@@ -5,13 +5,13 @@
   id: PillLead5
   suffix: Lead 5u
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Lead
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Lead
+        Quantity: 5
 
 # Here for consistency, but ideally if you're going to map these, use the 5u version instead.
 - type: entity
@@ -20,13 +20,13 @@
   id: PillLead
   suffix: Lead 15u
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Lead
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Lead
+        Quantity: 15
 
 # Desoxyephedrine
 - type: entity
@@ -35,13 +35,13 @@
   id: PillDesoxyephedrine5
   suffix: Desoxyephedrine 5u
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Desoxyephedrine
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Desoxyephedrine
+        Quantity: 5
 
 # Here for consistency, but ideally if you're going to map these, use the 5u version instead.
 - type: entity
@@ -50,11 +50,10 @@
   id: PillDesoxyephedrine
   suffix: Desoxyephedrine 15u
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Desoxyephedrine
-          Quantity: 15
-
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Desoxyephedrine
+        Quantity: 15

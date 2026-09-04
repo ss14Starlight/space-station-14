@@ -10,8 +10,9 @@
       maxItemSize: Small
       blacklist:
         components:
-          - Sharp
           - MindContainer
+        toolQuality:
+          - Slicing
     - type: ContainerContainer
       containers:
         storagebase: !type:Container

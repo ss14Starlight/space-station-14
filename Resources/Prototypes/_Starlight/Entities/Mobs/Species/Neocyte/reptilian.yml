@@ -37,7 +37,6 @@
   - type: BodyEmotes
     soundsId: ReptilianBodyEmotes
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatLizard
       amount: 5

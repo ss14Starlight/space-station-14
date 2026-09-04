@@ -68,6 +68,7 @@
     amount: 0.25
   - !type:PlantAdjustWater
     amount: 0.7
+  flammability: 1 # Starlight, I mean, it's alcohol!
 
 - type: reagent
   id: BaseJuice

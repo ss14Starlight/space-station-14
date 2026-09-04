@@ -168,6 +168,7 @@
     - id: trayScanner # Starlight: Add t-ray scanner to atmos lockers
     - id: ClothingHandsGlovesColorYellow # Starlight: Add insulated gloves to atmos lockers
     - id: HoloprojectorEngineering # Starlight
+    - id: FireExtinguisherAtmos # Starlight
     - id: PlushieLizardJobAtmospherictechnician
       prob: 0.02
 

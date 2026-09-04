@@ -24,6 +24,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 #region Starlight
 using Content.Shared.Body.Components;
+using Content.Shared.Tools.Components;
 #endregion
 
 namespace Content.Shared.Changeling.Systems;
@@ -261,8 +262,8 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
             _changelingIdentitySystem.CloneToPausedMap((ent, identityStorage), target.Value);
 
             if (_inventorySystem.TryGetSlotEntity(target.Value, "jumpsuit", out var item)
-                && TryComp<ButcherableComponent>(item, out var butcherable))
-                RipClothing(target.Value, (item.Value, butcherable));
+                && TryComp<ToolRefinableComponent>(item, out var refinable)) // Starlight
+                RipClothing(target.Value, (item.Value, refinable)); // Starlight
         }
 
         #region Starlight ling devour.
@@ -273,9 +274,9 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         Dirty(ent);
     }
 
-    private void RipClothing(EntityUid victim, Entity<ButcherableComponent> item)
+    private void RipClothing(EntityUid victim, Entity<ToolRefinableComponent> item) // Starlight
     {
-        var spawnEntities = EntitySpawnCollection.GetSpawns(item.Comp.SpawnedEntities, _robustRandom);
+        var spawnEntities = EntitySpawnCollection.GetSpawns(item.Comp.RefineResult, _robustRandom); // Starlight
 
         foreach (var proto in spawnEntities)
         {

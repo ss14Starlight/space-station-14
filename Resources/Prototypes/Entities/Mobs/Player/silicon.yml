@@ -85,6 +85,7 @@
     - sprite: Mobs/Silicon/station_ai.rsi
       state: default
   - type: ShowJobIcons
+  - type: ShowCrewIcons
   #region Starlight
   - type: StationAIShuntable
   #endregion Starlight
@@ -113,6 +114,7 @@
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
   - type: ShowJobIcons
+  - type: ShowCrewIcons
 
 # Ai
 - type: entity

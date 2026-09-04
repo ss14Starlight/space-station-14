@@ -1,0 +1,161 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "unbroken_head_gold",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_head_repaired",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_head",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_arm_gold",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_arm_repaired",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_arm",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_foot_gold",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_foot_repaired",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_foot",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_hand_gold",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_hand_repaired",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_hand",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_leg_gold",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_leg_repaired",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_l_leg",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_arm_gold",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_arm_repaired",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_arm",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_foot_gold",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_foot_repaired",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_foot",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_hand_gold",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_hand_repaired",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_hand",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_leg_gold",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_leg_repaired",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_r_leg",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_torso_gold",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_torso_repaired",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "unbroken_torso",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        }
+    ]
+}

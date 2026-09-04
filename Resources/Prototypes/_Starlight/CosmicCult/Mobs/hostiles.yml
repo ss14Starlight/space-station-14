@@ -93,7 +93,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Entropy
-        Quantity: 100
+        Quantity: 200
     maxBleedAmount: 10.75
     bleedReductionAmount: 0.1
     bloodlossDamage:

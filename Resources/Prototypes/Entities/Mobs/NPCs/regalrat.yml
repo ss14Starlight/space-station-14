@@ -1,7 +1,7 @@
 - type: entity
   name: rat king
   id: MobRatKing
-  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobRat
+  parent: [ SimpleMobBase, MobCombat, BaseSlicingRefinable ] # Starlight Edit: Removed BaseMobRat
   description: He's da rat. He make da roolz.
   components:
   # Starlight-start: Languages
@@ -125,8 +125,8 @@
   - type: MobsterAccent
   - type: Speech
     speechVerb: SmallMob
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: ClothingHeadHatFancyCrown #how did that get there?
       amount: 1
   - type: MobPrice
@@ -142,9 +142,8 @@
   - type: Grammar
     attributes:
       gender: male
-  - type: Sharp
   - type: Tool
-    qualities: [ Slicing ]
+    qualities: [Slicing] # Starlight
 
 - type: entity
   id: MobRatKingBuff
@@ -186,7 +185,7 @@
 - type: entity
   name: rat servant
   id: MobRatServant
-  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobRat
+  parent: [ SimpleMobBase, MobCombat, BaseSlicingRefinable ] # Starlight Edit: Removed BaseMobRat
   description: He's da mini rat. He don't make da roolz.
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
@@ -310,8 +309,8 @@
         Base: smallrat_dead #SLEdit
       Dead:
         Base: smallrat_splat #SLEdit
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatRat
       amount: 1
   - type: Vocal
