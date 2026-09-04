@@ -575,9 +575,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         {
             { "TranexamicAcid", 5f }
         };
-        if (_stomach.TryTransferSolution(stomach.Owner, ichorInjection) && TryInjectReagents(uid, reagents))
-            _popup.PopupEntity(Loc.GetString("changeling-fleshmend"), uid, uid);
-        else return;
+        if (!_stomach.TryTransferSolution(stomach.Owner, ichorInjection))
+            return;
+        TryInjectReagents(uid, reagents);
+        _popup.PopupEntity(Loc.GetString("changeling-fleshmend"), uid, uid);
         PlayMeatySound(uid, comp);
     }
     public void OnLastResort(EntityUid uid, ChangelingComponent comp, ref ActionLastResortEvent args)
@@ -683,6 +684,17 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
 
+        if (lingAction.RequireStomach)
+        {
+            var stomachs = _body.GetBodyOrganEntityComps<StomachComponent>(uid);
+            if (stomachs.Count == 0)
+            {
+                _popup.PopupEntity(Loc.GetString("changeling-action-fail-nostomach"), uid, uid);
+                ev.Cancelled = true;
+                return;
+            }
+        }
+        
         UpdateChemicals(uid, comp, -lingAction.ChemicalCost);
         UpdateBiomass(uid, comp, -lingAction.BiomassCost);
     }
