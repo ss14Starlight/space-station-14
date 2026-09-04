@@ -10,7 +10,7 @@ public sealed partial class CloudEmotePrototype : IPrototype
     [IdDataField]
     public string ID { get; private set; } = default!;
 
-    // Localization string for the emote name displayed in the radial menu.
+    /// <summary>Localization string for the emote name displayed in the radial menu.</summary>
     [DataField(required: true)]
     public string Name = default!;
 
