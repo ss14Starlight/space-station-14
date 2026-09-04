@@ -120,4 +120,11 @@ public sealed class ModernChemMasterBui(EntityUid owner, Enum uiKey) : BoundUser
         _window?.SetSelectedAmount(castState.TransferAmount);
         _window?.UpdateState(castState); // Update window state
     }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && _window != null && EntMan.GetNetEntity(Owner) is {} id)
+            ModernChemMasterWindow.ClearCustomForEntity(id);
+        base.Dispose(disposing);
+    }
 }

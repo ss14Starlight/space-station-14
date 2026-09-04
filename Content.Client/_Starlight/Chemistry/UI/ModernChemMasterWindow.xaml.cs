@@ -211,6 +211,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                 OffStateText = string.Empty,
                 OnStateText = string.Empty,
                 Pressed = _classicMode,
+                ToolTip = Loc.GetString("chem-master-window-mode-tooltip"),
             };
 
             layoutToggle.OnPressed += args =>
@@ -340,6 +341,18 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             target.Text = source.Text;
         if (isModern)
             CustomAmountButton.Disabled = !IsCustomAmountValid(source.Text);
+        if (_customSelected)
+        {
+            if (IsCustomAmountValid(source.Text) && int.TryParse(source.Text, out var v))
+                _customAmount = FixedPoint2.New(v);
+            else
+            {
+                _customAmount = null;
+                _customSelected = false;
+                if (isModern)
+                    CustomAmountButton.Pressed = false;
+            }
+        }
         SaveCustomPerChemMaster();
         UpdateClassicCustomButtons();
     }
@@ -375,6 +388,15 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         _customSelected = CustomAmountButton.Pressed;
         UpdateClassicCustomButtons();
         SyncGrid(AmountGrid);
+    }
+
+    public static void ClearCustomForEntity(NetEntity id) => _customPerChemMaster.Remove(id);
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && _chemMasterNetEntity is {} id)
+            _customPerChemMaster.Remove(id);
+        base.Dispose(disposing);
     }
 
     private void ApplyLayout()
