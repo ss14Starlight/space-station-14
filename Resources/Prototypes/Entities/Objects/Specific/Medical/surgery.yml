@@ -76,8 +76,6 @@
   parent: BaseToolSurgery
   description: A surgical tool used to make incisions into flesh.
   components:
-  - type: Sharp
-    butcherDelayModifier: 1.5 # Butchering with a scalpel, regardless of the type, will take 50% longer
   - type: Tool
     qualities:
     - Slicing
@@ -210,7 +208,6 @@
   parent: BaseToolSurgery
   description: For cutting wood and other objects to pieces. Or sawing bones, in case of emergency.
   components:
-  - type: Sharp
   - type: Utensil
     types:
       - Knife
@@ -223,7 +220,8 @@
     storedRotation: 90
   - type: Tool
     qualities:
-      - Sawing
+    - Sawing
+    - Slicing
   - type: SurgeryTool
   - type: BoneSaw
     startSound:
