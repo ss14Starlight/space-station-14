@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld, eoineoineoin, slarticodefast, notquitehadouken, jessicamaybe
-  changes:
-  - message: NT Rep's cane now generates sparks.
-    type: Fix
-  id: 407715
-  time: '2026-08-18T02:59:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5697
 - author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
   changes:
   - message: MIDI files for instruments are now stored and used as a persistent collection.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408114
   time: '2026-09-03T21:35:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5919
+- author: Conflee
+  changes:
+  - message: Fixed Box Shelves deleting their contents when deconstructed. Boxes on the shelves now drop properly.
+    type: Fix
+  id: 408115
+  time: '2026-09-04T04:33:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5972
 Order: -1
