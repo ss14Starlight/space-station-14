@@ -1,7 +1,7 @@
 - type: entity
   id: WashingMachineSecurity
   parent: [WashingMachine, BaseSecurityContraband]
-  name: Nanotrasen Commercial Model-S washing machine
+  name: NanoTrasen Commercial Model-S washing machine
   suffix: Security
   components:
   - type: AccessReader
@@ -10,7 +10,7 @@
 - type: entity
   id: WashingMachineCommand
   parent: [WashingMachine, BaseCommandContraband]
-  name: Nanotrasen Commercial Model-A washing machine
+  name: NanoTrasen Commercial Model-A washing machine
   suffix: Command
   components:
   - type: AccessReader
@@ -19,7 +19,7 @@
 - type: entity
   id: WashingMachineService
   parent: [WashingMachine, BaseCivilianContraband]
-  name: Nanotrasen Commercial Model-I washing machine
+  name: NanoTrasen Commercial Model-I washing machine
   suffix: Service
   components:
   - type: AccessReader
@@ -28,7 +28,7 @@
 - type: entity
   id: WashingMachineEngineering
   parent: [WashingMachine, BaseCivilianContraband]
-  name: Nanotrasen Commercial Model-E washing machine
+  name: NanoTrasen Commercial Model-E washing machine
   suffix: Engineering
   components:
   - type: AccessReader
@@ -37,7 +37,7 @@
 - type: entity
   id: WashingMachineCargo
   parent: [WashingMachine, BaseCivilianContraband]
-  name: Nanotrasen Commercial Model-G washing machine
+  name: NanoTrasen Commercial Model-G washing machine
   suffix: Cargo
   components:
   - type: AccessReader
@@ -46,7 +46,7 @@
 - type: entity
   id: WashingMachineMedical
   parent: [WashingMachine, BaseCivilianContraband]
-  name: Nanotrasen Commercial Model-M washing machine
+  name: NanoTrasen Commercial Model-M washing machine
   suffix: Medical
   components:
   - type: AccessReader
@@ -55,7 +55,7 @@
 - type: entity
   id: WashingMachineScience
   parent: [WashingMachine, BaseCivilianContraband]
-  name: Nanotrasen Commercial Model-R washing machine
+  name: NanoTrasen Commercial Model-R washing machine
   suffix: Science
   components:
   - type: AccessReader
