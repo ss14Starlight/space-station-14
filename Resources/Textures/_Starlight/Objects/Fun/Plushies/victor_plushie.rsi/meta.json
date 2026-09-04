@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-NC-SA-4.0",
-    "copyright": "State based copyright. Generally, all files were reskined by @flameytherandom (discord), and the character this plushe resembles belongs to A_pet_tick (SS14 Username). This contribution 'code wise' is done by idkAnAlliasYet (GitHub).",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
@@ -9,7 +9,7 @@
     "states": [
         {
             "name": "icon",
-            "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432 (according to /Resources/Textures/Objects/Fun/Plushies/lizard.rsi/meta.json). icon.png reskinned by @flameytherandom (discord)"
+            "copyright": "Character by A_pet_tick (SS14), sprites by @flameytherandom (discord), edited from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432"
         },
         {
             "name": "inhand-left",
