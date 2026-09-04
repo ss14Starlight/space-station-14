@@ -173,15 +173,6 @@
         - EndymionStatueLarge1
 
 - type: entity
-  parent: BaseFlatpack
-  id: WashingMachineFlatpack
-  name: washing machine flatpack
-  description: A flatpack used for constructing a washing machine.
-  components:
-  - type: Flatpack
-    entity: WashingMachine
-
-- type: entity
   parent: [BaseFlatpack, BaseSecurityContraband]
   id: WashingMachineSecurityFlatpack
   name: security washing machine flatpack
@@ -198,3 +189,12 @@
   components:
   - type: Flatpack
     entity: WashingMachineCommand
+
+- type: entity
+  parent: [BaseFlatpack, BaseMedicalContraband]
+  id: WashingMachineMedicalFlatpack
+  name: medical washing machine flatpack
+  description: A flatpack used for constructing a medical washing machine.
+  components:
+  - type: Flatpack
+    entity: WashingMachineMedical

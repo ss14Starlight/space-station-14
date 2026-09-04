@@ -15,3 +15,48 @@
   components:
   - type: AccessReader
     access: [["Command"]]
+
+- type: entity
+  id: WashingMachineService
+  parent: [WashingMachine, BaseCivilianContraband]
+  name: Nanotrasen Commercial Model-I washing machine
+  suffix: Service
+  components:
+  - type: AccessReader
+    access: [["Service"]]
+
+- type: entity
+  id: WashingMachineEngineering
+  parent: [WashingMachine, BaseCivilianContraband]
+  name: Nanotrasen Commercial Model-E washing machine
+  suffix: Engineering
+  components:
+  - type: AccessReader
+    access: [["Engineering"]]
+
+- type: entity
+  id: WashingMachineCargo
+  parent: [WashingMachine, BaseCivilianContraband]
+  name: Nanotrasen Commercial Model-G washing machine
+  suffix: Cargo
+  components:
+  - type: AccessReader
+    access: [["Cargo"]]
+
+- type: entity
+  id: WashingMachineMedical
+  parent: [WashingMachine, BaseCivilianContraband]
+  name: Nanotrasen Commercial Model-M washing machine
+  suffix: Medical
+  components:
+  - type: AccessReader
+    access: [["Medical"]]
+
+- type: entity
+  id: WashingMachineScience
+  parent: [WashingMachine, BaseCivilianContraband]
+  name: Nanotrasen Commercial Model-R washing machine
+  suffix: Science
+  components:
+  - type: AccessReader
+    access: [["Science"]]

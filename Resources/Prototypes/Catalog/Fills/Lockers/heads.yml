@@ -360,7 +360,7 @@
         - Greenshift
         - Sandbox
     - id: JawsOfLifeMed
-    - id: WashingMachineFlatpack #Starlight end
+    - id: WashingMachineMedicalFlatpack #Starlight end
     - id: PlushieLizardJobChiefmedicalofficer
       prob: 0.02
 
