@@ -146,7 +146,7 @@ public sealed partial class XenoArtifactComponent : Component
     /// Triggers that can be used during this artefact generation.
     /// </summary>
     [DataField]
-    public ProtoId<WeightedRandomXenoArchTriggerPrototype> TriggerWeights = "DefaultTriggers";
+    public ProtoId<WeightedRandomXenoArchTriggerPrototype> TriggerWeights = "SLDefaultTriggers"; // Starlight
     #endregion
 
     /// <summary>

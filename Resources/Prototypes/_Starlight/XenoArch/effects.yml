@@ -221,10 +221,6 @@
       weight: 1.0
     - id: XenoArtifactHealAll
       weight: 1.0
-    #- id: XenoArtifactTesla
-    #  weight: 10.0
-    #- id: XenoArtifactSingularity
-    #  weight: 10.0
     - id: XenoArtifactExplosionScary
       weight: 1.0
     - id: XenoArtifactBoom
@@ -241,7 +237,6 @@
       weight: 1.0
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 1.0
-    # Starlight-start
     - id: XenoArtifactAccessEngineering
       weight: 1.5
     - id: XenoArtifactAccessScience # this is nearly useless for most people who can obtain it
@@ -256,7 +251,6 @@
       weight: 1.5
     - id: XenoArtifactAccessCommand
       weight: 1.0
-    # Starlight-end
     - id: XenoArtifactMilkPuddle #Funky Changes Start
       weight: 1.0
     - id: XenoArtifactMilkSoyPuddle
