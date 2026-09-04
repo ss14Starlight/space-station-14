@@ -14,17 +14,17 @@
         {
             "name": "inhand-left",
             "directions": 4,
-            "copyright": "In-hand lizard plushie sprites by KieueCaprie, reskinned by @flameytherandom (discord)"
+            "copyright": "Character by A_pet_tick (SS14), reskinned by @flameytherandom (discord), edited from in-hand lizard plushie sprites made by KieueCaprie"
         },
         {
             "name": "inhand-right",
             "directions": 4,
-            "copyright": "In-hand lizard plushie sprites by KieueCaprie, reskinned by @flameytherandom (discord)"
+            "copyright": "Character by A_pet_tick (SS14), reskinned by @flameytherandom (discord), edited from in-hand lizard plushie sprites made by KieueCaprie"
         },
         {
             "name": "equipped-HELMET",
             "directions": 4,
-            "copyright": "Equipped-HELMET sprite made by Cinder, reskinned by @flameytherandom (discord)"
+            "copyright": "Character by A_pet_tick (SS14), reskinned by @flameytherandom (discord), edited from equipped-HELMET sprite made by Cinder"
         }
     ]
 }
