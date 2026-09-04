@@ -566,7 +566,7 @@
         conditions:
         - !type:TemperatureCondition
           min: 253.15
-        amount: -1900
+        amount: -1800
       # Starlight end
   plantMetabolism:
   - !type:PlantAdjustWater
