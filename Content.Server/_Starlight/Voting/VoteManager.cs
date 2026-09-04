@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace near the top of the file. - Making use of partials.
 using System.Linq;
 using Content.Server.GameTicking.Presets;
 using Content.Shared.Database;
