@@ -1,17 +1,17 @@
 - type: entity
   id: WashingMachineSecurity
-  parent: WashingMachine
+  parent: [WashingMachine, BaseSecurityContraband]
   name: Nanotrasen Commercial Model-S washing machine
   suffix: Security
   components:
-  - type: AccessReader # Starlight
-    access: [["Security"]] # Starlight
+  - type: AccessReader
+    access: [["Security"]]
 
 - type: entity
   id: WashingMachineCommand
-  parent: WashingMachine
+  parent: [WashingMachine, BaseCommandContraband]
   name: Nanotrasen Commercial Model-A washing machine
   suffix: Command
   components:
-  - type: AccessReader # Starlight
-    access: [["Command"]] # Starlight
+  - type: AccessReader
+    access: [["Command"]]
