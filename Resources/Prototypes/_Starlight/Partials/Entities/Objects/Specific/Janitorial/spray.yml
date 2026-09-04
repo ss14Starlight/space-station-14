@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: SprayBottleBase
+  components:
+  - type: Spray
+    transferAmount: 6 # 10 sprays per 60u bottle
+
+- type: !PartialOnly entity
+  id: MegaSprayBottle
+  components:
+  - type: Spray
+    transferAmount: 8 # 15 sprays per 120u bottle

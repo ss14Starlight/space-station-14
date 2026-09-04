@@ -23,7 +23,7 @@
   - type: UseDelay
   - type: Spray
     solution: drink
-    transferAmount: 6 # Starlight - 10 sprays per 60u bottle
+    transferAmount: 10
     sprayVelocity: 2
     spraySound:
       path: /Audio/Effects/spray2.ogg
@@ -68,7 +68,7 @@
     maxFillLevels: 7
     fillBaseName: cleaner_large-fill-
   - type: Spray
-    transferAmount: 8 # Starlight - 15 sprays per 120u bottle
+    transferAmount: 15
     sprayedPrototype: BigVapor
     sprayVelocity: 3
     sprayDistance: 4.5
