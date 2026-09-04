@@ -102,6 +102,7 @@
         - id: SalvageJobBoardComputerCircuitboard
         - id: MailTeleporterMachineCircuitboard
         - id: CargoCommsComputerCircuitboard # Starlight
+        - id: MaterialDispenserMachineCircuitBoard # Starlight
 
 - type: entity
   parent: BoxStamps

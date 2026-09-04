@@ -20,6 +20,7 @@
     - id: MiningShuttleConsoleCircuitboard
     - id: EncryptionKeySalvage
     - id: CargoTechFabFlatpack
+    - id: MaterialDispenserFlatpack
     - id: BookSecureTerminalManual # Starlight
     - id: PrintedDocumentGreenshiftAlert
       conditions:
