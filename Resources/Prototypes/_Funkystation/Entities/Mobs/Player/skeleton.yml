@@ -6,9 +6,9 @@
   - type: GhostRole
     name: ghost-role-information-arti-skeleton-name
     description: ghost-role-information-arti-skeleton-description
-    rules: ghost-role-information-freeagent-rules
+    rules: ghost-role-information-nonantagonist-rules # Starlight
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleNeutralSkeleton # Starlight
     raffle:
       settings: default
   - type: Loadout
