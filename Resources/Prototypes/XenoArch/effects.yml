@@ -319,8 +319,6 @@
       weight: 0.05
     - id: XenoArtifactEffectWeirdEggsSpawn
       weight: 1.0
-    - id: XenoArtifactEffectCowSpawn
-      weight: 0.7
     - id: XenoArtifactEffectFleshMonsterSpawn
       weight: 0.5
     - id: XenoArtifactEffectGameItems

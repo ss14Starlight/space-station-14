@@ -37,8 +37,7 @@
   - type: Speech
     speechSounds: Cat
     speechVerb: SmallMob
-#    allowedEmotes: ['Purr','Mew','Meow','Hiss']
-    allowedEmotes: ['Hiss']
+    allowedEmotes: ['Purr','Mew','Meow'] # Starlight, no Hiss
   - type: ReplacementAccent
     accent: cat
   - type: InteractionPopup
