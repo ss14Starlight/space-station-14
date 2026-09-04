@@ -25,3 +25,62 @@
     CarbonDioxide: 4.5
     Nitrogen: 2.5
     Protein: 6
+
+- type: !PartialOnly reaction
+  id: PutridBloodBreakdown
+  reactants: !Clear
+    ZombieBlood:
+      amount: 5
+  products: !Clear
+    Mold: 2
+    Protein: 1
+    ZombiePlasma: 1
+    Toxin: 1
+
+- type: reagent
+  id: ZombieHeartSlurry
+  name: reagent-name-zombie-heart
+  group: Biological
+  desc: reagent-desc-zombie-heart
+  physicalDesc: reagent-physical-desc-necrotic
+  flavor: bitter
+  color: "#440c01"
+  metabolisms:
+    Digestion:
+      # Disgusting!
+      effects:
+      - !type:SatiateThirst
+        factor: -0.5
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 8
+      - !type:Vomit
+        probability: 0.6
+
+- type: reagent
+  id: ZombiePlasma
+  name: reagent-name-necrotic-plasma
+  group: Biological
+  desc: reagent-desc-necrotic-plasma
+  physicalDesc: reagent-physical-desc-necrotic
+  flavor: bitter
+  color: "#ad955c"
+  metabolisms:
+    Digestion:
+      # Disgusting!
+      effects:
+      - !type:SatiateThirst
+        factor: -0.5
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+      - !type:Vomit
+        probability: 0.25
+      - !type:ModifyBloodLevel
+        amount: 12

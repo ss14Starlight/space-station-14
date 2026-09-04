@@ -16,8 +16,9 @@ public sealed partial class CauseZombieInfectionEntityEffectsSystem : EntityEffe
         if (HasComp<ZombieImmuneComponent>(entity) || HasComp<IncurableZombieComponent>(entity))
             return;
 
-        EnsureComp<ZombifyOnDeathComponent>(entity);
-        EnsureComp<PendingZombieComponent>(entity);
+        //#starlight
+        //EnsureComp<ZombifyOnDeathComponent>(entity);
+        //EnsureComp<PendingZombieComponent>(entity);
     }
 }
 

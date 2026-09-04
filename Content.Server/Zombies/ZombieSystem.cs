@@ -91,15 +91,17 @@ namespace Content.Server.Zombies
 
         private void OnPendingMapInit(EntityUid uid, IncurableZombieComponent component, MapInitEvent args)
         {
-            _actions.AddAction(uid, ref component.Action, component.ZombifySelfActionPrototype);
+            // Starlight _actions.AddAction(uid, ref component.Action, component.ZombifySelfActionPrototype);
             _faction.AddFaction(uid, Faction);
 
             if (HasComp<ZombieComponent>(uid) || HasComp<ZombieImmuneComponent>(uid))
                 return;
 
-            EnsureComp<PendingZombieComponent>(uid, out PendingZombieComponent pendingComp);
-
-            pendingComp.GracePeriod = _random.Next(pendingComp.MinInitialInfectedGrace, pendingComp.MaxInitialInfectedGrace);
+            /* Starlight
+            //EnsureComp<PendingZombieComponent>(uid, out PendingZombieComponent pendingComp);
+            //pendingComp.GracePeriod = _random.Next(pendingComp.MinInitialInfectedGrace, pendingComp.MaxInitialInfectedGrace);
+            */
+            NewInitialInfectedPart(uid);
         }
 
         private void OnPendingMapInit(EntityUid uid, PendingZombieComponent component, MapInitEvent args)
@@ -118,7 +120,7 @@ namespace Content.Server.Zombies
             base.Update(frameTime);
             var curTime = _timing.CurTime;
 
-            // Hurt the living infected
+            /* Starlight
             var query = EntityQueryEnumerator<PendingZombieComponent, Shared.Damage.Components.DamageableComponent, MobStateComponent>();
             while (query.MoveNext(out var uid, out var comp, out var damage, out var mobState))
             {
@@ -140,7 +142,9 @@ namespace Content.Server.Zombies
                     : 1f;
 
                 _damageable.ChangeDamage((uid, damage), comp.Damage * multiplier, true, false);
-            }
+            }*/
+
+            UpdateInfected(curTime);
 
             // Heal the zombified
             var zombQuery = EntityQueryEnumerator<ZombieComponent, Shared.Damage.Components.DamageableComponent, MobStateComponent>();
@@ -278,8 +282,11 @@ namespace Content.Server.Zombies
                     if (HasComp<ZombieImmuneComponent>(uid) || cannotSpread || !_random.Prob(GetZombieInfectionChance(uid, entity.Comp)))
                         continue;
 
+                    /* Starlight
                     EnsureComp<PendingZombieComponent>(uid);
                     EnsureComp<ZombifyOnDeathComponent>(uid);
+                    */
+                    OnMeleeHitInfect(uid);
                 }
                 else
                 {
@@ -287,8 +294,9 @@ namespace Content.Server.Zombies
                     || !_random.Prob(GetZombieInfectionChance(uid, entity.Comp))) //Starlight fix: Infection-proof suits don't just lose their resistance on death.
                         continue;
 
-                    // If the target is dead and can be infected, infect.
-                    ZombifyEntity(uid);
+                    // If the target is dead
+                    // Starlight ZombifyEntity(uid);
+                    OnMeleeHitDeadInfect(uid);
                     args.Handled = true;
                 }
             }
