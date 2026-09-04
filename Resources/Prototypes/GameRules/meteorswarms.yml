@@ -103,11 +103,11 @@
     - AnomalyClown
     - AnomalyFlesh
     - AnomalyFlora
-    initialDelay: 600 #Roundstart delay before  first anomaly spawns
-    baseInterval: 720 #Unmodified time between anom spawns
-    minimumInterval: 360 #Max Shortests Amount of Time before Anom spawns
-    escalationStep: 900 #Time between multiplier is added to baseinterval. Difficulty spikes.
-    escalationMultiplier: 0.85 #multiplier for baseinterval. Previous value reduced by percent
+    initialDelay: 600 #Roundstart delay before  first anom spawn
+    baseInterval: 720 #Initial interval between anom spawns
+    minimumInterval: 360 #Minimum interval between anom spawns
+    escalationStep: 900 #Seconds between escalation steps
+    escalationMultiplier: 0.85 #Multiplier applied to base interval per escalationstep
 
 # Game Rules
 

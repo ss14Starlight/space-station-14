@@ -4,8 +4,8 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.StationEvents.Components;
 
 
-///  Periodically will spawn anomalies from a the set of possible anomalies listed in meteorswarms.yml. The interval between spawns will decrease over time, and the anomalies will be spawned at random locations in station.
-
+/// 
+/// 
 
 [RegisterComponent, Access(typeof(ResonanceCascadeSchedulerSystem))]
 public sealed partial class ResonanceCascadeSchedulerComponent : Component
