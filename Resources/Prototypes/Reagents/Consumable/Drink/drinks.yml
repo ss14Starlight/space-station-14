@@ -565,8 +565,8 @@
       - !type:AdjustTemperature # Starlight, add drink temperature adjustment
         conditions:
         - !type:TemperatureCondition
-          min: 248.15
-        amount: -2000
+          min: 253.15
+        amount: -1900
       # Starlight end
   plantMetabolism:
   - !type:PlantAdjustWater
