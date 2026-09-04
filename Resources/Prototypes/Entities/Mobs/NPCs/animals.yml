@@ -4135,17 +4135,6 @@
     understands:
     - GalacticCommon
     - Sylvan
-  # Starlight Start
-  - type: GhostRole
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-nymph-name
-    description: ghost-role-information-nymph-description
-    rules: ghost-role-information-freeagent-rules
-    mindRoles:
-    - MindRoleGhostRoleCritterHarmless # Starlight-edit - FreeAgentHarmless -> CritterHarmless
-  - type: GhostTakeoverAvailable
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs
@@ -4237,6 +4226,23 @@
     - GalacticCommon
     - Sylvan
   # Starlight-end
+
+# Starlight Start
+- type: entity
+  parent: MobDionaNymph
+  id: MobDionaNymphVent
+  components:
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-nymph-name
+    description: ghost-role-information-nymph-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleCritterHarmless
+  - type: GhostTakeoverAvailable
+# Starlight End
 
 - type: entity
   name: reindeer buck

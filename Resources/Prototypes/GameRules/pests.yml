@@ -166,7 +166,7 @@
     duration: 50
   - type: VentCrittersRule
     entries:
-    - id: MobDionaNymph
+    - id: MobDionaNymphVent
       prob: 0.02
 
 - type: entity
