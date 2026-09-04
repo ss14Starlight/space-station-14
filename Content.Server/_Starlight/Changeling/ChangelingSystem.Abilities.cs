@@ -575,8 +575,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         {
             { "TranexamicAcid", 5f }
         };
-        if (!_stomach.TryTransferSolution(stomach.Owner, ichorInjection))
-            return;
+        _stomach.TryTransferSolution(stomach.Owner, ichorInjection);
         TryInjectReagents(uid, reagents);
         _popup.PopupEntity(Loc.GetString("changeling-fleshmend"), uid, uid);
         PlayMeatySound(uid, comp);
