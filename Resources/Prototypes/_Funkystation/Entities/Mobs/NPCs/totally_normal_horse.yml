@@ -2,7 +2,7 @@
   parent: [ BaseMob, MobCombat ]
   id: MobTotallyNormalHorse
   name: parade
-  description: It is not two people in a costume. It is not two people in a costume. Oh god, It is not two people in a costume.
+  description: It is not two people in a costume. It is not two people in a costume. Oh god, it is not two people in a costume.
   components:
   - type: Sprite
     drawdepth: Mobs

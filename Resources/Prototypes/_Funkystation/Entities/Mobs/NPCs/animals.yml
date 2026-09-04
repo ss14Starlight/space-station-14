@@ -75,7 +75,7 @@
     - CannotSuicide
     - VimPilot
     # Goob/EE Thermal Vision is AGPL. Commenting out for now incase Goob/EE thermal vision gets ported. Though more likely that it has to be rebuilt from the ground up.
-#  - type: ThermalVision
+  - type: ThermalVision # Starlight, we actually have this
 #    color: "#b8b8b8"
 #    activateSound: null
 #    deactivateSound: null
@@ -94,7 +94,7 @@
     allowMovement: true
     name: ghost-role-information-meowl-name
     description: ghost-role-information-meowl-description
-    rules: ghost-role-information-freeagent-rules
+    rules: ghost-role-information-nonantagonist-rules # Starlight
     mindRoles:
     - MindRoleGhostRoleFreeAgentHarmless
   - type: GhostTakeoverAvailable
@@ -213,9 +213,6 @@
     blackboard:
       NavSmash: !type:Bool
         true
-  - type: NpcFactionMember
-    factions:
-    - BloodCultist
 
 - type: entity
   parent: BaseStructure

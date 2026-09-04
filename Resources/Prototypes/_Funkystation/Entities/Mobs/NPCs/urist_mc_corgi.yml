@@ -40,8 +40,8 @@
   - type: GhostRole
     name: ghost-role-information-arti-corgi-name
     description: ghost-role-information-arti-corgi-description
-    rules: ghost-role-information-freeagent-rules
+    rules: ghost-role-information-nonantagonist-rules # Starlight
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleNeutral # Starlight
     raffle:
       settings: default
