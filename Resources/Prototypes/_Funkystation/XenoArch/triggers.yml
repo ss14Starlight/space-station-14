@@ -7,6 +7,10 @@
   - type: XATReactive
     reagents:
     - Vodka
+    - VodkaMartini # Starlight start, I mean, it *has* Vodka in the name
+    - VodkaTonic
+    - VodkaRedBool
+    - Vodkizine # Starlight end
 
 - type: xenoArchTrigger
   id: TriggerMilk
@@ -37,6 +41,7 @@
   - type: XATReactive
     reagents:
     - SpaceCleaner
+    - SyndicateSpaceCleaner # Starlight
 
 - type: xenoArchTrigger
   id: TriggerMutagen
@@ -54,6 +59,9 @@
     reagents:
     - Coffee
     - CafeLatte
+    - CoffeeLiqueur # Starlight start, coffee drinks
+    - IrishCoffee
+    - IcedCoffee # Starlight end
 
 - type: xenoArchTrigger
   id: TriggerLube
@@ -71,6 +79,9 @@
     reagents:
     - MindbreakerToxin
     - SpaceDrugs
+    - THC # Starlight start
+    - Happiness
+    - Bananadine # Starlight end
 
 - type: xenoArchTrigger
   id: TriggerCopper
@@ -96,6 +107,8 @@
   - type: XATReactive
     reagents:
     - Wine
+    - PoisonWine # Starlight
+    - AcidSpit # Starlight, more wine than sulfuric acid
 
 - type: xenoArchTrigger
   id: TriggerBeer
@@ -104,6 +117,8 @@
   - type: XATReactive
     reagents:
     - Beer
+    - IcedBeer # Starlight start
+    - WhiteGilgamesh # Starlight end, more beer than milk
 
 - type: xenoArchTrigger
   id: TriggerCitrus
@@ -117,6 +132,10 @@
     - LemonLimeCranberry
     - JuiceLime
     - OrangeLimeSoda
+    - JuiceOrange # Starlight start
+    - ScrewdriverCocktail # more orange than vodka
+    - Starkist # same
+    - Mimosa # Starlight end, same
 
 - type: xenoArchTrigger
   id: TriggerSilicon

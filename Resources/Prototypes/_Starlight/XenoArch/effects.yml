@@ -351,7 +351,7 @@
 - type: entity
   id: XenoArtifactAccessEngineering
   parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Engineering and Atmospherics access
+  description: Digital access refraction
   components:
   - type: XAEGainAccess
     accesses:
@@ -361,7 +361,7 @@
 - type: entity
   id: XenoArtifactAccessScience
   parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Research and Robotics access
+  description: Digital access refraction
   components:
   - type: XAEGainAccess
     accesses:
@@ -371,7 +371,7 @@
 - type: entity
   id: XenoArtifactAccessCargo
   parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Cargo accesses
+  description: Digital access refraction
   components:
   - type: XAEGainAccess
     accesses:
@@ -383,7 +383,7 @@
 - type: entity
   id: XenoArtifactAccessService
   parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Service accesses
+  description: Digital access refraction
   components:
   - type: XAEGainAccess
     accesses:
@@ -399,7 +399,7 @@
 - type: entity
   id: XenoArtifactAccessSecurity
   parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Security accesses
+  description: Digital access refraction
   components:
   - type: XAEGainAccess
     accesses:
@@ -416,7 +416,7 @@
 - type: entity
   id: XenoArtifactAccessMedical
   parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Medical accesses
+  description: Digital access refraction
   components:
   - type: XAEGainAccess
     accesses:
@@ -428,7 +428,7 @@
 - type: entity
   id: XenoArtifactAccessCommand
   parent: BaseOneTimeXenoArtifactEffect
-  description: Gains Command access
+  description: Digital access refraction
   components:
   - type: XAEGainAccess
     accesses:
