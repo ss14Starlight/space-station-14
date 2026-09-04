@@ -161,7 +161,7 @@
     - id: WeirdEggPlasma
 
 - type: entity
-  name: servant of Nar'sie
+  name: servant of nar'sie
   parent: MobGoose
   id: MobGooseNarsie
   description: A damned beast that yearns for blood.
@@ -226,5 +226,6 @@
     - MobGooseNarsie
     intervalSeconds: 1.8
     minimumEntitiesSpawned: 1
-  - type: TimedDespawn
-    lifetime: 2
+    despawnWhenDone: true # Starlight start
+  #- type: TimedDespawn
+  #  lifetime: 2 # Starlight end

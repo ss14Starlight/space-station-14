@@ -945,6 +945,9 @@
         - id: MobGoat
           amount: !type:RangeNumberSelector
             range: 1, 3
+        - id: MobMeowl # Starlight start
+          amount: !type:RangeNumberSelector
+            range: 1, 2 # Starlight end
         - id: MobLizard # Funky start
           amount: !type:RangeNumberSelector
             range: 1, 2

@@ -112,26 +112,26 @@ public sealed partial class XenoArtifactComponent : Component
     /// The total number of nodes that make up this artifact.
     /// </summary>
     [DataField]
-    public MinMax NodeCount = new(10, 16);
+    public MinMax NodeCount = new(14, 20); // Starlight, we've more than doubled the number of triggers, so we can have MORE nodes per artifact now.
 
     /// <summary>
     /// The amount of nodes that go in each segment.
     /// A segment is an interconnected series of nodes.
     /// </summary>
     [DataField]
-    public MinMax SegmentSize = new(5, 8);
+    public MinMax SegmentSize = new(6, 10); // Starlight
 
     /// <summary>
     /// For each "layer" in a segment (set of nodes with equal depth), how many will we generate?
     /// </summary>
     [DataField]
-    public MinMax NodesPerSegmentLayer = new(1, 3);
+    public MinMax NodesPerSegmentLayer = new(1, 5); // Starlight
 
     /// <summary>
     /// How man nodes can be randomly added on top of usual distribution (per layer).
     /// </summary>
     [DataField]
-    public MinMax ScatterPerLayer = new(0, 2);
+    public MinMax ScatterPerLayer = new(0, 4); // Starlight
 
     /// <summary>
     /// Effects that can be used during this artifact generation.
