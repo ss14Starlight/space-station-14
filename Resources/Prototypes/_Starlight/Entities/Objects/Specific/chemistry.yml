@@ -1,6 +1,6 @@
 - type: entity
   name: golden beaker
-  parent: BaseBeaker
+  parent: LargeBeaker
   description: Used to contain a gigantic amount of chemicals and solutions.
   id: GoldenBeaker
   components:
@@ -25,14 +25,14 @@
     fillBaseName: beaker
     inHandsMaxFillLevels: 3
     inHandsFillBaseName: -fill-
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 200
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 240
 
 - type: entity
   name: golden jug
-  parent: Jug
+  parent: [SolutionHuge, Jug]
   description: Used to contain a titanic amount of chemicals or solutions.
   id: GoldenJug
   components:
@@ -40,13 +40,12 @@
     sprite: _Starlight/Objects/Specific/Chemistry/goldenjug.rsi
   - type: Item
     sprite: _Starlight/Objects/Specific/Chemistry/goldenjug.rsi
+    size: Huge
+    shape:
+    - 0,0,3,3
   - type: PhysicalComposition
     materialComposition:
       Gold: 13
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 400
 
 - type: entity
   name: silver jug
@@ -58,13 +57,16 @@
     sprite: _Starlight/Objects/Specific/Chemistry/silverjug.rsi
   - type: Item
     sprite: _Starlight/Objects/Specific/Chemistry/silverjug.rsi
+    size: Large
+    shape:
+    - 0,0,3,2
   - type: PhysicalComposition
     materialComposition:
       Silver: 13
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 300
+  - type: Solution
+    id: drink
+    solution:
+      maxVol: 360
 
 - type: entity
   id: VialCase
@@ -127,7 +129,7 @@
 
 - type: entity
   name: silver beaker
-  parent: BaseBeaker
+  parent: LargeBeaker
   description: Used to contain a huge amount of chemicals and solutions.
   id: SilverBeaker
   components:
@@ -152,14 +154,14 @@
     fillBaseName: beaker
     inHandsMaxFillLevels: 3
     inHandsFillBaseName: -fill-
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 150
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 180
 
 - type: entity
   name: light beaker
-  parent: [BaseBeakerMetallic, DrinkBaseOpenable, DrinkVisualsOpenable]
+  parent: [SolutionNormal, BaseBeakerMetallic, DrinkBaseOpenable, DrinkVisualsOpenable]
   description: The light side of an unbreakable beaker. Its true power can be sealed.
   id: LightBeaker
   components:
@@ -172,6 +174,9 @@
         visible: false
   - type: Item
     sprite: _Starlight/Objects/Specific/Chemistry/lightbeaker.rsi
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: Spillable
     solution: beaker
   - type: StaticPrice
@@ -202,14 +207,10 @@
     damage:
       types:
         Blunt: 5
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
 
 - type: entity
   name: dark beaker
-  parent: [BaseBeakerMetallic, DrinkBaseOpenable, DrinkVisualsOpenable, BaseSecurityContraband]
+  parent: [SolutionNormal, BaseBeakerMetallic, DrinkBaseOpenable, DrinkVisualsOpenable, BaseSecurityContraband]
   description: The dark side of an unbreakable beaker. Its true power can be sealed.
   id: DarkBeaker
   components:
@@ -222,6 +223,9 @@
         visible: false
   - type: Item
     sprite: _Starlight/Objects/Specific/Chemistry/darkbeaker.rsi
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: Spillable
     solution: beaker
   - type: StaticPrice
@@ -252,11 +256,6 @@
     damage:
       types:
         Blunt: 9
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
-
 - type: entity
   parent: ChemBag
   id: SeniorChemBag

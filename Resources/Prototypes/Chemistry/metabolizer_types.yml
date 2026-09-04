@@ -9,6 +9,10 @@
   id: Bloodsucker
   name: metabolizer-type-bloodsucker
 
+- type: metabolizerType #🌟Starlight🌟
+  id: Doll
+  name: metabolizer-type-doll
+
 - type: metabolizerType
   id: Dragon
   name: metabolizer-type-dragon

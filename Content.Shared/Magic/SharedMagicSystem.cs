@@ -613,7 +613,11 @@ public abstract partial class SharedMagicSystem : EntitySystem
         if(!result && ev.RequiresFreeHand)
             Del(spawnedEntity); // abort!
         else
+        {
+            if(ev.SelfDamage != null) //For dolls
+                _damageable.ChangeDamage(user, ev.SelfDamage, true);
             ev.Handled = true;
+        }
     }
 
     private void OnTowerOfBabel(TowerOfBabelEvent ev)
