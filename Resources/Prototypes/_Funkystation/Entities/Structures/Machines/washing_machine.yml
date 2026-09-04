@@ -67,6 +67,9 @@
       machine_board: !type:Container
       machine_parts: !type:Container
       entity_storage: !type:Container
+  - type: EmptyOnMachineDeconstruct # Starlight start
+    containers:
+    - entity_storage # Starlight end
   - type: Construction
     graph: Machine
     node: machine
