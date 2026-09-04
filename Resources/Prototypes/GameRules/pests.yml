@@ -8,6 +8,7 @@
     - id: CockroachMigration
     - id: MouseMigration
     - id: MoproachMigration
+    - id: NymphMigration # Starlight
 
 - type: entityTable
   id: SpicyPestEventsTable
@@ -148,3 +149,22 @@
       prob: 0.002
     - id: MobSnailInstantDeath
       prob: 0.00001 #  ~ 1:2000 snails
+
+# Starlight Start
+- type: entity
+  id: NymphMigration
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    globalAnnouncement: false
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 15
+    weight: 6
+    duration: 50
+  - type: VentCrittersRule
+    entries:
+    - id: MobDionaNymph
+      prob: 0.02
+# Starlight End
