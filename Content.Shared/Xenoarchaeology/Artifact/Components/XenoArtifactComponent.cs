@@ -139,7 +139,7 @@ public sealed partial class XenoArtifactComponent : Component
     [DataField]
     public EntityTableSelector EffectsTable = new NestedSelector
     {
-        TableId = "XenoArtifactEffectsDefaultTable"
+        TableId = "SLXenoArtifactEffectsDefaultTable" // Starlight, new table with Funky's effects + ours
     };
 
     /// <summary>
