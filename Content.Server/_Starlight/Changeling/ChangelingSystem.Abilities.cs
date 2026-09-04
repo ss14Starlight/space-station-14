@@ -694,7 +694,7 @@ public sealed partial class ChangelingSystem : EntitySystem
                 return;
             }
         }
-        
+
         UpdateChemicals(uid, comp, -lingAction.ChemicalCost);
         UpdateBiomass(uid, comp, -lingAction.BiomassCost);
     }
