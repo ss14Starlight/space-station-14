@@ -576,10 +576,12 @@
   reactants:
     ZXA:
       amount: 10
+    Salt:
+      amount: 10
     Doxarubixadone:
       amount: 1
   products:
-    Opporozidone: 1
+    Opporozidone: 3
 
 - type: reaction
   id: Arcryox
