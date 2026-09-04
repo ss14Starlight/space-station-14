@@ -169,7 +169,7 @@ public sealed partial class MaterialDispenserSystem : EntitySystem
         UpdateUiState(ent);
     }
 
-    private void SubscribeUpdateUiState<T>(Entity<MaterialDispenserComponent> ent, ref T ev) 
+    private void SubscribeUpdateUiState<T>(Entity<MaterialDispenserComponent> ent, ref T ev)
         => UpdateUiState(ent);
 
     private void UpdateUiState(Entity<MaterialDispenserComponent> ent)
