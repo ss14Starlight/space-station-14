@@ -1,0 +1,30 @@
+{
+    "version": 1,
+    "license": "CC-BY-NC-SA-4.0",
+    "copyright": "State based copyright. Generally all files are likely taken from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432 (according to /Resources/Textures/Objects/Fun/Plushies/lizard.rsi/meta.json). Generally, all files were reskined by @flameytherandom (discord), and the character this plushe resembles belongs to A_pet_tick (SS14 Username). This contribution 'code wise' is done by idkAnAlliasYet (GitHub).",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "Todo: find out who made icon.png and put their name here. icon.png reskinned by @flameytherandom (discord)"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4,
+            "copyright": "In-hand lizard plushie sprites by KieueCaprie, reskinned by @flameytherandom (discord)"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4,
+            "copyright": "In-hand lizard plushie sprites by KieueCaprie, reskinned by @flameytherandom (discord)"
+        },
+        {
+            "name": "equipped-HELMET",
+            "directions": 4,
+            "copyright": "Equipped-HELMET sprite made by Cinder, reskinned by @flameytherandom (discord)"
+        }
+    ]
+}

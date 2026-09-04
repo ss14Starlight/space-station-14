@@ -99,8 +99,8 @@
     stock: 1
 
 - type: listing
-  id: VendorPlushieVictorJr
-  productEntity: PlushieVictorJr
+  id: VendorPlushieVictor
+  productEntity: PlushieVictor
   cost:
     NTCredit: 20
   categories:

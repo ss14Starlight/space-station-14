@@ -291,15 +291,15 @@
 
 - type: entity
   parent: BaseLizardPlushie
-  id: PlushieVictorJr #ty flamey!
+  id: PlushieVictor #ty flamey!
   name: Victor Jr plushie
   description: Junior's marketable attempt at making chefs reconsider using kobolds as food source. It looks tasty tho...
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/victorjr_plushie.rsi
+    sprite: _Starlight/Objects/Fun/Plushies/victor_plushie.rsi
     state: icon
   - type: Item
-    sprite: _Starlight/Objects/Fun/Plushies/victorjr_plushie.rsi
+    sprite: _Starlight/Objects/Fun/Plushies/victor_plushie.rsi
   - type: EmitSoundOnUse
     sound:
       path: /Audio/Items/Toys/weh.ogg
@@ -341,7 +341,7 @@
           Quantity: 10
   - type: Clothing
     quickEquip: false
-    sprite: _Starlight/Objects/Fun/Plushies/victorjr_plushie.rsi
+    sprite: _Starlight/Objects/Fun/Plushies/victor_plushie.rsi
     slots:
       - HEAD
     clothingVisuals:
