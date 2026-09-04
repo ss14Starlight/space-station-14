@@ -20,7 +20,6 @@
     sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi # This needs to be replaced with Protolagos in the future.
     state: full
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatHuman
       amount: 5

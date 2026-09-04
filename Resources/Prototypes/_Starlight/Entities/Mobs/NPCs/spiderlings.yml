@@ -63,7 +63,7 @@
     bloodReferenceSolution:
         reagents:
         - ReagentId: CopperBlood
-          Quantity: 50
+          Quantity: 100
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
