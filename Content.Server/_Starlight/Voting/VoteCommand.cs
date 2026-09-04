@@ -240,7 +240,7 @@ public sealed partial class VoteCommand : ToolshedCommand
 
         if (title == string.Empty) title = Loc.GetString("ui-vote-map-title");
 
-        var (handle, _) = CreateVote(ctx, title, maps, null, _cfg.GetCVar(StarlightCCVars.ShowMapVotes),
+        var (handle, _) = CreateVote(ctx, title, maps, voters, _cfg.GetCVar(StarlightCCVars.ShowMapVotes),
             duration != 0 ? duration : _cfg.GetCVar(CCVars.VoteTimerMap));
 
         var chatFilter = Filter.Empty();
