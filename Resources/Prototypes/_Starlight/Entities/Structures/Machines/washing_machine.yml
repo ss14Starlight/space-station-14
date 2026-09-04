@@ -1,0 +1,17 @@
+- type: entity
+  id: WashingMachineSecurity
+  parent: WashingMachine
+  name: Nanotrasen Commercial Model-S washing machine
+  suffix: Security
+  components:
+  - type: AccessReader # Starlight
+    access: [["Security"]] # Starlight
+
+- type: entity
+  id: WashingMachineCommand
+  parent: WashingMachine
+  name: Nanotrasen Commercial Model-A washing machine
+  suffix: Command
+  components:
+  - type: AccessReader # Starlight
+    access: [["Command"]] # Starlight

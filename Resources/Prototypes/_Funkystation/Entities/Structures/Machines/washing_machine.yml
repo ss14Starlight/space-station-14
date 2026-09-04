@@ -88,6 +88,8 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+      - !type:EmptyContainersBehaviour # Starlight
+        containers: [entity_storage] # Starlight
       - !type:ChangeConstructionNodeBehavior
         node: machineFrame
       - !type:DoActsBehavior
