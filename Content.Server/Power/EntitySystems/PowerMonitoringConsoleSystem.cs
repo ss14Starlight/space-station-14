@@ -895,6 +895,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
             {
                 var name = MetaData(master).EntityPrototype?.Name ?? MetaData(master).EntityName;
                 metaData.EntityName = Loc.GetString("power-monitoring-window-object-array", ("name", name), ("count", childCount + 1));
+                metaData.EntityNameIsLocalized = true; // Starlight: Prevent re-localization
             }
 
             else
@@ -1004,6 +1005,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                 {
                     name = MetaData(ent).EntityPrototype?.Name ?? MetaData(ent).EntityName;
                     metaData.EntityName = Loc.GetString("power-monitoring-window-object-array", ("name", name), ("count", entDevice.ChildDevices.Count + 1));
+                    metaData.EntityNameIsLocalized = true; // Starlight: Prevent re-localization
                 }
             }
 
