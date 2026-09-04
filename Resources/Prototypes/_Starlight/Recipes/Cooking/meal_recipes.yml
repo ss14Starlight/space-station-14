@@ -17,8 +17,8 @@
   result: FoodBakedVulpkaninPlate
   time: 15
   reagents:
-    TableSalt: 2
-    Blackpepper: 2
+    TableSalt: 1
+    Blackpepper: 1
   solids:
     FoodPlate: 1
     FoodMeat: 1
@@ -58,7 +58,7 @@
   time: 20
   reagents:
     Ketchup: 3
-    Blackpepper: 2
+    Blackpepper: 1
   solids:
     FoodPlate: 1
     FoodOrange: 1
@@ -605,7 +605,7 @@
   reagents:
     IceCream: 10
     Sugar: 5
-    TableSalt: 5
+    TableSalt: 1
 
 - type: microwaveMealRecipe
   id: RecipeRockyRoadIceCream
@@ -893,8 +893,8 @@
     FoodOnionSlice: 2
     FoodPlateSmall: 1
   reagents:
-    TableSalt: 5
-    Blackpepper: 5
+    TableSalt: 1
+    Blackpepper: 1
 
 - type: microwaveMealRecipe
   id: RecipeEmpanadas
@@ -936,4 +936,4 @@
     Rice: 10
     Milk: 10
     Water: 10
-    TableSalt: 5
+    TableSalt: 1

@@ -3,9 +3,9 @@
 # ability to have applied colors yet in GUIs. And also inhands... -Swept
 
 - type: entity
-  id: CableStack
   abstract: true
-  parent: BaseItem
+  parent: [SolutionCompositeSmallStackable, BaseItem]
+  id: CableStack
   name: cable stack
   suffix: Full
   components:
@@ -22,6 +22,7 @@
       stackType: Cable
     - type: Sprite
       sprite: Objects/Tools/cable-coils.rsi
+    - type: Appearance
     - type: Item
       sprite: Objects/Tools/cable-coils.rsi
       size: Small
@@ -42,6 +43,8 @@
     - type: Damageable
       damageContainer: Inorganic
       damageModifierSet: Metallic
+    - type: Extractable
+      grindableSolutionName: composite
     - type: Destructible
       thresholds:
         - trigger: !type:DamageTrigger
@@ -69,62 +72,58 @@
   suffix: Full
   description: HV cables for connecting engines to heavy duty machinery, SMESes, and substations.
   components:
-    - type: Stack
-      stackType: CableHV
-      baseLayer: base
-      layerStates:
-        - coilhv-10
-        - coilhv-20
-        - coilhv-30
-    - type: Sprite
-      state: coilhv-30
-      layers:
-        - state: coilhv-30
-          map: ["base"]
-    - type: Item
-      heldPrefix: coilhv
-    - type: CablePlacer
-      cablePrototypeID: CableHV
-      blockingWireType: HighVoltage
-    - type: Appearance
-    - type: Extractable
-      grindableSolutionName: hvcable
-    - type: SolutionContainerManager
-      solutions:
-        hvcable:
-          reagents:
-            - ReagentId: Iron
-              Quantity: 3
-            - ReagentId: Copper
-              Quantity: 2
-            - ReagentId: Carbon #steel-reinforced
-              Quantity: 1
-#FH - Start
-    - type: ConditionalHealing
-      healingDefinitions:
-        - allowedTags: [ IPC, Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
-          healing:
-            damageContainers:
-              - IPC # Starlight
-              - Hybrid # Starlight
-            delay: 2
-            damage:
-              types:
-                Heat: -10
-                Cold: -10
-                Shock: -10
-                Caustic: -10
-            healingBeginSound:
-              path: "/Audio/Items/Medical/ointment_begin.ogg"
-              params:
-                volume: 1.0
-                variation: 0.125
-            healingEndSound:
-              path: "/Audio/Items/Medical/ointment_end.ogg"
-              params:
-                volume: 1.0
-                variation: 0.125
-#FH - End
+  - type: Stack
+    stackType: CableHV
+    baseLayer: base
+    layerStates:
+    - coilhv-10
+    - coilhv-20
+    - coilhv-30
+  - type: Sprite
+    state: coilhv-30
+    layers:
+    - state: coilhv-30
+      map: ["base"]
+  - type: Item
+    heldPrefix: coilhv
+  - type: CablePlacer
+    cablePrototypeID: CableHV
+    blockingWireType: HighVoltage
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Iron
+        Quantity: 2.5
+      - ReagentId: Copper
+        Quantity: 2
+      - ReagentId: Carbon #steel-reinforced
+        Quantity: 0.5
+  #FH - Start
+  - type: ConditionalHealing
+    healingDefinitions:
+      - allowedTags: [ IPC, Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
+        healing:
+          damageContainers:
+            - IPC # Starlight
+            - Hybrid # Starlight
+          delay: 2
+          damage:
+            types:
+              Heat: -10
+              Cold: -10
+              Shock: -10
+              Caustic: -10
+          healingBeginSound:
+            path: "/Audio/Items/Medical/ointment_begin.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+          healingEndSound:
+            path: "/Audio/Items/Medical/ointment_end.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+  #FH - End
 
 - type: entity
   parent: CableHVStack
@@ -147,40 +146,42 @@
       count: 1
 
 - type: entity
-  parent: CableStack
+  parent: [SolutionCompositeCable, CableStack]
   id: CableMVStack
   name: MV cable coil
   suffix: Full
   description: MV cables for connecting substations to APCs, and also powering a select few things like emitters.
   components:
-    - type: Stack
-      stackType: CableMV
-      baseLayer: base
-      layerStates:
-        - coilmv-10
-        - coilmv-20
-        - coilmv-30
-    - type: Sprite
-      state: coilmv-30
-      layers:
-        - state: coilmv-30
-          map: ["base"]
-    - type: Item
-      heldPrefix: coilmv
-    - type: CablePlacer
-      cablePrototypeID: CableMV
-      blockingWireType: MediumVoltage
-    - type: Appearance
-    - type: Extractable
-      grindableSolutionName: mvcable
-    - type: SolutionContainerManager
-      solutions:
-        mvcable:
-          reagents:
-            - ReagentId: Iron
-              Quantity: 3
-            - ReagentId: Copper
-              Quantity: 2
+  - type: Stack
+    stackType: CableMV
+    baseLayer: base
+    layerStates:
+    - coilmv-10
+    - coilmv-20
+    - coilmv-30
+  - type: Sprite
+    state: coilmv-30
+    layers:
+    - state: coilmv-30
+      map: ["base"]
+  - type: Item
+    heldPrefix: composite
+  - type: CablePlacer
+    cablePrototypeID: CableMV
+    blockingWireType: MediumVoltage
+
+- type: entity
+  abstract: true
+  parent: SolutionCompositeSmallStackable
+  id: SolutionCompositeCable
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Iron
+        Quantity: 3
+      - ReagentId: Copper
+        Quantity: 2
 
 - type: entity
   parent: CableMVStack
@@ -203,39 +204,28 @@
       count: 1
 
 - type: entity
-  parent: CableStack
+  parent: [SolutionCompositeCable, CableStack]
   id: CableApcStack
   name: LV cable coil
   description: Low-Voltage stack of wires for connecting APCs to machines and other purposes.
   suffix: Full
   components:
-    - type: Sprite
-      state: coillv-30
-      layers:
-        - state: coillv-30
-          map: ["base"]
-    - type: Item
-      heldPrefix: coillv
-    - type: Stack
-      baseLayer: base
-      layerStates:
-        - coillv-10
-        - coillv-20
-        - coillv-30
-    - type: CablePlacer
-      cablePrototypeID: CableApcExtension
-      blockingWireType: Apc
-    - type: Appearance
-    - type: Extractable
-      grindableSolutionName: lvcable
-    - type: SolutionContainerManager
-      solutions:
-        lvcable:
-          reagents:
-            - ReagentId: Iron
-              Quantity: 3
-            - ReagentId: Copper
-              Quantity: 2
+  - type: Sprite
+    state: coillv-30
+    layers:
+    - state: coillv-30
+      map: ["base"]
+  - type: Item
+    heldPrefix: coillv
+  - type: Stack
+    baseLayer: base
+    layerStates:
+    - coillv-10
+    - coillv-20
+    - coillv-30
+  - type: CablePlacer
+    cablePrototypeID: CableApcExtension
+    blockingWireType: Apc
 
 - type: entity
   parent: CableApcStack
