@@ -1,0 +1,10 @@
+﻿- type: entity
+  save: false
+  name: Urist McHaunted
+  parent: BaseMobDoll
+  id: MobDoll
+
+- type: entity
+  name: ?!°#^*&
+  parent: BaseMobDollFresh
+  id: MobDollFresh

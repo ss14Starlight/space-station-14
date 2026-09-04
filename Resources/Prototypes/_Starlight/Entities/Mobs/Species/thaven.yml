@@ -42,7 +42,6 @@
   - type: StaminaDamageOnHit
     damage: 18
   - type: Butcherable
-    butcheringType: Spike
     spawned:
       - id: FoodThavenMeat
         amount: 5

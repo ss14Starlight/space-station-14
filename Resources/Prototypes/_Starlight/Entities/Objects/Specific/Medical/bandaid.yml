@@ -7,10 +7,10 @@
   components:
   - type: Sprite
     state: bandaid
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
+  - type: Solution
+    id: patch
+    solution:
+      maxVol: 20
   - type: Item
     size: Tiny
   - type: Appearance
@@ -32,13 +32,13 @@
   components:
   - type: Sprite
     state: bandaid-brute
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Bicaridine
-          Quantity: 15
+  - type: Solution
+    id: patch
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Bicaridine
+        Quantity: 15
 
 - type: entity
   id: PatchBurnSmall
@@ -47,13 +47,13 @@
   components:
   - type: Sprite
     state: bandaid-burn-small
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Dermaline
-          Quantity: 10
+  - type: Solution
+    id: patch
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 10
 
 - type: entity
   id: PatchBurn
@@ -62,13 +62,13 @@
   components:
   - type: Sprite
     state: bandaid-burn
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Omnizine
-          Quantity: 20
+  - type: Solution
+    id: patch
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Omnizine
+        Quantity: 20
 
 - type: entity
   id: PatchMedical
@@ -77,15 +77,15 @@
   components:
   - type: Sprite
     state: bandaid-med
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Dermaline
-          Quantity: 10
-        - ReagentId: Bicaridine
-          Quantity: 10
+  - type: Solution
+    id: patch
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 10
+      - ReagentId: Bicaridine
+        Quantity: 10
 
 - type: entity
   id: PatchClown
@@ -94,17 +94,17 @@
   components:
   - type: Sprite
     state: bandaid-clown
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Bananadine
-          Quantity: 5
-        - ReagentId: Happiness
-          Quantity: 5
-        - ReagentId: MuteToxin
-          Quantity: 10
+  - type: Solution
+    id: patch
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Bananadine
+        Quantity: 5
+      - ReagentId: Happiness
+        Quantity: 5
+      - ReagentId: MuteToxin
+        Quantity: 10
 
 - type: entity
   name: patch pack

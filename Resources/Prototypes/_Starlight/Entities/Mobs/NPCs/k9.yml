@@ -51,6 +51,7 @@
   - type: RandomMetadata
     nameSegments:
     - NamesCorgi
+  - type: AlwaysIdentifiable
   - type: Grammar
     attributes:
       gender: epicene
@@ -65,6 +66,7 @@
     - External
     - Cryogenics
   - type: StatusIcon
+  - type: JobStatus
   - type: FixedJobIcon
     job: K9
   - type: SpriteVariant
