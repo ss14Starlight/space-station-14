@@ -65,6 +65,7 @@
       Copper: 2
       Hydrogen: 2
       Oxygen: 0 # You really can't pump oxygen or generate it on 2525?
+      Nitrogen: 0 # Nitrogen is *even more abundant*
       Sugar: 2
       Silicon: 5
       Phosphorus: 5
@@ -95,7 +96,7 @@
 #        - id: JugIron
         - id: JugLithium
         - id: JugMercury
-        - id: JugNitrogen
+#        - id: JugNitrogen
 #        - id: JugOxygen
 #        - id: JugPhosphorus
         - id: JugPotassium
