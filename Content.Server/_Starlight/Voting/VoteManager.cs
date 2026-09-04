@@ -12,7 +12,7 @@ public sealed partial class VoteManager
     public void AddPresetToCooldown(GamePresetPrototype preset)
     {
         if (preset.ID == SecretPrototype.Id) return;
-        _presetCooldown.Add(preset.ID, preset.VoteCooldown);
+        _presetCooldown[preset.ID] = preset.VoteCooldown;
         _adminLogger.Add(LogType.Vote, LogImpact.Medium,
             $"Preset {preset.ID} added to cooldown for {preset.VoteCooldown} votes.");
     }
