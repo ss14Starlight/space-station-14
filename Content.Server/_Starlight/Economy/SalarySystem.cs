@@ -82,10 +82,11 @@ public sealed partial class SalarySystem : SharedSalarySystem
                             && _playerResources.TryGetResource(query.Current.Session, "credits", out var balance))
                         {
                             var amount = CalculateSalaryWithBonuses(salary, query.Current.Session);
+                            var sender = _salaries.Sender.GetValueOrDefault(role.Prototype, "Nanotrasen");
 
                             _playerResources.TryUpdateResource(query.Current.Session, "credits", amount);
-                            var message = Loc.GetString("economy-chat-salary-message", ("amount", amount), ("sender", "NanoTrasen"));
-                            var wrappedMessage = Loc.GetString("economy-chat-salary-wrapped-message", ("amount", amount), ("sender", "NanoTrasen"), ("senderColor", "#2384CE"));
+                            var message = Loc.GetString("economy-chat-salary-message", ("amount", amount), ("sender", sender));
+                            var wrappedMessage = Loc.GetString("economy-chat-salary-wrapped-message", ("amount", amount), ("sender", sender), ("senderColor", "#2384CE"));
                             _chat.ChatMessageToOne(ChatChannel.Notifications, message, wrappedMessage, default, false, query.Current.Session.Channel, Color.FromHex("#57A3F7"));
                         }
                     }

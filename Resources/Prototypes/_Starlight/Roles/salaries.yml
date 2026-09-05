@@ -58,6 +58,7 @@
     ResearchAssistant: 23
 
     SalvageLead: 75
+    SalvageMedic: 70
     SalvageSpecialist: 60
     MiningSpecialist: 60
     CargoTechnician: 45
@@ -66,6 +67,75 @@
     Visitor: 0
     Prisoner: 0
     StirStir: 0
+
+  sender:
+    Captain: "Central Administrative Division"
+    HeadOfPersonnel: "Central Administrative Division"
+    HeadOfSecurity: "Central Administrative Division"
+    ChiefEngineer: "Central Administrative Division"
+    ResearchDirector: "Central Administrative Division"
+    ChiefMedicalOfficer: "Central Administrative Division"
+    Quartermaster: "Central Administrative Division"
+
+    BlueShield: "Nanotrasen"
+    NanoTrasenRepresentative: "Nanotrasen"
+    Magistrate: "Nanotrasen"
+    NanotrasenCareerTrainer: "Nanotrasen"
+    IAA: "Nanotrasen"
+
+    Chemist: "Central Medical Division"
+    Psychologist: "Central Medical Division"
+    Paramedic: "Central Medical Division"
+    MedicalDoctor: "Central Medical Division"
+    MedicalIntern: "Central Medical Division"
+    Surgeon: "Central Medical Division"
+
+    AtmosphericTechnician: "Central Engineering Division"
+    StationEngineer: "Central Engineering Division"
+    TechnicalAssistant: "Central Engineering Division"
+
+    Warden: "Central Security Division"
+    Detective: "Central Security Division"
+    Brigmedic: "Central Security Division"
+    DutyOfficer: "Central Security Division"
+    SecurityOfficer: "Central Security Division"
+    SecurityCadet: "Central Security Division"
+
+    StationAi: "Nanotrasen"
+    Borg: "Nanotrasen"
+
+    AssistantManager: "Central Domestic Divison"
+    Chaplain: "Central Domestic Divison"
+    Chef: "Central Domestic Divison"
+    Janitor: "Central Domestic Divison"
+    Botanist: "Central Domestic Divison"
+    Lawyer: "Central Domestic Divison"
+    Librarian: "Central Domestic Divison"
+    Musician: "Central Domestic Divison"
+    Bartender: "Central Domestic Divison"
+    Mime: "Central Domestic Divison"
+    Clown: "Central Domestic Divison"
+    ServiceWorker: "Central Domestic Divison"
+    Performer: "Central Domestic Divison"
+    Reporter: "Central Domestic Divison"
+    Assistant: "Central Domestic Divison"
+    Boxer: "Central Domestic Divison"
+
+    Scientist: "Central Research Division"
+    Roboticist: "Central Research Division"
+    ResearchAssistant: "Central Research Division"
+
+    SalvageLead: "Interstellar Trade Guild"
+    SalvageMedic: "Interstellar Trade Guild"
+    SalvageSpecialist: "Interstellar Trade Guild"
+    MiningSpecialist: "Central Cargo Division"
+    CargoTechnician: "Central Cargo Division"
+    MailTech: "Central Cargo Division"
+
+    Visitor: "private account"
+    Prisoner: "private account"
+    StirStir: "private account"
+
 
 - type: SalaryRoleBonus
   id: BlackOpsBonus

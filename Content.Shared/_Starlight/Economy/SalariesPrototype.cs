@@ -15,4 +15,7 @@ public sealed partial class SalariesPrototype : IPrototype
 
     [DataField]
     public Dictionary<ProtoId<AntagPrototype>, int> Antags = new();
+
+    [DataField] 
+    public Dictionary<ProtoId<JobPrototype>, string> Sender = new();
 }
