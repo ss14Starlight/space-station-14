@@ -2,7 +2,7 @@
   id: FelionoidSnout
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Felionoid, ProtoFelionoid]
+  speciesRestriction: [Felionoid, NeoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: head_snout

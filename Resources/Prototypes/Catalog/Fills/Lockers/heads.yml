@@ -13,48 +13,51 @@
     - id: DoorRemoteCargo
     - id: AstroNavCartridge
     - id: ClothingHandsKnuckleDustersQM
-    - id: PlushieLance #starlight
-    - id: RadioHandheldExpedition #starlight
-    - id: ClothingOuterHardsuitLuxmax #starlight
-    - id: SalvageShuttleConsoleCircuitboard #starlight
-    - id: MiningShuttleConsoleCircuitboard #starlight
-    - id: EncryptionKeySalvage #starlight
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: SpaceCash1000 #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: SpaceCash1000 #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: SpaceCash1000 #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: SpaceCash1000 #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: SpaceCash1000 #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
+    # Starlight start
+    - id: RadioHandheldExpedition
+    - id: ClothingOuterHardsuitLuxmax
+    - id: MiningShuttleConsoleCircuitboard
+    - id: CargoTechFabFlatpack
+    - id: BookSecureTerminalManual # Starlight
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: SpaceCash1000
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: SpaceCash1000
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: SpaceCash1000
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: SpaceCash1000
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: SpaceCash1000
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    #Starlight end
+    - id: PlushieLizardJobQuartermaster
+      prob: 0.02
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -91,9 +94,10 @@
     - id: WeaponDisabler
     - id: ClothingEyesGlassesCommand
     - id: ClothingEyesHudCommand
-    - id: EncryptionKeyExpedition #starlight
     - id: SpyglassCaptain #Starlight
     - id: CommunicationTablet #Starlight
+    - id: CommandTechFabFlatpack # Starlight
+    - id: BookSecureTerminalManual # Starlight
     - id: HeadSkeleton # A skull to accompany your skeleton crew # Starlight Edit: OrganSkeletonPersonHead -> HeadSkeleton
       conditions:
       - !type:PlayerCountCondition
@@ -112,6 +116,8 @@
     #     - Greenshift
     #     - Sandbox
     #endregion Starlight
+    - id: PlushieLizardJobCaptain
+      prob: 0.02
 
 
 # No laser table + Laser table
@@ -206,8 +212,9 @@
     - id: HoPIDCard
     - id: WeaponDisabler
     - id: ClothingEyesHudCommand
-    - id: BoxFolderHoPClipboard #Starlight Change
-    # Starlight Start
+    - id: BoxFolderHoPClipboard #Starlight start
+    - id: BookSecureTerminalManual # Starlight
+    - id: ServiceTechFabFlatpack
     - id: PrintedDocumentGreenshiftAlert
       conditions:
       - !type:GamemodeCondition
@@ -218,7 +225,15 @@
       conditions:
         - !type:HolidayActiveCondition
           holiday: FestiveSeason
+    - !type:GroupSelector #Structured to be able to add more options once we have sprites for more
+      children:
+      - id: EndymionMonumentFlatpack
+    - id: PrintedDocumentEndymionMemorial
+    - id: Multitool
+    - id: WashingMachineFlatpack
     # Starlight End
+    - id: PlushieLizardJobHeadofpersonnel
+      prob: 0.02
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -237,34 +252,37 @@
   table: !type:AllSelector
     children:
     - id: ClothingNeckCloakCeElite
-    - id: AccessConfigurator
+#    - id: AccessConfigurator # Starlight-edit: moved to the CE toolbelt
     - id: BoxEncryptionKeyEngineering
     - id: CigarCase
       prob: 0.15
     - id: ClothingBeltChiefEngineerFilled
-    - id: ClothingEyesGlassesMeson
+#    - id: ClothingEyesGlassesMeson # Starlight-edit: spawned with, in the EngiVend
 #    - id: ClothingHandsGlovesColorYellow # Starlight, they spawn with these now.
     - id: ClothingHeadsetAltEngineering
     - id: DoorRemoteEngineering
     - id: BoxCECircuitboards
     - id: MatBag #FH
-    - id: WeaponGrapplingGun #FH
-    - id: BoxFlare #FH
+#    - id: WeaponGrapplingGun # Starlight-edit: in the EngiVend
+#    - id: BoxFlare # Starlight-edit: in the EngiVend
     - id: AstroNavCartridge #FH
-    - id: SheetSteel #FH
-    - id: SheetGlass #FH
     - id: RCDChiefEngineer
     - id: RPD # Starlight: RPD
-    - id: RCDAmmo
+    - id: HandheldEngineeringMonitor # Starlight-edit: CE's handheld power/atmospherics monitor
+#    - id: RCDAmmo # Starlight-edit: CE RCD self-recharges
     - id: RubberStampCE
-    - id: MetalFoamGrenade
-    - id: PlushieMatthew #starlight
+#    - id: MetalFoamGrenade # Starlight-edit: in the EngiVend
+    - id: FireExtinguisherAtmos # Starlight
+    - id: EngineeringTechFabFlatpack # Starlight
+    - id: BookSecureTerminalManual # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
         presets: #SL
         - Greenshift #SL
         - Sandbox #SL
+    - id: PlushieLizardJobChiefengineer
+      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -323,6 +341,7 @@
     - id: BoxEncryptionKeyMedical
     - id: BoxCMOCircuitboards
     - id: AutoMenderBurnFilled # Starlight start
+    - id: BookSecureTerminalManual # Starlight
     - id: AutoMenderBruteFilled
     - id: ClothingBackpackDuffelSurgeryFilled
     - id: ClothingMaskSterile
@@ -338,7 +357,10 @@
         presets:
         - Greenshift
         - Sandbox
-    - id: JawsOfLifeMed #Starlight end
+    - id: JawsOfLifeMed
+    - id: WashingMachineFlatpack #Starlight end
+    - id: PlushieLizardJobChiefmedicalofficer
+      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -392,20 +414,23 @@
     - id: DoorRemoteResearch
     - id: HandTeleporter
     - id: RubberStampRd
-    - id: EncryptionKeyMedicalScience # Starlight, steal target
-      prob: 0.5 # Starlight
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    #region Starlight
+    - id: EncryptionKeyMedicalScience # Starlight start, steal target
+      prob: 0.5
+    - id: ScienceTechFabFlatpack
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
     - id: RDDiploma
     - id: XenobiologyConsoleCameraTagger
+    - id: BookSecureTerminalManual # Starlight
     #- id: PaperIonstormBorgs
     #  prob: 0.10 #1/10 rounds will have this paper that can be signed repeatedly for no discernable effect!
-    #endregion Starlight
+    # Starlight end
+    - id: PlushieLizardJobResearchdirector
+      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -473,6 +498,7 @@
     - id: WantedListCartridge
     - id: DrinkHosFlask
     - id: SecurityShuttleConsoleCircuitboard # Starlight start
+    - id: BookSecureTerminalManual # Starlight
     - id: ClothingOuterWinterHoS
 #    - id: ClothingHandsGlovesCombat # Starlight, they spawn with them now.
     - id: SecureBriefings
@@ -482,6 +508,8 @@
         presets:
         - Greenshift
         - Sandbox # Starlight end
+    - id: PlushieLizardJobHeadofsecurity
+      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

@@ -57,13 +57,6 @@
     state: cpu_supply
 
 - type: stealTargetGroup
-  id: SalvageShuttleConsoleCircuitboard
-  name: steal-target-groups-salvage-shuttle-console-circuitboard
-  sprite:
-    sprite: Objects/Misc/module.rsi
-    state: cpu_supply
-
-- type: stealTargetGroup
   id: HoPBoardSteal
   name: steal-target-groups-hopboard
   sprite:
@@ -89,13 +82,6 @@
   name: steal-target-groups-access-configurator
   sprite:
     sprite: Objects/Tools/access_configurator.rsi
-    state: icon
-
-- type: stealTargetGroup
-  id: EncryptionKeyHybrid
-  name: steal-target-groups-encryption-key-hybrid
-  sprite:
-    sprite: _Starlight/Objects/Misc/salvagekeystealobjective.rsi
     state: icon
 
 - type: stealTargetGroup
@@ -162,13 +148,6 @@
     state: icon
 
 - type: stealTargetGroup
-  id: SalvLeadHardsuit
-  name: steal-target-groups-clothing-outer-hardsuit-salvlead
-  sprite:
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/leadspatio.rsi
-    state: icon
-
-- type: stealTargetGroup
   id: CaptainHardsuit
   name: steal-target-groups-clothing-outer-hardsuit-captain
   sprite:
@@ -180,6 +159,13 @@
   name: steal-target-groups-clothing-outer-hardsuit-ntr
   sprite:
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntrepspace.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: EncryptionKeyHybrid
+  name: steal-target-groups-encryption-key-hybrid
+  sprite:
+    sprite: _Starlight/Objects/Misc/salvagekeystealobjective.rsi
     state: icon
 
 - type: stealTargetGroup
@@ -249,11 +235,11 @@
     state: cart-nav
 
 - type: stealTargetGroup
-  id: SecurityTechFabCircuitboard
-  name: steal-target-groups-security-tech-fab-circuitboard
+  id: DepartmentalTechFabCircuitboard
+  name: steal-target-groups-departmental-tech-fab-circuitboard
   sprite:
-    sprite: Objects/Misc/module.rsi
-    state: security
+    sprite: _Starlight/Objects/Misc/techfabstealobjective.rsi
+    state: departmental
 
 - type: stealTargetGroup
   id: PTechCircuitboard
@@ -289,13 +275,6 @@
   sprite:
     sprite: _Starlight/Objects/Misc/bedsheets.rsi
     state: sheetbrigmedicstrange
-
-- type: stealTargetGroup
-  id: SalvLeadMantle
-  name: steal-target-groups-salvlead-mantle
-  sprite:
-    sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
-    state: icon
 
 - type: stealTargetGroup
   id: SpyglassCaptain
@@ -360,3 +339,11 @@
   sprite:
     sprite: _Starlight/Objects/Misc/medicalbeltstealobjective.rsi
     state: icon
+
+# Wizard Duelist medallions
+- type: stealTargetGroup
+  id: WizardMedallionCollection
+  name: steal-target-groups-wizard-medallions
+  sprite:
+    sprite: _Starlight/Objects/Specific/wizcoin.rsi
+    state: omniwizcoin

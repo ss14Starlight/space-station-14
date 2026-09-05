@@ -14,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_lox.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_lox.yml
         - type: StationJobs
           availableJobs:
             #command
@@ -59,6 +59,7 @@
             #supply
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 3, 3 ]
             MailTech: [ 2, 2 ]
@@ -69,6 +70,7 @@
             Musician: [ 1, 1 ]
             Performer: [ 2, 2 ]
             Boxer: [ 2, 2 ]
+            RadioHost: [ 1, 1 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 4 ]

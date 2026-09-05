@@ -60,7 +60,7 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 
         // NullLink start
         _net.RegisterNetMessage<MsgUpdatePlayerPlayTime>(Update);
-        _achievements.AchievementsUpdated += OnAchievementsUpdated;
+        _achievements.AchievementUnlocked += OnAchievementsUnlocked;
         _cfg.OnValueChanged(NullLinkCCVars.Project, OnProjectChanged, true);
         _cfg.OnValueChanged(NullLinkCCVars.Server, OnServerChanged, true);
         // NullLink end
@@ -121,7 +121,7 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         Updated?.Invoke();
     }
 
-    private void OnAchievementsUpdated()
+    private void OnAchievementsUnlocked(string achievement)
         =>  Updated?.Invoke();
     // Nulllink end
 

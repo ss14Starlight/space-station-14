@@ -86,6 +86,7 @@
       - BuzzochloricBees
       - Amatoxin
       - Tazinide
+      - Phenylpiperidine
     - quantity: 10
       weight: 4
       reagents:
@@ -98,10 +99,10 @@
   id: OminousPill
   description: This unusual pill bears no markings. You feel a sense of dread, but also... curiosity.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25 # Let's go gambling!
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 25 # Let's go gambling!
   - type: RandomFillSolution
     solution: food
     weightedRandomId: RandomFillOminousPill
@@ -194,6 +195,7 @@
       - BuzzochloricBees
       - Amatoxin
       - Tazinide
+      - Phenylpiperidine
     - quantity: 3
       weight: 2.5
       reagents:
@@ -206,10 +208,10 @@
   id: WeirdPill
   description: This unusual pill bears no markings. It's probably not deadly. Probably.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15 # Technically safer
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 15 # Technically safer
   - type: RandomFillSolution
     solution: food
     weightedRandomId: RandomFillWeirdPill
@@ -268,6 +270,7 @@
       - BuzzochloricBees
       - Amatoxin
       - Tazinide
+      - Phenylpiperidine
     - quantity: 15
       weight: 25
       reagents:
@@ -288,10 +291,10 @@
   - type: Item
     size: Tiny
     sprite: _Starlight/Objects/Specific/Chemistry/pills.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 30
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 30
   - type: RandomFillSolution
     solution: food
     weightedRandomId: RandomFillGoldenPill

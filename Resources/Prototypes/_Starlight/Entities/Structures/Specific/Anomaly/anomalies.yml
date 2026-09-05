@@ -463,8 +463,8 @@
     corePrototype: null
     coreInertPrototype: null
     deleteEntity: true
-    minPointsPerSecond: 10
-    maxPointsPerSecond: 70
+    minPointsPerSecond: 0
+    maxPointsPerSecond: 0
     decayhreshold: -1
     severityGrowthCoefficient: 0
     healthChangePerSecond: 0
@@ -476,6 +476,7 @@
     useNormalContainmentParticle: false
     useNormalTransformationParticle: false
     canPulse: false
+    canBePunched: false
     particleInteractions:
     - interactionKey: NullspaceStabilizer
       effect: EndAnomaly

@@ -12,8 +12,11 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
+using Content.Server.Mind;
 using Content.Shared.Players.PlayTimeTracking;
+using Content.Shared.Roles;
 using Content.Shared.Voting;
+using Content.Shared.Roles.Jobs;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -383,7 +386,7 @@ namespace Content.Server.Voting.Managers
             }
 
             // Remove ineligible votes that somehow slipped through
-            foreach (var playerVote in v.CastVotes)
+            foreach (var playerVote in v.CastVotes.ToList()) //Starlight-edit - Who at upstream forgot to test this?!
             {
                 if (!CheckVoterEligibility(playerVote.Key, v.VoterEligibility))
                 {
@@ -453,7 +456,7 @@ namespace Content.Server.Voting.Managers
                     return false;
             }
 
-            // Begin Starlight - Cosmic Cult
+            // Begin Starlight - Cosmic Cult & Crew
             if (eligibility == VoterEligibility.CosmicCult)
             {
                 var evt = new Content.Server._Starlight.CosmicCult.CosmicCultVoterEligibilityEvent(player, false);
@@ -461,7 +464,20 @@ namespace Content.Server.Voting.Managers
                 if (!evt.Eligible)
                     return false;
             }
-            // End Starlight - Cosmic Cult
+
+            if (eligibility == VoterEligibility.NonAntag)
+            {
+                if (player.AttachedEntity == null)
+                    return false;
+
+                if (!_entityManager.System<MindSystem>().TryGetMind(player, out var mindId, out _))
+                    return false;
+
+                if (_entityManager.System<SharedRoleSystem>().MindIsAntagonist(mindId))
+                    return false;
+
+            }
+            // End Starlight - Cosmic Cult & Crew
 
             return true;
         }
@@ -562,6 +578,7 @@ namespace Content.Server.Voting.Managers
             GhostMinimumPlaytime, // Player needs to be a ghost, with a minimum playtime and deathtime as defined by votekick CCvars.
             MinimumPlaytime, //Player needs to have a minimum playtime and deathtime as defined by votekick CCvars.
             CosmicCult, // Starlight - Cosmic Cult
+            NonAntag // Starlight - Exclude antags
         }
 
         #endregion

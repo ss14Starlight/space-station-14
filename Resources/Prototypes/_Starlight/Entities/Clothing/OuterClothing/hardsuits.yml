@@ -445,8 +445,6 @@
         - Hardsuit
         - HardsuitSpatio
         - CorgiWearable
-    - type: StealTarget
-      stealGroup: SalvLeadHardsuit
 
 #Mining Specialist Advanced hardsuit
 - type: entity

@@ -2,12 +2,13 @@
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:humanoid="clr-namespace:Content.Client.Humanoid"
-    xmlns:profileEditorControls="clr-namespace:Content.Client.Lobby.UI.ProfileEditorControls"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:profile="clr-namespace:Content.Client.Lobby.UI.ProfileEditorControls"
     xmlns:ui="clr-namespace:Content.Client.Lobby.UI"
     xmlns:ui1="clr-namespace:Content.Client._Starlight.Lobby.UI"
     xmlns:traits="clr-namespace:Content.Client._Starlight.Traits.UI"
     xmlns:starlightHumanoid="clr-namespace:Content.Client._Starlight.Humanoid"
-    xmlns:starlightProfileEditorControls="clr-namespace:Content.Client._Starlight.Lobby.UI.ProfileEditorControls"
+    xmlns:antags="clr-namespace:Content.Client._Moffstation.Antags.UI"
     HorizontalExpand="True">
     <!--  Left side  -->
     <BoxContainer
@@ -241,13 +242,14 @@
                     <BoxContainer Name="JobList" Orientation="Vertical" />
                 </ScrollContainer>
             </BoxContainer>
-            <BoxContainer Margin="10" Orientation="Vertical">
-                <!--  Antags  -->
-                <ScrollContainer VerticalExpand="True">
-                    <BoxContainer Name="AntagList" Orientation="Vertical" />
-                </ScrollContainer>
-            </BoxContainer>
             <!--  Starlight - Start  -->
+            <antags:SpecialRolesTab Name="Antags" /> <!-- Moffstation -->
+            <!-- <BoxContainer Margin="10" Orientation="Vertical"> -->
+                <!--  Antags  -->
+                <!-- <ScrollContainer VerticalExpand="True"> -->
+                    <!-- <BoxContainer Name="AntagList" Orientation="Vertical" /> -->
+                <!-- </ScrollContainer> -->
+            <!-- </BoxContainer> -->
             <!-- <BoxContainer Orientation="Vertical" Margin="10"> -->
             <!--  Traits  -->
             <!-- <ScrollContainer VerticalExpand="True"> -->
@@ -300,7 +302,12 @@
         </TabContainer>
     </BoxContainer>
     <!--  Right side  -->
-    <!-- Starlight edit Start -->
-    <starlightProfileEditorControls:ProfilePreview Name="Preview" />
-    <!-- Starlight edit End -->
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Center">
+        <profile:ProfilePreviewSpriteView Name="SpriteView" Scale="8 8" Margin="4" SizeFlagsStretchRatio="1" />
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 5">
+            <Button Name="SpriteRotateLeft" Text="◀" StyleClasses="OpenRight" />
+            <cc:VSeparator Margin="2 0 3 0" />
+            <Button Name="SpriteRotateRight" Text="▶" StyleClasses="OpenLeft" />
+        </BoxContainer>
+    </BoxContainer>
 </BoxContainer>

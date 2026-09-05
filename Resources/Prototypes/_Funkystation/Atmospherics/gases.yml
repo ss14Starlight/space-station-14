@@ -52,7 +52,7 @@
   molarMass: 1
   color: fffaf0
   reagent: Hydrogen
-  pricePerMole: 1.2
+  pricePerMole: 0
 
 - type: gas
   id: HyperNoblium
@@ -113,7 +113,7 @@
   molarMass: 4
   color: 005959
   reagent: Helium
-  pricePerMole: 0.8
+  pricePerMole: 0.05
 
 - type: gas
   id: AntiNoblium

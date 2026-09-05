@@ -44,11 +44,10 @@ public sealed class StationPowerTests : GameTest
         */// Starlight-comment end
         //Starlight, do not accept any upstream maps into this list, we are keeping them out for package size and just general management reasons
         #region Starlight
-        "StarlightBarratry",
         "StarlightCork",
         "StarlightKiloton",
         "StarlightLagan",
-        "StarlightLobster",
+        "StarlightNovoLobster",
         "StarlightManor",
         "StarlightLeth",
         "StarlightMing",
@@ -64,6 +63,7 @@ public sealed class StationPowerTests : GameTest
         "StarlightOasis",
         "StarlightPacked",
         "StarlightReach",
+        "StarlightRefinery",
         "StarlightSaltern",
         "StarlightSilica",
         "StarlightSpaceMall",
@@ -71,8 +71,18 @@ public sealed class StationPowerTests : GameTest
         "StarlightStationBuilding",
         "StarlightPlasma",
         "StarlightSepultum",
+        "StarlightRemix"
         #endregion
     ];
+
+    #region Starlight
+    /// <summary>
+    /// Starlight: allows specific maps to skip having a upper bound on power in the case of admeme maps or where it is deemed acceptable by head mapper
+    /// </summary>
+    private static readonly HashSet<string> _noUpperBoundedPowerMaps = [
+        "StarlightRemix"
+    ];
+    #endregion
 
     public override PoolSettings PoolSettings => new ()
     {
@@ -256,6 +266,8 @@ public sealed class StationPowerTests : GameTest
             Assert.That(totalStartingCharge, Is.GreaterThanOrEqualTo(requiredStoredPower),
                 $"Needs at least {requiredStoredPower - totalStartingCharge} more stored power!");
             // Starlight start
+            if (_noUpperBoundedPowerMaps.Contains(mapProtoId))
+                return; //skip the section below if it is a no upper bound map.
             Assert.That(estimatedDuration, Is.LessThanOrEqualTo(MaximumPowerDurationSeconds),
                 $"Initial power for {mapProtoId} lasts too long! Max allowed {MaximumPowerDurationSeconds}s " +
                 $"but estimated to last {estimatedDuration}s remove some stored power!");

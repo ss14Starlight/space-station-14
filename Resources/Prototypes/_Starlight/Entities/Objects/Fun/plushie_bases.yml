@@ -1,43 +1,6 @@
+# Avali
 - type: entity
   parent: BasePlushie
-  id: BasePlushieVocalizer
-  abstract: true
-  components:
-    - type: Vocalizer
-      minVocalizeInterval: 120
-      maxVocalizeInterval: 240
-
-- type: entity
-  parent: BasePlushieVocalizer
-  id: BaseResomiPlushie
-  abstract: true
-  components:
-  - type: EmitSoundOnUse
-    sound:
-      collection: ResomiChirp
-  - type: EmitSoundOnLand
-    sound:
-      collection: ResomiChirp
-  - type: EmitSoundOnActivate
-    sound:
-      collection: ResomiChirp
-  - type: EmitSoundOnCollide
-    sound:
-      path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      collection: ResomiChirp
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      collection: ResomiChirp
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
-
-- type: entity
-  parent: BasePlushieVocalizer
   id: BaseAvaliPlushie
   abstract: true
   components:
@@ -64,119 +27,13 @@
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Effects/avali_scream.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieBorb
 
+# Borg
 - type: entity
-  parent: BasePlushieVocalizer
-  id: BaseVulpkaninPlushie
-  abstract: true
-  components:
-  - type: EmitSoundOnUse
-    sound:
-      collection: Bark
-  - type: EmitSoundOnLand
-    sound:
-      collection: Bark
-  - type: EmitSoundOnActivate
-    sound:
-      collection: Bark
-  - type: EmitSoundOnCollide
-    sound:
-      collection: Bark
-  - type: EmitSoundOnTrigger
-    sound:
-      collection: Bark
-  - type: EmitSoundOnThrow
-    sound:
-      path: /Audio/_Starlight/Effects/howl.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      collection: Growl
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/_Starlight/Effects/yip.ogg
-
-- type: entity
-  parent: BasePlushieVocalizer
-  id: BaseMothPlushie
-  abstract: true
-  components:
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/Voice/Moth/moth_squeak.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Voice/Moth/moth_squeak.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Voice/Moth/moth_squeak.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Voice/Moth/moth_squeak.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/Voice/Moth/moth_chitter.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/Voice/Moth/moth_scream.ogg
-
-- type: entity
-  parent: BasePlushieVocalizer
-  id: BaseLizardPlushie
-  abstract: true
-  components:
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-
-- type: entity
-  parent: BasePlushieVocalizer
-  id: BaseShadekinPlushie
-  abstract: true
-  components:
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/_Starlight/Voice/Shadekin/wurble.ogg
-  - type: Edible
-    requiresSpecialDigestion: true
-    useSound:
-      collection: FelionoidScreams
-
-- type: entity
-  parent: BasePlushieVocalizer
+  parent: BasePlushie
   id: BaseBorgPlushie
   abstract: true
   components:
@@ -205,9 +62,13 @@
       - Prying
     useSound:
       path: /Audio/Items/crowbar.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieBorg
 
+# Felionoid
 - type: entity
-  parent: BasePlushieVocalizer
+  parent: BasePlushie
   id: BaseFelionoidPlushie
   abstract: true
   components:
@@ -237,3 +98,162 @@
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_Starlight/Voice/Felionoid/cat_scream2.ogg
+
+# Lizard
+- type: entity
+  parent: BasePlushie
+  id: BaseLizardPlushie
+  abstract: true
+  components:
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: LizardPlushie
+
+# Moth
+- type: entity
+  parent: BasePlushie
+  id: BaseMothPlushie
+  abstract: true
+  components:
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Voice/Moth/moth_squeak.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Voice/Moth/moth_squeak.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Voice/Moth/moth_squeak.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Voice/Moth/moth_squeak.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: MothPlushie
+
+# Resomi
+- type: entity
+  parent: BasePlushie
+  id: BaseResomiPlushie
+  abstract: true
+  components:
+  - type: EmitSoundOnUse
+    sound:
+      collection: ResomiChirp
+  - type: EmitSoundOnLand
+    sound:
+      collection: ResomiChirp
+  - type: EmitSoundOnActivate
+    sound:
+      collection: ResomiChirp
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: ResomiChirp
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: ResomiChirp
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieBorb
+
+# Shadekin
+- type: entity
+  parent: BasePlushie
+  id: BaseShadekinPlushie
+  abstract: true
+  components:
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Voice/Shadekin/wurble.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Voice/Shadekin/scream_f1.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieShadekin
+
+# Vulpkanin
+- type: entity
+  parent: BasePlushie
+  id: BaseVulpkaninPlushie
+  abstract: true
+  components:
+  - type: EmitSoundOnUse
+    sound:
+      collection: Bark
+  - type: EmitSoundOnLand
+    sound:
+      collection: Bark
+  - type: EmitSoundOnActivate
+    sound:
+      collection: Bark
+  - type: EmitSoundOnCollide
+    sound:
+      collection: Bark
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: Bark
+  - type: EmitSoundOnThrow
+    sound:
+      path: /Audio/_Starlight/Effects/howl.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: Growl
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Effects/yip.ogg
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieVulp

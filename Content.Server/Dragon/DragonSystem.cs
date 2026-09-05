@@ -25,6 +25,7 @@ namespace Content.Server.Dragon;
 public sealed partial class DragonSystem : EntitySystem
 {
     [Dependency] private CarpRiftsConditionSystem _carpRifts = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private MovementSpeedModifierSystem _movement = default!;
     [Dependency] private NpcFactionSystem _faction = default!;
     [Dependency] private PopupSystem _popup = default!;
@@ -233,10 +234,9 @@ public sealed partial class DragonSystem : EntitySystem
         comp.Rifts.Clear();
 
         // stop here if not trying to reset the objective's rift count
-        if (!resetRole || !TryComp<MindContainerComponent>(uid, out var mindContainer) || !mindContainer.HasMind)
+        if (!resetRole || !_mind.TryGetMind(uid, out _, out var mind))
             return;
 
-        var mind = Comp<MindComponent>(mindContainer.Mind.Value);
         foreach (var objId in mind.Objectives)
         {
             if (_objQuery.TryGetComponent(objId, out var obj))
@@ -255,10 +255,9 @@ public sealed partial class DragonSystem : EntitySystem
         if (!Resolve(uid, ref comp))
             return;
 
-        if (!TryComp<MindContainerComponent>(uid, out var mindContainer) || !mindContainer.HasMind)
+        if (!_mind.TryGetMind(uid, out _, out var mind))
             return;
 
-        var mind = Comp<MindComponent>(mindContainer.Mind.Value);
         foreach (var objId in mind.Objectives)
         {
             if (_objQuery.TryGetComponent(objId, out var obj))
@@ -282,8 +281,9 @@ public sealed partial class DragonSystem : EntitySystem
         // Reset the rift count in objectives since crew destroyed a rift
         if (TryComp<MindContainerComponent>(dragonUid, out var mindContainer) && mindContainer.HasMind)
         {
-            var mind = Comp<MindComponent>(mindContainer.Mind.Value);
-            foreach (var objId in mind.Objectives)
+            if (_mind.TryGetMind(dragonUid, out _, out var mind))
+            {
+                foreach (var objId in mind.Objectives)
             {
                 if (_objQuery.TryGetComponent(objId, out var obj))
                 {
@@ -299,5 +299,6 @@ public sealed partial class DragonSystem : EntitySystem
         _movement.RefreshMovementSpeedModifiers(dragonUid);
         _popup.PopupEntity(Loc.GetString("carp-rift-destroyed"), dragonUid, dragonUid);
         // Starlight edit End
+        }
     }
 }

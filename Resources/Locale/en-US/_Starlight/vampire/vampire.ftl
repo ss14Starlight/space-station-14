@@ -6,7 +6,7 @@ alerts-vampire-blood-desc = Shows how much blood you've drunk. Extend your fangs
 alerts-vampire-fed-name = Blood Fullness
 alerts-vampire-fed-desc = Your current blood fullness. Drink blood to stay fed.
 
-roles-antag-vamire-name = Vampire
+roles-antag-vampire-name = Vampire
 roles-antag-vampire-description = Feed on the crew. Extend your fangs and drink their blood.
 
 roles-antag-thrall-name = Thrall

@@ -48,7 +48,7 @@
 
 - type: playTimeTracker
   id: AntagVampire
-  name: roles-antag-vamire-name
+  name: roles-antag-vampire-name
 
 - type: playTimeTracker
   id: AntagSurvivor
@@ -113,3 +113,11 @@
 - type: playTimeTracker
   id: AntagDevil
   name: roles-antag-devil-name
+
+- type: playTimeTracker
+  id: AntagCosmicColossus
+  name: ghost-role-information-colossus-name
+
+- type: playTimeTracker
+  id: AntagCosmicMinion
+  name: ghost-role-information-cosmic-minion-name

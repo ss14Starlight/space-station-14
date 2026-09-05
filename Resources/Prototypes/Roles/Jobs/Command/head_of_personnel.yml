@@ -25,7 +25,6 @@
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
   supervisors: job-supervisors-captain
-  canBeAntag: false
   access:
   - Cadet # Starlight
   - Command
@@ -47,21 +46,24 @@
   - Engineering
   - Research
   - Detective
-  - Salvage
   - Security
   - Brig
   - Lawyer
   - Cargo
   - Atmospherics
   - Medical
-  - Robotics # Starlight
-  - Brigmedic # Starlight
-  - Surgery # Starlight
-  - Paramedic # Starlight
-  - Mining # Starlight
-  - SalvageLead # Starlight
-  - Mail # Starlight
-  - Debrief # Starlight
+  - Journalism # Goobstation
+  - Robotics # Starlight start
+  - Brigmedic
+  - Surgery
+  - Paramedic
+  - Mining
+  - SalvageLead
+  - Mail
+  - Debrief
+  - Shuttle
+  - Clown
+  - Mime # Starlight end
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

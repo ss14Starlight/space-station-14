@@ -1,0 +1,22 @@
+- type: entity
+  id: OrganNeoLagomorphStomach
+  parent: OrganNeocyteStomach
+  name: lagomorph biological reactor
+  suffix: Neo-Lagomorph
+  components:
+  - type: Metabolizer
+    updateInterval: 0.75
+    maxReagents: 3
+    metabolizerTypes: [ Animal ]
+    stages: [ Digestion ]
+- type: entity
+  id: OrganNeoLagomorphHeart
+  parent: OrganNeocyteHeart
+  name: lagomorph cybernetic heart
+  suffix: Neo-Lagomorph
+  components:
+  - type: Metabolizer
+    updateInterval: 0.75
+    maxReagents: 2
+    metabolizerTypes: [ Neocyte ]
+    stages: [ Bloodstream ]

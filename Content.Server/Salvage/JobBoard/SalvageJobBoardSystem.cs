@@ -15,6 +15,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Stacks;
+using Content.Server.Stack;
 
 namespace Content.Server.Salvage.JobBoard;
 
@@ -29,11 +31,21 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
     [Dependency] private RadioSystem _radio = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
+    // Starlight-start
+    [Dependency] private StackSystem _stack = default!;
+    // Starlight-end
 
     /// <summary>
     /// Radio channel that unlock messages are broadcast on.
     /// </summary>
     private static readonly ProtoId<RadioChannelPrototype> UnlockChannel = "Supply";
+
+    #region Starlight
+    /// <summary>
+    /// Prototype for the stack that is spawned when a salvage job is completed.
+    /// </summary>
+    private static readonly ProtoId<StackPrototype> TicketStackPrototype = "SalvageTicket";
+    #endregion
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -56,7 +68,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
         {
             if (!FulfillsSalvageJob(sold, (args.Station, salvageJobsData), out var jobId))
                 continue;
-            TryCompleteSalvageJob((args.Station, salvageJobsData), jobId.Value);
+            TryCompleteSalvageJob((args.Station, salvageJobsData), jobId.Value, sold); // Starlight-edit
         }
     }
 
@@ -155,7 +167,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
     /// <param name="ent"></param>
     /// <param name="job"></param>
     /// <returns></returns>
-    public bool TryCompleteSalvageJob(Entity<SalvageJobsDataComponent> ent, ProtoId<CargoBountyPrototype> job)
+    public bool TryCompleteSalvageJob(Entity<SalvageJobsDataComponent> ent, ProtoId<CargoBountyPrototype> job, EntityUid? sourceEntity = null) // Starlight-edit
     {
         if (!GetAvailableJobs(ent).Contains(job))
             return false;
@@ -176,6 +188,14 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
                 jobProto.Reward,
                 _cargo.CreateAccountDistribution((ent,  stationBankAccount)));
         }
+        // Starlight-start
+        // Add tickets
+        if (jobProto.Tickets > 0 && sourceEntity is { Valid: true })
+        {
+            var coordinates = Transform(sourceEntity.Value).Coordinates;
+            _stack.SpawnAtPosition(jobProto.Tickets, TicketStackPrototype, coordinates);
+        }
+        // Starlight-end
 
         // We ranked up!
         if (oldRank != newRank)
@@ -277,7 +297,7 @@ public sealed partial class SalvageJobBoardSystem : EntitySystem
                 ("amount", entry.Amount),
                 ("item", Loc.GetString(entry.Name))));
         }
-        _paper.SetContent(label, Loc.GetString("job-board-label-text", ("target", string.Join(',', target)), ("reward", job.Reward)));
+        _paper.SetContent(label, Loc.GetString("job-board-label-text", ("target", string.Join(',', target)), ("reward", job.Reward), ("tickets", job.Tickets))); // Starlight-edit: add tickets to label
 
         ent.Comp.NextPrintTime = _timing.CurTime + ent.Comp.PrintDelay;
     }

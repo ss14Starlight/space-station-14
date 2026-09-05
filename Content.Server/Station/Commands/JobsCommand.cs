@@ -86,6 +86,60 @@ public sealed class JobsCommand : ToolshedCommand
     [CommandImplementation("amount")]
     public IEnumerable<int> Amount([PipedArgument] IEnumerable<JobSlotRef> @ref)
         => @ref.Select(Amount);
+
+    #region Starlight
+
+    [CommandImplementation("setunlimited")]
+    public JobSlotRef SetUnlimited(IInvocationContext ctx, [PipedArgument] JobSlotRef @ref)
+    {
+        _jobs ??= GetSys<StationJobsSystem>();
+        if (@ref.Infinite())
+        {
+            ctx.WriteLine("Job is already infinite.");
+            return @ref;
+        }
+        _jobs.MakeJobUnlimited(@ref.Station, @ref.Job);
+        ctx.WriteLine($"{@ref.Job} is now infinite.");
+        return @ref;
+    }
+
+    [CommandImplementation("setunlimited")]
+    public IEnumerable<JobSlotRef> SetUnlimited(IInvocationContext ctx, [PipedArgument] IEnumerable<JobSlotRef> @ref) =>
+        @ref.Select(x => SetUnlimited(ctx, x));
+
+    [CommandImplementation("setlimited")]
+    public JobSlotRef SetLimited(IInvocationContext ctx, [PipedArgument] JobSlotRef @ref, bool resetToMidroundCount)
+    {
+        _jobs ??= GetSys<StationJobsSystem>();
+        if (!@ref.Infinite())
+        {
+            ctx.WriteLine("Job is already limited.");
+            return @ref;
+        }
+        _jobs.MakeJobLimited(@ref.Station, @ref.Job, null, resetToMidroundCount);
+        ctx.WriteLine($"{@ref.Job} is now limited.");
+        return @ref;
+    }
+
+    [CommandImplementation("setlimited")]
+    public IEnumerable<JobSlotRef> SetLimited(IInvocationContext ctx, [PipedArgument] IEnumerable<JobSlotRef> @ref,
+        bool resetToMidroundCount) =>
+        @ref.Select(x => SetLimited(ctx, x, resetToMidroundCount));
+
+    [CommandImplementation("del")]
+    public JobSlotRef DelJob(IInvocationContext ctx, [PipedArgument] JobSlotRef @ref)
+    {
+        _jobs ??= GetSys<StationJobsSystem>();
+        _jobs.DeleteJobSlot(@ref.Station, @ref.Job);
+        ctx.WriteLine($"Job {@ref.Job} was removed from the station.");
+        return @ref;
+    }
+
+    [CommandImplementation("del")]
+    public IEnumerable<JobSlotRef> DelJob(IInvocationContext ctx, [PipedArgument] IEnumerable<JobSlotRef> @ref) =>
+        @ref.Select(x => DelJob(ctx, x));
+
+    #endregion
 }
 
 // Used for Toolshed queries.

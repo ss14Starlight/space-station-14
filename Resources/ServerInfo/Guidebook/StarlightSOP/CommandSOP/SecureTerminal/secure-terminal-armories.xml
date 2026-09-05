@@ -1,0 +1,35 @@
+<Document>
+# Armories and Pods
+
+## Gamma Armory
+
+[bold]Called by any two of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], or [color=#2253b5]NanoTrasen Representative[/color].
+
+[bold]Conditions:[/bold] Code Gamma is active. Standard armament is insufficient for security to respond to the active threat. The armory provides additional lethal equipment for security personnel.
+
+Must not be called during a War Declaration.
+
+[bold]One-time use per shift.[/bold]
+
+[bold]Recalled when:[/bold] The armory is no longer needed, or its position is blocking the evacuation shuttle dock. A short cooldown must elapse before recall is available.
+
+## Psi Armory
+
+[bold]Called by any two of:[/bold] [color=#fcdf03]Captain[/color], [color=#ff4242]Head of Security[/color], or [color=#cd7ccd]Research Director[/color].
+
+[bold]Conditions:[/bold] Code Psi is active. Standard armament is insufficient for security to respond to the active hostile silicon threat.
+
+Must not be called during a War Declaration.
+
+[bold]One-time use per shift.[/bold]
+
+[bold]Recalled when:[/bold] The armory is no longer needed, or its position is blocking the evacuation shuttle dock. A short cooldown must elapse before recall is available.
+
+## Emergency Medical Pod
+
+[bold]Called by:[/bold] [color=#fcdf03]Captain[/color] and [color=#57b8f0]Chief Medical Officer[/color].
+
+[bold]Conditions:[/bold] Medical is damaged and can no longer treat crew, or is overwhelmed and needs more room to treat crew.
+
+[bold]Recalled when:[/bold] The medical emergency has passed and the pod is no longer needed, or its position is blocking the evacuation shuttle dock. A short cooldown must elapse before recall is available.
+</Document>
