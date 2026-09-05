@@ -1,25 +1,4 @@
 Entries:
-- author: Sparlight, DocMoth, swonkus, ya314a, xxhotgirl69, huaqas
-  changes:
-  - message: Added security K9 role.  Not mapped yet, but you can set your loadout for now.
-    type: Add
-  id: 407818
-  time: '2026-08-25T01:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5715
-- author: Caws
-  changes:
-  - message: Ancestors like monkeys and kobolds will no longer overheat when wearing hardsuits.
-    type: Fix
-  id: 407819
-  time: '2026-08-25T04:40:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5809
-- author: Mack
-  changes:
-  - message: Fix metabolism shuffle.
-    type: Fix
-  id: 407820
-  time: '2026-08-25T04:59:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5775
 - author: SirLutz
   changes:
   - message: 'New uncraftable chemical: Respirazone, treats generic airloss damage.'
@@ -2799,4 +2778,25 @@ Entries:
   id: 408217
   time: '2026-09-05T22:18:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5996
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: 3 new coats/jackets.
+    type: Add
+  id: 408218
+  time: '2026-09-05T22:44:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5880
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: 2 new outfit/jumpsuits.
+    type: Add
+  id: 408219
+  time: '2026-09-05T22:44:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5880
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: 2 new boots.
+    type: Add
+  id: 408220
+  time: '2026-09-05T22:44:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5880
 Order: -1
