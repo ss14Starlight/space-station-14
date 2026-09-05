@@ -118,6 +118,7 @@
   - type: Telephone
     transmissionRange: Map
     compatibleRanges:
+    - Grid # Starlight for SharedGridAccessSystem
     - Map
     - Unlimited
     ignoreTelephonesOnSameGrid: true

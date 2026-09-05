@@ -1,5 +1,6 @@
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.StationAi;
+using Content.Shared._Starlight.Maps;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Threading;
@@ -20,7 +21,11 @@ public sealed partial class StationAiVisionSystem : EntitySystem
     [Dependency] private SharedMapSystem _maps = default!;
     [Dependency] private SharedTransformSystem _xforms = default!;
     [Dependency] private SharedPowerReceiverSystem _power = default!;
-    [Dependency] private IGameTiming _timing = default!; // STARLIGHT
+
+    #region Starlight
+    [Dependency] private SharedGridAccessSystem _gridAccess = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    #endregion
 
     private SeedJob _seedJob;
     private ViewJob _job;
@@ -264,7 +269,7 @@ public sealed partial class StationAiVisionSystem : EntitySystem
     /// </summary>
     /// <param name="expansionSize">How much to expand the bounds before to find vision intersecting it. Makes this the largest vision size + 1 tile.</param>
     /// Starlight: added visibleTileTags
-    public void GetView(Entity<BroadphaseComponent, MapGridComponent> grid, Box2Rotated worldBounds, HashSet<Vector2i> visibleTiles, Dictionary<Vector2i, HashSet<string>> visibleTileTags, float expansionSize = 8.5f)
+    public void GetView(Entity<BroadphaseComponent, MapGridComponent> grid, Box2Rotated worldBounds, HashSet<Vector2i> visibleTiles, Dictionary<Vector2i, HashSet<string>> visibleTileTags, float expansionSize = 8.5f, EntityUid? sourceGrid = null)
     {
         _viewportTiles.Clear();
         // Starlight - start
@@ -287,6 +292,15 @@ public sealed partial class StationAiVisionSystem : EntitySystem
         {
             if (!seed.Comp.Enabled)
                 continue;
+
+            // Starlight - start
+            // Ensure we only render for grids we have access to
+            if (sourceGrid is { } source && Transform(seed.Owner).GridUid is { } seedGrid &&
+                !_gridAccess.CanAccess((source, null), (seedGrid, null)))
+            {
+                continue;
+            }
+            // Starlight - end
 
             if (seed.Comp.NeedsPower && !_power.IsPowered(seed.Owner))
                 continue;

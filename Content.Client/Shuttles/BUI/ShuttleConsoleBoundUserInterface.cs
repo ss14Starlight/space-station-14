@@ -1,27 +1,34 @@
-using Content.Client._Starlight.UserInterface; // Starlight
+// ReSharper disable CheckNamespace
 using Content.Client.Shuttles.UI;
+using Content.Client._Starlight.UserInterface;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;
 using JetBrains.Annotations;
-using Robust.Client.UserInterface;
 using Robust.Shared.Map;
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Silicons.StationAi;
+using Robust.Shared.Player;
 
 namespace Content.Client.Shuttles.BUI;
 
 [UsedImplicitly]
 public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
 {
+    [Dependency] private ISharedPlayerManager _playerManager = default!; // Starlight
+
     [ViewVariables]
     private ShuttleConsoleWindow? _window;
 
     public ShuttleConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
+        IoCManager.InjectDependencies(this); // Starlight
     }
 
     protected override void Open()
     {
         base.Open();
         _window = this.CreatePopOutableWindow<ShuttleConsoleWindow>(EntMan); // Starlight: popout support
+        _window.RadarClicked += OnRadarClicked; // Starlight
 
         _window.RequestFTL += OnFTLRequest;
         _window.RequestBeaconFTL += OnFTLBeaconRequest;
@@ -70,9 +77,21 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
 
         if (disposing)
         {
+            if (_window != null)
+                _window.RadarClicked -= OnRadarClicked; // Starlight
             _window?.DisposePopOut(); // Starlight: close the popout if exists
         }
     }
+    #region Starlight
+    private void OnRadarClicked(EntityCoordinates coordinates)
+    {
+        var local = _playerManager.LocalEntity;
+        if (local is null || !EntMan.HasComponent<StationAiHeldComponent>(local.Value))
+            return;
+
+        SendMessage(new CrewMonitoringWarpRequestMessage(EntMan.GetNetCoordinates(coordinates)));
+    }
+    #endregion
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {

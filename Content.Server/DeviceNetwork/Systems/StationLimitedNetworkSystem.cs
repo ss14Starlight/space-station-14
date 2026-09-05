@@ -59,7 +59,8 @@ namespace Content.Server.DeviceNetwork.Systems
             if (!component.StationId.HasValue)
                 TrySetStationId(uid, component);
 
-            if (!CheckStationId(args.Sender, component.AllowNonStationPackets, component.StationId))
+            if (!CheckStationId(args.Sender, component.AllowNonStationPackets, component.StationId) &&
+                !CanAccessSenderGrid(uid, args.Sender)) // Starlight: allow access if the sender and receiver are on grids that can access each other
             {
                 args.Cancel();
             }
