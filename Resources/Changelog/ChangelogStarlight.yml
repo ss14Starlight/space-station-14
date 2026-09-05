@@ -1,32 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: You can now overdose again from drinking too much.
-    type: Tweak
-  id: 407807
-  time: '2026-08-21T16:09:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5772
-- author: Romero/Littlemen
-  changes:
-  - message: 'seal of war: an item for lone wizard that enable them to use the "War" kits at the cost of informing the station.'
-    type: Add
-  id: 407808
-  time: '2026-08-21T16:50:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5771
-- author: Romero/Littlemen
-  changes:
-  - message: Several changes to the kits, see changelogs in pr.
-    type: Tweak
-  id: 407809
-  time: '2026-08-21T16:50:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5771
-- author: STARLIGHT TEAM
-  changes:
-  - message: Borg chassis names now synchronize with inserted brains
-    type: Add
-  id: 407810
-  time: '2026-08-22T01:27:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5776
 - author: STARLIGHT TEAM
   changes:
   - message: Entity naming (Intellicard/AI core) was unified and fixed
@@ -2799,4 +2771,32 @@ Entries:
   id: 408206
   time: '2026-09-05T18:48:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5833
+- author: walksanatora
+  changes:
+  - message: Empowered Cosmic Cultist can now use Null Fragmentation on crit borgos/IPCs.
+    type: Tweak
+  id: 408207
+  time: '2026-09-05T19:37:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5834
+- author: Caws
+  changes:
+  - message: Most gloves now grant a little cold temperature protection, with very thin gloves (e.g. latex), granting zero temperature protection. Mittens remain as the premier way to keep ya hands warm.
+    type: Tweak
+  id: 408208
+  time: '2026-09-05T19:37:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5903
+- author: Caws
+  changes:
+  - message: Syndicate PJ hats are now warm.
+    type: Tweak
+  id: 408209
+  time: '2026-09-05T19:37:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5903
+- author: Foxterosa
+  changes:
+  - message: Patients with the Numb trait will no longer scream or wake up from pain during surgery.
+    type: Fix
+  id: 408210
+  time: '2026-09-05T19:37:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5787
 Order: -1
