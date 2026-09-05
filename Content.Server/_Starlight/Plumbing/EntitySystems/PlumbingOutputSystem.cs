@@ -7,7 +7,6 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using JetBrains.Annotations;
-using NetCord;
 
 namespace Content.Server._Starlight.Plumbing.EntitySystems;
 
