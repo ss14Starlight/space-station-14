@@ -1,11 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: In the advanced first aid cyborg module, changed a beaker/jug slot to a chemical case slot, allowing bottles to be stored.
-    type: Tweak
-  id: 407832
-  time: '2026-08-26T18:59:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5830
 - author: Floximo
   changes:
   - message: AI no longer sees job icons outside camera range while suit sensors are not set to coordinates.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408231
   time: '2026-09-05T23:09:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5877
+- author: Mack
+  changes:
+  - message: Station radio server now has a microphone indicator.
+    type: Tweak
+  id: 408232
+  time: '2026-09-05T23:09:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5874
 Order: -1
