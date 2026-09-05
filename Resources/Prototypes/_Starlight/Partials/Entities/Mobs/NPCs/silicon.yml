@@ -1,0 +1,120 @@
+- type: !PartialOnly entity
+  id: MobRobotic
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    understands:
+    - GalacticCommon
+    - Machine
+
+- type: !PartialOnly entity
+  id: MobSiliconBase
+  components:
+  - type: Body
+    prototype: Bot
+
+- type: !PartialOnly entity
+  id: MobFireBot
+  parent: [ MobSiliconBase, SolutionFireExtinguisherMini ]
+  components:
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-mechanical
+  - !Remove type: SolutionContainerManager
+  - type: SolutionRegeneration
+    solution: !Remove
+
+- type: !PartialOnly entity
+  id: MobHonkBot
+  components:
+  - type: GhostRole
+    mindRoles:
+    - !Remove MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleBotHarmless
+
+- type: !PartialOnly entity
+  id: MobJonkBot
+  components:
+  - type: GhostRole
+    mindRoles:
+    - !Remove MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleBotHarmless
+
+- type: !PartialOnly entity
+  id: MobCleanBot
+  parent: [ MobSiliconBase, SolutionMopNormal ]
+  components:
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-mechanical
+  - !Remove type: SolutionContainerManager
+  - !Remove type: DrainableSolution
+  - type: SolutionRegeneration
+    solution: !Remove
+  - type: SolutionPurge
+    solution: !Remove
+  - type: Vocalizer
+  - type: DatasetVocalizer
+    dataset: CleanbotAds
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-cleanbot
+    layoutId: MedibotControls
+    alwaysRandomize: true
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: !PartialOnly entity
+  id: MobMedibot
+  components:
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-mechanical
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-medibot
+    layoutId: MedibotControls
+    alwaysRandomize: true
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+
+- type: !PartialOnly entity
+  id: MobMimeBot
+  components:
+  - type: GhostRole
+    mindRoles:
+    - !Remove MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleBotHarmless
+
+- type: !PartialOnly entity
+  id: MobSupplyBot
+  components:
+  - type: PullTrain
+    maxCars: 3
+  - type: Body
+    prototype: SupplyBot
+  - type: Hands
+    showInHands: false
+    hands:
+      paperwork:
+        emptyLabel: borg-slot-papers-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          tags:
+          - Document
+          components:
+          - Stamp
+    sortedHands:
+    - paperwork
+  - type: ComplexInteraction
+
+- type: !PartialOnly entity
+  id: MobHugBot
+  components:
+  - type: Body
+    prototype: HugBot
