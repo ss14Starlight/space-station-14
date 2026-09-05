@@ -1,12 +1,11 @@
 - type: entity
-  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages #starlight Nubody will not pass.
+  parent: [BaseMob, StripableInventoryBase]
   id: BaseBorgChassisNotIonStormable
   name: cyborg
   description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
   save: false
   abstract: true
   components:
-  - type: TextToSpeech
   - type: Reactive
     groups:
       Acidic: [Touch]
@@ -35,7 +34,7 @@
     baseWalkSpeed : 2.5
     baseSprintSpeed : 4.5
   - type: Sprite
-    sprite: Mobs/Silicon/Chassis/generic.rsi
+    sprite: Mobs/Silicon/chassis.rsi
   - type: RotationVisuals
     horizontalRotation: 90
   - type: MobState
@@ -46,18 +45,14 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-#region Starlight
-      75: Critical
-      225: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
+      100: Critical
+      300: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
       Dead: BorgDead
     showOverlays: false
     allowRevives: true
-  - type: ArmorSparkEffect
-    alwaysSparks: true
-#endregion
   - type: HealthExaminable
     examinableTypes:
       - Blunt
@@ -94,9 +89,6 @@
     showInHands: false
     disableExplosionRecursion: true
     canBeStripped: false
-  - type: HandlessDoAfter # Starlight
-  - type: CanCrawlWithoutHands # Starlight: Allow crawling without hands
-  - type: BorgModuleCrawlModifier # Starlight: Half crawl speed when module active
   - type: ComplexInteraction
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
@@ -143,14 +135,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        #Starlight Start
-        blacklist:
-          tags:
-          - MechReactor
-        #Starlight End
-  # Starlight - start
   - type: Body
-  # Starlight - end
   - type: StatusEffects
     allowed:
     - Flashed
@@ -159,7 +144,6 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
-    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
@@ -184,13 +168,11 @@
   - type: LockedWiresPanel
   - type: Damageable
     damageContainer: Silicon
-#region Starlight
-    damageModifierSet: CivilianSilicon
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 75
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -199,8 +181,7 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 225
-#endregion
+        damage: 300
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -272,21 +253,6 @@
     requiredMobState:
     - Critical
     - Dead
-  #region Starlight
-  - type: CyborgSparkEffect
-  - type: StationAIShunt #Starlight allow shunting into all borgs
-  - type: BorgSwitchableSubtype # Afterlight change
-  - type: Crawler
-  - type: BatteryAlert
-  - type: Blindable
-  - type: EyeProtection
-  - type: Stripping
-  - type: InteractionPopup # All Borgs should now be pettable again
-    interactSuccessString: petting-success-generic-cyborg
-    interactFailureString: petting-failure-generic-cyborg
-    interactSuccessSound:
-      path: /Audio/Ambience/Objects/periodic_beep.ogg
-  #endregion
   - type: GlitchOnEMP #Far Horizons
 
 - type: entity
@@ -300,7 +266,6 @@
   abstract: true
   id: BaseBorgTransponder
   components:
-  - type: TextToSpeech
   - type: BorgTransponder
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -353,20 +318,19 @@
   parent: [BaseBorgChassis, BaseBorgTransponder]
   abstract: true
   components:
-  - type: TextToSpeech
   - type: RandomMetadata
     nameSegments:
     - NamesBorg
   - type: NpcFactionMember
     factions:
-    - NanoTrasenSilicon # starlight
+    - NanoTrasen
   - type: Access
     groups:
-    - CyborgAllAccess # Starlight
+    - AllAccess
     tags:
     - Borg
   - type: AccessReader
-    access: [["Command"], ["Robotics"]] # Starlight
+    access: [["Command"], ["Research"]]
   - type: ShowJobIcons
   - type: ShowCrewIcons
   - type: InteractionPopup
@@ -375,17 +339,12 @@
 
 - type: entity
   id: BaseBorgChassisSyndicate
-  parent: BaseBorgChassisNotIonStormable
+  parent: BaseBorgChassis
   abstract: true
   components:
-#region Starlight
-  - type: Damageable
-    damageModifierSet: ArmoredSilicon
-#endregion
-  - type: TextToSpeech
   - type: NpcFactionMember
     factions:
-    - SyndicateSilicon # starlight
+    - Syndicate
   - type: Access
     tags:
     - NuclearOperative
@@ -424,12 +383,12 @@
   components:
   - type: NpcFactionMember
     factions:
-    - NanoTrasenSilicon #The seemingly best fit. It was a regular NT cyborg once, after all. starlight
+    - NanoTrasen #The seemingly best fit. It was a regular NT cyborg once, after all.
   - type: Access
     groups:
-    - CyborgAllAccess # Starlight
+    - AllAccess #Randomized access would be fun. AllAccess is the best i can think of right now that does make it too hard for it to enter the station or navigate it..
   - type: AccessReader
-    access: [["Command"], ["Robotics"]] # Starlight
+    access: [["Command"], ["Research"]]
   - type: StartIonStormed
     ionStormAmount: 3
   - type: IonStormTarget
@@ -439,7 +398,7 @@
 
 - type: entity
   id: BaseBorgChassisSyndicateDerelict #For assault borg and maybe others in time
-  parent: BaseBorgChassisSyndicate # Starlight
+  parent: BaseBorgChassis # We don't want them to see Nukies or have syndi comms, their database is out of date
   abstract: true
   components:
   - type: SiliconLawProvider
@@ -450,38 +409,36 @@
     chance: 1
   - type: ShowJobIcons
   - type: ShowCrewIcons
-#  region starlight - reverting syndicate derelict cyborg 1984
-#  - type: NpcFactionMember # They're still syndicate even if they can't listen to the radio or see icons
-#      factions:
-#    - Syndicate
-#  - type: Access
-#    tags:
-#    - NuclearOperative
-#    - SyndicateAgent
-#  - type: AccessReader
-#    access: [ [ "SyndicateAgent" ], [ "NuclearOperative" ] ]
-#  - type: IntrinsicRadioTransmitter # Copy components from base SyndiBorg but without the stuff we don't want
-#    channels:
-#    - Binary #1984
-#  - type: ActiveRadio
-#    channels:
-#    - Binary
-#  - type: MovementAlwaysTouching
-#  - type: Speech
-#    speechSounds: SyndieBorg
-#    allowedEmotes:
-#    - Laugh
-#  - type: Vocal
-#    sounds:
-#      Unsexed: UnisexSiliconSyndicate
-#  - type: PointLight
-#    color: "#dd200b"
-#  - type: BypassLock
-#    bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
-# end region starlight
+  - type: NpcFactionMember # They're still syndicate even if they can't listen to the radio or see icons
+    factions:
+    - Syndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: AccessReader
+    access: [ [ "SyndicateAgent" ], [ "NuclearOperative" ] ]
+  - type: IntrinsicRadioTransmitter # Copy components from base SyndiBorg but without the stuff we don't want
+    channels:
+    - Binary #1984
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: MovementAlwaysTouching
+  - type: Speech
+    speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+  - type: PointLight
+    color: "#dd200b"
+  - type: BypassLock
+    bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
 
 - type: entity
-  parent: [BaseXenoSiliconLanguages, BaseBorgChassisNotIonStormable] # Starlight, they can understand xeno
+  parent: BaseBorgChassisNotIonStormable
   id: BaseXenoborgChassis
   name: xenoborg
   description: A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army.
@@ -494,16 +451,12 @@
   - type: NameIdentifier
     group: Xenoborg
   - type: Sprite
-    sprite: Mobs/Silicon/Chassis/generic.rsi
-#region Starlight
-  - type: Damageable
-    damageModifierSet: ArmoredSilicon
+    sprite: Mobs/Silicon/chassis.rsi
   - type: MobThresholds
     thresholds: # slightly tankier than a normal borg
       0: Alive
-      100: Critical
-      300: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
-#endregion
+      125: Critical
+      375: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
   - type: EmagSiliconLaw # should xenoborgs be emagable?
     stunTime: 5
   - type: SiliconLawProvider
@@ -511,15 +464,13 @@
   - type: IntrinsicRadioTransmitter # can only use binary and xenoborg channel
     channels:
     - Xenoborg
-    # - Binary # Starlight edit: We can't have nice things
+    - Binary
   - type: ActiveRadio # but can hear the mothership channel
     channels:
     - Mothership
     - Xenoborg
     - Binary
   - type: BorgChassis
-    jobIconOverride: JobIconXenoborg # Starlight
-    jobTitleOverride: chat-radio-xenoborg # Starlight
     maxModules: 0
     hasMindState: robot_e
     noMindState: robot_e_r
@@ -556,10 +507,9 @@
     - Xenoborg
   - type: Destructible
     thresholds:
-#region Starlight
     - trigger:
         !type:DamageTrigger
-        damage: 65
+        damage: 90
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -568,8 +518,7 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 300
-#endregion
+        damage: 375
       behaviors:
       - !type:PlaySoundBehavior
         sound:
