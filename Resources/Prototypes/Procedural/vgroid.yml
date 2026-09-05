@@ -68,9 +68,9 @@
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockPlasma
-      count: 35
-      minGroupSize: 4
-      maxGroupSize: 8
+      count: 40               #Starlight edit: Increased Plasma count to reflect heavy Plasma useage. 35 -> 40
+      minGroupSize: 8         #Starlight edit: 4 -> 8
+      maxGroupSize: 12        #Starlight edit: 8 -> 12
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockUraniumCrab2 #Starlight - Stay on your toes miners >:3
