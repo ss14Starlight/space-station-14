@@ -1273,3 +1273,19 @@
   - type: Vinyl
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/goonstation/Fart/warriors_honk.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylSpaceAsshole
+  name: "vinyl: Space Asshole"
+  description: "The unofficial anthem of this god-forsaken station. By: Chris Remo" #Inferus Addition
+  components:
+    - type: Sprite
+      state: default
+      layers:
+        - state: default
+        - state: label
+          color: "#ff3030"
+    - type: Vinyl
+      song:
+        path: /Audio/Lobby/space_asshole.ogg
