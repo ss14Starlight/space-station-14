@@ -23,7 +23,7 @@
   ## Transmission
   Zombies only know how to shamble, bite and throw themselves against barricades. Their bite [bold]may not always transmit [color=#7e916e]Romerol[/color][/bold] through heavy layers of clothing, but it'll definitely hurt.
 
-  The undead can also chomp on a crit or dead body to [bold]instantly convert[/bold] it to a zombie.
+  The undead can also chomp on a crit or dead body to [bold]infect[/bold] it to eventually convert into a zombie.
 
   ## Zombie Attributes
   A zombie can be identified by dark green skin, red eyes, slow movement, rotting smell, and lack of motor functions. They'll drop their headset and gloves upon turning, and cuffs don't work against their vicious bite.
@@ -38,9 +38,9 @@
   Remember that when it really hits the fan, [italic]you've gotta do what you gotta do[/italic], as long as it's not at the expense of fellow survivors. Scavenge what you need from those who haven't made it.
 
   ## Cure
-  [bold]Those who are already undead can only be cured by [color=red]death.[/color][/bold]
+  [bold]Those who are already undead are curable, but it requires [color=red]Exsanguination[/color] and the removal of their heart[/bold]
 
-  If you're infected but not zombified yet, using [color=#86caf7]Ambuzol[/color] will cure you but won't prevent re-infection. [color=#1274b5]Ambuzol Plus[/color] will cure and prevent re-infection only while alive.
+  If you're infected but not zombified yet, Using [color=#1274b5]Ambuzol[/color] can halt all further infection, but make sure to keep taking it regularly. Using [color=#1274b5]Ambuzol Plus[/color] will cure you [italic]and[/italic] prevent re-infection.
 
   <Box>
     <GuideReagentEmbed Reagent="Ambuzol"/>

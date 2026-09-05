@@ -6,26 +6,35 @@ namespace Content.Shared.Zombies;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BloodStreamInfectionComponent : Component
 {
-    //level of infection in the bloodstream, zombification at 100
+    /// <summary>
+    /// The current level of infection in the bloodstream. Zombification occurs at 100.
+    /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("infectionLevel")]
     public float InfectionLevel { get; set; } = 0f;
 
+    /// <summary>
+    /// The rate at which the infection level rises, typically per infectious bite.
+    /// </summary>
     //how fast the infection rises, planned to be per infectious bite
     [ViewVariables(VVAccess.ReadWrite), DataField("infectionRate")]
     public float InfectionRate { get; set; } = 1f;
 
-    //how many infectious bites they have received (80% chance for zombie bite to be infectious)
+    /// <summary>
+    /// The number of infectious bites the entity has received.
+    /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("infectiousBiteCount")]
     public int InfectiousBiteCount { get; set; } = 0;
 
+    /// <summary>
+    /// The next time the infection system will tick for this entity.
+    /// </summary>
     //once per second
     [ViewVariables(VVAccess.ReadOnly), DataField("nextTickTime")]
     public TimeSpan NextTickTime { get; set; } = TimeSpan.Zero;
 
-    //Forced critical infection threshold (chance to go "oh shit, he's about to zombify" for medical staff before they zombify)
-    [ViewVariables(VVAccess.ReadOnly), DataField("forcedCriticalStage")]
-    public float ForcedCriticalStage { get; set; } = 90f;
-
+    /// <summary>
+    /// Marks Initial Infected
+    /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("isInitialInfected")]
     public bool IsInitialInfected { get; set; } = false;
 
@@ -37,7 +46,9 @@ public sealed partial class BloodStreamInfectionComponent : Component
 
     public float ProcChance { get; set; } = 0f;
 
-    //important for ambuzol rework. makes it so the current is set to max when ambuzol is present in system, reverted to max 100 once ambuzol leaves system
+    /// <summary>
+    /// The maximum infection level for this entity. Important for ambuzol rework; makes it so the current infection level is set to the maximum when ambuzol is present in the system, and reverted to the default maximum (100) once ambuzol leaves the system.
+    /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("MaximumInfectionLevel")]
     public float MaximumInfectionLevel { get; set; } = 100f;
 
@@ -45,7 +56,10 @@ public sealed partial class BloodStreamInfectionComponent : Component
 
     public FixedPoint2 OriginalCriticalThreshold { get; set; } = FixedPoint2.New(0.1);
 
-    [DataField, AutoNetworkedField]
+    /// <summary>
+    ///
+    /// </summary>
+    [DataField("hasthebriefbeenshown"), AutoNetworkedField]
     public bool HasBeenBriefed { get; set; } = false;
 
     //pulled from pendingzombiecomponent start

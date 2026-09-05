@@ -34,6 +34,8 @@ namespace Content.Server.Zombies
             infection.IsInitialInfected = true;
         }
 
+        //Main component for infection, checks each entity with the bloodstreaminfection component and activates one of several efects depending
+        //how high the infection level is.
         public void UpdateInfected(TimeSpan curTime)
         {
             var infectionQuery = EntityQueryEnumerator<BloodStreamInfectionComponent, MobStateComponent, Shared.Damage.Components.DamageableComponent>();
@@ -46,25 +48,11 @@ namespace Content.Server.Zombies
                 if (!HasComp<ZombieComponent>(uid))
                 {
 
-                    //Medieval bloodletting basically, drop your bloodlevel by 50%, drop the infection by the same percent. a painful, yet possible way to drop infection level
-                    //inside the "not a zombie yet block" because if you have a zombified heart your blood is entirely infected
-                    //more related to this in the part of this block that zombifies you
-
-
-                    infection.BloodLevel = _bloodstream.GetBloodLevel(uid);
-
-
-                    if (infection.BloodLevel > infection.PreviousBloodLevel)
-                    {
-                        infection.BloodLossRatio = infection.BloodLevel / infection.PreviousBloodLevel;
-                        if (infection.BloodLossRatio < 0f)
-                            infection.InfectionLevel *= infection.BloodLossRatio;
-                    }
-                    infection.PreviousBloodLevel = infection.BloodLevel;
-
                     var isDead = _mobState.IsDead(uid, mobState);
                     var isCritical = _mobState.IsCritical(uid, mobState);
 
+                    //Proc chances once per bite to raise infectionlevel. 30% chance normally, 60% chance when critical/dead,
+                    //3.8% chance for initial infected when not critical or dead, 60% chance when critical or dead for initial infected
                     infection.ProcChance = infection.IsInitialInfected ?
                         (isDead ? .6f : (isCritical ? .06f : 0.038f)) :
                         (isDead ? .6f : (isCritical ? 0.6f : 0.3f));
@@ -73,10 +61,11 @@ namespace Content.Server.Zombies
                     {
                         if (_random.Prob(infection.ProcChance))
                         {
-                            infection.InfectionLevel += 1f;
+                            infection.InfectionLevel += infection.InfectionRate;
                         }
                     }
 
+                    //this handles the logic for stopping infection from rising when they have ambuzol in the bloodstream through manipulating maxinfectionlevel
                     if (TryComp<BloodstreamComponent>(uid, out var bloodstream)
                         && _solutionContainer.ResolveSolution(
                             uid,
@@ -96,6 +85,7 @@ namespace Content.Server.Zombies
                             }
                         }
 
+                    //clamps infection to 100 normally, when lowered with ambuzol excess infection burns ambuzol in the bloodstream
                     if (infection.InfectionLevel > infection.MaximumInfectionLevel)
                     {
 
@@ -114,6 +104,7 @@ namespace Content.Server.Zombies
 
                     }
 
+                    //small bit of poison damage as a warning you're infected
                     if (infection.InfectionLevel >= 60f)
                     {
                         var damageAmount = infection.IsInitialInfected ?
@@ -133,6 +124,7 @@ namespace Content.Server.Zombies
                         }
                     }
 
+                    //handles sending the briefing for Initial Infected once they hit 85% infection
                     if (!infection.HasBeenBriefed && infection.InfectionLevel >= 85f && infection.IsInitialInfected)
                     {
                         if (_mind.TryGetMind(uid, out var mindId, out var mind) &&
@@ -157,6 +149,7 @@ namespace Content.Server.Zombies
 
                     }
 
+                    //Handles zombification, saving the values relevant for dezombification before calling zombify
                     if (infection.InfectionLevel >= 100f)
                     {
                         var currentState = EnsureComp<PreZombificationValuesComponent>(uid);
@@ -171,11 +164,11 @@ namespace Content.Server.Zombies
                         ZombifyEntity(uid);
                         RemComp<PendingZombieComponent>(uid);
                         RemComp<ZombifyOnDeathComponent>(uid);
-                        infection.PreviousBloodLevel = 1f;
 
                         if (!TryComp<BodyComponent>(uid, out var bodyPartComp))
                             return;
 
+                        //handles mutating the heart by replacing it with a zombie heart(for humanoid, skips for critters)
                         var chestPart = bodyPartComp.RootContainer.ContainedEntities.FirstOrDefault();
 
                         if (chestPart == EntityUid.Invalid || !TryComp<BodyPartComponent>(chestPart, out var bodyPart))
@@ -191,7 +184,6 @@ namespace Content.Server.Zombies
                         {
                             QueueDel(oldHeart);
                         }
-
 
                         var newHeartId = Spawn("OrganZombieHeart", Transform(chestPart).Coordinates);
                         if (TryComp<OrganComponent>(newHeartId, out var newHeartOrgan))
@@ -210,6 +202,7 @@ namespace Content.Server.Zombies
                     }
                 }
 
+                //code to check for dezombification
                 if (HasComp<ZombieComponent>(uid))
                 {
                     if (!TryComp<BodyComponent>(uid, out var bodyComp))
@@ -236,11 +229,13 @@ namespace Content.Server.Zombies
             }
         }
 
+        //staples the infectious bites system to the onmeleehit (commented out the old method for infection in the upstream file)
         public void OnMeleeHitInfect(EntityUid uid)
         {
             var infection = EnsureComp<BloodStreamInfectionComponent>(uid);
             infection.InfectiousBiteCount += 1;
         }
+
 
         public void OnMeleeHitDeadInfect(EntityUid uid)
         {
@@ -256,6 +251,7 @@ namespace Content.Server.Zombies
                     infection.InfectionLevel += 10f;
         }
 
+        //handles dezombification without cloning, restoring values saved earlier
         public bool UnZombifyInPlace(EntityUid target, ZombieComponent? zombiecomp)
         {
             //For unzombifying via the exsanguinate and heart replacement method, kept separate from the normal unzombify used on cloning so i dont have to do extra to make the one function do both
