@@ -1,5 +1,9 @@
 using Content.Shared._CD.CartridgeLoader.Cartridges;
+using Content.Shared.Alert;
 using Content.Shared.Examine;
+using Content.Shared.Inventory;
+using Content.Shared.PDA;
+using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._CD.NanoChat;
@@ -10,6 +14,8 @@ namespace Content.Shared._CD.NanoChat;
 public abstract partial class SharedNanoChatSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AlertsSystem _alerts = default!; // Starlight
+    [Dependency] private SharedContainerSystem _containers = default!; // Starlight
 
     public override void Initialize()
     {
@@ -186,6 +192,13 @@ public abstract partial class SharedNanoChatSystem : EntitySystem
             return;
 
         card.Comp.NotificationsMuted = muted;
+        //Starlight start
+        if (muted)
+        {
+            var holder = GetPdaHolder(card.Owner!);
+            if (holder.HasValue) _alerts.ClearAlert(holder.Value, card.Comp.Alert);
+        }
+        //Starlight end
         Dirty(card);
     }
 
@@ -256,6 +269,49 @@ public abstract partial class SharedNanoChatSystem : EntitySystem
 
         return recipient.HasUnread;
     }
+
+    #region Starlight
+
+    /// <summary>
+    ///     Gets the current holder of the PDA containing the NanoChat card.
+    /// </summary>
+    /// <returns>The holder entity, or null if the card is not in a PDA with a holder.</returns>
+    public EntityUid? GetPdaHolder(Entity<NanoChatCardComponent> card)
+    {
+        if (!_containers.TryGetContainingContainer(card.Owner, out var pdaContainer)
+            || !HasComp<PdaComponent>(pdaContainer.Owner))
+            return null;
+
+        EntityUid? holder = null;
+
+        // The card is inside the PDA, which may itself be inside nested storage.
+        // The inventory owner in the containing chain is the actual holder.
+        foreach (var container in _containers.GetContainingContainers(pdaContainer.Owner))
+        {
+            if (HasComp<InventoryComponent>(container.Owner))
+                holder = container.Owner;
+        }
+
+        return holder;
+    }
+
+    /// <summary>
+    ///     Gets whether the card has unread messages from any recipient.
+    /// </summary>
+    public bool HasUnreadMessages(Entity<NanoChatCardComponent?> card)
+    {
+        if (!Resolve(card, ref card.Comp))
+            return false;
+
+        foreach (var recipient in card.Comp.Recipients.Values)
+        {
+            if (HasUnreadMessages(card, recipient.Number)) return true;
+        }
+
+        return false;
+    }
+
+    #endregion
 
     /// <summary>
     ///     Clears all messages and recipients from the card.

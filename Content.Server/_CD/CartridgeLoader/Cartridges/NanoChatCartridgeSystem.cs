@@ -14,8 +14,9 @@ using Content.Shared.PDA;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Abilities.Mime; // Starlight
-using Content.Server.Popups; // Starlight
+using Content.Shared.Abilities.Mime;
+using Content.Server.Popups;
+using Content.Shared.Alert;
 
 namespace Content.Server._CD.CartridgeLoader.Cartridges;
 
@@ -28,7 +29,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     [Dependency] private SharedNanoChatSystem _nanoChat = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private PopupSystem _popupSystem = default!; // Starlight
-
+    [Dependency] private AlertsSystem _alerts = default!; // Starlight
     // Messages in notifications get cut off after this point
     // no point in storing it on the comp
     private const int NotificationMaxLength = 64;
@@ -60,6 +61,14 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
 
             var newCard = pda.ContainedId;
             var currentCard = nanoChat.Card;
+
+            //Starlight start
+            if (newCard.HasValue)
+            {
+                var holder = _nanoChat.GetPdaHolder(newCard.Value!);
+                if(holder.HasValue && !_nanoChat.HasUnreadMessages(newCard.Value) && TryComp<NanoChatCardComponent>(newCard.Value, out var cardComp)) _alerts.ClearAlert(holder.Value, cardComp.Alert);
+            }
+            //Starlight end
 
             // If the cards match, nothing to do
             if (newCard == currentCard)
@@ -482,6 +491,9 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
             {
                 notificationTitle = Loc.GetString("nano-chat-new-message-title", ("sender", senderName));
             }
+
+            var holder = _nanoChat.GetPdaHolder(recipient);
+            if (holder.HasValue) _alerts.ShowAlert(holder.Value, recipient.Comp.Alert);
             // Starlight End
 
             _cartridge.SendNotification(pda,
