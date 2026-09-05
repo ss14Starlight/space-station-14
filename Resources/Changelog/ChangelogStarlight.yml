@@ -1,20 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: 'New uncraftable chemical: Respirazone, treats generic airloss damage.'
-    type: Add
-  id: 407821
-  time: '2026-08-25T07:55:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5497
-- author: SirLutz
-  changes:
-  - message: Airloss-Autoinjector does not anymore contain Saline and Dexalin-plus.
-    type: Remove
-  id: 407822
-  time: '2026-08-25T07:55:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5497
-- author: SirLutz
-  changes:
   - message: Respirazone is available only in airloss-autoinjectors.
     type: Add
   id: 407823
@@ -2799,4 +2785,18 @@ Entries:
   id: 408220
   time: '2026-09-05T22:44:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5880
+- author: 0warie
+  changes:
+  - message: Fixed being unable to construct screen and brig timers.
+    type: Fix
+  id: 408221
+  time: '2026-09-05T22:44:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5884
+- author: 0warie
+  changes:
+  - message: Fixed signal timers turning into un-clickable timer frames after beginning construction.
+    type: Fix
+  id: 408222
+  time: '2026-09-05T22:44:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5884
 Order: -1
