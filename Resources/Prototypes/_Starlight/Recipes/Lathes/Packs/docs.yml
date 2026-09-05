@@ -2,6 +2,7 @@
   id: StarlightDocs
   recipes:
   - PrintedDocumentReportMorgueRecipe
+  - PrintedDocumentReportResearchAnomalyLogRecipe
   - PrintedDocumentReportStationRecipe
   - PrintedDocumentReportOnEliminationOfViolationsRecipe
   - PrintedDocumentReportDepartmentRecipe
@@ -38,6 +39,9 @@
   - PrintedDocumentComplaintOffenseRecipe
   # Permissions
   - PrintedDocumentPermissionEquipmentRecipe
+  - PrintedDocumentPermissionResearchEquipmentRecipe
+  - PrintedDocumentPermissionResearchSiliconConversionRecipe
+  - PrintedDocumentPermissionResearchAnomalyHostRecipe
   - PrintedDocumentSearchPermissionRecipe
   - PrintedDocumentPermissionToCarryWeaponsRecipe
   - PrintedDocumentPermissionDisposeBodyRecipe
