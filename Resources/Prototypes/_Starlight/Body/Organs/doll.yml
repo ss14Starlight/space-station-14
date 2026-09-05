@@ -296,7 +296,7 @@
     attackRate: 1.0
     damage:
       types:
-        Slash: 15
+        Slash: 10
   - type: OrganShell
   - type: OrganDamage
     damage:
