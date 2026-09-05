@@ -1,11 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: You can now overdose again from drinking too much.
-    type: Tweak
-  id: 407807
-  time: '2026-08-21T16:09:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5772
 - author: Romero/Littlemen
   changes:
   - message: 'seal of war: an item for lone wizard that enable them to use the "War" kits at the cost of informing the station.'
@@ -2799,4 +2792,11 @@ Entries:
   id: 408206
   time: '2026-09-05T18:48:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5833
+- author: walksanatora
+  changes:
+  - message: Empowered Cosmic Cultist can now use Null Fragmentation on crit borgos/IPCs.
+    type: Tweak
+  id: 408207
+  time: '2026-09-05T19:37:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5834
 Order: -1
