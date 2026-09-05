@@ -4,8 +4,6 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Starlight.StationEvents.Components;
 
 
-/// 
-/// 
 
 [RegisterComponent, Access(typeof(ResonanceCascadeSchedulerSystem))]
 public sealed partial class ResonanceCascadeSchedulerComponent : Component

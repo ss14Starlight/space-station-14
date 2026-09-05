@@ -5,28 +5,32 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Anomaly;
 
 public sealed partial class AnomalySystem
 {
-    public EntityUid? SpawnOnRandomGridLocationReturning(EntityUid grid, string toSpawn)
+    /// <summary>
+    /// Spawns an anomaly at a valid random location on the grid.
+    /// </summary>
+    public EntityUid? SpawnOnRandomGridLocationReturning(Entity<MapGridComponent?> grid, EntProtoId toSpawn)
     {
-        if (!TryGetRandomAnomalySpawnCoordinates(grid, out var targetCoords))
+        if (!Resolve(grid.Owner, ref grid.Comp) || !TryGetRandomAnomalySpawnCoordinates(grid, out var targetCoords))
             return null;
 
         return Spawn(toSpawn, targetCoords);
     }
 
-    private bool TryGetRandomAnomalySpawnCoordinates(EntityUid grid, out EntityCoordinates targetCoords)
+    private bool TryGetRandomAnomalySpawnCoordinates(Entity<MapGridComponent?> grid, out EntityCoordinates targetCoords)
     {
-        if (!TryComp<MapGridComponent>(grid, out var gridComp))
+        if (grid.Comp is not { } gridComp)
         {
             targetCoords = EntityCoordinates.Invalid;
             return false;
         }
 
-        var xform = Transform(grid);
+        var xform = Transform(grid.Owner);
         targetCoords = EntityCoordinates.Invalid;
         var gridBounds = gridComp.LocalAABB.Scale(_configuration.GetCVar(CCVars.AnomalyGenerationGridBoundsScale));
 
@@ -36,13 +40,13 @@ public sealed partial class AnomalySystem
             var randomY = Random.Next((int) gridBounds.Bottom, (int) gridBounds.Top);
             var tile = new Vector2i(randomX, randomY);
 
-            if (_atmosphere.IsTileSpace(grid, xform.MapUid, tile) ||
-                _atmosphere.IsTileAirBlockedCached(grid, tile))
+            if (_atmosphere.IsTileSpace(grid.Owner, xform.MapUid, tile) ||
+                _atmosphere.IsTileAirBlockedCached(grid.Owner, tile))
                 continue;
 
             var physQuery = GetEntityQuery<PhysicsComponent>();
             var valid = true;
-            foreach (var ent in _mapSystem.GetAnchoredEntities(grid, gridComp, tile))
+            foreach (var ent in _mapSystem.GetAnchoredEntities(grid.Owner, gridComp, tile))
             {
                 if (!physQuery.TryGetComponent(ent, out var body))
                     continue;
@@ -57,7 +61,7 @@ public sealed partial class AnomalySystem
             if (!valid)
                 continue;
 
-            var pos = _mapSystem.GridTileToLocal(grid, gridComp, tile);
+            var pos = _mapSystem.GridTileToLocal(grid.Owner, gridComp, tile);
             var mapPos = _transform.ToMapCoordinates(pos);
             var antiAnomalyZones = AllEntityQuery<AntiAnomalyZoneComponent, TransformComponent>();
             while (antiAnomalyZones.MoveNext(out _, out var zone, out var antiXform))

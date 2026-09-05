@@ -5,6 +5,7 @@ using Content.Server._Starlight.StationEvents.Components;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.StationEvents.Events;
@@ -56,7 +57,13 @@ public sealed partial class ResonanceCascadeSchedulerSystem : GameRuleSystem<Res
             return;
         }
 
-        var spawned = _anomaly.SpawnOnRandomGridLocationReturning(grid.Value, component.SelectedAnomalyPrototype);
+        if (!TryComp<MapGridComponent>(grid.Value, out var gridComponent))
+        {
+            component.NextSpawnAt = Timing.CurTime + TimeSpan.FromSeconds(Math.Max(component.MinimumInterval, 1f));
+            return;
+        }
+
+        var spawned = _anomaly.SpawnOnRandomGridLocationReturning((grid.Value, gridComponent), component.SelectedAnomalyPrototype);
 
         if (spawned is EntityUid spawnedUid)
         {
