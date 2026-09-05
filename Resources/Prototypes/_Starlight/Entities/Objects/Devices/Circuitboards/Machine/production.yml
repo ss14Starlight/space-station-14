@@ -1355,8 +1355,6 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
-    - type: StealTarget
-      stealGroup: DepartmentalTechFabCircuitboard
 
 - type: entity
   id: ScienceTechFabCircuitboard
