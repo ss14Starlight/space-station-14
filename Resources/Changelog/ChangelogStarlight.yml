@@ -1,13 +1,6 @@
 Entries:
 - author: Citrea
   changes:
-  - message: The digestive system no longer destroys half the chemicals passing through it.
-    type: Tweak
-  id: 407806
-  time: '2026-08-21T16:09:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5772
-- author: Citrea
-  changes:
   - message: You can now overdose again from drinking too much.
     type: Tweak
   id: 407807
@@ -2799,4 +2792,11 @@ Entries:
   id: 408205
   time: '2026-09-05T18:48:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5827
+- author: walksanatora
+  changes:
+  - message: Cosmic cult now inserts entropy into the monument with a alt-verb allowing you to better choose when you tier up.
+    type: Tweak
+  id: 408206
+  time: '2026-09-05T18:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5833
 Order: -1
