@@ -79,7 +79,7 @@ public sealed partial class DamageableComponent : Component
     [DataField]
     public Dictionary<MobState, ProtoId<HealthIconPrototype>> HealthIcons = new()
     {
-        { MobState.Alive, "HealthIconFine" },
+        // { MobState.Alive, "HealthIconFine" }, Starlight - hide alive icon
         { MobState.Critical, "HealthIconCritical" },
         { MobState.Dead, "HealthIconDead" },
     };
