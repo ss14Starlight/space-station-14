@@ -25,6 +25,20 @@
     damageProtection:
       flatReductions:
         Heat: 5 # the average lightbulb only does around four damage!
+  # Forky - start - clothing stains
+  - type: Appearance
+  - type: Stainable
+    clothingVisuals:
+      gloves:
+      - sprite: _Funkystation/Effects/blood.rsi
+        state: gloveblood
+    iconVisuals:
+    - sprite: _Funkystation/Effects/blood.rsi
+      state: glovebloodicon
+  - type: SolutionManager
+    solutions:
+    - SolutionStain
+  # Forky - end
 
 - type: entity
   abstract: true
