@@ -12,6 +12,10 @@
       "directions": 4
     },
     {
+      "name": "panel",
+      "directions": 4
+    },
+    {
       "name": "thrust",
       "directions": 4,
       "delays": [
