@@ -34,7 +34,7 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/vox.rsi
     state: voxbeakhookedcolor
-    
+
 - type: marking
   id: VoxColorableLeftHand
   bodyPart: LHand
@@ -43,7 +43,7 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/vox.rsi
     state: lefthand
-    
+
 - type: marking
   id: VoxColorableRightHand
   bodyPart: RHand
@@ -52,7 +52,7 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/vox.rsi
     state: righthand
-    
+
 - type: marking
   id: VoxColorableLeftFoot
   bodyPart: LFoot
@@ -61,7 +61,7 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/vox.rsi
     state: leftfoot
-    
+
 - type: marking
   id: VoxColorableRightFoot
   bodyPart: RFoot
