@@ -536,7 +536,7 @@
     </ColorBox>
     <ColorBox Color="#2f3832">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To make, hold, or use major contraband without authorization. Authorization may only be granted by the Warden, the Head of Security, or the Captain. Any items restricted to a Department or Job are considered major contraband.
+        To make, hold, or use major contraband without authorization.  Any items restricted to a Department or Job are considered major contraband. Authorization may only be granted by the Warden, the Head of Security, the Captain or relevant department head.
       </Box>
     </ColorBox>
     <ColorBox Color="#453a59">
