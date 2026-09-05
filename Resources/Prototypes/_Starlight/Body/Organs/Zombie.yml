@@ -14,7 +14,7 @@
 - type: entity
   id: OrganZombieHeart
   parent: OrganHumanHeart
-  name: Zombified heart
+  name: rotting heart
   description: "The rotten, faintly pulsating heart of a zombie."
   suffix: Zombie
   components:

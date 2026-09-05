@@ -18,19 +18,6 @@
               max: 0.01
     Digestion:
       effects:
-        - !type:DelayZombieInfectionUptick
-          conditions:
-            - !type:ReagentCondition
-              reagent: Ambuzol
-              min: .01
-        - !type:AdjustReagent
-          reagent: Ambuzol
-          amount: 0.49
-        - !type:ResumeZombieInfectionUptick
-          conditions:
-            - !type:ReagentCondition
-              reagent: Ambuzol
-              max: 0.01
         - !type:ReduceRotting # Starlight start
           seconds: 20
         - !type:AdjustReagent
@@ -58,7 +45,7 @@
         conditions:
         - !type:ReagentCondition
           reagent: AmbuzolPlus
-          min: 4.9
+          min: 5
       - !type:HealthChange # Starlight start
         damage:
           types:

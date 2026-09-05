@@ -22,8 +22,8 @@ reagent-desc-mortucussus = Would not advise eating. Can be used to synthesize am
 reagent-name-putrid-blood = putrid blood
 reagent-desc-putrid-blood = Would not advise eating. Smells like it contains trace amounts of mortucussus.
 
-reagent-name-necrotic-plasma = Zombie Plasma
+reagent-name-necrotic-plasma = zombie plasma
 reagent-desc-necrotic-plasma = Plasma Centrifuged from zombie blood
 
-reagent-name-zombie-heart = Liquified Zombie Heart
-reagent-desc-zombie-heart = The slurry created by grinding up a zombified heart
+reagent-name-zombie-heart = morticussus slurry
+reagent-desc-zombie-heart = A mix of blood, meat and Mortucussus created by grinding up... something.
