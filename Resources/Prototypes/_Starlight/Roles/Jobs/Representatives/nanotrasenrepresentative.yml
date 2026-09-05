@@ -37,9 +37,7 @@
     - Research
     - Robotics
     - Detective
-    - Salvage
     - Mining
-    - SalvageLead
     - Security
     - Brig
     - Cargo
@@ -53,6 +51,8 @@
     - Paramedic
     - Debrief
     - Journalism
+    - Clown
+    - Mime
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

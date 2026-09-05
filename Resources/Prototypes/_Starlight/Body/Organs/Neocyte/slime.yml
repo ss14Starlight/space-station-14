@@ -13,20 +13,12 @@
     - type: Metabolizer
       maxReagents: 6
       metabolizerTypes: [ Slime, Animal ]
-      removeEmpty: true
-      groups:
-        - id: Food
-        - id: Drink
-        - id: Alcohol
-          rateModifier: 2.5
-    - type: SolutionContainerManager
+      stages: [ Digestion, Metabolites ]
+    - type: SolutionManager
       solutions:
-        stomach:
-          maxVol: 50.0
-        organ:
-          reagents:
-          - ReagentId: Slime
-            Quantity: 10
+      - SolutionOrganSlime
+      - SolutionOrganFoodGreyMatterLarge
+      - SolutionOrganStomach50
 
 - type: entity
   id: OrganNeoSlimeHeart
@@ -38,11 +30,7 @@
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Slime, Neocyte ]
-    removeEmpty: true
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]
   - type: OrganDamage
     damage:
       types:

@@ -13,6 +13,7 @@ using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.CosmicCult.Prototypes;
+using Content.Shared._Starlight.Spawners.EntitySystems;
 using Content.Shared.Audio;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -25,6 +26,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Serialization.Markdown.Mapping;
+using SpawnOnDespawnComponent = Content.Shared._Starlight.Spawners.Components.SpawnOnDespawnComponent;
+using Content.Shared.Verbs;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -46,7 +50,7 @@ public sealed partial class MonumentSystem : SharedMonumentSystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private SpawnOnDespawnSystem _sod = default!;
+    [Dependency] private SharedSpawnOnDespawnSystem _sod = default!;
 
     private static readonly EntProtoId _cosmicGod = "MobCosmicGodSpawn";
     private static readonly EntProtoId _monumentCollider = "MonumentCollider";
@@ -59,7 +63,7 @@ public sealed partial class MonumentSystem : SharedMonumentSystem
 
         SubscribeLocalEvent<EvacShuttleLeftEvent>(OnShuttleEvac); // for no more finale once the evac shuttle leaves
         SubscribeLocalEvent<MonumentComponent, InteractUsingEvent>(OnInfuseHeldEntropy);
-        SubscribeLocalEvent<MonumentComponent, ActivateInWorldEvent>(OnInfuseEntropy);
+        SubscribeLocalEvent<MonumentComponent, GetVerbsEvent<AlternativeVerb>>(AddInfuseEntropyVerb);
     }
 
     public override void Update(float frameTime) // This Update() can fit so much functionality in it
@@ -213,13 +217,21 @@ public sealed partial class MonumentSystem : SharedMonumentSystem
     public void UpdateMonumentProgress(Entity<MonumentComponent> ent, Entity<CosmicCultRuleComponent> cult)
         => ent.Comp.CurrentProgress = ent.Comp.TotalEntropy + (cult.Comp.TotalCult * _config.GetCVar(StarlightCCVars.CosmicCultistEntropyValue));
 
-    private void OnInfuseEntropy(Entity<MonumentComponent> uid, ref ActivateInWorldEvent args)
+    private void AddInfuseEntropyVerb(Entity<MonumentComponent> uid, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.Complex)
+        if (!args.CanComplexInteract)
             return;
         if (TryComp<CosmicCultComponent>(args.User, out var cultComp) && cultComp.EntropyStored > 0)
         {
-            args.Handled = AddEntropy(uid, (args.User, cultComp));
+            var who = args.User;
+            AlternativeVerb infuse = new()
+            {
+                Text = Loc.GetString("verb-infuse-entropy"),
+                Message = Loc.GetString("verb-infuse-entropy-description"),
+                Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/CosmicCult/Icons/objectives.rsi"),"siphon"),
+                Act = () => AddEntropy(uid, (who, cultComp))
+            };
+            args.Verbs.Add(infuse);
         }
     }
 

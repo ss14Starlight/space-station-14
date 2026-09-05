@@ -22,8 +22,8 @@ public sealed partial class TransformMech : IGraphAction
 
     private ISawmill _log { get => field ??= _logManager.GetSawmill("construction.mech"); } = default!;
 
-    [DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string MechPrototype = string.Empty;
+    [DataField(required: true)]
+    public EntProtoId MechPrototype = string.Empty;
 
     [DataField]
     public string BatteryContainer = "mech-battery-slot";

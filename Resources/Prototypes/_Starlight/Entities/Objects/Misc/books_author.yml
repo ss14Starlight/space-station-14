@@ -1,5 +1,5 @@
 - type: entity
-  parent: BookBase
+  parent: [BookBase, BaseMinorContraband]
   id: BookConspiracies
   name: "What They Don't Want You To Know"
   description: Frantic writings are scribbled across multiple pages. Should you really be reading this?
@@ -20,7 +20,7 @@
       content: book-text-conspiracies
 
 - type: entity
-  parent: BookBase
+  parent: [BookBase, BaseMinorContraband]
   id: BookMoreConspiracies
   name: "What Else They Don't Want You To Know"
   description: Frantic writings are scribbled across multiple pages. Should you really be reading this?

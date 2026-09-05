@@ -7,12 +7,14 @@ using Robust.Shared.Player;
 
 namespace Content.Client._Starlight.Scent.Systems;
 
-// Also handles adding/removing ScentPerceptionOverlay for the local Smeller, so
-// SharedScentSystem's handlers actually run on the client too.
-public sealed class ClientScentSystem : SharedScentSystem
+/// <summary>
+/// Also handles adding/removing ScentPerceptionOverlay for the local Smeller, so
+/// SharedScentSystem's handlers actually run on the client too.
+/// </summary>
+public sealed partial class ClientScentSystem : SharedScentSystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
 
     private ScentPerceptionOverlay _overlay = default!;
 
@@ -22,7 +24,6 @@ public sealed class ClientScentSystem : SharedScentSystem
 
         _overlay = new();
 
-        SubscribeLocalEvent<SmellerComponent, ComponentInit>(OnSmellerInit);
         SubscribeLocalEvent<SmellerComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<SmellerComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
     }
@@ -40,15 +41,21 @@ public sealed class ClientScentSystem : SharedScentSystem
         _overlayMan.RemoveOverlay(_overlay);
     }
 
-    private void OnSmellerInit(EntityUid uid, SmellerComponent component, ComponentInit args)
+    protected override void OnSmellerInit(EntityUid uid, SmellerComponent component, ComponentInit args)
     {
+        base.OnSmellerInit(uid, component, args);
+
         if (_player.LocalEntity == uid && !_overlayMan.HasOverlay<ScentPerceptionOverlay>())
             _overlayMan.AddOverlay(_overlay);
     }
 
-    // Overrides the base handler instead of subscribing to ComponentShutdown again: the base
-    // class already owns that subscription, and SubscribeLocalEvent doesn't allow a second one
-    // for the same (component, event) pair.
+    /// <summary>
+    /// Overrides the base handler instead of subscribing to ComponentShutdown again: the base
+    /// class already owns that subscription, and SubscribeLocalEvent doesn't allow a second one
+    /// for the same (component, event) pair.
+    /// </summary>
+    /// <param name="ent">The entity and SmellerComponent being removed.</param>
+    /// <param name="args">Component shutdown event args.</param>
     protected override void OnSmellerShutdown(Entity<SmellerComponent> ent, ref ComponentShutdown args)
     {
         base.OnSmellerShutdown(ent, ref args);
@@ -64,7 +71,5 @@ public sealed class ClientScentSystem : SharedScentSystem
     }
 
     private void OnPlayerDetached(EntityUid uid, SmellerComponent component, LocalPlayerDetachedEvent args)
-    {
-        _overlayMan.RemoveOverlay(_overlay);
-    }
+        => _overlayMan.RemoveOverlay(_overlay);
 }

@@ -6,10 +6,13 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - Canilunzt
     - GalacticCommon
+
 - type: entity
   parent: MobCorgiSmartNoGalcom
   id: MobCorgiSmartGhostrole
@@ -72,6 +75,11 @@
     templateId: advancedmonkey
     speciesId: monkey
     displacements:
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Animals/displacements.rsi
+            state: outerclothing-monkey
       jumpsuit:
         sizeMaps:
           32:
@@ -119,6 +127,11 @@
     templateId: advancedmonkey
     speciesId: monkey
     displacements:
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Animals/displacements.rsi
+            state: outerclothing-kobold
       jumpsuit:
         sizeMaps:
           32:

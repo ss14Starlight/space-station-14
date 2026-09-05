@@ -5,6 +5,8 @@
     sprite: &starlight-job-icon-rsi /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: IAA
   jobName: job-name-iaa
+  tags:
+  - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -13,6 +15,8 @@
     sprite: *starlight-job-icon-rsi
     state: Magistrate
   jobName: job-name-magistrate
+  tags:
+  - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -21,6 +25,8 @@
     sprite: *starlight-job-icon-rsi
     state: BlueShield
   jobName: job-name-blueshield
+  tags:
+  - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -37,6 +43,8 @@
     sprite: *starlight-job-icon-rsi
     state: NTNCBlueShield
   jobName: job-name-ntncblueshield
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -45,6 +53,8 @@
     sprite: *starlight-job-icon-rsi
     state: CCGreenShield
   jobName: job-name-greenshield
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -53,6 +63,8 @@
     sprite: *starlight-job-icon-rsi
     state: Surgeon
   jobName: job-name-surgeon
+  tags:
+  - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -61,6 +73,20 @@
     sprite: *starlight-job-icon-rsi
     state: SalvageLead
   jobName: job-name-salvagelead
+  isCrewJob: false
+  tags:
+  - JobIconCrew
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSalvageMedic
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: SalvageMedic
+  isCrewJob: false
+  jobName: job-name-salvagemedic
+  tags:
+  - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -69,6 +95,9 @@
     sprite: *starlight-job-icon-rsi
     state: SalvageSpecialist
   jobName: job-name-salvagespec
+  isCrewJob: false
+  tags:
+  - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -77,6 +106,8 @@
     sprite: *starlight-job-icon-rsi
     state: MailTech
   jobName: job-name-mailtech
+  tags:
+  - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -85,6 +116,16 @@
     sprite: *starlight-job-icon-rsi
     state: DutyOfficer
   jobName: job-name-dutyofficer
+  tags:
+  - JobIconCrew
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconK9
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: K9
+  jobName: job-name-k9
 
 - type: jobIcon
   parent: JobIcon
@@ -93,6 +134,8 @@
     sprite: *starlight-job-icon-rsi
     state: Performer
   jobName: job-name-performer
+  tags:
+  - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -101,6 +144,8 @@
     sprite: *starlight-job-icon-rsi
     state: CentComm
   jobName: job-name-centcomm
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -109,6 +154,8 @@
     sprite: *starlight-job-icon-rsi
     state: Decimus
   jobName: job-name-Decimus
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -117,6 +164,8 @@
     sprite: *starlight-job-icon-rsi
     state: NTSF
   jobName: job-name-NTSF
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -125,6 +174,8 @@
     sprite: *starlight-job-icon-rsi
     state: CentCommOperator
   jobName: job-name-centcommoperator
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -133,6 +184,10 @@
     sprite: *starlight-job-icon-rsi
     state: Commander
   jobName: job-name-Commander
+  isCrewJob: false
+  tags:
+  - JobIconCentComm
+  - JobIconSyndicate
 
 - type: jobIcon
   parent: JobIcon
@@ -141,6 +196,10 @@
     sprite: *starlight-job-icon-rsi
     state: SyndicateAgent
   jobName: job-name-SyndicateAgent
+  isCrewJob: false
+  tags:
+  - JobIconCentComm
+  - JobIconSyndicate
 
 - type: jobIcon
   parent: JobIcon
@@ -149,6 +208,10 @@
     sprite: *starlight-job-icon-rsi
     state: Operative
   jobName: job-name-Operative
+  isCrewJob: false
+  tags:
+  - JobIconCentComm
+  - JobIconSyndicate
 
 - type: jobIcon
   parent: JobIcon
@@ -157,6 +220,10 @@
     sprite: *starlight-job-icon-rsi
     state: Soviet
   jobName: job-name-Soviet
+  isCrewJob: false
+  tags:
+  - JobIconCentComm
+  - JobIconSyndicate
 
 - type: jobIcon
   parent: JobIcon
@@ -165,6 +232,9 @@
     sprite: *starlight-job-icon-rsi
     state: TSF
   jobName: job-name-TSF
+  isCrewJob: false
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -173,6 +243,9 @@
     sprite: *starlight-job-icon-rsi
     state: TSFOfficer
   jobName: job-name-TSF-officer
+  isCrewJob: false
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -181,6 +254,8 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: CCServiceWorker
   jobName: job-name-cc-serviceworker
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -189,6 +264,8 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: CCChef
   jobName: job-name-cc-chef
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -197,6 +274,8 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: CCBartender
   jobName: job-name-cc-bartender
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -205,6 +284,8 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: CCJanitor
   jobName: job-name-cc-janitor
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -223,6 +304,9 @@
     sprite: *starlight-job-icon-rsi
     state: Blackstar
   jobName: job-name-blackstar
+  isCrewJob: false
+  tags:
+  - JobIconCentComm
 
 # Admeme
 
@@ -233,6 +317,8 @@
     sprite: *starlight-job-icon-rsi
     state: Skub
   allowSelection: false
+  isCrewJob: false
+  tags: []
 
 - type: jobIcon
   parent: JobIcon
@@ -241,6 +327,8 @@
     sprite: *starlight-job-icon-rsi
     state: CultistChaplain
   allowSelection: false
+  isCrewJob: false
+  tags: []
 
 - type: jobIcon
   parent: JobIcon
@@ -249,6 +337,9 @@
     sprite: *starlight-job-icon-rsi
     state: Xenoborg
   jobName: chat-radio-xenoborg
+  isCrewJob: false
+  tags:
+  - JobIconCentComm
 
 - type: jobIcon
   parent: JobIcon
@@ -257,3 +348,106 @@
     sprite: *starlight-job-icon-rsi
     state: Mothership
   jobName: chat-radio-mothership
+  isCrewJob: false
+  tags:
+  - JobIconCentComm
+
+# Assistant manager icons
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconClericalAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: ClericalAssistant
+  jobName: job-name-clerical-assistant
+  tags:
+  - JobIconCrew
+  - JobIconAssistantManager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCookAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: CookAssistant
+  jobName: job-name-cook-assistant
+  tags:
+  - JobIconCrew
+  - JobIconAssistantManager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconDeliveryAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: DeliveryAssistant
+  jobName: job-name-delivery-assistant
+  tags:
+  - JobIconCrew
+  - JobIconAssistantManager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconGardenerAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: GardenerAssistant
+  jobName: job-name-gardener-assistant
+  tags:
+  - JobIconCrew
+  - JobIconAssistantManager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconHandymanAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: HandymanAssistant
+  jobName: job-name-handyman-assistant
+  tags:
+  - JobIconCrew
+  - JobIconAssistantManager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconReligiousAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: ReligiousAssistant
+  jobName: job-name-religious-assistant
+  tags:
+  - JobIconCrew
+  - JobIconAssistantManager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconShopkeeperAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: ShopkeeperAssistant
+  jobName: job-name-shopkeeper-assistant
+  tags:
+  - JobIconCrew
+  - JobIconAssistantManager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedicalAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: MedicalAssistant
+  jobName: job-name-medical-assistant
+  tags:
+  - JobIconCrew
+  - JobIconAssistantManager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMakeshiftID
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: MakeshiftID
+  jobName: job-name-makeshift-id
+  isCrewJob: false
+  # notice the LACK of a JobIconCrew tag

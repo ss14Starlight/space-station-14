@@ -9,15 +9,10 @@
       tags:
       - RamChip
     isSpecialDigestibleExclusive: false
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
 
 - type: entity
   id: OrganNeoAvaliHeart
@@ -28,11 +23,7 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Avali, Neocyte]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
-
+    stages: [ Bloodstream ]
 - type: entity
   id: OrganNeoAvaliLiver
   parent: OrganNeocyteLiver
@@ -43,5 +34,4 @@
     updateInterval: 1.5
     maxReagents: 1
     metabolizerTypes: [Avali]
-    groups:
-    - id: Alcohol
+    stages: [ Metabolites ]

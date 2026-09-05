@@ -1,5 +1,5 @@
-using Content.Server._Starlight.Objectives.Events;
 using Content.Server.GameTicking;
+using Content.Shared._Starlight.Objectives.Events;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Components.Tasks;
 using Content.Shared._Starlight.Railroading.Events;
@@ -69,8 +69,8 @@ public sealed partial class RailroadingDesertionTaskSystem : EntitySystem
 
         foreach (var gridUid in data.Grids)
         {
-            if (TryComp<TransformComponent>(gridUid, out var xform))
-                return subjectMap == xform.MapID;
+            if (Exists(gridUid))
+                return subjectMap == Transform(gridUid).MapID;
         }
 
         return false;

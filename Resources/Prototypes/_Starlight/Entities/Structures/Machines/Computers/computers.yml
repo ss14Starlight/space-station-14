@@ -224,6 +224,39 @@
 - type: entity
   parent: BaseComputerShuttle
   id: CompuerShuttleSalvage
+  name: remote salvage shuttle console
+  description: Used to pilot the salvage shuttle remotely.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: shuttle-salvage
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: DroneConsole
+    components:
+      - type: SalvageShuttle
+  - type: RadarConsole
+    maxRange: 256
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#735ec3"
+  - type: Computer
+    board: SalvageShuttleConsoleCircuitboard
+  - type: AccessReader
+    access: [ [ "Shuttle" ], [ "Salvage" ] ]
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: CompuerShuttleSalvageITG
   categories: [ ShouldMapStation ]
   name: remote salvage shuttle console
   description: Used to pilot the salvage shuttle remotely.
@@ -252,8 +285,6 @@
     color: "#735ec3"
   - type: Computer
     board: SalvageShuttleConsoleCircuitboard
-  - type: StealTarget
-    stealGroup: SalvageShuttleConsoleCircuitboard
   - type: AccessReader
     access: [ [ "Shuttle" ], [ "Salvage" ] ]
 
@@ -316,6 +347,7 @@
   description: A terminal for programming NanoTrasen and non-NanoTrasen ID cards with extended access levels.
   components:
   - type: IdCardConsole
+    allIconsUnlocked: true # Starlight-edit
     accessGroups:
     - General
     - Security
@@ -342,6 +374,7 @@
         components:
         - IdCard
     targetIdSlot:
+      priority: 1
       name: UniversalIdConsole-targetId
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
@@ -751,45 +784,6 @@
       energy: 1.5
       color: "#b48b57"
 
-# Law
-- type: entity
-  parent: ComputerComms
-  id: ComputerCommsLaw
-  categories: [ ShouldMapStation ]
-  name: law communications console
-  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
-  components:
-    - type: Sprite
-      layers:
-        - map: ["computerLayerBody"]
-          state: computer
-        - map: ["computerLayerKeyboard"]
-          state: generic_keyboard
-        - map: ["computerLayerScreen"]
-          state: comm-law
-          sprite: _Starlight/Structures/Machines/computers.rsi
-        - map: ["computerLayerKeys"]
-          state: generic_keys
-        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-          state: generic_panel_open
-    - type: AccessReader
-      access: [[ "Magistrate", "IAA" ]]
-    - type: CommunicationsConsole
-      title: comms-console-announcement-title-law
-      sound: /Audio/_Starlight/Announcements/announce2.ogg
-      color: "#ff178b"
-      settableAlertLevels: []
-      canBroadcast: false
-      canShuttle: false
-    - type: SecureCommandTerminalConsole
-      enabled: false
-    - type: Computer
-      board: LawCommsComputerCircuitboard
-    - type: PointLight
-      radius: 2.5
-      energy: 1.5
-      color: "#ff178b"
-
 ## Departmental Communications Consoles END
 
 - type: entity
@@ -829,3 +823,104 @@
     color: "#b89f25"
   - type: StealTarget
     stealGroup: ShipyardComputerCircuitboard
+
+- type: entity
+  id: ComputerSalvageExpeditionITG
+  parent: BaseComputerAiAccess
+  name: salvage expeditions computer
+  description: Used to accept salvage missions, if you're tough enough.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: [ "computerLayerScreen" ]
+          state: mining
+        - map: ["computerLayerKeys"]
+          state: tech_key
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ComputerVisuals.Powered:
+          computerLayerScreen:
+            True: { visible: true, shader: unshaded }
+            False: { visible: false }
+          computerLayerKeys:
+            True: { visible: true, shader: unshaded }
+            False: { visible: true }
+        enum.WiresVisuals.MaintenancePanelState:
+          enum.WiresVisualLayers.MaintenancePanel:
+            True: { visible: false }
+            False: { visible: true }
+        # Starlight Start
+        enum.EdgeConnectionVisuals.ConnectionMask:
+          computerLayerBody:
+            None: { state: computer, sprite: Structures/Machines/computers.rsi }
+            West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+            East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+            East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+        # Starlight End
+    - type: SalvageExpeditionConsole
+    - type: ActivatableUI
+      key: enum.SalvageConsoleUiKey.Expedition
+    - type: ActivatableUIRequiresPower
+    - type: UserInterface
+      interfaces:
+        enum.SalvageConsoleUiKey.Expedition:
+          type: SalvageExpeditionConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+    - type: Computer
+      board: SalvageExpeditionsComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
+    - type: PointLight
+      radius: 2.5
+      energy: 2
+      color: "#8151c9"
+  # Starlight End
+    - type: AccessReader
+      access: [["Salvage"]]
+    - type: StealTarget
+      stealGroup: SalvageExpeditionsComputerCircuitboard
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerSalvageJobBoardITG
+  name: salvage job board
+  description: Console for accessing salvage jobs, if you're tough enough.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: salvjob # givin em a salvjob like hawk tuah
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: SalvageJobBoardConsole
+  - type: ActivatableUI
+    key: enum.SalvageJobBoardUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SalvageJobBoardUiKey.Key:
+        type: SalvageJobBoardBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ActiveRadio
+    channels: [ Supply ]
+  - type: Computer
+    board: SalvageJobBoardComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#8151c9"
+  # Starlight End

@@ -11,6 +11,7 @@
         eyes: OrganSlimePeepoids # Starlight
         tongue: OrganSlimeSlurpoid # Starlight
         eye_implant: null
+        nose_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoSlime
       connections:

@@ -44,7 +44,7 @@
       states:
         Stealth: !type:ItemSwitchState
           verb: Stealth
-          hiden: true
+          hidden: true
           sprite:
             sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
             state: icon
@@ -66,7 +66,7 @@
 
         Combat: !type:ItemSwitchState
           verb: Combat
-          hiden: true
+          hidden: true
           sprite:
             sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
             state: combat-icon
@@ -364,13 +364,13 @@
       states:
         inactive: !type:ItemSwitchState
           verb: Inactive
-          hiden: true
+          hidden: true
           sprite:
             sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
             state: icon
         active: !type:ItemSwitchState
           verb: Active
-          hiden: true
+          hidden: true
           sprite:
             sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
             state: active-icon
