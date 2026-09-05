@@ -1,0 +1,7 @@
+- type: !PartialOnly entity
+  id: ShowMedicalIcons
+  components:
+    - type: ShowHealthIcons
+      damageContainers:
+        - Biological
+        - Hybrid
