@@ -181,9 +181,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
     private void OnAiAccessible(Entity<StationAiOverlayComponent> ent, ref AccessibleOverrideEvent args)
     {
-        if (!HasComp<StationAiHeldComponent>(ent.Owner)) // Starlight
-            return; // Starlight
-
         // We don't want to allow entities to access the AI just because the eye is nearby.
         // Only let the AI access entities through the eye.
         if (args.Accessible || args.User != ent.Owner)
@@ -244,9 +241,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
     private void OnAiInRange(Entity<StationAiOverlayComponent> ent, ref InRangeOverrideEvent args)
     {
-        if (!HasComp<StationAiHeldComponent>(ent.Owner)) // Starlight
-            return; // Starlight
-
         args.Handled = true;
         var target = args.Target;
         if (ent.Comp.AllowCrossGrid && TryComp(ent, out RelayInputMoverComponent? relay))

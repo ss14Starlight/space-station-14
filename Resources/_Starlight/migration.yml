@@ -346,3 +346,6 @@ BoxMagiCircuitBoards: null
 
 #2026-08-29 - Wizden Merge, new rigged boxing glove rename
 ClothingHandsGlovesBoxingRigged: ClothingHandsGlovesBoxingRiggedBlue
+
+#2026-09-04 - Removing a singular washing machine flatpack
+FlatpackWashingMachine: WashingMachineFlatpack
