@@ -91,7 +91,7 @@ namespace Content.Server.Zombies
 
         private void OnPendingMapInit(EntityUid uid, IncurableZombieComponent component, MapInitEvent args)
         {
-            // Starlight _actions.AddAction(uid, ref component.Action, component.ZombifySelfActionPrototype);
+            // _actions.AddAction(uid, ref component.Action, component.ZombifySelfActionPrototype); #starlight
             _faction.AddFaction(uid, Faction);
 
             if (HasComp<ZombieComponent>(uid) || HasComp<ZombieImmuneComponent>(uid))
@@ -101,7 +101,7 @@ namespace Content.Server.Zombies
             //EnsureComp<PendingZombieComponent>(uid, out PendingZombieComponent pendingComp);
             //pendingComp.GracePeriod = _random.Next(pendingComp.MinInitialInfectedGrace, pendingComp.MaxInitialInfectedGrace);
             */
-            NewInitialInfectedPart(uid);
+            NewInitialInfectedPart(uid); //starlight
         }
 
         private void OnPendingMapInit(EntityUid uid, PendingZombieComponent component, MapInitEvent args)

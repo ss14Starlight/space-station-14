@@ -12,10 +12,14 @@ public sealed partial class CauseZombieInfectionEntityEffectsSystem
         //this one is for romerol, gives five bites on the same trigger threshold
         infection.InfectiousBiteCount = 5;
     }
+
+}
+
+public sealed partial class CureZombieInfectionEntityEffectsSystem
+{
     private void RemoveBloodStreamInfection(Entity<MobStateComponent> entity) =>
         RemComp<BloodStreamInfectionComponent>(entity);
 }
-
 
 public sealed partial class DelayZombieInfectionUptickEntityEffectsSystem : EntityEffectSystem<MobStateComponent, DelayZombieInfectionUptick>
 {

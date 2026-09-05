@@ -16,9 +16,11 @@ public sealed partial class CauseZombieInfectionEntityEffectsSystem : EntityEffe
         if (HasComp<ZombieImmuneComponent>(entity) || HasComp<IncurableZombieComponent>(entity))
             return;
 
-        //#starlight
+        //#starlight start
         //EnsureComp<ZombifyOnDeathComponent>(entity);
         //EnsureComp<PendingZombieComponent>(entity);
+        RomerolBites(entity);
+        //#starlight end
     }
 }
 
@@ -36,6 +38,7 @@ public sealed partial class CureZombieInfectionEntityEffectsSystem : EntityEffec
 
         RemComp<ZombifyOnDeathComponent>(entity);
         RemComp<PendingZombieComponent>(entity);
+        RemoveBloodStreamInfection(entity); //Starlight
 
         if (args.Effect.Innoculate)
             EnsureComp<ZombieImmuneComponent>(entity);

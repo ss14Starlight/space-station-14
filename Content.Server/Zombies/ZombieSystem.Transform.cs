@@ -98,7 +98,8 @@ public sealed partial class ZombieSystem
     {
         if (args.NewMobState == MobState.Dead)
         {
-            ZombifyEntity(uid, args.Component);
+            //starlight
+            //ZombifyEntity(uid, args.Component);
         }
     }
 

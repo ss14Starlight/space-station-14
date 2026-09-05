@@ -1,4 +1,17 @@
 - type: entity
+  parent: Solution
+  id: SolutionOrganZombieHeart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: ZombieHeartSlurry
+        Quantity: 4
+
+- type: entity
   id: OrganZombieHeart
   parent: OrganHumanHeart
   name: Zombified heart
@@ -15,12 +28,9 @@
     stages: [ Bloodstream ]
   - type: Extractable
     grindableSolutionName: organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        reagents:
-        - ReagentId: ZombieHeartSlurry
-          Quantity: 4
+    - SolutionOrganZombieHeart
   - type: Item
     size: Small
     heldPrefix: heart

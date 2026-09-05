@@ -26,17 +26,6 @@
     Nitrogen: 2.5
     Protein: 6
 
-- type: !PartialOnly reaction
-  id: PutridBloodBreakdown
-  reactants: !Clear
-    ZombieBlood:
-      amount: 5
-  products: !Clear
-    Mold: 2
-    Protein: 1
-    ZombiePlasma: 1
-    Toxin: 1
-
 - type: reagent
   id: ZombieHeartSlurry
   name: reagent-name-zombie-heart

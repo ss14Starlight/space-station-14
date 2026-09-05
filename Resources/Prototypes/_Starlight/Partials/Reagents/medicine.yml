@@ -1,0 +1,73 @@
+- type: !PartialOnly reagent
+  id: Ambuzol
+  metabolisms: !Clear
+    Bloodstream:
+      effects:
+        - !type:DelayZombieInfectionUptick
+          conditions:
+            - !type:ReagentCondition
+              reagent: Ambuzol
+              min: .01
+        - !type:AdjustReagent
+          reagent: Ambuzol
+          amount: 0.49
+        - !type:ResumeZombieInfectionUptick
+          conditions:
+            - !type:ReagentCondition
+              reagent: Ambuzol
+              max: 0.01
+    Digestion:
+      effects:
+        - !type:DelayZombieInfectionUptick
+          conditions:
+            - !type:ReagentCondition
+              reagent: Ambuzol
+              min: .01
+        - !type:AdjustReagent
+          reagent: Ambuzol
+          amount: 0.49
+        - !type:ResumeZombieInfectionUptick
+          conditions:
+            - !type:ReagentCondition
+              reagent: Ambuzol
+              max: 0.01
+        - !type:ReduceRotting # Starlight start
+          seconds: 20
+        - !type:AdjustReagent
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+          reagent: Ambuzol
+          amount: -0.5 # Starlight end
+
+- type: !PartialOnly reagent
+  id: AmbuzolPlus
+  metabolisms: !Clear
+    Bloodstream:
+      effects:
+        - !type:CureZombieInfection
+          innoculate: true
+          conditions:
+            - !type:ReagentCondition
+              reagent: AmbuzolPlus
+              min: 5
+    Digestion:
+      effects:
+      - !type:CureZombieInfection
+        innoculate: true
+        conditions:
+        - !type:ReagentCondition
+          reagent: AmbuzolPlus
+          min: 4.9
+      - !type:HealthChange # Starlight start
+        damage:
+          types:
+           Cellular: -6
+      - !type:ReduceRotting
+        seconds: 60
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: AmbuzolPlus
+        amount: -0.5 # Starlight end

@@ -15,6 +15,8 @@ using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
+using Content.Server.Antag;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Zombies
 {
@@ -23,6 +25,7 @@ namespace Content.Server.Zombies
         [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
         [Dependency] private BodySystem _body = default!;
         [Dependency] private SharedContainerSystem _containers = default!;
+        [Dependency] private AntagSelectionSystem _antag = default!;
 
         private void NewInitialInfectedPart(EntityUid uid)
         {
@@ -101,7 +104,7 @@ namespace Content.Server.Zombies
                         )
                         {
                             var excessInfectionLevel = infection.InfectionLevel - infection.MaximumInfectionLevel;
-                            var burnAmount = excessInfectionLevel * 0.15f;
+                            var burnAmount = excessInfectionLevel * 0.04f;
                             var removed = bloodStreamSolution.RemoveReagent("Ambuzol", burnAmount);
 
                         }
@@ -130,6 +133,30 @@ namespace Content.Server.Zombies
                         }
                     }
 
+                    if (!infection.HasBeenBriefed && infection.InfectionLevel >= 85f && infection.IsInitialInfected)
+                    {
+                        if (_mind.TryGetMind(uid, out var mindId, out var mind) &&
+                            _player.TryGetSessionById(mind.UserId, out _))
+                        {
+                            _role.MindAddRole(
+                                mindId,
+                                "MindRoleInitialInfected",
+                                mind,
+                                silent: true);
+
+                            _antag.SendBriefing(
+                                uid,
+                                Loc.GetString("zombie-patientzero-role-greeting"),
+                                Color.Plum,
+                                new SoundPathSpecifier("/Audio/Ambience/Antag/zombie_start.ogg"));
+
+                            infection.HasBeenBriefed = true;
+                            Dirty(uid, infection);
+                        }
+
+
+                    }
+
                     if (infection.InfectionLevel >= 100f)
                     {
                         var currentState = EnsureComp<PreZombificationValuesComponent>(uid);
@@ -140,6 +167,11 @@ namespace Content.Server.Zombies
                         }
                         if (TryComp<NpcFactionMemberComponent>(uid, out var factionMember))
                             currentState.OriginalFactions = factionMember.Factions.ToList();
+
+                        ZombifyEntity(uid);
+                        RemComp<PendingZombieComponent>(uid);
+                        RemComp<ZombifyOnDeathComponent>(uid);
+                        infection.PreviousBloodLevel = 1f;
 
                         if (!TryComp<BodyComponent>(uid, out var bodyPartComp))
                             return;
@@ -249,6 +281,8 @@ namespace Content.Server.Zombies
                 return false;
 
             RemComp<ZombieComponent>(target);
+            RemComp<ZombifyOnDeathComponent>(target);
+            RemComp<PendingZombieComponent>(target);
 
             _bloodstream.SetBloodLossThreshold(target, preStateComp.BloodlossThreshold);
             _faction.ClearFactions(target, dirty: false);
@@ -264,7 +298,5 @@ namespace Content.Server.Zombies
 
             return true;
         }
-
-
     }
 }

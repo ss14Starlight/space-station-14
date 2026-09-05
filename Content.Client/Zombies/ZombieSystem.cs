@@ -20,7 +20,10 @@ public sealed partial class ZombieSystem : SharedZombieSystem
 
         SubscribeLocalEvent<ZombieComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ZombieComponent, GetStatusIconsEvent>(GetZombieIcon);
-        SubscribeLocalEvent<InitialInfectedComponent, GetStatusIconsEvent>(GetInitialInfectedIcon);
+        //#starlight start
+        //SubscribeLocalEvent<InitialInfectedComponent, GetStatusIconsEvent>(GetInitialInfectedIcon);
+        SubscribeLocalEvent<InitialInfectedComponent, GetStatusIconsEvent>(OnGetDelayedInitialInfectedIcon);
+        //#starlight end
     }
 
     private void GetZombieIcon(Entity<ZombieComponent> ent, ref GetStatusIconsEvent args)

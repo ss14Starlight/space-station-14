@@ -1,0 +1,15 @@
+- type: !PartialOnly reaction
+  id: AmbuzolPlus
+  reactants: !Clear
+    Ambuzol:
+      amount: 1
+    Omnizine:
+      amount: 1
+    ZombieHeartSlurry:
+      amount: 1
+    ZombiePlasma:
+      amount: 1
+    Amatoxin:
+      amount: 1
+  products: !Clear
+    AmbuzolPlus: 5

@@ -1,0 +1,8 @@
+- type: !PartialOnly antagSpecifier
+  parent: ZombieRestrictedAntag # Starlight
+  id: InitialInfected
+  components:
+  - !Remove type: PendingZombie
+  - !Remove type: ZombifyOnDeath
+  briefing: !Clear
+  mindRoles: !Clear

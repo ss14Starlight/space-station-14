@@ -3,7 +3,7 @@ using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Zombies;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BloodStreamInfectionComponent : Component
 {
     //level of infection in the bloodstream, zombification at 100
@@ -42,7 +42,11 @@ public sealed partial class BloodStreamInfectionComponent : Component
     public float MaximumInfectionLevel { get; set; } = 100f;
 
     public bool MaximumSet { get; set; } = false;
+
     public FixedPoint2 OriginalCriticalThreshold { get; set; } = FixedPoint2.New(0.1);
+
+    [DataField, AutoNetworkedField]
+    public bool HasBeenBriefed { get; set; } = false;
 
     //pulled from pendingzombiecomponent start
     /// <summary>
