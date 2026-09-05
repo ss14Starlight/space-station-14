@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The snowstorm now has a consistent direction on station.
-    type: Fix
-  id: 407802
-  time: '2026-08-21T15:23:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5761
 - author: wonderfulnewworld
   changes:
   - message: Xenoborgs (the main mode, not the submode) scale again, although they're not in rotation yet.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408201
   time: '2026-09-05T18:17:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5791
+- author: Johnny
+  changes:
+  - message: Added new web cuffs that arachnids can make.
+    type: Add
+  id: 408202
+  time: '2026-09-05T18:17:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5813
 Order: -1
