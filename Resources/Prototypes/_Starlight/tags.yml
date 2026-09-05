@@ -48,6 +48,9 @@
   id: BladeSteel
 
 - type: Tag
+  id: Blood
+
+- type: Tag
   id: BloodSplatter
 
 - type: Tag
@@ -757,6 +760,9 @@
 
 - type: Tag
   id: TiderAnvilParts
+
+- type: Tag
+  id: TrashBagBlue
 
 - type: Tag
   id: UnDissolvable
