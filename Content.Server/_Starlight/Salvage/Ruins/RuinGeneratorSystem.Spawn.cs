@@ -51,7 +51,7 @@ public sealed partial class RuinGeneratorSystem
 
     /// <summary>
     /// Spawns a ruin chunk grid on the given map from a <see cref="RuinResult"/>.
-    /// Places floors, walls, windows, then wreck-safe biome loot/decals.
+    /// Places floors, walls, windows, then wreck-safe biome loot/decals
     /// </summary>
     public EntityUid? SpawnRuinGrid(MapId mapId, RuinResult result, int seed)
     {
