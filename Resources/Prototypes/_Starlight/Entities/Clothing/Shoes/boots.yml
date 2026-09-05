@@ -10,6 +10,38 @@
       sprite: _Starlight/Clothing/Shoes/Boots/salvage.rsi
 
 - type: entity
+  parent: [ClothingShoesBootsMagBase, BaseJetpack, BaseSecurityContraband, ClothingShoesMilitaryBase]
+  id: ClothingShoesBootsMagSalvage
+  name: salvage magboots
+  description: A pair of magboots tastefully modified following some old TSF guy's booster pack schematics. They hold 0.75L of gas.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Shoes/Boots/salvagemagboots.rsi
+      state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/Shoes/Boots/salvagemagboots.rsi
+    - type: ClothingSpeedModifier
+      walkModifier: 0.85
+      sprintModifier: 0.8
+    - type: GasTank
+      outputPressure: 42.6
+      air:
+        # 2 minutes of thrust
+        volume: 0.75
+        temperature: 293.15
+        moles:
+          Oxygen: 0.153853429 # oxygen
+          Nitrogen: 0.153853429 # nitrogen
+    - type: Tag
+      tags:
+        - WhitelistChameleon
+    - type: Item
+      sprite: null
+      size: Normal
+    - type: StaticPrice
+      price: 1500
+
+- type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsMail
   name: mail technician boots
