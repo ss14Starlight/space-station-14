@@ -796,11 +796,11 @@
     soundHit: *PlushieCarpSound
     angle: 0
     animation: WeaponArcBite # Rrrr!
-  - type: Extractable
+  - type: Extractable # Starlight start
     juiceSolution:
       reagents:
       - ReagentId: JuiceThatMakesYouGlub
-        Quantity: 30
+        Quantity: 30 # Starlight end
   - type: FoodSequenceElement
     entries:
       CottonBurger: CarpPlushie

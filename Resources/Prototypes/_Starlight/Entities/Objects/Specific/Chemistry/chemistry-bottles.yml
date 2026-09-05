@@ -201,10 +201,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-glubjuice
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
+  - type: Solution
+    id: drink
+    solution:
         reagents:
         - ReagentId: JuiceThatMakesYouGlub
           Quantity: 30

@@ -69,7 +69,7 @@
       - id: ChemistryBottleDoctorsDelight
       - id: ChemistryBottleDesoxyephedrine
       - id: ChemistryBottleEphedrine
-    - !type:GroupSelector # Weh Glub
+    - !type:GroupSelector # Juice
       weight: 1
       children:
       - id: ChemistryBottleWeh

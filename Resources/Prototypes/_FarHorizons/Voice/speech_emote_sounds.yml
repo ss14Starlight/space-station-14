@@ -35,6 +35,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Gasp:
       collection: MaleGasp
     DeathgaspIPC:
@@ -79,6 +81,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Gasp:
       collection: FemaleGasp
     DeathgaspIPC:
