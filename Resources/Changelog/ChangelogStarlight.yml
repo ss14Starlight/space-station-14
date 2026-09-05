@@ -1,25 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: All wallmounts can now be labeled with a hand labeler, such as Air Alarms, Neon Signs, Signs, Fire Alarms, etc.
-    type: Tweak
-  id: 407829
-  time: '2026-08-26T01:33:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5785
-- author: Conflee
-  changes:
-  - message: Added False Shutter Projectors, a new craftable tool for antagonists. It places a grayscale 'false shutter' projection which blocks vision, but lacking the yellow hazard stripe and visually glitching occasionally gives it away to anyone actually paying attention. Useful for break-ins so passerbys in the hallways outside don't see you.
-    type: Add
-  id: 407830
-  time: '2026-08-26T01:54:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5780
-- author: Floximo
-  changes:
-  - message: AI's can now jump to location on Atmos/Power/Radar maps.
-    type: Add
-  id: 407831
-  time: '2026-08-26T18:36:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5831
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: In the advanced first aid cyborg module, changed a beaker/jug slot to a chemical case slot, allowing bottles to be stored.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408228
   time: '2026-09-05T22:44:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5886
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: 6 new items to Salvage Ticket Box.
+    type: Add
+  id: 408229
+  time: '2026-09-05T23:09:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5877
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: Seismic Charges to Mining Ticket Box.
+    type: Add
+  id: 408230
+  time: '2026-09-05T23:09:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5877
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: Salvage Death Rattle, Salvage Magboots.
+    type: Add
+  id: 408231
+  time: '2026-09-05T23:09:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5877
 Order: -1
