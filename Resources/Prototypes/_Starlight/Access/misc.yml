@@ -86,6 +86,8 @@
   - Casino
   - Visitor
   - ETO
+  - Salvage
+  - SalvageLead
 
 - type: accessGroup
   id: Syndicate
