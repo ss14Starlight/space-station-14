@@ -1,18 +1,4 @@
 Entries:
-- author: OJG
-  changes:
-  - message: Lowered tesla-coil and grounding rod electrolyzing efficiency.
-    type: Tweak
-  id: 407755
-  time: '2026-08-18T22:19:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5690
-- author: OJG
-  changes:
-  - message: Made electrolyzer account for heatscale factor.
-    type: Fix
-  id: 407756
-  time: '2026-08-18T22:19:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5690
 - author: RedSpeeds
   changes:
   - message: Fixed asteroids lacking collision.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408154
   time: '2026-09-05T15:06:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: qbrx
+  changes:
+  - message: Changeling's Fleshmend ability transfers Ichor into the stomach, allowing it to digest.
+    type: Tweak
+  id: 408155
+  time: '2026-09-05T15:27:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5970
+- author: qbrx
+  changes:
+  - message: Changeling's Fleshmend ability requires a stomach to activate.
+    type: Tweak
+  id: 408156
+  time: '2026-09-05T15:27:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5970
 Order: -1
