@@ -35,13 +35,7 @@
       hideLayersOnEquip:
       - Tail
       - HeadTop
-    - type: Hunger # on 2x more
-      thresholds:
-        Overfed: 250
-        Okay: 200
-        Peckish: 150
-        Starving: 100
-        Dead: 0
+    - type: Hunger # on 1.8x more
       baseDecayRate: 0.03
     - type: Icon
       sprite: _FarHorizons/Mobs/Species/Proto-Avali/parts.rsi
