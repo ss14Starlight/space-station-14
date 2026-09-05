@@ -62,6 +62,8 @@
   storage:
     back:
     - BoxSurvivalDwarf
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyOxygenBlood
@@ -100,7 +102,6 @@
     - BoxSurvival
     - BookOfCantrips
 
-
 - type: loadout
   id: EmergencyDwarfOxygenClown
   effects:
@@ -109,6 +110,8 @@
   storage:
     back:
     - BoxHugDwarf
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyOxygenClownBlood
@@ -137,6 +140,8 @@
   storage:
     back:
     - BoxMimeDwarf
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyOxygenMimeBlood
@@ -183,6 +188,8 @@
   storage:
     back:
     - BoxSurvivalEngineeringDwarf
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyOxygenExtendedBlood
@@ -220,6 +227,8 @@
   storage:
     back:
     - BoxSurvivalMedicalDwarf
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyOxygenMedicalBlood
@@ -265,6 +274,8 @@
   storage:
     back:
     - BoxSurvivalSecurityDwarf
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyOxygenSecurityBlood
@@ -302,6 +313,8 @@
   storage:
     back:
     - BoxSurvivalSyndicate # no dwarf version; doesn't include a drink
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyOxygenSyndicateBlood
@@ -330,6 +343,8 @@
   storage:
     back:
     - BoxSurvivalMilitaryDouble # no dwarf version; doesn't include a drink
+  equipment:
+    pocket2: BookOfGrudges # TODO: Revert to back storage once tested
 
 - type: loadout
   id: EmergencyOxygenMilitaryDoubleBlood

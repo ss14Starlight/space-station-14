@@ -1,0 +1,40 @@
+- type: entity
+  parent: BookBase
+  id: BookOfGrudges # not to be confused with BibleBookOfGrudges
+  name: book of grudges
+  description: The pages brim with minor slights and annoyances, some going back generations.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/books.rsi
+      layers:
+        - state: grudges
+    - type: Item
+      sprite: _Starlight/Objects/Misc/books.rsi
+      layers:
+        - state: grudges
+    - type: Paper
+      content: fax-machine-popup-error # replaced once an owner is assigned
+      stampingDisabled: true # forbid stamps and signatures, ensuring the text remains editable
+    - type: PaperVisuals
+      backgroundImagePath: "/Textures/_Starlight/Interface/Paper/paper_background_book_grudges.svg.96dpi.png"
+      backgroundPatchMargin: 23.0, 16.0, 14.0, 15.0
+      contentMargin: 20.0, 20.0, 20.0, 20.0
+    - type: ActivatableUI
+      key: enum.PaperUiKey.Key
+      requiresComplex: false
+    - type: UserInterface
+      interfaces:
+        enum.PaperUiKey.Key:
+          type: PaperBoundUserInterface
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/Weapons/star_hit.ogg
+      damage:
+        types:
+          Blunt: 5
+    - type: GrudgeBook
+      preamble: book-grudges-start # initial text to write in the book
+      dataset: GrudgeTemplate # name of localizedDataset to use as template for new grudges
+      relativeDataset: GrudgeRelative # name of localizedDataset to use for generating relatives
+      relativeDepth: 10 # maximum number of generations to go back for grudges
+      multiGrudge: 10 # grudges per grudging

@@ -1,0 +1,35 @@
+- type: localizedDataset
+  id: GrudgeTemplate
+  values:
+    prefix: book-grudges-template-
+    count: 19
+
+- type: localizedDataset
+  id: GrudgeTool
+  values:
+    prefix: book-grudges-tool-
+    count: 25
+
+- type: localizedDataset
+  id: GrudgeNumber
+  values:
+    prefix: book-grudges-number-
+    count: 25
+
+- type: localizedDataset
+  id: GrudgeMaterial
+  values:
+    prefix: book-grudges-material-
+    count: 8
+
+- type: localizedDataset
+  id: GrudgeMonster
+  values:
+    prefix: book-grudges-monster-
+    count: 13
+
+- type: localizedDataset
+  id: GrudgeRelative
+  values:
+    prefix: book-grudges-relative-
+    count: 12

@@ -54,6 +54,9 @@ story-gen-book-appearance25= mismatched
 story-gen-book-appearance26= gilded
 story-gen-book-appearance27= strange
 
+#starlight: fallback for JOB() FTL macro
+story-gen-jobless = crewmember
+
 story-gen-book-character1 = clown
 story-gen-book-character2 = mime
 story-gen-book-character3 = reporter

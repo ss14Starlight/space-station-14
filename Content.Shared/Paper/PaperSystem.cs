@@ -355,18 +355,27 @@ public sealed partial class PaperSystem : EntitySystem
         // making the event dual-use.
         if (!paper.Comp.StampedBy.Contains(info))
         {
-            // if this is met, it will be possible to stamp
-            // there is no "can stamp" or equivalent method,
-            // so this is as pretty as it gets.
-            var eve = new PaperSignedEvent(signer);
-            RaiseLocalEvent(paper, ref eve);
-
-            if (eve.Cancelled)
+            // built-in generic method of preventing stamps/signatures (while still allowing editing)
+            // this provides symmetry with PaperComponent.EditingDisabled, but you should
+            // still use a custom event system if you want a more descriptive error message.
+            if(paper.Comp.StampingDisabled)
             {
-                if (eve.FailReason != null)
-                    _popupSystem.PopupClient(eve.FailReason, signer, signer);
+                _popupSystem.PopupClient(Loc.GetString("paper-error-unstampable"), signer, signer);
 
                 return false;
+            } else
+            {
+                // check for other obstacles to stamping
+                var eve = new PaperSignedEvent(signer);
+                RaiseLocalEvent(paper, ref eve);
+
+                if (eve.Cancelled)
+                {
+                    if (eve.FailReason != null)
+                        _popupSystem.PopupClient(eve.FailReason, signer, signer);
+
+                    return false;
+                }
             }
         }
         // STARLIGHT END
