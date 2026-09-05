@@ -1,0 +1,69 @@
+- type: entity
+  parent: [ AdvancedJetInjector, BaseETOContraband ]
+  id: ETOMartyrInjector
+  name: combat stimulant injector
+  description: A modified jet injector that can synthesize its own combat mix. Takes 40 seconds to fully refill itself.
+  suffix: ETO
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/crackheadjetinjector.rsi
+    layers:
+    - state: jetinjector_base
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: jetinjector_filled1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Item
+    sprite: _Starlight/Admeme/ETO/crackheadjetinjector.rsi
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Bicaridine
+        Quantity: 0.25
+      - ReagentId: Ephedrine
+        Quantity: 0.25
+
+- type: entity
+  parent: [ChemicalMedipen, BaseETOContraband]
+  id: CombatMedipenETO
+  name: diluted combat medipen
+  description: A weaker, less effective version of the standard combat medipen.
+  suffix: ETO
+  categories: [ DoNotMap ]
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#3b2905"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#3b2905"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/medipen.rsi
+    layers:
+    - state: combatpeneto
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: combatpeneto_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 10
+        - ReagentId: Tricordrazine
+          Quantity: 15
+        - ReagentId: TranexamicAcid
+          Quantity: 5

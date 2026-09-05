@@ -1,0 +1,335 @@
+- type: entity
+  id: RandomHumanoidSpawnerETOOperativeRifle
+  name: ETO Rifle Operative
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/clothing/etomaskgrunt.rsi
+    state: icon
+  - type: RandomMetadata
+    nameSegments:
+    - NamesETOLast
+    nameFormat: name-format-eto-operative
+  - type: RandomHumanoidSpawner
+    settings: ETOOperativeRifle
+
+- type: randomHumanoidSettings
+  id: ETOOperativeRifle
+  parent: EventHumanoid
+  components:
+  - type: GhostRole
+    name: ghost-role-information-eto-operative-name
+    description: ghost-role-information-eto-operative-description
+    rules: ghost-role-information-antagonist-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: AntagImmune
+  - type: NoObjectiveTarget
+  - type: Loadout
+    prototypes: [ ETOOperativeGearRifle ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesETOLast
+    nameFormat: name-format-eto-operative
+
+- type: startingGear
+  id: ETOOperativeGearRifle
+  equipment:
+    head: ClothingHeadHelmetETO
+    mask: ClothingMaskGasETO
+    outerClothing: ClothingOuterVestWebETOBase
+    jumpsuit: ClothingUniformJumpsuitETOOperative
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJack
+    back: ClothingBackpackETO
+    belt: ClothingBeltETOBelt
+    id: ETOOperativePDA
+    ears: ClothingHeadsetETO
+    eyes: ClothingEyesSunGlassesETO
+    pocket1: WeaponPistol75auto
+    suitstorage: WeaponRifleZ77T1
+  storage:
+    back:
+    - MedkitCombatFilledETO
+    - CrowbarRed
+    - MagazinePistolHighCapacityFMJ
+    - MagazinePistolHighCapacityFMJ
+
+    belt:
+    - MagazineRifleFMJ
+    - MagazineRifleFMJ
+    - MagazineRifleFMJ
+    - MagazineRifleFMJ
+    - MagazineRifleFMJ
+
+- type: entity
+  id: RandomHumanoidSpawnerETOOperativeSMG
+  name: ETO SMG Operative
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/clothing/etomaskgrunt.rsi
+    state: icon
+  - type: RandomMetadata
+    nameSegments:
+    - NamesETOLast
+    nameFormat: name-format-eto-operative
+  - type: RandomHumanoidSpawner
+    settings: ETOOperativeSMG
+
+- type: randomHumanoidSettings
+  id: ETOOperativeSMG
+  parent: EventHumanoid
+  components:
+  - type: GhostRole
+    name: ghost-role-information-eto-operative-name
+    description: ghost-role-information-eto-operative-description
+    rules: ghost-role-information-antagonist-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: AntagImmune
+  - type: NoObjectiveTarget
+  - type: Loadout
+    prototypes: [ ETOOperativeGearSMG ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesETOLast
+    nameFormat: name-format-eto-operative
+
+- type: startingGear
+  id: ETOOperativeGearSMG
+  equipment:
+    head: ClothingHeadHelmetETO
+    mask: ClothingMaskGasETO
+    outerClothing: ClothingOuterVestWebETOBase
+    jumpsuit: ClothingUniformJumpsuitETOOperative
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJack
+    back: ClothingBackpackETO
+    belt: ClothingBeltETOBelt
+    id: ETOOperativePDA
+    ears: ClothingHeadsetETO
+    eyes: ClothingEyesSunGlassesETO
+    pocket1: WeaponPistol75auto
+    suitstorage: WeaponSubMachineGunDD22
+  storage:
+    back:
+    - MedkitCombatFilledETO
+    - CrowbarRed
+    - MagazinePistolHighCapacityFMJ
+    - MagazinePistolHighCapacityFMJ
+
+    belt:
+    - MagazinePistolSubMachineGunBottomMountedDDFMJ
+    - MagazinePistolSubMachineGunBottomMountedDDFMJ
+    - MagazinePistolSubMachineGunBottomMountedDDFMJ
+    - MagazinePistolSubMachineGunBottomMountedDDFMJ
+    - MagazinePistolSubMachineGunBottomMountedDDFMJ
+
+- type: entity
+  id: RandomHumanoidSpawnerETOOCorpsman
+  name: ETO Corpsman Operative
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/clothing/etomaskcorpsman.rsi
+    state: icon
+  - type: RandomMetadata
+    nameSegments:
+    - NamesETOLast
+    nameFormat: name-format-eto-special
+  - type: RandomHumanoidSpawner
+    settings: ETOOperativeCorpsman
+
+- type: randomHumanoidSettings
+  id: ETOOperativeCorpsman
+  parent: EventHumanoid
+  components:
+  - type: GhostRole
+    name: ghost-role-information-eto-corpsman-name
+    description: ghost-role-information-eto-corpsman-description
+    rules: ghost-role-information-antagonist-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: AntagImmune
+  - type: NoObjectiveTarget
+  - type: Loadout
+    prototypes: [ ETOOperativeGearCorpsman ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesETOSpecialistLast
+    nameFormat: name-format-eto-special
+
+- type: startingGear
+  id: ETOOperativeGearCorpsman
+  equipment:
+    head: ClothingHeadHatETOCorpsmanHat
+    mask: ClothingMaskGasETOCorpsman
+    outerClothing: ClothingOuterVestWebETOCorpsman
+    jumpsuit: ClothingUniformJumpsuitETOMedical
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJack
+    back: ClothingBackpackETO
+    belt: ClothingBeltETOBelt
+    id: ETOCorpsmanPDA
+    ears: ClothingHeadsetETOSpecialist
+    eyes: ClothingEyesSunGlassesETO
+    pocket1: WeaponPistol75auto
+    suitstorage: WeaponSubMachineGunDD22
+  storage:
+    back:
+    - MedkitCombatFilledETO
+    - CrowbarRed
+    - MagazinePistolHighCapacityFMJ
+    - MagazinePistolHighCapacityFMJ
+
+    belt:
+    - MagazinePistolSubMachineGunBottomMountedDDFMJ
+    - MagazinePistolSubMachineGunBottomMountedDDFMJ
+    - MagazinePistolSubMachineGunBottomMountedDDFMJ
+    - MagazinePistolSubMachineGunBottomMountedDDFMJ
+    - Hypospray
+    - JugPunctTranex
+
+- type: entity
+  id: RandomHumanoidSpawnerETOLead
+  name: ETO Team Lead
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/clothing/etomask.rsi
+    state: icon
+  - type: RandomMetadata
+    nameSegments:
+    - NamesETOLast
+    nameFormat: name-format-eto-leader
+  - type: RandomHumanoidSpawner
+    settings: ETOOperativeLead
+
+- type: randomHumanoidSettings
+  id: ETOOperativeLead
+  parent: EventHumanoid
+  components:
+  - type: GhostRole
+    name: ghost-role-information-eto-lead-name
+    description: ghost-role-information-eto-lead-description
+    rules: ghost-role-information-antagonist-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: AntagImmune
+  - type: NoObjectiveTarget
+  - type: Loadout
+    prototypes: [ ETOOperativeGearLead ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesETOLeaderLast
+    nameFormat: name-format-eto-leader
+
+- type: startingGear
+  id: ETOOperativeGearLead
+  equipment:
+    head: ClothingHeadHatBeretETOLead
+    mask: ClothingMaskGasETOLead
+    outerClothing: ClothingOuterVestWebETOLead
+    jumpsuit: ClothingUniformJumpsuitETOLead
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJack
+    back: ClothingBackpackETO
+    belt: ClothingBeltETOBelt
+    id: ETOTeamLeadPDA
+    ears: ClothingHeadsetETOSpecialist
+    eyes: ClothingEyesSunGlassesETO
+    pocket1: WeaponPistol75auto
+    suitstorage: WeaponRifleZ46
+  storage:
+    back:
+    - MedkitCombatFilledETO
+    - CrowbarRed
+    - MagazinePistolHighCapacityFMJ
+    - MagazinePistolHighCapacityFMJ
+
+    belt:
+    - MagazineLightRifleFMJ
+    - MagazineLightRifleFMJ
+    - MagazineLightRifleFMJ
+    - MagazineLightRifleFMJ
+    - MagazineLightRifleFMJ
+
+- type: entity
+  id: RandomHumanoidSpawnerETOOCombatTech
+  name: ETO Combat Technician
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/clothing/armour/etoevahelmet.rsi
+    state: icon
+  - type: RandomMetadata
+    nameSegments:
+    - NamesETOLast
+    nameFormat: name-format-eto-special
+  - type: RandomHumanoidSpawner
+    settings: ETOOperativeCombatTech
+
+- type: randomHumanoidSettings
+  id: ETOOperativeCombatTech
+  parent: EventHumanoid
+  components:
+  - type: GhostRole
+    name: ghost-role-information-eto-combattech-name
+    description: ghost-role-information-eto-combattech-description
+    rules: ghost-role-information-antagonist-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: AntagImmune
+  - type: NoObjectiveTarget
+  - type: Loadout
+    prototypes: [ ETOOperativeGearCombatTech ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesETOSpecialistLast
+    nameFormat: name-format-eto-special
+
+- type: startingGear
+  id: ETOOperativeGearCombatTech
+  equipment:
+    head: ClothingHeadETOEvaHelmet
+    mask: ClothingMaskGasETO
+    outerClothing: ClothingOuterVestWebETOCombatTech
+    jumpsuit: ClothingUniformJumpsuitETOCombatTech
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJack
+    back: ClothingBackpackETO
+    belt: ClothingBeltETOCombatTechFilled
+    id: ETOOperativePDACombatTech
+    ears: ClothingHeadsetETOSpecialist
+    eyes: ClothingEyesSunGlassesETO
+    pocket1: WeaponPistol75auto
+    suitstorage: WeaponShotgunTaiga
+  storage:
+    back:
+    - MedkitCombatFilledETO
+    - C4
+    - C4
+    - C4
+    - C4
+    - C4
+    - C4
+    - C4
+    - MagazinePistolHighCapacityFMJ
+    - MagazinePistolHighCapacityFMJ
+
+    belt:
+    - MagazineShotgun
+    - MagazineShotgun
+    - MagazineShotgunSlug
+    - MagazineShotgunSlug

@@ -1,0 +1,27 @@
+- type: entity
+  parent: [EncryptionKey, BaseETOContraband]
+  id: EncryptionKeyETO
+  name: ETO encryption key
+  description: An encryption key used by ETO operatives.
+  components:
+    - type: EncryptionKey
+      channels:
+        - ETO
+      defaultChannel: ETO
+    - type: Sprite
+      layers:
+        - sprite: _Starlight/Admeme/ETO/encryptionkey.rsi
+          state: base_eto
+        - sprite: _Starlight/Admeme/ETO/encryptionkey.rsi
+          state: eto_icon
+
+- type: radioChannel
+  id: ETO
+  name: chat-radio-eto
+  keycode: '1'
+  frequency: 1883
+  color: "#c5be14"
+  longRange: true
+  icon:
+    sprite: _Starlight/Admeme/ETO/etoradioicon.rsi
+    state: ETORadioIcon

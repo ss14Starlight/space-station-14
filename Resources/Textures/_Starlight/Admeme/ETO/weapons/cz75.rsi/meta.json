@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+      "copyright": "The Purple Screen"
+        },
+        {
+            "name": "base",
+      "copyright": "The Purple Screen"
+        },
+        {
+            "name": "bolt-open",
+      "copyright": "The Purple Screen"
+        },
+        {
+            "name": "mag-0",
+      "copyright": "The Purple Screen"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4,
+      "copyright": "The Purple Screen"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4,
+      "copyright": "The Purple Screen"
+        },
+        {
+            "name": "equipped-BELT",
+            "directions": 4,
+      "copyright": "The Purple Screen"
+        },
+		{
+            "name": "equipped-SUITSTORAGE",
+            "directions": 4,
+      "copyright": "The Purple Screen"
+        }
+    ]
+}
