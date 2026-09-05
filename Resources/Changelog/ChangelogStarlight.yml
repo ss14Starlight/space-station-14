@@ -1,13 +1,6 @@
 Entries:
 - author: Way
   changes:
-  - message: Artist names are now in the descriptions of music vinyls.
-    type: Add
-  id: 407794
-  time: '2026-08-21T10:14:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5727
-- author: Way
-  changes:
   - message: Radio Host and Departmental Lathes are now mapped.
     type: Add
   id: 407795
@@ -2799,4 +2792,11 @@ Entries:
   id: 408193
   time: '2026-09-05T16:58:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5768
+- author: OMEGA
+  changes:
+  - message: "'ITG Salvage Team' and 'Dismiss ITG Salvage Team' options added to the Secure Terminal."
+    type: Add
+  id: 408194
+  time: '2026-09-05T17:18:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5522
 Order: -1
