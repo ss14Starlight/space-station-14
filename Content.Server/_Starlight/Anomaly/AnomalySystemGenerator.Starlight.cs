@@ -1,0 +1,84 @@
+using Content.Server.Anomaly.Components;
+using Content.Shared.CCVar;
+using Content.Shared.Physics;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+
+namespace Content.Server.Anomaly;
+
+public sealed partial class AnomalySystem
+{
+    public EntityUid? SpawnOnRandomGridLocationReturning(EntityUid grid, string toSpawn)
+    {
+        if (!TryGetRandomAnomalySpawnCoordinates(grid, out var targetCoords))
+            return null;
+
+        return Spawn(toSpawn, targetCoords);
+    }
+
+    private bool TryGetRandomAnomalySpawnCoordinates(EntityUid grid, out EntityCoordinates targetCoords)
+    {
+        if (!TryComp<MapGridComponent>(grid, out var gridComp))
+        {
+            targetCoords = EntityCoordinates.Invalid;
+            return false;
+        }
+
+        var xform = Transform(grid);
+        targetCoords = EntityCoordinates.Invalid;
+        var gridBounds = gridComp.LocalAABB.Scale(_configuration.GetCVar(CCVars.AnomalyGenerationGridBoundsScale));
+
+        for (var i = 0; i < 25; i++)
+        {
+            var randomX = Random.Next((int) gridBounds.Left, (int) gridBounds.Right);
+            var randomY = Random.Next((int) gridBounds.Bottom, (int) gridBounds.Top);
+            var tile = new Vector2i(randomX, randomY);
+
+            if (_atmosphere.IsTileSpace(grid, xform.MapUid, tile) ||
+                _atmosphere.IsTileAirBlockedCached(grid, tile))
+                continue;
+
+            var physQuery = GetEntityQuery<PhysicsComponent>();
+            var valid = true;
+            foreach (var ent in _mapSystem.GetAnchoredEntities(grid, gridComp, tile))
+            {
+                if (!physQuery.TryGetComponent(ent, out var body))
+                    continue;
+                if (body.BodyType != BodyType.Static ||
+                    !body.Hard ||
+                    (body.CollisionLayer & (int) CollisionGroup.Impassable) == 0)
+                    continue;
+
+                valid = false;
+                break;
+            }
+            if (!valid)
+                continue;
+
+            var pos = _mapSystem.GridTileToLocal(grid, gridComp, tile);
+            var mapPos = _transform.ToMapCoordinates(pos);
+            var antiAnomalyZones = AllEntityQuery<AntiAnomalyZoneComponent, TransformComponent>();
+            while (antiAnomalyZones.MoveNext(out _, out var zone, out var antiXform))
+            {
+                if (antiXform.MapID != mapPos.MapId)
+                    continue;
+
+                var delta = _transform.GetWorldPosition(antiXform) - mapPos.Position;
+                if (delta.LengthSquared() < zone.ZoneRadius * zone.ZoneRadius)
+                {
+                    valid = false;
+                    break;
+                }
+            }
+            if (!valid)
+                continue;
+
+            targetCoords = pos;
+            return true;
+        }
+
+        return false;
+    }
+}

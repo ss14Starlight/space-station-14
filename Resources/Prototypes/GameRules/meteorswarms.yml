@@ -93,22 +93,6 @@
     scheduledGameRules: !type:NestedSelector
       tableId: BasicMeteorSwarmEventsTable
 
-- type: entity
-  parent: BaseGameRule
-  id: ResonanceCascadeScheduler
-  components:
-  - type: GameRule
-  - type: ResonanceCascadeScheduler
-    possibleAnomalyPrototypes:
-    - AnomalyClown
-    - AnomalyFlesh
-    - AnomalyFlora
-    initialDelay: 600 #Roundstart delay before  first anom spawn
-    baseInterval: 720 #Initial interval between anom spawns
-    minimumInterval: 360 #Minimum interval between anom spawns
-    escalationStep: 900 #Seconds between escalation steps
-    escalationMultiplier: 0.85 #Multiplier applied to base interval per escalationstep
-
 # Game Rules
 
 - type: entity

@@ -1,13 +1,13 @@
 using Content.Server.Anomaly;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Systems;
-using Content.Server.StationEvents.Components;
+using Content.Server._Starlight.StationEvents.Components;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
 using Robust.Shared.Random;
 
-namespace Content.Server.StationEvents;
+namespace Content.Server._Starlight.StationEvents.Events;
 
 public sealed partial class ResonanceCascadeSchedulerSystem : GameRuleSystem<ResonanceCascadeSchedulerComponent>
 {

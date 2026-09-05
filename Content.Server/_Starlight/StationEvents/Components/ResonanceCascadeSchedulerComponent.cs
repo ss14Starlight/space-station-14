@@ -1,7 +1,7 @@
-using Content.Server.StationEvents;
+using Content.Server._Starlight.StationEvents.Events;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.StationEvents.Components;
+namespace Content.Server._Starlight.StationEvents.Components;
 
 
 /// 

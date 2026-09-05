@@ -6,7 +6,6 @@ using Content.Shared.Materials;
 using Content.Shared.Radio;
 using Robust.Shared.Audio;
 using Content.Shared.Physics;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -84,31 +83,12 @@ public sealed partial class AnomalySystem
 
     public void SpawnOnRandomGridLocation(EntityUid grid, string toSpawn)
     {
-        if (!TryGetRandomAnomalySpawnCoordinates(grid, out var targetCoords))
-            return;
-
-        Spawn(toSpawn, targetCoords);
-    }
-
-    public EntityUid? SpawnOnRandomGridLocationReturning(EntityUid grid, string toSpawn)
-    {
-        if (!TryGetRandomAnomalySpawnCoordinates(grid, out var targetCoords))
-            return null;
-
-        return Spawn(toSpawn, targetCoords);
-    }
-
-    private bool TryGetRandomAnomalySpawnCoordinates(EntityUid grid, out EntityCoordinates targetCoords)
-    {
         if (!TryComp<MapGridComponent>(grid, out var gridComp))
-        {
-            targetCoords = EntityCoordinates.Invalid;
-            return false;
-        }
+            return;
 
         var xform = Transform(grid);
 
-        targetCoords = EntityCoordinates.Invalid;
+        var targetCoords = xform.Coordinates;
         var gridBounds = gridComp.LocalAABB.Scale(_configuration.GetCVar(CCVars.AnomalyGenerationGridBoundsScale));
 
         for (var i = 0; i < 25; i++)
@@ -167,10 +147,10 @@ public sealed partial class AnomalySystem
                 continue;
 
             targetCoords = pos;
-            return true;
+            break;
         }
 
-        return false;
+        Spawn(toSpawn, targetCoords);
     }
 
     private void OnGeneratingStartup(EntityUid uid, GeneratingAnomalyGeneratorComponent component, ComponentStartup args)

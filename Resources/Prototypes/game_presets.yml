@@ -25,7 +25,7 @@
   description: kessler-syndrome-description
   rules:
     - KesslerSyndromeScheduler
-    - ResonanceCascadeScheduler
+    - ResonanceCascadeScheduler # Starlight
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler # Starlight
     - BasicRoundstartVariation
@@ -46,6 +46,7 @@
     - WizardDuel # Starlight
     #- Xenoborgs # Starlight
     - KesslerSyndromeScheduler
+    - ResonanceCascadeScheduler # Starlight
     - RampingStationEventScheduler
     - SLChangeling #Starlight
     - SpaceTrafficControlEventScheduler # Starlight
