@@ -1,18 +1,4 @@
 Entries:
-- author: Conflee, mkanke
-  changes:
-  - message: Added a dozen ish pre-filled boxes for mappers to use instead of spamming item stacks down in places.
-    type: Add
-  id: 407792
-  time: '2026-08-21T09:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5720
-- author: Conflee, mkanke
-  changes:
-  - message: Changed the Mail Trolley to accept Large Cardboard Boxes, for logical consistency.
-    type: Tweak
-  id: 407793
-  time: '2026-08-21T09:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5720
 - author: Way
   changes:
   - message: Artist names are now in the descriptions of music vinyls.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408191
   time: '2026-09-05T16:31:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5758
+- author: Way
+  changes:
+  - message: Pun Pun, Kiki & Stir Stir can now wear a selection of Winter Coats, and Glasses in the eye slot.
+    type: Tweak
+  id: 408192
+  time: '2026-09-05T16:58:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5768
+- author: Way
+  changes:
+  - message: Pun Pun, Kiki, & Stir Stir now understand, and can use Sign Language.
+    type: Tweak
+  id: 408193
+  time: '2026-09-05T16:58:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5768
 Order: -1
