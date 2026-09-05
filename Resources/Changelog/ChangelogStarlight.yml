@@ -1,18 +1,4 @@
 Entries:
-- author: Way
-  changes:
-  - message: Radio Host and Departmental Lathes are now mapped.
-    type: Add
-  id: 407795
-  time: '2026-08-21T10:41:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5729
-- author: Conflee, Way
-  changes:
-  - message: Added Cell Bars. Come in all normal fence variants. Can not be climbed or electrified. Very durable 'fence' option made of Plasteel for mapping in Genpop and Prison areas to prevent escapes.
-    type: Add
-  id: 407796
-  time: '2026-08-21T11:09:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5737
 - author: Caws
   changes:
   - message: The law communications console has been removed.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408194
   time: '2026-09-05T17:18:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5522
+- author: Way
+  changes:
+  - message: 8 new songs added to the Radio Host's catalogue of music.
+    type: Add
+  id: 408195
+  time: '2026-09-05T17:47:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5777
+- author: Way
+  changes:
+  - message: Vinyl's crates are now 1300 credits, instead of 1600. and now hold 14 Vinyl's instead of 12.
+    type: Tweak
+  id: 408196
+  time: '2026-09-05T17:47:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5777
 Order: -1
