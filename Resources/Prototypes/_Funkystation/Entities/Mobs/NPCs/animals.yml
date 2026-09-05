@@ -98,7 +98,165 @@
     - MindRoleGhostRoleFreeAgentHarmless
   - type: GhostTakeoverAvailable
 
-# Mice
+#Rainbow Mice
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseBlue
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Animals/Mice/Blue.rsi # Starlight
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-blue
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-blue
+    noMovementLayers:
+      movement:
+        state: mouse-blue
+  - type: Clothing
+    sprite: _Starlight/Mobs/Animals/Mice/Blue.rsi # Starlight
+    equippedPrefix: blue
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-blue
+      Critical:
+        Base: dead-blue
+      Dead:
+        Base: splat-blue
+  - type: Item
+    size: Tiny
+    heldPrefix: blue
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseRed
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Animals/Mice/Red.rsi # Starlight
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-red
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-red
+    noMovementLayers:
+      movement:
+        state: mouse-red
+  - type: Clothing
+    sprite: _Starlight/Mobs/Animals/Mice/Red.rsi # Starlight
+    equippedPrefix: red
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-red
+      Critical:
+        Base: dead-red
+      Dead:
+        Base: splat-red
+  - type: Item
+    size: Tiny
+    heldPrefix: red
+
+- type: entity
+  parent: MobMouse
+  id: MobMousePurple
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Animals/Mice/Purple.rsi # Starlight
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-purple
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-purple
+    noMovementLayers:
+      movement:
+        state: mouse-purple
+  - type: Clothing
+    sprite: _Starlight/Mobs/Animals/Mice/Purple.rsi # Starlight
+    equippedPrefix: purple
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-purple
+      Critical:
+        Base: dead-purple
+      Dead:
+        Base: splat-purple
+  - type: Item
+    size: Tiny
+    heldPrefix: purple
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseOrange
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Animals/Mice/Orange.rsi # Starlight
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-orange
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-orange
+    noMovementLayers:
+      movement:
+        state: mouse-orange
+  - type: Clothing
+    sprite: _Starlight/Mobs/Animals/Mice/Orange.rsi # Starlight
+    equippedPrefix: orange
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-orange
+      Critical:
+        Base: dead-orange
+      Dead:
+        Base: splat-orange
+  - type: Item
+    size: Tiny
+    heldPrefix: orange
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseGreen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Animals/Mice/Green.rsi # Starlight
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-green
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-green
+    noMovementLayers:
+      movement:
+        state: mouse-green
+  - type: Clothing
+    sprite: _Starlight/Mobs/Animals/Mice/Green.rsi # Starlight
+    equippedPrefix: green
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-green
+      Critical:
+        Base: dead-green
+      Dead:
+        Base: splat-green
+  - type: Item
+    size: Tiny
+    heldPrefix: green
+
+#Weird Mice
 
 - type: entity
   parent: MobMouse

@@ -138,202 +138,38 @@
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-kobold
 
-#Rainbow Mice from Forky, moved here since we changed them a bit
+#Rainbow Mice
 
 - type: entity
   parent: MobMouse
-  id: MobMouseBlue
+  id: MobMouseYellow
   components:
   - type: Sprite
-    drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
-    color: blue
+    sprite: _Starlight/Mobs/Animals/Mice/Yellow.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mouse-0
-      color: blue
+      state: mouse-yellow
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: mouse-moving-0
-        color: blue
+        state: mouse-moving-yellow
     noMovementLayers:
       movement:
-        state: mouse-0
-        color: blue
+        state: mouse-yellow
   - type: Clothing
-    quickEquip: false
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
-    equippedPrefix: 0
-    slots:
-    - HEAD
+    sprite: _Starlight/Mobs/Animals/Mice/Yellow.rsi
+    equippedPrefix: yellow
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: mouse-0
+        Base: mouse-yellow
       Critical:
-        Base: dead-0
+        Base: dead-yellow
       Dead:
-        Base: splat-0
+        Base: splat-yellow
   - type: Item
     size: Tiny
-    heldPrefix: blue
-
-- type: entity
-  parent: MobMouse
-  id: MobMouseRed
-  components:
-  - type: Sprite
-    drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
-    color: red
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mouse-0
-      color: red
-  - type: SpriteMovement
-    movementLayers:
-      movement:
-        state: mouse-moving-0
-        color: red
-    noMovementLayers:
-      movement:
-        state: mouse-0
-        color: red
-  - type: Clothing
-    quickEquip: false
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
-    equippedPrefix: 0
-    slots:
-    - HEAD
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: mouse-0
-      Critical:
-        Base: dead-0
-      Dead:
-        Base: splat-0
-  - type: Item
-    size: Tiny
-    heldPrefix: red
-
-- type: entity
-  parent: MobMouse
-  id: MobMousePurple
-  components:
-  - type: Sprite
-    drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
-    color: mediumpurple
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mouse-0
-      color: mediumpurple
-  - type: SpriteMovement
-    movementLayers:
-      movement:
-        state: mouse-moving-0
-        color: mediumpurple
-    noMovementLayers:
-      movement:
-        state: mouse-0
-        color: mediumpurple
-  - type: Clothing
-    quickEquip: false
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
-    equippedPrefix: 0
-    slots:
-    - HEAD
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: mouse-0
-      Critical:
-        Base: dead-0
-      Dead:
-        Base: splat-0
-  - type: Item
-    size: Tiny
-    heldPrefix: mediumpurple
-
-- type: entity
-  parent: MobMouse
-  id: MobMouseOrange
-  components:
-  - type: Sprite
-    drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
-    color: orange
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mouse-0
-      color: orange
-  - type: SpriteMovement
-    movementLayers:
-      movement:
-        state: mouse-moving-0
-        color: orange
-    noMovementLayers:
-      movement:
-        state: mouse-0
-        color: orange
-  - type: Clothing
-    quickEquip: false
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
-    equippedPrefix: 0
-    slots:
-    - HEAD
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: mouse-0
-      Critical:
-        Base: dead-0
-      Dead:
-        Base: splat-0
-  - type: Item
-    size: Tiny
-    heldPrefix: orange
-
-- type: entity
-  parent: MobMouse
-  id: MobMouseGreen
-  components:
-  - type: Sprite
-    drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
-    color: lightgreen
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mouse-0
-      color: lightgreen
-  - type: SpriteMovement
-    movementLayers:
-      movement:
-        state: mouse-moving-0
-        color: lightgreen
-    noMovementLayers:
-      movement:
-        state: mouse-0
-        color: lightgreen
-  - type: Clothing
-    quickEquip: false
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
-    equippedPrefix: 0
-    slots:
-    - HEAD
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: mouse-0
-      Critical:
-        Base: dead-0
-      Dead:
-        Base: splat-0
-  - type: Item
-    size: Tiny
-    heldPrefix: lightgreen
+    heldPrefix: yellow
 
 # Immortal Roach from Funky, moved here since we're tweaking it
 - type: entity

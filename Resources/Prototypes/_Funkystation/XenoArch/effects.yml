@@ -115,7 +115,7 @@
           range: 1, 3 # Starlight
         children:
         - id: MobMouse
-          weight: 34 # Starlight
+          weight: 24 # Starlight
         - id: MobMouseBlue
           weight: 10
         - id: MobMouseRed
@@ -126,6 +126,8 @@
           weight: 10
         - id: MobMouseGreen
           weight: 10
+        - id: MobMouseYellow # Starlight
+          weight: 10 # Starlight
         - id: MobMouseStealth
           weight: 5
         - id: MobMouseRGB
