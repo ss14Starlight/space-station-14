@@ -231,6 +231,7 @@
   effects:
   - !type:PluoxHydrogenFire {}
 
+- type: gasReaction
   id: AmmoniaProduction
   priority: 10
   minimumTemperature: 590.15
