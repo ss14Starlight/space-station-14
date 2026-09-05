@@ -2,11 +2,12 @@ using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.Objectives.Systems;
 using Content.Server.Popups;
+using Content.Server._Starlight.CosmicCult.Components;
+using Content.Server.Chat.Systems;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.Warps;
-using Content.Server._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared.Charges.Components;
@@ -14,6 +15,12 @@ using Content.Shared.Charges.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map;
+using Robust.Shared.Utility;
+using Content.Server.Pinpointer;
+using Content.Shared.Anomaly.Components;
+using Content.Server.Nuke;
+using Content.Server.Station.Systems;
+using Content.Shared.Station.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities.Colossus;
 
@@ -29,13 +36,18 @@ public sealed partial class CosmicEffigySystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedChargesSystem _charges = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private StationSystem _station = default!;
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusEffigy>(OnColossusEffigy);
         SubscribeLocalEvent<CosmicEffigyComponent, EntityTerminatingEvent>(OnEffigyTerminating);
         SubscribeLocalEvent<CosmicEffigyComponent, CosmicEffigyDestroyedEvent>(OnEffigyDestroyed);
+        SubscribeLocalEvent<CosmicEffigyComponent, AnomalyShutdownEvent>(OnEffigyAnomalyShutdown);
     }
+
     private void OnColossusEffigy(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusEffigy args)
     {
         if (ent.Comp.CurrentEffigy != null && Exists(ent.Comp.CurrentEffigy))
@@ -46,12 +58,38 @@ public sealed partial class CosmicEffigySystem : EntitySystem
         if (!VerifyPlacement(ent, out var pos))
             return;
 
-        _codeCondition.SetCompleted(ent.Owner, ent.Comp.EffigyObjective);
         var effigy = Spawn(ent.Comp.EffigyPrototype, pos);
-
         var effigyComp = EnsureComp<CosmicEffigyComponent>(effigy);
         effigyComp.Colossus = ent.Owner;
 
+        // Give the Colossus an objective if they spawned on a station.
+        if (_mind.TryGetObjectiveComp<CosmicEffigyConditionComponent>(ent, out var obj))
+        {
+            var station = _station.GetOwningStation(ent.Owner);
+
+            // If we are on a grid without a station, use the grid containing the nuke.
+            if (station == null && Transform(ent).GridUid is { } currentGrid)
+            {
+                var nukeQuery = EntityQueryEnumerator<NukeComponent, TransformComponent>();
+                while (nukeQuery.MoveNext(out var nukeUid, out _, out var nukeTransform))
+                {
+                    if (nukeTransform.GridUid == null || nukeTransform.GridUid == currentGrid)
+                        continue;
+
+                    station = _station.GetOwningStation(nukeUid);
+                    if (station != null)
+                        break;
+                }
+            }
+
+            // No station found means the Colossus gets no effigy objective.
+            if (station != null)
+            {
+                _codeCondition.SetCompleted(ent.Owner, ent.Comp.EffigyObjective);
+            }
+        }
+
+        // Free the Colossus of the location
         ent.Comp.CurrentEffigy = effigy;
         if (ent.Comp.EffigyPlaceActionEntity is { } action && TryComp<LimitedChargesComponent>(action, out var charges))
         {
@@ -62,8 +100,31 @@ public sealed partial class CosmicEffigySystem : EntitySystem
         Dirty(ent);
     }
 
-    private void OnEffigyTerminating(Entity<CosmicEffigyComponent> ent, ref EntityTerminatingEvent args) =>
+    private void OnEffigyAnomalyShutdown(Entity<CosmicEffigyComponent> ent, ref AnomalyShutdownEvent args)
+    {
+        if (args.Anomaly != ent.Owner || !args.Supercritical)
+            return;
+
+        if (ent.Comp.Colossus is not { } colossusUid ||
+            !TryComp<CosmicColossusComponent>(colossusUid, out var colossus))
+            return;
+
+        if (colossus.EffigyCrits != 0)
+            {
+                var xform = Transform(ent.Owner);
+                var location = FormattedMessage.RemoveMarkupOrThrow(
+                    _navMap.GetNearestBeaconString((ent.Owner, xform)));
+
+            _chatSystem.DispatchStationAnnouncement(colossusUid, Loc.GetString("cosmiccult-effigy-critical", ("location", location)), null, false, null, Color.FromHex("#cae8e8"));
+            }
+        colossus.EffigyCrits++;
+        Dirty(colossusUid, colossus);
+    }
+
+    private void OnEffigyTerminating(Entity<CosmicEffigyComponent> ent, ref EntityTerminatingEvent args)
+    {
         RaiseLocalEvent(ent.Owner, new CosmicEffigyDestroyedEvent());
+    }
 
     /// Detect when the linked effigy gets decayed, crit, or otherwise deleted.
     private void OnEffigyDestroyed(Entity<CosmicEffigyComponent> ent, ref CosmicEffigyDestroyedEvent args)

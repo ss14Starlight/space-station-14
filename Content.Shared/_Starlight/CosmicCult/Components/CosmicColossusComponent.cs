@@ -21,55 +21,33 @@ public sealed partial class CosmicColossusComponent : Component
 
     [AutoPausedField, DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan DeathTimer = default!;
-
     [DataField] public SoundSpecifier ReawakenSfx = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/colossus_spawn.ogg");
-
     [DataField] public SoundSpecifier DeathSfx = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/colossus_death.ogg");
-
     [DataField] public SoundSpecifier IngressSfx = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_ingress.ogg");
-
     [DataField] public SoundSpecifier DoAfterSfx = new SoundPathSpecifier("/Audio/Machines/airlock_creaking.ogg");
-
+    [DataField] public SoundSpecifier ScreamSfx = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/colossus_scream.ogg");
     [DataField] public EntProtoId CultVfx = "CosmicGenericVFX";
-
     [DataField] public EntProtoId CultBigVfx = "CosmicGlareAbilityVFX";
-
     [DataField] public EntProtoId Attack1Vfx = "CosmicColossusAttack1Vfx";
-
     [DataField] public EntProtoId TileDetonations = "MobTileDamageZone";
-
     [DataField] public EntProtoId EffigyPrototype = "CosmicEffigy";
-
     [DataField] public EntProtoId EffigyObjective = "ColossusEffigyObjective";
-
     [DataField] public EntProtoId EffigyPlaceAction = "ActionCosmicColossusEffigy";
-
+    [DataField] public int EffigyCrits;
     public EntityUid? EffigyPlaceActionEntity;
-
     public EntityUid? CurrentEffigy;
 
     [AutoPausedField, DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan? EffigyRechargeTimer;
-
-    [DataField]
-    public TimeSpan EffigyRechargeTime = TimeSpan.FromMinutes(4);
-
+    [DataField] public TimeSpan EffigyRechargeTime = TimeSpan.FromMinutes(3);
     [DataField] public EntProtoId HibernateAction = "ActionCosmicColossusHibernate";
-
     public EntityUid? HibernateActionEntity;
-
     [DataField] public TimeSpan IngressDoAfter = TimeSpan.FromSeconds(4);
-
     [DataField] public TimeSpan AttackWait = TimeSpan.FromSeconds(1.5);
-
     [DataField] public TimeSpan HibernationWait = TimeSpan.FromSeconds(20);
-
     [DataField] public TimeSpan DeathWait = TimeSpan.FromMinutes(15);
-
     [DataField] public bool Attacking;
-
     [DataField] public bool Hibernating;
-
     [DataField] public bool Timed;
 }
 
