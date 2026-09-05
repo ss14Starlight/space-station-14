@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: The syndicate bomb is less concentrated with its explosion, focusing more on making a large explosion than entirely deleting an area.
-    type: Tweak
-  id: 407815
-  time: '2026-08-24T09:00:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5804
 - author: SeaborneProto
   changes:
   - message: Fixed Manor brig door to not be maints access!
@@ -2799,4 +2792,11 @@ Entries:
   id: 408214
   time: '2026-09-05T21:25:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5854
+- author: RedSpeeds
+  changes:
+  - message: Fixed Romerol not working when ingested.
+    type: Fix
+  id: 408215
+  time: '2026-09-05T21:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5857
 Order: -1
