@@ -1,20 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Xenoborgs (the main mode, not the submode) scale again, although they're not in rotation yet.
-    type: Tweak
-  id: 407803
-  time: '2026-08-21T15:47:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5765
-- author: wonderfulnewworld
-  changes:
-  - message: Antags that fail to roll will try to roll again.
-    type: Fix
-  id: 407804
-  time: '2026-08-21T15:47:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5765
-- author: wonderfulnewworld
-  changes:
   - message: Wizard Duel will no longer fail to roll the green and orange wizards.
     type: Fix
   id: 407805
@@ -2799,4 +2785,18 @@ Entries:
   id: 408202
   time: '2026-09-05T18:17:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5813
+- author: ANATHELARCTEK
+  changes:
+  - message: prying with NTR cane is quicker, but still slower than crowbar.
+    type: Tweak
+  id: 408203
+  time: '2026-09-05T18:17:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5792
+- author: ANATHELARCTEK
+  changes:
+  - message: prying sound now play while prying with NTR cane.
+    type: Add
+  id: 408204
+  time: '2026-09-05T18:17:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5792
 Order: -1
