@@ -73,6 +73,7 @@
     sprite: *starlight-job-icon-rsi
     state: SalvageLead
   jobName: job-name-salvagelead
+  isCrewJob: false
   tags:
   - JobIconCrew
 
@@ -82,7 +83,10 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: SalvageMedic
+  isCrewJob: false
   jobName: job-name-salvagemedic
+  tags:
+  - JobIconCrew
 
 - type: jobIcon
   parent: JobIcon
@@ -91,6 +95,7 @@
     sprite: *starlight-job-icon-rsi
     state: SalvageSpecialist
   jobName: job-name-salvagespec
+  isCrewJob: false
   tags:
   - JobIconCrew
 
