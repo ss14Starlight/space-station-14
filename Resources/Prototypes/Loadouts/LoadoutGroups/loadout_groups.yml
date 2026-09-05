@@ -196,7 +196,7 @@
   loadouts:
   - CaptainHead
   - CaptainCap
-  - CapBeret #starlight
+  - CapBeret # Starlight
 
 - type: loadoutGroup
   id: CaptainJumpsuit
