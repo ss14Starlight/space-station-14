@@ -160,3 +160,14 @@
   title: lobby-state-background-aiderthief-title
   artist: lobby-state-background-aiderthief-artist
 
+- type: lobbyBackground
+  id: AuroraCaelus
+  background: /Textures/_Starlight/LobbyScreens/AuroraCaelus.webp
+  title: lobby-state-background-aeuroracaelus-title
+  artist: lobby-state-background-aeuroracaelus-artist
+
+- type: lobbyBackground
+  id: IPCAndMoff
+  background: /Textures/_Starlight/LobbyScreens/IPCAndMoff.webp
+  title: lobby-state-background-ipcandmoff-title
+  artist: lobby-state-background-ipcandmoff-artist
