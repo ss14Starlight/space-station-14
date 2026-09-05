@@ -206,6 +206,7 @@ namespace Content.Shared.Chemistry.Reaction
 
         private void OnReaction(Entity<SolutionComponent> soln, ReactionPrototype reaction, ReagentPrototype? reagent, FixedPoint2 unitReactions)
         {
+            Log.Info("REACTION EVENT TRIGGERED");
             var posFound = _transformSystem.TryGetMapOrGridCoordinates(soln, out var gridPos);
 
             _adminLogger.Add(LogType.ChemicalReaction, reaction.Impact,

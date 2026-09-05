@@ -17,6 +17,9 @@ public sealed class ClientCompCommand : ToolshedCommand
     private static readonly string _removePrefix = "Attempted to remove";
     private static readonly string _removeSuffix = "from the entity on all clients.";
 
+    private static ClientCompCommand? _instance;
+    public ClientCompCommand() => _instance ??= this;
+
     [CommandImplementation("ensure")]
     public EntityUid Ensure(IInvocationContext ctx, [PipedArgument] EntityUid uid, string compName)
     {
@@ -29,13 +32,20 @@ public sealed class ClientCompCommand : ToolshedCommand
         return uid;
     }
 
-    [CommandImplementation("write")]
-    public EntityUid Write(IInvocationContext ctx, [PipedArgument] EntityUid uid, string path, string value)
+    private void DoWrite(EntityUid uid, string path, string value)
     {
         var comp = EnsureComp<ClientCompControlComponent>(uid);
         if (!path.StartsWith('/')) path = $"/{path}";
         comp.ViewVariablesWrites[path] = value;
         EntityManager.Dirty(uid, comp);
+    }
+
+    public static void Write(EntityUid uid, string path, string value) => _instance?.DoWrite(uid, path, value);
+
+    [CommandImplementation("write")]
+    public EntityUid Write(IInvocationContext ctx, [PipedArgument] EntityUid uid, string path, string value)
+    {
+        DoWrite(uid, path, value);
         ctx.WriteLine($"{_writePrefix} {value} {_writeInfix} {path} {_writeSuffix}");
         return uid;
     }

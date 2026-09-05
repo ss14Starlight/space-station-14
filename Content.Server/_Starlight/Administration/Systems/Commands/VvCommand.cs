@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Runtime.InteropServices;
 using Content.Server.Administration;
 using Content.Shared._Starlight.ViewVariables;
 using Content.Shared.Administration;
@@ -32,10 +33,11 @@ public sealed partial class VvCommand : ToolshedCommand
     }
 
     [CommandImplementation("write")]
-    public EntityUid Write(IInvocationContext _, [PipedArgument] EntityUid uid, string path, string value)
+    public EntityUid Write(IInvocationContext _, [PipedArgument] EntityUid uid, string path, string value, [Optional] [DefaultParameterValue(false)] bool writeClient)
     {
         if (path.StartsWith('/')) path = path[1..];
         _vvm.WritePath($"/entity/{uid}/{path}", value);
+        if (writeClient) ClientCompCommand.Write(uid, path, value);
         return uid;
     }
 
@@ -111,8 +113,8 @@ public sealed partial class VvCommand : ToolshedCommand
     }
 
     [CommandImplementation("write")]
-    public IEnumerable<EntityUid> Write(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string path, string value)
-        => uid.Select(x => Write(ctx, x, path, value));
+    public IEnumerable<EntityUid> Write(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string path, string value, [Optional] [DefaultParameterValue(false)] bool writeClient)
+        => uid.Select(x => Write(ctx, x, path, value, writeClient));
 
     [CommandImplementation("read")]
     public IEnumerable<EntityUid> Read(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string path)
