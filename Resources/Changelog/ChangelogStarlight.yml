@@ -1,13 +1,6 @@
 Entries:
 - author: STARLIGHT TEAM
   changes:
-  - message: Entity naming (Intellicard/AI core) was unified and fixed
-    type: Tweak
-  id: 407811
-  time: '2026-08-22T01:27:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5776
-- author: STARLIGHT TEAM
-  changes:
   - message: Entitys that have their intelligence removed by intellicard, reset to default names
     type: Tweak
   id: 407812
@@ -2799,4 +2792,11 @@ Entries:
   id: 408210
   time: '2026-09-05T19:37:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5787
+- author: Sparlight
+  changes:
+  - message: Extra character info screens (i.e. antag info, extra character info, mind secrets) no longer appear on jobspawn entities (k9s, cyborgs, ai).
+    type: Remove
+  id: 408211
+  time: '2026-09-05T20:37:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5845
 Order: -1
