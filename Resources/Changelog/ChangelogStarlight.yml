@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Resprited the Makeshift Sword, Improvised Sword, Forged Sword + Parts, Dawnbreaker, and Tidebreaker + Parts. New sprites now match existing vanilla sprites (Claymore, Sabre, Cutlass) as well as other Starlight unique swords (Prototype Vibroblade and CentComm Vibroblade).
-    type: Tweak
-  id: 407799
-  time: '2026-08-21T11:58:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5745
-- author: Conflee
-  changes:
   - message: Resprited the PA Control Box. It now matches other consoles and has proper 3/4ths perspective, so you can tell which direction it is facing now.
     type: Tweak
   id: 407800
@@ -2799,4 +2792,11 @@ Entries:
   id: 408198
   time: '2026-09-05T17:47:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5790
+- author: SirLutz
+  changes:
+  - message: Colossus Ingress no longer deletes doors on adjacent tiles.
+    type: Fix
+  id: 408199
+  time: '2026-09-05T17:47:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5773
 Order: -1
