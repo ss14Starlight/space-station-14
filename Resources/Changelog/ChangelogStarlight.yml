@@ -1,74 +1,4 @@
 Entries:
-- author: Way
-  changes:
-  - message: (Hotel) Floor lights have been added in some minor spots.
-    type: Add
-  id: 407745
-  time: '2026-08-18T20:20:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5699
-- author: Way
-  changes:
-  - message: Station Radio Random Spawner for mappers, allowing for less linear placement of Radios.
-    type: Add
-  id: 407746
-  time: '2026-08-18T20:52:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5705
-- author: RedSpeeds
-  changes:
-  - message: Added Emote binding. You can now quickbind your favorite emotes by right clicking on them from the emote wheel.
-    type: Add
-  id: 407747
-  time: '2026-08-18T21:28:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5595
-- author: Johnny
-  changes:
-  - message: Arachnids and others who speak chittin now use anatomically correct language.
-    type: Tweak
-  id: 407748
-  time: '2026-08-18T21:28:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5698
-- author: OJG
-  changes:
-  - message: Cascad Chunks. Can be obtained by digging through Cascad.
-    type: Add
-  id: 407749
-  time: '2026-08-18T21:49:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5694
-- author: OJG
-  changes:
-  - message: Supermatter radiation output also increases the radiation falloff, hopefully stopping "everyone dies in one second" scenarios.
-    type: Tweak
-  id: 407750
-  time: '2026-08-18T21:49:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5694
-- author: OJG
-  changes:
-  - message: Cascads are now radioactive! And they explode when you break them!
-    type: Tweak
-  id: 407751
-  time: '2026-08-18T21:49:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5694
-- author: OJG
-  changes:
-  - message: Cascads can now be targeted with mouse 1.
-    type: Fix
-  id: 407752
-  time: '2026-08-18T21:49:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5694
-- author: OJG
-  changes:
-  - message: Increased base electrolyzer fuel value of plasma sheets.
-    type: Tweak
-  id: 407753
-  time: '2026-08-18T22:19:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5690
-- author: OJG
-  changes:
-  - message: Adjust electrolyzer values to ensure plasma sheets last long than 2 seconds.
-    type: Tweak
-  id: 407754
-  time: '2026-08-18T22:19:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5690
 - author: OJG
   changes:
   - message: Lowered tesla-coil and grounding rod electrolyzing efficiency.
@@ -2799,4 +2729,74 @@ Entries:
   id: 408144
   time: '2026-09-05T14:38:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Makeshift
+  changes:
+  - message: (Plasma) Radio Host!
+    type: Add
+  id: 408145
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) NCT Office.
+    type: Remove
+  id: 408146
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) K9 to security!
+    type: Add
+  id: 408147
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Departmental Techfabs.
+    type: Add
+  id: 408148
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Mailboxes for departments.
+    type: Add
+  id: 408149
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Shelves.
+    type: Add
+  id: 408150
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Vault now stocks a little bit of silver!
+    type: Add
+  id: 408151
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Cargo now has full pipe dock compatibility! Engineering still needs to finish the gas line, though.
+    type: Add
+  id: 408152
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) General aesthetic tweaks.
+    type: Tweak
+  id: 408153
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Minor fixes.
+    type: Fix
+  id: 408154
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
 Order: -1
