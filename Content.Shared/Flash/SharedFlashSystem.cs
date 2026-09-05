@@ -222,7 +222,17 @@ public abstract partial class SharedFlashSystem : EntitySystem
     /// <param name="displayPopup">Whether or not to show a popup to the target player.</param>
     /// <param name="probability">Chance to be flashed. Rolled separately for each target in range.</param>
     /// <param name="sound">Additional sound to play at the source.</param>
-    public void FlashArea(EntityUid source, EntityUid? user, float range, TimeSpan flashDuration, float slowTo = 0.8f, bool displayPopup = false, float probability = 1f, SoundSpecifier? sound = null)
+    /// <param name="ignoreEntities">Entities to ignore when flashing.</param> (STARLIGHT EDIT)
+    public void FlashArea(
+        EntityUid source,
+        EntityUid? user,
+        float range,
+        TimeSpan flashDuration,
+        float slowTo = 0.8f,
+        bool displayPopup = false,
+        float probability = 1f,
+        SoundSpecifier? sound = null,
+        List<EntityUid>? ignoreEntities = null)
     {
         var transform = Transform(source);
         var mapPosition = _transform.GetMapCoordinates(transform);
@@ -231,6 +241,13 @@ public abstract partial class SharedFlashSystem : EntitySystem
         _entityLookup.GetEntitiesInRange(transform.Coordinates, range, _entSet);
         foreach (var entity in _entSet)
         {
+            // starlight edit - functionality to ignore certain entities when flashing
+            if (ignoreEntities != null)
+            {
+                if (ignoreEntities.Contains(entity))
+                    continue;
+            }
+
             // TODO: Use RandomPredicted https://github.com/space-wizards/RobustToolbox/pull/5849
             var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(entity).Id);
             var rand = new System.Random(seed);
