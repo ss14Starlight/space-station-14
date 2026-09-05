@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Ghost roles like Paradox Clone and Exterminators should no longer spawn in randoms stretches of empty space far away from the station on maps that have non-space atmospheres, like Cork and Novo Lobster.
-    type: Fix
-  id: 407817
-  time: '2026-08-25T00:26:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5810
 - author: Sparlight, DocMoth, swonkus, ya314a, xxhotgirl69, huaqas
   changes:
   - message: Added security K9 role.  Not mapped yet, but you can set your loadout for now.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408216
   time: '2026-09-05T22:18:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5885
+- author: Swonki
+  changes:
+  - message: Payroll can now be configured to come from different senders.
+    type: Add
+  id: 408217
+  time: '2026-09-05T22:18:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5996
 Order: -1
