@@ -16,63 +16,6 @@
   - !type:BZProductionReaction {}
 
 - type: gasReaction
-  id: HealiumProduction
-  priority: 2
-  maximumTemperature: 300.0
-  minimumTemperature: 22.0
-  minimumRequirements:
-  - 0     # oxygen
-  - 0     # nitrogen
-  - 0     # carbon dioxide
-  - 0     # plasma
-  - 0     # tritium
-  - 0     # vapor
-  - 0     # miasma
-  - 0     # n2o
-  - 5     # frezon
-  - 5     # bz
-  effects:
-  - !type:HealiumProductionReaction {}
-
-- type: gasReaction
-  id: NitriumProduction
-  priority: 2
-  minimumTemperature: 1500.0
-  minimumRequirements:
-  - 0     # oxygen
-  - 10    # nitrogen
-  - 0     # carbon dioxide
-  - 0     # plasma
-  - 20    # tritium
-  - 0     # vapor
-  - 0     # miasma
-  - 0     # n2o
-  - 0     # frezon
-  - 5     # bz
-  effects:
-  - !type:NitriumProductionReaction {}
-
-- type: gasReaction
-  id: NitriumDecomposition
-  priority: 2
-  maximumTemperature: 343.15
-  minimumRequirements:
-  - 0.01  # oxygen
-  - 0     # nitrogen
-  - 0     # carbon dioxide
-  - 0     # plasma
-  - 0     # tritium
-  - 0     # vapor
-  - 0     # miasma
-  - 0     # n2o
-  - 0     # frezon
-  - 0     # bz
-  - 0     # healium
-  - 0.01  # nitrium
-  effects:
-  - !type:NitriumDecompositionReaction {}
-
-- type: gasReaction
   id: PluoxiumProduction
   priority: 3
   minimumTemperature: 50.0
@@ -88,7 +31,6 @@
   - 0     # n2o
   - 0     # frezon
   - 0     # bz
-  - 0     # healium
   - 0     # nitrium
   effects:
   - !type:PluoxiumTritiumProductionReaction {}
@@ -109,7 +51,6 @@
   - 0     # n2o
   - 0     # frezon
   - 0     # bz
-  - 0     # healium
   - 0     # nitrium
   effects:
   - !type:PluoxiumRadiationProductionReaction {}
@@ -129,7 +70,6 @@
   - 0     # n2o
   - 0     # frezon
   - 50    # bz
-  - 0     # healium
   - 0     # nitrium
   - 0     # pluox
   - 300   # hydrogen
@@ -151,7 +91,6 @@
   - 0     # n2o
   - 0     # frezon
   - 0     # bz
-  - 0     # healium
   - 0     # nitrium
   - 0     # pluox
   - 0.01  # hydrogen
@@ -174,7 +113,6 @@
   - 0     # n2o
   - 0     # frezon
   - 0     # bz
-  - 0     # healium
   - 0     # nitrium
   - 0     # pluox
   - 0     # hydrogen
@@ -196,7 +134,6 @@
   - 0     # n2o
   - 0     # frezon
   - 0     # bz
-  - 0     # healium
   - 0     # nitrium
   - 0     # pluox
   - 0     # hydrogen
@@ -225,7 +162,6 @@
   - 0     # n2o
   - 0     # frezon
   - 0     # bz
-  - 0     # healium
   - 0.01  # nitrium
   - 0     # pluox
   - 0     # hydrogen
@@ -252,7 +188,6 @@
   - 0     # n2o
   - 0     # frezon
   - 0     # bz
-  - 0     # healium
   - 0     # nitrium
   - 0     # pluox
   - 0     # hydrogen
@@ -281,7 +216,6 @@
   - 0     # n2o
   - 0     # frezon
   - 0     # bz
-  - 0     # healium
   - 0     # nitrium
   - 0.01  # pluox
   - 0.01  # hydrogen
@@ -310,7 +244,6 @@
   - 0     # n2o
   - 0     # frezon
   - 0.01  # bz
-  - 0     # healium
   - 0     # nitrium
   - 0     # pluox
   - 0     # hydrogen

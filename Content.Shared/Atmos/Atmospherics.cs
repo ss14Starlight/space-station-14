@@ -179,7 +179,6 @@ namespace Content.Shared.Atmos
             [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
             // Funkystation Start: Funky atmos - /tg/ gases
             [Gas.BZ] = Loc.GetString("gas-bz-abbreviation"),
-            [Gas.Healium] = Loc.GetString("gas-healium-abbreviation"),
             [Gas.Nitrium] = Loc.GetString("gas-nitrium-abbreviation"),
             [Gas.Pluoxium] = Loc.GetString("gas-pluoxium-abbreviation"),
             [Gas.Hydrogen] = Loc.GetString("gas-hydrogen-abbreviation"),
@@ -224,7 +223,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 22; // Starlight Edit: 9 -> 22
+        public const int TotalNumberOfGases = 21; // Starlight Edit: 9 -> 21
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -315,12 +314,6 @@ namespace Content.Shared.Atmos
         ///     The amount of energy 1 mole of BZ forming from N2O and plasma releases.
         /// </summary>
         public const float BZProductionEnergy = 80e3f;
-
-        /// <summary>
-        ///     Funky Atmos - /tg/ gases
-        ///     The amount of energy 1 mol of Healium forming from BZ and frezon releases.
-        /// </summary>
-        public const float HealiumProductionEnergy = 9e3f;
 
         /// <summary>
         ///     Funky Atmos - /tg/ gases
@@ -498,21 +491,20 @@ namespace Content.Shared.Atmos
         Frezon = 8,
         // Funkystation Start: Funky atmos - /tg/ gases
         BZ = 9,
-        Healium = 10,
-        Nitrium = 11,
-        Pluoxium = 12,
-        Hydrogen = 13,
-        HyperNoblium = 14,
-        ProtoNitrate = 15,
-        Zauker = 16,
-        Halon = 17,
-        Helium = 18,
-        AntiNoblium = 19,
+        Nitrium = 10,
+        Pluoxium = 11,
+        Hydrogen = 12,
+        HyperNoblium = 13,
+        ProtoNitrate = 14,
+        Zauker = 15,
+        Halon = 16,
+        Helium = 17,
+        AntiNoblium = 18,
         // Funkystation End: Funky atmos - /tg/ gases
         #region Starlight
         // Starlight gases!
-        Ulnitranium = 20,
-        ZXA = 21,
+        Ulnitranium = 19,
+        ZXA = 20,
         #endregion
     }
 }

@@ -116,6 +116,26 @@
   - !type:ZXAProductionReaction {}
 
 - type: gasReaction
+  id: NitriumProduction
+  priority: 2
+  minimumTemperature: 500.0
+  minimumRequirements:
+  - 0     # oxygen
+  - 3    # nitrogen
+  - 0     # carbon dioxide
+  - 0     # plasma
+  - 2    # tritium
+  - 0     # vapor
+  - 0     # miasma
+  - 0     # n2o
+  - 0     # frezon
+  - 0    # bz
+  - 0     # nitrium
+  - 1     # pluox
+  effects:
+  - !type:NitriumProductionReaction {}
+
+- type: gasReaction
   id: AmmoniaProduction
   priority: 10
   minimumTemperature: 590.15

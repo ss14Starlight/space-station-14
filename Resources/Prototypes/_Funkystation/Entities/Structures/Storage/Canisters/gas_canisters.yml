@@ -43,48 +43,6 @@
 
 - type: entity
   parent: GasCanister
-  id: HealiumCanister
-  name: healium canister
-  components:
-  - type: Sprite
-    layers:
-    - state: healium
-  - type: GasCanister
-    gasMixture:
-    # Starlight-start: Canister volume
-      volume: 1500
-      moles:
-        Healium: 2769.36
-    # Starlight-end
-      temperature: 293.15
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 600
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          HealiumCanisterBroken:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:DumpCanisterBehavior
-  - type: Lock
-    locked: true
-
-- type: entity
-  parent: GasCanister
   id: NitriumCanister
   name: nitrium canister
   components:
@@ -468,13 +426,6 @@
   components:
   - type: Sprite
     state: bz_broken # Starlight Edit: purple-1 -> bz_broken
-
-- type: entity
-  parent: GasCanisterBrokenBase
-  id: HealiumCanisterBroken
-  components:
-  - type: Sprite
-    state: healium_broken # Starlight Edit: healium-1 -> healium_broken
 
 - type: entity
   parent: GasCanisterBrokenBase
