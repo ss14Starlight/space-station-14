@@ -32,6 +32,7 @@ secure-terminal-delay-note = { $minutes ->
     [1] ETA: 1 minute after authorization.
    *[other] ETA: {$minutes} minutes after authorization.
 }
+secure-terminal-delay-note-immediate = Takes effect immediately on authorization.
 
 secure-terminal-requires-no-war-note = Disabled during War Ops.
 secure-terminal-requires-war-note = Only available during War Ops.
@@ -153,6 +154,16 @@ secure-terminal-med-pod-name = Emergency Medical Pod
 secure-terminal-med-pod-desc = Dispatches the Emergency Medical Pod — rapid-deployment triage with surgical and revival equipment.
     Use when mass casualties exceed the station's medical capacity.
 secure-terminal-med-pod-announcement = The Emergency Medical Pod has been authorized and is en route. Estimated arrival: 5 minutes.
+
+secure-terminal-itg-salvage-team-name = ITG Salvage Team
+secure-terminal-itg-salvage-team-desc = Contracts the Interstellar Trade Guild's local Salvage team to engage active station threats.
+    Recommended when no Security personnel are present, or when Security cannot respond without assistance.
+secure-terminal-itg-salvage-team-announcement = The Interstellar Trade Guild's local Salvage team has been contracted to engage active station threats.
+
+secure-terminal-dismiss-itg-salvage-team-name = Dismiss ITG Salvage Team
+secure-terminal-dismiss-itg-salvage-team-desc = Ends the Interstellar Trade Guild's assistance contract and returns their team to standard duties.
+    Recommended once all threats to the station have been dealt with.
+secure-terminal-dismiss-itg-salvage-team-announcement = The Interstellar Trade Guild's contract has ended and their Salvage team has returned to standard duties.
 
 secure-terminal-nukerequest-name = Self Destruct Code
 secure-terminal-nukerequest-desc = Request the nuclear self-destruct codes.

@@ -215,6 +215,7 @@
     - legal-sop-intro
     - engineering-sop-intro
     - cargo-sop-intro
+    - salvage-sop-intro
     - science-sop-intro
     - nano-trasen-employee-sop-intro
     - service-sop-intro
@@ -624,7 +625,6 @@
     - cargo-sop-cargotechnician
     - cargo-sop-mailtechnician
     - cargo-sop-miningspecialist
-    - cargo-sop-salvagespecialist
     - cargo-sop-quartermaster
 
 
@@ -647,16 +647,25 @@
   priority: 3
 
 - type: guideEntry
-  id: cargo-sop-salvagespecialist
-  name: guide-entry-sl-cargo-sop-salvagespecialist
-  text: "/ServerInfo/Guidebook/StarlightSOP/CargoSOP/SalvageSpecialist.xml"
-  priority: 4
-
-- type: guideEntry
   id: cargo-sop-quartermaster
   name: guide-entry-sl-cargo-sop-quartermaster
   text: "/ServerInfo/Guidebook/StarlightSOP/CargoSOP/Quartermaster.xml"
   priority: 5
+
+
+- type: guideEntry
+  id: salvage-sop-intro
+  name: guide-entry-sl-salvage-sop-intro
+  text: "/ServerInfo/Guidebook/StarlightSOP/SalvageSOP/salvage-sop-intro.xml"
+  priority: 6
+  children:
+    - salvage-sop-salvagers
+
+- type: guideEntry
+  id: salvage-sop-salvagers
+  name: guide-entry-sl-salvage-sop-salvagers
+  text: "/ServerInfo/Guidebook/StarlightSOP/SalvageSOP/salvage-sop-salvagers.xml"
+  priority: 1
 
 
 
