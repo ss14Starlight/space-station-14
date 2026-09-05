@@ -1,25 +1,4 @@
 Entries:
-- author: BriocheBear
-  changes:
-  - message: Added lovey chair, a pink variant of the froggy chair.
-    type: Add
-  id: 407789
-  time: '2026-08-21T09:52:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5691
-- author: Conflee, mkanke
-  changes:
-  - message: Added craftable and paintable Cardboard Boxes.
-    type: Add
-  id: 407790
-  time: '2026-08-21T09:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5720
-- author: Conflee, mkanke
-  changes:
-  - message: Added constructible Box Shelves for storing boxes of items in a more compact and organized way. Can hold Large Cardboard Boxes and box-based Mail Deliveries.
-    type: Add
-  id: 407791
-  time: '2026-08-21T09:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5720
 - author: Conflee, mkanke
   changes:
   - message: Added a dozen ish pre-filled boxes for mappers to use instead of spamming item stacks down in places.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408188
   time: '2026-09-05T16:10:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: OJG
+  changes:
+  - message: General improvements to electrolyzer code structure.
+    type: Tweak
+  id: 408189
+  time: '2026-09-05T16:31:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5758
+- author: OJG
+  changes:
+  - message: Increased maximum recharge rate for active electrolyzers 50kw -> 100kw.
+    type: Tweak
+  id: 408190
+  time: '2026-09-05T16:31:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5758
+- author: OJG
+  changes:
+  - message: Increased efficiency of electrolyzers across the board.
+    type: Tweak
+  id: 408191
+  time: '2026-09-05T16:31:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5758
 Order: -1
