@@ -162,8 +162,6 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-    Laugh:
-      path: /Audio/Animals/lizard_happy.ogg
     Honk:
       collection: BikeHorn
     Whistle:
@@ -196,8 +194,6 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-    Laugh:
-      path: /Audio/Animals/lizard_happy.ogg
     Honk:
       collection: BikeHorn
     Whistle:

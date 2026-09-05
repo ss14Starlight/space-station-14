@@ -65,7 +65,7 @@
   desc: reagent-desc-glubjuice
   physicalDesc: reagent-physical-desc-salty
   flavor: JuiceThatMakesYouGlub
-  color: "#09ffe2"
+  color: "#009690"
   metabolisms:
     Bloodstream:
       metabolismRate: 0.25

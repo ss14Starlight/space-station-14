@@ -35,8 +35,10 @@
       collection: Weh
     Hew:
       collection: Hew
+    # Starlight start
     ThavenGlub:
       collection: ThavenGlub
+    # Starlight end
     Gasp:
       collection: MaleGasp
     DeathgaspIPC:
@@ -81,8 +83,10 @@
       collection: Weh
     Hew:
       collection: Hew
+    # Starlight start
     ThavenGlub:
       collection: ThavenGlub
+    # Starlight end
     Gasp:
       collection: FemaleGasp
     DeathgaspIPC:
