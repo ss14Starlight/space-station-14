@@ -1072,6 +1072,7 @@
       muzzleFlash: null
 
 - type: entity
+  parent: [SolutionVapor, SolutionSmall]
   id: BulletWaterShot
   name: water
   categories: [ HideSpawnMenu ]
@@ -1094,10 +1095,6 @@
       map: ["enum.VaporVisualLayers.Base"]
   - type: Ammo
     muzzleFlash: null
-  - type: SolutionContainerManager
-    solutions:
-      vapor:
-        maxVol: 50
   - type: Fixtures
     fixtures:
       projectile:
@@ -1509,7 +1506,7 @@
         - Opaque
 
 - type: entity
-  parent: BaseBullet
+  parent: [SolutionAmmo, BaseBullet]
   id: EnergyCrossbowBolt
   categories: [ HideSpawnMenu ]
   name: energy bolt
@@ -1538,13 +1535,12 @@
     drop: false
   - type: StaminaDamageOnCollide #additional stam damage to make repeated pushups less of a viable counter
     damage: 45
-  - type: SolutionContainerManager
-    solutions:
-      bolt:
-        maxVol: 4 # Starlight-edit: 1.5 -> 4
-        reagents:
-        - ReagentId: Impedrezene # SL edit
-          Quantity: 4
+  - type: Solution
+    solution:
+      maxVol: 4 # Starlight-edit: 1.5 -> 4
+      reagents:
+      - ReagentId: Impedrezene # SL edit
+        Quantity: 4
   - type: SolutionInjectOnProjectileHit
     transferAmount: 4 # Starlight-edit: 1.5 -> 4
-    solution: bolt
+    solution: ammo

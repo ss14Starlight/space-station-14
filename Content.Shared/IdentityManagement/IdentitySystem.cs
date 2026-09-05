@@ -9,7 +9,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.VoiceMask;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
@@ -198,10 +197,8 @@ public sealed partial class IdentitySystem : EntitySystem
     /// </returns>
     private string GetIdentityName(EntityUid target, IdentityRepresentation representation)
     {
-        // Starlight Begin - borgs are always identifiable, chassis shape aside (e.g. Borgi)
-        if (HasComp<BorgChassisComponent>(target))
+        if (IsAlwaysIdentifiable(target)) // Starlight
             return representation.ToStringKnown(true, null);
-        // Starlight End
 
         var ev = new SeeIdentityAttemptEvent();
 
