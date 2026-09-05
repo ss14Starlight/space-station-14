@@ -68,6 +68,7 @@
     storageCloseSound: /Audio/Effects/closetclose.ogg
     whitelist:
       tags:
+      - ArtifactFragment # Starlight Edit - allow artifact fragments to be stored in ore box
       - Ore
   - type: UserInterface
     interfaces:
@@ -107,7 +108,7 @@
   - type: ComponentToggler
     components:
     - type: MagnetPickup
-      range: 2
+      range: 4
       requiresEquipping: false
       slotFlags: 0
   - type: Dumpable
