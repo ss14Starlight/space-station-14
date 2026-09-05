@@ -19,6 +19,14 @@
     Slash: 0.7
 
 - type: damageModifierSet
+  id: Doll
+  coefficients:
+    Blunt: 1.3 # Base form is squish!
+    Slash: 1.3
+    Piercing: 1.3
+    Heat: 1.0
+
+- type: damageModifierSet
   id: Shadekin
   coefficients:
     Asphyxiation: 0
@@ -294,6 +302,20 @@
     Piercing: 0.8
     Cold: 0.8
     Shock: 1.6
+
+- type: damageModifierSet
+  id: Malignstone
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.25
+    Piercing: 0.5
+    Cold: 0.1 # Deathcult frozen stone
+    Heat: 0.75
+    Shock: 0.6
+    Structural: 0.75 # similar to Metallic, but not as crazy as Rock
+  flatReductions:
+    Blunt: 5
+    Cold: 10
 
 - type: damageModifierSet
   id: CivilianSilicon

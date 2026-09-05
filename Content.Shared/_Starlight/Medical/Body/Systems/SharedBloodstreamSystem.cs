@@ -16,11 +16,14 @@ using Content.Shared.Forensics.Components;
 using Content.Shared.Gibbing;
 using Content.Shared.HealthExaminable;
 using Content.Shared.Humanoid;
+using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Rejuvenate;
 using Content.Shared.StatusEffectNew;
+using Content.Shared._Funkystation.Fluids;
+using Content.Shared._Funkystation.WallStains;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -44,6 +47,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
     [Dependency] private AlertsSystem _alertsSystem = default!;
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!; // Funky - Stains
 
     public override void Initialize()
     {
@@ -216,6 +220,20 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         var total = bloodloss.GetTotal();
         var totalFloat = total.Float();
         TryModifyBleedAmount(ent.AsNullable(), totalFloat);
+
+        // Funky Wall Stains
+        if (totalFloat >= 2f
+            && SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodForSplatter)
+            && bloodForSplatter.Volume > 0)
+        {
+            var splatterAmount = FixedPoint2.Min(FixedPoint2.New(totalFloat * 0.15f), bloodForSplatter.Volume);
+            if (splatterAmount > 0)
+            {
+                var splatterSolution = SolutionContainer.SplitSolution(ent.Comp.BloodSolution.Value, splatterAmount);
+                var splashEv = new SplashOnWallEvent(Transform(ent.Owner).Coordinates, splatterSolution);
+                RaiseLocalEvent(ref splashEv);
+            }
+        }
 
         /// Critical hit. Causes target to lose blood, using the bleed rate modifier of the weapon, currently divided by 5
         /// The crit chance is currently the bleed rate modifier divided by 25.
@@ -502,6 +520,27 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
 
         if (tempSolution.Volume > ent.Comp.BleedPuddleThreshold)
         {
+            // Forky - start - Clothing stains
+            var stainEv = new SpilledOnEvent(ent.Owner, tempSolution);
+            RaiseLocalEvent(ent.Owner, stainEv);
+
+            var xform = Transform(ent.Owner);
+            foreach (var neighbor in _lookup.GetEntitiesInRange(xform.Coordinates, 1.5f))
+            {
+                if (neighbor == ent.Owner || !HasComp<InventoryComponent>(neighbor))
+                    continue;
+
+                RaiseLocalEvent(neighbor, new SpilledOnEvent(ent.Owner, tempSolution));
+
+                if (tempSolution.Volume <= 0)
+                    break;
+            }
+
+            // Funky Wall Stains
+            var splashEv = new SplashOnWallEvent(xform.Coordinates, tempSolution.Clone());
+            RaiseLocalEvent(ref splashEv);
+            // Forky - end
+
             _puddle.TrySpillAt(ent.Owner, tempSolution, out _, sound: false);
 
             tempSolution.RemoveAllSolution();
@@ -560,6 +599,27 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
             tempSol.AddSolution(tempSolution, PrototypeManager);
             SolutionContainer.RemoveAllSolution(ent.Comp.TemporarySolution.Value);
         }
+
+        // Forky - Start - Clothing stains
+        var stainEv = new SpilledOnEvent(ent.Owner, tempSol);
+        RaiseLocalEvent(ent.Owner, stainEv);
+
+        var xform = Transform(ent.Owner);
+        foreach (var neighbor in _lookup.GetEntitiesInRange(xform.Coordinates, 1.5f))
+        {
+            if (neighbor == ent.Owner || !HasComp<InventoryComponent>(neighbor))
+                continue;
+
+            RaiseLocalEvent(neighbor, new SpilledOnEvent(ent.Owner, tempSol));
+
+            if (tempSol.Volume <= 0)
+                break;
+        }
+
+        // Funky Wall Stains
+        var splashEv = new SplashOnWallEvent(xform.Coordinates, tempSol.Clone());
+        RaiseLocalEvent(ref splashEv);
+        // Forky - End
 
         _puddle.TrySpillAt(ent, tempSol, out _);
     }

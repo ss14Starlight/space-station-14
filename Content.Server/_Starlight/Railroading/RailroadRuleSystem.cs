@@ -177,7 +177,7 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
                 }
 
                 if (subject.Comp.IssuedCards.Count > 0)
-                    _railroading.ShowAlert(subject.Owner);
+                    _railroading.NotifyCardsAvailable(subject.Owner);
             }
         }
         else
@@ -221,9 +221,8 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
                 else
                     ruleEnt.Comp.PoolByObjective.Add(objectivePrototype, [(card.Owner, card.Comp, ruleOwner)]);
             }
-            else if (TryComp<ObjectiveComponent>(card.Owner, out var objective)
-                    && TryComp<MetaDataComponent>(card.Owner, out var meta)
-                    && meta.EntityPrototype is { } objectiveEntityPrototype)
+            else if (HasComp<ObjectiveComponent>(card.Owner)
+                    && MetaData(card.Owner).EntityPrototype is { } objectiveEntityPrototype)
             {
                 var objectiveProtoId = new EntProtoId<ObjectiveComponent>(objectiveEntityPrototype.ID);
                 if (ruleEnt.Comp.PoolByObjective.TryGetValue(objectiveProtoId, out var list))
@@ -349,8 +348,7 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
                 if (!TryComp<ObjectiveComponent>(objectiveUid, out var objectiveComp))
                     continue;
 
-                if (TryComp<MetaDataComponent>(objectiveUid, out var meta)
-                    && meta.EntityPrototype is { } objectiveEntityPrototype)
+                if (MetaData(objectiveUid).EntityPrototype is { } objectiveEntityPrototype)
                 {
                     var objectiveProtoId = new EntProtoId<ObjectiveComponent>(objectiveEntityPrototype.ID);
                     if (ruleEnt.Comp.PoolByObjective.TryGetValue(objectiveProtoId, out var objectivePool)

@@ -134,3 +134,21 @@
   - 1     # pluox
   effects:
   - !type:NitriumProductionReaction {}
+
+  id: AmmoniaProduction
+  priority: 10
+  minimumTemperature: 590.15
+  minimumRequirements:
+    Nitrogen: 0.01
+    Hydrogen: 0.01
+  effects:
+  - !type:AmmoniaSynthesisReaction {}
+
+- type: gasReaction
+  id: AmmoniaDecay
+  priority: 9
+  minimumTemperature: 590.15
+  minimumRequirements:
+    Ammonia: 0.01
+  effects:
+  - !type:AmmoniaSynthesisReaction {}
