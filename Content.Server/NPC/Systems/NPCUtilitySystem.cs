@@ -34,6 +34,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
 using Content.Server._Starlight.NPC.Queries.Considerations;
 using Content.Shared.Projectiles;
+using Content.Shared.Tag; // Persistence: Firebots can target reagent fires
 
 namespace Content.Server.NPC.Systems;
 
@@ -368,6 +369,12 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 {
                     if (TryComp(targetUid, out FlammableComponent? fire) && fire.OnFire)
                         return 1f;
+
+                    // Persistence Start: Firebots can target reagent fires
+                    if (TryComp(targetUid, out TagComponent? tags) && tags.Tags.AsReadOnly().Contains((_proto.Index<TagPrototype>("ReagentFire"))))
+                        return 1f;
+                    // Persistence End
+
                     return 0f;
                 }
             case TargetIsStunnedCon:
@@ -501,6 +508,28 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 }
                 break;
             }
+
+            // Persistence Start: Firebots can target reagent fires
+            case ComponentQueryAny compQueryAny:
+                {
+                    if (compQueryAny.Components.Count == 0)
+                        return;
+
+                    var mapPos = _transform.GetMapCoordinates(owner, xform: _xformQuery.GetComponent(owner));
+                    _compTypes.Clear();
+                    _entitySet.Clear();
+                    foreach (var comp in compQueryAny.Components.Values)
+                    {
+                        _lookup.GetEntitiesInRange(comp.Component.GetType(), mapPos, vision, _entitySet);
+                    }
+
+                    foreach (var ent in _entitySet)
+                        entities.Add(ent);
+
+                    break;
+                }
+            // Persistence End
+
             default:
                 throw new NotImplementedException();
         }
