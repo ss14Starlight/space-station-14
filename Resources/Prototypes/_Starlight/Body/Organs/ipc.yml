@@ -58,6 +58,12 @@
   suffix: IPC
   description: "A vocal modulator, typically used for lying."
   components:
+  - type: OrganTongue
+    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
+    sounds:
+      Male: MaleIPC
+      Female: FemaleIPC
+      Unsexed: MaleIPC
   - type: Sprite
     state: tongue
 

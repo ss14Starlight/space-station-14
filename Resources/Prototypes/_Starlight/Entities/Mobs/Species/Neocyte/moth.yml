@@ -128,14 +128,9 @@
         state: "creampie_moth"
         visible: false
   - type: Vocal
-    sounds:
-      Male: NeoMothMSounds
-      Female: NeoMothFSounds
-      Unsexed: NeoMothMSounds
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
-    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'FlapWings', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
   - type: BodyEmotes
     soundsId: MothBodyEmotes
   - type: Inventory

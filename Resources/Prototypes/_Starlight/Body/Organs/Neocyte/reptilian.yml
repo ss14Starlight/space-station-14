@@ -1,0 +1,11 @@
+- type: entity
+  id: OrganNeoReptilianTongue
+  parent: OrganNeocyteTongue
+  suffix: Neo-Reptilian
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'FlapWings', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
+    sounds:
+      Male: NeoReptilianMSounds
+      Female: NeoReptilianFSounds
+      Unsexed: NeoReptilianMSounds

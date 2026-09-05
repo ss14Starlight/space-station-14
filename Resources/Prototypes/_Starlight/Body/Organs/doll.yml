@@ -168,6 +168,11 @@
   name: tongue
   description: "A fleshy muscle mostly used for whispering secrets from the dark."
   components:
+  - type: OrganTongue
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: FemaleHuman
   - type: Sprite
     state: tongue
 

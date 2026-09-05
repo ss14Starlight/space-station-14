@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Actions;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -28,6 +29,12 @@ public sealed partial class OrganTongueComponent : Component
 {
     [DataField]
     public bool IsMuted;
+
+    [DataField] public List<ProtoId<EmotePrototype>> AllowedEmotes = new();
+
+    [DataField] public Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? Sounds;
+
+    [DataField] public bool AllowAllEmotes;
 }
 
 [RegisterComponent, NetworkedComponent]

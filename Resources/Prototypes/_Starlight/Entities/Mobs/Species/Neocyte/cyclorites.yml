@@ -85,10 +85,6 @@
     canDisarm: true
     disarmFailChance: 0.5 # 50 stamina damage with 50% chance
   - type: Vocal
-    sounds:
-      Male: NeoCycloriteMSounds
-      Female: NeoCycloriteFSounds
-      Unsexed: NeoCycloriteMSounds
   - type: Inventory
     speciesId: cyclorite
     templateId: neocyclorite

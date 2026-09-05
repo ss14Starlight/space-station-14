@@ -27,6 +27,10 @@ using Robust.Shared.Timing;
 using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared._Starlight.Antags.Abductor.Components;
+using Content.Shared.Chat.Prototypes;
+using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
+using Content.Server.Speech.EntitySystems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 
@@ -40,6 +44,7 @@ public sealed partial class OrganSystem : EntitySystem
     [Dependency] private HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private VocalSystem _vocal = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private MarkingManager _markingManager = default!;
@@ -387,12 +392,35 @@ public sealed partial class OrganSystem : EntitySystem
 
     private void OnTongueImplanted(Entity<OrganTongueComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {
+        if (TryComp<SpeechComponent>(args.Body, out var speech))
+        {
+            speech.AllowedEmotes = ent.Comp.AllowedEmotes;
+            if (ent.Comp.AllowAllEmotes)
+                speech.AllowedEmotes =
+                [
+                    .. ProtoMan.EnumeratePrototypes<EmotePrototype>()
+                        .Select(emote => (ProtoId<EmotePrototype>)emote.ID)
+                ];
+            Dirty(args.Body, speech);
+        }
+
+        if (TryComp<VocalComponent>(args.Body, out var vocal) && ent.Comp.Sounds != null)
+            _vocal.SetSounds(args.Body, vocal, ent.Comp.Sounds);
         if (HasComp<AbductorComponent>(args.Body) || !ent.Comp.IsMuted) return;
         RemComp<MutedComponent>(args.Body);
     }
 
     private void OnTongueExtracted(Entity<OrganTongueComponent> ent, ref SurgeryOrganExtracted args)
     {
+        if (TryComp<SpeechComponent>(args.Body, out var speech))
+        {
+            speech.AllowedEmotes = new();
+            Dirty(args.Body, speech);
+        }
+
+        if (TryComp<VocalComponent>(args.Body, out var vocal))
+            _vocal.SetSounds(args.Body, vocal, null);
+
         ent.Comp.IsMuted = HasComp<MutedComponent>(args.Body);
         AddComp<MutedComponent>(args.Body);
     }

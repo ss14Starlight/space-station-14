@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: OrganVulpkaninHeart
   parent: OrganAnimalHeart
   name: vulpkanin heart
@@ -31,3 +31,15 @@
     - type: Metabolizer
       updateInterval: 1.5
     # Starlight end
+
+- type: entity
+  id: OrganVulpkaninTongue
+  parent: OrganHumanTongue
+  suffix: Vulpkanin
+  components:
+  - type: OrganTongue
+    allowedEmotes: [ 'Bark', 'Snarl', 'Whine', 'Howl', 'Growl', 'Yip' ]
+    sounds:
+      Male: MaleVulpkanin
+      Female: FemaleVulpkanin
+      Unsexed: MaleVulpkanin
