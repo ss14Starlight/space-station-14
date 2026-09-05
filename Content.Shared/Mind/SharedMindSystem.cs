@@ -21,6 +21,9 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -38,6 +41,7 @@ public abstract partial class SharedMindSystem : EntitySystem
     [Dependency] private MetaDataSystem _metadata = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
     [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedLanguageSystem _language = default!; // Starlight-edit
 
     [ViewVariables]
@@ -697,6 +701,11 @@ public abstract partial class SharedMindSystem : EntitySystem
         EnsureComp<MindContainerComponent>(uid);
         if (allowMovement)
         {
+            EnsureComp<PhysicsComponent>(uid, out var physics);
+            // A debug assert will trip if the entity's BodyType is still "Dynamic" when it gets InputMover
+            _physics.SetBodyType(uid, BodyType.KinematicController);
+            Dirty(uid, physics);
+
             EnsureComp<InputMoverComponent>(uid);
             EnsureComp<MobMoverComponent>(uid);
             EnsureComp<MovementSpeedModifierComponent>(uid);
