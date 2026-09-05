@@ -157,6 +157,7 @@
   - EmergencyOxygen
   - EmergencyElfOxygen # Starlight
   - EmergencyDwarfOxygen # Starlight
+  - EmergencyOxygenBlood # 🌟Starlight🌟
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreather # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -755,6 +756,7 @@
   - EmergencyOxygenClown
   - EmergencyElfOxygenClown # Starlight
   - EmergencyDwarfOxygenClown # Starlight
+  - EmergencyOxygenClownBlood # 🌟Starlight🌟
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherClown # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -825,6 +827,7 @@
   - EmergencyOxygenMime
   - EmergencyElfOxygenMime # Starlight
   - EmergencyDwarfOxygenMime # Starlight
+  - EmergencyOxygenMimeBlood # 🌟Starlight🌟
   - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherMime # 🌟Starlight🌟
@@ -1230,6 +1233,7 @@
   - EmergencyOxygenExtended
   - EmergencyElfOxygenExtended # Starlight
   - EmergencyDwarfOxygenExtended # Starlight
+  - EmergencyOxygenExtendedBlood # 🌟Starlight🌟
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherExtended # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -1629,6 +1633,7 @@
   - EmergencyOxygenSecurity
   - EmergencyElfOxygenSecurity # Starlight
   - EmergencyDwarfOxygenSecurity # Starlight
+  - EmergencyOxygenSecurityBlood # 🌟Starlight🌟
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonbreatherSecurity # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -1673,6 +1678,7 @@
   - EmergencyOxygenSyndicate
   - EmergencyElfOxygenSyndicate # Starlight
   - EmergencyDwarfOxygenSyndicate # Starlight
+  - EmergencyOxygenSyndicateBlood # 🌟Starlight🌟
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -1690,6 +1696,7 @@
   - EmergencyDwarfOxygenMilitaryDouble # Starlight
   - EmergencyIPC # 🌟Starlight🌟
   - EmergencyCheeseMilitary # Starlight
+  - EmergencyOxygenMilitaryDoubleBlood # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool
