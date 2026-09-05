@@ -6,7 +6,6 @@
   id: BaseSword
   abstract: true
   components:
-  - type: Sharp
   - type: MeleeWeapon
     wideAnimationRotation: -135
   - type: Sprite

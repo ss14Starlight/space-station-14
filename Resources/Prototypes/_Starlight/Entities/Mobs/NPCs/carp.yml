@@ -1,7 +1,7 @@
 - type: entity
   name: space koi
   id: BaseMobKoi
-  parent: BaseMobCarp
+  parent: [BaseMobCarp, BaseSlicingRefinable]
   description: Result of hundreds of years of selective breeding and genetic engineering, a friendly and colourful variant of the common space carp
   abstract: true
   components:
@@ -33,8 +33,8 @@
         - CannotSuicide
     - type: StaticPrice
       price: -800
-    - type: Butcherable
-      spawned:
+    - type: ToolRefinable
+      refineResult:
         - id: FoodMeatKoiFish
           amount: 2
         - id: MaterialToothSpaceCarp1

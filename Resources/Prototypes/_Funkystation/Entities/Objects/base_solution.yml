@@ -1,0 +1,21 @@
+- type: entity
+  parent: Solution
+  id: SolutionStain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stain
+    solution:
+      maxVol: 5
+      canReact: false
+
+- type: entity
+  parent: Solution
+  id: SolutionPrint
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: print
+    solution:
+      maxVol: 20
+      canReact: false

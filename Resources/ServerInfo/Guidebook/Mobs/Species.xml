@@ -13,19 +13,22 @@
   <GuideEntityEmbed Entity="AppearanceDwarf" Caption="Dwarf"/>
   </Box>
   <Box>
+  <GuideEntityEmbed Entity="AppearanceDoll" Caption="Doll"/>
   <GuideEntityEmbed Entity="AppearanceFelionoid" Caption="Felionoid"/>
   <GuideEntityEmbed Entity="AppearanceHuman" Caption="Human"/>
   <GuideEntityEmbed Entity="AppearanceLagomorph" Caption="Lagomorph"/>
   <GuideEntityEmbed Entity="AppearanceSlimePerson" Caption="Laspi"/>
   <GuideEntityEmbed Entity="AppearanceMoth" Caption="Moth Person"/>
-  <GuideEntityEmbed Entity="AppearanceResomi" Caption="Resomi"/>
   </Box>
   <Box>
+  <GuideEntityEmbed Entity="AppearanceResomi" Caption="Resomi"/>
   <GuideEntityEmbed Entity="AppearanceReptilian" Caption="Reptilian"/>
   <GuideEntityEmbed Entity="AppearanceRodentia" Caption="Rodentia"/>
   <GuideEntityEmbed Entity="AppearanceShadekin" Caption="Shadekin"/>
   <GuideEntityEmbed Entity="AppearanceThaven" Caption="Thaven"/>
   <GuideEntityEmbed Entity="AppearanceVox" Caption="Vox"/>
+  </Box>
+  <Box>
   <GuideEntityEmbed Entity="AppearanceVulpkanin" Caption="Vulpkanin"/>
   </Box>
   <Box>
