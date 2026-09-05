@@ -20,3 +20,15 @@
     maxReagents: 2
     metabolizerTypes: [ Neocyte ]
     stages: [ Bloodstream ]
+
+- type: entity
+  id: OrganNeoLagomorphTongue
+  parent: OrganNeocyteTongue
+  suffix: Neo-Lagomorph
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore', 'LagomorphStomp']
+    sounds:
+      Male: NeoHumanMSounds
+      Female: NeoHumanFSounds
+      Unsexed: NeoHumanMSounds

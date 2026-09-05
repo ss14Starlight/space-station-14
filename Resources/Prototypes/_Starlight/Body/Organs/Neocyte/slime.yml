@@ -88,6 +88,12 @@
   suffix: Neo-Slime
   description: "It has all the consistency of gelatin."
   components:
+  - type: OrganTongue
+    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
+    sounds:
+      Male: NeoHumanMSounds
+      Female: NeoHumanFSounds
+      Unsexed: NeoHumanMSounds
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Slime/organs.rsi
     state: slurpoid

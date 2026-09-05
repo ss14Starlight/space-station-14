@@ -10,7 +10,7 @@
       organs:
         brain: OrganAvaliBrain
         eyes: OrganAvaliEyes
-        tongue: OrganHumanTongue
+        tongue: OrganAvaliTongue
         eye_implant: null
         nose_implant: null # 🌟Starlight🌟
         brain_implant: BrainImplantNexus

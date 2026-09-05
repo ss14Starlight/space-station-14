@@ -21,3 +21,15 @@
     layer: Eyes
     prototypes:
       Default: MobThavenEyes
+
+- type: entity
+  id: OrganThavenTongue
+  parent: OrganHumanTongue
+  suffix: Thaven
+  components:
+  - type: OrganTongue
+    allowedEmotes: ["ThavenHum", "ThavenGlub"]
+    sounds:
+      Male: MaleThaven
+      Female: FemaleThaven
+      Unsexed: MaleThaven

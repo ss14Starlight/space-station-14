@@ -66,6 +66,12 @@
   suffix: Neocyte
   description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. #  Starlight, quotation marks removed
   components:
+  - type: OrganTongue
+    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
+    sounds:
+      Male: NeoHumanMSounds
+      Female: NeoHumanFSounds
+      Unsexed: NeoHumanMSounds
   - type: Sprite
     state: tongue
   - type: OrganDamage
@@ -84,6 +90,12 @@
   suffix: Neocyte
   description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. Now split in two. #  Starlight, quotation marks removed
   components:
+  - type: OrganTongue
+    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
+    sounds:
+      Male: NeoHumanMSounds
+      Female: NeoHumanFSounds
+      Unsexed: NeoHumanMSounds
   - type: Sprite
     state: tongueforked
 
@@ -237,3 +249,25 @@
         Caustic: 20
         Radiation: 10
         Cold: 120
+
+- type: entity
+  id: OrganNeoFelionoidTongue
+  parent: OrganNeocyteTongue
+  suffix: Neo-Felionoid
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoFelionoidMSounds
+      Female: NeoFelionoidFSounds
+      Unsexed: NeoFelionoidMSounds
+
+- type: entity
+  id: OrganNeoVulpkaninTongue
+  parent: OrganNeocyteTongue
+  suffix: Neo-Vulpkanin
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoVulpkaninMSounds
+      Female: NeoVulpkaninFSounds
+      Unsexed: NeoVulpkaninMSounds

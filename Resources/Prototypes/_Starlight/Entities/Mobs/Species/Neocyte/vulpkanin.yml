@@ -115,10 +115,6 @@
     targetZoom: "1.125, 1.125"
     maxZoom: "1.125, 1.125"
   - type: Vocal
-    sounds:
-      Male: NeoVulpkaninMSounds
-      Female: NeoVulpkaninFSounds
-      Unsexed: NeoVulpkaninMSounds
   - type: MeleeWeapon # Starlight start
     soundHit:
       path: /Audio/Weapons/pierce.ogg

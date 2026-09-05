@@ -733,6 +733,18 @@
     Glass: 50
 
 - type: latheRecipe
+  id: VocalCyberTongue
+  result: VocalCyberTongue
+  categories:
+    - Implants
+  completetime: 2
+  materials:
+    Plastic: 150
+    Steel: 150
+    Glass: 50
+    Silver: 50
+
+- type: latheRecipe
   id: BudgetCyberLiver
   result: BudgetCyberLiver
   categories:

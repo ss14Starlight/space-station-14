@@ -122,6 +122,22 @@
     - type: UnableToTaste
 
 - type: entity
+  id: VocalCyberTongue
+  name: vocal cyber tongue
+  description: An artificial tongue with full range of movement. Allows using all vocal sounds.
+  parent: [OrganCyber, BaseOrganTongue]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+      state: tongue
+    - type: OrganTongue
+      allowAllEmotes: true
+      sounds:
+        Male: MaleAllEmotes
+        Female: FemaleAllEmotes
+        Unsexed: MaleAllEmotes
+
+- type: entity
   id: BudgetCyberLiver
   name: budget cyber liver
   description: "Design so reliable, it didn't have to be changed for the last 237 years! Warning: This product isn't meant for recreational drinking!"

@@ -28,12 +28,7 @@
   - type: Speech
     speechSounds: Vulpkanin
     speechVerb: Vulpkanin
-    allowedEmotes: [ 'Bark', 'Snarl', 'Whine', 'Howl', 'Growl', 'Yip' ] #Starlight Yip
   - type: Vocal
-    sounds:
-      Male: MaleVulpkanin
-      Female: FemaleVulpkanin
-      Unsexed: MaleVulpkanin
   - type: Damageable
     damageModifierSet: Vulpkanin
     # Starlight Start

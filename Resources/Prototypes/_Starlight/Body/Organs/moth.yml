@@ -34,3 +34,15 @@
     maxReagents: 3
     metabolizerTypes: [ Moth ]
     stages: [ Digestion ]
+
+- type: entity
+  id: OrganMothTongue
+  parent: OrganHumanTongue
+  suffix: Moth
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings']
+    sounds:
+      Male: UnisexMoth
+      Female: UnisexMoth
+      Unsexed: UnisexMoth

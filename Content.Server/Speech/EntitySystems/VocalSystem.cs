@@ -55,6 +55,16 @@ public sealed partial class VocalSystem : EntitySystem
         Dirty(target, targetComp);
     }
 
+    #region Starlight
+
+    public void SetSounds(EntityUid uid, VocalComponent component, Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? sounds)
+    {
+        component.Sounds = sounds;
+        LoadSounds(uid, component);
+        Dirty(uid, component);
+    }
+    #endregion
+
     private void OnMapInit(EntityUid uid, VocalComponent component, MapInitEvent args)
     {
         // try to add scream action when vocal comp added

@@ -72,7 +72,6 @@
     - type: Speech
       speechVerb: Parrot # RMC did it right.
       speechSounds: MaleAvali
-      allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk']
     - type: MobThresholds
       thresholds:
         0: Alive
@@ -91,10 +90,6 @@
           layer:
             - MobLayer
     - type: Vocal
-      sounds:
-        Male: MaleAvali
-        Female: FemaleAvali
-        Unsexed: MaleAvali
     - type: MovementSpeedModifier
       baseWeightlessAcceleration: 1.6 # Avalis are specifically built to fly in low-g environments
       baseWeightlessFriction: 1

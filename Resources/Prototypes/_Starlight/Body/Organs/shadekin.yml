@@ -41,6 +41,12 @@
   suffix: Shadekin
   description: "Used to marr and occasionally wurble."
   components:
+  - type: OrganTongue
+    allowedEmotes: ["Marr", "Wurble", "Hisses", "Growl", "Purr"]
+    sounds:
+      Male: MaleShadekin
+      Female: FemaleShadekin
+      Unsexed: MaleShadekin
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
     state: tongue

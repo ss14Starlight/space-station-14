@@ -100,6 +100,7 @@
   - HandImplantThrusters
   - BrainImplantComms
   - BrainImplantTranslator
+  - VocalCyberTongue
   - CyberRebreather # For now i will be lazy and put it here, not sure if i can excuse making a new pack for just 1 recipe
 
 - type: latheRecipePack

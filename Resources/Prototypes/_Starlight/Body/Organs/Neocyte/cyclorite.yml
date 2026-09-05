@@ -41,3 +41,14 @@
     maxReagents: 2
     metabolizerTypes: [Cyclorite, Neocyte]
     stages: [ Bloodstream ]
+
+- type: entity
+  id: OrganNeoCycloriteTongue
+  parent: OrganNeocyteTongue
+  suffix: Neo-Cyclorite
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoCycloriteMSounds
+      Female: NeoCycloriteFSounds
+      Unsexed: NeoCycloriteMSounds

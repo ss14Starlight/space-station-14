@@ -43,3 +43,14 @@
     stages: [ Respiration ]
   - type: Lung
     alert: LowNitrogen
+
+- type: entity
+  id: OrganNeoVoxTongue
+  parent: OrganNeocyteTongue
+  suffix: Neo-Vox
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoVoxMSounds
+      Female: NeoVoxFSounds
+      Unsexed: NeoVoxMSounds

@@ -166,12 +166,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
-    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
   - type: Vocal
-    sounds:
-      Male: MaleIPC
-      Female: FemaleIPC
-      Unsexed: MaleIPC
     wilhelmProbability: 0
   # IPC slots
   - type: ContainerContainer
