@@ -1,0 +1,7 @@
+- type: construction
+  id: StargazerLollipop
+  graph: StargazerLollipop
+  startNode: start
+  targetNode: icon
+  category: construction-category-food
+  objectType: Item

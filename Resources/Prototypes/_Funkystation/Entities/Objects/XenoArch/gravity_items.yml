@@ -1,0 +1,21 @@
+- type: entity
+  parent: TrashBananaPeel
+  id: TrashBananaPeelGravityWell
+  description: It appears to be a normal banana peel, but something compels you towards it.
+  suffix: Gravity
+  components:
+  - type: GravityWell
+    baseRadialAcceleration: 1
+    baseTangentialAcceleration: 0.3
+    maxRange: 2
+
+- type: entity
+  parent: ToyFigurineMime
+  id: ToyFigurineMimeReverseGravityWell
+  description: The humble mime figurine, something about its presence revolts you and compels you to leave and never return.
+  suffix: Reverse Gravity
+  components:
+  - type: GravityWell
+    baseRadialAcceleration: -1
+    baseTangentialAcceleration: -0.3
+    maxRange: 2

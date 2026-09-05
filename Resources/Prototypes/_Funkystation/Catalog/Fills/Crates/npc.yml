@@ -1,0 +1,10 @@
+- type: entity
+  id: CrateNPCMeowl
+  parent: CrateLivestock
+  name: meowl crate
+  description: A crate containing three of the deadliest beings known.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MobMeowl
+        amount: 3
