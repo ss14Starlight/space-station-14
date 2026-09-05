@@ -1,11 +1,4 @@
 Entries:
-- author: SeaborneProto
-  changes:
-  - message: Fixed Manor brig door to not be maints access!
-    type: Fix
-  id: 407816
-  time: '2026-08-24T09:22:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5781
 - author: Caws
   changes:
   - message: Ghost roles like Paradox Clone and Exterminators should no longer spawn in randoms stretches of empty space far away from the station on maps that have non-space atmospheres, like Cork and Novo Lobster.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408215
   time: '2026-09-05T21:55:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5857
+- author: RedSpeeds
+  changes:
+  - message: Added Godo cloud emote.
+    type: Add
+  id: 408216
+  time: '2026-09-05T22:18:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5885
 Order: -1
