@@ -20,6 +20,8 @@
     minimumPlayers: 25
     globalAnnouncement: false
   - type: WreckSwarm
+    chunkConfig: Medium
+    velocity: 50
 
 - type: entity
   parent: GameRuleWreckSwarmSpawn
@@ -31,7 +33,8 @@
     minimumPlayers: 10
     globalAnnouncement: false
   - type: WreckSwarm
-    sizeFilter: salvage-map-wreck-size-small
+    chunkConfig: Small
+    velocity: 50
 
 - type: entity
   parent: GameRuleWreckSwarmSpawn
@@ -43,7 +46,8 @@
     minimumPlayers: 30
     globalAnnouncement: false
   - type: WreckSwarm
-    sizeFilter: salvage-map-wreck-size-medium
+    chunkConfig: Medium
+    velocity: 50
 
 - type: entity
   parent: GameRuleWreckSwarmSpawn
@@ -57,4 +61,5 @@
   - type: WreckSwarm
     announcement: station-event-incoming-wreck-large-announcement
     announcementSound: /Audio/Announcements/attention.ogg
-    sizeFilter: salvage-map-wreck-size-large
+    chunkConfig: Large
+    velocity: 50

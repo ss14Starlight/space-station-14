@@ -13,6 +13,12 @@ public sealed partial class BiomeDecalLayer : IBiomeWorldLayer
     [DataField]
     public List<ProtoId<ContentTileDefinition>> AllowedTiles { get; private set; } = new();
 
+    //Starlight - Begin
+    /// <inheritdoc/>
+    [DataField]
+    public bool AllowAllTiles { get; private set; } = false;
+    //Starlight - End
+
     /// <summary>
     /// Divide each tile up by this amount.
     /// </summary>

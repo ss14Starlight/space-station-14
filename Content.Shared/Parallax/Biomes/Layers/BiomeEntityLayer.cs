@@ -12,6 +12,12 @@ public sealed partial class BiomeEntityLayer : IBiomeWorldLayer
     [DataField]
     public List<ProtoId<ContentTileDefinition>> AllowedTiles { get; private set; } = new();
 
+    //Starlight - Begin
+    /// <inheritdoc/>
+    [DataField]
+    public bool AllowAllTiles { get; private set; } = false;
+    //Starlight - End
+
     [DataField("noise")] public FastNoiseLite Noise { get; private set; } = new(0);
 
     /// <inheritdoc/>
