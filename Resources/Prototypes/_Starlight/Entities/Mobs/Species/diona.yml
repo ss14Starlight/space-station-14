@@ -30,7 +30,7 @@
   - type: Thirst
     baseDecayRate: 0.0083
   - type: Icon
-    sprite: Mobs/Species/Diona/parts.rsi
+    sprite: _Starlight/Mobs/Species/Diona/parts.rsi
     state: full
   - type: Body
     prototype: Diona
@@ -46,7 +46,6 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Butcherable
-    butcheringType: Spike
     spawned:
       - id: FoodMeatPlant
         amount: 5
@@ -54,7 +53,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Sap
-        Quantity: 300
+        Quantity: 600
   - type: Reactive
     groups:
       Flammable: [ Touch ]

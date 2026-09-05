@@ -12,6 +12,7 @@ namespace Content.Shared.Eye
         Subfloor = 1 << 2, // Pipes, disposal chutes, cables etc. while hidden under tiles. Can be revealed with a t-ray.
         Admin = 1 << 3, // Reserved for admins in stealth mode and admin tools.
         NullSpace = 1 << 5, // 🌟Starlight🌟 - Nullspace Ents, Brighteyes, Revenants, Cosmic Cult.
+        Scent = 1 << 6, // 🌟Starlight🌟 - Scent trails, scent system
         Net = 1 << 15, // 32768 🌟Starlight🌟
     }
 }

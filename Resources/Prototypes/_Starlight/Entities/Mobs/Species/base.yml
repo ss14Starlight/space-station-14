@@ -89,6 +89,7 @@
           False: {visible: false}
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
+  - type: JobStatus
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
@@ -210,6 +211,9 @@
       enum.DamnationsMenuUiKey.Key:
         type: DevilDamnationsBoundUserInterface
         requireInputValidation: false
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+        requireInputValidation: false
       # starlight end
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
@@ -248,6 +252,13 @@
     - Boop
   # Starlight End
   - type: CosmicCenserTarget # Stellar - Cosmic Cult
+  - type: Scent # Starlight - smell system
+  # Moff start - Funky footprints
+  - type: FootprintOwner
+  - type: SolutionManager
+    solutions:
+    - SolutionPrint
+  # Moff end
 
 - type: entity
   save: false
@@ -281,6 +292,8 @@
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
+      enum.ScentSniffUiKey.Key: # Starlight
+        type: ScentSniffBoundUserInterface
   - type: Barotrauma
     damage:
       types:
@@ -326,7 +339,6 @@
     thermalRegulationTemperatureThreshold: 2
   - type: Perishable
   - type: Butcherable
-    butcheringType: Spike # TODO human.
     spawned:
       - id: FoodMeat
         amount: 5

@@ -178,6 +178,67 @@
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
 
 - type: entity
+  id: BorgModuleGaming
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: gaming cyborg module
+  description: A universal cyborg module for handling cash and game supplies.
+  components:
+  - type: Tag
+    tags:
+      - BorgModuleGeneric
+  - type: Sprite
+    layers:
+    - state: generic
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: icon-gaming
+  - type: ItemBorgModule
+    hands:
+    - hand:
+        emptyRepresentative: SpaceCash
+        emptyLabel: borg-slot-games-gambling-empty
+        whitelist:
+          tags:
+          - PlayingCardDeckBox
+          - CasinoChip
+          components:
+          - Cash
+          - PlayingCard
+          - PlayingCardDeck
+          - PlayingCardHand
+          - TabletopGame
+          - Dice
+    - hand:
+        emptyRepresentative: SpaceCash
+        emptyLabel: borg-slot-games-gambling-empty
+        whitelist:
+          tags:
+          - PlayingCardDeckBox
+          - CasinoChip
+          components:
+          - Cash
+          - PlayingCard
+          - PlayingCardDeck
+          - PlayingCardHand
+          - TabletopGame
+          - Dice
+    - hand:
+        emptyRepresentative: SpaceCash
+        emptyLabel: borg-slot-games-gambling-empty
+        whitelist:
+          tags:
+          - PlayingCardDeckBox
+          - CasinoChip
+          components:
+          - Cash
+          - PlayingCard
+          - PlayingCardDeck
+          - PlayingCardHand
+          - TabletopGame
+          - Dice
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: gaming-module }
+
+- type: entity
   id: BorgContrabandBag
   parent: BaseStorageItem
   name: contraband bag
@@ -358,7 +419,7 @@
   - type: ItemBorgModule
     hands:
     - item: LuxuryPen
-    - item: BoxFolderCyborgClipboard
+    - item: HandLabeler
     - item: RubberStampApproved
     - item: RubberStampDenied
     - hand:
@@ -377,7 +438,77 @@
           - Pda
           - IdCard
           - Stamp
-    - item: HandLabeler # last entry so it shows at the top of the module slots
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paperwork-module }
+
+- type: entity
+  id: FaxMachineBorg
+  parent: BaseItem
+  name: integrated fax transmitter
+  description: A miniaturised bluespace fax array. It can send documents anywhere on the network, but keeps no listing of its own for others to reply to.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/fax_machine.rsi
+    layers:
+    - state: idle
+      map: [ "enum.FaxMachineVisuals.VisualState" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.FaxMachineVisuals.VisualState:
+        enum.FaxMachineVisuals.VisualState:
+          Printing: { state: printing }
+          Normal: { state: idle }
+  - type: ActivatableUI
+    key: enum.FaxUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.FaxUiKey.Key:
+        type: FaxBoundUi
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: FaxMachine
+    name: "Cyborg"
+    responsePings: false
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+        - FaxableObject
+  - type: ItemSlots
+  - type: ItemSlotQuickInsert
+    slot: Paper
+  - type: ContainerContainer
+    containers:
+      Paper: !type:ContainerSlot
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: Fax
+    transmitFrequencyId: Fax
+
+- type: entity
+  id: BorgModulePaperworkPrinting
+  parent: [ BaseBorgModulePurrfus, BaseProviderBorgModule ]
+  name: paperwork printing module
+  description: A complete bureaucracy suite. Prints standard station forms, files them away, and faxes them out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+    layers:
+    - state: command
+    - state: icon-paperwork
+  - type: ItemBorgModule
+    hands:
+    - item: PrinterCyber
+    - item: FaxMachineBorg
+    - item: BoxFolderCyborgClipboard
+    - hand:
+        emptyLabel: borg-slot-papers-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          tags:
+          - Document
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paperwork-module }
 
@@ -595,7 +726,6 @@
     - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
     - item: SyndiBorgHypo
     - item: AutoMenderBrute
     - item: AutoMenderBurn
@@ -652,7 +782,6 @@
     - state: icon-defib
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
     - item: DefibrillatorSyndicateOneHandedUnpowered
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic

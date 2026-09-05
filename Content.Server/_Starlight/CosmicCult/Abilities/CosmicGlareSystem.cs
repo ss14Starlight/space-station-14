@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Flash;
+using Content.Server.Emp;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Stunnable;
 using Content.Shared._Starlight.CosmicCult;
@@ -24,6 +25,7 @@ public sealed partial class CosmicGlareSystem : EntitySystem
     [Dependency] private CosmicCultSystem _cult = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private FlashSystem _flash = default!;
+    [Dependency] private EmpSystem _emp = default!;
     [Dependency] private PoweredLightSystem _poweredLight = default!;
     [Dependency] private StunSystem _stun = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -43,7 +45,9 @@ public sealed partial class CosmicGlareSystem : EntitySystem
 
     private void OnCosmicGlare(Entity<CosmicCultComponent> uid, ref EventCosmicGlare args)
     {
-        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+        var pos = Transform(uid).Coordinates;
+
+        foreach (var entity in _lookup.GetEntitiesIntersecting(pos))
             if (HasComp<NullSpaceBlockerComponent>(entity))
             {
                 _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
@@ -51,12 +55,13 @@ public sealed partial class CosmicGlareSystem : EntitySystem
             }
 
         _audio.PlayPvs(uid.Comp.GlareSFX, uid);
-        Spawn(uid.Comp.GlareVFX, Transform(uid).Coordinates);
+        Spawn(uid.Comp.GlareVFX, pos);
+        _emp.EmpPulse(pos, uid.Comp.CosmicGlareRange, 5000f, uid.Comp.CosmicGlareDuration);
         _cult.MalignEcho(uid);
         args.Handled = true;
 
         _lights.Clear();
-        _lookup.GetEntitiesInRange(Transform(uid).Coordinates, uid.Comp.CosmicGlareRange, _lights);
+        _lookup.GetEntitiesInRange(pos, uid.Comp.CosmicGlareRange, _lights);
 
         foreach (var entity in _lights)
             _poweredLight.TryDestroyBulb(entity);

@@ -9,7 +9,6 @@
     time: 5h # Anti shitter/raider protection. Working on CentComm should require having a basic understanding of game mechanics.
   icon: "JobIconCCServiceWorker"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
   bypassEorPacification: false
   access:
   - Service
@@ -31,7 +30,6 @@
   setPreference: false
   icon: "JobIconCCChef"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
   bypassEorPacification: false
   access:
   - Service
@@ -50,7 +48,6 @@
   setPreference: false
   icon: "JobIconCCBartender"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
   bypassEorPacification: false
   access:
   - Service
@@ -69,7 +66,6 @@
   setPreference: false
   icon: "JobIconCCJanitor"
   supervisors: job-supervisors-centcom
-  canBeAntag: false
   bypassEorPacification: false
   access:
   - Service

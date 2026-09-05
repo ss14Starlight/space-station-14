@@ -21,7 +21,7 @@
     graph: LightFixture
     node: bulbLight
   - type: Sprite
-    sprite: Structures/Wallmounts/Lighting/strobe_light.rsi
+    sprite: _Starlight/Structures/Wallmounts/Lighting/strobe_light.rsi #SL Edit
     drawdepth: WallMountedItems
     layers:
     - map: ["enum.PoweredLightLayers.Base"]
@@ -31,7 +31,7 @@
       shader: unshaded
     state: base
   - type: PointLight
-    mask: /Textures/Effects/LightMasks/double_cone.png
+    lightMask: ConeDouble
     color: "#FFE4CE"
     energy: 5
     radius: 10
@@ -87,7 +87,7 @@
   parent: AlwaysPoweredStrobeLight
   components:
   - type: Sprite
-    sprite: Structures/Wallmounts/Lighting/strobe_light.rsi
+    sprite: _Starlight/Structures/Wallmounts/Lighting/strobe_light.rsi #SL Edit
     state: empty
   - type: AmbientSound
     enabled: false

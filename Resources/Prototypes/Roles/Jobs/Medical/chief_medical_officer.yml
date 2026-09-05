@@ -24,7 +24,6 @@
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"
   supervisors: job-supervisors-captain
-  canBeAntag: false
   access:
   - Medical
   - Command
@@ -36,6 +35,7 @@
   - Surgery # Starlight
   - Paramedic # Starlight
   - Debrief # Starlight
+  - Shuttle # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

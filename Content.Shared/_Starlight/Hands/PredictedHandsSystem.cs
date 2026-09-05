@@ -35,15 +35,6 @@ public sealed partial class PredictedHandsSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
 
-    private EntityQuery<PhysicsComponent> _physicsQuery;
-
-    /// <summary>
-    /// Items dropped when the holder falls down will be launched in
-    /// a direction offset by up to this many degrees from the holder's
-    /// movement direction.
-    /// </summary>
-    private const float DropHeldItemsSpread = 45;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -54,8 +45,6 @@ public sealed partial class PredictedHandsSystem : EntitySystem
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ThrowItemInHand, new PointerInputCmdHandler(HandleThrowItem))
             .Register<PredictedHandsSystem>();
-
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
     }
 
     public override void Shutdown() => CommandBinds.Unregister<PredictedHandsSystem>();
@@ -138,17 +127,13 @@ public sealed partial class PredictedHandsSystem : EntitySystem
         if (_hands.IsHolding((player, hands), throwEnt, out _) && !_hands.TryDrop(player, throwEnt.Value))
             return false;
 
-        _throwing.TryThrow(ev.ItemUid, ev.Direction, ev.ThrowSpeed, ev.PlayerUid, compensateFriction: !HasComp<LandAtCursorComponent>(ev.ItemUid));
+        _throwing.TryThrow(ev.ItemUid, ev.Direction, ev.ThrowSpeed, ev.PlayerUid, compensateFriction: !HasComp<LandAtCursorComponent>(ev.ItemUid), predicted: true);
 
         return true;
     }
 
     private void OnDropHandItems(Entity<HandsComponent> entity, ref DropHandItemsEvent args)
     {
-        // If the holder doesn't have a physics component, they ain't moving
-        var holderVelocity = _physicsQuery.TryComp(entity, out var physics) ? physics.LinearVelocity : Vector2.Zero;
-        var spreadMaxAngle = Angle.FromDegrees(DropHeldItemsSpread);
-
         foreach (var hand in entity.Comp.Hands.Keys)
         {
             if (!_hands.TryGetHeldItem(entity.AsNullable(), hand, out var heldEntity))
@@ -163,26 +148,9 @@ public sealed partial class PredictedHandsSystem : EntitySystem
             if (!_hands.TryDrop(entity.AsNullable(), hand, checkActionBlocker: false))
                 continue;
 
-            // Rotate the item's throw vector a bit for each item
-            var angleOffset = _random.NextAnglePredicted(_timing, -spreadMaxAngle, spreadMaxAngle);
-            // Rotate the holder's velocity vector by the angle offset to get the item's velocity vector
-            var itemVelocity = angleOffset.RotateVec(holderVelocity);
-            // Decrease the distance of the throw by a random amount
-            itemVelocity *= _random.NextFloatPredicted(_timing, 1f);
-            // Heavier objects don't get thrown as far
-            // If the item doesn't have a physics component, it isn't going to get thrown anyway, but we'll assume infinite mass
-            itemVelocity *= _physicsQuery.TryComp(heldEntity, out var heldPhysics) ? heldPhysics.InvMass : 0;
-            // Throw at half the holder's intentional throw speed and
-            // vary the speed a little to make it look more interesting
-            var throwSpeed = entity.Comp.BaseThrowspeed * _random.NextFloatPredicted(_timing, 0.45f, 0.55f);
-
-            _throwing.TryThrow(heldEntity.Value,
-                itemVelocity,
-                throwSpeed,
-                entity,
-                pushbackRatio: 0,
-                compensateFriction: false
-            );
+            _throwing.PredictedFallThrowItem(entity, heldEntity.Value, entity.Comp.BaseThrowspeed);
         }
     }
+
+
 }

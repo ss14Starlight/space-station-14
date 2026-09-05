@@ -6,6 +6,7 @@ using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Maps;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
@@ -18,15 +19,13 @@ public sealed partial class CosmicIngressSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<CosmicCultComponent, EventCosmicIngress>(OnCosmicIngress);
-
         SubscribeLocalEvent<HumanoidAppearanceComponent, EventCosmicAnomalyIngress>(OnAnomalyIngress);
-
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusIngress>(OnColossusIngress);
         SubscribeLocalEvent<CosmicColossusComponent, EventCosmicColossusIngressDoAfter>(OnColossusIngressDoAfter);
     }
@@ -78,19 +77,28 @@ public sealed partial class CosmicIngressSystem : EntitySystem
         _doAfter.TryStartDoAfter(doargs);
     }
 
-    private void OnColossusIngressDoAfter(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusIngressDoAfter args)
+    private void OnColossusIngressDoAfter(Entity<CosmicColossusComponent> ent,
+    ref EventCosmicColossusIngressDoAfter args)
     {
-        if (args.Args.Target is not { } target)
-            return;
         if (args.Cancelled || args.Handled)
             return;
+
+        if (args.Args.Target is not { } target)
+            return;
+
         args.Handled = true;
         var comp = ent.Comp;
+        var coordinates = Transform(target).Coordinates;
 
-        if (TryComp<DoorBoltComponent>(target, out var doorBolt))
-            _door.SetBoltsDown((target, doorBolt), false);
-        _door.StartOpening(target);
         _audio.PlayPvs(comp.IngressSfx, ent);
-        Spawn(comp.CultVfx, Transform(target).Coordinates);
+        Spawn(comp.CultVfx, coordinates);
+        foreach (var entity in _turf.GetEntitiesInTile(coordinates, LookupFlags.All))
+        {
+            if (HasComp<DoorComponent>(entity))
+                QueueDel(entity);
+        }
+        // Spawn corrupted replacement
+        var malignDoor = Spawn("DoorCosmicCult", coordinates);
+        _door.StartOpening(malignDoor);
     }
 }

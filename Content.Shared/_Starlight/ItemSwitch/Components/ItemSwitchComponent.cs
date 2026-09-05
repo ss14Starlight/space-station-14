@@ -1,6 +1,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.ItemSwitch.Components;
@@ -31,6 +32,12 @@ public sealed partial class ItemSwitchComponent : Component
     public bool OnUse = true;
 
     /// <summary>
+    /// Whether alt-using the item in hand cycles to the next state.
+    /// </summary>
+    [DataField]
+    public bool OnAltUse = false;
+
+    /// <summary>
     ///     Whether the item's toggle can be predicted by the client.
     /// </summary>
     /// /// <remarks>
@@ -54,11 +61,21 @@ public sealed partial class ItemSwitchState : BoundUserInterfaceMessage
     [DataField]
     public ComponentRegistry? Components;
 
+    /// <summary>
+    /// Which UI this state points the entity's <c>ActivatableUI</c> at, if it has one.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(EnumSerializer))]
+    public Enum? ActivatableUiKey;
+
     [DataField]
     public bool RemoveComponents = true;
 
+    /// <summary>
+    /// If true, this state is hidden from the activation verb menu and unreachable via normal cycling.
+    /// It can only be entered by direct <c>Switch</c> calls.
+    /// </summary>
     [DataField]
-    public bool Hiden = false;
+    public bool Hidden = false;
 
     [DataField]
     public SpriteSpecifier? Sprite;

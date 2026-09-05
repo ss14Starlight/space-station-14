@@ -2,7 +2,7 @@
   id: SOP
   name: guide-entry-sl-sop-intro
   text: "/ServerInfo/Guidebook/StarlightSOP/sop-intro.xml"
-  priority: 12
+  priority: 3
   children:
     - general-sop
     - departmental-sop
@@ -215,6 +215,7 @@
     - legal-sop-intro
     - engineering-sop-intro
     - cargo-sop-intro
+    - salvage-sop-intro
     - science-sop-intro
     - nano-trasen-employee-sop-intro
     - service-sop-intro
@@ -230,6 +231,7 @@
     - captain
     - ai
     - general-command-staff
+    - secure-terminal
 
 
 - type: guideEntry
@@ -250,6 +252,41 @@
   text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/ai.xml"
   priority: 3
 
+- type: guideEntry
+  id: secure-terminal
+  name: guide-entry-sl-secure-terminal
+  text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/SecureTerminal/secure-terminal.xml"
+  priority: 4
+  children:
+    - secure-terminal-ert
+    - secure-terminal-alerts
+    - secure-terminal-armories
+    - secure-terminal-misc
+
+- type: guideEntry
+  id: secure-terminal-ert
+  name: guide-entry-sl-secure-terminal-ert
+  text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/SecureTerminal/secure-terminal-ert.xml"
+  priority: 1
+
+- type: guideEntry
+  id: secure-terminal-alerts
+  name: guide-entry-sl-secure-terminal-alerts
+  text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/SecureTerminal/secure-terminal-alerts.xml"
+  priority: 2
+
+- type: guideEntry
+  id: secure-terminal-armories
+  name: guide-entry-sl-secure-terminal-armories
+  text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/SecureTerminal/secure-terminal-armories.xml"
+  priority: 3
+
+- type: guideEntry
+  id: secure-terminal-misc
+  name: guide-entry-sl-secure-terminal-misc
+  text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/SecureTerminal/secure-terminal-misc.xml"
+  priority: 4
+
 
 
 - type: guideEntry
@@ -269,6 +306,7 @@
   - security-sop-parole
   - security-sop-permitacquisition
   - security-sop-specialsituations
+  - security-sop-criminal-status
 
 
 - type: guideEntry
@@ -351,6 +389,12 @@
   name: guide-entry-sl-security-sop-hostage-situations
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations/HostageSituations.xml"
   priority: 2
+
+- type: guideEntry
+  id: security-sop-criminal-status
+  name: guide-entry-sl-security-sop-criminal-status
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/CriminalStatus.xml"
+  priority: 12
 
 - type: guideEntry
   id: legal-sop-intro
@@ -581,7 +625,6 @@
     - cargo-sop-cargotechnician
     - cargo-sop-mailtechnician
     - cargo-sop-miningspecialist
-    - cargo-sop-salvagespecialist
     - cargo-sop-quartermaster
 
 
@@ -604,16 +647,25 @@
   priority: 3
 
 - type: guideEntry
-  id: cargo-sop-salvagespecialist
-  name: guide-entry-sl-cargo-sop-salvagespecialist
-  text: "/ServerInfo/Guidebook/StarlightSOP/CargoSOP/SalvageSpecialist.xml"
-  priority: 4
-
-- type: guideEntry
   id: cargo-sop-quartermaster
   name: guide-entry-sl-cargo-sop-quartermaster
   text: "/ServerInfo/Guidebook/StarlightSOP/CargoSOP/Quartermaster.xml"
   priority: 5
+
+
+- type: guideEntry
+  id: salvage-sop-intro
+  name: guide-entry-sl-salvage-sop-intro
+  text: "/ServerInfo/Guidebook/StarlightSOP/SalvageSOP/salvage-sop-intro.xml"
+  priority: 6
+  children:
+    - salvage-sop-salvagers
+
+- type: guideEntry
+  id: salvage-sop-salvagers
+  name: guide-entry-sl-salvage-sop-salvagers
+  text: "/ServerInfo/Guidebook/StarlightSOP/SalvageSOP/salvage-sop-salvagers.xml"
+  priority: 1
 
 
 

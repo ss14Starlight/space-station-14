@@ -13,9 +13,19 @@
     - state: locked
       map: [ "enum.LockVisualLayers.Lock" ]
       shader: unshaded
+    - state: unlocked
+      map: [ light ]
+      shader: unshaded
   - type: Item
     sprite: _Starlight/Admeme/Casino/Objects/casino_briefcase.rsi
   - type: Lock
   - type: LockVisuals
+  - type: LockedStorage
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        light:
+          True: { visible: true }
+          False: { visible: false }
   - type: AccessReader
     access: [["Casino"]]

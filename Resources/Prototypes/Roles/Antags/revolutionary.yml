@@ -16,6 +16,51 @@
     time: 12h # Have to be a leader. You're essentially making your own chain of command in this role.
   playTimeTracker: AntagHeadRev # Starlight end
 
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: BaseRev
+  name: revolutionary
+  prefRoles:
+  - GenericTeamAntagonist # For antag ban purposes
+  components:
+  - type: Revolutionary
+
+- type: antagSpecifier
+  parent: BaseRev
+  id: HeadRev
+  prefRoles:
+  - HeadRev
+  briefing:
+    text: head-rev-role-greeting
+    color: CornflowerBlue
+    sound: "/Audio/Ambience/Antag/headrev_start.ogg"
+  startingGear: HeadRevGear
+  allowNonHumans: true # Starlight start
+  blacklist:
+    components:
+    - AntagImmune # Starlight end
+  components:
+  - type: Revolutionary
+  - type: HeadRevolutionary
+# Starlight-start
+    blacklist:
+      components:
+      - Revolutionary
+      - BorgChassis
+      - MindShield
+      - Zombie
+      tags:
+      - CantBecomeRevolutionary
+    whitelist:
+      components:
+      - HumanoidAppearance
+    # Starlight-end
+  mindRoles:
+  - MindRoleHeadRevolutionary
+
+# TODO: Make it so creating new revolutionaries uses antag prototypes! This saves a *lot* of boilerplate for conversion antags.
+
 - type: antag
   id: Rev
   name: roles-antag-rev-name

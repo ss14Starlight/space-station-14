@@ -14,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_hotel.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_hotel.yml
         - type: StationJobs
           availableJobs:
             #service
@@ -56,6 +56,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 6, 8 ]
             MailTech: [ 1, 2 ]
@@ -66,6 +67,7 @@
             Musician: [ 2, 2 ]
             Performer: [ 2, 2 ]
             Reporter: [ 1, 2 ]
+            RadioHost: [ 1, 1 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 3, 6 ]

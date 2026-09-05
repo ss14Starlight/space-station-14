@@ -21,3 +21,35 @@
         - Nightblind
       inverted: true
   playTimeTracker: AntagBrighteye
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Brighteye
+  spawnerPrototype: SpawnPointGhostBrighteye
+  prefRoles:
+  - Brighteye
+  allowNonHumans: true
+  blacklist:
+    components:
+    - AntagImmune
+  roleLoadout:
+  - AntagBrighteye
+  briefing:
+    text: brighteye-role-greeting
+    color: "#F200FF"
+    sound: "/Audio/_Starlight/Ambience/Antag/brighteye.ogg"
+  tags:
+    - CantBecomeRevolutionary
+  components:
+  - type: Brighteye
+    energy: 200 # THIS IS HARDCODED BULLSHIT... i wish i could set this auto to MaxEnergy.
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: CombatMode
+    disarmFailChance: 0.5
+    canDisarm: true
+  - type: Railroadable
+    important: true
+  mindRoles:
+  - MindRoleBrighteye

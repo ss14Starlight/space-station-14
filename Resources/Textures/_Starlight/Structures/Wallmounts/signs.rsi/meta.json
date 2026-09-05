@@ -127,6 +127,14 @@
         {
             "name": "break_service",
 			"copyright": "Conflee"
+        },
+        {
+            "name": "radiohost",
+			"copyright": "Huaqas"
+        },
+        {
+            "name": "evidence",
+			"copyright": "Made by Conflee"
         }
     ]
 }

@@ -199,3 +199,10 @@
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-grey
+
+- type: entity
+  parent: ClothingHandsChameleon
+  id: ClothingHandsGlovesInsulatedChameleon
+  suffix: Chameleon, Insulated
+  components:
+  - type: Insulated

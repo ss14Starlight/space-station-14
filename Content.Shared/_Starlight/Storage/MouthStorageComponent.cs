@@ -23,4 +23,6 @@ public sealed partial class MouthStorageComponent : Component
 
     // Mimimum inflicted damage on hit to spit out items
     [DataField] public FixedPoint2 SpitDamageThreshold = FixedPoint2.New(2);
+
+    [DataField] public float BaseThrowSpeed = 11f;
 }

@@ -179,6 +179,10 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 if (!_ingestion.CanConsume(owner, targetUid))
                     return 0f;
 
+                // Starlight - do not drink liquids to attempt to satiate hunger
+                if (_ingestion.GetEdibleType(targetUid) == IngestionSystem.Drink)
+                    return 0f;
+
                 var avoidBadFood = !HasComp<IgnoreBadFoodComponent>(owner);
 
                 // only eat when hungry or if it will eat anything
@@ -616,5 +620,13 @@ public readonly record struct UtilityResult(Dictionary<EntityUid, float> Entitie
             return EntityUid.Invalid;
 
         return Entities.MinBy(x => x.Value).Key;
+    }
+
+    /// <summary>
+    /// Returns a GetEnumerable sorted in descending score.
+    /// </summary>
+    public IEnumerable<KeyValuePair<EntityUid, float>> GetEnumerable()
+    {
+        return Entities.OrderByDescending(x => x.Value);
     }
 }

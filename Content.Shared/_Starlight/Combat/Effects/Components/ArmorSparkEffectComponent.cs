@@ -28,4 +28,10 @@ public sealed partial class ArmorSparkEffectComponent : Component
     /// </summary>
     [DataField("maxOffset")]
     public float MaxOffset = 0.4f;
+
+    /// <summary>
+    /// If true, the entity always produces sparks when hit by SP or HP hitscan bullets.
+    /// </summary>
+    [DataField("alwaysSparks")]
+    public bool AlwaysSparks;
 }

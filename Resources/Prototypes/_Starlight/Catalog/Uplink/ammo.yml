@@ -103,3 +103,36 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
+
+- type: listing
+  id: UplinkPistol9mmMagazineHP
+  name: uplink-pistol-hp-magazine-name
+  description: uplink-pistol-hp-magazine-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red }
+  productEntity: MagazinePistolHP
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkPistol9mmMagazineFMJ
+  name: uplink-pistol-fmj-magazine-name # Starlight
+  description: uplink-pistol-fmj-magazine-desc # Starlight
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: fmj }
+  productEntity: MagazinePistolFMJ
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkSpeedLoaderMagnumAP
+  name: uplink-speedloader-magnum-name
+  description: uplink-speedloader-magnu-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
+  productEntity: SpeedLoaderMagnumAP
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo

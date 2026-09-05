@@ -14,12 +14,12 @@ public sealed partial class WorldControllerComponent : Component
     /// <summary>
     ///     The prototype to use for chunks on this world map.
     /// </summary>
-    [DataField("chunkProto", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string ChunkProto = "WorldChunk";
+    [DataField]
+    public EntProtoId ChunkProto = "WorldChunk";
 
     /// <summary>
     ///     An index of chunks owned by the controller.
     /// </summary>
-    [DataField("chunks")] public Dictionary<Vector2i, EntityUid> Chunks = new();
+    [DataField] public Dictionary<Vector2i, EntityUid> Chunks = new();
 }
 

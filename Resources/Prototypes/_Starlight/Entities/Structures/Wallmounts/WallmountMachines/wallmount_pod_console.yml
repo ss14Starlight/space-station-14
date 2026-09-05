@@ -1,0 +1,35 @@
+- type: entity
+  parent: BaseWallmountMachine
+  id: WallmountPodConsole
+  name: escape pod console
+  description: A terminal that controls the escape pod. The controls have been locked down to prevent you from launching the pod early, though.
+  suffix: Wall
+  components:
+    - type: PodConsole
+    - type: WallMount
+      arc: 360
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/pod_console.rsi
+      layers:
+      - state: base
+    - type: Destructible
+      thresholds:
+      - trigger: # Excess damage, don't spawn entities
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]

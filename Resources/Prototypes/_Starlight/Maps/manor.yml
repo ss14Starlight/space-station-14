@@ -14,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'ST'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_manor.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_manor.yml
         - type: StationJobs
           availableJobs:
             #service
@@ -28,7 +28,6 @@
             Librarian: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
             ServiceWorker: [ 4, 4 ]
-            Zookeeper: [ 1, 1 ]
             Reporter: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
@@ -60,6 +59,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 4, 4 ]
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 4, 4 ]
             CargoTechnician: [ 5, 7 ]
             MailTech: [ 2, 3 ]
@@ -70,6 +70,7 @@
             Musician: [ 2, 2 ]
             Performer: [ 4, 4 ]
             Boxer: [ 2, 2 ]
+            RadioHost: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 3, 5 ]

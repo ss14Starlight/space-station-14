@@ -11,9 +11,10 @@ namespace Content.Client.Decals.Overlays;
 [Virtual]
 public partial class DecalPlacementOverlay : Overlay
 {
+    [Dependency] private IEntityManager _entity = default!;
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IInputManager _inputManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
+    private readonly MapSystem _map;
     private readonly DecalPlacementSystem _placement;
     private readonly SharedTransformSystem _transform;
     private readonly SpriteSystem _sprite;
@@ -28,6 +29,7 @@ public partial class DecalPlacementOverlay : Overlay
     public DecalPlacementOverlay(DecalPlacementSystem placement, SharedTransformSystem transform, SpriteSystem sprite)
     {
         IoCManager.InjectDependencies(this);
+        _map = _entity.System<MapSystem>();
         _placement = placement;
         _transform = transform;
         _sprite = sprite;
@@ -53,7 +55,7 @@ public partial class DecalPlacementOverlay : Overlay
             return;
 
         // No map support for decals
-        if (!_mapManager.TryFindGridAt(mousePos, out var gridUid, out var grid))
+        if (!_map.TryFindGridAt(mousePos, out var gridUid, out var grid))
         {
             return;
         }

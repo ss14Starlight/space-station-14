@@ -23,4 +23,38 @@
   previewStartingGear: WizardBlueGear
   playTimeTracker: AntagWizard # Starlight
 
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Wizard
+  prefRoles: # Starlight
+  - Wizard # Starlight
+  spawnerPrototype: SpawnPointGhostWizard
+  startingGear: WizardBlueGear
+  roleLoadout:
+  - AntagWizard # Starlight
+  briefing:
+    text: wizard-role-greeting
+    color: Turquoise
+    # TODO: Need Wizard Start sound
+    #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
+  # TODO: WizardComp as needed
+  allowNonHumans: true # Starlight start
+  blacklist:
+    components:
+    - AntagImmune
+  tags:
+    - Wizard
+    - CantBecomeRevolutionary # Starlight end
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+  - type: RandomMetadata
+    nameSegments:
+    - NamesWizardFirst
+    - NamesWizardLast
+    nameFormat: name-format-wizard
+  mindRoles:
+  - MindRoleWizard
+
 # See wizard_startinggear for wiz start gear options

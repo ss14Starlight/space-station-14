@@ -23,6 +23,7 @@
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-culteffigy
     othersText: cosmic-examine-text-effigy
+  - type: CosmicEffigy
   - type: CosmicCorrupting
     corruptionReduction: 0.02
     enabled: true
@@ -95,13 +96,19 @@
       - MobCosmicLodestarHostile
     - settings:
         spawnOnSuperCritical: true
-        minAmount: 4
-        maxAmount: 7
+        minAmount: 3
+        maxAmount: 6
         maxRange: 8
       spawns:
       - MobCosmicCustodianHostile
       - MobCosmicOracleHostile
       - MobCosmicLodestarHostile
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 2
+        maxAmount: 4
+        maxRange: 6
+      spawns:
       - CosmicMalignRift
     - settings:
         spawnOnShutdown: true
