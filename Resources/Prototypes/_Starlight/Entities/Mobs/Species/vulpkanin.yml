@@ -149,21 +149,9 @@
     #        state: hair
   # Starlight end
   # starlight start - temp vulpkanin revert
-  - type: Hunger # on 1.5x more
-    thresholds: # 25% higher than defaults
-      Overfed: 250.0
-      Okay: 187.5
-      Peckish: 125.0
-      Starving: 62.5
-      Dead: 0
+  - type: Hunger # on 1.1x more
     baseDecayRate: 0.018
-  - type: Thirst # on 1.5x more
-    thresholds:
-      OverHydrated: 650
-      Okay: 500
-      Thirsty: 350
-      Parched: 200
-      Dead: 0
+  - type: Thirst # on 1.25x more
     baseDecayRate: 0.125
   - type: TemperatureDamage # Ported over from CD. Afterall, it does make sense that something with fur can handle more cold/less heat. Basegame Moths, apparently, have similar resistances.
     heatDamageThreshold: 325

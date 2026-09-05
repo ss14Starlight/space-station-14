@@ -35,7 +35,7 @@
       hideLayersOnEquip:
       - Tail
       - HeadTop
-    - type: Hunger # on 2x more
+    - type: Hunger # on 1.8x more
       thresholds: # 25% higher than defaults
         Overfed: 250.0
         Okay: 187.5
