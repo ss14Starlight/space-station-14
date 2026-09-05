@@ -221,6 +221,30 @@
           - id: SparlightMobUristMcCorgi
 
 - type: entity
+  id: XenoArtifactEffectCowSpawn
+  parent: BaseXenoArtifactEffect
+  description: Spontaneous organic creation
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      table: !type:GroupSelector
+        children:
+        - id: MobCow
+          weight: 20
+        - id: MobCowChocolate
+          weight: 10
+        - id: MobCowStrawberry
+          weight: 10
+        - id: MobCowBanana
+          weight: 10
+        - id: MobCowPilk
+          weight: 5
+
+- type: entity
   id: XenoArtifactEffectFleshMonsterSpawn
   parent: BaseXenoArtifactEffect
   description: Spontaneous organic creation

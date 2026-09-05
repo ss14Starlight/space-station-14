@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "states": [
+    {
+      "name": "dead",
+      "delays": [
+        [
+          1
+        ]
+      ],
+	  "copyright": "Original cow taken from https://github.com/tgstation/tgstation/commit/53d1f1477d22a11a99c6c6924977cd431075761b, Banana Cow by ItsMaitake on Blimpuf Station" 
+    },
+    {
+      "name": "cow",
+      "directions": 4,
+      "delays": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+	  "copyright": "TG Station, ItsMaitake" 
+    },
+    {
+      "name": "gib",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ],
+	  "copyright": "TG Station, ItsMaitake" 
+    }
+  ]
+}

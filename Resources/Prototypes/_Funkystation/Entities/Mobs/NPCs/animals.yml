@@ -122,6 +122,150 @@
     passiveVisibilityRate: -0.15 # Its a mouse it should still be able to be found decently easy
     movementVisibilityRate: 0.20
 
+#Special Cows
+
+- type: entity
+  name: chocolate cow
+  parent: MobCow
+  id: MobCowChocolate
+  description: Moo.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: cow
+        sprite: _Starlight/Mobs/Animals/Cows/ChocolateCow.rsi # Starlight
+  - type: SolutionManager
+    solutions:
+    - SolutionUdderChocolate
+  - type: Udder
+    reagentId: MilkChocolate
+    quantityPerUpdate: 25
+    growthDelay: 30
+  - type: Butcherable
+    spawned:
+    - id: FoodSnackChocolateBar
+      amount: 5
+
+- type: entity
+  parent: SolutionLarge
+  id: SolutionUdderChocolate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: udder
+    solution:
+      reagents:
+      - ReagentId: MilkChocolate
+        Quantity: 30
+
+- type: entity
+  name: strawberry cow
+  parent: MobCow
+  id: MobCowStrawberry
+  description: Moo.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cow
+      sprite: _Starlight/Mobs/Animals/Cows/StrawberryCow.rsi # Starlight
+  - type: SolutionManager
+    solutions:
+    - SolutionUdderStrawberry
+  - type: Udder
+    reagentId: MilkStrawberry
+    quantityPerUpdate: 25
+    growthDelay: 30
+  - type: Butcherable
+    spawned:
+    - id: FoodFrozenSandwichStrawberry #Change to actual strawberries if someone implments them
+      amount: 2
+
+- type: entity
+  parent: SolutionLarge
+  id: SolutionUdderStrawberry
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: udder
+    solution:
+      reagents:
+      - ReagentId: MilkStrawberry
+        Quantity: 30
+
+- type: entity
+  name: banana cow
+  parent: MobCow
+  id: MobCowBanana
+  description: Moo.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cow
+      sprite: _Starlight/Mobs/Animals/Cows/BananaCow.rsi # Starlight
+  - type: SolutionManager
+    solutions:
+    - SolutionUdderBanana
+  - type: Udder
+    reagentId: MilkBanana
+    quantityPerUpdate: 25
+    growthDelay: 30
+  - type: Butcherable
+    spawned:
+    - id: FoodBanana
+      amount: 5
+    - id: TrashBananaPeel
+      amount: 5
+
+- type: entity
+  parent: SolutionLarge
+  id: SolutionUdderBanana
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: udder
+    solution:
+      reagents:
+      - ReagentId: MilkBanana
+        Quantity: 30
+
+- type: entity
+  parent: MobCow
+  id: MobCowPilk
+  description: Moo.
+  suffix: Pilk
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cow
+      sprite: _Starlight/Mobs/Animals/Cows/PilkCow.rsi # Starlight
+  - type: SolutionManager
+    solutions:
+    - SolutionUdderPilk
+  - type: Udder
+    reagentId: Pilk
+    quantityPerUpdate: 25
+    growthDelay: 30
+
+- type: entity
+  parent: SolutionLarge
+  id: SolutionUdderPilk
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: udder
+    solution:
+      reagents:
+      - ReagentId: Pilk
+        Quantity: 30
+
 #Devil Birds
 
 - type: entity

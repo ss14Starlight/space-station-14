@@ -25,6 +25,7 @@
     - MilkBanana
     - MilkOat # Starlight, I mean, it's technically Milk
     - MilkSoy # Starlight
+    - Pilk # Starlight, this one's funny
 
 - type: xenoArchTrigger
   id: TriggerBleach
