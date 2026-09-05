@@ -1,18 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Intellicard entities can now be transfered to borg/borg brains/MMI as intended
-    type: Fix
-  id: 407813
-  time: '2026-08-22T01:27:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5776
-- author: Mack
-  changes:
-  - message: missing values for the reactor guidebook temps.
-    type: Fix
-  id: 407814
-  time: '2026-08-23T10:38:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5797
 - author: Johnny
   changes:
   - message: The syndicate bomb is less concentrated with its explosion, focusing more on making a large explosion than entirely deleting an area.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408212
   time: '2026-09-05T20:37:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5843
+- author: (Upstream) ScarKy0
+  changes:
+  - message: Surveillance cameras will now show they're being used (turn on their red lights) when the AI's eye is nearby.
+    type: Add
+  id: 408213
+  time: '2026-09-05T21:25:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5854
+- author: (Upstream) ScarKy0
+  changes:
+  - message: The AI's ability to toggle "camera lights" has been removed.
+    type: Remove
+  id: 408214
+  time: '2026-09-05T21:25:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5854
 Order: -1
