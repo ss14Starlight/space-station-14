@@ -18,7 +18,12 @@
   id: SMESHyperAdvancedMachineCircuitboard
   result: SMESHyperAdvancedMachineCircuitboard
 
-- type: latheRecipe
+  - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
   id: CargoMailBoxMachineCircuitboard
   result: CargoMailBoxMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  id: ChemApprenticeMachineCircuitboard
+  result: ChemApprenticeMachineCircuitboard

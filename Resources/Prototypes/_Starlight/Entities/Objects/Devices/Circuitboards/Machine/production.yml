@@ -1300,6 +1300,44 @@
           amount: 1
           defaultPrototype: Beaker
 
+- type: entity
+  id: ChemApprenticeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ChemMaster 1000 machine board
+  description: A machine printed circuit board for a ChemMaster 1000.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: ChemMaster1k
+      stackRequirements:
+        Manipulator: 1
+        Glass: 1
+        Cable: 1
+      tagRequirements:
+        GlassBeaker:
+          amount: 1
+          defaultPrototype: Beaker
+
+- type: entity
+  id: ChemHydroponicMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Hydroponic ChemMaster machine board
+  description: A machine printed circuit board for a Hydroponic ChemMaster.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: ChemMasterBotanical
+      stackRequirements:
+        Manipulator: 1
+        Glass: 1
+        Cable: 1
+      tagRequirements:
+        GlassBeaker:
+          amount: 1
+          defaultPrototype: Beaker
+
 # Departmental Techfabs
 - type: entity
   id: CargoTechFabCircuitboard
