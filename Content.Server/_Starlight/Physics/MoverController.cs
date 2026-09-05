@@ -2,7 +2,9 @@ using System.Collections.Concurrent;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.Movement;
+using Content.Shared._Starlight.RedundantMovement;
 using Content.Shared._Starlight.Sound;
 using Content.Shared.Maps;
 using Content.Shared.Movement.Components;
@@ -10,7 +12,6 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
-using Content.Shared._Starlight.CCVar;
 using Prometheus;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
@@ -82,6 +83,9 @@ public sealed partial class SLMoverController : SharedMoverController
     private readonly ConcurrentQueue<(EntityUid Uid, InputMoverComponent Mover)> _deferredDirty = new();
 
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, TransformComponent)>)> _shuttlePilots = new();
+
+    // flag that the redundant movement system uses to skip the block for the old movement input
+    private bool _applyingRedundantInput = false;
 
     public override void Initialize()
     {
@@ -552,6 +556,9 @@ public sealed partial class SLMoverController : SharedMoverController
 
     protected override void HandleShuttleInput(EntityUid uid, ShuttleButtons button, ushort subTick, bool state)
     {
+        if (!_applyingRedundantInput && _cfg.GetCVar(RedundantMovementCVars.Enabled))
+            return;
+
         if (!TryComp<PilotComponent>(uid, out var pilot) || pilot.Console == null)
             return;
 
@@ -972,4 +979,79 @@ public sealed partial class SLMoverController : SharedMoverController
         && (ftl.State & (FTLState.Starting | FTLState.Travelling | FTLState.Arriving)) != 0x0)
             || HasComp<PreventPilotComponent>(shuttleUid);
 
+    protected override void HandleDirChange(EntityUid entity, Direction dir, ushort subTick, bool state)
+    {
+        // i'm just going to drop the movement packets on the server for testing
+        // ideally we'd not send them in the first place but that requires a change to robust
+        // which means i can't access my cvar that is in content, unless we do something a tiny bit cursed
+        // (cancel InputSystem.HandleInputCommand by returning false from HandleCmdMessage in the input cmd handlers,
+        // and then separately do all the functionality of it except for actually sending the net message)
+        if (!_applyingRedundantInput && _cfg.GetCVar(RedundantMovementCVars.Enabled))
+        {
+            return;
+        }
+
+        base.HandleDirChange(entity, dir, subTick, state);
+    }
+
+    protected override void HandleRunChange(EntityUid uid, ushort subTick, bool walking)
+    {
+        if (!_applyingRedundantInput && _cfg.GetCVar(RedundantMovementCVars.Enabled))
+            return;
+
+        base.HandleRunChange(uid, subTick, walking);
+    }
+
+    /// <summary>
+    /// Shuttle button change called by the serverside component of the redundant input networking system (skips the check that suppresses normal input message packets when it's enabled)
+    /// </summary>
+    public void OnShuttleButtonChange(EntityUid uid, ShuttleButtons button, bool pressed, ushort subTick)
+    {
+        _applyingRedundantInput = true;
+
+        try
+        {
+            HandleShuttleInput(uid, button, subTick, pressed);
+        }
+        finally
+        {
+            _applyingRedundantInput = false;
+        }
+    }
+
+    /// <summary>
+    /// Move button change called by the serverside component of the redundant movement system (skips the check that suppresses normal input message packets when redundant movement packet system is enabled)
+    /// </summary>
+    public void OnMoveButtonChange(EntityUid entity, MoveButtons changedButton, bool pressed, ushort subtick)
+    {
+        _applyingRedundantInput = true;
+
+        try
+        {
+            switch (changedButton)
+            {
+                case MoveButtons.Up:
+                    HandleDirChange(entity, Direction.North, subtick, pressed);
+                    break;
+                case MoveButtons.Down:
+                    HandleDirChange(entity, Direction.South, subtick, pressed);
+                    break;
+                case MoveButtons.Left:
+                    HandleDirChange(entity, Direction.West, subtick, pressed);
+                    break;
+                case MoveButtons.Right:
+                    HandleDirChange(entity, Direction.East, subtick, pressed);
+                    break;
+                case MoveButtons.Walk:
+                    HandleRunChange(entity, subtick, pressed);
+                    break;
+                default:
+                    throw new ArgumentException($"Unknown button {changedButton}", nameof(changedButton));
+            }
+        }
+        finally
+        {
+            _applyingRedundantInput = false;
+        }
+    }
 }
