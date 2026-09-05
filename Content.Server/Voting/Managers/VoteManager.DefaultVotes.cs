@@ -123,10 +123,11 @@ namespace Content.Server.Voting.Managers
         /// Gives the current percentage of players eligible to vote, rounded to nearest percentage point.
         /// </summary>
         /// <param name="eligibility">The eligibility requirement to vote.</param>
-        public int CalculateEligibleVoterPercentage(VoterEligibility eligibility)
+        public int CalculateEligibleVoterPercentage(VoterEligibility eligibility, List<ICommonSession>? filter = null) // Starlight edit
         {
-            var eligibleCount = CalculateEligibleVoterNumber(eligibility);
-            var totalPlayers = _playerManager.Sessions.Count(session => session.Status != SessionStatus.Disconnected);
+            var eligibleCount = CalculateEligibleVoterNumber(eligibility, filter); // Starlight edit
+
+            var totalPlayers = filter?.Count(session => session.Status != SessionStatus.Disconnected) ?? _playerManager.Sessions.Count(session => session.Status != SessionStatus.Disconnected); // Starlight edit - This would have been two lines but that somehow trips up the .editorconfig check on GitHub. So now I'm adding this comment to explain that because I thought the gag of making this line even longer would be hilarious.
 
             var eligiblePercentage = 0.0;
             if (totalPlayers > 0)
@@ -143,14 +144,14 @@ namespace Content.Server.Voting.Managers
         /// Gives the current number of players eligible to vote.
         /// </summary>
         /// <param name="eligibility">The eligibility requirement to vote.</param>
-        public int CalculateEligibleVoterNumber(VoterEligibility eligibility)
+        public int CalculateEligibleVoterNumber(VoterEligibility eligibility, List<ICommonSession>? filter = null) // Starlight edit
         {
             var eligibleCount = 0;
 
-            foreach (var player in _playerManager.Sessions)
+            foreach (var player in filter?.ToArray() ?? _playerManager.Sessions) // Starlight edit
             {
                 _playerManager.UpdateState(player);
-                if (player.Status != SessionStatus.Disconnected && CheckVoterEligibility(player, eligibility))
+                if (player.Status != SessionStatus.Disconnected && CheckVoterEligibility(player, eligibility, filter)) // Starlight edit
                 {
                     eligibleCount++;
                 }
@@ -335,7 +336,7 @@ namespace Content.Server.Voting.Managers
             };
         }
 
-        private void CreateMapVote(ICommonSession? initiator)
+        public void CreateMapVote(ICommonSession? initiator) // Starlight edit
         {
             var maps = new Dictionary<string, GameMapPrototype>();
             var eligibleMaps = _gameMapManager.CurrentlyEligibleMaps().ToList();
@@ -679,7 +680,7 @@ namespace Content.Server.Voting.Managers
             DirtyCanCallVoteAll();
         }
 
-        private Dictionary<GamePresetPrototype, string> GetGamePresets()
+        public Dictionary<GamePresetPrototype, string> GetGamePresets() // Starlight edit
         {
             var presets = new Dictionary<GamePresetPrototype, string>();
 

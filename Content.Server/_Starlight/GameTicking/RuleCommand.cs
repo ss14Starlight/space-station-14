@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Server._Starlight.Commands;
+using Content.Server._Starlight.Toolshed;
 using Content.Server.Administration;
 using Content.Server.GameTicking;
 using Content.Shared.Administration;
@@ -22,7 +24,7 @@ public sealed class RuleCommand : ToolshedCommand
     {
         _ticker ??= GetSys<GameTicker>();
         var rules = _ticker.GetAddedGameRules().Where(x => MetaData(x).EntityPrototype!.ID == ruleId.ProtoId).ToList();
-        if (rules.Count == 0) ctx.WriteMarkup($"[color=gold]No rules with protoId \"{ruleId.ProtoId.Id}\" found, returned list is empty.[/color]");
+        if (rules.Count == 0) CommandMarkup.Warn(ctx, $"No rules with protoId \"{ruleId.ProtoId.Id}\" found, returned list is empty.");
         return rules;
     }
 
@@ -40,7 +42,7 @@ public sealed class RuleCommand : ToolshedCommand
         _ticker ??= GetSys<GameTicker>();
         if (HasComp<EndedGameRuleComponent>(uid))
         {
-            ctx.WriteMarkup($"[color=red]Game rule {EntityManager.ToPrettyString(uid)} has already ended.[/color]");
+            CommandMarkup.Error(ctx, $"Game rule {EntityManager.ToPrettyString(uid)} has already ended.");
             return uid;
         }
         _ticker.EndGameRule(uid);
