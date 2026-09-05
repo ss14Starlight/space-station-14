@@ -45,6 +45,12 @@
     - type: Tool
       qualities:
         - Prying
+      useSound:
+        path: /Audio/Items/crowbar.ogg
+    - type: Prying
+      useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
+      playSoundOnDoafter: true #SL
+    - type: ToolTileCompatible
 
 - type: entity
   name: cane blade
