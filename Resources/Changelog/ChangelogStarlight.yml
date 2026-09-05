@@ -1,18 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: The law communications console has been removed.
-    type: Remove
-  id: 407797
-  time: '2026-08-21T11:32:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5743
-- author: Caws
-  changes:
-  - message: Internal Affairs Agents no longer have Command access.
-    type: Remove
-  id: 407798
-  time: '2026-08-21T11:58:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5744
 - author: Conflee
   changes:
   - message: Resprited the Makeshift Sword, Improvised Sword, Forged Sword + Parts, Dawnbreaker, and Tidebreaker + Parts. New sprites now match existing vanilla sprites (Claymore, Sabre, Cutlass) as well as other Starlight unique swords (Prototype Vibroblade and CentComm Vibroblade).
@@ -2799,4 +2785,18 @@ Entries:
   id: 408196
   time: '2026-09-05T17:47:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5777
+- author: joshujo
+  changes:
+  - message: Ammonia production reaction, give some nitrogen and hydrogen enough heat and pressure and it will start producing ammonia.
+    type: Add
+  id: 408197
+  time: '2026-09-05T17:47:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5790
+- author: joshujo
+  changes:
+  - message: Ammonia decay, ammonia production is reversible, it will decay in the same conditions it is made in.
+    type: Add
+  id: 408198
+  time: '2026-09-05T17:47:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5790
 Order: -1
