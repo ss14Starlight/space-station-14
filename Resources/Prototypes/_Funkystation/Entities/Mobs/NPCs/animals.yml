@@ -161,7 +161,7 @@
     - id: WeirdEggPlasma
 
 - type: entity
-  name: servant of nar'sie
+  name: servant of nar'sie # Starlight
   parent: MobGoose
   id: MobGooseNarsie
   description: A damned beast that yearns for blood.

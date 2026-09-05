@@ -72,6 +72,13 @@
   suffix: DO NOT MAP, Admeme
   description: THAT'S THE FUCKING MOUSE IT CAME FOR A FUCKING CHEESE
   components:
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - GalacticCommon
+    - Mouse
+    - Squeakish
   - type: GhostRole
     important: true # SL
     allowMovement: true
@@ -182,7 +189,6 @@
   - type: Respirator
     minSaturation: 5.0
   - type: NoSlip
-  - type: FlashImmunity
   - type: Loadout
     prototypes: [ GearNyrMouseOps ]
   - type: NightVision
@@ -192,7 +198,7 @@
   id: GearNyrMouseOps
   equipment:
     outerClothingpin: ClothingOuterHardsuitSyndieMouseOps
-    earspin: ClothingHeadsetAltSyndicate
+    earspin: ClothingHeadsetAltSyndicateUnremovable
     idmouse: AgentIDCard
     glovespin: ClothingHandsGlovesCombatmous
     backpin: ClothingBackpackDuffelSyndicateAmmoMouse

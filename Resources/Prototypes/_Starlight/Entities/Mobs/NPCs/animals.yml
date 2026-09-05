@@ -138,3 +138,251 @@
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-kobold
 
+#Rainbow Mice
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseBlue
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    color: blue
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-0
+      color: blue
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-0
+        color: blue
+    noMovementLayers:
+      movement:
+        state: mouse-0
+        color: blue
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    color: blue
+    equippedPrefix: 0
+    slots:
+    - HEAD
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-0
+      Critical:
+        Base: dead-0
+      Dead:
+        Base: splat-0
+  - type: Item
+    size: Tiny
+    heldPrefix: blue
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseRed
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    color: red
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-0
+      color: red
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-0
+        color: red
+    noMovementLayers:
+      movement:
+        state: mouse-0
+        color: red
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    color: red
+    equippedPrefix: 0
+    slots:
+    - HEAD
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-0
+      Critical:
+        Base: dead-0
+      Dead:
+        Base: splat-0
+  - type: Item
+    size: Tiny
+    heldPrefix: red
+
+- type: entity
+  parent: MobMouse
+  id: MobMousePurple
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    color: mediumpurple
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-0
+      color: mediumpurple
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-0
+        color: mediumpurple
+    noMovementLayers:
+      movement:
+        state: mouse-0
+        color: mediumpurple
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    color: mediumpurple
+    equippedPrefix: 0
+    slots:
+    - HEAD
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-0
+      Critical:
+        Base: dead-0
+      Dead:
+        Base: splat-0
+  - type: Item
+    size: Tiny
+    heldPrefix: mediumpurple
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseOrange
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    color: orange
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-0
+      color: orange
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-0
+        color: orange
+    noMovementLayers:
+      movement:
+        state: mouse-0
+        color: orange
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    color: orange
+    equippedPrefix: 0
+    slots:
+    - HEAD
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-0
+      Critical:
+        Base: dead-0
+      Dead:
+        Base: splat-0
+  - type: Item
+    size: Tiny
+    heldPrefix: orange
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseGreen
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    color: lightgreen
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-0
+      color: lightgreen
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-0
+        color: lightgreen
+    noMovementLayers:
+      movement:
+        state: mouse-0
+        color: lightgreen
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    color: lightgreen
+    equippedPrefix: 0
+    slots:
+    - HEAD
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-0
+      Critical:
+        Base: dead-0
+      Dead:
+        Base: splat-0
+  - type: Item
+    size: Tiny
+    heldPrefix: lightgreen
+
+# Immortal Roach from Funky, moved here since we're tweaking it
+- type: entity
+  name: hardened roach
+  parent: MobCockroach
+  id: ImmortalRoach
+  description: With an extremely robust carapace this foul creature is considered neigh invulnerable. Spacing is recommended.
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Mobs/Animals/cockroach.rsi
+    color: "#e6e6e6"
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cockroach
+      color: "#e6e6e6"
+  - type: Item
+    size: Tiny
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: MouseCompound
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: InsectBlood
+        Quantity: 40
+  - type: Hunger
+    baseDecayRate: 0.25
+  - type: MobState
+  - type: Godmode
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 0.7
+    baseSprintSpeed : 1
+

@@ -975,6 +975,10 @@
           prob: 0.1 # Funky end
         - id: MobMonkeySyndicateAgent #so lucky
           prob: 0.03
+        - id: ImmortalRoach # Funky start
+          prob: 0.1
+          amount: !type:RangeNumberSelector
+            range: 2, 3 # Funky end
 
 - type: entity
   id: XenoArtifactHostileFaunaSpawn

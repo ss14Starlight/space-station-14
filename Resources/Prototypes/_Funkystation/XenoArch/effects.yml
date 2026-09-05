@@ -112,28 +112,28 @@
       deleteSpawnerAfterSpawn: false
       table: !type:GroupSelector
         rolls: !type:RangeNumberSelector
-          range: 1, 2
+          range: 1, 3 # Starlight
         children:
         - id: MobMouse
-          weight: 29 # Starlight start
-        - id: MobMouse1
-          weight: 28
-        - id: MobMouse2
-          weight: 28
-        #- id: MobMousePurple
-        #  weight: 10
-        #- id: MobMouseOrange # Don't have these mice
-        #  weight: 10
-        #- id: MobMouseGreen
-        #  weight: 10 #  Starlight end
+          weight: 34 # Starlight
+        - id: MobMouseBlue
+          weight: 10
+        - id: MobMouseRed
+          weight: 10
+        - id: MobMousePurple
+          weight: 10
+        - id: MobMouseOrange
+          weight: 10
+        - id: MobMouseGreen
+          weight: 10
         - id: MobMouseStealth
           weight: 5
         - id: MobMouseRGB
           weight: 5
         - id: MobMouseCancer # Starlight, replace Snouse with Cancer Mouse
           weight: 5
-        #- id: MobMouseBurnt # Starlight
-        #  weight: 1 # Starlight
+        - id: MobNyrMouseOps # Starlight
+          weight: 1
 
 - type: entity
   id: XenoArtifactPetLikeSpawn
