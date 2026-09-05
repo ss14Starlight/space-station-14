@@ -36,12 +36,6 @@
       - Tail
       - HeadTop
     - type: Hunger # on 1.8x more
-      thresholds: # 25% higher than defaults
-        Overfed: 250.0
-        Okay: 187.5
-        Peckish: 125.0
-        Starving: 62.5
-        Dead: 0
       baseDecayRate: 0.03
     - type: Icon
       sprite: _FarHorizons/Mobs/Species/Proto-Avali/parts.rsi
