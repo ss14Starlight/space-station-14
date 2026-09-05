@@ -98,6 +98,17 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+- type: listing
+  id: VendorPlushieVictor
+  productEntity: PlushieVictor
+  cost:
+    NTCredit: 20
+  categories:
+  - SLCrew
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 # Generic Playable Species - Keep alphabetical, please!
 - type: listing
   id: VendorPlushieArachind
