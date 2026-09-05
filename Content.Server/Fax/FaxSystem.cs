@@ -457,7 +457,7 @@ public sealed partial class FaxSystem : EntitySystem
             return;
 
         component.DestinationFaxAddress = destAddress;
-        component.DestinationFaxName = component.KnownFaxes[destAddress];
+        component.DestinationFaxName = component.KnownFaxes[destAddress].Name; // Starlight
 
         UpdateUserInterface(uid, component);
     }
@@ -542,6 +542,7 @@ public sealed partial class FaxSystem : EntitySystem
                                        paper.StampState,
                                        paper.StampedBy,
                                        paper.EditingDisabled,
+                                       component.FaxName, // Starlight
                                        //starlight-start
                                        cargoSlipComponent?.Product.Id,
                                        cargoSlipComponent?.Requester,
@@ -597,7 +598,9 @@ public sealed partial class FaxSystem : EntitySystem
 
         var content = paper.Content;
 
-        if (component.AddSenderInfo)
+        #region Starlight
+        // Starlight, we have our own way to handle this, so we disable Wizden's implementation.
+        /*if (component.AddSenderInfo)
         {
             var faxMachineAddress = TryComp<DeviceNetworkComponent>(uid, out var deviceNetworkComponent)
             ? deviceNetworkComponent.Address
@@ -614,7 +617,8 @@ public sealed partial class FaxSystem : EntitySystem
                 ("recipient_addr", component.DestinationFaxAddress),
                 ("time", timeString)
             );
-        }
+        }*/
+        #endregion
 
 
         var payload = new NetworkPayload()
@@ -644,7 +648,8 @@ public sealed partial class FaxSystem : EntitySystem
 
         #region Starlight
         payload[FaxConstants.FaxMetaSender] = component.FaxName;
-        payload[FaxConstants.FaxMetaSentAt] = GetTimeStamp();
+        var time = _gameTicker.RoundDuration();
+        payload[FaxConstants.FaxMetaSentAt] = TimeSpan.FromSeconds(Math.Truncate(time.TotalSeconds)).ToString();
 
         // Cargo slip logic
         // This feels bad and hacky, probably better ways to do this...
@@ -716,7 +721,7 @@ public sealed partial class FaxSystem : EntitySystem
             #region Starlight
             _paperSystem.SetContent((printed, paper), printout.RetainMetadata
                 ? printout.Content
-                : PrependContentMetadata(StripContentMetadata(printout.Content), GetTimeStamp(), printout, component));
+                : PrependContentMetadata(uid, StripContentMetadata(printout.Content), GetTimeStamp(), printout, component));
             #endregion
 
             // Apply stamps
@@ -829,15 +834,19 @@ public sealed partial class FaxSystem : EntitySystem
         return parsed.RemoveLeading(["meta"]).ToMarkup();
     }
 
-    private static string PrependContentMetadata(string content, string currentTime, FaxPrintout payload, FaxMachineComponent comp)
+    private string PrependContentMetadata(EntityUid uid, string content, string currentTime, FaxPrintout payload, FaxMachineComponent comp)
     {
         const string MetaFormat = """
-        [meta][dots bold]Sent: {0} at {1}
-        Rcvd: {2} at {3}[/dots]
-        [/meta]{4}
+        [meta][dots bold]Sent: {0} at {1} {2}
+        Rcvd: {3} at {4} {5}[/dots]
+        [/meta]{6}
         """;
-        return string.Format(MetaFormat, payload.MetaSentAt, FormattedMessage.EscapeText(payload.MetaSender ?? ""),
-            currentTime, FormattedMessage.EscapeText(comp.FaxName), content);
+
+        var faxMachineAddress = TryComp<DeviceNetworkComponent>(uid, out var deviceNetworkComponent)
+            ? deviceNetworkComponent.Address
+            : Loc.GetString("device-address-unknown");
+        return string.Format(MetaFormat, payload.MetaSentAt, FormattedMessage.EscapeText(payload.MetaSender ?? ""), FormattedMessage.EscapeText(faxMachineAddress),
+            currentTime, FormattedMessage.EscapeText(comp.FaxName ?? ""), FormattedMessage.EscapeText(comp.DestinationFaxAddress ?? ""), content);
     }
 
     private FaxPrintout? TryGetFaxablePrintout(EntityUid? item, FaxMachineComponent component)
