@@ -1,11 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: AI no longer sees job icons outside camera range while suit sensors are not set to coordinates.
-    type: Fix
-  id: 407833
-  time: '2026-08-26T20:31:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5799
 - author: Johnny
   changes:
   - message: Added more ninja threats for the communications console interaction.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408232
   time: '2026-09-05T23:09:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5874
+- author: Johnny
+  changes:
+  - message: Added some forms into the document printer for science sop.
+    type: Add
+  id: 408233
+  time: '2026-09-05T23:36:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5862
 Order: -1
