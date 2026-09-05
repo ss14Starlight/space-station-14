@@ -45,7 +45,7 @@ public sealed partial class CryoPodComponent : Component
     /// (injection interval)
     /// </summary>
     [DataField]
-    public TimeSpan BeakerTransferTime = TimeSpan.FromSeconds(2);
+    public TimeSpan BeakerTransferTime = TimeSpan.FromSeconds(1); // Starlight-edit: 1u/1s
 
     /// <summary>
     /// The timestamp for the next injection.

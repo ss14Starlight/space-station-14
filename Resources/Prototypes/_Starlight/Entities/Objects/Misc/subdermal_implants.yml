@@ -263,3 +263,16 @@
     tags:
     - SubdermalImplant
     - HideContextMenu
+
+# ITG Implants
+- type: entity
+  parent: TrackingImplant
+  id: ITGTrackingImplant
+  name: itg tracking implant
+  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the expedition channel.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: RattleOnTrigger
+      targetUser: true
+      radioChannel:
+      - Expedition
