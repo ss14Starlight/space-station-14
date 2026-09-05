@@ -365,7 +365,7 @@
       table: !type:AllSelector
         children:
           - id: MobZleeb
-          - id: MechZleeb
+          - id: MechZleebBattery # Starlight, battery version so it can move
 
 # Item Spawners
 
