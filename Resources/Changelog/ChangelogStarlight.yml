@@ -1,20 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
   changes:
-  - message: Cargo request computer now has separate category for instruments.
-    type: Add
-  id: 407721
-  time: '2026-08-18T03:22:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5703
-- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
-  changes:
-  - message: The GUI for instruments has been completely overhauled.
-    type: Tweak
-  id: 407722
-  time: '2026-08-18T03:22:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5703
-- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
-  changes:
   - message: Instruments from cargo has been tweaked and reduced in price.
     type: Tweak
   id: 407723
@@ -2799,4 +2785,18 @@ Entries:
   id: 408120
   time: '2026-09-04T04:57:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5964
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added Mailboxes to every department.'
+    type: Add
+  id: 408121
+  time: '2026-09-05T13:19:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5977
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] K9 Job Slots are now permanently open.'
+    type: Tweak
+  id: 408122
+  time: '2026-09-05T13:19:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5977
 Order: -1
