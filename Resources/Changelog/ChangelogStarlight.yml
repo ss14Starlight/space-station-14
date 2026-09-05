@@ -1,74 +1,4 @@
 Entries:
-- author: RedSpeeds
-  changes:
-  - message: Fixed asteroids lacking collision.
-    type: Fix
-  id: 407757
-  time: '2026-08-18T22:49:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5576
-- author: Caws
-  changes:
-  - message: Examining clothing (e.g. winter coats, hardsuits, etc.) will now tell you exactly how good (or bad) it is at protecting you from hot & cold temperatures.
-    type: Add
-  id: 407758
-  time: '2026-08-18T22:49:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5626
-- author: bynddark8
-  changes:
-  - message: Introduces the Assistant Manager's task master digi-board, which allows them to change the job titles and HUD icons of their yellow gloved underlings.
-    type: Add
-  id: 407759
-  time: '2026-08-18T23:21:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5546
-- author: bynddark8
-  changes:
-  - message: Adds the task master digi-board to the Assistant Manager's loadout.
-    type: Tweak
-  id: 407760
-  time: '2026-08-18T23:21:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5546
-- author: bynddark8
-  changes:
-  - message: Adds 8 new sprites for informal "job" icons that can be assigned by the Assistant Manager.
-    type: Add
-  id: 407761
-  time: '2026-08-18T23:21:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5546
-- author: bynddark8
-  changes:
-  - message: Introduces the ability to the HUD icon associated with an ID card without changing its access on an ID card computer.
-    type: Add
-  id: 407762
-  time: '2026-08-18T23:21:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5546
-- author: bynddark8
-  changes:
-  - message: Emagging an ID card computer will allow its user to set their HUD icons to non-corporate approved imagery.
-    type: Add
-  id: 407763
-  time: '2026-08-18T23:21:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5546
-- author: OJG
-  changes:
-  - message: Added a mid sized Supermatter setup to Ming.
-    type: Add
-  id: 407764
-  time: '2026-08-18T23:21:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5716
-- author: wonderfulnewworld
-  changes:
-  - message: Reporters and Radio Hosts now get Theatre access on skeleton crew.
-    type: Tweak
-  id: 407765
-  time: '2026-08-18T23:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5719
-- author: wonderfulnewworld
-  changes:
-  - message: Some members of Service will get Clown and Mime access on skeleton crew.
-    type: Fix
-  id: 407766
-  time: '2026-08-18T23:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5719
 - author: wonderfulnewworld
   changes:
   - message: Non-smart Corgis, Admin/Mentor Mice, and ghosts will no longer roll antag.
@@ -2799,4 +2729,74 @@ Entries:
   id: 408156
   time: '2026-09-05T15:27:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5970
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Added all departmental techfabs with service being near clown/mime room.
+    type: Add
+  id: 408157
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Added all departmental mailboxes.
+    type: Add
+  id: 408158
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Added a cyborg charger and intellicard to ai core.
+    type: Add
+  id: 408159
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Removed infinite power generation from ai core.
+    type: Remove
+  id: 408160
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Removed an airvent that wasn't being used in salvage room.
+    type: Remove
+  id: 408161
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Removed hv wires in engie that went around smes room.
+    type: Remove
+  id: 408162
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Fixed an airvent on the scrubber line and a scrubber on the distro line near cargo front.
+    type: Fix
+  id: 408163
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Added a nuclear reactor east if PA room.
+    type: Add
+  id: 408164
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Added a single k9 to security.
+    type: Add
+  id: 408165
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Added mailboxes to all departments.
+    type: Add
+  id: 408166
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
 Order: -1
