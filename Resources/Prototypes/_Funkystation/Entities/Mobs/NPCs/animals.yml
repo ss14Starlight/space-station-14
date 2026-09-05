@@ -1,103 +1,3 @@
-# Meowl
-- type: entity
-  id: MobMeowl
-  name: meowl
-  description: The peak of evolution, the most efficient pest hunter any side of the galaxy. Considered highly invasive on every planet.
-  parent: [SimpleMobBase, FlyingMobBase]
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      sprite: _Funkystation/Mobs/Animals/meowl.rsi
-      state: meowl
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.25
-        density: 10
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
-  - type: DamageStateVisuals
-    states:
-     Alive:
-       Base: meowl
-     Critical:
-       Base: dead
-     Dead:
-       Base: dead
-  - type: Butcherable
-    spawned:
-    - id: FoodMeat
-      amount: 1
-  - type: Speech
-    speechSounds: Cat
-    speechVerb: SmallMob
-    allowedEmotes: ['Purr','Mew','Meow'] # Starlight, no Hiss
-  - type: ReplacementAccent
-    accent: cat
-  - type: InteractionPopup
-    successChance: 0.6
-    interactSuccessString: petting-success-cat
-    interactFailureString: petting-failure-generic
-    interactSuccessSpawn: EffectHearts
-    interactSuccessSound:
-      path: /Audio/Animals/cat_meow.ogg
-  - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 75
-  - type: MeleeWeapon
-    altDisarm: false
-    angle: 0
-    animation: WeaponArcClaw
-    soundHit:
-      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
-    damage:
-      types:
-        Slash: 5
-        Piercing: 5
-  - type: StaminaDamageOnHit
-    damage: 8 #as strong as boxing gloves. HOLY SHIT THERES A BIRDCAT IN MY FACE AAHGAH GET IT OFF GET IT OFF
-  - type: Grammar
-    attributes:
-      gender: epicene
-  - type: MobPrice
-    price: 1000
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - VimPilot
-    # Goob/EE Thermal Vision is AGPL. Commenting out for now incase Goob/EE thermal vision gets ported. Though more likely that it has to be rebuilt from the ground up.
-  - type: ThermalVision # Starlight, we actually have this
-#    color: "#b8b8b8"
-#    activateSound: null
-#    deactivateSound: null
-#    lightRadius: 2
-  - type: NpcFactionMember
-    factions:
-    - PetsNT #makes them hunt mice
-  - type: HTN
-    rootTask:
-      task: SimpleHostileCompound
-  - type: NPCRetaliation #bird talon with cat fangs plus wings equals don't fuck with them
-  - type: GhostRole
-    prob: 0.25
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    name: ghost-role-information-meowl-name
-    description: ghost-role-information-meowl-description
-    rules: ghost-role-information-nonantagonist-rules # Starlight
-    mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
-  - type: GhostTakeoverAvailable
-
 #Rainbow Mice
 
 - type: entity
@@ -257,6 +157,52 @@
     heldPrefix: green
 
 #Weird Mice
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseBurnt
+  description: Flammable. Squeak!
+  suffix: FIRE!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Animals/Mice/Burnt.rsi # Starlight
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-burnt
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-burnt
+    noMovementLayers:
+      movement:
+        state: mouse-burnt
+  - type: Clothing
+    sprite: _Starlight/Mobs/Animals/Mice/Burnt.rsi # Starlight
+    equippedPrefix: burnt
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-burnt
+      Critical:
+        Base: dead-burnt
+      Dead:
+        Base: splat-burnt
+  - type: Item
+    size: Tiny
+    heldPrefix: burnt
+  - type: AlwaysHot
+  - type: IgnitionSource #Todo make this fucker light you on fire if you touch them
+    temperature: 800
+    ignited: true
+  - type: FireProtection
+    reduction: 1 #Its on fire constantly
+  - type: PointLight
+    color: Red
+    radius: 3
+    energy: 4
+    netsync: false
+  - type: ParticleEmitter # Starlight
+    effect: SfFireContinuous # Starlight
 
 - type: entity
   parent: MobMouse
@@ -534,3 +480,103 @@
     despawnWhenDone: true # Starlight start
   #- type: TimedDespawn
   #  lifetime: 2 # Starlight end
+
+# Meowl
+- type: entity
+  id: MobMeowl
+  name: meowl
+  description: The peak of evolution, the most efficient pest hunter any side of the galaxy. Considered highly invasive on every planet.
+  parent: [SimpleMobBase, FlyingMobBase]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      sprite: _Funkystation/Mobs/Animals/meowl.rsi
+      state: meowl
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: DamageStateVisuals
+    states:
+     Alive:
+       Base: meowl
+     Critical:
+       Base: dead
+     Dead:
+       Base: dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: Speech
+    speechSounds: Cat
+    speechVerb: SmallMob
+    allowedEmotes: ['Purr','Mew','Meow'] # Starlight, no Hiss
+  - type: ReplacementAccent
+    accent: cat
+  - type: InteractionPopup
+    successChance: 0.6
+    interactSuccessString: petting-success-cat
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 75
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Slash: 5
+        Piercing: 5
+  - type: StaminaDamageOnHit
+    damage: 8 #as strong as boxing gloves. HOLY SHIT THERES A BIRDCAT IN MY FACE AAHGAH GET IT OFF GET IT OFF
+  - type: Grammar
+    attributes:
+      gender: epicene
+  - type: MobPrice
+    price: 1000
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+    # Goob/EE Thermal Vision is AGPL. Commenting out for now incase Goob/EE thermal vision gets ported. Though more likely that it has to be rebuilt from the ground up.
+  - type: ThermalVision # Starlight, we actually have this
+#    color: "#b8b8b8"
+#    activateSound: null
+#    deactivateSound: null
+#    lightRadius: 2
+  - type: NpcFactionMember
+    factions:
+    - PetsNT #makes them hunt mice
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NPCRetaliation #bird talon with cat fangs plus wings equals don't fuck with them
+  - type: GhostRole
+    prob: 0.25
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-meowl-name
+    description: ghost-role-information-meowl-description
+    rules: ghost-role-information-nonantagonist-rules # Starlight
+    mindRoles:
+    - MindRoleGhostRoleFreeAgentHarmless
+  - type: GhostTakeoverAvailable

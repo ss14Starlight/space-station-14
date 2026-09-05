@@ -169,6 +169,7 @@
     - CannotSuicide
     - VimPilot
     - AnomalyHost
+    - Mouse
   - type: TemperatureDamage
     heatDamageThreshold: 423
     coldDamageThreshold: 0
@@ -193,6 +194,27 @@
     prototypes: [ GearNyrMouseOps ]
   - type: NightVision
   - type: ThermalVision
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: MouseCompound
+  - type: Thirst
+    startingThirst: 25  # spawn with Okay thirst state
+    thresholds:
+      OverHydrated: 35
+      Okay: 25
+      Thirsty: 15
+      Parched: 10
+      Dead: 0
+    baseDecayRate: 0.04
+  - type: Hunger
+    thresholds:
+      Overfed: 35
+      Okay: 25
+      Peckish: 15
+      Starving: 10
+      Dead: 0
+    baseDecayRate: 0.5 # I'm very hungry! Give me. The cheese.
 
 - type: startingGear
   id: GearNyrMouseOps
