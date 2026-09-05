@@ -960,22 +960,6 @@ namespace Content.Shared.Chemistry.Components
             return mixColor;
         }
 
-        // Blimpuf start
-        private static Color GetReagentColor(ReagentPrototype proto, ReagentId reagent)
-        {
-            if (reagent.Data == null)
-                return proto.SubstanceColor;
-
-            foreach (var data in reagent.Data)
-            {
-                if (data is ReagentColorData colorData)
-                    return colorData.Color;
-            }
-
-            return proto.SubstanceColor;
-        }
-        // Blimpuf end
-
         #region Enumeration
 
         public IEnumerator<ReagentQuantity> GetEnumerator()

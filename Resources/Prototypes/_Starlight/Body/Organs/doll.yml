@@ -3,11 +3,8 @@
   parent:
   - BaseMob
   - MobPolymorphable
-  - MobAtmosExposed
   - MobBloodstream
   - MobFlammable
-  - MobRespirator
-  - MobAtmosStandard
   - BaseItem
   abstract: true
   components:
@@ -17,17 +14,10 @@
   - type: Edible
   - type: Extractable
     grindableSolutionName: organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 15
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 15
+    - SolutionOrganNutrimentDoll
+    - SolutionOrganFoodMeatDoll
   - type: FlavorProfile
     flavors:
       - savory
@@ -145,17 +135,10 @@
     tags:
       - Meat
   - type: OrganBrain
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: GreyMatter
-          Quantity: 20
+    - SolutionOrganNutrimentDoll
+    - SolutionOrganFoodGreyMatterLarge
   - type: FoodSequenceElement
     entries:
       Burger: Brain
@@ -211,20 +194,11 @@
   - type: Metabolizer
     metabolizerTypes: [ Human ]
     stages: [ Respiration ]
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      Lung:
-        maxVol: 100.0
-        canReact: false
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 10
+    - SolutionOrganNutrimentDoll
+    - SolutionOrganFoodMeatDoll
+    - SolutionOrganLung
 
 - type: entity
   id: OrganDollHeart
@@ -253,15 +227,11 @@
   components:
   - type: Sprite
     state: stomach
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 100
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 10
+    - SolutionOrganNutrimentDoll
+    - SolutionOrganFoodMeatDoll
+    - SolutionOrganStomach100
   - type: Stomach
     specialDigestible:
       tags:
@@ -319,7 +289,8 @@
   - type: Organ
   - type: PhysicalComposition
     materialComposition:
-      Plasteel: 500
+      Plasteel: 25
+      Steel: 100
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 1.0
