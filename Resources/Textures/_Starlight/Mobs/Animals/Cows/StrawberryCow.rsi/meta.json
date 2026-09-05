@@ -14,7 +14,7 @@
           1
         ]
       ],
-	  "copyright": "Original cow taken from https://github.com/tgstation/tgstation/commit/53d1f1477d22a11a99c6c6924977cd431075761b, Strawberry Cow by ItsMaitake on Blimpuf Station" 
+	  "copyright": "Original cow taken from https://github.com/tgstation/tgstation/commit/53d1f1477d22a11a99c6c6924977cd431075761b, Strawberry Cow by ItsMaitake on Blimpuf Station"
     },
     {
       "name": "cow",
@@ -33,7 +33,7 @@
           1
         ]
       ],
-	  "copyright": "TG Station, ItsMaitake" 
+	  "copyright": "TG Station, ItsMaitake"
     },
     {
       "name": "gib",
@@ -53,7 +53,7 @@
           0.1
         ]
       ],
-	  "copyright": "TG Station, ItsMaitake" 
+	  "copyright": "TG Station, ItsMaitake"
     }
   ]
 }
