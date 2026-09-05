@@ -45,3 +45,4 @@
     - MindRoleGhostRoleNeutral # Starlight
     raffle:
       settings: default
+  - type: GhostTakeoverAvailable # Starlight
