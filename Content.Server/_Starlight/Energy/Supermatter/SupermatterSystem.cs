@@ -255,9 +255,9 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
 
         var ReactionMod = supermatter.Comp.ReactionModifier.Float();//make gases that risk higher reactifify also make more gas/also produce less for "safer" gases
 
-        gas.AdjustMoles((int)Gas.Tritium, breakDelta.Float()/2* ReactionMod);
-
-        gas.AdjustMoles((int)Gas.Oxygen, breakDelta.Float()*4* ReactionMod);
+        gas.AdjustMoles((int)Gas.Tritium, breakDelta.Float() / 2 * ReactionMod);
+        gas.AdjustMoles((int)Gas.Plasma, breakDelta.Float() * ReactionMod);
+        gas.AdjustMoles((int)Gas.Oxygen, breakDelta.Float() * 4 * ReactionMod);
     }
 
     private static void ProcessHeat(Entity<SupermatterComponent> supermatter, GasMixture gas, float heatTransfer, float heatModifier)
