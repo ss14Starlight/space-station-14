@@ -38,6 +38,7 @@ using Content.Shared.Actions.Components;
 using Content.Shared.NameModifier.EntitySystems;
 using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.TextToSpeech;
+using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Tag;
 
 namespace Content.Shared.Silicons.Borgs;
