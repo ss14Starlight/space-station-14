@@ -134,7 +134,7 @@
           weight: 4.5 # Starlight
         - id: MobMouseCancer # Starlight, replace Snouse with Cancer Mouse
           weight: 4.5 # Starlight
-        - id: MobMouseSnouse
+        - id: MobSnouse
           weight: 4.5 # Starlight
         - id: MobMouseBurnt
           weight: 1
