@@ -1,18 +1,4 @@
 Entries:
-- author: Romero/Littlemen
-  changes:
-  - message: 'seal of war: an item for lone wizard that enable them to use the "War" kits at the cost of informing the station.'
-    type: Add
-  id: 407808
-  time: '2026-08-21T16:50:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5771
-- author: Romero/Littlemen
-  changes:
-  - message: Several changes to the kits, see changelogs in pr.
-    type: Tweak
-  id: 407809
-  time: '2026-08-21T16:50:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5771
 - author: STARLIGHT TEAM
   changes:
   - message: Borg chassis names now synchronize with inserted brains
@@ -2799,4 +2785,18 @@ Entries:
   id: 408207
   time: '2026-09-05T19:37:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5834
+- author: Caws
+  changes:
+  - message: Most gloves now grant a little cold temperature protection, with very thin gloves (e.g. latex), granting zero temperature protection. Mittens remain as the premier way to keep ya hands warm.
+    type: Tweak
+  id: 408208
+  time: '2026-09-05T19:37:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5903
+- author: Caws
+  changes:
+  - message: Syndicate PJ hats are now warm.
+    type: Tweak
+  id: 408209
+  time: '2026-09-05T19:37:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5903
 Order: -1
