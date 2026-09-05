@@ -8,7 +8,6 @@
     sprite: _Starlight/Structures/Storage/USSP/revolutionary.rsi
   - type: Sprite
     sprite: _Starlight/Structures/Storage/USSP/revolutionary.rsi
-    #Starlight start - Attempts to fix lag
   - type: Fixtures
     fixtures:
       fix1:
@@ -16,7 +15,6 @@
           - SovietLayer
   - type: TimedDespawn
     lifetime: 900
-    #Starlight end
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/teleport_arrival.ogg
