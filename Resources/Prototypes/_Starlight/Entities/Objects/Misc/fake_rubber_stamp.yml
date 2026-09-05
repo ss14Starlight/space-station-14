@@ -1,0 +1,778 @@
+﻿#All the random fake stamps. I am sorry
+- type: entity
+  name: fake generic rubber stamp
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: RubberStampBaseFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  abstract: true
+  components:
+  - type: Stamp
+    stampedName: "Fake"
+    stampState: "paper_stamp-generic_fake"
+    stampedColor: "#a23e3e"
+    sound:
+      path: /Audio/Items/Stamp/thick_stamp_sub.ogg
+      params:
+        volume: -2
+        maxDistance: 5
+  - type: Sprite
+    sprite: Objects/Misc/stamps.rsi
+    state: stamp-mime
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+      - Stamp
+
+- type: entity
+  name: fake captain's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampCaptainFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Captian"
+      stampedColor: "#3681bb"
+      stampState: "paper_stamp-cap"
+    - type: Sprite
+      state: stamp-cap
+
+- type: entity
+  parent: RubberStampCaptainFake
+  id: RubberStampCaptainFake1
+  components:
+    - type: Stamp
+      stampedName: "Captan"
+
+- type: entity
+  parent: RubberStampCaptainFake
+  id: RubberStampCaptainFake2
+  components:
+    - type: Stamp
+      stampedName: "Captin"
+
+- type: entity
+  name: joke captain's rubber stamp
+  parent: RubberStampCaptainFake
+  id: RubberStampCaptainJoke
+  description: A funny rubber stamp for forging important documents. Hopefully they don't look too closely.
+  components:
+    - type: Stamp
+      stampedName: "Clown"
+
+#- type: entity
+#  name: CentComm rubber stamp
+#  parent: RubberStampBase
+#  id: RubberStampCentcom
+#  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+#  categories: [ DoNotMap ]
+#  components:
+#    - type: Stamp
+#      stampedName: stamp-component-stamped-name-centcom
+#      stampedColor: "#006600"
+#      stampState: "paper_stamp-centcom"
+#    - type: Sprite
+#      state: stamp-centcom
+
+- type: entity
+  name: fake chaplain's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampChaplainFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Chaqlain"
+      stampedColor: "#d70601"
+      stampState: "paper_stamp-chaplain"
+    - type: Sprite
+      state: stamp-chaplain
+
+- type: entity
+  parent: RubberStampChaplainFake
+  id: RubberStampChaplainFake1
+  components:
+    - type: Stamp
+      stampedName: "Captain"
+
+- type: entity
+  parent: RubberStampChaplainFake
+  id: RubberStampChaplainFake2
+  components:
+    - type: Stamp
+      stampedName: "Chaplan"
+
+- type: entity
+  name: joke chaplain's rubber stamp
+  parent: RubberStampChaplainFake
+  id: RubberStampChaplainJoke
+  description: A funny rubber stamp for forging important documents. Hopefully they don't look too closely.
+  components:
+    - type: Stamp
+      stampedName: "Cultist"
+
+- type: entity
+  name: fake lawyer's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampLawyerFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Lawer"
+      stampedColor: "#496130"
+      stampState: "paper_stamp-lawyer-sl"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-lawyer
+
+
+- type: entity
+  parent: RubberStampLawyerFake
+  id: RubberStampLawyerFake1
+  components:
+    - type: Stamp
+      stampedName: "Lawier"
+
+- type: entity
+  parent: RubberStampLawyerFake
+  id: RubberStampLawyerFake2
+  components:
+    - type: Stamp
+      stampedName: "Lawyr"
+
+- type: entity
+  name: joke lawyer's rubber stamp
+  parent: RubberStampLawyerFake
+  id: RubberStampLawyerJoke
+  description: A funny rubber stamp for forging important documents. Hopefully they don't look too closely.
+  components:
+    - type: Stamp
+      stampedName: "Goodman"
+
+- type: entity
+  name: fake clown's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampClownFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Cloun"
+      stampedColor: "#ff33cc"
+      stampState: "paper_stamp-clown"
+    - type: Sprite
+      state: stamp-clown
+
+- type: entity
+  parent: RubberStampClownFake
+  id: RubberStampClownFake1
+  components:
+    - type: Stamp
+      stampedName: "Klown"
+
+- type: entity
+  parent: RubberStampClownFake
+  id: RubberStampClownFake2
+  components:
+    - type: Stamp
+      stampedName: "Clawn"
+
+- type: entity
+  name: joke clown's rubber stamp
+  parent: RubberStampClownFake
+  id: RubberStampClownJoke
+  description: An extra funny rubber stamp for forging important documents.
+  components:
+    - type: Stamp
+      stampedName: "Captain"
+
+- type: entity
+  name: fake chief engineer's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampCEFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Chief Engimeer"
+      stampedColor: "#c69b17"
+      stampState: "paper_stamp-ce"
+    - type: Sprite
+      state: stamp-ce
+
+- type: entity
+  parent: RubberStampCEFake
+  id: RubberStampCEFake1
+  components:
+    - type: Stamp
+      stampedName: "Chef Engineer"
+
+- type: entity
+  parent: RubberStampCEFake
+  id: RubberStampCEFake2
+  components:
+    - type: Stamp
+      stampedName: "Cheif Engineer"
+
+- type: entity
+  name: joke chief engineer's rubber stamp
+  parent: RubberStampCEFake
+  id: RubberStampCEJoke
+  description: A funny rubber stamp for forging important documents.
+  components:
+    - type: Stamp
+      stampedName: "Chief Looser"
+
+- type: entity
+  name: fake chief medical officer's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampCMOFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Chiet Medical Officer"
+      stampedColor: "#33ccff"
+      stampState: "paper_stamp-cmo"
+    - type: Sprite
+      state: stamp-cmo
+
+- type: entity
+  parent: RubberStampCMOFake
+  id: RubberStampCMOFake1
+  components:
+    - type: Stamp
+      stampedName: "Chief Medicol Officer"
+
+- type: entity
+  parent: RubberStampCMOFake
+  id: RubberStampCMOFake2
+  components:
+    - type: Stamp
+      stampedName: "Chief Medical Oficer"
+
+- type: entity
+  name: joke chief medical officer's rubber stamp
+  parent: RubberStampCMOFake
+  id: RubberStampCMOJoke
+  description: A funny rubber stamp for forging important documents.
+  components:
+    - type: Stamp
+      stampedName: "Chief Drug Dealer"
+
+- type: entity
+  name: fake head of personnel's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampHopFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Head of Persons"
+      stampedColor: "#6ec0ea"
+      stampState: "paper_stamp-hop"
+    - type: Sprite
+      state: stamp-hop
+
+- type: entity
+  parent: RubberStampHopFake
+  id: RubberStampHopFake1
+  components:
+    - type: Stamp
+      stampedName: "Hed of Personnel"
+
+- type: entity
+  parent: RubberStampHopFake
+  id: RubberStampHopFake2
+  components:
+    - type: Stamp
+      stampedName: "Head of Persommel"
+
+- type: entity
+  name: joke head of personnel's rubber stamp
+  parent: RubberStampHopFake
+  id: RubberStampHopJoke
+  description: A funny rubber stamp for forging important documents.
+  components:
+    - type: Stamp
+      stampedName: "Head of Tiders"
+
+- type: entity
+  name: fake head of security's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampHosFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Head of Shecurity"
+      stampedColor: "#cc0000"
+      stampState: "paper_stamp-hos"
+    - type: Sprite
+      state: stamp-hos
+
+- type: entity
+  parent: RubberStampHosFake
+  id: RubberStampHosFake1
+  components:
+    - type: Stamp
+      stampedName: "Head of Securuty"
+
+- type: entity
+  parent: RubberStampHosFake
+  id: RubberStampHosFake2
+  components:
+    - type: Stamp
+      stampedName: "Head ot Security"
+
+- type: entity
+  name: joke head of security's rubber stamp
+  parent: RubberStampHosFake
+  id: RubberStampHosJoke
+  description: A funny rubber stamp for forging important documents.
+  components:
+    - type: Stamp
+      stampedName: "Head of Shitcurity"
+
+#Mime is hard to come up with stuff for.
+- type: entity
+  name: fake mime's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampMimeFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Mine"
+      stampedColor: "#777777"
+      stampState: "paper_stamp-mime"
+    - type: Sprite
+      state: stamp-mime
+
+- type: entity
+  name: fake quartermaster's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampQmFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Quatermaster"
+      stampedColor: "#a23e3e"
+      stampState: "paper_stamp-qm"
+    - type: Sprite
+      state: stamp-qm
+
+- type: entity
+  parent: RubberStampQmFake
+  id: RubberStampQmFake1
+  components:
+    - type: Stamp
+      stampedName: "Quartermister"
+
+- type: entity
+  parent: RubberStampQmFake
+  id: RubberStampQmFake2
+  components:
+    - type: Stamp
+      stampedName: "Quirtermaster"
+
+- type: entity
+  name: joke quartermaster's rubber stamp
+  parent: RubberStampQmFake
+  id: RubberStampQmJoke
+  description: A funny rubber stamp for forging important documents.
+  components:
+    - type: Stamp
+      stampedName: "Spesos Slave"
+
+- type: entity
+  name: fake research director's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampRdFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Rasaerch Director"
+      stampedColor: "#1f66a0"
+      stampState: "paper_stamp-rd"
+    - type: Sprite
+      state: stamp-rd
+
+- type: entity
+  parent: RubberStampRdFake
+  id: RubberStampRdFake1
+  components:
+    - type: Stamp
+      stampedName: "Rerseach Director"
+
+- type: entity
+  parent: RubberStampRdFake
+  id: RubberStampRdFake2
+  components:
+    - type: Stamp
+      stampedName: "Research Direcfor"
+
+- type: entity
+  name: joke research director's rubber stamp
+  parent: RubberStampRdFake
+  id: RubberStampRdJoke
+  description: A funny rubber stamp for forging important documents.
+  components:
+    - type: Stamp
+      stampedName: "Mats Gobbler"
+
+#Lost steam around here. Need to come back to it to finish it. 8/31/2026
+- type: entity
+  name: fake trader's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampTraderFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  components:
+    - type: Stamp
+      stampedName: "Traitor"
+      stampedColor: "#000000"
+      stampState: "paper_stamp-trader"
+    - type: Sprite
+      state: stamp-trader
+
+- type: entity
+  name: fake warden's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampWardenFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Warben"
+      stampedColor: "#5b0000"
+      stampState: "paper_stamp-warden"
+    - type: Sprite
+      state: stamp-warden
+
+- type: entity
+  name: fake APPROVED rubber stamp
+  parent: [RubberStampBaseAlt, BaseSyndicateContraband]
+  id: RubberStampApprovedFake
+  description: A rubber stamp for accepting forged documents. At least the syndicate didn't mess this one up.
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-approved
+      stampedColor: "#00be00"
+      stampState: "paper_stamp-ok"
+    - type: Sprite
+      state: stamp-ok
+
+- type: entity
+  name: fake DENIED rubber stamp
+  parent: [RubberStampBaseAlt, BaseSyndicateContraband]
+  id: RubberStampDeniedFake
+  description: A rubber stamp for rejecting forged documents. At least the syndicate didn't mess this one up.
+  components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-denied
+      stampedColor: "#a23e3e"
+      stampState: "paper_stamp-deny"
+    - type: Sprite
+      state: stamp-deny
+
+- type: entity
+  name: fake detective's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampDetectiveFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Defective"
+      stampedColor: "#754d36"
+      stampState: "paper_stamp-detective"
+    - type: Sprite
+      state: stamp-detective
+
+- type: entity
+  name: fake psychologist's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampPsychologistFake
+  categories: [ DoNotMap ]
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  components:
+    - type: Stamp
+      stampedName: "Pschologist"
+      stampedColor: "#5B97BC"
+      stampState: "paper_stamp-psychologist"
+    - type: Sprite
+      state: stamp-psychologist
+
+- type: entity
+  name: fake magistrate stamp
+  parent: RubberStampBaseFake
+  id: RubberStampMagistrateFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  suffix: DO NOT MAP
+  components:
+    - type: Stamp
+      stampedName: "Magisrate"
+      stampedColor: "#FF5297"
+      stampState: "paper_stamp-magistrate"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-magistrate
+
+- type: entity
+  name: fake nt representative's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampNtrepFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  suffix: DO NOT MAP
+  components:
+    - type: Stamp
+      stampedName: "NamoTrasem Representative"
+      stampedColor: "#fcc032"
+      stampState: "paper_stamp-ntrep"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-ntrep
+
+- type: entity
+  name: fake internal affairs agent's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampIAAFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  suffix: DO NOT MAP
+  components:
+    - type: Stamp
+      stampedName: "Internal Attairs Agent"
+      stampedColor: "#33CC33"
+      stampState: "paper_stamp-ok"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-iaa
+
+- type: entity
+  name: fake blueshield rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampBSOFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  suffix: DO NOT MAP
+  components:
+    - type: Stamp
+      stampedName: "Blushield Oficer"
+      stampedColor: "#004281"
+      stampState: "paper_stamp-bso"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-bso
+
+- type: entity
+  name: joke blueshield rubber stamp
+  parent: RubberStampBSOFake
+  id: RubberStampBSOJoke
+  description: A funny rubber stamp for forging important documents.
+  components:
+    - type: Stamp
+      stampedName: "Blushit Officer"
+
+
+- type: entity
+  name: fake brigmedic's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampBrigmedicFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  suffix: DO NOT MAP
+  components:
+    - type: Stamp
+      stampedName: "Brigdemedic"
+      stampedColor: "#ae2e33"
+      stampState: "paper_stamp-brigmedic"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-brigmedic
+
+- type: entity
+  name: fake salvage lead's rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampSalvageLeadFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  suffix: DO NOT MAP
+  components:
+    - type: Stamp
+      stampedName: "Salvige Lead"
+      stampedColor: "#846433"
+      stampState: "paper_stamp-salvagelead"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-salvagelead
+
+- type: entity
+  name: fake reporter rubber stamp
+  parent: RubberStampBaseFake
+  id: RubberStampReporterFake
+  description: A rubber stamp for forging important documents. Hopefully they don't look too closely.
+  components:
+    - type: Stamp
+      stampedName: "Reporfer"
+      stampedColor: "#4B75FF"
+      stampState: "paper_stamp-psychologist"
+    - type: Sprite
+      state: stamp-hop
+
+#I am so sorry for this... BEHOLD! THE RANDOM ENTITY TABLE FOR THE STAMPS!
+
+- type: entityTable
+  id: RandomCaptainStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampCaptainFake
+      - id: RubberStampCaptainFake1
+      - id: RubberStampCaptainFake2
+      - id: RubberStampCaptainJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomClownStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampClownFake
+      - id: RubberStampClownFake1
+      - id: RubberStampClownFake2
+      - id: RubberStampClownJoke
+        weight: 0.1 #Because funny
+
+- type: entityTable
+  id: RandomCEStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampCEFake
+      - id: RubberStampCEFake1
+      - id: RubberStampCEFake2
+      - id: RubberStampCEJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomCMOStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampCMOFake
+      - id: RubberStampCMOFake1
+      - id: RubberStampCMOFake2
+      - id: RubberStampCMOJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomHopStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampHopFake
+      - id: RubberStampHopFake1
+      - id: RubberStampHopFake2
+      - id: RubberStampHopJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomHosStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampHosFake
+      - id: RubberStampHosFake1
+      - id: RubberStampHosFake2
+      - id: RubberStampHosJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomQmStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampQmFake
+      - id: RubberStampQmFake1
+      - id: RubberStampQmFake2
+      - id: RubberStampQmJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomRdStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampRdFake
+      - id: RubberStampRdFake1
+      - id: RubberStampRdFake2
+      - id: RubberStampRdJoke
+        weight: 0.05
+
+#The random stamp box
+- type: entity
+  name: fake stamps box
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: BoxStampsFake
+  description: A small box containing fake stamps.
+  components:
+    - type: Storage
+      maxItemSize: Small
+      grid:
+        - 0,0,4,4
+      whitelist:
+        components:
+          - Stamp
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - !type:NestedSelector
+              tableId: RandomCaptainStampFakeTable
+            - !type:NestedSelector
+              tableId: RandomClownStampFakeTable
+            - !type:NestedSelector
+              tableId: RandomCEStampFakeTable
+            - !type:NestedSelector
+              tableId: RandomCMOStampFakeTable
+            - !type:NestedSelector
+              tableId: RandomHopStampFakeTable
+            - !type:NestedSelector
+              tableId: RandomHosStampFakeTable
+            - !type:NestedSelector
+              tableId: RandomQmStampFakeTable
+            - !type:NestedSelector
+              tableId: RandomRdStampFakeTable
+            - id: RubberStampApprovedFake
+            - id: RubberStampDeniedFake
+    - type: Sprite
+      layers:
+        - state: box
+        - state: stamp
+
+#The joke stamp box
+- type: entity
+  name: joke stamps box
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: BoxStampsJoke
+  description: A small box containing fake stamps.
+  components:
+    - type: Storage
+      maxItemSize: Small
+      grid:
+        - 0,0,4,4
+      whitelist:
+        components:
+          - Stamp
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: RubberStampCaptainJoke
+            - id: RubberStampClownJoke
+            - id: RubberStampCEJoke
+            - id: RubberStampCMOJoke
+            - id: RubberStampHopJoke
+            - id: RubberStampHosJoke
+            - id: RubberStampQmJoke
+            - id: RubberStampRdJoke
+            - id: RubberStampApproved
+            - id: RubberStampDenied
+    - type: Sprite
+      layers:
+        - state: box
+        - state: stamp
+
