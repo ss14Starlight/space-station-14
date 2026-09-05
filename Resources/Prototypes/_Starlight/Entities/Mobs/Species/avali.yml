@@ -51,11 +51,11 @@
       - Tail
       - HeadTop
     - type: Hunger # on 2x more
-      thresholds:
-        Overfed: 250
-        Okay: 200
-        Peckish: 150
-        Starving: 100
+      thresholds: # 25% higher than defaults
+        Overfed: 250.0
+        Okay: 187.5
+        Peckish: 125.0
+        Starving: 62.5
         Dead: 0
       baseDecayRate: 0.03
     - type: Thirst
