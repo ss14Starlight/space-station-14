@@ -1,13 +1,6 @@
 Entries:
 - author: STARLIGHT TEAM
   changes:
-  - message: Entitys that have their intelligence removed by intellicard, reset to default names
-    type: Tweak
-  id: 407812
-  time: '2026-08-22T01:27:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5776
-- author: STARLIGHT TEAM
-  changes:
   - message: Intellicard entities can now be transfered to borg/borg brains/MMI as intended
     type: Fix
   id: 407813
@@ -2799,4 +2792,11 @@ Entries:
   id: 408211
   time: '2026-09-05T20:37:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5845
+- author: DevCS-CP
+  changes:
+  - message: Added visuals for each mode on the energy magnum, and MT-7.
+    type: Add
+  id: 408212
+  time: '2026-09-05T20:37:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5843
 Order: -1
