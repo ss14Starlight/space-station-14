@@ -1627,7 +1627,7 @@ entities:
     - type: Transform
       parent: 1
       pos: -20.5,22.5
-- proto: ComputerSalvageExpedition
+- proto: ComputerSalvageExpeditionITG
   entities:
   - uid: 221
     components:
