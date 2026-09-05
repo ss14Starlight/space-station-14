@@ -117,6 +117,7 @@
   - type: SpeedModifierContactCapClothing
     maxContactSprintSlowdown: 0.7
     maxContactWalkSlowdown: 0.7
+  - type: NoFootprints # Funky change
   - type: StealTarget # Starlight
     stealGroup: GaloshesCollection # Starlight
 
