@@ -56,11 +56,11 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
     private readonly DragDropHelper<ActionButton> _menuDragHelper;
     private readonly TextureRect _dragShadow;
     private ActionsWindow? _window;
-    // Starlight Start
+    #region Starlight
     private readonly int _resetMargin = 10;
     private long _nextReset;
     private bool _didReset;
-    // Starlight End
+    #endregion
 
     private ActionsBar? ActionsBar => UIManager.GetActiveUIWidgetOrNull<ActionsBar>();
     private UserInterface.Controls.MenuButton? ActionButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.ActionButton;
