@@ -138,7 +138,7 @@
   products:
     Necrosol: 2
 
-- type: reaction # Starlight: Alternate recipe to give atmos a way to help chemistry.
+- type: reaction
   id: OpporozidoneAlt
   minTemp: 400
   reactants:

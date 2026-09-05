@@ -405,7 +405,7 @@
       - id: BZCanister
         weight: 0.3
       - id: ZXACanister
-        weight: 0.05  # Starlight: .2 -> .05 Starlight marker requested by rinary despite already being within starlight start and end
+        weight: 0.05
       - id: PluoxiumCanister
         weight: 0.35
       - id: UlnitraniumCanister
