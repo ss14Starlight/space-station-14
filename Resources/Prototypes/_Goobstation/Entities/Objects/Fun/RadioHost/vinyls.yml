@@ -1278,7 +1278,7 @@
   parent: BaseVinylDisc
   id: VinylSpaceAsshole
   name: "vinyl: Space Asshole"
-  description: "The unofficial anthem of this god-forsaken station. By: Chris Remo" #Inferus Addition
+  description: "The unofficial anthem of this god-forsaken station. By: Chris Remo" #SL Addition
   components:
     - type: Sprite
       state: default
