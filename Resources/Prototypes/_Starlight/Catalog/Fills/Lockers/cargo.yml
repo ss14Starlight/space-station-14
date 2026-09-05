@@ -6,6 +6,7 @@
     - id: BoxFolderClipboardSalvageLead
     - id: RubberStampSalvageLead
     - id: ClothingNeckMantleDecoratedSalvager
+    - id: ITGTrackerImplanter
 
 - type: entityTable
   id: FillSalvageLeadHardsuitSpatio
@@ -22,15 +23,6 @@
   id: LockerSalvageLeadFilled
   suffix: Filled
   parent: LockerSalvageLead
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - !type:NestedSelector
-          tableId: LockerFillSalvageLead
-        - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
 
 - type: entity
   id: LockerSalvageLeadFilledHardsuit
@@ -39,15 +31,6 @@
   parent: LockerSalvageLead
   components:
   - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - !type:NestedSelector
-          tableId: FillSalvageLeadHardsuitSpatio
-        - !type:NestedSelector
-          tableId: LockerFillSalvageLead
-        - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
 
 # Salvage Specialist
 # regular lockers located in Wizden's Resources/Prototypes/Catalog/Fills/Lockers/cargo.yml
@@ -55,33 +38,11 @@
   id: LockerSalvageSpecialistLargeFilledHardsuit
   suffix: Filled, Hardsuit
   parent: LockerSalvageSpecialistLarge
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - !type:NestedSelector
-          tableId: FillSalvageSpecialistHardsuitSpatio
-        - !type:NestedSelector
-          tableId: FillSalvageSpecialistHardsuitSpatio
-        - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
-        - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
 
 - type: entity
   id: LockerSalvageSpecialistLargeFilled
   suffix: Filled
   parent: LockerSalvageSpecialistLarge
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
-        - !type:NestedSelector
-          tableId: LockerFillSalvageSpecialist
 
 #Mining Specialist
 - type: entityTable
@@ -159,7 +120,6 @@
     - id: SurvivalKnife
     - id: HandheldGPSBasic
     - id: RadioHandheld
-    - id: RadioHandheldExpedition
     - id: AppraisalTool
     - id: JetpackMiniFilled
     - id: Flare
@@ -345,3 +305,149 @@
         prob: 0.02
       - id: MailSpamDontYouWantMore
         prob: 0.001
+
+## ITG
+
+#Standard Salvage
+- type: entity
+  id: LockerSalvageSpecialistFilledHardsuitITG
+  suffix: Filled, Hardsuit
+  parent: LockerSalvageSpecialistITG
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+          - !type:NestedSelector
+            tableId: FillSalvageSpecialistHardsuitSpatio
+          - !type:NestedSelector
+            tableId: LockerFillSalvageSpecialist
+
+- type: entity
+  id: LockerSalvageSpecialistFilledITG
+  suffix: Filled
+  parent: LockerSalvageSpecialistITG
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        entity_storage: !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+
+- type: entity
+  id: LockerSalvageLeadFilledITG
+  suffix: Filled
+  parent: LockerSalvageLead
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillSalvageLead
+        - !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+
+- type: entity
+  id: LockerSalvageLeadFilledHardsuitITG
+  categories: [ ShouldMapStation ]
+  suffix: Filled, Hardsuit
+  parent: LockerSalvageLeadITG
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: FillSalvageLeadHardsuitSpatio
+        - !type:NestedSelector
+          tableId: LockerFillSalvageLead
+        - !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+
+# Salvage Specialist Large
+# regular lockers located in Wizden's Resources/Prototypes/Catalog/Fills/Lockers/cargo.yml
+- type: entity
+  id: LockerSalvageSpecialistLargeFilledHardsuitITG
+  suffix: Filled, Hardsuit
+  parent: LockerSalvageSpecialistLargeITG
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: FillSalvageSpecialistHardsuitSpatio
+        - !type:NestedSelector
+          tableId: FillSalvageSpecialistHardsuitSpatio
+        - !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+        - !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+
+- type: entity
+  id: LockerSalvageSpecialistLargeFilledITG
+  suffix: Filled
+  parent: LockerSalvageSpecialistLargeITG
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+        - !type:NestedSelector
+          tableId: LockerFillSalvageSpecialist
+
+- type: entityTable
+  id: LockerFillSalvageMedic
+  table: !type:AllSelector
+    children:
+      - id: ClothingBeltMedicalFilled
+      - id: SurvivalKnife
+      - id: HandheldGPSBasic
+      - id: RadioHandheldExpedition
+      - id: AppraisalTool
+      - id: FireExtinguisher
+      - id: Flare
+        prob: 0.3
+        rolls: !type:ConstantNumberSelector
+          value: 3
+      - id: ClothingNeckMantleMedic
+      - id: ITGTrackerImplanter
+      - id: BoxBodyBag
+      - id: EmergencyRollerBedSpawnFolded
+
+- type: entityTable
+  id: FillSalvageMedicHardsuitSpatio
+  table: !type:AllSelector
+    children:
+      - id: OxygenTankFilled
+      - id: ClothingShoesBootsMag
+      - id: ClothingOuterHardsuitSpatio
+      - id: ClothingMaskGasExplorer
+
+- type: entity
+  id: LockerSalvageMedicFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerSalvageMedic
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        entity_storage: !type:AllSelector
+          children:
+            - !type:NestedSelector
+              tableId: FillSalvageMedicHardsuitSpatio
+            - !type:NestedSelector
+              tableId: LockerFillSalvageMedic
+
+- type: entity
+  id: LockerSalvageMedicFilled
+  suffix: Filled
+  parent: LockerSalvageMedic
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        entity_storage: !type:AllSelector
+          children:
+            - !type:NestedSelector
+              tableId: LockerFillSalvageMedic

@@ -285,7 +285,10 @@
                     0.1
                 ]
             ]
-
+        },
+        {
+            "name": "SalvageMedic",
+            "copyright": "Swonki"
         },
         {
             "name": "ClericalAssistant",

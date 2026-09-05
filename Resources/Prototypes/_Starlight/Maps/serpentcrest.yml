@@ -66,6 +66,7 @@
             #supply
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 6, 7 ]
             MailTech: [ 2, 2 ]
