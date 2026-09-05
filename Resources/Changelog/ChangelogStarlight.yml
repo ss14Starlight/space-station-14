@@ -1,13 +1,6 @@
 Entries:
 - author: bynddark8
   changes:
-  - message: Fixes an issue where CentComm EOR ghost roles were not mindshielded.
-    type: Fix
-  id: 407735
-  time: '2026-08-18T18:05:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5695
-- author: bynddark8
-  changes:
   - message: Fixes an issue where CentComm EOR ghost roles would not spawn on CentComm SC17.
     type: Fix
   id: 407736
@@ -2799,4 +2792,11 @@ Entries:
   id: 408134
   time: '2026-09-05T13:46:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Glomzubuk
+  changes:
+  - message: Reverted cryopod inject speed back to pre-ui update values.
+    type: Tweak
+  id: 408135
+  time: '2026-09-05T14:10:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5829
 Order: -1
