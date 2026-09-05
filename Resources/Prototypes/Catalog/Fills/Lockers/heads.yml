@@ -96,29 +96,28 @@
     - id: WeaponDisabler
     - id: ClothingEyesGlassesCommand
     - id: ClothingEyesHudCommand
-    - id: EncryptionKeyExpedition #starlight
-    - id: SpyglassCaptain #Starlight
-    - id: CommunicationTablet #Starlight
-    - id: CommandTechFabFlatpack # Starlight
-    - id: BookSecureTerminalManual # Starlight
+    - id: EncryptionKeyExpedition # Starlight Start
+    - id: SpyglassCaptain
+    - id: CommunicationTablet
+    - id: CommandTechFabFlatpack
+    - id: BookSecureTerminalManual
+    - id: WashingMachineCommandFlatpack
     - id: HeadSkeleton # A skull to accompany your skeleton crew # Starlight Edit: OrganSkeletonPersonHead -> HeadSkeleton
       conditions:
       - !type:PlayerCountCondition
         max: 15
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    #region Starlight
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
     # - id: PaperEndGreenshift
     #   conditions:
     #   - !type:GamemodeCondition
     #     presets:
     #     - Greenshift
-    #     - Sandbox
-    #endregion Starlight
+    #     - Sandbox # Starlight end
     - id: PlushieLizardJobCaptain
       prob: 0.02
 
@@ -361,7 +360,7 @@
         - Greenshift
         - Sandbox
     - id: JawsOfLifeMed
-    - id: WashingMachineFlatpack #Starlight end
+    - id: WashingMachineMedicalFlatpack #Starlight end
     - id: PlushieLizardJobChiefmedicalofficer
       prob: 0.02
 
@@ -503,6 +502,7 @@
     - id: SecurityShuttleConsoleCircuitboard # Starlight start
     - id: BookSecureTerminalManual # Starlight
     - id: ClothingOuterWinterHoS
+    - id: WashingMachineSecurityFlatpack
 #    - id: ClothingHandsGlovesCombat # Starlight, they spawn with them now.
     - id: SecureBriefings
     - id: PrintedDocumentGreenshiftAlert

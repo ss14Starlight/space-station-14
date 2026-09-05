@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: WashingMachine
   parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: Nanotrasen Commercial Model-C washing machine
+  name: NanoTrasen Commercial Model-C washing machine # Starlight
   description: An industrial-grade washing machine designed to clean even the grimiest of uniforms. Keep hands, hard objects and small crewmembers away from drum during cycle.
   placement:
     mode: SnapgridCenter
@@ -67,6 +67,9 @@
       machine_board: !type:Container
       machine_parts: !type:Container
       entity_storage: !type:Container
+  - type: EmptyOnMachineDeconstruct # Starlight start
+    containers:
+    - entity_storage # Starlight end
   - type: Construction
     graph: Machine
     node: machine
@@ -85,6 +88,8 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+      - !type:EmptyContainersBehaviour # Starlight
+        containers: [entity_storage] # Starlight
       - !type:ChangeConstructionNodeBehavior
         node: machineFrame
       - !type:DoActsBehavior
