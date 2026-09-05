@@ -2,7 +2,7 @@
   id: VoxBeakColor
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Vox, NeoVox] 
+  speciesRestriction: [Vox, NeoVox]
   sprites:
   - sprite: _Starlight/Mobs/Customization/vox.rsi
     state: voxbeakcolor
