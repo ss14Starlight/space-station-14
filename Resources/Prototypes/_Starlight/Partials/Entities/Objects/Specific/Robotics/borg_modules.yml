@@ -1,0 +1,104 @@
+- type: !PartialOnly entity
+  id: BaseProviderBorgModule
+  components:
+  - type: Tag
+    tags:
+    - PersonnelStorage
+
+- type: !PartialOnly entity
+  id: BaseBorgModuleCargo
+  components:
+  - type: BorgModule
+    borgFitTypes:
+    - !Remove borg-type-salvage
+    - borg-type-salvage-cargo
+
+- type: !PartialOnly entity
+  id: BorgModuleTool
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: SprayPainterBorg
+
+- type: !PartialOnly entity
+  id: BorgModuleAdvancedTool
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: SprayPainterBorg
+
+- type: !PartialOnly entity
+  id: BorgModuleConstructionMaterialPlaceholder
+  categories: [ HideSpawnMenu ]
+
+- type: !PartialOnly entity
+  id: BorgModuleDiagnosis
+  suffix: DO NOT USE
+
+- type: !PartialOnly entity
+  id: BorgModuleMusique
+  components:
+  - type: ItemBorgModule
+    hands:
+    - hand:
+        emptyLabel: borg-slot-music-media-empty
+        emptyRepresentative: VinylAirportLounge
+        whitelist:
+          tags:
+          - VinylSleeveFit
+          - VinylSleeve
+          - CD
+
+- type: !PartialOnly entity
+  id: BorgModuleGardening
+  components:
+  - type: ItemBorgModule
+    hands:
+    - hand:
+        emptyLabel: borg-slot-seeds-empty
+        emptyRepresentative: WheatSeeds
+        whitelist:
+          components:
+          - Seed
+
+- type: !PartialOnly entity
+  id: BorgModuleSyndicateWeapon
+  description: a simple weapon module that comes with an Echis and energy dagger.
+
+- type: !PartialOnly entity
+  id: BorgModuleC20r
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+
+- type: !PartialOnly entity
+  id: XenoborgModuleLaser
+  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: XenoShiv
+
+- type: !PartialOnly entity
+  id: XenoborgModuleHeavyLaser
+  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: XenoKnife
+
+- type: !PartialOnly entity
+  id: XenoborgModuleSword
+  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
+
+- type: !PartialOnly entity
+  id: XenoborgModuleEnergySword
+  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
+
+- type: !PartialOnly entity
+  id: XenoborgModuleHypo
+  parent: [ BaseXenoborgModuleStealthWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
+  name: hypo xenoborg module
+  description: Module with self-refilling hypos.
+  components:
+  - type: ItemBorgModule
+    hands:
+    - item: LicoxideHypo
