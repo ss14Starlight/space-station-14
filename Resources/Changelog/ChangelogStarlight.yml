@@ -1,25 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Added more ninja threats for the communications console interaction.
-    type: Add
-  id: 407834
-  time: '2026-08-26T22:08:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5832
-- author: Johnny
-  changes:
-  - message: Removed the bombastic honks from ninja threats.
-    type: Remove
-  id: 407835
-  time: '2026-08-26T22:08:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5832
-- author: Johnny
-  changes:
-  - message: Changed the weights of some of the ninja threats.
-    type: Tweak
-  id: 407836
-  time: '2026-08-26T22:08:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5832
 - author: OJG
   changes:
   - message: The uranium fuel rod no longer requires research to produce.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408233
   time: '2026-09-05T23:36:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5862
+- author: bynddark8
+  changes:
+  - message: Adds an Assistant Manager stamp.
+    type: Add
+  id: 408234
+  time: '2026-09-05T23:36:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5864
+- author: bynddark8
+  changes:
+  - message: Adds an additional icon to the Assistant Manager's digi-board.
+    type: Add
+  id: 408235
+  time: '2026-09-05T23:36:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5864
+- author: bynddark8
+  changes:
+  - message: Enables loud mode on the Assistant Manager's headset.
+    type: Tweak
+  id: 408236
+  time: '2026-09-05T23:36:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5864
 Order: -1
