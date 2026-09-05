@@ -517,7 +517,7 @@
 
 - type: entity
   id: TableWood
-  parent: TableBase
+  parent: [TableBase, BaseWoodFuel] # Starlight: solid fuel
   name: wood table
   description: Do not apply fire to this. Rumour says it burns easily.
   components:

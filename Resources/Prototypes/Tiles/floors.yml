@@ -195,6 +195,7 @@
 
 - type: tile
   id: FloorWood
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   parent: BaseStationTile
   name: tiles-wood
   sprite: /Textures/Tiles/wood.png
@@ -904,6 +905,7 @@
 
 - type: tile
   id: FloorCarpetClown
+  solidFuelEntity: SolidFuelFloorCarpet
   parent: BaseStationTile
   name: tiles-clown-carpet-floor
   sprite: /Textures/Tiles/carpetclown.png
@@ -916,6 +918,7 @@
 
 - type: tile
   id: FloorCarpetOffice
+  solidFuelEntity: SolidFuelFloorCarpet
   parent: BaseStationTile
   name: tiles-office-carpet-floor
   sprite: /Textures/Tiles/carpetoffice.png
@@ -1558,6 +1561,7 @@
 
 - type: tile
   id: FloorWoodTile
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   parent: BaseStationTile
   name: tiles-wood2
   sprite: /Textures/Tiles/wood_tile.png
@@ -1575,6 +1579,7 @@
 
 - type: tile
   id: FloorBrokenWood
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   parent: BaseStationTile
   name: tiles-wood3
   sprite: /Textures/Tiles/wood_broken.png
@@ -1784,6 +1789,7 @@
 
 - type: tile
   id: FloorWoodLarge
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   parent: BaseStationTile
   name: tiles-wood-large
   sprite: /Textures/Tiles/wood_large.png
