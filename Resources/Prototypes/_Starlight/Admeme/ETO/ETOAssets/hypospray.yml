@@ -16,15 +16,6 @@
       visible: false
   - type: Item
     sprite: _Starlight/Admeme/ETO/crackheadjetinjector.rsi
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 20
-        reagents:
-        - ReagentId: Bicaridine
-          Quantity: 10
-        - ReagentId: Ephedrine
-          Quantity: 10
   - type: SolutionContainerVisuals
     maxFillLevels: 3
   - type: SolutionRegeneration
