@@ -1,18 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Resprited the PA Control Box. It now matches other consoles and has proper 3/4ths perspective, so you can tell which direction it is facing now.
-    type: Tweak
-  id: 407800
-  time: '2026-08-21T12:19:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5746
-- author: Sparlight
-  changes:
-  - message: Canine creatures (Ian, Walter, Renault, corgis, foxes, McGriff) now resist cold temperatures moderately well.
-    type: Tweak
-  id: 407801
-  time: '2026-08-21T12:42:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5740
 - author: Caws
   changes:
   - message: (Novo Lobster) The snowstorm now has a consistent direction on station.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408199
   time: '2026-09-05T17:47:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5773
+- author: Mack
+  changes:
+  - message: Moved the Cards Railroading menu to the Character panel (U).
+    type: Tweak
+  id: 408200
+  time: '2026-09-05T18:17:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5791
+- author: Mack
+  changes:
+  - message: You now have 40 seconds to pick your card.
+    type: Tweak
+  id: 408201
+  time: '2026-09-05T18:17:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5791
 Order: -1
