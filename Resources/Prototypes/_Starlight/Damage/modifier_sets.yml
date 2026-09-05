@@ -53,7 +53,7 @@
     Bloodloss: 0
   flatReductions:
     Blunt: 2
-    Piercing: 5
+    Piercing: 2
 
 - type: damageModifierSet
   id: DragonCarpResistances
@@ -64,7 +64,7 @@
     Bloodloss: 0
   flatReductions:
     Blunt: 2
-    Piercing: 2
+    Piercing: 1
 
 # Thaven
 - type: damageModifierSet
