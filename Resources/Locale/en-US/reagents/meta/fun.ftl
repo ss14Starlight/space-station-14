@@ -42,3 +42,6 @@ reagent-desc-canidessence = A type of carcinogenic enzyme known to break down pr
 
 # Starlight
 reagent-name-concentratedcorgijuice = juice that makes you a corgi forever
+
+reagent-name-glubjuice = juice that makes you Glub
+reagent-desc-glubjuice = Pure essence of carp plush. Makes you Glub!

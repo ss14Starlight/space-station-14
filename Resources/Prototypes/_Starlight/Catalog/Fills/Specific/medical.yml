@@ -69,10 +69,12 @@
       - id: ChemistryBottleDoctorsDelight
       - id: ChemistryBottleDesoxyephedrine
       - id: ChemistryBottleEphedrine
-    - !type:GroupSelector # Weh
+    - !type:GroupSelector # Weh Glub
       weight: 1
       children:
       - id: ChemistryBottleWeh
+      - id: ChemistryBottleGlub
+
 
 - type: entityTable
   id: RandomBottleRoboticsTable

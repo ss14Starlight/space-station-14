@@ -232,3 +232,8 @@
   id: teslaIceCream
   flavorType: Complex
   description: flavor-complex-tesla-ice-cream
+
+- type: flavor
+  id: JuiceThatMakesYouGlub
+  flavorType: Complex
+  description: flavor-complex-glub-juice
