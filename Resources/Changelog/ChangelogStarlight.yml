@@ -1,60 +1,4 @@
 Entries:
-- author: Orhu
-  changes:
-  - message: Birthday Cake can now be eaten by all species.
-    type: Tweak
-  id: 407737
-  time: '2026-08-18T18:56:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5503
-- author: Teddiousbear
-  changes:
-  - message: Ticket rewards to salvage bounties.
-    type: Add
-  id: 407738
-  time: '2026-08-18T19:24:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5510
-- author: Teddiousbear
-  changes:
-  - message: 6 New salvage bounties.
-    type: Add
-  id: 407739
-  time: '2026-08-18T19:24:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5510
-- author: Johnny
-  changes:
-  - message: Salvage shuttle now has the power it needs to run.
-    type: Tweak
-  id: 407740
-  time: '2026-08-18T20:20:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5708
-- author: Johnny
-  changes:
-  - message: Salvage shuttle has an extra vent and scrubber.
-    type: Tweak
-  id: 407741
-  time: '2026-08-18T20:20:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5708
-- author: Johnny
-  changes:
-  - message: Ferry has power now, power fixed.
-    type: Tweak
-  id: 407742
-  time: '2026-08-18T20:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5709
-- author: Way
-  changes:
-  - message: (Hotel) More decals and tiles around the map have changed.
-    type: Tweak
-  id: 407743
-  time: '2026-08-18T20:20:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5699
-- author: Way
-  changes:
-  - message: (Hotel) More Radios have been mapped, and the Mixed Lights Crate in the Radio Host's room has been replaced for a 2nd Vinyl Crate.
-    type: Tweak
-  id: 407744
-  time: '2026-08-18T20:20:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5699
 - author: Way
   changes:
   - message: (Hotel) Floor lights have been added in some minor spots.
@@ -2799,4 +2743,60 @@ Entries:
   id: 408136
   time: '2026-09-05T14:10:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5770
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a single k9 spawn inside.
+    type: Add
+  id: 408137
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added all mailboxes.
+    type: Add
+  id: 408138
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a lawyer's office by shrinking NCT office near chapel.
+    type: Add
+  id: 408139
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added box shelf storage to science storage room,cargo front, maints shop, gen pop island cargo dock.
+    type: Add
+  id: 408140
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a TON of toilet paper and hand santizers to several of the bathrooms and sinks.
+    type: Add
+  id: 408141
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added two k9 to sepultum via prototypes (Spawners already mapped in).
+    type: Add
+  id: 408142
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Changed trimmed some grass near evac.
+    type: Tweak
+  id: 408143
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Changed nct office to be ALOT smaller.
+    type: Tweak
+  id: 408144
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
 Order: -1
