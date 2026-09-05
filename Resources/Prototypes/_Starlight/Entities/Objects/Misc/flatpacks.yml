@@ -171,3 +171,13 @@
   components:
   - type: Flatpack
     entity: SyndicateTechFab
+
+- type: entity
+  parent: [BaseFlatpack, BaseCargoContraband]
+  id: MaterialDispenserFlatpack
+  name: Material packer flatpack
+  description: A flatpack used for constructing a cargo material packer.
+  components:
+    - type: Flatpack
+      entity: MachineMaterialDispenser
+

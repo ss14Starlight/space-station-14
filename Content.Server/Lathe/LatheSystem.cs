@@ -2,12 +2,14 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.DeviceLinking.Systems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Lathe.Components;
 using Content.Server.Materials;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
+using Content.Shared._Starlight.Lathe;
 using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -238,16 +240,21 @@ namespace Content.Server.Lathe
                 {
 
                     //Starlight Start
+
                     var transform = Transform(uid).Coordinates;
                     if (_container.IsEntityInContainer(uid))
                         transform = Transform(_container.GetContainingContainers(uid).Last().Owner).Coordinates;
                     var result = Spawn(resultProto, transform);
-                    _stack.TryMergeToContacts(result);
-                    if (currentRecipe.PrintTicket)
+                    if (TryComp<LatheLinkingComponent>(uid, out var linking) && linking.LinkedEntity != null && !linking.Ejecting)
                     {
                         var tickets = Spawn(currentRecipe.TicketProtoId, transform);
                         _stack.TryMergeToContacts(tickets);
+                        if (!_materialStorage.TryInsertMaterialEntity(uid, result, (EntityUid)linking.LinkedEntity))
+                        {
+                            _stack.TryMergeToContacts(result);
+                        }
                     }
+                    else _stack.TryMergeToContacts(result);
                     //Starlight End
                 }
 

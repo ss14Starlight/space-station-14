@@ -1,0 +1,48 @@
+﻿<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:ui="clr-namespace:Content.Client.Materials.UI"
+    MinSize="620 670"
+    Title="{Loc 'material-dispenser-title'}">
+
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="5" SeparationOverride="10">
+        <!-- Crate container info -->
+        <BoxContainer Orientation="Horizontal">
+            <Label Text="{Loc 'material-dispenser-crate-input'}" />
+            <Control HorizontalExpand="True" />
+            <OptionButton Access="Public" Name="DepartmentSelector" />
+            <Button Access="Public" Name="EjectCrate" Text="{Loc 'material-dispenser-eject-crate'}" ToolTip="{Loc 'material-dispenser-eject-crate-tooltip'}" />
+        </BoxContainer>
+        <!-- Crate input info -->
+        <PanelContainer VerticalExpand="True" MinSize="0 200">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+            </PanelContainer.PanelOverride>
+            <ScrollContainer HorizontalExpand="True" MinSize="0 200">
+                <Label Name="NoMatsInCrate" Text="{Loc 'material-dispenser-no-crate-material'}"/>
+                <BoxContainer Name="OutputCrateInfo" Orientation="Vertical">
+
+                </BoxContainer>
+            </ScrollContainer>
+        </PanelContainer>
+        <Control MinSize="0 10" />
+        <BoxContainer Orientation="Horizontal">
+            <Label Text="{Loc 'material-dispenser-buffer'}"></Label>
+            <Control HorizontalExpand="True" />
+            <Button MinSize="80 0" Name="StorageTransferButton" Access="Public" Text="{Loc 'material-dispenser-transfer'}" ToggleMode="True" StyleClasses="OpenRight" />
+            <Button MinSize="80 0" Name="StorageEjectButton" Access="Public" Text="{Loc 'material-dispenser-eject'}" ToggleMode="True" StyleClasses="OpenLeft" />
+        </BoxContainer>
+        <!-- MaterialStorage info -->
+        <PanelContainer VerticalExpand="True" MinSize="0 200">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+            </PanelContainer.PanelOverride>
+            <Label Name="NoMats" Text="{Loc 'material-dispenser-no-materials'}"/>
+            <BoxContainer Name="BufferInfo" Orientation="Vertical">
+
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</controls:FancyWindow>
