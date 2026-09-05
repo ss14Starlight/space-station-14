@@ -16,6 +16,8 @@
   - type: ArmorSparkEffect
   - type: Item
     size: Huge
+  - type: StainBlocker
+    slots: [OUTERCLOTHING2]
   - type: Tag
     tags:
     - NeocyteCybernetics
