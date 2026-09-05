@@ -1,11 +1,4 @@
 Entries:
-- author: bynddark8
-  changes:
-  - message: Fixes an issue where CentComm EOR ghost roles would not spawn on CentComm SC17.
-    type: Fix
-  id: 407736
-  time: '2026-08-18T18:05:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5695
 - author: Orhu
   changes:
   - message: Birthday Cake can now be eaten by all species.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408135
   time: '2026-09-05T14:10:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5829
+- author: Way
+  changes:
+  - message: (Novo Lobster) Snow Storm ambience is slightly louder.
+    type: Tweak
+  id: 408136
+  time: '2026-09-05T14:10:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5770
 Order: -1
