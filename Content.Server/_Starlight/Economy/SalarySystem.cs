@@ -82,7 +82,7 @@ public sealed partial class SalarySystem : SharedSalarySystem
                             && _playerResources.TryGetResource(query.Current.Session, "credits", out var balance))
                         {
                             var amount = CalculateSalaryWithBonuses(salary, query.Current.Session);
-                            var sender = _salaries.Sender.GetValueOrDefault(role.Prototype, "Nanotrasen");
+                            var sender = _salaries.Sender.GetValueOrDefault(role.Prototype, "NanoTrasen");
 
                             _playerResources.TryUpdateResource(query.Current.Session, "credits", amount);
                             var message = Loc.GetString("economy-chat-salary-message", ("amount", amount), ("sender", sender));
