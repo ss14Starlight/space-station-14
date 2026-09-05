@@ -8,6 +8,8 @@
     - id: CockroachMigration
     - id: MouseMigration
     - id: MoproachMigration
+    - id: NymphMigration # Starlight
+    - id: CrabMigration # Starlight
 
 - type: entityTable
   id: SpicyPestEventsTable

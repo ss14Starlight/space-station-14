@@ -148,3 +148,17 @@
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-kobold
 
+- type: entity
+  parent: MobDionaNymph
+  id: MobDionaNymphVent
+  components:
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-nymph-name
+    description: ghost-role-information-nymph-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleCritterHarmless
+  - type: GhostTakeoverAvailable
