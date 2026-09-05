@@ -1067,6 +1067,7 @@
         Slash: 0.4
         Piercing: 0.3
         Heat: 0.2
+        Cold: 0.2
         Radiation: 0.01
         Caustic: 0.4
     # Starlight-end
@@ -1098,6 +1099,16 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Cold: 0.2
+        Radiation: 0.5
+        Caustic: 0.5
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -1190,6 +1201,7 @@
         Slash: 0.6
         Piercing: 0.6
         Heat: 0.5
+        Cold: 0.6
         Radiation: 0.5
         Caustic: 0.5
     staminaModifier: 0.3
@@ -1253,6 +1265,7 @@
         Slash: 0.1
         Piercing: 0.1
         Heat: 0.1
+        Cold: 0.1 #starlight
         Radiation: 0.1
         Caustic: 0.1
     # Starlight-start

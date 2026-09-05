@@ -215,6 +215,11 @@
           1.0
         ]
       ]
+    },
+    {
+      "name": "pda-salvagemedic",
+      "copyright": "mikeysaurus, ParadiseStation",
+      "license": "CC-BY-SA-3.0"
     }
   ]
 }

@@ -2,7 +2,6 @@ using Content.Server.Fluids.Components;
 using Content.Server.Spreader;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Database;
@@ -14,6 +13,9 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
+using Content.Shared._Funkystation.Fluids;
+using Content.Shared._Funkystation.Footprints;
+using Content.Shared._Funkystation.WallStains;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -36,8 +38,10 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!; // Moff
+    [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!; // Moff
 
-    private EntityQuery<PuddleComponent> _puddleQuery;
+    [Dependency] private EntityQuery<FootprintComponent> _footprintQuery; // Moff - Funky footprints
 
     /*
      * TODO: Need some sort of way to do blood slash / vomit solution spill on its own
@@ -265,6 +269,18 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         // Take 15% of the puddle solution
         var splitSol = _solutionContainerSystem.SplitSolution(entity.Comp.Solution.Value, solution.Volume * 0.15f);
         Reactive.DoEntityReaction(args.Slipped, splitSol, ReactionMethod.Touch);
+
+        // Funky - Start - Clothing stains
+        if (splitSol.Volume > 0)
+        {
+            var stainEv = new SpilledOnEvent(entity.Owner, splitSol.Clone());
+            RaiseLocalEvent(args.Slipped, stainEv);
+
+            // Funky Wall Stains
+            var splashEv = new SplashOnWallEvent(Transform(entity.Owner).Coordinates, splitSol.Clone());
+            RaiseLocalEvent(ref splashEv);
+        }
+        // Funky - End
     }
 
     /// <summary>
@@ -294,20 +310,13 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         Solution addedSolution,
         bool sound = true,
         bool checkForOverflow = true,
-        PuddleComponent? puddleComponent = null,
-        SolutionContainerManagerComponent? sol = null)
+        PuddleComponent? puddleComponent = null)
     {
-        if (!Resolve(puddleUid, ref puddleComponent, ref sol))
+        if (!Resolve(puddleUid, ref puddleComponent))
             return false;
 
-        _solutionContainerSystem.EnsureAllSolutions((puddleUid, sol));
-
-        if (addedSolution.Volume == 0 ||
-            !_solutionContainerSystem.ResolveSolution(puddleUid, puddleComponent.SolutionName,
-                ref puddleComponent.Solution))
-        {
+        if (addedSolution.Volume == 0 || !_solutionContainerSystem.ResolveSolution(puddleUid, puddleComponent.SolutionName, ref puddleComponent.Solution))
             return false;
-        }
 
         _solutionContainerSystem.AddSolution(puddleComponent.Solution.Value, addedSolution);
 
@@ -437,6 +446,12 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
             targets.Add(owner);
             Reactive.DoEntityReaction(owner, splitSolution, ReactionMethod.Touch);
+
+            // Funky - Start - Clothing stains
+            if (splitSolution.Volume > 0)
+                RaiseLocalEvent(owner, new SpilledOnEvent(entity, splitSolution.Clone()));
+            // Funky - End
+
             Popups.PopupEntity(Loc.GetString("spill-land-spilled-on-other",
                     ("spillable", entity),
                     ("target", Identity.Entity(owner, EntityManager))),
@@ -446,6 +461,10 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         _color.RaiseEffect(spilled.GetColor(_prototypeManager), targets,
             Filter.Pvs(entity, entityManager: EntityManager));
+
+        // Funky Wall Stains
+        var splashEv = new SplashOnWallEvent(coordinates, spilled.Clone());
+        RaiseLocalEvent(ref splashEv);
 
         return TrySpillAt(coordinates, spilled, out puddleUid, sound);
     }
@@ -539,6 +558,11 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
             if (!puddleQuery.TryGetComponent(ent, out var puddle))
                 continue;
 
+            // Funky start - footprints
+            if (_footprintQuery.HasComponent(ent.Value))
+                continue;
+            // Funky end
+
             if (TryAddSolution(ent.Value, solution, sound, puddleComponent: puddle))
             {
                 EnsureComp<ActiveEdgeSpreaderComponent>(ent.Value);
@@ -578,6 +602,11 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         {
             if (!puddleQuery.HasComponent(ent.Value))
                 continue;
+
+            // Funky start - footprints
+            if (_footprintQuery.HasComponent(ent.Value))
+                continue;
+            // Funky end
 
             puddleUid = ent.Value;
             return true;

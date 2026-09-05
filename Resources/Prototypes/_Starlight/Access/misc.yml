@@ -10,7 +10,6 @@
     - Lawyer
     - Engineering
     - Medical
-    - Salvage
     - Cargo
     - Research
     - Service
@@ -33,7 +32,6 @@
     - Surgery
     - Paramedic
     - Mining
-    - SalvageLead
     - Mail
     - Shuttle
     - Journalism
@@ -88,6 +86,8 @@
   - MedTak
   - Casino
   - Visitor
+  - Salvage
+  - SalvageLead
 
 - type: accessGroup
   id: Syndicate

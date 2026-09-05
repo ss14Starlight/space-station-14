@@ -17,12 +17,11 @@
         - ClothMade
     - type: Edible
       requiresSpecialDigestion: true
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 10
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 5
-            - ReagentId: Fiber
-              Quantity: 5
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 5
+          - ReagentId: Fiber
+            Quantity: 5

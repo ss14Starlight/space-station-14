@@ -74,7 +74,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: FluorosulfuricAcid
-        Quantity: 650
+        Quantity: 1300
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -95,7 +95,6 @@
   - type: Puller
     needsHands: false
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatXeno
       amount: 5
@@ -169,7 +168,6 @@
     sprite: Mobs/Aliens/Xenos/rouny.rsi
     offset: 0,0.6
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatRouny
       amount: 3
