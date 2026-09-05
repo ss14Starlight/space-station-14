@@ -1013,6 +1013,29 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitFirefighter
+  name: firefighter smock
+  description: A brown covering with a red flame emblazoned on the back. It's covered in an unwashable layer of soot.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/firefighter.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/firefighter.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.8
+    coolingCoefficient: 0.9
+  - type: FireProtection
+    reduction: 0.3
+  - type: Pierceable
+    level: Wood
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.85
+        Cold: 0.85
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSalvageMedic
   name: salvage medic's jumpsuit
   description: It's a snappy jumpsuit with a sturdy set of overalls. It's very bloody.
