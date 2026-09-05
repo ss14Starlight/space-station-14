@@ -12,10 +12,10 @@ public sealed partial class SLSolutionRegenerationSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<SolutionRegenerationComponent, SolutionContainerChangedEvent>(OnSolutionChanged);
+        SubscribeLocalEvent<SolutionRegenerationComponent, SolutionChangedEvent>(OnSolutionChanged);
     }
 
-    private void OnSolutionChanged(Entity<SolutionRegenerationComponent> ent, ref SolutionContainerChangedEvent args)
+    private void OnSolutionChanged(Entity<SolutionRegenerationComponent> ent, ref SolutionChangedEvent args)
     {
         //make sure the entity isnt terminating
         if (TerminatingOrDeleted(ent))
@@ -25,7 +25,7 @@ public sealed partial class SLSolutionRegenerationSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        if (args.Solution.AvailableVolume <= FixedPoint2.Zero)
+        if (args.Solution.Comp.Solution.AvailableVolume <= FixedPoint2.Zero)
             return;
 
         EnsureComp<SLActiveSolutionRegenerationComponent>(ent);

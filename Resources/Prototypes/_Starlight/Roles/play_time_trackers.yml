@@ -8,6 +8,9 @@
   id: JobDutyOfficer
 
 - type: playTimeTracker
+  id: JobK9
+
+- type: playTimeTracker
   id: JobMagistrate
 
 - type: playTimeTracker
@@ -44,6 +47,9 @@
   id: JobSalvageLead
 
 - type: playTimeTracker
+  id: JobSalvageMedic
+
+- type: playTimeTracker
   id: JobNTSF
 
 - type: playTimeTracker
@@ -71,9 +77,6 @@
   id: JobBoxer
 
 - type: playTimeTracker
-  id: JobZookeeper
-
-- type: playTimeTracker
   id: JobNanotrasenCareerTrainer
 
 - type: playTimeTracker
@@ -93,6 +96,9 @@
 
 - type: playTimeTracker
   id: JobStirStir
+
+- type: playTimeTracker
+  id: JobMakeshiftID
 
 # Other ghosts
 

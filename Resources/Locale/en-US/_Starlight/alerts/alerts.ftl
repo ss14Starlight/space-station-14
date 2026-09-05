@@ -1,5 +1,3 @@
-alerts-cards-name = [color=lightblue]Challenge available[/color]
-alerts-cards-desc = You're [color=lightblue]facing a choice[/color]. Click the alert to see your available paths. If you close it, you won't see this again for the rest of the round.
 alerts-cybernetic-disruption-name = [color=red]Cybernetics disrupted[/color]
 alerts-cybernetic-disruption-desc = You're [color=red]disrupted[/color]! Something is impairing your cybernetic implants.
 alerts-doomed-name = Doomed
@@ -23,3 +21,9 @@ alerts-wrapped-name = [color=lightblue]Wrapped up[/color]
 alerts-wrapped-desc = You are [color=red]wrapped up[/color]! Click the alert to attempt to unwrap yourself.
 alerts-zoomies-name = [color=lightblue]Zoomies!![/color]
 alerts-zoomies-desc = You have increased movement speed [color=red]at the cost of increased thirst drain[/color]
+alerts-latched-name = [color=orange]Latched[/color]
+alerts-latched-desc = You're locked in a latch. Neither side can move until it ends.
+alerts-k9-latched-name = [color=orange]Latched On[/color]
+alerts-k9-latched-desc = You've latched onto a target. Bite harder to extend the hold, or release to let go.
+alerts-k9-sprint-name = [color=lightblue]Sprint[/color]
+alerts-k9-sprint-desc = You are moving at increased speed.

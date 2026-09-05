@@ -452,6 +452,7 @@
   recognizable: true
   boilingPoint: 100.0
   meltingPoint: 0.0
+  flammability: -4 # Funky change
   friction: 0.4
   # Starlight edit start - Make Water work like Ipecac for Dwarfs, but even worse, also let Diona treat water as food
   metabolisms:
@@ -499,6 +500,7 @@
   physicalDesc: reagent-physical-desc-frosty
   flavor: cold
   color: "#bed8e6"
+  flammability: -4 # Funky change
   recognizable: true
   meltingPoint: 0.0
   boilingPoint: 100.0

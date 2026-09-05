@@ -295,7 +295,7 @@
 - type: entity
   name: MT-7 Magnum
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
-  id: WeaponEnergyMagnumGun
+  id: WeaponEnergyMagnumSeven
   description: This is an expensive, modern recreation of the Mateba revolver, with several unique fire modes. And a slow self recharging battery. However, it has a slower recharge then most battery related weapons.
   components:
   - type: Gun
@@ -304,15 +304,23 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: Appearance
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum_Seven.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: disable-unshaded-3
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: disable
+    steps: 4
+    zeroVisible: false
   - type: Item
     size: Small
     shape:
     - 0, 0, 1, 1
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum_Seven.rsi
+    heldPrefix: empty
   - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 80
@@ -321,15 +329,15 @@
     - proto: DisablerBolt
       fireCost: 125
       magState: disable
-      visualState: disable-unshaded
+      heldPrefix: disable
     - proto: RedHeavyLaser # Does slightly more damage but costs more energy.
       fireCost: 222
-      magState: kill
-      visualState: kill-unshaded
+      magState: energy
+      heldPrefix: energy
     - proto: DestroyBeam
       fireCost: 1000
       magState: destroy
-      visualState: destroy-unshaded
+      heldPrefix: destroy
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
@@ -1098,10 +1106,17 @@
         path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     - type: Appearance
     - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi
+      sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum_Seven.rsi
       layers:
         - state: base
           map: ["enum.GunVisualLayers.Base"]
+        - state: disable-unshaded-3
+          map: ["enum.GunVisualLayers.MagUnshaded"]
+          shader: unshaded
+    - type: MagazineVisuals
+      magState: disable
+      steps: 4
+      zeroVisible: false
     - type: Lock
       mindShieldLock: true
       autoUnlock: true
@@ -1112,7 +1127,8 @@
       size: Small
       shape:
         - 0, 0, 1, 1
-      sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi
+      sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum_Seven.rsi
+      heldPrefix: empty
     - type: BatteryAmmoProvider
       proto: DisablerBolt
       fireCost: 80
@@ -1121,19 +1137,19 @@
         - proto: DisablerBolt # same as X-01
           fireCost: 40
           magState: disable
-          visualState: disable-unshaded
+          heldPrefix: disable
         - proto: TaserBolt # same as X-01
           fireCost: 100
           magState: stun
-          visualState: stun-unshaded
+          heldPrefix: stun
         - proto: RedHeavyLaser # Does more damage but costs more energy. 8 shots per full charge
           fireCost: 200
-          magState: kill
-          visualState: kill-unshaded
+          magState: energy
+          heldPrefix: energy
         - proto: DestructionBeam # structural damage, same as X-01
           fireCost: 100
           magState: destroy
-          visualState: destroy-unshaded
+          heldPrefix: destroy
     - type: Battery
       maxCharge: 1600
       startingCharge: 1500
@@ -1181,3 +1197,10 @@
     - wizard-item-restricted-2
     - wizard-item-restricted-3
     - wizard-item-restricted-4
+  - type: Tag
+    tags:
+    - WizardWand
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/frozentome.rsi
+    slots:
+    - Pocket

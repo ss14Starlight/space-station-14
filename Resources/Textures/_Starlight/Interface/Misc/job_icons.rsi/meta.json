@@ -60,6 +60,10 @@
             "copyright": "BORT"
         },
         {
+            "name": "K9",
+            "copyright": "Made by Swonkus (GitHub)"
+        },
+        {
             "name": "Performer",
             "copyright": "wonderfulnewworld"
         },
@@ -281,7 +285,10 @@
                     0.1
                 ]
             ]
-
+        },
+        {
+            "name": "SalvageMedic",
+            "copyright": "Swonki"
         },
         {
             "name": "ClericalAssistant",
@@ -314,6 +321,10 @@
         {
             "name": "ShopkeeperAssistant",
             "copyright": "bynddark8"
+        },
+        {
+            "name": "MakeshiftID",
+            "copyright": "rhithebirdthing"
         }
     ]
 }

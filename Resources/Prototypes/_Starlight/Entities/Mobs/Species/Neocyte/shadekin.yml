@@ -128,7 +128,7 @@
       bloodReferenceSolution:
         reagents:
           - ReagentId: DarkBlood
-            Quantity: 300
+            Quantity: 600
     - type: Flammable
       damage:
         types:
@@ -208,7 +208,6 @@
       thermalRegulationTemperatureThreshold: 2
     - type: Perishable
     - type: Butcherable
-      butcheringType: Spike
       spawned:
         - id: FoodMeat
           amount: 5

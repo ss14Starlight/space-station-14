@@ -4,6 +4,7 @@
   mapPath: /Maps/_Starlight/Stations/NovoLobster.yml
   minPlayers: 40
   maxPlayers: 350
+  randomRotation: false # random rotation looks weird with weather
   stations:
     StarlightNovoLobster:
       stationProto: StandardNanotrasenStation
@@ -63,6 +64,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 4, 4 ]
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 4, 4 ]
             CargoTechnician: [ 6, 6 ]
             MailTech: [ 2, 2 ]

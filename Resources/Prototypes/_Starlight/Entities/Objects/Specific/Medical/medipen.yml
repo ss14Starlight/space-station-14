@@ -25,12 +25,12 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: polypen_empty
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 30
-        reagents:
-        - ReagentId: PolypyryliumOligomers
-          Quantity: 30
+  - type: Solution
+    id: pen
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: PolypyryliumOligomers
+        Quantity: 30
   - type: StaticPrice
     price: 1000

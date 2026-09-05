@@ -58,6 +58,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 4, 4 ]
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 4, 4 ]
             CargoTechnician: [ 6, 7 ]
             MailTech: [ 1, 2 ]
@@ -67,6 +68,7 @@
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
             Performer: [ 3, 4 ]
+            RadioHost: [ 2, 2 ]
             Boxer: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
