@@ -208,7 +208,7 @@
 - type: entity
   name: wooden chair
   id: ChairWood
-  parent: UnanchoredChairBase
+  parent: [UnanchoredChairBase, BaseWoodFuel] # Starlight: solid fuel
   components:
   - type: Sprite
     state: wooden

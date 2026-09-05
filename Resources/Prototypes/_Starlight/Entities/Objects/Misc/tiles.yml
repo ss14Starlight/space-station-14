@@ -201,7 +201,7 @@
 
 - type: entity
   name: wooden parquet
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel] # Starlight: solid fuel
   id: FloorTileItemWoodParquet
   components:
   - type: Sprite
@@ -219,7 +219,7 @@
 
 - type: entity
   name: black wooden floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodBlack
   components:
   - type: Sprite
@@ -237,7 +237,7 @@
 
 - type: entity
   name: dark wooden floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodDark
   components:
   - type: Sprite
@@ -255,7 +255,7 @@
 
 - type: entity
   name: light wooden floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodLight
   components:
   - type: Sprite
@@ -273,7 +273,7 @@
 
 - type: entity
   name: red wooden floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodRed
   components:
   - type: Sprite
@@ -291,7 +291,7 @@
 
 - type: entity
   name: large black wooden floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodLargeBlack
   components:
   - type: Sprite
@@ -309,7 +309,7 @@
 
 - type: entity
   name: large dark wooden floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodLargeDark
   components:
   - type: Sprite
@@ -327,7 +327,7 @@
 
 - type: entity
   name: large light wooden floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodLargeLight
   components:
   - type: Sprite
@@ -345,7 +345,7 @@
 
 - type: entity
   name: large red wooden floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodLargeRed
   components:
   - type: Sprite
@@ -363,7 +363,7 @@
 
 - type: entity
   name: black wooden parquet
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodParquetBlack
   components:
   - type: Sprite
@@ -381,7 +381,7 @@
 
 - type: entity
   name: dark wooden parquet
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodParquetDark
   components:
   - type: Sprite
@@ -399,7 +399,7 @@
 
 - type: entity
   name: light wooden parquet
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodParquetLight
   components:
   - type: Sprite
@@ -417,7 +417,7 @@
 
 - type: entity
   name: red wooden parquet
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodParquetRed
   components:
   - type: Sprite
@@ -435,7 +435,7 @@
 
 - type: entity
   name: wooden chess floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodChess
   components:
   - type: Sprite
@@ -453,7 +453,7 @@
 
 - type: entity
   name: black wooden chess floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodChessBlack
   components:
   - type: Sprite
@@ -471,7 +471,7 @@
 
 - type: entity
   name: dark wooden chess floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodChessDark
   components:
   - type: Sprite
@@ -489,7 +489,7 @@
 
 - type: entity
   name: light wooden chess floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodChessLight
   components:
   - type: Sprite
@@ -507,7 +507,7 @@
 
 - type: entity
   name: red wooden chess floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemWoodChessRed
   components:
   - type: Sprite

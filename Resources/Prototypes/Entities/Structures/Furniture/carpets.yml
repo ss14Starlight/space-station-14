@@ -1,7 +1,7 @@
 # TODO move all of this to tiles once tile smoothing is supported
 - type: entity
   id: CarpetBase
-  parent: BaseStructure
+  parent: [BaseStructure, BaseCarpetFuel] # Starlight: solid fuel
   name: carpet
   description: "Fancy walking surface."
   abstract: true
