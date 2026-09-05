@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Wizard Duel will no longer fail to roll the green and orange wizards.
-    type: Fix
-  id: 407805
-  time: '2026-08-21T15:47:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5765
 - author: Citrea
   changes:
   - message: The digestive system no longer destroys half the chemicals passing through it.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408204
   time: '2026-09-05T18:17:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5792
+- author: Johnny
+  changes:
+  - message: The SSF now are protected from stuns.
+    type: Tweak
+  id: 408205
+  time: '2026-09-05T18:48:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5827
 Order: -1
