@@ -1,7 +1,7 @@
 # Base Mittens
 - type: entity
   abstract: true
-  parent: ClothingHandsBase # Not butcherable, no fur material
+  parent: ClothingHandsBaseWinter # Not butcherable, no fur material
   id: ClothingHandsMittensBase
   components:
   - type: Fiber
@@ -12,13 +12,6 @@
       flatReductions:
         Heat: 5 # Average lightbulb
         Cold: 5 # I don't know when you're physically going to touch anything cold, but might as well add something for it.
-  - type: Armor
-    modifiers:
-      coefficients:
-        Cold: 0.90 # Entire reason I added these.
-  - type: TemperatureProtection
-    heatingCoefficient: 1.005 # They're really just on your hands.
-    coolingCoefficient: 0.8 # They're not *that* great, they just protect your hands.
 
 # Purple Mittens
 - type: entity

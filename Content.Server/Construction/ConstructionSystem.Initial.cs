@@ -101,7 +101,8 @@ namespace Content.Server.Construction
             ConstructionGraphNode targetNode,
             ConstructionPrototype constructionPrototype, // Starlight edit
             EntityCoordinates coords,
-            Angle angle = default)
+            Angle angle = default,
+            Direction? checkDirection = null) // Starlight edit
         {
             // We need a place to hold our construction items!
             var container = _container.EnsureContainer<Container>(user, materialContainer, out var existed);
@@ -273,7 +274,9 @@ namespace Content.Server.Construction
             // Starlight edit start
             foreach (var condition in constructionPrototype.Conditions)
             {
-                if (!condition.Condition(user, coords, angle.GetCardinalDir()))
+                // Use the direction the placement was actually validated with; `angle` is forced
+                // to zero for recipes with canRotate: false, which would re-check a different facing.
+                if (!condition.Condition(user, coords, checkDirection ?? angle.GetCardinalDir()))
                 {
                     var message = condition.GenerateGuideEntry()?.Localization
                                   ?? "construction-system-construct-conditions-not-met";
@@ -561,7 +564,8 @@ namespace Content.Server.Construction
                     targetNode,
                     constructionPrototype, // Starlight edit
                     GetCoordinates(ev.Location),
-                    constructionPrototype.CanRotate ? ev.Angle : Angle.Zero) is not {Valid: true} structure)
+                    constructionPrototype.CanRotate ? ev.Angle : Angle.Zero,
+                    ev.Angle.GetCardinalDir()) is not {Valid: true} structure) // Starlight edit
             {
                 Cleanup();
                 return;

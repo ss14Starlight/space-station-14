@@ -61,7 +61,7 @@
     Bloodloss: 0
   flatReductions:
     Blunt: 2
-    Piercing: 5
+    Piercing: 2
 
 - type: damageModifierSet
   id: DragonCarpResistances
@@ -72,7 +72,7 @@
     Bloodloss: 0
   flatReductions:
     Blunt: 2
-    Piercing: 2
+    Piercing: 1
 
 # Thaven
 - type: damageModifierSet
@@ -302,6 +302,20 @@
     Piercing: 0.8
     Cold: 0.8
     Shock: 1.6
+
+- type: damageModifierSet
+  id: Malignstone
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.25
+    Piercing: 0.5
+    Cold: 0.1 # Deathcult frozen stone
+    Heat: 0.75
+    Shock: 0.6
+    Structural: 0.75 # similar to Metallic, but not as crazy as Rock
+  flatReductions:
+    Blunt: 5
+    Cold: 10
 
 - type: damageModifierSet
   id: CivilianSilicon
