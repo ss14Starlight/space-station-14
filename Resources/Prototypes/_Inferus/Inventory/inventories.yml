@@ -1,0 +1,59 @@
+- type: entity
+  id: BaseInventoryScurret
+  abstract: true
+  components:
+    - type: Inventory
+      speciesId: scurret
+      templateId: scurret
+      displacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: jumpsuit
+        id:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: id
+        gloves:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: gloves
+        neck:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: neck
+        ears:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: ears
+        eyes:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: eyes
+        head:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: head
+        mask:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: mask
+        back:
+          sizeMaps:
+            32:
+              sprite: Mobs/Animals/scurret/displacement.rsi
+              state: back
+    - type: Hands
+      leftHandDisplacement:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: hand

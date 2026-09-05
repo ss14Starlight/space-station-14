@@ -1,0 +1,11 @@
+- type: entity
+  id: OrganScurretEyes
+  parent: OrganHumanEyes
+  name: scurret eyes
+  suffix: Scurret
+  description: "The scurrets, they've seen things…"
+  components:
+    - type: OrganVisualization
+      layer: Eyes
+      prototypes:
+        Default: MobScurretEyes
