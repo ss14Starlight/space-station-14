@@ -45,4 +45,5 @@ flavor-complex-hew-ice-cream = like blueberry and a feeling to hew
 flavor-complex-fluffy-boy-ice-cream = like vanilla, lime, and a gentle kindness
 flavor-complex-leader-ice-cream = like vanilla, blueberry, and a crunchy sword cookie
 flavor-complex-tesla-ice-cream = like vanilla and your hairs raising up
+flavor-complex-glub-juice = like sea salt and fresh fish
 flavor-base-cinnamon = cinnamony

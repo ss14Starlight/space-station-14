@@ -40,6 +40,20 @@
         - id: MaterialToothSpaceCarp1
           amount: 1
           maxAmount: 4
+    - type: LanguageKnowledge
+      speaks:
+      - Carptongue
+      understands:
+      - Carptongue
+      - Thaveyan
+      - GalacticCommon
+    - type: InteractionPopup
+      successChance: 0.6
+      interactSuccessString: petting-success-carp
+      interactFailureString: petting-failure-generic
+      interactSuccessSpawn: EffectHearts
+      interactSuccessSound:
+        path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     - type: Pacified # prevent them from biting windows when they see people
       disallowAllCombat: true
 
