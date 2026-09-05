@@ -570,19 +570,6 @@
   products:
     Opporozidone: 3
 
-- type: reaction # Starlight: Alternate recipe to give atmos a way to help chemistry.
-  id: OpporozidoneAlt
-  minTemp: 400
-  reactants:
-    ZXA:
-      amount: 10
-    TableSalt:
-      amount: 10
-    Doxarubixadone:
-      amount: 1
-  products:
-    Opporozidone: 3
-
 - type: reaction
   id: Arcryox
   minTemp: 370
