@@ -40,7 +40,7 @@ namespace Content.Server.Atmos.Reactions
 
             if (burnedFuel > 0)
             {
-                energyReleased += (Atmospherics.FireHydrogenEnergyReleased * burnedFuel);
+                energyReleased += ((Atmospherics.FireHydrogenEnergyReleased * 10f) * burnedFuel); /// Starlight: Trit burns hotter than regular hydrogen due to being "laced" with plasma. Counteracts other changes.
 
                 // TODO ATMOS Radiation pulse here!
 

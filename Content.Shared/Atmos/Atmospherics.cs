@@ -235,7 +235,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Amount of heat released per mole of burnt hydrogen or tritium (hydrogen isotope)
         /// </summary>
-        public const float FireHydrogenEnergyReleased = 284e4f;
+        public const float FireHydrogenEnergyReleased = 284e3f; /// Starlight: 284e4f -> 284e3F hydrogen no longer burns for 10x its IRL value
         public const float FireMinimumTemperatureToExist = T0C + 100f;
         public const float FireMinimumTemperatureToSpread = T0C + 150f;
         public const float FireSpreadRadiosityScale = 0.85f;
