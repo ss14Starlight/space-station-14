@@ -212,6 +212,9 @@
     blackboard:
       NavSmash: !type:Bool
         true
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile # Starlight, no blood cult
 
 - type: entity
   parent: BaseStructure
