@@ -1,158 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Non-smart Corgis, Admin/Mentor Mice, and ghosts will no longer roll antag.
-    type: Fix
-  id: 407767
-  time: '2026-08-18T23:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5719
-- author: wonderfulnewworld
-  changes:
-  - message: Ninja now actually spawns with their headset.
-    type: Fix
-  id: 407768
-  time: '2026-08-18T23:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5719
-- author: wonderfulnewworld
-  changes:
-  - message: Captain, HoP, BSO, NT Rep, and others in the all access group now have Clown and Mime access.
-    type: Fix
-  id: 407769
-  time: '2026-08-18T23:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5719
-- author: Sparlight
-  changes:
-  - message: Fixed an intermittent issue where your cursor would get stuck as a torso (especially after waking up).
-    type: Fix
-  id: 407770
-  time: '2026-08-19T08:57:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5717
-- author: Way
-  changes:
-  - message: (Hotel) Added random station radio spawners.
-    type: Add
-  id: 407771
-  time: '2026-08-19T09:29:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5722
-- author: Way
-  changes:
-  - message: (Hotel) One radio in GenPop, not random.
-    type: Add
-  id: 407772
-  time: '2026-08-19T09:29:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5722
-- author: Way
-  changes:
-  - message: (Manor) Added random station radio spawners.
-    type: Add
-  id: 407773
-  time: '2026-08-19T09:29:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5722
-- author: Conflee, pyrolizz
-  changes:
-  - message: Resprite of the AME.
-    type: Tweak
-  id: 407774
-  time: '2026-08-19T09:57:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5726
-- author: Caws
-  changes:
-  - message: Taggers and disposal routers no longer prevent you from typing the wildcard character * into them.
-    type: Fix
-  id: 407775
-  time: '2026-08-19T10:21:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5723
-- author: Caws
-  changes:
-  - message: Fixed an issue with wildcard routers which made it impossible for items to go straight-thru them. This should resolve mailing and disposal issues on maps like Oasis and Leth.
-    type: Fix
-  id: 407776
-  time: '2026-08-19T10:21:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5723
-- author: Mack
-  changes:
-  - message: Service borgs now have a Vinyl and CD slot.
-    type: Add
-  id: 407777
-  time: '2026-08-19T10:42:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5725
-- author: Common
-  changes:
-  - message: add tape recorder box to the IAA locker.
-    type: Tweak
-  id: 407778
-  time: '2026-08-19T10:42:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5724
-- author: Common
-  changes:
-  - message: add tape recorder and cassettes to the lawer's briefcase.
-    type: Tweak
-  id: 407779
-  time: '2026-08-19T10:42:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5724
-- author: Space-Wizards
-  changes:
-  - message: Engine Updated to 288.1.0(Fixes X button on windows).
-    type: Tweak
-  id: 407780
-  time: '2026-08-19T19:56:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5736
-- author: Mack
-  changes:
-  - message: Vent crawling entity deleted bug.
-    type: Fix
-  id: 407781
-  time: '2026-08-20T14:19:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5756
-- author: Trosling
-  changes:
-  - message: Reorganized the guides into their own category in the guidebook for less clutter.
-    type: Tweak
-  id: 407782
-  time: '2026-08-21T08:05:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5432
-- author: Trosling
-  changes:
-  - message: Moved corporate law to it's own guidebook category, instead of hiding it away in the security guide.
-    type: Tweak
-  id: 407783
-  time: '2026-08-21T08:05:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5432
-- author: Trosling
-  changes:
-  - message: Removed last mentions of "Space Law" in the guidebook, replacing them with "Corporate Law".
-    type: Fix
-  id: 407784
-  time: '2026-08-21T08:05:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5432
-- author: Spaghetti-Bit & ya3.14a
-  changes:
-  - message: The mothroach underground has made some under the table deals with the syndicate and are now available to hire, introducing the Syndicate Mobroach. A special little helper specialized in removing evidence and interrogation. Comes with a bar of soap, cuffs, refilling space cleaner bottle. Costs 4 TC.
-    type: Add
-  id: 407785
-  time: '2026-08-21T08:26:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5617
-- author: OMEGA
-  changes:
-  - message: Typo in ItemSwitch.
-    type: Fix
-  id: 407786
-  time: '2026-08-21T08:59:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5754
-- author: Caws
-  changes:
-  - message: The news manager console now requires Journalism access (instead of Service access).
-    type: Tweak
-  id: 407787
-  time: '2026-08-21T09:25:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5755
-- author: BriocheBear
-  changes:
-  - message: Added froggy chair as a constructible furniture.
-    type: Add
-  id: 407788
-  time: '2026-08-21T09:52:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5691
 - author: BriocheBear
   changes:
   - message: Added lovey chair, a pink variant of the froggy chair.
@@ -2799,4 +2645,158 @@ Entries:
   id: 408166
   time: '2026-09-05T15:48:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Swonki, SirLutz
+  changes:
+  - message: Malign Minions (0.1) and the Colossus (0.2) now regenerate health while standing on malign tiles.
+    type: Add
+  id: 408167
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Malign Minions and the Colossus can come back from death, make sure to destroy them.
+    type: Add
+  id: 408168
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Added new damage modifiers for Malign Minions and the Colossus, providing increased piercing resistance and flat damage reduction against cold damage.
+    type: Add
+  id: 408169
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Malign Oracles now have thermal vision, allowing them to better guide and advise their fellow Minions.
+    type: Add
+  id: 408170
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: The Colossus can now use the Ingress ability on rifts, transforming them into Malign Empowered Rifts.
+    type: Add
+  id: 408171
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Changed the description of the Ingress ability and its guidebook entry.
+    type: Tweak
+  id: 408172
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Malign Empowered Rifts can store one non-Cultist humanoid, preventing the stored corpse from rotting.
+    type: Add
+  id: 408173
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Added a global Rift Corpse counter, with each stored corpse affecting the Colossus & Minions' maximum health.
+    type: Add
+  id: 408174
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: 'New Objective SACRIFICE: have 5–8 filled empowered rifts at the same time.'
+    type: Add
+  id: 408175
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Empowered Rifts now have separate sprites for their unoccupied and occupied states.
+    type: Add
+  id: 408176
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Added a guidebook section covering Malign Empowered Rifts.
+    type: Add
+  id: 408177
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: The Colossus now tracks Effigy criticals and alerts the station when subsequent Effigies become critical. The first Effigy remains unannounced.
+    type: Add
+  id: 408178
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: After completing their BECKON goal, the Colossus can now choose where future Effigies are placed.
+    type: Tweak
+  id: 408179
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: The Colossus BECKON task should now select the current grid, or the nuke grid if the current grid cannot be determined.
+    type: Fix
+  id: 408180
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: TimedDoorComponent now checks for entities blocking doors.
+    type: Fix
+  id: 408181
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Colossus occurrence has become rarer, with its weight reduced from 3 to 2.
+    type: Tweak
+  id: 408182
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Minimum player count raised from 25 to 35.
+    type: Tweak
+  id: 408183
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Lodestar projectiles now go 1.8 tiles further.
+    type: Tweak
+  id: 408184
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Antagscaling has now has two healthmodifier limits.
+    type: Add
+  id: 408185
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Colossus has Antagscaling, possible -25%MaxHP to +50MaxHP.
+    type: Add
+  id: 408186
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: If Antagscaling was broken, it works now?.
+    type: Fix
+  id: 408187
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Added cold resistance to ERT & Deathsquad, with chaplain and ERT lead getting both 80%, Security with 40%.
+    type: Add
+  id: 408188
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
 Order: -1
