@@ -1,0 +1,120 @@
+- type: entity
+  save: false
+  name: Urist McBuzz
+  parent: [BaseMobSpeciesOrganic, BaseInventoryAculii]
+  id: BaseMobAculii
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    understands:
+    - GalacticCommon
+  - type: Jump
+    action: JumpMoth
+  - type: Absorbable
+  - type: HumanoidAppearance
+    species: Aculii
+    hideLayersOnEquip:
+    - HeadTop
+    - Hair # Starlight
+  - type: Hunger
+  - type: Thirst
+  - type: Icon
+    sprite: Mobs/Species/Aculii/parts.rsi
+    state: full
+  - type: Body
+    prototype: Aculii
+    requiredLegs: 2
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Aculii
+  - type: ZombieAccentOverride
+    accent: zombieMoth
+  - type: Speech
+    speechVerb: Aculii
+    speechSounds: UnisexAculii # Starlight: Add talk sounds
+    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
+  - type: TypingIndicator
+    proto: aculii
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 5
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: InsectBlood
+        Quantity: 300
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#808A51"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+  - type: MothAccent
+  - type: Vocal
+    sounds:
+      Male: UnisexAculii
+      Female: UnisexAculii
+      Unsexed: UnisexAculii
+  - type: BodyEmotes # Starlight: Add separate sound set for Moth bodies
+    soundsId: MothBodyEmotes
+  - type: MovementSpeedModifier
+    baseWeightlessAcceleration: 1.5 # Move around more easily in space.
+    baseWeightlessFriction: 1
+    baseWeightlessModifier: 1
+  - type: Flammable
+    damage:
+      types:
+        Heat: 4.5 # #Starlight: bring back the glory days of moths fearing fire
+  - type: Sprite # sprite again because we want different layer ordering
+    noRot: true
+    drawdepth: Mobs
+    layers:
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+      - map: [ "jumpsuit" ]
+      - map: [ "enum.HumanoidVisualLayers.LHand" ]
+      - map: [ "enum.HumanoidVisualLayers.RHand" ]
+      - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+      - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+      - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "eyes" ]
+      - map: [ "outerClothing" ] # Starlight
+      - map: [ "belt" ]
+      - map: [ "id" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
+      - map: [ "back" ]
+      - map: [ "neck" ]
+      - map: [ "misc" ] # Starlight
+      - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+      - map: [ "clownedon" ] # Dynamically generated
+        sprite: "Effects/creampie.rsi"
+        state: "creampie_moth"
+        visible: false

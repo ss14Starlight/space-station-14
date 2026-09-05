@@ -1,0 +1,57 @@
+﻿- type: body
+  id: Aculii
+  name: "aculii"
+  root: torso
+  slots:
+    head:
+      part: HeadAculii
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganAculiiEyes # Starlight
+        tongue: OrganHumanTongue
+        eye_implant: null
+        brain_implant: null # 🌟Starlight🌟
+    torso:
+      part: TorsoAculii
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganAnimalHeart
+        lungs: OrganHumanLungs
+        stomach: OrganAculiiStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganHumanKidneys
+        cavity: null
+    right arm:
+      part: RightArmAculii
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmAculii
+      connections:
+      - left hand
+    right hand:
+      part: RightHandAculii
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
+    left hand:
+      part: LeftHandAculii
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
+    right leg:
+      part: RightLegAculii
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegAculii
+      connections:
+      - left foot
+    right foot:
+      part: RightFootAculii
+    left foot:
+      part: LeftFootAculii

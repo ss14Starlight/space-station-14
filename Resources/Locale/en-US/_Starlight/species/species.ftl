@@ -11,5 +11,6 @@ species-name-shadekin = Shadekin
 species-name-thaven = Thaven
 species-name-rodentia = Rodentia
 species-name-experiment = Experiment
+species-name-aculii = Aculii
 
 species-name-sawian = Sawian

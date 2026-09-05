@@ -1,0 +1,120 @@
+# TODO: Add descriptions (many)
+# TODO BODY: Part damage
+- type: entity
+  id: PartAculii
+  parent: [BaseItem, BasePart]
+  name: "aculii body part"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: TorsoAculii
+  name: "aculii torso"
+  parent: [PartAculii, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Aculii/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+
+- type: entity
+  id: HeadAculii
+  name: "aculii head"
+  parent: [PartAculii, BaseHead]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Aculii/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmAculii
+  name: "left aculii arm"
+  parent: [PartAculii, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Aculii/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmAculii
+  name: "right aculii arm"
+  parent: [PartAculii, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Aculii/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandAculii
+  name: "left aculii hand"
+  parent: [PartAculii, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Aculii/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandAculii
+  name: "right aculii hand"
+  parent: [PartAculii, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Aculii/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegAculii
+  name: "left aculii leg"
+  parent: [PartAculii, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Aculii/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegAculii
+  name: "right aculii leg"
+  parent: [PartAculii, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Aculii/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootAculii
+  name: "left aculii foot"
+  parent: [PartAculii, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Aculii/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootAculii
+  name: "right aculii foot"
+  parent: [PartAculii, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Aculii/parts.rsi
+    state: "r_foot"
