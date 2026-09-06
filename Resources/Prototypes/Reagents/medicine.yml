@@ -132,6 +132,8 @@
   color: "#2d5708"
   metabolisms:
     Bloodstream:
+      metabolites:
+        Ethylredoxrazine: 1.0
       effects:
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrunk
@@ -149,6 +151,11 @@
         reagent: Ethylredoxrazine
         amount: -0.5
         # Starlight-End
+    Metabolites:
+      effects:
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: -0.5
 
 - type: reagent
   id: Arithrazine
