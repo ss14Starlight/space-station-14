@@ -127,6 +127,14 @@
     - type: Paper
       content: doc-text-printer-salvagelead-report
 
+- type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentPsychologicalReport
+  name: Psychological Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-psychological-report
 # Statements
 
 - type: entity

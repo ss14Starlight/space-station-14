@@ -1,5 +1,6 @@
 - type: cloudEmote
   id: Mark
+  name: cloud-emote-name-mark
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -8,6 +9,7 @@
 
 - type: cloudEmote
   id: Lenny
+  name: cloud-emote-name-lenny
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -16,6 +18,7 @@
 
 - type: cloudEmote
   id: Nervous
+  name: cloud-emote-name-nervous
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -24,6 +27,7 @@
 
 - type: cloudEmote
   id: Snore
+  name: cloud-emote-name-snore
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -32,6 +36,7 @@
 
 - type: cloudEmote
   id: Stare
+  name: cloud-emote-name-stare
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -40,6 +45,7 @@
 
 - type: cloudEmote
   id: Weh
+  name: cloud-emote-name-weh
   animationTime: 3
   sound: /Audio/Items/Toys/weh.ogg # Weh!
   icon:
@@ -48,6 +54,7 @@
 
 - type: cloudEmote
   id: Xp
+  name: cloud-emote-name-xp
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -56,6 +63,7 @@
 
 - type: cloudEmote
   id: Yes
+  name: cloud-emote-name-yes
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -64,6 +72,7 @@
 
 - type: cloudEmote
   id: Abductor
+  name: cloud-emote-name-abductor
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -72,6 +81,7 @@
 
 - type: cloudEmote
   id: Amongus
+  name: cloud-emote-name-amongus
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -80,6 +90,7 @@
 
 - type: cloudEmote
   id: Cool
+  name: cloud-emote-name-cool
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -88,6 +99,7 @@
 
 - type: cloudEmote
   id: Crying
+  name: cloud-emote-name-crying
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -96,6 +108,7 @@
 
 - type: cloudEmote
   id: Dizzy
+  name: cloud-emote-name-dizzy
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -104,6 +117,7 @@
 
 - type: cloudEmote
   id: Flustered
+  name: cloud-emote-name-flustered
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -112,6 +126,7 @@
 
 - type: cloudEmote
   id: Heart
+  name: cloud-emote-name-heart
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -120,6 +135,7 @@
 
 - type: cloudEmote
   id: Huh
+  name: cloud-emote-name-huh
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -128,6 +144,7 @@
 
 - type: cloudEmote
   id: Man
+  name: cloud-emote-name-man
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -136,6 +153,7 @@
 
 - type: cloudEmote
   id: No
+  name: cloud-emote-name-no
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -144,6 +162,7 @@
 
 - type: cloudEmote
   id: OwO
+  name: cloud-emote-name-owo
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -152,6 +171,7 @@
 
 - type: cloudEmote
   id: Pause
+  name: cloud-emote-name-pause
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -160,6 +180,7 @@
 
 - type: cloudEmote
   id: Question
+  name: cloud-emote-name-question
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -168,6 +189,7 @@
 
 - type: cloudEmote
   id: Shocked
+  name: cloud-emote-name-shocked
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -176,6 +198,7 @@
 
 - type: cloudEmote
   id: Sing
+  name: cloud-emote-name-sing
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -184,6 +207,7 @@
 
 - type: cloudEmote
   id: Smile
+  name: cloud-emote-name-smile
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
@@ -192,6 +216,7 @@
 
 - type: cloudEmote
   id: Smoile
+  name: cloud-emote-name-smoile
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:
