@@ -275,6 +275,9 @@ public abstract partial class SharedZoneSystem : EntitySystem
     protected int ZonePriority(ushort zone)
         => zone < _priorityById.Length ? _priorityById[zone] : NoZonePriority;
 
+    protected virtual void QueueFullRebuild(Entity<ZoneGridComponent> ent)
+        => ent.Comp.NeedsFullRebuild = true;
+
     #endregion
 
     #region Rasterisation
@@ -450,7 +453,7 @@ public abstract partial class SharedZoneSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp))
         {
             RebuildHints((uid, comp));
-            comp.NeedsFullRebuild = true;
+            QueueFullRebuild((uid, comp));
         }
     }
 

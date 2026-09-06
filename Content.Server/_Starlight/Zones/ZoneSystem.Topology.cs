@@ -163,9 +163,9 @@ public sealed partial class ZoneSystem
         _dirtyGrids.Add(grid);
     }
 
-    private void QueueFullRebuild(Entity<ZoneGridComponent> ent)
+    protected override void QueueFullRebuild(Entity<ZoneGridComponent> ent)
     {
-        ent.Comp.NeedsFullRebuild = true;
+        base.QueueFullRebuild(ent);
         _dirtyGrids.Add(ent.Owner);
     }
 
@@ -363,6 +363,7 @@ public sealed partial class ZoneSystem
         if (region == NoRegion)
         {
             Log.Error($"Ran out of zone region ids on {ToPrettyString(ent.Owner)}.");
+            comp.NeedsFullRebuild = true;
             return NoRegion;
         }
 
