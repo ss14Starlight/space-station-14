@@ -14,6 +14,9 @@ public sealed partial class ZoneAtCommand : LocalizedCommands
 
     public override string Command => "zoneat";
 
+    /// <summary>
+    /// Executes the zoneat command, which retrieves the zone and room information for a specific tile on a grid.
+    /// </summary>
     public override void Execute(IConsoleShell shell, string _, string[] args)
     {
         var zones = _entMan.System<ZoneSystem>();

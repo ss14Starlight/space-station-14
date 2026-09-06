@@ -75,6 +75,9 @@ public sealed partial class ZoneSystem
             SendZoneShapes(ent.Value, args.SenderSession);
     }
 
+    /// <summary>
+    /// Paints a rectangle of a zone onto the grid, merging with existing shapes and removing overlaps.
+    /// </summary>
     public bool PaintZoneRect(Entity<ZoneGridComponent> ent, Box2i rect, ProtoId<ZonePrototype> zone)
     {
         if (IsEmpty(rect) || !Proto.HasIndex(zone))
@@ -115,6 +118,9 @@ public sealed partial class ZoneSystem
             SendZoneShapes(ent.Value, args.SenderSession);
     }
 
+    /// <summary>
+    /// Erases a rectangle of zones from the grid, removing overlaps and merging adjacent shapes.
+    /// </summary>
     public bool EraseZoneRect(Entity<ZoneGridComponent> ent, Box2i rect)
     {
         if (IsEmpty(rect))
@@ -158,6 +164,9 @@ public sealed partial class ZoneSystem
         QueueFullRebuild(ent);
     }
 
+    /// <summary>
+    /// Sends the current zone shapes to a client session.
+    /// </summary>
     public void SendZoneShapes(Entity<ZoneGridComponent> ent, ICommonSession session)
         => RaiseNetworkEvent(new ZoneShapesSyncEvent(GetNetEntity(ent.Owner), ent.Comp.Shapes), session);
 

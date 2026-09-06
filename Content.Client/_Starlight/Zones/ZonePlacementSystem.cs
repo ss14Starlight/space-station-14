@@ -93,6 +93,9 @@ public sealed partial class ZonePlacementSystem : EntitySystem
 
     #region Activation
 
+    /// <summary>
+    /// Activates or deactivates the zone placement system, enabling or disabling the editor context and clearing any ongoing drag operations.
+    /// </summary>
     public void SetActive(bool active)
     {
         Active = active;
@@ -104,6 +107,9 @@ public sealed partial class ZonePlacementSystem : EntitySystem
             _inputSystem.SetEntityContextActive();
     }
 
+    /// <summary>
+    /// Toggles the visibility of zones in the editor. If zones are hidden and the system is not active, it clears any cached zone shapes and requested grids.
+    /// </summary>
     public void ToggleShowZones()
     {
         ShowZones = !ShowZones;
@@ -115,6 +121,9 @@ public sealed partial class ZonePlacementSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Toggles the visibility of rooms in the editor. If rooms are hidden, it clears any cached room data and resets the next room request timer.
+    /// </summary>
     public void ToggleShowRooms()
     {
         ShowRooms = !ShowRooms;
@@ -161,6 +170,9 @@ public sealed partial class ZonePlacementSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Calculates the rectangle that encompasses two tile coordinates, ensuring that the rectangle is defined from the minimum to maximum coordinates and includes the end tiles.
+    /// </summary>
     public static Box2i RectBetween(Vector2i a, Vector2i b)
         => new(
             Math.Min(a.X, b.X),
@@ -185,6 +197,9 @@ public sealed partial class ZonePlacementSystem : EntitySystem
 
     #region Overlay data
 
+    /// <summary>
+    /// Gets the current draw target for the zone placement overlay, including whether to draw, the grid entity, and the list of zone shapes for that grid.
+    /// </summary>
     public (bool Draw, EntityUid Grid, List<ZoneShapeSet>? Shapes) GetDrawTarget()
     {
         if (!Active && !ShowZones)
@@ -203,6 +218,9 @@ public sealed partial class ZonePlacementSystem : EntitySystem
         return (true, grid, shapes);
     }
 
+    /// <summary>
+    /// Attempts to get the preview for the zone placement overlay, including the grid entity, the rectangle to draw, and the color to use.
+    /// </summary>
     public bool TryGetPreview(out EntityUid grid, out Box2i rect, out Color color)
     {
         grid = default;
@@ -219,6 +237,9 @@ public sealed partial class ZonePlacementSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Gets the color for a zone based on its prototype.
+    /// </summary>
     public Color ZoneColor(ProtoId<ZonePrototype>? zone)
         => zone is { } id && _proto.TryIndex(id, out var proto) ? proto.Color : Color.White;
 
@@ -260,6 +281,9 @@ public sealed partial class ZonePlacementSystem : EntitySystem
         RaiseNetworkEvent(new RequestZoneShapesEvent(net));
     }
 
+    /// <summary>
+    /// Gets the room view for the grid that the local player is currently on, if available. If the player is not on a grid or room data is not available, it returns null.
+    /// </summary>
     public ZoneRoomView? GetRooms(out EntityUid grid)
     {
         grid = default;
@@ -305,6 +329,9 @@ public sealed partial class ZonePlacementSystem : EntitySystem
         _requested.Add(ev.Grid);
     }
 
+    /// <summary>
+    /// Gets the known zone shapes for a specific grid entity, if available. If no shapes are known for the grid, it returns null.
+    /// </summary>
     public IReadOnlyList<ZoneShapeSet>? GetKnownShapes(NetEntity grid)
         => _shapes.GetValueOrDefault(grid);
 
