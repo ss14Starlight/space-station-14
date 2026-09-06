@@ -233,7 +233,7 @@
     soundHit:
       collection: MetalThud
   - type: RefillableSolution
-    solution: Welder
+    solution: welder
   - type: Tool
     speedModifier: 1.75
     useSound:
