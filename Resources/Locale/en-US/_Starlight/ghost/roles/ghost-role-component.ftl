@@ -136,3 +136,9 @@ ghost-role-information-syndicate-mothroach-reinforcement-description = Someone n
 ghost-role-information-icesculpture-name = Ice sculpture
 ghost-role-information-icesculpture-description = A sculpture of ice given sentience by magic, obey your master!
 ghost-role-information-icesculpture-rules = Ensure your summoner survives, defend them at all cost. You were made for this.
+
+ghost-role-information-sentient-sharkminnow-name = Sentient Sharkminnow
+ghost-role-information-sentient-sharkminnow-description = Guard the dragon's rift and obey the Space Dragon. Protect the rift from anyone who would seek to destroy it!
+
+ghost-role-information-sentient-holocarp-name = Sentient Holocarp
+ghost-role-information-sentient-holocarp-description = Aid the Space Dragon and obey its commands. Help the dragon flood the station with carps and overwhelm its enemies!

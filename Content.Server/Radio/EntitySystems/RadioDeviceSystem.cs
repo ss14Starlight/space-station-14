@@ -135,7 +135,11 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
         if (!quiet && user != null)
         {
             var state = Loc.GetString(component.Enabled ? "handheld-radio-component-on-state" : "handheld-radio-component-off-state");
-            var message = Loc.GetString("handheld-radio-component-on-use", ("radioState", state));
+            // Starlight Start
+            var message = HasComp<StationRadioServerComponent>(uid)
+                ? Loc.GetString("station-radio-server-microphone-on-use", ("radioState", state))
+                : Loc.GetString("handheld-radio-component-on-use", ("radioState", state));
+            // Starlight End
             _popup.PopupEntity(message, user.Value, user.Value);
         }
 
