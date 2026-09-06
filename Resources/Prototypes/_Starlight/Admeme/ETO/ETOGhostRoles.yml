@@ -188,6 +188,7 @@
     - CrowbarRed
     - MagazinePistolHighCapacityFMJ
     - MagazinePistolHighCapacityFMJ
+    - JugPunctTranex
 
     belt:
     - MagazinePistolSubMachineGunBottomMountedDDFMJ
@@ -195,7 +196,6 @@
     - MagazinePistolSubMachineGunBottomMountedDDFMJ
     - MagazinePistolSubMachineGunBottomMountedDDFMJ
     - Hypospray
-    - JugPunctTranex
 
 - type: entity
   id: RandomHumanoidSpawnerETOLead

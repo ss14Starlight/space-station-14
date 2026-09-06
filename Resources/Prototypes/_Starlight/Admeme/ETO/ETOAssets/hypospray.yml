@@ -19,7 +19,6 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 3
   - type: SolutionRegeneration
-    solution: hypospray
     generated:
       reagents:
       - ReagentId: Bicaridine
