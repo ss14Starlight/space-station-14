@@ -4,31 +4,29 @@ using Robust.Shared.Console;
 
 namespace Content.Client._Starlight.Zones.Commands;
 
-public sealed partial class MyZoneCommand : IConsoleCommand
+public sealed partial class MyZoneCommand : LocalizedCommands
 {
     [Dependency] private IEntityManager _entMan = default!;
     [Dependency] private IPlayerManager _player = default!;
 
-    public string Command => "myzone";
-    public string Description => "Prints the zone you are currently in.";
-    public string Help => $"Usage: {Command}";
+    public override string Command => "myzone";
 
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
+    public override void Execute(IConsoleShell shell, string _, string[] _)
     {
         if (_player.LocalEntity is not { } player)
         {
-            shell.WriteError("You are not attached to an entity.");
+            shell.WriteError(Loc.GetString("cmd-myzone-no-entity"));
             return;
         }
 
         if (!_entMan.TryGetComponent(player, out ZoneTrackerComponent? tracker))
         {
-            shell.WriteLine("The server is not tracking zones for you.");
+            shell.WriteError(Loc.GetString("cmd-myzone-no-tracker"));
             return;
         }
 
         shell.WriteLine(tracker.Zone is { } zone
-            ? $"You are in {zone.Id}."
-            : "You are not in any zone.");
+            ? Loc.GetString("cmd-myzone-in-zone", ("zone", zone.Id))
+            : Loc.GetString("cmd-myzone-not-in-zone"));
     }
 }

@@ -8,15 +8,13 @@ using Robust.Shared.Map.Components;
 namespace Content.Server._Starlight.Zones.Commands;
 
 [AdminCommand(AdminFlags.Debug)]
-public sealed partial class ZoneAtCommand : IConsoleCommand
+public sealed partial class ZoneAtCommand : LocalizedCommands
 {
     [Dependency] private IEntityManager _entMan = default!;
 
-    public string Command => "zoneat";
-    public string Description => "Prints the zone at your feet, or at the given grid tile.";
-    public string Help => $"Usage: {Command} | {Command} <gridUid> <x> <y>";
+    public override string Command => "zoneat";
 
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
+    public override void Execute(IConsoleShell shell, string _, string[] args)
     {
         var zones = _entMan.System<ZoneSystem>();
 
@@ -28,7 +26,7 @@ public sealed partial class ZoneAtCommand : IConsoleCommand
             case 0:
                 if (shell.Player?.AttachedEntity is not { } player)
                 {
-                    shell.WriteError("You need to be attached to an entity, or pass a grid and tile.");
+                    shell.WriteError(Loc.GetString("cmd-zoneat-need-entity-or-grid"));
                     return;
                 }
 
@@ -36,7 +34,7 @@ public sealed partial class ZoneAtCommand : IConsoleCommand
                 if (xform.GetGrid(player) is not { } playerGrid ||
                     !_entMan.TryGetComponent(playerGrid, out MapGridComponent? playerGridComp))
                 {
-                    shell.WriteError("You are not on a grid.");
+                    shell.WriteError(Loc.GetString("cmd-zoneat-not-on-grid"));
                     return;
                 }
 
@@ -49,13 +47,13 @@ public sealed partial class ZoneAtCommand : IConsoleCommand
                 if (!NetEntity.TryParse(args[0], out var netGrid) ||
                     !_entMan.TryGetEntity(netGrid, out var parsedGrid))
                 {
-                    shell.WriteError($"Could not parse grid '{args[0]}'.");
+                    shell.WriteError(Loc.GetString("cmd-zoneat-cant-parse-grid", ("gridUid", args[0])));
                     return;
                 }
 
                 if (!int.TryParse(args[1], out var x) || !int.TryParse(args[2], out var y))
                 {
-                    shell.WriteError("Could not parse tile coordinates.");
+                    shell.WriteError(Loc.GetString("cmd-zoneat-cant-parse-tile", ("x", args[1]), ("y", args[2])));
                     return;
                 }
 
@@ -74,7 +72,7 @@ public sealed partial class ZoneAtCommand : IConsoleCommand
         var zone = id == SharedZoneSystem.NoZone ? "no zone" : zones.GetZone(id)?.ID ?? "?";
 
         shell.WriteLine(room == SharedZoneSystem.NoRegion
-            ? $"{tile} on {_entMan.ToPrettyString(grid)}: {zone}, not part of any room."
-            : $"{tile} on {_entMan.ToPrettyString(grid)}: {zone}, room {room}.");
+            ? Loc.GetString("cmd-zoneat-not-in-room", ("tile", tile), ("grid", _entMan.ToPrettyString(grid)), ("zone", zone))
+            : Loc.GetString("cmd-zoneat-in-room", ("tile", tile), ("grid", _entMan.ToPrettyString(grid)), ("zone", zone), ("room", room)));
     }
 }
