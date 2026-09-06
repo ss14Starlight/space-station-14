@@ -830,7 +830,6 @@ doc-text-printer-permission-equipment =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 
-
 doc-text-printer-search-permission =
                              [head=3]NT-CC Consortium Services[/head]
 

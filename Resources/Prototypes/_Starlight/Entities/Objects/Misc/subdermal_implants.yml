@@ -58,6 +58,17 @@
     - TSF
 
 - type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantSalvage
+  name: Salvage death rattle implant
+  description: This implant will inform the Expedition radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: RattleOnTrigger
+      radioChannel:
+        - Expedition
+
+- type: entity
   parent: BaseSubdermalImplant
   id: BluespaceImplant
   name: bluespace implant
