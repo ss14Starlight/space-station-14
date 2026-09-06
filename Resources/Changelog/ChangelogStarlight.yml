@@ -1,32 +1,4 @@
 Entries:
-- author: Conflee, Caws, mkanke, ratsmageddon, Tea
-  changes:
-  - message: Added several more pre-filled boxes and pre-set box shelves for mapping use, including Medical, Cargo, HoP, Sec, and Engie.
-    type: Add
-  id: 407859
-  time: '2026-08-28T07:14:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5793
-- author: Conflee, Caws, mkanke, ratsmageddon, Tea
-  changes:
-  - message: Removed the Forensic Pads, Evidence Markers Box, and Hand Labeler from Detective's Cabinet and replaced them with an EXTRAS Evidence Box which has all of these things plus some Evidence Bags. Less locker clutter.
-    type: Tweak
-  id: 407860
-  time: '2026-08-28T07:14:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5793
-- author: DocMoth
-  changes:
-  - message: Added Avali wizard robe sprites.
-    type: Add
-  id: 407861
-  time: '2026-08-28T07:35:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5788
-- author: Way
-  changes:
-  - message: Radio Host now mapped on Bagel Station.
-    type: Add
-  id: 407862
-  time: '2026-08-28T19:42:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5750
 - author: Way
   changes:
   - message: Decal updates.
@@ -2799,4 +2771,32 @@ Entries:
   id: 408258
   time: '2026-09-06T00:11:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5908
+- author: Caws
+  changes:
+  - message: (Lagan) Mailboxes.
+    type: Add
+  id: 408259
+  time: '2026-09-06T00:11:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5909
+- author: Caws
+  changes:
+  - message: (Lagan) Station radio receivers around the map.
+    type: Add
+  id: 408260
+  time: '2026-09-06T00:11:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5909
+- author: Caws
+  changes:
+  - message: (Lagan) Moved funding allocation computer out of QM's office and into HOP.
+    type: Tweak
+  id: 408261
+  time: '2026-09-06T00:11:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5909
+- author: Caws
+  changes:
+  - message: (Lagan) Fixed some missing decals in the HOP office.
+    type: Fix
+  id: 408262
+  time: '2026-09-06T00:11:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5909
 Order: -1
