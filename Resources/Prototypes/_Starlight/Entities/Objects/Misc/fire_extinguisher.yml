@@ -1,0 +1,56 @@
+- type: entity
+  parent: [SolutionFireExtinguisherVeryLarge, FireExtinguisher, BaseAtmosContraband]
+  id: FireExtinguisherAtmos
+  name: atmos fire extinguisher
+  description: A bright, pressurized fire extinguisher for the brave warriors of atmosia. Refill with your selection of water and space cleaner at your leisure.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/fire_extinguisher_atmos.rsi
+    layers:
+    - state: fire_extinguisher_closed
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Item
+    sprite: _Starlight/Objects/Misc/fire_extinguisher_atmos.rsi
+    size: Large
+    shape:
+    - 0,0,1,2
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Misc/fire_extinguisher_atmos.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 12 # They can get 2 more damage, in case they need to smash something. It's like a variant fire axe.
+        Structural: 5 # totals to 17, still 8 less than fireaxe
+    soundHit:
+      path: /Audio/Weapons/smash.ogg
+  - type: Spray
+    transferAmount: 20
+    pushbackAmount: 60
+    spraySound:
+      path: /Audio/Effects/extinguish.ogg
+    sprayedPrototype: ExtinguisherSpray
+    vaporAmount: 5
+    vaporSpread: 110
+    sprayVelocity: 5.0
+  - type: RefillableSolution
+    solution: spray
+    reagentWhitelist:
+    - Water
+    - SpaceCleaner
+    - SyndicateSpaceCleaner
+
+- type: entity
+  parent: [SolutionSpray, SolutionVeryLarge]
+  id: SolutionFireExtinguisherVeryLarge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Water
+        Quantity: 360

@@ -1,7 +1,7 @@
 ﻿
 - type: entity
   name: roast turkey
-  parent: FoodMealBase
+  parent: [SolutionHuge, FoodMealBase, BaseSlicingRefinableFood]
   id: FoodFeastTurkey
   description: "An entire roast turkey. You're going to share, right?"
   components:
@@ -10,7 +10,7 @@
       flavors:
         - meaty
     - type: Item
-      size: Normal
+      size: Huge
       shape:
         - 0,0,3,2
       inhandVisuals:
@@ -25,26 +25,27 @@
       sprite: _Starlight/Objects/Consumable/Food/turkey.rsi
       layers:
         - state: turkeycooked
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 350 # it's hollow
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 200
-            - ReagentId: Protein
-              Quantity: 100
+    - type: Solution
+      id: food
+      solution:
+        maxVol: 360 # 12 inventory tiles, but it is hollow.
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 200
+          - ReagentId: Protein
+            Quantity: 100
 
     - type: Tag
       tags:
         - Meat
-    - type: SliceableFood
-      count: 16
-      slice: FoodTurkeySlice
+    - type: ToolRefinable
+      refineResult:
+      - id: FoodTurkeySlice
+        amount: 16
 
 - type: entity
   name: roast turkey slice
-  parent: FoodMealBase
+  parent: [SolutionTiny, FoodMealBase]
   id: FoodTurkeySlice
   description: A serving of roast turkey. Next time make the whole feast!
   components:
@@ -58,15 +59,14 @@
       sprite: _Starlight/Objects/Consumable/Food/turkey.rsi
       layers:
         - state: turkeyslice
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 22
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 13
-            - ReagentId: Protein
-              Quantity: 6
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 12.5
+          - ReagentId: Protein
+            Quantity: 6.25
     - type: Tag
       tags:
         - Meat
@@ -153,17 +153,16 @@
       sprite: _Starlight/Objects/Consumable/Food/plate.rsi
       layers:
         - state: festivedinner
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 35
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 20
-            - ReagentId: Protein
-              Quantity: 6
-            - ReagentId: Vitamin
-              Quantity: 4
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 20
+          - ReagentId: Protein
+            Quantity: 6
+          - ReagentId: Vitamin
+            Quantity: 4
     - type: Tag
       tags:
         - Meat
@@ -197,19 +196,18 @@
       sprite: _Starlight/Objects/Consumable/Food/plate.rsi
       layers:
         - state: festivedinnergravy
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 35
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 20
-            - ReagentId: Protein
-              Quantity: 6
-            - ReagentId: Gravy
-              Quantity: 3
-            - ReagentId: Vitamin
-              Quantity: 4
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 20
+          - ReagentId: Protein
+            Quantity: 6
+          - ReagentId: Gravy
+            Quantity: 3
+          - ReagentId: Vitamin
+            Quantity: 4
     - type: Tag
       tags:
         - Meat
@@ -219,7 +217,7 @@
 # mashed potatoes, full size
 - type: entity
   name: family-size mashed potatoes
-  parent: FoodMealBase
+  parent: [SolutionNormal, FoodMealBase, BaseSlicingRefinableFood]
   id: FoodFeastPotatoMashed
   description: Feeds five... or ten if you cut it properly.
   components:
@@ -235,24 +233,25 @@
       sprite: _Starlight/Objects/Consumable/Food/potatomash.rsi
       layers:
         - state: potatomashfeast
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 180
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 100
+    - type: Solution
+      id: food
+      solution:
+        maxVol: 180
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 100
     - type: Tag
       tags:
         - Potato
-    - type: SliceableFood
-      count: 10
-      slice: FoodPotatoMashed
+    - type: ToolRefinable
+      refineResult:
+      - id: FoodPotatoMashed
+        amount: 10
 
 # mashed potatoes, private
 - type: entity
   name: mashed potatoes
-  parent: FoodMealBase
+  parent: [SolutionTiny, FoodMealBase]
   id: FoodPotatoMashed
   description: Legally, I have to tell you to get a plate.
   components:
@@ -266,13 +265,12 @@
       sprite: _Starlight/Objects/Consumable/Food/potatomash.rsi
       layers:
         - state: potatomash
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 36
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 20
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 10
     - type: Tag
       tags:
         - Potato
@@ -280,7 +278,7 @@
 # mashed potatoes with gravy, full size
 - type: entity
   name: family-size gravy potatoes
-  parent: FoodMealBase
+  parent: [SolutionNormal, FoodMealBase, BaseSlicingRefinableFood]
   id: FoodFeastPotatoGravy
   description: Remember to serve individually!
   components:
@@ -297,26 +295,27 @@
       sprite: _Starlight/Objects/Consumable/Food/potatomash.rsi
       layers:
         - state: potatogravyfeast
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 180
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 100
-            - ReagentId: Gravy
-              Quantity: 50
+    - type: Solution
+      id: food
+      solution:
+        maxVol: 180
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 100
+          - ReagentId: Gravy
+            Quantity: 50
     - type: Tag
       tags:
         - Potato
-    - type: SliceableFood
-      count: 10
-      slice: FoodPotatoGravy
+    - type: ToolRefinable
+      refineResult:
+      - id: FoodPotatoGravy
+        amount: 10
 
 # mashed potatoes with gravy, private
 - type: entity
   name: gravy potatoes
-  parent: FoodMealBase
+  parent: [SolutionTiny, FoodMealBase]
   id: FoodPotatoGravy
   description: "What, butter isn't enough for you?"
   components:
@@ -331,15 +330,14 @@
       sprite: _Starlight/Objects/Consumable/Food/potatomash.rsi
       layers:
         - state: potatogravy
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 36
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 20
-            - ReagentId: Gravy
-              Quantity: 10
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 10
+          - ReagentId: Gravy
+            Quantity: 5
     - type: Tag
       tags:
         - Potato
@@ -347,7 +345,7 @@
 # stuffing
 - type: entity
   name: stuffing
-  parent: FoodMealBase
+  parent: [SolutionNormal, FoodMealBase]
   id: FoodStuffing
   description: This goes in the turkey, not your mouth.
   components:
@@ -365,13 +363,18 @@
       sprite: _Starlight/Objects/Consumable/Food/stuffing.rsi
       layers:
         - state: stuffing
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 26
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 20
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 31
+          - ReagentId: Vitamin
+            Quantity: 1
+          - ReagentId: Allicin
+            Quantity: 1
+          - ReagentId: TableSalt
+            Quantity: 1
     - type: Tag
       tags:
         - Bread
@@ -380,7 +383,7 @@
 # moff stuffing
 - type: entity
   name: cotton stuffing
-  parent: FoodMealBase
+  parent: [SolutionNormal, FoodMealBase]
   id: FoodStuffingCotton
   description: Festive bread, but for moff.
   components:
@@ -399,15 +402,20 @@
       sprite: _Starlight/Objects/Consumable/Food/stuffing.rsi
       layers:
         - state: stuffingmoth
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 26
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 10
-            - ReagentId: Fiber
-              Quantity: 10
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 16
+          - ReagentId: Fiber
+            Quantity: 15
+          - ReagentId: Vitamin
+            Quantity: 1
+          - ReagentId: Allicin
+            Quantity: 1
+          - ReagentId: TableSalt
+            Quantity: 1
     - type: Tag
       tags:
         - Bread

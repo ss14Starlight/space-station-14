@@ -17,7 +17,6 @@
     state: cyclorite
   - type: Thirst
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatHuman # TODO: Make Sprite for butchered rock steak
       amount: 10
@@ -70,7 +69,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: CycloriteBlood
-        Quantity: 300
+        Quantity: 600
   - type: MovementSpeedModifierScale
     movementSpeedScale: 0.5
   - type: SlowOnDamage

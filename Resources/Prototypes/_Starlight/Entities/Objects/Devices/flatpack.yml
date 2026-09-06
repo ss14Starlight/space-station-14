@@ -171,3 +171,12 @@
       entity: EndymionStatueLarge1
       randomEntities: #Structured to be able to add more options once we have sprites for more
         - EndymionStatueLarge1
+
+- type: entity
+  parent: BaseFlatpack
+  id: WashingMachineFlatpack
+  name: washing machine flatpack
+  description: A flatpack used for constructing a washing machine.
+  components:
+  - type: Flatpack
+    entity: WashingMachine

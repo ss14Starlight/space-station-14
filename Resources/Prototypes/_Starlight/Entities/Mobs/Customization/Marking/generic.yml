@@ -40,7 +40,7 @@
   id: HeadEarrings
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, SlimePerson, NeoSlimePerson, Neocyte]
+  speciesRestriction: [Human, Doll, NeoHuman, Dwarf, NeoDwarf, SlimePerson, NeoSlimePerson, Neocyte]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -58,7 +58,7 @@
   id: HeadEarringsDrop
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, SlimePerson, NeoSlimePerson, Neocyte]
+  speciesRestriction: [Human, Doll, NeoHuman, Dwarf, NeoDwarf, SlimePerson, NeoSlimePerson, Neocyte]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -76,7 +76,7 @@
   id: HeadEarringsWeights
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human, NeoHuman, Dwarf, NeoDwarf, SlimePerson, NeoSlimePerson, Neocyte]
+  speciesRestriction: [Human, Doll, NeoHuman, Dwarf, NeoDwarf, SlimePerson, NeoSlimePerson, Neocyte]
   forcedColoring: false
   followSkinColor: false
   coloring:
