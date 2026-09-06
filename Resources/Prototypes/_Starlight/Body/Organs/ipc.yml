@@ -21,7 +21,7 @@
     id: organ
     solution:
       reagents:
-      - ReagentId: Oil
+      - ReagentId: RefinedOil
         Quantity: 10
 
 - type: entity
