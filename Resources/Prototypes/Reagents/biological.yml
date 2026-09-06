@@ -181,7 +181,7 @@
   color: "#f4692e"
   recognizable: true
   metabolisms:
-    Digestion:
+    Bloodstream:
       effects:
       - !type:SatiateThirst
         factor: 1.5
