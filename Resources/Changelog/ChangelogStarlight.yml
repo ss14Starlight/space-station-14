@@ -1,69 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Orwell)  Added radio host south of arrivals.
-    type: Add
-  id: 407893
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Added several station radios throughout the station.
-    type: Add
-  id: 407894
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Added some cloth to maints surgery room.
-    type: Add
-  id: 407895
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Added double hop window.
-    type: Add
-  id: 407896
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Changed the two shuttles at shuttle construction bay slightly using diagonals.
-    type: Tweak
-  id: 407897
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Changed the cmo dog bed to the new cat bed.
-    type: Tweak
-  id: 407898
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Changed reporter room to journalism access.
-    type: Tweak
-  id: 407899
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Fixed a pipe near shuttle construction bay being the wrong color.
-    type: Fix
-  id: 407900
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Fixed tiles in maints bar below medical.
-    type: Fix
-  id: 407901
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
   - message: (Prism) Added stir stir to gen pop.
     type: Add
   id: 407902
@@ -2799,4 +2736,67 @@ Entries:
   id: 408292
   time: '2026-09-06T05:12:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5956
+- author: Xale
+  changes:
+  - message: Avali and Vulpkanin no longer require more food or water to get out of near-dying levels of hunger or thirst.
+    type: Tweak
+  id: 408293
+  time: '2026-09-06T05:42:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5992
+- author: Xale
+  changes:
+  - message: Documentation for Avali hunger rate, which is 1.8x rather than the previously stated 2.0x.
+    type: Fix
+  id: 408294
+  time: '2026-09-06T05:42:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5992
+- author: Xale
+  changes:
+  - message: Documentation for Vulpkanin hunger rate, which is 1.1x rather than the previously stated 1.5x.
+    type: Fix
+  id: 408295
+  time: '2026-09-06T05:42:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5992
+- author: Xale
+  changes:
+  - message: Documentation for Vulpkanin thirst rate, which is 1.25x rather than the previously stated 1.5x.
+    type: Fix
+  id: 408296
+  time: '2026-09-06T05:42:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5992
+- author: Mack
+  changes:
+  - message: Borgs can now have their chassis reset.
+    type: Add
+  id: 408297
+  time: '2026-09-06T05:42:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5728
+- author: Mack
+  changes:
+  - message: Borgs now have a tracker on a 30 second delay when crit/locked down/out of charge.
+    type: Add
+  id: 408298
+  time: '2026-09-06T05:42:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5728
+- author: Mack
+  changes:
+  - message: Borg brain eject replaced with new "Lock Down" function.
+    type: Tweak
+  id: 408299
+  time: '2026-09-06T05:42:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5728
+- author: Mack
+  changes:
+  - message: Law 0 is no longer attached to the lawboard.
+    type: Tweak
+  id: 408300
+  time: '2026-09-06T05:42:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5728
+- author: Dogiememe
+  changes:
+  - message: (Reach) Service Mailbox.
+    type: Add
+  id: 408301
+  time: '2026-09-06T05:42:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5995
 Order: -1
