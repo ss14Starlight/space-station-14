@@ -177,4 +177,6 @@ public enum SecureTerminalActionType
     Armory,
     NukeCodes,
     AirlockAccess,
+    /// <summary>Performs no mechanical change — the request exists purely for its announcement.</summary>
+    Announcement,
 }

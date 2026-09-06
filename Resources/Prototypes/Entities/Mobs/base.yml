@@ -172,6 +172,7 @@
       - ActionCritSuccumb
       - ActionCritFakeDeath
       - ActionCritLastWords
+  - type: StoreDamageTakenOnMind
   - type: Deathgasp
   - type: HealthExaminable
     examinableTypes:
@@ -194,6 +195,8 @@
   - type: LightningTarget
     priority: 2
     lightningExplode: false
+  - type: GhostOnMove
+    mustBeDead: true
 
 # Used for mobs that can enter combat mode and can attack.
 - type: entity
