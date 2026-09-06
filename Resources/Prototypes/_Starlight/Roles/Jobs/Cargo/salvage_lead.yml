@@ -2,28 +2,28 @@
   id: SalvageLead
   name: job-name-salvagelead
   description: job-description-salvagelead
+  rules: job-rules-itg-aligned
   playTimeTracker: JobSalvageLead
+  supervisors: job-supervisors-guild
   requirements:
     - !type:RoleTimeRequirement
       role: JobQuartermaster
       time: 18000 # 5 hours
   icon: "JobIconSalvageLead"
   startingGear: SalvageLeadGear
-  supervisors: job-supervisors-qm
   displayWeight: 5
   access:
-  - Cargo
   - Salvage
   - SalvageLead
-  - Maintenance
   - External
+  - Maintenance
   - Shuttle
-  extendedAccess:
-  - Mining
-  - Mail
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: NoObjectiveTarget
 
 - type: startingGear
   id: SalvageLeadGear
