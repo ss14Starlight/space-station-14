@@ -356,7 +356,7 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
-    state: wanted_lex
+    state: wanted_lex_newbell
 
 - type: entity
   parent: PosterBase
