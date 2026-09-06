@@ -110,8 +110,7 @@ public sealed class ZonePlacementOverlay : Robust.Client.Graphics.Overlay
 
     private Color RoomColour(ZoneRoomView view, ushort room) =>
         (view.Zones.TryGetValue(room, out var zone)
-        && zone.Length > 0
-        && _proto.TryIndex<ZonePrototype>(zone, out var proto))
+        && _proto.TryIndex(zone, out var proto))
         ? proto.Color
         : Color.FromHsv(new Vector4(room * 0.61803f % 1f, 0.4f, 0.9f, 1f));
 

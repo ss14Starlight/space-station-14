@@ -23,7 +23,7 @@ public sealed partial class ZoneSystem
         var centre = ChunkOrigin(ev.Centre);
 
         var chunks = new List<ZoneRoomChunk>();
-        var zones = new Dictionary<ushort, string>();
+        var zones = new Dictionary<ushort, ProtoId<ZonePrototype>>();
 
         for (var x = -RoomViewChunkRadius; x <= RoomViewChunkRadius; x++)
         for (var y = -RoomViewChunkRadius; y <= RoomViewChunkRadius; y++)
@@ -33,7 +33,7 @@ public sealed partial class ZoneSystem
             if (!comp.Chunks.TryGetValue(origin, out var chunk))
                 continue;
 
-            var rooms = new ushort[SharedZoneSystem.ChunkArea];
+            var rooms = new ushort[ChunkArea];
             var any = false;
 
             for (var i = 0; i < rooms.Length; i++)
@@ -47,10 +47,11 @@ public sealed partial class ZoneSystem
                 rooms[i] = room;
                 any = true;
 
-                if (zones.ContainsKey(room))
+                if (zones.ContainsKey(room) ||
+                    GetZone(comp.Regions[room].Zone) is not { } zone)
                     continue;
 
-                zones[room] = GetZone(comp.Regions[room].Zone)?.ID ?? string.Empty;
+                zones[room] = zone;
             }
 
             if (any)

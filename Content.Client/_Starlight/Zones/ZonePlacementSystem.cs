@@ -338,11 +338,11 @@ public sealed partial class ZonePlacementSystem : EntitySystem
     #endregion
 }
 
-public sealed class ZoneRoomView(Dictionary<ushort, string> zones)
+public sealed class ZoneRoomView(Dictionary<ushort, ProtoId<ZonePrototype>> zones)
 {
     public readonly Dictionary<Vector2i, ushort[]> Chunks = [];
 
-    public readonly Dictionary<ushort, string> Zones = zones;
+    public readonly Dictionary<ushort, ProtoId<ZonePrototype>> Zones = zones;
 
     public ushort RoomAt(Vector2i tile)
         => Chunks.TryGetValue(SharedZoneSystem.ChunkOrigin(tile), out var rooms)
