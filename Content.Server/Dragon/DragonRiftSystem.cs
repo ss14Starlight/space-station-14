@@ -28,7 +28,6 @@ public sealed partial class DragonRiftSystem : EntitySystem
     [Dependency] private NavMapSystem _navMap = default!;
     [Dependency] private NPCSystem _npc = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private StationSystem _station = default!; // Starlight
 
     public override void Initialize()
     {
@@ -40,6 +39,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
         SubscribeLocalEvent<DragonRiftComponent, ComponentShutdown>(OnShutdown);
     }
 
+/* Starlight: Heavily modified, replaced
     private void OnGetState(Entity<DragonRiftComponent> ent, ref ComponentGetState args)
     {
         args.State = new DragonRiftComponentState
@@ -113,7 +113,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
             }
         }
     }
-
+*/
     private void OnExamined(EntityUid uid, DragonRiftComponent component, ExaminedEvent args)
     {
         args.PushMarkup(Loc.GetString("carp-rift-examine", ("percentage", MathF.Round(component.Accumulator / component.MaxAccumulator * 100))));

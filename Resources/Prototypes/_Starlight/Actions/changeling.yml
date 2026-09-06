@@ -611,6 +611,7 @@
     chemicalCost: 35
     requireAbsorbed: 2 # easily one of the strongest combat abilities. Shouldn't be available round start
     useInLesserForm: true
+    requireStomach: true # Required for Ichor
 
 - type: entity
   id: ActionToggleLesserForm

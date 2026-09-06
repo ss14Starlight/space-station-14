@@ -1,0 +1,11 @@
+- type: construction
+  id: SilkWovenCuffs
+  name: construction-recipe-silk-woven-cuffs
+  graph: SilkWovenCuffs
+  startNode: start
+  targetNode: cuffs
+  category: construction-category-materials
+  entityWhitelist:
+    tags:
+    - SpiderCraft
+  objectType: Item
