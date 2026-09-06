@@ -123,16 +123,16 @@
   description: Fires a steady stream of low-damage kinetic bolts at a short range.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Basic/spka.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/pkmg.rsi
     layers:
     - state: icon
   - type: Item
-    sprite: _Starlight/Objects/Weapons/Guns/Basic/spka.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/pkmg.rsi
     size: Huge
     shape:
     - 0,0,4,3
   - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Basic/spka.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Basic/pkmg.rsi
     quickEquip: false
     slots:
     - suitStorage
@@ -175,9 +175,11 @@
     minAngle: -20
     maxAngle: -25
   - type: ClothingSpeedModifier
-    walkModifier: .7
-    sprintModifier: 0.5
+    walkModifier: .8
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
+    walkModifier: .6
+    sprintModifier: 0.4
   - type: GunRequiresWield
   - type: UseDelay
     delay: 1

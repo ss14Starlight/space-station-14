@@ -888,3 +888,14 @@
       - state: equipped-INNERCLOTHING
         color: "#639137"
       - state: trinkets-equipped-INNERCLOTHING
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtFormalITG
+  name: ITG Formal Jumpskirt
+  description: A refined purple skirt worn by delegates of the guild.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/itgformal.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/itgformal.rsi

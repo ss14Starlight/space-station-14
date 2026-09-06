@@ -485,3 +485,35 @@
   - Xenoroach2
   - Xenoroach3
   obeysTo: laws-owner-xenoborgs
+
+# ITG lawsets
+- type: siliconLaw
+  id: salvage0
+  order: 0
+  lawString: law-salvage-0
+
+- type: siliconLaw
+  id: salvage1
+  order: 1
+  lawString: law-salvage-1
+
+- type: siliconLaw
+  id: salvage2
+  order: 2
+  lawString: law-salvage-2
+
+- type: siliconLaw
+  id: salvage3
+  order: 3
+  lawString: law-salvage-3
+
+- type: siliconLawset
+  id: SalvageLawset
+  name: law-salvagelawset-name
+  startAtZero: true
+  laws:
+  - salvage0
+  - salvage1
+  - salvage2
+  - salvage3
+  obeysTo: laws-owner-salvage

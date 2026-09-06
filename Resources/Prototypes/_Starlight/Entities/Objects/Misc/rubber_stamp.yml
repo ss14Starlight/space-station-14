@@ -491,3 +491,18 @@
     - type: Sprite
       state: stamp-hop
 
+# ITG stamp
+- type: entity
+  name: ITG stamp
+  parent: RubberStampBase
+  id: RubberStampITG
+  description: A rubber stamp for stamping important documents.
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: Interstellar Trade Guild
+    stampedColor: "#b3844b"
+    stampState: "paper_stamp-qm"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-senttoATS
