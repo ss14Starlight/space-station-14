@@ -95,3 +95,17 @@
       params:
         loop: true
         volume: -10 # quiet ambience rather than in-your-face wind
+  - type: SpriteQuality
+    variants:
+      Low:
+        base:
+          sprite: _Starlight/Effects/weather.rsi
+          state: snowfall_lobster
+      Medium:
+        base:
+          sprite: _Starlight/Effects/weather.rsi
+          state: snowfall_lobster
+      High:
+        base:
+          sprite: _Starlight/Effects/weather.rsi
+          state: snowfall_lobster
