@@ -1,6 +1,6 @@
 # Not galoshes, but still count towards the goal
 - type: entity
-  parent: [ ClothingShoesBase, BaseJanitorContraband ]
+  parent: [ ClothingShoesBase, ClothingShoesUnstainable, BaseJanitorContraband ]
   id: ClothingShoesGaloshnt
   name: galoshes
   description: Specialized slippery rubber boots, designed to increase janitorial workplace accidents; a tider's nightmare.
@@ -9,7 +9,6 @@
     sprite: Clothing/Shoes/Specific/galoshes.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Specific/galoshes.rsi
-  - type: NoFootprints # Tangible benefit, I guess.
   - type: StealTarget
     stealGroup: GaloshesCollection
 

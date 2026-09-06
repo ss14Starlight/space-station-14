@@ -1,3 +1,12 @@
+- type: loadoutEffectGroup
+  id: JuniorCaptain
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobCaptain
+        time: 10h
+
 - type: loadout
   id: CapTurtleneckJumpsuit
   equipment:
@@ -13,6 +22,14 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorCommand
+
+- type: loadout
+  id: CapBeret
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: JuniorCaptain
+  equipment:
+    head: ClothingHeadHatBeretCaptain
 
 #
 - type: loadout
