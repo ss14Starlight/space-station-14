@@ -60,6 +60,7 @@
         - EncryptionKeyCommand
     - type: Sprite
       sprite: Clothing/Ears/Headsets/base.rsi
+    - type: HeadsetLoudMode
 
 - type: entity
   parent: [ ClothingHeadset, BaseMajorContraband ]
