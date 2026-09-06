@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BaseBorgModule
   parent: BaseItem
   name: borg module
@@ -49,9 +49,6 @@
   - type: ContainerContainer
     containers:
       holding_container: !type:Container { }
-  - type: Tag # Starlight Change - Allows for people to escape from borg modules when they are picked up
-    tags:
-      - PersonnelStorage # Starlight Change - Allows for people to escape from borg modules when they are picked up
 
 - type: entity
   parent: BaseAction
@@ -73,7 +70,7 @@
   components:
   - type: BorgModule
     borgFitTypes:
-    - borg-type-salvage-cargo # Starlight
+    - borg-type-salvage
   - type: Tag
     tags:
     - BorgModuleCargo
@@ -565,7 +562,6 @@
     - item: Wirecutter
     - item: WelderIndustrial
     - item: Multitool
-    - item: SprayPainterBorg # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: tool-module }
 
@@ -712,13 +708,11 @@
     - item: WelderExperimental
     - item: Multitool
     - item: RemoteSignallerAdvanced
-    - item: SprayPainterBorg # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-tools-module }
 
 - type: entity
   id: BorgModuleConstructionMaterialPlaceholder
-  categories: [ HideSpawnMenu ] # Starlight
   parent: BaseItem
   components:
   - type: Sprite
@@ -914,7 +908,6 @@
   id: BorgModuleDiagnosis # todo: reuse when med refractor is finished
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
   name: diagnosis cyborg module
-  suffix: DO NOT USE
   components:
   - type: Sprite
     layers:
@@ -1302,16 +1295,6 @@
         whitelist:
           components:
           - Instrument
-    # Starlight start
-    - hand:
-        emptyLabel: borg-slot-music-media-empty
-        emptyRepresentative: VinylAirportLounge
-        whitelist:
-          tags:
-          - VinylSleeveFit
-          - VinylSleeve
-          - CD
-    # Starlight end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: musical-module }
 
@@ -1330,14 +1313,6 @@
     - item: HydroponicsToolSpade
     - item: HydroponicsToolClippers
     - item: Bucket
-      #Starlight start
-    - hand:
-        emptyLabel: borg-slot-seeds-empty
-        emptyRepresentative: WheatSeeds
-        whitelist:
-          components:
-          - Seed
-      #Starlight end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
 
@@ -1400,7 +1375,6 @@
   parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
   id: BorgModuleSyndicateWeapon
   name: weapon cyborg module
-  description: a simple weapon module that comes with an Echis and energy dagger. # starlight
   components:
   - type: Sprite
     layers:
@@ -1520,7 +1494,7 @@
       icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
 
 - type: entity
-  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] #Starlight c20 printing
+  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule, BaseSyndicateContraband ]
   id: BorgModuleC20r
   name: C-20r ROW cyborg module
   description: A weapons module that comes with a burst-fire C-20r.
@@ -1540,7 +1514,7 @@
   parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
   id: BorgModuleMartyr
   name: martyr cyborg module
-  description: A module that comes with an explosive you probably don't want to handle yourself.
+  description: "A module that comes with an explosive you probably don't want to handle yourself."
   components:
     - type: Sprite
       layers:
@@ -1752,7 +1726,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-jammer-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
+  parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleLaser
   name: laser xenoborg module
   description: Module with a laser gun.
@@ -1764,12 +1738,11 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserGunXenoborg
-    - item: XenoShiv # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
+  parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleHeavyLaser
   name: laser cannon xenoborg module
   description: Module with a laser cannon.
@@ -1781,7 +1754,6 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserCannonXenoborg
-    - item: XenoKnife # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
 
@@ -1824,7 +1796,7 @@
     - state: icon-xenoborg-jump
 
 - type: entity
-  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
+  parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleSword
   name: knife xenoborg module
   description: Module with a kukri knife.
@@ -1841,7 +1813,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
+  parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleEnergySword
   name: energy dagger xenoborg module
   description: Module with an energy dagger.
@@ -1858,10 +1830,10 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword2-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleStealthWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
+  parent: [ BaseXenoborgModuleStealth, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleHypo
-  name: hypo xenoborg module # Starlight
-  description: Module with self-refilling hypos. # Starlight
+  name: nocturine hypo xenoborg module
+  description: Module with a self-refilling nocturine hypo.
   components:
   - type: Sprite
     layers:
@@ -1870,7 +1842,6 @@
   - type: ItemBorgModule
     hands:
     - item: NocturineHypo
-    - item: LicoxideHypo # Starlight. It's not that good. They can have it.
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-hypo-module }
 

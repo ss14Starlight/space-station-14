@@ -1,0 +1,143 @@
+- type: !PartialOnly entity
+  id: BaseBorgChassisNotIonStormable
+  parent: [ BaseMob, StripableInventoryBase, BaseSiliconLanguages ]
+  components:
+  - type: TextToSpeech
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/generic.rsi
+  - type: MobThresholds
+    thresholds:
+      100: !Remove
+      300: !Remove
+      75: Critical
+      225: Dead
+  - type: ArmorSparkEffect
+    alwaysSparks: true
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        blacklist:
+          tags:
+          - MechReactor
+  - type: Speech
+    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
+  - type: Damageable
+    damageModifierSet: CivilianSilicon
+  - type: Destructible
+    thresholds:
+    - !CombineIndex:0 trigger:
+        !type:DamageTrigger
+        damage: 50
+    - !CombineIndex:1 trigger:
+        !type:DamageTrigger
+        damage: 225
+  - type: HandlessDoAfter
+  - type: CanCrawlWithoutHands
+  - type: BorgModuleCrawlModifier
+  - type: CyborgSparkEffect
+  - type: StationAIShunt
+  - type: BorgSwitchableSubtype
+  - type: Crawler
+  - type: BatteryAlert
+  - type: Blindable
+  - type: EyeProtection
+  - type: Stripping
+  - type: InteractionPopup
+    interactSuccessString: petting-success-generic-cyborg
+    interactFailureString: petting-failure-generic-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+
+- type: !PartialOnly entity
+  id: BaseBorgTransponder
+  components:
+  - type: TextToSpeech
+
+- type: !PartialOnly entity
+  id: BaseBorgChassisNT
+  components:
+  - type: TextToSpeech
+  - type: NpcFactionMember
+    factions:
+    - !Remove NanoTrasen
+    - NanoTrasenSilicon
+  - type: Access
+    groups:
+    - !Remove AllAccess
+    - CyborgAllAccess
+  - type: AccessReader
+    access: !Clear
+    - [ "Command" ]
+    - [ "Robotics" ]
+
+- type: !PartialOnly entity
+  id: BaseBorgChassisSyndicate
+  parent: BaseBorgChassisNotIonStormable
+  components:
+  - type: TextToSpeech
+  - type: Damageable
+    damageModifierSet: ArmoredSilicon
+  - type: NpcFactionMember
+    factions:
+    - !Remove Syndicate
+    - SyndicateSilicon
+
+- type: !PartialOnly entity
+  id: BaseBorgChassisDerelict
+  components:
+  - type: NpcFactionMember
+    factions:
+    - !Remove NanoTrasen
+    - NanoTrasenSilicon
+  - type: Access
+    groups:
+    - !Remove AllAccess
+    - CyborgAllAccess
+  - type: AccessReader
+    access: !Clear
+    - [ "Command" ]
+    - [ "Robotics" ]
+
+- type: !PartialOnly entity
+  id: BaseBorgChassisSyndicateDerelict
+  parent: BaseBorgChassisSyndicate
+  components:
+  - !Remove type: NpcFactionMember
+  - !Remove type: Access
+  - !Remove type: AccessReader
+  - !Remove type: IntrinsicRadioTransmitter
+  - !Remove type: ActiveRadio
+  - !Remove type: MovementAlwaysTouching
+  - !Remove type: Speech
+  - !Remove type: Vocal
+  - !Remove type: PointLight
+  - !Remove type: BypassLock
+
+- type: !PartialOnly entity
+  id: BaseXenoborgChassis
+  parent: [ BaseXenoSiliconLanguages, BaseBorgChassisNotIonStormable ]
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/generic.rsi
+  - type: Damageable
+    damageModifierSet: ArmoredSilicon
+  - type: MobThresholds
+    thresholds:
+      125: !Remove
+      375: !Remove
+      100: Critical
+      300: Dead
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - !Remove Binary
+  - type: BorgChassis
+    jobIconOverride: JobIconXenoborg
+    jobTitleOverride: chat-radio-xenoborg
+  - type: Destructible
+    thresholds:
+    - !CombineIndex:0 trigger:
+        !type:DamageTrigger
+        damage: 65
+    - !CombineIndex:1 trigger:
+        !type:DamageTrigger
+        damage: 300

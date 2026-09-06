@@ -804,6 +804,9 @@
     hands:
     - item: CloakingDevice
     - item: PinpointerSyndicateNuclear
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-syndicate-stealth
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-eye-module }
 
@@ -821,6 +824,9 @@
     hands:
     - item: ChameleonProjector
     - item: PinpointerSyndicateNuclear
+  - type: Tag
+    tags:
+    - BorgModuleGeneric
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
 
@@ -848,7 +854,10 @@
       icon: { sprite: Objects/Misc/nukedisk.rsi, state: icon }
     - type: Tag
       tags:
-        - BorgModuleSyndicate
+        - BorgModuleSyndicateStealth
+    - type: BorgModule
+      borgFitTypes:
+        - borg-type-syndicate-stealth
 
 - type: entity
   id: BorgModuleSyndicatePaperwork
