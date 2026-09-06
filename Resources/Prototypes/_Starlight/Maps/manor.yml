@@ -21,9 +21,9 @@
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 2, 2 ]
-            Botanist: [ 2, 3 ]
+            Botanist: [ 3, 3 ]
             Chef: [ 2, 2 ]
-            Janitor: [ 2, 3 ]
+            Janitor: [ 3, 3 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
@@ -37,7 +37,7 @@
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 2 ]
-            MedicalDoctor: [ 4, 5 ]
+            MedicalDoctor: [ 5, 5 ]
             Paramedic: [ 2, 2 ]
             MedicalIntern: [ 3, 3 ]
             Psychologist: [ 1, 1 ]
@@ -45,14 +45,14 @@
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
-            ResearchAssistant: [ 3, 4 ]
+            ResearchAssistant: [ 4, 4 ]
             Roboticist: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
-            DutyOfficer: [ 1, 2 ]
-            SecurityOfficer: [ 10, 12 ]
-            SecurityCadet: [ 5, 6 ]
+            DutyOfficer: [ 2, 2 ]
+            SecurityOfficer: [ 12, 12 ]
+            SecurityCadet: [ 6, 6 ]
             Brigmedic: [ 2, 2 ]
             Detective: [ 2, 2 ]
             #supply
@@ -61,8 +61,8 @@
             SalvageSpecialist: [ 4, 4 ]
             SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 4, 4 ]
-            CargoTechnician: [ 5, 7 ]
-            MailTech: [ 2, 3 ]
+            CargoTechnician: [ 7, 7 ]
+            MailTech: [ 3, 3 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
@@ -73,11 +73,11 @@
             RadioHost: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 3, 5 ]
+            Borg: [ 5, 5 ]
             #law
             Magistrate: [ 1, 1 ]
-            IAA: [ 1, 2 ]
+            IAA: [ 2, 2 ]
             #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
-            NanotrasenCareerTrainer: [ 1, 2 ]
+            NanotrasenCareerTrainer: [ 2, 2 ]
