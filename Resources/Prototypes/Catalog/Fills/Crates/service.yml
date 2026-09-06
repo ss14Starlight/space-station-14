@@ -435,3 +435,17 @@
           amount: 2
         - id: BoxCandleSmall
           amount: 2
+
+# Starlight
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateStationRadioHandheld
+  name: bulk handheld station radio crate
+  description: Contains 4 boxes of handheld station radioes. In case the radio host wants more of them.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxRadioHandheldStation
+          amount: 4
