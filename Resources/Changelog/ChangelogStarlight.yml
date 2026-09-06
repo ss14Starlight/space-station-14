@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee, Caws, mkanke, ratsmageddon, Tea
   changes:
-  - message: Added Evidence Bags, which have a 2x3 storage space, can be labeled with a paper, and hold a dropper on the outside. Lower tier contra and other evidence that doesn't need to be behind 3 thick walls with turrets guarding it can go in here for bulk storage thats easier for Sec to access for cross referencing.
-    type: Add
-  id: 407858
-  time: '2026-08-28T07:14:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5793
-- author: Conflee, Caws, mkanke, ratsmageddon, Tea
-  changes:
   - message: Added several more pre-filled boxes and pre-set box shelves for mapping use, including Medical, Cargo, HoP, Sec, and Engie.
     type: Add
   id: 407859
@@ -2799,4 +2792,11 @@ Entries:
   id: 408257
   time: '2026-09-05T23:36:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Johnny
+  changes:
+  - message: Added a dragon :godo:.
+    type: Add
+  id: 408258
+  time: '2026-09-06T00:11:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5908
 Order: -1
