@@ -12,6 +12,19 @@
     stock: 1
 
 - type: listing
+  id: SpellbookStaffRGB
+  name: spellbook-staff-rgb-name
+  description: spellbook-staff-rgb-description
+  productEntity: RGBStaff
+  cost:
+    WizCoin: 0 # :godo:
+  categories:
+  - SpellbookEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: SpellbookSpellSummonCheese
   name: spellbook-event-summon-cheese-name
   description: spellbook-event-summon-cheese-description
