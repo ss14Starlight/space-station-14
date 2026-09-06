@@ -242,8 +242,8 @@
   name: loadout-group-roboticist-neck
   minLimit: 0
   loadouts:
-  - ScientistTie
   - RoboticistScarf
+  - ScientistTie
 
 # IAA
 - type: loadoutGroup

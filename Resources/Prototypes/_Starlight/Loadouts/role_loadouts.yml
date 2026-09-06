@@ -212,6 +212,7 @@
   groups:
   - GroupTankHarness # for Vox
   - RoboticistHead
+  - RoboticistNeck
   - RoboticistGoggles
   - RoboticistJumpsuit
   - RoboticistGloves
