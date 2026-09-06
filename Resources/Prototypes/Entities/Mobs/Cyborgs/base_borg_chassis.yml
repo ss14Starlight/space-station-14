@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMob, StripableInventoryBase]
+  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages
   id: BaseBorgChassisNotIonStormable
   name: cyborg
   description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
@@ -339,7 +339,7 @@
 
 - type: entity
   id: BaseBorgChassisSyndicate
-  parent: BaseBorgChassis
+  parent: BaseBorgChassisNotIonStormable # Starlight
   abstract: true
   components:
   - type: NpcFactionMember
@@ -438,7 +438,7 @@
     bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
 
 - type: entity
-  parent: BaseBorgChassisNotIonStormable
+  parent: [BaseXenoSiliconLanguages, BaseBorgChassisNotIonStormable] # Starlight, they can understand xeno
   id: BaseXenoborgChassis
   name: xenoborg
   description: A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army.

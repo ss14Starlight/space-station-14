@@ -1,6 +1,5 @@
 - type: !PartialOnly entity
   id: BaseBorgChassisNotIonStormable
-  parent: [ BaseMob, StripableInventoryBase, BaseSiliconLanguages ]
   components:
   - type: TextToSpeech
   - type: Sprite
@@ -72,7 +71,6 @@
 
 - type: !PartialOnly entity
   id: BaseBorgChassisSyndicate
-  parent: BaseBorgChassisNotIonStormable
   components:
   - type: TextToSpeech
   - type: Damageable
@@ -100,7 +98,6 @@
 
 - type: !PartialOnly entity
   id: BaseBorgChassisSyndicateDerelict
-  parent: BaseBorgChassisSyndicate
   components:
   - !Remove type: NpcFactionMember
   - !Remove type: Access
@@ -115,7 +112,6 @@
 
 - type: !PartialOnly entity
   id: BaseXenoborgChassis
-  parent: [ BaseXenoSiliconLanguages, BaseBorgChassisNotIonStormable ]
   components:
   - type: Sprite
     sprite: Mobs/Silicon/Chassis/generic.rsi
