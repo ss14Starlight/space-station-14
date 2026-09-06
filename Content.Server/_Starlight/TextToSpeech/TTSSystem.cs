@@ -116,7 +116,8 @@ public sealed partial class TTSSystem : EntitySystem
     private async void OnAnnouncementSpoke(AnnouncementSpokeEvent args)
     {
         if (!_isEnabled
-            || args.Message.Text.Length > MaxChars * 2)
+            || args.Message.Text.Length > MaxChars * 2
+            || args.SuppressTTS)
             return;
 
         await Task.Yield();
