@@ -1,4 +1,4 @@
-using Robust.Shared.GameStates;
+﻿using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Zones;
@@ -15,4 +15,7 @@ public sealed partial class ZoneTrackerComponent : Component
 
     [ViewVariables]
     public (EntityUid Grid, Vector2i Tile) LastPosition;
+
+    [ViewVariables]
+    public int LastRevision;
 }

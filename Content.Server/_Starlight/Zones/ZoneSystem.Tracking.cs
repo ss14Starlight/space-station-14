@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Zones;
+﻿using Content.Shared._Starlight.Zones;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
@@ -41,10 +41,11 @@ public sealed partial class ZoneSystem
         }
 
         var tile = Maps.TileIndicesFor(grid, gridComp, xform.Coordinates);
+        var revision = _zoneQuery.TryComp(grid, out var zoneComp) ? zoneComp.Revision : 0;
 
-        if (comp.LastPosition == (grid, tile) && comp.Raised == comp.Zone)
+        if (comp.LastPosition == (grid, tile) && comp.LastRevision == revision && comp.Raised == comp.Zone)
             return;
 
-        _tracker.SetZone(ent, GetZone(GetZoneId(grid, tile))?.ID, (grid, tile));
+        _tracker.SetZone(ent, GetZone(GetZoneId(grid, tile))?.ID, (grid, tile), revision);
     }
 }

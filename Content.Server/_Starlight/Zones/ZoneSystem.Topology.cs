@@ -1,4 +1,4 @@
-using Content.Server.Atmos.Components;
+﻿using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared._Starlight.Zones;
 using Content.Shared.Atmos;
@@ -178,8 +178,12 @@ public sealed partial class ZoneSystem
 
     public override void Update(float frameTime)
     {
+        ProcessDirtyGrids();
         UpdateTracking();
+    }
 
+    private void ProcessDirtyGrids()
+    {
         if (_dirtyGrids.Count == 0)
             return;
 
@@ -198,6 +202,7 @@ public sealed partial class ZoneSystem
 
             var ent = (gridUid, comp);
             var ctx = new ZoneContext(gridUid, grid, nav);
+            var changed = false;
 
             if (!comp.NeedsFullRebuild)
             {
@@ -207,6 +212,7 @@ public sealed partial class ZoneSystem
                 {
                     comp.DirtySet.Remove(tile);
                     ProcessTile(ent, ctx, tile);
+                    changed = true;
                 }
 
                 var renames = _maxRenamesPerTick;
@@ -214,11 +220,18 @@ public sealed partial class ZoneSystem
                 while (renames-- > 0 && !comp.NeedsFullRebuild && comp.RenameQueue.TryDequeue(out var rename))
                 {
                     RederiveRegion(ent, ctx, rename.Region, rename.Seed);
+                    changed = true;
                 }
             }
 
             if (comp.NeedsFullRebuild)
+            {
                 FullRebuild(ent, nav);
+                changed = true;
+            }
+
+            if (changed)
+                comp.Revision++;
 
             if (comp.DirtyTiles.Count == 0 && comp.RenameQueue.Count == 0)
                 _dirtyGrids.Remove(gridUid);

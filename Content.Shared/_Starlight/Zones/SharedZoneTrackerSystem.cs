@@ -1,4 +1,4 @@
-using Robust.Shared.Prototypes;
+﻿using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Zones;
 
@@ -23,9 +23,11 @@ public sealed partial class SharedZoneTrackerSystem : EntitySystem
     public void SetZone(
         Entity<ZoneTrackerComponent> ent,
         ProtoId<ZonePrototype>? zone,
-        (EntityUid Grid, Vector2i Tile) position)
+        (EntityUid Grid, Vector2i Tile) position,
+        int revision = 0)
     {
         ent.Comp.LastPosition = position;
+        ent.Comp.LastRevision = revision;
 
         if (ent.Comp.Zone != zone)
         {

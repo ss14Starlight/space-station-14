@@ -1,4 +1,4 @@
-namespace Content.Shared._Starlight.Zones;
+﻿namespace Content.Shared._Starlight.Zones;
 
 [RegisterComponent]
 [Access(typeof(SharedZoneSystem))]
@@ -31,6 +31,9 @@ public sealed partial class ZoneGridComponent : Component
 
     [ViewVariables]
     public bool NeedsFullRebuild;
+
+    [ViewVariables]
+    public int Revision;
 
     [ViewVariables]
     public ZoneChunk? CachedChunk;
