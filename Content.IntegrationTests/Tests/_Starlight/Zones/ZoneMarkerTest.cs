@@ -24,6 +24,11 @@ public sealed class ZoneMarkerTest : GameTest
     private ZoneSystem _zones = default!;
     private EntityUid _grid;
 
+    /// <summary>
+    /// This test is a bit of a sanity check for the zone system.
+    /// It ensures that if you have a room with no shapes, the only thing that can name it is a door.
+    /// This is important because the mapper may not have drawn any shapes, and we want to make sure that the zone system can still function in that case.
+    /// </summary>
     [Test]
     public async Task DoorNamesAnUnmappedRoom()
     {
@@ -37,6 +42,9 @@ public sealed class ZoneMarkerTest : GameTest
             "A maintenance door is the only thing saying what this place is.");
     }
 
+    /// <summary>
+    /// This test ensures that if you have a room with shapes, the shapes will take precedence over any doors that are placed in the room.
+    /// </summary>
     [Test]
     public async Task ShapesBeatDoors()
     {
@@ -50,6 +58,9 @@ public sealed class ZoneMarkerTest : GameTest
             "A higher priority door should be able to rename a room the mapper drew.");
     }
 
+    /// <summary>
+    /// This test ensures that if you have a room with shapes, and you place a door that has a different name than the shape, the shape will take precedence over the door.
+    /// </summary>
     [Test]
     public async Task DoorsBeatShapesWhateverTheyMean()
     {
@@ -61,6 +72,9 @@ public sealed class ZoneMarkerTest : GameTest
             "The door names the room even where the mapper drew something more specific.");
     }
 
+    /// <summary>
+    /// This test ensures that if you have a room with shapes, and you place a door that has the same name as the shape, the shape will take precedence over the door.
+    /// </summary>
     [Test]
     public async Task ShapesStandWhenNothingContradictsThem()
     {
@@ -74,6 +88,9 @@ public sealed class ZoneMarkerTest : GameTest
             "A door with no department to it should leave the shape alone.");
     }
 
+    /// <summary>
+    /// This test ensures that if you have a room with shapes, and you place two doors that have different names than the shape, the shape will take precedence over the doors.
+    /// </summary>
     [Test]
     public async Task DoorsThatDisagreeAreIgnored()
     {
@@ -86,6 +103,9 @@ public sealed class ZoneMarkerTest : GameTest
             "Doors that do not agree should leave the room to whatever the mapper drew.");
     }
 
+    /// <summary>
+    /// This test ensures that if you have a room with shapes, and you place a door that has a different name than the shape, and then you repaint the door to have the same name as the shape, the shape will take precedence over the door.
+    /// </summary>
     [Test]
     public async Task RepaintingBackDownReleasesTheRoom()
     {
@@ -103,6 +123,9 @@ public sealed class ZoneMarkerTest : GameTest
             "A door that no longer means anything should give the room back to the shape.");
     }
 
+    /// <summary>
+    /// This test ensures that if you have a room with shapes, and you place a door that has a different name than the shape, and then you remove the door, the shape will take precedence over the door.
+    /// </summary>
     [Test]
     public async Task RemovingTheDoorReleasesTheRoom()
     {
@@ -119,6 +142,9 @@ public sealed class ZoneMarkerTest : GameTest
             "With the door gone there is nothing saying maintenance any more.");
     }
 
+    /// <summary>
+    /// This test ensures that if you have a room with shapes, and you place a door that has a different name than the shape, and then you place a marker that has the same name as the shape, the marker will take precedence over the door.
+    /// </summary>
     [Test]
     public async Task PlacedMarkersBeatDoors()
     {
@@ -137,6 +163,9 @@ public sealed class ZoneMarkerTest : GameTest
             "After the marker is removed, the room should fall back to the maintenance door.");
     }
 
+    /// <summary>
+    /// This test ensures that if you have a room with shapes, and you place a door that has a different name than the shape, and then you repaint the door to have the same name as the shape, the shape will take precedence over the door.
+    /// </summary>
     [Test]
     public async Task RepaintingADoorRenamesTheRoom()
     {
@@ -158,6 +187,9 @@ public sealed class ZoneMarkerTest : GameTest
             "The room should follow the paint on the door that named it.");
     }
 
+    /// <summary>
+    /// This test ensures that firelocks do not act as boundaries for zones, meaning they should not split a room into separate zones.
+    /// </summary>
     [Test]
     public async Task FirelocksAreNotBoundaries()
     {

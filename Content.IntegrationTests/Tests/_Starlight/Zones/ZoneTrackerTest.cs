@@ -19,6 +19,9 @@ public sealed class ZoneTrackerTest : GameTest
     private const int CargoRight = 4;
     private const string MaintenanceZone = "InMaintenanceZone";
 
+    /// <summary>
+    /// Tests that the zone tracker component correctly follows an entity as it moves between zones, including leaving a zone and entering another.
+    /// </summary>
     [Test]
     public async Task TrackerFollowsTheEntityBetweenZones()
     {
@@ -44,6 +47,7 @@ public sealed class ZoneTrackerTest : GameTest
 
             var comp = SEntMan.AddComponent<ZoneGridComponent>(grid);
             zones.PaintZoneRect((grid, comp), new Box2i(0, 0, CargoRight, Height), "Cargo");
+            zones.PaintZoneRect((grid, comp), new Box2i(CargoRight, 0, Width, Height), "Maintenance");
             zones.FullRebuild((grid, comp));
 
             dummy = SEntMan.SpawnEntity(null, new EntityCoordinates(grid, 1.5f, 1.5f));
@@ -54,7 +58,13 @@ public sealed class ZoneTrackerTest : GameTest
 
         Assert.That(Zone(dummy)?.Id, Is.EqualTo("Cargo"), "The tracker never picked up the zone.");
 
-        await Server.WaitPost(() => xforms.SetCoordinates(dummy, new EntityCoordinates(grid, Width - 1.5f, 1.5f)));
+        await Server.WaitPost(() => xforms.SetCoordinates(dummy, new EntityCoordinates(grid, CargoRight + 0.5f, 1.5f)));
+
+        await RunTicksSync(30);
+
+        Assert.That(Zone(dummy)?.Id, Is.EqualTo("Maintenance"), "The tracker did not update when entering another zone.");
+
+        await Server.WaitPost(() => xforms.SetCoordinates(dummy, new EntityCoordinates(grid, Width + 0.5f, 1.5f)));
 
         await RunTicksSync(30);
 
@@ -66,6 +76,9 @@ public sealed class ZoneTrackerTest : GameTest
             => SEntMan.GetComponent<ZoneTrackerComponent>(uid).Zone;
     }
 
+    /// <summary>
+    /// Tests that rules can correctly query which zone an entity is in, and that the result changes when the entity is moved into a different zone.
+    /// </summary>
     [Test]
     public async Task RulesCanAskWhichZoneSomebodyIsIn()
     {

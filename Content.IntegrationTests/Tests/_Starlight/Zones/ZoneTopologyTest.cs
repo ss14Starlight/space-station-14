@@ -26,6 +26,9 @@ public sealed class ZoneTopologyTest : GameTest
     private ZoneSystem _zones = default!;
     private EntityUid _grid;
 
+    /// <summary>
+    /// Tests that a wall cutting across a room splits it into two, and that removing the wall merges the room back together.
+    /// </summary>
     [Test]
     public async Task WallSplitsRoomAndRemovingItMergesBack()
     {
@@ -73,6 +76,9 @@ public sealed class ZoneTopologyTest : GameTest
         }
     }
 
+    /// <summary>
+    /// Tests that a line of doors splits a room, but opening the doors does not merge the rooms back together.
+    /// </summary>
     [Test]
     public async Task DoorSplitsRoomButCyclingItDoesNot()
     {
@@ -104,8 +110,32 @@ public sealed class ZoneTopologyTest : GameTest
                 "Opening a door must not disturb the rooms either side of it.");
             Assert.That(Region(Width - 1, 0), Is.EqualTo(right));
         }
+
+        await Server.WaitPost(() =>
+        {
+            var airtight = Server.System<AirtightSystem>();
+
+            foreach (var door in doors)
+            {
+                if (Server.EntMan.TryGetComponent(door, out AirtightComponent? comp))
+                    airtight.SetAirblocked((door, comp), true);
+            }
+        });
+
+        await Server.WaitRunTicks(5);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(Region(0, 0), Is.EqualTo(left),
+                "Closing the doors again must not change the existing left room.");
+            Assert.That(Region(Width - 1, 0), Is.EqualTo(right),
+                "Closing the doors again must not change the existing right room.");
+        }
     }
 
+    /// <summary>
+    /// Tests that a small closet can be cut off from the rest of the deck and become its own room.
+    /// </summary>
     [Test]
     public async Task ClosetBecomesItsOwnRoom()
     {

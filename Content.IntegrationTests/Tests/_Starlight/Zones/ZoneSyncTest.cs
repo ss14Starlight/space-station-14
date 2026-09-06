@@ -12,6 +12,9 @@ namespace Content.IntegrationTests.Tests._Starlight.Zones;
 [TestOf(typeof(ZonePlacementSystem))]
 public sealed class ZoneSyncTest : GameTest
 {
+    /// <summary>
+    /// Tests that when a zone is painted on the server, the client receives the shape data correctly.
+    /// </summary>
     [Test]
     public async Task ShapesReachTheClient()
     {
