@@ -27,7 +27,7 @@ public sealed partial class ZoneSystem : SharedZoneSystem
             StarlightCCVars.MaxZoneSeeds,
             x =>
             {
-                _maxSeeds = Math.Max(1, x);
+                _maxSeeds = Math.Max(5, x);
                 _seedBuffer = new List<Vector2i>(_maxSeeds);
                 _anchorRegions = new ushort[_maxSeeds];
                 _anchors = new Vector2i[_maxSeeds];
