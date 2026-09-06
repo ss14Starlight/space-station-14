@@ -208,7 +208,7 @@
 - type: entity
   name: wooden chair
   id: ChairWood
-  parent: UnanchoredChairBase
+  parent: [UnanchoredChairBase, BaseWoodFuel] # Starlight: solid fuel
   components:
   - type: Sprite
     state: wooden
@@ -445,7 +445,7 @@
 - type: entity
   name: wooden bench
   id: WoodenBench
-  parent: ChairBase
+  parent: [ChairBase, BaseWoodFuel] # Starlight
   description: Did you get a splinter? Well, at least it’s eco friendly.
   components:
   - type: Sprite

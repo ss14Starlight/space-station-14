@@ -497,7 +497,7 @@
 
 - type: entity
   name: wood floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel] # Starlight: solid fuel
   id: FloorTileItemWood
   components:
   - type: Sprite
@@ -1427,7 +1427,7 @@
 
 - type: entity
   name: wood pattern floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel] # Starlight: solid fuel
   id: FloorTileItemWoodPattern
   components:
   - type: Sprite
@@ -1717,7 +1717,7 @@
 
 - type: entity
   name: large wood floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel] # Starlight: solid fuel
   id: FloorTileItemWoodLarge
   components:
   - type: Sprite

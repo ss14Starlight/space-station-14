@@ -195,6 +195,7 @@
 
 - type: tile
   id: FloorWood
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   parent: BaseStationTile
   name: tiles-wood
   sprite: /Textures/Tiles/wood.png
@@ -856,6 +857,7 @@
 # Carpets (non smoothing)
 - type: tile
   id: FloorArcadeBlue
+  solidFuelEntity: SolidFuelFloorCarpet # Starlight
   parent: BaseStationTile
   name: tiles-blue-arcade-floor
   sprite: /Textures/Tiles/arcadeblue.png
@@ -868,6 +870,7 @@
 
 - type: tile
   id: FloorArcadeBlue2
+  solidFuelEntity: SolidFuelFloorCarpet # Starlight
   parent: BaseStationTile
   name: tiles-blue-arcade-floor
   sprite: /Textures/Tiles/arcadeblue2.png
@@ -880,6 +883,7 @@
 
 - type: tile
   id: FloorArcadeRed
+  solidFuelEntity: SolidFuelFloorCarpet # Starlight
   parent: BaseStationTile
   name: tiles-red-arcade-floor
   sprite: /Textures/Tiles/arcadered.png
@@ -892,6 +896,7 @@
 
 - type: tile
   id: FloorEighties
+  solidFuelEntity: SolidFuelFloorCarpet # Starlight
   parent: BaseStationTile
   name: tiles-eighties-floor
   sprite: /Textures/Tiles/eighties.png
@@ -904,6 +909,7 @@
 
 - type: tile
   id: FloorCarpetClown
+  solidFuelEntity: SolidFuelFloorCarpet # Starlight
   parent: BaseStationTile
   name: tiles-clown-carpet-floor
   sprite: /Textures/Tiles/carpetclown.png
@@ -916,6 +922,7 @@
 
 - type: tile
   id: FloorCarpetOffice
+  solidFuelEntity: SolidFuelFloorCarpet # Starlight
   parent: BaseStationTile
   name: tiles-office-carpet-floor
   sprite: /Textures/Tiles/carpetoffice.png
@@ -928,6 +935,7 @@
 
 - type: tile
   id: FloorBoxing
+  solidFuelEntity: SolidFuelFloorCarpet # Starlight
   parent: BaseStationTile
   name: tiles-boxing-ring-floor
   sprite: /Textures/Tiles/boxing.png
@@ -942,6 +950,7 @@
 
 - type: tile
   id: FloorGym
+  solidFuelEntity: SolidFuelFloorCarpet # Starlight
   parent: BaseStationTile
   name: tiles-gym-floor
   sprite: /Textures/Tiles/gym.png
@@ -1558,6 +1567,7 @@
 
 - type: tile
   id: FloorWoodTile
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   parent: BaseStationTile
   name: tiles-wood2
   sprite: /Textures/Tiles/wood_tile.png
@@ -1575,6 +1585,7 @@
 
 - type: tile
   id: FloorBrokenWood
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   parent: BaseStationTile
   name: tiles-wood3
   sprite: /Textures/Tiles/wood_broken.png
@@ -1784,6 +1795,7 @@
 
 - type: tile
   id: FloorWoodLarge
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   parent: BaseStationTile
   name: tiles-wood-large
   sprite: /Textures/Tiles/wood_large.png

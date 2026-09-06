@@ -1329,7 +1329,7 @@
     resistance: 6
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseWall, BaseWoodFuel] # Starlight: solid fuel
   id: WallWood
   name: wood wall
   description: The traditional assistant defense.

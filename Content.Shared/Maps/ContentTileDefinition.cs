@@ -32,6 +32,9 @@ namespace Content.Shared.Maps
 
         public ushort TileId { get; private set; }
 
+        /// <summary>Starlight: fuel entity spawned for combustible floor tiles exposed to heat.</summary>
+        [DataField] public EntProtoId? SolidFuelEntity { get; private set; }
+
         [DataField("name")]
         public string Name { get; private set; } = "";
         [DataField("sprite")] public ResPath? Sprite { get; private set; }

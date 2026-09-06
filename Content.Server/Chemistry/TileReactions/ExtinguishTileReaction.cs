@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Atmos;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Reaction;
@@ -24,6 +25,11 @@ namespace Content.Server.Chemistry.TileReactions
                 return FixedPoint2.Zero;
 
             var atmosphereSystem = entityManager.System<AtmosphereSystem>();
+
+            // Starlight start
+            // Carpet and floor fires may have no colliding fixture or atmospheric hotspot.
+            entityManager.System<SolidFuelSystem>().ExtinguishTile(tile, reactVolume.Float());
+            // Starlight end
 
             var environment = atmosphereSystem.GetTileMixture(tile.GridUid, null, tile.GridIndices, true);
 
