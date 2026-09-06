@@ -95,7 +95,7 @@ public sealed partial class SLMoverController : SharedMoverController
         SubscribeLocalEvent<InputMoverComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<InputMoverComponent, PlayerDetachedEvent>(OnPlayerDetached);
 
-        Subs.CVar(_cfg, StarlightCCVars.PhysicsMoverSubstepGating, value => _substepGating = value, true);
+        Subs.CVar(_cfg, Shared._Starlight.CCVar.StarlightCCVars.PhysicsMoverSubstepGating, value => _substepGating = value, true);
 
         _handleMobMovementJob = new HandleMobMovementJob(this);
     }
@@ -556,7 +556,7 @@ public sealed partial class SLMoverController : SharedMoverController
 
     protected override void HandleShuttleInput(EntityUid uid, ShuttleButtons button, ushort subTick, bool state)
     {
-        if (!_applyingRedundantInput && _cfg.GetCVar(RedundantMovementCVars.Enabled))
+        if (!_applyingRedundantInput && _cfg.GetCVar(StarlightCCVars.RedundantMovementEnabled))
             return;
 
         if (!TryComp<PilotComponent>(uid, out var pilot) || pilot.Console == null)
@@ -986,7 +986,7 @@ public sealed partial class SLMoverController : SharedMoverController
         // which means i can't access my cvar that is in content, unless we do something a tiny bit cursed
         // (cancel InputSystem.HandleInputCommand by returning false from HandleCmdMessage in the input cmd handlers,
         // and then separately do all the functionality of it except for actually sending the net message)
-        if (!_applyingRedundantInput && _cfg.GetCVar(RedundantMovementCVars.Enabled))
+        if (!_applyingRedundantInput && _cfg.GetCVar(Shared._Starlight.RedundantMovement.StarlightCCVars.Enabled))
         {
             return;
         }
@@ -996,7 +996,7 @@ public sealed partial class SLMoverController : SharedMoverController
 
     protected override void HandleRunChange(EntityUid uid, ushort subTick, bool walking)
     {
-        if (!_applyingRedundantInput && _cfg.GetCVar(RedundantMovementCVars.Enabled))
+        if (!_applyingRedundantInput && _cfg.GetCVar(Shared._Starlight.RedundantMovement.StarlightCCVars.Enabled))
             return;
 
         base.HandleRunChange(uid, subTick, walking);

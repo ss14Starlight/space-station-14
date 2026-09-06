@@ -1,4 +1,5 @@
-﻿using Content.Shared._Starlight.RedundantMovement;
+﻿using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.RedundantMovement;
 using Content.Shared.Input;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Shuttles.Components;
@@ -93,7 +94,7 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
-        if (!_cfg.GetCVar(RedundantMovementCVars.Enabled))
+        if (!_cfg.GetCVar(StarlightCCVars.RedundantMovementEnabled))
         {
             ClearState();
             return;
@@ -136,7 +137,7 @@ public sealed partial class ClientRedundantMovementSystem : EntitySystem
         _storedInputData.Enqueue(thisTickInput);
 
         // enforce the max queue size
-        int maxSize = _cfg.GetCVar(RedundantMovementCVars.MaxHistoryTicks);
+        int maxSize = _cfg.GetCVar(StarlightCCVars.RedundantMovementMaxHistoryTicks);
         maxSize = int.Clamp(maxSize, 1, 64);
         while (_storedInputData.Count > maxSize) _storedInputData.Dequeue();
 

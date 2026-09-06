@@ -1,5 +1,6 @@
 ﻿using System;
 using Content.Server._Starlight.Physics;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.RedundantMovement;
 using Content.Shared.Movement.Systems;
 using Robust.Server.Player;
@@ -46,7 +47,7 @@ public sealed partial class ServerRedundantMovementManager : IServerRedundantMov
 
     public void ApplyInput(GameTick tick, SLMoverController mover)
     {
-        if (!_cfg.GetCVar(RedundantMovementCVars.Enabled))
+        if (!_cfg.GetCVar(StarlightCCVars.RedundantMovementEnabled))
         {
             _trackers.Clear();
             return;
