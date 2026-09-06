@@ -248,7 +248,7 @@ public sealed partial class ZoneSystem
 
     private static bool Contains(Box2i outer, Box2i inner)
         => outer.Left <= inner.Left && outer.Bottom <= inner.Bottom &&
-           outer.Right >= inner.Right && outer.Top >= inner.Top;
+            outer.Right >= inner.Right && outer.Top >= inner.Top;
 
     private static Vector2i TileOf(System.Numerics.Vector2 position)
         => new((int) MathF.Floor(position.X), (int) MathF.Floor(position.Y));
