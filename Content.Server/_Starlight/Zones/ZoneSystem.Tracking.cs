@@ -17,10 +17,6 @@ public sealed partial class ZoneSystem
     private void OnPlayerAttached(PlayerAttachedEvent args)
         => EnsureComp<ZoneTrackerComponent>(args.Entity);
 
-    [SubscribeLocalEvent]
-    private void OnPlayerDetached(PlayerDetachedEvent args)
-        => RemComp<ZoneTrackerComponent>(args.Entity);
-
     private void UpdateTracking()
     {
         if (_timing.CurTime < _nextTrack)
