@@ -6,6 +6,7 @@ loadout-group-roboticist-gloves = Roboticist gloves
 loadout-group-roboticist-goggles = Roboticist eyewear
 loadout-group-roboticist-backpack = Roboticist backpack
 loadout-group-roboticist-shoes = Roboticist shoes
+loadout-group-roboticist-neck = Roboticist neck
 
 # Civilian
 loadout-group-assistant-glasses = Assistant glasses
