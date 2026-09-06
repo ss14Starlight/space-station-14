@@ -16,9 +16,7 @@
     # Starlight start
     - id: RadioHandheldExpedition
     - id: ClothingOuterHardsuitLuxmax
-    - id: SalvageShuttleConsoleCircuitboard
     - id: MiningShuttleConsoleCircuitboard
-    - id: EncryptionKeySalvage
     - id: CargoTechFabFlatpack
     - id: BookSecureTerminalManual # Starlight
     - id: PrintedDocumentGreenshiftAlert
@@ -96,12 +94,15 @@
     - id: WeaponDisabler
     - id: ClothingEyesGlassesCommand
     - id: ClothingEyesHudCommand
-    - id: EncryptionKeyExpedition # Starlight Start
-    - id: SpyglassCaptain
+    - id: SpyglassCaptain # Starlight Start
     - id: CommunicationTablet
     - id: CommandTechFabFlatpack
     - id: BookSecureTerminalManual
     - id: WashingMachineCommandFlatpack
+    - id: SpyglassCaptain #Starlight
+    - id: CommunicationTablet #Starlight
+    - id: CommandTechFabFlatpack # Starlight
+    - id: BookSecureTerminalManual # Starlight
     - id: HeadSkeleton # A skull to accompany your skeleton crew # Starlight Edit: OrganSkeletonPersonHead -> HeadSkeleton
       conditions:
       - !type:PlayerCountCondition
