@@ -27,8 +27,16 @@ public partial struct ZoneCircle
     [DataField(required: true)]
     public Vector2 Center;
 
+    private float _radius;
+
     [DataField(required: true)]
-    public float Radius;
+    public float Radius
+    {
+        readonly get => _radius;
+        set => _radius = value >= 0
+            ? value
+            : throw new ArgumentOutOfRangeException(nameof(value), "Radius must be non-negative.");
+    }
 
     public readonly Box2i Bounds()
     {
