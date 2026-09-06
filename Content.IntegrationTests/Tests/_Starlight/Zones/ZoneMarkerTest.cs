@@ -125,10 +125,16 @@ public sealed class ZoneMarkerTest : GameTest
         await CreateDeck(shapes: true);
 
         await Build(_maintDoor, new Vector2i(4, 2));
-        await Build(new EntProtoId("ZoneMarkerSolars"), new Vector2i(1, 1));
+        var markers = await Build(new EntProtoId("ZoneMarkerSolars"), new Vector2i(1, 1));
 
         Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Solars")),
             "A marker somebody placed should out-rank a door that happens to be there.");
+
+        await Server.WaitPost(() => Server.EntMan.DeleteEntity(markers[0]));
+        await Server.WaitRunTicks(10);
+
+        Assert.That(Zone(0, 0), Is.EqualTo(_zones.GetZoneId("Maintenance")),
+            "After the marker is removed, the room should fall back to the maintenance door.");
     }
 
     [Test]
