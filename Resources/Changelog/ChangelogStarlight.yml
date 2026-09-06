@@ -1,95 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Prism) Added stir stir to gen pop.
-    type: Add
-  id: 407902
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism) Added ice cream maker machine to kitchen.
-    type: Add
-  id: 407903
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism)  Added the vend of silence to mime room.
-    type: Add
-  id: 407904
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism) Added flippers the law pet to court room.
-    type: Add
-  id: 407905
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism) Added all the new departmental tech fabs with service being in bar.
-    type: Add
-  id: 407906
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism) Added assistant manager spawn to hop line.
-    type: Add
-  id: 407907
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism) Added roboticist locker to roboticist.
-    type: Add
-  id: 407908
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism) Added coroner locker to morgue.
-    type: Add
-  id: 407909
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism) Added surgeon locker to surgery.
-    type: Add
-  id: 407910
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism) Added virology locker to viro.
-    type: Add
-  id: 407911
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism) Added mail access airlocks/windows and lockers to mailroom.
-    type: Add
-  id: 407912
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism) Added radio host near arrivals.
-    type: Add
-  id: 407913
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Prism) Changed reporter office room to journalism access.
-    type: Tweak
-  id: 407914
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
 - author: Caws
   changes:
   - message: (Lagan) Radio Hosts.
@@ -2799,4 +2708,95 @@ Entries:
   id: 408301
   time: '2026-09-06T05:42:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5995
+- author: qbrx
+  changes:
+  - message: Abductor victims are now correctly parented to the appropriate grid when returned from the Experimentator.
+    type: Fix
+  id: 408302
+  time: '2026-09-06T06:09:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6001
+- author: OJG
+  changes:
+  - message: Added a new alternate recipe for oppo that uses ZXA instead of cogni and plasma.
+    type: Add
+  id: 408303
+  time: '2026-09-06T06:09:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5969
+- author: OJG
+  changes:
+  - message: Reduced the chances of finding ZXA cans on salvage magnet pulls.
+    type: Tweak
+  id: 408304
+  time: '2026-09-06T06:09:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5969
+- author: OJG
+  changes:
+  - message: Removed cargo ZXA purchase options.
+    type: Tweak
+  id: 408305
+  time: '2026-09-06T06:09:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5969
+- author: STARLIGHT TEAM
+  changes:
+  - message: Clarified wording for some SOPs and added structure on permits for department-restricted items.
+    type: Tweak
+  id: 408306
+  time: '2026-09-06T08:27:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6002
+- author: OJG
+  changes:
+  - message: Diona nymph vent migrations.
+    type: Add
+  id: 408307
+  time: '2026-09-06T10:11:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5971
+- author: OJG
+  changes:
+  - message: Generic diona nymph ghostroles.
+    type: Add
+  id: 408308
+  time: '2026-09-06T10:11:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5971
+- author: OJG
+  changes:
+  - message: Crab vent migrations.
+    type: Add
+  id: 408309
+  time: '2026-09-06T10:11:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5971
+- author: wonderfulnewworld
+  changes:
+  - message: Most alcohols are no longer flammable.
+    type: Tweak
+  id: 408310
+  time: '2026-09-06T10:11:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5976
+- author: wonderfulnewworld
+  changes:
+  - message: Neocyte frames are no longer stainable.
+    type: Tweak
+  id: 408311
+  time: '2026-09-06T10:11:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5976
+- author: wonderfulnewworld
+  changes:
+  - message: Washing machines can now be access locked. One for each department has been added, with flatpacks being added to Cap and HoS's lockers respectively, and CMO's generic one being replaced with a medical one.
+    type: Tweak
+  id: 408312
+  time: '2026-09-06T10:11:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5976
+- author: wonderfulnewworld
+  changes:
+  - message: Destroying or deconstructing a washing machine will now dump its contents.
+    type: Fix
+  id: 408313
+  time: '2026-09-06T10:11:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5976
+- author: wonderfulnewworld
+  changes:
+  - message: Fixed a missing loc when trying to pour water on the wall.
+    type: Fix
+  id: 408314
+  time: '2026-09-06T10:11:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5976
 Order: -1
