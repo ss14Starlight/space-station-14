@@ -251,7 +251,7 @@
     startingCharge: 1000
     # Starlight-start - Resistance so Eeeps don't kill themselves when their lightning arcs blow up electronics
   - type: ExplosionResistance
-    damageCoefficient: 0.95
+    damageCoefficient: 0.2
     # Starlight-end
   - type: LightningArcShooter
     arcDepth: 2
