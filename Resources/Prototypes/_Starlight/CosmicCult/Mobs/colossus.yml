@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseSimpleMob, FlyingMobBase ]
+  parent: [ BaseSimpleMob, FlyingMobBase, BaseSlicingRefinable ]
   abstract: true
   id: MobCosmicColossusBase
   name: entropic colossus
@@ -13,6 +13,9 @@
   - type: NpcFactionMember
     factions:
     - CosmicCult
+  - type: CosmicMalignantHealing
+    healInterval: 1s
+    healAmount: 0.2
   - type: StaminaResistance
     damageCoefficient: 0 # No more stunning colossi
   - type: Sprite
@@ -121,29 +124,55 @@
     - Unimplantable
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
+    damageModifierSet: Malignstone
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1000
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+  - type: CosmicRiftHealth
+    healthPerCorpse: 25
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
       - ReagentId: Entropy
-        Quantity: 650
+        Quantity: 1300
     maxBleedAmount: 0.1
     bleedReductionAmount: 0.1
     bloodlossDamage:
       types:
-        Bloodloss:
-          0
+        Bloodloss: 0
     bloodlossHealDamage:
       types:
-        Bloodloss:
-          0
+        Bloodloss: 0
   - type: MobState
     allowedStates:
     - Alive
     - Dead
-  - type: Butcherable
-    butcherDelay: 16
-    spawned:
+  - type: AntagMonsterScaling
+    minimumHealthScaling: -0.25
+    maximumHealthScaling: 0.50
+  - type: ToolRefinable
+    refineTime: 16
+    refineResult:
     - id: CosmicCultMindSink
       amount: 1
   - type: PointLight
@@ -223,7 +252,7 @@
     speed: 8
     distance: 7
   - type: Reflect
-    reflectProb: .15
+    reflectProb: 0.15
     spread: 120
     soundOnReflect:
       path: /Audio/_Starlight/CosmicCult/cosmicsword_glance.ogg
@@ -263,6 +292,7 @@
     - ColossusTitlesLone
     nameFormat: name-format-colossus
   - type: MobThresholds
+    allowRevives: true
     thresholds:
       0: Alive
       450: Dead
@@ -281,6 +311,7 @@
     - ColossusTitlesBase
     nameFormat: name-format-colossus
   - type: MobThresholds
+    allowRevives: true
     thresholds:
       0: Alive
       400: Dead
@@ -298,7 +329,6 @@
     path: /Audio/_Starlight/CosmicCult/colossus_ask.ogg
   exclaimSound:
     path: /Audio/_Starlight/CosmicCult/colossus_exclaim.ogg
-
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -366,8 +396,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.5,-0.5,0.5,0.5"
         layer:
           - SlipLayer

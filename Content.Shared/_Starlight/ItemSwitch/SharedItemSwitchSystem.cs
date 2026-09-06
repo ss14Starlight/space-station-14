@@ -34,6 +34,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         SubscribeLocalEvent<ItemSwitchComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ItemSwitchComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<ItemSwitchComponent, GetVerbsEvent<ActivationVerb>>(OnActivateVerb);
+        SubscribeLocalEvent<ItemSwitchComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternativeVerb);
         SubscribeLocalEvent<ItemSwitchComponent, ActivateInWorldEvent>(OnActivate);
 
         SubscribeLocalEvent<ClothingComponent, ItemSwitchedEvent>(UpdateClothingLayer);
@@ -52,7 +53,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
         if (args.Handled || !ent.Comp.OnUse || ent.Comp.States.Count == 0) return;
         args.Handled = true;
 
-        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hiden)
+        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hidden)
             return;
 
         Switch((ent, ent.Comp), Next(ent), args.User, predicted: ent.Comp.Predictable);
@@ -67,7 +68,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
 
         foreach (var state in ent.Comp.States)
         {
-            if (state.Value.Hiden)
+            if (state.Value.Hidden)
                 continue;
             args.Verbs.Add(new ActivationVerb()
             {
@@ -82,6 +83,31 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
             args.ExtraCategories.Add(VerbCategory.Switch);
     }
 
+    /// <summary>
+    /// Offers a single verb cycling to the next state, which alt-use in hand runs directly.
+    /// </summary>
+    private void OnAlternativeVerb(Entity<ItemSwitchComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || !ent.Comp.OnAltUse || ent.Comp.States.Count == 0)
+            return;
+
+        var next = Next(ent);
+
+        if (!ent.Comp.States.TryGetValue(next, out var state) || state.Hidden)
+            return;
+
+        var user = args.User;
+
+        args.Verbs.Add(new AlternativeVerb()
+        {
+            Text = Loc.GetString("item-switch-verb-cycle",
+                ("state", Loc.TryGetString(state.Verb, out var title) ? title : state.Verb)),
+            // Alt-use runs only the first verb, so this has to outrank an item slot's eject verb at zero.
+            Priority = 1,
+            Act = () => Switch((ent.Owner, ent.Comp), next, user, ent.Comp.Predictable)
+        });
+    }
+
     private void OnActivate(Entity<ItemSwitchComponent> ent, ref ActivateInWorldEvent args)
     {
         if (args.Handled || !ent.Comp.OnActivate)
@@ -89,7 +115,7 @@ public abstract partial class SharedItemSwitchSystem : EntitySystem
 
         args.Handled = true;
 
-        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hiden)
+        if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hidden)
             return;
 
         Switch((ent.Owner, ent.Comp), Next(ent), args.User, predicted: ent.Comp.Predictable);

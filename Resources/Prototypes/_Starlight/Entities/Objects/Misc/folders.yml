@@ -128,6 +128,7 @@
           components:
           - IdCard
       targetIdSlot:
+        priority: 1
         name: id-card-clipboard-target-id
         ejectSound: /Audio/Machines/id_swipe.ogg
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg

@@ -202,7 +202,7 @@ public sealed partial class PlumbingSmartDispenserSystem : EntitySystem
         if (!_solutionSystem.TryGetFitsInDispenser(targetContainer, out var targetEnt, out _)
             && !_solutionSystem.TryGetRefillableSolution(targetContainer, out targetEnt, out _)
             && (!TryComp<InjectorComponent>(targetContainer, out var injector)
-                || !TryComp<SolutionContainerManagerComponent>(targetContainer, out var manager)
+                || !TryComp<SolutionManagerComponent>(targetContainer, out var manager)
                 || !_solutionSystem.TryGetSolution((targetContainer, manager), injector.SolutionName, out targetEnt, out _)))
         {
             UpdateActorUiState(ent, actor);
@@ -457,7 +457,7 @@ public sealed partial class PlumbingSmartDispenserSystem : EntitySystem
         if (!_solutionSystem.TryGetFitsInDispenser(targetContainer, out var targetEnt, out var targetSolution)
             && !_solutionSystem.TryGetRefillableSolution(targetContainer, out targetEnt, out targetSolution)
             && (!TryComp<InjectorComponent>(targetContainer, out var injector)
-                || !TryComp<SolutionContainerManagerComponent>(targetContainer, out var manager)
+                || !TryComp<SolutionManagerComponent>(targetContainer, out var manager)
                 || !_solutionSystem.TryGetSolution((targetContainer, manager), injector.SolutionName, out targetEnt, out targetSolution)))
         {
             return false;
@@ -516,7 +516,7 @@ public sealed partial class PlumbingSmartDispenserSystem : EntitySystem
         if (!_solutionSystem.TryGetFitsInDispenser(container.Value, out _, out var solution)
             && !_solutionSystem.TryGetRefillableSolution(container.Value, out _, out solution)
             && (!TryComp<InjectorComponent>(container.Value, out var injector)
-                || !TryComp<SolutionContainerManagerComponent>(container.Value, out var manager)
+                || !TryComp<SolutionManagerComponent>(container.Value, out var manager)
                 || !_solutionSystem.TryGetSolution((container.Value, manager), injector.SolutionName, out _, out solution)))
         {
             return null;

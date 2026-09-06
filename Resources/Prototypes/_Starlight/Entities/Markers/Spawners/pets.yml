@@ -1,6 +1,7 @@
 - type: entity
   parent: MarkerBase
   id: SpawnMobKoboldKiki
+  categories: [ ShouldMapStation ]
   name: Kiki Spawner
   suffix: Botanist Pet
   components:
@@ -16,6 +17,7 @@
 - type: entity
   parent: MarkerBase
   id: SpawnMobMonkeyStirStir
+  categories: [ ShouldMapStation ]
   name: Stir Stir Spawner
   suffix: Genpop Prisoner
   components:
@@ -31,6 +33,7 @@
 - type: entity
   parent: MarkerBase
   id: SpawnMobPenguinFlippers
+  categories: [ ShouldMapStation ]
   name: Rt Hon. Flippers Spawner
   suffix: Law Pet
   components:

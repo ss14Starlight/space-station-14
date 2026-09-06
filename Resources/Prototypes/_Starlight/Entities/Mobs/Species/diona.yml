@@ -46,7 +46,6 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Butcherable
-    butcheringType: Spike
     spawned:
       - id: FoodMeatPlant
         amount: 5
@@ -54,7 +53,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Sap
-        Quantity: 300
+        Quantity: 600
   - type: Reactive
     groups:
       Flammable: [ Touch ]

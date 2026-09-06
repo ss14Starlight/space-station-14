@@ -38,7 +38,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ResomiBlood
-        Quantity: 300
+        Quantity: 600
   - type: FireVisuals
     sprite: _Starlight/Mobs/Effects/onfire.rsi
     normalState: Resomi_minor_burning
@@ -75,7 +75,6 @@
     prototype: NeoResomi
     requiredLegs: 2
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatChicken
       amount: 3

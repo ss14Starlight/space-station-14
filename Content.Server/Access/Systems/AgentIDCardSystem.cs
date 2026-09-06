@@ -28,6 +28,7 @@ namespace Content.Server.Access.Systems
         [Dependency] private ChameleonClothingSystem _chameleon = default!;
         [Dependency] private ChameleonControllerSystem _chamController = default!;
         [Dependency] private LockSystem _lock = default!;
+        [Dependency] private SharedJobStatusSystem _jobStatus = default!;
         [Dependency] private SharedNanoChatSystem _nanoChat = default!; // CD
 
         public override void Initialize()
@@ -202,6 +203,8 @@ namespace Content.Server.Access.Systems
 
             if (TryFindJobProtoFromIcon(jobIcon, out var job))
                 _cardSystem.TryChangeJobDepartment(uid, job, idCard);
+
+            _jobStatus.UpdateStatus(Transform(uid).ParentUid);
         }
 
         private bool TryFindJobProtoFromIcon(JobIconPrototype jobIcon, [NotNullWhen(true)] out JobPrototype? job)

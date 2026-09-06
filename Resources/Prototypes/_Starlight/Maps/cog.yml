@@ -29,7 +29,6 @@
             Librarian: [ 1, 1 ]
             Lawyer: [ 1, 1 ]
             ServiceWorker: [ 3, 3 ]
-            Zookeeper: [ 1, 1 ]
             RadioHost: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
@@ -61,6 +60,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 4, 4 ]
             MailTech: [ 1, 2 ]

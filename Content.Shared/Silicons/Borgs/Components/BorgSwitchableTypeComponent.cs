@@ -1,4 +1,5 @@
-﻿using Content.Shared.Actions;
+﻿using Content.Shared._Starlight.Silicons.Borgs;
+using Content.Shared.Actions;
 using Content.Shared.Radio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -22,7 +23,7 @@ namespace Content.Shared.Silicons.Borgs.Components;
 /// <seealso cref="SharedBorgSwitchableTypeSystem"/>
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
-[Access(typeof(SharedBorgSwitchableTypeSystem))]
+[Access(typeof(SharedBorgSwitchableTypeSystem), typeof(BorgChassisResetSystem))] // Starlight
 public sealed partial class BorgSwitchableTypeComponent : Component
 {
     /// <summary>

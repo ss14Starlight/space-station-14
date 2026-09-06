@@ -1,3 +1,47 @@
+  # Starlight region
+- type: entity
+  id: TurnstileAssembly
+  parent: BaseStructure
+  name: turnstile assembly
+  description: An unfinished turnstile assembly.
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/turnstile.rsi
+    snapCardinals: true
+    drawdepth: Doors
+    layers:
+    - state: turnstile
+      map: [ "enum.TurnstileVisualLayers.Base" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49" # same dimensions as a door for tall turnstile, prevents objects being thrown through
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - GlassAirlockLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.50,-0.50,0.50,0.50" # same dimensions as a door for tall turnstile, prevents objects being thrown through
+        hard: false
+        mask:
+        - FullTileMask
+        layer:
+        - GlassAirlockLayer
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  - type: Construction
+    graph: Turnstile
+    node: assembly
+  # Starlight region end
+
 - type: entity
   id: Turnstile
   parent: BaseStructure
@@ -51,11 +95,20 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150 #SL
+        damage: 250 #SL
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  #starlight region
   - type: AccessReader
+    containerAccessProvider: board
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronics ]
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+  #starlight region end
   - type: Construction
     graph: Turnstile
     node: turnstile
@@ -78,19 +131,40 @@
     - HideContextMenu
 
 # Genpop
+- type: entity
+  id: DoorElectronicsGenpopEnter
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - Security
+  - type: AccessReader
+    access: [["GenpopEnter"], ["Security"]]
+
+- type: entity
+  id: DoorElectronicsGenpopLeave
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - Security
+  - type: AccessReader
+    access: [["GenpopLeave"], ["Security"]]
 
 - type: entity
   id: TurnstileGenpopEnter
   parent: Turnstile
   suffix: Genpop Enter
   components:
-  - type: AccessReader
-    access: [["GenpopEnter"], ["Security"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGenpopEnter ]
 
 - type: entity
   id: TurnstileGenpopLeave
   parent: Turnstile
   suffix: Genpop Leave
   components:
-  - type: AccessReader
-    access: [["GenpopLeave"], ["Security"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsGenpopLeave ]

@@ -1,0 +1,51 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "civilian",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "cargo",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "command",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "engineering",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "medical",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "science",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "service",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "security",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "full",
+      "copyright": "by Conf"
+    },
+    {
+      "name": "empty",
+      "copyright": "by Conf"
+    }
+  ]
+}

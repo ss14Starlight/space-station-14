@@ -1,0 +1,40 @@
+{
+    "version": 2,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "round_plastic",
+			"copyright": "Created by discord:unlumy для Время Приключений MRP сервер. Resprited by discord:prazat911"
+        },
+        {
+            "name": "round_glass",
+			"copyright": "Created by discord:unlumy для Время Приключений MRP сервер. Resprited by discord:prazat911"
+        },
+        {
+            "name": "round_wood",
+			"copyright": "Created by discord:unlumy для Время Приключений MRP сервер. Resprited by discord:prazat911"
+        },
+        {
+            "name": "round_frame",
+			"copyright": "Created by discord:unlumy для Время Приключений MRP сервер. Resprited by discord:prazat911"
+        },
+        {
+            "name": "round_generic",
+			"copyright": "Created by discord:unlumy для Время Приключений MRP сервер. Resprited by discord:prazat911"
+        },
+        {
+            "name": "round_carpet",
+			"copyright": "Created by discord:unlumy для Время Приключений MRP сервер. Resprited by discord:prazat911"
+        },
+        {
+            "name": "round_plasma",
+			"copyright": "Created by discord:unlumy для Время Приключений MRP сервер. Resprited by discord:prazat911"
+        }
+    ]
+}
+

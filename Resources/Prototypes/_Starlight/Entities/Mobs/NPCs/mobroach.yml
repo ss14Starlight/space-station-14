@@ -1,0 +1,153 @@
+# Syndicate Operative Outfit - Mobroach
+- type: startingGear
+  id: SyndicateOperativeGearMobroach
+  equipment:
+    head: ClothingHeadHatFedoraGrey
+    mask: CigaretteSyndicate
+    eyes: ClothingEyesGlassesCheapSunglasses
+
+- type: entity
+  id: MobRoachCuffs
+  categories: [ HideSpawnMenu ]
+  name: makeshift cuffs
+  parent: BorgHolocuffs
+  description: Makeshift and shoddy, but there sure is a lot of them.
+  components:
+    - type: Handcuff
+      breakoutTime: 3
+      cuffedRSI: Objects/Misc/cablecuffs.rsi
+      bodyIconState: body-overlay
+      color: forestgreen
+      breakOnRemove: true
+      brokenPrototype: CablecuffsBroken
+      startCuffSound:
+        path: /Audio/Items/Handcuffs/rope_start.ogg
+      endCuffSound:
+        path: /Audio/Items/Handcuffs/rope_end.ogg
+      startUncuffSound:
+        path: /Audio/Items/Handcuffs/rope_start.ogg
+      endUncuffSound:
+        path: /Audio/Items/Handcuffs/rope_breakout.ogg
+      startBreakoutSound:
+        path: /Audio/Items/Handcuffs/rope_takeoff.ogg
+    - type: Sprite
+      sprite: Objects/Misc/cablecuffs.rsi
+      state: cuff
+      color: forestgreen
+
+- type: entity
+  id: MobRoachModule
+  categories: [ HideSpawnMenu ]
+  parent: [ BorgModuleCustodial ]
+  name: mothic mobroach module
+  components:
+  - type: Sprite
+    layers:
+    - state: janitor
+    - state: icon-light-replacer
+  - type: ItemBorgModule
+    hands:
+    - item: BorgMegaSprayBottle
+    - item: MobRoachCuffs
+    - item: SoapSyndie
+      hand:
+        emptyLabel: borg-slot-soap-empty
+        emptyRepresentative: SoapSyndie
+        whitelist:
+          tags:
+          - Soap
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: wire-module }
+
+- type: entity
+  name: mobroach
+  parent: MobMothroach
+  suffix: syndicate agent
+  id: MobMobroach # Oh yeah, we're going far with this one. Mobmob.
+  description: This little mothroach has ... is that a pair of cuffs?
+  components:
+    - type: Sprite
+      sprite: Mobs/Animals/mothroach/mothroach.rsi
+      layers:
+        - state: mothroach
+          map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
+        - state: mothroach
+          map: [ "enum.BorgVisualLayers.Light" ]
+          shader: unshaded
+          visible: false
+          color: "#FFFFFF00"
+    - type: MobThresholds
+      thresholds: # Lil buddy was designed to be a little more durable than the mothroach, but not by much.
+        0: Alive
+        50: Critical
+        100: Dead
+    - type: MobPrice # Gangster mothroaches are expensive, you know.
+      price: 1000
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTypeTrigger
+          damageType: Blunt
+          damage: 100
+        behaviors:
+        - !type:GibBehavior
+          recursive: false
+    - type: Loadout
+      prototypes: [SyndicateOperativeGearMobroach]
+    - type: Jump # Lil guy has jumps.
+      action: JumpMoth
+    - type: Hands
+      showInHands: false
+      disableExplosionRecursion: true
+      canBeStripped: false
+    - type: ComplexInteraction
+    - type: TypingIndicator
+      proto: regal
+    - type: MobsterAccent
+    - type: MeleeWeapon
+      altDisarm: false
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Piercing: 1 # N'yeaaaah.... see? *NOM*
+    - type: NoSlip
+    - type: IntrinsicRadioReceiver
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - Common
+      - Syndicate
+    - type: ActiveRadio
+      channels:
+      - Common
+      - Syndicate
+    - type: ShowSyndicateIcons
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: ContainerContainer
+      containers:
+        borg_module: !type:Container { }
+    - type: ContainerFill
+      containers:
+        borg_module:
+        - MobRoachModule
+    - type: BorgChassis
+      hasMindState: mothroach
+      noMindState: mothroach
+    - type: GhostRole
+      prob: 0.05
+      makeSentient: true
+      name: ghost-role-information-syndicate-mothroach-reinforcement-name
+      description: ghost-role-information-syndicate-mothroach-reinforcement-description
+      rules: ghost-role-information-syndicate-reinforcement-rules
+      important: true
+      mindRoles:
+      - MindRoleGhostRoleSoloAntagonist
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+    - type: AutoTraitor
+      profile: TraitorReinforcement

@@ -71,7 +71,7 @@
   priority: 1
   productEntity: ClothingOuterSoftsuitWizardFire
   cost:
-    WizCoin: 15 #admeme for now
+    WizCoin: 11
   categories:
   - SpellbookWar
   conditions:
@@ -148,7 +148,7 @@
       - SpellbookFireMaster
 
 - type: listing
-  id: SpellFireballWar
+  id: SpellbookFireballWar
   name: spellbook-fireball-name
   description: spellbook-fireball-desc
   priority: 6
@@ -165,7 +165,7 @@
       - SpellbookFireMaster
 
 - type: listing
-  id: SpellFireArrow
+  id: SpellbookFireArrow
   name: spellbook-firearrow-name
   description: spellbook-firearrow-desc
   priority: 7
@@ -182,7 +182,7 @@
       - SpellbookFireMaster
 
 - type: listing
-  id: SpellEruption
+  id: SpellbookEruption
   name: spellbook-eruption-name
   description: spellbook-eruption-desc
   priority: 8
@@ -197,7 +197,6 @@
   - !type:BuyBeforeCondition
     whitelist:
       - SpellbookFireMaster
-
 
 - type: listing
   id: SpellbookVoidApplauseWar
@@ -240,7 +239,7 @@
   priority: 11
   productEntity: ClothingOuterSoftsuitWizardFrost
   cost:
-    WizCoin: 15
+    WizCoin: 11
   categories:
   - SpellbookWar
   conditions:

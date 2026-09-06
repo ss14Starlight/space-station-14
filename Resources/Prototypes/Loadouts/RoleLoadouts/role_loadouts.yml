@@ -15,7 +15,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - CapPens # Starlight
-  - CaptainJobTrinkets
+  #- CaptainJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -34,7 +34,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - HoPPens # Starlight
-  - HoPJobTrinkets
+  #- HoPJobTrinkets
   - GroupSpeciesBreathTool
 
 # Silicons
@@ -71,7 +71,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - AssistantJobTrinkets
+  #- PassengerJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -106,7 +106,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - ServiceWorkerJobTrinkets
+  #- ServiceWorkerJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -125,7 +125,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - ChefJobTrinkets
+  #- ChefJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -141,7 +141,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - LuxuryPens # Starlight
-  - LibrarianJobTrinkets
+  #- LibrarianJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -158,7 +158,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - LuxuryPens # Starlight
-  - LawyerJobTrinkets
+  #- LawyerJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -179,7 +179,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - ChaplainJobTrinkets
+  #- ChaplainJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -216,7 +216,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - BotanistJobTrinkets
+  #- BotanistJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -255,7 +255,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - MimePens # Starlight
-  - MimeJobTrinkets
+  #- MimeJobTrinkets
 
 - type: roleLoadout
   id: JobMusician
@@ -273,7 +273,7 @@
   - Scarves # Starlight start
   - Pins
   - Pens # Starlight end
-  - MusicianJobTrinkets
+  #- MusicianJobTrinkets
   - Instruments
   - GroupSpeciesBreathTool
 
@@ -294,7 +294,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - QuartermasterJobTrinkets
+  #- QuartermasterJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -314,7 +314,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - CargoTechnicianJobTrinkets
+  #- CargoTechnicianJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -332,7 +332,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - SalvageSpecialistJobTrinkets
+  #- SalvageSpecialistJobTrinkets
   - GroupSpeciesBreathTool
 
 # Engineering
@@ -352,7 +352,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - ChiefEngineerJobTrinkets
+  #- ChiefEngineerJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -368,7 +368,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - TechnicalAssistantJobTrinkets
+  #- TechnicalAssistantJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -386,7 +386,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - StationEngineerJobTrinkets
+  #- StationEngineerJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -402,7 +402,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - AtmosphericTechnicianJobTrinkets
+  #- AtmosphericTechnicianJobTrinkets
   - GroupSpeciesBreathTool
 
 # Science
@@ -423,7 +423,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - ResearchDirectorJobTrinkets
+  #- ResearchDirectorJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -444,7 +444,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - ScientistJobTrinkets
+  #- ScientistJobTrinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -464,7 +464,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - ResearchAssistantJobTrinkets
+  #- ResearchAssistantJobTrinkets
   - GroupSpeciesBreathTool
 
 # Security
@@ -570,7 +570,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - SecurityCadetJobTrinkets
+  #- SecurityCadetJobTrinkets
   - GroupSpeciesBreathToolSecurity
 
 # Wildcards
@@ -588,7 +588,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - LuxuryPens # Starlight
-  - ReporterJobTrinkets
+  - ReporterJobTrinkets # Starlight, keeping these, since they have other trinkets
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -607,7 +607,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  - PsychologistJobTrinkets
+  #- PsychologistJobTrinkets
   - GroupSpeciesBreathTool
 
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs

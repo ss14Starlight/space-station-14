@@ -14,10 +14,10 @@
         visible: false
   - type: Item
     sprite: _Starlight/Admeme/MedTak/Objects/hypo.rsi
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 15
+  - type: Solution
+    id: hypospray
+    solution:
+      maxVol: 15
   - type: SolutionContainerVisuals
     maxFillLevels: 3
     fillBaseName: hypo_fill

@@ -164,7 +164,8 @@
         Blunt: 0.6
         Slash: 0.8
         Piercing: 0.50
-        Heat: 0.1
+        Heat: 0.05
+        Cold: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -179,14 +180,6 @@
     radius: 4
     energy: 5
     color: "#DE3A3A"
-  - type: RestrictByUserTag
-    contains:
-    - Wizard
-    messages:
-    - wizard-item-restricted-1
-    - wizard-item-restricted-2
-    - wizard-item-restricted-3
-    - wizard-item-restricted-4
 
 - type: entity
   parent: ClothingOuterSoftsuitWizardFire
@@ -210,7 +203,7 @@
       coefficients:
         Blunt: 0.7
         Slash: 0.2
-        Piercing: 0.70
+        Piercing: 0.30
         Heat: 0.6
         Cold: 0.01
   - type: ClothingSpeedModifier

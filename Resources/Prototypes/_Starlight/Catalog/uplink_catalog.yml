@@ -1,0 +1,18 @@
+﻿- type: listing
+  id: UplinkReinforcementRadioSyndicateMothroach
+  name: uplink-reinforcement-radio-mothroach-name
+  description: uplink-reinforcement-radio-mothroach-desc
+  productEntity: ReinforcementRadioSyndicateMothroach
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-mobroach }
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink

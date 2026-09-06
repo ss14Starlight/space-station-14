@@ -73,7 +73,7 @@
   parent:
   - MobRespirator
   - MobAtmosStandard
-  - SimpleSpaceMobBase
+  - SimpleSpaceMobBaseTemplate # Starlight
   id: SimpleMobBaseTemplate # Starlight, changed so we can inherit this among antag-rolling and non-antag rolling animals
   suffix: AI
   abstract: true

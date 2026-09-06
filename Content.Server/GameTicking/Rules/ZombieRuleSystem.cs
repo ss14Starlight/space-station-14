@@ -136,7 +136,7 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
             {
                 _chat.DispatchStationAnnouncement(station, Loc.GetString("zombie-shuttle-call"), colorOverride: Color.Crimson);
             }
-            _roundEnd.RequestRoundEnd(null, false);
+            _roundEnd.RequestRoundEnd(checkCooldown: false);
         }
 
         // we include dead for this count because we don't want to end the round

@@ -131,6 +131,10 @@
         {
             "name": "radiohost",
 			"copyright": "Huaqas"
+        },
+        {
+            "name": "evidence",
+			"copyright": "Made by Conflee"
         }
     ]
 }

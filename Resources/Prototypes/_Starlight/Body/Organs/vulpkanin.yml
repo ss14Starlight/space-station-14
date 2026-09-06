@@ -24,16 +24,10 @@
       heldPrefix: stomach
     - type: Stomach
     # Starlight end
-    - type: SolutionContainerManager
+    - type: SolutionManager
       solutions:
-        stomach:
-          maxVol: 50
-        food:
-          maxVol: 5
-          reagents:
-          - ReagentId: UncookedAnimalProteins
-            Quantity: 5
-    # Starlight start
+      - SolutionOrganFoodMeat
+      - SolutionOrganStomach50
     - type: Metabolizer
       updateInterval: 1.5
     # Starlight end
