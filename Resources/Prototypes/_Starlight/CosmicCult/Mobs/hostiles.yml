@@ -40,15 +40,16 @@
     rootTask:
       task: SimpleHostileCompound
     blackboard:
-      NavClimb: !type:Bool
-        true
-      NavSmash: !type:Bool
-        true
+      NavClimb: !type:Bool "true"
+      NavSmash: !type:Bool "true"
   - type: CosmicCultFaction
   - type: CosmicMinion
   - type: NpcFactionMember
     factions:
     - CosmicCult
+  - type: CosmicMalignantHealing
+    healInterval: 1s
+    healAmount: 0.1
   - type: GhostRole
     allowMovement: true
     allowSpeech: true
@@ -65,6 +66,7 @@
     - Alive
     - Dead
   - type: MobThresholds
+    allowRevives: true
     thresholds:
       0: Alive
       50: Dead
@@ -72,7 +74,9 @@
     mustBeDead: true
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
+    damageModifierSet: Malignstone
+  - type: CosmicRiftHealth
+    healthPerCorpse: 5
   - type: Destructible
     thresholds:
       - trigger:
@@ -98,12 +102,10 @@
     bleedReductionAmount: 0.1
     bloodlossDamage:
       types:
-        Bloodloss:
-          0
+        Bloodloss: 0
     bloodlossHealDamage:
       types:
-        Bloodloss:
-          0
+        Bloodloss: 0
   - type: CombatMode
   - type: TypingIndicator
     proto: CosmicTyping
@@ -172,6 +174,8 @@
     rules: ghost-role-information-cosmic-oracle-rules
     mindRoles:
     - MindRoleCosmicMinion
+  - type: ThermalVision
+    active: false
   - type: MeleeWeapon
     altDisarm: false
     animation: WeaponArcCosmic
@@ -211,7 +215,7 @@
       NavSmash: !type:Bool
         true
   - type: Gun
-    projectileSpeed: 12
+    projectileSpeed: 15
     soundGunshot: /Audio/_Starlight/CosmicCult/projectile_razor.ogg
     soundEmpty: null
     fireRate: 1

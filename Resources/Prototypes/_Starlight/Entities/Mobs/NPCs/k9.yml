@@ -4,6 +4,7 @@
   name: security K9
   description: A dog trained for station security work.
   components:
+  - type: RemoveFlavorText
   - type: Sprite
     drawdepth: Mobs
     sprite: _Starlight/Mobs/Pets/k9.rsi

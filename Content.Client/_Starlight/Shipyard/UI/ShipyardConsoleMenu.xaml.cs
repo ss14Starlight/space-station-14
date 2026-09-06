@@ -60,23 +60,26 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         Vessels.RemoveAllChildren();
         var vessels = VesselPrototypes.ToList();
         vessels.Sort((x, y) =>
-            string.Compare(x.Name, y.Name, StringComparison.CurrentCultureIgnoreCase));
+            string.Compare(GetVesselName(x), GetVesselName(y), StringComparison.CurrentCultureIgnoreCase));
 
         var search = SearchBar.Text.Trim().ToLowerInvariant();
         foreach (var prototype in vessels)
         {
+            var vesselName = GetVesselName(prototype);
+            var vesselDescription = GetVesselDescription(prototype);
+
             // if no search or category
             // else if search
             // else if category and not search
             if ((search.Length == 0 && _category == null) ||
-                (search.Length != 0 && prototype.Name.ToLowerInvariant().Contains(search)) ||
+                (search.Length != 0 && vesselName.ToLowerInvariant().Contains(search)) ||
                 (search.Length == 0 && _category != null && prototype.Category.Equals(_category)))
             {
                 var vesselEntry = new VesselRow
                 {
                     Vessel = prototype,
-                    VesselName = { Text = prototype.Name },
-                    Purchase = { ToolTip = prototype.Description },
+                    VesselName = { Text = vesselName },
+                    Purchase = { ToolTip = vesselDescription },
                     Price = { Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", prototype.Price.ToString())) },
                 };
                 vesselEntry.Purchase.OnPressed += _ =>
@@ -109,9 +112,17 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
         foreach (var str in _categoryStrings)
         {
-            Categories.AddItem(Loc.GetString(str));
+            Categories.AddItem(Loc.GetString(str == _categoryStrings[0]
+                ? "cargo-console-menu-populate-categories-all-text"
+                : $"shipyard-console-category-{str.ToLowerInvariant()}"));
         }
     }
+
+    private static string GetVesselName(VesselPrototype prototype) =>
+        Loc.GetString($"shipyard-vessel-{prototype.ID.ToLowerInvariant()}-name");
+
+    private static string GetVesselDescription(VesselPrototype prototype) =>
+        Loc.GetString($"shipyard-vessel-{prototype.ID.ToLowerInvariant()}-description");
 
     public void UpdateState(ShipyardConsoleInterfaceState state) =>
         BankAccountLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", state.Balance.ToString()));

@@ -125,6 +125,13 @@
           Heat: 0.1
     - type: Fingerprint
     - type: Blindable
+    # god's most useless bui bind; shadekins by design don't have the capacity to breathe
+    # and therefore the code paths that would lead them to smell are nonexistent
+    # however in case SmellerComponent is admemed onto them, this is necessary
+    - type: UserInterface
+      interfaces:
+        enum.ScentSniffUiKey.Key:
+          type: ScentSniffBoundUserInterface
     - type: DarkenedVision
     # Other
     - type: TemperatureDamage

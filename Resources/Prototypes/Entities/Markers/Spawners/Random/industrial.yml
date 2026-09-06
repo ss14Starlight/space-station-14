@@ -19,6 +19,7 @@
         - CigaretteSpent
         - Paper
         - FolderSpawner
+        - ClothingUniformJumpsuitFirefighter # SL edit
       rareChance: 0.1
       prototypes:
         - RemoteSignaller
