@@ -166,7 +166,7 @@
   parent: BaseVoxPlushie
   id: PlushieHrek # FlameyTheRandom
   name: hrekrativi plushie
-  description: Now 10% less miserable, and unlike the real thing, this one doesn't need nitrogen! #Flavor text is subject to change
+  description: Has probably built more civilian infrastructure than any engineer youl come across. Despite that, you will never see him as an engineer.
   components:
   - type: Item
     size: Small
