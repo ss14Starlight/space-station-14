@@ -1,48 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Reach) Added all the new techfabs.
-    type: Add
-  id: 407887
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Reach) Added keycard auth's to all heads bedrooms and one in bridge.
-    type: Add
-  id: 407888
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Reach) Added radio host with just a single vinyl player near kitchen.
-    type: Add
-  id: 407889
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Reach) Changed distro to begin at shift start.
-    type: Tweak
-  id: 407890
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Added the new departmental techfabs to each department and service fab in the bar.
-    type: Add
-  id: 407891
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Orwell) Added assistant manager to conference room.
-    type: Add
-  id: 407892
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
   - message: (Orwell)  Added radio host south of arrivals.
     type: Add
   id: 407893
@@ -2799,4 +2757,46 @@ Entries:
   id: 408286
   time: '2026-09-06T04:14:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5911
+- author: STARLIGHT TEAM
+  changes:
+  - message: Soviet crates now despawn after 15 minutes dropping their content as they do.
+    type: Add
+  id: 408287
+  time: '2026-09-06T04:49:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5921
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed Soviet crates wont collide with each other anymore in an attempt to fix lag.
+    type: Fix
+  id: 408288
+  time: '2026-09-06T04:49:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5921
+- author: DogeyOT
+  changes:
+  - message: Vox markings for coloring legs, arms and beaks.
+    type: Add
+  id: 408289
+  time: '2026-09-06T05:12:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5918
+- author: DogeyOT
+  changes:
+  - message: Two new vox tails.
+    type: Add
+  id: 408290
+  time: '2026-09-06T05:12:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5918
+- author: DogeyOT
+  changes:
+  - message: Markings for feathered vox legs.
+    type: Add
+  id: 408291
+  time: '2026-09-06T05:12:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5918
+- author: Conflee
+  changes:
+  - message: Added Firefighter Smocks. Smocks can be found in Fire-Safety Cargo orders, and Fire-Safety Closets. They are much worse than a Fire Suit, but do provide some protection from direct fire damage, heating/cooling temperatures, and heat/cold damage types. Resistances don't stack additively, so the benefit of wearing both is very small- spread the PPE! In prep for Reagent Fires.
+    type: Add
+  id: 408292
+  time: '2026-09-06T05:12:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5956
 Order: -1
