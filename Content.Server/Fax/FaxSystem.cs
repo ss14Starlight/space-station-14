@@ -721,7 +721,7 @@ public sealed partial class FaxSystem : EntitySystem
             #region Starlight
             _paperSystem.SetContent((printed, paper), printout.RetainMetadata
                 ? printout.Content
-                : PrependContentMetadata(uid, StripContentMetadata(printout.Content), GetTimeStamp(), printout, component));
+                : PrependContentMetadata(uid, StripContentMetadata(printout.Content), printout, component));
             #endregion
 
             // Apply stamps
@@ -834,19 +834,16 @@ public sealed partial class FaxSystem : EntitySystem
         return parsed.RemoveLeading(["meta"]).ToMarkup();
     }
 
-    private string PrependContentMetadata(EntityUid uid, string content, string currentTime, FaxPrintout payload, FaxMachineComponent comp)
+    private string PrependContentMetadata(EntityUid uid, string content, FaxPrintout payload, FaxMachineComponent comp)
     {
         const string MetaFormat = """
-        [meta][dots bold]Sent: {0} at {1} {2}
-        Rcvd: {3} at {4} {5}[/dots]
-        [/meta]{6}
+        [meta][dots bold]Sent: {0} at {1}
+        Rcvd: {3} at {4}[/dots]
+        [/meta]{5}
         """;
 
-        var faxMachineAddress = TryComp<DeviceNetworkComponent>(uid, out var deviceNetworkComponent)
-            ? deviceNetworkComponent.Address
-            : Loc.GetString("device-address-unknown");
-        return string.Format(MetaFormat, payload.MetaSentAt, FormattedMessage.EscapeText(payload.MetaSender ?? ""), FormattedMessage.EscapeText(faxMachineAddress),
-            currentTime, FormattedMessage.EscapeText(comp.FaxName ?? ""), FormattedMessage.EscapeText(comp.DestinationFaxAddress ?? ""), content);
+        return string.Format(MetaFormat, payload.MetaSentAt, FormattedMessage.EscapeText(payload.MetaSender ?? ""),
+            TimeSpan.FromSeconds(Math.Truncate(_gameTicker.RoundDuration().TotalSeconds)).ToString(), FormattedMessage.EscapeText(comp.FaxName ?? ""), content);
     }
 
     private FaxPrintout? TryGetFaxablePrintout(EntityUid? item, FaxMachineComponent component)
