@@ -42,7 +42,9 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
     private EntitySpawningUIController EntitySpawningController => UIManager.GetUIController<EntitySpawningUIController>();
     private TileSpawningUIController TileSpawningController => UIManager.GetUIController<TileSpawningUIController>();
     private DecalPlacerUIController DecalPlacerController => UIManager.GetUIController<DecalPlacerUIController>();
-    private ZonePlacerUIController ZonePlacerController => UIManager.GetUIController<ZonePlacerUIController>(); // Starlight
+    #region Starlight
+    private ZonePlacerUIController ZonePlacerController => UIManager.GetUIController<ZonePlacerUIController>();
+    #endregion
 
     private Controls.MenuButton? SandboxButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.SandboxButton;
 

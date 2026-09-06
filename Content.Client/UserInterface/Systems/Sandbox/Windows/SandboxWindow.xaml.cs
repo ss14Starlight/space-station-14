@@ -22,7 +22,9 @@ public sealed partial class SandboxWindow : DefaultWindow
     private readonly DebugPhysicsSystem _debugPhysicsSystem;
     private readonly MarkerSystem _markerSystem;
     private readonly SubFloorHideSystem _subFloorSystem;
-    private readonly ZonePlacementSystem _zoneSystem; // Starlight
+    #region Starlight
+    private readonly ZonePlacementSystem _zoneSystem;
+    #endregion
 
     public SandboxWindow()
     {
