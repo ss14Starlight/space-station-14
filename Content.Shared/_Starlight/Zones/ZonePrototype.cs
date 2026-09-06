@@ -8,15 +8,15 @@ public sealed partial class ZonePrototype : IPrototype
     [IdDataField]
     public string ID { get; private set; } = default!;
 
-    [DataField]
-    public LocId? Name;
+    [DataField(required: true)]
+    public LocId Name;
 
-    [DataField]
+    [DataField(required: true)]
     public Color Color = Color.White;
 
-    [DataField]
+    [DataField(required: true)]
     public int Priority;
 
     [DataField]
-    public List<EntProtoId> Doors = new();
+    public List<EntProtoId> Doors = [];
 }
