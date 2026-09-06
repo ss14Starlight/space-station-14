@@ -41,6 +41,8 @@
           amount: 2
         - id: EmergencyCoolingUnit # Starlight
           amount: 2
+        - id: ClothingUniformJumpsuitFirefighter # SL Edit
+          amount: 2 # SL Edit
 
 - type: entity
   parent: CrateInternalsO2N2 # Starlight - sprite change
