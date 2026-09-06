@@ -14,7 +14,7 @@ public sealed partial class MyZoneCommand : LocalizedCommands
     /// <summary>
     /// Executes the myzone command, which retrieves the zone information for the player's current location.
     /// </summary>
-    public override void Execute(IConsoleShell shell, string _, string[] _)
+    public override void Execute(IConsoleShell shell, string _, string[] __)
     {
         if (_player.LocalEntity is not { } player)
         {
