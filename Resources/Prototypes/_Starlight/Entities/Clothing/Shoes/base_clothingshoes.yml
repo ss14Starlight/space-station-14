@@ -26,3 +26,12 @@
         - ClothMade
         - Recyclable
         - WhitelistChameleon
+
+- type: entity
+  abstract: true
+  parent: Clothing
+  id: ClothingShoesUnstainable
+  components:
+  - type: NoFootprints
+  - type: StainBlocker
+    slots: [FEET]
