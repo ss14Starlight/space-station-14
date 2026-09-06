@@ -986,7 +986,7 @@ public sealed partial class SLMoverController : SharedMoverController
         // which means i can't access my cvar that is in content, unless we do something a tiny bit cursed
         // (cancel InputSystem.HandleInputCommand by returning false from HandleCmdMessage in the input cmd handlers,
         // and then separately do all the functionality of it except for actually sending the net message)
-        if (!_applyingRedundantInput && _cfg.GetCVar(Shared._Starlight.RedundantMovement.StarlightCCVars.Enabled))
+        if (!_applyingRedundantInput && _cfg.GetCVar(StarlightCCVars.RedundantMovementEnabled))
         {
             return;
         }
@@ -996,7 +996,7 @@ public sealed partial class SLMoverController : SharedMoverController
 
     protected override void HandleRunChange(EntityUid uid, ushort subTick, bool walking)
     {
-        if (!_applyingRedundantInput && _cfg.GetCVar(Shared._Starlight.RedundantMovement.StarlightCCVars.Enabled))
+        if (!_applyingRedundantInput && _cfg.GetCVar(StarlightCCVars.RedundantMovementEnabled))
             return;
 
         base.HandleRunChange(uid, subTick, walking);
