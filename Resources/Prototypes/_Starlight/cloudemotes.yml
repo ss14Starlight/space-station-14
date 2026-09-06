@@ -225,6 +225,7 @@
 
 - type: cloudEmote
   id: Godo
+  name: cloud-emote-name-godo
   animationTime: 3
   sound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   icon:

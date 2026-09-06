@@ -17,45 +17,8 @@
             prefixCreator: 'VLP'
         - type: StationJobs
           availableJobs:
-            # command
+            # Service
             Captain: [ 1, 1 ]
-            # cargo
-            Quartermaster: [ 1, 1 ]
-            SalvageLead: [ 1, 1 ]
-            SalvageSpecialist: [ 3, 3 ]
-            SalvageMedic: [ 1, 1 ]
-            CargoTechnician: [ 3, 3 ]
-            MiningSpecialist: [ 2, 2 ]
-            MailTech: [ 1, 1 ]
-            # engineering
-            ChiefEngineer: [ 1, 1 ]
-            StationEngineer: [ 2, 2 ]
-            AtmosphericTechnician: [ 2, 2 ]
-            TechnicalAssistant: [ 2, 2 ]
-            # medical
-            ChiefMedicalOfficer: [ 1, 1 ]
-            MedicalDoctor: [ 3, 3 ]
-            MedicalIntern: [ 2, 2 ]
-            Psychologist: [ 1, 1 ]
-            Paramedic: [ 1, 1 ]
-            Chemist: [ 1, 1 ]
-            # science
-            ResearchDirector: [ 1, 1 ]
-            Roboticist: [ 1, 1 ]
-            Scientist: [ 3, 3 ]
-            ResearchAssistant: [ 2, 2 ]
-            # security
-            HeadOfSecurity: [ 1, 1 ]
-            Warden: [ 1, 1 ]
-            DutyOfficer: [ 1, 1 ]
-            SecurityOfficer: [ 2, 3 ]
-            SecurityCadet: [ 2, 2 ]
-            Brigmedic: [ 1, 1 ]
-            Detective: [ 1, 1 ]
-            #law
-            Magistrate: [ 1, 1 ]
-            IAA: [ 2, 2 ]
-            # service
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 1, 1 ]
             Botanist: [ 2, 2 ]
@@ -67,14 +30,63 @@
             Lawyer: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
+            RadioHost: [ 1, 1 ]
             Reporter: [ 1, 1 ]
             ServiceWorker: [ 3, 3 ]
             Performer: [ 2, 2 ]
+
+            # Cargo
+            Quartermaster: [ 1, 1 ]
+            CargoTechnician: [ 3, 3 ]
+            MiningSpecialist: [ 2, 2 ]
+            MailTech: [ 1, 1 ]
+
+            # ITG
+            SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            SalvageMedic: [ 1, 1 ]
+
+            # Engineering
+            ChiefEngineer: [ 1, 1 ]
+            StationEngineer: [ 2, 2 ]
+            AtmosphericTechnician: [ 2, 2 ]
+            TechnicalAssistant: [ 2, 2 ]
+
+            # Medical
+            ChiefMedicalOfficer: [ 1, 1 ]
+            MedicalDoctor: [ 3, 3 ]
+            MedicalIntern: [ 2, 2 ]
+            Psychologist: [ 1, 1 ]
+            Paramedic: [ 1, 1 ]
+            Chemist: [ 1, 1 ]
+
+            # Science
+            ResearchDirector: [ 1, 1 ]
+            Roboticist: [ 1, 1 ]
+            Scientist: [ 3, 3 ]
+            ResearchAssistant: [ 2, 2 ]
+
+            # Security
+            HeadOfSecurity: [ 1, 1 ]
+            Warden: [ 1, 1 ]
+            DutyOfficer: [ 1, 1 ]
+            SecurityOfficer: [ 2, 3 ]
+            SecurityCadet: [ 2, 2 ]
+            Brigmedic: [ 1, 1 ]
+            Detective: [ 1, 1 ]
+            #K9: [ 1, 1 ]
+
+            # Civilian
+            #AssistantManager: [ 1, 1 ]
             Assistant: [ -1, -1 ]
-            # silicon
+
+            # Silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
-            #Representatives
+
+            # Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]
+            Magistrate: [ 1, 1 ]
+            IAA: [ 2, 2 ]
