@@ -37,7 +37,6 @@ public sealed partial class PlumbingOutputSystem : EntitySystem
         if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var outputSolutionEnt, out var outputSolution))
             return;
 
-        // Starlight Start
         if (TryComp<RefillReagentFilterComponent>(args.Used, out var filter)
             && outputSolution.Contents.Any(sol => !filter.Reagents.Contains(sol.Reagent.Prototype)))
         {
@@ -48,7 +47,6 @@ public sealed partial class PlumbingOutputSystem : EntitySystem
             args.Handled = true;
             return;
         }
-        // Starlight End
 
         var transferAmount = outputSolution.Volume;
         if (TryComp<SolutionTransferComponent>(args.Used, out var transferComp))

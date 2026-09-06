@@ -455,7 +455,6 @@ public sealed partial class PlumbingSmartDispenserSystem : EntitySystem
         if (sourceReagent is not { } sourceReagentValue)
             return false;
 
-        // Starlight Start
         if (TryComp<RefillReagentFilterComponent>(targetContainer, out var filter)
             && !filter.Reagents.Contains(reagentId))
         {
@@ -465,7 +464,6 @@ public sealed partial class PlumbingSmartDispenserSystem : EntitySystem
 
             return false;
         }
-        // Starlight End
 
         if (!_solutionSystem.TryGetFitsInDispenser(targetContainer, out var targetEnt, out var targetSolution)
             && !_solutionSystem.TryGetRefillableSolution(targetContainer, out targetEnt, out targetSolution)
