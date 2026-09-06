@@ -6,3 +6,13 @@
     - Toxin
     - Airloss
     - Genetic
+
+- type: damageContainer
+  id: MalignStructure
+  supportedGroups:
+  - Brute
+  - Metaphysical
+  supportedTypes:
+  - Heat
+  - Shock
+  - Structural
