@@ -16,6 +16,9 @@ public sealed partial class ZonePlacerUIController : UIController, IOnStateExite
 
     private ZonePlacerWindow? _window;
 
+    /// <summary>
+    /// Toggles the zone placer window. If the window is open, it will be closed. If the window is closed and sandbox mode is allowed, it will be opened.
+    /// </summary>
     public void ToggleWindow()
     {
         EnsureWindow();

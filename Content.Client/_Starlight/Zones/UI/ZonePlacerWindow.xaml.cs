@@ -26,6 +26,9 @@ public sealed partial class ZonePlacerWindow : DefaultWindow
         _placement = _entMan.System<ZonePlacementSystem>();
     }
 
+    /// <summary>
+    /// Populates the zone placer window with a list of zone prototypes.
+    /// </summary>
     public void Populate(IEnumerable<ZonePrototype> prototypes)
     {
         ZoneList.RemoveAllChildren();
@@ -48,7 +51,7 @@ public sealed partial class ZonePlacerWindow : DefaultWindow
 
             var button = new Button
             {
-                Text = zone.Name is { } loc ? Loc.GetString(loc) : zone.ID,
+                Text =  Loc.GetString(zone.Name),
                 ToggleMode = true,
                 HorizontalExpand = true,
                 Margin = new Thickness(0, 1),
@@ -57,6 +60,9 @@ public sealed partial class ZonePlacerWindow : DefaultWindow
             button.OnPressed += _ => Select(id);
 
             _buttons.Add((button, id));
+
+            if (!_buttons.Any(x => x.Zone == _placement.Selected))
+                _placement.Selected = null;
 
             ZoneList.AddChild(new BoxContainer
             {
@@ -87,6 +93,9 @@ public sealed partial class ZonePlacerWindow : DefaultWindow
         _placement.SetActive(true);
     }
 
+    /// <summary>
+    /// Closes the zone placer window and deactivates the zone placement system.
+    /// </summary>
     public override void Close()
     {
         base.Close();
