@@ -2,11 +2,12 @@
   id: RefinedOil
   reactants:
     WeldingFuel:
-      amount: 2
+      amount: 3
     Oil:
       amount: 2
-    Carbon:
+    Plasma:
       amount: 1
+      catalyst: true
   products:
     RefinedOil: 5
 
@@ -19,5 +20,5 @@
     RefinedOil:
       amount: 10
   products:
-    WeldingFuel: 4
-    Carbon: 2
+    Acetone: 2
+    Carbon: 3
