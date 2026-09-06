@@ -1,963 +1,4 @@
 Entries:
-- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
-  changes:
-  - message: Cargo request computer now has separate category for instruments.
-    type: Add
-  id: 407721
-  time: '2026-08-18T03:22:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5703
-- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
-  changes:
-  - message: The GUI for instruments has been completely overhauled.
-    type: Tweak
-  id: 407722
-  time: '2026-08-18T03:22:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5703
-- author: wonderfulnewworld, Ataman, Matriotix, ProPeperos
-  changes:
-  - message: Instruments from cargo has been tweaked and reduced in price.
-    type: Tweak
-  id: 407723
-  time: '2026-08-18T03:22:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5703
-- author: Caws
-  changes:
-  - message: Novo Lobster has been added to the regular map pool.
-    type: Add
-  id: 407724
-  time: '2026-08-18T03:46:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5653
-- author: Caws
-  changes:
-  - message: Old Lobster has been retired.
-    type: Remove
-  id: 407725
-  time: '2026-08-18T03:46:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5653
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Changed the random medical vending machine spawner in Medbay to a regular NanoMed, moved the random medical vending machines elsewhere. This ensures consistent access to automenders in the Medbay (as one variant doesn't spawn with automenders in stock).
-    type: Tweak
-  id: 407726
-  time: '2026-08-18T03:46:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5653
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Brigmedic now has medical beds (instead of regular ones).
-    type: Fix
-  id: 407727
-  time: '2026-08-18T03:46:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5653
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Added a missing station beacon for AI Upload.
-    type: Fix
-  id: 407728
-  time: '2026-08-18T03:46:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5653
-- author: Caws
-  changes:
-  - message: (Novo Lobster) Re-linked the AI Upload computer to AI Core.
-    type: Fix
-  id: 407729
-  time: '2026-08-18T03:46:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5653
-- author: wonderfulnewworld
-  changes:
-  - message: Mobs that shouldn't roll antag will no longer roll antag.
-    type: Fix
-  id: 407730
-  time: '2026-08-18T04:09:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5704
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Fixed vomiting not removing chemicals from the player's stomach.
-    type: Fix
-  id: 407731
-  time: '2026-08-18T17:07:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5706
-- author: Forrestgod
-  changes:
-  - message: Ninja Bombing Objective can no longer give you ATS.
-    type: Fix
-  id: 407732
-  time: '2026-08-18T17:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5692
-- author: Forrestgod
-  changes:
-  - message: Space Ninjas now spawn in with a Cooling unit on there suit storage.
-    type: Fix
-  id: 407733
-  time: '2026-08-18T18:05:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5693
-- author: Johnny
-  changes:
-  - message: Changed the maximum amount of DAGD that can appear in a round to three.
-    type: Tweak
-  id: 407734
-  time: '2026-08-18T18:05:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5696
-- author: bynddark8
-  changes:
-  - message: Fixes an issue where CentComm EOR ghost roles were not mindshielded.
-    type: Fix
-  id: 407735
-  time: '2026-08-18T18:05:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5695
-- author: bynddark8
-  changes:
-  - message: Fixes an issue where CentComm EOR ghost roles would not spawn on CentComm SC17.
-    type: Fix
-  id: 407736
-  time: '2026-08-18T18:05:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5695
-- author: Orhu
-  changes:
-  - message: Birthday Cake can now be eaten by all species.
-    type: Tweak
-  id: 407737
-  time: '2026-08-18T18:56:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5503
-- author: Teddiousbear
-  changes:
-  - message: Ticket rewards to salvage bounties.
-    type: Add
-  id: 407738
-  time: '2026-08-18T19:24:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5510
-- author: Teddiousbear
-  changes:
-  - message: 6 New salvage bounties.
-    type: Add
-  id: 407739
-  time: '2026-08-18T19:24:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5510
-- author: Johnny
-  changes:
-  - message: Salvage shuttle now has the power it needs to run.
-    type: Tweak
-  id: 407740
-  time: '2026-08-18T20:20:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5708
-- author: Johnny
-  changes:
-  - message: Salvage shuttle has an extra vent and scrubber.
-    type: Tweak
-  id: 407741
-  time: '2026-08-18T20:20:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5708
-- author: Johnny
-  changes:
-  - message: Ferry has power now, power fixed.
-    type: Tweak
-  id: 407742
-  time: '2026-08-18T20:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5709
-- author: Way
-  changes:
-  - message: (Hotel) More decals and tiles around the map have changed.
-    type: Tweak
-  id: 407743
-  time: '2026-08-18T20:20:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5699
-- author: Way
-  changes:
-  - message: (Hotel) More Radios have been mapped, and the Mixed Lights Crate in the Radio Host's room has been replaced for a 2nd Vinyl Crate.
-    type: Tweak
-  id: 407744
-  time: '2026-08-18T20:20:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5699
-- author: Way
-  changes:
-  - message: (Hotel) Floor lights have been added in some minor spots.
-    type: Add
-  id: 407745
-  time: '2026-08-18T20:20:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5699
-- author: Way
-  changes:
-  - message: Station Radio Random Spawner for mappers, allowing for less linear placement of Radios.
-    type: Add
-  id: 407746
-  time: '2026-08-18T20:52:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5705
-- author: RedSpeeds
-  changes:
-  - message: Added Emote binding. You can now quickbind your favorite emotes by right clicking on them from the emote wheel.
-    type: Add
-  id: 407747
-  time: '2026-08-18T21:28:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5595
-- author: Johnny
-  changes:
-  - message: Arachnids and others who speak chittin now use anatomically correct language.
-    type: Tweak
-  id: 407748
-  time: '2026-08-18T21:28:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5698
-- author: OJG
-  changes:
-  - message: Cascad Chunks. Can be obtained by digging through Cascad.
-    type: Add
-  id: 407749
-  time: '2026-08-18T21:49:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5694
-- author: OJG
-  changes:
-  - message: Supermatter radiation output also increases the radiation falloff, hopefully stopping "everyone dies in one second" scenarios.
-    type: Tweak
-  id: 407750
-  time: '2026-08-18T21:49:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5694
-- author: OJG
-  changes:
-  - message: Cascads are now radioactive! And they explode when you break them!
-    type: Tweak
-  id: 407751
-  time: '2026-08-18T21:49:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5694
-- author: OJG
-  changes:
-  - message: Cascads can now be targeted with mouse 1.
-    type: Fix
-  id: 407752
-  time: '2026-08-18T21:49:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5694
-- author: OJG
-  changes:
-  - message: Increased base electrolyzer fuel value of plasma sheets.
-    type: Tweak
-  id: 407753
-  time: '2026-08-18T22:19:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5690
-- author: OJG
-  changes:
-  - message: Adjust electrolyzer values to ensure plasma sheets last long than 2 seconds.
-    type: Tweak
-  id: 407754
-  time: '2026-08-18T22:19:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5690
-- author: OJG
-  changes:
-  - message: Lowered tesla-coil and grounding rod electrolyzing efficiency.
-    type: Tweak
-  id: 407755
-  time: '2026-08-18T22:19:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5690
-- author: OJG
-  changes:
-  - message: Made electrolyzer account for heatscale factor.
-    type: Fix
-  id: 407756
-  time: '2026-08-18T22:19:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5690
-- author: RedSpeeds
-  changes:
-  - message: Fixed asteroids lacking collision.
-    type: Fix
-  id: 407757
-  time: '2026-08-18T22:49:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5576
-- author: Caws
-  changes:
-  - message: Examining clothing (e.g. winter coats, hardsuits, etc.) will now tell you exactly how good (or bad) it is at protecting you from hot & cold temperatures.
-    type: Add
-  id: 407758
-  time: '2026-08-18T22:49:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5626
-- author: bynddark8
-  changes:
-  - message: Introduces the Assistant Manager's task master digi-board, which allows them to change the job titles and HUD icons of their yellow gloved underlings.
-    type: Add
-  id: 407759
-  time: '2026-08-18T23:21:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5546
-- author: bynddark8
-  changes:
-  - message: Adds the task master digi-board to the Assistant Manager's loadout.
-    type: Tweak
-  id: 407760
-  time: '2026-08-18T23:21:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5546
-- author: bynddark8
-  changes:
-  - message: Adds 8 new sprites for informal "job" icons that can be assigned by the Assistant Manager.
-    type: Add
-  id: 407761
-  time: '2026-08-18T23:21:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5546
-- author: bynddark8
-  changes:
-  - message: Introduces the ability to the HUD icon associated with an ID card without changing its access on an ID card computer.
-    type: Add
-  id: 407762
-  time: '2026-08-18T23:21:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5546
-- author: bynddark8
-  changes:
-  - message: Emagging an ID card computer will allow its user to set their HUD icons to non-corporate approved imagery.
-    type: Add
-  id: 407763
-  time: '2026-08-18T23:21:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5546
-- author: OJG
-  changes:
-  - message: Added a mid sized Supermatter setup to Ming.
-    type: Add
-  id: 407764
-  time: '2026-08-18T23:21:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5716
-- author: wonderfulnewworld
-  changes:
-  - message: Reporters and Radio Hosts now get Theatre access on skeleton crew.
-    type: Tweak
-  id: 407765
-  time: '2026-08-18T23:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5719
-- author: wonderfulnewworld
-  changes:
-  - message: Some members of Service will get Clown and Mime access on skeleton crew.
-    type: Fix
-  id: 407766
-  time: '2026-08-18T23:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5719
-- author: wonderfulnewworld
-  changes:
-  - message: Non-smart Corgis, Admin/Mentor Mice, and ghosts will no longer roll antag.
-    type: Fix
-  id: 407767
-  time: '2026-08-18T23:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5719
-- author: wonderfulnewworld
-  changes:
-  - message: Ninja now actually spawns with their headset.
-    type: Fix
-  id: 407768
-  time: '2026-08-18T23:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5719
-- author: wonderfulnewworld
-  changes:
-  - message: Captain, HoP, BSO, NT Rep, and others in the all access group now have Clown and Mime access.
-    type: Fix
-  id: 407769
-  time: '2026-08-18T23:43:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5719
-- author: Sparlight
-  changes:
-  - message: Fixed an intermittent issue where your cursor would get stuck as a torso (especially after waking up).
-    type: Fix
-  id: 407770
-  time: '2026-08-19T08:57:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5717
-- author: Way
-  changes:
-  - message: (Hotel) Added random station radio spawners.
-    type: Add
-  id: 407771
-  time: '2026-08-19T09:29:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5722
-- author: Way
-  changes:
-  - message: (Hotel) One radio in GenPop, not random.
-    type: Add
-  id: 407772
-  time: '2026-08-19T09:29:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5722
-- author: Way
-  changes:
-  - message: (Manor) Added random station radio spawners.
-    type: Add
-  id: 407773
-  time: '2026-08-19T09:29:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5722
-- author: Conflee, pyrolizz
-  changes:
-  - message: Resprite of the AME.
-    type: Tweak
-  id: 407774
-  time: '2026-08-19T09:57:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5726
-- author: Caws
-  changes:
-  - message: Taggers and disposal routers no longer prevent you from typing the wildcard character * into them.
-    type: Fix
-  id: 407775
-  time: '2026-08-19T10:21:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5723
-- author: Caws
-  changes:
-  - message: Fixed an issue with wildcard routers which made it impossible for items to go straight-thru them. This should resolve mailing and disposal issues on maps like Oasis and Leth.
-    type: Fix
-  id: 407776
-  time: '2026-08-19T10:21:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5723
-- author: Mack
-  changes:
-  - message: Service borgs now have a Vinyl and CD slot.
-    type: Add
-  id: 407777
-  time: '2026-08-19T10:42:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5725
-- author: Common
-  changes:
-  - message: add tape recorder box to the IAA locker.
-    type: Tweak
-  id: 407778
-  time: '2026-08-19T10:42:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5724
-- author: Common
-  changes:
-  - message: add tape recorder and cassettes to the lawer's briefcase.
-    type: Tweak
-  id: 407779
-  time: '2026-08-19T10:42:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5724
-- author: Space-Wizards
-  changes:
-  - message: Engine Updated to 288.1.0(Fixes X button on windows).
-    type: Tweak
-  id: 407780
-  time: '2026-08-19T19:56:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5736
-- author: Mack
-  changes:
-  - message: Vent crawling entity deleted bug.
-    type: Fix
-  id: 407781
-  time: '2026-08-20T14:19:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5756
-- author: Trosling
-  changes:
-  - message: Reorganized the guides into their own category in the guidebook for less clutter.
-    type: Tweak
-  id: 407782
-  time: '2026-08-21T08:05:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5432
-- author: Trosling
-  changes:
-  - message: Moved corporate law to it's own guidebook category, instead of hiding it away in the security guide.
-    type: Tweak
-  id: 407783
-  time: '2026-08-21T08:05:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5432
-- author: Trosling
-  changes:
-  - message: Removed last mentions of "Space Law" in the guidebook, replacing them with "Corporate Law".
-    type: Fix
-  id: 407784
-  time: '2026-08-21T08:05:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5432
-- author: Spaghetti-Bit & ya3.14a
-  changes:
-  - message: The mothroach underground has made some under the table deals with the syndicate and are now available to hire, introducing the Syndicate Mobroach. A special little helper specialized in removing evidence and interrogation. Comes with a bar of soap, cuffs, refilling space cleaner bottle. Costs 4 TC.
-    type: Add
-  id: 407785
-  time: '2026-08-21T08:26:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5617
-- author: OMEGA
-  changes:
-  - message: Typo in ItemSwitch.
-    type: Fix
-  id: 407786
-  time: '2026-08-21T08:59:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5754
-- author: Caws
-  changes:
-  - message: The news manager console now requires Journalism access (instead of Service access).
-    type: Tweak
-  id: 407787
-  time: '2026-08-21T09:25:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5755
-- author: BriocheBear
-  changes:
-  - message: Added froggy chair as a constructible furniture.
-    type: Add
-  id: 407788
-  time: '2026-08-21T09:52:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5691
-- author: BriocheBear
-  changes:
-  - message: Added lovey chair, a pink variant of the froggy chair.
-    type: Add
-  id: 407789
-  time: '2026-08-21T09:52:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5691
-- author: Conflee, mkanke
-  changes:
-  - message: Added craftable and paintable Cardboard Boxes.
-    type: Add
-  id: 407790
-  time: '2026-08-21T09:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5720
-- author: Conflee, mkanke
-  changes:
-  - message: Added constructible Box Shelves for storing boxes of items in a more compact and organized way. Can hold Large Cardboard Boxes and box-based Mail Deliveries.
-    type: Add
-  id: 407791
-  time: '2026-08-21T09:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5720
-- author: Conflee, mkanke
-  changes:
-  - message: Added a dozen ish pre-filled boxes for mappers to use instead of spamming item stacks down in places.
-    type: Add
-  id: 407792
-  time: '2026-08-21T09:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5720
-- author: Conflee, mkanke
-  changes:
-  - message: Changed the Mail Trolley to accept Large Cardboard Boxes, for logical consistency.
-    type: Tweak
-  id: 407793
-  time: '2026-08-21T09:52:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5720
-- author: Way
-  changes:
-  - message: Artist names are now in the descriptions of music vinyls.
-    type: Add
-  id: 407794
-  time: '2026-08-21T10:14:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5727
-- author: Way
-  changes:
-  - message: Radio Host and Departmental Lathes are now mapped.
-    type: Add
-  id: 407795
-  time: '2026-08-21T10:41:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5729
-- author: Conflee, Way
-  changes:
-  - message: Added Cell Bars. Come in all normal fence variants. Can not be climbed or electrified. Very durable 'fence' option made of Plasteel for mapping in Genpop and Prison areas to prevent escapes.
-    type: Add
-  id: 407796
-  time: '2026-08-21T11:09:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5737
-- author: Caws
-  changes:
-  - message: The law communications console has been removed.
-    type: Remove
-  id: 407797
-  time: '2026-08-21T11:32:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5743
-- author: Caws
-  changes:
-  - message: Internal Affairs Agents no longer have Command access.
-    type: Remove
-  id: 407798
-  time: '2026-08-21T11:58:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5744
-- author: Conflee
-  changes:
-  - message: Resprited the Makeshift Sword, Improvised Sword, Forged Sword + Parts, Dawnbreaker, and Tidebreaker + Parts. New sprites now match existing vanilla sprites (Claymore, Sabre, Cutlass) as well as other Starlight unique swords (Prototype Vibroblade and CentComm Vibroblade).
-    type: Tweak
-  id: 407799
-  time: '2026-08-21T11:58:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5745
-- author: Conflee
-  changes:
-  - message: Resprited the PA Control Box. It now matches other consoles and has proper 3/4ths perspective, so you can tell which direction it is facing now.
-    type: Tweak
-  id: 407800
-  time: '2026-08-21T12:19:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5746
-- author: Sparlight
-  changes:
-  - message: Canine creatures (Ian, Walter, Renault, corgis, foxes, McGriff) now resist cold temperatures moderately well.
-    type: Tweak
-  id: 407801
-  time: '2026-08-21T12:42:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5740
-- author: Caws
-  changes:
-  - message: (Novo Lobster) The snowstorm now has a consistent direction on station.
-    type: Fix
-  id: 407802
-  time: '2026-08-21T15:23:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5761
-- author: wonderfulnewworld
-  changes:
-  - message: Xenoborgs (the main mode, not the submode) scale again, although they're not in rotation yet.
-    type: Tweak
-  id: 407803
-  time: '2026-08-21T15:47:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5765
-- author: wonderfulnewworld
-  changes:
-  - message: Antags that fail to roll will try to roll again.
-    type: Fix
-  id: 407804
-  time: '2026-08-21T15:47:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5765
-- author: wonderfulnewworld
-  changes:
-  - message: Wizard Duel will no longer fail to roll the green and orange wizards.
-    type: Fix
-  id: 407805
-  time: '2026-08-21T15:47:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5765
-- author: Citrea
-  changes:
-  - message: The digestive system no longer destroys half the chemicals passing through it.
-    type: Tweak
-  id: 407806
-  time: '2026-08-21T16:09:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5772
-- author: Citrea
-  changes:
-  - message: You can now overdose again from drinking too much.
-    type: Tweak
-  id: 407807
-  time: '2026-08-21T16:09:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5772
-- author: Romero/Littlemen
-  changes:
-  - message: 'seal of war: an item for lone wizard that enable them to use the "War" kits at the cost of informing the station.'
-    type: Add
-  id: 407808
-  time: '2026-08-21T16:50:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5771
-- author: Romero/Littlemen
-  changes:
-  - message: Several changes to the kits, see changelogs in pr.
-    type: Tweak
-  id: 407809
-  time: '2026-08-21T16:50:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5771
-- author: STARLIGHT TEAM
-  changes:
-  - message: Borg chassis names now synchronize with inserted brains
-    type: Add
-  id: 407810
-  time: '2026-08-22T01:27:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5776
-- author: STARLIGHT TEAM
-  changes:
-  - message: Entity naming (Intellicard/AI core) was unified and fixed
-    type: Tweak
-  id: 407811
-  time: '2026-08-22T01:27:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5776
-- author: STARLIGHT TEAM
-  changes:
-  - message: Entitys that have their intelligence removed by intellicard, reset to default names
-    type: Tweak
-  id: 407812
-  time: '2026-08-22T01:27:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5776
-- author: STARLIGHT TEAM
-  changes:
-  - message: Intellicard entities can now be transfered to borg/borg brains/MMI as intended
-    type: Fix
-  id: 407813
-  time: '2026-08-22T01:27:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5776
-- author: Mack
-  changes:
-  - message: missing values for the reactor guidebook temps.
-    type: Fix
-  id: 407814
-  time: '2026-08-23T10:38:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5797
-- author: Johnny
-  changes:
-  - message: The syndicate bomb is less concentrated with its explosion, focusing more on making a large explosion than entirely deleting an area.
-    type: Tweak
-  id: 407815
-  time: '2026-08-24T09:00:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5804
-- author: SeaborneProto
-  changes:
-  - message: Fixed Manor brig door to not be maints access!
-    type: Fix
-  id: 407816
-  time: '2026-08-24T09:22:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5781
-- author: Caws
-  changes:
-  - message: Ghost roles like Paradox Clone and Exterminators should no longer spawn in randoms stretches of empty space far away from the station on maps that have non-space atmospheres, like Cork and Novo Lobster.
-    type: Fix
-  id: 407817
-  time: '2026-08-25T00:26:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5810
-- author: Sparlight, DocMoth, swonkus, ya314a, xxhotgirl69, huaqas
-  changes:
-  - message: Added security K9 role.  Not mapped yet, but you can set your loadout for now.
-    type: Add
-  id: 407818
-  time: '2026-08-25T01:03:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5715
-- author: Caws
-  changes:
-  - message: Ancestors like monkeys and kobolds will no longer overheat when wearing hardsuits.
-    type: Fix
-  id: 407819
-  time: '2026-08-25T04:40:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5809
-- author: Mack
-  changes:
-  - message: Fix metabolism shuffle.
-    type: Fix
-  id: 407820
-  time: '2026-08-25T04:59:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5775
-- author: SirLutz
-  changes:
-  - message: 'New uncraftable chemical: Respirazone, treats generic airloss damage.'
-    type: Add
-  id: 407821
-  time: '2026-08-25T07:55:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5497
-- author: SirLutz
-  changes:
-  - message: Airloss-Autoinjector does not anymore contain Saline and Dexalin-plus.
-    type: Remove
-  id: 407822
-  time: '2026-08-25T07:55:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5497
-- author: SirLutz
-  changes:
-  - message: Respirazone is available only in airloss-autoinjectors.
-    type: Add
-  id: 407823
-  time: '2026-08-25T07:55:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5497
-- author: Sparlight
-  changes:
-  - message: K9s can now fit in pet carriers.
-    type: Fix
-  id: 407824
-  time: '2026-08-26T00:21:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5822
-- author: Swonki
-  changes:
-  - message: Horrific Necktie Role/Item Descriptions.
-    type: Tweak
-  id: 407825
-  time: '2026-08-26T00:48:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5814
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Fixed not being able to trash medipens. You no longer need to be Kobe to clean up after yourself.
-    type: Fix
-  id: 407826
-  time: '2026-08-26T01:06:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5817
-- author: Sparlight
-  changes:
-  - message: Security K9s now speak a variant of Dog that can only be understood by other dogs.
-    type: Tweak
-  id: 407827
-  time: '2026-08-26T01:06:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5818
-- author: Mack
-  changes:
-  - message: Bring the stove, oven, ice cream maker, and deep fryer to the new idle/active power system.
-    type: Tweak
-  id: 407828
-  time: '2026-08-26T01:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5796
-- author: Conflee
-  changes:
-  - message: All wallmounts can now be labeled with a hand labeler, such as Air Alarms, Neon Signs, Signs, Fire Alarms, etc.
-    type: Tweak
-  id: 407829
-  time: '2026-08-26T01:33:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5785
-- author: Conflee
-  changes:
-  - message: Added False Shutter Projectors, a new craftable tool for antagonists. It places a grayscale 'false shutter' projection which blocks vision, but lacking the yellow hazard stripe and visually glitching occasionally gives it away to anyone actually paying attention. Useful for break-ins so passerbys in the hallways outside don't see you.
-    type: Add
-  id: 407830
-  time: '2026-08-26T01:54:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5780
-- author: Floximo
-  changes:
-  - message: AI's can now jump to location on Atmos/Power/Radar maps.
-    type: Add
-  id: 407831
-  time: '2026-08-26T18:36:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5831
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: In the advanced first aid cyborg module, changed a beaker/jug slot to a chemical case slot, allowing bottles to be stored.
-    type: Tweak
-  id: 407832
-  time: '2026-08-26T18:59:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5830
-- author: Floximo
-  changes:
-  - message: AI no longer sees job icons outside camera range while suit sensors are not set to coordinates.
-    type: Fix
-  id: 407833
-  time: '2026-08-26T20:31:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5799
-- author: Johnny
-  changes:
-  - message: Added more ninja threats for the communications console interaction.
-    type: Add
-  id: 407834
-  time: '2026-08-26T22:08:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5832
-- author: Johnny
-  changes:
-  - message: Removed the bombastic honks from ninja threats.
-    type: Remove
-  id: 407835
-  time: '2026-08-26T22:08:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5832
-- author: Johnny
-  changes:
-  - message: Changed the weights of some of the ninja threats.
-    type: Tweak
-  id: 407836
-  time: '2026-08-26T22:08:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5832
-- author: OJG
-  changes:
-  - message: The uranium fuel rod no longer requires research to produce.
-    type: Tweak
-  id: 407837
-  time: '2026-08-27T01:05:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5805
-- author: OJG
-  changes:
-  - message: Adds Refinery station to the game files for testing!
-    type: Add
-  id: 407838
-  time: '2026-08-27T18:38:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5714
-- author: whatston3
-  changes:
-  - message: Cameras work now.
-    type: Fix
-  id: 407839
-  time: '2026-08-27T21:01:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5836
-- author: wonderfulnewworld
-  changes:
-  - message: Moved K9 in security's display.
-    type: Tweak
-  id: 407840
-  time: '2026-08-27T21:22:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5839
-- author: wonderfulnewworld
-  changes:
-  - message: K9 can no longer roll antag.
-    type: Fix
-  id: 407841
-  time: '2026-08-27T21:22:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5839
-- author: wonderfulnewworld
-  changes:
-  - message: Kiki, Pun Pun, Stir Stir, and other antag rolling animals can roll antag again.
-    type: Fix
-  id: 407842
-  time: '2026-08-27T21:44:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5840
-- author: Sparlight
-  changes:
-  - message: Fixed K9s teleporting across the station to their previous latch target.
-    type: Fix
-  id: 407843
-  time: '2026-08-27T22:30:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5842
-- author: Citrea
-  changes:
-  - message: Fixed faulty audio unit for pAIs, enabling them to beep and buzz again.
-    type: Fix
-  id: 407844
-  time: '2026-08-28T04:48:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5782
-- author: Caws
-  changes:
-  - message: All escape pods & lifeboats have been updated with diagonal lattice.
-    type: Tweak
-  id: 407845
-  time: '2026-08-28T05:10:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5838
-- author: Caws
-  changes:
-  - message: Updated the name and flavour text of the escape pod console to make it clear it's "locked down" and currently doesn't support launching the pods early (outside of ninjas hacking it, of course).
-    type: Tweak
-  id: 407846
-  time: '2026-08-28T05:10:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5838
-- author: Caws
-  changes:
-  - message: Fixed the majority of escape pods not having the 'escape pod console' that allows ninjas to extract.
-    type: Fix
-  id: 407847
-  time: '2026-08-28T05:10:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5838
-- author: Caws
-  changes:
-  - message: Zookeepers have been removed. It was only mapped on 4 maps (out of 26 maps). The job icon is still available in the ID card computer if you want to apply to be a Zookeeper @ HOP via the "non-listed employment" form.
-    type: Remove
-  id: 407848
-  time: '2026-08-28T05:10:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5841
-- author: Caws
-  changes:
-  - message: The Safari hat and uniform are now available in the AutoDrobe (theater vending machine).
-    type: Add
-  id: 407849
-  time: '2026-08-28T05:10:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5841
-- author: STARLIGHT TEAM
-  changes:
-  - message: Overhauled Makeshift ID Cards; they can now be put in PDAs, but have their own job icon. Borgs should not treat said job icon as crew, as the Makeshift ID _is still minor contraband_.
-    type: Tweak
-  id: 407850
-  time: '2026-08-28T05:31:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5826
-- author: STARLIGHT TEAM
-  changes:
-  - message: Flipped and tweaked the Makeshift ID card sprite to move the terminals to where they are on regular ID cards.
-    type: Fix
-  id: 407851
-  time: '2026-08-28T05:31:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5826
-- author: Born Stellar & Bibbs
-  changes:
-  - message: Added deadman remote signaller.
-    type: Add
-  id: 407852
-  time: '2026-08-28T05:55:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5823
-- author: wonderfulnewworld
-  changes:
-  - message: Adds automenders to DeForest's vendor.
-    type: Tweak
-  id: 407853
-  time: '2026-08-28T05:56:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5837
-- author: Mack
-  changes:
-  - message: Cyborgs can now do-after with no module equipped.
-    type: Fix
-  id: 407854
-  time: '2026-08-28T06:24:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5825
-- author: RedSpeeds
-  changes:
-  - message: Made astral murmur no longer audible to nearby players.
-    type: Tweak
-  id: 407855
-  time: '2026-08-28T06:56:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5807
-- author: Sparlight
-  changes:
-  - message: Smart corgis and K9s can now take advantage of the identity system.  Their IDs are now examinable.
-    type: Add
-  id: 407856
-  time: '2026-08-28T06:56:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5816
-- author: Conflee, Caws, mkanke, ratsmageddon, Tea
-  changes:
-  - message: Added Evidence room sign, filled evidence boxes, and an evidence box shelf which is pre-filled with 4 evidence boxes.
-    type: Add
-  id: 407857
-  time: '2026-08-28T07:14:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5793
 - author: Conflee, Caws, mkanke, ratsmageddon, Tea
   changes:
   - message: Added Evidence Bags, which have a 2x3 storage space, can be labeled with a paper, and hold a dropper on the outside. Lower tier contra and other evidence that doesn't need to be behind 3 thick walls with turrets guarding it can go in here for bulk storage thats easier for Sec to access for cross referencing.
@@ -2799,4 +1840,963 @@ Entries:
   id: 408120
   time: '2026-09-04T04:57:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5964
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added Mailboxes to every department.'
+    type: Add
+  id: 408121
+  time: '2026-09-05T13:19:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5977
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] K9 Job Slots are now permanently open.'
+    type: Tweak
+  id: 408122
+  time: '2026-09-05T13:19:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5977
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Added Salvage medic role.
+    type: Add
+  id: 408123
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Added ITG tracking Implant for salvagers.
+    type: Add
+  id: 408124
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Added new Salvage SOP.
+    type: Add
+  id: 408125
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Added New Salvage Armoury. The Salvage team can store all their extra loot aboard the ATS.
+    type: Add
+  id: 408126
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Salvage Icons are now greyscaled to differentiate from crew.
+    type: Tweak
+  id: 408127
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Salvage members are no longer the targets of antag objectives.
+    type: Tweak
+  id: 408128
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Salvage are now members of the Interstellar Trade Guild, and are no longer considered crew.
+    type: Tweak
+  id: 408129
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Quartermaster locker no longer has expedition comms or salvage related computer circuits.
+    type: Remove
+  id: 408130
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Salvage Access From Command.
+    type: Remove
+  id: 408131
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Cargo Access from Salvage.
+    type: Remove
+  id: 408132
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Salvage bay's from all stations.
+    type: Remove
+  id: 408133
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
+  changes:
+  - message: Salvage steal objectives.
+    type: Remove
+  id: 408134
+  time: '2026-09-05T13:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5619
+- author: Glomzubuk
+  changes:
+  - message: Reverted cryopod inject speed back to pre-ui update values.
+    type: Tweak
+  id: 408135
+  time: '2026-09-05T14:10:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5829
+- author: Way
+  changes:
+  - message: (Novo Lobster) Snow Storm ambience is slightly louder.
+    type: Tweak
+  id: 408136
+  time: '2026-09-05T14:10:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5770
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a single k9 spawn inside.
+    type: Add
+  id: 408137
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added all mailboxes.
+    type: Add
+  id: 408138
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a lawyer's office by shrinking NCT office near chapel.
+    type: Add
+  id: 408139
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added box shelf storage to science storage room,cargo front, maints shop, gen pop island cargo dock.
+    type: Add
+  id: 408140
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Added a TON of toilet paper and hand santizers to several of the bathrooms and sinks.
+    type: Add
+  id: 408141
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added two k9 to sepultum via prototypes (Spawners already mapped in).
+    type: Add
+  id: 408142
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Changed trimmed some grass near evac.
+    type: Tweak
+  id: 408143
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Changed nct office to be ALOT smaller.
+    type: Tweak
+  id: 408144
+  time: '2026-09-05T14:38:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5947
+- author: Makeshift
+  changes:
+  - message: (Plasma) Radio Host!
+    type: Add
+  id: 408145
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) NCT Office.
+    type: Remove
+  id: 408146
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) K9 to security!
+    type: Add
+  id: 408147
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Departmental Techfabs.
+    type: Add
+  id: 408148
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Mailboxes for departments.
+    type: Add
+  id: 408149
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Shelves.
+    type: Add
+  id: 408150
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Vault now stocks a little bit of silver!
+    type: Add
+  id: 408151
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Cargo now has full pipe dock compatibility! Engineering still needs to finish the gas line, though.
+    type: Add
+  id: 408152
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) General aesthetic tweaks.
+    type: Tweak
+  id: 408153
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: Makeshift
+  changes:
+  - message: (Plasma) Minor fixes.
+    type: Fix
+  id: 408154
+  time: '2026-09-05T15:06:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5965
+- author: qbrx
+  changes:
+  - message: Changeling's Fleshmend ability transfers Ichor into the stomach, allowing it to digest.
+    type: Tweak
+  id: 408155
+  time: '2026-09-05T15:27:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5970
+- author: qbrx
+  changes:
+  - message: Changeling's Fleshmend ability requires a stomach to activate.
+    type: Tweak
+  id: 408156
+  time: '2026-09-05T15:27:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5970
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Added all departmental techfabs with service being near clown/mime room.
+    type: Add
+  id: 408157
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Added all departmental mailboxes.
+    type: Add
+  id: 408158
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Added a cyborg charger and intellicard to ai core.
+    type: Add
+  id: 408159
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Removed infinite power generation from ai core.
+    type: Remove
+  id: 408160
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Removed an airvent that wasn't being used in salvage room.
+    type: Remove
+  id: 408161
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Removed hv wires in engie that went around smes room.
+    type: Remove
+  id: 408162
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Cluster) Fixed an airvent on the scrubber line and a scrubber on the distro line near cargo front.
+    type: Fix
+  id: 408163
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Added a nuclear reactor east if PA room.
+    type: Add
+  id: 408164
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Added a single k9 to security.
+    type: Add
+  id: 408165
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Cvlancer
+  changes:
+  - message: (Bagel) Added mailboxes to all departments.
+    type: Add
+  id: 408166
+  time: '2026-09-05T15:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5975
+- author: Swonki, SirLutz
+  changes:
+  - message: Malign Minions (0.1) and the Colossus (0.2) now regenerate health while standing on malign tiles.
+    type: Add
+  id: 408167
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Malign Minions and the Colossus can come back from death, make sure to destroy them.
+    type: Add
+  id: 408168
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Added new damage modifiers for Malign Minions and the Colossus, providing increased piercing resistance and flat damage reduction against cold damage.
+    type: Add
+  id: 408169
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Malign Oracles now have thermal vision, allowing them to better guide and advise their fellow Minions.
+    type: Add
+  id: 408170
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: The Colossus can now use the Ingress ability on rifts, transforming them into Malign Empowered Rifts.
+    type: Add
+  id: 408171
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Changed the description of the Ingress ability and its guidebook entry.
+    type: Tweak
+  id: 408172
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Malign Empowered Rifts can store one non-Cultist humanoid, preventing the stored corpse from rotting.
+    type: Add
+  id: 408173
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Added a global Rift Corpse counter, with each stored corpse affecting the Colossus & Minions' maximum health.
+    type: Add
+  id: 408174
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: 'New Objective SACRIFICE: have 5–8 filled empowered rifts at the same time.'
+    type: Add
+  id: 408175
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Empowered Rifts now have separate sprites for their unoccupied and occupied states.
+    type: Add
+  id: 408176
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Added a guidebook section covering Malign Empowered Rifts.
+    type: Add
+  id: 408177
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: The Colossus now tracks Effigy criticals and alerts the station when subsequent Effigies become critical. The first Effigy remains unannounced.
+    type: Add
+  id: 408178
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: After completing their BECKON goal, the Colossus can now choose where future Effigies are placed.
+    type: Tweak
+  id: 408179
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: The Colossus BECKON task should now select the current grid, or the nuke grid if the current grid cannot be determined.
+    type: Fix
+  id: 408180
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: TimedDoorComponent now checks for entities blocking doors.
+    type: Fix
+  id: 408181
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Colossus occurrence has become rarer, with its weight reduced from 3 to 2.
+    type: Tweak
+  id: 408182
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Minimum player count raised from 25 to 35.
+    type: Tweak
+  id: 408183
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Lodestar projectiles now go 1.8 tiles further.
+    type: Tweak
+  id: 408184
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Antagscaling has now has two healthmodifier limits.
+    type: Add
+  id: 408185
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Colossus has Antagscaling, possible -25%MaxHP to +50MaxHP.
+    type: Add
+  id: 408186
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: If Antagscaling was broken, it works now?.
+    type: Fix
+  id: 408187
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: Swonki, SirLutz
+  changes:
+  - message: Added cold resistance to ERT & Deathsquad, with chaplain and ERT lead getting both 80%, Security with 40%.
+    type: Add
+  id: 408188
+  time: '2026-09-05T16:10:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5581
+- author: OJG
+  changes:
+  - message: General improvements to electrolyzer code structure.
+    type: Tweak
+  id: 408189
+  time: '2026-09-05T16:31:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5758
+- author: OJG
+  changes:
+  - message: Increased maximum recharge rate for active electrolyzers 50kw -> 100kw.
+    type: Tweak
+  id: 408190
+  time: '2026-09-05T16:31:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5758
+- author: OJG
+  changes:
+  - message: Increased efficiency of electrolyzers across the board.
+    type: Tweak
+  id: 408191
+  time: '2026-09-05T16:31:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5758
+- author: Way
+  changes:
+  - message: Pun Pun, Kiki & Stir Stir can now wear a selection of Winter Coats, and Glasses in the eye slot.
+    type: Tweak
+  id: 408192
+  time: '2026-09-05T16:58:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5768
+- author: Way
+  changes:
+  - message: Pun Pun, Kiki, & Stir Stir now understand, and can use Sign Language.
+    type: Tweak
+  id: 408193
+  time: '2026-09-05T16:58:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5768
+- author: OMEGA
+  changes:
+  - message: "'ITG Salvage Team' and 'Dismiss ITG Salvage Team' options added to the Secure Terminal."
+    type: Add
+  id: 408194
+  time: '2026-09-05T17:18:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5522
+- author: Way
+  changes:
+  - message: 8 new songs added to the Radio Host's catalogue of music.
+    type: Add
+  id: 408195
+  time: '2026-09-05T17:47:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5777
+- author: Way
+  changes:
+  - message: Vinyl's crates are now 1300 credits, instead of 1600. and now hold 14 Vinyl's instead of 12.
+    type: Tweak
+  id: 408196
+  time: '2026-09-05T17:47:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5777
+- author: joshujo
+  changes:
+  - message: Ammonia production reaction, give some nitrogen and hydrogen enough heat and pressure and it will start producing ammonia.
+    type: Add
+  id: 408197
+  time: '2026-09-05T17:47:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5790
+- author: joshujo
+  changes:
+  - message: Ammonia decay, ammonia production is reversible, it will decay in the same conditions it is made in.
+    type: Add
+  id: 408198
+  time: '2026-09-05T17:47:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5790
+- author: SirLutz
+  changes:
+  - message: Colossus Ingress no longer deletes doors on adjacent tiles.
+    type: Fix
+  id: 408199
+  time: '2026-09-05T17:47:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5773
+- author: Mack
+  changes:
+  - message: Moved the Cards Railroading menu to the Character panel (U).
+    type: Tweak
+  id: 408200
+  time: '2026-09-05T18:17:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5791
+- author: Mack
+  changes:
+  - message: You now have 40 seconds to pick your card.
+    type: Tweak
+  id: 408201
+  time: '2026-09-05T18:17:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5791
+- author: Johnny
+  changes:
+  - message: Added new web cuffs that arachnids can make.
+    type: Add
+  id: 408202
+  time: '2026-09-05T18:17:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5813
+- author: ANATHELARCTEK
+  changes:
+  - message: prying with NTR cane is quicker, but still slower than crowbar.
+    type: Tweak
+  id: 408203
+  time: '2026-09-05T18:17:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5792
+- author: ANATHELARCTEK
+  changes:
+  - message: prying sound now play while prying with NTR cane.
+    type: Add
+  id: 408204
+  time: '2026-09-05T18:17:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5792
+- author: Johnny
+  changes:
+  - message: The SSF now are protected from stuns.
+    type: Tweak
+  id: 408205
+  time: '2026-09-05T18:48:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5827
+- author: walksanatora
+  changes:
+  - message: Cosmic cult now inserts entropy into the monument with a alt-verb allowing you to better choose when you tier up.
+    type: Tweak
+  id: 408206
+  time: '2026-09-05T18:48:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5833
+- author: walksanatora
+  changes:
+  - message: Empowered Cosmic Cultist can now use Null Fragmentation on crit borgos/IPCs.
+    type: Tweak
+  id: 408207
+  time: '2026-09-05T19:37:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5834
+- author: Caws
+  changes:
+  - message: Most gloves now grant a little cold temperature protection, with very thin gloves (e.g. latex), granting zero temperature protection. Mittens remain as the premier way to keep ya hands warm.
+    type: Tweak
+  id: 408208
+  time: '2026-09-05T19:37:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5903
+- author: Caws
+  changes:
+  - message: Syndicate PJ hats are now warm.
+    type: Tweak
+  id: 408209
+  time: '2026-09-05T19:37:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5903
+- author: Foxterosa
+  changes:
+  - message: Patients with the Numb trait will no longer scream or wake up from pain during surgery.
+    type: Fix
+  id: 408210
+  time: '2026-09-05T19:37:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5787
+- author: Sparlight
+  changes:
+  - message: Extra character info screens (i.e. antag info, extra character info, mind secrets) no longer appear on jobspawn entities (k9s, cyborgs, ai).
+    type: Remove
+  id: 408211
+  time: '2026-09-05T20:37:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5845
+- author: DevCS-CP
+  changes:
+  - message: Added visuals for each mode on the energy magnum, and MT-7.
+    type: Add
+  id: 408212
+  time: '2026-09-05T20:37:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5843
+- author: (Upstream) ScarKy0
+  changes:
+  - message: Surveillance cameras will now show they're being used (turn on their red lights) when the AI's eye is nearby.
+    type: Add
+  id: 408213
+  time: '2026-09-05T21:25:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5854
+- author: (Upstream) ScarKy0
+  changes:
+  - message: The AI's ability to toggle "camera lights" has been removed.
+    type: Remove
+  id: 408214
+  time: '2026-09-05T21:25:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5854
+- author: RedSpeeds
+  changes:
+  - message: Fixed Romerol not working when ingested.
+    type: Fix
+  id: 408215
+  time: '2026-09-05T21:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5857
+- author: RedSpeeds
+  changes:
+  - message: Added Godo cloud emote.
+    type: Add
+  id: 408216
+  time: '2026-09-05T22:18:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5885
+- author: Swonki
+  changes:
+  - message: Payroll can now be configured to come from different senders.
+    type: Add
+  id: 408217
+  time: '2026-09-05T22:18:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5996
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: 3 new coats/jackets.
+    type: Add
+  id: 408218
+  time: '2026-09-05T22:44:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5880
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: 2 new outfit/jumpsuits.
+    type: Add
+  id: 408219
+  time: '2026-09-05T22:44:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5880
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: 2 new boots.
+    type: Add
+  id: 408220
+  time: '2026-09-05T22:44:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5880
+- author: 0warie
+  changes:
+  - message: Fixed being unable to construct screen and brig timers.
+    type: Fix
+  id: 408221
+  time: '2026-09-05T22:44:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5884
+- author: 0warie
+  changes:
+  - message: Fixed signal timers turning into un-clickable timer frames after beginning construction.
+    type: Fix
+  id: 408222
+  time: '2026-09-05T22:44:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5884
+- author: SirLutz
+  changes:
+  - message: new kind of Sharkminnow, exclusive to Dragonrifts.
+    type: Add
+  id: 408223
+  time: '2026-09-05T22:44:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5886
+- author: SirLutz
+  changes:
+  - message: new kind if Holocarp exclusive to Dragonrifts.
+    type: Add
+  id: 408224
+  time: '2026-09-05T22:44:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5886
+- author: SirLutz
+  changes:
+  - message: Dragon gained an counter which limits amount of Sharkminnows.
+    type: Add
+  id: 408225
+  time: '2026-09-05T22:44:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5886
+- author: SirLutz
+  changes:
+  - message: RiftShark have an 5% chance to spawn instead of an carp from an Dragonrift.
+    type: Add
+  id: 408226
+  time: '2026-09-05T22:44:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5886
+- author: SirLutz
+  changes:
+  - message: Holocarps have an 15% chance to spawn instead of an carp, or when Riftshark limit is reached.
+    type: Add
+  id: 408227
+  time: '2026-09-05T22:44:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5886
+- author: SirLutz
+  changes:
+  - message: An finished Rift has an 10% chance for Sharks and 30% for an Holocarp to replace an regular carp.
+    type: Add
+  id: 408228
+  time: '2026-09-05T22:44:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5886
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: 6 new items to Salvage Ticket Box.
+    type: Add
+  id: 408229
+  time: '2026-09-05T23:09:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5877
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: Seismic Charges to Mining Ticket Box.
+    type: Add
+  id: 408230
+  time: '2026-09-05T23:09:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5877
+- author: Limblesstar, Teddiousbear.
+  changes:
+  - message: Salvage Death Rattle, Salvage Magboots.
+    type: Add
+  id: 408231
+  time: '2026-09-05T23:09:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5877
+- author: Mack
+  changes:
+  - message: Station radio server now has a microphone indicator.
+    type: Tweak
+  id: 408232
+  time: '2026-09-05T23:09:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5874
+- author: Johnny
+  changes:
+  - message: Added some forms into the document printer for science sop.
+    type: Add
+  id: 408233
+  time: '2026-09-05T23:36:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5862
+- author: bynddark8
+  changes:
+  - message: Adds an Assistant Manager stamp.
+    type: Add
+  id: 408234
+  time: '2026-09-05T23:36:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5864
+- author: bynddark8
+  changes:
+  - message: Adds an additional icon to the Assistant Manager's digi-board.
+    type: Add
+  id: 408235
+  time: '2026-09-05T23:36:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5864
+- author: bynddark8
+  changes:
+  - message: Enables loud mode on the Assistant Manager's headset.
+    type: Tweak
+  id: 408236
+  time: '2026-09-05T23:36:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5864
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added station maps at all mine entrances.
+    type: Add
+  id: 408237
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added a inflatable airlock at the once space mine entranced that just spaced the entire mine at shift start.
+    type: Add
+  id: 408238
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added all the new tech fabs's to their departments with service fab being near clown/mime room.
+    type: Add
+  id: 408239
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added k9 to security locker room. but no prototype.
+    type: Add
+  id: 408240
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added assistant manager spawn but no prototype.
+    type: Add
+  id: 408241
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added a large empty gas tank into atsmo to store air mixture.
+    type: Add
+  id: 408242
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added a ton of pipes deep into maints to allow refilling of air if these areas get spaced.
+    type: Add
+  id: 408243
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added distro to the mines.
+    type: Add
+  id: 408244
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added some spacing protection to the mines.
+    type: Add
+  id: 408245
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added some curtains, a television, a station radio and a light switch to robotics.
+    type: Add
+  id: 408246
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added storage rack to science front desk, cargo front desk, hop office.
+    type: Add
+  id: 408247
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added buy and sell decals to cargo.
+    type: Add
+  id: 408248
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added a guidebooks box to library.
+    type: Add
+  id: 408249
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added a second hop window and expanded the hop office with more space and new items.
+    type: Add
+  id: 408250
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added an observer ghost spawn near medical.
+    type: Add
+  id: 408251
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Added a station beacon to xenobiology.
+    type: Add
+  id: 408252
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Removed NCT bedroom to make way for more hop office.
+    type: Remove
+  id: 408253
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Changed a lot of the mines to not be spaced at shift start.
+    type: Tweak
+  id: 408254
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Changed IAA's office a little by moving it to a room next door allowing lawyer to also have an office.
+    type: Tweak
+  id: 408255
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Changed all mine entrance's to not to be spaced for consistency.
+    type: Tweak
+  id: 408256
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
+- author: Cvlancer
+  changes:
+  - message: (Sepultum) Changed engi HV wiring around to make SM's SMES downstream from smes bank.
+    type: Tweak
+  id: 408257
+  time: '2026-09-05T23:36:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5868
 Order: -1

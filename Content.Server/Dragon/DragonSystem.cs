@@ -16,9 +16,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
-#region Starlight
-using Content.Shared.Gibbing;
-#endregion Starlight
+using Content.Shared.Gibbing; // Starlight
 
 namespace Content.Server.Dragon;
 

@@ -8,6 +8,7 @@ job-name-shopkeeper-assistant = Shopkeeper
 job-name-medical-assistant = Medical Assistant
 job-name-gardener-assistant = Gardener Assistant
 job-name-clerical-assistant = Clerical Assistant
+job-name-janitor-assistant = Janitor Assistant
 
 # Role timers - Apparently someone from upstream will cut us if these aren't alphabetical?
 JobBlueShield = BlueShield Officer

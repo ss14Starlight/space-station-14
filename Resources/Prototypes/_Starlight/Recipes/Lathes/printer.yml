@@ -11,6 +11,16 @@
     SheetPrinter: 100
 
 - type: latheRecipe
+  id: PrintedDocumentReportResearchAnomalyLogRecipe
+  result: PrintedDocumentReportResearchAnomalyLog
+  categories:
+  - Reports
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
   id: PrintedDocumentReportStationRecipe
   result: PrintedDocumentReportStation
   categories:
@@ -351,6 +361,36 @@
 - type: latheRecipe
   id: PrintedDocumentPermissionEquipmentRecipe
   result: PrintedDocumentPermissionEquipment
+  categories:
+  - Permissions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentPermissionResearchEquipmentRecipe
+  result: PrintedDocumentPermissionResearchEquipment
+  categories:
+  - Permissions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentPermissionResearchSiliconConversionRecipe
+  result: PrintedDocumentPermissionResearchSiliconConversion
+  categories:
+  - Permissions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentPermissionResearchAnomalyHostRecipe
+  result: PrintedDocumentPermissionResearchAnomalyHost
   categories:
   - Permissions
   completetime: 2

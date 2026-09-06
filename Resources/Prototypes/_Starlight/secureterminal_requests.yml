@@ -488,6 +488,45 @@
 
 #region Misc
 
+# ── ITG Salvage Team ──────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ITGSalvageTeam
+  name: secure-terminal-itg-salvage-team-name
+  description: secure-terminal-itg-salvage-team-desc
+  announcement: secure-terminal-itg-salvage-team-announcement
+  announcementColor: "#ff4444"
+  activationDelaySecs: 0
+  fee: 10000
+  salaryPenalty: 0.05
+  actionType: Announcement
+  sortOrder: 200
+  authGroups:
+    - [Captain]
+    - [HeadOfSecurity]
+  authGroupLabels:
+    - "Captain (1)"
+    - "Head of Security (2)"
+  cooldownSecs: 600
+  authTimer: 60
+
+# ── Dismiss ITG Salvage Team ──────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: DismissITGSalvageTeam
+  name: secure-terminal-dismiss-itg-salvage-team-name
+  description: secure-terminal-dismiss-itg-salvage-team-desc
+  announcement: secure-terminal-dismiss-itg-salvage-team-announcement
+  announcementColor: "#ff4444"
+  activationDelaySecs: 0
+  fee: 0
+  salaryPenalty: 0.0
+  actionType: Announcement
+  sortOrder: 201
+  authGroups:
+    - [Captain, HeadOfSecurity]
+  authGroupLabels:
+    - "Captain / HoS (1)"
+  cooldownSecs: 0
+
 # ── Self Destruct Code ─────────────────────────────────────────────────────
 - type: secureTerminalRequest
   id: NukeRequest
