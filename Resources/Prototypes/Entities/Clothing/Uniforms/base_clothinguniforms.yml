@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [SolutionFood, SolutionToolNormal, Clothing, BaseSlicingRefinable, BaseSolidFuel]
+  parent: [SolutionFood, SolutionToolNormal, Clothing, BaseSlicingRefinable, BaseSolidFuel] # Starlight
   id: UnsensoredClothingUniformBase
   components:
   - type: Sprite

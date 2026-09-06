@@ -17,7 +17,7 @@ public sealed partial class FireVisualizerSystem : VisualizerSystem<FireVisualsC
     {
         base.Initialize();
 
-        SubscribeLocalEvent<FireVisualsComponent, ComponentStartup>(OnComponentStartup);
+        SubscribeLocalEvent<FireVisualsComponent, ComponentStartup>(OnComponentStartup); // Starlight
         SubscribeLocalEvent<FireVisualsComponent, ComponentShutdown>(OnShutdown);
     }
 
@@ -38,6 +38,7 @@ public sealed partial class FireVisualizerSystem : VisualizerSystem<FireVisualsC
         }
     }
 
+    // Starlight start
     // An entity entering PVS can already be burning. Its child light must wait until initialization finishes.
     private void OnComponentStartup(EntityUid uid, FireVisualsComponent component, ComponentStartup args)
     {
@@ -52,6 +53,8 @@ public sealed partial class FireVisualizerSystem : VisualizerSystem<FireVisualsC
 
         UpdateAppearance(uid, component, sprite, appearance);
     }
+
+    // Starlight end
 
     protected override void OnAppearanceChange(EntityUid uid, FireVisualsComponent component, ref AppearanceChangeEvent args)
     {

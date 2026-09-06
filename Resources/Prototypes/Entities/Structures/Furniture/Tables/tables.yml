@@ -56,7 +56,8 @@
     node: TableFrame
 
 - type: entity
-  id: CounterWoodFrame
+  id: CounterFrameBase # Starlight: shared non-combustible frame
+  abstract: true # Starlight
   parent: BaseStructure
   name: wooden counter frame
   description: Pieces of wood that make the frame of a table.
@@ -110,9 +111,15 @@
     graph: Table
     node: CounterWoodFrame
 
+# Starlight start
+- type: entity
+  id: CounterWoodFrame
+  parent: [CounterFrameBase, BaseWoodFuel]
+# Starlight end
+
 - type: entity
   id: CounterMetalFrame
-  parent: CounterWoodFrame
+  parent: CounterFrameBase # Starlight
   name: metal counter frame
   description: Pieces of metal that make the frame of a table.
   components:
@@ -566,7 +573,7 @@
 
 - type: entity
   id: TableCarpet
-  parent: TableBase
+  parent: [TableBase, BaseWoodFuel] # Starlight
   name: gambling table
   description: Play em' cowboy.
   components:
@@ -710,7 +717,7 @@
 - type: entity
   id: TableFancyBase
   abstract: true
-  parent: TableBase
+  parent: [TableBase, BaseWoodFuel] # Starlight
   name: fancy table
   description: Expensive and rich.
   components:
@@ -926,7 +933,7 @@
 
 - type: entity
   id: TableCounterWood
-  parent: CounterBase
+  parent: [CounterBase, BaseWoodFuel] # Starlight
   name: wood counter
   description: Do not apply fire to this. Rumour says it burns easily.
   components:

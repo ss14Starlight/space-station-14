@@ -150,7 +150,7 @@
 
 - type: entity
   name: dark wood floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemDarkWood
   components:
   - type: Sprite
@@ -167,7 +167,7 @@
 
 - type: entity
   name: dark wood pattern floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemDarkWoodPattern
   components:
   - type: Sprite
@@ -184,7 +184,7 @@
 
 - type: entity
   name: large dark wood floor
-  parent: FloorTileItemBase
+  parent: [FloorTileItemBase, BaseWoodFuel]
   id: FloorTileItemDarkWoodLarge
   components:
   - type: Sprite

@@ -10,12 +10,18 @@ namespace Content.Server._Starlight.Atmos;
 [RegisterComponent]
 public sealed partial class SolidFuelComponent : Component
 {
+    /// <summary>Exposure required to ignite, in cigarette-equivalent seconds.</summary>
     [DataField] public float IgnitionTime = 90f;
+    /// <summary>Seconds of burning before the material is consumed at the default fuel rate.</summary>
     [DataField] public float BurnTime = 60f;
+    /// <summary>Exposure lost per second when no ignition source is heating the material.</summary>
     [DataField] public float CoolingRate = 2f;
+    /// <summary>Entity spawned when the material is fully consumed.</summary>
     [DataField] public EntProtoId AshPrototype = "Ash";
 
+    /// <summary>Accumulated heat exposure, in cigarette-equivalent seconds.</summary>
     [DataField] public float Exposure;
+    /// <summary>Accumulated burning time, scaled by the fuel consumption multiplier.</summary>
     [DataField] public float BurnedTime;
 
     /// <summary>Seconds of wetness remaining, independent of stacks added by incendiary weapons.</summary>

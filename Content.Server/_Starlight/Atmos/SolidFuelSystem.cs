@@ -104,6 +104,7 @@ public sealed partial class SolidFuelSystem : EntitySystem
             ent.Comp.WetTime = Math.Clamp(ent.Comp.WetTime - args.FireStacksAdjustment, 0, 10);
     }
 
+    /// <summary>Returns contact heating from a lit cigarette, burning entity, or active ignition source.</summary>
     public float GetIgnitionRate(EntityUid source)
     {
         if (TryComp<SmokableComponent>(source, out var smoke))
@@ -114,13 +115,18 @@ public sealed partial class SolidFuelSystem : EntitySystem
             ? ignition.ContactIgnitionRate : 0f;
     }
 
-    public bool CanBurn(EntityUid uid, FlammableComponent fire)
+    /// <summary>Checks the enable switch, fire stacks, recent and current wetness, and available oxygen.</summary>
+    public bool CanBurn(Entity<FlammableComponent?> ent)
     {
-        return Enabled && fire.FireStacks >= 0 &&
-               (!TryComp<SolidFuelComponent>(uid, out var fuel) || fuel.WetTime <= 0) && !IsWet(uid) &&
-               HasOxygen(uid);
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+
+        return Enabled && ent.Comp.FireStacks >= 0 &&
+               (!TryComp<SolidFuelComponent>(ent, out var fuel) || fuel.WetTime <= 0) && !IsWet(ent) &&
+               HasOxygen(ent);
     }
 
+    /// <summary>Checks local oxygen, falling back to adjacent tiles for airtight entities such as wooden walls.</summary>
     public bool HasOxygen(EntityUid uid)
     {
         if (_atmos.GetContainingMixture(uid) is { } air && air.GetMoles(Gas.Oxygen) >= 1f)
@@ -180,7 +186,7 @@ public sealed partial class SolidFuelSystem : EntitySystem
     private void OnInteractUsing(Entity<SolidFuelComponent> ent, ref InteractUsingEvent args)
     {
         if (args.Handled || GetIgnitionRate(args.Used) <= 0 ||
-            !TryComp<FlammableComponent>(ent, out var fire) || fire.OnFire || !CanBurn(ent, fire))
+            !TryComp<FlammableComponent>(ent, out var fire) || fire.OnFire || !CanBurn((ent, fire)))
             return;
 
         args.Handled = true;
@@ -199,14 +205,14 @@ public sealed partial class SolidFuelSystem : EntitySystem
         ref DoAfterAttemptEvent<SolidFuelIgnitionDoAfterEvent> args)
     {
         if (args.DoAfter.Args.Used is not { } source || GetIgnitionRate(source) <= 0 ||
-            !TryComp<FlammableComponent>(ent, out var fire) || fire.OnFire || !CanBurn(ent, fire))
+            !TryComp<FlammableComponent>(ent, out var fire) || fire.OnFire || !CanBurn((ent, fire)))
             args.Cancel();
     }
 
     private void OnIgnitionDoAfter(Entity<SolidFuelComponent> ent, ref SolidFuelIgnitionDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || args.Used is not { } source ||
-            !TryComp<FlammableComponent>(ent, out var fire) || fire.OnFire || !CanBurn(ent, fire))
+            !TryComp<FlammableComponent>(ent, out var fire) || fire.OnFire || !CanBurn((ent, fire)))
             return;
 
         var rate = GetIgnitionRate(source);
@@ -232,7 +238,7 @@ public sealed partial class SolidFuelSystem : EntitySystem
             return;
 
         var burning = TryComp<FlammableComponent>(source, out var fire) && fire.OnFire;
-        if (burning && HasComp<SolidFuelComponent>(source) && !CanBurn(source, fire!))
+        if (burning && HasComp<SolidFuelComponent>(source) && !CanBurn((source, fire!)))
             return;
         if (burning && !_config.GetCVar(StarlightCCVars.SolidFuelSpread))
             return;
@@ -344,7 +350,7 @@ public sealed partial class SolidFuelSystem : EntitySystem
                     QueueDel(uid);
                 continue;
             }
-            if (!CanBurn(uid, fire))
+            if (!CanBurn((uid, fire)))
             {
                 fuel.Exposure = 0;
                 _flammable.Extinguish(uid, fire);

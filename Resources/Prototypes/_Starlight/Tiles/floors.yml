@@ -164,6 +164,7 @@
 
 - type: tile
   id: FloorDarkWood
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   name: tiles-dark-wood
   sprite: /Textures/_Starlight/Tiles/darkwood.png
   variants: 4
@@ -184,6 +185,7 @@
 
 - type: tile
   id: FloorDarkWoodTile
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   name: tiles-dark-wood2
   sprite: /Textures/_Starlight/Tiles/darkwood_tile.png
   variants: 4
@@ -204,6 +206,7 @@
 
 - type: tile
   id: FloorBrokenDarkWood
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   name: tiles-dark-wood3
   sprite: /Textures/_Starlight/Tiles/darkwood_broken.png
   variants: 7
@@ -227,6 +230,7 @@
 
 - type: tile
   id: FloorDarkWoodLarge
+  solidFuelEntity: SolidFuelFloorWood # Starlight
   name: tiles-dark-wood-large
   sprite: /Textures/_Starlight/Tiles/darkwood_large.png
   variants: 4

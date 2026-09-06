@@ -22,5 +22,5 @@ public sealed partial class IgnitionSourceComponent : Component
 
     /// <summary>Contact heating relative to a cigarette. Independent of atmos hotspot temperature.</summary>
     [DataField, AutoNetworkedField]
-    public float ContactIgnitionRate = 10f;
+    public float ContactIgnitionRate = 10f; // Starlight
 }

@@ -28,7 +28,9 @@ using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 using Robust.Shared.Prototypes;
 
-namespace Content.IntegrationTests.Tests.Atmos;
+using Content.IntegrationTests.Tests.Atmos;
+
+namespace Content.IntegrationTests.Tests._Starlight.Atmos;
 
 [TestFixture]
 [TestOf(typeof(SolidFuelSystem))]
@@ -41,7 +43,6 @@ public sealed class SolidFuelTest : AtmosTest
     private IConfigurationManager _config = default!;
 
     private static readonly ProtoId<ReagentPrototype> Water = "Water";
-    private static readonly ProtoId<ContentTileDefinition> Wood = "FloorWood";
 
     [SetUp]
     public override async Task Setup()
@@ -80,6 +81,16 @@ public sealed class SolidFuelTest : AtmosTest
     [TestCase("ClothingUniformJumpsuitColorGrey", 90)]
     [TestCase("FloorTileItemWoodBlack", 300)]
     [TestCase("FloorTileItemWoodParquet", 300)]
+    [TestCase("FloorTileItemDarkWood", 300)]
+    [TestCase("FloorTileItemDarkWoodPattern", 300)]
+    [TestCase("FloorTileItemDarkWoodLarge", 300)]
+    [TestCase("CarpetChapel", 240)]
+    [TestCase("CarpetCard", 240)]
+    [TestCase("WoodenBench", 300)]
+    [TestCase("TableCarpet", 300)]
+    [TestCase("TableFancyBlack", 300)]
+    [TestCase("TableCounterWood", 300)]
+    [TestCase("CounterWoodFrame", 300)]
     public async Task CigaretteIgnitesAfterMaterialDelay(string prototype, int seconds)
     {
         await Server.WaitAssertion(() =>
@@ -91,6 +102,51 @@ public sealed class SolidFuelTest : AtmosTest
             Assert.That(SEntMan.GetComponent<FlammableComponent>(uid).OnFire, Is.False);
             _fuel.Update(1f);
             Assert.That(SEntMan.GetComponent<FlammableComponent>(uid).OnFire, Is.True);
+        });
+    }
+
+    [TestCase("CounterMetalFrame")]
+    [TestCase("TableFrame")]
+    public async Task MetalFramesDoNotInheritSolidFuel(string prototype)
+    {
+        await Server.WaitAssertion(() =>
+        {
+            var uid = SpawnFuel(prototype);
+            Cigarette();
+            for (var i = 0; i < 310; i++)
+                _fuel.Update(1f);
+            Assert.That(SEntMan.HasComponent<SolidFuelComponent>(uid), Is.False);
+            Assert.That(SEntMan.TryGetComponent<FlammableComponent>(uid, out var fire) && fire.OnFire, Is.False);
+        });
+    }
+
+    [Test]
+    public async Task BurningAppearanceReachesClientAndClearsAfterExtinguishing()
+    {
+        EntityUid target = default;
+        NetEntity netTarget = default;
+        await Server.WaitAssertion(() =>
+        {
+            target = SpawnFuel("CarpetChapel");
+            netTarget = SEntMan.GetNetEntity(target);
+            _fire.Ignite(target, target);
+        });
+        await Pair.RunSeconds(1);
+        await Client.WaitAssertion(() =>
+        {
+            var uid = CEntMan.GetEntity(netTarget);
+            var appearance = CEntMan.System<SharedAppearanceSystem>();
+            Assert.That(appearance.TryGetData<bool>(uid, FireVisuals.OnFire, out var burning), Is.True);
+            Assert.That(burning, Is.True);
+        });
+        await Server.WaitAssertion(() => _fire.Extinguish(target));
+        await Pair.RunSeconds(1);
+        await Client.WaitAssertion(() =>
+        {
+            var uid = CEntMan.GetEntity(netTarget);
+            var appearance = CEntMan.System<SharedAppearanceSystem>();
+            Assert.That(appearance.TryGetData<bool>(uid, FireVisuals.OnFire, out var burning), Is.True);
+            Assert.That(burning, Is.False);
         });
     }
 
@@ -255,16 +311,26 @@ public sealed class SolidFuelTest : AtmosTest
         });
     }
 
-    [Test]
-    public async Task WoodenFloorBurnsToUnderlyingTileAndAsh()
+    [TestCase("FloorWood", 300, 120)]
+    [TestCase("FloorDarkWood", 300, 120)]
+    [TestCase("FloorDarkWoodTile", 300, 120)]
+    [TestCase("FloorBrokenDarkWood", 300, 120)]
+    [TestCase("FloorDarkWoodLarge", 300, 120)]
+    [TestCase("FloorArcadeBlue", 240, 90)]
+    [TestCase("FloorArcadeBlue2", 240, 90)]
+    [TestCase("FloorArcadeRed", 240, 90)]
+    [TestCase("FloorEighties", 240, 90)]
+    [TestCase("FloorBoxing", 240, 90)]
+    [TestCase("FloorGym", 240, 90)]
+    public async Task FloorBurnsToUnderlyingTileAndAsh(string prototype, int ignitionTime, int burnTime)
     {
         await Server.WaitAssertion(() =>
         {
             var source = Cigarette();
             var maps = SEntMan.System<SharedMapSystem>();
-            var wood = Server.ResolveDependency<IPrototypeManager>().Index(Wood);
+            var wood = Server.ResolveDependency<IPrototypeManager>().Index<ContentTileDefinition>(prototype);
             maps.SetTile(MapData.Grid, Vector2i.Zero, new Tile(wood.TileId));
-            for (var i = 0; i < 300; i++)
+            for (var i = 0; i < ignitionTime; i++)
                 _fuel.Update(1f);
             EntityUid? floor = null;
             var query = SEntMan.EntityQueryEnumerator<SolidFuelComponent, FlammableComponent>();
@@ -274,7 +340,7 @@ public sealed class SolidFuelTest : AtmosTest
                     floor = uid;
             }
             Assert.That(floor, Is.Not.Null);
-            for (var i = 0; i < 120; i++)
+            for (var i = 0; i < burnTime; i++)
                 _fuel.Update(1f);
             var tile = SEntMan.System<TurfSystem>().GetTileRef(SEntMan.GetComponent<TransformComponent>(source).Coordinates)!.Value;
             Assert.That(tile.Tile.TypeId, Is.Not.EqualTo(wood.TileId));

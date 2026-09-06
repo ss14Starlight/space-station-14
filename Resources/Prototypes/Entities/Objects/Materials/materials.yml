@@ -1,5 +1,5 @@
 - type: entity
-  parent: [MaterialBase, BaseSolidFuel]
+  parent: [MaterialBase, BaseSolidFuel] # Starlight
   id: MaterialCardboard
   name: cardboard
   suffix: Full
@@ -55,7 +55,7 @@
     count: 1
 
 - type: entity
-  parent: [MaterialBase, FoodBase, BaseSolidFuel]
+  parent: [MaterialBase, FoodBase, BaseSolidFuel] # Starlight
   id: MaterialCloth
   name: cloth
   suffix: Full
@@ -196,7 +196,7 @@
     count: 1
 
 - type: entity
-  parent: [MaterialBase, BaseWoodFuel]
+  parent: [MaterialBase, BaseWoodFuel] # Starlight
   id: MaterialWoodPlank
   name: wood
   suffix: Full

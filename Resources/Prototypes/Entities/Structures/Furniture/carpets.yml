@@ -345,7 +345,7 @@
 # TODO nuke this once tiles support rotating sprites
 - type: entity
   id: CarpetChapel
-  parent: BaseStructure
+  parent: [BaseStructure, BaseCarpetFuel] # Starlight
   name: "shrine carpet" # Starlight: Chapel -> Shrine
   components:
   - type: Sprite
@@ -377,7 +377,7 @@
 
 - type: entity
   id: CarpetCard
-  parent: BaseStructure
+  parent: [BaseStructure, BaseCarpetFuel] # Starlight
   name: cardboard "carpet"
   description: "Even lino is better."
   components:
