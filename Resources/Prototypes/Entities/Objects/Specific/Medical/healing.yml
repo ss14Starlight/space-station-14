@@ -409,7 +409,6 @@
 # Pills
 - type: entity
   name: pill
-  suffix: Dexalin 20u
   parent: Pill
   id: PillDexalin
   components:
@@ -418,7 +417,7 @@
   - type: Sprite
     state: pill16
   - type: Label
-    currentLabel: dexalin 20u
+    currentLabel: pill-label-dexalin-20u # Starlight: Cleaner translations without errors
   - type: Solution
     solution:
       reagents:
@@ -429,10 +428,9 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterDexalin
-  suffix: Dexalin 20u, 7
   components:
   - type: Label
-    currentLabel: dexalin 20u
+    currentLabel: pill-label-dexalin-20u # Starlight: Cleaner translations without errors
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -441,7 +439,6 @@
 
 - type: entity
   name: pill
-  suffix: Dylovene 20u
   parent: Pill
   id: PillDylovene
   components:
@@ -450,7 +447,7 @@
   - type: Sprite
     state: pill10
   - type: Label
-    currentLabel: dylovene 20u
+    currentLabel: pill-label-dylovene-20u # Starlight: Cleaner translations without errors
   - type: Solution
     solution:
       reagents:
@@ -461,10 +458,9 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterDylovene
-  suffix: Dylovene 20u, 5
   components:
   - type: Label
-    currentLabel: dylovene 20u
+    currentLabel: pill-label-dylovene-20u # Starlight: Cleaner translations without errors
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -473,7 +469,6 @@
 
 - type: entity
   name: pill
-  suffix: Hyronalin 20u
   parent: Pill
   id: PillHyronalin
   components:
@@ -482,7 +477,7 @@
   - type: Sprite
     state: pill17
   - type: Label
-    currentLabel: hyronalin 20u
+    currentLabel: pill-label-hyronalin-20u # Starlight: Cleaner translations without errors
   - type: Solution
     solution:
       reagents:
@@ -493,10 +488,9 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterHyronalin
-  suffix: Hyronalin 20u, 5
   components:
   - type: Label
-    currentLabel: hyronalin 20u
+    currentLabel: pill-label-hyronalin-20u # Starlight: Cleaner translations without errors
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -505,7 +499,6 @@
 
 - type: entity
   name: pill
-  suffix: Potassium iodide 20u
   parent: Pill
   id: PillPotassiumIodide
   components:
@@ -514,7 +507,7 @@
   - type: Sprite
     state: pill9
   - type: Label
-    currentLabel: potassium iodide 20u
+    currentLabel: pill-label-potassium-iodide-20u # Starlight: Cleaner translations without errors
   - type: Solution
     solution:
       reagents:
@@ -525,10 +518,9 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterPotassiumIodide
-  suffix: Potassium iodide 20u, 5
   components:
   - type: Label
-    currentLabel: potassium iodide 20u
+    currentLabel: pill-label-potassium-iodide-20u # Starlight: Cleaner translations without errors
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -537,7 +529,6 @@
 
 - type: entity
   name: pill
-  suffix: Iron 20u
   parent: Pill
   id: PillIron
   components:
@@ -546,7 +537,7 @@
   - type: Sprite
     state: pill14
   - type: Label
-    currentLabel: iron 20u
+    currentLabel: pill-label-iron-20u # Starlight: Cleaner translations without errors
   - type: Solution
     solution:
       reagents:
@@ -555,7 +546,6 @@
 
 - type: entity
   name: pill
-  suffix: Copper 20u
   parent: Pill
   id: PillCopper
   components:
@@ -564,7 +554,7 @@
   - type: Sprite
     state: pill13
   - type: Label
-    currentLabel: copper 20u
+    currentLabel: pill-label-copper-20u # Starlight: Cleaner translations without errors
   - type: Solution
     solution:
       reagents:
@@ -575,10 +565,9 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterIron
-  suffix: Iron 20u, 5
   components:
   - type: Label
-    currentLabel: iron 20u
+    currentLabel: pill-label-iron-20u # Starlight: Cleaner translations without errors
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -589,10 +578,9 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterCopper
-  suffix: Copper 20u, 5
   components:
   - type: Label
-    currentLabel: copper 20u
+    currentLabel: pill-label-copper-20u # Starlight: Cleaner translations without errors
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -601,7 +589,6 @@
 
 - type: entity
   name: pill
-  suffix: Kelotane 20u
   parent: Pill
   id: PillKelotane
   components:
@@ -610,7 +597,7 @@
   - type: Sprite
     state: pill4
   - type: Label
-    currentLabel: kelotane 20u
+    currentLabel: pill-label-kelotane-20u # Starlight: Cleaner translations without errors
   - type: Solution
     solution:
       reagents:
@@ -621,10 +608,9 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterKelotane
-  suffix: Kelotane 20u, 5
   components:
   - type: Label
-    currentLabel: kelotane 20u
+    currentLabel: pill-label-kelotane-20u # Starlight: Cleaner translations without errors
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -633,7 +619,6 @@
 
 - type: entity
   name: pill
-  suffix: Dermaline 20u
   parent: Pill
   id: PillDermaline
   components:
@@ -642,7 +627,7 @@
   - type: Sprite
     state: pill8
   - type: Label
-    currentLabel: dermaline 20u
+    currentLabel: pill-label-dermaline-20u # Starlight: Cleaner translations without errors
   - type: Solution
     solution:
       reagents:
@@ -653,10 +638,9 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterDermaline
-  suffix: Dermaline 20u, 5
   components:
   - type: Label
-    currentLabel: dermaline 20u
+    currentLabel: pill-label-dermaline-20u # Starlight: Cleaner translations without errors
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -676,7 +660,6 @@
 
 - type: entity
   name: pill
-  suffix: Tricordrazine 20u
   parent: Pill
   id: PillTricordrazine
   components:
@@ -685,7 +668,7 @@
   - type: Sprite
     state: pill3
   - type: Label
-    currentLabel: tricordrazine 20u
+    currentLabel: pill-label-tricordrazine-20u # Starlight: Cleaner translations without errors
   - type: Solution
     solution:
       reagents:
@@ -696,10 +679,9 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterTricordrazine
-  suffix: Tricordrazine 20u, 5
   components:
   - type: Label
-    currentLabel: tricordrazine 20u
+    currentLabel: pill-label-tricordrazine-20u # Starlight: Cleaner translations without errors
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -708,7 +690,6 @@
 
 - type: entity
   name: pill
-  suffix: Bicaridine 20u
   parent: Pill
   id: PillBicaridine
   components:
@@ -717,7 +698,7 @@
   - type: Sprite
     state: pill5
   - type: Label
-    currentLabel: bicaridine 20u
+    currentLabel: pill-label-bicaridine-20u # Starlight: Cleaner translations without errors
   - type: Solution
     solution:
       reagents:
@@ -728,10 +709,9 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterBicaridine
-  suffix: Bicaridine 20u, 5
   components:
   - type: Label
-    currentLabel: bicaridine 20u
+    currentLabel: pill-label-bicaridine-20u # Starlight: Cleaner translations without errors
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -740,7 +720,6 @@
 
 - type: entity
   name: pill
-  suffix: Charcoal 20u
   parent: Pill
   id: PillCharcoal
   components:
@@ -749,7 +728,7 @@
   - type: Sprite
     state: pill21
   - type: Label
-    currentLabel: charcoal 20u
+    currentLabel: pill-label-charcoal-20u # Starlight: Cleaner translations without errors
   - type: Solution
     solution:
       reagents:
@@ -760,10 +739,9 @@
   name: pill canister
   parent: PillCanister
   id: PillCanisterCharcoal
-  suffix: Charcoal 20u, 3
   components:
   - type: Label
-    currentLabel: charcoal 20u
+    currentLabel: pill-label-charcoal-20u # Starlight: Cleaner translations without errors
   - type: EntityTableContainerFill
     containers:
       storagebase:

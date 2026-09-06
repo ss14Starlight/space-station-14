@@ -35,7 +35,7 @@
 
   Using Siphon Entropy on an unsuspecting crewmember will stealthily award you [color=#4cabb3]Entropy[/color]. This will cause a small a portion of the crewmember's health to decay over time.
 
-  You can hold up to 14 Motes of Entropy, and approaching The Monument will automatically deposit all Entropy you posess.
+  You can hold up to 14 Motes of Entropy, and Alt-Clicking The Monument will deposit all Entropy you posess.
 
   <Box>
     <GuideEntityEmbed Entity="CosmicVacuousSpire" Caption="A vacuous spire"/>

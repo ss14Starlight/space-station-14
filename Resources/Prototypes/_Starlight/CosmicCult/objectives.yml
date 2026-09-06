@@ -123,3 +123,18 @@
       sprite: _Starlight/CosmicCult/Icons/objectives.rsi
       state: effigy
   - type: CosmicEffigyCondition
+
+- type: entity
+  parent: [BaseCosmicColossusObjective]
+  id: ColossusSacrificeObjective
+  name: SACRIFICE
+  description: Sacrifice crew to empowered rifts.
+  components:
+  - type: Objective
+    icon:
+     sprite: _Starlight/CosmicCult/Tileset/altar.rsi
+     state: cosmic
+  - type: NumberObjective
+    min: 5
+    max: 8
+  - type: CosmicSacrificedCrewCondition
