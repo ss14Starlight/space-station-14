@@ -228,6 +228,7 @@ public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, 
             if (effect is not SpawnEntity spawn)
                 continue;
 
+            if (spawn.Entity is null) continue; // Starlight
             resultEntity = _prototype.Index<EntityPrototype>(spawn.Entity);
             amount = Math.Max(1, spawn.Number);
             return true;

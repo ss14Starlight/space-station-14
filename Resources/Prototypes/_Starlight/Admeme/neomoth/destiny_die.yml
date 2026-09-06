@@ -1,0 +1,108 @@
+- type: entity
+  id: DestinyDie
+  parent: d20Dice
+  name: Destiny Die
+  description: A magical D20 die. Many things could happen with just a single roll.
+  suffix: Admeme, D20
+  components:
+    - type: DestinyDice
+      busyMessage: The die rejects the roll.
+      cooldownMessage: The die is on cooldown.
+      groups:
+        - targetRolls:
+            - targetValue: 1
+          successMessage: You feel like something bad is about to happen.
+          successPopupType: LargeCaution
+          delay: 3
+          effects:
+            - entityEffect: !type:NukeArmEffect
+
+- type: entity
+  id: DestinyDieD4
+  parent: d4Dice
+  name: Destiny Die
+  description: A magical D20 die. Many things could happen with just a single roll.
+  suffix: Admeme, D4
+  components:
+    - type: DestinyDice
+      busyMessage: The die rejects the roll.
+      cooldownMessage: The die is on cooldown.
+      groups:
+        - targetRolls:
+            - targetValue: 1
+          successMessage: You feel the room getting warmer.
+          successPopupType: LargeCaution
+          delay: 3
+          effects:
+            - entityEffect: !type:FloorIsLavaEffect
+
+- type: entity
+  id: DestinyDieD4Test
+  parent: DestinyDieD4
+  suffix: Admeme, D4, Test
+  components:
+    - type: DestinyDice
+      preset: TestPreset
+      groupDelay: 2
+      rollDelay: 5
+      groups:
+        - targetRolls:
+            - targetValue: 1
+          successMessage: cluwne funny...
+          successPopupType: Medium
+          delay: 1
+          effects:
+            - entityEffect: !type:CluwneEffect
+              targetData:
+                type: Filter
+                range: 5
+        - targetRolls:
+            - targetValue: 2
+          successMessage: Free cap ID.
+          effects:
+            - entityEffect: !type:DestinyDiceProxyEffect
+                effects:
+                  - !type:SpawnEntity
+                    predicted: true
+                    entity: CaptainIDCard
+              targetData:
+                type: Self
+
+- type: entity
+  parent: d4Dice
+  name: Destiny Die
+  id: DestinyDieD4RiggedTest
+  suffix: USE FOR TESTNIG
+  components:
+    - type: Dice
+      riggedValue: 1
+    - type: DestinyDice
+      preset: TestPreset
+
+- type: destinyDiceEffect
+  id: TestEffect
+  entityEffect: !type:DestinyDiceProxyEffect
+    effects:
+      - !type:SpawnEntity
+        predicted: true
+        entity: FoodBurgerBacon
+        overrides:
+          - type: ScaleVisuals
+            scale: 3, 3
+  targetData:
+    type: Self
+
+- type: destinyDiceEffectGroup
+  id: TestGroup
+  targetRolls:
+    - targetValue: 1
+  successMessage: meow!!
+  successPopupType: Medium
+  delay: 1
+  effects:
+    - TestEffect
+
+- type: destinyDicePreset
+  id: TestPreset
+  groups:
+    - TestGroup

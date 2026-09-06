@@ -1,0 +1,8 @@
+# Empty testing entity for well, testing. Don't use this as a parent lol.
+
+- type: entity
+  id: devnull
+  name: devnull
+  description: Lorem Ipsum
+  categories: [ HideSpawnMenu ]
+  suffix: DEV
