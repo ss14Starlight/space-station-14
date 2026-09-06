@@ -53,6 +53,9 @@ public partial struct ZoneCircle
             : throw new ArgumentOutOfRangeException(nameof(value), "Radius must be non-negative.");
     }
 
+    /// <summary>
+    /// Calculates the bounding box of the circle, returning a Box2i that encompasses the entire circle.
+    /// </summary>
     public readonly Box2i Bounds()
     {
         var left = (int) MathF.Floor(Center.X - Radius);
@@ -62,6 +65,9 @@ public partial struct ZoneCircle
         return new Box2i(left, bottom, right, top);
     }
 
+    /// <summary>
+    /// Determines whether a given tile (x, y) is contained within the circle.
+    /// </summary>
     public readonly bool ContainsTile(int x, int y)
     {
         var dx = x + 0.5f - Center.X;
