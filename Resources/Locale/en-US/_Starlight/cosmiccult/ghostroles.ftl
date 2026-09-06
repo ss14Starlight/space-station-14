@@ -49,6 +49,7 @@ ghost-role-colossus-briefing =
     Read more about your role in the guidebook entry.
 
 ghost-role-colossus-death = The colossus collapses, its light extinguished.
+ghost-role-colossus-revive = The colossus tears itself from death, roaring once more.
 ghost-role-colossus-hibernate = The colossus begins drawing in energy!
 ghost-role-colossus-effigy-confirm = If placement is  valid, press again to Beckon an Effigy.
 
