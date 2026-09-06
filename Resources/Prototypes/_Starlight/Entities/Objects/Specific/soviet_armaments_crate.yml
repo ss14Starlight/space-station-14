@@ -8,6 +8,13 @@
     sprite: _Starlight/Structures/Storage/USSP/revolutionary.rsi
   - type: Sprite
     sprite: _Starlight/Structures/Storage/USSP/revolutionary.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        layer:
+          - SovietLayer
+  - type: TimedDespawn
+    lifetime: 900
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/teleport_arrival.ogg
