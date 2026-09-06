@@ -1317,6 +1317,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: DepartmentalTechFabCircuitboard
 
 - type: entity
   id: EngineeringTechFabCircuitboard
@@ -1334,6 +1336,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: DepartmentalTechFabCircuitboard
 
 - type: entity
   id: ServiceTechFabCircuitboard
@@ -1368,6 +1372,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: DepartmentalTechFabCircuitboard
 
 - type: entity
   id: CommandTechFabCircuitboard
@@ -1385,6 +1391,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: SecureTechFabCircuitboard
 
 - type: entity
   id: NanoTrasenTechFabCircuitboard
@@ -1403,6 +1411,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: SecureTechFabCircuitboard
 
 - type: entity
   id: CentralCommandTechFabCircuitboard
@@ -1421,6 +1431,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget
+      stealGroup: SecureTechFabCircuitboard
 
 - type: entity
   id: SyndicateTechFabCircuitboard

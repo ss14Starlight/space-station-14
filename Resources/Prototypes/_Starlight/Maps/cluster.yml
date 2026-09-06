@@ -60,6 +60,7 @@
             #K9: [ 1, 1 ]
             SecurityOfficer: [ 3, 3 ]
             SecurityCadet: [ 2, 2 ]
+            K9: [ 1, 1 ]
 
             # Supply
             Quartermaster: [ 1, 1 ]
