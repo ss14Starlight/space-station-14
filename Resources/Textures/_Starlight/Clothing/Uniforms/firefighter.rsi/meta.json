@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "Created by EmoGarbage404 for Ephemeral Space using sprites from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039"
+    },
+    {
+      "name": "equipped-INNERCLOTHING",
+      "directions": 4,
+	  "copyright": "Created by EmoGarbage404 for Ephemeral Space using sprites from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "Created by EmoGarbage404 for Ephemeral Space using sprites from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039, scaled down by potato1234_x"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "Created by EmoGarbage404 for Ephemeral Space using sprites from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039, scaled down by potato1234_x"
+    }
+  ]
+}

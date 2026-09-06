@@ -27,8 +27,8 @@ public sealed class BorgSelectTypeUserInterface : BoundUserInterface
         base.Open();
 
         _menu = this.CreateWindow<BorgSelectTypeMenu>();
-        _menu.ConfirmBorgSubtype += subtypePrototype => SendPredictedMessage(new BorgSelectSubtypeMessage(subtypePrototype?.ID)); // Afterlight - borg subtypes
-        _menu.ConfirmedBorgType += prototype => SendPredictedMessage(new BorgSelectTypeMessage(prototype));
+        _menu.ConfirmBorgSubtype += subtypePrototype => SendMessage(new BorgSelectSubtypeMessage(subtypePrototype?.ID)); // Afterlight - borg subtypes - Starlight
+        _menu.ConfirmedBorgType += prototype => SendMessage(new BorgSelectTypeMessage(prototype)); // Starlight
         _menu.SetupMenu(Owner); // Starlight-edit
     }
 }

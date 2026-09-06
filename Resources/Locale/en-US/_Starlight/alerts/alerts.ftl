@@ -27,3 +27,5 @@ alerts-k9-latched-name = [color=orange]Latched On[/color]
 alerts-k9-latched-desc = You've latched onto a target. Bite harder to extend the hold, or release to let go.
 alerts-k9-sprint-name = [color=lightblue]Sprint[/color]
 alerts-k9-sprint-desc = You are moving at increased speed.
+alerts-nanochat-name = [color=red]New message![/color]
+alerts-nanochat-desc = You have received a new message!
