@@ -2,7 +2,7 @@
   id: RefinedOil
   reactants:
     WeldingFuel:
-      amount: 3
+      amount: 2
     Oil:
       amount: 2
     Carbon:
@@ -19,6 +19,5 @@
     RefinedOil:
       amount: 10
   products:
-    WeldingFuel: 5
-    Oil: 3
+    WeldingFuel: 4
     Carbon: 2
