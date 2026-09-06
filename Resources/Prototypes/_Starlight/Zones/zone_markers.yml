@@ -1,0 +1,152 @@
+- type: entity
+  id: ZoneMarkerBase
+  parent: MarkerBase
+  abstract: true
+  suffix: Zone
+  components:
+  - type: ZoneMarker
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerHallway
+  parent: ZoneMarkerBase
+  name: zone marker (hallway)
+  components:
+  - type: ZoneMarker
+    zone: Hallway
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerMaintenance
+  parent: ZoneMarkerBase
+  name: zone marker (maintenance)
+  components:
+  - type: ZoneMarker
+    zone: Maintenance
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerCommand
+  parent: ZoneMarkerBase
+  name: zone marker (command)
+  components:
+  - type: ZoneMarker
+    zone: Command
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerSecurity
+  parent: ZoneMarkerBase
+  name: zone marker (security)
+  components:
+  - type: ZoneMarker
+    zone: Security
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerMedical
+  parent: ZoneMarkerBase
+  name: zone marker (medical)
+  components:
+  - type: ZoneMarker
+    zone: Medical
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerEngineering
+  parent: ZoneMarkerBase
+  name: zone marker (engineering)
+  components:
+  - type: ZoneMarker
+    zone: Engineering
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerScience
+  parent: ZoneMarkerBase
+  name: zone marker (science)
+  components:
+  - type: ZoneMarker
+    zone: Science
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerCargo
+  parent: ZoneMarkerBase
+  name: zone marker (cargo)
+  components:
+  - type: ZoneMarker
+    zone: Cargo
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerService
+  parent: ZoneMarkerBase
+  name: zone marker (service)
+  components:
+  - type: ZoneMarker
+    zone: Service
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerArrivals
+  parent: ZoneMarkerBase
+  name: zone marker (arrivals)
+  components:
+  - type: ZoneMarker
+    zone: Arrivals
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerAtmospherics
+  parent: ZoneMarkerBase
+  name: zone marker (atmospherics)
+  components:
+  - type: ZoneMarker
+    zone: Atmospherics
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerBar
+  parent: ZoneMarkerBase
+  name: zone marker (bar)
+  components:
+  - type: ZoneMarker
+    zone: Bar
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerKitchen
+  parent: ZoneMarkerBase
+  name: zone marker (kitchen)
+  components:
+  - type: ZoneMarker
+    zone: Kitchen
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerChapel
+  parent: ZoneMarkerBase
+  name: zone marker (chapel)
+  components:
+  - type: ZoneMarker
+    zone: Chapel
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerDormitory
+  parent: ZoneMarkerBase
+  name: zone marker (dormitory)
+  components:
+  - type: ZoneMarker
+    zone: Dormitory
+    priority: 10
+
+- type: entity
+  id: ZoneMarkerSolars
+  parent: ZoneMarkerBase
+  name: zone marker (solars)
+  components:
+  - type: ZoneMarker
+    zone: Solars
+    priority: 10
