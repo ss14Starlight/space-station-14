@@ -19,8 +19,14 @@ public abstract partial class SharedZoneSystem : EntitySystem
     private const int ChunkShift = 3;
     private const int ChunkMask = ChunkSize - 1;
 
+    /// <summary>
+    /// Represents a zone id that is not valid, meaning the tile is not in any zone.
+    /// </summary>
     public const ushort NoZone = 0;
 
+    /// <summary>
+    /// Represents a region id that is not valid, meaning the tile is not in any region.
+    /// </summary>
     public const ushort NoRegion = 0;
 
     private const int NoZonePriority = int.MinValue;
@@ -106,21 +112,36 @@ public abstract partial class SharedZoneSystem : EntitySystem
             : comp.Regions[FindRoot(comp, region)].Zone;
     }
 
+    /// <summary>
+    /// Returns the zone id for a given tile on a grid, or <see cref="NoZone"/> if the tile is not in any zone.
+    /// </summary>
     public ushort GetZoneId(EntityUid grid, Vector2i tile)
         => _zoneQuery.TryComp(grid, out var comp) ? GetZoneId(comp, tile) : NoZone;
 
+    /// <summary>
+    /// Returns the zone prototype for a given zone id, or null if the id is invalid.
+    /// </summary>
     public ZonePrototype? GetZone(ushort id)
         => id < _protoById.Length ? _protoById[id] : null;
 
+    /// <summary>
+    /// Returns the zone id for a given zone prototype, or <see cref="NoZone"/> if the prototype is not registered.
+    /// </summary>
     public ushort GetZoneId(ProtoId<ZonePrototype> zone)
         => _idByProto.GetValueOrDefault(zone.Id, NoZone);
 
+    /// <summary>
+    /// Returns the zone prototype for a given tile on a grid, or null if the tile is not in any zone.
+    /// </summary>
     public bool TryGetZone(EntityUid grid, Vector2i tile, [NotNullWhen(true)] out ZonePrototype? zone)
     {
         zone = GetZone(GetZoneId(grid, tile));
         return zone != null;
     }
 
+    /// <summary>
+    /// Returns the zone prototype for a given world coordinate, or null if the coordinate is not in any zone.
+    /// </summary>
     public bool TryGetZone(EntityCoordinates coords, [NotNullWhen(true)] out ZonePrototype? zone)
     {
         zone = null;
@@ -129,6 +150,9 @@ public abstract partial class SharedZoneSystem : EntitySystem
         return grid != null && _gridQuery.TryComp(grid, out var gridComp) && TryGetZone(grid.Value, Maps.TileIndicesFor(grid.Value, gridComp, coords), out zone);
     }
 
+    /// <summary>
+    /// Returns the zone prototype for a given entity, or null if the entity is not in any zone.
+    /// </summary>
     public bool TryGetZone(Entity<TransformComponent?> ent, [NotNullWhen(true)] out ZonePrototype? zone)
     {
         zone = null;
@@ -139,12 +163,18 @@ public abstract partial class SharedZoneSystem : EntitySystem
             TryGetZone(grid, Maps.TileIndicesFor(grid, gridComp, ent.Comp.Coordinates), out zone);
     }
 
+    /// <summary>
+    /// Returns true if the given tile on a grid is in the specified zone.
+    /// </summary>
     public bool IsInZone(EntityUid grid, Vector2i tile, ProtoId<ZonePrototype> zone)
     {
         var id = GetZoneId(zone);
         return id != NoZone && GetZoneId(grid, tile) == id;
     }
 
+    /// <summary>
+    /// Returns the region id for a given tile on a grid, or <see cref="NoRegion"/> if the tile is not in any region.
+    /// </summary>
     public static ushort GetRegion(ZoneGridComponent comp, Vector2i tile)
     {
         if (!TryGetChunk(comp, tile, out var chunk))
@@ -154,6 +184,9 @@ public abstract partial class SharedZoneSystem : EntitySystem
         return region == NoRegion ? NoRegion : FindRoot(comp, region);
     }
 
+    /// <summary>
+    /// Returns the region id for a given tile on a grid, or <see cref="NoRegion"/> if the tile is not in any region.
+    /// </summary>
     public ushort GetRegion(EntityUid grid, Vector2i tile)
         => _zoneQuery.TryComp(grid, out var comp) ? GetRegion(comp, tile) : NoRegion;
 

@@ -20,6 +20,9 @@ public sealed partial class SharedZoneTrackerSystem : EntitySystem
         RaiseLocalEvent(ent.Owner, ref ev);
     }
 
+    /// <summary>
+    /// Sets the zone for the given entity and updates its position and revision. If the zone has changed, it marks the component as dirty and raises a ZoneChangedEvent.
+    /// </summary>
     public void SetZone(
         Entity<ZoneTrackerComponent> ent,
         ProtoId<ZonePrototype>? zone,
@@ -38,6 +41,9 @@ public sealed partial class SharedZoneTrackerSystem : EntitySystem
         RaiseIfChanged(ent);
     }
 
+    /// <summary>
+    /// Raises a ZoneChangedEvent if the zone for the given entity has changed since the last raised event. This method checks if the current zone is different from the last raised zone and raises the event accordingly.
+    /// </summary>
     public void RaiseIfChanged(Entity<ZoneTrackerComponent> ent)
     {
         if (ent.Comp.Raised == ent.Comp.Zone)
@@ -48,9 +54,15 @@ public sealed partial class SharedZoneTrackerSystem : EntitySystem
         RaiseLocalEvent(ent.Owner, ref ev);
     }
 
+    /// <summary>
+    /// Gets the current zone for the given entity. If the entity is not in a zone, it returns null.
+    /// </summary>
     public ProtoId<ZonePrototype>? GetZone(Entity<ZoneTrackerComponent?> ent)
         => Resolve(ent.Owner, ref ent.Comp, false) ? ent.Comp.Zone : null;
 
+    /// <summary>
+    /// Checks if the given entity is currently in the specified zone. Returns true if the entity's current zone matches the provided zone ID, otherwise returns false.
+    /// </summary>
     public bool IsInZone(Entity<ZoneTrackerComponent?> ent, ProtoId<ZonePrototype> zone)
         => GetZone(ent) == zone;
 }

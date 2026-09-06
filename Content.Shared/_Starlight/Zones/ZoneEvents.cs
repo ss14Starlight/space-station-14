@@ -44,14 +44,14 @@ public sealed class RequestZoneRoomsEvent(NetEntity grid, Vector2i centre) : Ent
 }
 
 [Serializable, NetSerializable]
-public sealed class ZoneRoomsSyncEvent(NetEntity grid, List<ZoneRoomChunk> chunks, Dictionary<ushort, string> zones)
+public sealed class ZoneRoomsSyncEvent(NetEntity grid, List<ZoneRoomChunk> chunks, Dictionary<ushort, ProtoId<ZonePrototype>> zones)
     : EntityEventArgs
 {
     public NetEntity Grid = grid;
 
     public List<ZoneRoomChunk> Chunks = chunks;
 
-    public Dictionary<ushort, string> Zones = zones;
+    public Dictionary<ushort, ProtoId<ZonePrototype>> Zones = zones;
 }
 
 [Serializable, NetSerializable]

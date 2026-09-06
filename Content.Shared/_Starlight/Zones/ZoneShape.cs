@@ -8,12 +8,21 @@ namespace Content.Shared._Starlight.Zones;
 [Serializable, NetSerializable]
 public sealed partial class ZoneShapeSet
 {
+    /// <summary>
+    /// Current zone prototype which this shape set belongs to.
+    /// </summary>
     [DataField(required: true)]
     public ProtoId<ZonePrototype> Zone;
 
+    /// <summary>
+    /// Rectangles which will be used to mark zone on grid, each rectangle is a box of tiles.
+    /// </summary>
     [DataField]
     public List<Box2i> Rects = new();
 
+    /// <summary>
+    /// Circles which will be used to mark zone on grid, each circle is a circle of tiles.
+    /// </summary>
     [DataField]
     public List<ZoneCircle> Circles = new();
 
@@ -24,11 +33,17 @@ public sealed partial class ZoneShapeSet
 [Serializable, NetSerializable]
 public partial struct ZoneCircle
 {
+    /// <summary>
+    /// Center of circle.
+    /// </summary>
     [DataField(required: true)]
     public Vector2 Center;
 
     private float _radius;
 
+    /// <summary>
+    /// Radius of circle.
+    /// </summary>
     [DataField(required: true)]
     public float Radius
     {

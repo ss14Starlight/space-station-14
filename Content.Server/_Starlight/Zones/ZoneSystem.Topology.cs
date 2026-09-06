@@ -242,6 +242,9 @@ public sealed partial class ZoneSystem
 
     #region Full rebuild
 
+    /// <summary>
+    /// Rebuilds the entire zone topology for a grid. This is a heavy operation and should be used sparingly.
+    /// </summary>
     public void FullRebuild(Entity<ZoneGridComponent> ent, NavMapComponent? nav = null)
     {
         var comp = ent.Comp;

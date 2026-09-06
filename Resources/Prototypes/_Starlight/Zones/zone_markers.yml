@@ -14,7 +14,6 @@
   components:
   - type: ZoneMarker
     zone: Hallway
-    priority: 10
 
 - type: entity
   id: ZoneMarkerMaintenance
@@ -23,7 +22,6 @@
   components:
   - type: ZoneMarker
     zone: Maintenance
-    priority: 10
 
 - type: entity
   id: ZoneMarkerCommand
@@ -32,7 +30,6 @@
   components:
   - type: ZoneMarker
     zone: Command
-    priority: 10
 
 - type: entity
   id: ZoneMarkerSecurity
@@ -41,7 +38,6 @@
   components:
   - type: ZoneMarker
     zone: Security
-    priority: 10
 
 - type: entity
   id: ZoneMarkerMedical
@@ -50,7 +46,6 @@
   components:
   - type: ZoneMarker
     zone: Medical
-    priority: 10
 
 - type: entity
   id: ZoneMarkerEngineering
@@ -59,7 +54,6 @@
   components:
   - type: ZoneMarker
     zone: Engineering
-    priority: 10
 
 - type: entity
   id: ZoneMarkerScience
@@ -68,7 +62,6 @@
   components:
   - type: ZoneMarker
     zone: Science
-    priority: 10
 
 - type: entity
   id: ZoneMarkerCargo
@@ -77,7 +70,6 @@
   components:
   - type: ZoneMarker
     zone: Cargo
-    priority: 10
 
 - type: entity
   id: ZoneMarkerService
@@ -86,7 +78,6 @@
   components:
   - type: ZoneMarker
     zone: Service
-    priority: 10
 
 - type: entity
   id: ZoneMarkerArrivals
@@ -95,7 +86,6 @@
   components:
   - type: ZoneMarker
     zone: Arrivals
-    priority: 10
 
 - type: entity
   id: ZoneMarkerAtmospherics
@@ -104,7 +94,6 @@
   components:
   - type: ZoneMarker
     zone: Atmospherics
-    priority: 10
 
 - type: entity
   id: ZoneMarkerBar
@@ -113,7 +102,6 @@
   components:
   - type: ZoneMarker
     zone: Bar
-    priority: 10
 
 - type: entity
   id: ZoneMarkerKitchen
@@ -122,7 +110,6 @@
   components:
   - type: ZoneMarker
     zone: Kitchen
-    priority: 10
 
 - type: entity
   id: ZoneMarkerChapel
@@ -131,7 +118,6 @@
   components:
   - type: ZoneMarker
     zone: Chapel
-    priority: 10
 
 - type: entity
   id: ZoneMarkerDormitory
@@ -140,7 +126,6 @@
   components:
   - type: ZoneMarker
     zone: Dormitory
-    priority: 10
 
 - type: entity
   id: ZoneMarkerSolars
@@ -149,4 +134,3 @@
   components:
   - type: ZoneMarker
     zone: Solars
-    priority: 10
