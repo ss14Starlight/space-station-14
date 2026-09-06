@@ -159,7 +159,7 @@
 
 - type: entity
   name: welding tool
-  parent: [ SolutionToolWelderIndsutrial, BaseItem ]
+  parent: [ SolutionToolWelder, BaseItem ]
   id: WelderCyber
   description: "Melts anything as long as it's fueled, don't forget your eye protection!"
   components:
