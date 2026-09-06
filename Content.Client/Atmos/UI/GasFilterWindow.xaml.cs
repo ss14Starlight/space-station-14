@@ -25,11 +25,10 @@ namespace Content.Client.Atmos.UI
     {
         private readonly ButtonGroup _buttonGroup = new();
 
-        public bool FilterStatus = true;
         public HashSet<Gas> SelectedGases = new(); // Starlight
         // public string? CurrentGasId // Starlight
 
-        public event Action? StatusChanged; // Starlight
+        public event Action<bool>? StatusChanged; // Starlight
         public event Action<string>? FilterTransferRateChanged;
         // public event Action? SelectGasPressed; // Starlight
 
@@ -49,8 +48,7 @@ namespace Content.Client.Atmos.UI
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this); // Starlight add
 
-            ToggleStatusButton.OnPressed += _ => SetFilterStatus(!FilterStatus);
-            ToggleStatusButton.OnPressed += _ => StatusChanged?.Invoke(); // Starlight
+            ToggleStatusButton.OnToggled += _ => StatusChanged?.Invoke(ToggleStatusButton.Pressed); // Starlight
 
             FilterTransferRateInput.OnTextChanged += _ => SetFilterRate.Disabled = false;
             SetFilterRate.OnPressed += _ =>
@@ -119,15 +117,7 @@ namespace Content.Client.Atmos.UI
 
         public void SetFilterStatus(bool enabled)
         {
-            FilterStatus = enabled;
-            if (enabled)
-            {
-                ToggleStatusButton.Text = Loc.GetString("comp-gas-filter-ui-status-enabled");
-            }
-            else
-            {
-                ToggleStatusButton.Text = Loc.GetString("comp-gas-filter-ui-status-disabled");
-            }
+            ToggleStatusButton.Pressed = enabled;
         }
 
         #region Starlight
