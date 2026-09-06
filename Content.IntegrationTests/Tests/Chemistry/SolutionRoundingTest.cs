@@ -18,52 +18,52 @@ public sealed class SolutionRoundingTest : GameTest
 
     [TestPrototypes]
     private const string Prototypes = @"
-- type: entity
-  id: SolutionRoundingTestContainer
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
+    -   type: entity
+        id: SolutionRoundingTestContainer
+        components:
+        -   type: Solution
+            id: beaker
+            solution:
+                maxVol: 100
 
-# This is the Chloral Hydrate recipe fyi.
-- type: reagent
-  id: SolutionRoundingTestReagentA
-  name: reagent-name-nothing
-  desc: reagent-desc-nothing
-  physicalDesc: reagent-physical-desc-nothing
+    # This is the Chloral Hydrate recipe fyi.
+    -   type: reagent
+        id: SolutionRoundingTestReagentA
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-- type: reagent
-  id: SolutionRoundingTestReagentB
-  name: reagent-name-nothing
-  desc: reagent-desc-nothing
-  physicalDesc: reagent-physical-desc-nothing
+    -   type: reagent
+        id: SolutionRoundingTestReagentB
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-- type: reagent
-  id: SolutionRoundingTestReagentC
-  name: reagent-name-nothing
-  desc: reagent-desc-nothing
-  physicalDesc: reagent-physical-desc-nothing
+    -   type: reagent
+        id: SolutionRoundingTestReagentC
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-- type: reagent
-  id: SolutionRoundingTestReagentD
-  name: reagent-name-nothing
-  desc: reagent-desc-nothing
-  physicalDesc: reagent-physical-desc-nothing
+    -   type: reagent
+        id: SolutionRoundingTestReagentD
+        name: reagent-name-nothing
+        desc: reagent-desc-nothing
+        physicalDesc: reagent-physical-desc-nothing
 
-- type: reaction
-  id: SolutionRoundingTestReaction
-  impact: Medium
-  reactants:
-    SolutionRoundingTestReagentA:
-      amount: 3
-    SolutionRoundingTestReagentB:
-      amount: 1
-    SolutionRoundingTestReagentC:
-      amount: 1
-  products:
-    SolutionRoundingTestReagentD: 1
-";
+    -   type: reaction
+        id: SolutionRoundingTestReaction
+        impact: Medium
+        reactants:
+            SolutionRoundingTestReagentA:
+                amount: 3
+            SolutionRoundingTestReagentB:
+                amount: 1
+            SolutionRoundingTestReagentC:
+                amount: 1
+        products:
+            SolutionRoundingTestReagentD: 1
+    ";
 
     private const string SolutionRoundingTestReagentA = "SolutionRoundingTestReagentA";
     private const string SolutionRoundingTestReagentB = "SolutionRoundingTestReagentB";

@@ -21,7 +21,6 @@
     sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
     state: full
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatHuman
       amount: 5
@@ -127,4 +126,3 @@
       state: "creampie_human"
       visible: false
 # for fragile electronics like consoles or shuttle engines.
-

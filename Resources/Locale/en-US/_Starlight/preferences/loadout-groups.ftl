@@ -65,6 +65,11 @@ loadout-group-dutyofficer-jumpsuit = Duty officer jumpsuit
 loadout-group-dutyofficer-outerclothing = Duty officer outer clothing
 loadout-group-dutyofficer-belt = Duty officer belt
 
+loadout-group-k9-variant = K9 coat
+loadout-group-k9-outerclothing = K9 armor
+loadout-group-k9-eyes = K9 eyewear
+loadout-group-k9-suitstorage = K9 oxygen tank
+
 loadout-group-detective-lethal = Detective lethal sidearm
 
 # Law

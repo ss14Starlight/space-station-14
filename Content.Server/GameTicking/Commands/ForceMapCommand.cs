@@ -28,7 +28,7 @@ namespace Content.Server.GameTicking.Commands
             _autolog ??= _entitySystemManager.GetEntitySystem<AutoDiscordLogSystem>(); //Starlight
             if (args.Length != 1)
             {
-                shell.WriteLine(Loc.GetString(Loc.GetString($"shell-need-exactly-one-argument")));
+                shell.WriteLine(Loc.GetString("shell-need-exactly-one-argument"));
                 return;
             }
 

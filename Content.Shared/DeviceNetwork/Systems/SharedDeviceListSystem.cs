@@ -3,7 +3,7 @@ using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Shared.DeviceNetwork.Systems;
 
-public abstract class SharedDeviceListSystem : EntitySystem
+public abstract partial class SharedDeviceListSystem : EntitySystem //Starlight edit: Partial
 {
     public IEnumerable<EntityUid> GetAllDevices(EntityUid uid, DeviceListComponent? component = null)
     {

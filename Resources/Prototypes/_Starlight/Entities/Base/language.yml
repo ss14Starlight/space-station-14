@@ -42,6 +42,7 @@
       - GalacticCommon
       - Machine
       - Dog
+      - DogFeral
       understands:
       - GalacticCommon
       - SolCommon
@@ -60,6 +61,7 @@
       - Scratch
       - Thaveyan
       - Dog
+      - DogFeral
       - Darktongue
       - Classical
       - Grumbakul
@@ -127,6 +129,7 @@
       - GalacticCommon
       - Machine
       - Dog
+      - DogFeral
       understands:
       - GalacticCommon
       - SolCommon
@@ -145,6 +148,7 @@
       - Scratch
       - Thaveyan
       - Dog
+      - DogFeral
       - Darktongue
       - Classical
       - Grumbakul

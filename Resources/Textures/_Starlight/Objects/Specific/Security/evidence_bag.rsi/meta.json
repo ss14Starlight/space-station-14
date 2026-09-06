@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-4.0",
+  "copyright": "State based copyright",
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "Resprited by Conflee"
+    },
+    {
+      "name": "paper_label",
+	  "copyright": "Resprited by Conflee"
+    },
+    {
+      "name": "dropper",
+	  "copyright": "Resprited by Conflee"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "Resprited by Conflee"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "Resprited by Conflee"
+    }
+  ]
+}

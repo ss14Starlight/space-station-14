@@ -13,6 +13,7 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 15h # You'll realistically clear this if you clear the chem requirements. Brigmed is being changed to be more-paramedical anyways, so this works with that. Chem time should be removed later on.
+  displayWeight: 4
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos

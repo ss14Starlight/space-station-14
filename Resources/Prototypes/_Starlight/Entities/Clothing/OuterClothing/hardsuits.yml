@@ -292,7 +292,7 @@
           Heat: 0.35
           Radiation: 0.1
           Caustic: 0.4
-      staminaModifier: 1
+      staminaModifier: 0.2
     - type: ClothingSpeedModifier
       walkModifier: 0.90
       sprintModifier: 0.90
@@ -445,8 +445,6 @@
         - Hardsuit
         - HardsuitSpatio
         - CorgiWearable
-    - type: StealTarget
-      stealGroup: SalvLeadHardsuit
 
 #Mining Specialist Advanced hardsuit
 - type: entity

@@ -13,13 +13,24 @@
     {
       "name": "equipped-OUTERCLOTHING",
       "directions": 4,
+      "copyright":"Romero/Littlemen",
       "delays": [
                 [0.25, 0.25, 0.25, 0.25],
                 [0.25, 0.25, 0.25, 0.25],
                 [0.25, 0.25, 0.25, 0.25],
                 [0.25, 0.25, 0.25, 0.25]
             ]
-
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-avali",
+      "directions": 4,
+      "copyright": "Modified by DocMoth",
+      "delays": [
+                [0.25, 0.25, 0.25, 0.25],
+                [0.25, 0.25, 0.25, 0.25],
+                [0.25, 0.25, 0.25, 0.25],
+                [0.25, 0.25, 0.25, 0.25]
+            ]
     }
   ]
 }

@@ -44,6 +44,7 @@ namespace Content.Server.Stunnable.Systems
 
             SubscribeLocalEvent<StunbatonComponent, AfterInteractEvent>(OnStunbatonAfterInteract); // Starlight-edit
             SubscribeLocalEvent<StunbatonComponent, ExaminedEvent>(OnExamined);
+            SubscribeLocalEvent<StunbatonComponent, SolutionChangedEvent>(OnSolutionChange);
             SubscribeLocalEvent<StunbatonComponent, StaminaDamageOnHitAttemptEvent>(OnStaminaHitAttempt);
             SubscribeLocalEvent<StunbatonComponent, ChargeChangedEvent>(OnChargeChanged);
             SubscribeLocalEvent<StunbatonComponent, EntInsertedIntoContainerMessage>(OnCellSlotInserted); // Starlight-edit
@@ -168,6 +169,18 @@ namespace Content.Server.Stunnable.Systems
                 }
             }
             // 🌟Starlight🌟 end
+        }
+
+        // https://github.com/space-wizards/space-station-14/pull/17288#discussion_r1241213341
+        private void OnSolutionChange(Entity<StunbatonComponent> entity, ref SolutionChangedEvent args)
+        {
+            // Explode if baton is activated and rigged.
+            if (!TryComp<RiggableComponent>(entity, out var riggable) ||
+                !TryComp<BatteryComponent>(entity, out var battery))
+                return;
+
+            if (_itemToggle.IsActivated(entity.Owner) && riggable.IsRigged)
+                _riggableSystem.Explode(entity.Owner, _battery.GetCharge((entity, battery)));
         }
 
         #region Starlight

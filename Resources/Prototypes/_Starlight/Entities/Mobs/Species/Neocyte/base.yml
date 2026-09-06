@@ -115,7 +115,6 @@
           Shock: 10
           Heat: 10
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatHuman
       amount: 5

@@ -1,0 +1,68 @@
+- type: entity
+  parent: BaseMobDragon
+  id: MobDragonClown
+  name: clown dragon
+  description: A perfect life form created by the honk mother.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Aliens/Carps/clowndragon.rsi
+    noRot: true
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive-unshaded
+      shader: unshaded
+  - type: GhostRole
+    mindRoles:
+    - MindRoleDragon
+  - type: Butcherable
+    spawned:
+    - id: FoodCakeClown
+      amount: 1
+  - type: ActionGun
+    action: ActionClownsBreath
+    gunProto: ClownsBreathGun
+  - type: GuideHelp
+    guides:
+    - MinorAntagonists
+  - type: Slippery
+  - type: Damageable
+    damageModifierSet: DragonResistances
+
+- type: entity
+  parent: BaseAction
+  id: ActionClownsBreath
+  name: "[color=pink]Cluster Banana![/color]"
+  description: Throw out a banana that splits into multiple explosive peels!
+  components:
+  - type: Action
+    icon: { sprite : Objects/Specific/Hydroponics/banana.rsi, state: produce }
+    itemIconStyle: BigAction
+    priority: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
+  - type: EorgPreventAction
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: ClownsBreathGun
+  name: clown's lung
+  description: For funny breathing.
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 10
+    rechargeSound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ClusterBananaPeel
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Animals/space_dragon_roar.ogg
+    soundEmpty: null
+    projectileSpeed: 5

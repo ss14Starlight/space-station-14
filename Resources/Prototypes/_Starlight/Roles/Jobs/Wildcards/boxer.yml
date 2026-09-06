@@ -12,7 +12,7 @@
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay
-    prototype: ClothingHandsGlovesBoxingRigged
+    prototype: ClothingHandsGlovesBoxingRiggedBlue
 
 - type: startingGear
   id: BoxerGear

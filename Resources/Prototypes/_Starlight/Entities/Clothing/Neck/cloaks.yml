@@ -280,13 +280,12 @@
   parent: ClothingNeckBase
   id: ClothingNeckHorrific
   name: horrific necktie
-  description: The necktie is adorned with a garish pattern. It's disturbingly vivid. Somehow you feel as if it would be wrong to ever take it off. It's your friend now. You will betray it if you change it for some boring scarf.
+  description: The necktie is adorned with a garish pattern. It's disturbingly vivid. Somehow you feel as if it would be wrong to ever take it off. It's your friend now. You don't need to listen to it, but it makes some good points.
   components:
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-horrific-tie-name
     description: ghost-role-information-horrific-tie-description
-    rules: ghost-role-information-horrific-tie-rules
     mindRoles:
     - MindRoleGhostRoleNecktie
     raffle:
@@ -301,6 +300,7 @@
     sprite: _Starlight/Clothing/Neck/Ties/disco.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Neck/Ties/disco.rsi
+  - type: AntagImmune
 
 - type: entity
   parent: ClothingNeckBase
@@ -384,9 +384,6 @@
       sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
-    - type: StealTarget
-      stealGroup: SalvLeadMantle
-
 
 - type: entity
   parent: [ ClothingNeckBase, BaseSalvageContraband ]
@@ -398,8 +395,6 @@
       sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
-    - type: StealTarget
-      stealGroup: SalvLeadMantle # Veteran one counts too.
 
 - type: entity
   parent: ClothingNeckBase
@@ -411,6 +406,18 @@
       sprite: _Starlight/Clothing/Neck/Mantles/Unidentifiedmantle.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/Unidentifiedmantle.rsi
+
+# Salvage Medic
+- type: entity
+  parent: [ ClothingNeckBase, BaseSalvageContraband ]
+  id: ClothingNeckMantleMedic
+  name: salvage medic mantle
+  description: A mantle used to designate an ITG medic
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Mantles/medicmantle.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Mantles/medicmantle.rsi
 
 ## Cool
 
