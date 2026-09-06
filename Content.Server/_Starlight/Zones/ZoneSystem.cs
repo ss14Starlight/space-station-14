@@ -23,10 +23,15 @@ public sealed partial class ZoneSystem : SharedZoneSystem
         _cfg.OnValueChanged(StarlightCCVars.MaxZoneTilesPerTick, x => _maxTilesPerTick = x, true);
         _cfg.OnValueChanged(StarlightCCVars.MaxZoneRenamesPerTick, x => _maxRenamesPerTick = x, true);
         _cfg.OnValueChanged(StarlightCCVars.MaxZoneSearchVisits, x => _maxSearchVisits = x, true);
-        _cfg.OnValueChanged(StarlightCCVars.MaxZoneSeeds, x => _maxSeeds = x, true);
-
-        _seedBuffer = new(_maxSeeds);
-        _anchorRegions = new ushort[_maxSeeds];
-        _anchors = new Vector2i[_maxSeeds];
+        _cfg.OnValueChanged(
+            StarlightCCVars.MaxZoneSeeds,
+            x =>
+            {
+                _maxSeeds = Math.Max(1, x);
+                _seedBuffer = new List<Vector2i>(_maxSeeds);
+                _anchorRegions = new ushort[_maxSeeds];
+                _anchors = new Vector2i[_maxSeeds];
+            },
+            true);
     }
 }

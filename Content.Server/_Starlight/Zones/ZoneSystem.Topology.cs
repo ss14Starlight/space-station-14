@@ -638,6 +638,12 @@ public sealed partial class ZoneSystem
 
             if (anchor < 0)
             {
+                if (anchorCount >= _maxSeeds)
+                {
+                    comp.NeedsFullRebuild = true;
+                    return;
+                }
+
                 _anchorRegions[anchorCount] = region;
                 _anchors[anchorCount] = seed;
                 anchorCount++;
