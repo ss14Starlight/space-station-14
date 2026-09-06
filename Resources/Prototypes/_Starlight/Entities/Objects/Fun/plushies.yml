@@ -166,7 +166,7 @@
   parent: BaseVoxPlushie
   id: PlushieHrek # FlameyTheRandom
   name: hrekrativi plushie
-  description: Has probably built more civilian infrastructure than any engineer youl come across. Despite that, you will never see him as an engineer.
+  description: Has probably built more civilian infrastructure than any engineer you'll come across. Smells like space cleaner... and missing permits.
   components:
   - type: Item
     size: Small
