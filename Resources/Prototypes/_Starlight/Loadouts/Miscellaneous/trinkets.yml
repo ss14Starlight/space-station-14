@@ -51,6 +51,9 @@
   groupBy: "Instruments"
 
 - type: loadout
+  id: StationRadioReceiverPortable
+
+- type: loadout
   id: CoderSocks
   effects:
     - !type:JobRequirementLoadoutEffect

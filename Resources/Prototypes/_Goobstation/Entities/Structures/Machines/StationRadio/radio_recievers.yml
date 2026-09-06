@@ -55,3 +55,64 @@
     channels:
     - RadioShow
   - type: StationRadioReceiver
+
+# Starlight begin
+- type: entity
+  id: StationRadioReceiverPortable
+  name: nt2 handheld radio
+  parent: BaseItem
+  description: Listen to the top hits of your stations local radio on the go! Courtesy of NanoTrasen Consumer Electronics.
+  components:
+  - type: Item
+    size: Small
+    storedRotation: -90
+    sprite: _Starlight/Objects/Devices/handheld_radio.rsi
+    heldPrefix: handradio
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/handheld_radio.rsi
+    layers:
+    - state: handradio-off
+      map: [ "enum.ToggleableVisuals.Layer" ]
+    - state: unlit
+      shader: unshaded
+      visible: false
+      offset: "0.15625,0.21875"
+      map: [ "enum.LightLayers.Unshaded" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: handradio-on }
+          False: { state: handradio-off }
+        enum.LightLayers.Unshaded:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        blacklist:
+          tags:
+          - MechReactor
+  - type: ToggleCellDraw
+  - type: PowerCellDraw
+    drawRate: 0.6
+  - type: ItemToggle
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: RadioSpeaker
+    enabled: true
+    channels:
+    - RadioShow
+  - type: Speech
+    speechVerb: Radio
+  - type: ActiveRadio
+    channels:
+    - RadioShow
+  - type: StationRadioReceiver
+#Starlight end
