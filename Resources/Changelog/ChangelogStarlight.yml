@@ -1,27 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Reach) Added a recharger to science.
-    type: Add
-  id: 407884
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Reach) Added roboticist locker and wall fuel dispenser to "robotics".
-    type: Add
-  id: 407885
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
-  - message: (Reach) Added a clown vend and a mime vend near HOP.
-    type: Add
-  id: 407886
-  time: '2026-08-28T20:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5751
-- author: Cvlancer
-  changes:
   - message: (Reach) Added all the new techfabs.
     type: Add
   id: 407887
@@ -2799,4 +2778,25 @@ Entries:
   id: 408283
   time: '2026-09-06T03:40:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5949
+- author: Conflee
+  changes:
+  - message: Re-added Anti-Anomaly Zone Markers for Mapping. These markers prevent Anomalies from generating within a radius of them. Primary use case would be the large asteroid areas of Kiloton and Sepulturum where an Anomaly would literally never be found by players.
+    type: Add
+  id: 408284
+  time: '2026-09-06T04:14:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5766
+- author: RedSpeeds
+  changes:
+  - message: Added an alert for unread nanochat messages. Open your damned mail!.
+    type: Add
+  id: 408285
+  time: '2026-09-06T04:14:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5887
+- author: Demented
+  changes:
+  - message: Added printable psychological report papers.
+    type: Add
+  id: 408286
+  time: '2026-09-06T04:14:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5911
 Order: -1
