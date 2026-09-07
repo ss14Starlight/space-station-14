@@ -8,6 +8,7 @@
   dollPrototype: AppearanceNeoDwarf
   defaultSkinTone: "#666666"
   skinColoration: Hues
+  displacement: Dwarfism
   customName: true
   roundstartCyberwareCapacity: 6
   subspeciesOf: Neocyte
