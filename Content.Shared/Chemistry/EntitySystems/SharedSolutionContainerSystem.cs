@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Content.Shared._Starlight.Chemistry.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reaction;
@@ -395,6 +396,18 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         }
 
         var owner = GetSolutionOwner(solution);
+
+        #region Starlight
+        // SolutionChangedEvent is raised on the solution's owner, which may be a SolutionManager entity.
+        // Activate regeneration on the solution entity itself before relaying the event to its owner.
+        if (!Timing.ApplyingState &&
+            !TerminatingOrDeleted(solution.Owner) &&
+            solution.Comp.Solution.AvailableVolume > FixedPoint2.Zero &&
+            HasComp<SolutionRegenerationComponent>(solution.Owner))
+        {
+            EnsureComp<SLActiveSolutionRegenerationComponent>(solution.Owner);
+        }
+        #endregion
 
         var changedEv = new SolutionChangedEvent(solution);
         RaiseLocalEvent(owner, ref changedEv);

@@ -163,6 +163,7 @@
 
 - type: roleLoadout
   id: JobChaplain
+  canCustomizeName: true
   groups:
   - GroupTankHarness
   - ChaplainHead
@@ -578,8 +579,9 @@
   id: JobReporter
   groups:
   - GroupTankHarness
-  - ReporterHead # Starlight
   - ReporterJumpsuit
+  - ReporterHead
+  - ReporterOuterClothing
   - CommonBackpack
   - CivilianShoes # Starlight
   - Glasses

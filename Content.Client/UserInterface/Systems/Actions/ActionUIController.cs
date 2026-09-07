@@ -56,6 +56,11 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
     private readonly DragDropHelper<ActionButton> _menuDragHelper;
     private readonly TextureRect _dragShadow;
     private ActionsWindow? _window;
+    #region Starlight
+    private readonly int _resetMargin = 10;
+    private long _nextReset;
+    private bool _didReset;
+    #endregion
 
     private ActionsBar? ActionsBar => UIManager.GetActiveUIWidgetOrNull<ActionsBar>();
     private UserInterface.Controls.MenuButton? ActionButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.ActionButton;
@@ -106,6 +111,10 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             _actionsSystem.OnActionAdded += OnActionAdded;
             _actionsSystem.OnActionRemoved += OnActionRemoved;
             _actionsSystem.ActionsUpdated += OnActionsUpdated;
+            //Starlight Start
+            _nextReset = _timing.CurTick.Value + _resetMargin;
+            _didReset = false;
+            //Starlight End
         }
 
         UpdateFilterLabel();
@@ -745,6 +754,22 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         _menuDragHelper.Update(args.DeltaSeconds);
         if (_window is {UpdateNeeded: true})
             SearchAndDisplay();
+        //Starlight start
+        // Don't Hack   Open inside
+        // WE LOVE RACE CONDITIONS!! we only sort actions if they're ready at the same time,
+        // then we append so new actions don't override old ones (otherwise we'd reset players dragging them)
+        // problem: roundstart, it takes so long half the actions are ready during different ticks.
+        // so I'm just adding a timer to resort everything 10 ticks after the Ui starts :'3
+        if (_didReset)
+            return;
+        if (_nextReset <= _timing.CurTick.Value && _actionsSystem != null)
+        {
+            LoadDefaultActions();
+            _container?.SetActionData(_actionsSystem, _actions.ToArray());
+            QueueWindowUpdate();
+            _didReset = true;
+        }
+        //Starlight end
     }
 
     private void OnComponentLinked(ActionsComponent component)

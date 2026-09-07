@@ -42,6 +42,10 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [Dependency] private StepTriggerSystem _stepTrigger = default!;
     [Dependency] private TileFrictionController _tile = default!;
 
+    [Dependency] private EntityQuery<StepTriggerComponent> _stepTriggerQuery = default!;
+    [Dependency] private EntityQuery<ReactiveComponent> _reactiveQuery = default!;
+    [Dependency] private EntityQuery<EvaporationComponent> _evaporationQuery = default!;
+
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
     /// <summary>
@@ -54,10 +58,6 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     // Using local deletion queue instead of the standard queue so that we can easily "undelete" if a puddle
     // loses & then gains reagents in a single tick.
     private HashSet<EntityUid> _deletionQueue = [];
-
-    private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
-    private EntityQuery<ReactiveComponent> _reactiveQuery;
-    private EntityQuery<EvaporationComponent> _evaporationQuery;
 
     public override void Initialize()
     {
@@ -112,7 +112,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         _standoutReagents = [.. _prototypeManager.EnumeratePrototypes<ReagentPrototype>().Where(x => x.Standsout).Select(x => x.ID)];
     }
 
-    private void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args)
+    protected virtual void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args) // Starlight
     {
         // The changes are already networked as part of the same game state.
         if (_timing.ApplyingState)
@@ -129,13 +129,18 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
         _deletionQueue.Remove(entity);
         UpdateSlip((entity, entity.Comp), args.Solution.Comp.Solution);
-        UpdateSlow(entity, args.Solution.Comp.Solution);
+        UpdateSlow(entity, args.Solution.Comp.Solution, entity.Comp); // Funky - Pass component here
         UpdateEvaporation(entity, args.Solution.Comp.Solution);
         UpdateAppearance((entity, entity.Comp));
     }
 
     private void OnGetFootstepSound(Entity<PuddleComponent> entity, ref GetFootstepSoundEvent args)
     {
+        // Funky start - footprints
+        if (!entity.Comp.AffectsSound)
+            return;
+        // Funky end
+
         if (!_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName, ref entity.Comp.Solution,
                 out var solution))
             return;
@@ -190,7 +195,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     private void UpdateAppearance(Entity<PuddleComponent?, AppearanceComponent?> ent)
     {
         var (uid, puddle, appearance) = ent;
-        if (!Resolve(ent, ref puddle, ref appearance))
+        if (!Resolve(ent, ref puddle, ref appearance, false)) // Funky - Uses TryComp behind the scenes now, protecting Footprints which lack it
             return;
 
         var volume = FixedPoint2.Zero;
@@ -322,8 +327,16 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         Dirty(entity, slipComp);
     }
 
-    private void UpdateSlow(EntityUid uid, Solution solution)
+    private void UpdateSlow(EntityUid uid, Solution solution, PuddleComponent puddle) // Funky - added puddlecomponent
     {
+        // Funky start - Footprints
+        if (!puddle.AffectsMovement)
+        {
+            RemComp<SpeedModifierContactsComponent>(uid);
+            return;
+        }
+        // Funky end
+
         var maxViscosity = 0f;
         foreach (var (reagent, _) in solution.Contents)
         {
