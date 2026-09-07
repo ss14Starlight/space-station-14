@@ -71762,11 +71762,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 32.5,-15.5
-    - type: DeviceNetwork
-      deviceLists:
-      - 17183
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 17024
@@ -72716,11 +72711,6 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 30.5,-16.5
-    - type: DeviceNetwork
-      deviceLists:
-      - 17183
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 17023
