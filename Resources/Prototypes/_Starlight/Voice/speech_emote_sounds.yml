@@ -511,7 +511,7 @@
       collection: LagomorphSqueak
     Snort:
       collection: LagomorphSnort
-    LagomorphSneeze:
+    Sneeze:
       collection: LagomorphSneeze
     LagomorphSnore:
       collection: LagomorphSnore
@@ -547,7 +547,7 @@
       collection: LagomorphSqueak
     Snort:
       collection: LagomorphSnort
-    LagomorphSneeze:
+    Sneeze:
       collection: LagomorphSneeze
     LagomorphSnore:
       collection: LagomorphSnore
@@ -636,7 +636,7 @@
 - type: emoteSounds
   id: CatMothBodyEmotes
   sounds:
-    FlapWings:
+    Flap:
       path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
     Thump:
       path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
@@ -717,25 +717,9 @@
       variation: 0.125
 
 - type: emoteSounds
-  id: MothBodyEmotes
-  sounds:
-    FlapWings:
-      path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
-    Clap:
-      collection: Claps
-    ClapSingle:
-      collection: ClapSingle
-    Snap:
-      collection: Snaps
-      params:
-        volume: -6
-    Salute:
-      collection: Salutes
-
-- type: emoteSounds
   id: MothroachBodyEmotes
   sounds:
-    FlapWings:
+    Flap:
       path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
       params:
         pitch: 1.45

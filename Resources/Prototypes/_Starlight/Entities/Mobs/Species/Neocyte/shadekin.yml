@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urist McDuskin #pronounced Dusk-Kin
+  name: Urist McShadowster
   parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies, BaseSpeciesPickupableHuge]
   id: BaseMobNeoKin
   abstract: true

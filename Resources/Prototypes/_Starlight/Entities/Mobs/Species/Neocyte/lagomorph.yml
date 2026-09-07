@@ -140,7 +140,6 @@
     - Lagomorph
     - NeoLagomorph
     - Neocyte
-
 - type: entity
   parent: BaseSpeciesDummy
   id: AppearanceNeoLagomorph

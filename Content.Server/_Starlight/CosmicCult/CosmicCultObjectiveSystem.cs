@@ -6,6 +6,10 @@ using Content.Server._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Roles;
 using Robust.Shared.Random;
 using Content.Server.Station.Systems;
+using Content.Server._Starlight.CosmicCult.EntitySystems;
+using System.Numerics;
+using Robust.Shared.Map;
+using Content.Server.Nuke;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -16,6 +20,8 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private StationSystem _station = default!;
+    [Dependency] private CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -29,6 +35,30 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
         SubscribeLocalEvent<CosmicTierConditionComponent, ObjectiveGetProgressEvent>(OnGetTierProgress);
         SubscribeLocalEvent<CosmicVictoryConditionComponent, ObjectiveGetProgressEvent>(OnGetVictoryProgress);
         SubscribeLocalEvent<CosmicChaplainConditionComponent, ObjectiveGetProgressEvent>(OnGetChaplainProgress);
+        SubscribeLocalEvent<CosmicSacrificedCrewConditionComponent, ObjectiveGetProgressEvent>(OnGetSacrificedCrewProgress);
+    }
+
+    private bool IsValidEffigyObjectiveWarp(EntityUid colossus, EntityUid warpUid, WarpPointComponent warp, EntityUid station, EntityUid? requiredGrid = null)
+    {
+        if (warp.Location == null)
+            return false;
+
+        var colossusXform = Transform(colossus);
+        var warpXform = Transform(warpUid);
+
+        if (requiredGrid != null && warpXform.GridUid != requiredGrid)
+            return false;
+
+        if (_station.GetOwningStation(warpUid) != station)
+            return false;
+
+        if (colossusXform.MapID != warpXform.MapID)
+            return false;
+
+        if ((_transform.GetWorldPosition(colossusXform) - _transform.GetWorldPosition(warpXform)).LengthSquared() <= 15 * 15)
+            return false;
+
+        return true;
     }
 
     private void OnEffigyRequirementCheck(EntityUid uid, CosmicEffigyConditionComponent comp, ref RequirementCheckEvent args)
@@ -36,12 +66,48 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
         if (args.Cancelled || !_roles.MindHasRole<CosmicColossusRoleComponent>(args.MindId))
             return;
 
-        // Only pick beacons on the same owning station as the colossus.
-        // This avoids selecting CentCom or unrelated grids that happen to have warp beacons.
-        var station = args.Mind.CurrentEntity is { } currentEntity
-            ? _station.GetOwningStation(currentEntity)
-            : null;
+        if (args.Mind.CurrentEntity is not { } currentEntity)
+        {
+            args.Cancelled = true;
+            return;
+        }
 
+        var xform = Transform(currentEntity);
+
+        // Colossus must spawn on a grid.
+        if (xform.GridUid is not { } currentGrid)
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        var station = _station.GetOwningStation(currentEntity);
+        EntityUid? nukeGrid = null;
+
+        // Find the station's nuke and grid for the fallback search.
+        var nukeQuery = EntityQueryEnumerator<NukeComponent, TransformComponent>();
+
+        while (nukeQuery.MoveNext(out var nukeUid, out _, out var nukeXform))
+        {
+            if (nukeXform.GridUid is not { } grid)
+                continue;
+
+            var nukeStation = _station.GetOwningStation(nukeUid);
+
+            if (nukeStation is null)
+                continue;
+
+            // If the Colossus already belongs to a station, only use that station's nuke.
+            if (station is not null && nukeStation != station)
+                continue;
+
+            // If the Colossus does not belong to a station, this nuke provides the station.
+            station ??= nukeStation;
+            nukeGrid = grid;
+            break;
+        }
+
+        // We need a station to determine which beacons are valid.
         if (station is null)
         {
             args.Cancelled = true;
@@ -50,19 +116,37 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
 
         var warps = new List<EntityUid>();
         var query = EntityQueryEnumerator<WarpPointComponent>();
+
+        // First: try beacons on the Colossus's current grid.
         while (query.MoveNext(out var warpUid, out var warp))
         {
-            if (warp.Location != null && _station.GetOwningStation(warpUid) == station)
+            if (!IsValidEffigyObjectiveWarp(currentEntity, warpUid, warp, station.Value, currentGrid))
+                continue;
+
+            warps.Add(warpUid);
+        }
+
+        // Current grid has no valid beacon: fall back to the grid containing the nuke.
+        if (warps.Count == 0 && nukeGrid is { } fallbackGrid && fallbackGrid != currentGrid)
+        {
+            query = EntityQueryEnumerator<WarpPointComponent>();
+
+            while (query.MoveNext(out var warpUid, out var warp))
             {
+                if (!IsValidEffigyObjectiveWarp(currentEntity, warpUid, warp, station.Value, fallbackGrid))
+                    continue;
+
                 warps.Add(warpUid);
             }
         }
 
-        if (warps.Count <= 0)
+        // No valid beacon anywhere we are allowed to search.
+        if (warps.Count == 0)
         {
             args.Cancelled = true;
             return;
         }
+
         comp.EffigyTarget = _random.Pick(warps);
     }
 
@@ -80,6 +164,9 @@ public sealed partial class CosmicCultObjectiveSystem : EntitySystem
         }
         _metaData.SetEntityDescription(uid, description, args.Meta);
     }
+
+    private void OnGetSacrificedCrewProgress(Entity<CosmicSacrificedCrewConditionComponent> ent, ref ObjectiveGetProgressEvent args)
+        => args.Progress = Progress(_riftSystem.StoredCorpseCount, _number.GetTarget(ent.Owner));
 
     private void OnGetEntropyProgress(Entity<CosmicEntropyConditionComponent> ent, ref ObjectiveGetProgressEvent args)
         => args.Progress = Progress(ent.Comp.Siphoned, _number.GetTarget(ent.Owner));

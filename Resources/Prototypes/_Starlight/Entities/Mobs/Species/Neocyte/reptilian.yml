@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urisst' Mztosster
+  name: Urist McScalester
   parent: BaseMobNeocyte
   id: BaseMobNeoReptilian
   abstract: true
