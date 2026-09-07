@@ -24,7 +24,7 @@ public sealed partial class StatusEffectsSystem : EntitySystem
     private EntityQuery<StatusEffectContainerComponent> _containerQuery;
     private EntityQuery<StatusEffectComponent> _effectQuery;
 
-    public static ConcurrentDictionary<string, byte> StatusEffectPrototypes = new(); // Starlight
+    public readonly ConcurrentDictionary<string, byte> StatusEffectPrototypes = new(); // Starlight
 
     public override void Initialize()
     {
