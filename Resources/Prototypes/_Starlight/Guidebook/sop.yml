@@ -854,12 +854,12 @@
 
 - type: guideEntry
   id: assistant-sop-intro
-  name: guide-entry-sl-assistant-sop-intro
+  name: guide-entry-sl-assistant-sop-staff-intro
   text: "/ServerInfo/Guidebook/StarlightSOP/AssistantSOP/assistant-sop-intro.xml"
   priority: 8
   children:
-      - assistant-sop-genproc-intro
-      - assistant-sop-staff-intro
+      - assistant-sop-assistantmanager
+      - assistant-sop-assistant
 
 - type: guideEntry
   id: assistant-sop-assistantmanager
@@ -869,6 +869,6 @@
 
 - type: guideEntry
   id: assistant-sop-assistant
-  name: guide-entry-sl-assistant-sop-assistant
+  name: guide-entry-sl-assistant
   text: "/ServerInfo/Guidebook/StarlightSOP/AssistantSOP/Assistant.xml"
   priority: 2
