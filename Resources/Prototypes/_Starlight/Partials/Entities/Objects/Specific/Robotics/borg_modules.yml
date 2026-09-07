@@ -67,6 +67,7 @@
 
 - type: !PartialOnly entity
   id: XenoborgModuleLaser
+  parent: !Clear [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
   components:
   - type: ItemBorgModule
     hands:
@@ -74,6 +75,7 @@
 
 - type: !PartialOnly entity
   id: XenoborgModuleHeavyLaser
+  parent: !Clear [BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband]
   components:
   - type: ItemBorgModule
     hands:
@@ -81,9 +83,22 @@
 
 - type: !PartialOnly entity
   id: XenoborgModuleHypo
+  parent: !Clear [ BaseXenoborgModuleStealthWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
   name: hypo xenoborg module
   description: Module with self-refilling hypos.
   components:
   - type: ItemBorgModule
     hands:
     - item: LicoxideHypo
+
+- type: !PartialOnly entity
+  id: BorgModuleC20r
+  parent: !Clear [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+
+- type: !PartialOnly entity
+  id: XenoborgModuleSword
+  parent: !Clear [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
+
+- type: !PartialOnly entity
+  id: XenoborgModuleEnergySword
+  parent: !Clear [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
