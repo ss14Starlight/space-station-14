@@ -1,28 +1,45 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Edit of the walkietalkie sprite by DrSmugleaf from https://github.com/space-wizards/space-station-14",
+  "copyright": "State based copyright.",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "walkietalkie"
+      "name": "handradio",
+      "copyright": "Made by limblesstar"
     },
     {
-      "name": "walkietalkie-inhand-left",
+      "name": "handradio-off",
+      "copyright": "Made by limblesstar"
+    },
+    {
+      "name": "handradio-on",
+      "copyright": "Made by limblesstar"
+    },
+    {
+      "name": "unlit",
+      "copyright": "Made by limblesstar",
+      "delays": [
+        [
+          0.1, 0.1, 0.1, 0.1, 0.1,
+          0.1, 0.1, 0.1, 0.1, 0.1,
+          0.1, 0.1, 0.1, 0.1, 0.1,
+          0.1, 0.1
+        ]
+      ]
+    },
+    {
+      "name": "handradio-inhand-left",
+      "copyright": "Made by limblesstar",
       "directions": 4
     },
     {
-      "name": "walkietalkie-inhand-right",
+      "name": "handradio-inhand-right",
+      "copyright": "Made by limblesstar",
       "directions": 4
-    },
-    {
-      "name": "walkietalkie-off"
-    },
-    {
-      "name": "walkietalkie-on"
     }
   ]
 }

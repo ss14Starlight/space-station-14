@@ -1,6 +1,7 @@
 using Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
 using Content.Shared._Goobstation.StationRadio.Events; // Starlight - _Goob -> _Goobstation
 using Content.Shared.Interaction;
+using Content.Shared.Item.ItemToggle.Components; // Starlight - Portable radio power toggle
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Audio.Systems;
@@ -27,6 +28,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         SubscribeLocalEvent<StationRadioReceiverComponent, StationRadioMediaStoppedEvent>(OnMediaStopped);
         SubscribeLocalEvent<StationRadioReceiverComponent, ActivateInWorldEvent>(OnRadioToggle);
         SubscribeLocalEvent<StationRadioReceiverComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<StationRadioReceiverComponent, ItemToggledEvent>(OnItemToggled); // Starlight - Mutes portable radio when switched off or power cell dies
 
         SubscribeLocalEvent<StationRadioReceiverComponent, MapInitEvent>(OnReceiverMapInit); // Starlight - Add Radio Resume Play
 
@@ -40,6 +42,10 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
 
     private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
     {
+        // Starlight - Portable radios toggle via ItemToggle (verb menu/use-in-hand), so this doesn't apply
+        if (HasComp<ItemToggleComponent>(uid))
+            return;
+
         comp.Active = !comp.Active;
         Dirty(uid, comp);
         if (comp.SoundEntity != null)
@@ -80,6 +86,14 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
     /// </summary>
     private void OnReceiverMapInit(EntityUid uid, StationRadioReceiverComponent comp, MapInitEvent args)
     {
+        // Starlight - Portable radios start muted until switched on Expand annotation
+        if (TryComp<ItemToggleComponent>(uid, out var toggle))
+        {
+            comp.Active = toggle.Activated;
+            Dirty(uid, comp);
+        }
+        // Starlight - End
+
         if (_net.IsClient)
             return;
 
@@ -246,6 +260,17 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             ? "station-radio-receiver-examine-low-volume"
             : "station-radio-receiver-examine-full-volume"));
     }
+
+    // Keeps a portable radio's volume in sync with its ItemToggle state, so it mutes when switched off/when the power cell dies
+    // (Uses ToggleCellDrawSystem to force-deactivate ItemToggle on an empty cell)
+    private void OnItemToggled(EntityUid uid, StationRadioReceiverComponent comp, ref ItemToggledEvent args)
+    {
+        comp.Active = args.Activated;
+        Dirty(uid, comp);
+        if (comp.SoundEntity != null)
+            _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)));
+    }
+
     #endregion
     // Starlight - End
 }
