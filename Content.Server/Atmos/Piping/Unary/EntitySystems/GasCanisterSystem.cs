@@ -105,6 +105,8 @@ public sealed partial class GasCanisterSystem : SharedGasCanisterSystem
 
         RefreshCanister(uid, canister); // Starlight
     }
+    #region Starlight
+    // I kept it in here, because much of that function i took out of OnCanisterUpdated
     public void RefreshCanister(EntityUid uid, GasCanisterComponent canister)
     {
         if (!TryComp<AppearanceComponent>(uid, out var appearance)) // Starlight: safeguard
@@ -131,6 +133,7 @@ public sealed partial class GasCanisterSystem : SharedGasCanisterSystem
             _appearance.SetData(uid, GasCanisterVisuals.PressureState, 3, appearance);
         }
     }
+    #endregion
 
     /// <summary>
     /// Mix air from a gas container into a pipe net.
