@@ -1,4 +1,5 @@
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Atmos.Piping.Unary.EntitySystems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared._Starlight.Atmos.Piping.Unary.Systems;
@@ -12,6 +13,7 @@ public sealed partial class GasCanisterHoseSystem : SharedGasCanisterHoseSystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private GasTankSystem _gasTank = default!;
+    [Dependency] private GasCanisterSystem _gasCanister = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
 
     protected override void RefillTank(Entity<GasCanisterComponent> canister, EntityUid tankUid, EntityUid user)
@@ -24,7 +26,7 @@ public sealed partial class GasCanisterHoseSystem : SharedGasCanisterHoseSystem
         if(tank.Air.TotalMoles <= previousMoles)
             return;
 
-        Dirty(canister);
+        _gasCanister.RefreshCanister(canister.Owner, canister.Comp);
         tank.TotalMoles = tank.Air.TotalMoles;
         _gasTank.CheckStatus((tankUid, tank));
         _gasTank.UpdateUserInterface((tankUid, tank));

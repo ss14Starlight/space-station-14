@@ -103,26 +103,7 @@ public sealed partial class GasCanisterSystem : SharedGasCanisterSystem
         if (MathHelper.CloseToPercent(canister.Air.Pressure, canister.LastPressure))
             return;
 
-        DirtyUI(uid, canister, nodeContainer);
-
-        canister.LastPressure = canister.Air.Pressure;
-
-        if (canister.Air.Pressure < 10)
-        {
-            _appearance.SetData(uid, GasCanisterVisuals.PressureState, 0, appearance);
-        }
-        else if (canister.Air.Pressure < Atmospherics.OneAtmosphere)
-        {
-            _appearance.SetData(uid, GasCanisterVisuals.PressureState, 1, appearance);
-        }
-        else if (canister.Air.Pressure < (15 * Atmospherics.OneAtmosphere))
-        {
-            _appearance.SetData(uid, GasCanisterVisuals.PressureState, 2, appearance);
-        }
-        else
-        {
-            _appearance.SetData(uid, GasCanisterVisuals.PressureState, 3, appearance);
-        }
+        RefreshCanister(uid, canister); // Starlight
     }
 
     /// <summary>
