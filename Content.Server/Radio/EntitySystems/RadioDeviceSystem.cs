@@ -323,10 +323,12 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
         Dirty(ent);
     }
 
-    // Starlight start - Hooks for item toggling
+    #region Starlight
+
     private void OnItemToggled(EntityUid uid, RadioMicrophoneComponent comp, ref ItemToggledEvent args)
         => SetMicrophoneEnabled(uid, null, args.Activated && !(comp.PowerRequired && !this.IsPowered(uid, EntityManager)));
     private void OnItemToggled(EntityUid uid, RadioSpeakerComponent comp, ref ItemToggledEvent args)
         => SetSpeakerEnabled(uid, null, args.Activated);
-    // Starlight end
+    
+    #endregion
 }
