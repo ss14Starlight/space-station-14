@@ -5,6 +5,9 @@
   suffix: Vulpkanin
   description: "A disgustingly hyperactive pump designed to keep things animate."
   components:
+    - type: Sprite
+      sprite: Mobs/Species/Vulpkanin/organs.rsi
+      state: heart-on
     - type: Metabolizer
       updateInterval: 0.8
 
@@ -17,7 +20,7 @@
   components:
     # Starlight start
     - type: Sprite
-      sprite: Mobs/Species/Human/organs.rsi
+      sprite: Mobs/Species/Vulpkanin/organs.rsi
       state: stomach
     - type: Item
       size: Small
@@ -31,3 +34,59 @@
     - type: Metabolizer
       updateInterval: 1.5
     # Starlight end
+
+- type: entity
+  id: OrganVulpkaninEyes
+  parent: OrganHumanEyes
+  name: vulpkanin eyes
+  suffix: Vulpkanin
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Vulpkanin/organs.rsi
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
+
+- type: entity
+  id: OrganVulpkaninTongue
+  parent: OrganHumanTongue
+  name: vulpkanin tongue
+  suffix: Vulpkanin
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Vulpkanin/organs.rsi
+    state: tongue
+
+- type: entity
+  id: OrganVulpkaninLungs
+  parent: OrganHumanLungs
+  name: vulpkanin lungs
+  suffix: Vulpkanin
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Vulpkanin/organs.rsi
+    layers:
+    - state: lung-l
+    - state: lung-r
+
+- type: entity
+  id: OrganVulpkaninLiver
+  parent: OrganAnimalLiver
+  name: vulpkanin liver
+  suffix: Vulpkanin
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Vulpkanin/organs.rsi
+    state: liver
+
+- type: entity
+  id: OrganVulpkaninKidneys
+  parent: OrganHumanKidneys
+  name: vulpkanin kidneys
+  suffix: Vulpkanin
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Vulpkanin/organs.rsi
+    layers:
+    - state: kidney-l
+    - state: kidney-r

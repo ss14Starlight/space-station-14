@@ -18,6 +18,13 @@
   #Starlight
 #  - type: Hunger # starlight
 #  - type: Thirst # starlight
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#ccac1f"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
   - type: MessyDrinker
     spillChance: 0.05 # 🌟Starlight🌟 26% chance to spill per 30u of liquid
   - type: Icon
@@ -49,11 +56,11 @@
         Piercing: 2
         Slash: 3
   # starlight start - temp vulpkanin revert
-  # - type: Temperature # Same as moth temperatures until below is solved.
+  # - type: Temperature
   #   specificHeat: 44
   # - type: TemperatureDamage
-  #   heatDamageThreshold: 320 # TODO: 315 when there is a way to make the temperature alert not blink to the side of the screen and disappear when you "sweat" at 39C.
-  #   coldDamageThreshold: 230 # TODO: 220 when the above is solved.
+  #   heatDamageThreshold: 320
+  #   coldDamageThreshold: 230
   #   coldDamage:
   #     types:
   #       Cold: 0.05 # Per second, scales with temperature & other constants
@@ -82,6 +89,11 @@
   #       volume: -5
   #       variation: 0.05
   # STARLIGHT END
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: SulfurBlood
+        Quantity: 600
   - type: Sprite # Drawlayers. Top to bottom in order I believe.
     netsync: false
     layers:

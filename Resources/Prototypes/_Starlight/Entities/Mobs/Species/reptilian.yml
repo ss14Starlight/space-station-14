@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urisst' Mzhand
+  name: Urist McScales
   parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge, BaseInventoryReptilian] # Starlight
   id: BaseMobReptilian
   abstract: true
