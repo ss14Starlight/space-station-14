@@ -7,11 +7,11 @@
   icon: "JobIconRadioHost"
   supervisors: job-supervisors-hop
   access:
-  - Maintenance
-  - Journalism
-  - Service
+    - Maintenance
+    - Journalism
+    - Service
   extendedAccess: # Starlight
-  - Theatre # Starlight
+    - Theatre # Starlight
 
 - type: startingGear
   id: RadioHostGear
@@ -19,8 +19,11 @@
     id: RadioHostPDA
     ears: ClothingHeadsetAltRadioHost
     belt: ClothingBeltStorageWaistbag
-    pocket1: Multitool # Starlight
-    pocket2: BoxRadioHandheldStation # Starlight
+  storage:
+    belt:
+      - NetworkConfigurator # Starlight
+    back:
+      - BoxRadioHandheldStation # Starlight
 
 - type: chameleonOutfit
   id: RadioHostChameleonOutfit
