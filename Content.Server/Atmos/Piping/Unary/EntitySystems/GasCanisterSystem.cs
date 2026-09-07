@@ -106,6 +106,34 @@ public sealed partial class GasCanisterSystem : SharedGasCanisterSystem
         RefreshCanister(uid, canister); // Starlight
     }
 
+    
+    public void RefreshCanister(EntityUid uid, GasCanisterComponent canister)
+    {
+        if (!TryComp<AppearanceComponent>(uid, out var appearance))
+            return;
+
+        DirtyUI(uid, canister); // Starlight, make sure that the UI is also updated when the canister is refreshed.
+
+        canister.LastPressure = canister.Air.Pressure;
+
+        if (canister.Air.Pressure < 10)
+        {
+            _appearance.SetData(uid, GasCanisterVisuals.PressureState, 0, appearance);
+        }
+        else if (canister.Air.Pressure < Atmospherics.OneAtmosphere)
+        {
+            _appearance.SetData(uid, GasCanisterVisuals.PressureState, 1, appearance);
+        }
+        else if (canister.Air.Pressure < (15 * Atmospherics.OneAtmosphere))
+        {
+            _appearance.SetData(uid, GasCanisterVisuals.PressureState, 2, appearance);
+        }
+        else
+        {
+            _appearance.SetData(uid, GasCanisterVisuals.PressureState, 3, appearance);
+        }
+    }
+
     /// <summary>
     /// Mix air from a gas container into a pipe net.
     /// Useful for anything that uses connector ports.
