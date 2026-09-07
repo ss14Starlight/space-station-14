@@ -4,46 +4,47 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Funkystation.Footprints;
 
-public sealed class FootprintSystem : EntitySystem
+// Starlight, had to update this quite a bit to use EntityQuery.
+public sealed partial class FootprintSystem : EntitySystem
 {
+    [Dependency] private SpriteSystem _sprite = default!;
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<FootprintComponent, ComponentStartup>(OnStartup);
-        SubscribeNetworkEvent<FootprintStateEvent>(OnStateUpdated);
+        SubscribeLocalEvent<FootprintComponent, AfterAutoHandleStateEvent>(OnStateUpdated);
     }
 
-    private void OnStartup(EntityUid uid, FootprintComponent component, ref ComponentStartup args)
+    private void OnStartup(Entity<FootprintComponent> entity, ref ComponentStartup args)
     {
-        UpdateVisuals(uid, component);
+        UpdateVisuals(entity);
     }
 
-    private void OnStateUpdated(FootprintStateEvent args)
+    private void OnStateUpdated(Entity<FootprintComponent> entity, ref AfterAutoHandleStateEvent args)
     {
-        if (TryGetEntity(args.NetEntity, out var uid) && TryComp<FootprintComponent>(uid, out var comp))
-        {
-            UpdateVisuals(uid.Value, comp);
-        }
+        UpdateVisuals(entity);
     }
 
-    private void UpdateVisuals(EntityUid uid, FootprintComponent component)
+    private void UpdateVisuals(Entity<FootprintComponent> entity)
     {
-        if (!TryComp<SpriteComponent>(uid, out var sprite))
+        if (!TryComp<SpriteComponent>(entity, out var sprite))
             return;
 
-        var rsiPath = new ResPath("/Textures/_Funkystation/Effects/footprints.rsi");
+        var spriteEntity = new Entity<SpriteComponent>(entity, sprite);
+        var nullableSprite = spriteEntity.AsNullable();
 
-        for (var i = 0; i < component.Prints.Count; i++)
+        for (var i = 0; i < entity.Comp.Prints.Count; i++)
         {
-            var print = component.Prints[i];
+            var print = entity.Comp.Prints[i];
+            var layer = _sprite.TryGetLayer(nullableSprite, i, out var existing, logMissing: false)
+                ? existing
+                : _sprite.AddBlankLayer(spriteEntity, i);
 
-            if (!sprite.LayerExists(i))
-                sprite.AddBlankLayer(i);
-
-            sprite.LayerSetOffset(i, print.Offset);
-            sprite.LayerSetRotation(i, print.Rotation);
-            sprite.LayerSetColor(i, print.Color);
-            sprite.LayerSetSprite(i, new SpriteSpecifier.Rsi(rsiPath, print.State));
+            _sprite.LayerSetOffset(layer, print.Offset);
+            _sprite.LayerSetRotation(layer, print.Rotation);
+            _sprite.LayerSetColor(layer, print.Color);
+            _sprite.LayerSetSprite(layer, new SpriteSpecifier.Rsi(entity.Comp.Sprites, print.State));
         }
     }
 }

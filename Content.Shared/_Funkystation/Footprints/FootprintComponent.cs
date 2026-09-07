@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Funkystation.Footprints;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)] // Starlight
 public sealed partial class FootprintComponent : Component
 {
     [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]

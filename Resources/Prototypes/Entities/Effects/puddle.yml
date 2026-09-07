@@ -203,6 +203,7 @@
 
 # Funky footprints
 - type: entity
+  parent: SolutionPrint # Starlight
   name: footprint
   id: Footprint
   save: false
@@ -230,12 +231,13 @@
         layer:
         - SlipLayer
         hard: false
-  - type: SolutionContainerManager
+  #- type: SolutionContainerManager # Starlight
   - type: Footprint
   - type: Puddle
     solution: print
     affectsMovement: false
     affectsSound: false
+    causesStains: false # Starlight
   - type: ExaminableSolution
     solution: print
   - type: MixableSolution

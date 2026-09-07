@@ -15,6 +15,7 @@ using Content.Shared.Popups;
 using Content.Shared.Slippery;
 using Content.Shared._Funkystation.Fluids;
 using Content.Shared._Funkystation.Footprints;
+using Content.Shared._Funkystation.WallStains;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
 using Content.Shared.StepTrigger.Systems;

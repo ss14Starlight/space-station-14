@@ -9,6 +9,7 @@
     sprite: Clothing/Shoes/Specific/galoshes.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Specific/galoshes.rsi
+  - type: NoFootprints
   - type: StealTarget
     stealGroup: GaloshesCollection
 

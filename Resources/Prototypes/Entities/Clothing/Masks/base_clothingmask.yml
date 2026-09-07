@@ -13,10 +13,6 @@
     price: 25
   # Forky - start - clothing stains
   - type: Appearance
-  - type: SolutionContainerManager # Funky change
-    solutions:
-      stain:
-        maxVol: 5
   - type: Stainable
     clothingVisuals:
       mask:
