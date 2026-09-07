@@ -59,7 +59,7 @@
   parent: FireExtinguisher
   id: BluespaceFireExtinguisher
   name: bluespace fire extinguisher
-  description: It extinguishes fires. it slowly refills with water.
+  description: It extinguishes fires, and slowly refills with water.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/bluespace_extinguisher.rsi
