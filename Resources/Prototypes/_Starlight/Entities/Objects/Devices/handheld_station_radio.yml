@@ -7,21 +7,58 @@
     - type: TelecomExempt
     - type: Tag
       tags:
-      - Radio
+        - Radio
     - type: Sprite
       sprite: _Starlight/Objects/Devices/handheld_station_radio.rsi
       layers:
-        - state: walkietalkie
-        - state: walkietalkie-on
-      state: walkietalkie
+        - state: handradio-off
+          map: ["enum.ToggleableVisuals.Layer"]
+        - state: unlit
+          shader: unshaded
+          visible: false
+          map: ["enum.LightLayers.Unshaded"]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ToggleableVisuals.Enabled:
+          enum.ToggleableVisuals.Layer:
+            True: { state: handradio-on }
+            False: { state: handradio-off }
+          enum.LightLayers.Unshaded:
+            True: { visible: true }
+            False: { visible: false }
     - type: Item
       sprite: _Starlight/Objects/Devices/handheld_station_radio.rsi
-      heldPrefix: walkietalkie
+      heldPrefix: handradio
       size: Tiny
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellSmall
+          blacklist:
+            tags:
+              - MechReactor
+    - type: ToggleCellDraw
+    - type: PowerCellDraw
+      drawRate: 0.2
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
     - type: RadioSpeaker
+      enabled: true
       channels:
         - RadioShow
     - type: Speech
       speechVerb: Radio
+    - type: ActiveRadio
+      channels:
+        - RadioShow
+    - type: ItemToggle
     - type: StationRadioReceiver
       active: false
+      defaultParams: !type:AudioParams
+        maxDistance: 2
+        volume: 1.5

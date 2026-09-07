@@ -243,7 +243,7 @@
   id: ServiceStationRadioBoxes
   icon:
     sprite: _Starlight/Objects/Devices/handheld_station_radio.rsi
-    state: walkietalkie
+    state: handradio-off
   product: CrateStationRadioHandheld
   cost: 6500
   category: cargoproduct-category-name-service
