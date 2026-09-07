@@ -9,3 +9,4 @@ species-name-resomi = Resomi
 species-name-shadekin = Shadekin
 species-name-thaven = Thaven
 species-name-rodentia = Rodentia
+species-name-dwarf = Dwarf

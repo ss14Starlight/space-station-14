@@ -9,10 +9,6 @@
   id: Bloodsucker
   name: metabolizer-type-bloodsucker
 
-- type: metabolizerType #🌟Starlight🌟
-  id: Doll
-  name: metabolizer-type-doll
-
 - type: metabolizerType
   id: Dragon
   name: metabolizer-type-dragon
@@ -36,10 +32,6 @@
 - type: metabolizerType
   id: Plant
   name: metabolizer-type-plant
-
-- type: metabolizerType
-  id: Dwarf
-  name: metabolizer-type-dwarf
 
 - type: metabolizerType
   id: Moth

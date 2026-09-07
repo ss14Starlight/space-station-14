@@ -498,29 +498,6 @@
   - snores!
 
 - type: emote
-  id: LagomorphSneeze
-  name: chat-emote-name-sneeze
-  category: Vocal
-  available: false
-  icon: _Starlight/Interface/Emotes/emote-rage.png
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: ["chat-emote-msg-sneeze"]
-  chatTriggers:
-  - sneeze
-  - sneeze.
-  - sneeze?
-  - sneeze!
-  - sneezes
-  - sneezes.
-  - sneezes?
-  - sneezes!
-
-- type: emote
   id: LagomorphStomp
   name: chat-emote-name-stomp
   category: Hands

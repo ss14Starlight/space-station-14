@@ -9,8 +9,8 @@
       - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganHumanEyes
-        tongue: OrganHumanTongue #Starlight - surgery
+        eyes: OrganVulpkaninEyes
+        tongue: OrganVulpkaninTongue #Starlight - surgery
         eye_implant: null #Starlight - surgery
         nose_implant: null # 🌟Starlight🌟
         brain_implant: null # 🌟Starlight🌟
@@ -23,10 +23,10 @@
       - left leg
       organs:
         heart: OrganVulpkaninHeart # starlight - temp vulpkanin revert
-        lungs: OrganHumanLungs
+        lungs: OrganVulpkaninLungs
         stomach: OrganVulpkaninStomach
-        liver: OrganAnimalLiver
-        kidneys: OrganHumanKidneys
+        liver: OrganVulpkaninLiver
+        kidneys: OrganVulpkaninKidneys
         cavity: null #Starlight - surgery
     right arm:
       part: RightArmVulpkanin
