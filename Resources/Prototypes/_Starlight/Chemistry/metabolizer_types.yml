@@ -29,7 +29,3 @@
 - type: metabolizerType
   id: Doll
   name: metabolizer-type-doll
-
-- type: metabolizerType
-  id: Dwarf
-  name: metabolizer-type-dwarf
