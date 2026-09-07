@@ -21,8 +21,8 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-using Content.Shared.NPC.Systems; // Starlight
-using Content.Shared.NPC.Prototypes; // Starlight
+using Content.Shared.NPC.Systems;
+using Content.Shared.NPC.Prototypes;
 
 namespace Content.Server.Anomaly.Effects;
 
