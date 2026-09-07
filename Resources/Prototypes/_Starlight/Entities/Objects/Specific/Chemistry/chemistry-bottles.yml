@@ -196,7 +196,7 @@
 
 - type: entity
   id: ChemistryBottleGlub
-  suffix: glub
+  suffix: Glub Juice
   parent: BaseChemistryBottleFilled
   components:
   - type: Label

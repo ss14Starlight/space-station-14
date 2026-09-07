@@ -20,8 +20,12 @@
       reagents:
       - ReagentId: CarpoToxin
         Quantity: 5
+      - ReagentId: JuiceThatMakesYouGlub
+        Quantity: 15
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: CarpoToxin
         Quantity: 5
+      - ReagentId: JuiceThatMakesYouGlub
+        Quantity: 15

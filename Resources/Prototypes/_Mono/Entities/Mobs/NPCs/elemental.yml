@@ -19,3 +19,43 @@
       - map: [ "enum.DamageStateVisualLayers.Base" ]
         state: alive
         color: "#b4dae0"
+
+- type: entity
+  id: ReagentSlimeGlubJuice
+  parent: ReagentSlime
+  suffix: Glub Juice
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution: # Starlight
+      reagents:
+      - ReagentId: JuiceThatMakesYouGlub
+        Quantity: 200 # Starlight, double bloodstream capacity
+  - type: PointLight
+    color: "#009690"
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/elemental.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+        color: "#009690"
+
+- type: entity
+  id: ReagentSlimeWehJuice
+  parent: ReagentSlime
+  suffix: Weh Juice
+  components:
+  - type: Bloodstream
+    bloodReferenceSolution: # Starlight
+      reagents:
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 200 # Starlight, double bloodstream capacity
+  - type: PointLight
+    color: "#59b23a"
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/elemental.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: alive
+        color: "#59b23a"
