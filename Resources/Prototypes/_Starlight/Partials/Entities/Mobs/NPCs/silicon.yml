@@ -17,6 +17,7 @@
 
 - type: !PartialOnly entity
   id: MobFireBot
+  parent: !Clear [ MobSiliconBase, SolutionFireExtinguisherMini ]
   components:
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-mechanical
@@ -42,6 +43,7 @@
 
 - type: !PartialOnly entity
   id: MobCleanBot
+  parent: !Clear [ MobSiliconBase, SolutionMopNormal ]
   components:
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-mechanical
