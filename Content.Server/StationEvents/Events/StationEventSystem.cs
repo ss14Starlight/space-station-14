@@ -49,7 +49,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
             stationEvent.TargetStation = chosenStation;
         //Starlight end stationEvent.TargetStation = station;
 
-        Announce(stationEvent, stationEvent.StartAnnouncement, false, stationEvent.StartAnnouncementColor, stationEvent.StartAudio);
+        Announce(stationEvent, stationEvent.StartAnnouncement, false, stationEvent.StartAnnouncementColor, stationEvent.StartAudio, stationEvent.SuppressTTS);
 
         // we don't want to send to players who aren't in game (i.e. in the lobby)
 
@@ -88,7 +88,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
         //Starlight begin
         // we don't want to send to players who aren't in game (i.e. in the lobby)
-        Announce(stationEvent, stationEvent.EndAnnouncement, false, stationEvent.EndAnnouncementColor, stationEvent.EndAudio);
+        Announce(stationEvent, stationEvent.EndAnnouncement, false, stationEvent.EndAnnouncementColor, stationEvent.EndAudio, stationEvent.SuppressTTS);
         //Starlight end
     }
 
@@ -128,7 +128,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
     }
 
     //Starlight begin
-    public void Announce(StationEventComponent stationEvent, LocId? announcementLocId, bool dispatchSound, Color? colorOverride = null, SoundSpecifier? soundOverride = null)
+    public void Announce(StationEventComponent stationEvent, LocId? announcementLocId, bool dispatchSound, Color? colorOverride = null, SoundSpecifier? soundOverride = null, bool SuppressTTS = false)
     {
         if (announcementLocId is null) return;
         if (stationEvent.GlobalAnnouncement)
@@ -137,7 +137,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame,
                 Loc.GetString(announcementLocId), playSound: dispatchSound,
-                colorOverride: colorOverride);
+                colorOverride: colorOverride, SuppressTTS:SuppressTTS);
 
             if(soundOverride is not null) Audio.PlayGlobal(soundOverride, allPlayersInGame, true);
         }
@@ -153,7 +153,7 @@ public abstract partial class StationEventSystem<T> : GameRuleSystem<T> where T 
 
             ChatSystem.DispatchFilteredAnnouncement(allPlayersOnStation,
                 Loc.GetString(announcementLocId), playSound: dispatchSound,
-                colorOverride: colorOverride);
+                colorOverride: colorOverride, SuppressTTS:SuppressTTS);
 
             if(soundOverride is not null) Audio.PlayGlobal(soundOverride, allPlayersOnStation, true);
         }

@@ -30,7 +30,7 @@ public sealed partial class MeteorSwarmSystem : StationEventSystem<MeteorSwarmCo
         //Starlight begin
         if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
         if (component.Announcement is { } locId)
-            Announce(stationEvent, locId, false, colorOverride: Color.Gold);
+            Announce(stationEvent, locId, false, colorOverride: Color.Gold, SuppressTTS: stationEvent.SuppressTTS);
         //Starlight end
     }
 
