@@ -1,11 +1,4 @@
 Entries:
-- author: Mack
-  changes:
-  - message: The supplybot can now hold paperwork.
-    type: Add
-  id: 407988
-  time: '2026-08-30T06:10:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5876
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Alt interacting with the ID card computer or similar now ejects the target ID first instead of the privileged ID.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408387
   time: '2026-09-07T07:58:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: STARLIGHT TEAM
+  changes:
+  - message: Automenders no longer take the incorrect chemical from smart dispensers and plumbing sinks.
+    type: Fix
+  id: 408388
+  time: '2026-09-07T13:50:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5940
 Order: -1
