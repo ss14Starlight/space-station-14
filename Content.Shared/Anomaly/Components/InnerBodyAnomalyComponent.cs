@@ -69,9 +69,6 @@ public sealed partial class InnerBodyAnomalyComponent : Component
     /// </summary>
     [DataField]
     public string LayerMap = "inner_anomaly_layer";
-
-    [DataField]
-    public bool AddedCosmicCultFaction; // Starlight
 }
 
 /// <summary>
