@@ -24,6 +24,7 @@ public sealed partial class GasCanisterHoseSystem : SharedGasCanisterHoseSystem
         if(tank.Air.TotalMoles <= previousMoles)
             return;
 
+        Dirty(canister);
         tank.TotalMoles = tank.Air.TotalMoles;
         _gasTank.CheckStatus((tankUid, tank));
         _gasTank.UpdateUserInterface((tankUid, tank));
