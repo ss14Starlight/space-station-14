@@ -41,7 +41,7 @@
   suffix: Moth
   components:
   - type: OrganTongue
-    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings']
+    allowedEmotes: ['Chitter', 'Squeak', 'Flap']
     sounds:
       Male: UnisexMoth
       Female: UnisexMoth

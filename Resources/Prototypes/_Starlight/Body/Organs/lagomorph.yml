@@ -53,7 +53,7 @@
   suffix: Lagomorph
   components:
   - type: OrganTongue
-    allowedEmotes: ['Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore', 'LagomorphStomp']
+    allowedEmotes: ['Squee', 'Snort', 'Sneeze', 'LagomorphSnore', 'LagomorphStomp']
     sounds:
       Male: MaleLagomorph
       Female: FemaleLagomorph

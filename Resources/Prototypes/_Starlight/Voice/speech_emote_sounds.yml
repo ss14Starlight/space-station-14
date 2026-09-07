@@ -866,7 +866,7 @@
       collection: ReptilianHiss
     Rattle:
       path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
-    FlapWings:
+    Flap:
       path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
     Bubble:
       collection: Bubbles
@@ -878,8 +878,6 @@
       collection: LagomorphSnort
     LagomorphSnore:
       collection: LagomorphSnore
-    LagomorphSneeze:
-      collection: LagomorphSneeze
     LagomorphStomp:
       collection: LagomorphStomp
     ThavenGlub:
@@ -1007,7 +1005,7 @@
       collection: ReptilianHiss
     Rattle:
       path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
-    FlapWings:
+    Flap:
       path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
     Bubble:
       collection: Bubbles
@@ -1019,8 +1017,6 @@
       collection: LagomorphSnort
     LagomorphSnore:
       collection: LagomorphSnore
-    LagomorphSneeze:
-      collection: LagomorphSneeze
     LagomorphStomp:
       collection: LagomorphStomp
     ThavenGlub:
