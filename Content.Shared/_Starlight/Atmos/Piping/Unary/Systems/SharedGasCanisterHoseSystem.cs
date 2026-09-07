@@ -6,11 +6,11 @@ using Content.Shared.Lock;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using GasCanisterComponent = Content.Shared.Atmos.Piping.Unary.Components.GasCanisterComponent;
-using GasCanisterHoseComponent = Content.Shared.Atmos.Piping.Unary.Components.GasCanisterHoseComponent;
-using GasCanisterHoseSlotComponent = Content.Shared.Atmos.Piping.Unary.Components.GasCanisterHoseSlotComponent;
+using GasCanisterHoseComponent = Content.Shared._Starlight.Atmos.Piping.Unary.Components.GasCanisterHoseComponent;
+using GasCanisterHoseSlotComponent = Content.Shared._Starlight.Atmos.Piping.Unary.Components.GasCanisterHoseSlotComponent;
 using Robust.Shared.Containers;
 
-namespace Content.Shared.Atmos.Piping.Unary.Systems;
+namespace Content.Shared._Starlight.Atmos.Piping.Unary.Systems;
 
 public abstract partial class SharedGasCanisterHoseSystem : EntitySystem
 {
@@ -53,10 +53,8 @@ public abstract partial class SharedGasCanisterHoseSystem : EntitySystem
         UpdateHoseAppearance(uid, false);
     }
 
-    private void UpdateHoseAppearance(EntityUid uid, bool attached)
-    {
+    private void UpdateHoseAppearance(EntityUid uid, bool attached) =>
         _appearance.SetData(uid, GasCanisterVisuals.HoseAttached, attached);
-    }
 
     private void OnCanisterInteractUsing(Entity<GasCanisterComponent> canister, ref InteractUsingEvent args)
     {
@@ -71,10 +69,10 @@ public abstract partial class SharedGasCanisterHoseSystem : EntitySystem
             if (!hoseSlot.HoseSlot.HasItem)
                 return;
 
+            args.Handled = true;
             if (TryComp<GasTankComponent>(args.Used, out var tank) && tank.IsValveOpen)
                 return;
 
-            args.Handled = true;
             RefillTank(canister, args.Used, args.User);
             return;
         }

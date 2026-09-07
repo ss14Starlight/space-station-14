@@ -6,7 +6,7 @@ using Content.Shared.Database;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Containers;
 using GasCanisterComponent = Content.Shared.Atmos.Piping.Unary.Components.GasCanisterComponent;
-using GasCanisterHoseSlotComponent = Content.Shared.Atmos.Piping.Unary.Components.GasCanisterHoseSlotComponent;
+using GasCanisterHoseSlotComponent = Content.Shared._Starlight.Atmos.Piping.Unary.Components.GasCanisterHoseSlotComponent;
 
 namespace Content.Shared.Atmos.Piping.Unary.Systems;
 

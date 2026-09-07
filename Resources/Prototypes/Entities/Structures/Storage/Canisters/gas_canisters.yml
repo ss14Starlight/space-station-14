@@ -124,6 +124,7 @@
       containers:
         tank_slot: !type:ContainerSlot {}
         paper_label: !type:ContainerSlot
+        hose_slot: !type:ContainerSlot {} # Starlight
     - type: NodeContainer
       nodes:
         port:

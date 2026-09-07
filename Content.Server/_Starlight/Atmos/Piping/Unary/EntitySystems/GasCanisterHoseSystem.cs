@@ -1,19 +1,18 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Unary.Components;
-using Content.Shared.Atmos.Piping.Unary.Systems;
+using Content.Shared._Starlight.Atmos.Piping.Unary.Systems;
 using GasCanisterComponent = Content.Shared.Atmos.Piping.Unary.Components.GasCanisterComponent;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 
-namespace Content.Server.Atmos.Piping.Unary.EntitySystems;
+namespace Content.Server._Starlight.Atmos.Piping.Unary.EntitySystems;
 
-public sealed class GasCanisterHoseSystem : SharedGasCanisterHoseSystem
+public sealed partial class GasCanisterHoseSystem : SharedGasCanisterHoseSystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private GasTankSystem _gasTank = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-
 
     protected override void RefillTank(Entity<GasCanisterComponent> canister, EntityUid tankUid, EntityUid user)
     {
