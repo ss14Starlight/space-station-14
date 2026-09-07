@@ -204,8 +204,6 @@
     sprite: _Starlight/Objects/Fun/Plushies/hrekrativi_plushie.rsi
     slots:
     - HEAD
-  - type: Speech
-    speechVerb: Vox # for pais (In the secret stash)
   - type: Tag
     tags:
     - ClothMade
