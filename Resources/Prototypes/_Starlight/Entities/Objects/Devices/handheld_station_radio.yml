@@ -1,9 +1,13 @@
 - type: entity
   name: handheld station radio
   description: Listen to those sweet tunes, on the go!
-  parent: [RadioHandheld]
+  parent: BaseItem # Can't inherit RadioHandheld because this needs to not inherit the microphone
   id: RadioHandheldStation
   components:
+    - type: TelecomExempt
+    - type: Tag
+      tags:
+      - Radio
     - type: Sprite
       sprite: _Starlight/Objects/Devices/handheld_station_radio.rsi
       layers:
@@ -19,7 +23,5 @@
         - RadioShow
     - type: Speech
       speechVerb: Radio
-    - type: ActiveRadio
-      channels:
-        - RadioShow
     - type: StationRadioReceiver
+      active: false
