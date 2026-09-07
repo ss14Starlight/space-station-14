@@ -1,109 +1,4 @@
 Entries:
-- author: Wizden Team
-  changes:
-  - message: Combat bakery kit now comes with a flatpack microwave instead of a machine board. The throwing croissants and baguette have been made equivalent in damage to other Traitor uplink items as well.
-    type: Tweak
-  id: 407973
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: The "Auto-fill the highlights with the character's information" accessibility option has been renamed to "Automatically set the highlights list based on your character's name and job".
-    type: Tweak
-  id: 407974
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: More automatic job-text highlights have been added.
-    type: Tweak
-  id: 407975
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: Crowbars are now consistent with other 1x2 items in terms of storage, e.g. in pockets.
-    type: Tweak
-  id: 407976
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: Holoclowns no longer try to attack their host.
-    type: Fix
-  id: 407977
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: Singularity grenade shouldn't throw you inside walls anymore.
-    type: Fix
-  id: 407978
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: Tasers no longer slow holoparasites down.
-    type: Fix
-  id: 407979
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: Tritium's thermal output is increased to its previous value, to reenable maxcap explosives and make the TEG easier to run.
-    type: Fix
-  id: 407980
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: Fixed a dev environment crash related to construction event validation.
-    type: Fix
-  id: 407981
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: Fixed being able to pick up chameleon projector disguises via context menu.
-    type: Fix
-  id: 407982
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: Empty gas canisters now have a populated UI.
-    type: Fix
-  id: 407983
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: Doors close on clown spider webs now.
-    type: Fix
-  id: 407984
-  time: '2026-08-30T03:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5871
-- author: Wizden Team
-  changes:
-  - message: Job lizard plushies can be found in various lockers around the station instead of being loadout items.
-    type: Tweak
-  id: 407985
-  time: '2026-08-30T03:45:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5872
-- author: Wizden Team
-  changes:
-  - message: Opporozidone no longer has instarot issues that get worse the longer the server has been running.
-    type: Fix
-  id: 407986
-  time: '2026-08-30T03:45:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5872
-- author: Mack
-  changes:
-  - message: The supplybot can drag up to 3 things at once.
-    type: Add
-  id: 407987
-  time: '2026-08-30T06:10:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5876
 - author: Mack
   changes:
   - message: The supplybot can now hold paperwork.
@@ -2799,4 +2694,109 @@ Entries:
   id: 408372
   time: '2026-09-07T03:52:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6026
+- author: Wizden Team
+  changes:
+  - message: Injecting someone else's blood is now slightly poisonous.
+    type: Add
+  id: 408373
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Added new emote for moths. They can flaps their wings!
+    type: Add
+  id: 408374
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Added Emp interaction with bar sign.
+    type: Add
+  id: 408375
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Using the "fuckrules" command will now create an admin log and alert the admins via chat.
+    type: Add
+  id: 408376
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Added more xenoborg names!
+    type: Add
+  id: 408377
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Added unlockable press hat and press vest for the Reporter job.
+    type: Add
+  id: 408378
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: The basic operative bundle now contains an esword, instead of a viper magazine and agent ID card.
+    type: Tweak
+  id: 408379
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Changed the EMP Implanter's uplink icon so it is less easily confused with the Scram Implanter's.
+    type: Tweak
+  id: 408380
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Made glasses actually correct short-sighted vision!
+    type: Tweak
+  id: 408381
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Entirely remade the Vegan Meatball magnet wreck to better work as a wreck for salvage.
+    type: Tweak
+  id: 408382
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: The Vegan Meatball magnet wreck should no longer pollute space with dozens of enemies after despawning.
+    type: Fix
+  id: 408383
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Changed viper magazine to high capacity in the basic operative bundle.
+    type: Fix
+  id: 408384
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Drinking blood as non-animal species makes you sick again.
+    type: Fix
+  id: 408385
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Jetpacks now turn off when another jetpack is activated.
+    type: Fix
+  id: 408386
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
+- author: Wizden Team
+  changes:
+  - message: Barber Scissors no longer misgender the target when blocked by a hat.
+    type: Fix
+  id: 408387
+  time: '2026-09-07T07:58:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6029
 Order: -1
