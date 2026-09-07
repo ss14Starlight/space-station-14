@@ -107,10 +107,10 @@ public sealed partial class GasCanisterSystem : SharedGasCanisterSystem
     }
     public void RefreshCanister(EntityUid uid, GasCanisterComponent canister)
     {
-        if (!TryComp<AppearanceComponent>(uid, out var appearance))
+        if (!TryComp<AppearanceComponent>(uid, out var appearance)) // Starlight: safeguard
             return;
 
-        DirtyUI(uid, canister); // Starlight, make sure that the UI is also updated when the canister is refreshed.
+        DirtyUI(uid, canister); // Starlight: make sure that the UI is also updated when the canister is refreshed.
 
         canister.LastPressure = canister.Air.Pressure;
 
