@@ -22,8 +22,7 @@ ghost-role-information-derelict-borgi-name = Derelict Borgi
 ghost-role-information-derelict-borgi-desc = You are a regular borgi that got lost in space. After years of exposure to ion storms you find yourself near a space station.
 
 ghost-role-information-horrific-tie-name = Horrific Necktie
-ghost-role-information-horrific-tie-description = You are a horrific necktie from Disco Elysium.
-ghost-role-information-horrific-tie-rules = [bold][color=cyan]ADMIN WARNING: Do not take this role if you don't know what Disco Elysium is and how to roleplay as necktie from it.[/color][/bold]
+ghost-role-information-horrific-tie-description = You are a horrific necktie, play into your wearer's hedonistic and carefree desires, a self-centered devil on their neck!
 
 ghost-role-information-space-courier-trunk-name = Space Courier Trunk pAI
 ghost-role-information-space-courier-trunk-description = You are the personal AI included inside of a space courier's trunk.
@@ -130,10 +129,16 @@ ghost-role-information-kiki-name = Kiki
 ghost-role-information-kiki-description = An honorable member of the kobold society in charge of botany and helping the botanists in any way she can.
 
 ghost-role-information-stirstir-name = Stir Stir
-ghost-role-information-stirstir-description = A disreputable monkey who should not be trusted. A real cell stuffer.
+ghost-role-information-stirstir-description = A disreputable monkey who should not be trusted. A real cell stuffer. Check the Guidebook for more information.
 
 ghost-role-information-syndicate-mothroach-reinforcement-name = Syndicate Mobroach
 ghost-role-information-syndicate-mothroach-reinforcement-description = Someone needs reinforcements. You, a trained mobroach, will help them.
 ghost-role-information-icesculpture-name = Ice sculpture
 ghost-role-information-icesculpture-description = A sculpture of ice given sentience by magic, obey your master!
 ghost-role-information-icesculpture-rules = Ensure your summoner survives, defend them at all cost. You were made for this.
+
+ghost-role-information-sentient-sharkminnow-name = Sentient Sharkminnow
+ghost-role-information-sentient-sharkminnow-description = Guard the dragon's rift and obey the Space Dragon. Protect the rift from anyone who would seek to destroy it!
+
+ghost-role-information-sentient-holocarp-name = Sentient Holocarp
+ghost-role-information-sentient-holocarp-description = Aid the Space Dragon and obey its commands. Help the dragon flood the station with carps and overwhelm its enemies!

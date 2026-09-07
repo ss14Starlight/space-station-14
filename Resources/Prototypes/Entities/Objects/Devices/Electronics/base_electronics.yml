@@ -23,13 +23,13 @@
   - type: FlavorProfile
     flavors:
     - shocking
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: BatteryAcid
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: BatteryAcid
+        Quantity: 15
   - type: Tag
     tags:
     - RamChip # FH + Starlight

@@ -1,9 +1,10 @@
+using System.Threading.Tasks;
 using Content.Server._NullLink;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.EventBus;
 using Content.Server._NullLink.PlayerData;
 using Content.Server._Starlight;
-using Content.Server._Starlight.BugReports; // Staright
+using Content.Server._Starlight.BugReports;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Server.Acz;
 using Content.Server.Administration;
@@ -42,6 +43,7 @@ using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -113,6 +115,8 @@ namespace Content.Server.Entry
                 var cast = (ServerModuleTestingCallbacks)callback;
                 cast.ServerBeforeIoC?.Invoke();
             }
+
+            Dependencies.Resolve<IRobustSerializer>().FloatFlags = SerializerFloatFlags.RemoveReadNan;
         }
 
         /// <inheritdoc />
@@ -243,8 +247,9 @@ namespace Content.Server.Entry
             }
 
             _serverApi.Shutdown();
-            // TODO Should this be awaited?
-            _discordLink.Shutdown();
+
+            // We don't care when or how this finishes, just spin the task off into the void.
+            _ = _discordLink.Shutdown();
             _discordChatLink.Shutdown();
             // Nullink start
             _nullLinkPlayerManager.Shutdown();

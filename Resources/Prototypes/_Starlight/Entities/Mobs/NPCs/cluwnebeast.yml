@@ -83,6 +83,7 @@
     name: ghost-role-information-cluwnebeast-name
     description: ghost-role-information-cluwnebeast-description
     rules: ghost-role-information-cluwnebeast-rules
+    mindRoles: [MindRoleGhostRoleSoloAntagonist]
     raffle:
       settings: default
   - type: Tag

@@ -76,7 +76,7 @@
 
 #Paramedic jacket
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase] # Starlight
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWinter] # Starlight
   id: ClothingOuterCoatParamedicJacket
   name: paramedic jacket
   description: A stylish dark blue jacket decorated with white stripes and cross. Nine out of ten paramedic recommend "Do Not Revive."
@@ -91,7 +91,7 @@
 
 #Rugged duster
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterColdBase] # Starlight
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter] # Starlight
   id: ClothingOuterCoatDuster
   name: rugged duster
   description: A rugged duster with a bandana scarf made for keeping off the ash and dust. Not much of that up in space though.

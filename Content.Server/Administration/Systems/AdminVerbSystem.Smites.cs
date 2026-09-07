@@ -5,6 +5,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GhostKick;
+using Content.Server._Starlight.Nutrition.EntitySystems;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Physics.Components;
 using Content.Server.Pointing.Components;

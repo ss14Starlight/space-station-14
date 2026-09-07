@@ -9,7 +9,6 @@ using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Kitchen.EntitySystems;
@@ -22,7 +21,6 @@ internal sealed partial class HandheldGrinderSystem : EntitySystem
     [Dependency] private SharedDestructibleSystem _destructibleSystem = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private INetManager _net = default!;
     [Dependency] private SharedPuddleSystem _puddle = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
 

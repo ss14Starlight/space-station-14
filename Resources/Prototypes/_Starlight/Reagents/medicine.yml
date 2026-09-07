@@ -338,3 +338,38 @@
         visualType: Medium
         messages: [ "leporazine-effect-temperature-adjusting" ]
         probability: 0.2
+
+- type: reagent
+  id: Respirazone
+  name: reagent-name-respirazone
+  group: Medicine
+  desc: reagent-desc-respirazone
+  physicalDesc: reagent-physical-desc-cloudy
+  allowedDepartments:
+  - Medical
+  flavor: medicine
+  color: "#4fb2a5"
+  metabolisms:
+    Bloodstream:
+      effects:
+      # Universal airloss treatment replacing DexalinPlus + Saline.
+      - !type:HealthChange
+        damage:
+          types:
+            Asphyxiation: -3.5
+            Bloodloss: -3
+      - !type:ModifyBloodLevel
+        amount: 3
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: HeartbreakerToxin
+          min: 1
+        reagent: HeartbreakerToxin
+        amount: -3
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Respirazone
+        amount: -0.5

@@ -105,13 +105,11 @@ public sealed partial class PlumbingPillPressSystem : EntitySystem
             {
                 var item = Spawn(_pillPrototypeId, spawnCoords);
                 _labelSystem.Label(item, ent.Comp.Label);
-                _solutionSystem.EnsureSolutionEntity(item,
+                _solutionSystem.EnsureSolution(item,
                     SharedChemMaster.PillSolutionName,
-                    out var itemSolution,
-                    dosage);
-
-                if (itemSolution.HasValue)
-                    _solutionSystem.TryAddSolution(itemSolution.Value, withdrawal);
+                    out var itemSolution);
+                _solutionSystem.SetCapacity(itemSolution, dosage);
+                _solutionSystem.TryAddSolution(itemSolution, withdrawal);
 
                 var pill = Comp<PillComponent>(item);
                 pill.PillType = ent.Comp.PillType;
@@ -122,13 +120,11 @@ public sealed partial class PlumbingPillPressSystem : EntitySystem
                 var item = Spawn(_patchPrototypeId, spawnCoords);
                 _labelSystem.Label(item, ent.Comp.Label);
 
-                _solutionSystem.EnsureSolutionEntity(item,
+                _solutionSystem.EnsureSolution(item,
                     SharedChemMaster.PatchSolutionName,
-                    out var itemSolution,
-                    dosage);
-
-                if (itemSolution.HasValue)
-                    _solutionSystem.TryAddSolution(itemSolution.Value, withdrawal);
+                    out var itemSolution);
+                _solutionSystem.SetCapacity(itemSolution, dosage);
+                _solutionSystem.TryAddSolution(itemSolution, withdrawal);
             }
         }
 

@@ -75,10 +75,10 @@
   # 🌟Starlight-end🌟
 
 - type: entity
-  name: Jaws of DEATH #SL
+  name: syndicate jaws of death
   parent: [JawsOfLife, BaseSyndicateContraband]
   id: SyndicateJawsOfLife
-  description: Useful for entering the station or its departments.
+  description: Useful for breaking into secure areas and other nefarious activities.
   components:
   # 🌟Starlight-start🌟
   - type: Tag

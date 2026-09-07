@@ -9,7 +9,11 @@ using Content.Shared.Atmos.Monitor;
 using Content.Shared.Atmos.Monitor.Components;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Pinpointer;
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Silicons.StationAi;
+using Content.Server.Silicons.StationAi;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -26,6 +30,9 @@ public sealed partial class AtmosAlertsComputerSystem : SharedAtmosAlertsCompute
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private NavMapSystem _navMapSystem = default!;
     [Dependency] private DeviceListSystem _deviceListSystem = default!;
+    #region Starlight
+    [Dependency] private StationAiSystem _stationAiSystem = default!;
+    #endregion
 
     private const float UpdateTime = 1.0f;
 
@@ -40,6 +47,7 @@ public sealed partial class AtmosAlertsComputerSystem : SharedAtmosAlertsCompute
         SubscribeLocalEvent<AtmosAlertsComputerComponent, ComponentInit>(OnConsoleInit);
         SubscribeLocalEvent<AtmosAlertsComputerComponent, EntParentChangedMessage>(OnConsoleParentChanged);
         SubscribeLocalEvent<AtmosAlertsComputerComponent, AtmosAlertsComputerFocusChangeMessage>(OnFocusChangedMessage);
+        SubscribeLocalEvent<AtmosAlertsComputerComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight
 
         // Grid events
         SubscribeLocalEvent<GridSplitEvent>(OnGridSplit);
@@ -48,6 +56,26 @@ public sealed partial class AtmosAlertsComputerSystem : SharedAtmosAlertsCompute
         SubscribeLocalEvent<AtmosAlertsDeviceComponent, EntityTerminatingEvent>(OnDeviceTerminatingEvent);
         SubscribeLocalEvent<AtmosAlertsDeviceComponent, AnchorStateChangedEvent>(OnDeviceAnchorChanged);
     }
+
+    #region Starlight
+    private void OnWarpRequest(EntityUid uid, AtmosAlertsComputerComponent component, ref CrewMonitoringWarpRequestMessage args)
+    {
+        if (args.Actor is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
+            return;
+
+        EntityCoordinates coordinates;
+        try
+        {
+            coordinates = GetCoordinates(args.Coordinates);
+        }
+        catch
+        {
+            return;
+        }
+
+        _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
+    }
+    #endregion
 
     #region Event handling
 
@@ -187,7 +215,7 @@ public sealed partial class AtmosAlertsComputerSystem : SharedAtmosAlertsCompute
 
                 // Update the appearance of the console based on the highest recorded level of alert
                 if (TryComp<AppearanceComponent>(ent, out var entAppearance))
-                    _appearance.SetData(ent, AtmosAlertsComputerVisuals.ComputerLayerScreen, (int) highestAlert, entAppearance);
+                    _appearance.SetData(ent, AtmosAlertsComputerVisuals.ComputerLayerScreen, (int)highestAlert, entAppearance);
 
                 // If the console UI is open, send UI data to each subscribed session
                 UpdateUIState(ent, airAlarmEntries, fireAlarmEntries, entConsole, entXform);
@@ -327,13 +355,13 @@ public sealed partial class AtmosAlertsComputerSystem : SharedAtmosAlertsCompute
         foreach ((var address, var sensorData) in focusDeviceAirAlarm.SensorData)
         {
             if (sensorData.TemperatureThreshold.CheckThreshold(sensorData.Temperature, out var temperatureState) &&
-                (int) temperatureState > (int) temperatureData.Item2)
+                (int)temperatureState > (int)temperatureData.Item2)
             {
                 temperatureData = (temperatureData.Item1, temperatureState);
             }
 
             if (sensorData.PressureThreshold.CheckThreshold(sensorData.Pressure, out var pressureState) &&
-                (int) pressureState > (int) pressureData.Item2)
+                (int)pressureState > (int)pressureData.Item2)
             {
                 pressureData = (pressureData.Item1, pressureState);
             }
@@ -353,7 +381,7 @@ public sealed partial class AtmosAlertsComputerSystem : SharedAtmosAlertsCompute
                     }
 
                     if (threshold.CheckThreshold(gasData[gas].Item2, out var gasState) &&
-                        (int) gasState > (int) gasData[gas].Item3)
+                        (int)gasState > (int)gasData[gas].Item3)
                     {
                         gasData[gas] = (gasData[gas].Item1, gasData[gas].Item2, gasState);
                     }

@@ -39,9 +39,9 @@
   - type: ActionGrant
     actions:
     - ActionJumpToCore
-    - ActionSurvCameraLights
     - ActionAIViewLaws
     - ActionAIShunt # Starlight AI Shunt ability
+    - ActionAIReconnectShunt # Starlight AI Shunt reconnect ability
     - ActionAIWarp # Starlight
   - type: UserInterface
     interfaces:
@@ -85,6 +85,7 @@
     - sprite: Mobs/Silicon/station_ai.rsi
       state: default
   - type: ShowJobIcons
+  - type: ShowCrewIcons
   #region Starlight
   - type: StationAIShuntable
   #endregion Starlight
@@ -113,6 +114,7 @@
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
   - type: ShowJobIcons
+  - type: ShowCrewIcons
 
 # Ai
 - type: entity
@@ -532,6 +534,16 @@
   description: The AI's viewer.
   categories: [ HideSpawnMenu, DoNotMap ]
   components:
+  - type: Fixtures
+    fixtures:
+      lightTrigger:
+        shape:
+          !type:PhysShapeCircle
+          radius: 8
+        density: 80
+        hard: false
+        layer:
+        - GhostImpassable
   - type: NoFTL
   - type: Tag
     tags:
@@ -550,6 +562,9 @@
     drawdepth: CyberspaceObjects # Starlight
     layers:
     - state: ai_camera
+      shader: unshaded
+      map: ["base"]
+  - type: CameraActiveOnCollideCollider
 
 # The holographic representation of the AI that is projected from a holopad.
 - type: entity
@@ -647,6 +662,7 @@
       name: ghost-role-information-syndicate-cyborg-assault-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist] # Starlight
       important: true # SL
       raffle:
         settings: default
@@ -700,6 +716,7 @@
       name: ghost-role-information-syndicate-cyborg-saboteur-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleGhostRoleSiliconAntagonist] # Starlight
       important: true # SL
       raffle:
         settings: default
@@ -761,6 +778,7 @@
     name: ghost-role-information-derelict-engineering-cyborg-name
     description: ghost-role-information-derelict-engineering-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles: [MindRoleSubvertedSilicon] # Starlight
     raffle:
       settings: default
     reregister: false
@@ -802,6 +820,7 @@
       name: ghost-role-information-derelict-cyborg-name
       description: ghost-role-information-derelict-cyborg-description
       rules: ghost-role-information-silicon-rules
+      mindRoles: [MindRoleSubvertedSilicon] # Starlight
       raffle:
         settings: default
       reregister: false
@@ -845,6 +864,7 @@
     name: ghost-role-information-derelict-janitor-cyborg-name
     description: ghost-role-information-derelict-janitor-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles: [MindRoleSubvertedSilicon] # Starlight
     raffle:
       settings: default
     reregister: false
@@ -889,6 +909,7 @@
     name: ghost-role-information-derelict-medical-cyborg-name
     description: ghost-role-information-derelict-medical-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles: [MindRoleSubvertedSilicon] # Starlight
     raffle:
       settings: default
     reregister: false
@@ -932,6 +953,7 @@
     name: ghost-role-information-derelict-mining-cyborg-name
     description: ghost-role-information-derelict-mining-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles: [MindRoleSubvertedSilicon] # Starlight
     raffle:
       settings: default
     reregister: false
@@ -974,6 +996,7 @@
     name: ghost-role-information-derelict-syndicate-assault-cyborg-name
     description: ghost-role-information-derelict-syndicate-assault-cyborg-description
     rules: ghost-role-information-silicon-rules
+    mindRoles: [MindRoleSubvertedSilicon] # Starlight
     raffle:
       settings: default
     reregister: false

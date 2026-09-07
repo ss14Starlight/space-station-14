@@ -1,0 +1,53 @@
+- type: constructionGraph
+  id: makeshiftdeadmansignaler
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: msdeadmansignaler
+          completed:
+          - !type:AdminLog
+            message: "Construction"
+            impact: High
+          steps:
+            - tag: Handcuffs
+              icon:
+                sprite: Objects/Misc/cablecuffs.rsi
+                state: cuff
+                color: red
+              name: construction-graph-tag-cuffs
+            - tag: RemoteSignaller
+              name: construction-graph-tag-remote-signaller
+              icon:
+                sprite: Objects/Devices/signaller.rsi
+                state: signaller
+              doAfter: 15
+    - node: msdeadmansignaler
+      entity: DeadManRemoteSignaller
+
+- type: constructionGraph
+  id: makeshiftdeadmansignaleradvanced
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: msdeadmansignaleradvanced
+          completed:
+            - !type:AdminLog
+              message: "Construction"
+              impact: High
+          steps:
+            - tag: Handcuffs
+              icon:
+                sprite: Objects/Misc/cablecuffs.rsi
+                state: cuff
+                color: red
+              name: construction-graph-tag-cuffs
+            - tag: RemoteSignallerAdvanced
+              name: construction-graph-tag-remote-signaller-adv
+              icon:
+                sprite: Objects/Devices/signaller.rsi
+                state: advanced
+              doAfter: 15
+    - node: msdeadmansignaleradvanced
+      entity: DeadManRemoteSignallerAdvanced

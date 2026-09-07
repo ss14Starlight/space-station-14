@@ -571,6 +571,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         args.AddLine(Loc.GetString("cosmiccult-roundend-monument-stage", ("stage", component.CurrentTier)));
 
         _cultistCounter.WithLabels(component.WinType.ToString()).Inc();
+        _convertsGauage.Set(0);
     }
 
     public void IncrementCultObjectiveEntropy(Entity<CosmicCultComponent> ent)
