@@ -18,6 +18,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.NPC.Systems; // Starlight
+using Content.Shared.NPC.Prototypes; // Starlight
 
 namespace Content.Server.Anomaly.Effects;
 
@@ -37,6 +39,11 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private StunSystem _stun = default!;
     [Dependency] private ActionGrantSystem _actionGrant = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!; // Starlight
+
+    private static readonly ProtoId<NpcFactionPrototype> _cosmicCultFaction = "CosmicCult"; // Starlight
+
+    public bool AddedCosmicCultFaction; // Starlight
 
     private readonly Color _messageColor = Color.FromSrgb(new Color(201, 22, 94));
 
@@ -96,8 +103,18 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             return;
 
         ent.Comp.Injected = true;
+#region Starlight
+        if (ent.Comp.InjectionProto == "CosmicAnomalyInjection")
+        {
+            if (!_npcFaction.IsMember(ent.Owner, _cosmicCultFaction))
+            {
+                _npcFaction.AddFaction(ent.Owner, _cosmicCultFaction);
+                ent.Comp.AddedCosmicCultFaction = true;
+            }
+        }
 
-        ProcessComponents(ent, injectedAnom.Components, true); // Starlight
+        ProcessComponents(ent, injectedAnom.Components, true);
+#endregion
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration), true);
@@ -217,6 +234,13 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
         // Starlight Start
         ent.Comp.Injected = false;
+
+        if (ent.Comp.AddedCosmicCultFaction = true)
+        {
+            _npcFaction.RemoveFaction(ent.Owner, _cosmicCultFaction);
+            ent.Comp.AddedCosmicCultFaction = false;
+        }
+
         Dirty(ent);
         // Starlight End
         if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
