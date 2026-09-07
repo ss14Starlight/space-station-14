@@ -463,6 +463,94 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/pencil_special_operations_officer.rsi
 
 - type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpskirtCentcomFormalBlue
+  name: CentComm officer's formal blue jumpskirt
+  description: It's a formal jumpskirt worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalblue.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalblue.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpskirtCentcomFormalLightBlue
+  name: CentComm officer's formal light blue jumpskirt
+  description: It's a formal jumpskirt worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformallightblue.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformallightblue.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpskirtCentcomFormalLightPurple
+  name: CentComm officer's formal light purple jumpskirt
+  description: It's a formal jumpskirt worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformallightpurple.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformallightpurple.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpskirtCentcomFormalOrange
+  name: CentComm officer's formal orange jumpskirt
+  description: It's a formal jumpskirt worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalorange.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalorange.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpskirtCentcomFormalPink
+  name: CentComm officer's formal pink jumpskirt
+  description: It's a formal jumpskirt worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalpink.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalpink.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpskirtCentcomFormalPurple
+  name: CentComm officer's formal purple jumpskirt
+  description: It's a formal jumpskirt worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalpurple.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalpurple.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpskirtCentcomFormalRed
+  name: CentComm officer's formal red jumpskirt
+  description: It's a formal jumpskirt worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalred.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalred.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpskirtCentcomFormalYellow
+  name: CentComm officer's formal yellow jumpskirt
+  description: It's a formal jumpskirt worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalyellow.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommformalyellow.rsi
+
+- type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCargoSalvage
   name: salvage specialist jumpskirt

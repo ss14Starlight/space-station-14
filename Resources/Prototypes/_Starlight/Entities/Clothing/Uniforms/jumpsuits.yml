@@ -756,6 +756,94 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcom_official.rsi
 
 - type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalBlue
+  name: CentComm officer's formal blue jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalblue.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalblue.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalLightBlue
+  name: CentComm officer's formal light blue jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformallightblue.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformallightblue.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalLightPurple
+  name: CentComm officer's formal light purple jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformallightpurple.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformallightpurple.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalOrange
+  name: CentComm officer's formal orange jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalorange.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalorange.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalPink
+  name: CentComm officer's formal pink jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalpink.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalpink.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalPurple
+  name: CentComm officer's formal purple jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalpurple.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalpurple.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalRed
+  name: CentComm officer's formal red jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalred.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalred.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitCentcomFormalYellow
+  name: CentComm officer's formal yellow jumpsuit
+  description: It's a formal jumpsuit worn by CentComm officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalyellow.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalyellow.rsi
+
+- type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]
   id: ClothingUniformSecurityTshirt
   name: t-shirt security uniform
