@@ -395,17 +395,17 @@ public sealed partial class OrganSystem : EntitySystem
         if (TryComp<SpeechComponent>(args.Body, out var speech))
         {
             speech.AllowedEmotes = ent.Comp.AllowedEmotes;
-            if (ent.Comp.AllowAllEmotes)
+            if (ent.Comp.AllowAllVocalEmotes)
                 speech.AllowedEmotes =
                 [
-                    .. ProtoMan.EnumeratePrototypes<EmotePrototype>()
+                    .. ProtoMan.EnumeratePrototypes<EmotePrototype>().Where(emote => emote.Category.HasFlag(EmoteCategory.Vocal))
                         .Select(emote => (ProtoId<EmotePrototype>)emote.ID)
                 ];
             Dirty(args.Body, speech);
         }
 
-        if (TryComp<VocalComponent>(args.Body, out var vocal) && ent.Comp.Sounds != null)
-            _vocal.SetSounds(args.Body, vocal, ent.Comp.Sounds);
+        if (TryComp<VocalComponent>(args.Body, out var vocal))
+            _vocal.SetSounds((args.Body, vocal), ent.Comp.Sounds);
         if (HasComp<AbductorComponent>(args.Body) || !ent.Comp.IsMuted) return;
         RemComp<MutedComponent>(args.Body);
     }
@@ -419,7 +419,7 @@ public sealed partial class OrganSystem : EntitySystem
         }
 
         if (TryComp<VocalComponent>(args.Body, out var vocal))
-            _vocal.SetSounds(args.Body, vocal, null);
+            _vocal.SetSounds((args.Body, vocal), null);
 
         ent.Comp.IsMuted = HasComp<MutedComponent>(args.Body);
         AddComp<MutedComponent>(args.Body);

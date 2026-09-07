@@ -34,7 +34,7 @@ public sealed partial class OrganTongueComponent : Component
 
     [DataField] public Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? Sounds;
 
-    [DataField] public bool AllowAllEmotes;
+    [DataField] public bool AllowAllVocalEmotes;
 }
 
 [RegisterComponent, NetworkedComponent]

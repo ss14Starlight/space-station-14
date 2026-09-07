@@ -57,11 +57,13 @@ public sealed partial class VocalSystem : EntitySystem
 
     #region Starlight
 
-    public void SetSounds(EntityUid uid, VocalComponent component, Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? sounds)
+    public void SetSounds(Entity<VocalComponent?> uid, Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? sounds)
     {
-        component.Sounds = sounds;
-        LoadSounds(uid, component);
-        Dirty(uid, component);
+        if (!Resolve(uid, ref uid.Comp)) return;
+        uid.Comp.Sounds = sounds;
+        uid.Comp.EmoteSounds = null;
+        LoadSounds(uid, uid.Comp);
+        Dirty(uid, uid.Comp);
     }
     #endregion
 
