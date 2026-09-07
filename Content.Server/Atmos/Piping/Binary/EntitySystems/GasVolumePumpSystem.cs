@@ -54,53 +54,33 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
             pump.Blocked = false;
 
             // Pump mechanism won't do anything if the pressure is too high/too low unless you overclock it.
-            if ((inputStartingPressure < pump.LowerThreshold) || (outputStartingPressure > pump.HigherThreshold) && !pump.Overclocked)
+            if ((inputStartingPressure <= pump.LowerThreshold) || (outputStartingPressure >= pump.HigherThreshold) && !pump.Overclocked)
             {
                 pump.Blocked = true;
             }
 
             // Overclocked pumps can only force gas a certain amount.
-            if ((outputStartingPressure - inputStartingPressure > pump.OverclockThreshold) && pump.Overclocked)
+            if ((outputStartingPressure - inputStartingPressure >= pump.OverclockThreshold) && pump.Overclocked)
             {
                 pump.Blocked = true;
             }
-
-            //starlight fix subtick
-            float wantToTransfer = pump.TransferRate * _atmosphereSystem.PumpSpeedup() * args.dt;
-
-            // Get The Volume to transfer, do not attempt to transfer more than the pipe can hold.
-            float transferVolume = Math.Min(inlet.Air.Volume, wantToTransfer);
-
-            // Calculate how many moles does this transfer contain
-            float transferMoles =
-                inlet.Air.Pressure * transferVolume / (inlet.Air.Temperature * Atmospherics.R);
-
-            // Calculate how many moles can outlet still contain
-            float molesSpaceLeft = (pump.HigherThreshold - outlet.Air.Pressure) * outlet.Air.Volume /
-                                   (outlet.Air.Temperature * Atmospherics.R);
-
-            // Get the lower value of the two, and clamp it to the transfer rate
-            float actualMolesTransfered = Math.Clamp(transferMoles, 0, Math.Max(0, molesSpaceLeft));
-
-            float actualTransferVolume = 0;
-            if (actualMolesTransfered > 0 && inlet.Air.Pressure > 0)
-            {
-                actualTransferVolume = actualMolesTransfered * inlet.Air.Temperature * Atmospherics.R /
-                                       inlet.Air.Pressure;
-            }
-            else
-            {
-                pump.Blocked = true;
-            }
-            //starlight end
 
             if (previouslyBlocked != pump.Blocked)
                 UpdateAppearance(uid, pump);
             if (pump.Blocked)
                 return;
 
-            //starlight edit
-            var removed = inlet.Air.RemoveVolume(actualTransferVolume); //starlight edit
+            // We multiply the transfer rate in L/s by the seconds passed since the last process to get the liters.
+            var transferVol = pump.TransferRate * _atmosphereSystem.PumpSpeedup() * args.dt;
+            var transferRatio = transferVol / inlet.Air.Volume;
+
+            // Make sure we don't pump over the pressure limit.
+            var limitRatio = AtmosphereSystem.FractionToMaxPressure(inlet.Air, outlet.Air, pump.HigherThreshold);
+
+            // This might end up negative under overclock conditions, but such cases are handled correctly by the
+            // `RemoveRatio` method
+            var removedRatio = Math.Min(transferRatio, limitRatio);
+            var removed = inlet.Air.RemoveRatio(removedRatio);
 
             // Some of the gas from the mixture leaks when overclocked.
             if (pump.Overclocked)
