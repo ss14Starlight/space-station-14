@@ -4,8 +4,8 @@ meta:
   engineVersion: 289.0.2
   forkId: ""
   forkVersion: ""
-  time: 09/07/2026 06:17:57
-  entityCount: 17239
+  time: 09/07/2026 06:40:49
+  entityCount: 17243
 maps:
 - 1
 grids:
@@ -15000,6 +15000,13 @@ entities:
     - type: Transform
       parent: 2
       pos: 75.5329,-0.39068663
+- proto: BoxFlare
+  entities:
+  - uid: 17243
+    components:
+    - type: Transform
+      parent: 2
+      pos: 9.544408,33.514446
 - proto: BoxFlashbang
   entities:
   - uid: 913
@@ -71755,6 +71762,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 32.5,-15.5
+    - type: DeviceNetwork
+      deviceLists:
+      - 17183
+      configurators:
+      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 17024
@@ -72704,6 +72716,11 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 30.5,-16.5
+    - type: DeviceNetwork
+      deviceLists:
+      - 17183
+      configurators:
+      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 17023
@@ -81829,6 +81846,13 @@ entities:
       pos: 66.5,-10.5
     - type: OperatingTable
       scanner: 6901
+- proto: OreBag
+  entities:
+  - uid: 17242
+    components:
+    - type: Transform
+      parent: 2
+      pos: 9.502742,34.076946
 - proto: OreProcessor
   entities:
   - uid: 11846
@@ -82605,6 +82629,18 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 29.5,-7.5
+- proto: Pickaxe
+  entities:
+  - uid: 17240
+    components:
+    - type: Transform
+      parent: 2
+      pos: 9.586075,32.795696
+  - uid: 17241
+    components:
+    - type: Transform
+      parent: 2
+      pos: 9.481908,32.910282
 - proto: PillCanisterPsicodine
   entities:
   - uid: 756
