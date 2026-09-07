@@ -467,7 +467,7 @@
         - id: WeaponSubMachineGunC20r
         - id: MagazinePistolSubMachineGunSP
           amount: 4 #SL 3 > 4
-        - id: EnergySwordSP
+        - id: EnergySword
         - id: SyndicateJawsOfLife
         - id: C4
           amount: 2
