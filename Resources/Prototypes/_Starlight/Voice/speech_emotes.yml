@@ -359,7 +359,7 @@
   - rattles?
 
 - type: emote
-  id: FlapWings
+  id: Flap
   name: chat-emote-name-flap-wings
   category: General # Can't be hands since mothroaches don't have those!
   available: false
