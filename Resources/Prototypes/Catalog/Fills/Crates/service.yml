@@ -441,7 +441,7 @@
   parent: CrateGenericSteel
   id: CrateStationRadioHandheld
   name: bulk handheld station radio crate
-  description: Contains 4 boxes of handheld station radioes. In case the radio host wants more of them.
+  description: Contains 4 boxes of handheld station radios. In case the radio host wants more of them.
   components:
   - type: EntityTableContainerFill
     containers:
