@@ -1,4 +1,6 @@
 using Content.Server._Starlight.Plumbing.Components;
+using Content.Server.Hands.Systems;
+using Content.Shared._Starlight.Chemistry.Components;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry;
@@ -12,7 +14,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Popups;
 using JetBrains.Annotations;
-using Content.Server.Hands.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -202,7 +203,7 @@ public sealed partial class PlumbingSmartDispenserSystem : EntitySystem
         if (!_solutionSystem.TryGetFitsInDispenser(targetContainer, out var targetEnt, out _)
             && !_solutionSystem.TryGetRefillableSolution(targetContainer, out targetEnt, out _)
             && (!TryComp<InjectorComponent>(targetContainer, out var injector)
-                || !TryComp<SolutionContainerManagerComponent>(targetContainer, out var manager)
+                || !TryComp<SolutionManagerComponent>(targetContainer, out var manager)
                 || !_solutionSystem.TryGetSolution((targetContainer, manager), injector.SolutionName, out targetEnt, out _)))
         {
             UpdateActorUiState(ent, actor);
@@ -454,10 +455,20 @@ public sealed partial class PlumbingSmartDispenserSystem : EntitySystem
         if (sourceReagent is not { } sourceReagentValue)
             return false;
 
+        if (TryComp<RefillReagentFilterComponent>(targetContainer, out var filter)
+            && !filter.Reagents.Contains(reagentId))
+        {
+            // Incorrect reagents being put into our lovely automenders (and anything with filters)!
+            if (showPopup && user is { Valid: true })
+                _popup.PopupEntity(Loc.GetString(filter.Popup), ent.Owner, user.Value);
+
+            return false;
+        }
+
         if (!_solutionSystem.TryGetFitsInDispenser(targetContainer, out var targetEnt, out var targetSolution)
             && !_solutionSystem.TryGetRefillableSolution(targetContainer, out targetEnt, out targetSolution)
             && (!TryComp<InjectorComponent>(targetContainer, out var injector)
-                || !TryComp<SolutionContainerManagerComponent>(targetContainer, out var manager)
+                || !TryComp<SolutionManagerComponent>(targetContainer, out var manager)
                 || !_solutionSystem.TryGetSolution((targetContainer, manager), injector.SolutionName, out targetEnt, out targetSolution)))
         {
             return false;
@@ -516,7 +527,7 @@ public sealed partial class PlumbingSmartDispenserSystem : EntitySystem
         if (!_solutionSystem.TryGetFitsInDispenser(container.Value, out _, out var solution)
             && !_solutionSystem.TryGetRefillableSolution(container.Value, out _, out solution)
             && (!TryComp<InjectorComponent>(container.Value, out var injector)
-                || !TryComp<SolutionContainerManagerComponent>(container.Value, out var manager)
+                || !TryComp<SolutionManagerComponent>(container.Value, out var manager)
                 || !_solutionSystem.TryGetSolution((container.Value, manager), injector.SolutionName, out _, out solution)))
         {
             return null;

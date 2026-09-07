@@ -27,7 +27,6 @@
     openStorageAction: ActionOpenMouthStorage
     spitDamageThreshold: 3
   - type: Butcherable
-    butcheringType: Spike
     spawned:
       - id: FoodMeat
         amount: 3

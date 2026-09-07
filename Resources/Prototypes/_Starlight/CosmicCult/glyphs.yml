@@ -107,8 +107,8 @@
     - SwordCosmicCult
     - SpearCosmicCult
     whitelist:
-      components:
-      - Sharp
+      toolQuality:
+      - Slicing
   - type: CosmicGlyph
     requiredCultists: 2
     activationDamage:

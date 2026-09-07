@@ -25,15 +25,11 @@
   - type: Sprite
     state: stomach
   - type: Organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 75
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach75
   - type: Stomach
   - type: Metabolizer
     # mm very yummy

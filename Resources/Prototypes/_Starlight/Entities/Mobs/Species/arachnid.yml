@@ -35,7 +35,6 @@
     - Arachnid
     - NotLabelable # Starlight
   - type: Butcherable
-    butcheringType: Spike
     spawned:
       - id: FoodMeatSpider
         amount: 5
@@ -56,7 +55,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 300
+        Quantity: 600
   # Damage (Others)
   - type: MeleeWeapon
     animation: WeaponArcBite
