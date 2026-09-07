@@ -105,8 +105,6 @@ public sealed partial class GasCanisterSystem : SharedGasCanisterSystem
 
         RefreshCanister(uid, canister); // Starlight
     }
-
-    
     public void RefreshCanister(EntityUid uid, GasCanisterComponent canister)
     {
         if (!TryComp<AppearanceComponent>(uid, out var appearance))
