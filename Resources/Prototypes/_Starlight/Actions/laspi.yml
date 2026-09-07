@@ -1,0 +1,13 @@
+- type: entity
+  id: ActionInnateHairChange
+  name: Change Hairstyle
+  description: Change your hairstyle.
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: Objects/Tools/scissors.rsi
+        state: icon
+    - type: InstantAction
+      event: !type:InnateHairChangeActionEvent
+      useDelay: 0.5

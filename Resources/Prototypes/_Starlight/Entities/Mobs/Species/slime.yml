@@ -29,6 +29,8 @@
         type: VampireClassBui
       enum.VampireLocateUiKey.Key: # SL
         type: VampireLocateBui
+      enum.MagicMirrorUiKey.Key: # Starlight
+        type: MagicMirrorBoundUserInterface
   - type: InteractionPopup # Starlight
     interactSuccessSound: /Audio/Voice/Slime/slime_squish.ogg # Starlight
   - type: Absorbable
@@ -142,3 +144,5 @@
   - type: ShowThirstIcons # starlight
   - type: SolutionScanner # starlight
   - type: Wagging # starlight
+  - type: InnateHairChange # starlight
+  - type: MagicMirror # starlight

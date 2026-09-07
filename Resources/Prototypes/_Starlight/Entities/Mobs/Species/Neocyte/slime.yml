@@ -132,6 +132,8 @@
   - type: ShowThirstIcons
   - type: SolutionScanner
   - type: Wagging
+  - type: InnateHairChange # starlight
+  - type: MagicMirror # starlight
 
 - type: entity
   parent: [BaseNeocyteAppearance, BaseSpeciesDummy]
