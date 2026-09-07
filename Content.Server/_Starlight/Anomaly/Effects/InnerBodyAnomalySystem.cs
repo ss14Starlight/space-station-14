@@ -99,7 +99,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         // Starlight Start
         ent.Comp.Injected = false;
 
-        if (ent.Comp.AddedCosmicCultFaction = true)
+        if (ent.Comp.AddedCosmicCultFaction)
         {
             _npcFaction.RemoveFaction(ent.Owner, _cosmicCultFaction);
             ent.Comp.AddedCosmicCultFaction = false;
