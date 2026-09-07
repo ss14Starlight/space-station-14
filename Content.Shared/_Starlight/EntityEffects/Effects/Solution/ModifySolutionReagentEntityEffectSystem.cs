@@ -1,4 +1,6 @@
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
+using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -15,6 +17,7 @@ namespace Content.Shared._Starlight.EntityEffects.Effects.Solution;
 public sealed partial class ModifySolutionReagentEntityEffectSystem : EntityEffectSystem<SolutionManagerComponent, ModifySolutionReagent>
 {
     [Dependency] private SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private SharedBodySystem _body = default!;
 
     protected override void Effect(Entity<SolutionManagerComponent> entity, ref EntityEffectEvent<ModifySolutionReagent> args)
     {
@@ -45,13 +48,13 @@ public sealed partial class ModifySolutionReagentEntityEffectSystem : EntityEffe
             owner = body;
         }
 
-        var query = EntityQueryEnumerator<OrganComponent>();
-        while (query.MoveNext(out var organUid, out var organComp))
+        if (TryComp<BodyComponent>(owner, out var bodyComp))
         {
-            if (organComp.Body != owner)
-                continue;
-            if (_solution.TryGetSolution(organUid, id, out target, out sol))
-                return true;
+            foreach (var (organUid, _) in _body.GetBodyOrgans(owner, bodyComp))
+            {
+                if (_solution.TryGetSolution(organUid, id, out target, out sol))
+                    return true;
+            }
         }
 
         return false;
@@ -61,15 +64,25 @@ public sealed partial class ModifySolutionReagentEntityEffectSystem : EntityEffe
 /// <inheritdoc cref="EntityEffect"/>
 public sealed partial class ModifySolutionReagent : EntityEffectBase<ModifySolutionReagent>
 {
+    /// <summary>
+    /// The reagent to add or remove.
+    /// </summary>
     [DataField(required: true)]
     public ProtoId<ReagentPrototype> Reagent;
 
+    /// <summary>
+    /// Amount to adjust the reagent by per metabolism tick. Positive values add reagent, negative values remove it.
+    /// </summary>
     [DataField(required: true)]
     public FixedPoint2 Amount;
 
+    /// <summary>
+    /// The solution container ID to modify (e.g., bloodstream, metabolites, stomach).
+    /// </summary>
     [DataField(required: true)]
     public string Target = default!;
 
+    /// <inheritdoc/>
     public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc)
     {
         return prototype.Resolve(Reagent, out ReagentPrototype? proto)
