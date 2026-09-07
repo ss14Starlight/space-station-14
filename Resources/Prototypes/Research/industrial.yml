@@ -150,7 +150,6 @@
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
   - ElectrolyzerMachineCircuitboard # Funky atmos = /tg/ gases
-  - BluespaceFireExtinguisher # Starlight
   technologyPrerequisites:
   - AtmosphericTech
   radioChannels:
@@ -212,6 +211,7 @@
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
+  - BluespaceFireExtinguisher # Starlight
   technologyPrerequisites:
   - BluespaceManipulation
   radioChannels:
