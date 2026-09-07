@@ -75,6 +75,7 @@
   - TacticalMaidGloves
   - JanitorMaidOutfit
   - JanitorMaidOutfitMini
+  - EdgerunnerJacket
   - CoderSocks
   - PawBootTrinket
   - CatEars
@@ -197,6 +198,7 @@
   loadouts:
   - CaptainHead
   - CaptainCap
+  - CapBeret # Starlight
 
 - type: loadoutGroup
   id: CaptainJumpsuit

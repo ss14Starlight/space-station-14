@@ -103,8 +103,6 @@
       collection: LagomorphSqueak
     Snort:
       collection: LagomorphSnort
-    LagomorphSneeze:
-      collection: LagomorphSneeze
     LagomorphSnore:
       collection: LagomorphSnore
     Bubble:
@@ -217,8 +215,6 @@
       collection: LagomorphSqueak
     Snort:
       collection: LagomorphSnort
-    LagomorphSneeze:
-      collection: LagomorphSneeze
     LagomorphSnore:
       collection: LagomorphSnore
     Bubble:
@@ -535,7 +531,7 @@
   id: NeoKinMSounds
   sounds:
     Scream:
-      collection: ShadekinMaleScreams # Starlight
+      collection: ShadekinMaleScreams
     Growl:
       collection: NeoFelionoidGrowl
 
@@ -544,6 +540,21 @@
   id: NeoKinFSounds
   sounds:
     Scream:
-      collection: ShadekinFemaleScreams # Starlight
+      collection: ShadekinFemaleScreams
     Growl:
       collection: NeoFelionoidGrowl
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoLagomorphMSounds
+  sounds:
+    Sneeze:
+      collection: LagomorphSneeze
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoLagomorphFSounds
+  sounds:
+    Sneeze:
+      collection: LagomorphSneeze
+
