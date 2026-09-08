@@ -1,27 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Jackets, sweaters, light coats, and other similar clothing now provides a little protection from cold temperatures and make you warm up a little faster.
-    type: Tweak
-  id: 408010
-  time: '2026-08-30T18:37:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5757
-- author: Caws
-  changes:
-  - message: Heavy coats, bomber jackets, windbreakers, and other similar clothing now provide equivalent protection from cold temperatures as winter coats.
-    type: Tweak
-  id: 408011
-  time: '2026-08-30T18:37:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5757
-- author: Caws
-  changes:
-  - message: Anything that has "winter clothing" equivalent protection now provides 15% cold damage resistance.
-    type: Tweak
-  id: 408012
-  time: '2026-08-30T18:37:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5757
-- author: Caws
-  changes:
   - message: Anything that has "winter clothing" equivalent protection now provides 25% infection chance resistance.
     type: Tweak
   id: 408013
@@ -2799,4 +2778,25 @@ Entries:
   id: 408409
   time: '2026-09-08T10:54:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6010
+- author: wonderfulnewworld, AraiMaia, B_Kirill
+  changes:
+  - message: Puddles should cause less lag now.
+    type: Fix
+  id: 408410
+  time: '2026-09-08T11:19:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6043
+- author: wonderfulnewworld, AraiMaia, B_Kirill
+  changes:
+  - message: Fixed puddles not being removed when tile changes to lattice.
+    type: Fix
+  id: 408411
+  time: '2026-09-08T11:19:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6043
+- author: wonderfulnewworld, AraiMaia, B_Kirill
+  changes:
+  - message: Fix slippery puddles mispredicting when going out of range.
+    type: Fix
+  id: 408412
+  time: '2026-09-08T11:19:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6043
 Order: -1
