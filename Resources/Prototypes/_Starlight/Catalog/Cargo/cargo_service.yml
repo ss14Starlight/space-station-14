@@ -34,6 +34,6 @@
     sprite: _Starlight/Objects/Devices/handheld_station_radio.rsi
     state: handradio-off
   product: CrateStationRadioHandheld
-  cost: 6500
+  cost: 5000
   category: cargoproduct-category-name-service
   group: market

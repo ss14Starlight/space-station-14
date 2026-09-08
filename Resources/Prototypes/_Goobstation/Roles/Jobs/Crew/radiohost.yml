@@ -22,8 +22,7 @@
   storage:
     belt:
       - NetworkConfigurator # Starlight
-    back:
-      - BoxRadioHandheldStation # Starlight
+      - RadioHandheldStation # Starlight
 
 - type: chameleonOutfit
   id: RadioHostChameleonOutfit
