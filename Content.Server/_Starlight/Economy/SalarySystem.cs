@@ -35,7 +35,7 @@ public sealed partial class SalarySystem : SharedSalarySystem
     private float _delayAccumulator = 0f;
     private readonly Stopwatch _stopwatch = new();
     private readonly Dictionary<ICommonSession, TimeSpan> _lastSalary = [];
-    private static readonly EntProtoId _standArtId = "standart";
+    private static readonly ProtoId<SalariesPrototype> _standArtId = "standart";
     private SalariesPrototype _salaries = null!;
     private float _defaultBonusMultiplier = 1.0f;
 
@@ -44,7 +44,7 @@ public sealed partial class SalarySystem : SharedSalarySystem
         SubscribeLocalEvent<RoundStartingEvent>(ev => _lastSalary.Clear());
         _configurationManager.OnValueChanged(StarlightCCVars.SalaryMultiplier, UpdateBonusMultiplier, true);
 
-        _salaries = _prototypes.Index<SalariesPrototype>(_standArtId);
+        _salaries = _prototypes.Index(_standArtId);
 
         base.Initialize();
     }
