@@ -12,7 +12,7 @@ using Robust.Shared.Player;
 namespace Content.Client.Shuttles.BUI;
 
 [UsedImplicitly]
-public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
+public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterface // Starlight: required for dependency injection source generation
 {
     [Dependency] private ISharedPlayerManager _playerManager = default!; // Starlight
 
