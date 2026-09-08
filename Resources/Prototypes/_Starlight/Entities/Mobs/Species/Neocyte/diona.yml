@@ -15,10 +15,6 @@
     - Machine
     - Sylvan
   - type: Vocal
-    sounds:
-      Male: NeoDionaMSounds
-      Female: NeoDionaFSounds
-      Unsexed: NeoDionaMSounds
   - type: Tag
     tags:
     - CanPilot

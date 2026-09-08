@@ -9,3 +9,15 @@
     layer: Eyes
     prototypes:
       Default: MobFelionoidEyes
+
+- type: entity
+  id: OrganFelionoidTongue
+  parent: OrganHumanTongue
+  suffix: Felionoid
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Mew', 'Hisses', 'Meow', 'Growl', 'Purr', 'Trill']
+    sounds:
+      Male: MaleFelionoid
+      Female: FemaleFelionoid
+      Unsexed: MaleFelionoid
