@@ -119,5 +119,5 @@
     solution:
       maxVol: 60
       reagents:
-      - ReagentId: JuiceThatMakesYouGlub
+      - ReagentId: Glubotoxin
         Quantity: 60 # Need at least 50 to transform

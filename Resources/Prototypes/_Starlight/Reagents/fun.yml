@@ -59,12 +59,12 @@
           factor: 2
 
 - type: reagent
-  id: JuiceThatMakesYouGlub
-  name: reagent-name-glubjuice
+  id: Glubotoxin
+  name: reagent-name-glubotoxin
   group: Toxins
-  desc: reagent-desc-glubjuice
+  desc: reagent-desc-glubotoxin
   physicalDesc: reagent-physical-desc-salty
-  flavor: JuiceThatMakesYouGlub
+  flavor: Glubotoxin
   color: "#009690"
   metabolisms:
     Bloodstream:
@@ -83,21 +83,21 @@
           type: [ Animal ]
           inverted: true
         - !type:ReagentCondition
-          reagent: JuiceThatMakesYouGlub
+          reagent: Glubotoxin
           min: 50
       - !type:AdjustReagent
-        reagent: JuiceThatMakesYouGlub
+        reagent: Glubotoxin
         amount: -20
         conditions:
         - !type:ReagentCondition
-          reagent: JuiceThatMakesYouGlub
+          reagent: Glubotoxin
           min: 50
       - !type:AdjustReagent
         conditions:
           - !type:ReagentCondition
-            reagent: JuiceThatMakesYouGlub
+            reagent: Glubotoxin
             min: 0.11
           - !type:MetabolizerTypeCondition
             type: [ Cyclorite ]
-        reagent: JuiceThatMakesYouGlub
+        reagent: Glubotoxin
         amount: 0.1

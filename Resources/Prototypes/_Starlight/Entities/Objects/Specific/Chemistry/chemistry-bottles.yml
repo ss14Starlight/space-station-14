@@ -196,16 +196,16 @@
 
 - type: entity
   id: ChemistryBottleGlub
-  suffix: Glub Juice
+  suffix: Glubotoxin
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-name-glubjuice
+    currentLabel: reagent-name-glubotoxin
   - type: Solution
     id: drink
     solution:
         reagents:
-        - ReagentId: JuiceThatMakesYouGlub
+        - ReagentId: Glubotoxin
           Quantity: 30
 
 - type: entity

@@ -799,7 +799,7 @@
   - type: Extractable # Starlight start
     juiceSolution:
       reagents:
-      - ReagentId: JuiceThatMakesYouGlub
+      - ReagentId: Glubotoxin
         Quantity: 30 # Starlight end
   - type: FoodSequenceElement
     entries:

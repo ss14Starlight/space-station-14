@@ -21,14 +21,14 @@
         color: "#b4dae0"
 
 - type: entity
-  id: ReagentSlimeGlubJuice
+  id: ReagentSlimeGlubotoxin
   parent: ReagentSlime
-  suffix: Glub Juice
+  suffix: Glubotoxin
   components:
   - type: Bloodstream
     bloodReferenceSolution: # Starlight
       reagents:
-      - ReagentId: JuiceThatMakesYouGlub
+      - ReagentId: Glubotoxin
         Quantity: 200 # Starlight, double bloodstream capacity
   - type: PointLight
     color: "#009690"
