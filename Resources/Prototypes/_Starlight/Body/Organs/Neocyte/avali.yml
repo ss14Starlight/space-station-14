@@ -35,3 +35,14 @@
     maxReagents: 1
     metabolizerTypes: [Avali]
     stages: [ Metabolites ]
+
+- type: entity
+  id: OrganNeoAvaliTongue
+  parent: OrganNeocyteTongueForked
+  suffix: Neo-Avali
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoAvaliMSounds
+      Female: NeoAvaliFSounds
+      Unsexed: NeoAvaliMSounds
