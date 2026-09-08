@@ -1,4 +1,5 @@
 using Content.Shared.Alert;
+using Content.Shared.Humanoid.Markings;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -27,4 +28,7 @@ public sealed partial class ShellComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<AlertPrototype> ShellAlert = "DollShellIntegrity";
+
+    [DataField]
+    public List<Marking> OriginalMarkings = [];
 }
