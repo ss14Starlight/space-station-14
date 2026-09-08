@@ -269,10 +269,10 @@
   components:
   - type: XAEApplyComponents
     components:
-    - type: SolutionContainerManager
-      solutions:
-        beaker:
-          maxVol: 150
+    - type: Solution
+      id: beaker
+      solution:
+        maxVol: 120
     - type: FitsInDispenser
       solution: beaker
     - type: RefillableSolution
@@ -318,7 +318,9 @@
           Blunt: 4
       soundHit:
         path: /Audio/Weapons/bladeslice.ogg
-    - type: Sharp
+    - type: Tool
+      qualities:
+      - Slicing
 
 - type: entity
   id: XenoArtifactGenerateEnergy
@@ -410,27 +412,27 @@
     - type: MultipleTool
       statusShowBehavior: true
       entries:
-      - behavior: Screwing
+      - behavior: [ Screwing ]
         useSound:
           path: /Audio/Items/drill_use.ogg
         changeSound:
           path: /Audio/Items/change_drill.ogg
-      - behavior: Prying
+      - behavior: [ Prying ]
         useSound:
           path: /Audio/Items/jaws_pry.ogg
         changeSound:
           path: /Audio/Items/change_drill.ogg
-      - behavior: Anchoring
+      - behavior: [ Anchoring ]
         useSound:
           path: /Audio/Items/ratchet.ogg
         changeSound:
           path: /Audio/Items/change_drill.ogg
-      - behavior: Cutting
+      - behavior: [ Cutting ]
         useSound:
           path: /Audio/Items/jaws_cut.ogg
         changeSound:
           path: /Audio/Items/change_drill.ogg
-      - behavior: Pulsing
+      - behavior: [ Pulsing ]
         changeSound:
           path: /Audio/Items/change_drill.ogg
 

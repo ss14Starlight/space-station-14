@@ -4,6 +4,7 @@ using Content.Client.Gameplay;
 using Content.Client.Items;
 using Content.Client.Weapons.Ranged.Components;
 using Content.Shared.Camera;
+using Content.Shared.CCVar;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Weapons.Hitscan.Components;
@@ -19,6 +20,7 @@ using Robust.Client.Player;
 using Robust.Client.State;
 using Robust.Shared.Animations;
 using Robust.Shared.Audio;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -26,7 +28,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using SharedGunSystem = Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Content.Shared.CCVar; // Starlight | ES Screenshake
+// Starlight | ES Screenshake
 
 #region Starlight
 using Content.Client.DisplacementMap;
@@ -34,9 +36,7 @@ using Content.Shared._Starlight.Effects;
 using Content.Shared.Mech.Components;
 using Content.Shared._Starlight.Utility;
 using Content.Shared._Starlight.CCVar;
-using Content.Shared.Weapons.Hitscan.Events;
 using Robust.Shared.Timing;
-using Robust.Shared.Configuration;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
 #endregion Starlight
 
@@ -52,13 +52,13 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private IOverlayManager _overlayManager = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IStateManager _state = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private SharedMapSystem _maps = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
 #region Starlight
-    [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IComponentFactory _factory = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private DisplacementMapSystem _displacement = default!;
@@ -67,6 +67,7 @@ public sealed partial class GunSystem : SharedGunSystem
     public static readonly EntProtoId HitscanProto = "HitscanEffect";
     public const string ImpactProto = "ImpactEffect";
     private DisplacementEffect _displacementEffect = null!;
+    private static readonly ProtoId<DisplacementEffect> _displacementEffectId = "displacementEffect";
     private bool _tracesEnabled = true;
     public override void Shutdown()
     {
@@ -121,7 +122,7 @@ public sealed partial class GunSystem : SharedGunSystem
         InitializeMagazineVisuals();
         InitializeSpentAmmo();
 
-        _displacementEffect = _proto.Index<DisplacementEffect>("displacementEffect");
+        _displacementEffect = _proto.Index(_displacementEffectId);
     }
 
 
@@ -415,11 +416,13 @@ public sealed partial class GunSystem : SharedGunSystem
 
         Log.Debug($"Sending shoot request tick {Timing.CurTick} / {Timing.CurTime}");
 
+
         RaisePredictiveEvent(new RequestShootEvent
         {
             Target = target,
             Coordinates = GetNetCoordinates(coordinates),
             Gun = GetNetEntity(gun),
+            Continuous = _cfg.GetCVar(CCVars.ControlHoldToAttackRanged),
         });
     }
 

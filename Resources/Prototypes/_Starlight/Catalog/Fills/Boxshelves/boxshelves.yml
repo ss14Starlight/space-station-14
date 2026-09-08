@@ -1,0 +1,216 @@
+- type: entity
+  parent: BoxShelf
+  id: BoxShelfCargo
+  suffix: Cargo
+  components:
+  - type: ItemSlots
+    slots:
+      fill4:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 9
+        startingItem: CardboardBoxLargeCargoRoundstart
+      fill3:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 8
+        startingItem: CardboardBoxLarge
+      fill2:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 7
+        startingItem: CardboardBoxLargeBureaucracy
+      fill1:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 6
+        startingItem: CardboardBoxLarge
+
+- type: entity
+  parent: BoxShelf
+  id: BoxShelfMedbay
+  suffix: Medbay
+  components:
+  - type: ItemSlots
+    slots:
+      fill4:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 9
+        startingItem: CardboardBoxLargeMedicalTopicals
+      fill3:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 8
+        startingItem: CardboardBoxLargeMedical
+      fill2:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 7
+        startingItem: CardboardBoxLarge
+      fill1:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 6
+        startingItem: CardboardBoxLargeMedical
+
+- type: entity
+  parent: BoxShelf
+  id: BoxShelfSecurity
+  suffix: Security
+  components:
+  - type: ItemSlots
+    slots:
+      fill4:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 9
+        startingItem: CardboardBoxLargeSecuritySupplies
+      fill3:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 8
+        startingItem: CardboardBoxLargeSecurityBrigmed
+      fill2:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 7
+        startingItem: CardboardBoxLargeSecurity
+      fill1:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 6
+        startingItem: CardboardBoxLargeSecurity
+
+- type: entity
+  parent: BoxShelf
+  id: BoxShelfHoP
+  suffix: HoP
+  components:
+  - type: ItemSlots
+    slots:
+      fill4:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 9
+        startingItem: CardboardBoxLargeCommandHopRoundstart
+      fill3:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 8
+        startingItem: CardboardBoxLargeServiceJani
+      fill2:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 7
+        startingItem: CardboardBoxLargeBureaucracy
+      fill1:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 6
+        startingItem: CardboardBoxLarge
+
+- type: entity
+  parent: BoxShelf
+  id: BoxShelfEmpty
+  suffix: Empty Boxes
+  components:
+  - type: ItemSlots
+    slots:
+      fill4:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 9
+        startingItem: CardboardBoxLarge
+      fill3:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 8
+        startingItem: CardboardBoxLarge
+      fill2:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 7
+        startingItem: CardboardBoxLarge
+      fill1:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 6
+        startingItem: CardboardBoxLarge
+
+- type: entity
+  parent: BoxShelf
+  id: BoxShelfEngie
+  suffix: Engie
+  components:
+  - type: ItemSlots
+    slots:
+      fill4:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 9
+        startingItem: CardboardBoxLargeEngiRoundstart
+      fill3:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 8
+        startingItem: CardboardBoxLargeEngiTools
+      fill2:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 7
+        startingItem: CardboardBoxLarge
+      fill1:
+        whitelist:
+          tags:
+          - CardboardboxLarge
+        insertOnInteract: true
+        priority: 6
+        startingItem: CardboardBoxLargeEngi
+

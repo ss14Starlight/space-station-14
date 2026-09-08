@@ -15,14 +15,14 @@
   - type: Sprite
     sprite: _TP/Objects/Consumable/fried-food.rsi
     state: Fish_Sticks
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Protein
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Protein
+        Quantity: 5
 
 - type: entity
   parent: FoodMeatBase
@@ -36,14 +36,14 @@
     - Meat
   - type: Sprite
     state: sausage
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 3
-        - ReagentId: Fat
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 3
+      - ReagentId: Fat
+        Quantity: 2
   - type: Construction
     graph: Cutlet
     node: start # starlight

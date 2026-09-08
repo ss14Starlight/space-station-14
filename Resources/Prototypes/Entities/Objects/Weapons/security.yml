@@ -115,6 +115,14 @@
     malus: 0.225
   - type: StaticPrice
     price: 80
+  - type: Riggable
+  - type: SolutionManager
+    solutions:
+    - SolutionRiggable
+  - type: InjectableSolution
+    solution: battery
+  - type: DrawableSolution
+    solution: battery
   - type: Explosive
     explosionType: Default
     intensitySlope: 1.5

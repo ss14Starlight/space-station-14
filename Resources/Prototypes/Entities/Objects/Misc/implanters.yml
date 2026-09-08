@@ -50,6 +50,7 @@
     - VoiceMaskImplant
     - MindControlImplant #Starlight
     - CommandTrackingImplant #Starlight
+    - ITGTrackingImplant #Starlight
     deimplantFailureDamage:
       types:
         Cellular: 50
@@ -261,7 +262,7 @@
 
 - type: entity
   id: VoiceMaskImplanter
-  name: voice mask implanter
+  name: identity mask implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter

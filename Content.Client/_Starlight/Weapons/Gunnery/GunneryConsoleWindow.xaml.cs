@@ -1,6 +1,5 @@
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.Weapons.Gunnery;
-using Content.Shared.Shuttles.Components;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;

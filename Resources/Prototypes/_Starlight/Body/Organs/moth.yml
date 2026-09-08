@@ -24,16 +24,25 @@
       - Paper
       - Pill
       - IceCream
-  - type: SolutionContainerManager
+      - Birthday
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
+    - SolutionOrganNutriment
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [ Moth ]
     stages: [ Digestion ]
+
+- type: entity
+  id: OrganMothTongue
+  parent: OrganHumanTongue
+  suffix: Moth
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Chitter', 'Squeak', 'Flap']
+    sounds:
+      Male: UnisexMoth
+      Female: UnisexMoth
+      Unsexed: UnisexMoth

@@ -12,6 +12,9 @@
     belt: ClothingBeltWand
     pocket1: WizardTeleportScroll
     pocket2: WizardsGrimoire
+  storage: #Starlight
+    back:
+    - WizardWarTablet
 
 - type: startingGear
   id: WizardRedGear

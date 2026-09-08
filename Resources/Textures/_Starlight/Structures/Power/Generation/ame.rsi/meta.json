@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+	{
+      "name": "shield_0",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_1",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_10",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_11",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_12",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_13",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_14",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_15",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_2",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_3",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_4",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_5",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_6",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_7",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_8",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "core",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "shield_9",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+    {
+      "name": "core_weak",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "core_strong",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "control",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+	{
+      "name": "static",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz"
+    },
+	{
+      "name": "control_warning",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "control_critical",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "control_fuck",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "control_on",
+	  "copyright": "Made for the Imperial Space community, Discord: pyrolizz",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

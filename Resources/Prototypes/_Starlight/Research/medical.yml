@@ -141,6 +141,7 @@
   - BrainImplantComms
   - BrainImplantTranslator
   - CyberRebreather # For now i will be lazy and put it here, not sure if i can excuse making a new pack for just 1 recipe
+  - VocalCyberTongue
   technologyPrerequisites:
   - CyberLimbsTech
   radioChannels:
@@ -235,6 +236,24 @@
   - Security
   - Medical
 
+- type: technology
+  id: NoseImplantOlfactory
+  name: research-technology-olfactory-nose
+  icon:
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: nose_implant_scent
+  discipline: Biochemical
+  tier: 3
+  cost: 7680
+  recipeUnlocks:
+    - NoseImplantOlfactory
+  technologyPrerequisites:
+    - CyberImplantsTech
+  radioChannels:
+  - Security
+  - Medical
+
+#starlight, moved from civilian to medical
 - type: technology
   id: BluespaceChemistry
   name: research-technology-bluespace-chemistry

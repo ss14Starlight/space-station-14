@@ -73,7 +73,7 @@
       - StealCondition
   - type: DieCondition
   - type: ObjectiveLimit #Starlight edit
-    limit: 1 # Starlight | Anything above 1 is way too fucking many.
+    limit: 3 # Starlight
 
 #- type: entity
 #  parent: [BaseTraitorObjective, BaseLivingObjective]

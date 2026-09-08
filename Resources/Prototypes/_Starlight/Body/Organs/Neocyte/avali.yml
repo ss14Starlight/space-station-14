@@ -9,15 +9,10 @@
       tags:
       - RamChip
     isSpecialDigestibleExclusive: false
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
 
 - type: entity
   id: OrganNeoAvaliHeart
@@ -40,3 +35,14 @@
     maxReagents: 1
     metabolizerTypes: [Avali]
     stages: [ Metabolites ]
+
+- type: entity
+  id: OrganNeoAvaliTongue
+  parent: OrganNeocyteTongueForked
+  suffix: Neo-Avali
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoAvaliMSounds
+      Female: NeoAvaliFSounds
+      Unsexed: NeoAvaliMSounds

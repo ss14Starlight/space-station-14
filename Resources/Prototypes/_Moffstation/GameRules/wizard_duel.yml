@@ -24,6 +24,7 @@
     - !type:LinearAntagCount # Starlight start
       proto: WizardDuelistPurple
       playerRatio: 90 # Only spawn above 90 players.
+      useTotalPlayerCount: true # Duelist colors scale independently instead of consuming one shared team pool.
       range:
         min: 0
         max: 1
@@ -32,12 +33,14 @@
     - !type:LinearAntagCount
       proto: WizardDuelistGreen
       playerRatio: 70 # Only spawn above 70 players.
+      useTotalPlayerCount: true
       range:
         min: 0
         max: 1
     - !type:LinearAntagCount
       proto: WizardDuelistOrange
       playerRatio: 110 # Only spawn above 110 players.
+      useTotalPlayerCount: true
       range:
         min: 0
         max: 1 # Starlight end

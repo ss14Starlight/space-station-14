@@ -18,3 +18,4 @@ borg-slot-knives-empty = Knives
 borg-slot-pkaupgrade-empty = PKA Upgrades
 borg-slot-goliath-empty = Goliath Plates
 borg-slot-rollerbeds-empty = Body Bags and RollerBeds
+borg-slot-music-media-empty = Vinyls and CDs

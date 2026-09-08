@@ -48,13 +48,13 @@
   - type: MultipleTool
     statusShowBehavior: true
     entries:
-      - behavior: Prying
+      - behavior: [ Prying ]
         sprite:
           sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
           state: jaws_pry
         useSound: /Audio/Items/jaws_pry.ogg
         changeSound: /Audio/Items/change_jaws.ogg
-      - behavior: Cutting
+      - behavior: [ Cutting ]
         sprite:
           sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
           state: jaws_cutter

@@ -23,10 +23,10 @@
   - IAA
   - Brig
   - Maintenance
-#  - Lawyer # Lawyer is now for Lawyers, not IAAs.
+# - Lawyer # Lawyer is now for Lawyers, not IAAs.
   - GenpopEnter
   - GenpopLeave
-  - Command
+# - Command # IAAs are not members of Command.
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

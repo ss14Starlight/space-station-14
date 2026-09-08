@@ -10,8 +10,9 @@
       organs:
         brain: OrganDionaBrainNymph
         eyes: OrganNeocyteEyes
-        tongue: OrganNeocyteTongue
+        tongue: OrganNeoDionaTongue
         eye_implant: null
+        nose_implant: null # 🌟Starlight🌟
         brain_implant: null
     torso:
       part: TorsoDiona

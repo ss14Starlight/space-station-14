@@ -190,3 +190,15 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-washrooms
+
+ # Automated Trade Station
+- type: entity
+  parent: DefaultStationBeaconSupply
+  id: DefaultStationBeaconATS
+  suffix: ATS
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-ats
+  - type: Tag
+    tags:
+    - NinjaBombingTargetBlocker

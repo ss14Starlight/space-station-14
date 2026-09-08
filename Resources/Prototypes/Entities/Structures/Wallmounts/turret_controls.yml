@@ -93,6 +93,9 @@
     - Security
     - Service
     - Silicon
+    # Starlight start
+    - ITG
+    # Starlight end
     accessLevels:
     - Armory
     - Atmospherics
@@ -139,6 +142,11 @@
     - Surgery
     - IAA
     - Mail
+    - Debrief
+    - Shuttle
+    - Journalism
+    - Clown
+    - Mime
     # Starlight end
   - type: DeviceList
     isAllowList: true

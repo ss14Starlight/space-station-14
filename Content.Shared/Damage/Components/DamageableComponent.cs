@@ -1,5 +1,6 @@
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
+using Content.Shared.DisplacementMap;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.StatusIcon;
@@ -69,6 +70,13 @@ public sealed partial class DamageableComponent : Component
     public List<ProtoId<DamageTypePrototype>> RadiationDamageTypeIDs = new() { "Radiation" };
 
     /// <summary>
+    /// Sets the displacement map used for any of the DamageVisuals sprites for this entity.
+    /// TODO: The entirety of DamageVisualsSystem needs to be rewritten.
+    /// </summary>
+    [DataField]
+    public ProtoId<DisplacementDataPrototype>? Displacement;
+
+    /// <summary>
     ///     Group types that affect the pain overlay.
     /// </summary>
     ///     TODO: Add support for adding damage types specifically rather than whole damage groups
@@ -79,7 +87,7 @@ public sealed partial class DamageableComponent : Component
     [DataField]
     public Dictionary<MobState, ProtoId<HealthIconPrototype>> HealthIcons = new()
     {
-        { MobState.Alive, "HealthIconFine" },
+        // { MobState.Alive, "HealthIconFine" }, Starlight - hide alive icon
         { MobState.Critical, "HealthIconCritical" },
         { MobState.Dead, "HealthIconDead" },
     };
@@ -89,6 +97,22 @@ public sealed partial class DamageableComponent : Component
 
     [DataField]
     public FixedPoint2? HealthBarThreshold;
+
+    #region Starlight
+
+    /// <summary>
+    ///     Additive changes to damage coefficients. See also: <see cref="DamageModifierSet"/>
+    /// </summary>
+    [DataField]
+    public Dictionary<(EntityUid Source, string ModifierKey), float> AdditiveCoefficients = [];
+
+
+    /// <summary>
+    ///     Additive changes to damage modifiers. See also: <see cref="DamageModifierSet"/>
+    /// </summary>
+    [DataField]
+    public Dictionary<(EntityUid Source, string ModifierKey), float> AdditiveModifiers = [];
+    #endregion Starlight
 }
 
 [Serializable, NetSerializable]

@@ -338,3 +338,39 @@ PlushieVirus: PlushieLizard
 #2026-08-09 - Removed unused sawoff shotty since the riot gun rework
 WeaponShotgunRiotSawnEmpty: null
 WeaponShotgunRiotSawn: null
+
+#2026-08-19 - Removal of law communications console
+ComputerCommsLaw: ComputerSurveillanceCameraMonitor
+LawCommsComputerCircuitboard: null
+BoxMagiCircuitBoards: null
+
+#2026-08-29 - Wizden Merge, new rigged boxing glove rename
+ClothingHandsGlovesBoxingRigged: ClothingHandsGlovesBoxingRiggedBlue
+
+# 2026-09-03 - Salvage relocation to ATS
+LockerSalvageLead: null
+LockerSalvageLeadFilled: null
+LockerSalvageLeadFilledHardsuit: null
+LockerSalvageSpecialistLarge: null
+LockerSalvageSpecialistLargeFilledHardsuit: null
+LockerSalvageSpecialistLargeFilled: null
+LockerSalvageSpecialistFilledHardsuit: null
+LockerSalvageSpecialistFilled: null
+LockerSalvageSpecialist: null
+CompuerShuttleSalvage: null
+SLVendingMachineSalvage: null
+SpawnPointSalvageSpecialist: null
+SpawnPointSalvageLead: null
+ComputerSalvageExpedition: null
+ComputerSalvageJobBoard: null
+AirlockSalvageMining: AirlockMining
+AirlockSalvageMiningLocked: AirlockMiningCargoLocked
+AirlockSalvageMiningGlass: AirlockMiningCargoLocked
+AirlockSalvageMiningGlassLocked: AirlockMiningCargoLocked
+AirlockRetroSalvageMining: AirlockMiningCargoLocked
+AirlockRetroSalvageMiningLocked: AirlockMiningCargoLocked
+AirlockRetroSalvageMiningGlass: AirlockMiningCargoLocked
+AirlockRetroSalvageMiningGlassLocked: AirlockMiningCargoLocked
+
+#2026-09-04 - Removing a singular washing machine flatpack
+FlatpackWashingMachine: WashingMachineFlatpack

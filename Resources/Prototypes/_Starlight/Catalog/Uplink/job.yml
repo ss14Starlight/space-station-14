@@ -149,25 +149,6 @@
         - Captain
 
 - type: listing
-  id: uplinkRiggedBoxingGlovesBoxer
-  name: uplink-rigged-boxing-gloves-name
-  description: uplink-rigged-boxing-gloves-desc
-  productEntity: ClothingHandsGlovesBoxingRigged
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 2
-  cost:
-    Telecrystal: 4
-  categories:
-    - UplinkJob
-  conditions:
-    - !type:BuyerJobCondition
-      whitelist:
-        - Boxer
-        - HeadOfPersonnel
-        - Captain
-
-- type: listing
   id: UplinkMimanaStealthy
   name: uplink-mimana-stealthy-name
   description: uplink-mimana-stealthy-desc
@@ -184,3 +165,47 @@
         - Performer
         - HeadOfPersonnel
         - Captain
+
+- type: listing
+  id: UplinkBananaPeelExplosive
+  name: uplink-banana-peel-explosive-name
+  description: uplink-banana-peel-explosive-desc
+  icon: { sprite: Objects/Specific/Hydroponics/banana.rsi, state: peel }
+  productEntity: TrashBananaPeelExplosiveUnarmed
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+    - Performer
+    - HeadOfPersonnel
+    - Captain
+
+- type: listing
+  id: UplinkNecronomicon
+  name: uplink-necronomicon-name
+  description: uplink-necronomicon-desc
+  productEntity: BibleNecronomicon
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chaplain
+    - HeadOfPersonnel
+    - Captain
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle

@@ -11,6 +11,7 @@
         eyes: OrganNeoSlimePeepoids # To heal cellular
         tongue: OrganNeoSlimeSlurpoid # To heal cellular
         eye_implant: null
+        nose_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoSlime
       connections:

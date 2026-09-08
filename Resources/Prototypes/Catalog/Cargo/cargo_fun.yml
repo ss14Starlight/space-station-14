@@ -53,7 +53,7 @@
   icon:
     sprite: Objects/Fun/Plushies/lizard.rsi
     state: icon
-  product: CrateFunLizardPlushieBulk
+  product: BoxFunLizardPlushieBulk #Funky change boxification
   cost: 500
   category: cargoproduct-category-name-fun
   group: market
@@ -63,7 +63,7 @@
   icon:
     sprite: Objects/Fun/Plushies/shark.rsi
     state: blue
-  product: CrateFunSharkPlushieBulk
+  product: BoxFunSharkPlushieBulk #Funky change boxification
   cost: 500
   category: cargoproduct-category-name-fun
   group: market
@@ -103,7 +103,7 @@
   icon:
     sprite: Clothing/Hands/Gloves/Boxing/boxingred.rsi
     state: icon
-  product: CrateFunBoxing
+  product: BoxFunBoxing #Funky change boxification
   cost: 500
   category: cargoproduct-category-name-fun
   group: market

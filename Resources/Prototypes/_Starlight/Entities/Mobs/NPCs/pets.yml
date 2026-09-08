@@ -40,10 +40,12 @@
     speaks:
     - Ancestor
     - Draconic
+    - Sign
     understands:
     - Ancestor
     - GalacticCommon
     - Draconic
+    - Sign
   - type: RandomSprite # Using random sprite since we need to overwrite the parent's random sprite, even if we're actually giving her a fixed appearance.
     getAllGroups: true
     available:
@@ -60,7 +62,6 @@
     job: Botanist
   - type: GhostTakeoverAvailable
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 3
@@ -96,9 +97,11 @@
   - type: LanguageKnowledge
     speaks:
     - Ancestor
+    - Sign
     understands:
     - Ancestor
     - GalacticCommon
+    - Sign
   - type: GhostRole
     prob: 1
     makeSentient: true
@@ -110,7 +113,6 @@
     job: StirStir
   - type: GhostTakeoverAvailable
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 3
@@ -126,6 +128,9 @@
     attributes:
       proper: true
       gender: male
+  - type: GuideHelp
+    guides:
+    - StirStir
 
 ## ADMIN MICE
 
@@ -270,6 +275,7 @@
   - type: AutoImplant
     implants:
     - RedspaceImplant
+  - type: AntagImmune
 
 - type: entity
   parent: MobAdminMouse

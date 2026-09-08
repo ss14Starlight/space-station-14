@@ -4,15 +4,14 @@
   name: licoxide hypo
   description: A self-refilling injector for rapid administration of licoxide to victims.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 8
-        reagents:
-        - ReagentId: Licoxide
-          Quantity: 8
+  - type: Solution
+    id: hypospray
+    solution:
+      maxVol: 8
+      reagents:
+      - ReagentId: Licoxide
+        Quantity: 8
   - type: SolutionRegeneration
-    solution: hypospray
     generated:
       reagents:
       - ReagentId: Licoxide
@@ -24,15 +23,14 @@
   name: licoxide hypo
   description: A self-refilling injector for rapid administration of licoxide to victims. Has 1.5x the storage of the base one.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 12
-        reagents:
-        - ReagentId: Licoxide
-          Quantity: 12
+  - type: Solution
+    id: hypospray
+    solution:
+      maxVol: 12
+      reagents:
+      - ReagentId: Licoxide
+        Quantity: 12
   - type: SolutionRegeneration
-    solution: hypospray
     generated:
       reagents:
       - ReagentId: Licoxide
@@ -44,15 +42,14 @@
   name: extended nocturine hypo
   description: A self-refilling injector for rapid administration of nocturine to victims. Has 1.5x the storage of the base one.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 18
-        reagents:
-        - ReagentId: Nocturine
-          Quantity: 18
+  - type: Solution
+    id: hypospray
+    solution:
+      maxVol: 18
+      reagents:
+      - ReagentId: Nocturine
+        Quantity: 18
   - type: SolutionRegeneration
-    solution: hypospray
     generated:
       reagents:
       - ReagentId: Nocturine
@@ -64,15 +61,14 @@
   name: mute toxin hypo
   description: A self-refilling injector for rapid administration of mute toxin to victims.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 8
-        reagents:
-        - ReagentId: MuteToxin
-          Quantity: 8
+  - type: Solution
+    id: hypospray
+    solution:
+      maxVol: 8
+      reagents:
+      - ReagentId: MuteToxin
+        Quantity: 8
   - type: SolutionRegeneration
-    solution: hypospray
     generated:
       reagents:
       - ReagentId: MuteToxin

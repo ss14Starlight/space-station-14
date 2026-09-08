@@ -9,8 +9,8 @@ namespace Content.Client._Funkystation.ContentWarning;
 
 public sealed partial class ContentWarningUIController : UIController, IOnStateEntered<LobbyState>, IOnStateEntered<GameplayState>
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IClientConsoleHost _consoleHost = default!;
 
     private ContentWarningPopup? _window;
 

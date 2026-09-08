@@ -268,3 +268,69 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+#Cell Bars
+- type: construction
+  id: CellBarsStraight
+  name: construction-recipe-cell-bars-straight
+  graph: CellBarsStraight
+  startNode: start
+  targetNode: CellBarsStraight
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CellBarsCorner
+  name: construction-recipe-cell-bars-corner
+  graph: CellBarsCorner
+  startNode: start
+  targetNode: CellBarsCorner
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CellBarsEnd
+  name: construction-recipe-cell-bars-end
+  graph: CellBarsEnd
+  startNode: start
+  targetNode: CellBarsEnd
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CellBarsGate
+  name: construction-recipe-cell-bars-gate
+  graph: CellBarsGate
+  startNode: start
+  targetNode: CellBarsGate
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CellBarsBroken
+  name: construction-recipe-cell-bars-broken
+  graph: CellBarsBroken
+  startNode: start
+  targetNode: CellBarsBroken
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

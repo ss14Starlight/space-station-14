@@ -39,7 +39,6 @@ using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
-using Content.Shared._Starlight.CCVar;
 
 namespace Content.Server.Ghost.Roles;
 
@@ -813,8 +812,17 @@ public sealed partial class GhostRoleSystem : EntitySystem
         if (string.IsNullOrEmpty(component.Prototype))
             throw new NullReferenceException("Prototype string cannot be null or empty!");
 
-        var mob = Spawn(component.Prototype, Transform(uid).Coordinates);
+        // Starlight-start
+        // Create the mob without initializing it so we can preserve the notification
+        // state before GhostRoleComponent startup registers the new ghost role.
+        var mob = _ent.CreateEntityUninitialized(component.Prototype, Transform(uid).Coordinates);
+
+        if (TryComp(mob, out GhostRoleComponent? spawnedGhostRole))
+            spawnedGhostRole.HasNotifiedGhosts = ghostRole.HasNotifiedGhosts;
+
         _transform.AttachToGridOrMap(mob);
+        _ent.InitializeAndStartEntity(mob);
+        // Starlight-end
 
         var spawnedEvent = new GhostRoleSpawnerUsedEvent(uid, mob);
         RaiseLocalEvent(mob, spawnedEvent);
@@ -825,6 +833,11 @@ public sealed partial class GhostRoleSystem : EntitySystem
         EnsureComp<MindContainerComponent>(mob);
 
         GhostRoleInternalCreateMindAndTransfer(args.Player, uid, mob, ghostRole);
+
+        // Starlight-start
+        // Reset the notification state for the next takeover.
+        ghostRole.HasNotifiedGhosts = false;
+        // Starlight-end
 
         if (++component.CurrentTakeovers < component.AvailableTakeovers)
         {

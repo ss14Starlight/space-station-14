@@ -875,10 +875,9 @@
     price: 100
 
 - type: entity
-  name: experimental C.H.I.M.P. handcannon
   parent: [WeaponPistolCHIMP, BaseSyndicateContraband]
   id: WeaponPistolCHIMPUpgraded
-  description: This C.H.I.M.P. seems to have a greater punch than usual...
+  suffix: Syndicate
   components:
   - type: BatteryWeaponFireModes
     fireModes:
@@ -978,21 +977,21 @@
   description: A high powered self-charging energy pistol designed for elite security personnel. It has has three firing modes allowing for either high damage, window piercing, or non-lethal disabling.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi #Starlight from energy_magnum.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
-    - state: mag-unshaded-1
-      visible: false
+    - state: energy-unshaded-3 #Starlight, from mag-unshaded-1
       map: [ "enum.GunVisualLayers.MagUnshaded" ]
       shader: unshaded
+      visible: false
   - type: MagazineVisuals
-    magState: mag
+    magState: energy
     steps: 4
     zeroVisible: true
   - type: Appearance
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi #Starlight from energy_magnum.rsi
   - type: Tag
     tags:
     - HighRiskItem
@@ -1009,15 +1008,25 @@
     fireModes:
     - proto: BulletLaserMagnumSL # Starlight - Hitscan
       fireCost: 150
+      magState: energy #Starlight
+      heldPrefix: energy #Starlight
     - proto: BulletLaserWindowPiercingMagnumSL # Starlight - Hitscan
       fireCost: 150
+      magState: energypierce #Starlight
+      heldPrefix: energypierce #Starlight
     - proto: DisablerBolt # Starlight - Hitscan
       fireCost: 62.5
       pacifismAllowedMode: true
+      magState: disable #Starlight
+      heldPrefix: disable #Starlight
   - type: BatterySelfRecharger
     autoRechargeRate: 48
     autoRechargePauseTime: 10
   # starlight start
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi
+    heldPrefix: empty
   - type: ContainerContainer
     containers:
       firing_pin: !type:Container
