@@ -1,20 +1,6 @@
 Entries:
 - author: Trosling
   changes:
-  - message: AoS and KoS now both prompt for a reason when assigned in the computer.
-    type: Tweak
-  id: 408032
-  time: '2026-08-31T18:14:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5890
-- author: Trosling
-  changes:
-  - message: Added explicit SOP for how the criminal statuses are supposed to be used and engaged.
-    type: Add
-  id: 408033
-  time: '2026-08-31T18:14:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5890
-- author: Trosling
-  changes:
   - message: Added in-character penalties for officers who get people killed by wrongfully assigning a criminal status.
     type: Add
   id: 408034
@@ -2799,4 +2785,18 @@ Entries:
   id: 408431
   time: '2026-09-08T12:59:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6045
+- author: Caws
+  changes:
+  - message: Eeeps now randomly lightning strike machines and mobs again. This is to clarify their status an antagonist and as dangerous, destructive fauna. Eeeps are not your friend.
+    type: Tweak
+  id: 408432
+  time: '2026-09-08T13:21:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6025
+- author: Caws
+  changes:
+  - message: Eeeps now have 80% explosive resistance so that they don't die from exploding machines with their random lightning strikes.
+    type: Tweak
+  id: 408433
+  time: '2026-09-08T13:21:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6025
 Order: -1
