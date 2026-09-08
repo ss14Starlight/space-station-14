@@ -1,13 +1,6 @@
 Entries:
 - author: Sparlight
   changes:
-  - message: K9s can no longer latch outside of melee range, preventing them from being hit.
-    type: Fix
-  id: 407998
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
   - message: K9s and their target can no longer be pulled while a latch is active.
     type: Tweak
   id: 407999
@@ -2799,4 +2792,11 @@ Entries:
   id: 408397
   time: '2026-09-08T09:44:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5973
+- author: wonderfulnewworld
+  changes:
+  - message: Added graphics options for Weather Quality, for Novo Lobster; High (default), Medium, and Low.
+    type: Add
+  id: 408398
+  time: '2026-09-08T09:45:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5769
 Order: -1
