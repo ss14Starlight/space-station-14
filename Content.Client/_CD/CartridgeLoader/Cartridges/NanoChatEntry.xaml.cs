@@ -35,6 +35,9 @@ public sealed partial class NanoChatEntry : BoxContainer
         JobLabel.Visible = !string.IsNullOrEmpty(recipient.JobTitle);
         UnreadIndicator.Visible = recipient.HasUnread;
 
+        // Funky Station - Show group icon for group chats
+        GroupIcon.Visible = recipient.IsGroup;
+
         ChatButton.ModulateSelfOverride = isSelected ? NanoChatMessageBubble.OwnMessageColor : null;
     }
 }
