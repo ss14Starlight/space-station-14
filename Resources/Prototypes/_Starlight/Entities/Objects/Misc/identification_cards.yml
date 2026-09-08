@@ -1061,3 +1061,24 @@
     job: CBURN
   - type: NanoChatCard # CD
     listNumber: false
+
+- type: entity
+  parent: [ IDCardStandard, BaseCargoContraband ]
+  id: SalvageMedicIDCard
+  name: salvage medic ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - sprite: *id-rsi
+      state: stripe_top
+      color: *color-supply-top
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: *color-supply-top
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: SalvageMedic
+  - type: PresetIdCard
+    job: SalvageMedic

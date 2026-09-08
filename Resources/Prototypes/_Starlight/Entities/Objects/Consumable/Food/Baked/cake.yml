@@ -1,6 +1,6 @@
 ﻿- type: entity
   name: Dreaming cake
-  parent: FoodCakeBase
+  parent: [FoodCakeBase, BaseSlicingRefinableFood]
   id: FoodResomiCake
   description: The poor Resomi can no longer chase their dreams
   components:
@@ -13,15 +13,20 @@
         - hope
         - sadness
         - pilk
-    - type: SliceableFood
-      slice: FoodCakeResomiSlice
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 30
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 30
+    - type: ToolRefinable
+      refineResult:
+      - id: FoodCakeResomiSlice
+        amount: 8
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 60
+          - ReagentId: Vitamin
+            Quantity: 10
+          - ReagentId: Sugar
+            Quantity: 15
     - type: Tag
       tags:
         - Cake
@@ -29,7 +34,7 @@
 
 - type: entity
   name: Cotton Cake
-  parent: FoodCakeBase
+  parent: [FoodCakeBase, BaseSlicingRefinableFood]
   id: FoodCottonCake
   description: A sweet treat for the moth to eat
   components:
@@ -41,17 +46,22 @@
       flavors:
         - Fiber
         - Sweetness
-    - type: SliceableFood
-      slice: FoodCottonCakeSlice
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 30
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 15
-            - ReagentId: Fiber
-              Quantity: 15
+    - type: ToolRefinable
+      refineResult:
+      - id: FoodCottonCakeSlice
+        amount: 8
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 60
+          - ReagentId: Vitamin
+            Quantity: 10
+          - ReagentId: Sugar
+            Quantity: 10
+          - ReagentId: Fiber
+            Quantity: 10
     - type: Tag
       tags:
         - Cake
@@ -73,15 +83,18 @@
       flavors:
         - Fiber
         - Sweetness
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 10
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 5
-            - ReagentId: Fiber
-              Quantity: 5
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 7.5
+          - ReagentId: Vitamin
+            Quantity: 1.25
+          - ReagentId: Sugar
+            Quantity: 1.25
+          - ReagentId: Fiber
+            Quantity: 1.25
     - type: Tag
       tags:
         - Cake
@@ -106,13 +119,16 @@
         - hope
         - sadness
         - pilk
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 5
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 5
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 7.5
+          - ReagentId: Vitamin
+            Quantity: 1.25
+          - ReagentId: Sugar
+            Quantity: 1.875
     - type: Tag
       tags:
         - Cake

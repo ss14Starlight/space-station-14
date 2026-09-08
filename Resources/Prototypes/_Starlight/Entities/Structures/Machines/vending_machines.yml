@@ -236,6 +236,28 @@
 
 - type: entity
   parent: SLVendingMachine
+  id: SLVendingMachineSalvageITG
+  categories: [ ShouldMapStation ]
+  name: salvage ticket machine
+  components:
+  - type: AccessReader
+    access: [["Salvage"]]
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/salvage.rsi
+  - type: Store
+    name: vendor-salvage-ticket-machine
+    categories:
+    - SalvageEquipment
+    - SalvageWeapons
+    - SalvageConsumeables
+    - SalvageMercenaryEquipment
+    - SalvageCybernetics
+    - SLSecret
+    currencyWhitelist:
+    - SalvageTicket
+
+- type: entity
+  parent: SLVendingMachine
   id: SLVendingMachineMining
   categories: [ ShouldMapStation ]
   name: mining ticket machine

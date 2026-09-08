@@ -1,7 +1,6 @@
 using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
-using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Access.Systems;
 using Content.Shared.CriminalRecords;
@@ -12,10 +11,9 @@ using Content.Shared.StationRecords;
 using Robust.Server.GameObjects;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Security.Components;
 using System.Linq;
-using Content.Shared.Roles.Jobs;
-using Robust.Shared.Log;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Database;
 
 // Cosmatic Drift Record System: imports
 using Content.Server._CD.Records;
@@ -29,6 +27,7 @@ namespace Content.Server.CriminalRecords.Systems;
 public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleSystem
 {
     [Dependency] private AccessReaderSystem _access = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private CriminalRecordsSystem _criminalRecords = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private RadioSystem _radio = default!;
@@ -200,8 +199,12 @@ public sealed partial class CriminalRecordsConsoleSystem : SharedCriminalRecords
             // this is impossible
             _ => "not-wanted"
         };
-        _radio.SendRadioMessage(ent, Loc.GetString($"criminal-records-console-{statusString}", args),
-            ent.Comp.SecurityChannel, ent);
+        _radio.SendRadioMessage(ent,
+            Loc.GetString($"criminal-records-console-{statusString}", args),
+            ent.Comp.SecurityChannel,
+            ent);
+
+        _adminLogger.Add(LogType.Identity, LogImpact.Low, $"{ToPrettyString(mob.Value):name} changed criminal status for {name} to \"{statusString}\"");
 
         UpdateUserInterface(ent);
         // Cosmatic Drift Record System-start

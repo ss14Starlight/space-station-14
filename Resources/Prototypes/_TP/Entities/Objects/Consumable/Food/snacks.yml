@@ -14,14 +14,14 @@
   - type: Sprite
     sprite: _TP/Objects/Consumable/fried-food.rsi
     state: Motharella_Sticks
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2.5
-        - ReagentId: Fiber
-          Quantity: 2.5
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 2.5
+      - ReagentId: Fiber
+        Quantity: 2.5
   - type: Tag
     tags:
     - ClothMade
@@ -41,12 +41,12 @@
   - type: Sprite
     sprite: _TP/Objects/Consumable/fried-food.rsi
     state: Mozzarella_Sticks
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
   #Starlight start
   - type: Tag
     tags:
@@ -65,16 +65,16 @@
     flavors:
     - oily
     - meaty
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-          #Starlight start
-          - ReagentId: Nutriment
-            Quantity: 9
-          - ReagentId: Protein
-            Quantity: 9
-          #Starlight end
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+        #Starlight start
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Protein
+          Quantity: 9
+        #Starlight end
   - type: Sprite
     sprite: _TP/Objects/Consumable/fried-food.rsi
     state: Corndog
@@ -102,12 +102,12 @@
     flavors:
     - oily
     - sweet
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
   - type: Sprite
     sprite: _TP/Objects/Consumable/fried-food.rsi
     state: Fried_Icecream
@@ -129,12 +129,12 @@
     flavors:
     - oily
     - sweet
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 15
   - type: Sprite
     sprite: _TP/Objects/Consumable/fried-food.rsi
     state: Funnel_Cake

@@ -35,7 +35,8 @@ public sealed partial class SalarySystem : SharedSalarySystem
     private float _delayAccumulator = 0f;
     private readonly Stopwatch _stopwatch = new();
     private readonly Dictionary<ICommonSession, TimeSpan> _lastSalary = [];
-    private SalariesPrototype _salaries = new();
+    private static readonly ProtoId<SalariesPrototype> _standArtId = "standart";
+    private SalariesPrototype _salaries = null!;
     private float _defaultBonusMultiplier = 1.0f;
 
     public override void Initialize()
@@ -43,7 +44,7 @@ public sealed partial class SalarySystem : SharedSalarySystem
         SubscribeLocalEvent<RoundStartingEvent>(ev => _lastSalary.Clear());
         _configurationManager.OnValueChanged(StarlightCCVars.SalaryMultiplier, UpdateBonusMultiplier, true);
 
-        _salaries = _prototypes.Index<SalariesPrototype>("standart");
+        _salaries = _prototypes.Index(_standArtId);
 
         base.Initialize();
     }
@@ -82,10 +83,11 @@ public sealed partial class SalarySystem : SharedSalarySystem
                             && _playerResources.TryGetResource(query.Current.Session, "credits", out var balance))
                         {
                             var amount = CalculateSalaryWithBonuses(salary, query.Current.Session);
+                            var sender = _salaries.Sender.GetValueOrDefault(role.Prototype, "NanoTrasen");
 
                             _playerResources.TryUpdateResource(query.Current.Session, "credits", amount);
-                            var message = Loc.GetString("economy-chat-salary-message", ("amount", amount), ("sender", "NanoTrasen"));
-                            var wrappedMessage = Loc.GetString("economy-chat-salary-wrapped-message", ("amount", amount), ("sender", "NanoTrasen"), ("senderColor", "#2384CE"));
+                            var message = Loc.GetString("economy-chat-salary-message", ("amount", amount), ("sender", sender));
+                            var wrappedMessage = Loc.GetString("economy-chat-salary-wrapped-message", ("amount", amount), ("sender", sender), ("senderColor", "#2384CE"));
                             _chat.ChatMessageToOne(ChatChannel.Notifications, message, wrappedMessage, default, false, query.Current.Session.Channel, Color.FromHex("#57A3F7"));
                         }
                     }

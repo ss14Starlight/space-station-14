@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urist McDuskin #pronounced Dusk-Kin
+  name: Urist McShadowster
   parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies, BaseSpeciesPickupableHuge]
   id: BaseMobNeoKin
   abstract: true
@@ -86,12 +86,7 @@
     - type: Speech
       speechVerb: Robotic
       speechSounds: Borg
-      allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
     - type: Vocal
-      sounds:
-        Male: NeoKinMSounds
-        Female: NeoKinFSounds
-        Unsexed: NeoKinMSounds
     - type: MeleeWeapon
       soundHit:
         collection: AlienClaw
@@ -128,7 +123,7 @@
       bloodReferenceSolution:
         reagents:
           - ReagentId: DarkBlood
-            Quantity: 300
+            Quantity: 600
     - type: Flammable
       damage:
         types:
@@ -208,7 +203,6 @@
       thermalRegulationTemperatureThreshold: 2
     - type: Perishable
     - type: Butcherable
-      butcheringType: Spike
       spawned:
         - id: FoodMeat
           amount: 5
@@ -277,6 +271,7 @@
         - NeoKin
         - SiliconEmotesFH
         - NotLabelable
+    - type: FootprintOwner
 
 - type: entity
   save: false

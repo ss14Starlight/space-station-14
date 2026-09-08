@@ -10,7 +10,7 @@
       organs:
         brain: OrganNeocyteBrain
         eyes: OrganNeoKinEyes
-        tongue: OrganNeocyteTongueForked
+        tongue: OrganNeoKinTongue
         eye_implant: null
         nose_implant: null # 🌟Starlight🌟
         brain_implant: null

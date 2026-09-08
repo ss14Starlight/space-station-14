@@ -10,18 +10,18 @@ namespace Content.Server.GameTicking.Rules;
 
 public abstract partial class GameRuleSystem<T> : EntitySystem where T : IComponent
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly IPrototypeManager Proto = default!;
-    [Dependency] protected readonly IRobustRandom RobustRandom = default!;
-    [Dependency] protected readonly GameTicker GameTicker = default!;
-    [Dependency] protected readonly IChatManager Chat = default!; // Starlight, admin announcement
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected IPrototypeManager Proto = default!;
+    [Dependency] protected IRobustRandom RobustRandom = default!;
+    [Dependency] protected GameTicker GameTicker = default!;
+    [Dependency] protected IChatManager Chat = default!; // Starlight, admin announcement
 
     // Not protected, just to be used in utility methods
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private MapSystem _map = default!;
 
-    [Dependency] protected readonly EntityQuery<GameRuleComponent> GameRuleQuery = default!;
-    [Dependency] protected readonly EntityQuery<T> RuleQuery = default!;
+    [Dependency] protected EntityQuery<GameRuleComponent> GameRuleQuery = default!;
+    [Dependency] protected EntityQuery<T> RuleQuery = default!;
 
     public override void Initialize()
     {

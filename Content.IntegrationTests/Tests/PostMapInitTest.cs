@@ -456,6 +456,18 @@ namespace Content.IntegrationTests.Tests
                 mapSystem.DeleteMap(shuttleMap);
                 TestContext.Out.WriteLine($"{sw.Elapsed.TotalMilliseconds} ms: Deleted shuttle map on {mapProto}");
 
+                // starlight start
+                // Spawn ATS.
+                // This is done inside gamemap test so that ATS spawns can be recognized.
+                {
+                    var tradePath = new ResPath("/Maps/_Starlight/trading_outpost.yml");
+                    Assert.That(mapLoader.TryLoadGrid(mapId, tradePath, out var trade),
+                        $"Failed to load {tradePath}");
+                }
+
+                TestContext.Out.WriteLine($"{sw.Elapsed.TotalMilliseconds} ms: ATS spawned on {mapProto}");
+                // starlight end
+
                 if (entManager.HasComponent<StationJobsComponent>(station))
                 {
                     // Test that the map has valid latejoin spawn points or container spawn points

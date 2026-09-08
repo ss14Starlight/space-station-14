@@ -10,6 +10,7 @@ using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Friction;
+using Content.Shared.Maps;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -21,6 +22,7 @@ using Content.Shared.StepTrigger.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -41,6 +43,14 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [Dependency] private SpeedModifierContactsSystem _speedModContacts = default!;
     [Dependency] private StepTriggerSystem _stepTrigger = default!;
     [Dependency] private TileFrictionController _tile = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TurfSystem _turf = default!;
+
+    private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
+    private EntityQuery<ReactiveComponent> _reactiveQuery;
+    private EntityQuery<EvaporationComponent> _evaporationQuery;
+    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery;
+    [Dependency] private INetManager _net = default!;
 
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
@@ -55,16 +65,12 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     // loses & then gains reagents in a single tick.
     private HashSet<EntityUid> _deletionQueue = [];
 
-    private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
-    private EntityQuery<ReactiveComponent> _reactiveQuery;
-    private EntityQuery<EvaporationComponent> _evaporationQuery;
-
     public override void Initialize()
     {
         base.Initialize();
         // Shouldn't need re-anchoring.
         SubscribeLocalEvent<PuddleComponent, AnchorStateChangedEvent>(OnAnchorChanged);
-        SubscribeLocalEvent<PuddleComponent, SolutionContainerChangedEvent>(OnSolutionUpdate);
+        SubscribeLocalEvent<PuddleComponent, SolutionChangedEvent>(OnSolutionUpdate);
         SubscribeLocalEvent<PuddleComponent, GetFootstepSoundEvent>(OnGetFootstepSound);
         SubscribeLocalEvent<PuddleComponent, ExaminedEvent>(HandlePuddleExamined);
         SubscribeLocalEvent<PuddleComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
@@ -112,26 +118,33 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         _standoutReagents = [.. _prototypeManager.EnumeratePrototypes<ReagentPrototype>().Where(x => x.Standsout).Select(x => x.ID)];
     }
 
-    private void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionContainerChangedEvent args)
+    protected virtual void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args) // Starlight
     {
-        if (args.SolutionId != entity.Comp.SolutionName)
+        // The changes are already networked as part of the same game state.
+        if (_timing.ApplyingState)
             return;
 
-        if (args.Solution.Volume <= 0)
+        if (args.Solution.Comp.Id != entity.Comp.SolutionName)
+            return;
+
+        if (args.Solution.Comp.Solution.Volume <= 0)
         {
             _deletionQueue.Add(entity);
             return;
         }
 
         _deletionQueue.Remove(entity);
-        UpdateSlip((entity, entity.Comp), args.Solution);
-        UpdateSlow(entity, args.Solution);
-        UpdateEvaporation(entity, args.Solution);
+        UpdateSlip((entity, entity.Comp), args.Solution.Comp.Solution);
+        UpdateSlow(entity, args.Solution.Comp.Solution, entity.Comp); // <-- Pass the component here - Funky
+        UpdateEvaporation(entity, args.Solution.Comp.Solution);
         UpdateAppearance((entity, entity.Comp));
     }
 
     private void OnGetFootstepSound(Entity<PuddleComponent> entity, ref GetFootstepSoundEvent args)
     {
+        if (!entity.Comp.AffectsSound) // Funky
+            return;
+
         if (!_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName, ref entity.Comp.Solution,
                 out var solution))
             return;
@@ -171,7 +184,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
     private void OnAnchorChanged(Entity<PuddleComponent> entity, ref AnchorStateChangedEvent args)
     {
-        if (!args.Anchored)
+        if (!args.Anchored && !args.Detaching)
             PredictedQueueDel(entity.Owner);
     }
 
@@ -183,10 +196,30 @@ public abstract partial class SharedPuddleSystem : EntitySystem
             ent.Comp.Solution = null;
     }
 
+    [SubscribeLocalEvent]
+    private void OnTileChanged(ref TileChangedEvent ev)
+    {
+        foreach (var change in ev.Changes)
+        {
+            if (!_turf.IsSpace(change.NewTile))
+                continue;
+
+            var anchored = _map.GetAnchoredEntities(ev.Entity, ev.Entity.Comp, change.GridIndices);
+            while (anchored.MoveNext(out var ent))
+            {
+                if (!_puddleQuery.HasComponent(ent))
+                    continue;
+
+                PredictedQueueDel(ent);
+            }
+        }
+    }
+
     private void UpdateAppearance(Entity<PuddleComponent?, AppearanceComponent?> ent)
     {
         var (uid, puddle, appearance) = ent;
-        if (!Resolve(ent, ref puddle, ref appearance))
+        // Uses TryComp behind the scenes now, protecting Footprints which lack it
+        if (!Resolve(ent, ref puddle, ref appearance, false)) // Funky
             return;
 
         var volume = FixedPoint2.Zero;
@@ -318,8 +351,16 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         Dirty(entity, slipComp);
     }
 
-    private void UpdateSlow(EntityUid uid, Solution solution)
+    private void UpdateSlow(EntityUid uid, Solution solution, PuddleComponent puddle) // Funky
     {
+        #region Funky
+        if (!puddle.AffectsMovement)
+        {
+            RemComp<SpeedModifierContactsComponent>(uid);
+            return;
+        }
+        #endregion
+
         var maxViscosity = 0f;
         foreach (var (reagent, _) in solution.Contents)
         {
