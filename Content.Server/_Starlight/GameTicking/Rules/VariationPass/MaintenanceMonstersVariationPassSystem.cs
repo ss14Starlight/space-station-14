@@ -35,7 +35,7 @@ public sealed partial class MaintenanceMonstersVariationPassSystem : VariationPa
 
             foreach (var proto in protos)
             {
-                var spawn = EntityManager.Spawn(proto, MapCoordinates.Nullspace);
+                var spawn = Spawn(proto, MapCoordinates.Nullspace);
                 if (!_entityStorage.Insert(spawn, uid, storage))
                 {
                     Del(spawn);

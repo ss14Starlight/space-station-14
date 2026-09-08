@@ -11,7 +11,7 @@ using Content.Shared._Starlight.Medical.Surgery.Events;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
-public sealed class SurgeryActionSystem : EntitySystem
+public sealed partial class SurgeryActionSystem : EntitySystem
 {
         [Dependency] private SharedDoAfterSystem _doAfter = default!;
         [Dependency] private SharedBodySystem _body = default!;
