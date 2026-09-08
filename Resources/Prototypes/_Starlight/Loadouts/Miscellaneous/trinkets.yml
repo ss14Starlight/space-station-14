@@ -946,3 +946,14 @@
   equipment:
     mask: ClothingMaskBreathTube
 
+
+- type: loadout
+  id: RadioHandheldStation
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 30m
+  storage:
+    pocket1:
+      - RadioHandheldStation
