@@ -1,130 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: K9 - A new 'bite harder' button appears directly in the Latch UI when latched onto a target.
-    type: Add
-  id: 407995
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
-  - message: K9s can now enter cryosleep on their own.
-    type: Fix
-  id: 407996
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
-  - message: K9s no longer almost immediately detach their latch when in zero grav.
-    type: Fix
-  id: 407997
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
-  - message: K9s can no longer latch outside of melee range, preventing them from being hit.
-    type: Fix
-  id: 407998
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
-  - message: K9s and their target can no longer be pulled while a latch is active.
-    type: Tweak
-  id: 407999
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
-  - message: K9s can initiate a latch from slightly farther away; this fixes network judder quietly failing latches.
-    type: Tweak
-  id: 408000
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
-  - message: The latch UI now re-positions to avoid the K9 or its target being hidden behind the UI.
-    type: Tweak
-  id: 408001
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: RedSpeeds
-  changes:
-  - message: Added mailboxes. Allowing your mail to be stored in a central location. Only normal mail can fit in these so no fragile, priority or bomb mails can fit.
-    type: Add
-  id: 408002
-  time: '2026-08-30T17:23:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5578
-- author: Musiklie
-  changes:
-  - message: Added a new verb for ending your text with ellipsis (...), so you no longer mumble your awkward pauses.
-    type: Add
-  id: 408003
-  time: '2026-08-30T17:49:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5747
-- author: Musiklie
-  changes:
-  - message: Increased the fontSize on mumbling by +1.
-    type: Tweak
-  id: 408004
-  time: '2026-08-30T17:49:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5747
-- author: OMEGA
-  changes:
-  - message: Alt Z now toggles monitor for the handheld engineering monitor.
-    type: Tweak
-  id: 408005
-  time: '2026-08-30T18:09:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5752
-- author: SirLutz
-  changes:
-  - message: Rebuffed Turnstiles to 250HP, but now costs 4 Rods and 2 Plasteel and door eletronics.
-    type: Tweak
-  id: 408006
-  time: '2026-08-30T18:09:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5689
-- author: SirLutz
-  changes:
-  - message: Turnstile Assembly, now you can move it after deconstruction.
-    type: Add
-  id: 408007
-  time: '2026-08-30T18:09:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5689
-- author: SirLutz
-  changes:
-  - message: Turnstile can now take door eletronics, so easy config managment.
-    type: Add
-  id: 408008
-  time: '2026-08-30T18:09:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5689
-- author: mikeysaurus, DocMoth
-  changes:
-  - message: Adds three new CentComm medals to be given to crew at CC's discretion to the AdmiMax vendor.
-    type: Add
-  id: 408009
-  time: '2026-08-30T18:37:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5701
-- author: Caws
-  changes:
-  - message: Jackets, sweaters, light coats, and other similar clothing now provides a little protection from cold temperatures and make you warm up a little faster.
-    type: Tweak
-  id: 408010
-  time: '2026-08-30T18:37:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5757
-- author: Caws
-  changes:
-  - message: Heavy coats, bomber jackets, windbreakers, and other similar clothing now provide equivalent protection from cold temperatures as winter coats.
-    type: Tweak
-  id: 408011
-  time: '2026-08-30T18:37:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5757
-- author: Caws
-  changes:
-  - message: Anything that has "winter clothing" equivalent protection now provides 15% cold damage resistance.
-    type: Tweak
-  id: 408012
-  time: '2026-08-30T18:37:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5757
 - author: Caws
   changes:
   - message: Anything that has "winter clothing" equivalent protection now provides 25% infection chance resistance.
@@ -2799,4 +2673,130 @@ Entries:
   id: 408394
   time: '2026-09-07T19:12:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6033
+- author: DBosley
+  changes:
+  - message: space cleaner spray bottles are back to 10 sprays (15 for the mega bottle).
+    type: Tweak
+  id: 408395
+  time: '2026-09-08T09:44:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5973
+- author: DBosley
+  changes:
+  - message: wall cleaner dispensers hold 3840u instead of 960u.
+    type: Tweak
+  id: 408396
+  time: '2026-09-08T09:44:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5973
+- author: DBosley
+  changes:
+  - message: janitor closets now have a small bucket (3x2, 180u).
+    type: Add
+  id: 408397
+  time: '2026-09-08T09:44:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5973
+- author: wonderfulnewworld
+  changes:
+  - message: Added graphics options for Weather Quality, for Novo Lobster; High (default), Medium, and Low.
+    type: Add
+  id: 408398
+  time: '2026-09-08T09:45:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5769
+- author: Funky station & RedSpeeds
+  changes:
+  - message: Added Group nanochat.
+    type: Add
+  id: 408399
+  time: '2026-09-08T10:04:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5959
+- author: Funky station & RedSpeeds
+  changes:
+  - message: Changed emotes in nanochat.
+    type: Tweak
+  id: 408400
+  time: '2026-09-08T10:04:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5959
+- author: RedSpeeds
+  changes:
+  - message: Added Vocal cyber tongue to use all emotes.
+    type: Add
+  id: 408401
+  time: '2026-09-08T10:29:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5999
+- author: RedSpeeds
+  changes:
+  - message: Changed vocal and emote to be changeable thru surgery.
+    type: Tweak
+  id: 408402
+  time: '2026-09-08T10:29:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5999
+- author: wonderfulnewworld
+  changes:
+  - message: IPC "blood" (Oil) has been replaced with a non-flammable Refined Oil.
+    type: Tweak
+  id: 408403
+  time: '2026-09-08T10:29:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6008
+- author: wonderfulnewworld, Cvlancer
+  changes:
+  - message: White Roboticist Winter Coat, Roboticist Winter Boots (15 Hours Roboticist).
+    type: Add
+  id: 408404
+  time: '2026-09-08T10:54:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6007
+- author: wonderfulnewworld, Cvlancer
+  changes:
+  - message: Roboticist Scarf, Roboticist Lizard Plushie, and Roboticist Figurine.
+    type: Add
+  id: 408405
+  time: '2026-09-08T10:54:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6007
+- author: wonderfulnewworld, Cvlancer
+  changes:
+  - message: Added Roboticist Scarf and Roboticist Figurine to RoboDrobe.
+    type: Add
+  id: 408406
+  time: '2026-09-08T10:54:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6007
+- author: wonderfulnewworld, Cvlancer
+  changes:
+  - message: Added 2 science wanted posters.
+    type: Add
+  id: 408407
+  time: '2026-09-08T10:54:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6007
+- author: Swonki
+  changes:
+  - message: ITG Salv ATS mapping issues.
+    type: Fix
+  id: 408408
+  time: '2026-09-08T10:54:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6016
+- author: qbrx
+  changes:
+  - message: Reverted Dragon's Devour and Changeling's Fleshmend to inject Ichor into the bloodstream following the upstream change restoring Ichor's bloodstream functionality.
+    type: Tweak
+  id: 408409
+  time: '2026-09-08T10:54:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6010
+- author: wonderfulnewworld, AraiMaia, B_Kirill
+  changes:
+  - message: Puddles should cause less lag now.
+    type: Fix
+  id: 408410
+  time: '2026-09-08T11:19:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6043
+- author: wonderfulnewworld, AraiMaia, B_Kirill
+  changes:
+  - message: Fixed puddles not being removed when tile changes to lattice.
+    type: Fix
+  id: 408411
+  time: '2026-09-08T11:19:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6043
+- author: wonderfulnewworld, AraiMaia, B_Kirill
+  changes:
+  - message: Fix slippery puddles mispredicting when going out of range.
+    type: Fix
+  id: 408412
+  time: '2026-09-08T11:19:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6043
 Order: -1
