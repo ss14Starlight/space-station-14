@@ -91,6 +91,7 @@ guide-entry-sl-security-sop-specialsituations = Special Situations
 guide-entry-sl-security-sop-enemy-of-corporation = Enemies of the Corporation
 guide-entry-sl-security-sop-hostage-situations = Hostage Situations
 guide-entry-sl-security-sop-criminal-status = Criminal Status
+guide-entry-sl-security-ammo-types = Ammo Types
 
 guide-entry-rules-supernatural-entities = Supernatural Entities
 guide-entry-stirstir = Stir Stir
