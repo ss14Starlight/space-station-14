@@ -48,7 +48,7 @@
       containers:
         cell_slot: !type:ContainerSlot
     - type: RadioSpeaker
-      enabled: true
+      enabled: false
       channels:
         - RadioShow
     - type: Speech
