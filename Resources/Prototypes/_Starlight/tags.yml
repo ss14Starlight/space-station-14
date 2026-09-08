@@ -231,10 +231,13 @@
   id: DogEmotes
 
 - type: Tag
-  id: DrinkCarton
+  id: Drone
 
 - type: Tag
   id: DroneUsable
+
+- type: Tag
+  id: DrinkCarton
 
 - type: Tag
   id: DurandArmor

@@ -5,7 +5,7 @@
   components:
   - type: Sprite
     sprite: _Starlight/Effects/unknown_humanoid.rsi
-    drawDepth: Mobs
+    drawdepth: Mobs
     netsync: false
     noRot: true
     layers:

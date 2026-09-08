@@ -106,7 +106,7 @@
           - !type:DoActsBehavior
             acts: ["Destruction"]
   - type: Repairable
-    fuelcost: 15
+    fuelCost: 15
     doAfterDelay: 8
   - type: ProtectedFromStepTriggers
   - type: Sprite
@@ -149,6 +149,7 @@
     - FootstepSound
     - SiliconEmotes
     - Unimplantable
+    - Drone
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -198,10 +199,11 @@
       1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another PROXY Unit.
       2. You may not harm any being, regardless of intent or circumstance.
       3. Your goals are to build, maintain, repair, improve, and power to the best of your abilities. You must never actively work against these goals.
-    requirements:
-      - !type:DepartmentTimeRequirement
-        department: Silicon
-        time: 18000 #5h
+    # requirements:
+    #   - !type:DepartmentTimeRequirement
+    #     department: Silicon
+    #     time: 18000 #5h
+    job: Borg
   - type: GhostTakeoverAvailable
   - type: ActionGrant
     actions:
