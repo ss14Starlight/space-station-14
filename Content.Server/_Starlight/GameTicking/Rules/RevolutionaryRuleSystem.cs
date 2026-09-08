@@ -1,3 +1,5 @@
+//ReSharper disable CheckNamespace
+
 using Content.Shared.Revolutionary.Components;
 
 namespace Content.Server.GameTicking.Rules;
