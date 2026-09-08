@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Client.Administration.Managers;
 using Content.Client.Construction; // Starlight
 using Content.Client.Gameplay;
@@ -140,6 +140,7 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         _window.ToggleSubfloorButton.OnPressed += _ => _sandbox.ToggleSubFloor();
         _window.ShowMarkersButton.OnPressed += _ => _sandbox.ShowMarkers();
         _window.ShowBbButton.OnPressed += _ => _sandbox.ShowBb();
+        _window.ToggleThermalVisionButton.OnToggled += _ => _sandbox.ToggleThermalVision();
     }
 
     private void CheckSandboxVisibility()

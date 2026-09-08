@@ -4,10 +4,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared.CCVar;
-using Content.Shared.GameTicking; // Starlight
+using Content.Shared.GameTicking;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
-using Content.Shared.Roles; // Starlight
+using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
@@ -52,6 +52,8 @@ namespace Content.Server.Preferences.Managers
             _netManager.RegisterNetMessage<MsgUpdateConstructionFavorites>(HandleUpdateConstructionFavoritesMessage);
             _sawmill = _log.GetSawmill("prefs");
         }
+
+        // Starlight, we do profiles entirely differently than Wizden so we should honestly just move this file to our directory some day.
 
         private async void HandleUpdateCharacterMessage(MsgUpdateCharacter message)
         {
@@ -278,7 +280,7 @@ namespace Content.Server.Preferences.Managers
                 async Task LoadPrefs()
                 {
                     var prefs = await GetOrCreatePreferencesAsync(session.UserId, cancel);
-                    prefsData.Prefs = prefs;
+                    prefsData.Prefs = prefs; // Starlight
                 }
             }
         }
@@ -290,7 +292,7 @@ namespace Content.Server.Preferences.Managers
             // And play time info is loaded concurrently from the DB with preferences.
             var prefsData = _cachedPlayerPrefs[session.UserId];
             DebugTools.Assert(prefsData.Prefs != null);
-            prefsData.Prefs = SanitizePreferences(session, prefsData.Prefs, _dependencies);
+            prefsData.Prefs = SanitizePreferences(session, prefsData.Prefs, _dependencies); // Starlight
 
             prefsData.PrefsLoaded = true;
 
@@ -372,7 +374,7 @@ namespace Content.Server.Preferences.Managers
             return null;
         }
 
-        private async Task<PlayerPreferences> GetOrCreatePreferencesAsync(NetUserId userId, CancellationToken cancel)
+        private async Task<PlayerPreferences> GetOrCreatePreferencesAsync(NetUserId userId, CancellationToken cancel) // Starligght
         {
             var prefs = await _db.GetPlayerPreferencesAsync(userId, cancel);
             if (prefs is null)

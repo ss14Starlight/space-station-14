@@ -29,3 +29,4 @@ cloud-emote-name-shocked = Shocked
 cloud-emote-name-sing = Sing
 cloud-emote-name-smile = Smile
 cloud-emote-name-smoile = Smoile
+cloud-emote-name-godo = Godo
