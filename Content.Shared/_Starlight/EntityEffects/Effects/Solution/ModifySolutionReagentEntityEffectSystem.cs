@@ -12,7 +12,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.EntityEffects.Effects.Solution;
 
 /// <summary>
-/// Adjust a reagent in any solution on the body (bloodstream, metabolites, stomach, etc.).
+/// Adjust a reagent in any solution on the body (bloodstream, metabolites, stomach, lungs, etc.).
 /// </summary>
 public sealed partial class ModifySolutionReagentEntityEffectSystem : EntityEffectSystem<SolutionManagerComponent, ModifySolutionReagent>
 {
@@ -36,14 +36,13 @@ public sealed partial class ModifySolutionReagentEntityEffectSystem : EntityEffe
     private bool TryResolve(EntityUid owner, string id, out Entity<SolutionComponent>? target)
     {
         target = null;
-        Content.Shared.Chemistry.Components.Solution? sol = null;
 
-        if (_solution.TryGetSolution(owner, id, out target, out sol))
+        if (_solution.TryGetSolution(owner, id, out target, out _))
             return true;
 
         if (TryComp<OrganComponent>(owner, out var organ) && organ.Body is { } body)
         {
-            if (_solution.TryGetSolution(body, id, out target, out sol))
+            if (_solution.TryGetSolution(body, id, out target, out _))
                 return true;
             owner = body;
         }
@@ -52,7 +51,7 @@ public sealed partial class ModifySolutionReagentEntityEffectSystem : EntityEffe
         {
             foreach (var (organUid, _) in _body.GetBodyOrgans(owner, bodyComp))
             {
-                if (_solution.TryGetSolution(organUid, id, out target, out sol))
+                if (_solution.TryGetSolution(organUid, id, out target, out _))
                     return true;
             }
         }
@@ -77,15 +76,14 @@ public sealed partial class ModifySolutionReagent : EntityEffectBase<ModifySolut
     public FixedPoint2 Amount;
 
     /// <summary>
-    /// The solution container ID to modify (e.g., bloodstream, metabolites, stomach).
+    /// The solution container ID to modify (e.g., bloodstream, metabolites, stomach, lungs, etc.).
     /// </summary>
     [DataField(required: true)]
     public string Target = default!;
 
     /// <inheritdoc/>
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc)
-    {
-        return prototype.Resolve(Reagent, out ReagentPrototype? proto)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) =>
+        prototype.Resolve(Reagent, out ReagentPrototype? proto)
             ? loc.GetString("entity-effect-guidebook-modify-solution-reagent",
                 ("chance", Probability),
                 ("deltasign", MathF.Sign(Amount.Float())),
@@ -93,5 +91,4 @@ public sealed partial class ModifySolutionReagent : EntityEffectBase<ModifySolut
                 ("amount", MathF.Abs(Amount.Float())),
                 ("solution", Target))
             : null;
-    }
 }

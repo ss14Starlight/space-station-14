@@ -10,6 +10,6 @@ entity-effect-guidebook-modify-solution-reagent =
                 *[-1] remove
             }
     } {NATURALFIXED($amount, 2)}u of {$reagent} { $deltasign ->
-        [1] to the
-        *[-1] from the
-    } {$solution} solution
+        [1] to
+        *[-1] from
+    } the {$solution} solution
