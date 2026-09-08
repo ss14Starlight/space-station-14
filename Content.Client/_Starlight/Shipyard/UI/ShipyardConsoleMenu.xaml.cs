@@ -126,4 +126,9 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
     public void UpdateState(ShipyardConsoleInterfaceState state) =>
         BankAccountLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", state.Balance.ToString()));
+
+    private void OnOnOrderApproved(ButtonEventArgs obj)
+    {
+        OnOrderApproved?.Invoke(obj);
+    }
 }

@@ -27,5 +27,11 @@ namespace Content.Shared.Fluids.Components
 
         [ViewVariables]
         public Entity<SolutionComponent>? Solution;
+
+        [DataField]
+        public bool AffectsMovement = true;
+
+        [DataField]
+        public bool AffectsSound = true;
     }
 }

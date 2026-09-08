@@ -25,10 +25,10 @@
             Botanist: [ 3, 3 ]
             Boxer: [ 2, 2 ]
             Chaplain: [ 1, 1 ]
-            Chef: [ 2, 3 ]
+            Chef: [ 3, 3 ]
             Lawyer: [ 2, 2 ]
             Librarian: [ 1, 1 ]
-            Janitor: [ 2, 3 ]
+            Janitor: [ 3, 3 ]
             RadioHost: [ 2, 2 ]
             ServiceWorker: [ 7, 7 ]
 
@@ -42,32 +42,32 @@
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 6, 6 ]
-            TechnicalAssistant: [ 2, 3 ]
+            TechnicalAssistant: [ 3, 3 ]
 
             # Medical
             ChiefMedicalOfficer: [ 1, 1 ]
-            Chemist: [ 2, 3 ]
+            Chemist: [ 3, 3 ]
             Paramedic: [ 2, 2 ]
             Psychologist: [ 1, 1 ]
-            MedicalDoctor: [ 7, 8 ]
-            MedicalIntern: [ 3, 4 ]
+            MedicalDoctor: [ 8, 8 ]
+            MedicalIntern: [ 4, 4 ]
             Surgeon: [ 2, 2 ]
 
             # Science
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 6, 7 ]
+            Scientist: [ 7, 7 ]
             ResearchAssistant: [ 4, 4 ]
             Roboticist: [ 2, 2 ]
 
             # Security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
-            DutyOfficer: [ 1, 2 ]
+            DutyOfficer: [ 2, 2 ]
             Detective: [ 2, 2 ]
-            # K9: [ 2, 2 ]
+            K9: [ 2, 2 ]
             Brigmedic: [ 2, 2 ]
-            SecurityOfficer: [ 10, 12 ]
-            SecurityCadet: [ 4, 6 ]
+            SecurityOfficer: [ 12, 12 ]
+            SecurityCadet: [ 6, 6 ]
 
             # Cargo
             Quartermaster: [ 1, 1 ]
@@ -75,7 +75,7 @@
             SalvageSpecialist: [ 4, 4 ]
             SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 4, 4 ]
-            CargoTechnician: [ 5, 7 ]
+            CargoTechnician: [ 7, 7 ]
             MailTech: [ 2, 2 ]
 
             # Civilian
@@ -84,11 +84,11 @@
 
             # Silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 2, 4 ]
+            Borg: [ 4, 4 ]
 
             # Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
-            NanotrasenCareerTrainer: [ 1, 2 ]
+            NanotrasenCareerTrainer: [ 2, 2 ]
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]

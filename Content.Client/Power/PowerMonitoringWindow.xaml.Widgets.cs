@@ -94,13 +94,13 @@ public sealed partial class PowerMonitoringWindow
         if (entry.MetaData.Value.SpritePath != string.Empty && entry.MetaData.Value.SpriteState != string.Empty)
             button.TextureRect.Texture = _spriteSystem.Frame0(new SpriteSpecifier.Rsi(new ResPath(entry.MetaData.Value.SpritePath), entry.MetaData.Value.SpriteState));
 
-        // Update name.
-        // Starlight: EntityName is already resolved, including custom names.
+        // Update name
+        // no Loc.GetString, as the name already gets localized in PowerMonitoringConsoleSystem
         var name = entry.MetaData.Value.EntityName;
         button.NameLocalized.Text = name;
 
         // Update tool tip
-        button.ToolTip = name; // Starlight: fix double localization
+        button.ToolTip = name;
 
         // Update power value
         // Don't use SI prefixes, just give the number in W, so that it is readily apparent which consumer is using a lot of power.

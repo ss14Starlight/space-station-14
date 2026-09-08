@@ -359,38 +359,6 @@
   - rattles?
 
 - type: emote
-  id: FlapWings
-  name: chat-emote-name-flap-wings
-  category: General # Can't be hands since mothroaches don't have those!
-  available: false
-  icon:
-    sprite: Clothing/Neck/Cloaks/moth.rsi
-    state: icon
-  blacklist:
-    components:
-      - BorgChassis
-  chatMessages: ["chat-emote-msg-flap-wings"]
-  chatTriggers:
-    - flaps
-    - flaps.
-    - flaps!
-    - flaps wings
-    - flaps wings.
-    - flaps wings!
-    - flaps his wings
-    - flaps his wings.
-    - flaps his wings!
-    - flaps her wings
-    - flaps her wings.
-    - flaps her wings!
-    - flaps their wings
-    - flaps their wings.
-    - flaps their wings!
-    - flaps its wings
-    - flaps its wings.
-    - flaps its wings!
-
-- type: emote
   id: Bubble
   name: chat-emote-name-bubble
   category: Vocal
@@ -496,29 +464,6 @@
   - snores.
   - snores?
   - snores!
-
-- type: emote
-  id: LagomorphSneeze
-  name: chat-emote-name-sneeze
-  category: Vocal
-  available: false
-  icon: _Starlight/Interface/Emotes/emote-rage.png
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: ["chat-emote-msg-sneeze"]
-  chatTriggers:
-  - sneeze
-  - sneeze.
-  - sneeze?
-  - sneeze!
-  - sneezes
-  - sneezes.
-  - sneezes?
-  - sneezes!
 
 - type: emote
   id: LagomorphStomp
