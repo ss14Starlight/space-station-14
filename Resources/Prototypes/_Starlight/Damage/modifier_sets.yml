@@ -313,7 +313,7 @@
     Heat: 0.75
     Shock: 0.1
     Structural: 0.75 # similar to Metallic, but not as crazy as Rock
-    Holy: 1.75 # Both Chaplain and ERT does not oneshot but do solid damage.
+    Holy: 1.5 # Both Chaplain and ERT does not oneshot but do solid damage.
   flatReductions:
     Blunt: 5
     Cold: 10
