@@ -98,7 +98,6 @@
     - id: CommunicationTablet
     - id: CommandTechFabFlatpack
     - id: BookSecureTerminalManual
-    - id: WashingMachineCommandFlatpack
     - id: SpyglassCaptain #Starlight
     - id: CommunicationTablet #Starlight
     - id: CommandTechFabFlatpack # Starlight
@@ -233,7 +232,7 @@
       - id: EndymionMonumentFlatpack
     - id: PrintedDocumentEndymionMemorial
     - id: Multitool
-    - id: WashingMachineFlatpack
+    - id: WashingMachineFlatpack # Starlight - TODO remove once laundromats are implemented in most maps
     # Starlight End
     - id: PlushieLizardJobHeadofpersonnel
       prob: 0.02
@@ -360,8 +359,8 @@
         presets:
         - Greenshift
         - Sandbox
-    - id: JawsOfLifeMed
-    - id: WashingMachineMedicalFlatpack #Starlight end
+    - id: WashingMachineFlatpack # Starlight - TODO remove once laundromats are implemented in most maps
+    - id: JawsOfLifeMed #Starlight end
     - id: PlushieLizardJobChiefmedicalofficer
       prob: 0.02
 
@@ -503,7 +502,7 @@
     - id: SecurityShuttleConsoleCircuitboard # Starlight start
     - id: BookSecureTerminalManual # Starlight
     - id: ClothingOuterWinterHoS
-    - id: WashingMachineSecurityFlatpack
+    - id: WashingMachineFlatpack # Starlight - TODO remove once laundromats are implemented in most maps
 #    - id: ClothingHandsGlovesCombat # Starlight, they spawn with them now.
     - id: SecureBriefings
     - id: PrintedDocumentGreenshiftAlert
