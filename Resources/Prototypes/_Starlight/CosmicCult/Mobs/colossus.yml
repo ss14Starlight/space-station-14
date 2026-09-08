@@ -278,6 +278,8 @@
     understands:
     - Cosmic
   - type: UniversalLanguageSpeaker
+  - type: HealthExaminable
+    locPrefix: cosmic
 
 - type: entity
   parent: [ MobCosmicColossusBase ]
