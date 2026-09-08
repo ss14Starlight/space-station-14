@@ -17,3 +17,14 @@
     solution:
       maxVol: 50
       canReact: false
+
+- type: entity
+  parent: Solution
+  id: SolutionStainMask
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stain
+    solution:
+      maxVol: 5
+      canReact: false

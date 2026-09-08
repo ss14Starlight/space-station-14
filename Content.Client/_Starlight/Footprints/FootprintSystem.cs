@@ -2,7 +2,7 @@
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Funkystation.Footprints;
+namespace Content.Client._Starlight.Footprints;
 
 // Starlight, had to update this quite a bit to use EntityQuery.
 public sealed partial class FootprintSystem : EntitySystem

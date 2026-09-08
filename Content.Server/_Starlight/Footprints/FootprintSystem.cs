@@ -15,9 +15,9 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server._Funkystation.Footprints;
+namespace Content.Server._Starlight.Footprints;
 
-// Starlight, had to update this quite a bit to try optimzing it.
+// Since we had to rewrite so much of this, I moved it to _Starlight.
 public sealed partial class FootprintSystem : EntitySystem
 {
     [Dependency] private SharedTransformSystem _transform = default!;
