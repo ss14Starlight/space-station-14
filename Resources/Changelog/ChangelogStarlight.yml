@@ -1,13 +1,6 @@
 Entries:
 - author: Musiklie
   changes:
-  - message: Added a new verb for ending your text with ellipsis (...), so you no longer mumble your awkward pauses.
-    type: Add
-  id: 408003
-  time: '2026-08-30T17:49:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5747
-- author: Musiklie
-  changes:
   - message: Increased the fontSize on mumbling by +1.
     type: Tweak
   id: 408004
@@ -2799,4 +2792,11 @@ Entries:
   id: 408402
   time: '2026-09-08T10:29:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5999
+- author: wonderfulnewworld
+  changes:
+  - message: IPC "blood" (Oil) has been replaced with a non-flammable Refined Oil.
+    type: Tweak
+  id: 408403
+  time: '2026-09-08T10:29:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6008
 Order: -1
