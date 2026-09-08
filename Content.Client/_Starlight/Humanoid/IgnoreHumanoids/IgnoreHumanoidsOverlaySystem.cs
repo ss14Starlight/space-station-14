@@ -13,6 +13,7 @@ public sealed partial class IgnoreHumanoidsOverlaySystem : EntitySystem
 
     private IgnoreHumanoidsOverlay _overlay = default!;
 
+    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();

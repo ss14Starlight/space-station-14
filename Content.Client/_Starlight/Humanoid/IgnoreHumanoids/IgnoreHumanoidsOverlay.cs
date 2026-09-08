@@ -2,6 +2,7 @@ using Content.Shared.Humanoid;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
+using Robust.Shared.Prototypes;
 using System.Linq;
 
 namespace Content.Client._Starlight.Humanoid.IgnoreHumanoids;
@@ -17,6 +18,7 @@ public sealed class IgnoreHumanoidsOverlay : Robust.Client.Graphics.Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
     private readonly Dictionary<EntityUid, (EntityUid Effect, bool WasVisible)> _effectList = [];
+    private static EntProtoId s_effectUnknownHumanoid = "EffectUnknownHumanoid";
 
     public IgnoreHumanoidsOverlay(IEntityManager entManager)
     {
@@ -47,7 +49,7 @@ public sealed class IgnoreHumanoidsOverlay : Robust.Client.Graphics.Overlay
             {
                 var wasVisible = sprite.Visible;
                 _spriteSystem.SetVisible(uid, false);
-                var effect = _entManager.SpawnEntity("EffectUnknownHumanoid", xform.Coordinates);
+                var effect = _entManager.SpawnEntity(s_effectUnknownHumanoid, xform.Coordinates);
                 _effectList.Add(uid, (effect, wasVisible));
             }
         }
@@ -73,6 +75,9 @@ public sealed class IgnoreHumanoidsOverlay : Robust.Client.Graphics.Overlay
         }
     }
 
+    /// <summary>
+    /// Removes all replacement effects and restores the visibility of the humanoids that were hidden.
+    /// </summary>
     public void Reset()
     {
         // Copy to list to avoid collection modification during iteration

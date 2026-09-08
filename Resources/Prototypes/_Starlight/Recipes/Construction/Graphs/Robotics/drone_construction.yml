@@ -17,7 +17,7 @@
         store: part-container
       - tag: PowerCell
         name: construction-graph-tag-power-cell
-        store: part-container
+        store: cell_slot
       - component: Flash
         name: construction-graph-component-flash
         store: part-container
