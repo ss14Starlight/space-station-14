@@ -1,27 +1,6 @@
 Entries:
 - author: Sparlight
   changes:
-  - message: K9 - A new 'bite harder' button appears directly in the Latch UI when latched onto a target.
-    type: Add
-  id: 407995
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
-  - message: K9s can now enter cryosleep on their own.
-    type: Fix
-  id: 407996
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
-  - message: K9s no longer almost immediately detach their latch when in zero grav.
-    type: Fix
-  id: 407997
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
   - message: K9s can no longer latch outside of melee range, preventing them from being hit.
     type: Fix
   id: 407998
@@ -2799,4 +2778,25 @@ Entries:
   id: 408394
   time: '2026-09-07T19:12:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6033
+- author: DBosley
+  changes:
+  - message: space cleaner spray bottles are back to 10 sprays (15 for the mega bottle).
+    type: Tweak
+  id: 408395
+  time: '2026-09-08T09:44:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5973
+- author: DBosley
+  changes:
+  - message: wall cleaner dispensers hold 3840u instead of 960u.
+    type: Tweak
+  id: 408396
+  time: '2026-09-08T09:44:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5973
+- author: DBosley
+  changes:
+  - message: janitor closets now have a small bucket (3x2, 180u).
+    type: Add
+  id: 408397
+  time: '2026-09-08T09:44:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5973
 Order: -1
