@@ -148,4 +148,4 @@ ghost-role-information-maintenance-drone-description = Maintain the station. Ign
 ghost-role-information-maintenance-drone-rules = You are bound by these laws both in-game and out-of-character:
                                                  1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another drone.
                                                  2. You may not harm any being, regardless of intent or circumstance.
-                                                 3. Your goals are to build, maintain, repair, improve, and power to the best of your abilities. You must never actively work against these goals.
+                                                 3. Your goals are to build, maintain, repair, improve, and power the station to the best of your abilities. You must never actively work against these goals.

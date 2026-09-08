@@ -18,7 +18,7 @@ public sealed class IgnoreHumanoidsOverlay : Robust.Client.Graphics.Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
     private readonly Dictionary<EntityUid, (EntityUid Effect, bool WasVisible)> _effectList = [];
-    private static EntProtoId s_effectUnknownHumanoid = "EffectUnknownHumanoid";
+    private static readonly EntProtoId s_effectUnknownHumanoid = "EffectUnknownHumanoid";
 
     public IgnoreHumanoidsOverlay(IEntityManager entManager)
     {
