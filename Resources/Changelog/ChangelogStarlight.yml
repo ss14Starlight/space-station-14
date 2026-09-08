@@ -1,11 +1,4 @@
 Entries:
-- author: mikeysaurus, DocMoth
-  changes:
-  - message: Adds three new CentComm medals to be given to crew at CC's discretion to the AdmiMax vendor.
-    type: Add
-  id: 408009
-  time: '2026-08-30T18:37:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5701
 - author: Caws
   changes:
   - message: Jackets, sweaters, light coats, and other similar clothing now provides a little protection from cold temperatures and make you warm up a little faster.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408408
   time: '2026-09-08T10:54:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6016
+- author: qbrx
+  changes:
+  - message: Reverted Dragon's Devour and Changeling's Fleshmend to inject Ichor into the bloodstream following the upstream change restoring Ichor's bloodstream functionality.
+    type: Tweak
+  id: 408409
+  time: '2026-09-08T10:54:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6010
 Order: -1
