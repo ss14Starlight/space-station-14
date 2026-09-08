@@ -108,7 +108,7 @@
 
 - type: entity
   parent: BaseResomiPlushie
-  id: PlushieChemmi
+  id: PlushieChemmi # huaqas
   name: chemmi plushie
   description: An addorable plushie of the orange juice addicted senior researcher Chemmi. She comes equipped with her own XL orange juice bottle, and jam-jar glasses to match.
   components:
