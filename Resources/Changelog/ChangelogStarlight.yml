@@ -1,13 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Added two new Showcase props- Pobeda (old USSP mech) and Abyssal Diving Suit (from Trieste Port). Both come with 4 rotations.
-    type: Add
-  id: 408028
-  time: '2026-08-31T14:29:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5895
-- author: Conflee
-  changes:
   - message: Changed existing Showcase props to have 4 rotations, and adjusted names and descriptions to add more lore. Marauder  showcase changed to a Durand MK1 showcase, featuring an earlier version of the Durand.
     type: Tweak
   id: 408029
@@ -2799,4 +2792,11 @@ Entries:
   id: 408427
   time: '2026-09-08T11:58:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6027
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed the health examine texts for Cosmic Cult entities.
+    type: Fix
+  id: 408428
+  time: '2026-09-08T12:19:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6042
 Order: -1
