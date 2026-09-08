@@ -172,9 +172,7 @@
     maximumHealthScaling: 0.50
   - type: ToolRefinable
     refineTime: 16
-    refineResult:
-    - id: CosmicCultMindSink
-      amount: 1
+    refineResult: []
   - type: PointLight
     color: "#42a4ae"
     radius: 4
