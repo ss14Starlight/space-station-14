@@ -473,6 +473,126 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatCentcommCMD
+  name: Central Medical Division cap
+  description: a light blue cap, that's too cool for you crewmate.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommcaplightblue.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommcaplightblue.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatCentcommCRD
+  name: Central Research Division cap
+  description: a light purple cap, that's too cool for you crewmate.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommcaplightpurple.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommcaplightpurple.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatCentcommCAD
+  name: Central Administration Division cap
+  description: a  blue cap, that's too cool for you crewmate.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapblue.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapblue.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatCentcommCCD
+  name: Central Cargo Division cap
+  description: a orange cap, that's too cool for you crewmate.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommcaporange.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommcaporange.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatCentcommCSOD
+  name: Central Special Operations Division cap
+  description: a pink cap, that's too cool for you crewmate.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommcappink.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommcappink.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatCentcommCID
+  name: Central Intelligence Division cap
+  description: a purple cap, that's too cool for you crewmate.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommcappurple.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommcappurple.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatCentcommCSD
+  name: Central Security Division cap
+  description: a red cap, that's too cool for you crewmate.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapred.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapred.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatCentcommCED
+  name: Central Engineering Division beret
+  description: a yellow cap, that's too cool for you crewmate.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapyellow.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapyellow.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
   id: ClothingHeadHatCCSheriffhat
   name: central command sheriff's hat
   description: A sheriff's hat in the signature CC colors, one look at this might make a tider think twice from sneaking into debrief.

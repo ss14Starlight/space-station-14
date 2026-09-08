@@ -464,8 +464,8 @@
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
-  id: ClothingUniformJumpskirtCentcomFormalBlue
-  name: CentComm officer's formal blue jumpskirt
+  id: ClothingUniformJumpskirtCentcomFormalCAD
+  name: Central Administration Division officer's formal jumpskirt
   description: It's a formal jumpskirt worn by CentComm officers.
   components:
     - type: Sprite
@@ -475,8 +475,8 @@
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
-  id: ClothingUniformJumpskirtCentcomFormalLightBlue
-  name: CentComm officer's formal light blue jumpskirt
+  id: ClothingUniformJumpskirtCentcomFormalCMD
+  name: Central Medical Division  officer's formal jumpskirt
   description: It's a formal jumpskirt worn by CentComm officers.
   components:
     - type: Sprite
@@ -486,8 +486,8 @@
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
-  id: ClothingUniformJumpskirtCentcomFormalLightPurple
-  name: CentComm officer's formal light purple jumpskirt
+  id: ClothingUniformJumpskirtCentcomFormalCRD
+  name: Central Research Division officer's formal jumpskirt
   description: It's a formal jumpskirt worn by CentComm officers.
   components:
     - type: Sprite
@@ -497,8 +497,8 @@
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
-  id: ClothingUniformJumpskirtCentcomFormalOrange
-  name: CentComm officer's formal orange jumpskirt
+  id: ClothingUniformJumpskirtCentcomFormalCCD
+  name: Central Cargo Division officer's formal jumpskirt
   description: It's a formal jumpskirt worn by CentComm officers.
   components:
     - type: Sprite
@@ -508,8 +508,8 @@
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
-  id: ClothingUniformJumpskirtCentcomFormalPink
-  name: CentComm officer's formal pink jumpskirt
+  id: ClothingUniformJumpskirtCentcomFormalCSOD
+  name: Central Special Operations Division officer's formal jumpskirt
   description: It's a formal jumpskirt worn by CentComm officers.
   components:
     - type: Sprite
@@ -519,8 +519,8 @@
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
-  id: ClothingUniformJumpskirtCentcomFormalPurple
-  name: CentComm officer's formal purple jumpskirt
+  id: ClothingUniformJumpskirtCentcomFormalCID
+  name: Central Intelligence Division officer's formal jumpskirt
   description: It's a formal jumpskirt worn by CentComm officers.
   components:
     - type: Sprite
@@ -530,8 +530,8 @@
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
-  id: ClothingUniformJumpskirtCentcomFormalRed
-  name: CentComm officer's formal red jumpskirt
+  id: ClothingUniformJumpskirtCentcomFormalCSD
+  name: Central Security Division officer's formal jumpskirt
   description: It's a formal jumpskirt worn by CentComm officers.
   components:
     - type: Sprite
@@ -541,8 +541,8 @@
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
-  id: ClothingUniformJumpskirtCentcomFormalYellow
-  name: CentComm officer's formal yellow jumpskirt
+  id: ClothingUniformJumpskirtCentcomFormalCED
+  name: Central Engineering Division officer's formal jumpskirt
   description: It's a formal jumpskirt worn by CentComm officers.
   components:
     - type: Sprite
