@@ -1,5 +1,4 @@
-using Prometheus;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Managers;
@@ -84,7 +83,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     #region Starlight
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private NeocyteSystem _neocyte = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private TagSystem _tag = default!;
     #endregion
 
     // arbitrary random number to give late joining some mild interest.

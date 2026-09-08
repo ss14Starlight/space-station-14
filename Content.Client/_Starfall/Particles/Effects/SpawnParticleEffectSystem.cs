@@ -9,8 +9,8 @@ namespace Content.Client._Starfall.Particles.Effects;
 /// </summary>
 public sealed partial class SpawnParticleEffectSystem : EntityEffectSystem<TransformComponent, SpawnParticleEffect>
 {
-    [Dependency] private readonly ParticleSystem _particles = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private ParticleSystem _particles = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<SpawnParticleEffect> args)
     {

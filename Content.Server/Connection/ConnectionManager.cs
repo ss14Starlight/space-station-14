@@ -24,12 +24,9 @@ using Robust.Shared.Timing;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.PlayerData;
 using Content.Server._Starlight.Connection;
-using Content.Server.Discord.DiscordLink;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-using Content.Shared._Starlight;
-using Content.Shared._Starlight.CCVar;
-using Robust.Shared.Utility;
+
 #endregion Starlight
 
 /*
@@ -97,7 +94,6 @@ namespace Content.Server.Connection
 
         // nulllink start
         private RoleRequirementPrototype? _bunkerBypass;
-        private ServerPlaytimeRecognitionPrototype? _serverPlaytimeRecognition;
         private string? _project;
         private string? _server;
         // nulllink end
