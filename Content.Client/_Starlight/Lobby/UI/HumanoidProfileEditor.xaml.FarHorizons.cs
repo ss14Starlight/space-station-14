@@ -5,7 +5,7 @@ using Content.Shared.Preferences.Loadouts;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Lobby.UI;
+namespace Content.Client._Starlight.Lobby.UI;
 
 public sealed partial class HumanoidProfileEditor
 {
