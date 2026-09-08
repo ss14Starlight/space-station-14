@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 #region starlight
-using Content.Shared.Emoting;
+
 using Robust.Shared.Timing;
 #endregion Starlight
 

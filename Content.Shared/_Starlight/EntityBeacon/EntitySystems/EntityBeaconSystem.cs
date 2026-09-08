@@ -14,7 +14,7 @@ namespace Content.Shared._Starlight.EntityBeacon.EntitySystems;
 public sealed partial class EntityBeaconSystem : EntitySystem
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private IGameTiming Timing = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private TileSystem _tile = default!;
     [Dependency] private ITileDefinitionManager _tiledef = default!;
@@ -68,7 +68,7 @@ public sealed partial class EntityBeaconSystem : EntitySystem
                 var entity = _random.Pick(component.EntitiesToSpawn);
                 component.CoordinatesToSpawn.Remove(coordinates);
 
-                EntityManager.PredictedSpawnAtPosition(entity, coordinates);
+                PredictedSpawnAtPosition(entity, coordinates);
             }
         }
     }

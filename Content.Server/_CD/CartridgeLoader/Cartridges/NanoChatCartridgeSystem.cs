@@ -11,7 +11,6 @@ using Content.Shared.Database;
 using Content.Shared._CD.CartridgeLoader.Cartridges;
 using Content.Shared._CD.NanoChat;
 using Content.Shared.PDA;
-using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Abilities.Mime;

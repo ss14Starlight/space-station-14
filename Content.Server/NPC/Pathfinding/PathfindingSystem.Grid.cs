@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared.NPC;
 using Content.Shared.Physics;

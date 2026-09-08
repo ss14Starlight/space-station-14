@@ -1,4 +1,4 @@
-﻿using Content.Shared._Afterlight.Silicons; // Afterlight
+﻿// Afterlight
 using Content.Shared._Afterlight.Silicons.Borgs; // Afterlight
 using Content.Shared.Silicons.Borgs.Components; // Afterlight
 using JetBrains.Annotations;

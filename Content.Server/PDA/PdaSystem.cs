@@ -23,11 +23,9 @@ using Content.Shared.PDA.Ringer;
 using Content.Shared.VoiceMask;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
-using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Content.Shared.CCVar;
 using Robust.Shared.Timing;
 
 namespace Content.Server.PDA

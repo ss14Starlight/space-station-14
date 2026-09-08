@@ -21,9 +21,9 @@ namespace Content.Shared.Examine
         [Dependency] private SharedInteractionSystem _interactionSystem = default!;
         [Dependency] protected MobStateSystem MobStateSystem = default!;
 
-        [Dependency] private EntityQuery<GhostComponent> _ghostQuery = default!;
-        [Dependency] private EntityQuery<OccluderComponent> _occluderQuery = default!;
-        [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
+        private EntityQuery<GhostComponent> _ghostQuery;
+        private EntityQuery<OccluderComponent> _occluderQuery = default!;
+        private EntityQuery<TransformComponent> _xformQuery = default!;
 
         private readonly List<RayCastResults> _occluderRaycastResults = new();
 

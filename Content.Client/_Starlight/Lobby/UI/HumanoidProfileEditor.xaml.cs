@@ -1,4 +1,3 @@
-using Content.Client.Humanoid;
 using Content.Client.Lobby;
 using Content.Client.Message;
 using Content.Client.Players.PlayTimeTracking;

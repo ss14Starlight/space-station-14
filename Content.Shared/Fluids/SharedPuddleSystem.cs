@@ -42,9 +42,9 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [Dependency] private StepTriggerSystem _stepTrigger = default!;
     [Dependency] private TileFrictionController _tile = default!;
 
-    [Dependency] private EntityQuery<StepTriggerComponent> _stepTriggerQuery = default!;
-    [Dependency] private EntityQuery<ReactiveComponent> _reactiveQuery = default!;
-    [Dependency] private EntityQuery<EvaporationComponent> _evaporationQuery = default!;
+    private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
+    private EntityQuery<ReactiveComponent> _reactiveQuery;
+    private EntityQuery<EvaporationComponent> _evaporationQuery;
 
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
