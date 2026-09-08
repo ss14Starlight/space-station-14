@@ -807,7 +807,8 @@ public sealed partial class ChatSystem : SharedChatSystem
     #endregion
 
     #region Utility
-    // Starlight Start: IgnoreHumanoidName
+
+    #region Starlight
     private string WrapAnonymizedMessage(ChatChannel channel, EntityUid source, string content, string unknownName, LanguagePrototype language, string fallback, bool isObfuscated = false) =>
         channel switch
         {
@@ -817,7 +818,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ChatChannel.LOOC => Loc.GetString("chat-manager-entity-looc-wrap-message", ("entityName", unknownName), ("message", FormattedMessage.EscapeText(content))),
             _ => fallback
         };
-    // Starlight End
+    #endregion
     private enum MessageRangeCheckResult
     {
         Disallowed,

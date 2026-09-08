@@ -45,9 +45,10 @@ public sealed class IgnoreHumanoidsOverlay : Robust.Client.Graphics.Overlay
 
             if (sprite.Visible && !_effectList.ContainsKey(uid))
             {
+                var wasVisible = sprite.Visible;
                 _spriteSystem.SetVisible(uid, false);
                 var effect = _entManager.SpawnEntity("EffectUnknownHumanoid", xform.Coordinates);
-                _effectList.Add(uid, (effect, sprite.Visible));
+                _effectList.Add(uid, (effect, wasVisible));
             }
         }
 
