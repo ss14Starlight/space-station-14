@@ -62,3 +62,18 @@
       defaultParams: !type:AudioParams
         maxDistance: 2
         volume: 1.5
+
+- type: entity
+  name: handheld station radio
+  description: Listen to those sweet tunes, on the go!
+  parent: RadioHandheldStation
+  id: RadioHandheldStationEmpty
+  suffix: empty
+  components:
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          blacklist:
+            tags:
+              - MechReactor
