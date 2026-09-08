@@ -45,7 +45,7 @@
   - Scarves
   - Pins
   - LuxuryPens
-  - LawyerJobTrinkets
+  #- LawyerJobTrinkets
   - Survival
   - GroupSpeciesBreathTool
 
@@ -68,6 +68,24 @@
   - Pens
   - SurvivalExtended
   - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
+  id: JobAssistantManager
+  groups:
+  - GroupTankHarness
+  - AssistantManagerHead
+  - AssistantManagerJumpsuit
+  - AssistantManagerBackpack
+  - AssistantManagerGloves
+  - AssistantManagerOuterClothing
+  - AssistantManagerShoes
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  #- AssistantJobTrinkets
+  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobNanotrasenCareerTrainer
@@ -243,25 +261,10 @@
   - Scarves
   - Pins
   - Pens
-  - PerformerJobTrinkets
+  #- PerformerJobTrinkets
   - GroupSpeciesBreathTool
 
 # Wildcards
-- type: roleLoadout
-  id: JobZookeeper
-  groups:
-  - GroupTankHarness # for Vox
-  - CommonBackpack
-  - CivilianShoes
-  - Glasses
-  - Survival
-  - Trinkets
-  - Scarves
-  - Pins
-  - Pens
-  - ZookeeperJobTrinkets
-  - GroupSpeciesBreathTool
-
 - type: roleLoadout
   id: JobBoxer
   groups:
@@ -275,7 +278,7 @@
   - Scarves
   - Pins
   - Pens
-  - BoxerJobTrinkets
+  #- BoxerJobTrinkets
   - GroupSpeciesBreathTool
 
 # Antagonist Loadouts
@@ -305,7 +308,7 @@
 - type: roleLoadout
   id: AntagNukeops
   groups:
-  - ProtogenCybernetics
+  - NeocyteCybernetics
   - SurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
@@ -313,7 +316,7 @@
 - type: roleLoadout
   id: AntagNukeopsCommander
   groups:
-  - ProtogenCybernetics
+  - NeocyteCybernetics
   - SurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
@@ -321,7 +324,7 @@
 - type: roleLoadout
   id: AntagNukeopsMedic
   groups:
-  - ProtogenCybernetics
+  - NeocyteCybernetics
   - SurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupPocketTankDouble
@@ -329,13 +332,13 @@
 - type: roleLoadout
   id: AntagSpaceNinja
   groups:
-  - ProtogenCybernetics
+  - NeocyteCybernetics
   - GroupEVATank
 
 - type: roleLoadout
   id: AntagWizard
   groups:
-  - ProtogenCybernetics
+  - NeocyteCybernetics
   - SurvivalExtended
   - GroupSpeciesBreathTool
   - GroupTankHarness
@@ -343,7 +346,7 @@
 - type: roleLoadout
   id: AntagWizardDuelist
   groups:
-  - ProtogenCybernetics
+  - NeocyteCybernetics
   - SurvivalExtended
   - GroupSpeciesBreathTool
   - GroupTankHarness
@@ -355,3 +358,15 @@
   - SurvivalExtended
   - GroupSpeciesBreathTool
   - GroupTankHarness
+
+- type: roleLoadout
+  id: JobSalvageMedic
+  groups:
+    - GroupTankHarness
+    - SalvageSpecialistBackpack
+    - SalvageSpecialistOuterClothing
+    - SalvageSpecialistShoes
+    - Glasses
+    - Survival
+    - Trinkets
+    - GroupSpeciesBreathTool

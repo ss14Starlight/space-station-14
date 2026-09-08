@@ -1,14 +1,32 @@
-﻿{
-  "version": 2,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "By CaptainComedy",
-  "size": {
-    "x": 32,
-    "y": 32
-  },
-  "states": [
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size":
     {
-      "name": "icon"
-    }
-  ]
+        "x": 32,
+        "y": 32
+    },
+    "states":
+    [
+        {
+            "name": "icon",
+            "copyright": "Character by CaptainComedii (GitHub) / captaincomedy (Discord), sprites by rtasva (GitHub/Discord), edited from sprites by deltaVelocity (GitHub/Discord)"
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "Character by CaptainComedii (GitHub) / captaincomedy (Discord), sprites by rtasva (GitHub/Discord)",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "Character by CaptainComedii (GitHub) / captaincomedy (Discord), sprites by rtasva (GitHub/Discord)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET",
+            "copyright": "Character by CaptainComedii (GitHub) / captaincomedy (Discord), sprites by rtasva (GitHub/Discord)",
+            "directions": 4
+        }
+    ]
 }

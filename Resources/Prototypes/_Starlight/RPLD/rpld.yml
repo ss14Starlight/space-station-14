@@ -172,6 +172,18 @@
   fx: EffectRCDConstruct0
 
 - type: rcd
+  id: PlumbingRpldInlineFilter
+  category: PlumbingProduction
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/filter_inline.png
+  mode: ConstructObject
+  prototype: PlumbingInlineFilter
+  cost: 1
+  delay: 0
+  collisionMask: MachineMask
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
   id: PlumbingRpldSynthesizer
   category: PlumbingProduction
   sprite: /Textures/_Starlight/Interface/Radial/RPLD/synthesizer.png

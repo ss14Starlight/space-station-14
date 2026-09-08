@@ -24,19 +24,13 @@
       - Paper
       - Pill
       - IceCream
-  - type: SolutionContainerManager
+      - Birthday
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
+    - SolutionOrganNutriment
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [ Moth ]
-    removeEmpty: true
-    groups:
-      - id: Food
-      - id: Drink
+    stages: [ Digestion ]

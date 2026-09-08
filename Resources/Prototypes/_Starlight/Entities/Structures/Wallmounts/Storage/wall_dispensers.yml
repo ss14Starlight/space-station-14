@@ -3,11 +3,11 @@
   id: BoneGelDispenser
   name: bone gel dispenser
   components:
-  - type: SolutionContainerManager
-    solutions:
-      tank:
-        maxVol: 300
-        reagents:
-        - ReagentId: BoneGel
-          Quantity: 300
+  - type: Solution
+    id: tank
+    solution:
+      maxVol: 300
+      reagents:
+      - ReagentId: BoneGel
+        Quantity: 300
   - type: ReagentTank

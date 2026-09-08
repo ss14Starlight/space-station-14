@@ -16,3 +16,15 @@
         - id: BriefDocumentSyndicate
         - id: BriefDocumentWizard
         - id: BriefDocumentXorgs
+
+- type: entity
+  parent: ClothingShoesBootsMagERT
+  id: ClothingShoesBootsMagERTFilled
+  suffix: Filled
+  components:
+  - type: Storage
+    grid: [] # starlight
+  - type: ContainerFill
+    containers:
+      item:
+      - CombatKnife

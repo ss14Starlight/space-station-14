@@ -1,0 +1,206 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "r_hand",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "l_hand",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "r_arm",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "l_arm",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "r_leg",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "l_leg",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "r_foot",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "l_foot",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "head_f",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "head_m",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "torso_f",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "torso_m",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "head_f_reverse",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "head_m_reverse",
+            "directions": 4,
+    		"copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf, then recoloured and slightly modified for doll parts by Citrea"
+        },
+        {
+            "name": "devil_r_hand",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "devil_l_hand",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "devil_r_arm",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "devil_l_arm",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "devil_r_leg",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "devil_l_leg",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "devil_r_foot",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "devil_l_foot",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "devil_head",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "devil_torso",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "segmented_r_hand",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "segmented_l_hand",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "segmented_r_arm",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "segmented_l_arm",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "segmented_r_leg",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "segmented_l_leg",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "segmented_r_foot",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "segmented_l_foot",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "segmented_head",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "segmented_torso",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "head_fox",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "head_moth",
+            "directions": 4,
+    		"copyright": "Maitake"
+        },
+        {
+            "name": "head_crested",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "head_hawk",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "head_owl",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        }
+    ]
+}

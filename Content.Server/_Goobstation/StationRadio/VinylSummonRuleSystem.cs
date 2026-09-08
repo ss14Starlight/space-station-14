@@ -8,16 +8,15 @@ using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
-using Content.Shared.Radio.Components;
 using Content.Server.Chat.Systems;
-using Content.Shared._Goobstation.StationRadio.Systems; // Starlight - Station Radio Check oved to StationRadioReceiverSystem
+using Content.Shared._Goobstation.StationRadio.Systems;
+using Content.Shared._Starlight.StationRadio.Events;
 
 namespace Content.Server._Goobstation.StationRadio; // Starlight - _Goob -> _Goobstation
 
@@ -48,6 +47,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
 
         SubscribeLocalEvent<VinylPlayerComponent, VinylInsertedEvent>(OnVinylInserted);
         SubscribeLocalEvent<VinylPlayerComponent, VinylRemovedEvent>(OnVinylRemoved);
+        SubscribeLocalEvent<VinylSummonRuleComponent, VinylFinishedEvent>(OnVinylFinished);//Starlight: Eventify vinyl finishing.
     }
 
     private void OnVinylInserted(EntityUid uid, VinylPlayerComponent player, ref VinylInsertedEvent args)
@@ -55,15 +55,14 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         var playerUid = uid;
         var vinylUid = args.Vinyl;
 
-        // Check if the inserted entity has the summon rule component / A song
-        if (!TryComp<VinylSummonRuleComponent>(vinylUid, out _)
-            || !TryComp<VinylComponent>(vinylUid, out var vinylComp)
-            || vinylComp.Song == null)
-            return;
+        void QueueSafeEject() => Timer.Spawn(0, () => EjectVinyl(playerUid, vinylUid)); //starlight edit: one-liner, and moved above the Validation
 
-        void QueueSafeEject()
+        // Check if the inserted entity has the summon rule component / A song
+        if (!TryComp<VinylComponent>(vinylUid, out var vinylComp) //starlight edit: Track any vinyl playing.
+            || vinylComp.Song == null)
         {
-            Timer.Spawn(0, () => EjectVinyl(playerUid, vinylUid));
+            QueueSafeEject();
+            return;
         }
 
         // Check if vinyl player is on a station
@@ -151,7 +150,10 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             // Check if playback has finished
             if (currentTime >= data.EndTime)
             {
-                HandleVinylFinished(vinylUid);
+                #region Starlight lets just... make this a event?
+                var ev = new VinylFinishedEvent(data.VinylPlayerUid);
+                RaiseLocalEvent(vinylUid, ref ev);
+                #endregion
                 _trackingVinyls.Remove(vinylUid);
             }
         }
@@ -173,38 +175,37 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             }
     }
 
-    private void HandleVinylFinished(EntityUid vinylUid)
+    #region Starlight: Eventify Vinyl finishing.
+    private void OnVinylFinished(Entity<VinylSummonRuleComponent> entity, ref VinylFinishedEvent _)
     {
-        if (!TryComp<VinylSummonRuleComponent>(vinylUid, out var summonComp))
-            return;
-
         // Resolve the game rule ID and get the threat prototype if available
-        var ruleId = ResolveGameRule(summonComp.GameRule, out var threat);
+        var ruleId = ResolveGameRule(entity.Comp.GameRule, out var threat);
 
         if (ruleId != null)
         {
-            _gameTicker.StartGameRule(ruleId, out _);
+            _gameTicker.StartGameRule(ruleId, out var _);
 
             // If we have a threat prototype with an announcement, send it
             if (threat != null)
                 _chat.DispatchGlobalAnnouncement(Loc.GetString(threat.Announcement), playSound: true, colorOverride: Color.Red);
         }
 
-        var vinylXform = Transform(vinylUid);
+        var vinylXform = Transform(entity);
         var vinylCoords = vinylXform.Coordinates;
 
         // Remove from container
-        if (_containers.TryGetContainingContainer((vinylUid, vinylXform, null), out var container))
-            _containers.Remove(vinylUid, container);
+        if (_containers.TryGetContainingContainer((entity, vinylXform, null), out var container))
+            _containers.Remove(entity.Owner, container);
 
         // Play sound effect
-        _audio.PlayPvs(summonComp.BurnSound, vinylCoords, summonComp.BurnSoundParams);  // Starlight - Dehardcode BurnSoundParams
+        _audio.PlayPvs(entity.Comp.BurnSound, vinylCoords, entity.Comp.BurnSoundParams);  // Starlight - Dehardcode BurnSoundParams
 
         // Spawn ash at the vinyl's location
-        Spawn(summonComp.AshPrototype, vinylCoords); // Starlight - Dehardcode ash prototype
+        Spawn(entity.Comp.AshPrototype, vinylCoords); // Starlight - Dehardcode ash prototype
 
         // Delete the vinyl
-        QueueDel(vinylUid);
+        QueueDel(entity);
+        #endregion
     }
 
     private string? ResolveGameRule(string gameRuleIdentifier, out NinjaHackingThreatPrototype? threat)

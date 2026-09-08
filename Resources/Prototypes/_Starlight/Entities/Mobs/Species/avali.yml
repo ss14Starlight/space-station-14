@@ -50,13 +50,7 @@
       hideLayersOnEquip:
       - Tail
       - HeadTop
-    - type: Hunger # on 2x more
-      thresholds:
-        Overfed: 250
-        Okay: 200
-        Peckish: 150
-        Starving: 100
-        Dead: 0
+    - type: Hunger # on 1.8x more
       baseDecayRate: 0.03
     - type: Thirst
     - type: Icon
@@ -66,7 +60,6 @@
       prototype: Avali
       requiredLegs: 2
     - type: Butcherable
-      butcheringType: Spike
       spawned:
         - id: FoodMeatChicken
           amount: 3
@@ -112,7 +105,7 @@
       bloodReferenceSolution:
         reagents:
         - ReagentId: AvaliBlood
-          Quantity: 300
+          Quantity: 600
     - type: MeleeWeapon
       soundHit:
         path: /Audio/Weapons/pierce.ogg

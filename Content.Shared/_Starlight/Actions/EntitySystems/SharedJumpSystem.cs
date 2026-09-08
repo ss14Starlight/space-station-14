@@ -20,7 +20,7 @@ public abstract partial class SharedJumpSystem : EntitySystem
     [Dependency] private SharedActionsSystem _action = default!;
     [Dependency] private ThrowingSystem _throwing = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private IMapManager _mapMan = default!;
+    [Dependency] private SharedMapSystem _mapMan = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private ActionContainerSystem _actionContainer = default!;
     [Dependency] private SharedStunSystem _stun = default!;

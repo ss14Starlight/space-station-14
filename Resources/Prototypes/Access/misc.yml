@@ -18,7 +18,6 @@
   - Engineering
   - Medical
   - Quartermaster
-  - Salvage
   - Cargo
   - Research
   - Service
@@ -45,10 +44,11 @@
   - Surgery
   - Paramedic
   - Mining
-  - SalvageLead
   - Mail
   - Debrief
-  - Shuttle # Starlight end
+  - Shuttle
+  - Clown
+  - Mime # Starlight end
 
 
 - type: accessGroup

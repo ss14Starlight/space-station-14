@@ -52,6 +52,17 @@
                 [0.25, 0.25, 0.25, 0.25]
             ],
       "copyright": "SevenShades"
+    },
+    {
+      "name": "equipped-HELMET-avali",
+      "directions": 4,
+      "delays": [
+                [0.25, 0.25, 0.25, 0.25],
+                [0.25, 0.25, 0.25, 0.25],
+                [0.25, 0.25, 0.25, 0.25],
+                [0.25, 0.25, 0.25, 0.25]
+            ],
+      "copyright": "Modified by DocMoth"
     }
   ]
 }

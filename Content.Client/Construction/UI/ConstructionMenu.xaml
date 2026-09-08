@@ -36,6 +36,14 @@
                         HorizontalExpand="True" SizeFlagsStretchRatio="0.7"/>
                     <Button Name="ClearButton" HorizontalExpand="True" SizeFlagsStretchRatio="0.3"/>
                 </BoxContainer>
+                <!-- Starlight-start -->
+                <BoxContainer Orientation="Horizontal" VerticalExpand="True" SizeFlagsStretchRatio="0.5">
+                    <Button Name="ImportTemplateButton" Access="Public" HorizontalExpand="True"
+                        Text="{Loc construction-menu-import-template}"/>
+                    <Button Name="ExportTemplateButton" Access="Public" HorizontalExpand="True"
+                        Text="{Loc construction-menu-export-template}"/>
+                </BoxContainer>
+                <!-- Starlight-end -->
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

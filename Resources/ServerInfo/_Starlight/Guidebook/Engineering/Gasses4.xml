@@ -1,0 +1,51 @@
+﻿<Document>
+  # Gasses 4
+  Advanced gasses that have highly unique properties that make them highly sought after.
+
+  ## Healium
+  <Box>
+    <GuideEntityEmbed Entity="HealiumCanister" Caption=""/>
+  </Box>
+
+  A humourously named gas that true to its name, is capable of healing most types of damage when inhaled.
+
+  Excessive inhalation causes drowsiness, with sufficient quantities causing outright unconsciousness.
+
+  Healium is created by combining 1 BZ and 11 Frezon to create 12 Healium and releases heat. Formation rate increases at lower temperatures and stops above 293 K.
+
+  ## Nitrium
+  <Box>
+    <GuideEntityEmbed Entity="NitriumCanister" Caption=""/>
+  </Box>
+
+  An incredibly valuable gas that rapidly accelerates biological functions when inhaled, causing incredible muscle speed, reaction times, and counteracting sleep. Inhalation causes mild toxic buildup.
+
+  When exposed to oxygen nitrium decays into hydrogen and releases a small amount of energy.
+
+  Nitrium is created by combining 1 tritium with 1 nitrogen and 0.05 BZ at over 1500 K consuming heat.
+
+  ## Hyper-Noblium
+  <Box>
+    <GuideEntityEmbed Entity="HyperNobliumCanister" Caption=""/>
+  </Box>
+
+  Incredibly stable, hyper-noblium actively prevents most other reactions around it from occuring when in great enough quantities.
+
+  Hyper-noblium has the best specific heat, making it the best working fluid to store and transfer heat.
+
+  Hyper-noblium is created by combining 1 tritium with 2 nitrogen below 15 K but produces a large amount of heat. Additionally, the presence of BZ acts as a catalyst which reduces tritium consumption and heat output massively.
+
+  ## Proto-Nitrate
+  <Box>
+    <GuideEntityEmbed Entity="ProtoNitrateCanister" Caption=""/>
+  </Box>
+
+  An incredibly useful gas used to turn plasma derived gasses into more plasma, either to recycle unwanted gasses or as complex production chains to turn mundane gasses into more plasma.
+
+  Proto-nitrate converts almost all plasma based gasses, exempting pluoxium, ulnitranium, and BZ. BZ can be decomposed by PN, but instead effectively turns nitrous oxide into helium.
+
+  Conversion occurs faster with lower pressure and higher temperature, and consumes large amounts of heat while releasing massive quantities of helium as a byproduct. Proto-nitrate is consumed relative to plasma production.
+
+  Proto-nitrate can be created by combining 10 hydrogen and 1 pluoxium between 5000 K and 10000 K.
+
+</Document>

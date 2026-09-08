@@ -1,0 +1,110 @@
+- type: quickPhrase
+  id: BaseSpeciesLanguagePhrase
+  parent: BaseCommonPhrase
+  group: SpeciesLanguage
+  abstract: true
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: GalComPhrase
+  text: language-GalacticCommon-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: EALPhrase
+  text: language-Machine-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: ScratchPhrase
+  text: language-Scratch-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: SolCommonPhrase
+  text: language-SolCommon-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: BubblishPhrase
+  text: language-Bubblish-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: CanilunztPhrase
+  text: language-Canilunzt-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: ChittinPhrase
+  text: language-Chittin-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: DraconicPhrase
+  text: language-Draconic-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: MarishPhrase
+  text: language-Marish-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: NekomimeticPhrase
+  text: language-Nekomimetic-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: SylvanPhrase
+  text: language-Sylvan-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: TerrumPhrase
+  text: language-Terrum-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: ThaveyanPhrase
+  text: language-Thaveyan-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: VoxPidginPhrase
+  text: language-VoxPidgin-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: GSLPhrase
+  text: language-Sign-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: GrumbakulPhrase
+  text: language-Grumbakul-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: AielicPhrase
+  text: language-Aielic-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: LaguinePhrase
+  text: language-Lagomorphian-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: SqueakishPhrase
+  text: language-Squeakish-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: DarktonguePhrase
+  text: language-Darktongue-name
+
+- type: quickPhrase
+  parent: BaseSpeciesLanguagePhrase
+  id: ClassicalPhrase
+  text: language-Classical-name

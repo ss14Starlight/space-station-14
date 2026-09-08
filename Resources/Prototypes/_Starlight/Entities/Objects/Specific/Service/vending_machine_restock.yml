@@ -95,3 +95,19 @@
     - state: green_bit
       shader: unshaded
     - state: refill_icecream
+
+- type: entity
+  parent: BaseVendingMachineRestock
+  id: VendingMachineRestockGumball
+  name: gumball dispenser restock box
+  description: A box full of loose gumballs of various colors. Load it into a gumball dispenser for a refill.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - GumballInventory
+  - type: Sprite
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_condiment

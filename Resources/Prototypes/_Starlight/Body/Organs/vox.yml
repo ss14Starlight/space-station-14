@@ -12,21 +12,40 @@
       - state: brain
       - state: brain-unshaded
         shader: unshaded
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        maxVol: 10
-        reagents:
-        - ReagentId: Silicon
-          Quantity: 10
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Licoxide
-          Quantity: 20
+    - SolutionOrganVoxBrainOrgan
+    - SolutionOrganVoxBrainFood
   - type: FlavorProfile
     flavors:
       - metallic # starlight end
+
+
+- type: entity
+  parent: SolutionOrganNutriment
+  id: SolutionOrganVoxBrainOrgan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Silicon
+        Quantity: 10
+
+- type: entity
+  parent: SolutionOrganFoodGreyMatter
+  id: SolutionOrganVoxBrainFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Licoxide
+        Quantity: 20
 
 - type: entity
   id: OrganVoxLungs

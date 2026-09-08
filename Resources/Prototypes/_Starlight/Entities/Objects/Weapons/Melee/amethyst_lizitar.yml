@@ -1,0 +1,26 @@
+- type: entity
+  name: amethyst lizitar
+  parent: [ BaseSword, BaseSecurityCargoContraband ]
+  id: AmethystLizitar
+  description: Now you really have no clue what this thing is made from.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/amethyst_lizitar.rsi
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Slash: 15
+    soundHit:
+        path: /Audio/Items/Toys/hew.ogg
+  - type: Item
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Melee/amethyst_lizitar.rsi
+    slots:
+    - back
+  - type: DisarmMalus
+  - type: InjectOnHit
+    limit: 5
+    reagents:
+    - ReagentId: JuiceThatMakesYouHew
+      Quantity: 1

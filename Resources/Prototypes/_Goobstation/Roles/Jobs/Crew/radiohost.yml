@@ -9,10 +9,14 @@
   access:
   - Maintenance
   - Journalism
+  - Service
+  extendedAccess: # Starlight
+  - Theatre # Starlight
 
 - type: startingGear
   id: RadioHostGear
   equipment:
+    id: RadioHostPDA
     ears: ClothingHeadsetAltRadioHost
     belt: ClothingBeltStorageWaistbag
 

@@ -21,6 +21,8 @@ public sealed class MagicMirrorBoundUserInterface : BoundUserInterface
 
         _window = this.CreateWindow<MagicMirrorWindow>();
 
+        #region Starlight
+        // No visual nubody
         _window.OnHairSelected += tuple => SelectHair(MagicMirrorCategory.Hair, tuple.id, tuple.slot);
         _window.OnHairColorChanged += args => ChangeColor(MagicMirrorCategory.Hair, args.marking, args.slot);
         _window.OnHairSlotAdded += delegate () { AddSlot(MagicMirrorCategory.Hair); };
@@ -32,7 +34,7 @@ public sealed class MagicMirrorBoundUserInterface : BoundUserInterface
         _window.OnFacialHairSlotAdded += delegate () { AddSlot(MagicMirrorCategory.FacialHair); };
         _window.OnFacialHairSlotRemoved += args => RemoveSlot(MagicMirrorCategory.FacialHair, args);
 
-        //starlight
+        //starlight specific glowing hair
         _window.OnHairGlowingChanged += args => ChangeColor(MagicMirrorCategory.Hair, args.marking, args.slot);
         _window.OnFacialHairGlowingChanged += args => ChangeColor(MagicMirrorCategory.FacialHair, args.marking, args.slot);
     }
@@ -55,6 +57,7 @@ public sealed class MagicMirrorBoundUserInterface : BoundUserInterface
     private void AddSlot(MagicMirrorCategory category)
     {
         SendMessage(new MagicMirrorAddSlotMessage(category));
+        #endregion
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

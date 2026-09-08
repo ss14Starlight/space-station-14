@@ -1,9 +1,10 @@
+using System.Threading.Tasks;
 using Content.Server._NullLink;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.EventBus;
 using Content.Server._NullLink.PlayerData;
 using Content.Server._Starlight;
-using Content.Server._Starlight.BugReports; // Staright
+using Content.Server._Starlight.BugReports;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Server.Acz;
 using Content.Server.Administration;
@@ -15,6 +16,7 @@ using Content.Server.Connection;
 using Content.Server.Database;
 using Content.Server.Discord.DiscordLink;
 using Content.Server.EUI;
+using Content.Server.FeedbackSystem;
 using Content.Server.GameTicking;
 using Content.Server.GhostKick;
 using Content.Server.GuideGenerator;
@@ -33,6 +35,7 @@ using Content.Server.Voting.Managers;
 using Content.Shared._NullLink;
 using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.CCVar;
+using Content.Shared.FeedbackSystem;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
 using Robust.Server;
@@ -40,6 +43,7 @@ using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -101,6 +105,7 @@ namespace Content.Server.Entry
         [Dependency] private INullLinkEventBusManager _nullLinkEventBus = default!;
         [Dependency] private INullLinkPlayerManager _nullLinkPlayerManager = default!;
 #endregion Nulllink
+        [Dependency] private ServerFeedbackManager _feedbackManager = null!;
 
         public override void PreInit()
         {
@@ -110,6 +115,8 @@ namespace Content.Server.Entry
                 var cast = (ServerModuleTestingCallbacks)callback;
                 cast.ServerBeforeIoC?.Invoke();
             }
+
+            Dependencies.Resolve<IRobustSerializer>().FloatFlags = SerializerFloatFlags.RemoveReadNan;
         }
 
         /// <inheritdoc />
@@ -198,6 +205,7 @@ namespace Content.Server.Entry
             _connection.PostInit();
             _multiServerKick.Initialize();
             _cvarCtrl.Initialize();
+            _feedbackManager.Initialize();
 
             // NullLink start
             _actorRouter.Initialize();
@@ -239,8 +247,9 @@ namespace Content.Server.Entry
             }
 
             _serverApi.Shutdown();
-            // TODO Should this be awaited?
-            _discordLink.Shutdown();
+
+            // We don't care when or how this finishes, just spin the task off into the void.
+            _ = _discordLink.Shutdown();
             _discordChatLink.Shutdown();
             // Nullink start
             _nullLinkPlayerManager.Shutdown();

@@ -15,3 +15,15 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: MasterDet
+
+- type: loadout
+  id: InspectorBelt
+  dummyEntity: WeaponRevolverInspector
+  equipment:
+    belt: ClothingBeltHolsterFilled
+
+- type: loadout
+  id: ColdCaseBelt
+  dummyEntity: WeaponPistolColdCase
+  equipment:
+    belt: ClothingBeltHolsterColdCase

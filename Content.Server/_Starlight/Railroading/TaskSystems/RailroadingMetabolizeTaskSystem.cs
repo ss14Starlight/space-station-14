@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Content.Server._Starlight.Objectives.Events;
+using Content.Shared._Starlight.Objectives.Events;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Components.Tasks;
 using Content.Shared._Starlight.Railroading.Components.Watchers;

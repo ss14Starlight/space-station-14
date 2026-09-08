@@ -26,7 +26,7 @@
   - type: Hunger
   - type: Thirst
   - type: Icon
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi
     state: full
   - type: Body
     prototype: Moth
@@ -39,11 +39,10 @@
   - type: Speech
     speechVerb: Moth
     speechSounds: UnisexMoth # Starlight: Add talk sounds
-    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
+    allowedEmotes: ['Chitter', 'Squeak', 'Flap']
   - type: TypingIndicator
     proto: moth
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 5
@@ -51,7 +50,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 300
+        Quantity: 600
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

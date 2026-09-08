@@ -15,7 +15,7 @@
     - !type:SpeciesRequirement
       species:
         - Elf
-        - ProtoElf
+        - NeoElf
 
 - type: trait
   id: WoodElf
@@ -33,7 +33,7 @@
     - !type:SpeciesRequirement
       species:
         - Elf
-        - ProtoElf
+        - NeoElf
 
 - type: trait
   id: DarkElf
@@ -52,7 +52,7 @@
     - !type:SpeciesRequirement
       species:
         - Elf
-        - ProtoElf
+        - NeoElf
 
 - type: trait
   id: CaveElf
@@ -71,4 +71,4 @@
     - !type:SpeciesRequirement
       species:
         - Elf
-        - ProtoElf
+        - NeoElf

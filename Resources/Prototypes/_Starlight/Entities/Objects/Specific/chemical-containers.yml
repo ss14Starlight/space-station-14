@@ -6,12 +6,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-uranium
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Uranium
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Uranium
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -20,12 +20,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-corn-oil
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Cornoil
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Cornoil
+        Quantity: 240
 
 # Medicine Jugs for Chemist Locker
 - type: entity
@@ -36,12 +36,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-arithrazine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Arithrazine
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Arithrazine
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -51,12 +51,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-diphenhydramine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Diphenhydramine
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Diphenhydramine
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -66,12 +66,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-cryoxadone
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Cryoxadone
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Cryoxadone
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -81,12 +81,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-doxarubixadone
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Doxarubixadone
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Doxarubixadone
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -96,12 +96,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-aloxadone
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Aloxadone
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Aloxadone
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -111,12 +111,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-sigynate
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Sigynate
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Sigynate
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -126,12 +126,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-leporazine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Leporazine
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Leporazine
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -141,12 +141,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-bruizine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Bruizine
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Bruizine
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -156,12 +156,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-lacerinol
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Lacerinol
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Lacerinol
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -171,12 +171,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-pyrazine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Pyrazine
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Pyrazine
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -186,12 +186,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-insuzine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Insuzine
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Insuzine
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -201,12 +201,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-ambuzol
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Ambuzol
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Ambuzol
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -216,12 +216,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-ambuzol-plus
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: AmbuzolPlus
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: AmbuzolPlus
+        Quantity: 240
 
 - type: entity
   parent: Jug
@@ -231,12 +231,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-amoxla
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Amoxla
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Amoxla
+        Quantity: 240
 
 # Golden jugs
 - type: entity
@@ -246,12 +246,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-bicaridine
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Bicaridine
-          Quantity: 400
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Bicaridine
+        Quantity: 480
 
 - type: entity
   parent: GoldenJug
@@ -260,12 +260,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-dermaline
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Dermaline
-          Quantity: 400
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 480
 
 # Large cryo chemical beakers
 - type: entity
@@ -275,13 +275,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-cryoxadone
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
-        reagents:
-        - ReagentId: Cryoxadone
-          Quantity: 100
+  - type: Solution
+    id: beaker
+    solution:
+      reagents:
+      - ReagentId: Cryoxadone
+        Quantity: 120
 
 - type: entity
   suffix: doxarubixadone
@@ -290,13 +289,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-doxarubixadone
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
-        reagents:
-        - ReagentId: Doxarubixadone
-          Quantity: 100
+  - type: Solution
+    id: beaker
+    solution:
+      reagents:
+      - ReagentId: Doxarubixadone
+        Quantity: 120
 
 - type: entity
   suffix: arcryox
@@ -305,13 +303,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-arcryox
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
-        reagents:
-        - ReagentId: Arcryox
-          Quantity: 100
+  - type: Solution
+    id: beaker
+    solution:
+      reagents:
+      - ReagentId: Arcryox
+        Quantity: 120
 
 - type: entity
   suffix: necrosol
@@ -320,13 +317,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-necrosol
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
-        reagents:
-        - ReagentId: Necrosol
-          Quantity: 100
+  - type: Solution
+    id: beaker
+    solution:
+      reagents:
+      - ReagentId: Necrosol
+        Quantity: 120
 
 - type: entity
   suffix: chronexaline
@@ -335,13 +331,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-chronexaline
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
-        reagents:
-        - ReagentId: Chronexaline
-          Quantity: 100
+  - type: Solution
+    id: beaker
+    solution:
+      reagents:
+      - ReagentId: Chronexaline
+        Quantity: 120
 
 - type: entity
   suffix: aloxadone
@@ -350,13 +345,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-aloxadone
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
-        reagents:
-        - ReagentId: Aloxadone
-          Quantity: 100
+  - type: Solution
+    id: beaker
+    solution:
+      reagents:
+      - ReagentId: Aloxadone
+        Quantity: 120
 
 - type: entity
   suffix: opporozidone
@@ -365,13 +359,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-opporozidone
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
-        reagents:
-        - ReagentId: Opporozidone
-          Quantity: 100
+  - type: Solution
+    id: beaker
+    solution:
+      reagents:
+      - ReagentId: Opporozidone
+        Quantity: 120
 
 - type: entity
   parent: Jug
@@ -380,9 +373,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-lacerinol
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Lacerinol
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Lacerinol
+        Quantity: 240

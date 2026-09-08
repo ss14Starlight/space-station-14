@@ -1,6 +1,6 @@
 <DefaultWindow xmlns="https://spacestation14.io"
             xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
-            MinSize="650 290">
+            MinSize="650 340">
     <BoxContainer Orientation="Vertical">
         <!-- Privileged and target IDs, crew manifest button. -->
         <GridContainer Columns="2">
@@ -29,6 +29,12 @@
             <Button Name="JobTitleSaveButton" Text="{Loc 'id-card-console-window-save-button'}" Disabled="True" />
         </GridContainer>
         <Control MinSize="0 8" />
+        <!-- Starlight-start: Job icon selection -->
+        <Label Name="JobIconLabel" Text="{Loc 'agent-id-card-job-icon-label'}"/>
+        <GridContainer Name="IconGrid" Columns="10">
+        </GridContainer>
+        <Control MinSize="0 8" />
+        <!-- Starlight-end -->
         <!-- Job preset selection, grant/revoke all access buttons. -->
         <BoxContainer Margin="0 8 0 4">
             <BoxContainer>

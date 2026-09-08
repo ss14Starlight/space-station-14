@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "broken",
+	  "copyright": "Made by Conflee, inspired by TG and Monke lights.",
+      "directions": 4
+    },
+    {
+      "name": "base",
+	  "copyright": "Made by Conflee, inspired by TG and Monke lights.",
+      "directions": 4
+    },
+    {
+      "name": "empty",
+	  "copyright": "Made by Conflee, inspired by TG and Monke lights.",
+      "directions": 4
+    },
+	{
+      "name": "glow",
+	  "copyright": "Made by Conflee, inspired by TG and Monke lights.",
+      "directions": 4
+    }
+  ]
+}

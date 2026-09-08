@@ -109,8 +109,8 @@
     - type: InstantAction
       event: !type:VampireRejuvenateIIActionEvent
         reagentPurgeAmount: 10
-        purgedMetabolismGroups:
-        - Poison
+        purgedMetabolismStages:
+        - Bloodstream
         healTicks: 5
         healTickInterval: 3.5
         healGroups:

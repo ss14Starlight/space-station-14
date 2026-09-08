@@ -10,8 +10,10 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Starlight.Scent.Systems;
 
-// See ClientScentSystem for the concrete client-side subclass.
-public abstract class SharedScentSystem : EntitySystem
+/// <summary>
+/// See ClientScentSystem for the concrete client-side subclass.
+/// </summary>
+public abstract partial class SharedScentSystem : EntitySystem
 {
     [Dependency] protected SharedActionsSystem Actions = default!;
     [Dependency] protected SharedAudioSystem Audio = default!;
@@ -23,7 +25,7 @@ public abstract class SharedScentSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SmellerComponent, MapInitEvent>(OnSmellerMapInit);
+        SubscribeLocalEvent<SmellerComponent, ComponentInit>(OnSmellerInit);
         SubscribeLocalEvent<SmellerComponent, ComponentShutdown>(OnSmellerShutdown);
         SubscribeLocalEvent<SmellerComponent, ToggleSniffActionEvent>(OnToggleSniff);
         SubscribeLocalEvent<SmellerComponent, SneezeActionEvent>(OnSneeze);
@@ -36,12 +38,21 @@ public abstract class SharedScentSystem : EntitySystem
             ClearTrackedScent(ent);
     }
 
-    private void OnSmellerMapInit(Entity<SmellerComponent> ent, ref MapInitEvent args)
-    {
-        Actions.AddAction(ent.Owner, ref ent.Comp.ToggleActionEntity, ent.Comp.ToggleAction);
-    }
+    /// <summary>
+    /// Runs when SmellerComponent initializes, whether it was present at spawn or granted later
+    /// (i.e. an implant, a species change)
+    /// </summary>
+    /// <param name="uid">The entity the SmellerComponent was added to.</param>
+    /// <param name="component">The newly added SmellerComponent.</param>
+    /// <param name="args">Component initialization event args.</param>
+    protected virtual void OnSmellerInit(EntityUid uid, SmellerComponent component, ComponentInit args)
+        => Actions.AddAction(uid, ref component.ToggleActionEntity, component.ToggleAction);
 
-    // virtual so ClientScentSystem can override instead of subscribing to ComponentShutdown again.
+    /// <summary>
+    /// virtual so ClientScentSystem can override instead of subscribing to ComponentShutdown again.
+    /// </summary>
+    /// <param name="ent">The entity and SmellerComponent being removed.</param>
+    /// <param name="args">Component shutdown event args.</param>
     protected virtual void OnSmellerShutdown(Entity<SmellerComponent> ent, ref ComponentShutdown args)
     {
         Actions.RemoveAction(ent.Owner, ent.Comp.ToggleActionEntity);
@@ -67,7 +78,11 @@ public abstract class SharedScentSystem : EntitySystem
         args.Handled = true;
     }
 
-    // predicted excludes the performer from the server's broadcast; ForceSneeze doesn't want that.
+    /// <summary>
+    /// predicted excludes the performer from the server's broadcast; ForceSneeze doesn't want that.
+    /// </summary>
+    /// <param name="ent">Entity with a Smeller component.</param>
+    /// <param name="predicted">Whether this is a predicted, player-initiated sneeze.</param>
     public void Sneeze(Entity<SmellerComponent> ent, bool predicted = false)
     {
         ClearTrackedScent(ent);
@@ -80,7 +95,11 @@ public abstract class SharedScentSystem : EntitySystem
             Popup.PopupEntity(message, ent.Owner, ent.Owner);
     }
 
-    // Not the voluntary sneeze action. Locks out Toggle Smelling for 'lockout'.
+    /// <summary>
+    /// Not the voluntary sneeze action. Locks out Toggle Smelling for 'lockout'
+    /// </summary>
+    /// <param name="ent">Entity with a Smeller component.</param>
+    /// <param name="lockout">Lockout period, in seconds, to disable the smelling ability.</param>
     public void ForceSneeze(Entity<SmellerComponent> ent, TimeSpan lockout)
     {
         if (MobState.IsDead(ent.Owner))
@@ -172,7 +191,11 @@ public abstract class SharedScentSystem : EntitySystem
         return false;
     }
 
-    // Sneeze action grant/revoke happens in SetTrackedScent/ClearTrackedScent instead.
+    /// <summary>
+    /// Sneeze action grant/revoke happens in SetTrackedScent/ClearTrackedScent instead.
+    /// </summary>
+    /// <param name="ent">Entity with a Smeller component.</param>
+    /// <param name="sniffing">Whether sniffing should be turned on or off.</param>
     public virtual void SetSniffing(Entity<SmellerComponent> ent, bool sniffing)
     {
         if (ent.Comp.Sniffing == sniffing)

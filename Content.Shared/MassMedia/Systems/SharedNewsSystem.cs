@@ -4,8 +4,8 @@ namespace Content.Shared.MassMedia.Systems;
 
 public abstract class SharedNewsSystem : EntitySystem
 {
-    public const int MaxTitleLength = 25;
-    public const int MaxContentLength = 2048;
+    public const int MaxTitleLength = 35; // Starlight, slight increase
+    public const int MaxContentLength = 3072; // Starlight, +50% increase
 }
 
 [Serializable, NetSerializable]

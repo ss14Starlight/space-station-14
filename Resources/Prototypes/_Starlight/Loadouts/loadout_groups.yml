@@ -438,6 +438,7 @@
   - SecurityRevolverDispatcher
   - SecurityPistolDP
   - SecurityMk58Gold
+  - SecurityColdCase
 
 # Assorted Boots
 - type: loadoutGroup
@@ -450,6 +451,8 @@
   - ScienceWinterBoots
   - Heels
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: CaptainShoes
@@ -475,6 +478,8 @@
   - Heels
   - LaceupShoes
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: MagistrateShoes
@@ -484,6 +489,8 @@
   loadouts:
   - LaceupShoes
   - Heels
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeShoes
@@ -494,6 +501,8 @@
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: DetectiveShoes
@@ -522,6 +531,8 @@
   - LeatherShoes
   - Heels
   - LaceupShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: LawyerShoes
@@ -533,6 +544,8 @@
   - Heels
   - LeatherShoes
   - BlackShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: IAAShoes
@@ -544,6 +557,8 @@
   - Heels
   - LeatherShoes
   - BlackShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: BlueShieldShoes
@@ -728,6 +743,8 @@
   - ServiceWorkerChefJumpsuit
   - ServiceWorkerChefJumpskirt
   - MaidOutfit
+  - JanitorMaidOutfit
+  - JanitorMaidOutfitMini
 
 # Performer
 - type: loadoutGroup
@@ -751,15 +768,6 @@
   - PerformerClownJumpskirt
   - PerformerMimeJumpsuit
   - PerformerMimeJumpskirt
-
-- type: loadoutGroup
-  id: PerformerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieMusician
-  - LizardPlushieClown
-  - LizardPlushieMime
 
 # Musician
 - type: loadoutGroup
@@ -788,30 +796,66 @@
   - GreenBoxingGloves
   - YellowBoxingGloves
 
-- type: loadoutGroup
-  id: BoxerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieBoxer
-
 # Reporter
 - type: loadoutGroup
-  id: ReporterHead
-  name: loadout-group-reporter-head
-  minLimit: 0
-  loadouts:
-  - ReporterHeadphonesJob
-  - ReporterHeadphonesGeneric
-  - ReporterHeadphonesHighEnd
-
-# Zookeeper
-- type: loadoutGroup
-  id: ZookeeperJobTrinkets
+  id: ReporterJobTrinkets
   name: loadout-group-jobtrinkets
   minLimit: 0
+  maxLimit: 2
   loadouts:
-  - LizardPlushieZookeeper
+  - DigiboardMassMedia
+  - HoloReporterPin
+
+# Assistant Manager
+- type: loadoutGroup
+  id: AssistantManagerHead
+  name: loadout-group-assistantmanager-head
+  minLimit: 0
+  loadouts:
+  - AssistantManagerHead
+  - AssistantManagerBeret
+
+- type: loadoutGroup
+  id: AssistantManagerJumpsuit
+  name: loadout-group-assistantmanager-jumpsuit
+  loadouts:
+  - AssistantManagerJumpsuit
+  - AssistantManagerJumpskirt
+
+- type: loadoutGroup
+  id: AssistantManagerBackpack
+  name: loadout-group-assistantmanager-backpack
+  loadouts:
+  - AssistantManagerBackpack
+  - AssistantManagerSatchel
+  - AssistantManagerDuffel
+
+- type: loadoutGroup
+  id: AssistantManagerGloves
+  name: loadout-group-assistantmanager-gloves
+  minLimit: 0
+  loadouts:
+  - AssistantManagerGloves
+  - AssistantManagerMittens
+
+- type: loadoutGroup
+  id: AssistantManagerOuterClothing
+  name: loadout-group-assistantmanager-outerclothing
+  minLimit: 0
+  loadouts:
+  - AssistantManagerWintercoat
+
+- type: loadoutGroup
+  id: AssistantManagerShoes
+  name: loadout-group-assistantmanager-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BlackShoes
+  - WhiteShoes
+  - BlueShoes
+  - BlueWinterBoots
+  - Heels
 
 # Silicon Brain Type
 - type: loadoutGroup
@@ -1091,14 +1135,6 @@
   - ParamedicPDA
   - SeniorParamedicPDA
 
-
-- type: loadoutGroup
-  id: ResearchAssistantJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieResearchAssistant
-
 - type: loadoutGroup
   id: SalvageSpecialistJumpsuit
   name: loadout-group-salvage-specialist-jumpsuit
@@ -1109,42 +1145,11 @@
   - SalvageSpecialistJumpskirtFormal
 
 - type: loadoutGroup
-  id: LibrarianJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieLibrarian
-
-- type: loadoutGroup
-  id: ServiceWorkerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieServiceWorker
-  - LizardPlushieBartender
-  - LizardPlushieBotanist
-  - LizardPlushieChef
-
-- type: loadoutGroup
-  id: AssistantJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieAssistant
-
-- type: loadoutGroup
   id: CaptainEyewear
   name: loadout-group-captain-eyewear
   loadouts:
   - CaptainGlasses
   - CaptainHud
-
-- type: loadoutGroup
-  id: CaptainJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieCaptain
 
 - type: loadoutGroup
   id: SecurityEyewear
@@ -1154,6 +1159,13 @@
   - SecurityHud
   - DetectiveNoirGlasses
   - SecurityGlassesPrescription
+
+- type: loadoutGroup
+  id: DetectiveLethal
+  name: loadout-group-detective-lethal
+  loadouts:
+  - InspectorBelt
+  - ColdCaseBelt
 
 - type: loadoutGroup
   id: BrigmedicHead
@@ -1226,10 +1238,3 @@
   - BrigmedicRig
   - BrigmedicBelt
   - CorpsmanBelt
-
-- type: loadoutGroup
-  id: TechnicalAssistantJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieTechnicalAssistant

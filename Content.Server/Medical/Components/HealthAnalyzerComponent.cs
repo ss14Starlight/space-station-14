@@ -1,7 +1,6 @@
 using Robust.Shared.Audio;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 using Robust.Shared.Prototypes; //FarHorizons
 using Content.Shared.Actions;//FarHorizons
 
@@ -29,6 +28,12 @@ public sealed partial class HealthAnalyzerComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(1);
+
+    /// <summary>
+    /// If the last state of the health analyzer was active (e.g. they are in range of the patient).
+    /// </summary>
+    [DataField]
+    public bool IsAnalyzerActive = false;
 
     /// <summary>
     /// How long it takes to scan someone.
@@ -87,8 +92,8 @@ public sealed partial class HealthAnalyzerComponent : Component
     [DataField]
     public bool Silent;
 
-    [DataField("damageContainers", customTypeSerializer: typeof(PrototypeIdListSerializer<DamageContainerPrototype>))]
-    public List<string>? DamageContainers;
+    [DataField("damageContainers")]
+    public List<ProtoId<DamageContainerPrototype>>? DamageContainers;
 
     # region Starlight
 

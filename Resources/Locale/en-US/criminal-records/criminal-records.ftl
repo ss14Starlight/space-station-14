@@ -16,8 +16,9 @@ criminal-records-status-detained = Detained
 criminal-records-status-suspected = Suspect
 criminal-records-status-discharged = Discharged
 criminal-records-status-paroled = Paroled
-criminal-records-status-hostile = Hostile
+criminal-records-status-hostile = Kill On Sight
 criminal-records-status-eliminated = Eliminated
+criminal-records-status-arrestonsight = Arrest On Sight
 
 criminal-records-console-wanted-reason = Wanted Reason
 criminal-records-console-suspected-reason = Suspected Reason
@@ -50,11 +51,15 @@ criminal-records-console-detained = {$name} ({$job}) has been detained by {$offi
 criminal-records-console-released = {$name} ({$job}) has been released by {$officer}.
 criminal-records-console-paroled = {$name} ({$job}) has been released on parole by {$officer}.
 criminal-records-console-not-parole = {$officer} cleared the parole status of {$name} ({$job}).
-criminal-records-console-hostile = {$name} ({$job}) was marked as hostile by {$officer} for: {$reason}.
-criminal-records-console-not-hostile = {$name} ({$job}) no longer marked as hostile by {$officer}.
 criminal-records-console-eliminated = {$name} ({$job}) was marked as eliminated by {$officer}.
 criminal-records-console-not-eliminated = {$name} ({$job}) no longer marked as eliminated by {$officer}.
 criminal-records-console-unknown-officer = <unknown>
+
+## Starlight Security Channel Notifications
+criminal-records-console-aos = {$name} ({$job}) has been marked Arrest On Sight by {$officer} for: {$reason}.
+criminal-records-console-not-aos = {$name} ({$job}) no longer marked as Arrest On Sight by {$officer}.
+criminal-records-console-hostile = {$name} ({$job}) was marked as Kill On Sight by {$officer} for: {$reason}.
+criminal-records-console-not-hostile = {$name} ({$job}) no longer marked Kill On Sight by {$officer}.
 
 ## Filters
 

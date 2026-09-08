@@ -9,21 +9,14 @@
   - type: Edible
   - type: Extractable
     grindableSolutionName: organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      organ:
-        maxVol: 10
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
   - type: Tag
     tags:
       - Meat
+
 
 - type: entity
   id: OrganArachnidStomach
@@ -39,17 +32,12 @@
     size: Small
     heldPrefix: stomach
   - type: Stomach
-    digestionDelay: 30
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Metabolizer
+
 
 - type: entity
   id: OrganArachnidLungs
@@ -64,27 +52,13 @@
       - state: lung-r
   - type: Lung
   - type: Metabolizer
-    removeEmpty: true
-    solutionOnBody: false
-    solution: "Lung"
     metabolizerTypes: [ Human ]
-    groups:
-    - id: Gas
-      rateModifier: 100.0
-  - type: SolutionContainerManager
+    stages: [ Respiration ]
+  - type: SolutionManager
     solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      Lung:
-        maxVol: 100.0
-        canReact: false
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganLung
 
 - type: entity
   id: OrganArachnidHeart
@@ -101,11 +75,7 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Arachnid]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
-
+    stages: [ Bloodstream ]
 - type: entity
   id: OrganArachnidLiver
   parent: [BaseHumanOrgan, BaseOrganLiver]
@@ -121,9 +91,7 @@
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [Animal]
-    groups:
-    - id: Alcohol
-
+    stages: [ Metabolites ]
 - type: entity
   id: OrganArachnidKidneys
   parent: [BaseHumanOrgan, BaseOrganKidneys]
@@ -142,7 +110,6 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [Animal]
-    removeEmpty: true
 
 - type: entity
   id: OrganArachnidEyes

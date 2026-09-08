@@ -31,7 +31,9 @@
   jobBlacklist:
   - SalvageLead
   - SalvageSpecialist
+  - SalvageMedic
   - Paramedic
+  - AssistantManager
 
 # Zombie (Initial Infected)
 ## Sabotaging Chem as a Chem II is too easy, and always the "best" thing you can do without question.
@@ -97,11 +99,14 @@
   - Warden
   - Detective
   - Brigmedic
+  - K9
   - DutyOfficer
   - SecurityOfficer
   - SecurityCadet
   - SalvageLead
   - SalvageSpecialist
+  - SalvageMedic
+  - AssistantManager
 
 # Cosmic Cult
 ## Just Chaplain, since, y'know.

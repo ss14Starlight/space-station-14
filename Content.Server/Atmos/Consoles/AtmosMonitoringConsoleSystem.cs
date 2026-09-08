@@ -20,6 +20,9 @@ using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.NodeContainer;
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Silicons.StationAi;
+using Content.Server.Silicons.StationAi;
 
 namespace Content.Server.Atmos.Consoles;
 
@@ -28,6 +31,9 @@ public sealed partial class AtmosMonitoringConsoleSystem : SharedAtmosMonitoring
     [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private SharedMapSystem _sharedMapSystem = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
+    #region Starlight
+    [Dependency] private StationAiSystem _stationAiSystem = default!;
+    #endregion
 
     // Private variables
     // Note: this data does not need to be saved
@@ -46,6 +52,7 @@ public sealed partial class AtmosMonitoringConsoleSystem : SharedAtmosMonitoring
         SubscribeLocalEvent<AtmosMonitoringConsoleComponent, ComponentInit>(OnConsoleInit);
         SubscribeLocalEvent<AtmosMonitoringConsoleComponent, AnchorStateChangedEvent>(OnConsoleAnchorChanged);
         SubscribeLocalEvent<AtmosMonitoringConsoleComponent, EntParentChangedMessage>(OnConsoleParentChanged);
+        SubscribeLocalEvent<AtmosMonitoringConsoleComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight: go to clicked position for AI
 
         // Tracked device events
         SubscribeLocalEvent<AtmosMonitoringConsoleDeviceComponent, NodeGroupsRebuilt>(OnEntityNodeGroupsRebuilt);
@@ -57,6 +64,25 @@ public sealed partial class AtmosMonitoringConsoleSystem : SharedAtmosMonitoring
         SubscribeLocalEvent<PipeNodeGroupRemovedEvent>(OnPipeNodeGroupRemoved);
     }
 
+    #region Starlight
+    private void OnWarpRequest(EntityUid uid, AtmosMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
+    {
+        if (args.Actor is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
+            return;
+
+        EntityCoordinates coordinates;
+        try
+        {
+            coordinates = GetCoordinates(args.Coordinates);
+        }
+        catch
+        {
+            return;
+        }
+
+        _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
+    }
+    #endregion
     #region Event handling
 
     private void OnConsoleInit(EntityUid uid, AtmosMonitoringConsoleComponent component, ComponentInit args)

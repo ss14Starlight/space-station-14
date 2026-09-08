@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 48,
+        "y": 80
+    },
+    "states": [
+        {
+            "name": "tree01",
+			"copyright": "By TheShuEd and Omsoyk"
+        },
+        {
+            "name": "tree02",
+			"copyright": "By TheShuEd and Omsoyk"
+        },
+        {
+            "name": "tree03",
+			"copyright": "By TheShuEd and Omsoyk"
+        },
+        {
+            "name": "tree04",
+			"copyright": "By TheShuEd and Omsoyk"
+        }
+    ]
+}
