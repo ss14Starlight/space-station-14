@@ -4,7 +4,7 @@ meta:
   engineVersion: 289.0.2
   forkId: ""
   forkVersion: ""
-  time: 09/07/2026 04:36:14
+  time: 09/08/2026 01:07:51
   entityCount: 35331
 maps:
 - 1
@@ -12949,7 +12949,7 @@ entities:
       pos: 1.5,-2.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -192654.28
+      secondsUntilStateChange: -192743.5
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13087,7 +13087,7 @@ entities:
       pos: -52.5,58.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -219426.25
+      secondsUntilStateChange: -219515.47
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15275,7 +15275,7 @@ entities:
       pos: 18.5,53.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -393315.28
+      secondsUntilStateChange: -393404.5
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15809,7 +15809,7 @@ entities:
       pos: -61.5,49.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -249186.11
+      secondsUntilStateChange: -249275.33
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -92039,6 +92039,12 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -47.5,20.5
+  - uid: 15246
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: -34.5,34.5
 - proto: ComputerCommsMedical
   entities:
   - uid: 15187
@@ -92415,18 +92421,20 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -70.5,34.5
-  - uid: 15246
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: -34.5,34.5
   - uid: 15247
     components:
     - type: Transform
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -87.5,50.5
+- proto: ComputerPowerMonitoringDesktop
+  entities:
+  - uid: 26050
+    components:
+    - type: Transform
+      parent: 2
+      rot: 3.141592653589793 rad
+      pos: -36.5,33.5
 - proto: ComputerRadar
   entities:
   - uid: 15248
@@ -104537,7 +104545,7 @@ entities:
       pos: -71.5,55.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -83901.5
+      secondsUntilStateChange: -83990.73
   - uid: 17218
     components:
     - type: Transform
@@ -106723,7 +106731,7 @@ entities:
       pos: 66.5,41.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -146077.69
+      secondsUntilStateChange: -146166.9
     - type: Firelock
       emergencyCloseCooldown: 11124.3888776
   - uid: 17415
@@ -108213,7 +108221,7 @@ entities:
       pos: -27.5,81.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -134187.69
+      secondsUntilStateChange: -134276.9
   - uid: 17628
     components:
     - type: Transform
@@ -169366,11 +169374,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: -56.5,53.5
-  - uid: 26050
-    components:
-    - type: Transform
-      parent: 2
-      pos: -36.5,33.5
   - uid: 26051
     components:
     - type: Transform
