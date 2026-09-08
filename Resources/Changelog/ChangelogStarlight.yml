@@ -1,11 +1,4 @@
 Entries:
-- author: Trosling
-  changes:
-  - message: Added in-character penalties for officers who get people killed by wrongfully assigning a criminal status.
-    type: Add
-  id: 408034
-  time: '2026-08-31T18:14:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5890
 - author: Floximo
   changes:
   - message: Telepads no longer wrongfully redirect bulk orders.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408433
   time: '2026-09-08T13:21:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6025
+- author: FishtopherDoe, The Purple Screen
+  changes:
+  - message: Added E.T.O Gear, clothes, armour, a door, two bombs, contraband, 5 new weapons, all relevant magazines for the SMG, an ETO combat medkit variant, 5 ghost roles, seven ETO jobs and PDAs.
+    type: Add
+  id: 408434
+  time: '2026-09-08T13:43:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5147
 Order: -1
