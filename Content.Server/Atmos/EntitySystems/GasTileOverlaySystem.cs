@@ -11,7 +11,6 @@ using Microsoft.Extensions.ObjectPool;
 using Robust.Server.Player;
 using Robust.Shared;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Threading;

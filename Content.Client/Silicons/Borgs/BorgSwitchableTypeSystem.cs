@@ -1,5 +1,4 @@
 ﻿using Content.Shared._Afterlight.Silicons.Borgs;
-using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Client.GameObjects;

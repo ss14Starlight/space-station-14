@@ -17,7 +17,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
-using Robust.Shared.Maths;
 using Robust.Shared.Audio;
 using Robust.Shared.Physics.Dynamics;
 using Content.Shared.Gibbing;

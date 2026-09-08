@@ -1,4 +1,4 @@
-﻿- type: body
+- type: body
   name: "reptilian"
   id: Reptilian
   root: torso
@@ -10,7 +10,7 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-        tongue: OrganHumanTongue
+        tongue: OrganReptilianTongue
         eye_implant: null
         nose_implant: null # 🌟Starlight🌟
         brain_implant: null # 🌟Starlight🌟
