@@ -121,6 +121,11 @@
   - type: Clothing
     quickEquip: false
     sprite: _Starlight/Objects/Fun/Plushies/chemmi_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
   - type: MeleeWeapon
     wideAnimationRotation: 180
     soundHit:
