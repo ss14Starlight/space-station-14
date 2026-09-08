@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Changed existing Showcase props to have 4 rotations, and adjusted names and descriptions to add more lore. Marauder  showcase changed to a Durand MK1 showcase, featuring an earlier version of the Durand.
-    type: Tweak
-  id: 408029
-  time: '2026-08-31T14:29:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5895
 - author: Trosling
   changes:
   - message: Added Arrest on Sight criminal status.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408428
   time: '2026-09-08T12:19:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6042
+- author: wonderfulnewworld, SlamBamActionman
+  changes:
+  - message: Dwarves are now shortened via sprite displacement, rather than being scaled.
+    type: Tweak
+  id: 408429
+  time: '2026-09-08T12:39:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6032
 Order: -1
