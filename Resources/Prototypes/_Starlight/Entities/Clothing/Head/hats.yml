@@ -473,14 +473,14 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
-  id: ClothingHeadHatCentcommCMD
+  id: ClothingHeadHatCapCentcommCMD
   name: Central Medical Division cap
   description: a light blue cap, that's too cool for you crewmate.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Head/Hats/centcommcaplightblue.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCMD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Head/Hats/centcommcaplightblue.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCMD.rsi
     - type: Tag
       tags:
         - CorgiWearable
@@ -488,14 +488,14 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
-  id: ClothingHeadHatCentcommCRD
+  id: ClothingHeadHatCapCentcommCRD
   name: Central Research Division cap
   description: a light purple cap, that's too cool for you crewmate.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Head/Hats/centcommcaplightpurple.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCRD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Head/Hats/centcommcaplightpurple.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCRD.rsi
     - type: Tag
       tags:
         - CorgiWearable
@@ -503,14 +503,14 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
-  id: ClothingHeadHatCentcommCAD
+  id: ClothingHeadHatCapCentcommCAD
   name: Central Administration Division cap
   description: a  blue cap, that's too cool for you crewmate.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Head/Hats/centcommcapblue.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCAD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Head/Hats/centcommcapblue.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCAD.rsi
     - type: Tag
       tags:
         - CorgiWearable
@@ -518,14 +518,14 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
-  id: ClothingHeadHatCentcommCCD
+  id: ClothingHeadHatCapCentcommCCD
   name: Central Cargo Division cap
   description: a orange cap, that's too cool for you crewmate.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Head/Hats/centcommcaporange.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCCD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Head/Hats/centcommcaporange.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCCD.rsi
     - type: Tag
       tags:
         - CorgiWearable
@@ -533,14 +533,14 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
-  id: ClothingHeadHatCentcommCSOD
+  id: ClothingHeadHatCapCentcommCSOD
   name: Central Special Operations Division cap
   description: a pink cap, that's too cool for you crewmate.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Head/Hats/centcommcappink.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCSOD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Head/Hats/centcommcappink.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCSOD.rsi
     - type: Tag
       tags:
         - CorgiWearable
@@ -548,14 +548,14 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
-  id: ClothingHeadHatCentcommCID
+  id: ClothingHeadHatCapCentcommCID
   name: Central Intelligence Division cap
   description: a purple cap, that's too cool for you crewmate.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Head/Hats/centcommcappurple.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCID.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Head/Hats/centcommcappurple.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCID.rsi
     - type: Tag
       tags:
         - CorgiWearable
@@ -563,14 +563,14 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
-  id: ClothingHeadHatCentcommCSD
+  id: ClothingHeadHatCapCentcommCSD
   name: Central Security Division cap
   description: a red cap, that's too cool for you crewmate.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Head/Hats/centcommcapred.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCSD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Head/Hats/centcommcapred.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCSD.rsi
     - type: Tag
       tags:
         - CorgiWearable
@@ -578,14 +578,254 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
-  id: ClothingHeadHatCentcommCED
-  name: Central Engineering Division beret
+  id: ClothingHeadHatCapCentcommCED
+  name: Central Engineering Division cap
   description: a yellow cap, that's too cool for you crewmate.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Head/Hats/centcommcapyellow.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCED.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Head/Hats/centcommcapyellow.rsi
+      sprite: _Starlight/Clothing/Head/Hats/centcommcapCED.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBountyCentcommCMD
+  name: Central Medical Division bounty hunter hat
+  description: A sheriff's hat in the signature Central Medical Division's colors, one look at this might make a tider think twice from sneaking into debrief.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCMD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCMD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBountyCentcommCRD
+  name: Central Research Division bounty hunter hat
+  description: A sheriff's hat in the signature Central Research Division's colors, one look at this might make a tider think twice from sneaking into debrief.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCRD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCRD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBountyCentcommCAD
+  name: Central Administration Division bounty hunter hat
+  description: A sheriff's hat in the signature Central Administration Division's colors, one look at this might make a tider think twice from sneaking into debrief.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCAD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCAD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBountyCentcommCCD
+  name: Central Cargo Division bounty hunter hat
+  description: A sheriff's hat in the signature Central Cargo Division's colors, one look at this might make a tider think twice from sneaking into debrief.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCCD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCCD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBountyCentcommCSOD
+  name: Central Special Operations Division bounty hunter hat
+  description: A sheriff's hat in the signature Central Special Operations Division's colors, one look at this might make a tider think twice from sneaking into debrief.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCSOD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCSOD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBountyCentcommCID
+  name: Central Intelligence Division bounty hunter hat
+  description: A sheriff's hat in the signature Central Intelligence Division's colors, one look at this might make a tider think twice from sneaking into debrief.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCID.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCID.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBountyCentcommCSD
+  name: Central Security Division bounty hunter hat
+  description: A sheriff's hat in the signature Central Security Division's colors, one look at this might make a tider think twice from sneaking into debrief.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCSD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCSD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBountyCentcommCED
+  name: Central Engineering Division bounty hunter hat
+  description: A sheriff's hat in the signature Central Engineering Division's colors, one look at this might make a tider think twice from sneaking into debrief.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCED.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommbountyCED.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBeretCentcommCMD
+  name: Central Medical Division beret
+  description: a light blue beret, like any other beret but green and you can't have it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCMD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCMD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBeretCentcommCRD
+  name: Central Research Division beret
+  description: a light purple beret, like any other beret but green and you can't have it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCRD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCRD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBeretCentcommCAD
+  name: Central Administration Division beret
+  description: a blue beret, like any other beret but green and you can't have it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCAD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCAD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBeretCentcommCCD
+  name: Central Cargo Division beret
+  description: a orange beret, like any other beret but green and you can't have it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCCD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCCD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBeretCentcommCSOD
+  name: Central Special Operations Division beret
+  description: a pink beret, like any other beret but green and you can't have it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCSOD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCSOD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBeretCentcommCID
+  name: Central Intelligence Division beret
+  description: a purple beret, like any other beret but green and you can't have it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCID.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCID.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBeretCentcommCSD
+  name: Central Security Division beret
+  description: a red beret, like any other beret but green and you can't have it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCSD.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCSD.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCentcommContraband]
+  id: ClothingHeadHatBeretCentcommCED
+  name: Central Engineering Division beret
+  description: a yellow beret, like any other beret but green and you can't have it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCED.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/centcommberetCED.rsi
     - type: Tag
       tags:
         - CorgiWearable

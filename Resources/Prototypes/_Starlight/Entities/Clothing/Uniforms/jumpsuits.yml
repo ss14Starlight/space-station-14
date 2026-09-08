@@ -762,9 +762,9 @@
   description: It's a formal jumpsuit worn by CentComm officers.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalblue.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCAD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalblue.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCAD.rsi
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
@@ -773,9 +773,9 @@
   description: It's a formal jumpsuit worn by CentComm officers.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformallightblue.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCMD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformallightblue.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCMD.rsi
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
@@ -784,9 +784,9 @@
   description: It's a formal jumpsuit worn by CentComm officers.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformallightpurple.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCRD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformallightpurple.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCRD.rsi
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
@@ -795,9 +795,9 @@
   description: It's a formal jumpsuit worn by CentComm officers.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalorange.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCCD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalorange.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCCD.rsi
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
@@ -806,9 +806,9 @@
   description: It's a formal jumpsuit worn by CentComm officers.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalpink.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCSOD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalpink.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCSOD.rsi
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
@@ -817,9 +817,9 @@
   description: It's a formal jumpsuit worn by CentComm officers.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalpurple.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCID.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalpurple.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCID.rsi
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
@@ -828,9 +828,9 @@
   description: It's a formal jumpsuit worn by CentComm officers.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalred.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCSD.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalred.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCSD.rsi
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
@@ -839,9 +839,9 @@
   description: It's a formal jumpsuit worn by CentComm officers.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalyellow.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCED.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalyellow.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcommformalCED.rsi
 
 - type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]
