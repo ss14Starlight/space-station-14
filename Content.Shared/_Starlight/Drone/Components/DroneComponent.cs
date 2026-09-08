@@ -1,4 +1,4 @@
-namespace Content.Shared.Drone;
+namespace Content.Shared._Starlight.Drone.Components;
 
 /// <summary>
 /// Component for drones. Pretty self explanatory huh?

@@ -1,8 +1,9 @@
+using Content.Shared._Starlight.Drone.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Tag;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Drone;
+namespace Content.Shared._Starlight.Drone;
 
 /// <summary>
 /// Handles drone interaction restrictions based on tags.

@@ -1,5 +1,4 @@
 using Content.Server.Tools.Innate;
-using Content.Shared.Drone;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
@@ -9,8 +8,10 @@ using Robust.Shared.Containers;
 using Content.Shared.Mind.Components;
 using Content.Shared.Access.Systems;
 using System.Linq;
+using Content.Shared._Starlight.Drone;
+using Content.Shared._Starlight.Drone.Components;
 
-namespace Content.Server.Drone;
+namespace Content.Server._Starlight.Drone;
 
 public sealed partial class DroneSystem : SharedDroneSystem
 {

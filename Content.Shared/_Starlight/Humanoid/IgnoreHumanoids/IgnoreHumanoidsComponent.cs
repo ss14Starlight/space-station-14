@@ -1,4 +1,4 @@
-namespace Content.Shared.IgnoreHumanoids;
+namespace Content.Shared._Starlight.Humanoid.IgnoreHumanoids;
 
 /// <summary>
 /// Adds an overlay that doesn't let drones see what different humanoids are.

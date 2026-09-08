@@ -42,17 +42,12 @@ using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 // Starlight Start
-using Content.Shared.Speech;
-using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Chat;
-using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Systems;
-using Content.Shared.Popups;
-using Content.Shared.IgnoreHumanoids;
 using Content.Shared.Humanoid;
 using Content.Shared._Starlight.Radio;
-using Content.Server.Radio.EntitySystems;
 using Content.Server._Starlight.TextToSpeech;
+using Content.Shared._Starlight.Humanoid.IgnoreHumanoids;
 // Starlight End
 
 namespace Content.Server.Chat.Systems;
@@ -833,7 +828,10 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     If hideChat should be set as far as replays are concerned.
     /// </summary>
-    private bool MessageRangeHideChatForReplay(ChatTransmitRange range) => range == ChatTransmitRange.HideChat;
+    private bool MessageRangeHideChatForReplay(ChatTransmitRange range)
+    {
+        return range == ChatTransmitRange.HideChat;
+    }
 
     /// <summary>
     ///     Checks if a target as returned from GetRecipients should receive the message.

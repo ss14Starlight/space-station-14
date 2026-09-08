@@ -1,8 +1,8 @@
-using Content.Shared.IgnoreHumanoids;
 using Content.Shared.GameTicking;
 using Robust.Client.Player;
 using Robust.Client.Graphics;
 using Robust.Shared.Player;
+using Content.Shared._Starlight.Humanoid.IgnoreHumanoids;
 
 namespace Content.Client._Starlight.Humanoid.IgnoreHumanoids;
 
