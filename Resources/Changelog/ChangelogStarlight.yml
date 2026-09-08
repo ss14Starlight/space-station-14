@@ -1,34 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Added the Gumball Dispenser, a new 'vending machine' that contains a variety of gumball colors. Contraband inventory contains a single Black (carpotoxin) gumball and a single Blood Red (omnizine) gumball.
-    type: Add
-  id: 408024
-  time: '2026-08-31T14:29:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5895
-- author: Conflee
-  changes:
-  - message: Added Evac Seat and Bridge Seat. Both are constructible chairs for more decorating options. Evac Seat is intended to replace to bulk of pilot seats lined up in rows on Evac Shuttles.
-    type: Add
-  id: 408025
-  time: '2026-08-31T14:29:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5895
-- author: Conflee
-  changes:
-  - message: Added the Angel Statue, for mappers to decorate with.
-    type: Add
-  id: 408026
-  time: '2026-08-31T14:29:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5895
-- author: Conflee
-  changes:
-  - message: Added Hand Sanitizer, Hand Dryer, Toilet Paper, and Toilet Paper (Offset). Hand Sanitizer can be used to 'Wash', removing pie and scent like a sink. The rest are decorative. Toilet Paper (Offset) is so it can sit next to a button in the same tile if needed.
-    type: Add
-  id: 408027
-  time: '2026-08-31T14:29:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5895
-- author: Conflee
-  changes:
   - message: Added two new Showcase props- Pobeda (old USSP mech) and Abyssal Diving Suit (from Trieste Port). Both come with 4 rotations.
     type: Add
   id: 408028
@@ -2799,4 +2771,32 @@ Entries:
   id: 408423
   time: '2026-09-08T11:39:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6031
+- author: Conflee
+  changes:
+  - message: Added Bluespace Fire Extinguishers, a Science unlock under the Bluespace Storage research. It works like a normal extinguisher but can only hold space cleaner, syndicate space cleaner, and water, and it also regenerated water at 2u per second. Self-refilling! Needs 10 steel, 5 plasma, and 1 bluespace crystal to make in the Engie Tech Fab.
+    type: Add
+  id: 408424
+  time: '2026-09-08T11:58:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6027
+- author: Conflee
+  changes:
+  - message: Added Halon Gas Grenades. Works like Air Grenades but with a small amount of Halon. One is enough to put out a welder bombing fire in medium sized rooms, and does 95% of the job even in very large rooms. Also works decently on small trit/plasma fires. 1 is in each atmos locker and evac repair locker.
+    type: Add
+  id: 408425
+  time: '2026-09-08T11:58:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6027
+- author: Conflee
+  changes:
+  - message: Added a Cargo order for 'Atmos Gas Grenades Box', a box with 2 Halon Grenades, 4 Air Grenades, and 4 Metal Foam Grenades for $4200.
+    type: Add
+  id: 408426
+  time: '2026-09-08T11:58:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6027
+- author: Conflee
+  changes:
+  - message: Moved many loose items in the Engineer's Locker and Atmospheric Technician's Locker into Locker Supply Boxes for each, to reduce locker clutter. 5-8 items packed into 1 box so there are less loose items.
+    type: Tweak
+  id: 408427
+  time: '2026-09-08T11:58:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6027
 Order: -1
