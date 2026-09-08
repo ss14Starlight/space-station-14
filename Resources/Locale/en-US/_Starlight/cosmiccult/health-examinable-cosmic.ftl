@@ -17,3 +17,9 @@ health-examinable-cosmic-Heat-75 = [color=#3d89f2]{ CAPITALIZE(POSS-ADJ($target)
 health-examinable-cosmic-Cold-50 = [color=#3d89f2]Large portions of { POSS-ADJ($target) } form appear frozen.[/color]
 
 health-examinable-cosmic-Caustic-50 = [color=#7b38f5]{ CAPITALIZE(POSS-ADJ($target)) } form is dissolving.[/color]
+
+cosmic-bloodstream-slight-bleeding = [color=#4cabb3]Small amounts of entropy seep from { POSS-ADJ($target) } form.[/color]
+cosmic-bloodstream-bleeding = [color=#4cabb3]Entropy leaks from { POSS-ADJ($target) } form.[/color]
+cosmic-bloodstream-strong-bleeding = [color=#15939e]Large amounts of entropy flow freely from { POSS-ADJ($target) } form.[/color]
+cosmic-bloodstream-massive-bleeding = [color=#15939e]Entropy pours from { POSS-ADJ($target) } form![/color]
+cosmic-bloodstream-looks-pale = [color=#a0cefa]{ CAPITALIZE(POSS-ADJ($target)) } inner glow appears diminished.[/color]

@@ -98,6 +98,7 @@
       reagents:
       - ReagentId: Entropy
         Quantity: 200
+    examineLocPrefix: cosmic-bloodstream
     maxBleedAmount: 10.75
     bleedReductionAmount: 0.1
     bloodlossDamage:
