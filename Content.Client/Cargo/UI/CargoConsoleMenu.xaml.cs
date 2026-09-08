@@ -1,8 +1,6 @@
 using System.Linq;
 using Content.Client.Cargo.Systems;
 using Content.Client.UserInterface.Controls;
-using Content.Shared.Atmos;
-using Content.Shared.Atmos.Prototypes;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;

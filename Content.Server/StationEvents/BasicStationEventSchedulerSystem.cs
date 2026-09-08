@@ -10,8 +10,6 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Toolshed;
-using Robust.Shared.Toolshed.TypeParsers;
-using Robust.Shared.Utility;
 
 namespace Content.Server.StationEvents
 {

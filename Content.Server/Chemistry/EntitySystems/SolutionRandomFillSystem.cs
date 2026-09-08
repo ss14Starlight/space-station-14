@@ -3,7 +3,6 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
-using Content.Shared.Storage.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 

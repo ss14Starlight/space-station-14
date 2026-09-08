@@ -35,7 +35,6 @@ using Robust.Shared.Utility;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.EntityConditions.Conditions;
 
 namespace Content.Server.Medical;
 
