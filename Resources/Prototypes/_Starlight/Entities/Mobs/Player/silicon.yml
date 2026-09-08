@@ -52,6 +52,12 @@
     containers:
       part-container: !type:Container
       cell_slot: !type:ContainerSlot {}
+      head: !type:ContainerSlot {}
+      back: !type:ContainerSlot {}
+      pocket1: !type:ContainerSlot {}
+      pocket2: !type:ContainerSlot {}
+      pocket3: !type:ContainerSlot {}
+      body_root_part: !type:ContainerSlot {}
   - type: Construction
     graph: Drone
     node: drone_complete
@@ -165,6 +171,7 @@
     autoRot: true
   - type: Body
     prototype: Drone
+    bloodType: B- # yeah this is stupid
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
