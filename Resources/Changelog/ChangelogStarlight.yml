@@ -1,81 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Anything that has "winter clothing" equivalent protection now provides 25% infection chance resistance.
-    type: Tweak
-  id: 408013
-  time: '2026-08-30T18:37:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5757
-- author: SirLutz
-  changes:
-  - message: remove the double ghostrole annoucment.
-    type: Fix
-  id: 408014
-  time: '2026-08-30T18:59:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5753
-- author: Floximo
-  changes:
-  - message: Intellicards can now target pAI and transfer in both directions.
-    type: Add
-  id: 408015
-  time: '2026-08-30T19:50:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5867
-- author: Floximo
-  changes:
-  - message: AI Interfaces or borgs with AI Interfaces can no longer be target/source of intellicard transfers.
-    type: Fix
-  id: 408016
-  time: '2026-08-30T19:50:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5867
-- author: Caws
-  changes:
-  - message: Winter hats (beanies, ushankas, etc.) now provide cold temperature protection and 10% cold armor.
-    type: Tweak
-  id: 408017
-  time: '2026-08-30T22:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5891
-- author: Caws
-  changes:
-  - message: Summer hats (wide-brimmed / cowboy hats and stuff that keeps the 'sun' out of your eyes) now provide hot temperature protection and 5% heat armor.
-    type: Tweak
-  id: 408018
-  time: '2026-08-30T22:23:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5891
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: The health analyzer readout now additionally shows stomach chemical content in parenthesis and a de-emphasized gray.
-    type: Tweak
-  id: 408019
-  time: '2026-08-31T08:30:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5710
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: The health analyzer paper printout now shows bloodstream contents, as well as stomach contents (it used to not show any chemical contents at all, now it shows both bloodstream and stomach contents).
-    type: Tweak
-  id: 408020
-  time: '2026-08-31T08:30:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5710
-- author: Conflee
-  changes:
-  - message: Added Round Tables (Carpeted, Wood, Plastic, Steel, Glass, and Plasma Glass). All are constructible by players.
-    type: Add
-  id: 408021
-  time: '2026-08-31T14:29:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5895
-- author: Conflee
-  changes:
-  - message: Added Window Blinds. They can be opened and closed like curtains to block vision, and are constructible by players.
-    type: Add
-  id: 408022
-  time: '2026-08-31T14:29:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5895
-- author: Conflee
-  changes:
-  - message: Added Artsy Carpet floor tiles. Can be crafted in a tile cutter.
-    type: Add
-  id: 408023
-  time: '2026-08-31T14:29:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5895
 - author: Conflee
   changes:
   - message: Added the Gumball Dispenser, a new 'vending machine' that contains a variety of gumball colors. Contraband inventory contains a single Black (carpotoxin) gumball and a single Blood Red (omnizine) gumball.
@@ -2799,4 +2722,81 @@ Entries:
   id: 408412
   time: '2026-09-08T11:19:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6043
+- author: Makeshift
+  changes:
+  - message: (Packed) Added a Psychologist Office.
+    type: Add
+  id: 408413
+  time: '2026-09-08T11:39:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6031
+- author: Makeshift
+  changes:
+  - message: (Packed) Added a Reporter Office.
+    type: Add
+  id: 408414
+  time: '2026-09-08T11:39:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6031
+- author: Makeshift
+  changes:
+  - message: (Packed) Added a K9 Unit!
+    type: Add
+  id: 408415
+  time: '2026-09-08T11:39:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6031
+- author: Makeshift
+  changes:
+  - message: (Packed) Added a Service Mailbox in bar.
+    type: Add
+  id: 408416
+  time: '2026-09-08T11:39:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6031
+- author: Makeshift
+  changes:
+  - message: (Packed) Added a couple Washing Machines around.
+    type: Add
+  id: 408417
+  time: '2026-09-08T11:39:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6031
+- author: Makeshift
+  changes:
+  - message: (Packed) Added a couple Shelves around.
+    type: Add
+  id: 408418
+  time: '2026-09-08T11:39:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6031
+- author: Makeshift
+  changes:
+  - message: (Packed) Removed NCT Office.
+    type: Remove
+  id: 408419
+  time: '2026-09-08T11:39:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6031
+- author: Makeshift
+  changes:
+  - message: The washroom has been converted into a Dorm.
+    type: Tweak
+  id: 408420
+  time: '2026-09-08T11:39:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6031
+- author: Makeshift
+  changes:
+  - message: (Packed) The empty space in Mining is filled out.
+    type: Tweak
+  id: 408421
+  time: '2026-09-08T11:39:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6031
+- author: Makeshift
+  changes:
+  - message: (Packed) Mining Dock tweaked to be a bit better.
+    type: Tweak
+  id: 408422
+  time: '2026-09-08T11:39:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6031
+- author: Makeshift
+  changes:
+  - message: (Packed) All grass now blocks weather. Chickens rejoice!
+    type: Fix
+  id: 408423
+  time: '2026-09-08T11:39:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6031
 Order: -1
