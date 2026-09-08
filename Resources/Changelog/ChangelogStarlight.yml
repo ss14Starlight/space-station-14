@@ -1,20 +1,6 @@
 Entries:
 - author: Sparlight
   changes:
-  - message: K9s and their target can no longer be pulled while a latch is active.
-    type: Tweak
-  id: 407999
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
-  - message: K9s can initiate a latch from slightly farther away; this fixes network judder quietly failing latches.
-    type: Tweak
-  id: 408000
-  time: '2026-08-30T14:32:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5859
-- author: Sparlight
-  changes:
   - message: The latch UI now re-positions to avoid the K9 or its target being hidden behind the UI.
     type: Tweak
   id: 408001
@@ -2799,4 +2785,18 @@ Entries:
   id: 408398
   time: '2026-09-08T09:45:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5769
+- author: Funky station & RedSpeeds
+  changes:
+  - message: Added Group nanochat.
+    type: Add
+  id: 408399
+  time: '2026-09-08T10:04:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5959
+- author: Funky station & RedSpeeds
+  changes:
+  - message: Changed emotes in nanochat.
+    type: Tweak
+  id: 408400
+  time: '2026-09-08T10:04:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5959
 Order: -1
