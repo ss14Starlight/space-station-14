@@ -700,7 +700,7 @@
   flavor: bitter
   color: "#FFFFE5"
   metabolisms:
-    Digestion:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         conditions:

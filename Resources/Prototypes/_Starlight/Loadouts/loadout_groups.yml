@@ -798,15 +798,6 @@
 
 # Reporter
 - type: loadoutGroup
-  id: ReporterHead
-  name: loadout-group-reporter-head
-  minLimit: 0
-  loadouts:
-  - ReporterHeadphonesJob
-  - ReporterHeadphonesGeneric
-  - ReporterHeadphonesHighEnd
-
-- type: loadoutGroup
   id: ReporterJobTrinkets
   name: loadout-group-jobtrinkets
   minLimit: 0
