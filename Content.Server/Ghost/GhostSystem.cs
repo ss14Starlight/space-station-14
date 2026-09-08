@@ -4,8 +4,6 @@ using Content.Server._Starlight.NewLife;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
-using Content.Server.Ghost.Components;
-using Content.Server.Ghost.Roles;
 using Content.Server.Mind;
 using Content.Server.Mobs;
 using Content.Server.Roles.Jobs;

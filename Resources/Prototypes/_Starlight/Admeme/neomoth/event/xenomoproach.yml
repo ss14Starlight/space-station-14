@@ -337,7 +337,7 @@
     - type: Speech
       speechVerb: Robotic
       speechSounds: Xenoborg
-      allowedEmotes: [ 'Chitter', 'Squeak', 'FlapWings', 'Laugh' ]
+      allowedEmotes: [ 'Chitter', 'Squeak', 'Flap', 'Laugh' ]
     - type: DamagedSiliconAccent
     - type: UnblockableSpeech
 #    - type: FootstepModifier

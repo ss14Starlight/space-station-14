@@ -467,14 +467,13 @@
         - id: WeaponSubMachineGunC20r
         - id: MagazinePistolSubMachineGunSP
           amount: 4 #SL 3 > 4
-        - id: MagazinePistolSP
+        - id: EnergySword
         - id: SyndicateJawsOfLife
         - id: C4
           amount: 2
         - id: MedkitCombatFilled
         - id: EmpImplanter
         - id: ClothingShoesBootsMagSyndie
-        - id: AgentIDCard
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
