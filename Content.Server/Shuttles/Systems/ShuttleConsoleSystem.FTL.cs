@@ -1,12 +1,9 @@
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
-using Content.Shared._Starlight.Shuttles.Components;
-using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.UI.MapObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Shuttles.Systems;
