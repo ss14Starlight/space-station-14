@@ -1,32 +1,4 @@
 Entries:
-- author: Musiklie
-  changes:
-  - message: Increased the fontSize on mumbling by +1.
-    type: Tweak
-  id: 408004
-  time: '2026-08-30T17:49:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5747
-- author: OMEGA
-  changes:
-  - message: Alt Z now toggles monitor for the handheld engineering monitor.
-    type: Tweak
-  id: 408005
-  time: '2026-08-30T18:09:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5752
-- author: SirLutz
-  changes:
-  - message: Rebuffed Turnstiles to 250HP, but now costs 4 Rods and 2 Plasteel and door eletronics.
-    type: Tweak
-  id: 408006
-  time: '2026-08-30T18:09:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5689
-- author: SirLutz
-  changes:
-  - message: Turnstile Assembly, now you can move it after deconstruction.
-    type: Add
-  id: 408007
-  time: '2026-08-30T18:09:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5689
 - author: SirLutz
   changes:
   - message: Turnstile can now take door eletronics, so easy config managment.
@@ -2799,4 +2771,32 @@ Entries:
   id: 408403
   time: '2026-09-08T10:29:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6008
+- author: wonderfulnewworld, Cvlancer
+  changes:
+  - message: White Roboticist Winter Coat, Roboticist Winter Boots (15 Hours Roboticist).
+    type: Add
+  id: 408404
+  time: '2026-09-08T10:54:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6007
+- author: wonderfulnewworld, Cvlancer
+  changes:
+  - message: Roboticist Scarf, Roboticist Lizard Plushie, and Roboticist Figurine.
+    type: Add
+  id: 408405
+  time: '2026-09-08T10:54:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6007
+- author: wonderfulnewworld, Cvlancer
+  changes:
+  - message: Added Roboticist Scarf and Roboticist Figurine to RoboDrobe.
+    type: Add
+  id: 408406
+  time: '2026-09-08T10:54:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6007
+- author: wonderfulnewworld, Cvlancer
+  changes:
+  - message: Added 2 science wanted posters.
+    type: Add
+  id: 408407
+  time: '2026-09-08T10:54:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6007
 Order: -1
