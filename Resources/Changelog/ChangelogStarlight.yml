@@ -1,11 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: Turnstile can now take door eletronics, so easy config managment.
-    type: Add
-  id: 408008
-  time: '2026-08-30T18:09:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5689
 - author: mikeysaurus, DocMoth
   changes:
   - message: Adds three new CentComm medals to be given to crew at CC's discretion to the AdmiMax vendor.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408407
   time: '2026-09-08T10:54:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6007
+- author: Swonki
+  changes:
+  - message: ITG Salv ATS mapping issues.
+    type: Fix
+  id: 408408
+  time: '2026-09-08T10:54:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6016
 Order: -1
