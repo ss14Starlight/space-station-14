@@ -1,0 +1,61 @@
+- type: entity
+  id: DroneShell
+  name: drone shell
+  description: A compact mechanical frame for drone assembly. Missing arms, sensors, and power.
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+        restitution: 0.3
+        friction: 0.2
+  - type: Sprite
+    noRot: true
+    drawdepth: Items
+    sprite: _Starlight/Mobs/Silicon/Bots/drone.rsi
+    state: shell
+  - type: Appearance
+  - type: ItemMapper
+    sprite: _Starlight/Mobs/Silicon/Bots/drone.rsi
+    mapLayers:
+      l_hand:
+        whitelist:
+          tags:
+          - BorgLArm
+      r_hand:
+        whitelist:
+          tags:
+          - BorgRArm
+  - type: ContainerContainer
+    containers:
+      part-container: !type:Container
+      cell_slot: !type:Container
+  - type: PartAssembly
+    parts:
+      generic:
+      - BorgLArm
+      - BorgRArm
+  - type: Construction
+    graph: Drone
+    node: start
+    defaultTarget: drone_complete
+    containers:
+    - part-container
+    - cell_slot
+  - type: Pullable
+  - type: GuideHelp
+    guides:
+    - Cyborgs
+    - Robotics

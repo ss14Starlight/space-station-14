@@ -234,6 +234,9 @@
   id: DrinkCarton
 
 - type: Tag
+  id: DroneUsable
+
+- type: Tag
   id: DurandArmor
 
 - type: Tag

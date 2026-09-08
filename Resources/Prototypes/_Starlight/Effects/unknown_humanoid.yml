@@ -1,0 +1,13 @@
+- type: entity
+  id: EffectUnknownHumanoid
+  name: unknown humanoid
+  description: Ignore.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/unknown_humanoid.rsi
+    drawDepth: Mobs
+    netsync: false
+    noRot: true
+    layers:
+    - state: unknown_humanoid
+      shader: unshaded
