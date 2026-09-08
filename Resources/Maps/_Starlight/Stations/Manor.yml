@@ -4,8 +4,8 @@ meta:
   engineVersion: 289.0.2
   forkId: ""
   forkVersion: ""
-  time: 09/08/2026 01:07:51
-  entityCount: 35331
+  time: 09/08/2026 01:31:25
+  entityCount: 35330
 maps:
 - 1
 grids:
@@ -12949,7 +12949,7 @@ entities:
       pos: 1.5,-2.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -192743.5
+      secondsUntilStateChange: -194134.94
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13087,7 +13087,7 @@ entities:
       pos: -52.5,58.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -219515.47
+      secondsUntilStateChange: -220906.9
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13507,6 +13507,8 @@ entities:
     - type: Transform
       parent: 2
       pos: -25.5,76.5
+    - type: AccessReader
+      accessListsOriginal: []
 - proto: AirlockDetectiveLocked
   entities:
   - uid: 278
@@ -15275,7 +15277,7 @@ entities:
       pos: 18.5,53.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -393404.5
+      secondsUntilStateChange: -394795.94
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -15809,7 +15811,7 @@ entities:
       pos: -61.5,49.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -249275.33
+      secondsUntilStateChange: -250666.77
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -21433,6 +21435,12 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -6.5,76.5
+  - uid: 15186
+    components:
+    - type: Transform
+      parent: 2
+      rot: 3.141592653589793 rad
+      pos: 33.5,49.5
 - proto: BaseComputerAiAccess
   entities:
   - uid: 1495
@@ -91804,12 +91812,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 39.5,38.5
-  - uid: 15152
-    components:
-    - type: Transform
-      parent: 2
-      rot: 1.5707963267948966 rad
-      pos: 31.5,45.5
   - uid: 15153
     components:
     - type: Transform
@@ -91938,11 +91940,6 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -28.5,-9.5
-  - uid: 15172
-    components:
-    - type: Transform
-      parent: 2
-      pos: -30.5,-11.5
   - uid: 15173
     components:
     - type: Transform
@@ -92025,6 +92022,11 @@ entities:
       pos: -0.5,79.5
 - proto: ComputerCommsCargo
   entities:
+  - uid: 15172
+    components:
+    - type: Transform
+      parent: 2
+      pos: -30.5,-11.5
   - uid: 15184
     components:
     - type: Transform
@@ -92033,13 +92035,7 @@ entities:
       pos: -24.5,-26.5
 - proto: ComputerCommsEngineering
   entities:
-  - uid: 15185
-    components:
-    - type: Transform
-      parent: 2
-      rot: 3.141592653589793 rad
-      pos: -47.5,20.5
-  - uid: 15246
+  - uid: 15196
     components:
     - type: Transform
       parent: 2
@@ -92047,28 +92043,27 @@ entities:
       pos: -34.5,34.5
 - proto: ComputerCommsMedical
   entities:
-  - uid: 15187
+  - uid: 15152
     components:
     - type: Transform
       parent: 2
-      rot: 3.141592653589793 rad
-      pos: 33.5,49.5
+      rot: -1.5707963267948966 rad
+      pos: 36.5,44.5
 - proto: ComputerCommsScience
+  entities:
+  - uid: 15197
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: 50.5,11.5
+- proto: ComputerCommsSecurity
   entities:
   - uid: 15188
     components:
     - type: Transform
       parent: 2
-      rot: 1.5707963267948966 rad
-      pos: 48.5,16.5
-- proto: ComputerCommsSecurity
-  entities:
-  - uid: 15189
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: -26.5,78.5
+      pos: -25.5,73.5
 - proto: ComputerCommsService
   entities:
   - uid: 15190
@@ -92079,6 +92074,12 @@ entities:
       pos: 16.5,63.5
 - proto: ComputerCrewMonitoring
   entities:
+  - uid: 15189
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: -26.5,78.5
   - uid: 15191
     components:
     - type: Transform
@@ -92093,7 +92094,8 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: -25.5,73.5
+      rot: 1.5707963267948966 rad
+      pos: 31.5,45.5
   - uid: 15194
     components:
     - type: Transform
@@ -92106,18 +92108,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 36.5,54.5
-  - uid: 15196
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: 36.5,44.5
-  - uid: 15197
-    components:
-    - type: Transform
-      parent: 2
-      rot: 1.5707963267948966 rad
-      pos: 45.5,12.5
   - uid: 15198
     components:
     - type: Transform
@@ -92371,6 +92361,12 @@ entities:
       pos: 57.5,24.5
 - proto: ComputerPowerMonitoring
   entities:
+  - uid: 15185
+    components:
+    - type: Transform
+      parent: 2
+      rot: 3.141592653589793 rad
+      pos: -47.5,20.5
   - uid: 15237
     components:
     - type: Transform
@@ -92429,7 +92425,7 @@ entities:
       pos: -87.5,50.5
 - proto: ComputerPowerMonitoringDesktop
   entities:
-  - uid: 26050
+  - uid: 15252
     components:
     - type: Transform
       parent: 2
@@ -92451,6 +92447,19 @@ entities:
       pos: -38.5,-27.5
 - proto: ComputerResearchAndDevelopment
   entities:
+  - uid: 15187
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 45.5,12.5
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
   - uid: 15250
     components:
     - type: Transform
@@ -92470,12 +92479,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 4.5,83.5
-  - uid: 15252
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: 50.5,11.5
   - uid: 15253
     components:
     - type: Transform
@@ -92568,6 +92571,11 @@ entities:
       pos: 6.5,53.5
 - proto: ComputerStationRecords
   entities:
+  - uid: 15246
+    components:
+    - type: Transform
+      parent: 2
+      pos: -22.5,78.5
   - uid: 15268
     components:
     - type: Transform
@@ -92594,11 +92602,6 @@ entities:
       pos: 11.5,30.5
 - proto: ComputerSurveillanceCameraMonitor
   entities:
-  - uid: 15186
-    components:
-    - type: Transform
-      parent: 2
-      pos: -22.5,78.5
   - uid: 15272
     components:
     - type: Transform
@@ -104545,7 +104548,7 @@ entities:
       pos: -71.5,55.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -83990.73
+      secondsUntilStateChange: -85382.16
   - uid: 17218
     components:
     - type: Transform
@@ -106731,7 +106734,7 @@ entities:
       pos: 66.5,41.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -146166.9
+      secondsUntilStateChange: -147558.34
     - type: Firelock
       emergencyCloseCooldown: 11124.3888776
   - uid: 17415
@@ -108221,7 +108224,7 @@ entities:
       pos: -27.5,81.5
     - type: Door
       state: Closing
-      secondsUntilStateChange: -134276.9
+      secondsUntilStateChange: -135668.34
   - uid: 17628
     components:
     - type: Transform
