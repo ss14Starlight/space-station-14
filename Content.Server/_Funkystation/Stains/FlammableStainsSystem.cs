@@ -28,6 +28,9 @@ namespace Content.Server._Funkystation.Stains
         // Fraction of a stain's flammable reagents consumed per second while on fire
         private const float StainBurnRatePerSecond = 0.2f;
         private float _stainStackMultiplier = 1.0f;
+        private float _burnAccumulator;
+
+        private const float BurnInterval = 1f;
 
         public override void Initialize()
         {
@@ -91,6 +94,13 @@ namespace Content.Server._Funkystation.Stains
         {
             base.Update(frameTime);
 
+            _burnAccumulator += frameTime;
+            if (_burnAccumulator < BurnInterval)
+                return;
+
+            var burnTime = _burnAccumulator;
+            _burnAccumulator = 0f;
+
             // Actively burn off stains while the wearer is on fire, same as puddles.
             var query = EntityQueryEnumerator<FlammableComponent, InventoryComponent>();
             while (query.MoveNext(out var uid, out var flammable, out var inv))
@@ -98,18 +108,19 @@ namespace Content.Server._Funkystation.Stains
                 if (!flammable.OnFire)
                     continue;
 
-                BurnStains(uid, inv, frameTime);
+                BurnStains(uid, inv, burnTime);
             }
         }
 
         private void BurnStains(EntityUid uid, InventoryComponent inv, float frameTime)
         {
+            var blockedSlots = GetBlockedSlots(uid, inv);
             foreach (var slot in inv.Slots)
             {
                 if (!_inventory.TryGetSlotEntity(uid, slot.Name, out var slotEnt, inv))
                     continue;
 
-                if (IsSlotStainBlocked(uid, slot, inv))
+                if ((blockedSlots & slot.SlotFlags) != 0)
                     continue;
 
                 if (!TryComp<StainableComponent>(slotEnt, out var stain) ||
@@ -126,12 +137,13 @@ namespace Content.Server._Funkystation.Stains
         private int GetTotalStainFlammability(EntityUid uid, InventoryComponent inv)
         {
             var total = 0;
+            var blockedSlots = GetBlockedSlots(uid, inv);
             foreach (var slot in inv.Slots)
             {
                 if (!_inventory.TryGetSlotEntity(uid, slot.Name, out var slotEnt, inv))
                     continue;
 
-                if (IsSlotStainBlocked(uid, slot, inv))
+                if ((blockedSlots & slot.SlotFlags) != 0)
                     continue;
 
                 if (TryComp<StainableComponent>(slotEnt, out var stain) &&
@@ -143,31 +155,31 @@ namespace Content.Server._Funkystation.Stains
             return total;
         }
 
-        private bool IsSlotStainBlocked(EntityUid wearer, SlotDefinition slotDef, InventoryComponent inv)
+        private SlotFlags GetBlockedSlots(EntityUid wearer, InventoryComponent inv)
         {
+            var blockedSlots = SlotFlags.NONE;
             foreach (var slot in inv.Slots)
             {
                 if (!_inventory.TryGetSlotEntity(wearer, slot.Name, out var slotEnt, inv))
                     continue;
 
                 if (TryComp<StainBlockerComponent>(slotEnt, out var blocker))
-                {
-                    if ((blocker.BlockedSlots & slotDef.SlotFlags) != 0)
-                        return true;
-                }
+                    blockedSlots |= blocker.BlockedSlots;
             }
-            return false;
+
+            return blockedSlots;
         }
 
         private string GetFlammableStainsString(EntityUid uid, InventoryComponent inv)
         {
             var names = new List<string>();
+            var blockedSlots = GetBlockedSlots(uid, inv);
             foreach (var slot in inv.Slots)
             {
                 if (!_inventory.TryGetSlotEntity(uid, slot.Name, out var slotEnt, inv))
                     continue;
 
-                if (IsSlotStainBlocked(uid, slot, inv))
+                if ((blockedSlots & slot.SlotFlags) != 0)
                     continue;
 
                 if (TryComp<StainableComponent>(slotEnt, out var stain) &&

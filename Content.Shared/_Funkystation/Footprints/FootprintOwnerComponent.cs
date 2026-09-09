@@ -1,4 +1,6 @@
-﻿namespace Content.Shared._Funkystation.Footprints;
+﻿using Content.Shared.Chemistry.Components;
+
+namespace Content.Shared._Funkystation.Footprints;
 
 [RegisterComponent]
 public sealed partial class FootprintOwnerComponent : Component
@@ -20,4 +22,10 @@ public sealed partial class FootprintOwnerComponent : Component
     public float DistanceWalked;
 
     [DataField] public float AlternateStepOffset = 0.0625f;
+
+    /// <summary>
+    /// Cached solution entity containing residue currently carried by this entity.
+    /// </summary>
+    [ViewVariables]
+    public Entity<SolutionComponent>? Solution;
 }

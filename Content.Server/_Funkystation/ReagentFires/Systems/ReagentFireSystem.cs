@@ -56,6 +56,9 @@ namespace Content.Server._Funkystation.ReagentFires.Systems
         private float _volumeScalingCurve = 1.5f;
         private float _smallPuddleBurnThreshold = 1.0f;
         private float _smallPuddleBurnPercent = 0.5f;
+        private float _updateAccumulator;
+
+        private const float UpdateInterval = 1f;
 
         public override void Initialize()
         {
@@ -303,6 +306,14 @@ namespace Content.Server._Funkystation.ReagentFires.Systems
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
+
+            // Burning already advances in one-second steps. Avoid querying atmosphere for every dormant flammable
+            // puddle and footprint on every physics tick.
+            _updateAccumulator += frameTime;
+            if (_updateAccumulator < UpdateInterval)
+                return;
+
+            _updateAccumulator -= UpdateInterval;
             _toExtinguish.Clear();
             _activeFires.Clear();
 
@@ -343,12 +354,6 @@ namespace Content.Server._Funkystation.ReagentFires.Systems
                     }
                     continue;
                 }
-
-                fireComp.Accumulator += frameTime;
-                if (fireComp.Accumulator < 1f)
-                    continue;
-
-                fireComp.Accumulator -= 1f;
 
                 var gridUid = xform.GridUid;
                 if (gridUid == null)

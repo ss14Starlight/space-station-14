@@ -30,6 +30,15 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = null!;
     [Dependency] private SharedMapSystem _map = null!;
 
+    private readonly List<(
+        EntityUid Uid,
+        FlammableWallStainComponent FireComp,
+        WallStainComponent Stain,
+        TransformComponent Xform)> _activeStains = [];
+    private float _updateAccumulator;
+
+    private const float UpdateInterval = 1f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -200,15 +209,20 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var activeStains = new List<(EntityUid Uid, FlammableWallStainComponent FireComp, WallStainComponent Stain, TransformComponent Xform)>();
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < UpdateInterval)
+            return;
+
+        _updateAccumulator -= UpdateInterval;
+        _activeStains.Clear();
 
         var query = EntityQueryEnumerator<ActiveFlammableWallStainComponent, FlammableWallStainComponent, WallStainComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var fireComp, out var stain, out var xform))
         {
-            activeStains.Add((uid, fireComp, stain, xform));
+            _activeStains.Add((uid, fireComp, stain, xform));
         }
 
-        foreach (var (uid, currentFireComp, currentStain, currentXform) in activeStains)
+        foreach (var (uid, currentFireComp, currentStain, currentXform) in _activeStains)
         {
             if (Deleted(uid))
                 continue;
@@ -232,11 +246,6 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
 
             var wallPos = _transform.GetGridTilePositionOrDefault((uid, currentXform));
             var atmosTilePos = wallPos + currentStain.Direction;
-
-            currentFireComp.Accumulator += frameTime;
-            if (currentFireComp.Accumulator < 1f)
-                continue;
-            currentFireComp.Accumulator -= 1f;
 
             var tileMix = _atmos.GetTileMixture(gridId.Value, null, atmosTilePos, excite: true);
             var currentOxygen = tileMix?.GetMoles(Gas.Oxygen) ?? 0f;

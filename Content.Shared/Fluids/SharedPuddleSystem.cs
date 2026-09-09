@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Administration.Logs;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -50,6 +51,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     private EntityQuery<ReactiveComponent> _reactiveQuery;
     private EntityQuery<EvaporationComponent> _evaporationQuery;
     [Dependency] private EntityQuery<PuddleComponent> _puddleQuery;
+    [Dependency] private EntityQuery<FootprintComponent> _sharedFootprintQuery;
     [Dependency] private INetManager _net = default!;
 
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
@@ -101,7 +103,8 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
         _deletionQueue.Clear();
 
-        TickEvaporation();
+        if (_timing.CurTime >= _nextEvaporationUpdate)
+            TickEvaporation();
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
@@ -134,6 +137,15 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         }
 
         _deletionQueue.Remove(entity);
+
+        // Footprints reuse PuddleComponent for cleaning and chemistry, but they have no puddle movement or
+        // appearance state to update. Evaporation remains relevant to carried residue.
+        if (_sharedFootprintQuery.HasComponent(entity.Owner))
+        {
+            UpdateEvaporation(entity, args.Solution.Comp.Solution);
+            return;
+        }
+
         UpdateSlip((entity, entity.Comp), args.Solution.Comp.Solution);
         UpdateSlow(entity, args.Solution.Comp.Solution, entity.Comp); // <-- Pass the component here - Funky
         UpdateEvaporation(entity, args.Solution.Comp.Solution);
