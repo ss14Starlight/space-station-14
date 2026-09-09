@@ -41,12 +41,16 @@ public sealed partial class SnapShellPieceSystem : EntitySystem
         if (ev.RequiresFreeHand && !_hands.CanPickupAnyHand(user, droppedEntity.Id))
             return; //If we can't pick up the shell piece, but have to, we don't try to drop it.
 
+        var part = _body.GetParentPartOrNull(droppedEntity.Id); //Need to determine part while it's still attached
+
         if (!_container.TryRemoveFromContainer(droppedEntity.Id))
             return; //Failsafe if the shell piece cannot be dropped for some reason.
 
-        _body.GetBodyChildren(user);
-        var sev = new SurgeryOrganExtracted(user, user, droppedEntity.Id);
-        _entityManager.EventBus.RaiseLocalEvent(droppedEntity.Id, ref sev);
+        if (part != null) //If it was attached to the body, which it always should, but just in case, we raise the surgery event on it
+        {
+            var sev = new SurgeryOrganExtracted(user, part.Value, droppedEntity.Id);
+            _entityManager.EventBus.RaiseLocalEvent(droppedEntity.Id, ref sev);
+        }
 
         if(ev.RequiresFreeHand)
             if (!_hands.TryPickupAnyHand(user, droppedEntity.Id))
