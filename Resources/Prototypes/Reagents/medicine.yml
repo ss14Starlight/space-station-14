@@ -141,6 +141,10 @@
         damage:
           types:
             Poison: -0.5
+      - !type:ModifySolutionReagent # Starlight: Remove some ethanol from metabolites to keep them from getting drunk again instantly
+        reagent: Ethanol
+        amount: -0.5
+        target: metabolites
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
