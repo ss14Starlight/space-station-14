@@ -16,7 +16,6 @@
 
 # Head
 - type: loadout
-  id: ResearchDirectorBeret
-  startingGear: RDBeret
+  id: ResearchDirectorBeretRD
   equipment:
     head: ClothingHeadHatBeretRD

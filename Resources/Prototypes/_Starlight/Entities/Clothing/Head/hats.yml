@@ -804,10 +804,10 @@
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/beret_ntr.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Head/Hats/ntr.rsi
+      sprite: _Starlight/Clothing/Head/Hats/beret_ntr.rsi
     - type: Tag
       tags:
         - PetWearable
         - CorgiWearable
         - ClothMade
-        - WhitelistChameleon No newline at end of file
+        - WhitelistChameleon

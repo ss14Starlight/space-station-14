@@ -1252,8 +1252,7 @@
   - CorpsmanBelt
 
 - type: loadoutGroup
-  id: ResearchDirectorBeret
+  id: ResearchDirectorBeretRD
   name: loadout-group-rd-head
-  minLimit: 0
   loadouts:
-  - RDBeret
+  - ClothingHeadHatBeretRD
