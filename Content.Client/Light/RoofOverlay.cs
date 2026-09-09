@@ -1,13 +1,9 @@
 using System.Numerics;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
-using Content.Shared.Maps;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Map.Enumerators;
-using Robust.Shared.Physics;
 
 namespace Content.Client.Light;
 

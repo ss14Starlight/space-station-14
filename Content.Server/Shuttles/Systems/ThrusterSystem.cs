@@ -18,7 +18,6 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Localizations;
 using Content.Shared.Power;
-using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 

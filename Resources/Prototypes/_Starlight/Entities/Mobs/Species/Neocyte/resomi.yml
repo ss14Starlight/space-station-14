@@ -300,10 +300,6 @@
     - SiliconEmotesFH
     - NotLabelable
   - type: Vocal
-    sounds:
-      Male: NeoResomiMSounds
-      Female: NeoResomiFSounds
-      Unsexed: NeoResomiMSounds
 
 - type: entity
   parent: BaseSpeciesDummy
