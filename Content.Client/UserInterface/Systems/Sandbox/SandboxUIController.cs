@@ -1,9 +1,7 @@
-using System.Numerics;
 using Content.Client.Administration.Managers;
 using Content.Client.Construction; // Starlight
 using Content.Client.Gameplay;
 using Content.Client.Sandbox;
-using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.DecalPlacer;
 using Content.Client.UserInterface.Systems.Sandbox.Windows;
 using Content.Shared.Input;

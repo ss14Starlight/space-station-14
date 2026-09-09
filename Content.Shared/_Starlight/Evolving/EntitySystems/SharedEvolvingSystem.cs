@@ -195,7 +195,7 @@ public abstract partial class SharedEvolvingSystem : EntitySystem
         foreach (var obj in component.Objectives)
             _mindSystem.TryRemoveObjective(mindId, mind, obj, force: true); // Clear out objectives.
 
-        var ent = EntityManager.PredictedSpawnAtPosition(component.EvolveTo, Transform(uid).Coordinates);
+        var ent = PredictedSpawnAtPosition(component.EvolveTo, Transform(uid).Coordinates);
         _mindSystem.TransferTo(mindId, ent, mind: mind);
         QueueDel(uid);
         return true;

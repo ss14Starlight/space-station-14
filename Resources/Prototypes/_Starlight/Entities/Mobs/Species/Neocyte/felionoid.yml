@@ -69,10 +69,6 @@
         emote: Hisses
         showInChat: false
   - type: Vocal
-    sounds:
-      Male: NeoFelionoidMSounds
-      Female: NeoFelionoidFSounds
-      Unsexed: NeoFelionoidMSounds
   - type: Tag
     tags:
     - CanPilot

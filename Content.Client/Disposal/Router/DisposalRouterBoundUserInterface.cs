@@ -1,7 +1,6 @@
 ﻿using Content.Shared.Disposal.Components;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
-using System.Collections.Generic;
 
 namespace Content.Client.Disposal.Router
 {

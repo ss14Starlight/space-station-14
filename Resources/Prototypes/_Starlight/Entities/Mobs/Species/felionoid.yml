@@ -14,12 +14,7 @@
   - type: Absorbable
   - type: Speech
     speechVerb: Felionoid
-    allowedEmotes: ['Mew', 'Hisses', 'Meow', 'Growl', 'Purr', 'Trill']
   - type: Vocal
-    sounds:
-      Male: MaleFelionoid
-      Female: FemaleFelionoid
-      Unsexed: MaleFelionoid
   - type: Hunger
   - type: Thirst
   - type: Icon
