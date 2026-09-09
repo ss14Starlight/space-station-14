@@ -236,6 +236,36 @@
   conditions:
   - !type:BuyerAccessCondition
 
+- type: listing
+  id: VendorSalvageWeaponShotgunGA12
+  productEntity: WeaponShotgunGA12
+  cost:
+    SalvageTicket: 200
+  categories:WeaponSPKA
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageWeaponShotgunGA12
+  productEntity: WeaponRegulator
+  cost:
+    SalvageTicket: 100
+  categories:WeaponSPKA
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageWeaponShotgunGA12
+  productEntity: WeaponRegulator
+  cost:
+    SalvageTicket: 100
+  categories:WeaponChainAccelerator
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
 #consumables
 - type: listing
   id: VendorSalvageSpeedLoaderShotgunEmpty
