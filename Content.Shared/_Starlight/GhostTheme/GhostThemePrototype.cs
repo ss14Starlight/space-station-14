@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.GhostTheme;
 
-[Prototype("ghostTheme")]
+[Prototype]
 public sealed partial class GhostThemePrototype : IPrototype
 {
     [IdDataField]

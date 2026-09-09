@@ -39,3 +39,21 @@
     - Solgov
   - type: StationAiWhitelist
     enabled: false
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelBase
+  id: WeaponEnergyTurretITGControlPanel
+  suffix: ITG
+  components:
+  - type: AccessReader
+    access: [["Salvage"], ["SalvageLead"]]
+  - type: ContainerFill
+    containers:
+      board:
+      - ScrapGlass
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - Salvage
+    - SalvageLead
+  - type: StationAiWhitelist
+    enabled: false

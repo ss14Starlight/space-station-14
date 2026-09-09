@@ -2,7 +2,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Antags.Abductor.Prototypes;
 
-[Prototype("abductorListing")]
+[Prototype]
 [DataDefinition]
 public sealed partial class AbductorListingPrototype : IPrototype
 {

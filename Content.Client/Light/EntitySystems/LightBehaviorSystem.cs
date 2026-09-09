@@ -1,7 +1,5 @@
-using System.ComponentModel.Design;
 using System.Linq;
 using Content.Client.Light.Components;
-using Content.Shared.Trigger.Components.Effects;
 using Robust.Client.GameObjects;
 using Robust.Client.Animations;
 using Robust.Shared.Random;
@@ -40,7 +38,7 @@ public sealed partial class LightBehaviorSystem : EntitySystem
         }
         else
         {
-            StopLightBehaviour((uid, component), container.LightBehaviour.ID, resetToOriginalSettings: true);
+            StopLightBehaviour((uid, component), container.LightBehaviour.ID);
         }
     }
 
