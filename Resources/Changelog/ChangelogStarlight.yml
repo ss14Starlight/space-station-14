@@ -1,32 +1,4 @@
 Entries:
-- author: walksanatora
-  changes:
-  - message: Pipes can now be copied via the copy keybind for admemes/mapping (if any prototype is missing/uncopyable ping me with the prototype id so I can work on adding more).
-    type: Fix
-  id: 408036
-  time: '2026-08-31T19:02:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5811
-- author: walksanatora
-  changes:
-  - message: admins with +MAPPING now have a trick to spread a pipe color to all connected pipes.
-    type: Add
-  id: 408037
-  time: '2026-08-31T19:02:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5811
-- author: walksanatora
-  changes:
-  - message: admins with +MAPPING now have a trick to autolink air alarms controllable by the `mapping.atmos_autolink_dist` cvar.
-    type: Add
-  id: 408038
-  time: '2026-08-31T19:02:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5811
-- author: walksanatora
-  changes:
-  - message: using `!type:CreateVariant` `id`s no longer causes test using GameDataScrounger to cease to exists.
-    type: Fix
-  id: 408039
-  time: '2026-08-31T19:02:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5811
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Cyborgs can now crawl without a module active, and crawl at half speed with any module active.
@@ -2799,4 +2771,32 @@ Entries:
   id: 408435
   time: '2026-09-09T05:43:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6061
+- author: wonderfulnewworld
+  changes:
+  - message: Added SoP for Assistant Managers and Assistants.
+    type: Add
+  id: 408436
+  time: '2026-09-09T20:56:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6040
+- author: wonderfulnewworld
+  changes:
+  - message: (Cluster, Cork, Lagan, Novo Lobster, Oasis, Orwell, Prism, Reach, Sepultum) Enables Assistant Managers.
+    type: Add
+  id: 408437
+  time: '2026-09-09T20:56:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6040
+- author: wonderfulnewworld
+  changes:
+  - message: Removed unused Legal SoP page.
+    type: Remove
+  id: 408438
+  time: '2026-09-09T20:56:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6040
+- author: wonderfulnewworld
+  changes:
+  - message: Fixes a misaligned sprite on the Assistant Manager's hud on base human-derived species.
+    type: Fix
+  id: 408439
+  time: '2026-09-09T20:56:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6040
 Order: -1
