@@ -1279,7 +1279,7 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsIntermediate ]
   id: ClothingHeadHelmetHardsuitHop
   categories: [ HideSpawnMenu ]
-  name: Head of personel's hardsuit helmet
+  name: Head of personnel's hardsuit helmet
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hardsuits/hop_hardsuit_helmet.rsi

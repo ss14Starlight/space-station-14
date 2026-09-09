@@ -1312,7 +1312,7 @@
   parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband]
   id: ClothingOuterHardsuitHop
   name: Head of personnel's hardsuit
-  description: When paper work must be done, even in the most extreme circumstances.
+  description: When paperwork must be done, even in the most extreme circumstances.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/hop_hardsuit.rsi
