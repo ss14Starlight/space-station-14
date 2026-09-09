@@ -26,7 +26,6 @@
     changeColor: false
     emptySpriteName: polypen_empty
   - type: Solution
-    id: pen
     solution:
       maxVol: 30
       reagents:
