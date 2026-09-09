@@ -54,3 +54,26 @@
       amount: 2
     - id: JetpackSecurityFilled # because mapping them manually sucks
       amount: 2
+
+- type: entity
+  id: SuitStorageHOP
+  categories: [ ShouldMapStation ]
+  parent: SuitStorageBase
+  suffix: Head of Personnel
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillHeadOfPersonnelHardsuit
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+    
+- type: entity
+  id: SuitStorageHOPBluespaced
+  suffix: HeadOfPersonnel, Bluespaced
+  parent: SuitStorageHOP
+  categories: [ Spawner ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: EffectFlashBluespace

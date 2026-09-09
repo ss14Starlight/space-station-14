@@ -182,6 +182,13 @@
     sprite: _Starlight/Clothing/Shoes/Boots/magboots-bso.rsi
     state: icon
 
+- type: stealTargetGroup
+  id: HOPHardsuit
+  name: steal-target-groups-clothing-outer-hardsuit-hop
+  sprite:
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/hop_hardsuit.rsi
+    state: icon
+
 #Thief single items
 
 - type: stealTargetGroup

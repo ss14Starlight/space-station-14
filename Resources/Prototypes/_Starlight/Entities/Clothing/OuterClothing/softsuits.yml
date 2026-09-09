@@ -216,3 +216,30 @@
     radius: 4
     energy: 5
     color: "#2CDDF5"
+
+#Shitty Hop SoftSuit
+- type: entity
+  parent: [ClothingOuterEVASuitBase, BaseGrandTheftContraband]
+  id: ClothingOuterSoftSuitSpecialHop
+  name: Head of personnel's special softsuit
+  description: The suit has a sticker stating helmet not included.
+  components:
+    - type: Sprite
+      sprite: Clothing/OuterClothing/Suits/eva.rsi
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Suits/eva.rsi
+    - type: ClothingSpeedModifier
+      walkModifier: 0.7
+      sprintModifier: 0.7
+    - type: HeldSpeedModifier
+    - type: TemperatureProtection
+      heatingCoefficient: 0.75
+      coolingCoefficient: 0.5
+    - type: StealTarget
+      stealGroup: HOPHardsuit
+    - type: Tag
+      tags:
+      - SuitEVA
+      - MonkeyWearable
+      - CorgiWearable
+      - WhitelistChameleon
