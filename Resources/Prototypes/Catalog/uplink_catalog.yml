@@ -964,23 +964,6 @@
       tags:
       - NukeOpsUplink
 
-#Starlight
-- type: listing
-  id: UplinkSyndicateBoxStampsFake
-  name: uplink-fake-stamps-name
-  description: uplink-fake-stamps-desc
-  productEntity: BoxStampsFake
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 1
-  cost:
-    Telecrystal: 2
-  categories:
-    - UplinkDeception
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-#Starlight end
 
 # Disruption
 
@@ -2021,23 +2004,6 @@
     Telecrystal: 1
   categories:
   - UplinkPointless
-
-#Starlight
-- type: listing
-  id: UplinkSyndicateBoxStampsJoke
-  name: uplink-joke-stamps-name
-  description: uplink-joke-stamps-desc
-  productEntity: BoxStampsJoke
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkPointless
-  conditions: #Joke Stamps should be rare. This can only spawn from a Surplus Bundle.
-  - !type:BuyerWhitelistCondition
-    whitelist:
-      components:
-      - SurplusBundle
-#Starlight end
 
 # Job Specific
 
