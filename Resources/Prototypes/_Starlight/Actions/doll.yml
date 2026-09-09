@@ -14,8 +14,8 @@
     - type: ConfirmableAction
       popup: doll-snap-shell-action
     - type: InstantAction
-      event: !type:SpawnItemInHandEvent
-        spawned: ShellFragmentDoll
+      event: !type:SnapShellPieceEvent
+        requiresFreeHand: true
         selfDamage:
           types:
             Blunt: 15
