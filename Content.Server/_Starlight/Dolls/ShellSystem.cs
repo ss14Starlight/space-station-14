@@ -59,9 +59,9 @@ public sealed partial class ShellSystem : EntitySystem
             return; //If we have no damage of the cracking type, do nothing.
 
         var breakFactor = comp.Hardness *
-                          (comp.Stability
-                              // + [Insert armour penetration factor here, if we ever get access to it in this place]
-                          );
+            (comp.Stability
+                // + [Insert armour penetration factor here, if we ever get access to it in this place]
+            );
         if (damageTaken - breakFactor <= 0)
             return; //Shell too strong, no breakage
 
