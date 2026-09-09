@@ -24,7 +24,13 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
-        reagent: UncookedAnimalProteins
+        reagent: Protein
+        amount: 0.3
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
         amount: 0.5
       - !type:HealthChange
         conditions:
