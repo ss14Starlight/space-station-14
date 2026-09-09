@@ -1,4 +1,4 @@
-﻿- type: body
+- type: body
   id: Resomi
   name: "resomi"
   root: torso
@@ -10,7 +10,7 @@
       organs:
         brain: OrganResomiBrain
         eyes: OrganResomiEyes
-        tongue: OrganHumanTongue
+        tongue: OrganResomiTongue
         eye_implant: null
         nose_implant: null # 🌟Starlight🌟
         brain_implant: BrainImplantNexus # 🌟Starlight🌟

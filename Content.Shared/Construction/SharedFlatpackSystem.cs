@@ -39,6 +39,10 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private TagSystem _tag = default!;
 
+    // Starlight start - Define tag literals
+    private static readonly ProtoId<TagPrototype> _flatpackBlacklistTag = "FlatpackBlacklist";
+    private static readonly ProtoId<TagPrototype> _tableTag = "Table";
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -54,7 +58,7 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
             return;
 
         // Starlight - FlatpackBlacklist Tag
-        if (_tag.HasTag(args.Item, "FlatpackBlacklist"))
+        if (_tag.HasTag(args.Item, _flatpackBlacklistTag.Id))
         {
             args.Cancelled = true;
             return;
@@ -98,7 +102,7 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
         // make it ignore ghosts
         // Starlight-start
         if (_entityLookup.GetEntitiesIntersecting(coords, LookupFlags.Dynamic | LookupFlags.Static)
-            .Any(entity => entity != uid && (!_tag.HasTag(entity, "Table") || !ent.Comp.AllowUnpackOnTables)))
+            .Any(entity => entity != uid && (!_tag.HasTag(entity, _tableTag.Id) || !ent.Comp.AllowUnpackOnTables)))
         // Starlight-end
         {
             // this popup is on the server because the predicts on the intersection is crazy

@@ -6,11 +6,9 @@ using Content.Shared.Mind.Components;
 
 #region Starlight
 using Content.Shared._Starlight.Language.Components;
-using Content.Shared._Starlight.Language.Events;
-using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Server._Starlight.Language;
-using Content.Shared.Chat;
+
 #endregion Starlight
 
 namespace Content.Server.EntityEffects.Effects;

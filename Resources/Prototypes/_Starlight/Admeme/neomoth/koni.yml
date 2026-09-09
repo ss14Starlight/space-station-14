@@ -7,7 +7,7 @@
   save: false # player entity, don't save this to maps
   components:
     - type: Speech
-      allowedEmotes: [ 'Mew', 'Hisses', 'Meow', 'Thump', 'Marr', 'Growl', 'Purr', 'Trill', 'Chitter', 'Squeak', 'FlapWings' ] # combine felionoid and moth emotes
+      allowedEmotes: [ 'Mew', 'Hisses', 'Meow', 'Thump', 'Marr', 'Growl', 'Purr', 'Trill', 'Chitter', 'Squeak', 'Flap' ] # combine felionoid and moth emotes
     - type: Vocal
       sounds:
         Male: UnisexCatMoth

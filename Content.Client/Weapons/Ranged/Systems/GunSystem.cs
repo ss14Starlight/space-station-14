@@ -28,7 +28,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using SharedGunSystem = Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
-using Content.Shared.CCVar; // Starlight | ES Screenshake
+// Starlight | ES Screenshake
 
 #region Starlight
 using Content.Client.DisplacementMap;
@@ -36,9 +36,7 @@ using Content.Shared._Starlight.Effects;
 using Content.Shared.Mech.Components;
 using Content.Shared._Starlight.Utility;
 using Content.Shared._Starlight.CCVar;
-using Content.Shared.Weapons.Hitscan.Events;
 using Robust.Shared.Timing;
-using Robust.Shared.Configuration;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
 #endregion Starlight
 
@@ -69,6 +67,7 @@ public sealed partial class GunSystem : SharedGunSystem
     public static readonly EntProtoId HitscanProto = "HitscanEffect";
     public const string ImpactProto = "ImpactEffect";
     private DisplacementEffect _displacementEffect = null!;
+    private static readonly ProtoId<DisplacementEffect> _displacementEffectId = "displacementEffect";
     private bool _tracesEnabled = true;
     public override void Shutdown()
     {
@@ -123,7 +122,7 @@ public sealed partial class GunSystem : SharedGunSystem
         InitializeMagazineVisuals();
         InitializeSpentAmmo();
 
-        _displacementEffect = _proto.Index<DisplacementEffect>("displacementEffect");
+        _displacementEffect = _proto.Index(_displacementEffectId);
     }
 
 
