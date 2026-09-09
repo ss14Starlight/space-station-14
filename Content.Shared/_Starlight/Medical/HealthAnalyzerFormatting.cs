@@ -11,11 +11,48 @@ public static class HealthAnalyzerFormatting
     private static readonly Color SeveritySafeColor = Color.FromHex("#00FF00");
     private static readonly Color SeverityDangerColor = Color.FromHex("#8B0000");
 
-    public static string FormatTemperature(float temperature)
+    // new color stuff TODO review!
+    private static readonly Color LowDamageColor = Color.FromHex("#5ABCAA");
+    private static readonly Color MediumDamageColor = Color.FromHex("#D8C560");
+    private static readonly Color HighDamageColor = Color.FromHex("#E19955");
+    private static readonly Color MaxDamageColor = Color.FromHex("#E56F79");
+
+    public static Color GetDamageAccentColor(float ratio)
     {
-        return float.IsNaN(temperature)
-            ? Loc.GetString("health-analyzer-window-entity-unknown-value-text")
-            : $"{temperature - Atmospherics.T0C:F1} °C ({temperature:F1} K)";
+        return ratio switch
+        {
+            <= 0.35f => Color.InterpolateBetween(LowDamageColor, MediumDamageColor, ratio / 0.35f),
+            <= 0.7f => Color.InterpolateBetween(MediumDamageColor, HighDamageColor, (ratio - 0.35f) / 0.35f),
+            _ => Color.InterpolateBetween(HighDamageColor, MaxDamageColor, (ratio - 0.7f) / 0.3f)
+        };
+    }
+
+    public static Color GetBloodLevelAccentColor(float ratio)
+    {
+        return GetDamageAccentColor(Math.Clamp((1 - ratio), 0f, 1f));
+    }
+
+    public static Color GetStatusColor(MobState mobState)
+    {
+        return mobState switch
+        {
+            MobState.Alive => Color.FromHex("#5ABCAA"),
+            MobState.Critical => Color.FromHex("#E19955"),
+            MobState.Dead => Color.FromHex("#E56F79"),
+            _ => Color.FromHex("#FFFFFF"),
+        };
+    }
+
+    public static string FormatTemperature(float temperature, bool inKelvins = false)
+    {
+        if (float.IsNaN(temperature))
+        {
+            return Loc.GetString("health-analyzer-window-entity-unknown-value-text");
+        }
+
+        return inKelvins
+            ? $"({temperature:F1} K)"
+            : $"{temperature - Atmospherics.T0C:F1} °C ";
     }
 
     public static string FormatBloodLevel(float bloodLevel)

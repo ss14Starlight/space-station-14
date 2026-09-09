@@ -1,16 +1,20 @@
 <controls:FancyWindow
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-    xmlns:ui="clr-namespace:Content.Client.HealthAnalyzer.UI"
-    MinWidth="300">
-    <!-- Starlight
+    xmlns:ui="clr-namespace:Content.Client._Starlight.HealthAnalyzer.UI"
+    MinWidth="440"> <!-- Starlight - make wider for custom UI -->
+    <!-- Starlight - replace upstream interface with custom one
     <ScrollContainer
         Margin="5 5 5 5"
         ReturnMeasure="True"
         VerticalExpand="True">
-    -->
 
         <ui:HealthAnalyzerControl
             Name="HealthAnalyzer"/>
-    <!-- </ScrollContainer> Starlight -->
+
+    </ScrollContainer> -->
+
+    <!-- Starlight - custom health interface -->
+    <ui:StarlightHealthAnalyzerControl
+        Name="HealthAnalyzer"/>
 </controls:FancyWindow>
