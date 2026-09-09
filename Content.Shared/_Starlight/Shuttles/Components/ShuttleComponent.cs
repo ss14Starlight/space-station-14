@@ -21,7 +21,7 @@ namespace Content.Shared.Shuttles.Components
         /// <summary>
         /// Maximum velocity assuming unupgraded, tier 1 thrusters
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+        [DataField, AutoNetworkedField]
         public float BaseMaxLinearVelocity = 60f;
 
         public const float MaxAngularVelocity = 4f;
