@@ -1,11 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: Telepads no longer wrongfully redirect bulk orders.
-    type: Fix
-  id: 408035
-  time: '2026-08-31T18:36:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5901
 - author: walksanatora
   changes:
   - message: Pipes can now be copied via the copy keybind for admemes/mapping (if any prototype is missing/uncopyable ping me with the prototype id so I can work on adding more).
@@ -2799,4 +2792,11 @@ Entries:
   id: 408434
   time: '2026-09-08T13:43:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5147
+- author: Hot Mic
+  changes:
+  - message: Department Techfabs are now included in the Shard Tests (now fails if the mapper forgot to map them in).
+    type: Tweak
+  id: 408435
+  time: '2026-09-09T05:43:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6061
 Order: -1
