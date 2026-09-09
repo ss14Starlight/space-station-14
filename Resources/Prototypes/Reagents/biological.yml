@@ -60,6 +60,24 @@
           groups:
             Brute: -3
             Burn: -1.25
+    #Starlight Start
+    Bloodstream: #Dolls heal from injected blood too
+      effects:
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
+    #Starlight End
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
