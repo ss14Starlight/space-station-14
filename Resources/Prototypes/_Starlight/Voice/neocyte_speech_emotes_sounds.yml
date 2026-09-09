@@ -103,8 +103,6 @@
       collection: LagomorphSqueak
     Snort:
       collection: LagomorphSnort
-    LagomorphSneeze:
-      collection: LagomorphSneeze
     LagomorphSnore:
       collection: LagomorphSnore
     Bubble:
@@ -217,8 +215,6 @@
       collection: LagomorphSqueak
     Snort:
       collection: LagomorphSnort
-    LagomorphSneeze:
-      collection: LagomorphSneeze
     LagomorphSnore:
       collection: LagomorphSnore
     Bubble:
@@ -300,8 +296,6 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg # Starlight
-    Laugh:
-      collection: NeoReptilianLaugh
 
 - type: emoteSounds
   parent: NeoHumanFSounds
@@ -309,8 +303,6 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg # Starlight
-    Laugh:
-      collection: NeoReptilianLaugh
 
 - type: emoteSounds
   parent: NeoHumanMSounds
@@ -535,7 +527,7 @@
   id: NeoKinMSounds
   sounds:
     Scream:
-      collection: ShadekinMaleScreams # Starlight
+      collection: ShadekinMaleScreams
     Growl:
       collection: NeoFelionoidGrowl
 
@@ -544,6 +536,21 @@
   id: NeoKinFSounds
   sounds:
     Scream:
-      collection: ShadekinFemaleScreams # Starlight
+      collection: ShadekinFemaleScreams
     Growl:
       collection: NeoFelionoidGrowl
+
+- type: emoteSounds
+  parent: NeoHumanMSounds
+  id: NeoLagomorphMSounds
+  sounds:
+    Sneeze:
+      collection: LagomorphSneeze
+
+- type: emoteSounds
+  parent: NeoHumanFSounds
+  id: NeoLagomorphFSounds
+  sounds:
+    Sneeze:
+      collection: LagomorphSneeze
+

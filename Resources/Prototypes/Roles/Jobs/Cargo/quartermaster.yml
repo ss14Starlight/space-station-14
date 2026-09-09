@@ -24,8 +24,6 @@
   supervisors: job-supervisors-captain
   access:
   - Cargo
-  - Salvage
-  - SalvageLead # Starlight
   - Mining # Starlight
   - Mail # Starlight
   - Quartermaster

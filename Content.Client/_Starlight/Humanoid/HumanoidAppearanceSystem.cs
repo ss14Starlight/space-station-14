@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client.DisplacementMap;
 using Content.Shared.CCVar;
+using Content.Shared.DisplacementMap;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -58,17 +59,41 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
 
         var humanoidAppearance = entity.Comp1;
         var sprite = entity.Comp2;
+        var species = _prototypeManager.Index(humanoidAppearance.Species);
+        var speciesDisplacement = GetSpeciesDisplacement(species);
 
         sprite[_sprite.LayerMapReserve((entity.Owner, sprite), HumanoidVisualLayers.Eyes)].Color = humanoidAppearance.EyeColor;
         //starlight start
         if (humanoidAppearance.EyeGlowing)
-            sprite.LayerSetShader(HumanoidVisualLayers.Eyes, "unshaded");
-        else
-            if(_sprite.LayerMapTryGet((entity.Owner, sprite), HumanoidVisualLayers.Eyes, out var layerIndex, true))
+            sprite.LayerSetShader(HumanoidVisualLayers.Eyes, speciesDisplacement != null ? "DisplacedDrawUnshaded" : "unshaded");
+        else if (_sprite.LayerMapTryGet((entity.Owner, sprite), HumanoidVisualLayers.Eyes, out var layerIndex, true))
+        {
+            if (speciesDisplacement?.ShaderOverride is { } shader)
+                sprite.LayerSetShader(layerIndex, shader);
+            else
                 sprite.LayerSetShader(layerIndex, (ShaderInstance?)null);
+        }
 
-        sprite.Scale = new Vector2(humanoidAppearance.Width * humanoidAppearance.Height, humanoidAppearance.Height);
+        if (speciesDisplacement != null)
+        {
+            // The displacement supplies the species' default silhouette. Keep character size customization relative
+            // to that default so species are not scaled down a second time after being displaced.
+            var height = humanoidAppearance.Height / species.DefaultHeight;
+            var width = humanoidAppearance.Width / species.DefaultWidth;
+            sprite.Scale = new Vector2(width * height, height);
+        }
+        else
+        {
+            sprite.Scale = new Vector2(humanoidAppearance.Width * humanoidAppearance.Height, humanoidAppearance.Height);
+        }
         //starlight end
+    }
+
+    private DisplacementData? GetSpeciesDisplacement(SpeciesPrototype species)
+    {
+        return ProtoMan.Resolve(species.Displacement, out var displacement)
+            ? displacement.Displacement
+            : null;
     }
 
     private static bool IsHidden(HumanoidAppearanceComponent humanoid, HumanoidVisualLayers layer)
@@ -85,18 +110,19 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         // add default species layers
         var speciesProto = _prototypeManager.Index(component.Species);
         var baseSprites = _prototypeManager.Index(speciesProto.SpriteSet);
+        var displacement = GetSpeciesDisplacement(speciesProto);
         foreach (var (key, id) in baseSprites.Sprites)
         {
             oldLayers.Remove(key);
             if (!component.CustomBaseLayers.ContainsKey(key))
-                SetLayerData(entity, key, id, sexMorph: true);
+                SetLayerData(entity, key, id, displacement, sexMorph: true);
         }
 
         // add custom layers
         foreach (var (key, info) in component.CustomBaseLayers)
         {
             oldLayers.Remove(key);
-            SetLayerData(entity, key, info.Id, sexMorph: false, color: info.Color);
+            SetLayerData(entity, key, info.Id, displacement, sexMorph: false, color: info.Color);
         }
 
         // hide old layers
@@ -105,6 +131,9 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         {
             if (_sprite.LayerMapTryGet((entity.Owner, sprite), key, out var index, false))
                 sprite[index].Visible = false;
+
+            if (_displacement.EnsureDisplacementIsNotOnSprite((entity.Owner, sprite), key))
+                sprite.LayerSetShader(key, (ShaderInstance?)null);
         }
     }
 
@@ -112,6 +141,7 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         Entity<HumanoidAppearanceComponent, SpriteComponent> entity,
         HumanoidVisualLayers key,
         string? protoId,
+        DisplacementData? displacement,
         bool sexMorph = false,
         Color? color = null)
     {
@@ -126,7 +156,11 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             layer.Color = color.Value;
 
         if (protoId == null)
+        {
+            if (_displacement.EnsureDisplacementIsNotOnSprite((entity.Owner, sprite), key))
+                sprite.LayerSetShader(key, (ShaderInstance?)null);
             return;
+        }
 
         if (sexMorph)
             protoId = HumanoidVisualLayersExtension.GetSexMorph(key, component.Sex, protoId);
@@ -138,7 +172,18 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             layer.Color = component.SkinColor.WithAlpha(proto.LayerAlpha);
 
         if (proto.BaseSprite != null)
+        {
             _sprite.LayerSetSprite((entity.Owner, sprite), layerIndex, proto.BaseSprite);
+
+            if (displacement != null)
+            {
+                _displacement.TryAddDisplacement(displacement, (entity.Owner, sprite), layerIndex, key, out _);
+                return;
+            }
+        }
+
+        if (_displacement.EnsureDisplacementIsNotOnSprite((entity.Owner, sprite), key))
+            sprite.LayerSetShader(key, (ShaderInstance?)null);
     }
 
     /// <summary>
@@ -382,12 +427,16 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
         var humanoid = entity.Comp1;
         var sprite = entity.Comp2;
 
-        if (!_sprite.LayerMapTryGet((entity.Owner, sprite), markingPrototype.BodyPart, out var targetLayer, false))
+        if (!_sprite.LayerMapTryGet((entity.Owner, sprite), markingPrototype.BodyPart, out _, false))
             return;
 
         visible &= !IsHidden(humanoid, markingPrototype.BodyPart);
         visible &= humanoid.BaseLayers.TryGetValue(markingPrototype.BodyPart, out var setting)
            && setting.AllowsMarkings;
+
+        var displacementData = humanoid.MarkingsDisplacement.GetValueOrDefault(markingPrototype.BodyPart)
+            ?? GetSpeciesDisplacement(_prototypeManager.Index(humanoid.Species));
+        var isDisplaced = visible && displacementData != null && markingPrototype.CanBeDisplaced;
 
         // Starlight start - allow split marking sprites to render at different humanoid layer anchors.
         var layerOverrides = markingPrototype.SpriteLayers is { Count: > 0 }
@@ -406,40 +455,38 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             var layerId = $"{markingPrototype.ID}-{rsi.RsiState}";
             // Starlight start - sprite layers can share color slots and custom render anchors.
             var anchorLayer = markingPrototype.BodyPart;
-            var insertionIndex = targetLayer + j + 1;
             var colorIndex = markingPrototype.GetColorIndex(j);
 
-            if (layerOverrides != null)
-            {
-                if (j < layerOverrides.Count)
-                    anchorLayer = layerOverrides[j];
+            if (layerOverrides != null && j < layerOverrides.Count)
+                anchorLayer = layerOverrides[j];
 
-                if (!_sprite.LayerMapTryGet((entity.Owner, sprite), anchorLayer, out var anchorLayerIndex, false))
-                    continue;
+            if (!_sprite.LayerMapTryGet((entity.Owner, sprite), anchorLayer, out var anchorLayerIndex, false))
+                continue;
 
-                if (anchorLayer == markingPrototype.BodyPart)
-                {
-                    insertionIndex = anchorLayerIndex + bodyPartInsertionOffset + 1;
-                    bodyPartInsertionOffset++;
-                }
-                else
-                {
-                    insertionIndex = anchorLayerIndex;
-                }
-            }
+            var anchoredToBodyPart = anchorLayer == markingPrototype.BodyPart;
+            var insertionIndex = anchoredToBodyPart
+                ? anchorLayerIndex + bodyPartInsertionOffset + 1
+                : anchorLayerIndex;
             // Starlight end
 
-            if (!_sprite.LayerMapTryGet((entity.Owner, sprite), layerId, out _, false))
+            if (!_sprite.LayerMapTryGet((entity.Owner, sprite), layerId, out var markingLayer, false))
             {
-                var layer = _sprite.AddLayer((entity.Owner, sprite), markingSprite, insertionIndex);
-                _sprite.LayerMapSet((entity.Owner, sprite), layerId, layer);
+                markingLayer = _sprite.AddLayer((entity.Owner, sprite), markingSprite, insertionIndex);
+                _sprite.LayerMapSet((entity.Owner, sprite), layerId, markingLayer);
                 _sprite.LayerSetSprite((entity.Owner, sprite), layerId, rsi);
             }
 
             _sprite.LayerSetVisible((entity.Owner, sprite), layerId, visible);
 
             if (!visible || setting == null) // this is kinda implied
+            {
+                if (_displacement.EnsureDisplacementIsNotOnSprite((entity.Owner, sprite), layerId))
+                    sprite.LayerSetShader(layerId, (ShaderInstance?)null);
+
+                if (anchoredToBodyPart)
+                    bodyPartInsertionOffset++;
                 continue;
+            }
 
             // Okay so if the marking prototype is modified but we load old marking data this may no longer be valid
             // and we need to check the index is correct.
@@ -451,10 +498,16 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
             else
                 _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
 
-            // Starlight edit - use the actual inserted layer for displaced split markings.
-            var isDisplaced = humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced;
             if (isDisplaced)
-                _displacement.TryAddDisplacement(displacementData!, (entity.Owner, sprite), insertionIndex, layerId, out _);
+            {
+                // Use the mapped layer rather than its intended insertion position. Split markings and earlier
+                // displacement layers can both move it by the time the map is inserted.
+                _displacement.TryAddDisplacement(displacementData!, (entity.Owner, sprite), markingLayer, layerId, out _);
+            }
+            else if (_displacement.EnsureDisplacementIsNotOnSprite((entity.Owner, sprite), layerId))
+            {
+                sprite.LayerSetShader(layerId, (ShaderInstance?)null);
+            }
 
             //starlight start
             if (isGlowing)
@@ -465,6 +518,9 @@ public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceS
                 sprite.LayerSetShader(layerId, isDisplaced ? "DisplacedDrawUnshaded" : "unshaded");
             }
             //starlight end
+
+            if (anchoredToBodyPart)
+                bodyPartInsertionOffset += isDisplaced ? 2 : 1;
         }
     }
 
