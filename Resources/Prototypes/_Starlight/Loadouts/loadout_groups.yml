@@ -275,6 +275,7 @@
   - NanoTrasenRepresentativeTophat
   - NanoTrasenRepresentativeEliteTophat
   - NanoTrasenRepresentativeCap
+  - NanoTrasenRepresentativeBeret
 
 - type: loadoutGroup
   id: NanoTrasenRepresentativeNeck
