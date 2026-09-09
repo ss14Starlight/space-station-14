@@ -3,7 +3,7 @@
   id: VendorSalvageSurplusMedical
   productEntity: CrateITGMedicalSurplus
   cost:
-    SalvageTicket: 250
+    SalvageTicket: 400
   categories:
     - SalvageEquipment
   conditions:
@@ -15,7 +15,7 @@
   id: VendorSalvageSurplusShotgun
   productEntity: CrateITGShotgunSurplus
   cost:
-    SalvageTicket: 400
+    SalvageTicket: 600
   categories:
     - SalvageEquipment
   conditions:
@@ -27,7 +27,7 @@
   id: VendorSalvageSurplus
   productEntity: CrateITGSurplus
   cost:
-    SalvageTicket: 250
+    SalvageTicket: 400
   categories:
     - SalvageEquipment
   conditions:
