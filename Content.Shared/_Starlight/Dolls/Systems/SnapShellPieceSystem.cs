@@ -9,6 +9,7 @@ using Content.Shared.EntityEffects;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.Shared._Starlight.Dolls.Systems;
 
@@ -19,6 +20,7 @@ public sealed partial class SnapShellPieceSystem : EntitySystem
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -38,7 +40,8 @@ public sealed partial class SnapShellPieceSystem : EntitySystem
         var shellPieces = allShellPieces.ToList();
         if (shellPieces.Count == 0)
             return; //No shell pieces to drop
-        var droppedEntity = shellPieces.Shuffle().First();
+        _random.Shuffle(shellPieces); //Randomise!
+        var droppedEntity = shellPieces.First();
 
         //Drop piece on the ground *unless* we require a free hand.
         if (ev.RequiresFreeHand && !_hands.CanPickupAnyHand(user, droppedEntity.Id))
@@ -75,6 +78,7 @@ public sealed partial class RegrowShellEntityEffectSystem : EntityEffectSystem<S
     [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     protected override void Effect(Entity<ShellComponent> entity, ref EntityEffectEvent<RegrowShell> args)
     {
@@ -95,7 +99,9 @@ public sealed partial class RegrowShellEntityEffectSystem : EntityEffectSystem<S
         if (emptySlots.Count == 0)
             return; //No need to regrow anything
 
-        var regrownSlot = emptySlots.Shuffle().First(); //Randomise!
+
+        _random.Shuffle(emptySlots); //Randomise!
+        var regrownSlot = emptySlots.First();
         var regrownShell = Spawn(args.Effect.ShellProto);
 
         if(!_container.CanInsert(regrownShell, regrownSlot))

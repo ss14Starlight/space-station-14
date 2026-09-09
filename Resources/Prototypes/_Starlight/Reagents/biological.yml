@@ -245,13 +245,13 @@
           type: [ Doll ]
         - !type:ReagentCondition
           reagent: PseudoceramicPlatelets
-          min: 50
+          min: 25
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         - !type:ReagentCondition
           reagent: PseudoceramicPlatelets
-          min: 50
+          min: 25
         reagent: PseudoceramicPlatelets
-        amount: -50
+        amount: -25

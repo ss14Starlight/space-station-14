@@ -1,5 +1,7 @@
 using Content.Shared.Alert;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Humanoid.Markings;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -31,4 +33,16 @@ public sealed partial class ShellComponent : Component
 
     [DataField]
     public List<Marking> OriginalMarkings = [];
+
+    [DataField]
+    public ProtoId<DamageGroupPrototype> DestroyedBy = "Brute";
+
+    [DataField]
+    public float Stability = 1f;
+
+    [DataField]
+    public float Hardness = 15f;
+
+    [DataField]
+    public SoundSpecifier? ShellBreakSound = new SoundPathSpecifier("/Audio/Effects/metal_glass_break1.ogg", new AudioParams(1f, 2f, 5f, 1, 1, false, 0f, 2f));
 }
