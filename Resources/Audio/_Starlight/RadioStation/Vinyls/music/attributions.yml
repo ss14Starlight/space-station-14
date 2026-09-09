@@ -39,6 +39,6 @@
   source: "https://gist.github.com/yMicrowave/8f2a79e228b7b7a297d38eb8b88f98ac"
 
 - files: ["damper_ii.ogg"]
-  license: "CC BY-SA 4.0"
+  license: "CC-BY-SA-4.0"
   copyright: "Beptol Corporation Acoustics"
   source: "https://pastebin.com/5wk5SNM0"
