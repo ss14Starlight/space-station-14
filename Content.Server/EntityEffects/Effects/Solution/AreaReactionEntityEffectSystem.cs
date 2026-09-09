@@ -7,7 +7,6 @@ using Content.Shared.EntityEffects.Effects.Solution;
 using Content.Shared.Maps;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
 
 namespace Content.Server.EntityEffects.Effects.Solution;
 

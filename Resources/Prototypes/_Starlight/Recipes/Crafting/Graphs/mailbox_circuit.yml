@@ -1,0 +1,59 @@
+- type: constructionGraph
+  id: MailboxBoard
+  start: cargo
+  graph:
+  - node: cargo
+    entity: CargoMailBoxMachineCircuitboard
+    edges:
+    - to: command
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: command
+    entity: CommandMailBoxMachineCircuitboard
+    edges:
+    - to: engineering
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: engineering
+    entity: EngineeringMailBoxMachineCircuitboard
+    edges:
+    - to: medical
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: medical
+    entity: MedicalMailBoxMachineCircuitboard
+    edges:
+    - to: science
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: science
+    entity: ScienceMailBoxMachineCircuitboard
+    edges:
+      - to: security
+        steps:
+          - tool: Screwing
+            doAfter: 2
+
+  - node: security
+    entity: SecurityMailBoxMachineCircuitboard
+    edges:
+    - to: service
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: service
+    entity: ServiceMailBoxMachineCircuitboard
+    edges:
+    - to: cargo
+      steps:
+      - tool: Screwing
+        doAfter: 2

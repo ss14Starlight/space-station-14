@@ -21,7 +21,7 @@
   name: chat-speech-verb-name-mumble
   speechVerbStrings:
   - chat-speech-verb-mumble
-  fontSize: 9 #Starlight
+  fontSize: 10 #Starlight
 
 - type: speechVerb
   id: DefaultExclamation

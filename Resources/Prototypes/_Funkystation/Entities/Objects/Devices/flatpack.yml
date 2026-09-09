@@ -1,0 +1,8 @@
+﻿- type: entity
+  parent: BaseFlatpack
+  id: WashingMachineFlatpack # Starlight
+  name: washing machine flatpack # Starlight
+  description: An industrial-grade washing machine, mechanically compressed into a small flatpack.
+  components:
+  - type: Flatpack
+    entity: WashingMachine

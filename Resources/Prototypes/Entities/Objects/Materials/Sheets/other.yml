@@ -1,37 +1,13 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: BaseSheet
   id: SheetOtherBase
   description: A sheet of material, used often on the station in various applications.
   components:
-    # Starlight start
-    - type: UserInterface
-      interfaces:
-        enum.StackCustomSplitUiKey.Key:
-          type: StackCustomSplitBoundUserInterface
-    # Starlight end
-    - type: Sprite
-      sprite: Objects/Materials/Sheets/other.rsi
-    - type: Item
-      sprite: Objects/Materials/Sheets/other.rsi
-      size: Normal
-    - type: Tag
-      tags:
-        - Sheet
-        - ConstructionMaterial
-    - type: Damageable
-      damageContainer: Inorganic
-    - type: Destructible
-      thresholds:
-        - trigger: !type:DamageTrigger
-            damage: 100
-          behaviors:
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
-    - type: SolutionContainerManager
-      solutions:
-        paper:
-          canReact: false
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/other.rsi
+  - type: Item
+    sprite: Objects/Materials/Sheets/other.rsi
 
 - type: entity
   parent: SheetOtherBase
@@ -39,33 +15,28 @@
   name: paper
   suffix: Full
   components:
-    - type: Stack
-      stackType: Paper
-      baseLayer: base
-      layerStates:
-        - paper
-        - paper_2
-        - paper_3
-    - type: Material
-    - type: PhysicalComposition
-      materialComposition:
-        Paper: 100
-    - type: Sprite
-      state: paper_3
-      layers:
-        - state: paper_3
-          map: ["base"]
-    - type: Item
-      heldPrefix: paper
-    - type: Appearance
-    - type: Extractable
-      grindableSolutionName: paper
-    - type: SolutionContainerManager
-      solutions:
-        paper:
-          reagents:
-            - ReagentId: Cellulose
-              Quantity: 3
+  - type: Stack
+    stackType: Paper
+    baseLayer: base
+    layerStates:
+    - paper
+    - paper_2
+    - paper_3
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 100
+  - type: Sprite
+    state: paper_3
+    layers:
+    - state: paper_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: paper
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Cellulose
+        Quantity: 5
 
 - type: entity
   parent: SheetPaper
@@ -84,63 +55,51 @@
   name: plasma
   suffix: Full
   components:
-    - type: Material
-    - type: PhysicalComposition
-      materialComposition:
-        Plasma: 100
-    - type: Stack
-      stackType: Plasma
-      baseLayer: base
-      layerStates:
-        - plasma
-        - plasma_2
-        - plasma_3
-    - type: Sprite
-      state: plasma_3
-      layers:
-        - state: plasma_3
-          map: ["base"]
-    - type: Item
-      heldPrefix: plasma
-    - type: Appearance
-    - type: Extractable
-      grindableSolutionName: plasma
-    - type: SolutionContainerManager
-      solutions:
-        plasma:
-          reagents:
-            - ReagentId: Plasma
-              Quantity: 10
-          canReact: false
-    - type: Tag # Redundant
-      tags:
-        - Sheet
-        - ConstructionMaterial
-        - SheetPlasma # Funky atmos - /tg/ gases # Starlight Edit: PlasmaSheet -> SheetPlasma
-        - TiderAnvilParts # Starlight
-#FH - Start
-    - type: ConditionalHealing
-      healingDefinitions:
-        - allowedTags: [ IPC, Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
-          healing:
-            damageContainers:
-              - IPC # Starlight
-              - Hybrid # Starlight
-            delay: 2
-            damage:
-              types:
-                Radiation: -10
-            healingBeginSound:
-              path: "/Audio/Items/Medical/ointment_begin.ogg"
-              params:
-                volume: 1.0
-                variation: 0.125
-            healingEndSound:
-              path: "/Audio/Items/Medical/ointment_end.ogg"
-              params:
-                volume: 1.0
-                variation: 0.125
-#FH - End
+  - type: PhysicalComposition
+    materialComposition:
+      Plasma: 100
+  - type: Stack
+    stackType: Plasma
+    baseLayer: base
+    layerStates:
+    - plasma
+    - plasma_2
+    - plasma_3
+  - type: Sprite
+    state: plasma_3
+    layers:
+    - state: plasma_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: plasma
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Plasma
+        Quantity: 10
+  #FH - Start
+  - type: ConditionalHealing
+    healingDefinitions:
+      - allowedTags: [ IPC, Neocyte, NeoArachnid, NeoAvali, NeoCyclorite, NeoDwarf, NeoDiona, NeoFelionoid, NeoHuman, NeoMoth, NeoReptilian, NeoResomi, NeoSlimePerson, NeoThaven, NeoVox, NeoVulpkanin, NeoKin, NeoElf, NeoLagomorph ] # Starlight
+        healing:
+          damageContainers:
+            - IPC # Starlight
+            - Hybrid # Starlight
+          delay: 2
+          damage:
+            types:
+              Radiation: -10
+          healingBeginSound:
+            path: "/Audio/Items/Medical/ointment_begin.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+          healingEndSound:
+            path: "/Audio/Items/Medical/ointment_end.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+  #FH - End
 
 - type: entity
   parent: SheetPlasma
@@ -169,42 +128,36 @@
   name: plastic
   suffix: Full
   components:
-    - type: Tag
-      tags:
-        - Plastic
-        - Sheet
-        - TiderAnvilParts #SL
-        - ConstructionMaterial
-    - type: Material
-    - type: PhysicalComposition
-      materialComposition:
-        Plastic: 100
-    - type: Stack
-      stackType: Plastic
-      baseLayer: base
-      layerStates:
-        - plastic
-        - plastic_2
-        - plastic_3
-    - type: Sprite
-      state: plastic_3
-      layers:
-        - state: plastic_3
-          map: ["base"]
-    - type: Item
-      heldPrefix: plastic
-    - type: Appearance
-    - type: Extractable
-      grindableSolutionName: plastic
-    - type: SolutionContainerManager
-      solutions:
-        plastic:
-          reagents:
-            - ReagentId: Oil
-              Quantity: 5
-            - ReagentId: Phosphorus
-              Quantity: 5
-          canReact: false
+  - type: Tag
+    tags:
+    - Plastic
+    - Sheet
+    - TiderAnvilParts # Starlight
+    - ConstructionMaterial
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 100
+  - type: Stack
+    stackType: Plastic
+    baseLayer: base
+    layerStates:
+    - plastic
+    - plastic_2
+    - plastic_3
+  - type: Sprite
+    state: plastic_3
+    layers:
+    - state: plastic_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: plastic
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Oil
+        Quantity: 5
+      - ReagentId: Phosphorus
+        Quantity: 5
 
 - type: entity
   parent: SheetPlastic
@@ -229,59 +182,39 @@
       count: 1
 
 - type: entity
-  parent: [SheetOtherBase, EdibleBase]
+  parent: [SheetOtherBase, FoodBase]
   id: SheetUranium
   name: uranium
   suffix: Full
   components:
-    # Funky atmos Start - /tg/ gases
-    - type: Tag
-      tags:
-        - Sheet
-        - ConstructionMaterial
-        - SheetUranium # Starlight Edit: UraniumSheet -> SheetUranium
-    # Funky atmos End - /tg/ gases
-    - type: Material
-    - type: Edible
-      transferAmount: 10
-    - type: BadFood
-    - type: PhysicalComposition
-      materialComposition:
-        Uranium: 100
-    - type: Stack
-      stackType: Uranium
-      baseLayer: base
-      layerStates:
-        - uranium
-        - uranium_2
-        - uranium_3
-    - type: Sprite
-      state: uranium_3
-      layers:
-        - state: uranium_3
-          map: ["base"]
-    - type: Appearance
-    - type: Item
-      heldPrefix: uranium
-    - type: Extractable
-      grindableSolutionName: food
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          reagents:
-            - ReagentId: Uranium
-              Quantity: 8
-            - ReagentId: Radium
-              Quantity: 2
-          canReact: false
-    - type: RadiationSource
-      intensity: 0.05
-      slope: 3
-    - type: PointLight
-      radius: 1.2
-      energy: 0.8
-      castShadows: false
-      color: "#9be792"
+  - type: Edible
+    transferAmount: 10
+    solution: composite
+  - type: BadFood
+  - type: PhysicalComposition
+    materialComposition:
+      Uranium: 100
+  - type: Stack
+    stackType: Uranium
+    baseLayer: base
+    layerStates:
+    - uranium
+    - uranium_2
+    - uranium_3
+  - type: Sprite
+    state: uranium_3
+    layers:
+    - state: uranium_3
+      map: ["base"]
+  - type: Item
+    heldPrefix: uranium
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Uranium
+        Quantity: 8
+      - ReagentId: Radium
+        Quantity: 2
 
 - type: entity
   parent: SheetUranium
@@ -320,17 +253,13 @@
     - type: Item
       sprite: Objects/Materials/Sheets/meaterial.rsi
       heldPrefix: meat
-    - type: Extractable
-      grindableSolutionName: meatsheet
-    - type: SolutionContainerManager
-      solutions:
-        meatsheet:
-          reagents:
-            - ReagentId: Protein
-              Quantity: 7
-            - ReagentId: Fat
-              Quantity: 3
-          canReact: false
+    - type: Solution
+      solution:
+        reagents:
+          - ReagentId: Protein
+            Quantity: 7
+          - ReagentId: Fat
+            Quantity: 3
 
 - type: entity
   parent: MaterialSheetMeat

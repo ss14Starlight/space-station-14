@@ -6,7 +6,7 @@ using Robust.Shared.Player;
 
 namespace Content.Client.Atmos.Consoles;
 
-public sealed class AtmosMonitoringConsoleBoundUserInterface : BoundUserInterface
+public sealed partial class AtmosMonitoringConsoleBoundUserInterface : BoundUserInterface
 {
     #region Starlight
     [Dependency] private ISharedPlayerManager _playerManager = default!;

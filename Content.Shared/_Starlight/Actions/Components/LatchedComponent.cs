@@ -5,7 +5,7 @@ namespace Content.Shared._Starlight.Actions.Components;
 /// <summary>
 /// Applied to a latch target. Tracks the latcher and the blocked hand item.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class LatchedComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
