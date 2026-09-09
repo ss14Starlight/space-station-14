@@ -67,7 +67,7 @@
         tableId: LockerFillHeadOfPersonnelHardsuit
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
-    
+
 - type: entity
   id: SuitStorageHOPBluespaced
   suffix: HeadOfPersonnel, Bluespaced
