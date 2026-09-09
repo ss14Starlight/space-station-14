@@ -170,3 +170,15 @@
   - type: Body
     prototype: AnimalNymphLungs
   # Starlight - end
+
+- type: entity
+  id: OrganDionaTongue
+  parent: OrganHumanTongue
+  suffix: Diona
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Chirp']
+    sounds:
+      Male: UnisexDiona
+      Female: UnisexDiona
+      Unsexed: UnisexDiona

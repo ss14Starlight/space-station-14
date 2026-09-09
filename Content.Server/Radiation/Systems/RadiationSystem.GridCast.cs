@@ -9,7 +9,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 // Funkystation Start
-using Robust.Shared.Map;
+
 // Funkystation End
 
 namespace Content.Server.Radiation.Systems;

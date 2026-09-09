@@ -1,7 +1,6 @@
 using System.Numerics;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
-using Robust.Shared.Maths;
 
 namespace Content.Client._Starlight.Arcade.Crt;
 

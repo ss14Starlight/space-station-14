@@ -21,7 +21,7 @@ using Robust.Shared.Timing;
 namespace Content.Shared.Kitchen.EntitySystems;
 
 [UsedImplicitly]
-public abstract class SharedReagentGrinderSystem : EntitySystem
+public abstract partial class SharedReagentGrinderSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _net = default!;

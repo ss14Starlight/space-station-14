@@ -1,4 +1,4 @@
-﻿- type: body
+- type: body
   id: Diona
   name: diona
   root: torso
@@ -10,7 +10,7 @@
       organs:
         brain: OrganDionaBrainNymph
         eyes: OrganHumanEyes
-        tongue: OrganHumanTongue
+        tongue: OrganDionaTongue
         eye_implant: null
         nose_implant: null # 🌟Starlight🌟
         brain_implant: null # 🌟Starlight🌟
