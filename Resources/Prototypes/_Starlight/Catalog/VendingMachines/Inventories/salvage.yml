@@ -414,20 +414,20 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageMagazineBatteryLr30
+  id: VendorSalvageMagazineMiniSyringe
   productEntity: MiniSyringe
   cost:
-    SalvageTicket: 100
+    SalvageTicket: 25
   categories:
   - SalvageConsumeables
   conditions:
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageMagazineMiniSyringe
+  id: VendorSalvageMagazineBatteryLr30
   productEntity: MagazineBatteryLr30
   cost:
-    SalvageTicket: 25
+    SalvageTicket: 100
   categories:
   - SalvageConsumeables
   conditions:
