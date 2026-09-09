@@ -553,9 +553,12 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
         humanoid.CustomSpecieName = profile.CustomSpecieName;
 
         if(TryComp(uid, out ShellComponent? shell))
+        {
+            shell.OriginalMarkings.Clear();
             foreach(var markingCategory in humanoid.MarkingSet.Markings)
                 foreach(var mark in markingCategory.Value)
                     shell.OriginalMarkings.Add(mark);
+        }
 
         //Starlight End
 
