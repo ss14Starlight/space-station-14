@@ -52,6 +52,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
+    private static readonly ProtoId<TagPrototype> BolaTag = "Bola";
 
     public void SubscribeAbilities()
     {
@@ -470,7 +471,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         var ensnaringQuery = EntityQueryEnumerator<EnsnaringComponent>();
         while (ensnaringQuery.MoveNext(out var bola, out var ensnaring))
         {
-            if (ensnaring.Ensnared != uid || !_tag.HasTag(bola, new ProtoId<TagPrototype>("Bola")))
+            if (ensnaring.Ensnared != uid || !_tag.HasTag(bola, BolaTag))
                 continue;
 
             _ensnareable.ForceFree(bola, ensnaring);
