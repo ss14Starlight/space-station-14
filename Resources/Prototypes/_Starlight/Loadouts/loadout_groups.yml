@@ -1249,3 +1249,10 @@
   - BrigmedicRig
   - BrigmedicBelt
   - CorpsmanBelt
+
+- type: loadoutGroup
+  id: ResearchDirectorBeret
+  name: loadout-group-rd-head
+  minLimit: 0
+  loadouts:
+  - RDBeret

@@ -13,3 +13,10 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorResearcher
+
+# Head
+- type: loadout
+  id: ResearchDirectorBeret
+  startingGear: RDBeret
+  equipment:
+    head: ClothingHeadHatBeretRD
