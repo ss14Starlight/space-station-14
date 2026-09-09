@@ -1,5 +1,4 @@
 using Content.Server.Damage.Components;
-using Content.Shared.Damage;
 using Content.Shared.Throwing;
 
 namespace Content.Server.Damage.Systems

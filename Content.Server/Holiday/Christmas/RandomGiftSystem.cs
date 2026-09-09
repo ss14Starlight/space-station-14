@@ -11,7 +11,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Verbs;
-using Content.Shared.Interaction;
 using Robust.Shared.Map;
 
 namespace Content.Server.Holiday.Christmas;

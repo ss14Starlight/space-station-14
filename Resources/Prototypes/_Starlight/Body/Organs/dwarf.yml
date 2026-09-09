@@ -35,3 +35,14 @@
     # mm very yummy
     maxReagents: 5
     metabolizerTypes: [Dwarf, Animal]
+
+- type: entity
+  id: OrganDwarfTongue
+  parent: OrganHumanTongue
+  suffix: Dwarf
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: UnisexDwarf
+      Female: FemaleDwarf
+      Unsexed: UnisexDwarf

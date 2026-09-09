@@ -41,6 +41,8 @@ public sealed partial class PsychicScreachRule : StationEventSystem<PsychicScrea
     [Dependency] private SharedBatterySystem _batterySystem = default!;
     [Dependency] private GlitchingSystem _glitching = default!; // Far Horizons
 
+    private static readonly string _ionStormRule = "IonStorm";
+
     protected override void Started(EntityUid uid, PsychicScreachRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, comp, gameRule, args);
@@ -113,7 +115,7 @@ public sealed partial class PsychicScreachRule : StationEventSystem<PsychicScrea
         }
 
         // Trigger IonLaws // ! (MAKE SURE ITS SILENT!)
-        _gameTicker.StartGameRule("IonStorm");
+        _gameTicker.StartGameRule(_ionStormRule);
 
         Timer.Spawn(TimeSpan.FromSeconds(10), () => {
             Audio.PlayGlobal(comp.Atmosphere2, allPlayersOnStation, true);
