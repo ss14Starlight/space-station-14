@@ -1,18 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Cyborgs can now crawl without a module active, and crawl at half speed with any module active.
-    type: Tweak
-  id: 408040
-  time: '2026-08-31T19:31:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5863
-- author: Caws
-  changes:
-  - message: Quartermaster access from the funding allocation computer.
-    type: Remove
-  id: 408041
-  time: '2026-08-31T19:54:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5904
 - author: STARLIGHT TEAM
   changes:
   - message: Fixed welders a eswords causing reality to collapse in their local area when turned on/off.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408439
   time: '2026-09-09T20:56:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6040
+- author: wonderfulnewworld, ThatGuyUSA
+  changes:
+  - message: a sealed fizzy soda's contents will no longer disappear when bursting.
+    type: Fix
+  id: 408440
+  time: '2026-09-09T21:26:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6069
+- author: wonderfulnewworld, ThatGuyUSA
+  changes:
+  - message: You will no longer see every footprint and fire with a right click.
+    type: Fix
+  id: 408441
+  time: '2026-09-09T21:26:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6069
 Order: -1
