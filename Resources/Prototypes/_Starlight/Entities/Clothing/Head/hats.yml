@@ -800,7 +800,6 @@
   id: ClothingHeadHatBeretNTR
   name: nanotrasen representative's beret
   description: A decorated beret awarded to the best paperpushers in NT.
-  description: A decorated beret awarded to the best paperpushers in NT.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/beret_ntr.rsi
