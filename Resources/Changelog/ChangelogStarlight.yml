@@ -1,13 +1,6 @@
 Entries:
 - author: Forrestgod
   changes:
-  - message: '[Serpentcrest] Added a Pet Carrier in Security.'
-    type: Add
-  id: 408049
-  time: '2026-09-02T09:10:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5883
-- author: Forrestgod
-  changes:
   - message: '[Serpentcrest] Sec front is now brig access, cadets allowed in now.'
     type: Fix
   id: 408050
@@ -2799,4 +2792,11 @@ Entries:
   id: 408448
   time: '2026-09-09T21:26:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6000
+- author: Swonki
+  changes:
+  - message: Fixes Faxxing.
+    type: Fix
+  id: 408449
+  time: '2026-09-09T21:26:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6068
 Order: -1
