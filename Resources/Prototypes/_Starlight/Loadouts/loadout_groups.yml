@@ -328,6 +328,7 @@
   minLimit: 0
   loadouts:
   - MagistrateHeadPwig
+  - MagistrateHeadBeret
 
 - type: loadoutGroup
   id: MagistrateEyewear
