@@ -126,7 +126,6 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
                 session.Channel,
                 _messageColor);
 
-
             _popup.PopupEntity(message, ent, ent, PopupType.MediumCaution);
 
             _adminLog.Add(LogType.Anomaly, LogImpact.Medium,$"{ToPrettyString(ent)} is no longer a host for the anomaly.");
@@ -167,7 +166,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             }
 
             if (HasComp(target, componentType))
-                EntityManager.RemoveComponent(target, componentType);
+                RemComp(target, componentType);
         }
     }
 }
