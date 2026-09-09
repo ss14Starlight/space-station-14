@@ -770,7 +770,7 @@
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/beret_rd.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Head/Hats/rd.rsi
+      sprite: _Starlight/Clothing/Head/Hats/beret_rd.rsi
     - type: Tag
       tags:
         - PetWearable
