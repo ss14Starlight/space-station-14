@@ -121,6 +121,7 @@
   - type: Blindable
   - type: ParentCanBlockVision
   - type: ContentEye
+  - type: AntagImmune
   # Starlight End
 
 - type: entity

@@ -14,6 +14,21 @@
     stackType: FloorTileCarpetDeco
 
 - type: entity
+  name: carpet artsy tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemCarpetArt
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: artcarpet
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorCarpetArt
+  - type: Stack
+    stackType: FloorTileCarpetArt
+
+- type: entity
   name: dark bitile tile
   parent: FloorTileItemSteel
   id: FloorTileItemDarkBitile

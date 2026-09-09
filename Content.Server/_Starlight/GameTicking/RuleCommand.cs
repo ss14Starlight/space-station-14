@@ -3,7 +3,6 @@ using Content.Server.Administration;
 using Content.Server.GameTicking;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking.Components;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
 
 namespace Content.Server._Starlight.GameTicking;

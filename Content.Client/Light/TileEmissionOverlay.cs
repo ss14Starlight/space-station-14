@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Shared.Light.Components;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
 namespace Content.Client.Light;

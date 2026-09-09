@@ -178,6 +178,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.Comp.ShootCoordinates = GetCoordinates(msg.Coordinates);
         gun.Comp.Target = GetEntity(msg.Target);
         var fired = AttemptShoot(user.Value, gun);
+        if (msg.Continuous)
+            gun.Comp.ShotCounter = 0;
 
         // 🌟Starlight🌟 — dual-wield: only alternate after an actual shot so both guns stay in sync
         if (isDualWield && fired)

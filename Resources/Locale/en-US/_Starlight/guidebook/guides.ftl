@@ -90,8 +90,10 @@ guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
 guide-entry-sl-security-sop-specialsituations = Special Situations
 guide-entry-sl-security-sop-enemy-of-corporation = Enemies of the Corporation
 guide-entry-sl-security-sop-hostage-situations = Hostage Situations
+guide-entry-sl-security-sop-criminal-status = Criminal Status
 
 guide-entry-rules-supernatural-entities = Supernatural Entities
+guide-entry-stirstir = Stir Stir
 
 guide-entry-sl-legal-sop-intro = Legal
 
@@ -134,7 +136,6 @@ guide-entry-sl-cargo-sop-genproc-intro = General Procedures
 guide-entry-sl-cargo-sop-cargotechnician = Cargo Technician
 guide-entry-sl-cargo-sop-mailtechnician = Mail Technician
 guide-entry-sl-cargo-sop-miningspecialist = Mining Specialist
-guide-entry-sl-cargo-sop-salvagespecialist = SalvageSpecialist
 guide-entry-sl-cargo-sop-quartermaster = Quartermaster
 guide-entry-sl-cargo-sop-staff-intro = Staff Procedures
 guide-entry-sl-cargo-sop-handlingorders = Handling Orders
@@ -144,6 +145,9 @@ guide-entry-sl-cargo-sop-handlingorders-security = Security Orders
 guide-entry-sl-cargo-sop-handlingorders-science = Science Orders
 guide-entry-sl-cargo-sop-handlingorders-medical = Medical Orders
 guide-entry-sl-cargo-sop-handlingorders-service = Service Orders
+
+guide-entry-sl-salvage-sop-intro = Salvage
+guide-entry-sl-salvage-sop-salvagers = Salvage Crew
 
 guide-entry-sl-science-sop-intro = Science
 

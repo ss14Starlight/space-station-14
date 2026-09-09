@@ -18,7 +18,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Kitchen.Components;
+using Content.Shared.Tools.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
 
@@ -46,7 +46,7 @@ public sealed partial class ExecutionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SharpComponent, ExecutionDoAfterEvent>(OnExecutionDoAfterMelee);
+        SubscribeLocalEvent<ToolComponent, ExecutionDoAfterEvent>(OnExecutionDoAfterMelee);
         SubscribeLocalEvent<GunComponent, ExecutionDoAfterEvent>(OnExecutionDoAfterGun);
     }
 
@@ -70,7 +70,7 @@ public sealed partial class ExecutionSystem : EntitySystem
             Loc.GetString(locString, ("attacker", Identity.Entity(attacker, EntityManager)), ("victim", Identity.Entity(victim, EntityManager)), ("weapon", weapon)), attacker, Filter.PvsExcept(attacker), true, PopupType.MediumCaution);
     }
 
-    private void OnExecutionDoAfterMelee(EntityUid entity, SharpComponent component, ref ExecutionDoAfterEvent args)
+    private void OnExecutionDoAfterMelee(EntityUid entity, ToolComponent component, ref ExecutionDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || args.Used == null || args.Target == null)
             return;
