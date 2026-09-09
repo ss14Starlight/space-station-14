@@ -168,6 +168,10 @@ guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 guide-entry-sl-service-sop-lawyer = Lawyer
 guide-entry-sl-service-sop-reporter = Reporter
 
+guide-entry-sl-assistant-sop-staff-intro = Assistant
+guide-entry-sl-assistant-sop-assistantmanager = Assistant Manager
+guide-entry-sl-assistant = Assistant
+
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders
 guide-entry-devil = Devil
