@@ -787,7 +787,7 @@
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/beret_magistrate.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Head/Hats/magistrate.rsi
+      sprite: _Starlight/Clothing/Head/Hats/beret_magistrate.rsi
     - type: Tag
       tags:
         - PetWearable
