@@ -1,5 +1,41 @@
 #equipment
 - type: listing
+  id: VendorSalvageSurplusMedical
+  productEntity: CrateITGMedicalSurplus
+  cost:
+    SalvageTicket: 250
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSurplusShotgun
+  productEntity: CrateITGShotgunSurplus
+  cost:
+    SalvageTicket: 400
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSurplus
+  productEntity: CrateITGSurplus
+  cost:
+    SalvageTicket: 250
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+    - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageBinoculars
   productEntity: Binoculars
   cost:
@@ -237,36 +273,46 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageWeaponShotgunGA12
-  productEntity: WeaponShotgunGA12
+  id: VendorSalvageWeaponSPKA
+  productEntity: WeaponSPKA
   cost:
     SalvageTicket: 200
-  categories:WeaponSPKA
+  categories:
   - SalvageWeapons
   conditions:
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageWeaponShotgunGA12
+  id: VendorSalvageWeaponRegulator
   productEntity: WeaponRegulator
   cost:
     SalvageTicket: 100
-  categories:WeaponSPKA
+  categories:
   - SalvageWeapons
   conditions:
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageWeaponShotgunGA12
-  productEntity: WeaponRegulator
+  id: VendorSalvageWeaponCA
+  productEntity: WeaponChainAccelerator
   cost:
-    SalvageTicket: 100
-  categories:WeaponChainAccelerator
+    SalvageTicket: 250
+  categories:
   - SalvageWeapons
   conditions:
   - !type:BuyerAccessCondition
 
 #consumables
+- type: listing
+  id: VendorSalvageSpeedLoaderSpesoConversion
+  productEntity: SpaceCash100
+  cost:
+    SalvageTicket: 50
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
 - type: listing
   id: VendorSalvageSpeedLoaderShotgunEmpty
   productEntity: SpeedLoaderShotgunEmpty
