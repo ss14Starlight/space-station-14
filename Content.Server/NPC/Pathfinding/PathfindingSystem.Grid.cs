@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+#if DEBUG
 using System.Threading;
+#endif
 using System.Threading.Tasks;
 using Content.Shared.NPC;
 using Content.Shared.Physics;

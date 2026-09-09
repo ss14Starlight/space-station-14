@@ -4,11 +4,10 @@ using Content.Server.Humanoid;
 using Content.Server.Mind;
 using Content.Server.PDA;
 using Content.Server.Station.Components;
+using Content.Shared._Starlight.Roles;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.CCVar;
 using Content.Shared.Clothing;
-using Content.Shared.DetailExaminable;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
@@ -18,7 +17,6 @@ using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Station;
 using JetBrains.Annotations;
-using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -154,10 +152,17 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
             var jobEntity = SLSpawn(prototype.JobEntity, coordinates); // Starlight edit
             _mindSystem.MakeSentient(jobEntity);
 
+            // Starlight - match Grammar gender to profile for jobEntity roles that have it (K9)
+            if (profile != null && TryComp<GrammarComponent>(jobEntity, out var jobEntityGrammar))
+                _grammarSystem.SetGender((jobEntity, jobEntityGrammar), profile.Gender);
+
             // Make sure custom names get handled, what is gameticker control flow whoopy.
             if (loadout != null)
             {
                 EquipRoleLoadout(jobEntity, loadout, roleProto!, profile); // Starlight edit
+                // Starlight - jobEntity mobs skipped the humanoid name/loadout-reaction pipeline entirely
+                EquipRoleName(jobEntity, loadout, roleProto!);
+                RaiseLocalEvent(jobEntity, new RoleLoadoutAppliedEvent(loadout));
             }
 
             // Raise gear equipped event for non-humanoid jobs
@@ -183,7 +188,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
                 throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
             entity = SLSpawn(profile.ForcedPrototype, coordinates);
             var resolvedEntity = (EntityUid)entity;
-            var grammar = EntityManager.EnsureComponent<GrammarComponent>(resolvedEntity);
+            var grammar = EnsureComp<GrammarComponent>(resolvedEntity);
             _grammarSystem.SetGender((resolvedEntity, grammar), profile.Gender);
 
             _autolog.LogToDiscord(Loc.GetString("autolog-forcedprototype", ("character", profile.Name), ("prototype", profile.ForcedPrototype)));

@@ -34,6 +34,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
 using Content.Server._Starlight.NPC.Queries.Considerations;
 using Content.Shared.Projectiles;
+using Content.Shared.Tag; // Persistence: Firebots can target reagent fires
 
 namespace Content.Server.NPC.Systems;
 
@@ -62,6 +63,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
     private EntityQuery<PuddleComponent> _puddleQuery;
     private EntityQuery<TransformComponent> _xformQuery;
+    private static readonly ProtoId<TagPrototype> _reagentFireTag = "ReagentFire";
 
     private ObjectPool<HashSet<EntityUid>> _entPool =
         new DefaultObjectPool<HashSet<EntityUid>>(new SetPolicy<EntityUid>(), 256);
@@ -177,6 +179,10 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             {
                 // do we have a mouth available? Is the food item opened?
                 if (!_ingestion.CanConsume(owner, targetUid))
+                    return 0f;
+
+                // Starlight - do not drink liquids to attempt to satiate hunger
+                if (_ingestion.GetEdibleType(targetUid) == IngestionSystem.Drink)
                     return 0f;
 
                 var avoidBadFood = !HasComp<IgnoreBadFoodComponent>(owner);
@@ -364,6 +370,12 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 {
                     if (TryComp(targetUid, out FlammableComponent? fire) && fire.OnFire)
                         return 1f;
+
+                    // Persistence Start: Firebots can target reagent fires
+                    if (TryComp(targetUid, out TagComponent? tags) && tags.Tags.AsReadOnly().Contains(_reagentFireTag))
+                        return 1f;
+                    // Persistence End
+
                     return 0f;
                 }
             case TargetIsStunnedCon:
@@ -497,6 +509,28 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 }
                 break;
             }
+
+            // Persistence Start: Firebots can target reagent fires
+            case ComponentQueryAny compQueryAny:
+                {
+                    if (compQueryAny.Components.Count == 0)
+                        return;
+
+                    var mapPos = _transform.GetMapCoordinates(owner, xform: _xformQuery.GetComponent(owner));
+                    _compTypes.Clear();
+                    _entitySet.Clear();
+                    foreach (var comp in compQueryAny.Components.Values)
+                    {
+                        _lookup.GetEntitiesInRange(comp.Component.GetType(), mapPos, vision, _entitySet);
+                    }
+
+                    foreach (var ent in _entitySet)
+                        entities.Add(ent);
+
+                    break;
+                }
+            // Persistence End
+
             default:
                 throw new NotImplementedException();
         }

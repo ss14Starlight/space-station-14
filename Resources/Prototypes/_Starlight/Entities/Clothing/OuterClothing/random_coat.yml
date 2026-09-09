@@ -1,6 +1,6 @@
 ﻿
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter]
   id: ClothingOuterCoatRandomBase
   abstract: true
   components:
@@ -24,7 +24,7 @@
   parent: ClothingOuterCoatRandomBase
   id: ClothingOuterCoatRandom
   name: colorful coat
-  description: A colorful coat. Won't do much to keep you warm, but it's certainly a fashion statement!
+  description: A colorful coat. Warm and exceptionally fashionable!
   components:
   - type: RandomSprite
     available:

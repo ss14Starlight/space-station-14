@@ -149,10 +149,10 @@ public sealed partial class BloodstreamComponent : Component
     /// Defines which reagents are considered as 'blood' and how much of it is normal.
     /// </summary>
     /// <remarks>
-    /// Slime-people might use slime as their blood or something like that.
+    /// Default is human blood at 5 liters (600u) of blood.
     /// </remarks>
     [DataField, AutoNetworkedField]
-    public Solution BloodReferenceSolution = new([new("Blood", 300)]);
+    public Solution BloodReferenceSolution = new([new("Blood", 600)]);
 
     /// <summary>
     /// Optional visual color for blood reagents from this entity.
@@ -185,6 +185,13 @@ public sealed partial class BloodstreamComponent : Component
     /// </summary>
     [DataField]
     public string MetabolitesSolutionName = DefaultMetabolitesSolutionName;
+
+    /// <summary>
+    /// Localization prefix for bleeding and low blood level descriptions on health examine.
+    /// Hidden when set to null.
+    /// </summary>
+    [DataField]
+    public string? ExamineLocPrefix = "bloodstream-component";
 
     /// <summary>
     /// Internal solution for blood storage

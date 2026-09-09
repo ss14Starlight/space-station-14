@@ -66,6 +66,30 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSeniorCourier
 
+# Science
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: ClothingOuterWinterRoboAlt
+  name: white robotics winter coat
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/WinterCoats/coat.rsi
+    layers:
+    - state: ROBO-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: ROBO-inhand-left
+      right:
+      - state: ROBO-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/WinterCoats/coat.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: ROBO-equipped-OUTERCLOTHING
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterRoboAlt
+
 # Security
 ## Duty Officer
 - type: entity

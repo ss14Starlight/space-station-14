@@ -18,6 +18,15 @@ public abstract partial class AntagCountSelector
     [DataField]
     public float PlayerRatio = 10.0f; // Starlight, make this a float so we can do some scaling
 
+    #region Starlight
+    /// <summary>
+    /// Whether this selector calculates its target from the full effective player count instead of
+    /// the population remaining after earlier selectors in the same game rule.
+    /// </summary>
+    [DataField]
+    public bool UseTotalPlayerCount;
+    #endregion
+
     [DataField(required: true)]
     public ProtoId<AntagSpecifierPrototype> Proto;
 

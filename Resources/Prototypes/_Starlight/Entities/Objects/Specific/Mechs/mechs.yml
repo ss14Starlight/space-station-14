@@ -600,7 +600,7 @@
       baseWalkSpeed: 2
       baseSprintSpeed: 4.5
     - type: Damageable
-      damageModifierSet: MediumArmorSyndi
+      damageModifierSet: DarkGygaxArmor
     - type: MechThrusters
     - type: PointLight
       lightMask: ConeSingle

@@ -79,8 +79,14 @@ language-Xeno-description = The common tongue of the xenos.
 language-Cat-name = Cat
 language-Cat-description = Meow
 
+language-CatFeral-name = Cat (Feral)
+language-CatFeral-description = A less refined feline dialect, only interpretable by cats.
+
 language-Dog-name = Dog
 language-Dog-description = Bark!
+
+language-DogFeral-name = Dog (Feral)
+language-DogFeral-description = A less refined canine dialect, only interpretable by dogs.
 
 language-Fox-name = Fox
 language-Fox-description = Yeeps!

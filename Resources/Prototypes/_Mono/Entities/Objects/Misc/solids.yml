@@ -17,13 +17,13 @@
     - bitter
   - type: Extractable
     grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 4
-        reagents:
-        - ReagentId: Phenylpiperidine
-          Quantity: 4 # Contains 4u but costs 5u to make - No more infinite dylo with 5u of phenyl
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 4
+      reagents:
+      - ReagentId: Phenylpiperidine
+        Quantity: 4 # Contains 4u but costs 5u to make - No more infinite dylo with 5u of phenyl
   - type: DamageOnLand
     damage:
       types:

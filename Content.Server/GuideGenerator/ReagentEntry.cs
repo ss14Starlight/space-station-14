@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Text.Json.Serialization;
-using Content.Server.Body.Components;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects;
@@ -55,10 +54,10 @@ public sealed class ReactionEntry
     public string Name { get; }
 
     [JsonPropertyName("reactants")]
-    public Dictionary<string, ReactantEntry> Reactants { get; }
+    public Dictionary<ProtoId<ReagentPrototype>, ReactantEntry> Reactants { get; }
 
     [JsonPropertyName("products")]
-    public Dictionary<string, float> Products { get; }
+    public Dictionary<ProtoId<ReagentPrototype>, float> Products { get; }
 
     [JsonPropertyName("effects")]
     public List<EntityEffect> Effects { get; }

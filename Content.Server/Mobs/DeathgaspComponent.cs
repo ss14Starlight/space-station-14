@@ -1,7 +1,6 @@
 ﻿using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Mobs;
 
@@ -15,8 +14,8 @@ public sealed partial class DeathgaspComponent : Component
     /// <summary>
     ///     The emote prototype to use.
     /// </summary>
-    [DataField("prototype", customTypeSerializer:typeof(PrototypeIdSerializer<EmotePrototype>))]
-    public string Prototype = "DefaultDeathgasp";
+    [DataField, AutoNetworkedField]
+    public ProtoId<EmotePrototype> Prototype = "DefaultDeathgasp";
 
     // Starlight
     [DataField]
