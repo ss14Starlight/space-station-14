@@ -1,19 +1,13 @@
 using Content.Server.Chat.Systems;
-using Content.Server.NPC;
 using Content.Server.NPC.Systems;
 using Content.Server.Pinpointer;
 using Content.Shared.Dragon;
 using Content.Shared.Examine;
-using Content.Shared.Sprite;
-using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Serialization.Manager;
-using System.Numerics;
-using Content.Shared.Damage.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
-using Robust.Shared.Utility;
-using Content.Server.Station.Systems; // Starlight
+
+// Starlight
 
 namespace Content.Server.Dragon;
 
@@ -28,7 +22,6 @@ public sealed partial class DragonRiftSystem : EntitySystem
     [Dependency] private NavMapSystem _navMap = default!;
     [Dependency] private NPCSystem _npc = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private StationSystem _station = default!; // Starlight
 
     public override void Initialize()
     {
@@ -40,6 +33,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
         SubscribeLocalEvent<DragonRiftComponent, ComponentShutdown>(OnShutdown);
     }
 
+/* Starlight: Heavily modified, replaced
     private void OnGetState(Entity<DragonRiftComponent> ent, ref ComponentGetState args)
     {
         args.State = new DragonRiftComponentState
@@ -113,7 +107,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
             }
         }
     }
-
+*/
     private void OnExamined(EntityUid uid, DragonRiftComponent component, ExaminedEvent args)
     {
         args.PushMarkup(Loc.GetString("carp-rift-examine", ("percentage", MathF.Round(component.Accumulator / component.MaxAccumulator * 100))));

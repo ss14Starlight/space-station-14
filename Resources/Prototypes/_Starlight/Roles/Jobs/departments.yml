@@ -41,3 +41,15 @@
   - TSFMarine
   - TSFMarineElite
   editorHidden: true
+
+- type: department
+  id: ITG
+  name: department-ITG
+  description: department-ITG-description
+  color: "#a34f18"
+  weight: -10
+  roles:
+  - SalvageLead
+  - SalvageSpecialist
+  - SalvageMedic
+  primary: false

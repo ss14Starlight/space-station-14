@@ -36,7 +36,6 @@ using Content.Shared.Radio.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Actions.Components;
 using Content.Shared.NameModifier.EntitySystems;
-using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared.Tag;
 
@@ -217,6 +216,8 @@ public abstract partial class SharedBorgSystem : EntitySystem
                 )
                 {
                     shuntable.Inhabited = chassis;
+                    shuntable.LastShunt = chassis; // Starlight
+                    Dirty(shunt.Return.Value, shuntable); // Starlight
                     borgShunt.Return = shunt.Return;
                     borgShunt.ReturnAction = _actions.AddAction(chassis, shuntable.UnshuntAction);
                 }
@@ -255,6 +256,8 @@ public abstract partial class SharedBorgSystem : EntitySystem
                 TryComp<StationAIShuntComponent>(chassis, out var borgShunt))
                 {
                     shuntable.Inhabited = args.Entity;
+                    shuntable.LastShunt = args.Entity; // Starlight
+                    Dirty(shunt.Return.Value, shuntable); // Starlight
                     if (TryComp<ActionComponent>(borgShunt.ReturnAction, out var action))
                         _actions.RemoveAction((borgShunt.ReturnAction.Value, action)); //delete the action as we leave the body
                     borgShunt.Return = null;
