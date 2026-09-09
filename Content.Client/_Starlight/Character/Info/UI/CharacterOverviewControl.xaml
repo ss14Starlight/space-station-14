@@ -9,6 +9,7 @@
         <ui1:CharacterViewControl Name="CharacterPreview" Access="Public"/>
         <Label Name="ObjectivesLabel" Access="Public" Text="{Loc 'character-info-objectives-label'}" HorizontalAlignment="Center"/>
         <BoxContainer Orientation="Vertical" Name="Objectives" Access="Public"/>
+        <Button Name="CardsButton" Access="Public" Margin="0 10 0 10" Text="{Loc 'character-info-cards-button'}"/>
         <cc:Placeholder Name="RolePlaceholder" Access="Public" PlaceholderText="{Loc 'character-info-roles-antagonist-text'}"/>
     </BoxContainer>
 </ui:CharacterOverviewControl>

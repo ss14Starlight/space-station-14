@@ -21,7 +21,7 @@ public sealed partial class VinylPlayerSystem : EntitySystem
     [Dependency] private StationRadioReceiverSystem _stationRadio = default!; // Starlight - Remove Server Check from VinylSummonSystem
     [Dependency] private IGameTiming _timing = default!; // Starlight - Add Station Radio Resume Play
 
-    [Dependency] private readonly SharedContainerSystem _container = default!; // Starlight - Shift Click to view what Vinyl is inserted.
+    [Dependency] private SharedContainerSystem _container = default!; // Starlight - Shift Click to view what Vinyl is inserted.
 
     public override void Initialize()
     {

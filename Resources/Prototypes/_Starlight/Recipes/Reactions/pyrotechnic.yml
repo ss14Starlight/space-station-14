@@ -1,0 +1,24 @@
+- type: reaction
+  id: RefinedOil
+  reactants:
+    WeldingFuel:
+      amount: 3
+    Oil:
+      amount: 2
+    Plasma:
+      amount: 1
+      catalyst: true
+  products:
+    RefinedOil: 5
+
+- type: reaction
+  id: RefinedOilBreakdown
+  source: true
+  requiredMixerCategories:
+  - Centrifuge
+  reactants:
+    RefinedOil:
+      amount: 10
+  products:
+    Acetone: 2
+    Carbon: 3

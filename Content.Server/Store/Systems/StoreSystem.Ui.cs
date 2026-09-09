@@ -1,8 +1,6 @@
 using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Administration.Logs;
-using Content.Server.PDA.Ringer;
-using Content.Server.Revolutionary;
 using Content.Server.Stack;
 using Content.Server.Store.Components;
 using Content.Shared.Actions;
@@ -16,7 +14,6 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.PDA.Ringer;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
-using Content.Shared.Store.Events;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -400,7 +397,7 @@ public sealed partial class StoreSystem
     public void UpdateAllUSSPUplinkUIs()
     {
         // Find all store components that are USSP uplinks
-        var query = EntityManager.EntityQueryEnumerator<StoreComponent>();
+        var query = EntityQueryEnumerator<StoreComponent>();
         while (query.MoveNext(out var uid, out var storeComp))
         {
             // Skip if this is not a USSP uplink
@@ -457,7 +454,7 @@ public sealed partial class StoreSystem
         _ui.SetUiState(storeUid, StoreUiKey.Key, state);
 
         // Find all players who might have this uplink open
-        var query = EntityManager.EntityQueryEnumerator<ActorComponent>();
+        var query = EntityQueryEnumerator<ActorComponent>();
         while (query.MoveNext(out var actorUid, out _))
         {
             // Check if this player has the uplink implanted

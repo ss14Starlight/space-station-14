@@ -4,7 +4,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.NameIdentifier;
 using Content.Shared.Database;
 using Content.Shared.Kitchen;
-using Content.Shared.Kitchen.Components;
 using Content.Shared._CD.CartridgeLoader.Cartridges;
 using Content.Shared._CD.NanoChat;
 using Content.Shared.NameIdentifier;

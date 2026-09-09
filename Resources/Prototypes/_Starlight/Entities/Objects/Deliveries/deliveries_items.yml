@@ -107,14 +107,12 @@
         - FireAxeStealObjective
         - AmePartFlatpackStealObjective
         - ExpeditionsCircuitboardStealObjective
-        - SalvageShuttleConsoleCircuitboardStealObjective
         - MiningShuttleConsoleCircuitboardStealObjective
         - ShipyardCircuitboardStealObjective
         - CargoShuttleCircuitboardStealObjective
         - CommsComputerCircuitboardStealObjective
         - IDCardComputerCircuitboardStealObjective
         - BrigmedicStrangeBedsheetStealObjective
-        - ClothingNeckMantleDecoratedSalvagerStealObjective
         #- ClothingEyesHudBeerStealObjective Removed in favor of the misc sunglasses collection objective.
         - BibleStealObjective
         - ClothingNeckGoldmedalStealObjective
@@ -172,7 +170,6 @@
         - WardenHardsuitStealObjective
         - BrigmedicHardsuitStealObjective
         - QMHardsuitStealObjective
-        - SalvLeadHardsuitStealObjective
         - CaptainHardsuitStealObjective
         - NTRepHardsuitStealObjective
         - BSOHardsuitStealObjective

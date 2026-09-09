@@ -90,6 +90,12 @@
   suffix: Slime
   description: "It has all the consistency of gelatin."
   components:
+  - type: OrganTongue
+    allowedEmotes: ['Squish', 'Bubble', 'Pop']
+    sounds:
+      Male: MaleSlime
+      Female: FemaleSlime
+      Unsexed: MaleSlime
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Slime/organs.rsi
     state: slurpoid

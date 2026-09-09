@@ -36,7 +36,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private SharedPopupSystem _popups = default!;
     [Dependency] private ChatSystem _chat = default!;
-    [Dependency] private readonly StationRadioReceiverSystem _stationRadio = default!; // Starlight - Station Radio Check oved to StationRadioReceiverSystem
+    [Dependency] private StationRadioReceiverSystem _stationRadio = default!; // Starlight - Station Radio Check oved to StationRadioReceiverSystem
 
     private record struct TrackingData(EntityUid VinylPlayerUid, TimeSpan EndTime);
     private readonly Dictionary<EntityUid, TrackingData> _trackingVinyls = new();

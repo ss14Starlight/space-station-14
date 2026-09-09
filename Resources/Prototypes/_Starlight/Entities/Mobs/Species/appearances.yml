@@ -44,7 +44,7 @@
     species: Diona
 
 - type: entity
-  parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
+  parent: [BaseSpeciesDummy, BaseInventoryDwarf]
   id: AppearanceDwarf
   categories: [ HideSpawnMenu ]
   components:

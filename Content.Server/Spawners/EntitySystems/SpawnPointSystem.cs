@@ -1,12 +1,7 @@
 ﻿using Content.Server.GameTicking;
-using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
-using Content.Shared.Humanoid.Prototypes;
-using Content.Shared.Roles;
 using Content.Shared.Spawners.Components;
-using Prometheus;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Spawners.EntitySystems;
