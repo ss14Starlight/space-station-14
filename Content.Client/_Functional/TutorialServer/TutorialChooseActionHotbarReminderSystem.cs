@@ -14,15 +14,15 @@ namespace Content.Client._Functional.TutorialServer;
 /// While the player still has Choose-a-tutorial but cleared it off the hotbar, posts a chat tip
 /// immediately and every 60 seconds directing them to the actions menu (their bound key) to drag it back.
 /// </summary>
-public sealed class TutorialChooseActionHotbarReminderSystem : EntitySystem
+public sealed partial class TutorialChooseActionHotbarReminderSystem : EntitySystem
 {
     private static readonly EntProtoId TutorialChooseRoleActionProto = "ActionTutorialChooseRole";
     private static readonly TimeSpan ReminderInterval = TimeSpan.FromSeconds(60);
 
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private ActionsSystem _actions = default!;
 
     /// <summary>
     /// Next real-time when a reminder may fire while the action remains off the hotbar.

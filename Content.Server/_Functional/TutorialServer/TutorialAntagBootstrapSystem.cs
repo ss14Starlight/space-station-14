@@ -33,18 +33,18 @@ namespace Content.Server._Functional.TutorialServer;
 /// <summary>
 /// Applies real antag components/mind roles for deep tutorial packages that need them.
 /// </summary>
-public sealed class TutorialAntagBootstrapSystem : EntitySystem
+public sealed partial class TutorialAntagBootstrapSystem : EntitySystem
 {
-    [Dependency] private readonly ChangelingDevourSystem _changelingDevour = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly RevolutionarySystem _revolutionary = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly RingerSystem _ringer = default!;
-    [Dependency] private readonly StoreSystem _store = default!;
-    [Dependency] private readonly UplinkSystem _uplink = default!;
-    [Dependency] private readonly VampireSystem _vampire = default!;
+    // [Dependency] private ChangelingDevourSystem _changelingDevour = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    // [Dependency] private RevolutionarySystem _revolutionary = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    // [Dependency] private RingerSystem _ringer = default!;
+    // [Dependency] private StoreSystem _store = default!;
+    // [Dependency] private UplinkSystem _uplink = default!;
+    [Dependency] private VampireSystem _vampire = default!;
 
     private static readonly ProtoId<NpcFactionPrototype> RevolutionaryFaction = "Revolutionary";
     private static readonly EntProtoId MindRoleInitialInfected = "MindRoleInitialInfected";

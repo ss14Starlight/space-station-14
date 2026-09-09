@@ -17,14 +17,14 @@ namespace Content.Server._Functional.TutorialServer;
 /// walk, then path-checks before teleporting — snaps only when stuck with no path and not
 /// already in short range with line of sight.
 /// </summary>
-public sealed class TutorialMentorFollowSystem : EntitySystem
+public sealed partial class TutorialMentorFollowSystem : EntitySystem
 {
-    [Dependency] private readonly NPCSystem _npc = default!;
-    [Dependency] private readonly HTNSystem _htn = default!;
-    [Dependency] private readonly PathfindingSystem _pathfinding = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private NPCSystem _npc = default!;
+    [Dependency] private HTNSystem _htn = default!;
+    [Dependency] private PathfindingSystem _pathfinding = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private static readonly Vector2 SnapOffset = new(1.2f, 0f);
     private static readonly TimeSpan CatchUpDelay = TimeSpan.FromSeconds(5);
@@ -53,8 +53,7 @@ public sealed class TutorialMentorFollowSystem : EntitySystem
             if (mentor.Leads)
                 continue;
 
-            if (!TryComp<TransformComponent>(mentor.PlayerUid, out var playerXform))
-                continue;
+            var playerXform = Transform(mentor.PlayerUid);
 
             EnsureFollowTarget(mentorUid, mentor.PlayerUid);
 
@@ -138,8 +137,7 @@ public sealed class TutorialMentorFollowSystem : EntitySystem
     /// </summary>
     public void SnapBesidePlayer(EntityUid mentorUid, EntityUid playerUid)
     {
-        if (!TryComp<TransformComponent>(playerUid, out var playerXform))
-            return;
+        var playerXform = Transform(playerUid);
 
         var coords = playerXform.Coordinates.Offset(SnapOffset);
         _transform.SetCoordinates(mentorUid, coords);

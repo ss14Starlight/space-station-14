@@ -13,13 +13,13 @@ namespace Content.Server._Functional.TutorialServer;
 /// Drives the cyborg tutorial subversion beat: an NPC access-breaker unlocks the
 /// chassis, opens the maintenance panel, then emags so silicon laws update.
 /// </summary>
-public sealed class TutorialBorgSubversionSystem : EntitySystem
+public sealed partial class TutorialBorgSubversionSystem : EntitySystem
 {
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedWiresSystem _wires = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TutorialServerRuleSystem _tutorial = default!;
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedWiresSystem _wires = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TutorialServerRuleSystem _tutorial = default!;
 
     private static readonly EntProtoId AccessBreakerProto = "TutorialPracticeAccessBreaker";
     private static readonly EntProtoId AccessBreakerItemProto = "AccessBreakerUnlimited";

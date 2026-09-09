@@ -13,12 +13,12 @@ namespace Content.Server._Functional.TutorialServer;
 /// Subscribes on <see cref="TutorialHydroTrayComponent"/> (not PlantHolder) to avoid duplicate
 /// directed Comp+Event subscriptions with <see cref="PlantHolderSystem"/>.
 /// </summary>
-public sealed class TutorialHydroSystem : EntitySystem
+public sealed partial class TutorialHydroSystem : EntitySystem
 {
-    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
-    [Dependency] private readonly TutorialServerRuleSystem _tutorial = default!;
+    [Dependency] private PlantHolderSystem _plantHolder = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private TagSystem _tags = default!;
+    [Dependency] private TutorialServerRuleSystem _tutorial = default!;
 
     private static readonly ProtoId<TagPrototype> HydroTag = "TutorialHydroTray";
 

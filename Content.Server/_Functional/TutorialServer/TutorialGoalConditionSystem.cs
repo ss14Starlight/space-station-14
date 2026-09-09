@@ -8,9 +8,9 @@ namespace Content.Server._Functional.TutorialServer;
 /// <summary>
 /// Progress for live curriculum goals in the Character objectives window.
 /// </summary>
-public sealed class TutorialGoalConditionSystem : EntitySystem
+public sealed partial class TutorialGoalConditionSystem : EntitySystem
 {
-    [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
 
     public override void Initialize()
     {

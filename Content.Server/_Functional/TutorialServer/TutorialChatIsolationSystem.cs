@@ -14,10 +14,10 @@ namespace Content.Server._Functional.TutorialServer;
 /// Chat isolation while TutorialServer is active: no radio, and players cannot use OOC channels
 /// (CVars also disable OOC/LOOC/dead; this hard-cancels in-game OOC attempts as a backstop).
 /// </summary>
-public sealed class TutorialChatIsolationSystem : EntitySystem
+public sealed partial class TutorialChatIsolationSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {

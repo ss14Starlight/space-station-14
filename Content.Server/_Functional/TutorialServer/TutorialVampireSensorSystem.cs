@@ -6,9 +6,9 @@ namespace Content.Server._Functional.TutorialServer;
 /// <summary>
 /// Advances vampire tutorial sensors (fangs / blood / class).
 /// </summary>
-public sealed class TutorialVampireSensorSystem : EntitySystem
+public sealed partial class TutorialVampireSensorSystem : EntitySystem
 {
-    [Dependency] private readonly TutorialServerRuleSystem _tutorial = default!;
+    [Dependency] private TutorialServerRuleSystem _tutorial = default!;
 
     public override void Update(float frameTime)
     {

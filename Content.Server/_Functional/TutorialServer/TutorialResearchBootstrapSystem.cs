@@ -9,14 +9,14 @@ namespace Content.Server._Functional.TutorialServer;
 /// Seeds research points on tutorial R&amp;D servers after practice entities spawn.
 /// Clients on the same grid auto-register via <see cref="ResearchSystem"/> MapInit.
 /// </summary>
-public sealed class TutorialResearchBootstrapSystem : EntitySystem
+public sealed partial class TutorialResearchBootstrapSystem : EntitySystem
 {
     private static readonly ProtoId<TagPrototype> ResearchServerTag = "TutorialResearchServer";
 
     private const int SeedPoints = 10000;
 
-    [Dependency] private readonly ResearchSystem _research = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private ResearchSystem _research = default!;
+    [Dependency] private TagSystem _tags = default!;
 
     public void TryConfigureOnGrid(EntityUid gridUid)
     {

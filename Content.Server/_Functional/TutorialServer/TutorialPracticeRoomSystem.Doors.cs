@@ -20,7 +20,7 @@ public sealed partial class TutorialPracticeRoomSystem
     private static readonly EntProtoId TutorialGridSupportProto = "TutorialInvisibleGridSupport";
     private static readonly EntProtoId TutorialAirlockMaintProto = "TutorialAirlockMaint";
 
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
 
     public override void Initialize()
     {
@@ -196,9 +196,8 @@ public sealed partial class TutorialPracticeRoomSystem
 
         var centered = new EntityCoordinates(gridUid, tile.X + 0.5f, tile.Y + 0.5f);
         _xform.SetCoordinates(door, centered);
-        if (TryComp<TransformComponent>(door, out var doorXform) &&
-            !doorXform.Anchored &&
-            TryComp<MapGridComponent>(gridUid, out var grid))
+        var doorXform = Transform(door);
+        if (!doorXform.Anchored && TryComp<MapGridComponent>(gridUid, out var grid))
         {
             _xform.AnchorEntity((door, doorXform), (gridUid, grid));
         }

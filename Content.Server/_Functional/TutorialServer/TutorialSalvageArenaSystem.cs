@@ -19,19 +19,19 @@ namespace Content.Server._Functional.TutorialServer;
 /// Builds a salvage bay + nearby debris grid for magnet/EVA/locker/recycler tutorials.
 /// Layout: sealed suit-up foyer (west) → minifan doorway → open training bay (east) → lattice to debris.
 /// </summary>
-public sealed class TutorialSalvageArenaSystem : EntitySystem
+public sealed partial class TutorialSalvageArenaSystem : EntitySystem
 {
     private static readonly EntProtoId MinifanProto = "AtmosDeviceFanTiny";
 
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly GravitySystem _gravity = default!;
-    [Dependency] private readonly IPrototypeManager _protos = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ITileDefinitionManager _tiles = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private GravitySystem _gravity = default!;
+    [Dependency] private IPrototypeManager _protos = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ITileDefinitionManager _tiles = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TileSystem _tile = default!;
 
     public bool TryBuildArena(
         ProtoId<TutorialSalvageArenaPrototype> arenaId,

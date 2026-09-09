@@ -7,7 +7,7 @@ namespace Content.Server._Functional.TutorialServer;
 /// <summary>
 /// Lets the coach remark on things never asked for.
 /// </summary>
-public sealed class TutorialQuipSystem : EntitySystem
+public sealed partial class TutorialQuipSystem : EntitySystem
 {
     [Dependency] private TutorialServerRuleSystem _tutorial = default!;
     [Dependency] private TutorialTrainerSystem _trainer = default!;

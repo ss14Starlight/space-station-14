@@ -24,14 +24,14 @@ namespace Content.Server._Functional.TutorialServer;
 /// Arrival is cleared on every room change for the same reason a holopad coach clears it when she
 /// re-projects: a new room is a new walk.
 /// </remarks>
-public sealed class TutorialLeadMentorSystem : EntitySystem
+public sealed partial class TutorialLeadMentorSystem : EntitySystem
 {
-    [Dependency] private readonly HTNSystem _htn = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly NPCSystem _npc = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TutorialServerRuleSystem _tutorial = default!;
-    [Dependency] private readonly TutorialTrainerSystem _trainer = default!;
+    [Dependency] private HTNSystem _htn = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private NPCSystem _npc = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TutorialServerRuleSystem _tutorial = default!;
+    [Dependency] private TutorialTrainerSystem _trainer = default!;
 
     /// <summary>Close enough to count as standing at the point, in tiles.</summary>
     private const float ArrivalRange = 1.5f;

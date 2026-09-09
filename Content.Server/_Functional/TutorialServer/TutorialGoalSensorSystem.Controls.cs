@@ -17,8 +17,8 @@ namespace Content.Server._Functional.TutorialServer;
 /// </summary>
 public sealed partial class TutorialGoalSensorSystem
 {
-    [Dependency] private readonly IGameTiming _controlsTiming = default!;
-    [Dependency] private readonly TutorialTrainerSystem _trainer = default!;
+    // [Dependency] private IGameTiming _controlsTiming = default!;
+    [Dependency] private TutorialTrainerSystem _trainer = default!;
 
     /// <summary>
     /// Longest the control hint waits on the coach before showing anyway.

@@ -14,14 +14,14 @@ namespace Content.Server._Functional.TutorialServer;
 /// generator as producing so <see cref="TutorialStepComplete.TegProducingPower"/> can complete
 /// after the curriculum interact gate. Full hot/cold pipe loops are too brittle for 7×7 chambers.
 /// </summary>
-public sealed class TutorialTegBootstrapSystem : EntitySystem
+public sealed partial class TutorialTegBootstrapSystem : EntitySystem
 {
     private static readonly ProtoId<TagPrototype> CirculatorTag = "TutorialTegCirculator";
 
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TagSystem _tags = default!;
 
     public void TryConfigureOnGrid(EntityUid gridUid)
     {

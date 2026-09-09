@@ -46,24 +46,24 @@ public sealed partial class TutorialShuttleArenaSystem : EntitySystem
     private static readonly EntProtoId TutorialStepMarkerProto = "TutorialStepMarker";
     private static readonly ProtoId<TagPrototype> BayCrateTag = "TutorialCargoBayCrate";
 
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly CargoSystem _cargo = default!;
-    [Dependency] private readonly DockingSystem _docking = default!;
-    [Dependency] private readonly GravitySystem _gravity = default!;
-    [Dependency] private readonly IPrototypeManager _protos = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ITileDefinitionManager _tiles = default!;
-    [Dependency] private readonly ItemSlotsSystem _slots = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly ShuttleSystem _shuttles = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private CargoSystem _cargo = default!;
+    [Dependency] private DockingSystem _docking = default!;
+    [Dependency] private GravitySystem _gravity = default!;
+    [Dependency] private IPrototypeManager _protos = default!;
+    // [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ITileDefinitionManager _tiles = default!;
+    [Dependency] private ItemSlotsSystem _slots = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private ShuttleSystem _shuttles = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private TagSystem _tags = default!;
+    [Dependency] private TileSystem _tile = default!;
 
     private static readonly ProtoId<CargoBountyPrototype> TutorialBounty = "BountyBread";
 

@@ -16,8 +16,8 @@ public sealed partial class TutorialRoomTemplateSystem
 {
     private static readonly EntProtoId TutorialVaultDoorProto = "TutorialVaultDoor";
 
-    [Dependency] private readonly SharedDoorSystem _doors = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private SharedDoorSystem _doors = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     /// <summary>
     /// Seals crop airlocks that are not on the walk path from each chamber center to its

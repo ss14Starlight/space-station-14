@@ -10,9 +10,9 @@ namespace Content.Client._Functional.TutorialServer;
 /// Hooks <see cref="ConstructionSystem.ToggleCraftingWindow"/> rather than the keybind itself, so
 /// the report follows the menu however it was opened.
 /// </remarks>
-public sealed class TutorialConstructionMenuSystem : EntitySystem
+public sealed partial class TutorialConstructionMenuSystem : EntitySystem
 {
-    [Dependency] private readonly ConstructionSystem _construction = default!;
+    [Dependency] private ConstructionSystem _construction = default!;
 
     public override void Initialize()
     {

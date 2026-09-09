@@ -25,14 +25,14 @@ public sealed partial class TutorialNukeopsBaseSystem : EntitySystem
     private const int ChemMaxY = 9; // chem interior y = 1..8; divider at y=9
     private const int LoungeMinY = 10; // lounge interior y = 10..19
 
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly GravitySystem _gravity = default!;
-    [Dependency] private readonly ITileDefinitionManager _tiles = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private GravitySystem _gravity = default!;
+    [Dependency] private ITileDefinitionManager _tiles = default!;
+    // [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    // [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TileSystem _tile = default!;
 
     public bool TryBuildOutpost(
         out EntityUid mapUid,

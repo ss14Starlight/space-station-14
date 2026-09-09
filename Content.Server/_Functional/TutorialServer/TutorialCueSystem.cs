@@ -26,9 +26,9 @@ namespace Content.Server._Functional.TutorialServer;
 /// Fires staged effects when a participant reaches the sub-goal that cues them. Placed in the map
 /// rather than the curriculum, so the effect stays with the room it happens to.
 /// </summary>
-public sealed class TutorialCueSystem : EntitySystem
+public sealed partial class TutorialCueSystem : EntitySystem
 {
-    [Dependency] private readonly RotateToFaceSystem _rotate = default!;
+    [Dependency] private RotateToFaceSystem _rotate = default!;
     [Dependency] private HTNSystem _htn = default!;
     [Dependency] private NPCSystem _npc = default!;
     [Dependency] private SharedAmbientSoundSystem _ambient = default!;
@@ -36,7 +36,7 @@ public sealed class TutorialCueSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private ExplosionSystem _explosions = default!;
-    [Dependency] private SharedMapSystem _map = default!;
+    // [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private PoweredLightSystem _lights = default!;
     [Dependency] private SharedCuffableSystem _cuffable = default!;

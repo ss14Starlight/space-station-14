@@ -20,11 +20,11 @@ namespace Content.Server._Functional.TutorialServer.StarlightSurgery;
 /// </summary>
 public sealed partial class TutorialStarlightSurgerySystem : SharedTutorialStarlightSurgerySystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly TutorialServerRuleSystem _tutorial = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private TutorialServerRuleSystem _tutorial = default!;
 
     public override void Initialize()
     {

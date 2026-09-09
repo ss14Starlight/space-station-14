@@ -14,10 +14,10 @@ namespace Content.Server._Functional.TutorialServer;
 /// </summary>
 public sealed partial class TutorialE2EServerSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private GameTicker _ticker = default!;
 
     private TimeSpan? _forceStartAt;
     private TimeSpan? _joinPassAt;

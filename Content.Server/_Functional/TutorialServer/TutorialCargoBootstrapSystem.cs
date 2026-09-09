@@ -141,7 +141,8 @@ public sealed partial class TutorialCargoBootstrapSystem : EntitySystem // Starl
             return;
 
         var crate = Spawn(FulfilledCrateProto, spawnCoords.Value);
-        if (TryComp<TransformComponent>(crate, out var crateXform) && crateXform.Anchored)
+        var crateXform = Transform(crate);
+        if (crateXform.Anchored)
             _transform.Unanchor(crate, crateXform);
 
         _tags.AddTag(crate, PurchaseTag);
@@ -149,9 +150,7 @@ public sealed partial class TutorialCargoBootstrapSystem : EntitySystem // Starl
 
     private EntityCoordinates? FindBuyPadCoordinates(EntityUid consoleUid)
     {
-        if (!TryComp<TransformComponent>(consoleUid, out var consoleXform) ||
-            consoleXform.MapUid is not { } mapUid)
-            return null;
+        if (Transform(consoleUid).MapUid is not {} mapUid) return null;
 
         var query = EntityQueryEnumerator<CargoPalletComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var pallet, out var xform))

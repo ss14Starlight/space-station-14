@@ -19,13 +19,13 @@ namespace Content.Server._Functional.TutorialServer;
 /// <see cref="TutorialMentorComponent.Facing"/>, because the only thing that knows he is talking to
 /// the Head of Personnel rather than to the player is the script.
 /// </remarks>
-public sealed class TutorialMentorFacingSystem : EntitySystem
+public sealed partial class TutorialMentorFacingSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly RotateToFaceSystem _rotate = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
-    [Dependency] private readonly TutorialServerRuleSystem _tutorial = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private RotateToFaceSystem _rotate = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TagSystem _tags = default!;
+    [Dependency] private TutorialServerRuleSystem _tutorial = default!;
 
     /// <summary>
     /// Below this he counts as standing still. Not zero: a mob resting against a wall keeps a

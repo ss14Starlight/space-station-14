@@ -9,11 +9,11 @@ namespace Content.Server._Functional.TutorialServer;
 /// <summary>
 /// Activates HoP-line visitors when the matching sub-goal is current: speak + drop an ID on the desk.
 /// </summary>
-public sealed class TutorialHoPQueueSystem : EntitySystem
+public sealed partial class TutorialHoPQueueSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TutorialServerRuleSystem _tutorial = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TutorialServerRuleSystem _tutorial = default!;
 
     public override void Update(float frameTime)
     {

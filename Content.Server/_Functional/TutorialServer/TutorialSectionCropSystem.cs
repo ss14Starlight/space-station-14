@@ -20,7 +20,7 @@ namespace Content.Server._Functional.TutorialServer;
 /// <summary>
 /// Crops an explicit AABB from a station map into a sealed tutorial section grid.
 /// </summary>
-public sealed class TutorialSectionCropSystem : EntitySystem
+public sealed partial class TutorialSectionCropSystem : EntitySystem
 {
     private static readonly string[] DenyPrefixes =
     [
@@ -72,14 +72,14 @@ public sealed class TutorialSectionCropSystem : EntitySystem
         "FaxMachine",
     ];
 
-    [Dependency] private readonly GravitySystem _gravity = default!;
-    [Dependency] private readonly IPrototypeManager _protos = default!;
-    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ITileDefinitionManager _tiles = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly Robust.Shared.Random.IRobustRandom _random = default!;
+    [Dependency] private GravitySystem _gravity = default!;
+    [Dependency] private IPrototypeManager _protos = default!;
+    [Dependency] private MapLoaderSystem _mapLoader = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private ITileDefinitionManager _tiles = default!;
+    [Dependency] private TileSystem _tile = default!;
+    // [Dependency] private Robust.Shared.Random.IRobustRandom _random = default!;
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;

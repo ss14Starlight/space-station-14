@@ -10,15 +10,15 @@ namespace Content.Server._Functional.TutorialServer;
 /// spawning duplicate dispensers/masters/grinders on top of tables and walls.
 /// Also powers the crop hotplate so heated recipes (table salt) actually cook.
 /// </summary>
-public sealed class TutorialChemBootstrapSystem : EntitySystem
+public sealed partial class TutorialChemBootstrapSystem : EntitySystem
 {
     private static readonly ProtoId<TagPrototype> ChemDispenserTag = "TutorialChemDispenser";
     private static readonly ProtoId<TagPrototype> ChemMasterTag = "TutorialChemMaster";
     private static readonly ProtoId<TagPrototype> GrinderTag = "TutorialGrinder";
     private static readonly ProtoId<TagPrototype> HotplateTag = "TutorialHotplate";
 
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private TagSystem _tags = default!;
 
     public void TryConfigureOnGrid(EntityUid gridUid, TutorialRolePrototype role)
     {

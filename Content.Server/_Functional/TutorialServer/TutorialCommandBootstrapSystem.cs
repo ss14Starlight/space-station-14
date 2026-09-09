@@ -10,12 +10,12 @@ namespace Content.Server._Functional.TutorialServer;
 /// Attaches a station with alert levels to Captain (and other command) practice grids
 /// so the communications console can change alert level.
 /// </summary>
-public sealed class TutorialCommandBootstrapSystem : EntitySystem
+public sealed partial class TutorialCommandBootstrapSystem : EntitySystem
 {
     private static readonly EntProtoId CommandStationProto = "TutorialCommandStation";
 
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private AlertLevelSystem _alertLevel = default!;
 
     public void TryConfigureOnGrid(EntityUid gridUid, TutorialRolePrototype role)
     {

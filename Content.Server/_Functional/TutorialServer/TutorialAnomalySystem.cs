@@ -12,7 +12,7 @@ public sealed partial class TutorialAnomalySystem : EntitySystem
     private const float TargetStability = 0.55f;
     private const float TargetSeverity = 0.15f;
 
-    [Dependency] private readonly AnomalySystem _anomaly = default!;
+    [Dependency] private AnomalySystem _anomaly = default!;
 
     public override void Initialize()
     {

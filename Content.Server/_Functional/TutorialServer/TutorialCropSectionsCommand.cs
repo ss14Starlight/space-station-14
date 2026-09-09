@@ -12,10 +12,10 @@ namespace Content.Server._Functional.TutorialServer;
 /// Usage: tutorialcropsections [all|CropMedbay|...]
 /// </summary>
 [AdminCommand(AdminFlags.Host)]
-public sealed class TutorialCropSectionsCommand : LocalizedCommands
+public sealed partial class TutorialCropSectionsCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly IPrototypeManager _protos = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private IPrototypeManager _protos = default!;
 
     public override string Command => "tutorialcropsections";
 

@@ -25,16 +25,16 @@ namespace Content.Server._Functional.TutorialServer;
 /// </summary>
 public sealed partial class TutorialPracticeRoomSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly GravitySystem _gravity = default!;
-    [Dependency] private readonly IPrototypeManager _protos = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ITileDefinitionManager _tiles = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly SharedDoorSystem _doors = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private GravitySystem _gravity = default!;
+    [Dependency] private IPrototypeManager _protos = default!;
+    // [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ITileDefinitionManager _tiles = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private SharedDoorSystem _doors = default!;
+    [Dependency] private TileSystem _tile = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
 
     /// <summary>
     /// Creates a fresh map + multi-chamber grid from a <see cref="TutorialRoomPrototype"/>.

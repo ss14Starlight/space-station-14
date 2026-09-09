@@ -13,18 +13,18 @@ namespace Content.Server._Functional.TutorialServer;
 /// Keeps a <see cref="TutorialMentorMode.Holopad"/> coach beside the player by re-projecting them
 /// at the holopad of whichever chamber the player is in, rather than walking them there.
 /// </summary>
-public sealed class TutorialHoloMentorSystem : EntitySystem
+public sealed partial class TutorialHoloMentorSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambient = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TutorialServerRuleSystem _tutorial = default!;
-    [Dependency] private readonly TutorialTrainerSystem _trainer = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambient = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TutorialServerRuleSystem _tutorial = default!;
+    [Dependency] private TutorialTrainerSystem _trainer = default!;
 
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private static readonly SoundSpecifier ProjectSound =
         new SoundPathSpecifier("/Audio/Machines/high_tech_confirm.ogg");

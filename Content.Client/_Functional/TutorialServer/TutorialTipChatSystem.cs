@@ -9,9 +9,9 @@ namespace Content.Client._Functional.TutorialServer;
 /// <summary>
 /// Receives tutorial tip markup from the server, resolves keybind tags, and posts to chat.
 /// </summary>
-public sealed class TutorialTipChatSystem : EntitySystem
+public sealed partial class TutorialTipChatSystem : EntitySystem
 {
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
 
     public override void Initialize()
     {

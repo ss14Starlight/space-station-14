@@ -93,26 +93,26 @@ namespace Content.Server._Functional.TutorialServer;
 /// </summary>
 public sealed partial class TutorialGoalSensorSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly PuddleSystem _puddle = default!;
-    [Dependency] private readonly ResearchSystem _research = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedWiresSystem _wires = default!;
-    [Dependency] private readonly WiresSystem _wiresServer = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly OpenableSystem _openable = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly DockingSystem _docking = default!;
-    [Dependency] private readonly SharedJointSystem _joints = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly ShuttleSystem _shuttles = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private PuddleSystem _puddle = default!;
+    [Dependency] private ResearchSystem _research = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutions = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedWiresSystem _wires = default!;
+    [Dependency] private WiresSystem _wiresServer = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
+    [Dependency] private TagSystem _tags = default!;
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private OpenableSystem _openable = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private DockingSystem _docking = default!;
+    [Dependency] private SharedJointSystem _joints = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private ShuttleSystem _shuttles = default!;
+    [Dependency] private StationSystem _station = default!;
     [Dependency] private TutorialServerRuleSystem _tutorial = default!;
     [Dependency] private IComponentFactory _compFactory = default!;
 
@@ -663,11 +663,10 @@ public sealed partial class TutorialGoalSensorSystem : EntitySystem
     {
         // Approve path raises this before order.Approved is set; order is then removed from the DB.
         EntityUid? mapUid = null;
-        if (TryComp<TransformComponent>(args.OrderConsole.Owner, out var consoleXform))
-            mapUid = consoleXform.MapUid;
+        var consoleXform = Transform(args.OrderConsole.Owner);
+        var stationXform = Transform(args.Station.Owner);
 
-        if (mapUid == null && TryComp<TransformComponent>(args.Station.Owner, out var stationXform))
-            mapUid = stationXform.MapUid;
+        mapUid = consoleXform.MapUid ?? stationXform.MapUid;
 
         if (mapUid == null)
             return;
@@ -1654,11 +1653,9 @@ public sealed partial class TutorialGoalSensorSystem : EntitySystem
         return string.IsNullOrEmpty(sub.Component) || HasComponentNamed(item, sub.Component);
     }
 
-    private bool HasComponentNamed(EntityUid uid, string componentName)
-    {
-        return _compFactory.TryGetRegistration(componentName, out var registration) &&
-               EntityManager.HasComponent(uid, registration.Type);
-    }
+    private bool HasComponentNamed(EntityUid uid, string componentName) =>
+        _compFactory.TryGetRegistration(componentName, out var registration) &&
+        HasComp(uid, registration.Type);
 
     private bool IsHoldingMatch(EntityUid mob, TutorialSubGoalData sub)
     {

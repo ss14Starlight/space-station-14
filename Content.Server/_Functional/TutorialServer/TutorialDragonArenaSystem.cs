@@ -10,19 +10,19 @@ namespace Content.Server._Functional.TutorialServer;
 /// <summary>
 /// Builds a cargo-bay box prey station plus a nearby space spawn for Space Dragon tutorials.
 /// </summary>
-public sealed class TutorialDragonArenaSystem : EntitySystem
+public sealed partial class TutorialDragonArenaSystem : EntitySystem
 {
     public const string StationApproachMarkerId = "dragon-station";
 
     private static readonly EntProtoId StepMarkerProto = "TutorialStepMarker";
     private static readonly EntProtoId PinpointerProto = "TutorialPinpointerDragonStation";
 
-    [Dependency] private readonly IPrototypeManager _protos = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly SharedPinpointerSystem _pinpointer = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TutorialPracticeRoomSystem _rooms = default!;
-    [Dependency] private readonly TutorialShuttleArenaSystem _shuttleArenas = default!;
+    [Dependency] private IPrototypeManager _protos = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private SharedPinpointerSystem _pinpointer = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TutorialPracticeRoomSystem _rooms = default!;
+    [Dependency] private TutorialShuttleArenaSystem _shuttleArenas = default!;
 
     public bool TryBuildArena(
         ProtoId<TutorialDragonArenaPrototype> arenaId,

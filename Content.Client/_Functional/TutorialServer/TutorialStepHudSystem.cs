@@ -11,10 +11,10 @@ namespace Content.Client._Functional.TutorialServer;
 /// The server pushes one short markup line per sub-goal; keybind tags in it resolve here against
 /// the local player's bindings, so the hint always names the key they actually have bound.
 /// </summary>
-public sealed class TutorialStepHudSystem : EntitySystem
+public sealed partial class TutorialStepHudSystem : EntitySystem
 {
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     private TutorialControlHint? _hint;
 

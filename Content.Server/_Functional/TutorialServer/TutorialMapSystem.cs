@@ -23,16 +23,16 @@ namespace Content.Server._Functional.TutorialServer;
 /// </summary>
 public sealed partial class TutorialMapSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly PowerReceiverSystem _power = default!;
-    [Dependency] private readonly TutorialNukeopsBaseSystem _nukeopsBase = default!;
-    [Dependency] private readonly TutorialPracticeRoomSystem _rooms = default!;
-    [Dependency] private readonly TutorialRoomTemplateSystem _templates = default!;
-    [Dependency] private readonly TutorialSalvageArenaSystem _salvageArenas = default!;
-    [Dependency] private readonly TutorialShuttleArenaSystem _shuttleArenas = default!;
-    [Dependency] private readonly TutorialDragonArenaSystem _dragonArenas = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    // [Dependency] private MapSystem _map = default!;
+    [Dependency] private MapLoaderSystem _mapLoader = default!;
+    [Dependency] private PowerReceiverSystem _power = default!;
+    [Dependency] private TutorialNukeopsBaseSystem _nukeopsBase = default!;
+    [Dependency] private TutorialPracticeRoomSystem _rooms = default!;
+    [Dependency] private TutorialRoomTemplateSystem _templates = default!;
+    [Dependency] private TutorialSalvageArenaSystem _salvageArenas = default!;
+    [Dependency] private TutorialShuttleArenaSystem _shuttleArenas = default!;
+    [Dependency] private TutorialDragonArenaSystem _dragonArenas = default!;
 
     /// <summary>
     /// Creates a private tutorial map for a role — shuttle/salvage/nukeops, then stamped
@@ -145,14 +145,14 @@ public sealed partial class TutorialMapSystem : EntitySystem
         if (!FreezeAtmosInSimplifiedEnvironment)
             return;
 
-        var gridQuery = EntityQueryEnumerator<MapGridComponent, TransformComponent>();
-        while (gridQuery.MoveNext(out var gridUid, out _, out var xform))
-        {
-            if (xform.MapUid != mapUid)
-                continue;
-
-            FreezeGridAtmosphere(gridUid);
-        }
+        // var gridQuery = EntityQueryEnumerator<MapGridComponent, TransformComponent>();
+        // while (gridQuery.MoveNext(out var gridUid, out _, out var xform))
+        // {
+        //     if (xform.MapUid != mapUid)
+        //         continue;
+        //
+        //     FreezeGridAtmosphere(gridUid);
+        // }
     }
 
     /// <summary>

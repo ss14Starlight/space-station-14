@@ -16,13 +16,13 @@ namespace Content.Server._Functional.TutorialServer;
 /// Acknowledge advance / stuck hints when there is no handheld guide.
 /// Speaks once per sub-goal change (not on a timer); muted while the guide UI is open.
 /// </summary>
-public sealed class TutorialTrainerSystem : EntitySystem
+public sealed partial class TutorialTrainerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TutorialServerRuleSystem _tutorial = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TutorialServerRuleSystem _tutorial = default!;
 
     public override void Initialize()
     {
@@ -531,9 +531,9 @@ public sealed class TutorialTrainerSystem : EntitySystem
         if (trainer.SpeakRange is not { } range)
             return true;
 
-        if (!TryComp<TransformComponent>(playerUid, out var playerXform) ||
-            playerXform.MapID != trainerXform.MapID)
-            return false;
+        var playerXform = Transform(playerUid);
+
+        if (playerXform.MapID != trainerXform.MapID) return false;
 
         var delta = _transform.GetWorldPosition(playerXform) - _transform.GetWorldPosition(trainerXform);
         return delta.Length() <= range;
