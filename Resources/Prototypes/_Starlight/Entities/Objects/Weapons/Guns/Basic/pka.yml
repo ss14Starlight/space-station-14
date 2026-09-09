@@ -68,6 +68,9 @@
   - type: Item
     sprite: _Starlight/Objects/Weapons/Guns/Basic/regulator.rsi
     size: Small
+    shape:
+      - 0,0,1,0
+      - 0,1,1,1
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
     quickEquip: false
