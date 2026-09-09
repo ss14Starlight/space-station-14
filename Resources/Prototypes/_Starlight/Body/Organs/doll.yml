@@ -2,9 +2,6 @@
   id: BaseDollOrgan
   parent:
   - BaseMob
-  - MobPolymorphable
-  - MobBloodstream
-  - MobFlammable
   - BaseItem
   abstract: true
   components:
@@ -35,17 +32,11 @@
     - Flashed
     - RadiationProtection
     - Adrenaline
-  - type: Bloodstream
-    bloodReferenceSolution:
-      reagents:
-      - ReagentId: Blood
-        Quantity: 150
   - type: MobPrice
     price: 150
   - type: FloatingVisuals
   - type: Damageable
     damageContainer: Biological
-  - type: RadiationReceiver
   - type: Stamina
   - type: StunVisuals
   - type: MobState
