@@ -58,11 +58,7 @@ public sealed partial class ShellSystem : EntitySystem
         if (!args.DamageDelta.TryGetDamageInGroup(group, out var damageTaken))
             return; //If we have no damage of the cracking type, do nothing.
 
-        var breakFactor = comp.Hardness *
-            (comp.Stability
-                // + [Insert armour penetration factor here, if we ever get access to it in this place]
-            );
-        if (damageTaken - breakFactor <= 0)
+        if (damageTaken - comp.Hardness <= 0)
             return; //Shell too strong, no breakage
 
         if (comp.Stability != 0 //if stability is 0, what are we even doing computing a chance?
@@ -70,26 +66,26 @@ public sealed partial class ShellSystem : EntitySystem
         {
             //Break the shell! 100 brute damage (after scaling by stability) at once guarantees a break.
 
-            //Find shell piece to drop
+            //Find shell piece to destroy
             var allShellPieces = _body.GetBodyOrgans(uid).Where(o => TryComp(o.Id, out OrganShellComponent? _));
             var shellPieces = allShellPieces.ToList();
             if (shellPieces.Count == 0)
-                return; //No shell pieces to drop
-            _random.Shuffle(shellPieces); //Randomise!
-            var droppedEntity = shellPieces.First();
+                return; //No shell pieces to destroy
 
-            var part = _body.GetParentPartOrNull(droppedEntity.Id); //Need to determine part while it's still attached
+            var entityToDestroy = _random.Pick(shellPieces);//Randomise!
 
-            if (!_container.TryRemoveFromContainer(droppedEntity.Id))
+            var part = _body.GetParentPartOrNull(entityToDestroy.Id); //Need to determine part while it's still attached
+
+            if (!_container.TryRemoveFromContainer(entityToDestroy.Id))
                 return; //Failsafe if the shell piece cannot be dropped for some reason.
 
             if (part != null) //If it was attached to the body, which it always should, but just in case, we raise the surgery event on it
             {
-                var sev = new SurgeryOrganExtracted(uid, part.Value, droppedEntity.Id);
-                _entityManager.EventBus.RaiseLocalEvent(droppedEntity.Id, ref sev);
+                var sev = new SurgeryOrganExtracted(uid, part.Value, entityToDestroy.Id);
+                _entityManager.EventBus.RaiseLocalEvent(entityToDestroy.Id, ref sev);
             }
             _audioSystem.PlayPredicted(comp.ShellBreakSound, uid, uid);
-            QueueDel(droppedEntity.Id); //Destroy it
+            QueueDel(entityToDestroy.Id); //Destroy it
         }
     }
 }

@@ -31,7 +31,7 @@ public sealed partial class ShellComponent : Component
     [DataField]
     public ProtoId<AlertPrototype> ShellAlert = "DollShellIntegrity";
 
-    [DataField]
+    [ViewVariables]
     public List<Marking> OriginalMarkings = [];
 
     [DataField]

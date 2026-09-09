@@ -40,8 +40,8 @@ public sealed partial class SnapShellPieceSystem : EntitySystem
         var shellPieces = allShellPieces.ToList();
         if (shellPieces.Count == 0)
             return; //No shell pieces to drop
-        _random.Shuffle(shellPieces); //Randomise!
-        var droppedEntity = shellPieces.First();
+
+        var droppedEntity = _random.Pick(shellPieces); //Randomise!
 
         //Drop piece on the ground *unless* we require a free hand.
         if (ev.RequiresFreeHand && !_hands.CanPickupAnyHand(user, droppedEntity.Id))
@@ -90,7 +90,8 @@ public sealed partial class RegrowShellEntityEffectSystem : EntityEffectSystem<S
             var bodyParts = _body.GetBodyChildren(uid).ToList();
             foreach (var child in bodyParts)
             {
-                var shellContainer = _container.GetContainer(child.Id, SharedBodySystem.GetOrganContainerId("shell"));
+                if (!_container.TryGetContainer(child.Id, SharedBodySystem.GetOrganContainerId("shell"), out var shellContainer))
+                    continue;
                 if (shellContainer.Count == 0)
                     yield return shellContainer;
             }
