@@ -15,7 +15,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Physics.Events;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.Slippery;
 
@@ -31,7 +30,6 @@ public sealed partial class SlipperySystem : EntitySystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SpeedModifierContactsSystem _speedModifier = default!;
-    [Dependency] private IGameTiming _timing = default!; // Starlight
 
     private EntityQuery<KnockedDownComponent> _knockedDownQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -103,9 +101,6 @@ public sealed partial class SlipperySystem : EntitySystem
 
     public void TrySlip(EntityUid uid, SlipperyComponent component, EntityUid other, bool requiresContact = true)
     {
-        if (_timing.ApplyingState) // Starlight
-            return; // Starlight
-
         var knockedDown = _knockedDownQuery.HasComp(other);
         if (knockedDown && !component.SlipData.SuperSlippery)
             return;

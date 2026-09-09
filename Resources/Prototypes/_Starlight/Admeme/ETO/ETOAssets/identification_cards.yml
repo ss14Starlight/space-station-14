@@ -1,0 +1,110 @@
+
+# ETO
+- type: entity
+  parent: IDCardStandard
+  id: ETOIDCard
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/id.rsi
+  - type: IdCard
+  - type: Access
+    tags:
+      - ETO
+      - Maintenance
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: NanoChatCard
+    listNumber: false
+
+- type: entity
+  parent: ETOIDCard
+  id: ETOIDCardTeamLead
+  name: ETO team lead ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: ETO_Lead
+      - sprite: &starlight-icon-rsi _Starlight/Admeme/ETO/etojobicons.rsi
+        offset: &icon-offset -0.09375, 0.0625
+        state: ETO_Leader
+  - type: IdCard
+    jobTitle: job-name-eto-lead
+    jobIcon: JobIconETOLead
+
+- type: entity
+  parent: ETOIDCard
+  id: ETOIDCardCorpsman
+  name: ETO corpsman ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: ETO_Special
+      - sprite: *starlight-icon-rsi
+        offset: *icon-offset
+        state: ETO_Corpsman
+  - type: IdCard
+    jobTitle: job-name-eto-corpsman
+    jobIcon: JobIconETOCorpsman
+
+- type: entity
+  parent: ETOIDCard
+  id: ETOIDCardCombatTech
+  name: ETO combat technician ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: ETO_Special
+      - sprite: *starlight-icon-rsi
+        offset: *icon-offset
+        state: ETO_CombatTech
+  - type: IdCard
+    jobTitle: job-name-eto-combattech
+    jobIcon: JobIconETOCombatTech
+
+- type: entity
+  parent: ETOIDCard
+  id: ETOIDCardDemo
+  name: ETO demolitionist ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: ETO_Special
+      - sprite: *starlight-icon-rsi
+        offset: *icon-offset
+        state: ETO_Demo
+  - type: IdCard
+    jobTitle: job-name-eto-demo
+    jobIcon: JobIconETODemo
+
+- type: entity
+  parent: ETOIDCard
+  id: ETOIDCardMartyr
+  name: ETO martyr ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: ETO_Special
+      - sprite: *starlight-icon-rsi
+        offset: *icon-offset
+        state: ETO_Martyr
+  - type: IdCard
+    jobTitle: job-name-eto-martyr
+    jobIcon: JobIconETOMartyr
+
+- type: entity
+  parent: ETOIDCard
+  id: ETOIDCardFootman
+  name: ETO footman ID card
+  components:
+  - type: Sprite
+    layers:
+      - state: ETO
+      - sprite: *starlight-icon-rsi
+        offset: *icon-offset
+        state: ETO
+  - type: IdCard
+    jobTitle: job-name-eto-operative
+    jobIcon: JobIconETOFootman
+

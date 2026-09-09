@@ -18,6 +18,13 @@
   #Starlight
 #  - type: Hunger # starlight
 #  - type: Thirst # starlight
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#ccac1f"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
   - type: MessyDrinker
     spillChance: 0.05 # 🌟Starlight🌟 26% chance to spill per 30u of liquid
   - type: Icon
@@ -28,12 +35,7 @@
   - type: Speech
     speechSounds: Vulpkanin
     speechVerb: Vulpkanin
-    allowedEmotes: [ 'Bark', 'Snarl', 'Whine', 'Howl', 'Growl', 'Yip' ] #Starlight Yip
   - type: Vocal
-    sounds:
-      Male: MaleVulpkanin
-      Female: FemaleVulpkanin
-      Unsexed: MaleVulpkanin
   - type: Damageable
     damageModifierSet: Vulpkanin
     # Starlight Start
@@ -49,11 +51,11 @@
         Piercing: 2
         Slash: 3
   # starlight start - temp vulpkanin revert
-  # - type: Temperature # Same as moth temperatures until below is solved.
+  # - type: Temperature
   #   specificHeat: 44
   # - type: TemperatureDamage
-  #   heatDamageThreshold: 320 # TODO: 315 when there is a way to make the temperature alert not blink to the side of the screen and disappear when you "sweat" at 39C.
-  #   coldDamageThreshold: 230 # TODO: 220 when the above is solved.
+  #   heatDamageThreshold: 320
+  #   coldDamageThreshold: 230
   #   coldDamage:
   #     types:
   #       Cold: 0.05 # Per second, scales with temperature & other constants
@@ -82,6 +84,11 @@
   #       volume: -5
   #       variation: 0.05
   # STARLIGHT END
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: SulfurBlood
+        Quantity: 600
   - type: Sprite # Drawlayers. Top to bottom in order I believe.
     netsync: false
     layers:
@@ -149,21 +156,9 @@
     #        state: hair
   # Starlight end
   # starlight start - temp vulpkanin revert
-  - type: Hunger # on 1.5x more
-    thresholds:
-      Overfed: 250
-      Okay: 200
-      Peckish: 150
-      Starving: 100
-      Dead: 0
+  - type: Hunger # on 1.1x more
     baseDecayRate: 0.018
-  - type: Thirst # on 1.5x more
-    thresholds:
-      OverHydrated: 650
-      Okay: 500
-      Thirsty: 350
-      Parched: 200
-      Dead: 0
+  - type: Thirst # on 1.25x more
     baseDecayRate: 0.125
   - type: TemperatureDamage # Ported over from CD. Afterall, it does make sense that something with fur can handle more cold/less heat. Basegame Moths, apparently, have similar resistances.
     heatDamageThreshold: 325

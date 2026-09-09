@@ -1,15 +1,10 @@
-using System.Linq;
-using System.Threading;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
 using JetBrains.Annotations;
-using Robust.Shared.Audio;
-using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.StationEvents.Events
 {

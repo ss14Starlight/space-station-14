@@ -1,4 +1,3 @@
-using System;
 using Content.Shared._Starlight.Arcade.Lancer;
 using System.Linq;
 

@@ -45,3 +45,21 @@ marking-VoxFeatheredLegLeft = Feathered Left Leg
 
 marking-VoxFeatheredLegRight-rightlegfeathered = Feathered Right Leg
 marking-VoxFeatheredLegRight = Feathered Right Leg
+
+marking-VoxTailSplitAnimated-vox_tail_split_animated = Vox Tail (Split, animated)
+marking-VoxTailSplitAnimated = Vox Tail (Split)
+
+marking-VoxTailSpikes-vox_tail_spikes_animated = Vox Tail (Spiked, animated)
+marking-VoxTailSpikesAnimated = Vox Tail (Spiked, animated)
+
+marking-VoxTailShortAnimated-vox_tail_small_animated = Vox Tail (Short, animated)
+marking-VoxTailShortAnimated = Vox Tail (Short, animated)
+
+marking-VoxTailAnimated-vox_tail_animated = Vox Tail (Medium, animated)
+marking-VoxTailAnimated = Vox Tail (Medium, animated)
+
+marking-VoxTailBigAnimated-vox_tail_big_animated = Vox Tail (Big, animated)
+marking-VoxTailBigAnimated = Vox Tail (Big, animated)
+
+marking-VoxTailDockedAnimated-vox_tail_docked_animated = Vox Tail (Docked, animated)
+marking-VoxTailDockedAnimated = Vox Tail (Docked, animated)

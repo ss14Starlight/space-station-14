@@ -212,7 +212,6 @@
   children:
     - command-sop
     - security-sop-intro
-    - legal-sop-intro
     - engineering-sop-intro
     - cargo-sop-intro
     - salvage-sop-intro
@@ -220,6 +219,7 @@
     - nano-trasen-employee-sop-intro
     - service-sop-intro
     - medical-sop-intro
+    - assistant-sop-intro
 
 
 - type: guideEntry
@@ -395,14 +395,6 @@
   name: guide-entry-sl-security-sop-criminal-status
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/CriminalStatus.xml"
   priority: 12
-
-- type: guideEntry
-  id: legal-sop-intro
-  name: guide-entry-sl-legal-sop-intro
-  text: "/ServerInfo/Guidebook/StarlightSOP/LegalSOP/legal-sop-intro.xml"
-  priority: 3
-
-
 
 - type: guideEntry
   id: nano-trasen-employee-sop-intro
@@ -859,3 +851,24 @@
   name: guide-entry-sl-service-sop-reporter
   text: "/ServerInfo/Guidebook/StarlightSOP/ServiceSOP/Reporter.xml"
   priority: 3
+
+- type: guideEntry
+  id: assistant-sop-intro
+  name: guide-entry-sl-assistant-sop-staff-intro
+  text: "/ServerInfo/Guidebook/StarlightSOP/AssistantSOP/assistant-sop-intro.xml"
+  priority: 8
+  children:
+      - assistant-sop-assistantmanager
+      - assistant-sop-assistant
+
+- type: guideEntry
+  id: assistant-sop-assistantmanager
+  name: guide-entry-sl-assistant-sop-assistantmanager
+  text: "/ServerInfo/Guidebook/StarlightSOP/AssistantSOP/AssistantManager.xml"
+  priority: 1
+
+- type: guideEntry
+  id: assistant-sop-assistant
+  name: guide-entry-sl-assistant
+  text: "/ServerInfo/Guidebook/StarlightSOP/AssistantSOP/Assistant.xml"
+  priority: 2
