@@ -107,6 +107,7 @@
   suffix: ""
   name: ITG Silicon Encoder
   description: A legally approved silicon lawset override device that aligns a silicon with the ITG.
+  categories: [ DoNotMap ]
   components:
   - type: Emag
     lawset: SalvageLawset
