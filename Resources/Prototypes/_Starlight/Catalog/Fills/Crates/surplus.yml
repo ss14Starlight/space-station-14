@@ -159,6 +159,8 @@
           tableId: ServiceSurplusEntityTable
         - !type:NestedSelector
           tableId: SecuritySurplusEntityTable
+        - !type:NestedSelector
+          tableId: FunSurplusEntityTable
 
 - type: entityTable
   id: EngineeringSurplusEntityTable
@@ -171,6 +173,13 @@
       weight: 1
     - id: WeaponParticleDecelerator
       weight: .25
+    - id: Powerdrill
+      weight: .25
+    - id: MetalFoamGrenade
+      amount: 3
+      weight: .25
+    - id: ElectrolyzerMachineCircuitboard
+      weight: .1
 
 - type: entityTable
   id: SecuritySurplusEntityTable
@@ -183,6 +192,9 @@
       amount: 3
       weight: 1
     - id: GrenadeStinger
+      amount: 3
+      weight: .25
+    - id: GrenadeFlashbang
       amount: 3
       weight: .25
 
@@ -203,3 +215,49 @@
       weight: .5
     - id: AdvMopItem
       weight: .5
+
+- type: entityTable
+  id: FunSurplusEntityTable
+  table: !type:GroupSelector
+    children:
+    - id: PinpointerUniversal
+      weight: .01
+    - id: WeaponLauncherChonoLoke
+      weight: .15
+    - id: MakeshiftID
+      weight: .1
+    - id: BluespaceCrystal
+      amount: 5
+      weight: .1
+    - id: Claymore
+      weight: .05
+    - id: ClothingBackpackSyndicate
+      weight: .15
+    - id: OrganVoxLiver
+      amount: 5
+      weight: .25
+    - id: PyrottonBol
+      weight: .3
+    - id: WeaponPistolCHIMP
+      weight: .05
+    - id: CannonBall
+      weight: .25
+    - id: WeaponPistolFlintlock
+      weight: .15
+    - id: StrangePill
+      amount: 10
+      weight: .3
+    - id: CorporateCircuitBoard
+      weight: .05
+    - id: FoodBoxPizzaFilled
+      weight: .5
+    - id: FoodBoxDonut
+      weight: .05
+    - id: Pizzabomb
+      weight: .02
+    - id: MechVim
+      weight: .1
+    - id: MobCobraSpace
+      weight: .05
+    - id: MobCarpHolo
+      weight: .05
