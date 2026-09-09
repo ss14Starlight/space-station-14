@@ -58,6 +58,11 @@
   suffix: Cyclorite
   description: "A fleshy muscle mostly used for lying."
   components:
+  - type: OrganTongue
+    sounds:
+      Male: MaleCyclorite
+      Female: FemaleCyclorite
+      Unsexed: MaleCyclorite
   - type: Sprite
     state: tongue
 

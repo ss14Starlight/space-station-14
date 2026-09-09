@@ -63,6 +63,8 @@
        enabled: true
        isLooped: true
        reverseWhenFinished: true
+  - type: HealthExaminable
+    locPrefix: cosmic
 
 - type: entity
   categories: [ HideSpawnMenu ]

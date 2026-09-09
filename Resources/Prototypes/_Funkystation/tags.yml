@@ -16,6 +16,9 @@
 - type: Tag
   id: DefibrillatorCompact
 
+- type: Tag # Funky Wall Stains
+  id: DirectionalWindow
+
 - type: Tag
   id: OxygenTank
 
@@ -39,3 +42,6 @@
 
 - type: Tag
   id: CardboardboxLarge
+
+- type: Tag # Persistence: Firebots can target reagent fires
+  id: ReagentFire

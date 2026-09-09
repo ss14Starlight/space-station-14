@@ -719,6 +719,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                             _airlock.SetEmergencyAccess((ent, airlockcomp), proto.AccessEnabled);
                 }
                 break;
+
+            case SecureTerminalActionType.Announcement:
+                // Nothing to execute — the announcement is dispatched on full authorization.
+                break;
         }
     }
 

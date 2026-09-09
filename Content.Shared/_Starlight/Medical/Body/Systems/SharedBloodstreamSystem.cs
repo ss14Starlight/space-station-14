@@ -16,13 +16,14 @@ using Content.Shared.Forensics.Components;
 using Content.Shared.Gibbing;
 using Content.Shared.HealthExaminable;
 using Content.Shared.Humanoid;
-using Content.Shared.Inventory; // Forky
+using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Rejuvenate;
 using Content.Shared.StatusEffectNew;
-using Content.Shared._Funkystation.Fluids; // Forky
+using Content.Shared._Funkystation.Fluids;
+using Content.Shared._Funkystation.WallStains;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -220,16 +221,27 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         var totalFloat = total.Float();
         TryModifyBleedAmount(ent.AsNullable(), totalFloat);
 
-        /// Critical hit. Causes target to lose blood, using the bleed rate modifier of the weapon, currently divided by 5
-        /// The crit chance is currently the bleed rate modifier divided by 25.
-        /// Higher damage weapons have a higher chance to crit!
+        // Funky Wall Stains
+        if (totalFloat >= 2f
+            && SolutionContainer.ResolveSolution(ent.Owner, ent.Comp.BloodSolutionName, ref ent.Comp.BloodSolution, out var bloodForSplatter)
+            && bloodForSplatter.Volume > 0)
+        {
+            var splatterAmount = FixedPoint2.Min(FixedPoint2.New(totalFloat * 0.15f), bloodForSplatter.Volume);
+            if (splatterAmount > 0)
+            {
+                var splatterSolution = SolutionContainer.SplitSolution(ent.Comp.BloodSolution.Value, splatterAmount);
+                var splashEv = new SplashOnWallEvent(Transform(ent.Owner).Coordinates, splatterSolution);
+                RaiseLocalEvent(ref splashEv);
+            }
+        }
 
-        // TODO: Replace with RandomPredicted once the engine PR is merged
+        // Critical hit. Causes target to lose blood, using the bleed rate modifier of the weapon, currently divided by 5
+        // The crit chance is currently the bleed rate modifier divided by 25.
+        // Higher damage weapons have a higher chance to crit!
+
         // Use both the receiver and the damage causing entity for the seed so that we have different results for multiple attacks in the same tick
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id, GetNetEntity(args.Origin)?.Id ?? 0 );
-        var rand = new System.Random(seed);
         var prob = Math.Clamp(totalFloat / 25, 0, 1);
-        if (totalFloat > 0 && rand.Prob(prob))
+        if (totalFloat > 0 && SharedRandomExtensions.PredictedProb(_timing, prob, GetNetEntity(ent), GetNetEntity(args.Origin)))
         {
             TryBleedOut(ent.AsNullable(), total / 5);
             _audio.PlayPredicted(ent.Comp.InstantBloodSound, ent, args.Origin);
@@ -253,36 +265,40 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
     /// </summary>
     private void OnHealthBeingExamined(Entity<BloodstreamComponent> ent, ref HealthBeingExaminedEvent args)
     {
+        var prefix = ent.Comp.ExamineLocPrefix;
+        if (prefix is null)
+            return;
+
         // Shows massively bleeding at 0.75x the max bleed rate.
         if (ent.Comp.BleedAmount > ent.Comp.MaxBleedAmount * 0.75f)
         {
             args.Message.PushNewline();
-            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-massive-bleeding", ("target", ent.Owner)));
+            args.Message.AddMarkupOrThrow(Loc.GetString($"{prefix}-massive-bleeding", ("target", ent.Owner)));
         }
         // Shows bleeding message when bleeding above half the max rate, but less than massively.
         else if (ent.Comp.BleedAmount > ent.Comp.MaxBleedAmount * 0.5f)
         {
             args.Message.PushNewline();
-            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-strong-bleeding", ("target", ent.Owner)));
+            args.Message.AddMarkupOrThrow(Loc.GetString($"{prefix}-strong-bleeding", ("target", ent.Owner)));
         }
         // Shows bleeding message when bleeding above 0.25x the max rate, but less than half the max.
         else if (ent.Comp.BleedAmount > ent.Comp.MaxBleedAmount * 0.25f)
         {
             args.Message.PushNewline();
-            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-bleeding", ("target", ent.Owner)));
+            args.Message.AddMarkupOrThrow(Loc.GetString($"{prefix}-bleeding", ("target", ent.Owner)));
         }
         // Shows bleeding message when bleeding below 0.25x the max cap
         else if (ent.Comp.BleedAmount > 0)
         {
             args.Message.PushNewline();
-            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-slight-bleeding", ("target", ent.Owner)));
+            args.Message.AddMarkupOrThrow(Loc.GetString($"{prefix}-slight-bleeding", ("target", ent.Owner)));
         }
 
         // If the mob's blood level is below the damage threshhold, the pale message is added.
         if (GetBloodLevel(ent.AsNullable()) < ent.Comp.BloodlossThreshold)
         {
             args.Message.PushNewline();
-            args.Message.AddMarkupOrThrow(Loc.GetString("bloodstream-component-looks-pale", ("target", ent.Owner)));
+            args.Message.AddMarkupOrThrow(Loc.GetString($"{prefix}-looks-pale", ("target", ent.Owner)));
         }
     }
 
@@ -520,6 +536,10 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
                 if (tempSolution.Volume <= 0)
                     break;
             }
+
+            // Funky Wall Stains
+            var splashEv = new SplashOnWallEvent(xform.Coordinates, tempSolution.Clone());
+            RaiseLocalEvent(ref splashEv);
             // Forky - end
 
             _puddle.TrySpillAt(ent.Owner, tempSolution, out _, sound: false);
@@ -596,6 +616,10 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
             if (tempSol.Volume <= 0)
                 break;
         }
+
+        // Funky Wall Stains
+        var splashEv = new SplashOnWallEvent(xform.Coordinates, tempSol.Clone());
+        RaiseLocalEvent(ref splashEv);
         // Forky - End
 
         _puddle.TrySpillAt(ent, tempSol, out _);
