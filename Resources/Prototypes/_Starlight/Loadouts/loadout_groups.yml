@@ -1250,9 +1250,3 @@
   - BrigmedicRig
   - BrigmedicBelt
   - CorpsmanBelt
-
-- type: loadoutGroup
-  id: ResearchDirectorBeretRD
-  name: loadout-group-rd-head
-  loadouts:
-  - ClothingHeadHatBeretRD
