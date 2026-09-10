@@ -90,12 +90,14 @@ public abstract partial class SharedPuddleSystem
             var initialVolume = puddleSolution.Volume; // Starlight
 
             // Still have to iterate over one-by-one since the full solution could have non-evaporating solutions.
-            foreach (var reagent in _evaporationReagents) // Starlight
+            #region Starlight
+            foreach (var reagent in _evaporationReagents)
             {
                 var factor = puddleSolution.GetTotalPrototypeQuantity(reagent) / initialVolume;
                 var reagentTick = evaporation.EvaporationAmount * _evaporationCooldown.TotalSeconds * evaporationSpeed * factor;
-                puddleSolution.RemoveReagent(reagent, reagentTick, ignoreReagentData: true); // Starlight
+                puddleSolution.RemoveReagent(reagent, reagentTick, ignoreReagentData: true);
             }
+            #endregion
 
             // Despawn if we're done
             if (puddleSolution.Volume == FixedPoint2.Zero)
