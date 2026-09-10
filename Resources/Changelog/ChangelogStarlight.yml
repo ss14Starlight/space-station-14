@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
   changes:
-  - message: Changed the size of the silver and gold beakers; they don't fit the standards of the others, since they cost credits.
-    type: Tweak
-  id: 408063
-  time: '2026-09-03T03:51:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5893
-- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
-  changes:
   - message: Chemical jugs and bar jugs are now Large (2x4) items.
     type: Tweak
   id: 408064
@@ -2799,4 +2792,11 @@ Entries:
   id: 408462
   time: '2026-09-10T17:03:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6073
+- author: STARLIGHT TEAM
+  changes:
+  - message: Neocytes now correctly display health icons in various medical HUDs.
+    type: Fix
+  id: 408463
+  time: '2026-09-10T17:03:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5948
 Order: -1
