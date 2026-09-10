@@ -144,7 +144,7 @@ public sealed partial class FootprintSystem : EntitySystem
         // Equipment only changes occasionally, so do this lookup at print cadence rather than physics cadence.
         if (_noFootprintsQuery.HasComponent(entity.Owner) ||
             (_inventory.TryGetSlotEntity(entity.Owner, "shoes", out var shoes) &&
-             _noFootprintsQuery.HasComponent(shoes)))
+                _noFootprintsQuery.HasComponent(shoes)))
         {
             return;
         }
