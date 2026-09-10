@@ -3,15 +3,12 @@
 - type: entity
   name: drone
   id: Drone
+  parent: BaseMob
   components:
   - type: Input
     context: "human"
-  - type: InputMover
-  - type: MobMover
   - type: MovementAlwaysTouching
   - type: NoSlip
-  - type: Physics
-    bodyType: KinematicController
   - type: Fixtures
     fixtures:
       fix1:
