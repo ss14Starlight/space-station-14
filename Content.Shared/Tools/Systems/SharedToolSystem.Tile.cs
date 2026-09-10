@@ -47,7 +47,7 @@ public abstract partial class SharedToolSystem
 
         var tileRef = _maps.GetTileRef(gridUid, grid, args.GridTile);
         var coords = _maps.ToCoordinates(tileRef, grid);
-        if (comp.RequiresUnobstructed && _turfs.IsTileBlocked(gridUid, tileRef.GridIndices, CollisionGroup.MobMask, ignored: IsSubfloorCovered)) // Starlight
+        if (comp.RequiresUnobstructed && _turfs.IsTileBlocked(gridUid, tileRef.GridIndices, CollisionGroup.MobMask, ignored: uid => IsSubfloorCovered(uid))) // Starlight
             return;
 
         if (!TryDeconstructWithToolQualities(tileRef, tool.Qualities))
@@ -80,7 +80,7 @@ public abstract partial class SharedToolSystem
         if (string.IsNullOrWhiteSpace(tileDef.BaseTurf))
             return false;
 
-        if (comp.RequiresUnobstructed && _turfs.IsTileBlocked(gridUid, tileRef.GridIndices, CollisionGroup.MobMask, ignored: IsSubfloorCovered)) // Starlight
+        if (comp.RequiresUnobstructed && _turfs.IsTileBlocked(gridUid, tileRef.GridIndices, CollisionGroup.MobMask, ignored: uid => IsSubfloorCovered(uid))) // Starlight
             return false;
 
         var coordinates = _maps.GridTileToLocal(gridUid, mapGrid, tileRef.GridIndices);
