@@ -7,11 +7,10 @@ using Content.Shared.Localizations;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
 #region Starlight
-using Content.Shared.Tag;
+
 using Content.Shared.Interaction;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
-using System.Linq;
 using Content.Shared._Starlight.Silicons;
 using Content.Shared._Starlight.Silicons.Borgs;
 #endregion Starlight

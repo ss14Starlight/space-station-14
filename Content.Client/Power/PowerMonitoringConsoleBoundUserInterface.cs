@@ -7,7 +7,7 @@ using Robust.Shared.Player;
 
 namespace Content.Client.Power;
 
-public sealed class PowerMonitoringConsoleBoundUserInterface : BoundUserInterface
+public sealed partial class PowerMonitoringConsoleBoundUserInterface : BoundUserInterface
 {
     [Dependency] private ISharedPlayerManager _playerManager = default!; // Starlight: go to clicked position for AI
 

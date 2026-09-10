@@ -1,24 +1,24 @@
 <cartridges:NanoChatMessageBubble
+    HorizontalExpand="True"
     xmlns="https://spacestation14.io"
-    xmlns:cartridges="clr-namespace:Content.Client._CD.CartridgeLoader.Cartridges"
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-    HorizontalExpand="True">
+    xmlns:cartridges="clr-namespace:Content.Client._CD.CartridgeLoader.Cartridges">
 
-    <BoxContainer Name="MessageContainer"
-                  Orientation="Horizontal"
-                  HorizontalExpand="True">
-        <!-- Left spacer for other's messages -->
-        <Control Name="LeftSpacer"
-                 MinSize="12 0" />
+    <BoxContainer
+        HorizontalExpand="True"
+        Name="MessageContainer"
+        Orientation="Horizontal">
+        <!--  Left spacer for other's messages  -->
+        <Control MinSize="12 0" Name="LeftSpacer" />
 
         <!--  Message panel  -->
         <BoxContainer
-            Name="MessageBox"
-            Orientation="Vertical"
-            HorizontalExpand="False"
+            HorizontalExpand="True"
             MaxWidth="320"
-            HorizontalAlignment="Left">
+            Name="MessageBox"
+            Orientation="Vertical">
 
+            <!-- Funky Station - Added sender name label -->
             <Label
                 HorizontalAlignment="Left"
                 Margin="10,0,10,2"
@@ -32,35 +32,33 @@
                 Name="MessagePanel">
                 <PanelContainer.PanelOverride>
                     <graphics:StyleBoxFlat
+                        BorderThickness="1"
+                        ContentMarginBottomOverride="6"
                         ContentMarginLeftOverride="10"
                         ContentMarginRightOverride="10"
-                        ContentMarginTopOverride="6"
-                        ContentMarginBottomOverride="6"
-                        BorderThickness="1">
-                        <!-- Colors set in code based on message sender -->
+                        ContentMarginTopOverride="6">
+                        <!--  Colors set in code based on message sender  -->
                     </graphics:StyleBoxFlat>
                 </PanelContainer.PanelOverride>
 
-                <RichTextLabel Name="MessageText"
-                               HorizontalExpand="True" />
+                <RichTextLabel HorizontalExpand="True" Name="MessageText" />
             </PanelContainer>
 
-            <!-- Delivery failed text -->
-            <Label Name="DeliveryFailedLabel"
-                   Text="{Loc nano-chat-delivery-failed}"
-                   StyleClasses="LabelSmall"
-                   HorizontalExpand="True"
-                   HorizontalAlignment="Right"
-                   Margin="10 2 10 0"
-                   Visible="False" />
+            <!--  Delivery failed text  -->
+            <Label
+                HorizontalAlignment="Right"
+                HorizontalExpand="True"
+                Margin="10,2,10,0"
+                Name="DeliveryFailedLabel"
+                StyleClasses="LabelSmall"
+                Text="{Loc nano-chat-delivery-failed}"
+                Visible="False" />
         </BoxContainer>
 
-        <!-- Right spacer for own messages -->
-        <Control Name="RightSpacer"
-                 MinSize="12 0" />
+        <!--  Right spacer for own messages  -->
+        <Control MinSize="12 0" Name="RightSpacer" />
 
-        <!-- Flexible space for alignment -->
-        <Control Name="FlexSpace"
-                 HorizontalExpand="True" />
+        <!--  Flexible space for alignment  -->
+        <Control HorizontalExpand="True" Name="FlexSpace" />
     </BoxContainer>
 </cartridges:NanoChatMessageBubble>
