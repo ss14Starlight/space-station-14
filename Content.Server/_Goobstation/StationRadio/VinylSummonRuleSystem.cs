@@ -15,7 +15,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
 using Content.Server.Chat.Systems;
-using Content.Shared._Goobstation.StationRadio.Systems;
+using Content.Server._Starlight.StationRadio.Systems; // Starlight - Shared._Goobstation -> Server._Starlight
 using Content.Shared._Starlight.StationRadio.Events;
 
 namespace Content.Server._Goobstation.StationRadio; // Starlight - _Goob -> _Goobstation
@@ -82,7 +82,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         }
 
         // Check if vinyl player is connected to the radio system
-        if (!_stationRadio.TryGetLinkedPoweredServer(playerUid, out _)) // Starlight - Station Radio Check oved to StationRadioReceiverSystem
+        if (!_stationRadio.TryGetLinkedServer(playerUid, out _)) // Starlight - Station Radio Check oved to StationRadioReceiverSystem
         {
             _popups.PopupPredicted(Loc.GetString("vinyl-popout-no-radio-connection"), playerUid, null, PopupType.Medium);
             QueueSafeEject();
@@ -104,7 +104,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         _trackingVinyls.Remove(args.Vinyl);
     }
 
-    public override void Update(float frameTime)
+    public override void Update(float frameTime) //TODO Pretty sure most of this can be checked once in OnVinylFinished
     {
         base.Update(frameTime);
 
@@ -139,7 +139,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
             }
 
             // Check if vinyl player is still connected to the radio system
-            if (!_stationRadio.TryGetLinkedPoweredServer(data.VinylPlayerUid, out _)) // Starlight - Station Radio Check oved to StationRadioReceiverSystem
+            if (!_stationRadio.TryGetPoweredGridServer(data.VinylPlayerUid, out _)) // Starlight - Station Radio Check moved to StationRadioReceiverSystem
             {
                 _trackingVinyls.Remove(vinylUid);
                 _popups.PopupPredicted(Loc.GetString("vinyl-popout-no-radio-connection"), data.VinylPlayerUid, null, PopupType.Medium);

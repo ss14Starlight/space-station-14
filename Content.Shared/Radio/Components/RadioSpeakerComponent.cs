@@ -10,7 +10,7 @@ namespace Content.Shared.Radio.Components;
 ///     Listens for radio messages and relays them to local chat.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedRadioDeviceSystem), typeof(StationRadioReceiverSystem))] // Goobstation - Add StationRadioReceiverSystem access.
+[Access(typeof(SharedRadioDeviceSystem), typeof(SharedStationRadioReceiverSystem))] // Goobstation - Add StationRadioReceiverSystem access.
 public sealed partial class RadioSpeakerComponent : Component
 {
     /// <summary>

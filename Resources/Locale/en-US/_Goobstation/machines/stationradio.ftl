@@ -14,9 +14,11 @@ vinyl-popout-no-radio-connection = The vinyl ejects itself, the player isn't con
 # Starlight - Station Radio Examination Text.
 vinyl-player-examine-empty = It's empty.
 vinyl-player-examine-loaded = There's a copy of { $vinyl } inside.
+vinyl = vinyl
 
 station-radio-receiver-examine-full-volume = It's playing at full volume.
-station-radio-receiver-examine-low-volume = It's playing at low volume.
+station-radio-receiver-examine-low-volume = It's playing.
+ui-options-radio-music-volume = Radio music volume:
 
 station-radio-server-examine-recording = The station server is not recording.
 station-radio-server-examine-not-recording = The station server is currently recording.
