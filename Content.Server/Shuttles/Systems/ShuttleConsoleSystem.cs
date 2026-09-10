@@ -207,7 +207,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             return;
         }
 
-        _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
+        _stationAiSystem.TryWarpEyeToCoordinates((actor, null), coordinates);
     }
     #endregion
 

@@ -220,7 +220,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
             return;
         }
 
-        if (!TryWarpEyeToEntity(actor, target))
+        if (!TryWarpEyeToEntity((actor, null), target)) // Starlight
             _warpSawmill.Debug($"Station AI {Name(actor)} ({actor}) warp to {Name(target)} ({target}) rejected by TryWarpEyeToEntity.");
     }
 
@@ -301,20 +301,23 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         }
     }
 
-    public bool TryWarpEyeToCoordinates(EntityUid user, EntityCoordinates coordinates, bool popupOnFailure = true)
+    /// <summary>Attempts to warp the Station AI eye to coordinates on a grid the AI is allowed to access.</summary>
+    public bool TryWarpEyeToCoordinates(Entity<StationAiHeldComponent?> user, EntityCoordinates coordinates, bool popupOnFailure = true) // Starlight
     {
+        Resolve(user, ref user.Comp, false);
+
         bool Fail()
         {
             if (popupOnFailure)
-                _popups.PopupClient(Loc.GetString("ai-device-not-responding"), user, PopupType.MediumCaution);
+                _popups.PopupClient(Loc.GetString("ai-device-not-responding"), user.Owner, PopupType.MediumCaution); // Starlight
 
             return false;
         }
 
-        if (!HasComp<StationAiHeldComponent>(user))
+        if (user.Comp == null)
             return Fail();
 
-        if (!TryGetCore(user, out var coreEntity) || coreEntity.Comp == null)
+        if (!TryGetCore(user.Owner, out var coreEntity) || coreEntity.Comp == null)
             return Fail();
 
         var coreUid = coreEntity.Owner;
@@ -354,17 +357,20 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
         return true;
     }
 
-    public bool TryWarpEyeToEntity(EntityUid user, EntityUid target, bool popupOnFailure = true)
+    ///<summary>Attempts to warp the Station AI eye to an entity on a grid the AI is allowed to access.</summary>
+    public bool TryWarpEyeToEntity(Entity<StationAiHeldComponent?> user, EntityUid target, bool popupOnFailure = true)
     {
+        Resolve(user, ref user.Comp, false);
+
         bool Fail()
         {
             if (popupOnFailure)
-                _popups.PopupClient(Loc.GetString("ai-device-not-responding"), user, PopupType.MediumCaution);
+                _popups.PopupClient(Loc.GetString("ai-device-not-responding"), user.Owner, PopupType.MediumCaution);
 
             return false;
         }
 
-        if (!TryGetCore(user, out var coreEntity) || coreEntity.Comp == null)
+        if (!TryGetCore(user.Owner, out var coreEntity) || coreEntity.Comp == null)
             return Fail();
 
         if (!TryComp<StationAiCoreComponent>(coreEntity.Owner, out var core))
@@ -386,7 +392,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
         if ((TryComp(target, out WarpPointComponent? warp) && warp.Follow) || HasComp<MobStateComponent>(target))
         {
-            var orbit = !HasComp<StationAiHeldComponent>(user);
+            var orbit = user.Comp == null;
             _followerSystem.StartFollowingEntity(remoteEye, target, orbit);
             if (!orbit)
                 _activeFollowTargets[target] = remoteEye;
