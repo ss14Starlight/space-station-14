@@ -3985,3 +3985,13 @@
   id: 9543
   time: '2026-02-25T01:34:33.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/42696
+- author: ScarKy0
+  changes:
+  - message: Cyborgs can now pry unpowered doors without the need for a crowbar.
+    type: Add
+  - message: Entities that can pry things innately (zombies, spiders, etc) now have
+      an alert telling them so.
+    type: Add
+  id: 9544
+  time: '2026-02-25T23:33:16.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/41812
