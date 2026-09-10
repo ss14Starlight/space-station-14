@@ -29,6 +29,7 @@
   - type: Tag
     tags:
       - HolosignProjector
+      - HoloprojectorCrafting # SL Edit
   - type: ForceQuickDraw #Starlight Don't pull the power cell when using hotkeys to remove from pockets
 
 - type: entity
@@ -99,6 +100,7 @@
   - type: Tag
     tags:
       - HolofanProjector
+      - HoloprojectorCrafting #SL Edit
   - type: StaticPrice
     price: 50
   - type: GuideHelp
@@ -151,6 +153,7 @@
     - type: Tag
       tags:
         - HolofanProjector
+        - HoloprojectorCrafting #SL Edit
     - type: StaticPrice
       price: 130
 
@@ -185,6 +188,7 @@
       tags:
         - HolofanProjector
         - SecBeltEquip
+        - HoloprojectorCrafting #SL Edit
     - type: StaticPrice
       price: 50
 

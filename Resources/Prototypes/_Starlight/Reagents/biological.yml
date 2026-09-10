@@ -42,7 +42,7 @@
   recognizable: true
   physicalDesc: reagent-physical-desc-unidentifiable
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:ModifyStatusEffect
         conditions:
@@ -91,7 +91,7 @@
             type: [ Cyclorite ]
             inverted: true
   metabolisms:
-    Poison:
+    Bloodstream:
       metabolismRate: 1.00 # slightly faster metabolism for an acid
       effects:
         - !type:HealthChange
@@ -118,8 +118,7 @@
             - !type:MetabolizerTypeCondition
               type: [ Cyclorite, Bloodsucker ]
               inverted: true
-    Medicine:
-      effects:
+        # Bloodsucker healing
         - !type:HealthChange
           conditions:
             - !type:MetabolizerTypeCondition
@@ -140,7 +139,7 @@
   boilingPoint: 212.0
   meltingPoint: 170.0
   metabolisms:
-    Narcotic:
+    Bloodstream:
       effects:
       # Main effects
       - !type:MovementSpeedModifier
@@ -191,8 +190,7 @@
           min: 1
         reagent: ChloralHydrate
         amount: -10
-    Medicine:
-      effects:
+      # Medicine
       # It's like hyperzine, but without the healing.
       - !type:ResetNarcolepsy
       - !type:SatiateHunger

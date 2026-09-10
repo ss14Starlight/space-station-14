@@ -1,4 +1,5 @@
 using Content.Shared.Stealth.Components;
+using Content.Shared.Tag;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -69,6 +70,12 @@ public partial class StatusIconData : IComparable<StatusIconData>
     public int Offset = 0;
 
     /// <summary>
+    /// Offset of the status icon, left and right only.
+    /// </summary>
+    [DataField]
+    public int OffsetHorizontal = 0;
+
+    /// <summary>
     /// Sets if the icon should be rendered with or without the effect of lighting.
     /// </summary>
     [DataField]
@@ -82,6 +89,7 @@ public partial class StatusIconData : IComparable<StatusIconData>
 /// <summary>
 /// <see cref="StatusIconData"/> but in new convenient prototype form!
 /// </summary>
+[ImplicitDataDefinitionForInheritors]
 public abstract partial class StatusIconPrototype : StatusIconData, IPrototype
 {
     /// <inheritdoc/>
@@ -118,6 +126,19 @@ public sealed partial class JobIconPrototype : StatusIconPrototype, IInheritingP
     /// </summary>
     [DataField]
     public bool AllowSelection = true;
+
+    /// <summary>
+    /// Should this job icon be considered a crew job for silicons?
+    /// </summary>
+    [DataField]
+    public bool IsCrewJob = true;
+
+    /// <summary>
+    /// Starlight-edit: Categories a job icon belongs to (e.g. crew, syndicate, centcomm).
+    /// Consoles that offer a job icon picker (the ID card console, the task master/hop's digi-board, etc) can only see icons with the tags they're configured to show.
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<TagPrototype>> Tags = new();
 }
 
 /// <summary>

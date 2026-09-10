@@ -28,6 +28,7 @@
       whitelist:
         components:
           - Item
+          - WallMount # Starlight Edit
         tags:
           - Structure
           - Labelable # Starlight

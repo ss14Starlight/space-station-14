@@ -50,6 +50,11 @@
   name: box of playing cards
   description: A small carton meant to contain a collection of little pieces of cardstock. Thrilling.
   components:
+  # Starlight start
+  - type: Tag
+    tags:
+    - PlayingCardDeckBox
+  # Starlight end
   - type: Sprite
     sprite: _Moffstation/Objects/Misc/Cards/card_black.rsi
     state: empty

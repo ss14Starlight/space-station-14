@@ -21,7 +21,7 @@
 - type: cargoProduct
   id: FunMegaShark
   icon:
-    sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark.rsi
+    sprite: _Starlight/Objects/Fun/Plushies/large_soft_shark_plushie.rsi
     state: icon
   product: CrateFunMegaShark
   cost: 2500

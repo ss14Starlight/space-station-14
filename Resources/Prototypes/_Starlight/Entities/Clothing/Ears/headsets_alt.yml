@@ -15,6 +15,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/cc.ogg
+  - type: HeadsetLoudMode
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCentcommContraband]
@@ -35,6 +36,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/cc.ogg
+  - type: HeadsetLoudMode
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseNanoTrasenContraband]
@@ -54,6 +56,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/cc.ogg
+  - type: HeadsetLoudMode
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseNanoTrasenContraband]
@@ -74,6 +77,7 @@
       path: /Audio/_Starlight/Effects/Radio/captain.ogg
   - type: StealTarget # Starlight
     stealGroup: ClothingHeadsetAltCommand # Starlight
+  - type: HeadsetLoudMode
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseNanoTrasenContraband]
@@ -94,6 +98,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/captain.ogg
+  - type: HeadsetLoudMode
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -125,6 +130,7 @@
     sprite: Clothing/Ears/Headsets/command.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/command.rsi
+  - type: HeadsetLoudMode
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseBlueShieldContraband]
@@ -143,6 +149,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/bso.ogg
+  - type: HeadsetLoudMode
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseSyndicateContraband]
@@ -164,6 +171,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/marauder_commander.ogg
+  - type: HeadsetLoudMode
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseSyndicateContraband]
@@ -203,6 +211,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/deathsquad.ogg
+  - type: HeadsetLoudMode
 
 - type: entity
   parent: [ ClothingHeadsetAltNanoTrasen, BaseNanoTrasenContraband ]
@@ -222,6 +231,7 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/deathsquad.ogg
+  - type: HeadsetLoudMode
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -239,6 +249,7 @@
       sprite: _Starlight/Clothing/Ears/Headsets/global.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Ears/Headsets/global.rsi
+    - type: HeadsetLoudMode
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -256,6 +267,7 @@
       sprite: _Starlight/Clothing/Ears/Headsets/admeme.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Ears/Headsets/admeme.rsi
+    - type: HeadsetLoudMode
 
 - type: entity
   parent: ClothingHeadsetAlt

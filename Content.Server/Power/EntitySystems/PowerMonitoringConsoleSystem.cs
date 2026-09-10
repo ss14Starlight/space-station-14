@@ -15,6 +15,10 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.NodeContainer;
+using Content.Shared.Medical.CrewMonitoring;
+using Content.Shared.Silicons.StationAi;
+using Content.Server.Silicons.StationAi;
+using Robust.Shared.Map;
 
 namespace Content.Server.Power.EntitySystems;
 
@@ -24,6 +28,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
     [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private SharedMapSystem _sharedMapSystem = default!;
     [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private StationAiSystem _stationAiSystem = default!; // Starlight: go to clicked position for AI
 
     // Note: this data does not need to be saved
     private Dictionary<EntityUid, Dictionary<Vector2i, PowerCableChunk>> _gridPowerCableChunks = new();
@@ -44,6 +49,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
 
         // UI events
         SubscribeLocalEvent<PowerMonitoringConsoleComponent, PowerMonitoringConsoleMessage>(OnPowerMonitoringConsoleMessage);
+        SubscribeLocalEvent<PowerMonitoringConsoleComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight: go to clicked position for AI
         SubscribeLocalEvent<PowerMonitoringConsoleComponent, BoundUIOpenedEvent>(OnBoundUIOpened);
 
         // Grid events
@@ -56,6 +62,26 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
         SubscribeLocalEvent<GameRuleStartedEvent>(OnPowerGridCheckStarted);
         SubscribeLocalEvent<GameRuleEndedEvent>(OnPowerGridCheckEnded);
     }
+
+    #region Starlight
+    private void OnWarpRequest(EntityUid uid, PowerMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
+    {
+        if (args.Actor is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
+            return;
+
+        EntityCoordinates coordinates;
+        try
+        {
+            coordinates = GetCoordinates(args.Coordinates);
+        }
+        catch
+        {
+            return;
+        }
+
+        _stationAiSystem.TryWarpEyeToCoordinates(actor, coordinates);
+    }
+    #endregion
 
     #region EventHandling
 

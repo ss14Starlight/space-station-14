@@ -257,4 +257,5 @@
       prob: 0.01
     - id: EmeraldLizitar
       prob: 0.01
-    #Starlight end
+    - id: AmethystLizitar
+      prob: 0.01 #Starlight end

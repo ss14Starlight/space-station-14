@@ -324,7 +324,7 @@ public sealed partial class AtmosphereSystem
             atmos.InvalidatedCoords.Add(indices);
         }
 
-        var enumerator = _map.GetAllTilesEnumerator(uid, grid);
+        var enumerator = _mapSystem.GetAllTilesEnumerator(uid, grid);
         while (enumerator.MoveNext(out var tile))
         {
             atmos.InvalidatedCoords.Add(tile.Value.GridIndices);
@@ -335,7 +335,7 @@ public sealed partial class AtmosphereSystem
     {
         if (!TryComp(tile.GridIndex, out MapGridComponent? grid))
             return default;
-        _map.TryGetTileRef(tile.GridIndex, grid, tile.GridIndices, out var tileRef);
+        _mapSystem.TryGetTileRef(tile.GridIndex, grid, tile.GridIndices, out var tileRef);
         return tileRef;
     }
 }

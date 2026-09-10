@@ -1,0 +1,217 @@
+- type: entity
+  id: PartNeocyte
+  parent: [BaseItem, BasePart]
+  name: neocyte body part
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: BatteryAcid
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: TorsoNeocyte
+  name: neocyte torso
+  parent: [PartNeocyte, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: BatteryAcid
+        Quantity: 15
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: HeadNeocyte
+  name: neocyte head
+  parent: [PartNeocyte, BaseHead]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: BatteryAcid
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmNeocyte
+  name: left neocyte arm
+  parent: [PartNeocyte, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmNeocyte
+  name: right neocyte arm
+  parent: [PartNeocyte, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandNeocyte
+  name: left neocyte hand
+  parent: [PartNeocyte, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandNeocyte
+  name: right neocyte hand
+  parent: [PartNeocyte, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegNeocyte
+  name: left neocyte leg
+  parent: [PartNeocyte, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegNeocyte
+  name: right neocyte leg
+  parent: [PartNeocyte, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootNeocyte
+  name: left neocyte foot
+  parent: [PartNeocyte, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootNeocyte
+  name: right neocyte foot
+  parent: [PartNeocyte, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "r_foot"
+
+#### VULPKANIN ####
+
+- type: entity
+  id: TorsoNeoVulpkanin
+  name: neo-vulpkanin torso
+  parent: TorsoNeocyte
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "torso_m"
+
+- type: entity
+  id: HeadNeoVulpkanin
+  name: neo-vulpkanin head
+  parent: HeadNeocyte
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "head_m"
+
+- type: entity
+  id: LeftArmNeoVulpkanin
+  name: left neo-vulpkanin arm
+  parent: LeftArmNeocyte
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmNeoVulpkanin
+  name: right neo-vulpkanin arm
+  parent: RightArmNeocyte
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandNeoVulpkanin
+  name: left neo-vulpkanin hand
+  parent: LeftHandNeocyte
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandNeoVulpkanin
+  name: right neo-vulpkanin hand
+  parent: RightHandNeocyte
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "r_hand"
+
+#### Vox ####
+
+- type: entity
+  id: LeftHandNeoVox
+  name: left neo-vox hand
+  parent: LeftHandNeocyte
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandNeoVox
+  name: right neo-vox hand
+  parent: RightHandNeocyte
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftFootNeoVox
+  name: left neo-vox foot
+  parent: LeftFootNeocyte
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootNeoVox
+  name: right neo-vox foot
+  parent: RightFootNeocyte
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
+    state: "r_foot"

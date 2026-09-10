@@ -13,13 +13,14 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stacks;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Server._Starlight.Objectives.Events;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared.Objectives;
 using Content.Server._Starlight.Railroading;
 using Content.Server._Starlight.Shadekin;
+using Content.Shared._Starlight.Objectives.Events;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Components.Tasks;
+using Content.Shared._Starlight.Shadekin;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -55,7 +56,7 @@ public sealed partial class StealConditionSystem : EntitySystem
         SubscribeLocalEvent<StealConditionComponent, RailroadingAssignedEvent>(OnRailroadingAssigned);
         SubscribeLocalEvent<StealConditionComponent, RailroadingCardChosenEvent>(OnRailroadingAfterAssign);
         SubscribeLocalEvent<StealConditionComponent, CollectObjectiveInfoEvent>(OnCollectObjectiveInfo);
-        SubscribeLocalEvent<StealConditionComponent, RailroadingCardCompletionQueryEvent>((ent, ref args) => args.IsCompleted = true);
+        SubscribeLocalEvent<StealConditionComponent, RailroadingCardCompletionQueryEvent>((_, ref args) => args.IsCompleted = true);
         // Starlight - End
     }
 

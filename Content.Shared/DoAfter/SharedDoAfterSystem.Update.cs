@@ -5,10 +5,9 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Robust.Shared.Utility;
-#region Starlight
 using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.Antags.Abductor.Components;
-#endregion
+using Content.Shared._Starlight.DoAfter;
 
 namespace Content.Shared.DoAfter;
 
@@ -223,7 +222,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         // This does not mean their hand needs to be empty.
         if (args.NeedHand)
         {
-            if (!handsQuery.TryGetComponent(args.User, out var hands) || hands.Count == 0)
+            if (!handsQuery.TryGetComponent(args.User, out var hands) || (hands.Count == 0 && !HasComp<HandlessDoAfterComponent>(args.User))) // Starlight
                 return true;
 
             // If an item was in the user's hand to begin with,

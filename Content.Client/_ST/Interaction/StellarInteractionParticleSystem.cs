@@ -111,7 +111,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
         }
 
         var sprite = Comp<SpriteComponent>(particle);
-        sprite.NoRotation = true;
+        sprite.NoRotation = type == StellarInteractionParticleType.InHand; // Starlight, fix so it works with rotated camera
         var spriteColor = sprite.Color;
         var animation = type switch
         {

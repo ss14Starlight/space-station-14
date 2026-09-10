@@ -1,0 +1,33 @@
+<Document>
+# Misc
+
+## Emergency Maintenance Access
+
+[bold]Called by any two:[/bold] [color=#fcdf03]Command[/color] members.
+
+[bold]Conditions:[/bold] An emergency situation requires crew to be able to freely move through the station, such as during a loose engine or during war when Code Delta has been called.
+
+Must be ended as soon as the situation is resolved.
+
+[bold]Ended when:[/bold] The emergency no longer requires broad maintenance or external access.
+
+[bold]Ended by:[/bold] Any [color=#fcdf03]Command[/color] member.
+
+## Station-Wide Emergency Access
+
+[bold]Called by any two:[/bold] [color=#fcdf03]Command[/color] members.
+
+[bold]Conditions:[/bold] An emergency situation requires crew to be able to freely move through the station, such as during a loose engine or during war when Code Delta has been called.
+
+Must be ended as soon as the situation is resolved.
+
+[bold]Ended when:[/bold] The emergency has passed.
+
+[bold]Ended by:[/bold] Any [color=#fcdf03]Command[/color] member.
+
+## Self-Destruct Codes
+
+[bold]Called by:[/bold] [color=#fcdf03]Captain[/color] and [color=#2253b5]NanoTrasen Representative[/color], plus any three [color=#fcdf03]Command[/color] members, with [color=#86d420]Central Command[/color] approval.
+
+[bold]Conditions:[/bold] A direct order from Central Command has been issued to destroy the station, or for instances when allowing the station to continue is more of a threat than it is worth.
+</Document>

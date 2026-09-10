@@ -1,0 +1,54 @@
+﻿- type: entity
+  id: ReagentPuddleFireEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: Sprite
+    sprite: _Funkystation/Effects/reagentfire.rsi
+    layers:
+    - state: "4"
+      shader: unshaded
+    visible: true
+    drawdepth: Overlays
+  - type: Appearance
+  - type: ReagentPuddleFireEffect
+
+- type: particleEffect
+  id: ReagentFireContinuous
+  parent: SfFireContinuous
+  sprite:
+    sprite: _Starfall/Particles/generic.rsi
+    state: dot
+  emissionRate: 35
+  maxCount: 150
+  speed: 1.2
+  speedVariance: 0.6
+  gravity: -0.8
+  sizeVariance: 0.4
+  stretchFactor: 0.15
+  noiseStrength: 0.5
+  noiseFrequency: 1.8
+  spreadAngle: 45
+  colorOverLifetime:
+  - time: 0.0
+    color: "#FFFFFFFF"
+  - time: 0.2
+    color: "#FFFFFFFF"
+  - time: 0.5
+    color: "#FFFFFFFF"
+  - time: 0.8
+    color: "#FFFFFFBB"
+  - time: 1.0
+    color: "#FFFFFF00"
+
+- type: particleEffect
+  id: ReagentFireSmoke
+  parent: SfFireSmoke
+  sprite:
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke
+  renderLayer: 1
+  gravity: -1.2
+  spawnOffset: 0, 0.4
+  startColor: "#FFFFFF66"
+  endColor: "#FFFFFF00"

@@ -26,7 +26,10 @@
   - type: TimedDoorClosing
     autoCloseDelay: 5
   - type: RCDDeconstructable
-    deconstructable: false
+    deconstructable: true
+    cost: 4
+    delay: 6
+    fx: EffectRCDDeconstruct6
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -34,7 +37,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
+        damage: 300
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]

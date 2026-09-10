@@ -1,16 +1,13 @@
 ﻿using System.Numerics;
 using Content.Client.Administration.Managers;
+using Content.Client.Construction; // Starlight
 using Content.Client.Gameplay;
-using Content.Client.Markers;
 using Content.Client.Sandbox;
-using Content.Client.SubFloor;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.DecalPlacer;
 using Content.Client.UserInterface.Systems.Sandbox.Windows;
 using Content.Shared.Input;
 using JetBrains.Annotations;
-using Robust.Client.Debugging;
-using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
@@ -30,15 +27,12 @@ namespace Content.Client.UserInterface.Systems.Sandbox;
 public sealed partial class SandboxUIController : UIController, IOnStateChanged<GameplayState>, IOnSystemChanged<SandboxSystem>
 {
     [Dependency] private IConsoleHost _console = default!;
-    [Dependency] private IEyeManager _eye = default!;
     [Dependency] private IInputManager _input = default!;
-    [Dependency] private ILightManager _light = default!;
     [Dependency] private IClientAdminManager _admin = default!;
     [Dependency] private IPlayerManager _player = default!;
 
-    [UISystemDependency] private readonly DebugPhysicsSystem _debugPhysics = default!;
-    [UISystemDependency] private readonly MarkerSystem _marker = default!;
     [UISystemDependency] private readonly SandboxSystem _sandbox = default!;
+    [UISystemDependency] private readonly ConstructionSystem _construction = default!; // Starlight
 
     private SandboxWindow? _window;
 
@@ -117,13 +111,6 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         _window.OnOpen += () => { SandboxButton!.Pressed = true; };
         _window.OnClose += () => { SandboxButton!.Pressed = false; };
 
-        // TODO: These need moving to opened so at least if they're not synced properly on open they work.
-        _window.ToggleLightButton.Pressed = !_light.Enabled;
-        _window.ToggleFovButton.Pressed = !_eye.CurrentEye.DrawFov;
-        _window.ToggleShadowsButton.Pressed = !_light.DrawShadows;
-        _window.ShowMarkersButton.Pressed = _marker.MarkersVisible;
-        _window.ShowBbButton.Pressed = (_debugPhysics.Flags & PhysicsDebugFlags.Shapes) != 0x0;
-
         _window.AiOverlayButton.OnPressed += args =>
         {
             var player = _player.LocalEntity;
@@ -143,6 +130,7 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         _window.SpawnTilesButton.OnPressed += _ => TileSpawningController.ToggleWindow();
         _window.SpawnEntitiesButton.OnPressed += _ => EntitySpawningController.ToggleWindow();
         _window.SpawnDecalsButton.OnPressed += _ => DecalPlacerController.ToggleWindow();
+        _window.FinishConstructionGhostsButton.OnPressed += _ => _construction.DebugFinishAllGhosts(); // Starlight
         _window.GiveFullAccessButton.OnPressed += _ => _sandbox.GiveAdminAccess();
         _window.GiveAghostButton.OnPressed += _ => _sandbox.GiveAGhost();
         _window.ToggleLightButton.OnToggled += _ => _sandbox.ToggleLight();

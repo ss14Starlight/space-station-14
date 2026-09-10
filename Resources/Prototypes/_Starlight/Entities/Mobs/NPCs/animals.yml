@@ -6,10 +6,13 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     understands:
     - Dog
+    - DogFeral
     - Canilunzt
     - GalacticCommon
+
 - type: entity
   parent: MobCorgiSmartNoGalcom
   id: MobCorgiSmartGhostrole

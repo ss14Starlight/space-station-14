@@ -92,6 +92,7 @@
   description: A comfy-looking dog bed. You can even strap your pet in, in case the gravity turns off.
   components:
   - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi # ST Edit
     state: dogbed
   - type: Strap
     position: Stand
@@ -100,7 +101,7 @@
     graph: bed
     node: dogbed
   - type: Damageable
-    damageModifierSet: Wood
+    damageModifierSet: Inflatable # SL edit
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities
@@ -109,7 +110,7 @@
       behaviors:
       - !type:PlaySoundBehavior
         sound:
-          collection: WoodDestroy
+          collection: WeakHit # SL edit
       - !type:DoActsBehavior
         acts: ["Destruction"]
     - trigger:
@@ -120,12 +121,12 @@
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          collection: WoodDestroy
+          collection: WeakHit # SL Edit
       - !type:SpawnEntitiesBehavior
         spawn:
-          MaterialWoodPlank:
+          MaterialCloth1: # SL Edit
             min: 1
-            max: 5
+            max: 2 # SL Edit
 
 - type: entity
   parent: Bed

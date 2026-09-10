@@ -15,7 +15,7 @@
   - type: ShowHealthBars
     damageContainers:
       - Biological
-      - Hybrid # Protogens
+      - Hybrid # Neocytes
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -44,7 +44,7 @@
   - type: ShowHealthBars
     damageContainers:
       - Biological
-      - Hybrid # Protogens
+      - Hybrid # Neocytes
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
@@ -226,7 +226,7 @@
   - type: ShowHealthBars
     damageContainers:
       - Biological
-      - Hybrid # Protogens
+      - Hybrid # Neocytes
   - type: Tag
     tags:
     - WhitelistChameleon

@@ -21,33 +21,6 @@ public sealed partial class DoorSystem : SharedDoorSystem
         SubscribeLocalEvent<DoorComponent, AnimationCompletedEvent>(OnAnimationCompleted);
     }
 
-    private void OnAnimationCompleted(Entity<DoorComponent> entity, ref AnimationCompletedEvent args)
-    {
-        if (args.Key != DoorComponent.OpenKey && args.Key != DoorComponent.CloseKey)
-            return;
-
-        if (!TryComp<SpriteComponent>(entity, out var sprite)) // Starlight
-            return;
-
-        switch (entity.Comp.State)
-        {
-            case DoorState.Open:
-                foreach (var (layer, layerState) in entity.Comp.OpenSpriteStates)
-                {
-                    _sprite.LayerSetRsiState((entity.Owner, sprite), layer, layerState);
-                }
-
-                break;
-            case DoorState.Closed:
-                foreach (var (layer, layerState) in entity.Comp.ClosedSpriteStates)
-                {
-                    _sprite.LayerSetRsiState((entity.Owner, sprite), layer, layerState);
-                }
-
-                break;
-        }
-    }
-
     protected override void OnComponentInit(Entity<DoorComponent> ent, ref ComponentInit args)
     {
         var comp = ent.Comp;
@@ -106,6 +79,35 @@ public sealed partial class DoorSystem : SharedDoorSystem
         };
     }
 
+    private void OnAnimationCompleted(Entity<DoorComponent> ent, ref AnimationCompletedEvent args)
+    {
+        if (args.Key != DoorComponent.OpenKey && args.Key != DoorComponent.CloseKey)
+            return;
+
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
+            return;
+
+        switch (ent.Comp.State)
+        {
+            case DoorState.Open:
+
+                foreach (var (layer, layerState) in ent.Comp.OpenSpriteStates)
+                {
+                    _sprite.LayerSetRsiState((ent.Owner, sprite), layer, layerState);
+                }
+
+                break;
+            case DoorState.Closed:
+
+                foreach (var (layer, layerState) in ent.Comp.ClosedSpriteStates)
+                {
+                    _sprite.LayerSetRsiState((ent.Owner, sprite), layer, layerState);
+                }
+
+                break;
+        }
+    }
+
     private void OnAppearanceChange(Entity<DoorComponent> entity, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
@@ -140,14 +142,11 @@ public sealed partial class DoorSystem : SharedDoorSystem
                 if (_animationSystem.HasRunningAnimation(entity, DoorComponent.OpenKey))
                     return;
 
-                // Moffstation - Start - Don't stop animations
-                /*
                 if (_animationSystem.HasRunningAnimation(entity, DoorComponent.CloseKey))
                 {
                     _animationSystem.Stop(entity, null, DoorComponent.CloseKey);
                     _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.OpenKey);
                 }
-                */ // Moffstation - End
 
                 foreach (var (layer, layerState) in entity.Comp.OpenSpriteStates)
                 {
@@ -159,14 +158,11 @@ public sealed partial class DoorSystem : SharedDoorSystem
                 if (_animationSystem.HasRunningAnimation(entity, DoorComponent.CloseKey))
                     return;
 
-                // Moffstation - Start - Don't stop animations
-                /*
                 if (_animationSystem.HasRunningAnimation(entity, DoorComponent.OpenKey))
                 {
                     _animationSystem.Stop(entity, null, DoorComponent.OpenKey);
-                    _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.OpenKey);
+                    _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.CloseKey);
                 }
-                */ // Moffstation - End
 
                 foreach (var (layer, layerState) in entity.Comp.ClosedSpriteStates)
                 {

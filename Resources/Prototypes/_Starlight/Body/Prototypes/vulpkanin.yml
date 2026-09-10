@@ -12,6 +12,7 @@
         eyes: OrganHumanEyes
         tongue: OrganHumanTongue #Starlight - surgery
         eye_implant: null #Starlight - surgery
+        nose_implant: null # 🌟Starlight🌟
         brain_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoVulpkanin

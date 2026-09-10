@@ -33,10 +33,10 @@
   - Visitor
   - ServiceWorker
   # Starlight start
+  - AssistantManager
   - Performer
   - Lawyer
   - Boxer
-  - Zookeeper
   - Prisoner
   - RadioHost
   # Starlight end
@@ -128,6 +128,7 @@
   - Warden
   - DutyOfficer # Starlight
   - GunnerySergeant # Starlight
+  - K9 # Starlight
 
 - type: department
   id: Science

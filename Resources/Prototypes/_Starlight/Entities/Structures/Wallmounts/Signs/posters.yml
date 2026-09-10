@@ -629,6 +629,37 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterEndymion1
+  name: "Remember the Endymion"
+  description: "A simple message that carries the weight of 2000 souls."
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/posters/endymion1.rsi
+      state: poster
+
+
+- type: entity
+  parent: PosterBase
+  id: PosterEndymion2
+  name: "Selene's Torch"
+  description: "Martians treating Martians since 2127."
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/posters/endymion2.rsi
+      state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterEndymion3
+  name: "Bluespace is safe!"
+  description: "Just remember—1 milligram is 1,000,000 nanograms. You don't want to repeat that mistake!"
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/posters/endymion3.rsi
+      state: poster
+
+- type: entity
+  parent: PosterBase
   id: PosterContrabandHereticalExomorph
   name: "Heretic Exomorph"
   description: "They come out at night."

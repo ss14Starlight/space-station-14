@@ -23,7 +23,7 @@ public sealed partial class SecurityBorgActionsSystem : EntitySystem
         if (args.Handled)
             return;
 
-        _guidebook.OpenHelp(new List<ProtoId<GuideEntryPrototype>> { "SpaceLaw" });
+        _guidebook.OpenHelp(new List<ProtoId<GuideEntryPrototype>> { "CorporateLaw" });
         args.Handled = true;
     }
 }

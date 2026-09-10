@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothingGasTanks]
+  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothingGasTanks] # Starlight
   id: ClothingOuterBioGeneral
   name: bio suit
   suffix: Generic
@@ -86,7 +86,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ClothingOuterBaseLarge, ClothingOuterBaseWarm, AllowSuitStorageClothing, BaseSecurityContraband] # Starlight
   id: ClothingOuterBioSecurity
   name: bio suit
   suffix: Security

@@ -172,6 +172,15 @@
     sprite: Objects/Tools/lantern.rsi
     state: lantern
 
+# Starlight start
+#- type: stealTargetGroup # We don't use this objective, too easy in general.
+#  id: ClothingEyesHuds
+#  name: steal-target-groups-huds
+#  sprite:
+#    sprite: Clothing/Eyes/Hud/sec.rsi
+#    state: icon
+# Starlight end
+
 # Thief single item
 
 - type: stealTargetGroup
@@ -264,13 +273,6 @@
   sprite:
     sprite: Objects/Misc/module.rsi
     state: cpu_supply # Starlight
-
-#- type: stealTargetGroup  #Starlight disabled
-#  id: ClothingEyesHudBeer #Starlight disabled
-#  name: steal-target-groups-clothing-eyes-hud-beer #Starlight disabled
-#  sprite: #Starlight disabled
-#    sprite: Clothing/Eyes/Hud/beergoggles.rsi #Starlight disabled
-#    state: icon #Starlight disabled
 
 - type: stealTargetGroup
   id: Bible

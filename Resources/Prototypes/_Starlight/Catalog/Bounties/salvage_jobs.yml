@@ -1,0 +1,104 @@
+# NOTE: if you add any bounties to this, you need to go to Resources/Prototypes/Entities/Stations/base.yml and adjust the thresholds on BaseStationSalvageJobs.
+# If you don't do this, you won't raise the limit for completing a given rank and may throw off some balance.
+
+# Tier 1
+
+- type: cargoBounty
+  id: BountySalvageRawXenoMeat
+  reward: 7500
+  tickets: 500
+  description: bounty-description-salvage-raw-xeno-meat
+  group: SalvageJobTier1
+  sprite:
+    sprite: Objects/Consumable/Food/meat.rsi
+    state: xeno
+  entries:
+    - name: bounty-item-raw-xeno-meat
+      amount: 10
+      whitelist:
+        tags:
+          - RawXenoMeat
+
+- type: cargoBounty
+  id: BountySalvageAbyssiumOre
+  reward: 8500
+  tickets: 600
+  description: bounty-description-salvage-abyssium-ore
+  group: SalvageJobTier1
+  sprite:
+    sprite: _Starlight/Objects/Materials/ore.rsi
+    state: abyssium
+  entries:
+    - name: bounty-item-abyssium-ore
+      amount: 10
+      whitelist:
+        tags:
+          - AbyssiumOre
+
+- type: cargoBounty
+  id: BountySalvageOldTreasure
+  reward: 10000
+  tickets: 1000
+  description: bounty-description-salvage-old-treasure
+  group: SalvageJobTier1
+  sprite:
+    sprite: Objects/Misc/module.rsi
+    state: cddrive
+  entries:
+    - name: bounty-item-old-treasure
+      amount: 5
+      whitelist:
+        tags:
+          - OldTreasure
+
+- type: cargoBounty
+  id: BountySalvageSpaceBearHide
+  reward: 5000
+  tickets: 500
+  description: bounty-description-salvage-space-bear-hide
+  group: SalvageJobTier1
+  sprite:
+    sprite: Objects/Materials/materials.rsi
+    state: bearpelt
+  entries:
+    - name: bounty-item-space-bear-hide
+      amount: 1
+      whitelist:
+        tags:
+          - SpaceBearHide
+
+# Tier 2
+
+- type: cargoBounty
+  id: BountySalvageBandolier
+  reward: 12500
+  tickets: 1000
+  description: bounty-description-salvage-bandolier
+  group: SalvageJobTier2
+  sprite:
+    sprite: _Starlight/Clothing/Belt/soviet_bandolier.rsi
+    state: icon
+  entries:
+    - name: bounty-item-bandolier
+      amount: 3
+      whitelist:
+        tags:
+          - Bandolier
+
+- type: cargoBounty
+  id: BountySalvageCommieID
+  reward: 12500
+  tickets: 1000
+  description: bounty-description-salvage-commie-id
+  group: SalvageJobTier2
+  sprite:
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    state: sovietid
+  entries:
+    - name: bounty-item-commie-id
+      amount: 5
+      whitelist:
+        tags:
+          - CommieID
+
+# Tier 3

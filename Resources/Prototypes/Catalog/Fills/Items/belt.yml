@@ -46,6 +46,7 @@
         - id: HolofanProjector
         - id: GasAnalyzer
         - id: trayScanner
+        - id: AccessConfigurator # Starlight-edit
 
 - type: entityTable
   id: BeltSecurityEntityTable

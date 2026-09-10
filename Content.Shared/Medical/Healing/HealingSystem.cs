@@ -116,31 +116,25 @@ public sealed partial class HealingSystem : EntitySystem
             if (_stacks.GetCount((args.Used.Value, stackComp)) <= 0)
                 dontRepeat = true;
         }
-        // Starlight start
-        else if (healing.SolutionDrain && TryComp<SolutionContainerManagerComponent>(args.Used, out var solutionManager))
+        #region Starlight
+        else if (healing.SolutionDrain &&
+                    _solutionContainerSystem.TryGetSolution(args.Used.Value, "injector", out var solutionEntity, out var solution))
         {
-            Entity<SolutionComponent>? solutionEntity = null;
-            if (_solutionContainerSystem.ResolveSolution(args.Used.Value, "injector", ref solutionEntity, out var solution))
+            var reagentsToRemove = new List<(ReagentQuantity Reagent, FixedPoint2 Amount)>();
+            foreach(var reagent in solution.Contents)
             {
-                var reagentsToRemove = new List<(ReagentQuantity Reagent, FixedPoint2 Amount)>();
-                foreach(var reagent in solution.Contents)
-                {
-                    var drainReagent = healing.ReagentsToDrain.FirstOrDefault(drain => drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
-                    if (solutionEntity != null && drainReagent != null)
-                        reagentsToRemove.Add((reagent, drainReagent.Quantity));
-                }
-
-                foreach (var (reagent, amount) in reagentsToRemove)
-                {
-                    if (solutionEntity != null)
-                        _solutionContainerSystem.RemoveReagent(solutionEntity.Value, reagent.Reagent, amount);
-                }
-
-                if (!solution.Contents.Any(sol => healing.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
-                    dontRepeat = true;
+                var drainReagent = healing.ReagentsToDrain.FirstOrDefault(drain => drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
+                if (drainReagent != null)
+                    reagentsToRemove.Add((reagent, drainReagent.Quantity));
             }
+
+            foreach (var (reagent, amount) in reagentsToRemove)
+                _solutionContainerSystem.RemoveReagent(solutionEntity.Value, reagent.Reagent, amount);
+
+            if (!solution.Contents.Any(sol => healing.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
+                dontRepeat = true;
         }
-        // Starlight end
+        #endregion
         else
         {
             PredictedQueueDel(args.Used.Value);
@@ -250,11 +244,10 @@ public sealed partial class HealingSystem : EntitySystem
         if (TryComp<StackComponent>(healing, out var stack) && stack.Count < 1)
             return false;
 
-        // Starlight start
-        if (healing.Comp.SolutionDrain && TryComp<SolutionContainerManagerComponent>(healing.Owner, out var solutionManager))
+        #region Starlight
+        if (healing.Comp.SolutionDrain)
         {
-            Entity<SolutionComponent>? solutionEntity = null;
-            if (_solutionContainerSystem.ResolveSolution(healing.Owner, "injector", ref solutionEntity, out var solution))
+            if (_solutionContainerSystem.TryGetSolution(healing.Owner, "injector", out _, out var solution))
             {
                 if (!solution.Contents.Any(sol => healing.Comp.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
                 {
@@ -265,7 +258,7 @@ public sealed partial class HealingSystem : EntitySystem
             else
                 return false;
         }
-        // Starlight end
+        #endregion
         if (!HasDamage(healing, target!))
         {
             _popupSystem.PopupClient(Loc.GetString("medical-item-cant-use", ("item", healing.Owner)), healing, user);

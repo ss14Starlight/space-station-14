@@ -91,7 +91,7 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
 
     private void OnScreenLoad()
     {
-       LoadGui();
+        LoadGui();
     }
 
     private void OnScreenUnload()
@@ -269,6 +269,14 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
 
         if (actionId == SelectingTargetFor)
             StopTargeting();
+
+        // Starlight Begin
+        // End a drag on this action's own button now, before a hotbar rebuild can remove it from
+        // the tree. A removed control never gets its mouse-up delivered, which would otherwise
+        // orphan the drag shadow with no client-side way to clear it.
+        if (_menuDragHelper.Dragged?.Action?.Owner == actionId)
+            _menuDragHelper.EndDrag();
+        // Starlight End
 
         _actions.RemoveAll(x => x == actionId);
     }

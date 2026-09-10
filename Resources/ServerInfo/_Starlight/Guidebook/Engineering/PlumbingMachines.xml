@@ -73,6 +73,20 @@
   The filter sorts incoming reagents into filtered and unfiltered internal containers, which can be pulled from the filtered and passthrough outlets respectively. It is capable of filtering off up to 4 unique reagents at a time. When disabled in the UI, all intake is treated as passthrough. Can be flipped via the RPLD.
 
   <Box>
+    <GuideEntityEmbed Entity="PlumbingInlineFilter" Caption=""/>
+  </Box>
+  <Box>
+    ## Inline Filter
+  </Box>
+  <Box>
+    [color=#999999][italic]Skimming reagents off a network[/italic][/color]
+  </Box>
+
+  The [color=#a4885c]Inline Plumbing Filter[/color] sits on a single run of duct with one inlet and one outlet, and draws specific reagents off it. Set which reagents to take via its UI.
+
+  Unlike the regular filter it does not sort what passes through it. Like the reactor, it only asks the network for the reagents you have selected, so everything else is left alone for machines further downstream. It takes up to 10 unique reagents and holds [color=#a4885c]10u of each[/color], so a plentiful reagent fills its own allowance and then stops rather than hogging the machine. When disabled in the UI it stops pulling, though anything already in its buffer can still be drawn out. Its casing animates while reagents are actually flowing in, so an idle filter is easy to spot.
+
+  <Box>
     <GuideEntityEmbed Entity="PlumbingReactor" Caption=""/>
   </Box>
   <Box>

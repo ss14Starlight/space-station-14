@@ -1,0 +1,96 @@
+- type: entity
+  name: handheld engineering monitor
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer ] # Medium battery
+  id: HandheldEngineeringMonitor
+  description: A hand-held diagnostic slate. It switches between mapping the station's power network and paging through atmospheric alarms.
+  components:
+  # ItemSwitch sets a held prefix per mode, and tablets.rsi has no power-inhand-left etc to match.
+  - type: Item
+    sprite: Objects/Devices/tablets.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Sprite
+    sprite: Objects/Devices/tablets.rsi
+    state: tabletsol
+    layers:
+    - state: tabletsol
+    # Lit screen, hidden until a UI is open. State follows the ItemSwitch mode.
+    - sprite: Objects/Specific/Engineering/handheldengineeringmonitor.rsi
+      state: power
+      shader: unshaded
+      visible: false
+      map: [ "screen" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      # ItemToggle, set by ActivatableUIRequiresPowerCell while a screen is open.
+      enum.ToggleableVisuals.Enabled:
+        screen:
+          True: { visible: true }
+          False: { visible: false }
+      # Keys match the ItemSwitch state names.
+      enum.SwitchableVisuals.Switched:
+        screen:
+          power: { state: power }
+          atmos: { state: atmos }
+  - type: PowerCellDraw
+    drawRate: 1.5
+  # Declared once rather than per mode: the key is never networked, so an ActivatableUI added at
+  # runtime reaches the client without one. Each ItemSwitch state retargets this via activatableUiKey.
+  - type: ActivatableUI
+    key: enum.PowerMonitoringConsoleUiKey.Key
+    inHandsOnly: true
+    singleUser: true
+  # Each mode swaps in its own console component, so only one screen is ever live. onUse is off so
+  # that use in hand opens the screen; alt-use cycles the mode instead. onActivate is off because
+  # with two states the Switch verb category only repeats what the alt-use verb already offers.
+  - type: ItemSwitch
+    onUse: false
+    onAltUse: true
+    onActivate: false
+    state: power
+    states:
+      power: !type:ItemSwitchState
+        verb: verb-handheld-monitor-power
+        activatableUiKey: enum.PowerMonitoringConsoleUiKey.Key
+        components:
+        - type: PowerMonitoringConsole
+        - type: PowerMonitoringCableNetworks
+      atmos: !type:ItemSwitchState
+        verb: verb-handheld-monitor-atmos
+        activatableUiKey: enum.AtmosAlertsComputerUiKey.Key
+        components:
+        - type: AtmosAlertsComputer
+  - type: UserInterface
+    interfaces:
+      enum.PowerMonitoringConsoleUiKey.Key:
+        type: PowerMonitoringConsoleBoundUserInterface
+      enum.AtmosAlertsComputerUiKey.Key:
+        type: AtmosAlertsComputerBoundUserInterface
+  - type: GuideHelp
+    guides:
+    - InspectingPower
+    - AtmosphericAlertsComputer
+    - DeviceMonitoringAndControl
+  - type: StaticPrice
+    price: 250
+  # Engineering toolbelt whitelists by tag, not by component.
+  - type: Tag
+    tags:
+    - HandheldEngineeringMonitor
+
+- type: entity
+  id: HandheldEngineeringMonitorEmpty
+  parent: HandheldEngineeringMonitor
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        blacklist:
+          tags:
+          - MechReactor

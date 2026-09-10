@@ -54,15 +54,17 @@
   - Atmospherics
   - Medical
   - Journalism # Goobstation
-  - Robotics # Starlight
-  - Brigmedic # Starlight
-  - Surgery # Starlight
-  - Paramedic # Starlight
-  - Mining # Starlight
-  - SalvageLead # Starlight
-  - Mail # Starlight
-  - Debrief # Starlight
-  - Shuttle # Starlight
+  - Robotics # Starlight start
+  - Brigmedic
+  - Surgery
+  - Paramedic
+  - Mining
+  - SalvageLead
+  - Mail
+  - Debrief
+  - Shuttle
+  - Clown
+  - Mime # Starlight end
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

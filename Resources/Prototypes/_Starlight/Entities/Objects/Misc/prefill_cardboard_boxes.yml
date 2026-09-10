@@ -1,0 +1,156 @@
+- type: entity
+  parent: CardboardBoxLargeSecurity
+  id: CardboardBoxLargeSecuritySupplies
+  name: security supplies box
+  suffix: Security
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Handcuffs
+          amount: 4
+        - id: TicketPad
+          amount: 2
+        - id: FlashlightSeclite
+          amount: 2
+        - id: RadioHandheldSecurity
+          amount: 2
+
+- type: entity
+  parent: CardboardBoxLargeMedical
+  id: CardboardBoxLargeMedicalTopicals
+  name: medical topicals box
+  suffix: Topicals
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Gauze
+          amount: 3
+        - id: Brutepack
+          amount: 3
+        - id: Ointment
+          amount: 3
+        - id: Bloodpack
+          amount: 3
+
+- type: entity
+  parent: CardboardBoxLargeService
+  id: CardboardBoxLargeServiceGlasses
+  name: drink glasses box
+  suffix: Drink Glasses
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DrinkGlass
+          amount: 8
+        - id: DrinkShotGlass
+          amount: 8
+        - id: DrinkGlassCoupeShaped
+          amount: 5
+
+- type: entity
+  parent: CardboardBoxLargeService
+  id: CardboardBoxLargeServiceDinnerware
+  name: kitchen supplies box
+  suffix: Dinnerware
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: KitchenKnife
+        - id: RollingPin
+        - id: Spoon
+          amount: 4
+        - id: Fork
+          amount: 4
+        - id: FoodBowlBig
+          amount: 2
+        - id: FoodPlate
+          amount: 2
+        - id: FoodPlateSmall
+          amount: 2
+
+- type: entity
+  parent: CardboardBoxLargeCommand
+  id: CardboardBoxLargeCommandHopRoundstart
+  name: hop supplies box
+  suffix: HOP
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MaterialCloth
+          amount: 3
+        - id: MaterialDurathread
+          amount: 1
+        - id: Multitool
+        - id: RemoteSignaller
+          amount: 2
+        - id: Wrench
+
+- type: entity
+  parent: CardboardBoxLargeSecurity
+  id: CardboardBoxLargeSecurityBrigmed
+  name: brigmedical supplies box
+  suffix: Brigmed Basic
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Handcuffs
+        - id: Gauze
+          amount: 2
+        - id: Tourniquet
+          amount: 3
+        - id: Brutepack
+        - id: Ointment
+        - id: Bloodpack
+        - id: PowerCellSmall
+        - id: ClothingHandsGlovesBlackNitrile
+
+- type: entity
+  parent: CardboardBoxLargeSecurity
+  id: CardboardBoxLargeSecurityTopicals
+  name: advanced topicals box
+  suffix: Brigmed Topicals
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Tourniquet
+          amount: 2
+        - id: RedBrutePack
+        - id: RedOintment
+        - id: RedPunctPack
+        - id: RedLacePack
+        - id: RedBruizPack
+
+- type: entity
+  parent: CardboardBoxLargeEngi
+  id: CardboardBoxLargeEngiTools
+  name: engineering tools box
+  suffix: Engi Tools
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingHeadHatWelding
+        - id: CrowbarYellow
+          amount: 2
+        - id: Multitool
+        - id: PowerCellMedium
+          amount: 2
+        - id: Wrench
+          amount: 2
+        - id: PartRodMetal
+          amount: 2

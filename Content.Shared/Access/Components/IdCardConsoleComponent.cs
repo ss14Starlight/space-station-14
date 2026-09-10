@@ -1,6 +1,8 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Roles;
+using Content.Shared.StatusIcon;
+using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -20,6 +22,15 @@ public sealed partial class IdCardConsoleComponent : Component
     [DataField]
     public ItemSlot TargetIdSlot = new();
 
+    // Starlight-edit: If "AllIconsUnlocked" is true a given console can see and assign all hud icons.
+    // Enabled by default on the Universal ID Console, and can be enabled by a player when using an EMAG on an ID card computer.
+    [DataField]
+    public bool AllIconsUnlocked = false;
+
+    // Starlight-edit: An icon is only accepted for selection if its "JobIconPrototype.Tags" is set unless AllIconsUnlocked is set or the console has been emagged. Defaults to the standard crew icon tag.
+    [DataField, AutoNetworkedField]
+    public HashSet<ProtoId<TagPrototype>> RequiredTags = new() { SharedIdCardConsoleSystem.CrewJobIconTag };
+
     [Serializable, NetSerializable]
     public sealed class WriteToTargetIdMessage : BoundUserInterfaceMessage
     {
@@ -27,13 +38,15 @@ public sealed partial class IdCardConsoleComponent : Component
         public readonly string JobTitle;
         public readonly List<ProtoId<AccessLevelPrototype>> AccessList;
         public readonly ProtoId<JobPrototype>? JobPrototype; // Starlight: Nullable
+        public readonly ProtoId<JobIconPrototype>? JobIcon; // Starlight-edit
 
-        public WriteToTargetIdMessage(string fullName, string jobTitle, List<ProtoId<AccessLevelPrototype>> accessList, ProtoId<JobPrototype>? jobPrototype) // Starlight: Nullable jobPrototype
+        public WriteToTargetIdMessage(string fullName, string jobTitle, List<ProtoId<AccessLevelPrototype>> accessList, ProtoId<JobPrototype>? jobPrototype, ProtoId<JobIconPrototype>? jobIcon) // Starlight: Nullable jobPrototype, jobIcon
         {
             FullName = fullName;
             JobTitle = jobTitle;
             AccessList = accessList;
             JobPrototype = jobPrototype;
+            JobIcon = jobIcon;
         }
     }
     // Starlight-edit: Start
@@ -74,6 +87,10 @@ public sealed partial class IdCardConsoleComponent : Component
         // Starlight-edit: Start
         public readonly ProtoId<AccessGroupPrototype> CurrentAccessGroup;
         public readonly List<ProtoId<AccessGroupPrototype>>? AvailableAccessGroups;
+        public readonly ProtoId<JobIconPrototype>? TargetIdJobIcon;
+        // True if every job icon (not just those tagged for that console) is unlocked for selection,
+        // because "IdCardConsoleComponent.AllIconsUnlocked" is set or the console has been emagged.
+        public readonly bool AllIconsUnlocked;
         // Starlight-edit: End
 
         public IdCardConsoleBoundUserInterfaceState(bool isPrivilegedIdPresent,
@@ -88,7 +105,9 @@ public sealed partial class IdCardConsoleComponent : Component
             string targetIdName,
             // Starlight-edit: Start
             ProtoId<AccessGroupPrototype> currentAccessGroup,
-            List<ProtoId<AccessGroupPrototype>>? availableAccessGroups = null)
+            List<ProtoId<AccessGroupPrototype>>? availableAccessGroups = null,
+            ProtoId<JobIconPrototype>? targetIdJobIcon = null,
+            bool allIconsUnlocked = false)
             // Starlight-edit: End
         {
             IsPrivilegedIdPresent = isPrivilegedIdPresent;
@@ -104,6 +123,8 @@ public sealed partial class IdCardConsoleComponent : Component
             // Starlight-edit: Start
             CurrentAccessGroup = currentAccessGroup;
             AvailableAccessGroups = availableAccessGroups;
+            TargetIdJobIcon = targetIdJobIcon;
+            AllIconsUnlocked = allIconsUnlocked;
             // Starlight-edit: End
         }
     }

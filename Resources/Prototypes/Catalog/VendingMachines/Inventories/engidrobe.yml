@@ -17,6 +17,8 @@
     ClothingOuterWindbreakerEngineering: 2 #Starlight
     ClothingNeckScarfStripedOrange: 3
     ClothingShoesBootsWinterEngi: 2
+    ClothingBeltUtility: 3 # Starlight-edit
+    ClothingMaskGas: 3 # Starlight-edit
   contrabandInventory:
     ToyFigurineEngineer: 1
     ToyFigurineChiefEngineer: 1

@@ -11,6 +11,7 @@
 - type: quickPhrase
   id: BaseMedicinePhrase
   parent: BaseMedicalSubjectPhrase
+  group: Medicine #starlight
   abstract: true
 
 - type: quickPhrase
@@ -95,85 +96,85 @@
 
 - type: quickPhrase
   id: TopicalPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-topical
 
 - type: quickPhrase
   id: TopicalBrutePackPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-topical-brute-pack
 
 - type: quickPhrase
   id: TopicalGauzePhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-topical-gauze
 
 - type: quickPhrase
   id: TopicalBloodpackPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-topical-bloodpack
 
 - type: quickPhrase
   id: DefibrillatorPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-defibrillator
 
 - type: quickPhrase
   id: CryopodPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-cryopod
 
 - type: quickPhrase
   id: StasisBedPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-stasis-bed
 
 - type: quickPhrase
   id: FirstAidKitPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-first-aid-kit
 
 - type: quickPhrase
   id: ClonePhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-clone
 
 - type: quickPhrase
   id: CloningPodPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-cloning-pod
 
 - type: quickPhrase
   id: BiomassPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-biomass
 
 - type: quickPhrase
   id: SyringePhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-syringe
 
 - type: quickPhrase
   id: PillPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-pill
 
 - type: quickPhrase
   id: AlivePhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-alive
 
 - type: quickPhrase
   id: CritPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-crit
 
 - type: quickPhrase
   id: DeadPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-dead
 
 - type: quickPhrase
   id: HealthyPhrase
-  parent: BaseMedicinePhrase
+  parent: BaseMedicalEquipmentPhrase #Starlight
   text: phrase-healthy

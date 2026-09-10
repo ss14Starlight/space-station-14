@@ -52,12 +52,12 @@
     flavors:
     - paper
   - type: BadFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 1
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 1
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 1
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 1
   - type: Item
     size: Tiny

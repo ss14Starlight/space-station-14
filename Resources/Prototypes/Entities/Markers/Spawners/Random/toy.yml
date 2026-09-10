@@ -78,15 +78,6 @@
       children:
       - id: PlushieThrongler
       - id: PlushieGhostRevenant # You got the god roll, and failed
-#STARLIGHT-Start
-    - !type:GroupSelector
-      children:
-      - id: DeerPlushie
-        weight: 9
-      - id: OddDeerPlushie
-        weight: 1
-    - id: VikaPviPlushie
-#STARLIGHT-End
 
 # Weh!
 - type: entityTable

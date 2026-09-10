@@ -1,7 +1,7 @@
 marking-glowing = Glowing
 markings-category-TailExtras = Tail Extras
 
-markings-category-FaceCover = [Protogen] Visor
-markings-category-FaceCoverCover = [Protogen] Visor LEDs
-markings-category-BodyCover = [Protogen] Frame
-markings-category-BodyCoverCover = [Protogen] Frame LEDs
+markings-category-FaceCover = [Neocyte] Visor
+markings-category-FaceCoverCover = [Neocyte] Visor LEDs
+markings-category-BodyCover = [Neocyte] Frame
+markings-category-BodyCoverCover = [Neocyte] Frame LEDs

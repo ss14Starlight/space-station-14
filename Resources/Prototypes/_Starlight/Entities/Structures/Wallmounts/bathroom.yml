@@ -1,0 +1,39 @@
+- type: entity
+  parent: BaseWallmountMetallic
+  id: HandDryer
+  name: hand dryer
+  description: A hand dryer, for when youre too good for paper towels.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Decorations/toilet_decor.rsi
+    state: handdryer
+
+- type: entity
+  parent: BaseWallmount
+  id: ToiletPaper
+  name: toilet paper
+  description: One-ply, for maximum inefficiency. Company has to save pennies where they can, you guess.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Decorations/toilet_decor.rsi
+    state: toiletroll
+
+- type: entity
+  parent: ToiletPaper
+  id: ToiletPaperOffset
+  suffix: Offset
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Decorations/toilet_decor.rsi
+    state: toiletrolloffset
+
+- type: entity
+  parent: BaseWallmountMetallic
+  id: HandSanitiser
+  name: hand sanitiser dispenser
+  description: Don't get any in your eyes.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Decorations/toilet_decor.rsi
+    state: handsanitiser
+  - type: WashingFixture

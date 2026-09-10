@@ -1,30 +1,35 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made by Killer Tamashi (Discord)",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "icon"
+            "name": "icon",
+			"copyright": "Made by Killer Tamashi (Discord), edited by Conflee"
         },
         {
             "name": "inhand-left",
-            "directions": 4
+            "directions": 4,
+			"copyright": "Made by Killer Tamashi (Discord), edited by Conflee"
         },
         {
             "name": "inhand-right",
-            "directions": 4
+            "directions": 4,
+			"copyright": "Made by Killer Tamashi (Discord), edited by Conflee"
         },
         {
             "name": "equipped-BACKPACK",
-            "directions": 4
+            "directions": 4,
+			"copyright": "Made by Killer Tamashi (Discord), edited by Conflee"
         },
         {
             "name": "equipped-SUITSTORAGE",
-            "directions": 4
+            "directions": 4,
+			"copyright": "Made by Killer Tamashi (Discord), edited by Conflee"
         }
     ]
 }
