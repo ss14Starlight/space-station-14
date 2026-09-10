@@ -1,5 +1,6 @@
 using Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
-using Content.Shared._Goobstation.StationRadio.Events; // Starlight - _Goob -> _Goobstation
+using Content.Shared._Goobstation.StationRadio.Events;
+using Content.Shared.Construction.Components; // Starlight - _Goob -> _Goobstation
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Robust.Shared.Audio.Systems;
@@ -118,6 +119,11 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem //
         // Starlight - Moved to Content.Server/_Starlight/StationRadio/Systems
     }
 
+    [SubscribeLocalEvent]
+    protected virtual void OnAttemptAnchor(EntityUid uid, StationRadioServerComponent comp, ref AnchorStateChangedEvent args)
+    {
+    }
+
     /// <summary>
     /// Display whether the station radio is at full or low volume when examined.
     /// </summary>
@@ -125,6 +131,8 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem //
         args.PushMarkup(Loc.GetString(!comp.BoostVolume
             ? "station-radio-receiver-examine-low-volume"
             : "station-radio-receiver-examine-full-volume"));
+
+
 
     #endregion
     // Starlight - End

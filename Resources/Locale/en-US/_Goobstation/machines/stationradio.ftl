@@ -15,6 +15,7 @@ vinyl-popout-no-radio-connection = The vinyl ejects itself, the player isn't con
 vinyl-player-examine-empty = It's empty.
 vinyl-player-examine-loaded = There's a copy of { $vinyl } inside.
 vinyl = vinyl
+station-radio-server-cancelled-anchor = This station already has a radio server!
 
 station-radio-receiver-examine-full-volume = It's playing at full volume.
 station-radio-receiver-examine-low-volume = It's playing.

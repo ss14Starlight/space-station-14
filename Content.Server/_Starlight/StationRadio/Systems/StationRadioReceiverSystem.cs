@@ -1,13 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Station.Systems;
 using Content.Shared._Goobstation.StationRadio.Components;
 using Content.Shared._Goobstation.StationRadio.Events;
 using Content.Shared._Goobstation.StationRadio.Systems;
 using Content.Shared.DeviceLinking;
+using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
-using Robust.Shared.Network;
-using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.StationRadio.Systems;
 
@@ -15,6 +15,8 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
 {
 
     [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     /// <summary>
     /// When a station radio is initialized, check any active Radio server for if there is an
@@ -186,4 +188,28 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
         }
         return false;
     }
+
+    protected override void OnAttemptAnchor(EntityUid uid, StationRadioServerComponent comp, ref AnchorStateChangedEvent args)
+    {
+        if (!args.Anchored)
+            return;
+
+        var xform = Transform(uid);
+        var c = 0;
+        var query = EntityQueryEnumerator<StationRadioServerComponent>();
+        foreach (var ent in  query)
+        {
+            var entXform = Transform(ent);
+            if (entXform.Anchored && entXform.GridUid == xform.GridUid)
+                c++;
+
+            if (c > 1)
+            {
+                _transform.Unanchor(uid);
+                _popupSystem.PopupEntity(Loc.GetString("station-radio-server-cancelled-anchor"), uid, PopupType.Medium);
+                return;
+            }
+        }
+    }
+
 }

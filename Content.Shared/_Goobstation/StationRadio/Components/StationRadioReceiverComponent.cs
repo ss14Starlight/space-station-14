@@ -6,6 +6,7 @@ namespace Content.Shared._Goobstation.StationRadio.Components; // Starlight - _G
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class StationRadioReceiverComponent : Component
 {
+    /// Starlight edit start
     /// <summary>
     /// The sound entity. Client only.
     /// </summary>
@@ -64,4 +65,5 @@ public sealed partial class StationRadioReceiverComponent : Component
     /// </remarks>
     [DataField, AutoNetworkedField]
     public AudioParams BoostedParams = AudioParams.Default.WithMaxDistance(12f);
+    /// Starlight Edit end
 }
