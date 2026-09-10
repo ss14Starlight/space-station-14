@@ -1,0 +1,15 @@
+<Document>
+# Assistant Manager
+
+<GuideEntityEmbed Entity="ToyFigurineAssistant" Caption="Assistant Manager"/>
+
+1. Assistant Managers report directly to the Captain, and answer to all Command members.
+
+2. The Assistant Manager is responsible for coordinating Assistants and delegating tasks out to them.
+
+3. Assistant Managers are to coordinate with the station's departments to ensure efficient assignment of Assistants to where they are needed.
+
+4. Assistant Managers must not modify the IDs of non-Assistants.
+
+5. Assistant Managers are NOT part of Command, and their authority is limited to managing Assistants only.
+</Document>

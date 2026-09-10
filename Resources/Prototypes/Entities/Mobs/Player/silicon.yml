@@ -41,6 +41,7 @@
     - ActionJumpToCore
     - ActionAIViewLaws
     - ActionAIShunt # Starlight AI Shunt ability
+    - ActionAIReconnectShunt # Starlight AI Shunt reconnect ability
     - ActionAIWarp # Starlight
   - type: UserInterface
     interfaces:

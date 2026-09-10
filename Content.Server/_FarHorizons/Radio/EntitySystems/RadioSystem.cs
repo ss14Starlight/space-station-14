@@ -1,5 +1,4 @@
 using Content.Shared.GameTicking;
-using Content.Shared.Radio;
 
 namespace Content.Server.Radio.EntitySystems;
 

@@ -75,6 +75,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         ent.Comp.State = WashingMachineState.Broken;
         ent.Comp.WashFinishTime = null;
         ent.Comp.AudioStream = _audio.Stop(ent.Comp.AudioStream);
+        _storage.EmptyContents(ent.Owner); // Starlight
         Dirty(ent.Owner, ent.Comp);
         _appearance.SetData(ent.Owner, WashingMachineVisuals.State, WashingMachineState.Broken);
     }

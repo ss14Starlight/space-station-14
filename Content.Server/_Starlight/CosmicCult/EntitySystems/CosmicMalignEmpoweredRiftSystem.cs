@@ -1,12 +1,9 @@
-using Content.Server._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Physics;
 using Content.Server.Temperature.Systems;
 using Content.Shared.Temperature.Components;
 using Content.Server.Atmos.Components;
