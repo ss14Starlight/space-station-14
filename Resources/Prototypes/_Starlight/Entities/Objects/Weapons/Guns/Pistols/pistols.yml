@@ -655,6 +655,10 @@
       ballistic-ammo: !type:Container
         ents: []
       firing_pin: !type:Container
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinPistol
   - type: CanDualWield
     dualWieldInaccuracyPenalty: 30
   - type: FiringPinHolder
