@@ -1,123 +1,4 @@
 Entries:
-- author: walksanatora
-  changes:
-  - message: Pipes can now be copied via the copy keybind for admemes/mapping (if any prototype is missing/uncopyable ping me with the prototype id so I can work on adding more).
-    type: Fix
-  id: 408036
-  time: '2026-08-31T19:02:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5811
-- author: walksanatora
-  changes:
-  - message: admins with +MAPPING now have a trick to spread a pipe color to all connected pipes.
-    type: Add
-  id: 408037
-  time: '2026-08-31T19:02:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5811
-- author: walksanatora
-  changes:
-  - message: admins with +MAPPING now have a trick to autolink air alarms controllable by the `mapping.atmos_autolink_dist` cvar.
-    type: Add
-  id: 408038
-  time: '2026-08-31T19:02:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5811
-- author: walksanatora
-  changes:
-  - message: using `!type:CreateVariant` `id`s no longer causes test using GameDataScrounger to cease to exists.
-    type: Fix
-  id: 408039
-  time: '2026-08-31T19:02:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5811
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Cyborgs can now crawl without a module active, and crawl at half speed with any module active.
-    type: Tweak
-  id: 408040
-  time: '2026-08-31T19:31:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5863
-- author: Caws
-  changes:
-  - message: Quartermaster access from the funding allocation computer.
-    type: Remove
-  id: 408041
-  time: '2026-08-31T19:54:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5904
-- author: STARLIGHT TEAM
-  changes:
-  - message: Fixed welders a eswords causing reality to collapse in their local area when turned on/off.
-    type: Fix
-  id: 408042
-  time: '2026-08-31T23:52:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5913
-- author: STARLIGHT TEAM
-  changes:
-  - message: Actually updated the engine this time. Actually fixing what it said it would fix.
-    type: Fix
-  id: 408043
-  time: '2026-09-02T02:14:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5931
-- author: Conflee
-  changes:
-  - message: Added a Guidebook entry for Stir Stir adding more information on how to play as Stir Stir, interact with him as Security, and basic information to help RP as/with him. Their crime is vague on purpose, so RPers can decide in round. He can be paroled for good behavior, try to involve Lawyers and Magi, and he is NOT an Antag (unless he rolls an antag role).
-    type: Add
-  id: 408044
-  time: '2026-09-02T05:00:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5778
-- author: Conflee
-  changes:
-  - message: Changed Stir Stir's playtime requirement from 15 minutes of Security Department to 2 hours of Security Officer. Maybe people will hesitate to be a shitter as Stir Stir if they've been on the receiving end as a Secoff before.
-    type: Tweak
-  id: 408045
-  time: '2026-09-02T05:00:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5778
-- author: Conflee
-  changes:
-  - message: Added Starlight jobs to the Jobs and Security pages in the Guidebook.
-    type: Tweak
-  id: 408046
-  time: '2026-09-02T05:00:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5778
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Added 2 K9 Spawn Slots in Security.'
-    type: Add
-  id: 408047
-  time: '2026-09-02T09:10:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5883
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Added a water cooler in Security.'
-    type: Add
-  id: 408048
-  time: '2026-09-02T09:10:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5883
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Added a Pet Carrier in Security.'
-    type: Add
-  id: 408049
-  time: '2026-09-02T09:10:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5883
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Sec front is now brig access, cadets allowed in now.'
-    type: Fix
-  id: 408050
-  time: '2026-09-02T09:10:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5883
-- author: Johnny
-  changes:
-  - message: Changed the portable recharger, now you can put it in a suitslot.
-    type: Tweak
-  id: 408051
-  time: '2026-09-02T17:44:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5943
-- author: wonderfulnewworld
-  changes:
-  - message: You will no longer spontaneously become a Nukie.
-    type: Fix
-  id: 408052
-  time: '2026-09-02T18:18:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5934
 - author: wonderfulnewworld
   changes:
   - message: Borgs can no longer roll antag.
@@ -2799,4 +2680,123 @@ Entries:
   id: 408435
   time: '2026-09-09T05:43:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6061
+- author: wonderfulnewworld
+  changes:
+  - message: Added SoP for Assistant Managers and Assistants.
+    type: Add
+  id: 408436
+  time: '2026-09-09T20:56:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6040
+- author: wonderfulnewworld
+  changes:
+  - message: (Cluster, Cork, Lagan, Novo Lobster, Oasis, Orwell, Prism, Reach, Sepultum) Enables Assistant Managers.
+    type: Add
+  id: 408437
+  time: '2026-09-09T20:56:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6040
+- author: wonderfulnewworld
+  changes:
+  - message: Removed unused Legal SoP page.
+    type: Remove
+  id: 408438
+  time: '2026-09-09T20:56:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6040
+- author: wonderfulnewworld
+  changes:
+  - message: Fixes a misaligned sprite on the Assistant Manager's hud on base human-derived species.
+    type: Fix
+  id: 408439
+  time: '2026-09-09T20:56:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6040
+- author: wonderfulnewworld, ThatGuyUSA
+  changes:
+  - message: a sealed fizzy soda's contents will no longer disappear when bursting.
+    type: Fix
+  id: 408440
+  time: '2026-09-09T21:26:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6069
+- author: wonderfulnewworld, ThatGuyUSA
+  changes:
+  - message: You will no longer see every footprint and fire with a right click.
+    type: Fix
+  id: 408441
+  time: '2026-09-09T21:26:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6069
+- author: Citrea
+  changes:
+  - message: Shell fragments are no longer better combat knives.
+    type: Tweak
+  id: 408442
+  time: '2026-09-09T21:26:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6000
+- author: Citrea
+  changes:
+  - message: Snapping off a shell fragment now removes a piece of your shell.
+    type: Tweak
+  id: 408443
+  time: '2026-09-09T21:26:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6000
+- author: Citrea
+  changes:
+  - message: Drinking enough blood in one sitting now regenerates a piece of your shell.
+    type: Tweak
+  id: 408444
+  time: '2026-09-09T21:26:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6000
+- author: Citrea
+  changes:
+  - message: Pieces of your shell may now break in combat.
+    type: Tweak
+  id: 408445
+  time: '2026-09-09T21:26:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6000
+- author: Citrea
+  changes:
+  - message: Dolls can also heal off injected blood now (again).
+    type: Tweak
+  id: 408446
+  time: '2026-09-09T21:26:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6000
+- author: Citrea
+  changes:
+  - message: Doll organs no longer take ambient radiation damage, so your metabolism doesn't randomly stop if you have been near a reactor for too long, even in a rad suit.
+    type: Tweak
+  id: 408447
+  time: '2026-09-09T21:26:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6000
+- author: Citrea
+  changes:
+  - message: Dolls get hydrated by blood, as they should.
+    type: Fix
+  id: 408448
+  time: '2026-09-09T21:26:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6000
+- author: Swonki
+  changes:
+  - message: Fixes Faxxing.
+    type: Fix
+  id: 408449
+  time: '2026-09-09T21:26:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6068
+- author: Caws
+  changes:
+  - message: Laundromat station beacon, to help you find laundromats on the map.
+    type: Add
+  id: 408450
+  time: '2026-09-10T11:54:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6053
+- author: Caws
+  changes:
+  - message: Access-locked variants of washing machines have been removed. All washing machines are all-access once again.
+    type: Tweak
+  id: 408451
+  time: '2026-09-10T11:54:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6053
+- author: Caws
+  changes:
+  - message: (CC Outpost SC17) Prisoners can no longer walk into Security via the Genpop turnstiles.
+    type: Fix
+  id: 408452
+  time: '2026-09-10T12:13:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6024
 Order: -1

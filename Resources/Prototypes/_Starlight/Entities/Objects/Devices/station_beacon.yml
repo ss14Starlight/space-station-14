@@ -191,6 +191,14 @@
   - type: NavMapBeacon
     defaultText: station-beacon-washrooms
 
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconLaundromat
+  suffix: Laundry
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-laundromat
+
  # Automated Trade Station
 - type: entity
   parent: DefaultStationBeaconSupply
