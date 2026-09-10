@@ -71,7 +71,7 @@ public abstract partial class SharedBorgSystem
         }
     }
 
-    private bool TryFormatList(List<LocId>? list, string messageId, string listId, [NotNullWhen(true)] out string? formattedList)
+    private bool TryFormatList(HashSet<LocId>? list, string messageId, string listId, [NotNullWhen(true)] out string? formattedList)
     {
         formattedList = null;
 

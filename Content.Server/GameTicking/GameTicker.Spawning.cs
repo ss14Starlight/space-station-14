@@ -4,7 +4,6 @@ using System.Numerics;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
-using Content.Server.Polymorph.Systems;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
 using Content.Shared.Antag;
@@ -41,7 +40,6 @@ namespace Content.Server.GameTicking
         [Dependency] private AdminSystem _admin = default!;
         [Dependency] private NewLifeSystem _newLifeSystem = default!; //🌟Starlight🌟
         [Dependency] private INullLinkPlayerManager _playerRolesManager = default!; //🌟Starlight🌟
-        [Dependency] private PolymorphSystem _polymorphSystem = default!;
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
         public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
