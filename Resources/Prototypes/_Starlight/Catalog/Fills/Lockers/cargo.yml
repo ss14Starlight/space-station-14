@@ -413,7 +413,7 @@
         rolls: !type:ConstantNumberSelector
           value: 3
       - id: OilPack
-          amount: 2
+        amount: 2
       - id: ClothingNeckMantleMedic
       - id: ITGTrackerImplanter
       - id: BoxBodyBag
