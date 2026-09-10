@@ -1,34 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
   changes:
-  - message: Many chef recipes have been changed so the final result better matches the ingredients put in. This means overall the nutritional value of the chef's meals have increased.
-    type: Tweak
-  id: 408059
-  time: '2026-09-03T03:51:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5893
-- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
-  changes:
-  - message: Many chef recipes have had their ingredients changed.
-    type: Tweak
-  id: 408060
-  time: '2026-09-03T03:51:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5893
-- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
-  changes:
-  - message: Most sliceable foods now give a lot more slices.
-    type: Tweak
-  id: 408061
-  time: '2026-09-03T03:51:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5893
-- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
-  changes:
-  - message: Reagent container sizes have been standardized, at a base of 30 units per inventory square. Most containers can now hold more than they did before.
-    type: Tweak
-  id: 408062
-  time: '2026-09-03T03:51:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5893
-- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
-  changes:
   - message: Changed the size of the silver and gold beakers; they don't fit the standards of the others, since they cost credits.
     type: Tweak
   id: 408063
@@ -2799,4 +2771,32 @@ Entries:
   id: 408458
   time: '2026-09-10T16:37:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6049
+- author: OJG
+  changes:
+  - message: (Refinery) Assistant manger slots and spawns.
+    type: Add
+  id: 408459
+  time: '2026-09-10T17:03:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6073
+- author: OJG
+  changes:
+  - message: (Refinery) Washing machines.
+    type: Add
+  id: 408460
+  time: '2026-09-10T17:03:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6073
+- author: OJG
+  changes:
+  - message: (Refinery) Station status screens in public areas.
+    type: Add
+  id: 408461
+  time: '2026-09-10T17:03:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6073
+- author: OJG
+  changes:
+  - message: (Refinery) boarded up the old salv locker room.
+    type: Tweak
+  id: 408462
+  time: '2026-09-10T17:03:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6073
 Order: -1
