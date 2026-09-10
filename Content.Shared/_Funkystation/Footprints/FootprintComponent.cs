@@ -9,12 +9,6 @@ public sealed partial class FootprintComponent : Component
 {
     [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public List<FootprintData> Prints = new();
-
-    /// <summary>
-    /// The shared RGB tint for every print on this tile. Individual print opacity is stored separately.
-    /// </summary>
-    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public Color BaseColor = Color.White;
 }
 
 [Serializable, NetSerializable]

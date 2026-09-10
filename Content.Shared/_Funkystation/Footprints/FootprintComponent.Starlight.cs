@@ -12,6 +12,12 @@ public sealed partial class FootprintComponent : Component
     /// </summary>
     [ViewVariables]
     public int RenderedPrintCount;
+
+    /// <summary>
+    /// The shared RGB tint for every print on this tile. Individual print opacity is stored separately.
+    /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public Color BaseColor = Color.White;
 }
 
 [Serializable, NetSerializable]
