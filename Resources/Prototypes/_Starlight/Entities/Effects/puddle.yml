@@ -1,8 +1,8 @@
 # Funky footprints
 - type: entity
   parent: SolutionPrint
-  name: footprint
   id: Footprint
+  name: footprint
   save: false
   description: Huh? Whose footprints are these?
   placement:
@@ -33,7 +33,7 @@
     solution: print
     affectsMovement: false
     affectsSound: false
-    causesStains: false
+    causesStains: false # Moff - Its weird trust me, basically puddles with nothing in them.
   - type: ExaminableSolution
     solution: print
   - type: MixableSolution
