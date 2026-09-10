@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Examine;
 using Content.Shared.Construction.Components;
@@ -10,6 +11,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Station;
+using Content.Shared.Station.Components;
 using Content.Shared.Tools.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -24,10 +27,12 @@ namespace Content.Shared.Construction.EntitySystems;
 
 public sealed partial class AnchorableSystem : EntitySystem
 {
+    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private PullingSystem _pulling = default!;
     [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedStationSystem _stationSystem = default!;
     [Dependency] private SharedToolSystem _tool = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private TagSystem _tagSystem = default!;
@@ -50,11 +55,28 @@ public sealed partial class AnchorableSystem : EntitySystem
         SubscribeLocalEvent<AnchorableComponent, ExaminedEvent>(OnAnchoredExamine);
         SubscribeLocalEvent<AnchorableComponent, ComponentStartup>(OnAnchorStartup);
         SubscribeLocalEvent<AnchorableComponent, AnchorStateChangedEvent>(OnAnchorStateChange);
+
+        SubscribeLocalEvent<AnchorOnlyOnStationComponent, AnchorAttemptEvent>(OnAnchorOnStation);
     }
 
     private void OnAnchorStartup(EntityUid uid, AnchorableComponent comp, ComponentStartup args)
     {
         _appearance.SetData(uid, AnchorVisuals.Anchored, Transform(uid).Anchored);
+    }
+
+    private void OnAnchorOnStation(Entity<AnchorOnlyOnStationComponent> ent, ref AnchorAttemptEvent args)
+    {
+        var entityParent = Comp<TransformComponent>(ent).ParentUid;
+        var isOnStation = _stationSystem.GetStations()
+            .Select(stationEnt => _stationSystem.GetLargestGrid(stationEnt))
+            .Contains(entityParent);
+
+        if (isOnStation)
+            return;
+
+        // TODO: fix the popup
+        // _popup.PopupClient(Loc.GetString(ent.Comp.PopupMessageAnchorFail), ent, args.User);
+        args.Cancel();
     }
 
     private void OnAnchorStateChange(EntityUid uid, AnchorableComponent comp, AnchorStateChangedEvent args)

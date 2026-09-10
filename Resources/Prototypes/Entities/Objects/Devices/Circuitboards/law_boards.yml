@@ -161,7 +161,7 @@
     IsLawboard: true # Starlight
 
 - type: entity
-  id: XenoborgCircuitBoard
+  id: XenoborgLawsetCircuitBoard
   parent: [ BaseSiliconLawboard, BaseXenoborgContraband ] #SL Edit made Xenoborg Contra
   name: law board (Xenoborg)
   suffix: Admeme
@@ -174,7 +174,7 @@
     price: 5000
 
 - type: entity
-  id: MothershipCircuitBoard
+  id: MothershipLawsetCircuitBoard
   parent: [ BaseSiliconLawboard, BaseXenoborgContraband ] #SL Edit made Xenoborg Contra
   name: law board (Mothership Core)
   suffix: Admeme

@@ -27,6 +27,8 @@ public sealed partial class GameTicker
 
     [ViewVariables] private readonly List<(TimeSpan, string)> _allPreviousGameRules = new();
 
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = null!;
+
     /// <summary>
     /// List of ignored game rules, these rules won't be spawned by normal means.
     /// This list is populated by <see cref="CCVars.GameTickerIgnoredPresets"/>
@@ -296,6 +298,22 @@ public sealed partial class GameTicker
     }
 
     /// <summary>
+    /// Returns true if a game rule that passes the whitelist and blacklist has been added.
+    /// </summary>
+    /// <param name="ruleWhitelist">whitelist for the game rules</param>
+    /// <param name="ruleBlacklist">blacklist for the game rules</param>
+    public bool IsGameRuleAdded(EntityWhitelist? ruleWhitelist, EntityWhitelist? ruleBlacklist = null)
+    {
+        foreach (var ruleEntity in GetAddedGameRules())
+        {
+            if (_whitelist.CheckBoth(ruleEntity, ruleBlacklist, ruleWhitelist))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
     ///     Returns true if a game rule with the given component is active..
     /// </summary>
     public bool IsGameRuleActive<T>()
@@ -321,6 +339,22 @@ public sealed partial class GameTicker
         foreach (var ruleEntity in GetActiveGameRules())
         {
             if (MetaData(ruleEntity).EntityPrototype?.ID == rule)
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Returns true if a game rule that passes the whitelist and blacklist is active.
+    /// </summary>
+    /// <param name="ruleWhitelist">whitelist for the game rules</param>
+    /// <param name="ruleBlacklist">blacklist for the game rules</param>
+    public bool IsGameRuleActive(EntityWhitelist? ruleWhitelist, EntityWhitelist? ruleBlacklist = null)
+    {
+        foreach (var ruleEntity in GetActiveGameRules())
+        {
+            if (_whitelist.CheckBoth(ruleEntity, ruleBlacklist, ruleWhitelist))
                 return true;
         }
 

@@ -32,8 +32,8 @@ public sealed partial class RehydratableSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        var quantity = _solutions.GetTotalPrototypeQuantity(ent.Owner, ent.Comp.CatalystPrototype);
-        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner)} was hydrated, now contains a solution of: {SharedSolutionContainerSystem.ToPrettyString(args.Solution.Comp.Solution)}.");
+        var quantity = _solutions.GetTotalPrototypeQuantity(ent, ent.Comp.CatalystPrototype);
+        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner)} was hydrated, now contains a solution of: {SharedSolutionContainerSystem.ToPrettyString(args.Solution)}.");
         if (quantity != FixedPoint2.Zero && quantity >= ent.Comp.CatalystMinimum)
         {
             Expand(ent);
