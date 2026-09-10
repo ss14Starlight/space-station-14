@@ -744,7 +744,7 @@
           type: [ Vox ]
         reagent: Protein
         amount: 0.25
-      # Cyclorite Metabolism
+      # Starlight Start - Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
         - !type:ReagentCondition
