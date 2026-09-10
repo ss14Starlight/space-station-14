@@ -715,7 +715,7 @@
   parent: [ClothingHeadBase, BaseCentcommContraband]
   id: ClothingHeadHatBeretCentcommCMD
   name: Central Medical Division beret
-  description: a light blue beret, like any other beret but green and you can't have it.
+  description: a light blue beret, like any other beret, you can't have it.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/centcommberetCMD.rsi
@@ -730,7 +730,7 @@
   parent: [ClothingHeadBase, BaseCentcommContraband]
   id: ClothingHeadHatBeretCentcommCRD
   name: Central Research Division beret
-  description: a light purple beret, like any other beret but green and you can't have it.
+  description: a light purple beret, like any other beret, you can't have it.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/centcommberetCRD.rsi
@@ -745,7 +745,7 @@
   parent: [ClothingHeadBase, BaseCentcommContraband]
   id: ClothingHeadHatBeretCentcommCAD
   name: Central Administration Division beret
-  description: a blue beret, like any other beret but green and you can't have it.
+  description: a blue beret, like any other beret, you can't have it.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/centcommberetCAD.rsi
@@ -760,7 +760,7 @@
   parent: [ClothingHeadBase, BaseCentcommContraband]
   id: ClothingHeadHatBeretCentcommCCD
   name: Central Cargo Division beret
-  description: a orange beret, like any other beret but green and you can't have it.
+  description: a orange beret, like any other beret, you can't have it.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/centcommberetCCD.rsi
@@ -775,7 +775,7 @@
   parent: [ClothingHeadBase, BaseCentcommContraband]
   id: ClothingHeadHatBeretCentcommCSOD
   name: Central Special Operations Division beret
-  description: a pink beret, like any other beret but green and you can't have it.
+  description: a pink beret, like any other beret, you can't have it.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/centcommberetCSOD.rsi
@@ -790,7 +790,7 @@
   parent: [ClothingHeadBase, BaseCentcommContraband]
   id: ClothingHeadHatBeretCentcommCID
   name: Central Intelligence Division beret
-  description: a purple beret, like any other beret but green and you can't have it.
+  description: a purple beret, like any other beret, you can't have it.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/centcommberetCID.rsi
@@ -805,7 +805,7 @@
   parent: [ClothingHeadBase, BaseCentcommContraband]
   id: ClothingHeadHatBeretCentcommCSD
   name: Central Security Division beret
-  description: a red beret, like any other beret but green and you can't have it.
+  description: a red beret, like any other beret, you can't have it.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/centcommberetCSD.rsi
@@ -820,7 +820,7 @@
   parent: [ClothingHeadBase, BaseCentcommContraband]
   id: ClothingHeadHatBeretCentcommCED
   name: Central Engineering Division beret
-  description: a yellow beret, like any other beret but green and you can't have it.
+  description: a yellow beret, like any other beret, you can't have it.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/centcommberetCED.rsi

@@ -553,7 +553,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
   id: ClothingUniformJumpskirtCentcomFormalDressCAD
-  name: Central Administration Division officer's formal jumpskirt
+  name: Central Administration Division officer's formal dress jumpskirt
   description: It's a formal dress jumpskirt worn by CentComm officers.
   components:
     - type: Sprite
@@ -564,7 +564,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
   id: ClothingUniformJumpskirtCentcomFormalDressCMD
-  name: Central Medical Division officer's formal jumpskirt
+  name: Central Medical Division officer's formal dress jumpskirt
   description: It's a formal dress jumpskirt worn by CentComm officers.
   components:
     - type: Sprite
