@@ -569,7 +569,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [Animal] # Applying damage to the mobs with lower metabolism capabilities
+          type: [Animal, Avali] # Applying damage to the mobs with lower metabolism capabilities
         damage:
           types:
             Poison: 0.4
@@ -577,7 +577,7 @@
         probability: 0.04 #Scaled for time, not metabolismrate.
         conditions:
           - !type:MetabolizerTypeCondition
-            type: [Animal]
+            type: [Animal, Avali]
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
