@@ -793,22 +793,22 @@
   id: Cerberus
   params:
     variation: 0.125
-  sounds:
-    Growl:
+  sounds:  # SL
+    Growl: # SL
       collection: Growl
-    Snarl:
+    Snarl: # SL
       collection: VulpkaninSnarls
-    Bark:
+    Bark: # SL
       path: /Audio/Animals/cerberus.ogg
-    Whine:
+    Whine: # SL
       collection: VulpkaninWhines
-    Crying:
+    Crying: # SL
       collection: VulpkaninWhines
-    Howl:
+    Howl: # SL
       path: /Audio/_Starlight/Effects/howl.ogg
-    Yip:
+    Yip: # SL
       path: /Audio/_Starlight/Effects/yip.ogg
-    Sneeze:
+    Sneeze: # SL
       collection: VulpkaninSneeze
 
 - type: emoteSounds
