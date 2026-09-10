@@ -384,7 +384,7 @@ public sealed partial class StationAiSystem : SharedStationAiSystem
 
         var remoteXform = Transform(remoteEye);
 
-        if (!CanAccessGrid((user, null), Transform(target).GridUid))
+        if (HasComp<StationAiHeldComponent>(user) && !CanAccessGrid((user, null), Transform(target).GridUid))
         {
             StopFollowingTarget(remoteEye, target);
             return Fail();
