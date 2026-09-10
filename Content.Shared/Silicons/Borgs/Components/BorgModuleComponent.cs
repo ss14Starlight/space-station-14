@@ -33,7 +33,7 @@ public sealed partial class BorgModuleComponent : Component
     /// This only affects examine text. The actual whitelist for modules that can be inserted into a borg is defined in its <see cref="BorgChassisComponent"/>.
     /// </summary>
     [DataField]
-    public List<LocId>? BorgFitTypes;
+    public HashSet<LocId>? BorgFitTypes;
 }
 
 /// <summary>

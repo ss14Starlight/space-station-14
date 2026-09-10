@@ -306,7 +306,8 @@
   - BorgModuleBooks
   # Starlight end
   - BorgModuleClowning
-
+  - BorgModuleGardening
+  - BorgModuleHarvesting
   radioChannels:
   - Science
   - Service
