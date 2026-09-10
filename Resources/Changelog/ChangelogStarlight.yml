@@ -1,27 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
   changes:
-  - message: Chemical jugs and bar jugs are now Large (2x4) items.
-    type: Tweak
-  id: 408064
-  time: '2026-09-03T03:51:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5893
-- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
-  changes:
-  - message: Buckets now hold 360u and are 3x4 items.
-    type: Tweak
-  id: 408065
-  time: '2026-09-03T03:51:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5893
-- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
-  changes:
-  - message: Nukie medical duffel bag now comes with a bicaridine jug, a mixed puncturase & tranexamic acid jug, a mixed dermaline & pyrazine jug, and a mixed saline & dexalin plus jug.
-    type: Tweak
-  id: 408066
-  time: '2026-09-03T03:51:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5893
-- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
-  changes:
   - message: Most items with slicing tool quality now can be used for butchering.
     type: Tweak
   id: 408067
@@ -2799,4 +2778,25 @@ Entries:
   id: 408463
   time: '2026-09-10T17:03:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5948
+- author: idkAnAlliasYetTbh & FlameyTheRandom
+  changes:
+  - message: Adds a base plushie for Vox, meaning it is hopefully easier for others to make a Vox Plushe in the future!
+    type: Add
+  id: 408464
+  time: '2026-09-10T17:33:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6054
+- author: idkAnAlliasYetTbh & FlameyTheRandom
+  changes:
+  - message: Added a Hrekrativi plushie.
+    type: Add
+  id: 408465
+  time: '2026-09-10T17:33:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6054
+- author: Rinary
+  changes:
+  - message: Removed footprints and skid marks due to performence issues on both(server and client) sides.
+    type: Remove
+  id: 408466
+  time: '2026-09-10T19:25:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6084
 Order: -1
