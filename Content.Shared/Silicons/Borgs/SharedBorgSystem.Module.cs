@@ -50,6 +50,12 @@ public abstract partial class SharedBorgSystem
             OnCheckBlacklistRelay);
 
 
+        SubscribeLocalEvent<ComponentBorgModuleComponent, BorgModuleInstalledEvent>(OnComponentModuleInstalled);
+        SubscribeLocalEvent<ComponentBorgModuleComponent, BorgModuleUninstalledEvent>(OnComponentModuleUninstalled);
+
+        SubscribeLocalEvent<ComponentBorgModuleComponent, BorgModuleRelayedEvent<BorgModuleInsertAttemptEvent>>(
+            OnComponentModuleInstalledRelay);
+
         _moduleQuery = GetEntityQuery<BorgModuleComponent>();
     }
 
@@ -114,7 +120,7 @@ public abstract partial class SharedBorgSystem
     }
      #endregion
 
-    #region ItemBorgModule
+    #region SelectableBorgModule
     private void OnSelectableInstalled(Entity<SelectableBorgModuleComponent> module, ref BorgModuleInstalledEvent args)
     {
         var chassis = args.ChassisEnt;
@@ -172,7 +178,9 @@ public abstract partial class SharedBorgSystem
             SelectModule((chassis, chassisComp), module.Owner);
         }
     }
+    #endregion
 
+    #region ItemBorgModule
     private void OnProvideItemStartup(Entity<ItemBorgModuleComponent> module, ref ComponentStartup args)
     {
         _container.EnsureContainer<Container>(module.Owner, module.Comp.HoldingContainer);
