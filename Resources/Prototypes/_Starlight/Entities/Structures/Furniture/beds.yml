@@ -1,0 +1,174 @@
+- type: entity
+  parent: BaseStructure
+  id: PetBed
+  name: pet bed
+  description: A comfy-looking bed for your pets. You can even strap your pet in, in case the gravity turns off.
+  components:
+  - type: HealOnBuckle
+    damage:
+      types:
+        Poison: -0.1
+        Blunt: -0.1
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.05"
+        density: 190
+        mask:
+        - TableMask
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: petbed
+    noRot: true
+  - type: Strap
+    position: Stand
+    rotation: 0
+  - type: Damageable
+    damageModifierSet: Inflatable
+    damageContainer: Inorganic
+  - type: PlaceableSurface
+    placeCentered: true
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WeakHit
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WeakHit
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialCloth1:
+            min: 1
+            max: 2
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Anchorable
+  - type: Pullable
+
+- type: entity
+  parent: PetBed
+  id: CatBed
+  name: cat bed
+  description: A comfy-looking bed for your cat. You can even strap your pet in, in case the gravity turns off.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: catbed
+
+- type: entity
+  parent: PetBed
+  id: RaccoonBed
+  name: raccoon bed
+  description: A slightly smelly bed for your raccoon. You can even strap your pet in, in case the gravity turns off.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: raccoonbed
+
+- type: entity
+  parent: PetBed
+  id: SoftPetBedBlue
+  name: soft pet bed
+  description: A very soft looking bed for your pet. Soft enough you almost want to sleep in it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: soft_blue
+
+- type: entity
+  parent: PetBed
+  id: SoftPetBedDarkBlue
+  name: soft pet bed
+  description: A very soft looking bed for your pet. Soft enough you almost want to sleep in it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: soft_darkblue
+
+- type: entity
+  parent: PetBed
+  id: SoftPetBedGray
+  name: soft pet bed
+  description: A very soft looking bed for your pet. Soft enough you almost want to sleep in it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: soft_gray
+
+- type: entity
+  parent: PetBed
+  id: SoftPetBedGreen
+  name: soft pet bed
+  description: A very soft looking bed for your pet. Soft enough you almost want to sleep in it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: soft_green
+
+- type: entity
+  parent: PetBed
+  id: SoftPetBedOrange
+  name: soft pet bed
+  description: A very soft looking bed for your pet. Soft enough you almost want to sleep in it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: soft_orange
+
+- type: entity
+  parent: PetBed
+  id: SoftPetBedPink
+  name: soft pet bed
+  description: A very soft looking bed for your pet. Soft enough you almost want to sleep in it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: soft_pink
+
+- type: entity
+  parent: PetBed
+  id: SoftPetBedPurple
+  name: soft pet bed
+  description: A very soft looking bed for your pet. Soft enough you almost want to sleep in it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: soft_purple
+
+- type: entity
+  parent: PetBed
+  id: SoftPetBedRed
+  name: soft pet bed
+  description: A very soft looking bed for your pet. Soft enough you almost want to sleep in it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: soft_red
+
+- type: entity
+  parent: PetBed
+  id: SoftPetBedYellow
+  name: soft pet bed
+  description: A very soft looking bed for your pet. Soft enough you almost want to sleep in it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/pet_beds.rsi
+    state: soft_yellow

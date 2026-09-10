@@ -15,6 +15,11 @@
       "directions": 4
     },
     {
+      "name": "equipped-HELMET-hamster",
+      "directions": 4,
+      "copyright": "Edited by ya3.14a"
+    },
+    {
       "name": "inhand-left",
       "directions": 4
     },

@@ -1,0 +1,17 @@
+- type: entity
+  parent: PlastitaniumAirlockIndestructible
+  id: PlastitaniumAirlockCentralCommandIndestructible
+  suffix: Central Command, Indestructible
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
+
+- type: entity
+  parent: PlastitaniumAirlock
+  id: PlastitaniumAirlockCentralCommand
+  suffix: Central Command
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]

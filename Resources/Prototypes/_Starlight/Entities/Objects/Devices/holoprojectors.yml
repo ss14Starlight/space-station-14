@@ -14,6 +14,7 @@
       tags:
         - HolofanProjector
         - SecBeltEquip
+        - HoloprojectorCrafting
     - type: StaticPrice
       price: 40
 
@@ -29,3 +30,37 @@
         blacklist:
           tags:
           - MechReactor
+
+- type: entity
+  parent: [ Holoprojector, BaseMinorContraband ]
+  id: FalseShutterProjector
+  name: false shutter projector
+  description: Looks almost like the real thing. Useful for blocking the vision of the distracted or unobservant while you do what needs done.
+  components:
+  - type: HolosignProjector
+    signProto: HolosignFalseShutter
+    chargeUse: 60
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/Holoprojectors/shutter.rsi
+    state: icon
+  - type: Tag
+    tags:
+      - HolosignProjector
+  - type: StaticPrice
+    price: 80
+
+- type: entity
+  parent: FalseShutterProjector
+  id: FalseShutterProjectorEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        blacklist:
+          tags:
+          - MechReactor
+  - type: Construction
+    graph: FalseShutterProjectorEmpty
+    node: projector

@@ -45,9 +45,14 @@ public sealed class ScentSniffBoundUserInterfaceState : BoundUserInterfaceState
 {
     public readonly List<ScentTraceEntry> Entries;
 
-    public ScentSniffBoundUserInterfaceState(List<ScentTraceEntry> entries)
+    // The target's own current scent, if it has ScentComponent. Always offered as a pinned
+    // option above the trace list, separately from whatever traces were found on it.
+    public readonly string? OwnScentId;
+
+    public ScentSniffBoundUserInterfaceState(List<ScentTraceEntry> entries, string? ownScentId)
     {
         Entries = entries;
+        OwnScentId = ownScentId;
     }
 }
 

@@ -160,18 +160,6 @@
     - type: ComputerBoard
       prototype: ComputerCommsCargo
 
-- type: entity
-  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
-  id: LawCommsComputerCircuitboard
-  name: law communications console board
-  description: A computer printed circuit board for a law communications console.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Misc/module.rsi
-      state: cpu_law
-    - type: ComputerBoard
-      prototype: ComputerCommsLaw
-
 ## Departmental Communications Consoles END
 
 - type: entity

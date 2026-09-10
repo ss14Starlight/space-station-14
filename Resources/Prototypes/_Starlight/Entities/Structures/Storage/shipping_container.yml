@@ -1,0 +1,365 @@
+- type: entity
+  id: BaseShippingContainer
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: SpriteFade
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    drawdepth: Overdoors
+    state: shipping_container
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-0.6,1.45,0.6"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,9,6
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/metal_slam4.ogg
+        params:
+          variation: 0.05
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -5
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 5
+            max: 8
+  - type: Tag
+    tags:
+      - Structure
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerAmsco
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: amsco
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerAqua
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: aqua
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerBlack
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: black
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerBloodRed
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by explosions in the middle of a battle.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: bloodred
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerBlue
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: blue
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerBrown
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: brown
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerConarex
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: conarex
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerCybersun
+  name: shipping container
+  description: Heavily reinforced steel frames meant to protect expensive computing and artificial intelligence components. They should make armor out of this stuff!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: cybersun
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerDeForest
+  name: shipping container
+  description: Reinforced steel frames meant to transport delicate medical equipment and supplies.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: deforest
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerDonk
+  name: shipping container
+  description: Cheap steel frames meant to get their products to where they need to be at the least cost. Smells like stale Donk Pockets.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: donk
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerGorlex
+  name: shipping container
+  description: Plastitanium frames meant to survive being thrown around by explosions in the middle of a battle.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: gorlex
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerGray
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: gray
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerGreatNorthern
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: great_northern
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerGreen
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: green
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerInterdyne
+  name: shipping container
+  description: Reinforced steel frames meant to protect expensive medical supplies. Smells too sterile, like a hospital.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: interdyne
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerKahraman
+  name: shipping container
+  description: Reinforced steel frames meant to ship heavy duty machinery across the stars.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: kahraman
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerMicrostar
+  name: shipping container
+  description: Reinforced steel frames rated to survive every energy cell stored within exploding all at once.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: microstar
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerNanoTrasen
+  name: shipping container
+  description: Sturdy steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: nanotrasen
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerNanoTrasenVandal
+  name: shipping container
+  description: Sturdy steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses. This one is heavily vandalized.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: nanotrasen_vandal
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerOrange
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: orange
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerPurple
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: purple
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerRed
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: red
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerRusted
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses. Rust has eaten holes through the metal sheets, and it is heavily dented.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: rusted
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerShamblers
+  name: shipping container
+  description: Reinforced steel frames meant to transport Shamblers beverages. Its sticky and smells like grapes and sugar.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: shamblers
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerStarkist
+  name: shipping container
+  description: Reinforced steel frames meant to transport Starkist beverages. Its sticky and smells like citrus and sugar.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: starkist
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerTigerCooperative
+  name: shipping container
+  description: Reinforced steel frames meant to be ripped open from the inside by whatever is contained within. The writing is painted on hastily, and the inside is splattered with blood.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: tiger_cooperative
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerVitezstvi
+  name: shipping container
+  description: Plastitanium frames meant to survive every bullet stored within going off at the same time.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: vitezstvi
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerVulcan
+  name: shipping container
+  description: Reinforced steel frames meant to survive being accidentally stabbed with a crusher glaive. It has a few holes in it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: vulcan
+
+- type: entity
+  parent: BaseShippingContainer
+  id: ShippingContainerYellow
+  name: shipping container
+  description: Reinforced steel frames meant to survive being thrown around by lazy Cargo Technicians who forged their crane licenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/shipping_container.rsi
+    state: yellow

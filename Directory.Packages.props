@@ -6,29 +6,32 @@
     -->
     <PackageVersion Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <PackageVersion Remove="Microsoft.EntityFrameworkCore.Design" />
-    <PackageVersion Include="Concentus.Oggfile" Version="1.0.6" />
-    <PackageVersion Include="CSCore" Version="1.2.1.2" />
     <PackageVersion Include="CsvHelper" Version="33.1.0" />
     <PackageVersion Include="ImGui.NET" Version="1.87.3" />
-    <!-- Starlight -->
-    <PackageVersion Include="MonoMod.RuntimeDetour" Version="25.3.4" />
-    <!-- Starlight -->
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="10.0.6" />
     <PackageVersion Include="NetCord" Version="1.0.0-alpha.388" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
+    <PackageVersion Include="OpenTK" Version="4.9.4" />
+    <PackageVersion Include="Veldrid" Version="4.8.0" />
+    <PackageVersion Include="Veldrid.SPIRV" Version="1.0.15" />
+    <!-- Starlight -->
+    <PackageVersion Include="SS14.Starlight.NullLink" Version="1.0.70" />
+    <PackageVersion Include="MonoMod.RuntimeDetour" Version="25.3.4" />
+    <PackageVersion Include="StackExchange.Redis" Version="2.10.1" />
+    <PackageVersion Include="OggVorbisEncoder" Version="1.2.2" />
     <PackageVersion Include="Microsoft.Orleans.Client" Version="10.0.1" />
     <PackageVersion Include="Microsoft.Orleans.Clustering.Redis" Version="10.0.1" />
     <PackageVersion Include="Microsoft.Orleans.Sdk" Version="10.0.1" />
     <PackageVersion Include="NAudio" Version="2.2.1" />
-    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
-    <PackageVersion Include="OggVorbisEncoder" Version="1.2.2" />
-    <PackageVersion Include="SS14.Starlight.NullLink" Version="1.0.70" />
-    <PackageVersion Include="OpenTK" Version="4.9.4" />
-    <PackageVersion Include="StackExchange.Redis" Version="2.10.1" />
-    <PackageVersion Include="Veldrid" Version="4.8.0" />
-    <PackageVersion Include="Veldrid.SPIRV" Version="1.0.15" />
+    <PackageVersion Include="Concentus.Oggfile" Version="1.0.6" />
+    <PackageVersion Include="CSCore" Version="1.2.1.2" />
+    <PackageVersion Include="Microsoft.Testing.Extensions.CtrfReport" Version="1.0.0-alpha.26377.5" />
+    <PackageVersion Include="Microsoft.Testing.Extensions.HangDump" Version="2.3.3" />
+    <PackageVersion Include="Microsoft.Testing.Extensions.Retry" Version="2.3.3" />
+    <!-- Starlight -->
   </ItemGroup>
 </Project>

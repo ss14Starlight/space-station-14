@@ -1,10 +1,10 @@
+<!-- Starlight edit Start, no visual nubody -->
 <DefaultWindow xmlns="https://spacestation14.io"
                xmlns:humanoid="clr-namespace:Content.Client._Starlight.Humanoid"
                xmlns:starlightHumanoid="clr-namespace:Content.Client._Starlight.Humanoid"
                Title="{Loc 'magic-mirror-window-title'}"
                MinSize="600 400">
     <BoxContainer>
-        <!-- Starlight edit Start -->
         <starlightHumanoid:SingleMarkingPicker Name="HairPicker" Category="Hair" />
         <starlightHumanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
         <!-- Starlight edit End -->

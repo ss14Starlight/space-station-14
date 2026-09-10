@@ -39,7 +39,7 @@
 - type: humanoidBaseSprite
   id: MobArachnidEyes
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: eyes
 
 - type: markingPoints
@@ -76,83 +76,83 @@
 - type: humanoidBaseSprite
   id: MobArachnidHead
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobArachnidHeadMale
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobArachnidHeadFemale
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: head_f
 
 - type: humanoidBaseSprite
   id: MobArachnidTorso
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobArachnidTorsoMale
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobArachnidTorsoFemale
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: torso_f
 
 - type: humanoidBaseSprite
   id: MobArachnidLLeg
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: l_leg
 
 - type: humanoidBaseSprite
   id: MobArachnidLHand
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: l_hand
 
 - type: humanoidBaseSprite
   id: MobArachnidLArm
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: l_arm
 
 - type: humanoidBaseSprite
   id: MobArachnidLFoot
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: l_foot
 
 - type: humanoidBaseSprite
   id: MobArachnidRLeg
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: r_leg
 
 - type: humanoidBaseSprite
   id: MobArachnidRHand
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: r_hand
 
 - type: humanoidBaseSprite
   id: MobArachnidRArm
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: r_arm
 
 - type: humanoidBaseSprite
   id: MobArachnidRFoot
   baseSprite:
-    sprite: Mobs/Species/Arachnid/parts.rsi
+    sprite: _Starlight/Mobs/Species/Arachnid/parts.rsi # Starlight
     state: r_foot

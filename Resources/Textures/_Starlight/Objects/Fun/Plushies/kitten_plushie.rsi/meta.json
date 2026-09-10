@@ -1,14 +1,25 @@
 {
-  "version": 2,
+  "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Wit Studio - My friend Nokotan, SS13 Sprites, Conflee, ReamNox, Miracula, Puddleboat, Salthew, Gensy, Polaris TODO from Happyrobot33, Fix copyright after RSI Split",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Taken from https://scrubby.melonmesa.com/dmi/modular_skyrat/master_files/icons/obj/plushes.dmi?codebase=bubber"
+    },
+    {
+      "name": "inhand-left",
+      "copyright": "By oliveoil238",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "copyright": "By oliveoil238",
+      "directions": 4
     }
   ]
 }

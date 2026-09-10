@@ -10,7 +10,7 @@
   - type: Tag
     tags:
       - AirAlarmElectronics
-      - RamChip #Protogen joke, makes them able to eat them. - FH
+      - RamChip # FH + Starlight
   - type: StaticPrice
     price: 61
 
@@ -28,6 +28,6 @@
   - type: Tag
     tags:
       - FireAlarmElectronics
-      - RamChip # FH
+      - RamChip # FH + Starlight
   - type: StaticPrice
     price: 61

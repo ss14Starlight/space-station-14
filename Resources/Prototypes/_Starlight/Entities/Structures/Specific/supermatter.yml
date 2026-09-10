@@ -62,11 +62,17 @@
             !type:DamageTrigger
             damage: 80
           behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
+            - !type:SpawnEntitiesBehavior
+                spawn:
+                  CascadChunk:
+                     min: 0
+                     max: 2
             - !type:PlaySoundBehavior
               sound:
-                collection: GlassBreak
+                path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+            - !type:ExplodeBehavior
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
     - type: Sprite
       drawdepth: Walls
       sprite: _Starlight/Objects/Specific/supermatter_cascade.rsi
@@ -75,6 +81,7 @@
     - type: Icon
       sprite: _Starlight/Objects/Specific/supermatter_cascade.rsi
       state: cascade_1
+    - type: Clickable
     - type: Physics
       bodyType: Static
     - type: Fixtures
@@ -85,6 +92,17 @@
             bounds: "-0.5,-0.5,0.5,0.5"
           layer:
           - GlassLayer
+    - type: RadiationSource
+      intensity: 1.5
+      slope: 0.25
+    - type: PointLight
+      color: "#FFFF00"
+      radius: 2
+      energy: 2.5
+    - type: Explosive
+      explosionType: Radioactive
+      totalIntensity: 10
+      tileBreakScale: 0.00001
 
 - type: entity
   id: Cascad2
@@ -140,3 +158,54 @@
     - type: Icon
       sprite: _Starlight/Objects/Specific/supermatter_cascade.rsi
       state: cascade_6
+
+- type: entity
+  id: CascadChunk
+  parent: BaseItem
+  name: Cascad Chunk
+  description: A chunk of degenerate supermatter. The remains are still dangerously radioactive.
+  components:
+    - type: Sprite
+      sprite: Objects/Consumable/Food/Baked/cake.rsi
+      layers:
+        - state: suppermatter-shard
+    - type: Item
+      size: Normal
+    - type: RadiationSource
+      intensity: .25
+      slope: 0.25
+    - type: Extractable
+      juiceSolution:
+        reagents:
+        - ReagentId: Tritium
+          Quantity: 6
+        - ReagentId: Plasma
+          Quantity: 2
+    - type: PointLight
+      color: "#FFFF00"
+      radius: 2
+      energy: 2.5
+    - type: StaticPrice
+      price: 150
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 1
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            path: /Audio/_Starlight/Effects/supermatter/emitter2.ogg
+        - !type:ExplodeBehavior
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: DamageOnLand
+      damage:
+        types:
+          Blunt: 3
+    - type: Explosive
+      explosionType: Radioactive
+      totalIntensity: 5
+      tileBreakScale: 0.00001

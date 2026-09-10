@@ -35,10 +35,10 @@ evolutionmenu-utility-hyper-stims-desc =
     WARNING: Requires you to absorb at least 4 organics to use the ability.
     Costs 40 chemicals.
 
-evolutionmenu-utility-protogen-name = Protogen Disguise
-evolutionmenu-utility-protogen-desc =
-    Hardens your skin into a metal-like appearance, allowing it to pass as a Protogen frame. Only usable if you are currently
-    disguised as a Protogen.
+evolutionmenu-utility-neocyte-name = Neocyte Disguise
+evolutionmenu-utility-neocyte-desc =
+    Hardens your skin into a metal-like appearance, allowing it to pass as a Neocyte frame. Only usable if you are currently
+    disguised as a Neocyte.
     Costs 0 chemicals.
 
 # Sting

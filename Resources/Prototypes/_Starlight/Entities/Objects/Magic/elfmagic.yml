@@ -133,13 +133,13 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/_Starlight/Magic/cantrip.ogg
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 15
-        reagents:
-        - ReagentId: ElfDiethylamine
-          Quantity: 15
+  - type: Solution
+    id: pen
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: ElfDiethylamine
+        Quantity: 15
 
 # Cleanse
 
@@ -171,14 +171,14 @@
       params:
         volume: 0.1
         variation: 0.5
-  - type: SolutionContainerManager
-    solutions:
-      solutionArea:
-        maxVol: 15
-        canReact: true
-        reagents:
-        - ReagentId: ElfSpaceCleaner
-          Quantity: 15
+  - type: Solution
+    id: solutionArea
+    solution:
+      maxVol: 15
+      canReact: true
+      reagents:
+      - ReagentId: ElfSpaceCleaner
+        Quantity: 15
 
 # Hemostasis
 
@@ -231,10 +231,10 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/_Starlight/Magic/ember.ogg
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 5
-        reagents:
-        - ReagentId: ElfTranexamicAcid
-          Quantity: 5
+  - type: Solution
+    id: pen
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: ElfTranexamicAcid
+        Quantity: 5

@@ -14,9 +14,9 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'B'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_delta.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_delta.yml
         - type: StationCargoShuttle
-          path: /Maps/_Starlight/Shuttles/cargo_silica.yml
+          path: /Maps/_Starlight/Shuttles/Cargo/cargo_silica.yml
         - type: StationJobs
           availableJobs:
             #service
@@ -31,6 +31,7 @@
             Lawyer: [ 2, 2 ]
             ServiceWorker: [ 2, 3 ]
             Reporter: [ 1, 2 ]
+            RadioHost: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
@@ -43,6 +44,7 @@
             Paramedic: [ 2, 2 ]
             MedicalIntern: [ 4, 4 ]
             Surgeon: [ 2, 2 ]
+            Psychologist: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]

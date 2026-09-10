@@ -483,7 +483,7 @@
     board: HellfireHeaterMachineCircuitBoard
 
 - type: entity
-  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  parent: [ SolutionTank, SolutionHuge, BaseMachinePowered, SmallConstructibleMachine ]
   id: BaseGasCondenser
   categories: [ ShouldMapStation ] # Starlight
   name: condenser
@@ -566,10 +566,6 @@
         pipeDirection: South
   - type: Transform
     noRot: false
-  - type: SolutionContainerManager
-    solutions:
-      tank:
-        maxVol: 400
   - type: MixableSolution
     solution: tank
   - type: DrainableSolution

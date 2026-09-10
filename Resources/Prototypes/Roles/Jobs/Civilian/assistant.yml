@@ -5,7 +5,7 @@
   playTimeTracker: JobPassenger
   startingGear: AssistantGear
   icon: "JobIconAssistant"
-  supervisors: job-supervisors-everyone
+  supervisors: job-supervisors-assistantmanager # Starlight
   access:
   - Maintenance
 

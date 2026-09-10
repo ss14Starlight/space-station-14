@@ -16,7 +16,7 @@
     - !type:PlantDiethylamine {}
   # Starlight end
   metabolisms:
-    Medicine:
+    Bloodstream: # Starlight
       metabolismRate: 0.2
       effects:
       - !type:HealthChange
@@ -43,9 +43,6 @@
         reagent: Phenylpiperidine
         amount: -0.1
         # Starlight-End
-    Narcotic:
-      metabolismRate: 0.2
-      effects:
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.40
         sprintSpeedModifier: 0.40

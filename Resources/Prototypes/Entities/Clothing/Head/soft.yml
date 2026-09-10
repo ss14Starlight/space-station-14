@@ -102,7 +102,7 @@
   name: quartermaster's cap
 
 - type: entity
-  parent: ClothingHeadHeadHatBaseFlippable
+  parent: [ClothingHeadHeadHatBaseFlippable, BaseCommandManagerContraband] # Starlight
   id: ClothingHeadHatCommandSoft
   name: command cap
   description: A baseball cap in command's distinctive shade of blue.

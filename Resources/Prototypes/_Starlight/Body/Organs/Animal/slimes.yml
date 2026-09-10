@@ -11,24 +11,12 @@
     - type: Metabolizer
       maxReagents: 3
       metabolizerTypes: [ Slime ]
-      removeEmpty: true
-      groups:
-        - id: Food
-        - id: Drink
-        - id: Medicine
-        - id: Poison
-        - id: Narcotic
-        - id: Alcohol
-          rateModifier: 2
-    - type: SolutionContainerManager
+      stages: [ Digestion, Bloodstream, Metabolites ]
+    - type: SolutionManager
       solutions:
-        stomach:
-          maxVol: 30.0
-        food:
-          maxVol: 5
-          reagents:
-          - ReagentId: GreyMatter
-            Quantity: 5
+      - SolutionOrganSlime
+      - SolutionOrganFoodGreyMatter
+      - SolutionOrganStomach30
 
 - type: entity
   id: OrganSlimesLungs
@@ -45,24 +33,10 @@
     - type: Lung
       alert: LowNitrogen
     - type: Metabolizer
-      removeEmpty: true
-      solutionOnBody: false
-      solution: "Lung"
       metabolizerTypes: [ Slime ]
-      groups:
-      - id: Gas
-        rateModifier: 100.0
-    - type: SolutionContainerManager
+      stages: [ Respiration ]
+    - type: SolutionManager
       solutions:
-        organ:
-          reagents:
-          - ReagentId: Nutriment
-            Quantity: 10
-        Lung:
-          maxVol: 100.0
-          canReact: false
-        food:
-          maxVol: 5
-          reagents:
-          - ReagentId: Slime
-            Quantity: 5
+      - SolutionOrganSlime
+      - SolutionOrganFoodSlime
+      - SolutionOrganLung

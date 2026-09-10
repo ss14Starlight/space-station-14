@@ -1,0 +1,111 @@
+- type: species
+  id: NeoDiona
+  name: subspecies-name-neodiona
+  roundStart: true
+  prototype: MobNeoDiona
+  sprites: MobNeoDionaSprites
+  markingLimits: MobNeoDionaMarkingLimits
+  dollPrototype: AppearanceNeoDiona
+  defaultSkinTone: "#cdb369"
+  skinColoration: Hues
+  customName: true
+  maleFirstNames: NamesDionaFirst
+  femaleFirstNames: NamesDionaFirst
+  lastNames: NamesDionaLast
+  naming: TheFirstofLast
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Neocyte
+  subspeciesName: subspecies-name-neodiona
+  loadout: NeocyteLoadout
+  standardSize: 200
+  standardWeight: 145
+  standardDensity: 130
+  minAge: 30
+  youngAge: 40
+  oldAge: 150
+  maxAge: 250
+  profileMigration:
+    oldSpecies:
+    - ProtoDiona
+
+- type: speciesBaseSprites
+  id: MobNeoDionaSprites
+  sprites:
+    Eyes: MobNeocyteEyes
+    Head: MobDionaHead
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Chest: MobDionaTorso
+    LArm: MobDionaLArm
+    RArm: MobDionaRArm
+    LHand: MobDionaLHand
+    RHand: MobDionaRHand
+    LLeg: MobDionaLLeg
+    RLeg: MobDionaRLeg
+    LFoot: MobDionaLFoot
+    RFoot: MobDionaRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
+
+- type: markingPoints
+  id: MobNeoDionaMarkingLimits
+  onlyWhitelisted: true
+  points:
+    FaceCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoDionaVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoDionaLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoDionaMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ NeoDionaLights ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: false
+    HeadTop:
+      points: 2
+      required: false
+    Head:
+      points: 2
+      required: false
+    Chest:
+      points: 2
+      required: false
+    Legs:
+      points: 2
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false
+    Arms:
+      points: 2
+      required: false
+    Overlay:
+      points: 2
+      required: false

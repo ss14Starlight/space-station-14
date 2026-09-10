@@ -1,6 +1,6 @@
 ﻿using Content.Server._Starlight.Objectives.Components;
-using Content.Server._Starlight.Objectives.Events;
 using Content.Server._Starlight.Railroading;
+using Content.Shared._Starlight.Objectives.Events;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Objectives;
@@ -23,7 +23,7 @@ public sealed partial class DepartmentObjectiveSystem : EntitySystem
         SubscribeLocalEvent<DepartmentObjectiveComponent, ObjectiveAfterAssignEvent>(OnAfterAssign);
         SubscribeLocalEvent<DepartmentObjectiveComponent, RailroadingCardChosenEvent>(OnRailroadingChosen);
         SubscribeLocalEvent<DepartmentObjectiveComponent, CollectObjectiveInfoEvent>(OnCollectObjectiveInfo);
-        SubscribeLocalEvent<DepartmentObjectiveComponent, RailroadingCardCompletionQueryEvent>((ent, ref args) => args.IsCompleted = true);
+        SubscribeLocalEvent<DepartmentObjectiveComponent, RailroadingCardCompletionQueryEvent>((_, ref args) => args.IsCompleted = true);
     }
 
     private void OnCollectObjectiveInfo(Entity<DepartmentObjectiveComponent> ent, ref CollectObjectiveInfoEvent args)

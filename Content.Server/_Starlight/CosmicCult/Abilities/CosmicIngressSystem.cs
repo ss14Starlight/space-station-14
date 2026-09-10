@@ -6,6 +6,7 @@ using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Maps;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
@@ -18,6 +19,7 @@ public sealed partial class CosmicIngressSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     public override void Initialize()
     {
@@ -90,7 +92,7 @@ public sealed partial class CosmicIngressSystem : EntitySystem
 
         _audio.PlayPvs(comp.IngressSfx, ent);
         Spawn(comp.CultVfx, coordinates);
-        foreach (var entity in _lookup.GetEntitiesIntersecting(coordinates))
+        foreach (var entity in _turf.GetEntitiesInTile(coordinates, LookupFlags.All))
         {
             if (HasComp<DoorComponent>(entity))
                 QueueDel(entity);

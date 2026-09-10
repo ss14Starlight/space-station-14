@@ -1,0 +1,31 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "broken",
+			"copyright": "Ported from Paradise SS13, made by DGamerL at commit 44ea1905279c5bee216c5d0acbe9e01dee2cdf20, edited by Conflee for Starlight"
+        },
+        {
+            "name": "empty",
+			"copyright": "Ported from Paradise SS13, made by DGamerL at commit 44ea1905279c5bee216c5d0acbe9e01dee2cdf20, edited by Conflee for Starlight"
+        },
+        {
+            "name": "burned",
+			"copyright": "Ported from Paradise SS13, made by DGamerL at commit 44ea1905279c5bee216c5d0acbe9e01dee2cdf20, edited by Conflee for Starlight"
+        },
+        {
+            "name": "base",
+			"copyright": "Ported from Paradise SS13, made by DGamerL at commit 44ea1905279c5bee216c5d0acbe9e01dee2cdf20, edited by Conflee for Starlight"
+        },
+        {
+            "name": "glow",
+			"copyright": "Ported from Paradise SS13, made by DGamerL at commit 44ea1905279c5bee216c5d0acbe9e01dee2cdf20, edited by Conflee for Starlight"
+        }
+    ]
+}

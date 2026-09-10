@@ -5,7 +5,7 @@ using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.DeviceLinking; // Starlight - Remove Server Check from VinylSummonSystem
-using Content.Shared.Radio.Components; // Starlight - Alt click to lower volume.
+using Content.Shared.Examine; // Starlight - Shift Click to view what volume the radio is at.
 using Content.Shared.Verbs; // Starlight - Alt click to lower volume.
 using Robust.Shared.Network; // Starlight - Add Station Radio Resume Play
 using Robust.Shared.Timing; // Starlight - Add Station Radio Resume Play
@@ -35,6 +35,7 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         SubscribeLocalEvent<RadioRigComponent, EntityTerminatingEvent>(OnRigTerminating); // Starlight - When Rig is destroyed, it should stop broadcasting.
 
         SubscribeLocalEvent<StationRadioReceiverComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs); // Starlight - Alt click to lower volume.
+        SubscribeLocalEvent<StationRadioReceiverComponent, ExaminedEvent>(OnExamined); // Starlight - Shift Click to view what volume the radio is at.
     }
 
     private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
@@ -132,8 +133,8 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
         }
     }
 
-    // Starlight - Start - Remove Server Check from VinylSummonSystem
-
+    // Starlight - Start
+    #region Starlight
     /// <summary>
     /// Method for getting the current volume of the station radio.
     /// </summary>
@@ -235,5 +236,16 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             RaiseLocalEvent(receiver, new StationRadioMediaStoppedEvent());
         }
     }
+
+    /// <summary>
+    /// Display whether or not the station radio is at full or low volume when examined.
+    /// </summary>
+    private void OnExamined(EntityUid uid, StationRadioReceiverComponent comp, ref ExaminedEvent args)
+    {
+        args.PushMarkup(Loc.GetString(comp.LowVolume
+            ? "station-radio-receiver-examine-low-volume"
+            : "station-radio-receiver-examine-full-volume"));
+    }
+    #endregion
     // Starlight - End
 }

@@ -19,6 +19,14 @@
     Slash: 0.7
 
 - type: damageModifierSet
+  id: Doll
+  coefficients:
+    Blunt: 1.3 # Base form is squish!
+    Slash: 1.3
+    Piercing: 1.3
+    Heat: 1.0
+
+- type: damageModifierSet
   id: Shadekin
   coefficients:
     Asphyxiation: 0
@@ -51,6 +59,9 @@
     Slash: 2
     Heat: 0.5
     Bloodloss: 0
+  flatReductions:
+    Blunt: 2
+    Piercing: 5
 
 - type: damageModifierSet
   id: DragonCarpResistances
@@ -59,6 +70,9 @@
     Slash: 2
     Heat: 0.75
     Bloodloss: 0
+  flatReductions:
+    Blunt: 2
+    Piercing: 2
 
 # Thaven
 - type: damageModifierSet
@@ -73,9 +87,9 @@
     Cellular: 1.1
     Radiation: 1.2
 
-# ProtoDwarf
+# NeoDwarf
 - type: damageModifierSet
-  id: ProtoDwarf
+  id: NeoDwarf
   coefficients:
     Shock: 1.25
     Blunt: 1.1
@@ -83,9 +97,9 @@
     Heat: 1.15 # Their beards.
     Poison: 0.85 # Alcohol-optimized organs.
 
-# ProtoArachnid
+# NeoArachnid
 - type: damageModifierSet
-  id: ProtoArachnid
+  id: NeoArachnid
   coefficients:
     Shock: 1.25
     Blunt: 1.1
@@ -101,9 +115,9 @@
     Cellular: 0.9 # magic makes the flesh is less corruptible
     Blunt: 1.2 # brittle bones, etc.
 
-# ProtoElf
+# NeoElf
 - type: damageModifierSet
-  id: ProtoElf
+  id: NeoElf
   coefficients:
     Shock: 1.15 # They can counter some of the shock, magic resistance.
     Heat: 1.15 # They can share this with thaven, they've got similar enough body types.
@@ -120,9 +134,9 @@
     Cold: 0.75
     Heat: 1.25
 
-# ProtoLagomorph
+# NeoLagomorph
 - type: damageModifierSet
-  id: ProtoLagomorph
+  id: NeoLagomorph
   coefficients:
     Shock: 1.25
     Cold: 0.60 # They're already good against cold, so theirs can be lower.
@@ -235,12 +249,13 @@
     Piercing: 0.6
     Shock: 1.4
     Heat: 0.65
+    Structural: 0.7
   flatReductions:
     Blunt: 8
     Heat: 5
 
 - type: damageModifierSet
-  id: HeavyArmorSyndi
+  id: HeavyArmorSyndi # unused
   coefficients:
     Blunt: 0.5
     Slash: 0.5
@@ -287,3 +302,27 @@
     Piercing: 0.8
     Cold: 0.8
     Shock: 1.6
+
+- type: damageModifierSet
+  id: CivilianSilicon
+  coefficients:
+    Blunt: 0.65
+    Slash: 0.45
+    Piercing: 0.65
+    Shock: 1.2
+    Heat: 0.8
+  flatReductions:
+    Blunt: 5
+    Heat: 5
+
+- type: damageModifierSet
+  id: ArmoredSilicon
+  coefficients:
+    Blunt: 0.45
+    Slash: 0.3
+    Piercing: 0.5
+    Shock: 1.1
+    Heat: 0.65
+  flatReductions:
+    Blunt: 8
+    Heat: 6

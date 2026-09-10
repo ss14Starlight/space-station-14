@@ -680,6 +680,37 @@
     head: ClothingHeadHatTacticalMaidHeadband
   groupBy: "maid outfit"
 
+- type: loadout
+  id: JanitorMaidOutfit
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobJanitor
+        time: 72000 # 20 hr
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40 hr
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaid
+  groupBy: "maid outfit"
+
+- type: loadout
+  id: JanitorMaidOutfitMini
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+         role: JobJanitor
+         time: 72000 #20 hr
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40 hr
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanimaidmini
+  groupBy: "maid outfit"
 
 - type: loadout
   id: TreasureCoinIron

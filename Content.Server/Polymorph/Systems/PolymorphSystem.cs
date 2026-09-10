@@ -15,9 +15,9 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Nutrition;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
+using Content.Shared.Tools.Systems;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -63,7 +63,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         SubscribeLocalEvent<PolymorphableComponent, PolymorphConfigActionEvent>(OnPolymorphConfigActionEvent); // Starlight
         SubscribeLocalEvent<PolymorphedEntityComponent, RevertPolymorphActionEvent>(OnRevertPolymorphActionEvent);
 
-        SubscribeLocalEvent<PolymorphedEntityComponent, BeforeFullySlicedEvent>(OnBeforeFullySliced);
+        SubscribeLocalEvent<PolymorphedEntityComponent, BeforeToolRefinedEvent>(OnBeforeToolRefined);
         SubscribeLocalEvent<PolymorphedEntityComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<PolymorphedEntityComponent, EntityTerminatingEvent>(OnPolymorphedTerminating);
 
@@ -120,11 +120,15 @@ public sealed partial class PolymorphSystem : EntitySystem
         }
     }
 
-    // Starlight begin - Why the fuck these can't just be one event handler listening for BasePolymorphActionEvent is fucking beyond me.
+    // Starlight begin
     private void OnPolymorphActionEvent(Entity<PolymorphableComponent> ent, ref PolymorphActionEvent args)
     {
         if (args.Handled) return;
-        PolymorphEntity(ent, args.Config);
+
+        if (!_proto.TryIndex(args.ProtoId, out var proto))
+            return;
+
+        PolymorphEntity(ent, proto.Configuration);
         args.Handled = true;
     }
 
@@ -142,12 +146,12 @@ public sealed partial class PolymorphSystem : EntitySystem
         Revert((ent, ent));
     }
 
-    private void OnBeforeFullySliced(Entity<PolymorphedEntityComponent> ent, ref BeforeFullySlicedEvent args)
+    private void OnBeforeToolRefined(Entity<PolymorphedEntityComponent> ent, ref BeforeToolRefinedEvent args)
     {
         if (ent.Comp.Reverted || !ent.Comp.Configuration.RevertOnEat)
             return;
 
-        args.Cancel();
+        args.Cancelled = true;
         Revert((ent, ent));
     }
 

@@ -67,6 +67,15 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 
         if (!TryComp<StationAIShuntComponent>(target, out var shunt))
             return;
+
+        // We check first if this is already "posessed" for one or another reason. This is a remote, not a ghost maker.
+        if (_mindSystem.TryGetMind(target, out _, out _))
+        {
+            if (_net.IsServer)
+                _popup.PopupEntity(Loc.GetString("shunt-target-occupied"), target, uid, PopupType.Large);
+            return;
+        }
+
         if (!_mindSystem.TryGetMind(uid, out var mindId, out var _))
             return;
         if (!TryComp<MobStateComponent>(uid, out var state) || state.CurrentState != MobState.Alive)

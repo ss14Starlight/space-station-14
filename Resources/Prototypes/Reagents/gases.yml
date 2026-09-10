@@ -11,12 +11,12 @@
   boilingPoint: -183.0
   meltingPoint: -218.4
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant, Protogen ] # FH
+          type: [ Human, Animal, Rat, Plant, Neocyte ] # FH + Starlight
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -42,12 +42,12 @@
             type: [ Vox ]
         clear: true
         time: 5
-    Gas:
+    Respiration:
       effects:
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant, Arachnid, Moth, Protogen ] # FH
+          type: [ Human, Animal, Rat, Plant, Arachnid, Moth, Neocyte ] # FH + Starlight
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -82,6 +82,7 @@
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
   color: "#7e009e"
+  flammability: 3 # Funky change
   recognizable: true
   boilingPoint: -127.3 # Random values picked between the actual values for CO2 and O2
   meltingPoint: -186.4
@@ -89,7 +90,7 @@
   - !type:FlammableTileReaction
     temperatureMultiplier: 1.5
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -98,7 +99,7 @@
       - !type:AdjustReagent
         reagent: Inaprovaline
         amount: -2.0
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         ignoreResistances: true
@@ -127,6 +128,7 @@
   - Engineering
   flavor: bitter
   color: "#66ff33"
+  flammability: 4 # Funky change
   tileReactions:
   - !type:FlammableTileReaction
     temperatureMultiplier: 2.0
@@ -137,13 +139,13 @@
       - !type:Flammable
         multiplier: 0.8
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
             Radiation: 1.5
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         ignoreResistances: true
@@ -165,8 +167,9 @@
   physicalDesc: reagent-physical-desc-odorless
   flavor: bitter
   color: "#66ff33"
+  flammability: -30 # Funky change
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:Oxygenate
         conditions:
@@ -188,7 +191,7 @@
           type: [ Plant ]
           inverted: true
         factor: -4
-    Gas:
+    Respiration:
       effects:
       - !type:Oxygenate
         conditions:
@@ -227,7 +230,7 @@
   boilingPoint: -195.8
   meltingPoint: -210.0
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -236,13 +239,18 @@
         conditions: # Starlight start
           - !type:MetabolizerTypeCondition
             type: [ Cyclorite ]
-            inverted: true # Starlight end
-    Gas:
+            inverted: true
+      - !type:ModifyBloodLevel
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        amount: 0.4 # Starlight end
+    Respiration:
       effects:
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Vox, Slime ]
+          type: [ Vox, Slime, Cyclorite, NeoVox ] # Starlight
       # Converts Nitrogen into Ammonia
       - !type:ModifyLungGas
         conditions:
@@ -258,14 +266,6 @@
         ratios:
           NitrousOxide: 1.0
           Nitrogen: -1.0
-    Medicine:
-      effects:
-        - !type:ModifyBloodLevel
-          conditions:
-            - !type:MetabolizerTypeCondition
-              type: [ Cyclorite ]
-          amount: 0.4
-
 - type: reagent
   id: NitrousOxide
   name: reagent-name-nitrous-oxide
@@ -276,13 +276,13 @@
   boilingPoint: -88
   meltingPoint: -90
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
             Poison: 1
-    Gas:
+    Respiration:
       effects:
       - !type:Emote
         minScale: 0.2
@@ -363,10 +363,11 @@
   - Chemist
   flavor: bitter
   color: "#3a758c"
+  flammability: -50 # Funky change
   boilingPoint: -195.8
   meltingPoint: -210.0
   metabolisms:
-    Narcotic:
+    Bloodstream:
       effects:
       - !type:HealthChange
         ignoreResistances: true
@@ -391,7 +392,7 @@
         probability: 0.1
         conditions:
         minScale: 2
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         minScale: 0.5

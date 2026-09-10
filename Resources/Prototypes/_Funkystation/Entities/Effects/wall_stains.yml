@@ -1,0 +1,193 @@
+﻿- type: entity
+  id: WallStain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: false
+  - type: Sprite
+    visible: false
+    sprite: _Funkystation/Effects/wallstain.rsi
+    state: splatter
+  - type: WallStain
+  - type: Solution
+    id: stain
+    solution:
+      maxVol: 5
+  - type: Forensics
+  - type: FlammableWallStain
+  - type: Appearance
+
+- type: entity
+  id: WallStainFireEffect
+  name: fire
+  description: Oops...
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: Sprite
+    sprite: _Funkystation/Effects/reagentfire.rsi
+    layers:
+    - state: "4"
+      shader: unshaded
+    visible: true
+    drawdepth: Overlays
+  - type: Appearance
+  - type: WallStainFireVisuals
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#FF5500"
+    enabled: false
+
+- type: entity
+  parent: PuddleSparkle
+  id: WallStainSparkle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+
+- type: particleEffect
+  id: WallFire
+  sprite:
+    sprite: _Starfall/Particles/generic.rsi
+    state: curl
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  alphaOverLifetime:
+  - time: 0.0
+    value: 0.0
+  - time: 0.05
+    value: 1.0
+  - time: 0.7
+    value: 1.0
+  - time: 1.0
+    value: 0.0
+  emissionRate: 25
+  maxCount: 150
+  particleSize: 0.4
+  gravity: -1.0
+  drag: 0.5
+  noiseStrength: 0.4
+  noiseFrequency: 1.5
+  spreadAngle: 45
+  emitAngle: 0
+  shape:
+    type: Box
+    boxExtents: 0.4, 0.2
+
+- type: particleEffect
+  id: WallFireEmbers
+  sprite:
+    sprite: _Starfall/Particles/generic.rsi
+    state: dot
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  alphaOverLifetime:
+  - time: 0.0
+    value: 1.0
+  - time: 0.8
+    value: 1.0
+  - time: 1.0
+    value: 0.0
+  lifetime: 1.5
+  lifetimeVariance: 0.5
+  speed: 3.5
+  speedVariance: 2.0
+  particleSize: 0.05
+  sizeVariance: 0.02
+  emissionRate: 40
+  maxCount: 100
+  gravity: -0.5
+  drag: 1.0
+  noiseStrength: 1.5
+  noiseFrequency: 2.0
+  spreadAngle: 180
+  shape:
+    type: Box
+    boxExtents: 0.4, 0.4
+
+- type: particleEffect
+  id: WallFireSlag
+  sprite:
+    sprite: _Starfall/Particles/generic.rsi
+    state: drop
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  alphaOverLifetime:
+  - time: 0.0
+    value: 1.0
+  - time: 0.6
+    value: 1.0
+  - time: 1.0
+    value: 0.0
+  lifetime: 0.8
+  lifetimeVariance: 0.4
+  speed: 4.0
+  speedVariance: 2.0
+  particleSize: 0.15
+  sizeVariance: 0.05
+  gravity: 12.0
+  drag: 0.2
+  spreadAngle: 45
+  emitAngle: 180
+  alignToVelocity: true
+  shape:
+    type: Box
+    boxExtents: 0.3, 0.1
+
+- type: particleEffect
+  id: WallFireSparks
+  sprite:
+    sprite: _Starfall/Particles/generic.rsi
+    state: curl
+  shader: unshaded
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  alphaOverLifetime:
+  - time: 0.0
+    value: 1.0
+  - time: 0.35
+    value: 1.0
+  - time: 1.0
+    value: 0.0
+  lifetime: 0.4
+  lifetimeVariance: 0.2
+  speed: 8.0
+  speedVariance: 4.0
+  particleSize: 0.25
+  sizeVariance: 0.1
+  stretchFactor: 0.4
+  emissionRate: 25
+  maxCount: 60
+  gravity: 4.0
+  drag: 0.1
+  spreadAngle: 120
+  emitAngle: 0
+  shape:
+    type: Point
+
+- type: particleEffect
+  id: WallFireFumes
+  sprite:
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke
+  startColor: "#FFFFFFFF"
+  endColor: "#FFFFFF00"
+  lifetime: 2.5
+  lifetimeVariance: 0.5
+  speed: 0.6
+  speedVariance: 0.2
+  particleSize: 0.45
+  sizeVariance: 0.15
+  emissionRate: 12
+  maxCount: 40
+  gravity: -0.6
+  drag: 0.2
+  noiseStrength: 0.3
+  noiseFrequency: 0.8
+  spreadAngle: 40
+  emitAngle: 0

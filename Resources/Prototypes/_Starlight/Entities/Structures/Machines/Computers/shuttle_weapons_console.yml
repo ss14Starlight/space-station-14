@@ -37,8 +37,6 @@
       enum.RadarConsoleUiKey.Key:
         type: RadarConsoleBoundUserInterface
   - type: DeviceNetworkRequiresPower
-  - type: ApcPowerReceiver
-    powerLoad: 500
   - type: ExtensionCableReceiver
   - type: Destructible
     thresholds:

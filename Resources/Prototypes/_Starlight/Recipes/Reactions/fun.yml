@@ -23,3 +23,63 @@
   effects:
     - !type:SpawnEntity
       entity: CrushedPhosphorus1
+
+- type: reaction
+  id: CreateLizardPlushie
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    JuiceThatMakesYouWeh:
+      amount: 30
+    Fiber:
+      amount: 10
+  effects:
+    - !type:SpawnEntity
+      entity: PlushieLizard
+
+- type: reaction
+  id: CreateInversedLizardPlushie
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    JuiceThatMakesYouHew:
+      amount: 30
+    Fiber:
+      amount: 10
+  effects:
+    - !type:SpawnEntity
+      entity: PlushieLizardInversed
+
+- type: reaction
+  id: CreateLizardSword
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    JuiceThatMakesYouWeh:
+      amount: 30
+    Razorium:
+      amount: 10
+    Uranium:
+      amount: 10
+  effects:
+    - !type:SpawnEntity
+      entity: EmeraldLizitar
+
+- type: reaction
+  id: CreateInversedLizardSword
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    JuiceThatMakesYouHew:
+      amount: 30
+    Razorium:
+      amount: 10
+    Uranium:
+      amount: 10
+  effects:
+    - !type:SpawnEntity
+      entity: AmethystLizitar

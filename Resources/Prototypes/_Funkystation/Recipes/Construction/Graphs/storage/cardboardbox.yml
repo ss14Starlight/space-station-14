@@ -1,0 +1,25 @@
+- type: construction
+  name: construction-recipe-large-cardboard-box-name
+  id: CardboardBoxLarge
+  graph: CardboardboxLargeGraph
+  startNode: start
+  targetNode: cardboardboxlargenode
+  category: construction-category-storage
+  description: construction-recipe-large-cardboard-box-desc
+  objectType: Structure
+
+- type: constructionGraph
+  id: CardboardboxLargeGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: cardboardboxlargenode
+      steps:
+      - material: Cardboard
+        amount: 4
+        doAfter: 5
+
+
+  - node: cardboardboxlargenode
+    entity: CardboardBoxLarge

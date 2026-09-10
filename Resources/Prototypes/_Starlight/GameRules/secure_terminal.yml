@@ -172,6 +172,21 @@
     - RandomHumanoidSpawnerERTJanitor
 
 - type: entity
+  id: SpawnPointGhostERTJanitorEVA
+  parent: MarkerBase
+  name: ERT spawn point
+  suffix: Janitor, EVA
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: ertjanitoreva
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTJanitorEVA
+
+- type: entity
   id: SpawnPointGhostERTMedicalArmedEVA
   parent: MarkerBase
   name: ERT spawn point
@@ -230,6 +245,21 @@
   - type: ConditionalSpawner
     prototypes:
     - RandomHumanoidSpawnerERTChaplain
+
+- type: entity
+  id: SpawnPointGhostERTChaplainEVA
+  parent: MarkerBase
+  name: ERT spawn point
+  suffix: Chaplain, EVA
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Markers/jobs.rsi
+      state: chaplaineva
+  - type: ConditionalSpawner
+    prototypes:
+    - RandomHumanoidSpawnerERTChaplainEVA
 
 # Misc
 - type: entity

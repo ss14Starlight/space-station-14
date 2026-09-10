@@ -17,7 +17,7 @@
   - !type:PlantAdjustHealth
     amount: -5
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:

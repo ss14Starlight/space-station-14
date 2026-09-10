@@ -64,7 +64,7 @@ namespace Content.Server.Preferences.Managers
                 await SetProfile(userId, message.Slot, message.Profile);
         }
 
-        public async Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile)
+        public async Task SetProfile(NetUserId userId, int slot, HumanoidCharacterProfile profile)
         {
             if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
             {
@@ -80,7 +80,7 @@ namespace Content.Server.Preferences.Managers
 
             profile.EnsureValid(session, _dependencies);
 
-            var profiles = new Dictionary<int, ICharacterProfile>(curPrefs.Characters)
+            var profiles = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters)
             {
                 [slot] = profile
             };
@@ -154,7 +154,7 @@ namespace Content.Server.Preferences.Managers
             var curPrefs = prefsData.Prefs!;
             var session = _playerManager.GetSessionById(userId);
 
-            var arr = new Dictionary<int, ICharacterProfile>(curPrefs.Characters);
+            var arr = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters);
             arr.Remove(slot);
 
             prefsData.Prefs = new PlayerPreferences(arr, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
@@ -194,7 +194,7 @@ namespace Content.Server.Preferences.Managers
                 return;
 
             profile.Enabled = val;
-            var profiles = new Dictionary<int, ICharacterProfile>(curPrefs.Characters)
+            var profiles = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters)
             {
                 [slot] = new HumanoidCharacterProfile(profile),
             };
@@ -259,7 +259,7 @@ namespace Content.Server.Preferences.Managers
                 {
                     PrefsLoaded = true,
                     Prefs = new PlayerPreferences(
-                        new[] {new KeyValuePair<int, ICharacterProfile>(0, HumanoidCharacterProfile.Random())},
+                        new[] {new KeyValuePair<int, HumanoidCharacterProfile>(0, HumanoidCharacterProfile.Random())},
                         Color.Transparent,
                         [],
                         new Dictionary<ProtoId<JobPrototype>, JobPriority>{{ SharedGameTicker.FallbackOverflowJob, JobPriority.High }}),
@@ -416,7 +416,7 @@ namespace Content.Server.Preferences.Managers
 
             return new PlayerPreferences(prefs.Characters.Select(p =>
             {
-                return new KeyValuePair<int, ICharacterProfile>(p.Key, p.Value.Validated(session, collection));
+                return new KeyValuePair<int, HumanoidCharacterProfile>(p.Key, p.Value.Validated(session, collection));
             }), prefs.AdminOOCColor, prefs.ConstructionFavorites, priorities);
         }
 

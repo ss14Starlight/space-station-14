@@ -31,6 +31,6 @@ public sealed class ScentSniffBoundUserInterface : BoundUserInterface
         if (_window == null || state is not ScentSniffBoundUserInterfaceState cast)
             return;
 
-        _window.UpdateEntries(cast.Entries);
+        _window.UpdateEntries(cast.Entries, cast.OwnScentId);
     }
 }

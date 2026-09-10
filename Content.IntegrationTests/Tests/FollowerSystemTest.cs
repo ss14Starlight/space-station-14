@@ -28,7 +28,6 @@ public sealed class FollowerSystemTest : GameTest
         server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
 
         var entMan = server.ResolveDependency<IEntityManager>();
-        var mapMan = server.ResolveDependency<IMapManager>();
         var sysMan = server.ResolveDependency<IEntitySystemManager>();
         var logMan = server.ResolveDependency<ILogManager>();
         var mapSys = server.System<SharedMapSystem>();

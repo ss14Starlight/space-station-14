@@ -84,6 +84,11 @@
     airBlockedDirection:
     - South
     - East
+  - type: Occluder
+    polygon:
+    - "-0.5,-0.5"
+    - "0.5,0.5"
+    - "0.5,-0.5"
   - type: Fixtures
     fixtures:
       fix1:
@@ -978,7 +983,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: StaticPrice
-    price: 250
+    price: 300
   - type: RadiationBlocker
     resistance: 5
   - type: Sprite

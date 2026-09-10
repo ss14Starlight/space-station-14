@@ -43,6 +43,7 @@ namespace Content.Shared.Speech
             { "chat-speech-verb-suffix-question", "DefaultQuestion" },
             { "chat-speech-verb-suffix-stutter", "DefaultStutter" },
             { "chat-speech-verb-suffix-mumble", "DefaultMumble" },
+            { "chat-speech-verb-suffix-pause", "DefaultPause" } //Starlight
         };
 
         [DataField]

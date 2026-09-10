@@ -1,0 +1,151 @@
+﻿- type: entity
+  id: BaseMailBox
+  name: Base Mail Box
+  description: A mail box for storing and retrieving mail.
+  parent: [BaseMachinePowered, ConstructibleMachine]
+  abstract: true
+  components:
+  - type: MailBox
+  - type: InteractionOutline
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 190
+        mask:
+          - MachineMask
+        layer:
+          - MachineLayer
+  - type: ContainerContainer
+    containers:
+      mail_storage: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Transform
+  - type: Sprite
+    noRot: true
+    sprite: _Starlight/Structures/Storage/mailboxes.rsi
+    layers:
+      - state: civilian
+  - type: EmptyOnMachineDeconstruct
+    containers:
+      - mail_storage
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:EmptyAllContainersBehaviour
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+
+- type: entity
+  id: CargoMailBox
+  name: Cargo Mail Box
+  description: A mail box for storing and retrieving mail. Allows for Cargo to store and retrieve their mail.
+  parent: BaseMailBox
+  components:
+      - type: MailBox
+        department: Cargo
+      - type: Sprite
+        layers:
+          - state: cargo
+      - type: Machine
+        board: CargoMailBoxMachineCircuitboard
+
+- type: entity
+  id: CommandMailBox
+  name: Command Mail Box
+  description: A mail box for storing and retrieving mail. Allows for Command to store and retrieve their mail.
+  parent: BaseMailBox
+  components:
+    - type: MailBox
+      department: Command
+    - type: Sprite
+      layers:
+        - state: command
+    - type: Machine
+      board: CommandMailBoxMachineCircuitboard
+
+- type: entity
+  id: EngineeringMailBox
+  name: Engineering Mail Box
+  description: A mail box for storing and retrieving mail. Allows for Engineering to store and retrieve their mail.
+  parent: BaseMailBox
+  components:
+    - type: MailBox
+      department: Engineering
+    - type: Sprite
+      layers:
+        - state: engineering
+    - type: Machine
+      board: EngineeringMailBoxMachineCircuitboard
+
+- type: entity
+  id: MedicalMailBox
+  name: Medical Mail Box
+  description: A mail box for storing and retrieving mail. Allows for Medical to store and retrieve their mail.
+  parent: BaseMailBox
+  components:
+    - type: MailBox
+      department: Medical
+    - type: Sprite
+      layers:
+        - state: medical
+    - type: Machine
+      board: MedicalMailBoxMachineCircuitboard
+
+- type: entity
+  id: ScienceMailBox
+  name: Science Mail Box
+  description: A mail box for storing and retrieving mail. Allows for Science to store and retrieve their mail.
+  parent: BaseMailBox
+  components:
+    - type: MailBox
+      department: Science
+    - type: Sprite
+      layers:
+        - state: science
+    - type: Machine
+      board: ScienceMailBoxMachineCircuitboard
+
+- type: entity
+  id: SecurityMailBox
+  name: Security Mail Box
+  description: A mail box for storing and retrieving mail. Allows for Security to store and retrieve their mail.
+  parent: BaseMailBox
+  components:
+    - type: MailBox
+      department: Security
+    - type: Sprite
+      layers:
+        - state: security
+    - type: Machine
+      board: SecurityMailBoxMachineCircuitboard
+
+- type: entity
+  id: ServiceMailBox
+  name: Service Mail Box
+  description: A mail box for storing and retrieving mail. Allows for Service to store and retrieve their mail.
+  parent: BaseMailBox
+  components:
+    - type: MailBox
+      department: Civilian
+    - type: Sprite
+      layers:
+        - state: service
+    - type: Machine
+      board: ServiceMailBoxMachineCircuitboard

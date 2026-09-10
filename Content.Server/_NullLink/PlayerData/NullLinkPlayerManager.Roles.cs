@@ -45,6 +45,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
     => _netMgr.ServerSendMessage(new MsgUpdatePlayerRoles
     {
         Roles = roles,
-        DiscordLink = GetDiscordAuthUrl(session.UserId.ToString())
+        DiscordLink = GetDiscordAuthUrl(session.UserId.ToString()),
+        SteamLink = GetSteamAuthUrl(session.UserId.ToString()),
     }, session.Channel);
 }

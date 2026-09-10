@@ -61,7 +61,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected DamageableSystem Damageable = default!;
     [Dependency] protected ExamineSystemShared Examine = default!;
     [Dependency] protected IGameTiming Timing = default!;
-    [Dependency] protected IMapManager MapManager = default!;
+    [Dependency] protected SharedMapSystem MapManager = default!;
     [Dependency] protected IPrototypeManager ProtoManager = default!;
     [Dependency] protected IRobustRandom Random = default!;
     [Dependency] protected ISharedAdminLogManager Logs = default!;
@@ -178,6 +178,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.Comp.ShootCoordinates = GetCoordinates(msg.Coordinates);
         gun.Comp.Target = GetEntity(msg.Target);
         var fired = AttemptShoot(user.Value, gun);
+        if (msg.Continuous)
+            gun.Comp.ShotCounter = 0;
 
         // 🌟Starlight🌟 — dual-wield: only alternate after an actual shot so both guns stay in sync
         if (isDualWield && fired)

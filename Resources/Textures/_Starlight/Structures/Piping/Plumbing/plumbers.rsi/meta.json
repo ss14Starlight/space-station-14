@@ -63,8 +63,106 @@
             "copyright": "TGStation"
         },
         {
+            "name": "filter_working",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ],
+            "copyright": "TGStation"
+        },
+        {
             "name": "filterF",
             "directions": 4,
+            "copyright": "TGStation"
+        },
+        {
+            "name": "filterF_working",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ],
+            "copyright": "TGStation"
+        },
+        {
+            "name": "filter_inline",
+            "directions": 4,
+            "copyright": "TGStation"
+        },
+        {
+            "name": "filter_inline_working",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ],
             "copyright": "TGStation"
         },
         {
