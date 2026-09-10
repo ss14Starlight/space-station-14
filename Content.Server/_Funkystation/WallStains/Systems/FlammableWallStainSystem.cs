@@ -29,12 +29,6 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
     [Dependency] private EntityLookupSystem _lookup = null!;
     [Dependency] private SharedAppearanceSystem _appearance = null!;
     [Dependency] private SharedMapSystem _map = null!;
-
-    private readonly List<(
-        EntityUid Uid,
-        FlammableWallStainComponent FireComp,
-        WallStainComponent Stain,
-        TransformComponent Xform)> _activeStains = [];
     private float _updateAccumulator;
 
     private const float UpdateInterval = 1f;
@@ -48,10 +42,7 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
         SubscribeLocalEvent<FlammableWallStainComponent, ComponentShutdown>(OnShutdown);
     }
 
-    private void OnShutdown(EntityUid uid, FlammableWallStainComponent component, ref ComponentShutdown args)
-    {
-        Extinguish(uid, component);
-    }
+    private void OnShutdown(EntityUid uid, FlammableWallStainComponent component, ref ComponentShutdown args) => Extinguish(uid, component);
 
     private void OnTileExposed(EntityUid gridUid, MapGridComponent component, ref TileExposedEvent args)
     {
@@ -66,11 +57,9 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
         foreach (var offset in offsets)
         {
             var wallTile = fireTile + offset;
-            var enumerator = _map.GetAnchoredEntitiesEnumerator(gridUid, grid, wallTile);
-
-            while (enumerator.MoveNext(out var ent))
+            foreach (var ent in _map.GetAnchoredEntities(gridUid, grid, wallTile))
             {
-                var children = Transform(ent.Value).ChildEnumerator;
+                var children = Transform(ent).ChildEnumerator;
                 while (children.MoveNext(out var child))
                 {
                     if (TryComp<FlammableWallStainComponent>(child, out var fireComp) && !fireComp.OnFire &&
@@ -124,17 +113,14 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
             Ignite(uid, component);
     }
 
-    private Color GetFireColor(int flammability)
+    private Color GetFireColor(int flammability) => flammability switch // Starlight editor config
     {
-        return flammability switch
-        {
-            <= 1 => Color.FromHex("#FF5500"),
-            2 => Color.FromHex("#FF9000"),
-            3 => Color.FromHex("#FFD000"),
-            4 => Color.FromHex("#FFFFE0"),
-            _ => Color.FromHex("#FFFFFF")
-        };
-    }
+        <= 1 => Color.FromHex("#FF5500"),
+        2 => Color.FromHex("#FF9000"),
+        3 => Color.FromHex("#FFD000"),
+        4 => Color.FromHex("#FFFFE0"),
+        _ => Color.FromHex("#FFFFFF")
+    };
 
     private void Ignite(EntityUid uid, FlammableWallStainComponent fireComp)
     {
@@ -209,12 +195,14 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        #region Starlight
         _updateAccumulator += frameTime;
         if (_updateAccumulator < UpdateInterval)
             return;
 
         _updateAccumulator -= UpdateInterval;
         _activeStains.Clear();
+        #endregion
 
         var query = EntityQueryEnumerator<ActiveFlammableWallStainComponent, FlammableWallStainComponent, WallStainComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var fireComp, out var stain, out var xform))
@@ -247,6 +235,13 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
             var wallPos = _transform.GetGridTilePositionOrDefault((uid, currentXform));
             var atmosTilePos = wallPos + currentStain.Direction;
 
+            #region Starlight
+            /*currentFireComp.Accumulator += frameTime;
+            if (currentFireComp.Accumulator < 1f)
+                continue;
+            currentFireComp.Accumulator -= 1f;*/
+            #endregion
+
             var tileMix = _atmos.GetTileMixture(gridId.Value, null, atmosTilePos, excite: true);
             var currentOxygen = tileMix?.GetMoles(Gas.Oxygen) ?? 0f;
 
@@ -261,9 +256,9 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
 
             if (tileMix != null)
             {
-                var maxTemp = Atmospherics.T0C + 100f * MathF.Pow(flammability, 1.5f);
+                var maxTemp = Atmospherics.T0C + (100f * MathF.Pow(flammability, 1.5f));
                 if (tileMix.Temperature < maxTemp)
-                    tileMix.Temperature = MathF.Min(tileMix.Temperature + 10f * flammability, maxTemp);
+                    tileMix.Temperature = MathF.Min(tileMix.Temperature + (10f * flammability), maxTemp);
 
                 var burnAmount = selfOxidizing ? 0.2f * flammability : MathF.Min(0.2f * flammability, currentOxygen);
                 if (!selfOxidizing)
@@ -331,10 +326,9 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
                 foreach (var offset in spreadOffsets)
                 {
                     var checkWallTile = wallPos + offset;
-                    var enumerator = _map.GetAnchoredEntitiesEnumerator(gridId.Value, grid, checkWallTile);
-                    while (enumerator.MoveNext(out var ent))
+                    foreach (var ent in _map.GetAnchoredEntities(gridId.Value, grid, checkWallTile))
                     {
-                        var children = Transform(ent.Value).ChildEnumerator;
+                        var children = Transform(ent).ChildEnumerator;
                         while (children.MoveNext(out var child))
                         {
                             if (child == uid)

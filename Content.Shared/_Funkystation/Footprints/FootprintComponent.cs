@@ -15,23 +15,6 @@ public sealed partial class FootprintComponent : Component
     /// </summary>
     [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public Color BaseColor = Color.White;
-
-    /// <summary>
-    /// Number of print layers already configured by the client.
-    /// </summary>
-    [ViewVariables]
-    public int RenderedPrintCount;
-}
-
-[Serializable, NetSerializable]
-public enum FootprintVisualState : byte
-{
-    Foot,
-    Dragging1,
-    Dragging2,
-    Dragging3,
-    Dragging4,
-    Dragging5,
 }
 
 [Serializable, NetSerializable]

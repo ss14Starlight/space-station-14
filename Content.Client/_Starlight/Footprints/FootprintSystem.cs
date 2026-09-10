@@ -16,15 +16,9 @@ public sealed partial class FootprintSystem : EntitySystem
         SubscribeLocalEvent<FootprintComponent, AfterAutoHandleStateEvent>(OnStateUpdated);
     }
 
-    private void OnStartup(Entity<FootprintComponent> entity, ref ComponentStartup args)
-    {
-        UpdateVisuals(entity);
-    }
+    private void OnStartup(Entity<FootprintComponent> entity, ref ComponentStartup args) => UpdateVisuals(entity);
 
-    private void OnStateUpdated(Entity<FootprintComponent> entity, ref AfterAutoHandleStateEvent args)
-    {
-        UpdateVisuals(entity);
-    }
+    private void OnStateUpdated(Entity<FootprintComponent> entity, ref AfterAutoHandleStateEvent args) => UpdateVisuals(entity);
 
     private void UpdateVisuals(Entity<FootprintComponent> entity)
     {
@@ -54,17 +48,14 @@ public sealed partial class FootprintSystem : EntitySystem
         entity.Comp.RenderedPrintCount = entity.Comp.Prints.Count;
     }
 
-    private static string GetState(FootprintVisualState state)
+    private static string GetState(FootprintVisualState state) => state switch
     {
-        return state switch
-        {
-            FootprintVisualState.Foot => "foot",
-            FootprintVisualState.Dragging1 => "dragging-1",
-            FootprintVisualState.Dragging2 => "dragging-2",
-            FootprintVisualState.Dragging3 => "dragging-3",
-            FootprintVisualState.Dragging4 => "dragging-4",
-            FootprintVisualState.Dragging5 => "dragging-5",
-            _ => "foot",
-        };
-    }
+        FootprintVisualState.Foot => "foot",
+        FootprintVisualState.Dragging1 => "dragging-1",
+        FootprintVisualState.Dragging2 => "dragging-2",
+        FootprintVisualState.Dragging3 => "dragging-3",
+        FootprintVisualState.Dragging4 => "dragging-4",
+        FootprintVisualState.Dragging5 => "dragging-5",
+        _ => "foot",
+    };
 }

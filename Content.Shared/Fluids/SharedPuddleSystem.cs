@@ -51,7 +51,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     private EntityQuery<ReactiveComponent> _reactiveQuery;
     private EntityQuery<EvaporationComponent> _evaporationQuery;
     [Dependency] private EntityQuery<PuddleComponent> _puddleQuery;
-    [Dependency] private EntityQuery<FootprintComponent> _sharedFootprintQuery;
+    [Dependency] private EntityQuery<FootprintComponent> _sharedFootprintQuery; // Starlight
     [Dependency] private INetManager _net = default!;
 
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
@@ -65,7 +65,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
     // Using local deletion queue instead of the standard queue so that we can easily "undelete" if a puddle
     // loses & then gains reagents in a single tick.
-    private HashSet<EntityUid> _deletionQueue = [];
+    private readonly HashSet<EntityUid> _deletionQueue = [];
 
     public override void Initialize()
     {
@@ -103,8 +103,8 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
         _deletionQueue.Clear();
 
-        if (_timing.CurTime >= _nextEvaporationUpdate)
-            TickEvaporation();
+        if (_timing.CurTime >= _nextEvaporationUpdate) // Starlight
+            TickEvaporation(); // Starlight
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
@@ -116,10 +116,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     /// <summary>
     /// Used to cache standout reagents for future use.
     /// </summary>
-    private void CacheStandsout()
-    {
-        _standoutReagents = [.. _prototypeManager.EnumeratePrototypes<ReagentPrototype>().Where(x => x.Standsout).Select(x => x.ID)];
-    }
+    private void CacheStandsout() => _standoutReagents = [.. _prototypeManager.EnumeratePrototypes<ReagentPrototype>().Where(x => x.Standsout).Select(x => x.ID)];
 
     protected virtual void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args) // Starlight
     {
@@ -138,6 +135,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
         _deletionQueue.Remove(entity);
 
+        #region Starlight
         // Footprints reuse PuddleComponent for cleaning and chemistry, but they have no puddle movement or
         // appearance state to update. Evaporation remains relevant to carried residue.
         if (_sharedFootprintQuery.HasComponent(entity.Owner))
@@ -145,6 +143,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
             UpdateEvaporation(entity, args.Solution.Comp.Solution);
             return;
         }
+        #endregion
 
         UpdateSlip((entity, entity.Comp), args.Solution.Comp.Solution);
         UpdateSlow(entity, args.Solution.Comp.Solution, entity.Comp); // <-- Pass the component here - Funky

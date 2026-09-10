@@ -8,54 +8,56 @@ namespace Content.Shared.Fluids;
 
 public abstract partial class SharedPuddleSystem
 {
-    private static readonly TimeSpan EvaporationCooldown = TimeSpan.FromSeconds(1);
-    private TimeSpan _nextEvaporationUpdate = TimeSpan.MaxValue;
-    private readonly List<ProtoId<ReagentPrototype>> _evaporationReagents = [];
+    private static readonly TimeSpan _evaporationCooldown = TimeSpan.FromSeconds(1);
+    private TimeSpan _nextEvaporationUpdate = TimeSpan.MaxValue; // Starlight
+    private readonly List<ProtoId<ReagentPrototype>> _evaporationReagents = []; // Starlight
 
     private void OnEvaporationMapInit(Entity<EvaporationComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.NextTick = _timing.CurTime + EvaporationCooldown;
-        ScheduleEvaporation(ent.Comp.NextTick);
+        ent.Comp.NextTick = _timing.CurTime + _evaporationCooldown;
+        ScheduleEvaporation(ent.Comp.NextTick); // Starlight
         Dirty(ent);
     }
 
     private void UpdateEvaporation(EntityUid uid, Solution solution)
     {
-        if (!HasEvaporatingReagent(solution))
+        if (!HasEvaporatingReagent(solution)) // Starlight
         {
-            RemComp<EvaporationComponent>(uid);
+            RemComp<EvaporationComponent>(uid); // Starlight
             return;
         }
 
-        if (_evaporationQuery.TryGetComponent(uid, out var existing))
+        if (_evaporationQuery.TryGetComponent(uid, out var existing)) // Starlight
         {
-            ScheduleEvaporation(existing.NextTick);
+            ScheduleEvaporation(existing.NextTick); // Starlight
             return;
         }
 
+        #region Starlight
         var evaporation = AddComp<EvaporationComponent>(uid);
-        evaporation.NextTick = _timing.CurTime + EvaporationCooldown;
+        evaporation.NextTick = _timing.CurTime + _evaporationCooldown;
         ScheduleEvaporation(evaporation.NextTick);
         Dirty<EvaporationComponent>((uid, evaporation));
+        #endregion
     }
 
     private void TickEvaporation()
     {
         var query = EntityQueryEnumerator<EvaporationComponent, PuddleComponent>();
         var curTime = _timing.CurTime;
-        _nextEvaporationUpdate = TimeSpan.MaxValue;
+        _nextEvaporationUpdate = TimeSpan.MaxValue; // Starlight
 
         while (query.MoveNext(out var uid, out var evaporation, out var puddle))
         {
             if (evaporation.NextTick > curTime)
             {
-                ScheduleEvaporation(evaporation.NextTick);
+                ScheduleEvaporation(evaporation.NextTick); // Starlight
                 continue;
             }
 
             // Necessary to keep client and server in sync so they don't drift
-            evaporation.NextTick += EvaporationCooldown;
-            ScheduleEvaporation(evaporation.NextTick);
+            evaporation.NextTick += _evaporationCooldown;
+            ScheduleEvaporation(evaporation.NextTick); // Starlight
             Dirty(uid, evaporation);
 
             if (!_solutionContainerSystem.ResolveSolution(uid, puddle.SolutionName, ref puddle.Solution, out var puddleSolution))
@@ -63,6 +65,7 @@ public abstract partial class SharedPuddleSystem
 
             // If we have multiple evaporating reagents in one puddle, just take the average evaporation speed and apply
             // that to all of them.
+            #region Starlight
             _evaporationReagents.Clear();
             var totalEvaporationSpeed = FixedPoint2.Zero;
             foreach (var (reagent, _) in puddleSolution.Contents)
@@ -81,16 +84,17 @@ public abstract partial class SharedPuddleSystem
 
             if (_evaporationReagents.Count == 0)
                 continue;
+            #endregion
 
-            var evaporationSpeed = totalEvaporationSpeed / _evaporationReagents.Count;
-            var initialVolume = puddleSolution.Volume;
+            var evaporationSpeed = totalEvaporationSpeed / _evaporationReagents.Count; // Starlight
+            var initialVolume = puddleSolution.Volume; // Starlight
 
             // Still have to iterate over one-by-one since the full solution could have non-evaporating solutions.
-            foreach (var reagent in _evaporationReagents)
+            foreach (var reagent in _evaporationReagents) // Starlight
             {
                 var factor = puddleSolution.GetTotalPrototypeQuantity(reagent) / initialVolume;
-                var reagentTick = evaporation.EvaporationAmount * EvaporationCooldown.TotalSeconds * evaporationSpeed * factor;
-                puddleSolution.RemoveReagent(reagent, reagentTick, ignoreReagentData: true);
+                var reagentTick = evaporation.EvaporationAmount * _evaporationCooldown.TotalSeconds * evaporationSpeed * factor;
+                puddleSolution.RemoveReagent(reagent, reagentTick, ignoreReagentData: true); // Starlight
             }
 
             // Despawn if we're done
@@ -105,24 +109,6 @@ public abstract partial class SharedPuddleSystem
             _solutionContainerSystem.UpdateChemicals(puddle.Solution.Value);
         }
     }
-
-    private void ScheduleEvaporation(TimeSpan time)
-    {
-        if (time < _nextEvaporationUpdate)
-            _nextEvaporationUpdate = time;
-    }
-
-    private bool HasEvaporatingReagent(Solution solution)
-    {
-        foreach (var (reagent, _) in solution.Contents)
-        {
-            if (_prototypeManager.Index<ReagentPrototype>(reagent.Prototype).EvaporationSpeed > FixedPoint2.Zero)
-                return true;
-        }
-
-        return false;
-    }
-
 
     public ProtoId<ReagentPrototype>[] GetEvaporatingReagents(Solution solution)
     {
@@ -148,6 +134,7 @@ public abstract partial class SharedPuddleSystem
 
     public bool CanFullyEvaporate(Solution solution)
     {
+        #region Starlight
         foreach (var (reagent, _) in solution.Contents)
         {
             if (_prototypeManager.Index<ReagentPrototype>(reagent.Prototype).EvaporationSpeed <= FixedPoint2.Zero)
@@ -155,6 +142,7 @@ public abstract partial class SharedPuddleSystem
         }
 
         return true;
+        #endregion
     }
 
     /// <summary>

@@ -37,11 +37,11 @@ public sealed partial class FootprintSystem : EntitySystem
     // but no more visual/network state is added until the footprint reaches capacity and becomes a puddle.
     private const int MaxPrintsPerTile = 64;
 
-    private static readonly EntProtoId FootprintEntityId = "Footprint";
-    private static readonly EntProtoId PrintSolutionEntityId = "SolutionPrint";
+    private static readonly EntProtoId _footprintEntityId = "Footprint";
+    private static readonly EntProtoId _printSolutionEntityId = "SolutionPrint";
     private const string PrintSolutionName = "print";
 
-    private static readonly FootprintVisualState[] DragStates =
+    private static readonly FootprintVisualState[] _dragStates =
     [
         FootprintVisualState.Dragging1,
         FootprintVisualState.Dragging2,
@@ -95,10 +95,7 @@ public sealed partial class FootprintSystem : EntitySystem
             entity.Comp.Solution = null;
     }
 
-    private void OnFootprintCleaned(Entity<FootprintComponent> entity, ref FootprintCleanEvent args)
-    {
-        TurnIntoPuddle(entity.Owner);
-    }
+    private void OnFootprintCleaned(Entity<FootprintComponent> entity, ref FootprintCleanEvent args) => TurnIntoPuddle(entity.Owner);
 
     private void OnEntityMoved(Entity<FootprintOwnerComponent> entity, ref MoveEvent args)
     {
@@ -183,8 +180,8 @@ public sealed partial class FootprintSystem : EntitySystem
         var stepOffset = isStanding ? entity.Comp.AlternateStepOffset : 0f;
         entity.Comp.AlternateStepOffset = -entity.Comp.AlternateStepOffset;
 
-        var rightVector = new Angle(walkAngle.Theta - Math.PI / 2).ToVec();
-        var offsetPos = newLocal + rightVector * stepOffset;
+        var rightVector = new Angle(walkAngle.Theta - (Math.PI / 2)).ToVec();
+        var offsetPos = newLocal + (rightVector * stepOffset);
 
         var coords = new EntityCoordinates(gridUid, offsetPos);
         var tileIndices = _map.CoordinatesToTile(gridUid, grid, coords);
@@ -262,7 +259,7 @@ public sealed partial class FootprintSystem : EntitySystem
 
         var manager = EnsureComp<SolutionManagerComponent>(entity.Owner);
         var solutionContainer = _container.EnsureContainer<Container>(entity.Owner, manager.Container);
-        ownerSolution = _solutionContainer.CreateSolution(PrintSolutionEntityId, solutionContainer);
+        ownerSolution = _solutionContainer.CreateSolution(_printSolutionEntityId, solutionContainer);
         entity.Comp.Solution = ownerSolution;
 
         // SolutionPrint is 50u for tiles. Carried residue only needs the owner's configured body/foot capacity.
@@ -317,7 +314,7 @@ public sealed partial class FootprintSystem : EntitySystem
         Entity<FootprintComponent, PuddleComponent> footprint;
         if (existingFootprint is not { } existing)
         {
-            var printUid = Spawn(FootprintEntityId, coords);
+            var printUid = Spawn(_footprintEntityId, coords);
             footprint = (printUid, Comp<FootprintComponent>(printUid), Comp<PuddleComponent>(printUid));
             spawned = true;
         }
@@ -370,14 +367,14 @@ public sealed partial class FootprintSystem : EntitySystem
             ? (float) transferAmount / maxVisualVolume / 2f
             : 0f;
         var localPosition = coords.Position;
-        var normX = localPosition.X / grid.TileSize -
+        var normX = (localPosition.X / grid.TileSize) -
                     MathF.Floor(localPosition.X / grid.TileSize) -
-                    grid.TileSize / 2f;
-        var normY = localPosition.Y / grid.TileSize -
+                    (grid.TileSize / 2f);
+        var normY = (localPosition.Y / grid.TileSize) -
                     MathF.Floor(localPosition.Y / grid.TileSize) -
-                    grid.TileSize / 2f;
+                    (grid.TileSize / 2f);
 
-        var state = isStanding ? FootprintVisualState.Foot : _random.Pick(DragStates);
+        var state = isStanding ? FootprintVisualState.Foot : _random.Pick(_dragStates);
 
         footprint.Comp1.Prints.Add(new FootprintData(new Vector2(normX, normY), rotation, alpha, state));
         Dirty(footprint.Owner, footprint.Comp1);
@@ -434,7 +431,7 @@ public sealed partial class FootprintSystem : EntitySystem
 
         return FixedPoint2.Max(
             FixedPoint2.Zero,
-            FixedPoint2.Min(volume, spread * fraction + minPrintVolume));
+            FixedPoint2.Min(volume, (spread * fraction) + minPrintVolume));
     }
 
     private void FindTileFluids(
