@@ -720,7 +720,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Avali Rodentia and Doll / FH - add Neocyte
+          type: [ Animal, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
           inverted: true
         damage:
           types:
@@ -735,7 +735,7 @@
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vampire, Avali, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Avali Rodentia and Doll / FH - add Neocyte
+          type: [ Animal, Vampire, Avali, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent
