@@ -12,6 +12,7 @@ using Robust.Shared.Input;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.LineEdit;
+using Content.Client._Starlight.Chat;
 
 namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 
@@ -32,6 +33,7 @@ public partial class ChatBox : UIWidget
 
     public ChatSelectChannel SelectedChannel => ChatInput.ChannelSelector.SelectedChannel;
     public RichTextLabel SelectedLanguage => LanguageNotifier; // Starlight
+    internal readonly Queue<RepeatedMessage> RepeatQueue = new();    // Starlight: Chat Stacking
 
     public ChatBox()
     {
@@ -78,7 +80,7 @@ public partial class ChatBox : UIWidget
 
         var color = msg.MessageColorOverride ?? msg.Channel.TextColor();
 
-        AddLine(msg.WrappedMessage, color);
+        AddLine(msg.WrappedMessage, color, msg.SenderEntity, msg.Message, msg.Channel, msg.RepeatCheckSender); // Starlight Edit: Chat stacking
     }
 
     private void OnHighlightsUpdated(string highlights)
@@ -104,6 +106,7 @@ public partial class ChatBox : UIWidget
     public void Repopulate()
     {
         Contents.Clear();
+        RepeatQueue.Clear(); // Starlight: Chat stacking - indexes are invalid after clearing
 
         foreach (var child in Contents.Children.ToArray())
         {
@@ -122,6 +125,7 @@ public partial class ChatBox : UIWidget
     private void OnChannelFilter(ChatChannel channel, bool active)
     {
         Contents.Clear();
+        RepeatQueue.Clear(); // Starlight: Chat stacking - indexes are invalid after clearing
 
         foreach (var child in Contents.Children.ToArray())
         {
@@ -147,12 +151,18 @@ public partial class ChatBox : UIWidget
         _controller.UpdateHighlights(highlighs);
     }
 
-    public void AddLine(string message, Color color)
+    public void AddLine(string message, Color color, NetEntity sender, string unwrapped, ChatChannel channel, bool repeatCheckSender) // Starlight Edit: Chat stacking
     {
         var formatted = new FormattedMessage(FormattedMessageDefaultCapacity);
         formatted.PushColor(color);
         formatted.AddMarkupPermissive(message);
         formatted.Pop();
+
+        // Starlight Start: chat stacking
+        if (_entManager.System<ChatStackingSystem>().TryRepetition(this, Contents, formatted, sender, unwrapped, channel, repeatCheckSender))
+            return;
+        // Starlight End
+
         Contents.AddMessage(formatted, tagsAllowed: null);
     }
 

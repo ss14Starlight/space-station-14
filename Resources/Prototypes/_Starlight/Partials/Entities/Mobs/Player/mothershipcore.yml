@@ -1,0 +1,4 @@
+- type: !PartialOnly entity
+  id: MothershipCore
+  components:
+  - type: ChatRepeatIgnoreSender
