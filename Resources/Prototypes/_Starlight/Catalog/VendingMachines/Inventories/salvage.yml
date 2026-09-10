@@ -374,6 +374,16 @@
   - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorSalvageOil
+  productEntity: OilPack
+  cost:
+    SalvageTicket: 50
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageSpeedLoaderShotgunEmpty
   productEntity: SpeedLoaderShotgunEmpty
   cost:
