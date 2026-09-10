@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Borgs can no longer roll antag.
-    type: Fix
-  id: 408053
-  time: '2026-09-02T18:18:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5934
 - author: Arkanic
   changes:
   - message: Ethanol lag bugfix (hopefully) (likely) (for real this time).
@@ -2799,4 +2792,11 @@ Entries:
   id: 408452
   time: '2026-09-10T12:13:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6024
+- author: Whatstone
+  changes:
+  - message: Fixed Stealth items having a showing outline on hover.
+    type: Fix
+  id: 408453
+  time: '2026-09-10T15:20:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5856
 Order: -1
