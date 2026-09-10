@@ -28,6 +28,14 @@ namespace Content.Shared.SubFloor
         [DataField]
         public bool BlockInteractions { get; set; } = true;
 
+        // Starlight begin
+        /// <summary>
+        ///     Whether this entity can be anchored and unanchored while a floor tile covers it.
+        /// </summary>
+        [DataField]
+        public bool AllowAnchoringUnderCover { get; set; }
+        // Starlight end
+
         /// <summary>
         /// Whether this entity's ambience should be disabled when underneath the floor.
         /// </summary>
