@@ -25,6 +25,31 @@
         - state: equipped-HELMET
 
 - type: entity
+  parent: BaseResomiPlushie
+  id: PlushieChemmi # huaqas
+  name: chemmi plushie
+  description: An adorable plushie of the orange juice addicted senior researcher Chemmi. She comes equipped with her own XL orange juice bottle, and jam-jar glasses to match.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/chemmi_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/chemmi_plushie.rsi
+    state: icon
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/chemmi_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_squawk_1.ogg
+
+- type: entity
   parent: BaseLizardPlushie
   id: PlushieDoxes # SanityGecko
   name: doxes-the-captain plushie
