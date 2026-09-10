@@ -1,25 +1,4 @@
 Entries:
-- author: Sparlight
-  changes:
-  - message: K9s will no longer suffer abject identity concealment issues.
-    type: Fix
-  id: 408056
-  time: '2026-09-03T02:04:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5954
-- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
-  changes:
-  - message: You can now boil snails alive in the microwave.
-    type: Add
-  id: 408057
-  time: '2026-09-03T03:51:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5893
-- author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
-  changes:
-  - message: Blood volume has been doubled.
-    type: Tweak
-  id: 408058
-  time: '2026-09-03T03:51:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5893
 - author: wonderfulnewworld, Princess Cheeseballs, kosticia, slarticodefast, themias, rumaks xyz, veprolet, AreYouConfused, insoPL, whatston3, cashew 42, B Kirill, portfiend, korczoczek, deltanedas, Winkarst cpu, Wintoli
   changes:
   - message: Many chef recipes have been changed so the final result better matches the ingredients put in. This means overall the nutritional value of the chef's meals have increased.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408455
   time: '2026-09-10T16:37:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6050
+- author: SirLutz
+  changes:
+  - message: Section in Security Guidebook explaining ammotypes.
+    type: Add
+  id: 408456
+  time: '2026-09-10T16:37:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6049
+- author: SirLutz
+  changes:
+  - message: Shotgun buckshots are increasing effectivness of Armor by 13%.
+    type: Add
+  id: 408457
+  time: '2026-09-10T16:37:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6049
+- author: SirLutz
+  changes:
+  - message: Shotgun Slugshots are ignoring 60% of armor.
+    type: Add
+  id: 408458
+  time: '2026-09-10T16:37:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6049
 Order: -1
