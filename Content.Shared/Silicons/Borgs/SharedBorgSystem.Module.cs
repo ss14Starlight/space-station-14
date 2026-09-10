@@ -49,13 +49,6 @@ public abstract partial class SharedBorgSystem
         SubscribeLocalEvent<BorgModuleWhitelistComponent, BorgModuleRelayedEvent<BorgModuleInsertAttemptEvent>>(
             OnCheckBlacklistRelay);
 
-
-        SubscribeLocalEvent<ComponentBorgModuleComponent, BorgModuleInstalledEvent>(OnComponentModuleInstalled);
-        SubscribeLocalEvent<ComponentBorgModuleComponent, BorgModuleUninstalledEvent>(OnComponentModuleUninstalled);
-
-        SubscribeLocalEvent<ComponentBorgModuleComponent, BorgModuleRelayedEvent<BorgModuleInsertAttemptEvent>>(
-            OnComponentModuleInstalledRelay);
-
         _moduleQuery = GetEntityQuery<BorgModuleComponent>();
     }
 
