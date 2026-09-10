@@ -468,14 +468,17 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
 
         // Remove bolas
-        var ensnaringQuery = EntityQueryEnumerator<EnsnaringComponent>();
-        while (ensnaringQuery.MoveNext(out var bola, out var ensnaring))
+        if (TryComp<EnsnareableComponent>(uid, out var ensnareable))
         {
-            if (ensnaring.Ensnared != uid || !_tag.HasTag(bola, BolaTag))
-                continue;
+            foreach (var ensnaring in ensnareable.Container.ContainedEntities)
+            {
+                if (!TryComp<EnsnaringComponent>(ensnaring, out var ensnaringComponent) || !_tag.HasTag(ensnaring, BolaTag))
+                    continue;
 
-            _ensnareable.ForceFree(bola, ensnaring);
-            QueueDel(bola);
+                _ensnareable.ForceFree(ensnaring, ensnaringComponent);
+                QueueDel(ensnaring);
+                break;
+            }
         }
 
         var soln = new Solution();
