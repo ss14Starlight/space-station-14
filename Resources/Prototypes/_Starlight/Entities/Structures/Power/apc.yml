@@ -144,4 +144,4 @@
   description: A control terminal for local electronics, this one is branded with the guild insignia.
   components:
   - type: AccessReader
-    access: [["ITG"]]
+    access: [["Salvage"]]

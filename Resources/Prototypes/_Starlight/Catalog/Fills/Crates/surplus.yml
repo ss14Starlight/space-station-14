@@ -173,7 +173,7 @@
       weight: 1
     - id: WeaponParticleDecelerator
       weight: .25
-    - id: Powerdrill
+    - id: PowerDrill
       weight: .25
     - id: MetalFoamGrenade
       amount: 3
@@ -194,7 +194,7 @@
     - id: GrenadeStinger
       amount: 3
       weight: .25
-    - id: GrenadeFlashbang
+    - id: GrenadeFlashBang
       amount: 3
       weight: .25
 
