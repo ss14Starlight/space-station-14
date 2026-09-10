@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: You will no longer spontaneously become a Nukie.
-    type: Fix
-  id: 408052
-  time: '2026-09-02T18:18:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5934
-- author: wonderfulnewworld
-  changes:
   - message: Borgs can no longer roll antag.
     type: Fix
   id: 408053
@@ -2799,4 +2792,11 @@ Entries:
   id: 408451
   time: '2026-09-10T11:54:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6053
+- author: Caws
+  changes:
+  - message: (CC Outpost SC17) Prisoners can no longer walk into Security via the Genpop turnstiles.
+    type: Fix
+  id: 408452
+  time: '2026-09-10T12:13:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6024
 Order: -1
