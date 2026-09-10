@@ -148,8 +148,7 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
             if (!HasComp<RadioRigComponent>(linked) || !TryComp<DeviceLinkSinkComponent>(linked, out var sink))
                 continue;
 
-            foreach (var linkedServer in sink.LinkedSources.Where(linkedServer
-                         => HasComp<StationRadioServerComponent>(linkedServer) && _power.IsPowered(linkedServer)))
+            foreach (var linkedServer in sink.LinkedSources.Where(linkedServer => HasComp<StationRadioServerComponent>(linkedServer) && _power.IsPowered(linkedServer)))
             {
                 server = linkedServer;
                 return true;
