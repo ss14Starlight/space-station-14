@@ -1,11 +1,4 @@
 Entries:
-- author: walksanatora
-  changes:
-  - message: Remix admeme station no-longer has a ghost of dev station providing unlimited captain slots and a 2nd arrivals shuttle.
-    type: Fix
-  id: 408055
-  time: '2026-09-03T01:39:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5914
 - author: Sparlight
   changes:
   - message: K9s will no longer suffer abject identity concealment issues.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408454
   time: '2026-09-10T16:00:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6019
+- author: Huaqas
+  changes:
+  - message: Chemmi plushie added to the plushie vendor.
+    type: Add
+  id: 408455
+  time: '2026-09-10T16:37:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6050
 Order: -1
