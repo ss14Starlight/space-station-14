@@ -12,7 +12,7 @@ namespace Content.Shared.EntityEffects.Effects.Solution;
 /// Quantity is modified by scale.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed class AddReagentToSolutionEntityEffectSystem : EntityEffectSystem<SolutionManagerComponent, AddReagentToSolution>
+public sealed partial class AddReagentToSolutionEntityEffectSystem : EntityEffectSystem<SolutionManagerComponent, AddReagentToSolution>
 {
     public override void Initialize()
     {

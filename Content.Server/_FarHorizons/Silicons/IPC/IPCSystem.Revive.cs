@@ -6,7 +6,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Medical;
 using Content.Shared.Mobs;
 using Content.Shared.Power.Components;
-using Content.Shared.PowerCell.Components;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;

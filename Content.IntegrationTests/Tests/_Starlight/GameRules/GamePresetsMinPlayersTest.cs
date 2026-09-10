@@ -69,7 +69,7 @@ public sealed class GamePresetsMinPlayersTest : GameTest
         return biggest;
     }
 
-    private static bool TryGetComponent<T>(ComponentRegistry components, IComponentFactory factory, [NotNullWhen(true)] out T? component) where T : IComponent, new()
+    private static bool TryGetComponent<T>(ComponentRegistry components, IComponentFactory factory, [NotNullWhen(true)] out T component) where T : IComponent, new()
     {
         if (!components.TryGetValue(factory.GetComponentName<T>(), out var componentUnCast))
         {
