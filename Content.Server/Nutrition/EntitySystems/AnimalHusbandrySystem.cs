@@ -205,7 +205,7 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
         var spawns = EntitySpawnCollection.GetSpawns(component.Offspring, _random);
         foreach (var spawn in spawns)
         {
-            // Starlight - try to place offpsring in the same container
+            // Starlight - try to place offspring in the same container
             var offspring = SpawnNextToOrDrop(spawn, uid, xform);
             if (component.MakeOffspringInfant)
             {
