@@ -72,7 +72,7 @@
             MailTech: [ 1, 1 ]
 
             # Civilian
-            #AssistantManager [ 1, 1 ]
+            AssistantManager: [ 1, 1 ]
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
