@@ -1,11 +1,4 @@
 Entries:
-- author: Arkanic
-  changes:
-  - message: Ethanol lag bugfix (hopefully) (likely) (for real this time).
-    type: Fix
-  id: 408054
-  time: '2026-09-02T22:50:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5950
 - author: walksanatora
   changes:
   - message: Remix admeme station no-longer has a ghost of dev station providing unlimited captain slots and a 2nd arrivals shuttle.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408453
   time: '2026-09-10T15:20:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5856
+- author: Sparlight
+  changes:
+  - message: Fixed a bug where borgis could be repeatedly flashed for telebonds as a revolutionary.
+    type: Fix
+  id: 408454
+  time: '2026-09-10T16:00:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6019
 Order: -1
