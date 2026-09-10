@@ -4,8 +4,8 @@ meta:
   engineVersion: 289.0.2
   forkId: ""
   forkVersion: ""
-  time: 09/09/2026 12:51:33
-  entityCount: 31902
+  time: 09/10/2026 07:44:28
+  entityCount: 31903
 maps:
 - 1
 grids:
@@ -11082,7 +11082,7 @@ entities:
       pos: -57.5,40.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -141329.3
+      secondsUntilStateChange: -142550
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -11565,7 +11565,7 @@ entities:
       invokeCounter: 1
     - type: Door
       state: Opening
-      secondsUntilStateChange: -278168.6
+      secondsUntilStateChange: -279389.3
     - type: DeviceLinkSource
       linkedPorts:
         276:
@@ -12532,7 +12532,7 @@ entities:
       pos: 44.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -4271.5957
+      secondsUntilStateChange: -5492.3022
     - type: AccessReader
       accessListsOriginal: []
       access:
@@ -13445,7 +13445,7 @@ entities:
       pos: 18.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -167125.67
+      secondsUntilStateChange: -168346.38
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -13456,7 +13456,7 @@ entities:
       pos: 17.5,-1.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -167120.61
+      secondsUntilStateChange: -168341.31
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -80131,7 +80131,7 @@ entities:
       pos: 44.5,9.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -1639.1981
+      secondsUntilStateChange: -2859.9048
   - uid: 13343
     components:
     - type: Transform
@@ -80139,7 +80139,7 @@ entities:
       pos: 44.5,8.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -1638.7982
+      secondsUntilStateChange: -2859.505
 - proto: CurtainsPurple
   entities:
   - uid: 13344
@@ -170120,6 +170120,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 42.5,9.5
+  - uid: 31903
+    components:
+    - type: Transform
+      parent: 2
+      pos: 41.5,8.5
 - proto: SpawnPointLibrarian
   entities:
   - uid: 26288
@@ -170247,12 +170252,12 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: 18.5,15.5
+      pos: 64.5,-3.5
   - uid: 26310
     components:
     - type: Transform
       parent: 2
-      pos: 18.5,16.5
+      pos: 64.5,4.5
 - proto: SpawnPointNtrep
   entities:
   - uid: 26311
