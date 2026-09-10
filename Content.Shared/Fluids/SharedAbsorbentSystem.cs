@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
@@ -357,8 +356,6 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         localPos = userXform.LocalRotation.RotateVec(localPos);
 
         _melee.DoLunge(user, absorbEnt, Angle.Zero, localPos, null);
-
-        RaiseLocalEvent(target, new FootprintCleanEvent());
 
         return true;
     }
