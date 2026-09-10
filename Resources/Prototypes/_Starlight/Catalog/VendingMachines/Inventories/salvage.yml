@@ -7,8 +7,6 @@
   categories:
     - SalvageEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 3
     - !type:BuyerAccessCondition
 
 - type: listing
@@ -19,8 +17,6 @@
   categories:
     - SalvageEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 3
     - !type:BuyerAccessCondition
 
 - type: listing
@@ -31,8 +27,6 @@
   categories:
     - SalvageEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 3
     - !type:BuyerAccessCondition
 
 - type: listing
