@@ -23,3 +23,10 @@ marking-LizardSnoutEasternDragonUsiki-eastern_dragon_usiki = Whiskers
 
 marking-LizardHeadGuilmon = Lizard Snout (Guilmon)
 marking-LizardHeadGuilmon-guilmon = Guilmon Snout
+
+# Xeno Tails
+marking-XenoTailBoiler = Xeno Tail Boiler
+marking-XenoTailDrone = Xeno Tail Drone
+marking-XenoTailPraetorian = Xeno Tail Praetorian
+marking-XenoTailQueen = Xeno Tail Queen
+marking-XenoTailRunner = Xeno Tail Runner

@@ -31,6 +31,51 @@
   - sprite: _Starlight/Mobs/Customization/reptilian_snake_tail.rsi
     state: snake_large_wagging_overlay
 
+- type: marking
+  id: XenoTailBoiler
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, NeoReptilian]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/reptile_xeno.rsi
+      state: tail_xenoboiler
+
+- type: marking
+  id: XenoTailDrone
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, NeoReptilian]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/reptile_xeno.rsi
+      state: tail_xenodrone
+
+- type: marking
+  id: XenoTailPraetorian
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, NeoReptilian]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/reptile_xeno.rsi
+      state: tail_xenopraetorian
+
+- type: marking
+  id: XenoTailQueen
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, NeoReptilian]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/reptile_xeno.rsi
+      state: tail_xenoqueen
+
+- type: marking
+  id: XenoTailRunner
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Reptilian, NeoReptilian]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/reptile_xeno.rsi
+      state: tail_xenorunner
+
 # Eastern Dragon Snout Markings
 - type: marking
   id: LizardSnoutEasternDragon
