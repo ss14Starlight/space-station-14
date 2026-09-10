@@ -121,7 +121,7 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
         while (query.MoveNext(out var serverUid, out var _))
         {
             var serverXform =  Transform(serverUid);
-            if (serverXform.GridUid != receiverXform.GridUid)
+            if (serverXform.GridUid != receiverXform.GridUid || !serverXform.Anchored)
                 continue;
             server = serverUid;
             return true;
