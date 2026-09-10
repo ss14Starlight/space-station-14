@@ -13,7 +13,7 @@
     },
     {
       "name": "equipped-HELMET",
-      "directions": 4
+      "directions": 4,
 	  "copyright": "Fahreyy(Github)"
     },
     {
@@ -23,12 +23,12 @@
     },
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
 	  "copyright": "Fahreyy(Github)"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
 	  "copyright": "Fahreyy(Github)"
     }
   ]
