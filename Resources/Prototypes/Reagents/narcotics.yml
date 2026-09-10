@@ -324,18 +324,15 @@
   meltingPoint: 128.0
   metabolisms:
     Bloodstream:
+      metabolismRate: 1.0 # Starlight: Sleepiness metabolism, to archive sleep after 8 seconds, as before
       effects: # It would be nice to have speech slurred or mumbly, but accents are a bit iffy atm. Same for distortion effects.
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
-      - !type:ModifyStatusEffect
-        conditions:
-        - !type:ReagentCondition
-          reagent: Nocturine
-          min: 8
-        effectProto: StatusEffectForcedSleeping
-        time: 9
-        delay: 5
+      - !type:ModifySleepiness # Starlight: Nocturine uses the strongest Sleepiness profile.
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 2m
+        time: 4.75 # Starlight: Sleepiness added per metabolism cycle.
 
 - type: reagent
   id: MuteToxin
