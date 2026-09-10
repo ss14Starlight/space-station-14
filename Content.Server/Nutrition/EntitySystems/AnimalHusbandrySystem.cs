@@ -12,6 +12,7 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Storage;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -34,6 +35,7 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private NameModifierSystem _nameMod = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     private readonly HashSet<EntityUid> _failedAttempts = new();
     private readonly HashSet<EntityUid> _birthQueue = new();
@@ -41,8 +43,15 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        SubscribeLocalEvent<ReproductiveComponent, ComponentInit>(OnComponentInit); // Starlight
         SubscribeLocalEvent<ReproductiveComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<InfantComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
+    }
+
+    private void OnComponentInit(Entity<ReproductiveComponent> ent, ref ComponentInit args)
+    {
+        // Starlight - Delay initial breeding attempt by one cycle
+        ent.Comp.NextBreedAttempt = _timing.CurTime + _random.Next(ent.Comp.MinBreedAttemptInterval, ent.Comp.MaxBreedAttemptInterval);
     }
 
     // we express EZ-pass terminate the pregnancy if a player takes the role
@@ -172,6 +181,10 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
         if (!CanReproduce(partner))
             return false;
 
+        // Starlight - Prevent entities in different containers from breeding
+        if (!_container.IsInSameOrNoContainer(uid, partner))
+            return false;
+
         return _whitelistSystem.IsWhitelistPass(component.PartnerWhitelist, partner);
     }
 
@@ -192,8 +205,8 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
         var spawns = EntitySpawnCollection.GetSpawns(component.Offspring, _random);
         foreach (var spawn in spawns)
         {
-            var offspring = Spawn(spawn, xform.Coordinates.Offset(_random.NextVector2(0.3f)));
-            _transform.AttachToGridOrMap(offspring);
+            // Starlight - try to place offpsring in the same container
+            var offspring = SpawnNextToOrDrop(spawn, uid, xform);
             if (component.MakeOffspringInfant)
             {
                 var infant = AddComp<InfantComponent>(offspring);
