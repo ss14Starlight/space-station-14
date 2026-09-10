@@ -19,16 +19,19 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
 
     protected override void OnPowerChanged(EntityUid uid, VinylPlayerComponent comp, PowerChangedEvent args)
     {
+        if (args.Powered)
+            return;
+
         if (comp.SoundEntity != null && !args.Powered)
             comp.SoundEntity = _audio.Stop(comp.SoundEntity);
 
-        if (!_stationRadio.TryGetPoweredGridServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp)) // Starlight - Add Station Radio Resume Play
+        if (!_stationRadio.TryGetLinkedServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp)) // Starlight - Add Station Radio Resume Play
             return;
 
         serverComp.CurrentSong = null;
         serverComp.PlaybackStartTime = null;
 
-        _stationRadio.StopAllReceivers(server.Value);
+        _stationRadio.StopAllReceivers(server);
     }
 
     protected override void OnDestruction(EntityUid uid, VinylPlayerComponent comp, DestructionEventArgs args)
@@ -39,9 +42,12 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
         serverComp.CurrentSong = null;
         serverComp.PlaybackStartTime = null;
 
+        var serverXform = Transform(uid);
         var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
         while (query.MoveNext(out var receiver, out var _))
         {
+            if (serverXform.GridUid != Transform(receiver).GridUid)
+                continue;
             RaiseLocalEvent(receiver, new StationRadioMediaStoppedEvent());
         }
     }
@@ -59,15 +65,18 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
         var ev = new VinylInsertedEvent(args.Entity);
         RaiseLocalEvent(uid, ref ev);
 
-        if (!_stationRadio.TryGetPoweredGridServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp)) // Starlight - Start - Add Station Radio Resume Play
+        if (!_stationRadio.TryGetLinkedPoweredServer(uid, out var server) || !TryComp<StationRadioServerComponent>(server, out var serverComp)) // Starlight - Start - Add Station Radio Resume Play
             return;
 
         serverComp.CurrentSong = vinylcomp.Song;
         serverComp.PlaybackStartTime = _timing.CurTime;
 
+        var serverXform = Transform(uid);
         var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
         while (query.MoveNext(out var receiver, out _))
         {
+            if (serverXform.GridUid != Transform(receiver).GridUid)
+                continue;
             RaiseLocalEvent(receiver, new StationRadioMediaPlayedEvent(vinylcomp.Song, _timing.CurTime));
         }
     }
@@ -88,10 +97,12 @@ public sealed partial class VinylPlayerSystem : SharedVinylPlayerSystem
         serverComp.CurrentSong = null;
         serverComp.PlaybackStartTime = null;
         // Starlight - End
-
+        var serverXform = Transform(uid);
         var query = EntityQueryEnumerator<StationRadioReceiverComponent>();
         while (query.MoveNext(out var receiver, out var _))
         {
+            if (serverXform.GridUid != Transform(receiver).GridUid)
+                continue;
             RaiseLocalEvent(receiver, new StationRadioMediaStoppedEvent());
         }
     }

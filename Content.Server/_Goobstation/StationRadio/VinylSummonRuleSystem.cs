@@ -1,5 +1,5 @@
-using Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
-using Content.Shared._Goobstation.StationRadio.Events; // Starlight - _Goob -> _Goobstation
+using Content.Shared._Goobstation.StationRadio.Components;
+using Content.Shared._Goobstation.StationRadio.Events;
 using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Shared.Communications;
@@ -15,7 +15,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
 using Content.Server.Chat.Systems;
-using Content.Server._Starlight.StationRadio.Systems; // Starlight - Shared._Goobstation -> Server._Starlight
+using Content.Server._Starlight.StationRadio.Systems;
 using Content.Shared._Starlight.StationRadio.Events;
 
 namespace Content.Server._Goobstation.StationRadio; // Starlight - _Goob -> _Goobstation
@@ -82,7 +82,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         }
 
         // Check if vinyl player is connected to the radio system
-        if (!_stationRadio.TryGetLinkedServer(playerUid, out _)) // Starlight - Station Radio Check oved to StationRadioReceiverSystem
+        if (!_stationRadio.TryGetLinkedPoweredServer(playerUid, out _)) // Starlight - Station Radio Check oved to StationRadioReceiverSystem
         {
             _popups.PopupPredicted(Loc.GetString("vinyl-popout-no-radio-connection"), playerUid, null, PopupType.Medium);
             QueueSafeEject();

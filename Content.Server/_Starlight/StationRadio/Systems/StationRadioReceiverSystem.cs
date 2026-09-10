@@ -42,6 +42,7 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
         if (!args.Powered)
         {
             StopAllReceivers(uid);
+            return;
         }
 
         if (comp.CurrentSong == null || comp.PlaybackStartTime == null)
@@ -79,7 +80,7 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
 
     protected override void OnRigTerminating(EntityUid uid, RadioRigComponent comp, ref EntityTerminatingEvent args)
     {
-        if (TryGetLinkedServer(uid, out var linkedServer))
+        if (TryGetLinkedPoweredServer(uid, out var linkedServer))
             StopAllReceivers(linkedServer);
     }
 
@@ -122,6 +123,37 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
                 continue;
             server = serverUid;
             return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Resolves whether the entity(vinyl player or rig) is linked to a Radio Server.
+    /// </summary>
+    public bool TryGetLinkedPoweredServer(EntityUid uid, out EntityUid server)
+    {
+        server = default;
+
+        if (!TryComp<DeviceLinkSourceComponent>(uid, out var source))
+            return false;
+
+        foreach (var linked in source.LinkedPorts.Keys.Where(linked => _power.IsPowered(linked)))
+        {
+            if (HasComp<StationRadioServerComponent>(linked))
+            {
+                server = linked;
+                return true;
+            }
+
+            if (!HasComp<RadioRigComponent>(linked) || !TryComp<DeviceLinkSinkComponent>(linked, out var sink))
+                continue;
+
+            foreach (var linkedServer in sink.LinkedSources.Where(linkedServer
+                         => HasComp<StationRadioServerComponent>(linkedServer) && _power.IsPowered(linkedServer)))
+            {
+                server = linkedServer;
+                return true;
+            }
         }
         return false;
     }

@@ -6,7 +6,7 @@ using Content.Shared.Examine; // Starlight - Shift Click to view what Vinyl is i
 
 namespace Content.Shared._Goobstation.StationRadio.Systems; // Starlight - _Goob -> _Goobstation
 
-public abstract partial class SharedVinylPlayerSystem : EntitySystem
+public abstract partial class SharedVinylPlayerSystem : EntitySystem // Starlight edit made partial
 {
     [Dependency] private SharedContainerSystem _container = default!;
 

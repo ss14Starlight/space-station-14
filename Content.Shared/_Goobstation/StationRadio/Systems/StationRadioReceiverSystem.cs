@@ -99,9 +99,7 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem //
     /// </summary>
     protected virtual void OnPowerChanged(EntityUid uid, StationRadioReceiverComponent comp, PowerChangedEvent args)
     {
-        if(comp.SoundEntity == null)
-            return;
-        _audio.SetGain(comp.SoundEntity, GetGain(comp, args.Powered));
+        // Starlight - Moved to Content.Client/_Starlight/StationRadio/Systems
     }
 
     /// <summary>

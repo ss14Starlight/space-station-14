@@ -1,6 +1,8 @@
 ﻿using Content.Shared._Goobstation.StationRadio.Components;
 using Content.Shared._Goobstation.StationRadio.Systems;
 using Content.Shared._Starlight.CCVar;
+using Content.Shared.Interaction;
+using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Robust.Client.Audio;
 using Robust.Client.Player;
@@ -102,6 +104,13 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
         {
             RaiseLocalEvent(receiver, new  StationRadioVolumeChangedEvent(volume));
         }
+    }
+
+    protected override void OnPowerChanged(EntityUid uid, StationRadioReceiverComponent comp, PowerChangedEvent args)
+    {
+        if (!TryComp<AudioComponent>(comp.SoundEntity, out var audio))
+            return;
+        _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)) * (comp.ClientVolume ?? 0), audio);
     }
 }
 
