@@ -1,4 +1,3 @@
-using Content.Shared.Cargo.Components;
 using Content.Shared.Salvage.JobBoard;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;

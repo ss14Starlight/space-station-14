@@ -1,0 +1,51 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "overgrown_head",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "overgrown_l_arm",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "overgrown_l_hand",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "overgrown_l_leg",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "overgrown_r_arm",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "overgrown_r_hand",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "overgrown_r_leg",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        },
+        {
+            "name": "overgrown_torso",
+            "directions": 4,
+    		"copyright": "SevenShades"
+        }
+    ]
+}

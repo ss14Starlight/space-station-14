@@ -232,7 +232,7 @@
 - type: entity
   id: ActionCosmicColossusIngress
   name: Colossal Ingress
-  description: Use your colossal strength to rend false doorways apart and reshape them into true passages.
+  description: Use your colossal strength to rend false doorways apart and reshape them into true passages. Or empower malign rifts, transforming them into empowered rifts.
   components:
   - type: Action
     useDelay: 8
@@ -247,6 +247,7 @@
     whitelist:
       components:
         - Door
+        - CosmicMalignRift
 
 - type: entity
   id: ActionCosmicColossusHibernate

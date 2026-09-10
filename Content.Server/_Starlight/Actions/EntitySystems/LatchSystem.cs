@@ -25,7 +25,6 @@ using Robust.Server.Audio;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Actions.EntitySystems;
 

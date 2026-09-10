@@ -21,7 +21,6 @@
     sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
     state: full
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatHuman
       amount: 5
@@ -48,7 +47,6 @@
   - type: Speech
     speechSounds: ALLagomorph
     speechVerb: Lagomorph
-    allowedEmotes: ['Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore', 'LagomorphStomp']
   - type: BodyEmotes
     soundsId: LagomorphBodyEmotes
   - type: ChatListenerRange # way better at hearing, +2 to all
@@ -57,10 +55,6 @@
     whisperMuffledRange: 7
     allowExtendListenRange: true
   - type: Vocal
-    sounds:
-      Male: MaleLagomorph
-      Female: FemaleLagomorph
-      Unsexed: FemaleLagomorph
   - type: TypingIndicator
     proto: lagomorph
   - type: Damageable
@@ -127,4 +121,3 @@
       state: "creampie_human"
       visible: false
 # for fragile electronics like consoles or shuttle engines.
-

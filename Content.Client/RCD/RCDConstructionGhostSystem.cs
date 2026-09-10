@@ -10,7 +10,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Input;
 using Content.Client._Starlight.RCD;
 using Robust.Shared.Input.Binding;
-using Content.Client.Atmos;
 using Content.Shared.Input;
 // Starlight End
 
@@ -33,7 +32,6 @@ public sealed partial class RCDConstructionGhostSystem : EntitySystem
     private EntityUid? _lastHeldRcd; // Starlight Edit: RPD/RPLD held-tool rotation sync
     // Starlight Start: RPD
     private bool _useMirrorPrototype = false;
-    public event EventHandler? FlipConstructionPrototype;
 
     public override void Initialize()
     {

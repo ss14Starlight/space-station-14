@@ -136,7 +136,6 @@ guide-entry-sl-cargo-sop-genproc-intro = General Procedures
 guide-entry-sl-cargo-sop-cargotechnician = Cargo Technician
 guide-entry-sl-cargo-sop-mailtechnician = Mail Technician
 guide-entry-sl-cargo-sop-miningspecialist = Mining Specialist
-guide-entry-sl-cargo-sop-salvagespecialist = SalvageSpecialist
 guide-entry-sl-cargo-sop-quartermaster = Quartermaster
 guide-entry-sl-cargo-sop-staff-intro = Staff Procedures
 guide-entry-sl-cargo-sop-handlingorders = Handling Orders
@@ -146,6 +145,9 @@ guide-entry-sl-cargo-sop-handlingorders-security = Security Orders
 guide-entry-sl-cargo-sop-handlingorders-science = Science Orders
 guide-entry-sl-cargo-sop-handlingorders-medical = Medical Orders
 guide-entry-sl-cargo-sop-handlingorders-service = Service Orders
+
+guide-entry-sl-salvage-sop-intro = Salvage
+guide-entry-sl-salvage-sop-salvagers = Salvage Crew
 
 guide-entry-sl-science-sop-intro = Science
 
@@ -165,6 +167,10 @@ guide-entry-sl-service-sop-staff-intro = Staff Procedures
 guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 guide-entry-sl-service-sop-lawyer = Lawyer
 guide-entry-sl-service-sop-reporter = Reporter
+
+guide-entry-sl-assistant-sop-staff-intro = Assistant
+guide-entry-sl-assistant-sop-assistantmanager = Assistant Manager
+guide-entry-sl-assistant = Assistant
 
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders

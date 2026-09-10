@@ -9,7 +9,7 @@
     bloodReferenceSolution: # Starlight, no nubody
       reagents:
       - ReagentId: Phenylpiperidine
-        Quantity: 100 # Starlight
+        Quantity: 200 # Starlight, double bloodstream capacity
   - type: PointLight
     color: "#b4dae0"
   - type: Sprite

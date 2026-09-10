@@ -105,7 +105,7 @@
   suffix: Brigmed, Locked
   components:
     - type: AccessReader
-      access: [["Security"], ["Cadet"], ["Command"]]
+      access: [["Brig"], ["Brigmedic"]]
 
 #Brigmedic/Paramed
 - type: entity
@@ -114,7 +114,7 @@
   suffix: Brigmed/Paramedic, Locked
   components:
     - type: AccessReader
-      access: [["Security"], ["Cadet"], ["Command"], ["Paramedic"]]
+      access: [["Brig"], ["Brigmedic"], ["Paramedic"]]
 
 #Solgov
 - type: entity
