@@ -1,18 +1,4 @@
 Entries:
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Sec front is now brig access, cadets allowed in now.'
-    type: Fix
-  id: 408050
-  time: '2026-09-02T09:10:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5883
-- author: Johnny
-  changes:
-  - message: Changed the portable recharger, now you can put it in a suitslot.
-    type: Tweak
-  id: 408051
-  time: '2026-09-02T17:44:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5943
 - author: wonderfulnewworld
   changes:
   - message: You will no longer spontaneously become a Nukie.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408449
   time: '2026-09-09T21:26:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6068
+- author: Caws
+  changes:
+  - message: Laundromat station beacon, to help you find laundromats on the map.
+    type: Add
+  id: 408450
+  time: '2026-09-10T11:54:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6053
+- author: Caws
+  changes:
+  - message: Access-locked variants of washing machines have been removed. All washing machines are all-access once again.
+    type: Tweak
+  id: 408451
+  time: '2026-09-10T11:54:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6053
 Order: -1
