@@ -273,10 +273,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         {
             var stainEv = new SpilledOnEvent(entity.Owner, splitSol.Clone());
             RaiseLocalEvent(args.Slipped, stainEv);
-
-            // Funky Wall Stains
-            var splashEv = new SplashOnWallEvent(Transform(entity.Owner).Coordinates, splitSol.Clone());
-            RaiseLocalEvent(ref splashEv);
         }
         // Funky - End
     }
@@ -459,10 +455,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         _color.RaiseEffect(spilled.GetColor(_prototypeManager), targets,
             Filter.Pvs(entity, entityManager: EntityManager));
-
-        // Funky Wall Stains
-        var splashEv = new SplashOnWallEvent(coordinates, spilled.Clone());
-        RaiseLocalEvent(ref splashEv);
 
         return TrySpillAt(coordinates, spilled, out puddleUid, sound);
     }
