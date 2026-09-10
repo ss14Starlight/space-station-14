@@ -1247,6 +1247,7 @@
   minLimit: 0
   loadouts:
   - ResearchDirectorBeret
+  - ResearchDirectorBeretRD # Starlight
 
 - type: loadoutGroup
   id: ResearchDirectorNeck
