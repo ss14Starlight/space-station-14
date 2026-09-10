@@ -137,7 +137,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        var query = EntityManager.EntityQueryEnumerator<ChangelingComponent>();
+        var query = EntityQueryEnumerator<ChangelingComponent>();
 
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -492,7 +492,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             {
                 var storeCompCopy = _serialization.CreateCopy(storeComp, notNullableOverride: true);
                 RemComp<StoreComponent>(newUid.Value);
-                EntityManager.AddComponent(newUid.Value, storeCompCopy);
+                AddComp(newUid.Value, storeCompCopy);
             }
         }
 

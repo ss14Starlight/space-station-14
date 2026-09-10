@@ -1,6 +1,5 @@
 using Content.Server.Silicons.Laws;
 using Content.Shared._Starlight.Silicons.Laws;
-using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Prototypes;
 
