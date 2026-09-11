@@ -569,7 +569,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [Animal, Avali] # SL - add Avali
+          type: [Animal, Avali] # Starlight, add Avali
         damage:
           types:
             Poison: 0.4
