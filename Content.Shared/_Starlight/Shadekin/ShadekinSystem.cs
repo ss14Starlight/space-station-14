@@ -237,9 +237,9 @@ public sealed partial class ShadekinSystem : EntitySystem
                 continue;
 
             // If either we or the light are in a container that occludes light, it only counts if it's the same container.
-            if ((targetContainerOccluded
-                 || (_container.TryGetContainingContainer(light.Owner, out var lightContainer) && lightContainer.OccludesLight))
-                && !_container.IsInSameOrNoContainer(uid, light.Owner))
+            if ((targetContainerOccluded ||
+                (_container.TryGetContainingContainer(light.Owner, out var lightContainer) && lightContainer.OccludesLight)) &&
+                !_container.IsInSameOrNoContainer(uid, light.Owner))
                 continue;
 
             if (!_examine.InRangeUnOccluded(new MapCoordinates(lightPos, targetCoords.MapId), targetCoords, lightComp.Radius, null))

@@ -50,7 +50,6 @@ public sealed partial class FlammableStainsSystem : EntitySystem
         base.Initialize();
 
         Subs.CVar(_cfg, ReagentFireCVars.StainFireStackMultiplier, value => _stainStackMultiplier = value, true);
-        SubscribeLocalEvent<GridAtmosphereComponent, TileExposedEvent>(OnTileExposed);
     }
 
     [SubscribeLocalEvent]
