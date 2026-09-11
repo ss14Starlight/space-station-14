@@ -20,7 +20,7 @@
     Chitter:
       path: /Audio/Voice/Moth/moth_chitter.ogg
 
-- type: emoteSounds
+- type: !PartialOnly emoteSounds
   id: FemaleHuman
   sounds:
     Mew:
