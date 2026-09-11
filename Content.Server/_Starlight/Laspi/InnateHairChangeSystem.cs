@@ -6,16 +6,22 @@ using Content.Shared.MagicMirror;
 
 namespace Content.Server._Starlight.Laspi;
 
+/// <summary>
+///  System that handles the InnateHairChangeComponent, which allows an entity to change their hair/facial hair using the magic mirror UI.
+/// This is primarily used only on the Laspi and neo-Laspi species, but there's nothing stopping you from adding it to other species if you wanna be a hair wizard or something. :3
+/// </summary>
 public sealed class InnateHairChangeSystem : EntitySystem
 {
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {
-        // Subscribe to the action event so we can open the mirror UI when the action is used
         SubscribeLocalEvent<InnateHairChangeComponent, InnateHairChangeActionEvent>(OnHairAction);
     }
 
+    /// <summary>
+    /// Handles the innate hair change action event, opens the magic mirror UI for you to change your hair/facial hair. Some of this code is duplicated from SharedMagicMirrorSystem.UpdateInterface() because I don't want to touch that file in this PR at all.
+    /// </summary>
     private void OnHairAction(Entity<InnateHairChangeComponent> ent, ref InnateHairChangeActionEvent args)
     {
         // NOTE: Handled silently which may not be desired.
@@ -28,8 +34,6 @@ public sealed class InnateHairChangeSystem : EntitySystem
         if (!TryComp(ent.Owner, out MagicMirrorComponent? mirror))
             return;
 
-        // This is the body of SharedMagicMirrorSystem.UpdateInterface()
-        // I partly duplicated it instead of calling the protected method. This violates DRY principles, but whatever. :c
         var hair = humanoid.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var hairMarkings) ? new List<Marking>(hairMarkings) : new();
 
         var facialHair = humanoid.MarkingSet.TryGetCategory(MarkingCategories.FacialHair, out var facialMarkings) ? new List<Marking>(facialMarkings) : new();
