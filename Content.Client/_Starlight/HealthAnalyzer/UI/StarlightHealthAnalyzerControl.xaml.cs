@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Linq;
-using System.Net.NetworkInformation;
+﻿using System.Linq;
 using System.Numerics;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -19,9 +17,8 @@ using Content.Shared.Chemistry.Reagent;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Medical;
+using Content.Shared._Starlight.Medical.HealthAnalyzer;
 using Content.Shared.Mobs.Systems;
-using Robust.Client.UserInterface;
 
 namespace Content.Client._Starlight.HealthAnalyzer.UI;
 
@@ -94,7 +91,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         DrawHeader(state, target.Value);
         DrawVitals(state, target.Value, damageable, deathValue);
-        DrawAlerts(state);
+        DrawAbnormalities(state, target.Value);
         DrawDamageBreakdown(sortedGroups, damagePerType, deathValue);
         DrawChemicals(state.Chemicals);
     }
@@ -129,25 +126,6 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
                 : Loc.GetString("health-analyzer-window-entity-unknown-species-text");
     }
 
-    private void DrawAlerts(HealthAnalyzerUiState state)
-    {
-        var showAlerts = state.Unrevivable == true;
-
-        AlertsDivider.Visible = showAlerts;
-        AlertsContainer.Visible = showAlerts;
-
-        if (showAlerts)
-            AlertsContainer.RemoveAllChildren();
-
-        if (state.Unrevivable == true)
-            AlertsContainer.AddChild(new RichTextLabel
-            {
-                Text = Loc.GetString("health-analyzer-window-entity-unrevivable-text"),
-                Margin = new Thickness(0, 4),
-                MaxWidth = 300
-            });
-    }
-
     private void DrawVitals(HealthAnalyzerUiState state, EntityUid target, DamageableComponent damageable, FixedPoint2 deathValue)
     {
         VitalsContainer.RemoveAllChildren();
@@ -155,7 +133,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         // Status
         if (_entityManager.TryGetComponent<MobStateComponent>(target, out var mobStateComponent))
         {
-            AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
+            AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData
             {
                 Name = Loc.GetString("starlight-health-analyzer-window-entity-status-text"),
                 Value = HealthAnalyzerFormatting.GetStatusText(mobStateComponent.CurrentState),
@@ -165,7 +143,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         }
 
         // Temp
-        AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
+        AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData
         {
             Name = Loc.GetString("starlight-health-analyzer-window-entity-temperature-text"),
             Value = HealthAnalyzerFormatting.FormatTemperature(state.Temperature),
@@ -183,7 +161,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             color = HealthAnalyzerFormatting.GetBloodLevelAccentColorUi(bloodRatio);
         }
 
-        AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
+        AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData
         {
             Name = Loc.GetString("starlight-health-analyzer-window-entity-blood-level-text"),
             Value = HealthAnalyzerFormatting.FormatBloodLevel(state.BloodLevel),
@@ -191,16 +169,14 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             BarRatio = bloodRatio,
             ValueColor = color,
             BarColor = color,
-            HasIcon = state.Bleeding.GetValueOrDefault(false),
-            IconTexture = _spriteSystem.Frame0(new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Alerts/bleed.rsi"),
-                "bleed10"))
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Alerts/bleed.rsi"), "bleed10"),
         }));
 
         // Total Damage
         var totalDamage = damageable.TotalDamage;
         var ratio = CalculateDamageRatio(totalDamage, deathValue);
 
-        AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
+        AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData
         {
             Name = Loc.GetString("starlight-health-analyzer-window-entity-damage-total-text"),
             Value = totalDamage.ToString(),
@@ -209,6 +185,12 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             ValueColor = Color.White,
             BarColor = HealthAnalyzerFormatting.GetDamageSeverityColorUi(ratio),
         }));
+
+        // external things
+        var vitals = state.Extensions.GetValueOrDefault().Vitals;
+
+        foreach (var vital in vitals.OrderBy(x => x.Name))
+            AddToVitals(GenerateVitalsInformationBlock(vital));
     }
 
     private void DrawDamageBreakdown(Dictionary<string, FixedPoint2> groups,
@@ -356,6 +338,40 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         return block;
     }
 
+    private void DrawAbnormalities(HealthAnalyzerUiState state, EntityUid target)
+    {
+        var abnormalities = state.Extensions.GetValueOrDefault().Abnormalities;
+
+        if (state.Unrevivable == true)
+        {
+            abnormalities.Add(new HealthAnalyzerAbnormalityData
+            {
+                Description = Loc.GetString("health-analyzer-window-entity-unrevivable-text"),
+                Color = Color.FromHex("#EDE609")
+            });
+        }
+
+        var showAlerts = abnormalities.Any();
+
+        AbnormalitiesDivider.Visible = showAlerts;
+        AbnormalitiesContainer.Visible = showAlerts;
+
+        if (!showAlerts)
+            return;
+
+        AbnormalitiesContainer.RemoveAllChildren();
+
+        foreach (var abnormality in abnormalities.OrderBy(x => x.Description))
+        {
+            AbnormalitiesContainer.AddChild(new Label
+            {
+                Text = abnormality.Description,
+                FontColorOverride = abnormality.Color,
+            });
+        }
+
+    }
+
     private void DrawChemicals(List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? chemicals)
     {
         ChemicalsContainer.RemoveAllChildren();
@@ -437,18 +453,18 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         }
     }
 
-    private BoxContainer GenerateVitalsInformationBlock(VitalsInformationBlockData data)
+    private BoxContainer GenerateVitalsInformationBlock(HealthAnalyzerVitalsBlockData data)
     {
         var container = new BoxContainer { Orientation = LayoutOrientation.Vertical, HorizontalExpand = true };
         var inner = new BoxContainer { Orientation = LayoutOrientation.Horizontal, SeparationOverride = 8 };
 
         inner.AddChild(new Label { Text = data.Name, HorizontalAlignment = HAlignment.Left, HorizontalExpand = true });
 
-        if (data.HasIcon)
+        if (data.Icon is { } icon)
         {
             inner.AddChild(new TextureRect
             {
-                Texture = data.IconTexture,
+                Texture = _entityManager.System<SpriteSystem>().Frame0(icon),
                 SetSize = new Vector2(15, 15),
                 Stretch = TextureRect.StretchMode.KeepAspectCentered,
                 VerticalAlignment = VAlignment.Center
@@ -522,19 +538,4 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         deathValue is { } maximum
             ? Math.Clamp((float)current / (float)maximum, 0f, 1f)
             : 0f;
-
-    public struct VitalsInformationBlockData
-    {
-        public string Name;
-        public string Value;
-
-        public bool HasBar;
-        public float BarRatio;
-
-        public Color ValueColor;
-        public Color BarColor;
-
-        public bool HasIcon;
-        public Texture IconTexture;
-    }
 }

@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.HealthAnalyzer;
 using Content.Shared.FixedPoint; // Starlight
 using Robust.Shared.Serialization;
 
@@ -38,10 +39,11 @@ public struct HealthAnalyzerUiState
     public bool? Bleeding;
     public bool? Unrevivable;
     public List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? Chemicals; // Starlight - merged bloodstream and stomach reagents
+    public HealthAnalyzerExtensions? Extensions; // Starlight-edit - Health analyzer extensions
 
     public HealthAnalyzerUiState() {}
 
-    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? canPrint, bool? scanMode, bool? bleeding, bool? unrevivable, List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? chemicals = null) // Starlight - merged chemicals parameter
+    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? canPrint, bool? scanMode, bool? bleeding, bool? unrevivable, List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? chemicals = null, HealthAnalyzerExtensions? extensions = null) // Starlight - merged chemicals parameter + analyzer extensions
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
@@ -51,5 +53,6 @@ public struct HealthAnalyzerUiState
         Bleeding = bleeding;
         Unrevivable = unrevivable;
         Chemicals = chemicals; // Starlight
+        Extensions = extensions; // Starlight-edit
     }
 }
