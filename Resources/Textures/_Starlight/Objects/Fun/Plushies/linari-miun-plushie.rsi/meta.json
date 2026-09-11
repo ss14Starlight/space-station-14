@@ -11,21 +11,21 @@
     [
         {
             "name": "icon",
-            "copyright": "ya314a"
+            "copyright": "Character by LynatiKr20, sprites by ya314a, edited from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432"
         },
         {
             "name": "inhand-left",
-            "copyright": "ya314a",
+            "copyright": "Character by LynatiKr20, sprites by ya314a, edited from in-hand lizard plushie sprites made by KieueCaprie",
             "directions": 4
         },
         {
             "name": "inhand-right",
-            "copyright": "ya314a",
+            "copyright": "Character by LynatiKr20, sprites by ya314a, edited from in-hand lizard plushie sprites made by KieueCaprie",
             "directions": 4
         },
         {
             "name": "equipped-HELMET",
-            "copyright": "ya314a",
+            "copyright": "Character by LynatiKr20, sprites by ya314a, edited from equipped-HELMET sprite made by Cinder",
             "directions": 4
         }
     ]
