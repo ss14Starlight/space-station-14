@@ -400,7 +400,8 @@ public sealed partial class OrganSystem : EntitySystem
     {
         if (TryComp<SpeechComponent>(args.Body, out var speech))
         {
-            speech.AllowedEmotes = ent.Comp.AllowedEmotes;
+            var emotes = speech.AllowedEmotes.Union(ent.Comp.AllowedEmotes);
+            speech.AllowedEmotes = emotes.ToList();
             if (ent.Comp.AllowAllVocalEmotes)
                 speech.AllowedEmotes =
                 [
@@ -410,7 +411,7 @@ public sealed partial class OrganSystem : EntitySystem
             Dirty(args.Body, speech);
         }
 
-        if (TryComp<VocalComponent>(args.Body, out var vocal))
+        if (TryComp<VocalComponent>(args.Body, out var vocal) && vocal.EmoteSounds == null)
             _vocal.SetSounds((args.Body, vocal), ent.Comp.Sounds);
         if (HasComp<AbductorComponent>(args.Body) || !ent.Comp.IsMuted) return;
         RemComp<MutedComponent>(args.Body);
@@ -420,11 +421,12 @@ public sealed partial class OrganSystem : EntitySystem
     {
         if (TryComp<SpeechComponent>(args.Body, out var speech))
         {
-            speech.AllowedEmotes = new();
+            var emotes = speech.AllowedEmotes.Except(ent.Comp.AllowedEmotes);
+            speech.AllowedEmotes = emotes.ToList();
             Dirty(args.Body, speech);
         }
 
-        if (TryComp<VocalComponent>(args.Body, out var vocal))
+        if (TryComp<VocalComponent>(args.Body, out var vocal) && ent.Comp.Sounds != null)
             _vocal.SetSounds((args.Body, vocal), null);
 
         ent.Comp.IsMuted = HasComp<MutedComponent>(args.Body);
