@@ -1,8 +1,9 @@
-using Content.Shared.Light.Components;
+using Content.Shared._Starlight.Light.Components;
+using Content.Shared.Light.EntitySystems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 
-namespace Content.Shared.Light.EntitySystems;
+namespace Content.Shared._Starlight.Light.EntitySystems;
 
 public sealed partial class LightCollideSystem : EntitySystem
 {

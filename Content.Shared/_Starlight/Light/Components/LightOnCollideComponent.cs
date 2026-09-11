@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Light.Components;
+namespace Content.Shared._Starlight.Light.Components;
 
 /// <summary>
 /// Enables / disables pointlight whenever entities are contacting with it

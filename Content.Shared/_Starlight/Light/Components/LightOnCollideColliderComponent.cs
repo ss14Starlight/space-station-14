@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Light.Components;
+namespace Content.Shared._Starlight.Light.Components;
 
 /// <summary>
 /// Can activate <see cref="LightOnCollideComponent"/> when collided with.
