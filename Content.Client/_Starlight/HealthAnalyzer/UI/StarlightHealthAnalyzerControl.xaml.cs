@@ -25,6 +25,8 @@ namespace Content.Client._Starlight.HealthAnalyzer.UI;
 [GenerateTypedNameReferences]
 public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 {
+    public bool TemperatureInKelvins { get; set; }
+
     private readonly IEntityManager _entityManager;
     private readonly SpriteSystem _spriteSystem;
     private readonly IPrototypeManager _prototypes;
@@ -146,7 +148,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData
         {
             Name = Loc.GetString("starlight-health-analyzer-window-entity-temperature-text"),
-            Value = HealthAnalyzerFormatting.FormatTemperature(state.Temperature),
+            Value = HealthAnalyzerFormatting.FormatTemperature(state.Temperature, TemperatureInKelvins),
             HasBar = false,
             ValueColor = Color.White,
         }));

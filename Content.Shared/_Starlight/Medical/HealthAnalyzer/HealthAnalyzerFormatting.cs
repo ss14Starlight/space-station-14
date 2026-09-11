@@ -56,7 +56,7 @@ public static class HealthAnalyzerFormatting
         }
 
         return inKelvins
-            ? $"({temperature:F1} K)"
+            ? $"{temperature:F1} K"
             : $"{temperature - Atmospherics.T0C:F1} °C ";
     }
 
