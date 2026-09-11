@@ -577,7 +577,7 @@
         probability: 0.04 #Scaled for time, not metabolismrate.
         conditions:
           - !type:MetabolizerTypeCondition
-            type: [Animal, Avali] # SL - add Avali
+            type: [Animal, Avali] # Starlight, add Avali
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
