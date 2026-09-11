@@ -30,13 +30,9 @@ public sealed class InnateHairChangeSystem : EntitySystem
 
         // This is the body of SharedMagicMirrorSystem.UpdateInterface()
         // I partly duplicated it instead of calling the protected method. This violates DRY principles, but whatever. :c
-        var hair = humanoid.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var hairMarkings)
-           ? new List<Marking>(hairMarkings)
-            : new();
+        var hair = humanoid.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var hairMarkings) ? new List<Marking>(hairMarkings) : new();
 
-        var facialHair = humanoid.MarkingSet.TryGetCategory(MarkingCategories.FacialHair, out var facialMarkings)
-           ? new List<Marking>(facialMarkings)
-            : new();
+        var facialHair = humanoid.MarkingSet.TryGetCategory(MarkingCategories.FacialHair, out var facialMarkings) ? new List<Marking>(facialMarkings) : new();
 
         var state = new MagicMirrorUiState(
             humanoid.Species,
