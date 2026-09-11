@@ -68,6 +68,7 @@
       keySlots: 4
       canBeExamined: false
 
+
 - type: entity
   id: BrainImplantNexus
   name: Nexus uplink

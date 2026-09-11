@@ -230,7 +230,6 @@
     utensil:
     - Fork
     - Spoon
-      - type: Tag
   - type: Tag
     tags:
     - Soup
