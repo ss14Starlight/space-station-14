@@ -120,6 +120,14 @@
     implant: DeathRattleImplantTSF
 
 - type: entity
+  id: DeathRattleImplanterSalvage
+  name: Salvage death rattle implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+    - type: Implanter
+      implant: DeathRattleImplantSalvage
+
+- type: entity
   id: BluespaceImplanter
   name: bluespace implanter
   parent: BaseImplantOnlyImplanter
@@ -169,3 +177,12 @@
   components:
   - type: Implanter
     implant: CommandTrackingImplant
+
+#ITG
+- type: entity
+  id: ITGTrackerImplanter
+  name: ITG tracker implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: ITGTrackingImplant

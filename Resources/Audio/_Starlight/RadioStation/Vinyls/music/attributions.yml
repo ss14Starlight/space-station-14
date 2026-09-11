@@ -1,0 +1,39 @@
+- files: ["CrazyBot.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Andrew R Codeman"
+  source: "https://freemusicarchive.org/music/Andrew_Codeman/road-to-the-land/crazy-bot/"
+
+- files: ["D2.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Amarent"
+  source: "https://freemusicarchive.org/music/amarent/free-electronic-music/d2/"
+
+- files: ["AcidRaindream.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "ROZKOL"
+  source: "https://freemusicarchive.org/music/ROZKOL/demos-oneiron/acid-raindream/"
+
+- files: ["Untitled#7.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Tommaso Croce"
+  source: "https://freemusicarchive.org/music/Dilating_Times/news-from-malta-vol-1/untitled-7/"
+
+- files: ["Smarties.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "Birds for Scale"
+  source: "https://freemusicarchive.org/music/birds-for-scale/smarties/smarties/"
+
+- files: ["SilverandCold.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "Kevin Hartnell"
+  source: "https://freemusicarchive.org/music/Kevin_Hartnell/CC_BY-SA_40/Kevin_Hartnell_-_CC_BY-SA_40_-_14_Silver_and_Cold/"
+
+- files: ["CirclesofBlackandRed.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "Kevin Hartnell"
+  source: "https://freemusicarchive.org/music/Kevin_Hartnell/CC_BY-SA_40/Kevin_Hartnell_-_CC_BY-SA_40_-_12_Circles_of_Black_and_Red/"
+
+- files: ["DepressedWawatriestoprotest.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "theprofessorix"
+  source: "https://gist.github.com/yMicrowave/8f2a79e228b7b7a297d38eb8b88f98ac"

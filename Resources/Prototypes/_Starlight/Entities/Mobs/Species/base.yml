@@ -89,6 +89,7 @@
           False: {visible: false}
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
+  - type: JobStatus
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
@@ -252,6 +253,12 @@
   # Starlight End
   - type: CosmicCenserTarget # Stellar - Cosmic Cult
   - type: Scent # Starlight - smell system
+  # Moff start - Funky footprints
+  - type: FootprintOwner
+  - type: SolutionManager
+    solutions:
+    - SolutionPrint
+  # Moff end
 
 - type: entity
   save: false
@@ -332,7 +339,6 @@
     thermalRegulationTemperatureThreshold: 2
   - type: Perishable
   - type: Butcherable
-    butcheringType: Spike # TODO human.
     spawned:
       - id: FoodMeat
         amount: 5
