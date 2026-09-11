@@ -27,7 +27,7 @@
             ChiefEngineer: [ 1, 1 ]
             ResearchDirector: [ 1, 1 ]
             Quartermaster: [ 1, 1 ]
-	        AssistantManager: [ 2, 2 ]
+            AssistantManager: [ 2, 2 ]
             #Law
             Magistrate: [ 1, 1 ]
             IAA: [ 1, 2 ]
