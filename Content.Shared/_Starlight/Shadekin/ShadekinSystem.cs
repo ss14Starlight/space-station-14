@@ -84,22 +84,17 @@ public sealed partial class ShadekinSystem : EntitySystem
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
 
-    public override void Initialize()
+    [SubscribeLocalEvent]
+    private void OnDamageChanged(Entity<ShadekinComponent> ent, ref BeforeDamageChangedEvent args)
+        => args.Damage.DamageDict["Asphyxiation"] = 0;
+
+    [SubscribeLocalEvent]
+    private void OnShutdown(Entity<ShadekinComponent> ent, ref ComponentShutdown args)
     {
-        base.Initialize();
-
-        SubscribeLocalEvent<ShadekinComponent, ComponentShutdown>((ent, ref _) =>
-        {
-            if (_timing.ApplyingState)
-                return;
-
-            RemComp<BrighteyeComponent>(ent);
-        });
-        SubscribeLocalEvent<ShadekinComponent, BeforeDamageChangedEvent>((_, ref args) => args.Damage.DamageDict["Asphyxiation"] = 0);
-
-        InitializeBrighteye();
-        InitializeAbilities();
-    }
+        if (_timing.ApplyingState)
+            return;
+        RemComp<BrighteyeComponent>(ent);
+    }>)
 
     [SubscribeLocalEvent]
     private void CoreOrganInit(Entity<OrganShadekinCoreComponent> ent, ref OrganAddedToBodyEvent args)
