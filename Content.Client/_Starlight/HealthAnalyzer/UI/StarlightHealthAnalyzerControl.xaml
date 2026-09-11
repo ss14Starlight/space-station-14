@@ -47,7 +47,7 @@
 
         <PanelContainer StyleClasses="LowDivider" />
 
-        <Label Name="VitalsHeader" Text="Vitals Overview" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
+        <Label Name="VitalsHeader" Text="{Loc 'starlight-health-analyzer-window-section-vitals'}" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
         <BoxContainer Name="VitalsContainer" Orientation="Vertical" Margin="8"
                       HorizontalExpand="True" SeparationOverride="8">
             <!-- populated by code -->
@@ -60,7 +60,7 @@
 
     </BoxContainer>
 
-    <Label Name="DamageGroupsHeader" Text="Damage Breakdown" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
+    <Label Name="DamageGroupsHeader" Text="{Loc 'starlight-health-analyzer-window-section-damage'}" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
     <BoxContainer
         Name="GroupsContainer"
         Margin="8"

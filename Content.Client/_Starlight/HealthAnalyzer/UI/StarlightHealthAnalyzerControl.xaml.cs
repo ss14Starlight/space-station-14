@@ -56,22 +56,6 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         PrintReportButton.OnPressed += _ => PrintReportPressed?.Invoke();
     }
 
-    // todo not here
-    public struct VitalsInformationBlockData
-    {
-        public string Name;
-        public string Value;
-
-        public bool HasBar;
-        public float BarRatio;
-
-        public Color ValueColor;
-        public Color BarColor;
-
-        public bool HasIcon;
-        public Texture IconTexture;
-    }
-
     public void Populate(HealthAnalyzerUiState state)
     {
         var target = _entityManager.GetEntity(state.TargetEntity);
@@ -91,7 +75,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         }
 
         NoPatientDataText.Visible = false;
-        PrintReportButton.Disabled = !PrintReportButton.Visible || !(state.ScanMode ?? false) || !(state.CanPrint ?? false); // Starlight-edit: Printable health reports.
+        PrintReportButton.Disabled = !PrintReportButton.Visible || !(state.ScanMode ?? false) || !(state.CanPrint ?? false);
 
         FixedPoint2 deathValue = 200;
         if (_threshold.TryGetDeadThreshold(target.Value, out var threshold) && threshold.Value > FixedPoint2.Zero)
@@ -171,7 +155,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         {
             AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
             {
-                Name = Loc.GetString("health-analyzer-window-entity-status-text"),
+                Name = Loc.GetString("starlight-health-analyzer-window-entity-status-text"),
                 Value = HealthAnalyzerFormatting.GetStatusText(mobStateComponent.CurrentState),
                 HasBar = false,
                 ValueColor = HealthAnalyzerFormatting.GetStatusColor(mobStateComponent.CurrentState),
@@ -181,7 +165,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         // Temp
         AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
         {
-            Name = Loc.GetString("health-analyzer-window-entity-temperature-text"),
+            Name = Loc.GetString("starlight-health-analyzer-window-entity-temperature-text"),
             Value = HealthAnalyzerFormatting.FormatTemperature(state.Temperature),
             HasBar = false,
             ValueColor = Color.White,
@@ -194,12 +178,12 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         if (float.IsFinite(state.BloodLevel))
         {
             bloodRatio = Math.Clamp(state.BloodLevel, 0f, 1f);
-            color = HealthAnalyzerFormatting.GetBloodLevelAccentColor(bloodRatio);
+            color = HealthAnalyzerFormatting.GetBloodLevelAccentColorUi(bloodRatio);
         }
 
         AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
         {
-            Name = Loc.GetString("health-analyzer-window-entity-blood-level-text"),
+            Name = Loc.GetString("starlight-health-analyzer-window-entity-blood-level-text"),
             Value = HealthAnalyzerFormatting.FormatBloodLevel(state.BloodLevel),
             HasBar = true,
             BarRatio = bloodRatio,
@@ -216,12 +200,12 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
         {
-            Name = Loc.GetString("health-analyzer-window-entity-damage-total-text"),
+            Name = Loc.GetString("starlight-health-analyzer-window-entity-damage-total-text"),
             Value = totalDamage.ToString(),
             HasBar = true,
             BarRatio = ratio,
             ValueColor = Color.White,
-            BarColor = HealthAnalyzerFormatting.GetDamageAccentColor(ratio),
+            BarColor = HealthAnalyzerFormatting.GetDamageSeverityColorUi(ratio),
         }));
     }
 
@@ -255,16 +239,25 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         };
 
-        block.AddChild(new ProgressBar
+        var dmgRatio = CalculateDamageRatio(damageValue, deathValue);
+        var progressBar = new ProgressBar
         {
             MinValue = 0,
             MaxValue = 1,
-            Value = CalculateDamageRatio(damageValue, deathValue),
+            Value = dmgRatio,
             MinHeight = 3,
             MaxHeight = 3,
             HorizontalExpand = true,
             Margin = new Thickness(0, 0, 0, 4),  // todo figure out the margins
-        });
+        };
+
+        progressBar.BackgroundStyleBoxOverride ??= new StyleBoxFlat(Color.FromHex("#525252"));
+        progressBar.ForegroundStyleBoxOverride ??= new StyleBoxFlat();
+        ((StyleBoxFlat)progressBar.ForegroundStyleBoxOverride!).BackgroundColor =
+            HealthAnalyzerFormatting.GetDamageSeverityColorUi(dmgRatio);
+
+        block.AddChild(progressBar);
+
 
         var groupHeader = new BoxContainer
         {
@@ -277,7 +270,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         groupHeader.AddChild(new TextureRect
         {
             SetSize = new Vector2(15, 15),
-            Texture = GetTexture(categoryId),
+            Texture = GetTexture(categoryId.ToLowerInvariant()),
             VerticalAlignment = VAlignment.Center,
         });
 
@@ -296,9 +289,25 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         block.AddChild(groupHeader);
 
-        // todo - could implement a detailedness toggle here
-        // todo - this foreach is copied syntax. Review if there is a better way
         var group = _prototypes.Index<DamageGroupPrototype>(categoryId);
+        var hasVisibleDamage = group.DamageTypes.Any(type =>
+            damageDict.TryGetValue(type, out var amount) && amount > 0);
+
+        // early return with label if no damage
+        if (!hasVisibleDamage)
+        {
+            block.AddChild(new Label
+            {
+                Text = Loc.GetString("starlight-health-analyzer-window-damage-none"),
+                HorizontalExpand = true,
+                HorizontalAlignment = HAlignment.Left,
+                StyleClasses = new StyleClassCollection("FontSmall"),
+                FontColorOverride = Color.FromHex("#C7CED7"),
+                Margin = new Thickness(19, 1, 0, 1),
+            });
+            return block;
+        }
+
         foreach (var type in group.DamageTypes)
         {
             if (!damageDict.TryGetValue(type, out var typeAmount) || typeAmount <= 0)
@@ -309,7 +318,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
             var damageRow = new BoxContainer
             {
-                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                Orientation = LayoutOrientation.Horizontal,
                 Margin = new Thickness(19, 1, 0, 1),
                 SeparationOverride = 4
             };
@@ -342,6 +351,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             damageRow.AddChild(amountLabel);
             block.AddChild(damageRow);
         }
+
         return block;
     }
 
@@ -471,20 +481,26 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
     private void AddToVitals(BoxContainer container)
     {
+        BoxContainer? lastRow = null;
 
-        // We want to add to VitalsContainer to form a two per row layout.
-        // Each row is in its own BoxContainer. Therefore, childCount % 2 == 0 means we need a new row.
-        if (VitalsContainer.ChildCount == 0 || VitalsContainer.ChildCount % 2 == 0)
+        if (VitalsContainer.ChildCount > 0)
         {
-            VitalsContainer.AddChild(new BoxContainer
-            {
-                Orientation = LayoutOrientation.Horizontal, HorizontalExpand = true, SeparationOverride = 16
-            });
+            lastRow = VitalsContainer.Children[VitalsContainer.ChildCount - 1] as BoxContainer;
         }
 
-        // either we added a new row as the last child above, or the last row has a free spot
-        var lastRow = VitalsContainer.Children[VitalsContainer.Children.Count() - 1] as BoxContainer;
-        lastRow!.AddChild(container);
+        if (lastRow is not { ChildCount: < 2 })
+        {
+            lastRow = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Horizontal,
+                HorizontalExpand = true,
+                SeparationOverride = 16,
+            };
+
+            VitalsContainer.AddChild(lastRow);
+        }
+
+        lastRow.AddChild(container);
     }
 
     private Texture GetTexture(string texture)
@@ -506,5 +522,20 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         return deathValue is { } maximum
             ? Math.Clamp((float)current / (float)maximum, 0f, 1f)
             : 0f;
+    }
+
+    public struct VitalsInformationBlockData
+    {
+        public string Name;
+        public string Value;
+
+        public bool HasBar;
+        public float BarRatio;
+
+        public Color ValueColor;
+        public Color BarColor;
+
+        public bool HasIcon;
+        public Texture IconTexture;
     }
 }

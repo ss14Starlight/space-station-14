@@ -11,13 +11,12 @@ public static class HealthAnalyzerFormatting
     private static readonly Color SeveritySafeColor = Color.FromHex("#00FF00");
     private static readonly Color SeverityDangerColor = Color.FromHex("#8B0000");
 
-    // new color stuff TODO review!
     private static readonly Color LowDamageColor = Color.FromHex("#5ABCAA");
     private static readonly Color MediumDamageColor = Color.FromHex("#D8C560");
     private static readonly Color HighDamageColor = Color.FromHex("#E19955");
     private static readonly Color MaxDamageColor = Color.FromHex("#E56F79");
 
-    public static Color GetDamageAccentColor(float ratio)
+    public static Color GetDamageSeverityColorUi(float ratio)
     {
         return ratio switch
         {
@@ -27,9 +26,9 @@ public static class HealthAnalyzerFormatting
         };
     }
 
-    public static Color GetBloodLevelAccentColor(float ratio)
+    public static Color GetBloodLevelAccentColorUi(float ratio)
     {
-        return GetDamageAccentColor(Math.Clamp((1 - ratio), 0f, 1f));
+        return GetDamageSeverityColorUi(Math.Clamp((1 - ratio), 0f, 1f));
     }
 
     public static Color GetStatusColor(MobState mobState)
@@ -75,7 +74,7 @@ public static class HealthAnalyzerFormatting
     {
         return WrapTextWithColorMarkup(
             FormatBloodLevelWithSeverity(bloodLevel),
-            GetBloodLevelSeverityColor(bloodLevel));
+            GetBloodLevelSeverityColorPrint(bloodLevel));
     }
 
     public static string GetBloodLevelSeveritySuffix(float bloodLevel)
@@ -93,7 +92,7 @@ public static class HealthAnalyzerFormatting
         };
     }
 
-    public static Color? GetBloodLevelSeverityColor(float bloodLevel)
+    public static Color? GetBloodLevelSeverityColorPrint(float bloodLevel)
     {
         if (float.IsNaN(bloodLevel))
             return null;
@@ -115,7 +114,7 @@ public static class HealthAnalyzerFormatting
         };
     }
 
-    public static Color GetDamageSeverityColor(float damageAmount)
+    public static Color GetDamageSeverityColorPrint(float damageAmount)
     {
         var clampedDamage = Math.Clamp(damageAmount, 0f, 100f);
         var damagePercent = clampedDamage / 100f;
