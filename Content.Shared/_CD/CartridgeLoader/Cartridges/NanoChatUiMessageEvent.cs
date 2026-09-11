@@ -98,6 +98,11 @@ public partial struct NanoChatRecipient
     public HashSet<uint>? Members; // Funky Station - Group Chats
 
     /// <summary>
+    ///     For group chats: Max amount of members allowed in the group.
+    /// </summary>
+    public int MaxMembers = 30; // Starlight edit - Max members in group
+
+    /// <summary>
     ///     For group chats: the NanoChat number of the creator.
     /// </summary>
     public uint? CreatorId; // Funky Station - Group Chats
