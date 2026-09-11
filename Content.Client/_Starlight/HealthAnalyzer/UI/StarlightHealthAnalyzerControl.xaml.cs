@@ -153,7 +153,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         // Status
         if (_entityManager.TryGetComponent<MobStateComponent>(target, out var mobStateComponent))
         {
-            AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
+            AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData
             {
                 Name = Loc.GetString("starlight-health-analyzer-window-entity-status-text"),
                 Value = HealthAnalyzerFormatting.GetStatusText(mobStateComponent.CurrentState),
@@ -163,7 +163,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         }
 
         // Temp
-        AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
+        AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData
         {
             Name = Loc.GetString("starlight-health-analyzer-window-entity-temperature-text"),
             Value = HealthAnalyzerFormatting.FormatTemperature(state.Temperature),
@@ -181,7 +181,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             color = HealthAnalyzerFormatting.GetBloodLevelAccentColorUi(bloodRatio);
         }
 
-        AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
+        AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData
         {
             Name = Loc.GetString("starlight-health-analyzer-window-entity-blood-level-text"),
             Value = HealthAnalyzerFormatting.FormatBloodLevel(state.BloodLevel),
@@ -198,7 +198,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         var totalDamage = damageable.TotalDamage;
         var ratio = CalculateDamageRatio(totalDamage, deathValue);
 
-        AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
+        AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData
         {
             Name = Loc.GetString("starlight-health-analyzer-window-entity-damage-total-text"),
             Value = totalDamage.ToString(),
@@ -207,6 +207,13 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             ValueColor = Color.White,
             BarColor = HealthAnalyzerFormatting.GetDamageSeverityColorUi(ratio),
         }));
+
+        // external things
+        var ev = new CollectHealthAnalyzerVitalsEvent(target, state);
+        _entityManager.EventBus.RaiseLocalEvent(target, ref ev, broadcast: true);
+
+        foreach (var vital in ev.Vitals.OrderBy(x => x.Name))
+            AddToVitals(GenerateVitalsInformationBlock(vital));
     }
 
     private void DrawDamageBreakdown(Dictionary<string, FixedPoint2> groups,
@@ -436,7 +443,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         }
     }
 
-    private BoxContainer GenerateVitalsInformationBlock(VitalsInformationBlockData data)
+    private BoxContainer GenerateVitalsInformationBlock(HealthAnalyzerVitalsBlockData data)
     {
         var container = new BoxContainer { Orientation = LayoutOrientation.Vertical, HorizontalExpand = true };
         var inner = new BoxContainer { Orientation = LayoutOrientation.Horizontal, SeparationOverride = 8 };
@@ -522,20 +529,5 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         return deathValue is { } maximum
             ? Math.Clamp((float)current / (float)maximum, 0f, 1f)
             : 0f;
-    }
-
-    public struct VitalsInformationBlockData
-    {
-        public string Name;
-        public string Value;
-
-        public bool HasBar;
-        public float BarRatio;
-
-        public Color ValueColor;
-        public Color BarColor;
-
-        public bool HasIcon;
-        public Texture IconTexture;
     }
 }

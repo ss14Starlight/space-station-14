@@ -106,6 +106,7 @@ public sealed partial class RottingSystem : SharedRottingSystem
             if (!IsRotProgressing(uid, perishable))
                 continue;
             rotting.TotalRotTime += rotting.RotUpdateRate * GetRotRate(uid);
+            Dirty(uid, rotting); // Starlight
 
             if (rotting.DealDamage)
             {
