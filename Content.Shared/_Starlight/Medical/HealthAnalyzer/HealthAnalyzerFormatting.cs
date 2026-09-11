@@ -2,7 +2,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Mobs;
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Starlight.Medical;
+namespace Content.Shared._Starlight.Medical.HealthAnalyzer;
 
 // Shared analyzer formatting for UI and printable reports.
 public static class HealthAnalyzerFormatting
