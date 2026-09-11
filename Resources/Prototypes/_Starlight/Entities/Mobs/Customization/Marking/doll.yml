@@ -938,6 +938,22 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
     state: head_fox
+  emotes:
+    - emotePrototype: Yip
+      requiredMarkingsAny:
+        - DollShellHeadFox
+    - emotePrototype: Whine
+      requiredMarkingsAny:
+        - DollShellHeadFox
+    - emotePrototype: Bark
+      requiredMarkingsAny:
+        - DollShellHeadFox
+    - emotePrototype: Howl
+      requiredMarkingsAny:
+        - DollShellHeadFox
+    - emotePrototype: Growl
+      requiredMarkingsAny:
+        - DollShellHeadFox
 
 - type: marking
   id: DollShellHeadMoth
@@ -952,6 +968,10 @@
   sprites:
   - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
     state: head_moth
+  emotes:
+    - emotePrototype: Chitter
+      requiredMarkingsAny:
+        - DollShellHeadMoth
 
 # Other Masks
 - type: marking
