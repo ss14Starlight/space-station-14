@@ -1,0 +1,27 @@
+﻿- type: !PartialOnly entity
+  id: VendingMachineRestockCostumes
+  name: Drobe restock box
+  description: A restock box for any Drobe machine. Made out of 100% Synthetic fibers
+  components:
+    - type: VendingMachineRestock
+      canRestock:
+        - AutoDrobeInventory
+        - CargoDrobeInventory
+        - AtmosDrobeInventory
+        - BarDrobeInventory
+        - ChefDrobeInventory
+        - ChemDrobeInventory
+        - CuraDrobeInventory
+        - DetDrobeInventory
+        - EngiDrobeInventory
+        - GeneDrobeInventory
+        - HyDrobeInventory
+        - JaniDrobeInventory
+        - LawDrobeInventory
+        - MagiVendInventory
+        - MediDrobeInventory
+        - RoboDrobeInventory
+        - SciDrobeInventory
+        - SecDrobeInventory
+        - ViroDrobeInventory
+        - WinterDrobeInventory
