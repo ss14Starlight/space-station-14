@@ -1149,24 +1149,24 @@
       state: icon
     - type: EmitSoundOnUse
       sound:
-        path: Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+        path: /Audio/Items/Toys/toysqueak1.ogg
     - type: EmitSoundOnLand
       sound:
-        path: Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+        path: /Audio/Items/Toys/toysqueak2.ogg
     - type: EmitSoundOnActivate
       sound:
-        path: Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+        path: /Audio/Items/Toys/toysqueak1.ogg
     - type: EmitSoundOnTrigger
       sound:
-        path: Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+        path: /Audio/Items/Toys/toysqueak2.ogg
     - type: Edible
       requiresSpecialDigestion: true
       useSound:
-        path: Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+        path: /Audio/Items/Toys/toysqueak3.ogg
     - type: MeleeWeapon
       wideAnimationRotation: 180
       soundHit:
-        path: Audio/_Starlight/Voice/Slime/slime_bubble.ogg
+        path: /Audio/Items/Toys/toysqueak2.ogg
     - type: Clothing
       quickEquip: false
       sprite: _Starlight/Objects/Fun/Plushies/linari-miun-plushie.rsi
