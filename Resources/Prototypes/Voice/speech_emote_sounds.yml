@@ -40,26 +40,6 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
-    #region Starlight
-    Mew:
-      collection: FelionoidMews
-    Meow:
-      collection: FelionoidMeows
-    Trill:
-      collection: FelionoidTrills
-    Bark:
-      collection: Bark
-    Yip:
-      path: /Audio/_Starlight/Effects/yip.ogg
-    Whine:
-      collection: Whine
-    Growl:
-      collection: Growl
-    Howl:
-      path: /Audio/_Starlight/Effects/howl.ogg
-    Chitter:
-      path: /Audio/Voice/Moth/moth_chitter.ogg
-    #endregion Starlight
 
 - type: emoteSounds
   id: FemaleHuman
@@ -102,26 +82,6 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
-    #region Starlight
-    Mew:
-      collection: FelionoidMews
-    Meow:
-      collection: FelionoidMeows
-    Trill:
-      collection: FelionoidTrills
-    Bark:
-      collection: Bark
-    Yip:
-      path: /Audio/_Starlight/Effects/yip.ogg
-    Whine:
-      collection: Whine
-    Growl:
-      collection: Growl
-    Howl:
-      path: /Audio/_Starlight/Effects/howl.ogg
-    Chitter:
-      path: /Audio/Voice/Moth/moth_chitter.ogg
-    #endregion Starlight
 
 - type: emoteSounds
   id: MaleReptilian
