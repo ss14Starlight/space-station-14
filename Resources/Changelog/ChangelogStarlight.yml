@@ -1,13 +1,6 @@
 Entries:
 - author: OJG
   changes:
-  - message: (Refinery) Changed the zookeeper office to a more generic setup any service worker can take over due to the roles removal.
-    type: Tweak
-  id: 408084
-  time: '2026-09-03T19:00:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5875
-- author: OJG
-  changes:
   - message: (Refinery) Added and changed a bunch of decor.
     type: Tweak
   id: 408085
@@ -2799,4 +2792,11 @@ Entries:
   id: 408483
   time: '2026-09-11T06:59:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6093
+- author: STARLIGHT TEAM
+  changes:
+  - message: Orwell Citadel Station - Replaced NCT's Office with a Lawyer's Office, moved NCT spawns to bridge, and moved NCT dispatcher to IAA's office.
+    type: Tweak
+  id: 408484
+  time: '2026-09-11T07:28:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6063
 Order: -1
