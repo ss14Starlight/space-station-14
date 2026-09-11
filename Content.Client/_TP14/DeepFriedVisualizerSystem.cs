@@ -1,4 +1,3 @@
-using Content.Shared._TP.Kitchen;
 using Content.Shared._TP.Kitchen.Events;
 using Robust.Client.GameObjects;
 using Robust.Shared.Containers;

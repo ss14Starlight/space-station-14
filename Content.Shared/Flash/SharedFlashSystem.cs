@@ -253,6 +253,9 @@ public abstract partial class SharedFlashSystem : EntitySystem
             var rand = new System.Random(seed);
             if (!rand.Prob(probability))
                 continue;
+            
+            if (!SharedRandomExtensions.PredictedProb(_timing, probability, GetNetEntity(entity)))
+                continue;
 
             // Is the entity affected by the flash either through status effects or by taking damage?
             if (!_statusEffectsQuery.HasComponent(entity) && !_damagedByFlashingQuery.HasComponent(entity))
