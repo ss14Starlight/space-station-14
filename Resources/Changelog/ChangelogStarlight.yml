@@ -1,13 +1,6 @@
 Entries:
 - author: OJG
   changes:
-  - message: (Refinery) Added and changed a bunch of decor.
-    type: Tweak
-  id: 408085
-  time: '2026-09-03T19:00:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5875
-- author: OJG
-  changes:
   - message: (Refinery) gave sec a better access to maints through their substation.
     type: Tweak
   id: 408086
@@ -2799,4 +2792,11 @@ Entries:
   id: 408484
   time: '2026-09-11T07:28:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6063
+- author: SirLutz
+  changes:
+  - message: lowered Slug armorpen from 60% to 30%.
+    type: Tweak
+  id: 408485
+  time: '2026-09-11T10:45:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6097
 Order: -1
