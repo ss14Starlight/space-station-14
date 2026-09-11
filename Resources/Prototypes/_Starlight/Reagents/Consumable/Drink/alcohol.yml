@@ -41,8 +41,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
     Metabolites:
       effects:
       - !type:Drunk
