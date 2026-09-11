@@ -403,11 +403,15 @@ public sealed partial class OrganSystem : EntitySystem
             var emotes = speech.AllowedEmotes.Union(ent.Comp.AllowedEmotes);
             speech.AllowedEmotes = emotes.ToList();
             if (ent.Comp.AllowAllVocalEmotes)
-                speech.AllowedEmotes =
-                [
-                    .. ProtoMan.EnumeratePrototypes<EmotePrototype>().Where(emote => emote.Category.HasFlag(EmoteCategory.Vocal))
-                        .Select(emote => (ProtoId<EmotePrototype>)emote.ID)
-                ];
+            {
+                var allVocalEmotes =
+                    ProtoMan.EnumeratePrototypes<EmotePrototype>()
+                        .Where(emote => emote.Category.HasFlag(EmoteCategory.Vocal))
+                        .Select(emote => (ProtoId<EmotePrototype>)emote.ID).Except(speech.AllowedEmotes);
+                speech.AllowedEmotes = allVocalEmotes.ToList();
+            }
+
+            ;
             Dirty(args.Body, speech);
         }
 
@@ -423,6 +427,14 @@ public sealed partial class OrganSystem : EntitySystem
         {
             var emotes = speech.AllowedEmotes.Except(ent.Comp.AllowedEmotes);
             speech.AllowedEmotes = emotes.ToList();
+            if (ent.Comp.AllowAllVocalEmotes)
+            {
+                var allVocalEmotes =
+                    ProtoMan.EnumeratePrototypes<EmotePrototype>()
+                        .Where(emote => emote.Category.HasFlag(EmoteCategory.Vocal))
+                        .Select(emote => (ProtoId<EmotePrototype>)emote.ID).Except(speech.AllowedEmotes);
+                speech.AllowedEmotes = speech.AllowedEmotes.Except(allVocalEmotes).ToList();
+            }
             Dirty(args.Body, speech);
         }
 
