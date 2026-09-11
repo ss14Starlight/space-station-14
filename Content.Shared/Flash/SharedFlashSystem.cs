@@ -253,7 +253,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
             var rand = new System.Random(seed);
             if (!rand.Prob(probability))
                 continue;
-            
+
             if (!SharedRandomExtensions.PredictedProb(_timing, probability, GetNetEntity(entity)))
                 continue;
 
