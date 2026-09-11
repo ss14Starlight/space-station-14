@@ -119,6 +119,7 @@
     tags:
     - Soup
     - Fruit # I don't know what this is but its' a salad so sure
+    - Salad #Starlight
   - type: Edible #Starlight
     utensil:
     - Fork
@@ -153,6 +154,7 @@
     tags:
     - Fruit
     - Soup
+    - Salad #Starlight
   - type: Edible #Starlight
     utensil:
     - Fork
@@ -192,6 +194,7 @@
     - Meat
     - Fruit
     - Soup
+    - Salad #Starlight
   - type: Edible #Starlight
     utensil:
     - Fork
@@ -227,6 +230,11 @@
     utensil:
     - Fork
     - Spoon
+      - type: Tag
+  - type: Tag
+    tags:
+    - Soup
+    - Salad #Starlight
 
 - type: entity
   name: caesar salad
@@ -259,6 +267,10 @@
     utensil:
     - Fork
     - Spoon
+  - type: Tag
+    tags:
+    - Soup
+    - Salad #Starlight
 
 - type: entity
   name: kimchi salad
@@ -294,6 +306,10 @@
     utensil:
     - Fork
     - Spoon
+  - type: Tag
+    tags:
+    - Soup
+    - Salad #Starlight
 
 - type: entity
   name: fruit salad
@@ -329,6 +345,7 @@
     tags:
     - Fruit
     - Soup
+    - Salad  #Starlight
   - type: Edible #Starlight
     utensil:
     - Fork
@@ -369,6 +386,7 @@
     tags:
     - Fruit
     - Soup
+    - Salad  #Starlight
   - type: Edible #Starlight
     utensil:
     - Fork
@@ -405,6 +423,7 @@
     tags:
     - Fruit
     - Soup
+    - Salad  #Starlight
   - type: Edible #Starlight
     utensil:
     - Fork
@@ -437,6 +456,10 @@
     utensil:
     - Fork
     - Spoon
+  - type: Tag
+    tags:
+    - Soup
+    - Salad #Starlight
 
 # Rice
 

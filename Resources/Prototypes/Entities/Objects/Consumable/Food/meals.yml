@@ -570,6 +570,7 @@
   - type: Tag
     tags:
     - Fruit
+    - Salad #Starlight
 
 - type: entity
   parent: FoodMealBase
