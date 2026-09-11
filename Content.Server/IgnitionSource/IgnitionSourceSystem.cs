@@ -12,12 +12,15 @@ public sealed partial class IgnitionSourceSystem : SharedIgnitionSourceSystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<IgnitionSourceComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var comp, out var xform))
+        // Starlight - most ignition sources (every welder, lighter, anything that burned once) are off,
+        // only fetch the transform for lit ones.
+        var query = EntityQueryEnumerator<IgnitionSourceComponent>();
+        while (query.MoveNext(out var uid, out var comp))
         {
             if (!comp.Ignited)
                 continue;
 
+            var xform = Transform(uid); // Starlight-edit
             if (xform.GridUid is { } gridUid)
             {
                 var position = _transform.GetGridOrMapTilePosition(uid, xform);
