@@ -36,6 +36,9 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
     // Printable health reports.
     public event Action? PrintReportPressed;
+    /// <summary>
+    /// Sets the print report button visible
+    /// </summary>
     public void SetPrintReportVisible(bool visible)
     {
         PrintReportButton.Visible = visible;
@@ -56,6 +59,9 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         PrintReportButton.OnPressed += _ => PrintReportPressed?.Invoke();
     }
 
+    /// <summary>
+    /// Populates the health analyzer UI
+    /// </summary>
     public void Populate(HealthAnalyzerUiState state)
     {
         var target = _entityManager.GetEntity(state.TargetEntity);

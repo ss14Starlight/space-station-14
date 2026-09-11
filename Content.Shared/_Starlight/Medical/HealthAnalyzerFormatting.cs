@@ -16,6 +16,9 @@ public static class HealthAnalyzerFormatting
     private static readonly Color HighDamageColor = Color.FromHex("#E19955");
     private static readonly Color MaxDamageColor = Color.FromHex("#E56F79");
 
+    /// <summary>
+    /// Returns an interpolated accent color for a 0-1 float ratio
+    /// </summary>
     public static Color GetDamageSeverityColorUi(float ratio)
     {
         return ratio switch
@@ -26,11 +29,17 @@ public static class HealthAnalyzerFormatting
         };
     }
 
+    /// <summary>
+    /// Returns an interpolated accent color for a 0-1 float ratio
+    /// </summary>
     public static Color GetBloodLevelAccentColorUi(float ratio)
     {
         return GetDamageSeverityColorUi(Math.Clamp((1 - ratio), 0f, 1f));
     }
 
+    /// <summary>
+    /// Returns green for Alive, yellow for critical, and red for dead.
+    /// </summary>
     public static Color GetStatusColor(MobState mobState)
     {
         return mobState switch
@@ -42,6 +51,10 @@ public static class HealthAnalyzerFormatting
         };
     }
 
+    /// <summary>
+    /// Formats a given temperature into a display string
+    /// </summary>
+    /// <param name="temperature">Temperature in kelvins</param>
     public static string FormatTemperature(float temperature, bool inKelvins = false)
     {
         if (float.IsNaN(temperature))
@@ -54,6 +67,9 @@ public static class HealthAnalyzerFormatting
             : $"{temperature - Atmospherics.T0C:F1} °C ";
     }
 
+    /// <summary>
+    /// Formats a blood level float into a display string
+    /// </summary>
     public static string FormatBloodLevel(float bloodLevel)
     {
         return float.IsNaN(bloodLevel)
