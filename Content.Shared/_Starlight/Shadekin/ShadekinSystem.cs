@@ -94,7 +94,7 @@ public sealed partial class ShadekinSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
         RemComp<BrighteyeComponent>(ent);
-    }>)
+    }
 
     [SubscribeLocalEvent]
     private void CoreOrganInit(Entity<OrganShadekinCoreComponent> ent, ref OrganAddedToBodyEvent args)
