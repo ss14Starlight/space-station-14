@@ -21,6 +21,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Medical;
 using Content.Shared.Mobs.Systems;
+using Robust.Client.UserInterface;
 
 namespace Content.Client._Starlight.HealthAnalyzer.UI;
 
@@ -108,7 +109,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         DrawHeader(state, target.Value);
         DrawVitals(state, target.Value, damageable, deathValue);
         DrawAlerts(state);
-        DrawDiagnosticGroups(sortedGroups, damagePerType);
+        DrawDamageBreakdown(sortedGroups, damagePerType, deathValue);
         DrawChemicals(state.Chemicals);
     }
 
@@ -211,130 +212,137 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         // Total Damage
         var totalDamage = damageable.TotalDamage;
-        var dmgRatio = deathValue is { } maximum
-            ? Math.Clamp((float)totalDamage / (float)maximum, 0f, 1f)
-            : 0f;
+        var ratio = CalculateDamageRatio(totalDamage, deathValue);
 
         AddToVitals(GenerateVitalsInformationBlock(new VitalsInformationBlockData
         {
             Name = Loc.GetString("health-analyzer-window-entity-damage-total-text"),
             Value = totalDamage.ToString(),
             HasBar = true,
-            BarRatio = dmgRatio,
+            BarRatio = ratio,
             ValueColor = Color.White,
-            BarColor = HealthAnalyzerFormatting.GetDamageAccentColor(dmgRatio),
+            BarColor = HealthAnalyzerFormatting.GetDamageAccentColor(ratio),
         }));
     }
 
-    private void DrawDiagnosticGroups(
-        Dictionary<string, FixedPoint2> groups,
-        IReadOnlyDictionary<string, FixedPoint2> damageDict)
+    private void DrawDamageBreakdown(Dictionary<string, FixedPoint2> groups,
+        IReadOnlyDictionary<string, FixedPoint2> damageDict, FixedPoint2 deathValue)
     {
         GroupsContainer.RemoveAllChildren();
 
-        var gridContainer = new GridContainer
+        var grid = new GridContainer
         {
-            Columns = 2,
+            Columns = 2, HorizontalExpand = true, HSeparationOverride = 16, VSeparationOverride = 16
         };
 
-        GroupsContainer.AddChild(gridContainer);
-
-        var columnIndex = 0;
-        foreach (var (damageGroupId, damageAmount) in groups)
+        foreach (var group in groups)
         {
-            var groupTitleText = $"{Loc.GetString(
-                "health-analyzer-window-damage-group-text",
-                ("damageGroup", _prototypes.Index<DamageGroupPrototype>(damageGroupId).LocalizedName),
-                ("amount", damageAmount)
-            )}";
-
-            // Create a bordered box for each damage group
-            var groupBox = new PanelContainer
-            {
-                Margin = new Thickness(2),
-                MinWidth = 155,
-            };
-
-            // Boxes in the second column get right aligned
-            if (columnIndex % 2 == 1)
-            {
-                groupBox.HorizontalAlignment = HAlignment.Right;
-            }
-
-            groupBox.PanelOverride = new StyleBoxFlat
-            {
-                BorderColor = Color.Gray,
-                BorderThickness = new Thickness(1),
-                ContentMarginLeftOverride = 4,
-                ContentMarginRightOverride = 4,
-                ContentMarginTopOverride = 4,
-                ContentMarginBottomOverride = 4,
-            };
-
-            var groupContainer = new BoxContainer
-            {
-                Align = BoxContainer.AlignMode.Begin,
-                Orientation = BoxContainer.LayoutOrientation.Vertical,
-            };
-
-            var titleRow = CreateDiagnosticGroupTitleRow(groupTitleText, (float)damageAmount, damageGroupId);
-            groupContainer.AddChild(titleRow);
-
-            // Add divider line under the title row
-            var divider = new PanelContainer
-            {
-                MinHeight = 1,
-                Margin = new Thickness(0, 0, 0, 4),
-            };
-            divider.PanelOverride = new StyleBoxFlat(Color.Gray);
-            groupContainer.AddChild(divider);
-
-            var group = _prototypes.Index<DamageGroupPrototype>(damageGroupId);
-
-            foreach (var type in group.DamageTypes)
-            {
-                if (!damageDict.TryGetValue(type, out var typeAmount) || typeAmount <= 0)
-                    continue;
-
-                var damageTypeName = _prototypes.Index<DamageTypePrototype>(type).LocalizedName;
-                var typeId = type.ToString().ToLowerInvariant();
-
-                var damageRow = new BoxContainer
-                {
-                    Orientation = BoxContainer.LayoutOrientation.Horizontal,
-                    Margin = new Thickness(0, 2),
-                };
-
-                // Add damage type icon
-                damageRow.AddChild(new TextureRect
-                {
-                    SetSize = new Vector2(15, 15),
-                    Texture = GetTexture(typeId),
-                    Margin = new Thickness(0, 0, 4, 0),
-                });
-
-                var typeLabel = new Label
-                {
-                    Text = damageTypeName,
-                    HorizontalExpand = true,
-                    HorizontalAlignment = HAlignment.Left,
-                };
-
-                var amountLabel = new Label
-                {
-                    Text = typeAmount.ToString(),
-                    HorizontalAlignment = HAlignment.Right,
-                };
-
-                damageRow.AddChild(typeLabel);
-                damageRow.AddChild(amountLabel);
-                groupContainer.AddChild(damageRow);
-            }
-
-            groupBox.AddChild(groupContainer);
-            gridContainer.AddChild(groupBox);
-            columnIndex++;
+            grid.AddChild(GenerateDamageCategoryBlock(group.Key, group.Value, groups, damageDict, deathValue));
         }
+
+        GroupsContainer.AddChild(grid);
+    }
+
+    private BoxContainer GenerateDamageCategoryBlock(string categoryId, FixedPoint2 damageValue, Dictionary<string, FixedPoint2> groups,
+        IReadOnlyDictionary<string, FixedPoint2> damageDict, FixedPoint2 deathValue)
+    {
+        var block = new BoxContainer
+        {
+            Orientation = LayoutOrientation.Vertical,
+            HorizontalExpand = true,
+            VerticalAlignment = VAlignment.Top,
+            SeparationOverride = 0,
+
+        };
+
+        block.AddChild(new ProgressBar
+        {
+            MinValue = 0,
+            MaxValue = 1,
+            Value = CalculateDamageRatio(damageValue, deathValue),
+            MinHeight = 3,
+            MaxHeight = 3,
+            HorizontalExpand = true,
+            Margin = new Thickness(0, 0, 0, 4),  // todo figure out the margins
+        });
+
+        var groupHeader = new BoxContainer
+        {
+            Orientation = LayoutOrientation.Horizontal,
+            HorizontalExpand = true,
+            SeparationOverride = 4,
+            Margin = new Thickness(0, 0, 0, 3),
+        };
+
+        groupHeader.AddChild(new TextureRect
+        {
+            SetSize = new Vector2(15, 15),
+            Texture = GetTexture(categoryId),
+            VerticalAlignment = VAlignment.Center,
+        });
+
+        groupHeader.AddChild(new Label
+        {
+            Text = _prototypes.Index<DamageGroupPrototype>(categoryId).LocalizedName,
+            HorizontalExpand = true,
+            HorizontalAlignment = HAlignment.Left,
+        });
+
+        groupHeader.AddChild(new Label
+        {
+            Text = damageValue.ToString(),
+            HorizontalAlignment = HAlignment.Right
+        });
+
+        block.AddChild(groupHeader);
+
+        // todo - could implement a detailedness toggle here
+        // todo - this foreach is copied syntax. Review if there is a better way
+        var group = _prototypes.Index<DamageGroupPrototype>(categoryId);
+        foreach (var type in group.DamageTypes)
+        {
+            if (!damageDict.TryGetValue(type, out var typeAmount) || typeAmount <= 0)
+                continue;
+
+            var damageTypeName = _prototypes.Index<DamageTypePrototype>(type).LocalizedName;
+            var typeId = type.ToString().ToLowerInvariant();
+
+            var damageRow = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                Margin = new Thickness(19, 1, 0, 1),
+                SeparationOverride = 4
+            };
+
+            damageRow.AddChild(new TextureRect
+            {
+                SetSize = new Vector2(15, 15),
+                Texture = GetTexture(typeId),
+                VerticalAlignment = VAlignment.Center,
+            });
+
+            var typeLabel = new Label
+            {
+                Text = damageTypeName,
+                HorizontalExpand = true,
+                HorizontalAlignment = HAlignment.Left,
+                StyleClasses = new StyleClassCollection("FontSmall"),
+                FontColorOverride = Color.FromHex("#C7CED7")
+            };
+
+            var amountLabel = new Label
+            {
+                Text = typeAmount.ToString(),
+                HorizontalAlignment = HAlignment.Right,
+                StyleClasses = new StyleClassCollection("FontSmall"),
+                FontColorOverride = Color.FromHex("#C7CED7")
+            };
+
+            damageRow.AddChild(typeLabel);
+            damageRow.AddChild(amountLabel);
+            block.AddChild(damageRow);
+        }
+        return block;
     }
 
     private void DrawChemicals(List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? chemicals)
@@ -493,37 +501,10 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         return _spriteSystem.Frame0(rsiSprite);
     }
 
-    private BoxContainer CreateDiagnosticGroupTitleRow(string text, float damageAmount, string damageGroupId)
+    private float CalculateDamageRatio(FixedPoint2 current, FixedPoint2? deathValue)
     {
-        var titleColor = HealthAnalyzerFormatting.GetDamageSeverityColor(damageAmount);
-        var exclamations = HealthAnalyzerFormatting.GetDamageSeveritySuffix(damageAmount);
-        var titleRow = new BoxContainer
-        {
-            Orientation = BoxContainer.LayoutOrientation.Horizontal,
-            Margin = new Thickness(0, 0, 0, 4),
-        };
-
-        var groupId = damageGroupId.ToLowerInvariant();
-
-        // Add damage group icon
-        titleRow.AddChild(new TextureRect
-        {
-            SetSize = new Vector2(15, 15),
-            Texture = GetTexture(groupId),
-            Margin = new Thickness(0, 0, 4, 0),
-            VerticalAlignment = VAlignment.Center,
-        });
-
-        var titleLabel = new Label
-        {
-            Text = string.IsNullOrEmpty(exclamations) ? text : $"{text} {exclamations}",
-            HorizontalExpand = true,
-            HorizontalAlignment = HAlignment.Center,
-            FontColorOverride = titleColor,
-        };
-
-        titleRow.AddChild(titleLabel);
-
-        return titleRow;
+        return deathValue is { } maximum
+            ? Math.Clamp((float)current / (float)maximum, 0f, 1f)
+            : 0f;
     }
 }
