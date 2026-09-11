@@ -57,7 +57,7 @@
 - type: entity
   id: MagazineGrenadeEMP
   name: EMP grenade cartridge
-  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # Starlight edit: Re-add Security contraband
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband, BaseContrabandTier2] # Starlight edit: Re-add Security contraband; Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeEMP
@@ -65,7 +65,7 @@
 - type: entity
   id: MagazineGrenadeFlash
   name: flash grenade cartridge
-  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # Starlight edit: Re-add Security contraband
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband, BaseContrabandTier2] # Starlight edit: Re-add Security contraband; Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeFlash
@@ -73,7 +73,7 @@
 - type: entity
   id: MagazineGrenadeBlast
   name: blast grenade cartridge
-  parent: [ BaseMagazineGrenade, BaseSecurityContraband ] # Starlight edit: Re-add Security contraband
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband, BaseContrabandTier3 ] # Starlight edit: Re-add Security contraband; Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeBlast
@@ -81,7 +81,7 @@
 - type: entity
   id: MagazineGrenadeBaton
   name: baton grenade cartridge
-  parent: [ BaseMagazineGrenade, BaseSecurityContraband] # Starlight edit: Re-add Security contraband
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband, BaseContrabandTier2] # Starlight edit: Re-add Security contraband; Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeBaton

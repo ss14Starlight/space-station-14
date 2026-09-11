@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseCartridge, BaseSecurityContraband ]
+  parent: [ BaseCartridge, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   id: BaseCartridgeCaselessRifle
   name: cartridge (.25 caseless)
   components:

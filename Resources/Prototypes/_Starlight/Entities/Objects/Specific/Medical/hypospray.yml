@@ -1,5 +1,5 @@
 - type: entity
-  parent: [AdvancedJetInjector, BaseSecurityContraband]
+  parent: [AdvancedJetInjector, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: TacticalJetInjector
   name: tactical jet injector
   description: A bold, tacticool, ultra high quality injector. Allows for a very fast injection, with a smaller capacity as a tradeoff. Guard it until your last breath.
@@ -29,7 +29,7 @@
     stealGroup: Hypospray
 
 - type: entity
-  parent: [AdvancedJetInjector, BaseMedicalContraband]
+  parent: [AdvancedJetInjector, BaseMedicalContraband, BaseContrabandTier2] # Blimpuf
   id: DeforestJetInjector
   name: DeForest jet injector
   description: A cool, modern, ultra high quality injector. Allows for a fast injection, with a smaller capacity as a tradeoff. Go Interstellar, with DeForest Medical!

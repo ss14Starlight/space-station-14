@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingEyesBase, BaseBlueShieldContraband]
+  parent: [ClothingEyesBase, BaseRepresentativesContraband]
   id: ClothingEyesHudBlueShield
   name: blue shield hud
   description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
@@ -221,7 +221,7 @@
       protectionTime: 5
 
 - type: entity
-  parent: [ClothingEyesBase, BaseCommandContraband]
+  parent: [ClothingEyesBase, BaseRepresentativesContraband]
   id: ClothingEyesNTRMonocle
   name: NanoTrasen representative monocle
   description: A fancy monocle that also functions as a HUD to make sure no functionality is lost for style.
@@ -242,6 +242,8 @@
   name: SSF marine goggles
   description: The iconic soviet goggles, in use broadly by the soviet forces throughout.
   components:
+    - type: Contraband # Blimpuf
+      tier: Tier3
     - type: Sprite
       sprite: _Starlight/Clothing/Eyes/Soviet/marine_goggles.rsi
     - type: Clothing

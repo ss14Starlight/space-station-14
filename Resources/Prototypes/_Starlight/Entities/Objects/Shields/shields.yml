@@ -473,8 +473,9 @@
 
 - type: entity
   name: X-03 green phase shield
-  parent: [BaseItem, BaseCentcommContraband ]
-  id: GreenLightShield
+  parent: BaseItem
+  id: BaseGreenLightShield
+  abstract: true
   categories: [ DoNotMap ]
   description: Reverse engineered from a prototype that NT loaned CentComm, the wavelength has been tweaked to the glorious CentComm Green. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
   components:
@@ -606,8 +607,12 @@
       level: HardenedMetal
 
 - type: entity
+  parent: [BaseGreenLightShield, BaseCentcommContraband]
+  id: GreenLightShield
+
+- type: entity
   name: X-03 phase shield
-  parent: [GreenLightShield, BaseBlueShieldContraband, BaseGrandTheftContraband ]
+  parent: [BaseGreenLightShield, BaseRepresentativesContraband]
   id: BlueLightShield
   categories: [ DoNotMap ]
   description: An experimental hardlight shield that has a micro reactor in place of the syndicate chemical based battery. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
@@ -636,5 +641,5 @@
           Piercing: 1
       damageEnergyDraw: 4
     - type: Contraband
-      allowedDepartments: []
-      allowedJobs: [ BlueShield ]
+      tier: Tier3
+      contrabandType: CentralCommand

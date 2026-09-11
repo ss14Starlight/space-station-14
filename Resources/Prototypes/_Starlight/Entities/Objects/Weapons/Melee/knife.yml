@@ -1,6 +1,6 @@
 - type: entity
   name: finka
-  parent: [BaseKnife, BaseSovietContraband]
+  parent: [BaseKnife, BaseSovietContraband, BaseContrabandTier3] # Blimpuf
   id: Finka
   description: Legendary SNKVD dagger, an excellent melee weapon, and it's said there was a secret technique for throwing this knife.
   components:

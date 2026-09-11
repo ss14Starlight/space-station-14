@@ -1,7 +1,7 @@
 # Empty mags
 - type: entity
   abstract: true
-  parent: [ BaseItem, BaseSecurityContraband ]
+  parent: [ BaseItem, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   id: BaseMagazineLightRifle
   name: "magazine (.30 rifle)"
   components:

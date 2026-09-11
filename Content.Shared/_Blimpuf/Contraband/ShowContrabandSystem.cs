@@ -1,6 +1,6 @@
 using Content.Shared.Inventory;
 
-namespace Content.Shared.Contraband;
+namespace Content.Shared._Blimpuf.Contraband;
 
 public sealed partial class ShowContrabandSystem : EntitySystem
 {

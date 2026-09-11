@@ -4,7 +4,7 @@
   group: Toxins
   desc: reagent-desc-batteryacid
   physicalDesc: reagent-physical-desc-metallic
-  contrabandSeverity: Minor
+  contrabandTier: Tier1 # Blimpuf
   flavor: shocking
   color: "#ffe270"
   metabolisms:

@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseItem, BaseSecurityContraband ]
+  parent: [ BaseItem, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   id: BaseMagazineShotgun
   name: 12 gauge ammo drum # Starlight change: .50 -> 12 gauge
   components:

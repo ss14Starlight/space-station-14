@@ -175,7 +175,7 @@
       sprite: Clothing/Back/Satchels/salvage.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseHighlyIllegalContraband]
+  parent: [ClothingBackpackSatchel, BaseContrabandTier4]
   id: ClothingBackpackSatchelNinja
   name: spider clan satchel
   description: A robust satchel for stashing your loot.

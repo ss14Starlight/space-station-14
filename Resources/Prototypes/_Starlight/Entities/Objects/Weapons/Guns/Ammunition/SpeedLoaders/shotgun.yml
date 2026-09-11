@@ -38,7 +38,7 @@
 - type: entity
   id: SpeedLoaderShotgunEmpty
   name: 12 gauge speedloader
-  parent: [ BaseSpeedLoaderShotgun, BaseSecuritySalvageContraband ]
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband, BaseSalvageContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -56,7 +56,7 @@
 - type: entity
   id: SpeedLoaderMagnumBasic
   name: 12 gauge buckshot speedloader
-  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgun
@@ -74,7 +74,7 @@
 - type: entity
   id: SpeedLoaderShotgunBeanbag
   name: 12 gauge beanbag speedloader
-  parent: [ BaseSpeedLoaderShotgun, BaseSecurityBartenderContraband ]
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband, BaseBartenderContraband, BaseContrabandTier2 ] # Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunBeanbag
@@ -92,7 +92,7 @@
 - type: entity
   id: SpeedLoaderShotgunSlug
   name: 12 gauge slug speedloader
-  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunSlug
@@ -110,7 +110,7 @@
 - type: entity
   id: SpeedLoaderShotgunUranium
   name: 12 gauge uranium speedloader
-  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunUranium
@@ -128,7 +128,7 @@
 - type: entity
   id: SpeedLoaderShotgunBirdshot
   name: 12 gauge birdshot speedloader
-  parent: [ BaseSpeedLoaderShotgun, BaseSecuritySalvageContraband ]
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband, BaseSalvageContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunBirdshot
@@ -146,7 +146,7 @@
 - type: entity
   id: SpeedLoaderShotgunIncendiary
   name: 12 gauge incendiary speedloader
-  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunIncendiary

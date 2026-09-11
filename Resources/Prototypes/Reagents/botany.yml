@@ -57,7 +57,7 @@
   color: "#9e9886"
   physicalDesc: reagent-physical-desc-bubbling
   # Starlight Edits
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   allowedJobs:
   - Botanist
   # Starlight End
@@ -86,7 +86,7 @@
   color: "#49002E"
   physicalDesc: reagent-physical-desc-bubbling
   # Starlight Edits
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   allowedJobs:
   - Botanist
   # Starlight End
@@ -193,7 +193,7 @@
   color: "#968395"
   physicalDesc: reagent-physical-desc-bubbling
   # Starlight Edits
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   allowedJobs:
   - Botanist
   # Starlight End

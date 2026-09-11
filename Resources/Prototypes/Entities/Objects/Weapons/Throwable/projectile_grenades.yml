@@ -43,7 +43,7 @@
         friction: 0.2
 
 - type: entity
-  parent: [FragileGrenadeBase, ProjectileGrenadeBase, BaseSecurityContraband]
+  parent: [FragileGrenadeBase, ProjectileGrenadeBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: GrenadeStinger
   name: stinger grenade
   description: Nothing to see here, please disperse.

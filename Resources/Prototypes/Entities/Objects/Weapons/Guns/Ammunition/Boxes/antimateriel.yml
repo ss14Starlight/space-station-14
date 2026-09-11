@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseItem, BaseSecurityContraband ]
+  parent: [ BaseItem, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   id: BaseMagazineBoxAntiMateriel
   name: ammunition box (.60 anti-materiel)
   components:

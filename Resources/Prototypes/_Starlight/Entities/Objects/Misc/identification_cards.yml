@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ IDCardStandard, BaseCommandContraband ]
+  parent: [ IDCardStandard, BaseRepresentativesContraband ]
   id: MagistrateIDCard
   name: magistrate ID card
   components:
@@ -67,7 +67,7 @@
     job: Roboticist
 
 - type: entity
-  parent: [ IDCardStandard, BaseCommandContraband ]
+  parent: [ IDCardStandard, BaseRepresentativesContraband ]
   id: NanoTrasenRepresentativeIDCard
   name: NanoTrasen representative ID Card
   components:
@@ -91,7 +91,7 @@
     job: NanoTrasenRepresentative
 
 - type: entity
-  parent: [ IDCardStandard, BaseLawContraband ]
+  parent: [ IDCardStandard, BaseRepresentativesContraband ]
   id: IAAIDCard
   name: internal affairs agent ID card
   components:
@@ -112,7 +112,7 @@
     job: IAA
 
 - type: entity
-  parent: [ IDCardStandard, BaseBlueShieldContraband ]
+  parent: [ IDCardStandard, BaseRepresentativesContraband ]
   id: BlueShieldIDCard
   name: blue shield ID card
   components:
@@ -148,7 +148,7 @@
     job: AssistantManager
 
 - type: entity
-  parent: [ IDCardStandard, BaseCommandContraband ]
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: NTNCBlueShieldIDCard
   name: NanoTrasen navy corps marine's ID card
   components:
@@ -174,7 +174,7 @@
     listNumber: false
 
 - type: entity
-  parent: [ IDCardStandard, BaseCommandContraband ]
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   categories: [ DoNotMap ]
   id: CCGreenShieldIDCard
   name: greenshield ID card
@@ -517,7 +517,7 @@
       jobIcon: JobIconXenoborg
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: CentcomIDCardNTSF
   name: NTSF ID card
   components:
@@ -543,7 +543,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: CentCommIDCardServiceWorker
   name: CentComm service worker ID card
   components:
@@ -569,7 +569,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: CentCommIDCardChef
   name: CentComm chef ID card
   components:
@@ -595,7 +595,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: CentCommIDCardBartender
   name: CentComm bartender ID card
   components:
@@ -621,7 +621,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: CentCommIDCardJanitor
   name: CentComm janitor ID card
   components:
@@ -647,7 +647,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: CentcomIDCardDecimus
   name: ERROR ID card
   components:
@@ -828,7 +828,7 @@
 #ERT/Centcomm
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: CentcomIDCard
   name: command officer ID card
   components:
@@ -854,7 +854,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: ERTLeaderIDCard
   name: ERT leader ID card
   components:
@@ -880,7 +880,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: ERTChaplainIDCard
   name: ERT chaplain ID card
   components:
@@ -906,7 +906,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: ERTEngineerIDCard
   name: ERT engineer ID card
   components:
@@ -932,7 +932,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: ERTJanitorIDCard
   name: ERT janitor ID card
   components:
@@ -958,7 +958,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: ERTMedicIDCard
   name: ERT medic ID card
   components:
@@ -984,7 +984,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: ERTSecurityIDCard
   name: ERT security ID card
   components:
@@ -1010,7 +1010,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: CentcomIDCardDeathsquad
   name: death squad ID card
   components:
@@ -1036,7 +1036,7 @@
     listNumber: false
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ BaseCentcommContraband, IDCardStandard ] # Blimpuf
   id: CBURNIDcard
   name: CBURN ID card
   suffix: CBURN

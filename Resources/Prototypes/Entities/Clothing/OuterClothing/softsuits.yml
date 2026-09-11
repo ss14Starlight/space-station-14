@@ -24,6 +24,8 @@
   name: syndicate EVA suit
   description: "Has a tag on the back that reads: 'Totally not property of an enemy corporation, honest!'"
   components:
+  - type: Contraband # Blimpuf
+    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/eva_syndicate.rsi
   - type: Clothing

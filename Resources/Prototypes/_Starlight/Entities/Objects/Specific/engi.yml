@@ -1,6 +1,6 @@
 - type: entity
   name: prototype of the jaws of life
-  parent: [ JawsOfLife, BaseEngineeringContraband ]
+  parent: [ JawsOfLife, BaseEngineeringContraband, BaseContrabandTier2 ] # Blimpuf
   id: PrototypeJawsOfLife
   description: Early version, not as effective.
   components:

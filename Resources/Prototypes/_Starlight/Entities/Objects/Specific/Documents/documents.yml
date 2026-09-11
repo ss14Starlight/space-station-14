@@ -126,7 +126,7 @@
   name: classified criminal documents
   suffix: Do Not Map
   description: A set of highly classified documents containing criminal reports.
-  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  parent: [ ImportantDocumentGeneric, BaseRepresentativesContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_criminal_document_arc.txt
@@ -138,7 +138,7 @@
   name: classified criminal documents
   suffix: Do Not Map
   description: A set of highly classified documents containing criminal reports.
-  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  parent: [ ImportantDocumentGeneric, BaseRepresentativesContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_criminal_document_comitas.txt
@@ -150,7 +150,7 @@
   name: classified criminal documents
   suffix: Do Not Map
   description: A set of highly classified documents containing criminal reports.
-  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  parent: [ ImportantDocumentGeneric, BaseRepresentativesContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_criminal_document_self.txt
@@ -162,7 +162,7 @@
   name: classified criminal documents
   suffix: Do Not Map
   description: A set of highly classified documents containing criminal reports.
-  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  parent: [ ImportantDocumentGeneric, BaseRepresentativesContraband ]
   components:
     - type: TextFilePaperContent
       fileName: classified_criminal_document_tiger_cooperative.txt

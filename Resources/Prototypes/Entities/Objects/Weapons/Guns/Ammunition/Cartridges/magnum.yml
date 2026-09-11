@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseCartridge, BaseSecuritySalvageContraband ] # Starlight-edit - Security -> SecuritySalvage
+  parent: [ BaseCartridge, BaseSecurityContraband, BaseSalvageContraband, BaseContrabandTier3 ] # Starlight-edit - Security -> SecuritySalvage; Blimpuf
   id: BaseCartridgeMagnum
   name: cartridge (.45 magnum)
   components:

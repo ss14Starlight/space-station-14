@@ -79,7 +79,7 @@
 
 - type: entity
   id: BannerRevolution
-  parent: BannerBase
+  parent: [BannerBase, BaseSovietContraband] # Blimpuf
   name: revolution banner
   description: A banner displaying revolution. Viva!
   components:

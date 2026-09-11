@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem, BaseHighlyIllegalContraband]
+  parent: [BaseItem, BaseContrabandTier4]
   id: EmagFREE
   suffix: ""
   name: FreeMAG
@@ -25,7 +25,7 @@
         - CanAffectLawBoards #TODO Test
 
 - type: entity
-  parent: [BaseItem, BaseHighlyIllegalContraband]
+  parent: [BaseItem, BaseContrabandTier4]
   id: EmagTeaParty
   suffix: ""
   name: TeaPartyMAG
@@ -57,6 +57,8 @@
   name: wooden cryptographic sequencer
   description: A cheap all-in-one hacking solution. Friend of any soviet. The iconic EMAG.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Emag
     lawset: CommiemovLawset
     owningFaction: Revolutionary

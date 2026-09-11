@@ -69,7 +69,7 @@
 #Longswords
 - type: entity
   name: captain's sabre
-  parent: [ BaseSword, BaseCommandContraband ]
+  parent: [ BaseSword, BaseCommandContraband, BaseContrabandTier3 ] # Blimpuf
   id: CaptainSabre
   description: A ceremonial weapon belonging to the captain of the station.
   components:
@@ -137,7 +137,7 @@
   description: A katana infused with strong energy.
   components:
   - type: Contraband
-    severity: HighlyIllegal
+    tier: Tier4 # Blimpuf
   - type: Sprite
     sprite: Objects/Weapons/Melee/energykatana.rsi
   - type: MeleeWeapon

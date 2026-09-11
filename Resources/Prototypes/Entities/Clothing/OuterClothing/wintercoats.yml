@@ -398,7 +398,7 @@
 
 ##########################################################
 - type: entity
-  parent: [ClothingOuterArmorHoS, ClothingOuterWinterCoatToggleable, BaseSecurityCommandContraband]
+  parent: [ClothingOuterArmorHoS, ClothingOuterWinterCoatToggleable, BaseSecurityContraband, BaseCommandContraband, BaseContrabandTier2] # Blimpuf
   id: ClothingOuterWinterHoS
   name: head of security's armored winter coat
   suffix: Armored #SL Edit
@@ -427,7 +427,7 @@
 ##########################################################
 
 - type: entity
-  parent: [ClothingOuterWinterCoatToggleable, BaseSecurityCommandContraband]
+  parent: [ClothingOuterWinterCoatToggleable, BaseSecurityContraband, BaseCommandContraband]
   id: ClothingOuterWinterHoSUnarmored
   name: head of security's winter coat
   suffix: Unarmored #SL Edit
@@ -801,7 +801,7 @@
 
 ################################################################
 - type: entity
-  parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
+  parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoatToggleable, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: ClothingOuterWinterWarden
   name: warden's armored winter coat
   suffix: Armored #SL Edit
@@ -860,6 +860,10 @@
   name: syndicate's winter coat
   description: "The syndicate's winter coat is made of durable fabric, with gilded patterns, and coarse wool."
   components:
+  - type: ScanDetectable # Blimpuf
+  - type: Contraband # Blimpuf
+    tier: Tier4
+    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
     layers:
@@ -885,6 +889,8 @@
   name: syndicate's armored winter coat
   description: "The syndicate's armored winter coat is made of durable fabric, with gilded patterns, and coarse wool."
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier4
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/syndicate/coatsyndiecaparmored.rsi
   - type: Clothing
@@ -899,6 +905,9 @@
   name: syndicate's winter coat
   description: Insulated winter coat, looks like a merch from "Syndieland".
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier1
+    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
     layers:

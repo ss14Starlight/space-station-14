@@ -15,7 +15,7 @@
 
 - type: entity
   name: medical jaws of life
-  parent: [ BaseItem, BaseMedicalSecurityContraband ]
+  parent: [ BaseItem, BaseMedicalContraband, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
   id: JawsOfLifeMed
   description: A set of jaws of life, for pulling the injured out of whatever mess they put themselves in.
   components:

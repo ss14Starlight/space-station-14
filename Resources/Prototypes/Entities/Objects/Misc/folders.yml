@@ -382,11 +382,13 @@
   id: BoxFolderPlasticClipboardThreePapers
 
 - type: entity
-  parent: BoxFolderClipboardEmpty
+  parent: [BoxFolderClipboardEmpty, BaseRepresentativesContraband]
   id: BoxFolderCentComClipboardEmpty
   name: CentComm clipboard
   description: A luxurious clipboard upholstered with green velvet. Often seen carried by CentComm officials, seldom seen actually used.
   components:
+  - type: Contraband
+    allowedDepartments: [ CentralCommand ]
   - type: Sprite
     sprite: Objects/Misc/cc-clipboard.rsi
     layers:

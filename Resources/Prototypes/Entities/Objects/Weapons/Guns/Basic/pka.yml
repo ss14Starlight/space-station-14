@@ -1,7 +1,7 @@
 - type: entity
   name: proto-kinetic accelerator
   id: WeaponProtoKineticAccelerator
-  parent: [WeaponProtoKineticAcceleratorBase, BaseCargoSalvageContraband] #Starlight
+  parent: [WeaponProtoKineticAcceleratorBase, BaseCargoContraband, BaseSalvageContraband, BaseContrabandTier2] # Starlight/Blimpuf
   description: Fires low-damage kinetic bolts at a short range.
   components:
   - type: Sprite

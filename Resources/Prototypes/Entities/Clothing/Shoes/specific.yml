@@ -121,7 +121,7 @@
     stealGroup: GaloshesCollection # Starlight
 
 - type: entity
-  parent: [ClothingShoesBaseButcherable, BaseHighlyIllegalContraband]
+  parent: [ClothingShoesBaseButcherable, BaseContrabandTier4]
   id: ClothingShoesSpaceNinja
   name: space ninja shoes
   description: A pair of nano-enhanced boots with built-in magnetic suction cups.

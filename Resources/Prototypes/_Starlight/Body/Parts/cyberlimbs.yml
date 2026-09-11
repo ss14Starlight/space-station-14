@@ -790,7 +790,7 @@
 - type: entity
   id: LeftArmCyberBulwark
   name: "left bulwark arm"
-  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   description: A surgically-installed cybernetic arm geared for security use, including a built-in energy shield and energy chainsword, perfect for when non-lethals aren't enough.
   components:
     - type: BaseLayerId
@@ -820,7 +820,7 @@
 - type: entity
   id: LeftHandCyberBulwark
   name: "left bulwark hand"
-  parent: [PartCyber, BaseLeftHand, BaseSecurityContraband]
+  parent: [PartCyber, BaseLeftHand, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   description: A surgically-installed cybernetic hand geared for security use, including a built-in energy shield and energy chainsword, perfect for when non-lethals aren't enough.
   components:
     - type: BaseLayerId
@@ -856,7 +856,7 @@
 - type: entity
   id: RightArmCyberBulwark
   name: "right bulwark arm"
-  parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
+  parent: [PartCyber, BaseRightArm, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   description: A surgically-installed cybernetic arm geared for security use, including a built-in energy shield and energy chainsword, perfect for when non-lethals aren't enough.
   components:
     - type: BaseLayerId
@@ -886,7 +886,7 @@
 - type: entity
   id: RightHandCyberBulwark
   name: "right bulwark hand"
-  parent: [PartCyber, BaseRightHand, BaseSecurityContraband]
+  parent: [PartCyber, BaseRightHand, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   description: A surgically-installed cybernetic hand geared for security use, including a built-in energy shield and energy chainsword, perfect for when non-lethals aren't enough.
   components:
     - type: BaseLayerId
@@ -1565,7 +1565,7 @@
 - type: entity
   id: LeftArmCyberZeus
   name: "left zeus arm"
-  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   description: A surgically-installed cybernetic arm geared for security use, perfect for when you need some non-lethals. Includes a stun fist and an EMP fist, allowing for disabling of both organics and silicons.
   components:
     - type: BaseLayerId
@@ -1587,7 +1587,7 @@
 - type: entity
   id: LeftHandCyberZeus
   name: "left zeus hand"
-  parent: [PartCyber, BaseLeftHand, BaseSecurityContraband]
+  parent: [PartCyber, BaseLeftHand, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   description: A surgically-installed cybernetic hand geared for security use, perfect for when you need some non-lethals. Includes a stun fist and an EMP fist, allowing for disabling of both organics and silicons.
   components:
     - type: BaseLayerId
@@ -1623,7 +1623,7 @@
 - type: entity
   id: RightArmCyberZeus
   name: "right zeus arm"
-  parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
+  parent: [PartCyber, BaseRightArm, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   description: A surgically-installed cybernetic arm geared for security use, perfect for when you need some non-lethals. Includes a stun fist and an EMP fist, allowing for disabling of both organics and silicons.
   components:
     - type: BaseLayerId
@@ -1645,7 +1645,7 @@
 - type: entity
   id: RightHandCyberZeus
   name: "right zeus hand"
-  parent: [PartCyber, BaseRightHand, BaseSecurityContraband]
+  parent: [PartCyber, BaseRightHand, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   description: A surgically-installed cybernetic hand geared for security use, perfect for when you need some non-lethals. Includes a stun fist and an EMP fist, allowing for disabling of both organics and silicons.
   components:
     - type: BaseLayerId
@@ -2045,7 +2045,7 @@
 - type: entity
   id: LeftArmCyberHerakles
   name: "left herakles arm"
-  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   description: A surgically-installed cybernetic arm geared for security use, for when you need to force your way in. Includes a herakles fist that can pry open doors and knocks people back on hit, and a holographic restrainer that can restrain someone with holographic cuffs.
   components:
     - type: BaseLayerId
@@ -2067,7 +2067,7 @@
 - type: entity
   id: LeftHandCyberHerakles
   name: "left herakles hand"
-  parent: [PartCyber, BaseLeftHand, BaseSecurityContraband]
+  parent: [PartCyber, BaseLeftHand, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   description: A surgically-installed cybernetic hand geared for security use, for when you need to force your way in. Includes a herakles fist that can pry open doors and knocks people back on hit, and a holographic restrainer that can restrain someone with holographic cuffs.
   components:
     - type: BaseLayerId
@@ -2103,7 +2103,7 @@
 - type: entity
   id: RightArmCyberHerakles
   name: "right herakles arm"
-  parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
+  parent: [PartCyber, BaseRightArm, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   description: A surgically-installed cybernetic arm geared for security use, for when you need to force your way in. Includes a herakles fist that can pry open doors and knocks people back on hit, and a holographic restrainer that can restrain someone with holographic cuffs.
   components:
     - type: BaseLayerId
@@ -2125,7 +2125,7 @@
 - type: entity
   id: RightHandCyberHerakles
   name: "right herakles hand"
-  parent: [PartCyber, BaseRightHand, BaseSecurityContraband]
+  parent: [PartCyber, BaseRightHand, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   description: A surgically-installed cybernetic hand geared for security use, for when you need to force your way in. Includes a herakles fist that can pry open doors and knocks people back on hit, and a holographic restrainer that can restrain someone with holographic cuffs.
   components:
     - type: BaseLayerId

@@ -6,6 +6,7 @@
   flavor: entropic
   color: "#371a47"
   physicalDesc: reagent-physical-desc-malign
+  contrabandTier: Tier1 # Blimpuf
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: 10

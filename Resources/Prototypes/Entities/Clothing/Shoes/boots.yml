@@ -11,7 +11,7 @@
   - type: Matchbox
 
 - type: entity
-  parent: [ClothingShoesMilitaryBase, BaseSecurityContraband]
+  parent: [ClothingShoesMilitaryBase, BaseSecurityContraband] # Blimpuf - uniform equipment remains Tier 1
   id: ClothingShoesBootsJack
   name: jackboots
   description: NanoTrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time. # SL
@@ -47,7 +47,7 @@
     sprite: Clothing/Shoes/Boots/performer.rsi
 
 - type: entity
-  parent: [ClothingShoesMilitaryBase, BaseSecurityContraband]
+  parent: [ClothingShoesMilitaryBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: ClothingShoesBootsCombat
   name: combat boots
   description: Robust combat boots for combat scenarios or combat situations. All combat, all the time.
@@ -166,6 +166,9 @@
   name: syndicate's winter boots
   description: Durable heavy boots, looks like merch from "Syndieland".
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier1
+    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Shoes/Boots/winterbootssyndicate.rsi
   - type: Clothing

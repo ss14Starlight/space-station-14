@@ -3,7 +3,7 @@
   name: eZ-14 mk2 Heavy pulse rifle
   description: Fires a heavy pulse laser.
   suffix: Mech Weapon, Gun, Combat, Pulse
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -28,7 +28,7 @@
   name: ZFI Immolation Beam Gun
   description: A gun for battlemechs, firing high-temperature beams.
   suffix: Mech Weapon, Gun, Combat, Laser
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -55,7 +55,7 @@
   name: CH-LC "Solaris" laser cannon
   description: An experimental combat mounted laser cannon that causes more damage, but also has a greater cooldown than a "Firedart".
   suffix: Mech Weapon, Gun, Combat, Laser
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -88,7 +88,7 @@
   name: CH-PS "Firedart" Laser
   description: The standard combat armament of the mechs is a combat mounted laser.
   suffix: Mech Weapon, Gun, Combat, Laser
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -116,7 +116,7 @@
   name: P-X Tesla Cannon
   description: A weapon for combat mechs, firing energy balls, based on the principle of an experimental Tesla engine.
   suffix: Mech Weapon, Gun, Combat, Tesla
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -145,7 +145,7 @@
   name: CH-PD Disabler
   description: A non-lethal mounted stun gun that allows you to immobilize intruders.
   suffix: Mech Weapon, Gun, Combat, Disabler
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -175,7 +175,7 @@
   name: PBT "Pacifier" Mounted Taser
   description: A mounted non-lethal taser that allows you to stun intruders.
   suffix: Mech Weapon, Gun, Combat, Disabler, admeme
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -206,7 +206,7 @@
   name: LBX AC 10 "Scattershot"
   description: A mounted shotgun able to dispatch targets quickly in a CQC environement. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Shotgun
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -231,7 +231,7 @@
   name: FNX-99 "Hades" Carbine
   description: Mounted shotgun, refit to fire incendiary ammo. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Shotgun, Incendiary
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -256,7 +256,7 @@
   name: Ultra AC-2
   description: A cheap and reliable burst rifle. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Rifle
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -306,7 +306,7 @@
   name: Mk.IV Ion Heavy Cannon
   description: A mounted ion weapon that operates on the same principle as a handheld ion carbine. Extremely effective against synthetics, robots and other mechs.
   suffix: Mech Weapon, Gun, Combat, Ion
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -337,7 +337,7 @@
   description: A powerful and advanced burst-laser machine gun designed for maximum firepower.
 # 🌟Starlight-end🌟
   suffix: Mech Weapon, Gun, Combat, Laser
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -364,7 +364,7 @@
   name: S-1 X-Ray Projector
   description: Experimental mech weapon that fires X-rays, causing both surface and deep radiation burns. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, X-Ray
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -392,7 +392,7 @@
   name: SRM-8 Light Missile Rack
   description: Launches low-explosive missiles. Relatively weak but able to supress enemy positions. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Light Missile
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -417,7 +417,7 @@
   name: BRM-6 Missile Rack
   description: A set of heavy missiles designed to unleash utter carnage upon your foes. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Missile
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
@@ -443,7 +443,7 @@
   name: SGL-6 Flashbang Launcher
   description: A rotary grenade launcher able to manufacture and launch flash charges at unruly crowds. # 🌟Starlight-Change Description fix
   suffix: Mech Weapon, Gun, Combat, Flashbang
-  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband ]
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi

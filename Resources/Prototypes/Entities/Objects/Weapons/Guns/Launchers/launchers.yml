@@ -81,7 +81,7 @@
     price: 10000
 
 - type: entity
-  parent: [ BaseWeaponLauncher, BaseJanitorContraband ] # Starlight: major -> jani contra
+  parent: [ BaseWeaponLauncher, BaseJanitorContraband, BaseContrabandTier2 ] # Starlight: major -> jani contra; Blimpuf
   id: WeaponLauncherHydra
   name: hydra
   description: PLOOP... FSSSSSS...
@@ -128,7 +128,7 @@
     proto: GrenadeFrag
   - type: ScanDetectable # Starlight: major contra (I think this is valid?)
   - type: Contraband
-    severity: Major
+    tier: Tier3 # Blimpuf
 
 - type: entity
   name: RPG-7

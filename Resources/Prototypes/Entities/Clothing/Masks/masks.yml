@@ -51,6 +51,8 @@
   name: syndicate gas mask
   description: A close-fitting tactical mask that can be connected to an air supply.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier2
   - type: Sprite
     sprite: Clothing/Mask/gassyndicate.rsi
   - type: Clothing
@@ -429,7 +431,7 @@
   #endregion Starlight
 
 - type: entity
-  parent: [ ClothingMaskGas, BaseSecurityContraband ]
+  parent: [ ClothingMaskGas, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
   id: ClothingMaskGasSwat
   name: swat gas mask
   description: A elite issue Security gas mask.

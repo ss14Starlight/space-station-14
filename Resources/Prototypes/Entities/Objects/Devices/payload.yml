@@ -21,7 +21,7 @@
 
 - type: entity
   name: explosive payload
-  parent: [ BasePayload, BaseSecurityContraband ]
+  parent: [ BasePayload, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   id: ExplosivePayload
   components:
   - type: Sprite
@@ -45,7 +45,7 @@
 
 - type: entity
   name: chemical payload
-  parent: [ BasePayload, BaseMedicalScienceContraband ]
+  parent: [ BasePayload, BaseMedicalContraband, BaseScienceContraband, BaseContrabandTier2 ] # Blimpuf
   id: ChemicalPayload
   description: A chemical payload. Has space to store two beakers. In combination with a trigger and a case, this can be used to initiate chemical reactions.
   components:
@@ -81,7 +81,7 @@
 
 - type: entity
   name: flash payload
-  parent: [ BasePayload, BaseSecurityScienceCommandContraband ]
+  parent: [ BasePayload, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband, BaseContrabandTier2 ] # Blimpuf
   id: FlashPayload
   description: A single-use flash payload.
   components:

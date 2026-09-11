@@ -7,7 +7,8 @@
   components:
   - type: ScanDetectable
   - type: Contraband
-    severity: Syndicate
+    tier: Tier3 # Blimpuf
+    contrabandType: Syndicate # Blimpuf
   - type: RevolverAmmoProvider
     whitelist:
       tags:
@@ -78,7 +79,7 @@
     price: 750
 
 - type: entity
-  parent: [ BaseWeaponLauncher,  BaseSecurityContraband ]
+  parent: [ BaseWeaponLauncher,  BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   id: WeaponLauncherPeacekeeper
   name: peacekeeper
   description: A multi purpose single-shot grenade launcher with a break-open action.

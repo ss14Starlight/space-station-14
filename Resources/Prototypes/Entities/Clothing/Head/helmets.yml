@@ -29,7 +29,7 @@
 
 #Basic Helmet (Security Helmet)
 - type: entity
-  parent: [ ClothingHeadLightBase, ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadLightParamsIntermediate ] # Starlight: Inherit from correct base light, include light params
+  parent: [ ClothingHeadLightBase, ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadLightParamsIntermediate, BaseContrabandTier2 ] # Starlight: Inherit from correct base light, include light params; Blimpuf
   id: ClothingHeadHelmetBasic
   name: helmet
   description: Standard security gear. Protects the head from impacts.
@@ -78,7 +78,7 @@
 
 #SWAT Helmet
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: ClothingHeadHelmetSwat
   name: SWAT helmet
   description: An extremely robust helmet, commonly used by paramilitary forces. This one has the NanoTrasen logo emblazoned on the top. # SL
@@ -112,6 +112,8 @@
   suffix: Syndicate
   description: An extremely robust helmet, commonly used by paramilitary forces. It is adorned in a nefarious red and black stripe pattern.
   components:
+  - type: Contraband # Blimpuf
+    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Head/Helmets/swat_syndicate.rsi
   - type: Clothing
@@ -122,7 +124,7 @@
 
 #Light Riot Helmet
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: ClothingHeadHelmetRiot
   name: light riot helmet
   description: It's a helmet specifically designed to protect against close range attacks.
@@ -220,7 +222,7 @@
 
 #Space Ninja Helmet
 - type: entity
-  parent: [ClothingHeadEVAHelmetBase, BaseHighlyIllegalContraband]
+  parent: [ClothingHeadEVAHelmetBase, BaseContrabandTier4]
   id: ClothingHeadHelmetSpaceNinja
   name: space ninja helmet
   description: What may appear to be a simple black garment is in fact a highly sophisticated nano-weave helmet. Standard issue ninja gear.
@@ -460,6 +462,8 @@
   name: syndicate raid helmet
   description: An armored helmet for use with the syndicate raid suit. Very stylish.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier4
   - type: Sprite
     sprite: Clothing/Head/Helmets/syndie-raid.rsi
   - type: Clothing

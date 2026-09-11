@@ -10,7 +10,7 @@
     sprite: Clothing/OuterClothing/Coats/bomber.rsi
 
 - type: entity
-  parent: [ClothingOuterBaseMedium, ClothingOuterBaseWarm, ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband] # Starlight
+  parent: [ ClothingOuterArmorBase, ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
   id: ClothingOuterCoatDetective
   name: detective armored trenchcoat
   description: An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business.
@@ -102,7 +102,7 @@
         Caustic: 0.9
 
 - type: entity
-  parent: [BaseSecurityCommandContraband, ClothingOuterBaseWarm, ClothingOuterArmorHoS] # Starlight
+  parent: [BaseSecurityContraband, BaseCommandContraband, ClothingOuterArmorHoS, BaseContrabandTier2] # Blimpuf
   id: ClothingOuterCoatHoSTrench
   name: head of security's armored trenchcoat
   description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
@@ -357,7 +357,7 @@
     sprite: Clothing/OuterClothing/Coats/pirate.rsi
 
 - type: entity
-  parent: [ClothingOuterArmorWarden, ClothingOuterBaseWarm, BaseSecurityContraband] # Starlight
+  parent: [ClothingOuterArmorWarden, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: ClothingOuterCoatWarden
   name: warden's armored jacket
   description: A sturdy, utilitarian jacket designed to protect a warden from any brig-bound threats.
@@ -430,6 +430,10 @@
   name: syndicate's coat
   description: The syndicate's coat is made of durable fabric, with gilded patterns.
   components:
+  - type: ScanDetectable # Blimpuf
+  - type: Contraband # Blimpuf
+    tier: Tier4
+    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/syndicate/coatsyndiecap.rsi
   - type: Clothing
@@ -441,6 +445,8 @@
   name: syndicate's armored coat
   description: The syndicate's armored coat is made of durable fabric, with gilded patterns.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier4
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/syndicate/coatsyndiecaparmored.rsi
   - type: Clothing

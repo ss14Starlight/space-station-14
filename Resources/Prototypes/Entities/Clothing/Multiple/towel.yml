@@ -322,6 +322,8 @@
   name: syndicate towel
   parent: [ BaseTowel, BaseSyndicateContraband ]
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier1
   - type: Sprite
     layers:
     - state: icon

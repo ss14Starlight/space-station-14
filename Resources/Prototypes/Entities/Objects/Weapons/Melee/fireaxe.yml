@@ -1,6 +1,6 @@
 - type: entity
   name: fireaxe
-  parent: [BaseItem, BaseEngineeringSalvageContraband] #Starlight salvContra
+  parent: [BaseItem, BaseEngineeringContraband, BaseSalvageContraband, BaseContrabandTier2] #Starlight salvContra; Blimpuf
   id: FireAxe
   description: Truly, the weapon of a madman. Who would think to fight fire with an axe?
   components:

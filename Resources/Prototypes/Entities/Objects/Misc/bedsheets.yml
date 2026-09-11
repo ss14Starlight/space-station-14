@@ -444,10 +444,13 @@
 
 - type: entity
   id: BedsheetSyndie
-  parent: [ BedsheetBase, BaseMinorContraband ] # Starlight, major contra -> minor contra
+  parent: BedsheetBase # Blimpuf
   name: syndicate bedsheet
   description: It has a syndicate emblem and it has an aura of evil.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier1
+    contrabandType: Syndicate
   - type: Sprite
     state: sheetsyndie
   - type: Clothing

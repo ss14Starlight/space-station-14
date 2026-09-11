@@ -223,6 +223,8 @@
   description: "NYAH!"
   # categories: [ DoNotMap ] # SL change
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier1
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
   - type: Sprite

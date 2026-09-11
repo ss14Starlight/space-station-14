@@ -30,7 +30,7 @@
 
 #Basic Helmet (Security Helmet Reskin)
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: ClothingHeadHelmetDredd
   name: helmet
   description: I AM THE LAW!
@@ -90,7 +90,7 @@
     - type: IdentityBlocker
 
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: ClothingHeadHelmetReflective
   name: reflective helmet
   description: A shiny helmet for your equally shiny vest. Provides 100% reflection when worn with the reflective vest.
@@ -119,7 +119,7 @@
     - ReflectiveArmorHelmet # STARLIGHT: Tag for set bonus system detection
 
 - type: entity
-  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: ClothingHeadHelmetPlate
   name: plate helmet
   description: A modified security helmet with a ceramic plate insert, which means less padding for blunt hits.
@@ -140,7 +140,7 @@
     - SecurityHelmet
 
 - type: entity
-  parent:  [ClothingHeadHelmetBase, BaseSecurityContraband ]
+  parent:  [ClothingHeadHelmetBase, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
   id: ClothingHeadHelmetStabproof
   name: stabproof helmet
   description: The most "comfortable" security helmet, as rated by officers. Will take a blow to the head nicely, but a bullet'll go right through it.
@@ -161,7 +161,7 @@
     - SecurityHelmet
 
 - type: entity
-  parent: [ ClothingHeadHelmetBase, BaseSecurityContraband ]
+  parent: [ ClothingHeadHelmetBase, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
   id: ClothingHeadHelmetHeatAbsorbent
   name: heat absorbent helmet
   description: Advanced helmet best paired with the vest for pure style, has minor reflective properties and can absorb heat fairly well.
@@ -288,7 +288,7 @@
     damageCoefficient: 0.95
 
 - type: entity
-  parent: [ ClothingHeadHelmetArmoredBase, BaseSalvageContraband ]
+  parent: [ ClothingHeadHelmetArmoredBase, BaseSalvageContraband, BaseContrabandTier2 ] # Blimpuf
   id: ClothingHeadHelmetSalvageMerc
   name: scrapper helmet
   description: A durable, lightweight helmet favored by salvagers.

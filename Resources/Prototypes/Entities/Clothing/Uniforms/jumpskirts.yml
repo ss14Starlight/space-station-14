@@ -495,7 +495,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/capformaldress.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: [ BaseCentcommContraband, ClothingUniformSkirtBase ] # Blimpuf
   id: ClothingUniformJumpskirtCentcomFormalDress
   name: central command formal dress
   description: A dress for special occasions.
@@ -522,6 +522,8 @@
   name: operative jumpskirt
   description: Uniform for elite syndicate operatives performing tactical operations in deep space.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier2
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/operative_s.rsi
   - type: Clothing
@@ -638,6 +640,8 @@
   name: syndicate formal dress
   description: "The syndicate's uniform is made in an elegant style, it's even a pity to do dirty tricks in this."
   components:
+    - type: Contraband # Blimpuf
+      contrabandType: Syndicate
     - type: Sprite
       sprite: Clothing/Uniforms/Jumpskirt/syndieformaldress.rsi
     - type: Clothing

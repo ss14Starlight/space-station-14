@@ -733,6 +733,10 @@
   name: blood-red hardsuit helmet
   description: A heavily armored helmet designed for work in special operations. Property of Gorlex Marauders.
   components:
+  - type: ScanDetectable # Blimpuf
+  - type: Contraband # Blimpuf
+    tier: Tier4
+    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/syndicate.rsi
   - type: Clothing
@@ -761,6 +765,10 @@
   name: blood-red medic hardsuit helmet
   description: An advanced red hardsuit helmet specifically designed for field medic operations.
   components:
+  - type: ScanDetectable # Blimpuf
+  - type: Contraband # Blimpuf
+    tier: Tier4
+    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/syndiemedic.rsi
   - type: Clothing
@@ -790,6 +798,10 @@
   name: syndicate elite helmet
   description: An elite version of the blood-red hardsuit's helmet, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
   components:
+  - type: ScanDetectable # Blimpuf
+  - type: Contraband # Blimpuf
+    tier: Tier4
+    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/syndieelite.rsi
   - type: Clothing
@@ -823,6 +835,10 @@
   name: syndicate commander helmet
   description: A bulked up version of the blood-red hardsuit's helmet, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
+  - type: ScanDetectable # Blimpuf
+  - type: Contraband # Blimpuf
+    tier: Tier4
+    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
   - type: Clothing
@@ -851,6 +867,10 @@
   name: cybersun juggernaut helmet
   description: Made of compressed red matter, this helmet was designed in the Tau chromosphere facility.
   components:
+  - type: ScanDetectable # Blimpuf
+  - type: Contraband # Blimpuf
+    tier: Tier4
+    contrabandType: Syndicate
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/cybersun.rsi
   - type: Clothing

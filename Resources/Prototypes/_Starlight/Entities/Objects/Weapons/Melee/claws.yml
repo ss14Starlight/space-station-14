@@ -33,7 +33,7 @@
 
 - type: entity
   name: advanced claws
-  parent: [ BaseClaws, BaseSecurityContraband ]
+  parent: [ BaseClaws, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   id: AdvancedClaws
   description: Sharp, retractable plasteel claws, embedded in your hand.
   components:

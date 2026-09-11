@@ -1,6 +1,6 @@
 - type: entity
   name: makarov
-  parent: [BaseWeaponPistol, BaseSovietContraband]
+  parent: [BaseWeaponPistol, BaseSovietContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponPistolMakarov
   description: A cheap and cumbersome pistol, with a dot on the rear sight indicating the direction in which it tends to misfire, as this model does not shoot straight. Uses .35 auto ammo.
   components:
@@ -48,7 +48,7 @@
 
 - type: entity
   id: WeaponPistolMk58Nonlethal
-  parent: [WeaponPistolMk58, BaseSecurityContraband]
+  parent: WeaponPistolMk58 # Blimpuf
   suffix: Non-lethal
   components:
     - type: ItemSlots
@@ -72,7 +72,7 @@
 
 - type: entity
   name: N1984
-  parent: [WeaponPistolN1984, BaseSecurityContraband]
+  parent: [WeaponPistolN1984, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponPistolN1984Nonlethal
   suffix: Non-lethal
   components:
@@ -119,7 +119,7 @@
 
 - type: entity
   name: golden mk 58
-  parent: [WeaponPistolMk58, BaseSecurityContraband]
+  parent: [WeaponPistolMk58, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponPistolGoldenMk58
   description: An expensive and rare golden variant of the Mk58, only given out to the elite. Doesn't actually have any functional differences, though. Feeds from .35 pistol magazines.
   components:
@@ -163,7 +163,7 @@
 
 - type: entity
   name: enforcer
-  parent: [BaseWeaponPistol, BaseSecurityContraband]
+  parent: [BaseWeaponPistol, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponPistolEnforcer
   description: A versatile pistol of modern design.
   components:
@@ -237,7 +237,7 @@
 
 - type: entity
   name: sp-8t
-  parent: [WeaponPistolDP, BaseBlueShieldContraband, BaseGrandTheftContraband]
+  parent: [BaseWeaponPistolDP, BaseRepresentativesContraband, BaseContrabandTier3]
   id: WeaponPistolBlueguard
   components:
     - type: Gun
@@ -251,7 +251,7 @@
 
 - type: entity
   name: sp-8ar
-  parent: [WeaponPistolDP, BaseSecurityContraband]
+  parent: [WeaponPistolDP, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponPistolSP8AR
   components:
   - type: Gun
@@ -291,7 +291,8 @@
       soundGunshot:
         path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg
     - type: Contraband
-      severity: Soviet
+      tier: Tier3 # Blimpuf
+      contrabandType: Soviet # Blimpuf
     - type: ItemSlots
       slots:
         gun_magazine:

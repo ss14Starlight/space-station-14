@@ -4,6 +4,8 @@
   name: SKB armaments crate
   description: The red tide is here.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Icon
     sprite: _Starlight/Structures/Storage/USSP/revolutionary.rsi
   - type: Sprite

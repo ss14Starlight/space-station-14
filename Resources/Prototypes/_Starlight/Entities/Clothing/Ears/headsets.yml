@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingHeadset, BaseNanoTrasenContraband ]
+  parent: [ ClothingHeadset, BaseRepresentativesContraband ]
   id: ClothingHeadsetIAA
   name: internal affairs agent headset
   description: A headset for internal affairs agents to hear the captain's last words.
@@ -117,6 +117,8 @@
   name: SSF marine over-ear headset
   description: Priyom.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier3
   - type: Headset
   - type: ContainerFill
     containers:

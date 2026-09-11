@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseItem, BaseSecurityContraband ]
+  parent: [ BaseItem, BaseSecurityContraband, BaseContrabandTier3 ] # Blimpuf
   id: EmptyDetonator
   name: detonator cap
   description: A detonator cap. Requires a trigger and wire.

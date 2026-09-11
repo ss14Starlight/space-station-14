@@ -27,7 +27,7 @@
   desc: reagent-desc-chlorine
   physicalDesc: reagent-physical-desc-gaseous
   # Starlight Edits
-  contrabandSeverity: Minor
+  contrabandTier: Tier1 # Blimpuf
   allowedJobs:
   - Chemist
   # Starlight End
@@ -87,7 +87,7 @@
   desc: reagent-desc-fluorine
   physicalDesc: reagent-physical-desc-gaseous
   # Starlight Edits
-  contrabandSeverity: Minor
+  contrabandTier: Tier1 # Blimpuf
   allowedJobs:
   - Chemist
   # Starlight End
@@ -236,7 +236,7 @@
   desc: reagent-desc-potassium
   physicalDesc: reagent-physical-desc-shiny
   # Starlight Edits
-  contrabandSeverity: Minor
+  contrabandTier: Tier1 # Blimpuf
   allowedJobs:
   - Chemist
   # Starlight End
@@ -252,7 +252,7 @@
   desc: reagent-desc-phosphorus
   physicalDesc: reagent-physical-desc-powdery
   # Starlight Edits
-  contrabandSeverity: Minor
+  contrabandTier: Tier1 # Blimpuf
   allowedJobs:
   - Chemist
   # Starlight End
@@ -276,7 +276,7 @@
   desc: reagent-desc-radium
   physicalDesc: reagent-physical-desc-glowing
   # Starlight Edits
-  contrabandSeverity: Minor
+  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Engineering
   # Starlight End
@@ -292,7 +292,7 @@
   desc: reagent-desc-silicon
   physicalDesc: reagent-physical-desc-crystalline
   # Starlight Edits
-  contrabandSeverity: Minor
+  contrabandTier: Tier1 # Blimpuf
   allowedJobs:
   - Chemist
   # Starlight End
@@ -325,7 +325,7 @@
   group: Elements
   desc: reagent-desc-sulfur
   physicalDesc: reagent-physical-desc-powdery
-  contrabandSeverity: Minor # Starlight None -> Minor
+  contrabandTier: Tier1 # Blimpuf
   flavor: bitter
   color: "#fff385"
   boilingPoint: 445.0
@@ -356,7 +356,7 @@
   desc: reagent-desc-uranium
   physicalDesc: reagent-physical-desc-metallic
   # Starlight Edits
-  contrabandSeverity: Minor
+  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Engineering
   allowedJobs:

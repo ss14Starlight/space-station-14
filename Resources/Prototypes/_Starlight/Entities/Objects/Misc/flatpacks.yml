@@ -146,7 +146,7 @@
     entity: CommandTechFab
 
 - type: entity
-  parent: [BaseFlatpack, BaseNanoTrasenContraband]
+  parent: [BaseFlatpack, BaseRepresentativesContraband]
   id: NanoTrasenTechFabFlatpack
   name: NanoTrasen techfab flatpack
   description: A flatpack used for constructing a NanoTrasen techfab.

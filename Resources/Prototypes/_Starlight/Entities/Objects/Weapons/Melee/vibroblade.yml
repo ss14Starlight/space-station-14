@@ -1,6 +1,6 @@
 #Longswords
 - type: entity
-  parent: [ BaseSword, BaseCommandContraband ]
+  parent: [ BaseSword, BaseCommandContraband, BaseContrabandTier3 ] # Blimpuf
   id: PrototypeVibroblade
   name: SCSPT-101 vibroblade
   description: During the initial period of development of the SCS-111 for the Corporate Consortium, many test designs were conducted and finalized into the SCS-101 Prototype. These blades were the starting template for the Corporate Consortiums jump from Crusher-type weaponry into subsonic piercing vibroweaponry.

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseRepresentativesContraband ]
   id: ClothingUniformJumpskirtNtrep
   name: nt representative skirt
   description: That skirt that is better not to see.
@@ -10,7 +10,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrep.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseRepresentativesContraband ]
   id: ClothingUniformJumpskirtNtrepTurtleneck
   name: nt representative's turtleneck jumpskirt
   description: For a more casual look while on the job.
@@ -21,7 +21,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntrepturtleneckskirt.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseRepresentativesContraband ]
   id: ClothingUniformJumpskirtBlueShield
   name: blueshield skirt
   description: The skirt of a glorified bodyguard.
@@ -32,7 +32,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/blueshield.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseRepresentativesContraband ]
   id: ClothingUniformJumpskirtEliteBlueShield
   name: elite blueshield skirt
   description: The skirt of an elite BSO. To reach such a level, you must have protected Command from [REDACTED].
@@ -43,7 +43,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseBlueShieldContraband ]
+  parent: [ClothingUniformBase, BaseRepresentativesContraband ]
   id: ClothingUniformJumpskirtBlueShieldSkirt
   name: blueshield officer's pencil skirt
   description: A collared shirt and pencil skirt for the blueshield officer who likes to keep it business casual.
@@ -1004,7 +1004,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/centcommspecialopsformalwear.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
   id: MagistrateUniformSkirt
   name: magistrate's jumpskirt
   components:

@@ -1,0 +1,65 @@
+- type: contrabandTier
+  id: Tier1
+  level: 1
+  descriptor: contraband-tier-1
+  color: "#f5d142"
+
+- type: contrabandTier
+  id: Tier2
+  level: 2
+  descriptor: contraband-tier-2
+  color: "#ff9f1c"
+
+- type: contrabandTier
+  id: Tier3
+  level: 3
+  descriptor: contraband-tier-3
+  color: "#e05252"
+
+- type: contrabandTier
+  id: Tier4
+  level: 4
+  descriptor: contraband-tier-4
+  color: "#dc143c"
+
+- type: contrabandTier
+  id: Tier5
+  level: 5
+  descriptor: contraband-tier-5
+  color: "#8b0000"
+
+- type: contrabandType
+  id: Syndicate
+  name: contraband-type-syndicate
+
+- type: contrabandType
+  id: Magical
+  name: contraband-type-magical
+
+- type: contrabandType
+  id: Soviet
+  name: contraband-type-ussp
+
+- type: contrabandType
+  id: TSF
+  name: contraband-type-tsf
+
+- type: contrabandType
+  id: Cybernetic
+  name: contraband-type-cybernetic
+
+- type: contrabandType
+  id: MedTak
+  name: contraband-type-medtak
+
+- type: contrabandType
+  id: Casino
+  name: contraband-type-casino
+
+- type: contrabandType
+  id: Cosmic
+  name: contraband-type-cosmic
+
+- type: contrabandType
+  id: CentralCommand
+  name: contraband-type-central-command

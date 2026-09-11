@@ -178,7 +178,7 @@
   - type: ShowThirstIcons
 
 - type: entity
-  parent: [ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityCommandContraband]
+  parent: [ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityContraband, BaseCommandContraband] # Blimpuf
   id: ClothingEyesHudMedSec
   name: medsec hud
   description: An eye display that looks like a mixture of medical and security huds.
@@ -235,6 +235,8 @@
   name: syndicate visor
   description: The syndicate's professional head-up display, designed for better detection of humanoids and their subsequent elimination.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier4
   - type: Sprite
     sprite: Clothing/Eyes/Hud/synd.rsi
   - type: Clothing
@@ -251,6 +253,8 @@
   name: syndicate medical visor
   description: The Syndicate corpsman's professional heads-up display, designed for quick diagnosis of their team's status.
   components:
+  - type: Contraband # Blimpuf
+    tier: Tier4
   - type: Sprite
     sprite: Clothing/Eyes/Hud/syndagent.rsi
   - type: Clothing

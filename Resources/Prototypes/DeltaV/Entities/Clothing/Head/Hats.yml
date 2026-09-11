@@ -23,6 +23,9 @@
   name: cybersun surgical cap
   description: A cybersun themed cap surgeons wear during operations. Keeps their hair from tickling your internal organs.
   components:
+    - type: Contraband # Blimpuf
+      tier: Tier2
+      contrabandType: Syndicate
     - type: Sprite
       sprite: DeltaV/Clothing/Head/Hats/surgcap_cybersun.rsi
 

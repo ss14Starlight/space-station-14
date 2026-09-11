@@ -67,7 +67,7 @@
 
 - type: entity
   name: deckard # Starlight, capitalization
-  parent: [BaseWeaponRevolver, BaseSecurityCommandContraband]
+  parent: [BaseWeaponRevolver, BaseSecurityContraband, BaseCommandContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponRevolverDeckard
   description: A beautifully machined, custom-built revolver. Used when there is no time for the Voight-Kampff test. Loads 6 rounds of .45 magnum. # Starlight, 5 -> 6
   components:
@@ -95,7 +95,7 @@
 
 - type: entity
   name: inspector # Starlight, capitalization
-  parent: [BaseWeaponRevolver, BaseSecurityContraband]
+  parent: [BaseWeaponRevolver, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponRevolverInspector
   description: A double-action revolver manufactured by various companies. It is readily available on the civilian market, making it a popular choice among private investigators. You feel lucky just holding it. Loads 6 rounds of .45 magnum.
   components:
@@ -139,7 +139,7 @@
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
 
 - type: entity
-  parent: WeaponRevolverMateba
+  parent: [ BaseCentcommContraband, WeaponRevolverMateba ] # Blimpuf
   id: WeaponRevolverMatebaAP # For deathsquad
   suffix: armor-piercing
   components:

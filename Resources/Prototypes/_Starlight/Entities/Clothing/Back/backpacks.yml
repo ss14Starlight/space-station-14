@@ -53,7 +53,7 @@
     sprite: _Starlight/Clothing/Back/Backpacks/command.rsi
 
 - type: entity
-  parent: [ClothingBackpack, BaseBlueShieldContraband]
+  parent: [ClothingBackpack, BaseRepresentativesContraband]
   id: ClothingBackpackBlueShield
   name: blueshield backpack
   description: A lightweight but reliable backpack. Can't go wrong with the classics!

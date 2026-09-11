@@ -6,7 +6,7 @@
   flavor: bitter
   color: "#cf3600"
   physicalDesc: reagent-physical-desc-opaque
-  contrabandSeverity: Major # Starlight Minor -> Major
+  contrabandTier: Tier2 # Blimpuf
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: 10
@@ -39,6 +39,7 @@
   flavor: bitter
   color: "#e2a38c"
   physicalDesc: reagent-physical-desc-exotic-smelling
+  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Medical
   plantMetabolism:
@@ -78,6 +79,7 @@
   flavor: bitter
   color: "#000067"
   physicalDesc: reagent-physical-desc-nondescript
+  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Medical
   metabolisms:
@@ -123,7 +125,7 @@
   flavor: bitter
   color: "#acc91a"
   physicalDesc: reagent-physical-desc-putrid
-  contrabandSeverity: Minor # Starlight None -> Minor
+  contrabandTier: Tier1 # Blimpuf - previously Starlight minor contraband
   metabolisms:
     Bloodstream:
       effects:
@@ -183,7 +185,7 @@
   group: Toxins
   desc: reagent-desc-polytrinic-acid
   physicalDesc: reagent-physical-desc-strong-smelling
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   flavor: acid
   color: "#a1000b"
   boilingPoint: 78.2 # This isn't a real chemical...
@@ -243,7 +245,7 @@
   flavor: sour
   color: "#48b3b8"
   physicalDesc: reagent-physical-desc-ferrous
-  contrabandSeverity: Major # Starlight None -> Major
+  contrabandTier: Tier2 # Blimpuf - previously Starlight major contraband
   metabolisms:
     Bloodstream:
       effects:
@@ -273,7 +275,7 @@
   group: Toxins
   desc: reagent-desc-fluorosulfuric-acid
   physicalDesc: reagent-physical-desc-strong-smelling
-  contrabandSeverity: Major # Starlight Minor -> Major
+  contrabandTier: Tier2 # Blimpuf - previously Starlight major contraband
   flavor: acid
   color: "#5050ff"
   boilingPoint: 165
@@ -324,6 +326,7 @@
   group: Toxins
   desc: reagent-desc-sulfuric-acid
   physicalDesc: reagent-physical-desc-oily
+  contrabandTier: Tier1 # Blimpuf
   allowedJobs:
   - Chemist
   flavor: acid
@@ -384,6 +387,7 @@
   group: Toxins
   desc: reagent-desc-unstable-mutagen
   physicalDesc: reagent-physical-desc-glowing
+  contrabandTier: Tier1 # Blimpuf
   allowedJobs:
   - Chemist
   - Botanist
@@ -420,7 +424,7 @@
   group: Toxins
   desc: reagent-desc-heartbreaker-toxin
   physicalDesc: reagent-physical-desc-strong-smelling
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   color: "#5f959c"
   metabolisms:
     Bloodstream:
@@ -450,7 +454,8 @@
   group: Toxins
   desc: reagent-desc-lexorin
   physicalDesc: reagent-physical-desc-pungent
-  contrabandSeverity: Syndicate
+  contrabandTier: Tier3 # Blimpuf
+  contrabandType: Syndicate # Blimpuf
   color: "#6b0007"
   metabolisms:
     Bloodstream:
@@ -478,7 +483,7 @@
   group: Toxins
   desc: reagent-desc-mindbreaker-toxin
   physicalDesc: reagent-physical-desc-opaque
-  contrabandSeverity: Minor # Starlight None -> Minor
+  contrabandTier: Tier1 # Blimpuf - previously Starlight minor contraband
   flavor: bitter
   color: "#77b58e"
   plantMetabolism:
@@ -598,7 +603,7 @@
   group: Toxins
   desc: reagent-desc-amatoxin
   physicalDesc: reagent-physical-desc-nondescript
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   color: "#D6CE7B"
   metabolisms:
     Bloodstream:
@@ -653,7 +658,8 @@
   group: Toxins
   desc: reagent-desc-romerol
   physicalDesc: reagent-physical-desc-necrotic
-  contrabandSeverity: Syndicate
+  contrabandTier: Tier4 # Blimpuf
+  contrabandType: Syndicate # Blimpuf
   flavor: bitter
   color: "#7e916e"
   worksOnTheDead: true
@@ -799,6 +805,7 @@
   group: Narcotics
   desc: reagent-desc-pax
   physicalDesc: reagent-physical-desc-soothing
+  contrabandTier: Tier1 # Blimpuf
   allowedDepartments:
   - Security
   - Medical
@@ -869,7 +876,7 @@
   group: Toxins
   desc: reagent-desc-lead
   physicalDesc: reagent-physical-desc-metallic
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   color: "#5C6274"
   metabolisms:
     Bloodstream:
@@ -897,7 +904,7 @@
   group: Toxins
   desc: reagent-desc-bungotoxin
   physicalDesc: reagent-physical-desc-nondescript
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   color: "#EBFF8E"
   metabolisms:
     Bloodstream:
@@ -925,7 +932,8 @@
   group: Toxins
   desc: reagent-desc-vestine
   physicalDesc: reagent-physical-desc-shiny
-  contrabandSeverity: Syndicate
+  contrabandTier: Tier3 # Blimpuf
+  contrabandType: Syndicate # Blimpuf
   flavor: medicine
   color: "#435166"
   plantMetabolism:
@@ -968,7 +976,8 @@
   group: Toxins
   desc: reagent-desc-tazinide
   physicalDesc: reagent-physical-desc-metallic
-  contrabandSeverity: Syndicate
+  contrabandTier: Tier3 # Blimpuf
+  contrabandType: Syndicate # Blimpuf
   flavor: shocking
   color: "#FDD023"
   metabolisms:
@@ -997,7 +1006,7 @@
   desc: reagent-desc-lipolicide
   physicalDesc: reagent-physical-desc-strong-smelling
   # Starlight Edits
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   # allowedDepartments:
   # - Medical
   # Starlight End
@@ -1037,7 +1046,7 @@
   flavor: sweet
   color: "#00b408"
   physicalDesc: reagent-physical-desc-nondescript
-  contrabandSeverity: Major # Starlight None -> Major
+  contrabandTier: Tier2 # Blimpuf - previously Starlight major contraband
   metabolisms:
     Bloodstream:
       metabolismRate: 0.2 # Slower metabolism so it can build up over time for slowdown
@@ -1115,7 +1124,7 @@
   group: Toxins
   desc: reagent-desc-hemorrhinol
   physicalDesc: reagent-physical-desc-thin
-  contrabandSeverity: Major
+  contrabandTier: Tier2 # Blimpuf
   flavor: sharp
   color: "#96424f"
   metabolisms:

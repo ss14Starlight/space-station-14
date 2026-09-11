@@ -1,6 +1,6 @@
 - type: entity
   name: emerald lizitar
-  parent: [ BaseSword, BaseSecurityCargoContraband ]
+  parent: [ BaseSword, BaseSecurityContraband, BaseCargoContraband, BaseContrabandTier3 ] # Blimpuf
   id: EmeraldLizitar
   description: Caledscratch && Emerald Contraband. Why is it so expensive? What the hell is 'grist'? This weapon leaves you with so many questions.
   components:

@@ -59,7 +59,7 @@
   id: GrenadeBaton
   name: baton grenade
   description: Crack skulls, break jaws. # Starlight-edit
-  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
+  parent: [ BaseGrenade, BaseSecurityContraband, BaseContrabandTier2] # Starlight edit: Major -> Security contraband; Blimpuf
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBaton
@@ -81,7 +81,7 @@
 - type: entity
   id: GrenadeBlast
   name: blast grenade
-  parent: [ BaseGrenade, BaseSecurityContraband ] # Starlight edit: Major -> Security contraband
+  parent: [ BaseGrenade, BaseSecurityContraband, BaseContrabandTier3 ] # Starlight edit: Major -> Security contraband; Blimpuf
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBlast
@@ -99,7 +99,7 @@
   id: GrenadeFlash
   name: flash grenade
   description: EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE # Starlight
-  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
+  parent: [ BaseGrenade, BaseSecurityContraband, BaseContrabandTier2] # Starlight edit: Major -> Security contraband; Blimpuf
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeFlash
@@ -136,7 +136,7 @@
     suffix: false
 
 - type: entity
-  parent: [ BaseGrenade, BaseJanitorContraband ] # Starlight edit: Major -> Janitor contraband
+  parent: [ BaseGrenade, BaseJanitorContraband, BaseContrabandTier2 ] # Starlight edit: Major -> Janitor contraband; Blimpuf
   id: GrenadeCleanade
   name: cleanade grenade round
   components:
@@ -159,7 +159,7 @@
 - type: entity
   id: GrenadeEMP
   name: EMP grenade
-  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
+  parent: [ BaseGrenade, BaseSecurityContraband, BaseContrabandTier2] # Starlight edit: Major -> Security contraband; Blimpuf
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeEMP

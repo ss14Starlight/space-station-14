@@ -119,7 +119,7 @@
     stealGroup: RareGlassesCollection
 
 - type: entity
-  parent: [ClothingEyesBase, BaseBlueShieldContraband]
+  parent: [ClothingEyesBase, BaseRepresentativesContraband]
   id: ClothingEyesGlassesBlueShield
   name: blue shield glasses
   description: The innovative blue lenses hide your eyes from light flashes and have a built-in visor.
@@ -315,7 +315,7 @@
 # Shadekin
 
 - type: entity
-  parent: [ClothingEyesBase, BaseSecurityScienceCommandContraband]
+  parent: [ClothingEyesBase, BaseSecurityContraband, BaseScienceContraband, BaseCommandContraband]
   id: ClothingEyesGlassesNullSpace
   name: nullspace goggles
   description: An unusual pair of goggles developed during a time of inhumane experimentation involving Shadekin. They are designed to allow the wearer to peer into NullSpace.

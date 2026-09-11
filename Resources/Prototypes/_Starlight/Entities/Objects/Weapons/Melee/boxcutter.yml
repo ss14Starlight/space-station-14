@@ -1,6 +1,6 @@
 - type: entity
   name: boxcutter
-  parent: [BaseSecurityCargoContraband, CombatKnife]
+  parent: [BaseSecurityContraband, BaseCargoContraband, CombatKnife, BaseContrabandTier3] # Blimpuf
   id: WeaponMeleeBoxcutter
   description: Always accidentally cuts whatever is inside the box.
   components:

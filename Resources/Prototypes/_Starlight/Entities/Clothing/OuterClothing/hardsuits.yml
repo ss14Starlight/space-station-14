@@ -1,6 +1,6 @@
 #BSO Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseBlueShieldContraband]
+  parent: [ClothingOuterHardsuitBase, BaseRepresentativesContraband, BaseContrabandTier2] # Blimpuf
   id: ClothingOuterHardsuitBlueshield
   name: blue shield hardsuit
   description: A high-tech hardsuit perfect for diving in front of Mr. Pre- Er, Captain.
@@ -41,11 +41,13 @@
 
 #NTRep Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband]
+  parent: [ClothingOuterHardsuitBase, BaseRepresentativesContraband]
   id: ClothingOuterHardsuitNtrep
   name: NanoTrasen representative hardsuit
   description: It used to be blue, but too many premium cigars turned it tobacco brown.
   components:
+    - type: Contraband
+      tier: Tier3
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntrepspace.rsi
     - type: Clothing
@@ -200,6 +202,8 @@
   name: syndicate infiltration hardsuit
   description: The Syndicate's Special Operations' hardsuit of choice, this hardsuit, as well as durability, has been built with stealth in mind.
   components:
+    - type: Contraband # Blimpuf
+      tier: Tier4
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
     - type: Clothing
@@ -270,6 +274,8 @@
   name: SSF marine hardsuit
   description: SMIRNO!
   components:
+    - type: Contraband # Blimpuf
+      tier: Tier3
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sovietmarine.rsi
     - type: Clothing
@@ -355,7 +361,7 @@
 
 # Experimental Security Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
+  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: ClothingOuterHardsuitSecurityExperimental
   name: experimental security hardsuit
   description: A high-tech hardsuit meant to eventually replace the standard security suit, it boasts an ID-Lock and Gun-Lock system. Rumors have it that the first prototype was stolen by the syndicate..
@@ -448,7 +454,7 @@
 
 #Mining Specialist Advanced hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSalvageMiningContraband]
+  parent: [ClothingOuterHardsuitBase, BaseSalvageContraband, BaseMiningContraband]
   id: ClothingOuterHardsuitAdvancedMining
   name: advanced mining hardsuit
   description: An advanced jetpack-equipped hardsuit designed for mining operations.
@@ -515,7 +521,7 @@
 
 #Mining Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSalvageMiningContraband]
+  parent: [ClothingOuterHardsuitBase, BaseSalvageContraband, BaseMiningContraband]
   id: ClothingOuterHardsuitMining
   name: mining hardsuit
   description: A special suit that protects against hazardous, low pressure environments encountered during space mining.

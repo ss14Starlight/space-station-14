@@ -3,6 +3,7 @@
   name: reagent-name-bleach
   desc: reagent-desc-bleach
   physicalDesc: reagent-physical-desc-strong-smelling
+  contrabandTier: Tier1 # Blimpuf
   allowedJobs:
   - Janitor
   - Chemist

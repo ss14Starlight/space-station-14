@@ -231,7 +231,8 @@
     - type: DisarmMalus
       malus: 0.4
     - type: Contraband
-      severity: Syndicate
+      tier: Tier3 # Blimpuf
+      contrabandType: Syndicate # Blimpuf
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_dagger.rsi
     layers:

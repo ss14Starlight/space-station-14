@@ -1,6 +1,6 @@
 - type: entity
   name: rescue knife
-  parent: [BaseKnife, BaseMedicalContraband]
+  parent: [BaseKnife, BaseMedicalContraband, BaseContrabandTier2] # Blimpuf
   id: RescueKnife
   description: A rescue knife issued to paramedics, with a built in striker for breaking thorugh anything keeping them from a patient.
   components:

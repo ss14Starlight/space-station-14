@@ -132,7 +132,7 @@
     fiberColor: fibers-grey-fur
 
 - type: entity
-  parent: [ BaseEngineeringSecurityCommandSalvageMiningContraband, ClothingHandsGlovesCombat ]
+  parent: [ BaseEngineeringContraband, BaseSecurityContraband, BaseCommandContraband, BaseSalvageContraband, BaseMiningContraband, ClothingHandsGlovesCombat, BaseContrabandTier2 ] # Blimpuf
   id: ClothingHandsSalvageMercGlovesCombat
   name: scrapper combat gloves
   description: High-quality insulated gloves that provide protection while salvaging.

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
   id: ClothingNeckCapeNTSF1
   name: NanoTrasen special forces cape
   suffix: One. Do Not Map
@@ -38,7 +38,7 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
   id: ClothingNeckCapeNTSF2
   name: NanoTrasen special forces cape
   suffix: Two. Do Not Map
@@ -77,7 +77,7 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
   id: ClothingNeckCapeNTSF3
   name: NanoTrasen special forces cape
   suffix: Three. Do Not Map
@@ -116,7 +116,7 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
   id: ClothingNeckCapeNTSF4
   name: NanoTrasen special forces cape
   suffix: Four. Do Not Map
@@ -155,7 +155,7 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
   id: ClothingNeckCapeNTSF5
   name: NanoTrasen special forces cape
   suffix: Five. Do Not Map
@@ -194,7 +194,7 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
   id: ClothingNeckCapeNTSF6
   name: NanoTrasen special forces cape
   suffix: Six. Do Not Map
@@ -233,7 +233,7 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
   id: ClothingNeckCapeNTSF7
   name: NanoTrasen special forces cape
   suffix: Seven. Do Not Map
@@ -272,7 +272,7 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
   id: ClothingNeckCapeNTSF8
   name: NanoTrasen special forces cape
   suffix: Eight. Do Not Map
@@ -311,7 +311,7 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
   id: ClothingNeckCapeNTSF9
   name: NanoTrasen special forces cape
   suffix: Nine. Do Not Map
@@ -350,7 +350,7 @@
     delay: 10.0
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
   id: ClothingNeckCapeNTSFLead
   name: NanoTrasen special forces cape
   suffix: NT. Do Not Map
@@ -390,7 +390,7 @@
 
 # Greenshield Officer
 - type: entity
-  parent: [ ClothingNeckBase ]
+  parent: [ BaseCentcommContraband, ClothingNeckBase ] # Blimpuf
   categories: [ DoNotMap ]
   id: ClothingNeckGreenshield
   name: greenshield mantle

@@ -1,6 +1,6 @@
 - type: entity
   name: energy chainsword
-  parent: [BaseMeleeWeaponEnergy, BaseSecurityContraband]
+  parent: [BaseMeleeWeaponEnergy, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: CyberEnergyChainsword
   description: Slam this into the individual you wish to destroy, mentally and physically.
   components:

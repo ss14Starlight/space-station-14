@@ -1,6 +1,6 @@
 - type: entity
   name: fancy cane
-  parent: [ BaseItem, BaseCommandContraband ]
+  parent: [ BaseItem, BaseRepresentativesContraband ]
   id: CaneNT
   description: A cane with special engraving on it. It seems well suited for fending off assailants...
   components:

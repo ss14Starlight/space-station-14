@@ -1,5 +1,5 @@
 - type: entity
-  parent: [VolatileGrenadeBase, TimerGrenadeBase, BaseSecurityContraband ]
+  parent: [VolatileGrenadeBase, TimerGrenadeBase, BaseSecurityContraband, BaseContrabandTier2 ] # Blimpuf
   id: SmokeGrenade
   name: smoke grenade
   description: A tactical grenade that releases a large, long-lasting cloud of smoke when used.
@@ -62,7 +62,7 @@
         Quantity: 20
 
 - type: entity
-  parent: [ BaseEngineeringContraband, SmokeGrenade ]
+  parent: [ BaseEngineeringContraband, SmokeGrenade, BaseContrabandTier2 ] # Blimpuf
   id: MetalFoamGrenade
   name: metal foam grenade
   description: An emergency tool used for patching hull breaches with special quick-set metal foam. Almost as good as real floors!
@@ -81,7 +81,7 @@
     price: 350
 
 - type: entity
-  parent: [ BaseEngineeringContraband, VolatileGrenadeBase, TimerGrenadeBase ] # Prevent inheriting DeleteOnTrigger from SmokeGrenade
+  parent: [ BaseEngineeringContraband, VolatileGrenadeBase, TimerGrenadeBase, BaseContrabandTier2 ] # Prevent inheriting DeleteOnTrigger from SmokeGrenade; Blimpuf
   id: AirGrenade
   name: air grenade
   description: A special solid state chemical grenade used for quickly releasing standard air into a spaced area. Fills up to 30 tiles!

@@ -173,7 +173,7 @@
 
 - type: entity
   name: svalinn laser pistol
-  parent: [BaseWeaponPowerCellSmall, BaseSecurityContraband]
+  parent: [BaseWeaponPowerCellSmall, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponLaserSvalinn
   description: A cheap and widely used laser pistol.
   components:
@@ -309,7 +309,7 @@
 
 - type: entity
   name: laser carbine
-  parent: [BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponLaserCarbine
   description: Favoured by NanoTrasen Security for being cheap and easy to use. # SL
 
@@ -448,7 +448,7 @@
 
 - type: entity
   name: laser cannon
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponLaserCannon
   description: A heavy duty, high powered laser weapon.
   components:
@@ -484,7 +484,7 @@
 
 - type: entity
   name: portable particle decelerator
-  parent: [BaseWeaponBattery, BaseEngineeringContraband]
+  parent: [BaseWeaponBattery, BaseEngineeringContraband, BaseContrabandTier2] # Blimpuf
   id: WeaponParticleDecelerator
   description: A portable particle decelerator capable of decomposing a tesla or singularity.
   components:
@@ -515,7 +515,7 @@
 
 - type: entity
   name: x-ray cannon
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponXrayCannon
   description: An experimental weapon that uses concentrated x-ray energy against its target.
   components:
@@ -592,7 +592,7 @@
 
 - type: entity
   name: disabler
-  parent: [WeaponDisablerPractice, BaseSecurityCommandContraband]
+  parent: [WeaponDisablerPractice, BaseSecurityContraband, BaseCommandContraband, BaseContrabandTier2] # Blimpuf
   id: WeaponDisabler
   description: A self-defense weapon that exhausts organic targets, weakening them until they collapse.
   components:
@@ -621,7 +621,7 @@
 
 - type: entity
   name: disabler SMG
-  parent: [BaseWeaponBattery, BaseSecurityContraband]
+  parent: [BaseWeaponBattery, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: WeaponDisablerSMG
   description: Advanced weapon that exhausts organic targets, weakening them until they collapse.
   components:
@@ -677,7 +677,7 @@
 
 - type: entity
   name: taser
-  parent: [BaseWeaponBatterySmall, BaseSecurityContraband]
+  parent: [BaseWeaponBatterySmall, BaseSecurityContraband, BaseContrabandTier2] # Blimpuf
   id: WeaponTaser
   description: A low-capacity, energy-based stun gun used by security teams to subdue targets at close range.
   components:
@@ -788,7 +788,7 @@
 
 - type: entity
   name: advanced laser pistol
-  parent: [BaseWeaponBatterySmall, BaseSecurityContraband]
+  parent: [BaseWeaponBatterySmall, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponAdvancedLaser
   description: An experimental high-energy laser pistol with a self-charging nuclear battery.
   components:
@@ -828,7 +828,7 @@
 
 - type: entity
   name: C.H.I.M.P. handcannon
-  parent: [BaseWeaponBatterySmall, BaseScienceContraband]
+  parent: [BaseWeaponBatterySmall, BaseScienceContraband, BaseContrabandTier2] # Blimpuf
   id: WeaponPistolCHIMP
   description: Just because it's a little C.H.I.M.P. doesn't mean it can't punch like an A.P.E.
   components:
@@ -921,7 +921,7 @@
 
 - type: entity
   name: energy shotgun
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseWardenGrandTheftContraband] # Starlight - warden grand contra
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGrandTheftContraband, BaseWardenContraband] # Starlight - warden grand contra
   id: WeaponEnergyShotgun
   description: A one-of-a-kind prototype energy weapon that uses various shotgun configurations. It offers the possibility of both lethal and non-lethal shots, making it a versatile weapon.
   components:
@@ -972,7 +972,7 @@
 
 - type: entity
   name: energy magnum
-  parent: [BaseWeaponBatterySmall, BaseDetectiveGrandTheftContraband] # Starlight - detective grand contra
+  parent: [BaseWeaponBatterySmall, BaseGrandTheftContraband, BaseDetectiveContraband] # Starlight - detective grand contra
   id: WeaponEnergyMagnum
   description: A high powered self-charging energy pistol designed for elite security personnel. It has has three firing modes allowing for either high damage, window piercing, or non-lethal disabling.
   components:
@@ -1040,7 +1040,7 @@
 
 - type: entity
   name: temperature gun
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband, BaseContrabandTier3] # Blimpuf
   id: WeaponTemperatureGun
   description: An advanced gun that shoots body-temperature-changing beams. This probably constitutes as some kind of war crime.
   components:
