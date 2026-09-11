@@ -1,13 +1,6 @@
 Entries:
 - author: OJG
   changes:
-  - message: (Refinery) Lots of extinguisher cabinets and wallmount closets.
-    type: Tweak
-  id: 408083
-  time: '2026-09-03T19:00:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5875
-- author: OJG
-  changes:
   - message: (Refinery) Changed the zookeeper office to a more generic setup any service worker can take over due to the roles removal.
     type: Tweak
   id: 408084
@@ -2799,4 +2792,11 @@ Entries:
   id: 408482
   time: '2026-09-11T06:40:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6089
+- author: Johnny
+  changes:
+  - message: Changed the portable recharger, you may now see when its in the suit storage slot.
+    type: Tweak
+  id: 408483
+  time: '2026-09-11T06:59:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6093
 Order: -1
