@@ -1,7 +1,7 @@
-﻿using Content.Server._Starlight.Lube;
-using Content.Server._Starlight.Nutrition.EntitySystems;
+﻿using Content.Server._Starlight.Nutrition.EntitySystems;
 using Content.Server.DoAfter;
 using Content.Server.Popups;
+using Content.Shared._Starlight.Lube;
 using Content.Shared._Starlight.Washing;
 using Content.Shared.DoAfter;
 using Content.Shared.Glue;
@@ -24,7 +24,7 @@ public sealed partial class WashingFixtureSystem : EntitySystem
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private CreamPieSystem _creamPie = default!;
     [Dependency] private GlueSystem _glueSystem = default!;
-    [Dependency] private LubedSystem _lubedSystem = default!;
+    [Dependency] private SharedLubedSystem _lubedSystem = default!;
 
     public override void Initialize()
     {

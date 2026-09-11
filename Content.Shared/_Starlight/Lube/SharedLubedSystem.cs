@@ -8,9 +8,9 @@ using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using Robust.Shared.Random;
 
-namespace Content.Server._Starlight.Lube;
+namespace Content.Shared._Starlight.Lube;
 
-public sealed partial class LubedSystem : EntitySystem
+public sealed partial class SharedLubedSystem : EntitySystem
 {
     [Dependency] private ThrowingSystem _throwing = default!;
     [Dependency] private IRobustRandom _random = default!;

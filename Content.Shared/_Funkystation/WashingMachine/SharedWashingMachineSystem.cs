@@ -1,15 +1,7 @@
-﻿using Content.Shared.Interaction;
-using Content.Shared.Popups;
-using Content.Shared.Power.EntitySystems;
-using Content.Shared.Storage.Components;
-using Content.Shared.Storage.EntitySystems;
-using Content.Shared.Verbs;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
-using System.Linq;
+﻿using System.Linq;
 using Content.Shared._Funkystation.Stains.Components;
 using Content.Shared._Funkystation.Stains.Systems;
+using Content.Shared._Starlight.Lube;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -18,9 +10,22 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
+using Content.Shared.Glue;
+using Content.Shared.Interaction;
+using Content.Shared.Lube;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Popups;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Storage.Components;
+using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Verbs;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._Funkystation.WashingMachine;
 
@@ -37,6 +42,9 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private ReactiveSystem _reactive = null!;
     [Dependency] private SharedSolutionContainerSystem _solution = default!;
     [Dependency] private SharedStainSystem _stains = default!;
+    [Dependency] private SharedCreamPieSystem _creamPie = default!;
+    [Dependency] private GlueSystem _glueSystem = default!;
+    [Dependency] private SharedLubedSystem _lubedSystem = default!;
 
     public override void Initialize()
     {
@@ -195,6 +203,15 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
             foreach (var item in items)
             {
+                // Starlight Start - Clean lube, glue, and any creampied crew
+                if (TryComp<CreamPiedComponent>(item, out var creamPiedComp))
+                    _creamPie.SetCreamPied(item, creamPiedComp, false);
+                if (HasComp<LubedComponent>(item))
+                    _lubedSystem.RemoveLubed(item);
+                if (HasComp<GluedComponent>(item))
+                    _glueSystem.RemoveGlued(item);
+                // Starlight End
+
                 if (TryComp<StainableComponent>(item, out var stain) && _solution.TryGetSolution(item, stain.SolutionName, out var sol))
                 {
                     _solution.RemoveAllSolution(sol.Value);
