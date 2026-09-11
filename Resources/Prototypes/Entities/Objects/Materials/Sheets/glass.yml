@@ -74,6 +74,8 @@
       reagents:
       - ReagentId: Silicon
         Quantity: 10
+  - type: QuickConstructable # DEN quick construction
+    category: Glass
   #FH - Start
   - type: ConditionalHealing
     healingDefinitions:
@@ -149,6 +151,8 @@
   - type: Construction
     graph: Glass
     node: SheetRGlass
+  - type: QuickConstructable # DEN quick construction
+    category: ReinforcedGlass
   - type: Destructible
     thresholds:
     - trigger:
@@ -220,6 +224,9 @@
       map: ["base"]
   - type: Item
     heldPrefix: pglass
+  - type: FloorTile
+    outputs:
+    - FloorGlassPlasma
   - type: Construction
     graph: Glass
     node: SheetPGlass
@@ -255,6 +262,8 @@
         Quantity: 10
       - ReagentId: Plasma
         Quantity: 10
+  - type: QuickConstructable # DEN quick construction
+    category: PlasmaGlass
 
 - type: entity
   parent: SheetPGlass
@@ -292,6 +301,9 @@
       map: ["base"]
   - type: Item
     heldPrefix: rpglass
+  - type: FloorTile
+    outputs:
+    - FloorGlassPlasmaReinforced
   - type: Construction
     graph: Glass
     node: SheetRPGlass
@@ -307,6 +319,8 @@
         Quantity: 4.5
       - ReagentId: Carbon
         Quantity: 0.5
+  - type: QuickConstructable # DEN quick construction
+    category: ReinforcedPlasmaGlass
 
 - type: entity
   parent: SheetRPGlass
@@ -344,6 +358,9 @@
       map: ["base"]
   - type: Item
     heldPrefix: uglass
+  - type: FloorTile
+    outputs:
+    - FloorGlassUranium
   - type: Construction
     graph: Glass
     node: SheetUGlass
@@ -379,6 +396,8 @@
         Quantity: 10
       - ReagentId: Uranium
         Quantity: 10
+  - type: QuickConstructable # DEN quick construction
+    category: UraniumGlass
 # Starlight start
   - type: ConditionalHealing
     healingDefinitions:
@@ -438,6 +457,9 @@
       map: ["base"]
   - type: Item
     heldPrefix: ruglass
+  - type: FloorTile
+    outputs:
+    - FloorGlassUraniumReinforced
   - type: Construction
     graph: Glass
     node: SheetRUGlass
@@ -453,6 +475,8 @@
         Quantity: 4.5
       - ReagentId: Carbon
         Quantity: 0.5
+  - type: QuickConstructable # DEN quick construction
+    category: ReinforcedUraniumGlass
   # Starlight start
   - type: ConditionalHealing
     healingDefinitions:
@@ -513,6 +537,9 @@
       map: ["base"]
   - type: Item
     heldPrefix: cglass
+  - type: FloorTile
+    outputs:
+    - FloorGlassBronze
   - type: Construction
     graph: Glass
     node: SheetClockworkGlass
@@ -550,6 +577,8 @@
         Quantity: 3.3
       - ReagentId: Copper
         Quantity: 6.7
+  - type: QuickConstructable # DEN quick construction
+    category: ClockworkGlass
 
 - type: entity
   parent: SheetClockworkGlass
