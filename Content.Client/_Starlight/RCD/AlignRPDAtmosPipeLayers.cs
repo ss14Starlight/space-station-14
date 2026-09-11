@@ -15,7 +15,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Numerics;
-using Content.Client._Starlight.RCD.Systems;
 using static Robust.Client.Placement.PlacementManager;
 using Content.Shared.Atmos.EntitySystems;
 

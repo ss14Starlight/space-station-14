@@ -1,9 +1,5 @@
-using System.Linq;
-using Content.Server.GameTicking;
 using Content.Server._Starlight.Toolshed;
 using Content.Shared.GameTicking.Components;
-using Robust.Shared;
-using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
@@ -15,7 +11,6 @@ namespace Content.Server._Starlight.GameTicking;
 public sealed partial class GameRuleTypeParser : TypeParser<GameRuleProtoId>
 {
     [Dependency] private IPrototypeManager _proto = default!;
-    private GameTicker? _ticker;
 
     public override bool TryParse(ParserContext ctx, out GameRuleProtoId result) =>
         EntProtoIdCompTypeParser<GameRuleProtoId, GameRuleComponent>.TryParse(Toolshed, _proto, ctx, out result);

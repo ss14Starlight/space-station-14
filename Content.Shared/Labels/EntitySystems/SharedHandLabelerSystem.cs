@@ -93,15 +93,8 @@ public abstract partial class SharedHandLabelerSystem : EntitySystem
 
     private void OnUtilityVerb(Entity<HandLabelerComponent> ent, ref GetVerbsEvent<UtilityVerb> args)
     {
-        // Starlight BEGIN
-        // Split out to reduce boolean vomit.
-        if (args.Target is not { Valid: true } target|| !args.CanAccess)
+        if (args.Target is not { Valid: true } target || !_whitelistSystem.CheckBoth(target, ent.Comp.Blacklist, ent.Comp.Whitelist) || !args.CanAccess)
             return;
-        if (_whitelistSystem.IsWhitelistPass(ent.Comp.Blacklist, target)) // If it hits the blacklist, abort
-            return;
-        if (_whitelistSystem.IsWhitelistFail(ent.Comp.Whitelist, target)) // If it fails the whitelist, abort
-            return;
-        // Starlight END
 
         var user = args.User;   // can't use ref parameter in lambdas
 
@@ -135,15 +128,8 @@ public abstract partial class SharedHandLabelerSystem : EntitySystem
 
     private void AfterInteractOn(Entity<HandLabelerComponent> ent, ref AfterInteractEvent args)
     {
-        // Starlight BEGIN
-        // Split out to reduce boolean vomit.
-        if (args.Target is not { Valid: true } target|| !args.CanReach)
+        if (args.Target is not { Valid: true } target || !_whitelistSystem.CheckBoth(target, ent.Comp.Blacklist, ent.Comp.Whitelist) || !args.CanReach)
             return;
-        if (_whitelistSystem.IsWhitelistPass(ent.Comp.Blacklist, target)) // If it hits the blacklist, abort
-            return;
-        if (_whitelistSystem.IsWhitelistFail(ent.Comp.Whitelist, target)) // If it fails the whitelist, abort
-            return;
-        // Starlight END
 
         AddLabelTo(ent, args.User, target);
     }

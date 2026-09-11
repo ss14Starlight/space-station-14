@@ -1,6 +1,5 @@
 using Content.Server._Starlight.NewLife;
 using Content.Server.Administration.Managers;
-using Content.Server.Ghost.Roles;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;

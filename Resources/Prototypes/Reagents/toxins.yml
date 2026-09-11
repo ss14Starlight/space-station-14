@@ -663,7 +663,7 @@
             - !type:ReagentCondition
               reagent: Romerol
               min: 5
-        # Starlight-Start: Cyclorite Metabolism
+    # Starlight-Start: Cyclorite Metabolism & Pill fixes
         - !type:AdjustReagent
           conditions:
           - !type:ReagentCondition
@@ -671,6 +671,22 @@
             min: 0.26
           - !type:MetabolizerTypeCondition
             type: [ Cyclorite ]
+          reagent: Romerol
+          amount: 0.25
+    Digestion:
+      effects:
+        - !type:CauseZombieInfection
+          conditions:
+            - !type:ReagentCondition
+              reagent: Romerol
+              min: 5
+        - !type:AdjustReagent
+          conditions:
+            - !type:ReagentCondition
+              reagent: Romerol
+              min: 0.26
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
           reagent: Romerol
           amount: 0.25
           # Starlight-End
@@ -684,7 +700,7 @@
   flavor: bitter
   color: "#FFFFE5"
   metabolisms:
-    Digestion:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         conditions:
@@ -731,7 +747,7 @@
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Vampire, Rodentia ] # Starlight - add Vampire, Rodentia
+          type: [ Vampire, Rodentia, Doll ] # Starlight - add Vampire, Rodentia
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent #FH
@@ -741,12 +757,6 @@
         reagent: Protein #FH
         amount: 0.5 #FH
       # Starlight Start
-      - !type:AdjustReagent
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Doll ]
-        reagent: Protein
-        amount: 0.5
       # Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:

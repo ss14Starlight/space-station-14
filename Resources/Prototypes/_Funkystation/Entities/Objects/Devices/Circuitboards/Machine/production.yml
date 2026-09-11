@@ -17,8 +17,8 @@
 - type: entity
   parent: BaseMachineCircuitboard
   id: WashingMachineCircuitboard
-  name: Nanotrasen Commercial Model-C washing machine board
-  description: A machine printed circuit board for an industrial-grade washing machine.
+  name: washing machine board # Starlight
+  description: A machine printed circuit board for a NanoTrasen Model-C industrial-grade washing machine. # Starlight
   components:
   - type: MachineBoard
     prototype: WashingMachine

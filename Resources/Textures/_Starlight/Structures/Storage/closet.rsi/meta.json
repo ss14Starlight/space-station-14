@@ -222,6 +222,18 @@
         {
             "name": "gunnerysergeant_open",
             "copyright": "Taken from tgstation, resprited into Gunnery Sergeant by AnyTap (GitHub)"
+        },
+        {
+            "name": "salvagemedic",
+            "copyright": "Taken from tgstation, resprited into SalvageMedic by mikeysaurus"
+        },
+        {
+            "name": "salvagemedic_door",
+            "copyright": "Taken from tgstation, resprited into SalvageMedic by mikeysaurus"
+        },
+        {
+            "name": "salvagemedic_open",
+            "copyright": "Taken from tgstation, resprited into SalvageMedic by mikeysaurus"
         }
     ]
 }

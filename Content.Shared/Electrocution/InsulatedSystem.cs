@@ -4,7 +4,7 @@ using Content.Shared.Verbs;
 
 namespace Content.Shared.Electrocution;
 
-public sealed class InsulatedSystem : EntitySystem
+public sealed partial class InsulatedSystem : EntitySystem
 {
     [Dependency] private ExamineSystemShared _examine = default!;
 

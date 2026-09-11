@@ -15,6 +15,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
 using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared.Tag;
 
 namespace Content.Shared._Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -28,6 +29,8 @@ public abstract partial class SharedSurgerySystem
     {
         "CyberHandItem",
     };
+
+    private static readonly ProtoId<TagPrototype> _surgeryCompatibleTag = "SurgeryCompatibleArmor";
 
     private void InitializeSteps()
     {
@@ -121,7 +124,7 @@ public abstract partial class SharedSurgerySystem
             var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
             if (tool == default) return;
 
-            var specificToolComp = EntityManager.GetComponents(tool)
+            var specificToolComp = AllComps(tool)
                 .OfType<ISurgeryToolComponent>();
 
             SoundSpecifier? endSound = null;
@@ -201,7 +204,7 @@ public abstract partial class SharedSurgerySystem
             while (enumerator.MoveNext(out var con))
             {
                 total++;
-                if (con.ContainedEntity != null && !_tag.HasTag(con.ContainedEntity.Value, "SurgeryCompatibleArmor"))
+                if (con.ContainedEntity != null && !_tag.HasTag(con.ContainedEntity.Value, _surgeryCompatibleTag))
                     items++;
             }
 
@@ -301,7 +304,7 @@ public abstract partial class SharedSurgerySystem
                 var toolSpeed = 1f;
                 var toolSuccessRate = 1f;
                 SoundSpecifier? startSound = null;
-                var specificToolComp = EntityManager.GetComponents(tool)
+                var specificToolComp = AllComps(tool)
                     .OfType<ISurgeryToolComponent>();
 
                 foreach(var usedTool in specificToolComp)

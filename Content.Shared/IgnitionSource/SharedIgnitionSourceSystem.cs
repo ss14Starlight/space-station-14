@@ -38,7 +38,8 @@ public abstract partial class SharedIgnitionSourceSystem : EntitySystem
     /// </summary>
     public void SetIgnited(Entity<IgnitionSourceComponent?> ent, bool ignited = true)
     {
-        if (!Resolve(ent, ref ent.Comp, false))
+        // Starlight - burning entities re-ignite every second, don't dirty when nothing changes.
+        if (!Resolve(ent, ref ent.Comp, false) || ent.Comp.Ignited == ignited)
             return;
 
         ent.Comp.Ignited = ignited;
