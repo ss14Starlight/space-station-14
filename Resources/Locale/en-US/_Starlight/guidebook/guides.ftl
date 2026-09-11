@@ -91,6 +91,7 @@ guide-entry-sl-security-sop-specialsituations = Special Situations
 guide-entry-sl-security-sop-enemy-of-corporation = Enemies of the Corporation
 guide-entry-sl-security-sop-hostage-situations = Hostage Situations
 guide-entry-sl-security-sop-criminal-status = Criminal Status
+guide-entry-sl-security-ammo-types = Ammo Types
 
 guide-entry-rules-supernatural-entities = Supernatural Entities
 guide-entry-stirstir = Stir Stir
@@ -167,6 +168,10 @@ guide-entry-sl-service-sop-staff-intro = Staff Procedures
 guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 guide-entry-sl-service-sop-lawyer = Lawyer
 guide-entry-sl-service-sop-reporter = Reporter
+
+guide-entry-sl-assistant-sop-staff-intro = Assistant
+guide-entry-sl-assistant-sop-assistantmanager = Assistant Manager
+guide-entry-sl-assistant = Assistant
 
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders
