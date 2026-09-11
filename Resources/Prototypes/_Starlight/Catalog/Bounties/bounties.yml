@@ -10,6 +10,17 @@
       - OvenMachineBoard
 
 - type: cargoBounty
+  id: BountyNexusUplink
+  reward: 21500
+  description: bounty-description-nexus-uplink
+  entries:
+  - name: bounty-item-nexus-uplink
+    amount: 1
+    whitelist:
+      tags:
+      - NexusUplink
+
+- type: cargoBounty
   id: BountySalad
   reward: 10500
   description: bounty-description-salad
@@ -32,15 +43,18 @@
       - SausageBun
 
 - type: cargoBounty
-  id: BountyNexusUplink
-  reward: 21500
-  description: bounty-description-nexus-uplink
+  id: BountyCottonBread
+  reward: 2000
+  description: bounty-description-cotton-bread
   entries:
-  - name: bounty-item-nexus-uplink
+  - name: bounty-item-cotton-bread
     amount: 1
     whitelist:
       tags:
-      - NexusUplink
+      - CottonBread
+    blacklist:
+      tags:
+      - Slice
 
 - type: cargoBounty
   id: BountyCottonCake
@@ -57,15 +71,12 @@
       - Slice
 
 - type: cargoBounty
-  id: BountyBread
-  reward: 2000
-  description: bounty-description-cotton-bread
+  id: BountyCoupeGlass
+  reward: 800
+  description: bounty-description-coupe-glass
   entries:
-  - name: bounty-item-cotton-bread
-    amount: 1
+  - name: bounty-item-coupe-glass
+    amount: 4
     whitelist:
       tags:
-      - CottonBread
-    blacklist:
-      tags:
-      - Slice
+      - CoupeGlass
