@@ -48,49 +48,9 @@
         <PanelContainer StyleClasses="LowDivider" />
 
         <Label Name="VitalsHeader" Text="Vitals Overview" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
-
-        <!-- I genuinely have no idea how to do the following more elegantly.
-             I'm running into situations otherwise where the window needs to be
-             resized once for things to snap into place. This is the only thing that worked. -->
-        <!-- Vertical master container. Holds two rows -->
         <BoxContainer Name="VitalsContainer" Orientation="Vertical" Margin="8"
                       HorizontalExpand="True" SeparationOverride="8">
-            <!-- Horizontal row container. Holds two items -->
-            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="16">
-                <!-- A given item ie. Condition. The outer BoxContainer fixes the above issue. Send help. -->
-                <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-                    <BoxContainer Orientation="Horizontal" SeparationOverride="8">
-                        <Label Text="{Loc 'health-analyzer-window-entity-status-text'}" HorizontalExpand="True" />
-                        <Label Name="StatusLabel" Align="Right"/>
-                    </BoxContainer>
-                </BoxContainer>
-
-                <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-                    <BoxContainer Orientation="Horizontal" SeparationOverride="8">
-                        <Label Text="{Loc 'health-analyzer-window-entity-temperature-text'}" HorizontalExpand="True"/>
-                        <Label Name="TemperatureLabel" Align="Right"/>
-                    </BoxContainer>
-                </BoxContainer>
-            </BoxContainer>
-
-            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="16">
-                <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="6">
-                    <BoxContainer Orientation="Horizontal" SeparationOverride="8">
-                        <Label Text="{Loc 'health-analyzer-window-entity-blood-level-text'}" HorizontalExpand="True"/>
-                        <TextureRect Name="BleedIcon" Visible="False" SetSize="15 15" Stretch="KeepAspectCentered"
-                                     VerticalAlignment="Center"/>
-                        <Label Name="BloodLabel" Align="Right"/>
-                    </BoxContainer>
-                    <ProgressBar Name="BloodLevelBar" MinValue="0" MaxValue="1" MinHeight="3" MaxHeight="3"/>
-                </BoxContainer>
-                <BoxContainer Orientation="Vertical" HorizontalExpand="True" SeparationOverride="6">
-                    <BoxContainer Orientation="Horizontal" SeparationOverride="8">
-                        <Label Text="{Loc 'health-analyzer-window-entity-damage-total-text'}" HorizontalExpand="True"/>
-                        <Label Name="DamageLabel" Align="Right"/>
-                    </BoxContainer>
-                    <ProgressBar Name="TotalDamageBar" MinValue="0" MaxValue="1" MinHeight="3" MaxHeight="3"/>
-                </BoxContainer>
-            </BoxContainer>
+            <!-- populated by code -->
         </BoxContainer>
     </BoxContainer>
 
