@@ -208,18 +208,6 @@ public record struct GetEdibleTypeEvent
     }
 }
 
-/// <summary>
-/// Raised directed at the food being sliced before it's deleted.
-/// Cancel this if you want to do something special before a food is deleted.
-/// </summary>
-public sealed class BeforeFullySlicedEvent : CancellableEntityEventArgs
-{
-    /// <summary>
-    /// The person slicing the food.
-    /// </summary>
-    public EntityUid User;
-}
-
 
 #region Starlight
 [ByRefEvent]

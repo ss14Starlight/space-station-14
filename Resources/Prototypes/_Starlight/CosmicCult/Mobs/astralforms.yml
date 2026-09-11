@@ -125,6 +125,8 @@
        enabled: true
        isLooped: true
        reverseWhenFinished: true
+  - type: HealthExaminable
+    locPrefix: cosmic
   #region Starlight languages
   - type: UniversalLanguageSpeaker
   #endregion

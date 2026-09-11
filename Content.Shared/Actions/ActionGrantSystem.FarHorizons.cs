@@ -24,8 +24,8 @@ public sealed partial class ActionGrantSystem
             Actions = newActions
         };
 
-        EntityManager.RemoveComponent<ActionGrantComponent>(ent);
-        EntityManager.AddComponent(ent, combinedComp);
+        RemComp<ActionGrantComponent>(ent);
+        AddComp(ent, combinedComp);
     }
 
     public void RemoveAction(Entity<ActionGrantComponent> ent, EntProtoId action)
@@ -46,7 +46,7 @@ public sealed partial class ActionGrantSystem
             Actions = newActions
         };
 
-        EntityManager.RemoveComponent<ActionGrantComponent>(ent);
-        EntityManager.AddComponent(ent, decomposedComp);
+        RemComp<ActionGrantComponent>(ent);
+        AddComp(ent, decomposedComp);
     }
 }

@@ -10,7 +10,6 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
 using Robust.Client.UserInterface;
-using Content.Shared._Starlight.Access;
 
 namespace Content.Client.Access.UI
 {

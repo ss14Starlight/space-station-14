@@ -4,7 +4,6 @@ using Content.Shared._Starlight.Administration.Components;
 using Content.Shared._Starlight.Administration.Events;
 using Content.Shared.Eye;
 using Content.Shared.Ghost;
-using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 
 namespace Content.Server._Starlight.Administration.Systems;

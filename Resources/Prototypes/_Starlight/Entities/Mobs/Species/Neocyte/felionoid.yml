@@ -1,7 +1,7 @@
 - type: entity
   parent: [BaseSpeciesPickupable, BaseMobNeocyte]
   id: BaseMobNeoFelionoid
-  name: Urist McFelinster
+  name: Urist McMeowster
   abstract: true
   components:
   - type: LanguageKnowledge
@@ -35,7 +35,6 @@
       51: 0.7 # 60%
       68: 0.5 # 80%
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 3
@@ -70,10 +69,6 @@
         emote: Hisses
         showInChat: false
   - type: Vocal
-    sounds:
-      Male: NeoFelionoidMSounds
-      Female: NeoFelionoidFSounds
-      Unsexed: NeoFelionoidMSounds
   - type: Tag
     tags:
     - CanPilot

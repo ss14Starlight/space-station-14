@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Server._Starlight.Commands;
+using Content.Server._Starlight.Toolshed;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
@@ -53,7 +55,7 @@ public sealed class KillSignCommand : ToolshedCommand
     public EntityUid Set(IInvocationContext ctx, [PipedArgument] EntityUid uid, string type)
     {
         if (_sprites.TryGetValue(type, out var data)) return ApplyKillSign(uid, data);
-        ctx.WriteMarkup($"[color=red]Unknown kill sign type: {type}[/color]");
+        CommandMarkup.Error(ctx, $"Unknown kill sign type: {type}");
         return uid;
     }
 

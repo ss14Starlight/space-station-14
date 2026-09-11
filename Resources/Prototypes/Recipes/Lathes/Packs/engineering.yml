@@ -70,6 +70,7 @@
   id: AtmosTools
   recipes:
   - HolofanProjector
+  - BluespaceFireExtinguisher # Starlight
 
 - type: latheRecipePack
   id: EngineeringWeapons
