@@ -7,11 +7,20 @@ public sealed partial class IgnitionSourceSystem : SharedIgnitionSourceSystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    private float _updateAccumulator; // Starlight
+    private const float UpdateInterval = 0.25f; // Starlight
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
+        #region Starlight
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < UpdateInterval)
+            return;
+
+        _updateAccumulator -= UpdateInterval;
+        #endregion
         // Starlight - most ignition sources (every welder, lighter, anything that burned once) are off,
         // only fetch the transform for lit ones.
         var query = EntityQueryEnumerator<IgnitionSourceComponent>();

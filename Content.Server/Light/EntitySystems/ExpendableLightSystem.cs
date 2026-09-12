@@ -35,6 +35,9 @@ namespace Content.Server.Light.EntitySystems
 
         private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
 
+        private float _updateAccumulator; // Starlight
+        private const float UpdateInterval = 0.25f; // Starlight
+
         public override void Initialize()
         {
             base.Initialize();
@@ -48,10 +51,22 @@ namespace Content.Server.Light.EntitySystems
 
         public override void Update(float frameTime)
         {
+            #region Starlight
+            _updateAccumulator += frameTime;
+            if (_updateAccumulator < UpdateInterval)
+                return;
+
+            var elapsed = _updateAccumulator;
+            _updateAccumulator -= UpdateInterval;
+            #endregion
+
             var query = EntityQueryEnumerator<ExpendableLightComponent>();
             while (query.MoveNext(out var uid, out var light))
             {
-                UpdateLight((uid, light), frameTime);
+                if (!light.Activated) // Starlight
+                    continue;
+
+                UpdateLight((uid, light), elapsed); // Starlight-edit: was frameTime
             }
         }
 
