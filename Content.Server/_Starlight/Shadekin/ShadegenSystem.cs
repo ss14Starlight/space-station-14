@@ -81,7 +81,7 @@ public sealed partial class ShadegenSystem : EntitySystem
 
             foreach (var light in _lightsInRange)
             {
-                if (_darkLightQuery.HasComp(light.Owner))
+                if (_darkLightQuery.HasComp(light.Owner) || TerminatingOrDeleted(light.Owner))
                     continue;
 
                 // Tree bounds are enlarged by each light's own radius, so drop the ones really out of range.
@@ -108,9 +108,15 @@ public sealed partial class ShadegenSystem : EntitySystem
         }
 
         foreach (var uid in _noLongerAffected)
-            RemComp<ShadegenAffectedComponent>(uid);
+        {
+            if (!TerminatingOrDeleted(uid))
+                RemComp<ShadegenAffectedComponent>(uid);
+        }
 
         foreach (var uid in _affected)
-            EnsureComp<ShadegenAffectedComponent>(uid);
+        {
+            if (!TerminatingOrDeleted(uid))
+                EnsureComp<ShadegenAffectedComponent>(uid);
+        }
     }
 }
