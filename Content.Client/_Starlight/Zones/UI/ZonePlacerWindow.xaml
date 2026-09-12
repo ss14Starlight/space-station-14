@@ -1,0 +1,12 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'zone-placer-window-title'}"
+               MinSize="230 400"
+               SetSize="230 400">
+    <BoxContainer Orientation="Vertical">
+        <Label Text="{Loc 'zone-placer-window-hint'}" Margin="4 4 4 4" />
+        <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+            <BoxContainer Name="ZoneList" Orientation="Vertical" HorizontalExpand="True">
+            </BoxContainer>
+        </ScrollContainer>
+    </BoxContainer>
+</DefaultWindow>
