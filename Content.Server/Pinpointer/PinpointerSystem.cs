@@ -14,6 +14,11 @@ public sealed partial class PinpointerSystem : SharedPinpointerSystem
 
     private EntityQuery<TransformComponent> _xformQuery;
 
+    #region Starlight
+    private float _updateAccumulator;
+    private const float UpdateInterval = 0.25f;
+    #endregion
+
     public override void Initialize()
     {
         base.Initialize();
@@ -93,11 +98,19 @@ public sealed partial class PinpointerSystem : SharedPinpointerSystem
     {
         base.Update(frameTime);
 
-        // because target or pinpointer can move
-        // we need to update pinpointers arrow each frame
+        // Starlight: only active pinpointers need their arrow refreshed, and not every single tick
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < UpdateInterval)
+            return;
+
+        _updateAccumulator -= UpdateInterval;
+
         var query = EntityQueryEnumerator<PinpointerComponent>();
         while (query.MoveNext(out var uid, out var pinpointer))
         {
+            if (!pinpointer.IsActive) // Starlight
+                continue;
+
             UpdateDirectionToTarget(uid, pinpointer);
         }
     }
