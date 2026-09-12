@@ -1,20 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Entities buckled to the bonfire with stake no longer suffocate in the walls above the bonfire.
-    type: Fix
-  id: 408111
-  time: '2026-09-03T21:35:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5919
-- author: Wizden Team
-  changes:
-  - message: Fixed an exploit where deconstructing a meat spike with the correct timing could delete someone being hooked onto it.
-    type: Fix
-  id: 408112
-  time: '2026-09-03T21:35:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5919
-- author: Wizden Team
-  changes:
   - message: Fixed some explosions ignoring indestructible tiles.
     type: Fix
   id: 408113
@@ -2799,4 +2785,18 @@ Entries:
   id: 408510
   time: '2026-09-12T07:31:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5912
+- author: Cvlancer
+  changes:
+  - message: Changed roboticist white winter coat sprites.
+    type: Tweak
+  id: 408511
+  time: '2026-09-12T07:49:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6117
+- author: Cvlancer
+  changes:
+  - message: Fixed transparency error in the white winter coat sprite icon.
+    type: Fix
+  id: 408512
+  time: '2026-09-12T07:49:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6117
 Order: -1
