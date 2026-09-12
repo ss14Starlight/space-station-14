@@ -58,11 +58,16 @@ public sealed class WakeActionTest : GameTest
         await pair.RunTicksSync(5);
 
         Assert.That(server.ResolveDependency<IEntityManager>().HasComponent<SleepingComponent>(serverEntity), Is.True);
+
+        await server.WaitPost(() => wakeTestSystem.Cleanup(serverEntity));
+        await pair.RunUntilSynced();
     }
 
     private sealed class WakeActionTestSystem : EntitySystem
     {
         public bool RejectNextWake;
+
+        public void Cleanup(EntityUid entity) => RemComp<SleepingComponent>(entity);
 
         public override void Initialize()
         {
