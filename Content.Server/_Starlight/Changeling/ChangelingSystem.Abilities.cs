@@ -28,11 +28,14 @@ using Content.Server.Changeling.Systems;
 // Starlight edit start
 using Content.Shared.Humanoid;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Flash;
+using Content.Shared.Atmos.Rotting;
 using Content.Shared.Store;
 
 // Starlight edit end
@@ -45,6 +48,9 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private LanguageSystem _language = default!;
     [Dependency] private SharedFlashSystem _flashSystem = default!;
+    [Dependency] private SharedRottingSystem _rotting = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private StomachSystem _stomach = default!;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
@@ -134,6 +140,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         };
         _doAfter.TryStartDoAfter(dargs);
     }
+
     public ProtoId<DamageGroupPrototype> AbsorbedDamageGroup = "Genetic";
     private void OnDevouredPerson(EntityUid uid, ChangelingComponent comp, ref OnLingDevour args)
     {
@@ -161,6 +168,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         // Starlight edit end
 
         EnsureComp<AbsorbedComponent>(target);
+        if (TryComp<PerishableComponent>(target, out var perishable))
+        {
+            _rotting.SetRotAfter(target, TimeSpan.FromMinutes(20), perishable);
+        }
 
         var popup = Loc.GetString("changeling-absorb-end-self-ling");
         var bonusChemicals = 0f;
@@ -306,16 +317,16 @@ public sealed partial class ChangelingSystem : EntitySystem
         DoScreech(uid, comp);
 
         var power = comp.ShriekPower;
-        _flash.FlashArea(uid, uid, power, TimeSpan.FromMilliseconds(power * 2f * 1000f));
+        List<EntityUid> ignoreList = new() { uid };
+        _flash.FlashArea(uid, uid, power, TimeSpan.FromMilliseconds(power * 2f * 1000f), 0.8f, false, 1f, null, ignoreList);
 
         var lookup = _lookup.GetEntitiesInRange(uid, power);
         var lights = GetEntityQuery<PoweredLightComponent>();
-
         foreach (var ent in lookup)
+            // breaks lights
             if (lights.HasComponent(ent))
                 _light.TryDestroyBulb(ent);
     }
-
     private void OnToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp, ref ToggleStrainedMusclesEvent args) => ToggleStrainedMuscles(uid, comp);
 
     private void ToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp)
