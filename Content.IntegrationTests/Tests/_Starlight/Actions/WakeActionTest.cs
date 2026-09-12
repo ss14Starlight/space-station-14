@@ -57,6 +57,7 @@ public sealed class WakeActionTest : GameTest
         });
         await pair.RunTicksSync(5);
 
+        Assert.That(wakeTestSystem.RejectNextWake, Is.False);
         Assert.That(server.ResolveDependency<IEntityManager>().HasComponent<SleepingComponent>(serverEntity), Is.True);
     }
 
