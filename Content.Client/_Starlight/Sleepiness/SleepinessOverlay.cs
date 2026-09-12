@@ -96,7 +96,7 @@ public sealed partial class SleepinessOverlay : Robust.Client.Graphics.Overlay
 
         if (args.Viewport.Eye != eye.Eye)
             return false;
-        
+
 
         if (_visualRatio <= VisualEpsilon)
             return false;

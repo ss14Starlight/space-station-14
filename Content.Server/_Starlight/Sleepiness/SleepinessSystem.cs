@@ -55,7 +55,7 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
                 if (!TryComp<SleepingComponent>(target, out var sleeping))
                     continue;
 
-                _sleeping.TryWaking((target, sleeping), force: true);
+                _sleeping.TryWaking((target, sleeping), ignoreSsd: true);
 
                 continue;
             }
@@ -65,7 +65,7 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
                 sleepiness.WakeRequested = false;
                 if (TryComp<SleepingComponent>(target, out var sleeping))
                 {
-                    _sleeping.TryWaking((target, sleeping));
+                    _sleeping.TryWaking((target, sleeping), ignoreSsd: true);
                 }
                 Dirty(uid, sleepiness);
             }

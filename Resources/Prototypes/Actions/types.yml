@@ -330,7 +330,7 @@
   description: Stop sleeping.
   components:
   - type: Action
-    checkConsciousness: true # Starlight
+    checkConsciousness: false # Starlight
     startDelay: true
     useDelay: 2
     raiseOnUser: true # Starlight

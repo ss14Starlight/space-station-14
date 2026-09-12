@@ -29,6 +29,9 @@ public sealed partial class ReduceSleepinessEntityEffectSystem : EntityEffectSys
 
 public sealed partial class ReduceSleepiness : EntityEffectBase<ReduceSleepiness>
 {
+    /// <summary>
+    /// Duration to remove, in seconds. Defaults to 1 second and is scaled by the effect strength.
+    /// </summary>
     [DataField]
     public TimeSpan? Time = TimeSpan.FromSeconds(1);
 }

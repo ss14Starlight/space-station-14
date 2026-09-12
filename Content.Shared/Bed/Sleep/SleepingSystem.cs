@@ -316,6 +316,7 @@ public sealed partial class SleepingSystem : EntitySystem
     /// <summary>
     /// Tries to wake up <paramref name="ent"/>, with a cooldown between attempts to prevent spam.
     /// </summary>
+    /// <param name="wakePower">Optional sleepiness duration to remove from the target; defaults to 1 second.</param>
     public bool TryWakeWithCooldown(Entity<SleepingComponent?> ent, EntityUid? user = null, TimeSpan? wakePower = null)
     {
         if (!Resolve(ent, ref ent.Comp, false))
@@ -334,8 +335,9 @@ public sealed partial class SleepingSystem : EntitySystem
     /// <summary>
     /// Try to wake up <paramref name="ent"/>.
     /// </summary>
+    /// <param name="wakePower">Optional sleepiness duration to remove from the target; defaults to 1 second.</param>
     public bool TryWaking(Entity<SleepingComponent?> ent, bool force = false, EntityUid? user = null,
-        TimeSpan? wakePower = null)
+        TimeSpan? wakePower = null, bool ignoreSsd = false)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
@@ -351,13 +353,13 @@ public sealed partial class SleepingSystem : EntitySystem
 
         /// Starlight
         /// Ensures that people who are SSD cannot be woken up by others.
-        if (TryComp(ent.Owner, out SSDIndicatorComponent? SSDComp) && SSDComp.IsSSD)
+        if (!ignoreSsd && TryComp(ent.Owner, out SSDIndicatorComponent? SSDComp) && SSDComp.IsSSD)
         {
             PlayWakeFailure(ent.Owner, ent.Comp, user);
             return false;
         }
 
-        var sleepinessWake = new SleepinessWakeAttemptEvent(ent.Owner, wakePower ?? TimeSpan.FromSeconds(3));
+        var sleepinessWake = new SleepinessWakeAttemptEvent(ent.Owner, wakePower ?? TimeSpan.FromSeconds(1));
         RaiseLocalEvent(ref sleepinessWake);
         // Starlight: Do not let client prediction bypass the server-side Sleepiness decision.
         if (sleepinessWake.Result == false)

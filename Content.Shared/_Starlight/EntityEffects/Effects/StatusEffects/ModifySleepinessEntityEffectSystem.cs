@@ -52,7 +52,7 @@ public sealed partial class ModifySleepinessEntityEffectSystem : EntityEffectSys
         var currentDuration = endTime - _timing.CurTime;
         if (args.Effect.OnlyAfterSleepThreshold &&
             (!TryComp<SleepinessStatusEffectComponent>(current.EffectEnt, out var sleepiness) ||
-             currentDuration < sleepiness.SleepThreshold))
+            currentDuration < sleepiness.SleepThreshold))
             return;
 
         if (currentDuration >= args.Effect.MaximumSleepiness)
@@ -99,24 +99,48 @@ public sealed partial class ModifySleepinessEntityEffectSystem : EntityEffectSys
 
 public sealed partial class ModifySleepiness : EntityEffectBase<ModifySleepiness>
 {
+    /// <summary>
+    /// Status effect prototype to add or extend.
+    /// </summary>
     [DataField(required: true)]
     public EntProtoId EffectProto;
 
+    /// <summary>
+    /// Maximum duration of the sleepiness effect.
+    /// </summary>
     [DataField(required: true)]
     public TimeSpan MaximumSleepiness;
 
+    /// <summary>
+    /// Base duration to add, in seconds. Defaults to 1 second, is scaled by the effect strength,
+    /// and is capped at 150% of this value.
+    /// </summary>
     [DataField]
     public TimeSpan? Time = TimeSpan.FromSeconds(1);
 
+    /// <summary>
+    /// Duration of accumulated sleepiness after which resistance reaches 100%. Defaults to 15 minutes;
+    /// a zero or negative value disables resistance.
+    /// </summary>
     [DataField]
     public TimeSpan FullResistanceAfter = TimeSpan.FromMinutes(15);
 
+    /// <summary>
+    /// Whether additional sleepiness is applied only after the current duration reaches SleepThreshold.
+    /// Defaults to false.
+    /// </summary>
     [DataField]
     public bool OnlyAfterSleepThreshold;
 
+    /// <summary>
+    /// Reagent required for sleep induction. Defaults to no reagent.
+    /// </summary>
     [DataField]
     public ProtoId<ReagentPrototype>? SleepInductionReagent;
 
+    /// <summary>
+    /// Minimum reagent amount required for sleep induction. Defaults to zero, which disables the requirement.
+    /// </summary>
     [DataField]
     public FixedPoint2 SleepInductionThreshold = FixedPoint2.Zero;
 }
