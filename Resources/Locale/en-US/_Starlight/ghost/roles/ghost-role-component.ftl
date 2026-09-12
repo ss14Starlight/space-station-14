@@ -142,3 +142,10 @@ ghost-role-information-sentient-sharkminnow-description = Guard the dragon's rif
 
 ghost-role-information-sentient-holocarp-name = Sentient Holocarp
 ghost-role-information-sentient-holocarp-description = Aid the Space Dragon and obey its commands. Help the dragon flood the station with carps and overwhelm its enemies!
+
+
+ghost-role-information-maintenance-drone-description = Maintain the station. Ignore other beings except drones.
+ghost-role-information-maintenance-drone-rules = You are bound by these laws both in-game and out-of-character:
+                                                 1. You may not involve yourself in the matters of another being, even if such matters conflict with Law Two or Law Three, unless the other being is another drone.
+                                                 2. You may not harm any being, regardless of intent or circumstance.
+                                                 3. Your goals are to build, maintain, repair, improve, and power the station to the best of your abilities. You must never actively work against these goals.

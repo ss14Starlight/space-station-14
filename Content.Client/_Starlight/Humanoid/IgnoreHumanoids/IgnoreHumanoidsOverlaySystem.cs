@@ -1,0 +1,65 @@
+using Content.Shared.GameTicking;
+using Robust.Client.Player;
+using Robust.Client.Graphics;
+using Robust.Shared.Player;
+using Content.Shared._Starlight.Humanoid.IgnoreHumanoids;
+
+namespace Content.Client._Starlight.Humanoid.IgnoreHumanoids;
+
+public sealed partial class IgnoreHumanoidsOverlaySystem : EntitySystem
+{
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+
+    private IgnoreHumanoidsOverlay _overlay = default!;
+
+    /// <inheritdoc/>
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<IgnoreHumanoidsComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<IgnoreHumanoidsComponent, ComponentRemove>(OnRemove);
+        SubscribeLocalEvent<LocalPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<LocalPlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+
+        _overlay = new(EntityManager);
+    }
+
+    private void OnInit(EntityUid uid, IgnoreHumanoidsComponent component, ComponentInit args)
+    {
+        if (_player.LocalEntity == uid)
+            _overlayMan.AddOverlay(_overlay);
+    }
+
+    private void OnRemove(EntityUid uid, IgnoreHumanoidsComponent component, ComponentRemove args)
+    {
+        if (_player.LocalEntity == uid)
+        {
+            _overlay.Reset();
+            _overlayMan.RemoveOverlay(_overlay);
+        }
+    }
+
+    private void OnPlayerAttached(LocalPlayerAttachedEvent args)
+    {
+        if (HasComp<IgnoreHumanoidsComponent>(args.Entity))
+            _overlayMan.AddOverlay(_overlay);
+    }
+
+    private void OnPlayerDetached(LocalPlayerDetachedEvent args)
+    {
+        if (HasComp<IgnoreHumanoidsComponent>(args.Entity))
+        {
+            _overlay.Reset();
+            _overlayMan.RemoveOverlay(_overlay);
+        }
+    }
+
+    private void OnRoundRestart(RoundRestartCleanupEvent args)
+    {
+        _overlay.Reset();
+        _overlayMan.RemoveOverlay(_overlay);
+    }
+}
