@@ -1,0 +1,84 @@
+- type: entity
+  id: GeneticSlime
+  parent:
+    - MobRespirator
+    - MobAtmosStandard
+    - SimpleSpaceMobBase
+  name: Genetic Slime
+  description: A thing of unlimited potential, much like uranium. And like uranium, it will give you cancer.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: _Starlight/Mobs/XenoSlimes/slimes.rsi
+      layers:
+        - state: eyes_default
+          shader: unshaded
+          color: "#333333"
+        - state: base1
+    - type: RandomSprite
+      available:
+        - 0: #replaces layer 0 (eyes) with a random one and uses the "Black" color pallete
+            eyes_angry: Black
+            eyes_cat: Black
+            eyes_clown: Black
+            eyes_default: Black
+            eyes_freak: Black
+            eyes_mischief: Black
+            eyes_pins: Black
+            eyes_shocked: Black
+            eyes_smug: Black
+            eyes_squint: Black
+    - type: Hunger
+      baseDecayRate: 1
+    - type: Genes
+      classes:
+        - Slime
+      availableTraits:
+        - MonkeyCubeSpawn
+        - SteelSpawnRapid
+        - SteelSpawnNormal
+        - SteelSpawnSlow
+        - SteelAndGlassSpawn
+    - type: GeneticSlime
+      splitEntity: GeneticSlime
+      extractEntity: GeneticSlimeExtract
+      startingGeneIDs:
+        - startingSlimeGene
+    - type: MeleeWeapon
+      altDisarm: false
+      angle: 0
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      damage:
+        types:
+          Cellular: 10
+          Structural: 5
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: Tag
+      tags:
+        - XenobiologyClawGrabbable
+    - type: Damageable
+      damageContainer: Biological
+      damageModifierSet: XenoSlime
+    - type: TemperatureDamage
+      heatDamageThreshold: 325
+      coldDamageThreshold: 260
+      coldDamage:
+        types:
+          Cold: 5 #per second, scales with temperature & other constants
+      heatDamage:
+        types:
+          Heat: 1.5 #per second, scales with temperature & other constants
+
+- type: sampleGene
+  id: startingSlimeGene
+  traits:
+    traits:
+      MonkeyCubeSpawn: 1.0
+  technicalName: SLmE1
+  name: Base Slime Gene

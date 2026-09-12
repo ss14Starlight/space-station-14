@@ -340,3 +340,8 @@
   flatReductions:
     Blunt: 8
     Heat: 6
+
+- type: damageModifierSet
+  id: XenoSlime
+  coefficients:
+    Cold: 100.0 # Cold for even a moment? Sorry slime, you're dead.

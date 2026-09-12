@@ -1702,6 +1702,7 @@
   - type: Tag
     tags:
       - Monkey
+      - XenobiologyClawGrabbable
   - type: Vocal
     sounds:
       Male: Monkey

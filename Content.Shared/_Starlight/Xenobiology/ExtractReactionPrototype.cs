@@ -30,8 +30,8 @@ public sealed partial class ExtractReactionPrototype : IPrototype
     /// <summary>
     /// Whether the extract should be deleted upon this reaction occuring.
     /// </summary>
-    [DataField("shouldDelete", required: true)]
-    public bool ShouldDelete = default!;
+    [DataField("shouldDelete")]
+    public bool ShouldDelete = false;
 
     /// <summary>
     /// If nonzero, how long until the effect actually occurs.
@@ -52,7 +52,7 @@ public sealed partial class ExtractReactionPrototype : IPrototype
 /// The final factor is then minimizedScalingFactor * scalingFactor + scalingOffset.
 /// Great fans of y = mx + b should find themselves right at home here.
 /// </remarks>
-[DataDefinition]
+[DataDefinition, Serializable]
 public sealed partial class ScaledEntityEffect
 {
     /// <summary>

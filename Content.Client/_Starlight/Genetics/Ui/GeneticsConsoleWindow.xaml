@@ -1,0 +1,52 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                     xmlns:style="clr-namespace:Content.Client.Stylesheets"
+                     Title="{Loc 'genetics-console-window-title'}"
+                     MinWidth="1300"
+                     MinHeight="700"
+                     >
+    <BoxContainer Name="Main" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Name="Panels" Orientation="Horizontal" VerticalExpand="True">
+            <BoxContainer Name="TraitInfoPanel" HorizontalExpand="True" VerticalExpand="True" HorizontalAlignment="Stretch">
+                <Label Text="Trait Info" HorizontalAlignment="Center" HorizontalExpand="True"/>
+            </BoxContainer>
+            <BoxContainer Name="GeneInfoPanel" HorizontalExpand="True" VerticalExpand="True" HorizontalAlignment="Stretch" Orientation="Vertical">
+                <Label Text="Gene Info" HorizontalAlignment="Center" HorizontalExpand="True"/>
+                <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+                    <BoxContainer HorizontalAlignment="Stretch" Orientation="Vertical">
+                        <Label Text="{Loc 'genetics-console-gene-technical-name'}"/>
+                        <Label Name="TechnicalNameLabel" Text="NO GENE SELECTED"/>
+
+                        <Label Text="{Loc 'genetics-console-gene-name'}"/>
+                        <BoxContainer Orientation="Horizontal">
+                            <LineEdit Name="SelectedGeneName" HorizontalExpand="True"/>
+                            <Button Name="SetGeneNameButton" Text="Apply"/>
+                        </BoxContainer>
+
+                        <BoxContainer HorizontalExpand="True" HorizontalAlignment="Stretch">
+                            <TableContainer Name="SelectedGeneTraits" Columns="2" HorizontalExpand="True" HorizontalAlignment="Stretch"/>
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+            <BoxContainer Name="GenesListPanel" HorizontalExpand="True" VerticalExpand="True" HorizontalAlignment="Stretch" Orientation="Vertical">
+                <Label Text="Genes" HorizontalAlignment="Center" HorizontalExpand="True"/>
+                <ItemList Name="GenesItemList" VerticalExpand="True" HorizontalExpand="True" Visible="True" HorizontalAlignment="Stretch"/>
+            </BoxContainer>
+            <BoxContainer Name="GeneInclusionPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalExpand="True" HorizontalExpand="True">
+                <Button Text="-&gt;"/>
+                <Button Text="&lt;-"/>
+            </BoxContainer>
+            <BoxContainer Name="GenomePanel" HorizontalExpand="True" VerticalExpand="True" HorizontalAlignment="Stretch">
+                <Label Text="Genome" HorizontalAlignment="Center" HorizontalExpand="True"/>
+            </BoxContainer>
+            <BoxContainer Name="ResultPanel" HorizontalExpand="True" VerticalExpand="True" HorizontalAlignment="Stretch">
+                <Label Text="Result" HorizontalAlignment="Center" HorizontalExpand="True"/>
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer Name="Printers" Orientation="Horizontal" HorizontalAlignment="Stretch" SeparationOverride="5">
+            <Button Text="Print Genetic Sampler" HorizontalExpand="True"/>
+            <Button Text="Print Genetic Applicator" HorizontalExpand="True"/>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

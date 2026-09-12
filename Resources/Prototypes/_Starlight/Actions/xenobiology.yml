@@ -109,3 +109,19 @@
         state: mech_defense_mode_off
     - type: InstantAction
       event: !type:ConsoleApplyStabilizerPotionEvent
+
+- type: entity
+  id: ClawpackActivateClaw
+  name: Toggle Claw
+  description: Grab the claw from the backpack for use, or return it to the clawpack if already grabbed.
+  components:
+    - type: Action
+      priority: 0
+      itemIconStyle: BigAction
+      checkConsciousness: false
+      checkCanInteract: false
+      icon:
+        sprite: _Starlight/Objects/Specific/Xenobiology/clawpack.rsi
+        state: icon
+    - type: InstantAction
+      event: !type:ClawpackToggleClawEvent
