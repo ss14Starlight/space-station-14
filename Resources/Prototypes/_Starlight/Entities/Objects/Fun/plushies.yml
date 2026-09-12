@@ -277,7 +277,31 @@
         - state: equipped-HELMET
 
 - type: entity
-  parent: BaseLizardPlushie
+  parent: BaseVulpkaninPlushie
+  id: PlushieLance # deltaVelocity
+  name: lance plushie
+  description: Turning a quartermaster into a marketable plushie was not as profitable a venture as many in the cargo department had hoped.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
+  parent: [BaseLizardPlushie, BaseSyndicateContraband]
   id: PlushieLinari # LynatiKr20
   name: linari miun plushie
   description: An expertly crafted plush lizard in tactical officer gear, absent from the standard NanoTrasen catalogues. The stitching on the back says "Property of the Syndicate." Holding it makes you feel like you're breaking at least three corporate regulations.
@@ -316,30 +340,6 @@
       clothingVisuals:
         head:
           - state: equipped-HELMET
-
-- type: entity
-  parent: BaseVulpkaninPlushie
-  id: PlushieLance # deltaVelocity
-  name: lance plushie
-  description: Turning a quartermaster into a marketable plushie was not as profitable a venture as many in the cargo department had hoped.
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
-    layers:
-    - state: icon
-    - state: icon-unshaded
-      shader: unshaded
-  - type: Clothing
-    quickEquip: false
-    sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
-    slots:
-      - HEAD
-    clothingVisuals:
-      head:
-        - state: equipped-HELMET
 
 - type: entity
   parent: BaseMothPlushie
