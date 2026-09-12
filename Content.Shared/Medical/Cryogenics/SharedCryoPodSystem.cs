@@ -501,7 +501,11 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
 
     private void OnBodyInserted(Entity<CryoPodComponent> cryoPod, ref EntInsertedIntoContainerMessage args)
     {
-        if (args.Container == cryoPod.Comp.BodyContainer && !HasComp<InsideCryoPodComponent>(args.Entity)) InsertBody(cryoPod, args.Entity, cryoPod);
+        if (args.Container == cryoPod.Comp.BodyContainer && !HasComp<InsideCryoPodComponent>(args.Entity))
+        {
+            EnsureComp<InsideCryoPodComponent>(args.Entity); // Ensure here to avoid reinsert attempt. Unsure if that actually affects anything but better to be safe IMHO.
+            InsertBody(cryoPod, args.Entity, cryoPod);
+        }
 
         if (args.Container.ID == CryoPodComponent.BodyContainerName)
         {
