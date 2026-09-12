@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Linq;
+using System.Numerics;
 using Content.Client.Graphics;
 using Content.Client.Light;
 using Content.Shared._Funkystation.WallStains.Components;
@@ -6,6 +7,7 @@ using Content.Shared.Tag;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -27,7 +29,6 @@ public sealed partial class WallStainOverlay : Overlay
     [Dependency] private IEntityManager _entityManager = null!;
     [Dependency] private IPrototypeManager _prototypeManager = null!;
     [Dependency] private IGameTiming _gameTiming = null!;
-    private readonly SharedMapSystem _maps;
 
     private readonly TransformSystem _transformSystem;
     private readonly SpriteSystem _spriteSystem;
@@ -36,6 +37,9 @@ public sealed partial class WallStainOverlay : Overlay
 
     private readonly EntityQuery<TransformComponent> _transformQuery;
 
+    private TimeSpan _lastLayoutPrune = TimeSpan.Zero;
+    private static readonly TimeSpan LayoutPruneInterval = TimeSpan.FromSeconds(30);
+
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
     private readonly HashSet<Entity<WallStainComponent>> _visibleStains = [];
@@ -43,13 +47,39 @@ public sealed partial class WallStainOverlay : Overlay
     private readonly HashSet<EntityUid> _intersectingEntities = [];
     private readonly OverlayResourceCache<CachedResources> _resources = new();
 
+    private readonly Dictionary<EntityUid, SplatLayout> _splatLayouts = new();
+
+    private readonly Dictionary<EntityUid, StencilCacheEntry> _stencilCache = new();
+    private static readonly TimeSpan StencilCacheLifetime = TimeSpan.FromSeconds(2);
+
+    private sealed class StencilCacheEntry
+    {
+        public TimeSpan ComputedAt;
+        public readonly List<EntityUid> Entities = new();
+    }
+
     private const float DblPixelsPerMeter = 2f * EyeManager.PixelsPerMeter;
+
+    // min/max splat instances a stain can draw, scaled by how full it is
+    private const int MinSplats = 1;
+    private const int MaxSplats = 5;
+
+    // how far individual splat instances can stray from the stain's origin
+    private const float SplatSpread = 0.5f;
+
+    private readonly record struct SplatInstance(Vector2 Offset);
+
+    private sealed class SplatLayout
+    {
+        public int Seed;
+        public float FillLevel;
+        public SplatInstance[] Instances = Array.Empty<SplatInstance>();
+    }
 
     public WallStainOverlay()
     {
         IoCManager.InjectDependencies(this);
 
-        _maps = _entityManager.System<SharedMapSystem>();
         _transformSystem = _entityManager.System<TransformSystem>();
         _spriteSystem = _entityManager.System<SpriteSystem>();
         _entityLookupSystem = _entityManager.System<EntityLookupSystem>();
@@ -58,6 +88,108 @@ public sealed partial class WallStainOverlay : Overlay
         _transformQuery = _entityManager.GetEntityQuery<TransformComponent>();
 
         ZIndex = AfterLightTargetOverlay.ContentZIndex + 1;
+    }
+
+    private SplatLayout GetSplatLayout(Entity<WallStainComponent> stainEntity)
+    {
+        var stain = stainEntity.Comp;
+
+        if (_splatLayouts.TryGetValue(stainEntity.Owner, out var cached) &&
+            cached.Seed == stain.SplatSeed &&
+            MathF.Abs(cached.FillLevel - stain.FillLevel) < 0.05f)
+        {
+            return cached;
+        }
+
+        var count = Math.Clamp(MinSplats + (int) MathF.Round(stain.FillLevel * (MaxSplats - MinSplats)), MinSplats, MaxSplats);
+        var rand = new Random(stain.SplatSeed);
+
+        var instances = new SplatInstance[count];
+        for (var i = 0; i < count; i++)
+        {
+            var offset = new Vector2(
+                (float) (rand.NextDouble() - 0.5) * SplatSpread,
+                (float) (rand.NextDouble() - 0.5) * SplatSpread);
+            instances[i] = new SplatInstance(offset);
+        }
+
+        var layout = new SplatLayout
+        {
+            Seed = stain.SplatSeed,
+            FillLevel = stain.FillLevel,
+            Instances = instances
+        };
+
+        _splatLayouts[stainEntity.Owner] = layout;
+        return layout;
+    }
+
+    private StencilCacheEntry ComputeStencilTargets(EntityUid stainUid, TransformComponent stainXform, MapId mapId, TimeSpan realTime)
+    {
+        var entry = _stencilCache.TryGetValue(stainUid, out var existing) ? existing : new StencilCacheEntry();
+        entry.Entities.Clear();
+        entry.ComputedAt = realTime;
+
+        var stainWorldPos = _transformSystem.GetWorldPosition(stainXform);
+        var queryBox = Box2.CenteredAround(stainWorldPos, new Vector2(3.0f, 3.0f));
+
+        _tempEntities.Clear();
+        _entityLookupSystem.GetEntitiesIntersecting(mapId, queryBox, _tempEntities, LookupFlags.Static);
+
+        foreach (var uid in _tempEntities)
+        {
+            // We only want to draw stencil masks on entities that have a Sprite and Transform
+            if (!_transformQuery.TryGetComponent(uid, out var transformComponent) ||
+                !_entityManager.TryGetComponent<SpriteComponent>(uid, out _))
+                continue;
+
+            // Andddd only draw stains onto anchored entities
+            if (!transformComponent.Anchored)
+                continue;
+
+            // AAAAAAAAAAND directional windows don't cover the full tile, so skip them to avoid floating stains
+            if (_tagSystem.HasTag(uid, DirectionalWindowTag))
+                continue;
+
+            // Finally, make sure the entity is one of the following:
+            if (!_tagSystem.HasTag(uid, WallTag) &&
+                !_tagSystem.HasTag(uid, WindowTag) &&
+                !_tagSystem.HasTag(uid, AirlockTag))
+            {
+                continue;
+            }
+
+            entry.Entities.Add(uid);
+        }
+
+        _stencilCache[stainUid] = entry;
+        return entry;
+    }
+
+    private void PruneStaleCaches()
+    {
+        if (_splatLayouts.Count == 0 && _stencilCache.Count == 0)
+            return;
+
+        List<EntityUid>? toRemove = null;
+        foreach (var uid in _splatLayouts.Keys.Concat(_stencilCache.Keys))
+        {
+            if (_entityManager.EntityExists(uid))
+                continue;
+
+            toRemove ??= new List<EntityUid>();
+            if (!toRemove.Contains(uid))
+                toRemove.Add(uid);
+        }
+
+        if (toRemove == null)
+            return;
+
+        foreach (var uid in toRemove)
+        {
+            _splatLayouts.Remove(uid);
+            _stencilCache.Remove(uid);
+        }
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -76,6 +208,12 @@ public sealed partial class WallStainOverlay : Overlay
         if (_visibleStains.Count == 0)
             return;
 
+        if (realTime - _lastLayoutPrune > LayoutPruneInterval)
+        {
+            PruneStaleCaches();
+            _lastLayoutPrune = realTime;
+        }
+
         var res = _resources.GetForViewport(viewport, static _ => new CachedResources());
 
         if (res.StainTarget?.Texture.Size != target.Size)
@@ -88,7 +226,6 @@ public sealed partial class WallStainOverlay : Overlay
             () =>
             {
                 _intersectingEntities.Clear();
-                _tempEntities.Clear();
 
                 worldHandle.UseShader(_prototypeManager.Index(UnshadedShader).Instance());
 
@@ -97,37 +234,16 @@ public sealed partial class WallStainOverlay : Overlay
                     if (!_transformQuery.TryGetComponent(stainEntity.Owner, out var stainXform))
                         continue;
 
-                    var stainWorldPos = _transformSystem.GetWorldPosition(stainXform);
-                    var queryBox = Box2.CenteredAround(stainWorldPos, new Vector2(3.0f, 3.0f));
-
-                    _entityLookupSystem.GetEntitiesIntersecting(mapId, queryBox, _tempEntities, LookupFlags.Static);
-
-                    foreach (var uid in _tempEntities)
+                    if (!_stencilCache.TryGetValue(stainEntity.Owner, out var cacheEntry) ||
+                        realTime - cacheEntry.ComputedAt > StencilCacheLifetime)
                     {
-                        // We only want to draw stencil masks on entities that have a Sprite and Transform
-                        if (!_transformQuery.TryGetComponent(uid, out var transformComponent) ||
-                            !_entityManager.TryGetComponent<SpriteComponent>(uid, out _))
-                            continue;
-
-                        // Andddd only draw stains onto anchored entities
-                        if (!transformComponent.Anchored)
-                            continue;
-
-                        // AAAAAAAAAAND directional windows don't cover the full tile, so skip them to avoid floating stains
-                        if (_tagSystem.HasTag(uid, DirectionalWindowTag))
-                            continue;
-
-                        // Finally, make sure the entity is one of the following:
-                        if (!_tagSystem.HasTag(uid, WallTag) &&
-                            !_tagSystem.HasTag(uid, WindowTag) &&
-                            !_tagSystem.HasTag(uid, AirlockTag))
-                        {
-                            continue;
-                        }
-
-                        _intersectingEntities.Add(uid);
+                        cacheEntry = ComputeStencilTargets(stainEntity.Owner, stainXform, mapId, realTime);
                     }
-                    _tempEntities.Clear();
+
+                    foreach (var wallUid in cacheEntry.Entities)
+                    {
+                        _intersectingEntities.Add(wallUid);
+                    }
                 }
 
                 foreach (var uid in _intersectingEntities)
@@ -186,31 +302,26 @@ public sealed partial class WallStainOverlay : Overlay
                 }
             }
 
-            var convertedTextureWidth = texture.Width / DblPixelsPerMeter;
-            var convertedTextureHeight = texture.Height / DblPixelsPerMeter;
+            var halfWidth = texture.Width / DblPixelsPerMeter;
+            var halfHeight = texture.Height / DblPixelsPerMeter;
+            var rect = new Box2(-halfWidth, -halfHeight, halfWidth, halfHeight);
 
             var (_, _, worldMatrix) = _transformSystem.GetWorldPositionRotationMatrix(xform);
-            worldHandle.SetTransform(worldMatrix);
 
-            var scaleX = 1.0f;
-            var scaleY = 1.0f;
+            // scatter a bunch of decals around instead of stretching one decal
+            var layout = GetSplatLayout(stainEntity);
 
-            if (stain.Direction.Y != 0)
+            foreach (var instance in layout.Instances)
             {
-                scaleX = 2.2f;
-            }
-            else if (stain.Direction.X != 0)
-            {
-                scaleY = 2.2f;
-            }
+                var instanceMatrix = Matrix3x2.CreateTranslation(instance.Offset);
+                worldHandle.SetTransform(Matrix3x2.Multiply(instanceMatrix, worldMatrix));
 
-            var rect = new Box2(-convertedTextureWidth * scaleX, -convertedTextureHeight * scaleY, convertedTextureWidth * scaleX, convertedTextureHeight * scaleY);
-
-            worldHandle.DrawTextureRect(
-                texture,
-                rect,
-                modulate: stain.Color
-            );
+                worldHandle.DrawTextureRect(
+                    texture,
+                    rect,
+                    modulate: stain.Color
+                );
+            }
         }
 
         worldHandle.SetTransform(Matrix3x2.Identity);

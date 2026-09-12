@@ -32,6 +32,15 @@ public sealed partial class WallStainSystem : EntitySystem
     private static readonly ProtoId<ReagentPrototype> WaterReagent = "Water";
     private static readonly ProtoId<ReagentPrototype> SpaceCleanerReagent = "SpaceCleaner";
 
+    private static readonly Vector2i[] AdjacentTileOffsets =
+    {
+        new(0, 0),
+        new(0, 1),
+        new(0, -1),
+        new(1, 0),
+        new(-1, 0)
+    };
+
     [Dependency] private SharedMapSystem _map = null!;
     [Dependency] private SharedTransformSystem _transform = null!;
     [Dependency] private SharedSolutionContainerSystem _solution = null!;
@@ -47,6 +56,7 @@ public sealed partial class WallStainSystem : EntitySystem
     private Shared.Chemistry.Reaction.ReactiveReagentEffectEntry _stainCleanEffectEntry = null!;
 
     private float _evaporationAccumulator;
+    private readonly List<(EntityUid Wall, Vector2i Offset)> _wallHits = [];
 
     public override void Initialize()
     {
@@ -87,16 +97,9 @@ public sealed partial class WallStainSystem : EntitySystem
             return;
 
         var tilePos = _map.TileIndicesFor(gridUid.Value, grid, coords);
-        var checkOffsets = new[]
-        {
-            new Vector2i(0, 0),
-            new Vector2i(0, 1),
-            new Vector2i(0, -1),
-            new Vector2i(1, 0),
-            new Vector2i(-1, 0)
-        };
+        _wallHits.Clear();
 
-        foreach (var offset in checkOffsets)
+        foreach (var offset in AdjacentTileOffsets)
         {
             var targetTile = tilePos + offset;
             var anchored = _map.GetAnchoredEntities(gridUid.Value, grid, targetTile); // Starlight
@@ -105,8 +108,13 @@ public sealed partial class WallStainSystem : EntitySystem
                 if (!IsWall(ent.Value))
                     continue;
 
-                ApplyStainToWall(ent.Value, solution, -offset, fraction: 0.25f);
+                _wallHits.Add((ent.Value, offset));
             }
+        }
+
+        foreach (var (wall, offset) in _wallHits)
+        {
+            ApplyStainToWall(wall, solution, -offset, fraction: 0.25f);
         }
     }
 
@@ -155,6 +163,7 @@ public sealed partial class WallStainSystem : EntitySystem
 
             stainComp = Comp<WallStainComponent>(stainUid);
             stainComp.Direction = direction;
+            stainComp.SplatSeed = _random.Next();
             Dirty(stainUid, stainComp);
         }
 
@@ -356,11 +365,13 @@ public sealed partial class WallStainSystem : EntitySystem
         // Starlight-start: avoid networking an unchanged visual state.
         var stainColor = color.WithAlpha(color.A * 0.6f);
         var stainState = solution.ContainsPrototype(WaterReagent) || solution.ContainsPrototype(SpaceCleanerReagent) ? "drip" : "splatter";
-        if (comp.Color == stainColor && comp.StainState == stainState)
+        var fillLevel = comp.MaxStainVolume > 0 ? (float) (solution.Volume / comp.MaxStainVolume) : 0f;
+        if (comp.Color == stainColor && comp.StainState == stainState && comp.FillLevel == fillLevel)
             return;
 
         comp.Color = stainColor;
         comp.StainState = stainState;
+        comp.FillLevel = fillLevel;
         // Starlight-end
         Dirty(uid, comp);
     }
