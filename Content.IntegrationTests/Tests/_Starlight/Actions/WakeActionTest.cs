@@ -32,11 +32,13 @@ public sealed class WakeActionTest : GameTest
         await pair.RunTicksSync(5);
         await pair.RunTicksSync(120);
 
-        var wakeAction = clientActions.GetActions(clientEntity)
-            .Single(action => client.ResolveDependency<IEntityManager>()
-                .GetComponent<InstantActionComponent>(action).Event is WakeActionEvent);
-
-        clientActions.TriggerAction(wakeAction);
+        await client.WaitPost(() =>
+        {
+            var wakeAction = clientActions.GetActions(clientEntity)
+                .Single(action => client.ResolveDependency<IEntityManager>()
+                    .GetComponent<InstantActionComponent>(action).Event is WakeActionEvent);
+            clientActions.TriggerAction(wakeAction);
+        });
         await pair.RunTicksSync(5);
 
         Assert.That(server.ResolveDependency<IEntityManager>().HasComponent<SleepingComponent>(serverEntity), Is.False);
@@ -45,11 +47,14 @@ public sealed class WakeActionTest : GameTest
         await pair.RunTicksSync(5);
         await pair.RunTicksSync(120);
 
-        wakeTestSystem.RejectNextWake = true;
-        wakeAction = clientActions.GetActions(clientEntity)
-            .Single(action => client.ResolveDependency<IEntityManager>()
-                .GetComponent<InstantActionComponent>(action).Event is WakeActionEvent);
-        clientActions.TriggerAction(wakeAction);
+        await server.WaitPost(() => wakeTestSystem.RejectNextWake = true);
+        await client.WaitPost(() =>
+        {
+            var wakeAction = clientActions.GetActions(clientEntity)
+                .Single(action => client.ResolveDependency<IEntityManager>()
+                    .GetComponent<InstantActionComponent>(action).Event is WakeActionEvent);
+            clientActions.TriggerAction(wakeAction);
+        });
         await pair.RunTicksSync(5);
 
         Assert.That(server.ResolveDependency<IEntityManager>().HasComponent<SleepingComponent>(serverEntity), Is.True);
