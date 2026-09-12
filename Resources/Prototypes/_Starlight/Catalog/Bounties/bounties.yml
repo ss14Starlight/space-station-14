@@ -11,7 +11,7 @@
 
 - type: cargoBounty
   id: BountyNexusUplink
-  reward: 21500
+  reward: 12500
   description: bounty-description-nexus-uplink
   entries:
   - name: bounty-item-nexus-uplink
