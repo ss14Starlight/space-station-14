@@ -1,0 +1,169 @@
+- type: zone
+  id: Hallway
+  name: zone-hallway
+  color: "#7A7A7A"
+  priority: 0
+
+- type: zone
+  id: Maintenance
+  name: zone-maintenance
+  color: "#5B4A2E"
+  priority: 10
+  doors:
+  - AirlockMaint
+  - AirlockMaintGlass
+  - AirlockHatchMaintenance
+
+- type: zone
+  id: Command
+  name: zone-command
+  color: "#3F51B5"
+  priority: 20
+  doors:
+  - AirlockCommand
+  - AirlockCommandGlass
+  - AirlockCentralCommand
+  - AirlockCentralCommandGlass
+
+- type: zone
+  id: Security
+  name: zone-security
+  color: "#A33030"
+  priority: 20
+  doors:
+  - AirlockSecurity
+  - AirlockSecurityGlass
+  - AirlockBrigmed
+  - AirlockBrigmedGlass
+
+- type: zone
+  id: Medical
+  name: zone-medical
+  color: "#4DB6AC"
+  priority: 20
+  doors:
+  - AirlockMedical
+  - AirlockMedicalGlass
+  - AirlockVirology
+  - AirlockVirologyGlass
+  - AirlockChemistry
+  - AirlockChemistryGlass
+  - AirlockSurgery
+  - AirlockSurgeryGlass
+  - AirlockParamedic
+  - AirlockParamedicGlass
+
+- type: zone
+  id: Engineering
+  name: zone-engineering
+  color: "#C9A227"
+  priority: 20
+  doors:
+  - AirlockEngineering
+  - AirlockEngineeringGlass
+
+- type: zone
+  id: Science
+  name: zone-science
+  color: "#8E44AD"
+  priority: 20
+  doors:
+  - AirlockScience
+  - AirlockScienceGlass
+  - AirlockRobotics
+  - AirlockRoboticsGlass
+
+- type: zone
+  id: Cargo
+  name: zone-cargo
+  color: "#B07219"
+  priority: 20
+  doors:
+  - AirlockCargo
+  - AirlockCargoGlass
+  - AirlockSalvage
+  - AirlockSalvageGlass
+  - AirlockMining
+  - AirlockMiningGlass
+  - AirlockMail
+  - AirlockMailGlass
+
+- type: zone
+  id: Service
+  name: zone-service
+  color: "#5C9E31"
+  priority: 20
+  doors:
+  - AirlockHydroponics
+  - AirlockHydroponicsGlass
+
+- type: zone
+  id: Arrivals
+  name: zone-arrivals
+  color: "#4F7A8C"
+  priority: 20
+
+- type: zone
+  id: Atmospherics
+  name: zone-atmospherics
+  color: "#B85C38"
+  priority: 30
+  doors:
+  - AirlockAtmospherics
+  - AirlockAtmosphericsGlass
+
+- type: zone
+  id: Bar
+  name: zone-bar
+  color: "#7D4B2A"
+  priority: 30
+
+- type: zone
+  id: Kitchen
+  name: zone-kitchen
+  color: "#C4713A"
+  priority: 30
+
+- type: zone
+  id: Chapel
+  name: zone-chapel
+  color: "#9E9E9E"
+  priority: 30
+
+- type: zone
+  id: Dormitory
+  name: zone-dormitory
+  color: "#6D8B74"
+  priority: 30
+
+- type: zone
+  id: Solars
+  name: zone-solars
+  color: "#2E4A62"
+  priority: 30
+
+- type: rules
+  id: InMaintenanceZone
+  rules:
+  - !type:InZoneRule
+    zones:
+    - Maintenance
+
+- type: rules
+  id: InDepartmentZone
+  rules:
+  - !type:InZoneRule
+    zones:
+    - Command
+    - Security
+    - Medical
+    - Engineering
+    - Science
+    - Cargo
+    - Service
+    - Atmospherics
+    - Bar
+    - Kitchen
+    - Chapel
+    - Dormitory
+    - Solars

@@ -978,3 +978,12 @@
   - type: RandomGridFill
     pathWeights:
       "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_lifeboat.yml": 40
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecSalvageLocked
+  suffix: Salvage, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSalvage ]

@@ -1,0 +1,27 @@
+- type: reagent
+  id: RefinedOil
+  name: reagent-name-refined-oil
+  desc: reagent-desc-refined-oil
+  physicalDesc: reagent-physical-desc-oily
+  slipData:
+    requiredSlipSpeed: 3.5
+  flavor: bitter
+  flavorMinimum: 0.01
+  color: "#cf8d36"
+  friction: 0.4
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:SatiateThirst
+        factor: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Vox]
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Vox]
+          inverted: true
+        damage:
+          types:
+            Poison: 1

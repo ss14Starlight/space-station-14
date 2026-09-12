@@ -1,0 +1,8 @@
+- type: entity
+  parent: Solution
+  id: SolutionVeryLarge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 360

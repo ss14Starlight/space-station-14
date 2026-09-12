@@ -75,7 +75,7 @@
 - type: entity
   name: soviet bear
   id: MobBearSoviet
-  parent: SimpleSpaceMobBase
+  parent: [SimpleSpaceMobBase, BaseSlicingRefinable]
   description: Smells like booze.
   components:
   - type: HTN
@@ -121,7 +121,7 @@
     bloodReferenceSolution:
         reagents:
         - ReagentId: Vodka
-          Quantity: 300
+          Quantity: 600
   - type: CombatMode
   - type: TemperatureDamage
     heatDamageThreshold: 500
@@ -154,8 +154,8 @@
       path: /Audio/Animals/sloth_squeak.ogg
   - type: ReplacementAccent
     accent: genericAggressive
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatBear
       amount: 6
     - id: ChemistryBottleOmnizine

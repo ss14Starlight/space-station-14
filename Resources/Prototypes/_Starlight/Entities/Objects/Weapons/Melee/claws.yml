@@ -3,7 +3,6 @@
   id: BaseClaws
   abstract: true
   components:
-  - type: Sharp
   - type: MeleeWeapon
     mustBeEquippedToUse: true
     wideAnimationRotation: 90

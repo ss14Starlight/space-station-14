@@ -22,6 +22,15 @@
   - type: Contraband
     allowedJobs: [ Roboticist ]
 
+# Atmos
+- type: entity
+  id: BaseAtmosContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ AtmosphericTechnician ]
+
 #Advanced Cyberlimbs
 - type: entity
   id: BaseAdvancedCyberlimbContraband

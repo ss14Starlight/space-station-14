@@ -285,7 +285,10 @@
                     0.1
                 ]
             ]
-
+        },
+        {
+            "name": "SalvageMedic",
+            "copyright": "Swonki"
         },
         {
             "name": "ClericalAssistant",
@@ -314,6 +317,10 @@
         {
             "name": "ReligiousAssistant",
             "copyright": "Rhetorica, modified by bynddark8"
+        },
+        {
+            "name": "JanitorAssistant",
+            "copyright": "Wizards Den, modified by bynddark8"
         },
         {
             "name": "ShopkeeperAssistant",
