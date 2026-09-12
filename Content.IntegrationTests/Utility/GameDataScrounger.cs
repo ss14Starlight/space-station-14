@@ -169,14 +169,14 @@ public static partial class GameDataScrounger
             // Take a directory off the stack.
             var dir = explorationStack.Pop();
 
-            if (ignoreList.Contains(dir))
+            if (ignoreList.Contains(dir) || IsPartialPath(resDir, dir)) // Starlight
                 continue; // It's all abstract anyway.
 
             explorationStack.AddRange(Directory.EnumerateDirectories(dir));
 
             foreach (var file in Directory.EnumerateFiles(dir, "*.yml"))
             {
-                if (ignoreList.Contains(file))
+                if (ignoreList.Contains(file) || IsPartialPath(resDir, file)) // Starlight
                     continue; // It's all abstract anyway.
 
                 foreach (var (kind, id) in IndexPrototypesIn(file))
