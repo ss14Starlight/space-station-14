@@ -1,39 +1,4 @@
 Entries:
-- author: wonderfulnewworld, YaraaraY
-  changes:
-  - message: Added an atmos fire extinguisher to Atmos Tech and CE's lockers. It contains more water than the normal ones, sprays more water at once, and is faster. It can also be worn on the back. It only accepts water and space cleaners, so no huge flamethrowers for you.
-    type: Add
-  id: 408103
-  time: '2026-09-03T21:14:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5951
-- author: Limerent-Sun
-  changes:
-  - message: NPCs will no longer seek out liquids to satisfy hunger.
-    type: Fix
-  id: 408104
-  time: '2026-09-03T21:35:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5966
-- author: Wizden Team
-  changes:
-  - message: Admin logger for criminal status changes.
-    type: Add
-  id: 408105
-  time: '2026-09-03T21:35:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5919
-- author: Wizden Team
-  changes:
-  - message: Silicons now see an indicator for jobs that are considered "crew" under the normal crewsimov lawset.
-    type: Add
-  id: 408106
-  time: '2026-09-03T21:35:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5919
-- author: Wizden Team
-  changes:
-  - message: Removed the Reptilian laugh sound effect due to copyright concerns.
-    type: Remove
-  id: 408107
-  time: '2026-09-03T21:35:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5919
 - author: Wizden Team
   changes:
   - message: The health analyzer and the MedTek PDA app now reactivate once you get back in range of your patient.
@@ -2799,4 +2764,39 @@ Entries:
   id: 408502
   time: '2026-09-12T07:01:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6099
+- author: OJG
+  changes:
+  - message: (Refinery) Re-did solars with extra supplies and less disconnections to clean up the power monitoring console.
+    type: Tweak
+  id: 408503
+  time: '2026-09-12T07:31:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6114
+- author: OJG
+  changes:
+  - message: (Refinery) Moved the fuel dispensers in chem to more accessible spots.
+    type: Tweak
+  id: 408504
+  time: '2026-09-12T07:31:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6114
+- author: OJG
+  changes:
+  - message: (Refinery) Fixed the box for vox draining all of distro.
+    type: Fix
+  id: 408505
+  time: '2026-09-12T07:31:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6114
+- author: OJG
+  changes:
+  - message: (Refinery) Moved grav gen APC.
+    type: Fix
+  id: 408506
+  time: '2026-09-12T07:31:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6114
+- author: OJG
+  changes:
+  - message: (Refinery) Made the secure part of comms actually locked.
+    type: Fix
+  id: 408507
+  time: '2026-09-12T07:31:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6114
 Order: -1
