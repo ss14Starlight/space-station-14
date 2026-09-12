@@ -1,0 +1,125 @@
+
+- type: marking
+  id: ScurretFaceNormal
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/face.rsi
+      state: normal
+  coloring:
+    default:
+      type:
+        !type:EyeColoring
+- type: marking
+  id: ScurretFaceScarred
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/face.rsi
+      state: scarred
+  coloring:
+    default:
+      type:
+        !type:EyeColoring
+- type: marking
+  id: ScurretFaceClosed
+  bodyPart: Eyes
+  markingCategory: Eyes
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/face.rsi
+      state: closed
+  coloring:
+    default:
+      type:
+        !type:EyeColoring
+
+
+- type: marking
+  id: ScurretChestDewlap
+  bodyPart: BodyCover
+  markingCategory: Special
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/head.rsi
+      state: dewlap
+  coloring:
+    default:
+      type:
+        !type:SkinColoring
+
+- type: marking
+  id: ScurretHeadWhiskers
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/head.rsi
+      state: whiskers
+- type: marking
+  id: ScurretHeadEyescar
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/head.rsi
+      state: eyescar
+- type: marking
+  id: ScurretHeadForehead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/head.rsi
+      state: forehead
+- type: marking
+  id: ScurretHeadSealPoint
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/head.rsi
+      state: sealpoint
+
+- type: marking
+  id: ScurretTailSpots
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/tail.rsi
+      state: spots
+- type: marking
+  id: ScurretTailStripes
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/tail.rsi
+      state: stripes
+- type: marking
+  id: ScurretTailmaw
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/tail.rsi
+      state: tailmaw
+- type: marking
+  id: ScurretTailScar
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/tail.rsi
+      state: scar
+- type: marking
+  id: ScurretTailFrills
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Scurret]
+  sprites:
+    - sprite: _Inferus/Mobs/Customization/Scurret/tail.rsi
+      state: frills

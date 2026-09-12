@@ -1,0 +1,7 @@
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryScurret]
+  id: AppearanceScurret
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: HumanoidAppearance
+      species: Scurret

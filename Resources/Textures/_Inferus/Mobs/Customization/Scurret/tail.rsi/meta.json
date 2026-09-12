@@ -1,0 +1,31 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "MIT",
+    "copyright": "https://github.com/InferusSS14/Inferus/blob/main/LICENSE.TXT",
+    "states": [
+      {
+          "name": "spots",
+          "directions": 4
+      },
+      {
+        "name": "scar",
+        "directions": 4
+      },
+      {
+        "name": "frills",
+        "directions": 4
+      },
+      {
+        "name": "stripes",
+        "directions": 4
+      },
+      {
+        "name": "tailmaw",
+        "directions": 4
+      }
+    ]
+}
