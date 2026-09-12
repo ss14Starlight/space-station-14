@@ -3,6 +3,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Atmos.EntitySystems;
 
@@ -35,6 +36,14 @@ public abstract partial class SharedGasTileOverlaySystem : EntitySystem
                 visibleGases.Add(i);
         }
         VisibleGasId = visibleGases.ToArray();
+
+        // Starlight-start
+        if (VisibleGasId.Length > GasOpacityData.MaxVisibleGases)
+        {
+            Log.Error($"There are {VisibleGasId.Length} visible gases, but only {GasOpacityData.MaxVisibleGases} fit in the overlay data. The rest will not be shown.");
+            Array.Resize(ref VisibleGasId, GasOpacityData.MaxVisibleGases);
+        }
+        // Starlight-end
     }
 
     private void OnGetState(EntityUid uid, GasTileOverlayComponent component, ref ComponentGetState args)
@@ -64,11 +73,64 @@ public abstract partial class SharedGasTileOverlaySystem : EntitySystem
         return new Vector2i((int)MathF.Floor((float)indices.X / ChunkSize), (int)MathF.Floor((float)indices.Y / ChunkSize));
     }
 
+    #region Starlight
+    [Serializable, NetSerializable]
+    public struct GasOpacityData : IEquatable<GasOpacityData>
+    {
+        /// <summary>
+        ///     How many visible gases fit in here. <see cref="VisibleGasId"/> may not be longer than this.
+        /// </summary>
+        public const int MaxVisibleGases = 16;
+
+        public ulong Low;
+        public ulong High;
+
+        public bool IsEmpty => Low == 0 && High == 0;
+
+        public byte this[int index]
+        {
+            get
+            {
+                DebugTools.Assert(index >= 0 && index < MaxVisibleGases);
+
+                return index < 8
+                    ? (byte) (Low >> (index * 8))
+                    : (byte) (High >> ((index - 8) * 8));
+            }
+            set
+            {
+                DebugTools.Assert(index >= 0 && index < MaxVisibleGases);
+
+                if (index < 8)
+                {
+                    var shift = index * 8;
+                    Low = (Low & ~((ulong) byte.MaxValue << shift)) | ((ulong) value << shift);
+                }
+                else
+                {
+                    var shift = (index - 8) * 8;
+                    High = (High & ~((ulong) byte.MaxValue << shift)) | ((ulong) value << shift);
+                }
+            }
+        }
+
+        public bool Equals(GasOpacityData other) => Low == other.Low && High == other.High;
+
+        public override bool Equals(object? obj) => obj is GasOpacityData other && Equals(other);
+
+        public override int GetHashCode() => HashCode.Combine(Low, High);
+
+        public static bool operator ==(GasOpacityData a, GasOpacityData b) => a.Equals(b);
+
+        public static bool operator !=(GasOpacityData a, GasOpacityData b) => !a.Equals(b);
+    }
+    #endregion
+
     [Serializable, NetSerializable]
     public readonly struct GasOverlayData : IEquatable<GasOverlayData>
     {
         [ViewVariables] public readonly byte FireState;
-        [ViewVariables] public readonly byte[] Opacity;
+        [ViewVariables] public readonly GasOpacityData Opacity;
         // TODO change fire color based on ByteTemp
 
         /// <summary>
@@ -79,7 +141,7 @@ public abstract partial class SharedGasTileOverlaySystem : EntitySystem
         public readonly ThermalByte ByteGasTemperature;
 
 
-        public GasOverlayData(byte fireState, byte[] opacity, ThermalByte byteTemp)
+        public GasOverlayData(byte fireState, GasOpacityData opacity, ThermalByte byteTemp)
         {
             FireState = fireState;
             Opacity = opacity;
@@ -88,32 +150,40 @@ public abstract partial class SharedGasTileOverlaySystem : EntitySystem
 
         public bool Equals(GasOverlayData other)
         {
-            if (FireState != other.FireState)
-                return false;
-
-            if (Opacity?.Length != other.Opacity?.Length)
-                return false;
-
-            if (Opacity != null && other.Opacity != null)
-            {
-                for (var i = 0; i < Opacity.Length; i++)
-                {
-                    if (Opacity[i] != other.Opacity[i])
-                        return false;
-                }
-            }
-
-            if (ByteGasTemperature != other.ByteGasTemperature)
-                return false;
-
-            return true;
+            return FireState == other.FireState
+                && Opacity.Equals(other.Opacity)
+                && ByteGasTemperature == other.ByteGasTemperature;
         }
+    }
+
+    /// <summary>
+    ///     The tiles of a chunk that changed since the last update, for players that already have the chunk.
+    /// </summary>
+    /// <remarks>
+    ///     Sending the whole 8x8 chunk to every player in range whenever a single tile changes is what makes
+    ///     the gas overlay expensive with a lot of players, so only the changed tiles get sent.
+    /// </remarks>
+    [Serializable, NetSerializable]
+    public sealed class GasOverlayChunkDelta
+    {
+        /// <summary>
+        ///     Index of the chunk these tiles belong to.
+        /// </summary>
+        public Vector2i Index;
+
+        /// <summary>
+        ///     Bit mask of the tile data indices contained in <see cref="Data"/>, lowest index first.
+        /// </summary>
+        public ulong Tiles;
+
+        public GasOverlayData[] Data = [];
     }
 
     [Serializable, NetSerializable]
     public sealed class GasOverlayUpdateEvent : EntityEventArgs
     {
         public Dictionary<NetEntity, List<GasOverlayChunk>> UpdatedChunks = new();
+        public Dictionary<NetEntity, List<GasOverlayChunkDelta>> DeltaChunks = new();
         public Dictionary<NetEntity, HashSet<Vector2i>> RemovedChunks = new();
     }
 }

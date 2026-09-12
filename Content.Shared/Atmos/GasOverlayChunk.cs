@@ -21,6 +21,17 @@ namespace Content.Shared.Atmos
         [NonSerialized]
         public GameTick LastUpdate;
 
+        #region Starlight
+        [NonSerialized]
+        public ulong DirtyTiles;
+
+        [NonSerialized]
+        public GasOverlayChunkDelta? Delta;
+
+        [NonSerialized]
+        public bool UpdateQueued;
+        #endregion
+
         public GasOverlayChunk(Vector2i index)
         {
             Index = index;
