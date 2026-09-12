@@ -1,67 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: Doll organs no longer suffocate in their body when spaced.
-    type: Fix
-  id: 408094
-  time: '2026-09-03T19:44:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5962
-- author: Citrea
-  changes:
-  - message: Dolls can eat and drink again.
-    type: Fix
-  id: 408095
-  time: '2026-09-03T19:44:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5962
-- author: Citrea
-  changes:
-  - message: Dolls can be carried.
-    type: Fix
-  id: 408096
-  time: '2026-09-03T19:44:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5962
-- author: Citrea
-  changes:
-  - message: Horrible eldritch meat creatures don't get roundstart cybernetics.
-    type: Tweak
-  id: 408097
-  time: '2026-09-03T19:44:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5962
-- author: Citrea
-  changes:
-  - message: Doll shells are no longer made of excessive amounts of plasteel.
-    type: Tweak
-  id: 408098
-  time: '2026-09-03T19:44:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5962
-- author: wonderfulnewworld
-  changes:
-  - message: Moproaches (and other regenerating reagent mobs) generate reagents again.
-    type: Fix
-  id: 408099
-  time: '2026-09-03T20:14:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5963
-- author: wonderfulnewworld, YaraaraY
-  changes:
-  - message: Added reagent fires. Please be careful around welding fuel spills. Or vodka spills. Or napalm spills. Oh, and mind your clothes, too.
-    type: Add
-  id: 408100
-  time: '2026-09-03T21:14:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5951
-- author: wonderfulnewworld, YaraaraY
-  changes:
-  - message: Liquids can now splash onto and stain adjacent walls, retaining forensics and reagent flammability.
-    type: Add
-  id: 408101
-  time: '2026-09-03T21:14:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5951
-- author: wonderfulnewworld, YaraaraY
-  changes:
-  - message: New station event that causes large fires in a random part of the station. Keep an extinguisher handy.
-    type: Add
-  id: 408102
-  time: '2026-09-03T21:14:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5951
 - author: wonderfulnewworld, YaraaraY
   changes:
   - message: Added an atmos fire extinguisher to Atmos Tech and CE's lockers. It contains more water than the normal ones, sprays more water at once, and is faster. It can also be worn on the back. It only accepts water and space cleaners, so no huge flamethrowers for you.
@@ -2799,4 +2736,67 @@ Entries:
   id: 408493
   time: '2026-09-12T07:01:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6056
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added 2 Assistant Manager Job Slots.'
+    type: Add
+  id: 408494
+  time: '2026-09-12T07:01:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6099
+- author: Forrestgod
+  changes:
+  - message: "[Serpentcrest] A laundry room has now been added in the NCT's office replacement."
+    type: Add
+  id: 408495
+  time: '2026-09-12T07:01:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6099
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Mining now has a fax.'
+    type: Add
+  id: 408496
+  time: '2026-09-12T07:01:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6099
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Added some more NCT Dispatch Terminals.'
+    type: Add
+  id: 408497
+  time: '2026-09-12T07:01:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6099
+- author: Forrestgod
+  changes:
+  - message: '[Syndicate Cargo Shuttle] Added buying/selling pipes and a subfloor tank.'
+    type: Add
+  id: 408498
+  time: '2026-09-12T07:01:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6099
+- author: Forrestgod
+  changes:
+  - message: '[Syndicate Cargo Shuttle] Changed generator from 15kW to 20kW.'
+    type: Tweak
+  id: 408499
+  time: '2026-09-12T07:01:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6099
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] NCT Spawns relocated to bridge.'
+    type: Tweak
+  id: 408500
+  time: '2026-09-12T07:01:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6099
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] NCT office has been deleted.'
+    type: Remove
+  id: 408501
+  time: '2026-09-12T07:01:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6099
+- author: Forrestgod
+  changes:
+  - message: '[Serpentcrest] Salvage has been kicked off.'
+    type: Remove
+  id: 408502
+  time: '2026-09-12T07:01:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6099
 Order: -1
