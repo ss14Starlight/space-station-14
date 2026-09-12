@@ -4,75 +4,85 @@
 - type: adminRankBuilder
   id: StarlightMRP
   ranks:
-    - name: Host
+    - &host name: Host
       roles:
         - 1305376794823753904 # Host
       flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR, DANGER, HOST]
 
-    - name: Staff Manager
+    - &headdev name: Head Developer
+      roles:
+        - 1408508299283923086 # Head Developer
+      flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR, DANGER, HOST]
+
+    - &deputyheaddev name: Deputy Head Developer
+      roles:
+        - 1412237376289247343 # Deputy Head Developer
+      flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR, DANGER, HOST]
+
+    - &staffmin name: Staff Manager
       roles:
         - 1305029511838175262 # SLN Manager
       flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Staff Supervisor
+    - &staffsup name: Staff Supervisor
       roles:
         - 1305375624613068800 # Staff Supervisor
       flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Staff Instructor
+    - &staffinstr name: Staff Instructor
       roles:
         - 1276773207453728841 # Staff Instructor
       flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, STEALTH, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Staff Administrator
+    - &staffadmin name: Staff Administrator
       roles:
         - 1310741799601573960 # Staff Administrator
       flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, STEALTH, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Maintmin
+    - &maintmin name: Maintmin
       roles:
         - 1380299412164579328 # Maintainer
         - 1305028815906537482 # Game Admin
       flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, STEALTH, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Maintainer
+    - &maintainer name: Maintainer
       roles:
         - 1380299412164579328 # Maintainer
       flags: [ADMIN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, STEALTH, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Event Coordinator
+    - &eventcord name: Event Coordinator
       roles:
         - 1297054047596974090 # Event Coordinator
       flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Jr. Event Coordinator
+    - &jreventcord name: Jr. Event Coordinator
       roles:
         - 1308128839993659422 # Jr. Event Coordinator
       flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Game Devmin
+    - &devmin name: Game Devmin
       roles:
         - 1272899036571238521 # Developer
         - 1305028815906537482 # Game Admin
       flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Game Admin
+    - &gameadmin name: Game Admin
       roles:
         - 1305028815906537482 # Game Admin
       flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Trial Devmin
+    - &trialdevmin name: Trial Devmin
       roles:
         - 1272899036571238521 # Developer
         - 1305029272653533268 # Trial Game Admin
       flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Developer
+    - &developer name: Developer
       roles:
         - 1272899036571238521 # Developer
       flags: [ADMIN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
 
-    - name: Trial Game Admin
+    - &trialmin name: Trial Game Admin
       roles:
         - 1305029272653533268 # Trial Game Admin
       flags: [ADMIN, BAN, DEBUG, SERVER, LOGS, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, ADMINWHO, NAMECOLOR]
@@ -81,79 +91,22 @@
 - type: adminRankBuilder
   id: StarlightLRP
   ranks:
-    - name: Host
-      roles:
-        - 1305376794823753904 # Host
-      flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR, DANGER, HOST]
-
-    - name: Staff Manager
-      roles:
-        - 1305029511838175262 # SLN Manager
-      flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, PII, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Staff Supervisor
-      roles:
-        - 1305375624613068800 # Staff Supervisor
-      flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, MASSBAN, STEALTH, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Staff Instructor
-      roles:
-        - 1276773207453728841 # Staff Instructor
-      flags: [ADMIN, BAN, DEBUG, FUN, PERMISSIONS, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, STEALTH, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Staff Administrator
-      roles:
-        - 1310741799601573960 # Staff Administrator
-      flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, STEALTH, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Maintmin
-      roles:
-        - 1380299412164579328 # Maintainer
-        - 1305028815906537482 # Game Admin
-      flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, STEALTH, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Maintainer
-      roles:
-        - 1380299412164579328 # Maintainer
-      flags: [ADMIN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, STEALTH, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Event Coordinator
-      roles:
-        - 1297054047596974090 # Event Coordinator
-      flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Jr. Event Coordinator
-      roles:
-        - 1308128839993659422 # Jr. Event Coordinator
-      flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Game Devmin
-      roles:
-        - 1272899036571238521 # Developer
-        - 1305028815906537482 # Game Admin
-      flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Game Admin
-      roles:
-        - 1305028815906537482 # Game Admin
-      flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Trial Devmin
-      roles:
-        - 1272899036571238521 # Developer
-        - 1305029272653533268 # Trial Game Admin
-      flags: [ADMIN, BAN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Developer
-      roles:
-        - 1272899036571238521 # Developer
-      flags: [ADMIN, DEBUG, FUN, SERVER, SPAWN, VAREDIT, MAPPING, LOGS, ROUND, QUERY, ADMINHELP, VIEWNOTES, ADMINCHAT, MODERATOR, ADMINWHO, NAMECOLOR]
-
-    - name: Trial Game Admin
-      roles:
-        - 1305029272653533268 # Trial Game Admin
-      flags: [ADMIN, BAN, DEBUG, SERVER, LOGS, ADMINHELP, VIEWNOTES, EDITNOTES, ADMINCHAT, ADMINWHO, NAMECOLOR]
-
+    - *host
+    - *headdev
+    - *deputyheaddev
+    - *staffmin
+    - *staffsup
+    - *staffinstr
+    - *staffadmin
+    - *maintmin
+    - *maintainer
+    - *eventcord
+    - *jreventcord
+    - *devmin
+    - *gameadmin
+    - *trialdevmin
+    - *developer
+    - *trialmin
     - name: Senior Prototyper
       roles:
         - 1473619558211260539 # Senior Prototyper
