@@ -183,7 +183,7 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (shadeXform.MapID != targetCoords.MapId)
                 continue;
 
-            if ((_transform.GetWorldPosition(shadeXform) - targetCoords.Position).LengthSquared() < shadegen.Range * shadegen.Range)
+            if ((_transform.GetWorldPosition(shadeXform) - targetCoords.Position).LengthSquared() <= shadegen.Range * shadegen.Range)
                 return illumination;
         }
 
