@@ -4,7 +4,7 @@ using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Shared._Goobstation.StationRadio.Components;
-using Content.Shared.Item.ItemToggle.Components; // Starlight - Portable radio power toggle
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
