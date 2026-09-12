@@ -1,7 +1,7 @@
 using Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
 using Content.Shared._Goobstation.StationRadio.Events; // Starlight - _Goob -> _Goobstation
 using Content.Shared.Interaction;
-using Content.Shared.Item.ItemToggle.Components; // Starlight - Portable radio power toggle
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Audio.Systems;
