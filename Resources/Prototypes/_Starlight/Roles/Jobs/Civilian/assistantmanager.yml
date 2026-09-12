@@ -20,7 +20,7 @@
   weight: 15
   startingGear: AssistantManagerGear
   icon: "JobIconAssistantManager"
-  supervisors: job-supervisors-command
+  supervisors: job-supervisors-captain
   access:
   - Maintenance
   special:
