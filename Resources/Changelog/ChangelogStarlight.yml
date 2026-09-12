@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Fixed some explosions ignoring indestructible tiles.
-    type: Fix
-  id: 408113
-  time: '2026-09-03T21:35:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5919
-- author: Wizden Team
-  changes:
   - message: Diona minds are now correctly transferred to their nymphs when they gib.
     type: Fix
   id: 408114
@@ -2799,4 +2792,11 @@ Entries:
   id: 408512
   time: '2026-09-12T07:49:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6117
+- author: Kamila, wonderfulnewworld
+  changes:
+  - message: Reduced server CPU cost of pinpointers, ignition sources, expendable lights, and temperature-affecting anomalies by throttling their update rate.
+    type: Tweak
+  id: 408513
+  time: '2026-09-12T07:49:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6119
 Order: -1
