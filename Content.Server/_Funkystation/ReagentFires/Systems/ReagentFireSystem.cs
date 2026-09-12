@@ -341,12 +341,12 @@ public sealed partial class ReagentFireSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        // Starlight-start: these fires advance in one-second steps, so skip their component query between steps.
+        // Starlight-start: these fires advance in half-second steps, so skip their component query between steps.
         _updateAccumulator += frameTime;
         if (_updateAccumulator < UpdateInterval)
             return;
 
-        _updateAccumulator -= UpdateInterval;
+        _updateAccumulator = 0;
         // Starlight-end
 
         _dueFires.Clear();

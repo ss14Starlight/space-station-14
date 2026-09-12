@@ -205,7 +205,7 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
         if (_updateAccumulator < UpdateInterval)
             return;
 
-        _updateAccumulator -= UpdateInterval;
+        _updateAccumulator = 0;
         // Starlight-end
 
         _activeStains.Clear();
