@@ -1,13 +1,6 @@
 Entries:
 - author: OJG
   changes:
-  - message: (Refinery) gave sec a better access to maints through their substation.
-    type: Tweak
-  id: 408086
-  time: '2026-09-03T19:00:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5875
-- author: OJG
-  changes:
   - message: (Refinery) adding missing items like jetpacks and keycard auth devices.
     type: Tweak
   id: 408087
@@ -2799,4 +2792,11 @@ Entries:
   id: 408485
   time: '2026-09-11T10:45:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6097
+- author: Citrea
+  changes:
+  - message: Shell Fragements have lost their surplus e.
+    type: Fix
+  id: 408486
+  time: '2026-09-11T14:14:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6100
 Order: -1
