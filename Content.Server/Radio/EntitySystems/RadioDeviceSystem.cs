@@ -217,7 +217,7 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
         if (TryComp<StationRadioReceiverComponent>(uid, out var receiverComp))
         {
             transmitRange = ChatTransmitRange.HideChat; // Message hidden from chat if from a Station Radio.
-            chatType = receiverComp.LowVolume ? InGameICChatType.Whisper : InGameICChatType.Speak; // Radios will talk loudly if at full volume.
+            chatType = !receiverComp.BoostVolume ? InGameICChatType.Whisper : InGameICChatType.Speak; // Radios will talk loudly if at full volume.
         }
         // Starlight - End
 

@@ -3,14 +3,33 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class StationRadioReceiverComponent : Component
 {
+    /// Starlight edit start
     /// <summary>
-    /// The sound entity being played
+    /// The sound entity. Client only.
+    /// </summary>
+    [ViewVariables]
+    public EntityUid? SoundEntity;
+
+    /// <summary>
+    /// Client side volume.
+    /// </summary>
+    [ViewVariables]
+    public float? ClientVolume;
+
+    /// <summary>
+    /// The song or advertisement being played.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public EntityUid? SoundEntity;
+    public SoundSpecifier? CurrentSound;
+
+    /// <summary>
+    /// When CurrentSound started playing
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TimeSpan? StartTime;
 
     /// <summary>
     /// Is the radio turned on
@@ -21,22 +40,30 @@ public sealed partial class StationRadioReceiverComponent : Component
     /// <summary>
     /// Default audio params for the played audio.
     /// </summary>
+    /// <remarks>
+    /// Do not set volume or gain. it will be reset.
+    /// </remarks>
     [DataField, AutoNetworkedField]
-    public AudioParams DefaultParams = AudioParams.Default.WithVolume(3.5f).WithMaxDistance(8f); // 8 is just the edge of the screen usually
+    public AudioParams DefaultParams = AudioParams.Default.WithMaxDistance(8f); // 8 is just the edge of the screen usually
 
-    // Moffstation - Add Low Volume mode
     /// <summary>
-    /// Is Radio is playing at full or low volume.
+    /// Increase "volume" by changing range
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool LowVolume;
-    // Moffstation - End
+    public bool BoostVolume;
 
-    // Starlight - Dehardcode LowVolume mode's gain.
     /// <summary>
-    /// How quiet the low volume setting on a Station Radio is. Default is 10%.
+    /// Client state.
     /// </summary>
+    public bool BoostVolumePrev;
+
+    /// <summary>
+    /// Boosted AudioParams
+    /// </summary>
+    /// /// <remarks>
+    /// Do not set volume or gain. it will be reset.
+    /// </remarks>
     [DataField, AutoNetworkedField]
-    public float LowVolumeGain = 0.1f;
-    // Starlight - End
+    public AudioParams BoostedParams = AudioParams.Default.WithMaxDistance(12f);
+    /// Starlight Edit end
 }
