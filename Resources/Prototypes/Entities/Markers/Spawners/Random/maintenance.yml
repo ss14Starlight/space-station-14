@@ -237,6 +237,7 @@
       - id: WristwatchGold
       - id: MysteryLighterBox
       - id: ClothingHeadBowlHelmet #Starlight
+      - id: ClothingOuterWireVest
 
 - type: entity
   name: Maint Loot Spawner
