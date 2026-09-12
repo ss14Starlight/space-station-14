@@ -1,6 +1,6 @@
 using Robust.Shared.Toolshed;
 
-namespace Content.Server._Starlight.Commands;
+namespace Content.Shared._Starlight.Commands;
 
 /// Helper class to streamline doing color markup when outputting to console
 public static class CommandMarkup
