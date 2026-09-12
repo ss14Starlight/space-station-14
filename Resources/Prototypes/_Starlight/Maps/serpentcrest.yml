@@ -72,6 +72,7 @@
             MailTech: [ 2, 2 ]
             #civilian
             Assistant: [ -1, -1 ] #infinite, not counted
+            AssistantManager: [ 2, 2 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
