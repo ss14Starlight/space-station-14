@@ -1,0 +1,572 @@
+# Props, markers and staging for the Passenger (greytide) curriculum.
+#
+# House rule for this file: nothing here renames or re-describes a real item. A tutorial prop is a
+# real prototype with sensors, tags and (where a beat needs a known state) a starting state bolted
+# on, and nothing else. A player who learns "mechanical toolbox" here has to find "mechanical
+# toolbox" on the station tomorrow.
+#
+# The mentor himself lives in tide_mentor.yml.
+
+# --- Markers ------------------------------------------------------------------
+#
+# Where the coach stands in each section is not here: that is TutorialWalkPoint0 .. 11 in
+# markers.yml, generic because a mentor who walks is not a greytide idea. What is here are the four
+# spots that are about this curriculum's own props.
+#
+# Each carries its marker id baked in, so a mapper places it and is done. The bare
+# TutorialTideMarker is still spawnable for a one-off, but its id then has to be typed in by hand.
+# None of these carry HideSpawnMenu: the mapping editor's prototype list drops anything that does,
+# and an entity the mapper cannot find is an entity the mapper cannot place.
+
+- type: entity
+  parent: MarkerBase
+  id: TutorialTideMarker
+  name: tutorial marker (tide)
+  description: Reach target. Set the marker id, or place one of the named variants.
+  suffix: Tutorial, Tide
+  components:
+  - type: TutorialStepMarker
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: blue
+      shader: unshaded
+
+# Chamber 5, the two gaps in the disposal run. EntityAtMarker runs at 0.4 tiles on these beats, so
+# they want the dead centre of their tile: off-centre rejects a correctly built pipe, and too close
+# to a neighbour accepts the pipe that is already there.
+- type: entity
+  parent: TutorialTideMarker
+  id: TutorialTideMarkerPipe1
+  suffix: Tutorial, Tide, Pipe Gap 1
+  components:
+  - type: TutorialStepMarker
+    markerId: tide-pipe-1
+
+- type: entity
+  parent: TutorialTideMarker
+  id: TutorialTideMarkerPipe2
+  suffix: Tutorial, Tide, Pipe Gap 2
+  components:
+  - type: TutorialStepMarker
+    markerId: tide-pipe-2
+
+# Inside the vault, one tile past where the pipe run stops: a rider keeps their momentum through
+# the eject and lands short of it, not on it.
+- type: entity
+  parent: TutorialTideMarker
+  id: TutorialTideMarkerVault
+  suffix: Tutorial, Tide, Vault Landing
+  components:
+  - type: TutorialStepMarker
+    markerId: tide-pad-vault
+
+# Chamber 7, where the ID has to end up. 1.5 tiles of reach, so on or beside the counter tile.
+- type: entity
+  parent: TutorialTideMarker
+  id: TutorialTideMarkerCounter
+  suffix: Tutorial, Tide, HoP Counter
+  components:
+  - type: TutorialStepMarker
+    markerId: tide-counter
+
+# --- Chamber 1: the door that says no -----------------------------------------
+
+# TutorialSensorTarget is what the DoorAccessDenied sensor hangs off: it watches the door rather
+# than the player, so an interaction the door consumes is still seen. Tag lists repeat the base
+# airlock's own tags because a child's list replaces the parent's rather than adding to it.
+- type: entity
+  parent: AirlockCargoLocked
+  id: TutorialTideCargoDoor
+  suffix: Tutorial, Tide
+  components:
+  - type: TutorialSensorTarget
+  - type: Tag
+    tags:
+    - Airlock
+    - DoorRemoteWhitelist
+    - TutorialTideCargoDoor
+
+# --- Chamber 2: maintenance, toolbox and belt ---------------------------------
+
+- type: entity
+  parent: AirlockMaint
+  id: TutorialTideMaintDoor
+  suffix: Tutorial, Tide
+  components:
+  - type: TutorialSensorTarget
+  - type: Tag
+    tags:
+    - Airlock
+    - DoorRemoteWhitelist
+    - TutorialTideMaintDoor
+
+# ToolboxMechanicalFilled is not usable here: its screwdriver is a coin flip, and it ships a
+# welder, which would let the player through the welded vault panel in chamber 5 and delete that
+# chamber's whole reason for existing. Same box, same tools, fixed contents.
+- type: entity
+  parent: ToolboxMechanical
+  id: TutorialTideToolbox
+  suffix: Tutorial, Tide
+  components:
+  - type: TutorialSensorTarget
+  # ContainerFill rather than the deprecated StorageFill: deterministic, and the four tools every
+  # later chamber assumes are on the player's belt.
+  - type: ContainerFill
+    containers:
+      storagebase:
+      - Screwdriver
+      - Wirecutter
+      - Crowbar
+      - Multitool
+  - type: Tag
+    tags:
+    - Toolbox
+    - TutorialTideToolbox
+
+# Ships empty. Filling it is the drill.
+- type: entity
+  parent: ClothingBeltUtility
+  id: TutorialTideBelt
+  suffix: Tutorial, Tide
+  components:
+  - type: Tag
+    tags:
+    - UtilityBelt
+    - WhitelistChameleon
+    - TutorialTideBelt
+
+# --- Chamber 3: the grille ----------------------------------------------------
+
+# An electrified grille rather than a bare cable: touching a grille is an ordinary empty-hand
+# click, where hitting a cable would mean teaching combat mode several chambers early.
+- type: entity
+  parent: Grille
+  id: TutorialTideGrille
+  suffix: Tutorial, Tide
+  components:
+  - type: Electrified
+    enabled: true
+    onHandInteract: true
+    requirePower: false
+  - type: Tag
+    tags:
+    - TutorialTideGrille
+
+# --- Chamber 4: materials storage ---------------------------------------------
+
+# Spawns bolted, which is the entire lesson, and the curriculum takes the power off it before it
+# asks for the bolts on purpose. SharedDoorSystem.TrySetBoltDown refuses outright on an unpowered
+# door, so the bolt wire does nothing at all until the player works out that they have to put a
+# power wire back, raise the bolts while it is live, and only then kill it again for the crowbar.
+# Nothing on screen says any of that, so the coach does, in his ordinary script for the unbolt
+# beat: every player arrives at it with the power already off, so it is the lesson rather than a
+# correction and there is nothing to detect.
+- type: entity
+  parent: AirlockEngineeringLocked
+  id: TutorialTideStorageDoor
+  suffix: Tutorial, Tide
+  components:
+  - type: TutorialSensorTarget
+  - type: DoorBolt
+    boltsDown: true
+  - type: Tag
+    tags:
+    - Airlock
+    - DoorRemoteWhitelist
+    - TutorialTideStorageDoor
+
+- type: entity
+  parent: SheetSteel
+  id: TutorialTideSteel
+  suffix: Tutorial, Tide
+  components:
+  - type: Tag
+    tags:
+    - TutorialTideSteel
+
+# --- Chamber 5: the pipe and the vault ----------------------------------------
+
+# Command access and a panel plated over: no wires to reach, and no welder in the curriculum to
+# reach them with. wiresAccessible is set here as well as securityLevel because the level's own
+# construction-graph action only runs when the node is entered, not when an entity spawns on it.
+- type: entity
+  parent: AirlockCommandLocked
+  id: TutorialTideVaultDoor
+  suffix: Tutorial, Tide
+  components:
+  - type: TutorialSensorTarget
+  - type: WiresPanelSecurity
+    securityLevel: maxSecurity
+    wiresAccessible: false
+  - type: Tag
+    tags:
+    - Airlock
+    - DoorRemoteWhitelist
+    - TutorialTideVaultDoor
+
+# The lengths that are already there. The two that are missing are markers, and the player builds
+# plain DisposalPipe onto them out of the construction menu.
+- type: entity
+  parent: DisposalPipe
+  id: TutorialTidePipe
+  suffix: Tutorial, Tide
+  components:
+  - type: TutorialSensorTarget
+  - type: Tag
+    tags:
+    - TutorialTidePipe
+
+- type: entity
+  parent: DisposalUnit
+  id: TutorialTideDisposal
+  suffix: Tutorial, Tide
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: TutorialSensorTarget
+  - type: Tag
+    tags:
+    - TutorialTideDisposal
+
+# --- Chamber 6: the vending machine -------------------------------------------
+
+# ShadyCigs Deluxe, stock table untouched. The hidden shelf is the machine's real contrabandInventory
+# (ground tobacco, gold cigars, an igniter), so what the player finds behind the wire is what they
+# would find behind that wire on the station.
+- type: entity
+  parent: VendingMachineCigs
+  id: TutorialTideVendor
+  suffix: Tutorial, Tide
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: TutorialSensorTarget
+  - type: Tag
+    tags:
+    - TutorialTideVendor
+
+# The shutters come down on the player after the Head of Personnel has said no. Place this instead
+# of a plain SignalButton in the office and link it to the shutters the way you would any other
+# button; the cue throws it, and the link does the rest.
+- type: entity
+  parent: SignalButton
+  id: TutorialTideShutterButton
+  suffix: Tutorial, Tide
+  components:
+  - type: Tag
+    tags:
+    - TutorialTideShutterButton
+
+# --- Quips --------------------------------------------------------------------
+#
+# Attached to props rather than beats: one-off remarks for players who try things the curriculum
+# never asked for. Each fires once per session.
+
+- type: entity
+  parent: FoodTinPeachesMaint
+  id: TutorialTidePeaches
+  suffix: Tutorial, Tide
+  components:
+  - type: TutorialQuip
+    quips:
+    - trigger: Ingested
+      line: tutorial-tide-quip-peaches
+
+- type: entity
+  parent: ClosetMaintenance
+  id: TutorialTideLocker
+  suffix: Tutorial, Tide
+  components:
+  - type: TutorialQuip
+    quips:
+    - trigger: PlayerInserted
+      line: tutorial-tide-quip-locker
+
+# --- Staged set pieces --------------------------------------------------------
+#
+# Three scenes the curriculum plays around the player rather than asking anything of them: the
+# gloves, the refusal at the window, and the arrest. All cues, so they land on a line of dialogue
+# and move with the script if it is ever reworded.
+
+# Placed on the map as SpawnTutorialTideHoP below, never as the mob itself. Every other creature on
+# a station map is a spawner too (Ian is SpawnMobCorgi, not MobCorgiIan), because a mapper's saves
+# are exports of an editor session: anything not placed in that session is not in the next export,
+# and a body is a fiddly thing to keep re-adding. One anchored marker survives every save.
+- type: entity
+  parent: TutorialPracticeMob
+  id: TutorialTideHoP
+  name: head of personnel
+  suffix: Tutorial, Tide
+  components:
+  - type: Loadout
+    prototypes: [VisitorHOP]
+  - type: Tag
+    tags:
+    - TutorialPracticeMob
+    - TutorialTideHoP
+
+# Sprite is the vanilla mob-spawner pair, green cross plus the spawner glyph, so it reads as
+# "something appears here" rather than as one more reach marker.
+- type: entity
+  parent: MarkerBase
+  id: SpawnTutorialTideHoP
+  name: head of personnel spawner
+  description: Put this behind the counter. Places the tutorial Head of Personnel on it at round start.
+  suffix: Tutorial, Tide
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: green
+      shader: unshaded
+    - state: ai
+      shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - TutorialTideHoP
+
+# A seclite reads as a torch rather than an arrest, so he carries the baton the station issues,
+# already drawn. Same prototype, one field.
+- type: entity
+  parent: Stunbaton
+  id: TutorialTideStunbaton
+  suffix: Tutorial, Tide
+  components:
+  - type: ItemToggle
+    activated: true
+
+# VisitorSecurityOfficer with the seclite swapped out. Everything else is that gear verbatim.
+- type: startingGear
+  id: TutorialTideSecGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSec
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHelmetBasic
+    id: VisitorPDA
+    belt: ClothingBeltSecurityWebbingFilled
+    back: ClothingBackpackSecurity
+    ears: ClothingHeadsetSecurity
+    eyes: ClothingEyesGlassesSecurity
+    outerClothing: ClothingOuterArmorBasic
+  inhand:
+  - TutorialTideStunbaton
+
+# Spawned by the boots cue below, which then sends him at the mentor: an officer who materialises
+# across the room and stands there is a poster, not an arrest. Everything here is the walking half
+# of that — the mover pair a mob only gets from being played, the HTN that walks it, and the tag
+# the mentor's facing override looks him up by.
+- type: entity
+  parent: TutorialPracticeMob
+  id: TutorialTideSecOfficer
+  name: security officer
+  suffix: Tutorial, Tide
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: [TutorialTideSecGear]
+  # He is scenery for one beat. Without this he stands over the arrest for the rest of the
+  # tutorial; long enough here to cover the cuffing and the line that follows it.
+  - type: TimedDespawn
+    lifetime: 45
+  # Same three-part deal as the mentor: routing, permission and the shove all have to be there or
+  # he stops at the first airlock between him and the man he came for.
+  - type: Access
+    groups:
+    - AllAccess
+  - type: Tag
+    tags:
+    - TutorialPracticeMob
+    - TutorialTideSecOfficer
+    # A child's tag list replaces its parent's, so this has to be repeated or he cannot open a
+    # door by walking into it. See the note on TutorialPracticeMob.
+    - DoorBumpOpener
+  - type: InputMover
+  - type: MobMover
+  # FollowTarget is left unset on purpose: the cue fills it in with the mentor when it spawns him,
+  # because the mentor is a session entity that does not exist when this prototype is loaded.
+  - type: HTN
+    rootTask:
+      task: TutorialFollowCompound
+    blackboard:
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+      NavInteract: !type:Bool
+        true
+      MinimumIdleTime: !type:Single
+        0.5
+      MaximumIdleTime: !type:Single
+        1.5
+
+# Chamber 3: the gloves. He offers them on his fourth line, so they hit the floor on it rather
+# than being findable before he has explained why the player wants them.
+- type: entity
+  parent: MarkerBase
+  id: TutorialTideCueGloves
+  name: tutorial cue (the gloves)
+  description: Place beside the grille. Drops the insulated gloves, on cue.
+  suffix: Tutorial, Tide
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: red
+      shader: unshaded
+  - type: TutorialCue
+    subGoalId: take-gloves
+    afterLine: 4
+    lineDelay: 0.5
+    delay: 14
+    effect: Stage
+    spawn: ClothingHandsGlovesColorYellow
+
+# Chamber 7: the refusal. Fires on his second line — the ask — so the no always lands on it.
+- type: entity
+  parent: MarkerBase
+  id: TutorialTideCueRefusal
+  name: tutorial cue (HoP refusal)
+  description: Place in the HoP office. Makes the HoP refuse, on cue.
+  suffix: Tutorial, Tide
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: red
+      shader: unshaded
+  - type: TutorialCue
+    subGoalId: refused
+    afterLine: 2
+    lineDelay: 1.5
+    delay: 20
+    effect: Speak
+    targetTag: TutorialTideHoP
+    line: tutorial-tide-hop-refusal
+
+# Chamber 7, the door in the face. Fires a few seconds behind the refusal so the shutters come down
+# on a player who is still standing there, rather than as part of the same sentence.
+- type: entity
+  parent: MarkerBase
+  id: TutorialTideCueShutters
+  name: tutorial cue (the shutters)
+  description: Place in the HoP office. Presses the tagged shutter button, on cue.
+  suffix: Tutorial, Tide
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: red
+      shader: unshaded
+  - type: TutorialCue
+    subGoalId: take-id-back
+    # After the card is back in their hand, not while it is still on the counter: the shutters
+    # coming down over it is a softlock. Line 4 is the first one he says once the beat is done,
+    # and line 5 is him watching them close.
+    afterLine: 4
+    lineDelay: 1.5
+    delay: 30
+    effect: Press
+    targetTag: TutorialTideShutterButton
+
+# Chamber 8, part one: the officer walks in under the word "boots".
+- type: entity
+  parent: MarkerBase
+  id: TutorialTideCueBoots
+  name: tutorial cue (officer arrives)
+  description: Place where Security should come from. Spawns the officer, on cue.
+  suffix: Tutorial, Tide
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: red
+      shader: unshaded
+  - type: TutorialCue
+    subGoalId: security
+    afterLine: 2
+    lineDelay: 0.5
+    delay: 16
+    effect: Stage
+    spawn: TutorialTideSecOfficer
+    # He walks the rest of the way himself. The arrest cue below is on a later line, which is what
+    # gives him time to cross the room before anyone goes down.
+    spawnFollowTag: TutorialTideTider
+
+# Chamber 8, part two: he goes down, but only after his last line. A stunned character cannot
+# speak, so this has to sit behind the shout rather than on top of it. The officer has had the
+# length of four lines to walk over by now.
+- type: entity
+  parent: MarkerBase
+  id: TutorialTideCueArrest
+  name: tutorial cue (the arrest)
+  description: Place beside the officer's arrival. Stuns and cuffs the mentor, on cue.
+  suffix: Tutorial, Tide
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: red
+      shader: unshaded
+  - type: TutorialCue
+    subGoalId: security
+    afterLine: 6
+    lineDelay: 1
+    delay: 24
+    effect: Detain
+    targetTag: TutorialTideTider
+    # He arrives walking and stops wherever his last step left him pointing, which is a coin flip
+    # for a scene the player is watching. Turn him to look at the man he came for.
+    faceTag: TutorialTideSecOfficer
+
+# --- Chamber 8: the sign-off --------------------------------------------------
+#
+# The last word belongs to the facility, not to the man being walked away in cuffs. She takes it
+# the way she takes it everywhere else on the station: a pad lights up and she is standing on it.
+#
+# This is why the pad in the graduation room is this prototype rather than the bare TutorialHolopad.
+# Kowalski leads, so nothing in TutorialHoloMentorSystem is running for this curriculum and no pad
+# would ever light on its own; the cue is what switches this one on. It lives on the pad itself so
+# the projection lands on the right tile with nothing for a mapper to line up.
+- type: entity
+  parent: TutorialHolopad
+  id: TutorialTideHolopad
+  suffix: Tutorial, Tide
+  components:
+  - type: TutorialCue
+    subGoalId: farewell
+    delay: 1.5
+    effect: Project
+    spawn: TutorialTideNanci
+    sound:
+      path: /Audio/Machines/high_tech_confirm.ogg
+
+# Her four closing lines and nothing else: they are keyed to the same sub-goal as everyone else's,
+# and Kowalski lists that sub-goal in silentSubGoals so the two of them do not talk over each other.
+- type: entity
+  parent: TutorialHoloMentor
+  id: TutorialTideNanci
+  suffix: Tutorial, Mentor, Tide
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TutorialTrainer
+    # Wider than the basics coach's 3. There she is a checkpoint the player walks up to; here she
+    # is the last thing in the tutorial and there is no beat after this one to recover in, so she
+    # is not allowed to be waiting for someone who wandered.
+    speakRange: 24
+    lines:
+    - subGoalId: farewell
+      dialogue: tutorial-tide-nanci-farewell-1
+    - subGoalId: farewell
+      dialogue: tutorial-tide-nanci-farewell-2
+    - subGoalId: farewell
+      dialogue: tutorial-tide-nanci-farewell-3
+    - subGoalId: farewell
+      dialogue: tutorial-tide-nanci-farewell-4

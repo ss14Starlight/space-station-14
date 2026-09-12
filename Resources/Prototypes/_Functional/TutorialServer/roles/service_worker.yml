@@ -1,0 +1,128 @@
+# Service sampler - one kitchen section; mini-stations placed around the room (no stamps).
+- type: tutorialRole
+  id: TutorialServiceWorker
+  mentorName: Urist McTemp
+  job: ServiceWorker
+  stub: false
+  simplifiedEnvironment: true
+  category: Service
+  map: /Maps/_Functional/TutorialServer/Roles/Chef.yml
+  roomTemplate: TutorialSectionKitchen
+  guidebook: Service
+  practiceSpawns:
+  - id: ClosetChefFilled
+    room: 0
+    offset: -2, 1
+  - id: TutorialStepMarker
+    room: 0
+    offset: 2, 0
+    marker: sw-pass
+  # Chef corner
+  - id: KitchenKnife
+    room: 0
+    offset: -1.5, -1
+  - id: FoodMeat
+    room: 0
+    offset: -1, -1.5
+  - id: FoodBreadBun
+    room: 0
+    offset: -0.5, -1.5
+  - id: TutorialKitchenMicrowave
+    room: 0
+    offset: -2, -1.5
+  # Botanist corner
+  - id: WheatSeeds
+    room: 0
+    offset: 1.5, 1.5
+  - id: TutorialHydroponicsTray
+    room: 0
+    offset: 2, 1.5
+  # Bartender corner
+  - id: DrinkShaker
+    room: 0
+    offset: 1.5, -1
+  - id: DrinkGlass
+    room: 0
+    offset: 1, -1.5
+  - id: DrinkBottleVodka
+    room: 0
+    offset: 2, -1.5
+  # Janitor corner
+  - id: MopItem
+    room: 0
+    offset: -1.5, 2
+  - id: Bucket
+    room: 0
+    offset: -1, 2
+  - id: WaterTankFull
+    room: 0
+    offset: -2.5, 2
+  - id: TutorialPracticePuddleBlood
+    room: 0
+    offset: 0, 2
+    marker: sw-blood-puddle
+  goals:
+  - id: welcome
+    title: tutorial-job-service-worker-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-service-worker-sg-intro
+      complete: Acknowledge
+  - id: chef
+    title: tutorial-job-service-worker-goal-chef
+    subGoals:
+    - id: knife
+      text: tutorial-job-service-worker-sg-knife
+      complete: HoldItem
+      entity: KitchenKnife
+    - id: meat
+      text: tutorial-job-service-worker-sg-meat
+      complete: HoldItem
+      entity: FoodMeat
+    - id: microwave
+      text: tutorial-job-service-worker-sg-microwave
+      complete: InteractTargetTag
+      tag: TutorialMicrowave
+  - id: botanist
+    title: tutorial-job-service-worker-goal-botanist
+    subGoals:
+    - id: hold-seeds
+      text: tutorial-job-service-worker-sg-seeds
+      complete: HoldItem
+      entity: WheatSeeds
+    - id: tray
+      text: tutorial-job-service-worker-sg-tray
+      complete: InteractTargetTag
+      tag: TutorialHydroTray
+  - id: bartender
+    title: tutorial-job-service-worker-goal-bartender
+    subGoals:
+    - id: hold-shaker
+      text: tutorial-job-service-worker-sg-shaker
+      complete: HoldItem
+      entity: DrinkShaker
+    - id: hold-vodka
+      text: tutorial-job-service-worker-sg-vodka
+      complete: HoldItem
+      entity: DrinkBottleVodka
+  - id: janitor
+    title: tutorial-job-service-worker-goal-janitor
+    subGoals:
+    - id: hold-mop
+      text: tutorial-job-service-worker-sg-mop
+      complete: HoldItem
+      entity: MopItem
+    - id: clear-puddle
+      text: tutorial-job-service-worker-sg-clean
+      complete: PuddleCleared
+      marker: sw-blood-puddle
+    - id: walk
+      text: tutorial-job-service-worker-sg-walk
+      complete: ReachMarker
+      marker: sw-pass
+  - id: finish
+    title: tutorial-job-service-worker-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-service-worker-sg-done
+      complete: Acknowledge

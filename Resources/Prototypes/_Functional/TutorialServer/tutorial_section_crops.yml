@@ -1,0 +1,155 @@
+# Hand-tuned AABB crops for TutorialServer section templates.
+# origin = bottom-left tile on the source station grid; size = width,height in tiles.
+
+# --- Saltern ---
+
+- type: tutorialSectionCrop
+  id: CropMedbay
+  sourceMap: /Maps/saltern.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Medbay.yml
+  templateId: TutorialSectionMedbay
+  origin: 8, -16
+  size: 18, 15
+  gateDoor: AirlockMedical
+  # Stamp south (see TutorialSectionMedbay.stampDirection) — east goes through CMO office.
+  sourceNote: "Saltern medbay (south exit)"
+
+- type: tutorialSectionCrop
+  id: CropChem
+  sourceMap: /Maps/saltern.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Chem.yml
+  templateId: TutorialSectionChem
+  origin: 12, -5
+  size: 10, 9
+  gateDoor: AirlockChemistry
+  # Stamp south — east mid hits maint airlock.
+  sourceNote: "Saltern chemistry (south exit)"
+
+- type: tutorialSectionCrop
+  id: CropScience
+  sourceMap: /Maps/saltern.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Science.yml
+  templateId: TutorialSectionScience
+  origin: -17, -28
+  size: 14, 14
+  gateDoor: AirlockScience
+  # Stamp south (see TutorialSectionScience.stampDirection) — east goes through RD office.
+  sourceNote: "Saltern science wing (south exit)"
+
+- type: tutorialSectionCrop
+  id: CropCommand
+  sourceMap: /Maps/saltern.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Command.yml
+  templateId: TutorialSectionCommand
+  origin: -2, 18
+  size: 18, 16
+  gateDoor: AirlockCommand
+  # Stamp west (see TutorialSectionCommand.stampDirection) — east goes through Cap quarters.
+  sourceNote: "Saltern bridge + Cap + HoP (west exit)"
+
+- type: tutorialSectionCrop
+  id: CropBar
+  sourceMap: /Maps/saltern.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Bar.yml
+  templateId: TutorialSectionBar
+  origin: -16, -12
+  size: 14, 12
+  gateDoor: AirlockServiceLocked
+  sourceNote: "Saltern bar"
+
+- type: tutorialSectionCrop
+  id: CropHydroponics
+  sourceMap: /Maps/saltern.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Hydroponics.yml
+  templateId: TutorialSectionHydroponics
+  origin: -24, -6
+  size: 12, 12
+  gateDoor: AirlockServiceLocked
+  # Stamp west — east strip has freezer airlocks.
+  sourceNote: "Saltern hydroponics (west exit)"
+
+- type: tutorialSectionCrop
+  id: CropArrivals
+  sourceMap: /Maps/saltern.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Arrivals.yml
+  templateId: TutorialSectionArrivals
+  origin: -52, -16
+  size: 14, 12
+  gateDoor: TutorialAirlockMaint
+  sourceNote: "Saltern arrivals tip"
+
+- type: tutorialSectionCrop
+  id: CropEngineering
+  sourceMap: /Maps/saltern.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Engineering.yml
+  templateId: TutorialSectionEngineering
+  origin: 25, -6
+  size: 18, 14
+  gateDoor: AirlockEngineering
+  # Stamp east — west edge is toward the rest of the station.
+  sourceNote: "Saltern engineering bay (east exit)"
+
+- type: tutorialSectionCrop
+  id: CropKitchen
+  sourceMap: /Maps/saltern.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Kitchen.yml
+  templateId: TutorialSectionKitchen
+  origin: -20, -6
+  size: 14, 12
+  gateDoor: AirlockServiceLocked
+  # Stamp south — kitchen hall toward bar/service.
+  sourceNote: "Saltern kitchen (south exit)"
+
+- type: tutorialSectionCrop
+  id: CropCargoOffice
+  sourceMap: /Maps/saltern.yml
+  output: /Maps/_Functional/TutorialServer/Sections/CargoOffice.yml
+  templateId: TutorialSectionCargoOffice
+  origin: 12, 5
+  size: 18, 11
+  gateDoor: AirlockCargo
+  # Stamp west — away from cargo bay / QM east office cluster.
+  sourceNote: "Saltern cargo reception + QM office (west exit)"
+
+# --- Packed ---
+
+- type: tutorialSectionCrop
+  id: CropSurgery
+  sourceMap: /Maps/packed.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Surgery.yml
+  templateId: TutorialSectionSurgery
+  origin: 59, -12
+  size: 12, 12
+  gateDoor: AirlockMedical
+  sourceNote: "Packed surgery suite"
+
+- type: tutorialSectionCrop
+  id: CropAtmos
+  sourceMap: /Maps/packed.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Atmos.yml
+  templateId: TutorialSectionAtmos
+  origin: 23, -39
+  size: 16, 14
+  gateDoor: AirlockAtmospherics
+  # Stamp south — center N–S airlock corridor from TutorialZoneOrigin.
+  sourceNote: "Packed atmospherics core (south exit via center corridor)"
+
+- type: tutorialSectionCrop
+  id: CropJanitor
+  sourceMap: /Maps/packed.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Janitor.yml
+  templateId: TutorialSectionJanitor
+  origin: 0, -8
+  size: 8, 7
+  gateDoor: AirlockMaint
+  sourceNote: "Packed janitor closet"
+
+- type: tutorialSectionCrop
+  id: CropTheatre
+  sourceMap: /Maps/packed.yml
+  output: /Maps/_Functional/TutorialServer/Sections/Theatre.yml
+  templateId: TutorialSectionTheatre
+  origin: 18, -11
+  size: 14, 20
+  gateDoor: Airlock
+  sourceNote: "Packed theatre / clown-mime stage"

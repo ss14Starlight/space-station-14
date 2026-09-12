@@ -1,11 +1,13 @@
-﻿namespace Content.Server.Power.Generation.Teg;
+﻿using Content.Server._Functional.TutorialServer;
+
+namespace Content.Server.Power.Generation.Teg;
 
 /// <summary>
 /// The centerpiece for the thermo-electric generator (TEG).
 /// </summary>
 /// <seealso cref="TegSystem"/>
 [RegisterComponent]
-[Access(typeof(TegSystem))]
+[Access(typeof(TegSystem), typeof(TutorialTegBootstrapSystem))] // Starlight edit
 public sealed partial class TegGeneratorComponent : Component
 {
     /// <summary>

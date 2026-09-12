@@ -1,0 +1,19 @@
+# Tutorial nuclear bomb — arms normally, never detonates (TutorialDummyNuke + NukeSystem clamp).
+# Auth codes are shared across all nukes while TutorialServer is active (see NukeSystem).
+
+- type: entity
+  parent: NuclearBomb
+  id: TutorialNuclearBomb
+  suffix: Tutorial
+  components:
+  - type: TutorialDummyNuke
+
+- type: entity
+  parent: TutorialNuclearBomb
+  id: TutorialNuclearBombUnanchored
+  suffix: Tutorial, Unanchored
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Dynamic

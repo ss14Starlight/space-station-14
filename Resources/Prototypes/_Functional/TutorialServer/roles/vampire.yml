@@ -1,0 +1,58 @@
+- type: tutorialRole
+  id: TutorialAntagVampire
+  mentorName: Urist McFang
+  job: Passenger
+  antag: Vampire
+  stub: true # temporarily greyed pending manual test
+  simplifiedEnvironment: true
+  category: Server specific
+  subCategory: Starlight
+  name: tutorial-antag-vampire-name
+  roomTemplate: TutorialSectionMaintAntag
+  practiceSpawns:
+  - id: TutorialPracticeMobVictim
+    room: 0
+    offset: 0, -0.5
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: vampire-pass
+  goals:
+  - id: welcome
+    title: tutorial-antag-vampire-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-vampire-sg-intro
+      complete: Acknowledge
+  - id: fangs
+    title: tutorial-antag-vampire-goal-fangs
+    subGoals:
+    - id: extend-fangs
+      text: tutorial-antag-vampire-sg-extend-fangs
+      complete: VampireFangsExtended
+  - id: drink
+    title: tutorial-antag-vampire-goal-drink
+    subGoals:
+    - id: drink-blood
+      text: tutorial-antag-vampire-sg-drink
+      complete: VampireBloodAbove
+      minCount: 40
+  - id: class
+    title: tutorial-antag-vampire-goal-class
+    subGoals:
+    - id: choose-class
+      text: tutorial-antag-vampire-sg-choose-class
+      complete: VampireClassChosen
+    - id: class-tip
+      text: tutorial-antag-vampire-sg-class-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-antag-vampire-sg-walk
+      complete: ReachMarker
+      marker: vampire-pass
+  - id: finish
+    title: tutorial-antag-vampire-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-vampire-sg-done
+      complete: Acknowledge

@@ -1,0 +1,85 @@
+- type: tutorialRole
+  id: TutorialDetective
+  mentorName: Urist McNoir
+  job: Detective
+  stub: false
+  simplifiedEnvironment: true
+  category: Security
+  map: /Maps/_Functional/TutorialServer/Roles/Detective.yml
+  roomTemplate: TutorialSectionSecurity
+  guidebook: Security
+  practiceSpawns:
+  - id: LockerDetectiveFilled
+    room: 0
+    offset: -2, 1
+  - id: ForensicScanner
+    room: 0
+    offset: 0.5, 0
+  - id: ForensicPad
+    room: 0
+    offset: 0.8, 0
+  - id: TutorialForensicsEvidence
+    room: 0
+    offset: 0, -0.5
+  - id: Handcuffs
+    room: 0
+    offset: 0.5, 0
+  - id: TutorialPracticeMobSuspect
+    room: 0
+    offset: 0, 0
+  - id: FlashlightSeclite
+    room: 0
+    offset: -0.5, 0
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: det-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-detective-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-detective-sg-intro
+      complete: Acknowledge
+  - id: forensics
+    title: tutorial-job-detective-goal-forensics
+    subGoals:
+    - id: hold-scanner
+      text: tutorial-job-detective-sg-scanner
+      complete: HoldItem
+      entity: ForensicScanner
+    - id: scan-evidence
+      text: tutorial-job-detective-sg-scan
+      complete: InteractTargetTag
+      tag: TutorialForensicsEvidence
+    - id: hold-pad
+      text: tutorial-job-detective-sg-pad
+      complete: HoldItem
+      entity: ForensicPad
+    - id: pad-suspect
+      text: tutorial-job-detective-sg-pad-suspect
+      complete: InteractTargetTag
+      tag: TutorialPracticeMob
+    - id: case-tip
+      text: tutorial-job-detective-sg-case-tip
+      complete: Acknowledge
+  - id: detain
+    title: tutorial-job-detective-goal-detain
+    subGoals:
+    - id: hold-cuffs
+      text: tutorial-job-detective-sg-cuffs
+      complete: HoldItem
+      entity: Handcuffs
+    - id: cuff-dummy
+      text: tutorial-job-detective-sg-cuff
+      complete: PracticeMobCuffed
+    - id: walk
+      text: tutorial-job-detective-sg-walk
+      complete: ReachMarker
+      marker: det-pass
+  - id: finish
+    title: tutorial-job-detective-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-detective-sg-done
+      complete: Acknowledge

@@ -1,0 +1,90 @@
+- type: tutorialRole
+  id: TutorialBartender
+  mentorName: Urist McDrunkard
+  job: Bartender
+  stub: false
+  simplifiedEnvironment: true
+  category: Service
+  map: /Maps/_Functional/TutorialServer/Roles/Bartender.yml
+  roomTemplate: TutorialSectionBar
+  guidebook: Bartender
+  practiceSpawns:
+  - id: LockerBoozeFilled
+    room: 0
+    offset: -2, 1
+  - id: TutorialVendingMachineBooze
+    room: 0
+    offset: 1.5, 1
+  - id: DrinkBottleVodka
+    room: 0
+    offset: 0, -0.5
+  - id: DrinkJuiceOrangeCarton
+    room: 0
+    offset: 0.4, -0.5
+  - id: DrinkShaker
+    room: 0
+    offset: 0.5, 0
+  - id: DrinkGlass
+    room: 0
+    offset: -0.5, 0
+  - id: DrinkGlass
+    room: 0
+    offset: -0.2, 0
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: bar-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-bartender-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-bartender-sg-intro
+      complete: Acknowledge
+  - id: stock
+    title: tutorial-job-bartender-goal-stock
+    subGoals:
+    - id: booze-vend
+      text: tutorial-job-bartender-sg-vend
+      complete: InteractTargetTag
+      tag: TutorialVending
+    - id: hold-glass
+      text: tutorial-job-bartender-sg-glass
+      complete: HoldItem
+      entity: DrinkGlass
+  - id: mix
+    title: tutorial-job-bartender-goal-mix
+    subGoals:
+    - id: hold-shaker
+      text: tutorial-job-bartender-sg-shaker
+      complete: HoldItem
+      entity: DrinkShaker
+    - id: hold-vodka
+      text: tutorial-job-bartender-sg-vodka
+      complete: HoldItem
+      entity: DrinkBottleVodka
+    - id: hold-orange
+      text: tutorial-job-bartender-sg-orange
+      complete: HoldItem
+      entity: DrinkJuiceOrangeCarton
+    - id: screwdriver
+      text: tutorial-job-bartender-sg-screwdriver
+      complete: SolutionContains
+      reagent: ScrewdriverCocktail
+      minAmount: 1
+  - id: floor
+    title: tutorial-job-bartender-goal-floor
+    subGoals:
+    - id: exits-tip
+      text: tutorial-job-bartender-sg-exits-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-job-bartender-sg-walk
+      complete: ReachMarker
+      marker: bar-pass
+  - id: finish
+    title: tutorial-job-bartender-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-bartender-sg-done
+      complete: Acknowledge

@@ -1,0 +1,99 @@
+# Science progression - walk the Saltern science lab to the R&D console location,
+# unlock a tech, and print on the robotics fabricator. Single chamber (no stamp).
+- type: tutorialRole
+  id: TutorialResearchAssistant
+  mentorName: Urist McIntern
+  job: ResearchAssistant
+  stub: false
+  simplifiedEnvironment: true
+  category: Science
+  map: /Maps/_Functional/TutorialServer/Roles/Scientist.yml
+  roomTemplate: TutorialSectionScience
+  guidebook: Science
+  practiceSpawns:
+  # Kit near the science locker / spawn (chamber center).
+  - id: LockerScienceFilled
+    room: 0
+    offset: -2, 1
+  - id: Multitool
+    room: 0
+    offset: 0.5, 0
+  - id: NodeScanner
+    room: 0
+    offset: 1, 0
+  # Saltern R&D console sits ~(-4,-4) from the science crop zone origin.
+  # Place practice machines on that real layout spot so the player walks the lab.
+  - id: TutorialResearchServer
+    room: 0
+    offset: -5, -3.5
+  - id: TutorialResearchConsole
+    room: 0
+    offset: -4, -4
+  - id: TutorialExosuitFabricator
+    room: 0
+    offset: -2.5, -3.5
+  - id: SheetSteel10
+    room: 0
+    offset: -3, -5
+  - id: SheetGlass10
+    room: 0
+    offset: -2, -5
+  - id: TutorialStepMarker
+    room: 0
+    offset: -4, -4.5
+    marker: ra-console
+  - id: TutorialStepMarker
+    room: 0
+    offset: -1, -5
+    marker: ra-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-research-assistant-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-research-assistant-sg-intro
+      complete: Acknowledge
+  - id: kit
+    title: tutorial-job-research-assistant-goal-kit
+    subGoals:
+    - id: hold-multitool
+      text: tutorial-job-research-assistant-sg-multitool
+      complete: HoldItem
+      entity: Multitool
+    - id: hold-node
+      text: tutorial-job-research-assistant-sg-node
+      complete: HoldItem
+      entity: NodeScanner
+  - id: research
+    title: tutorial-job-research-assistant-goal-research
+    subGoals:
+    - id: walk-console
+      text: tutorial-job-research-assistant-sg-walk-console
+      complete: ReachMarker
+      marker: ra-console
+    - id: open-console
+      text: tutorial-job-research-assistant-sg-console
+      complete: InteractTargetTag
+      tag: TutorialResearchConsole
+    - id: unlock-tech
+      text: tutorial-job-research-assistant-sg-unlock
+      complete: ResearchUnlocked
+      technology: BasicRobotics
+    - id: hold-steel
+      text: tutorial-job-research-assistant-sg-steel
+      complete: HoldItem
+      entity: SheetSteel10
+    - id: print-sensor
+      text: tutorial-job-research-assistant-sg-print
+      complete: LathePrinted
+      entity: ProximitySensor
+    - id: walk
+      text: tutorial-job-research-assistant-sg-walk
+      complete: ReachMarker
+      marker: ra-pass
+  - id: finish
+    title: tutorial-job-research-assistant-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-research-assistant-sg-done
+      complete: Acknowledge

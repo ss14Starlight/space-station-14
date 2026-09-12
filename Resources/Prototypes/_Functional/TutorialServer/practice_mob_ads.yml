@@ -1,0 +1,49 @@
+# Localized datasets for tutorial practice-mob idle chatter (Vocalizer + DatasetVocalizer).
+
+- type: localizedDataset
+  id: TutorialPracticeMobCriminalAds
+  values:
+    prefix: tutorial-practice-mob-criminal-
+    count: 8
+
+- type: localizedDataset
+  id: TutorialPracticeMobSuspectAds
+  values:
+    prefix: tutorial-practice-mob-suspect-
+    count: 8
+
+- type: localizedDataset
+  id: TutorialPracticeMobPatientAds
+  values:
+    prefix: tutorial-practice-mob-patient-
+    count: 8
+
+- type: localizedDataset
+  id: TutorialPracticeMobCasualtyAds
+  values:
+    prefix: tutorial-practice-mob-casualty-
+    count: 6
+
+- type: localizedDataset
+  id: TutorialPracticeMobParishionerAds
+  values:
+    prefix: tutorial-practice-mob-parishioner-
+    count: 8
+
+- type: localizedDataset
+  id: TutorialPracticeMobAudienceAds
+  values:
+    prefix: tutorial-practice-mob-audience-
+    count: 8
+
+- type: localizedDataset
+  id: TutorialPracticeMobVictimAds
+  values:
+    prefix: tutorial-practice-mob-victim-
+    count: 8
+
+- type: localizedDataset
+  id: TutorialPracticeMobConvertibleAds
+  values:
+    prefix: tutorial-practice-mob-convertible-
+    count: 8

@@ -1,0 +1,77 @@
+- type: tutorialRole
+  id: TutorialAntagHeadRev
+  mentorName: Urist McFlash
+  job: Passenger
+  antag: HeadRev
+  stub: false
+  simplifiedEnvironment: true
+  category: Wizden antagonists
+  name: tutorial-antag-rev-name
+  roomTemplate: TutorialSectionMaintAntag
+  guidebook: Revolutionaries
+  practiceSpawns:
+  - id: Flash
+    room: 0
+    offset: 0.5, 0
+  - id: ClothingEyesGlassesSunglasses
+    room: 0
+    offset: -0.5, 0
+  - id: TutorialPracticeMobConvertible
+    room: 0
+    offset: -1.2, -0.5
+  - id: TutorialPracticeMobConvertible
+    room: 0
+    offset: 0, -0.5
+  - id: TutorialPracticeMobConvertible
+    room: 0
+    offset: 1.2, -0.5
+  - id: TutorialPracticeMobConvertible
+    room: 0
+    offset: -0.6, -1.3
+  - id: TutorialPracticeMobConvertible
+    room: 0
+    offset: 0.6, -1.3
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: rev-pass
+  goals:
+  - id: welcome
+    title: tutorial-antag-rev-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-rev-sg-intro
+      complete: Acknowledge
+    - id: follow-tip
+      text: tutorial-antag-rev-sg-follow-tip
+      complete: Acknowledge
+  - id: gear
+    title: tutorial-antag-rev-goal-gear
+    subGoals:
+    - id: hold-flash
+      text: tutorial-antag-rev-sg-hold-flash
+      complete: HoldItem
+      entity: Flash
+    - id: sunglasses-tip
+      text: tutorial-antag-rev-sg-sunglasses
+      complete: Acknowledge
+  - id: convert
+    title: tutorial-antag-rev-goal-convert
+    subGoals:
+    - id: convert-crew
+      text: tutorial-antag-rev-sg-convert
+      complete: PracticeMobConverted
+      minCount: 3
+    - id: rev-role-tip
+      text: tutorial-antag-rev-sg-rev-role-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-antag-rev-sg-walk
+      complete: ReachMarker
+      marker: rev-pass
+  - id: finish
+    title: tutorial-antag-rev-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-rev-sg-done
+      complete: Acknowledge

@@ -1,0 +1,81 @@
+- type: tutorialRole
+  id: TutorialClown
+  mentorName: Urist McHonk
+  job: Clown
+  stub: false
+  simplifiedEnvironment: true
+  category: Service
+  map: /Maps/_Functional/TutorialServer/Roles/Clown.yml
+  roomTemplate: TutorialSectionTheatre
+  guidebook: Service
+  practiceSpawns:
+  - id: BikeHorn
+    room: 0
+    offset: 0.5, 0
+  - id: BikeHorn
+    room: 0
+    offset: 0.7, 0
+  - id: FoodPieBananaCream
+    room: 0
+    offset: -0.5, 0
+  - id: TutorialPracticeMobAudience
+    room: 0
+    offset: 0, -1
+  - id: Soap
+    room: 0
+    offset: 0.5, 0
+  - id: TrashBananaPeel
+    room: 0
+    offset: -0.5, 0
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: clown-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-clown-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-clown-sg-intro
+      complete: Acknowledge
+    - id: conduct
+      text: tutorial-job-clown-sg-conduct
+      complete: Acknowledge
+  - id: honk
+    title: tutorial-job-clown-goal-honk
+    subGoals:
+    - id: hold-horn
+      text: tutorial-job-clown-sg-horn
+      complete: HoldItem
+      entity: BikeHorn
+    - id: use-horn
+      text: tutorial-job-clown-sg-use-horn
+      complete: UseInHand
+      entity: BikeHorn
+  - id: pranks
+    title: tutorial-job-clown-goal-pranks
+    subGoals:
+    - id: hold-pie
+      text: tutorial-job-clown-sg-pie
+      complete: HoldItem
+      entity: FoodPieBananaCream
+    - id: pie-dummy
+      text: tutorial-job-clown-sg-pie-dummy
+      complete: PracticeMobCreamPied
+    - id: hold-soap
+      text: tutorial-job-clown-sg-soap
+      complete: HoldItem
+      entity: Soap
+    - id: slip-dummy
+      text: tutorial-job-clown-sg-slip-dummy
+      complete: PracticeMobSlipped
+    - id: walk
+      text: tutorial-job-clown-sg-walk
+      complete: ReachMarker
+      marker: clown-pass
+  - id: finish
+    title: tutorial-job-clown-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-clown-sg-done
+      complete: Acknowledge

@@ -1,0 +1,72 @@
+- type: tutorialRole
+  id: TutorialChaplain
+  mentorName: Urist McHoly
+  job: Chaplain
+  stub: false
+  simplifiedEnvironment: true
+  category: Service
+  map: /Maps/_Functional/TutorialServer/Roles/Chaplain.yml
+  roomTemplate: TutorialSectionChapel
+  guidebook: Service
+  practiceSpawns:
+  - id: AltarNanotrasen
+    room: 0
+    offset: 0, 1
+  - id: TutorialBible
+    room: 0
+    offset: 1, 0
+  - id: TutorialPracticeMobParishioner
+    room: 0
+    offset: -1, 0
+  - id: BookRandom
+    room: 0
+    offset: 0.5, -1
+  - id: DrinkBottleNTCahors
+    room: 0
+    offset: 0.5, 0
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: chapel-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-chaplain-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-chaplain-sg-intro
+      complete: Acknowledge
+  - id: sacred
+    title: tutorial-job-chaplain-goal-sacred
+    subGoals:
+    - id: hold-bible
+      text: tutorial-job-chaplain-sg-bible
+      complete: HoldItem
+      entity: TutorialBible
+    - id: heal-parishioner
+      text: tutorial-job-chaplain-sg-heal
+      complete: PracticeMobDamageBelow
+      maxDamage: 5
+    - id: smite-tip
+      text: tutorial-job-chaplain-sg-smite-tip
+      complete: Acknowledge
+    - id: hold-book
+      text: tutorial-job-chaplain-sg-book
+      complete: HoldItem
+      entity: BookRandom
+  - id: floor
+    title: tutorial-job-chaplain-goal-floor
+    subGoals:
+    - id: hold-wine
+      text: tutorial-job-chaplain-sg-wine
+      complete: HoldItem
+      entity: DrinkBottleNTCahors
+    - id: walk
+      text: tutorial-job-chaplain-sg-walk
+      complete: ReachMarker
+      marker: chapel-pass
+  - id: finish
+    title: tutorial-job-chaplain-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-chaplain-sg-done
+      complete: Acknowledge

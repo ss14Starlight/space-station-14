@@ -1,0 +1,150 @@
+# Engineering progression step 2/4 � grid power, SMES, Singulo/Tesla, MV/HV.
+- type: tutorialRole
+  id: TutorialStationEngineer
+  mentorName: Urist McShock
+  job: StationEngineer
+  stub: false
+  category: Engineering
+  map: /Maps/_Functional/TutorialServer/Roles/StationEngineer.yml
+  roomTemplate: TutorialSectionEngineering
+  guidebook: Engineering
+  practiceSpawns:
+  - id: ClosetToolFilled
+    room: 0
+    offset: -2, 1
+  - id: Multitool
+    room: 0
+    offset: 0.8, 0
+  - id: CableMVStack10
+    room: 0
+    offset: -0.5, 0
+  - id: CableHVStack10
+    room: 0
+    offset: -0.2, 0
+  - id: TutorialVendingMachineYouTool
+    room: 0
+    offset: 1.5, 1
+  - id: TutorialSubstation
+    room: 0
+    offset: -1.5, 0
+  - id: TutorialSmesEmpty
+    room: 0
+    offset: 1.5, 0
+  - id: TutorialComputerPowerMonitoring
+    room: 0
+    offset: 0, 1.5
+  # Pre-cut cable stubs � player reconnects the gap (MapHasEntity minCount 2).
+  - id: CableMV
+    room: 0
+    offset: -0.5, -1
+  - id: CableHV
+    room: 0
+    offset: 0.5, -1
+  - id: CableMVStack10
+    room: 0
+    offset: 0.5, -1.5
+  - id: CableHVStack10
+    room: 0
+    offset: 0.8, -1.5
+  - id: TutorialSingularityGenerator
+    room: 1
+    offset: -1.5, 0
+  - id: Emitter
+    room: 1
+    offset: -1.5, 1.2
+  - id: RadiationCollectorNoTank
+    room: 1
+    offset: -0.5, 1.2
+  - id: TutorialTeslaGenerator
+    room: 1
+    offset: 1.5, 0
+  - id: TeslaCoil
+    room: 1
+    offset: 1.5, 1.2
+  - id: TutorialStepMarker
+    room: 1
+    offset: 0, -1.5
+    marker: eng-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-station-engineer-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-station-engineer-sg-intro
+      complete: Acknowledge
+  - id: grid
+    title: tutorial-job-station-engineer-goal-grid
+    subGoals:
+    - id: hold-mv
+      text: tutorial-job-station-engineer-sg-mv
+      complete: HoldItem
+      entity: CableMVStack10
+    - id: place-mv
+      text: tutorial-job-station-engineer-sg-place-mv
+      complete: MapHasEntity
+      entity: CableMV
+      minCount: 2
+    - id: substation
+      text: tutorial-job-station-engineer-sg-substation
+      complete: InteractTargetTag
+      tag: TutorialSubstation
+  - id: smes
+    title: tutorial-job-station-engineer-goal-smes
+    subGoals:
+    - id: hold-hv
+      text: tutorial-job-station-engineer-sg-hv
+      complete: HoldItem
+      entity: CableHVStack10
+    - id: place-hv
+      text: tutorial-job-station-engineer-sg-place-hv
+      complete: MapHasEntity
+      entity: CableHV
+      minCount: 2
+    - id: smes
+      text: tutorial-job-station-engineer-sg-smes
+      complete: InteractTargetTag
+      tag: TutorialSmes
+    - id: smes-tip
+      text: tutorial-job-station-engineer-sg-smes-tip
+      complete: Acknowledge
+  - id: monitor
+    title: tutorial-job-station-engineer-goal-monitor
+    subGoals:
+    - id: power-monitor
+      text: tutorial-job-station-engineer-sg-power-monitor
+      complete: InteractTargetTag
+      tag: TutorialPowerMonitor
+    - id: monitor-tip
+      text: tutorial-job-station-engineer-sg-monitor-tip
+      complete: Acknowledge
+  - id: engines
+    enterRoom: 1
+    title: tutorial-job-station-engineer-goal-engines
+    subGoals:
+    - id: singulo
+      text: tutorial-job-station-engineer-sg-singulo
+      complete: InteractTargetTag
+      tag: TutorialSinguloGen
+    - id: singulo-tip
+      text: tutorial-job-station-engineer-sg-singulo-tip
+      complete: Acknowledge
+    - id: tesla
+      text: tutorial-job-station-engineer-sg-tesla
+      complete: InteractTargetTag
+      tag: TutorialTeslaGen
+    - id: tesla-tip
+      text: tutorial-job-station-engineer-sg-tesla-tip
+      complete: Acknowledge
+    - id: next-tip
+      text: tutorial-job-station-engineer-sg-next-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-job-station-engineer-sg-walk
+      complete: ReachMarker
+      marker: eng-pass
+  - id: finish
+    title: tutorial-job-station-engineer-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-station-engineer-sg-done
+      complete: Acknowledge

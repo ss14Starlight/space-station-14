@@ -1,0 +1,87 @@
+# Wizard gear without the station teleport scroll (keep the grimoire).
+- type: startingGear
+  id: TutorialWizardGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorDarkBlue
+    head: ClothingHeadHatWizard
+    back: ClothingBackpack
+    outerClothing: ClothingOuterWizard
+    shoes: ClothingShoesWizard
+    id: WizardPDA
+    ears: ClothingHeadsetAltWizard
+    belt: ClothingBeltWand
+    pocket1: WizardsGrimoire
+
+- type: tutorialRole
+  id: TutorialAntagWizard
+  mentorName: Urist McFwoosh
+  job: Passenger
+  antag: Wizard
+  stub: false
+  simplifiedEnvironment: true
+  category: Wizden antagonists
+  name: tutorial-antag-wizard-name
+  startingGear: TutorialWizardGear
+  roleLoadout: RoleSurvivalExtendedAntag
+  map: /Maps/Nonstations/wizardsden.yml
+  guidebook: Wizard
+  practiceSpawns:
+  # Magivend is at (-2.5, 12.5); spawn ~ (0.5, 0.5) -> offset ~= (-3, 12). Clear floor beside Magivend.
+  - id: ClothingOuterHardsuitWizard
+    offset: -1.5, 12.5
+  - id: ClothingHeadHelmetHardsuitWizard
+    offset: -0.5, 12.5
+  - id: TutorialStepMarker
+    offset: -1.5, 11.5
+    marker: wizard-hardsuit
+  goals:
+  - id: welcome
+    title: tutorial-antag-wizard-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-wizard-sg-intro
+      complete: Acknowledge
+  - id: spellbook
+    title: tutorial-antag-wizard-goal-spellbook
+    subGoals:
+    - id: hold-grimoire
+      text: tutorial-antag-wizard-sg-hold-grimoire
+      complete: HoldItem
+      entity: WizardsGrimoire
+    - id: store-tip
+      text: tutorial-antag-wizard-sg-store-tip
+      complete: Acknowledge
+    - id: buy-smoke
+      text: tutorial-antag-wizard-sg-buy-smoke
+      complete: HasAction
+      entity: ActionSmoke
+  - id: medical
+    title: tutorial-antag-wizard-goal-medical
+    subGoals:
+    - id: med-tip
+      text: tutorial-antag-wizard-sg-med-tip
+      complete: Acknowledge
+    - id: hold-medkit
+      text: tutorial-antag-wizard-sg-hold-medkit
+      complete: HoldItem
+      entity: MedkitAdvancedFilled
+  - id: hardsuit
+    title: tutorial-antag-wizard-goal-hardsuit
+    subGoals:
+    - id: suit-tip
+      text: tutorial-antag-wizard-sg-suit-tip
+      complete: Acknowledge
+    - id: reach-suit
+      text: tutorial-antag-wizard-sg-reach-suit
+      complete: ReachMarker
+      marker: wizard-hardsuit
+    - id: hold-suit
+      text: tutorial-antag-wizard-sg-hold-suit
+      complete: HoldItem
+      entity: ClothingOuterHardsuitWizard
+  - id: finish
+    title: tutorial-antag-wizard-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-wizard-sg-done
+      complete: Acknowledge

@@ -1,0 +1,101 @@
+# Scanners in the science lab, then a gated anomaly bay (isolation only).
+- type: tutorialRole
+  id: TutorialScientist
+  mentorName: Urist McBoom
+  job: Scientist
+  stub: false
+  simplifiedEnvironment: true
+  category: Science
+  map: /Maps/_Functional/TutorialServer/Roles/Scientist.yml
+  roomTemplate: TutorialSectionScience
+  guidebook: Science
+  practiceSpawns:
+  - id: LockerScienceFilled
+    room: 0
+    offset: -2, 1
+  - id: AnomalyScanner
+    room: 0
+    offset: 0.5, 0
+  - id: NodeScanner
+    room: 0
+    offset: 0.8, 0
+  - id: Beaker
+    room: 0
+    offset: -0.5, 0
+  - id: TutorialAnomalySpawnPad
+    room: 1
+    offset: -1.5, 0
+  - id: AnomalyScanner
+    room: 1
+    offset: -0.5, -1
+  - id: TutorialWeaponPistolCHIMP
+    room: 1
+    offset: 0.5, -1
+  - id: TutorialMachineAPE
+    room: 1
+    offset: 1.5, 1
+  - id: TutorialStepMarker
+    room: 1
+    offset: 0, -1.5
+    marker: sci-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-scientist-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-scientist-sg-intro
+      complete: Acknowledge
+  - id: scanners
+    title: tutorial-job-scientist-goal-scanners
+    subGoals:
+    - id: hold-anomaly
+      text: tutorial-job-scientist-sg-anomaly
+      complete: HoldItem
+      entity: AnomalyScanner
+    - id: hold-node
+      text: tutorial-job-scientist-sg-node
+      complete: HoldItem
+      entity: NodeScanner
+    - id: hold-beaker
+      text: tutorial-job-scientist-sg-beaker
+      complete: HoldItem
+      entity: Beaker
+  - id: anomaly
+    title: tutorial-job-scientist-goal-anomaly
+    enterRoom: 1
+    subGoals:
+    - id: spawn-explain
+      text: tutorial-job-scientist-sg-spawn-explain
+      complete: Acknowledge
+    - id: spawn-anomaly
+      text: tutorial-job-scientist-sg-spawn
+      complete: SpawnAnomaly
+    - id: scan-anomaly
+      text: tutorial-job-scientist-sg-scan
+      complete: ScanAnomaly
+    - id: contain-explain
+      text: tutorial-job-scientist-sg-contain-explain
+      complete: Acknowledge
+    - id: hold-chimp
+      text: tutorial-job-scientist-sg-chimp
+      complete: HoldItem
+      entity: TutorialWeaponPistolCHIMP
+    - id: stabilize-anomaly
+      text: tutorial-job-scientist-sg-stabilize
+      complete: StabilizeAnomaly
+    - id: remove-anomaly
+      text: tutorial-job-scientist-sg-remove
+      complete: RemoveAnomaly
+    - id: walk
+      text: tutorial-job-scientist-sg-walk
+      complete: ReachMarker
+      marker: sci-pass
+  - id: finish
+    title: tutorial-job-scientist-goal-finish
+    subGoals:
+    - id: ra-tip
+      text: tutorial-job-scientist-sg-ra-tip
+      complete: Acknowledge
+    - id: done
+      text: tutorial-job-scientist-sg-done
+      complete: Acknowledge

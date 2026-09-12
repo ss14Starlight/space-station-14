@@ -1,0 +1,10 @@
+# Tutorial cyborg body: same as round-start PlayerBorgBattery, but the chassis
+# picker only offers the default Generic type so installed modules stay consistent.
+- type: entity
+  id: TutorialPlayerBorg
+  parent: PlayerBorgBattery
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BorgSwitchableType
+    availableBorgTypes:
+    - generic

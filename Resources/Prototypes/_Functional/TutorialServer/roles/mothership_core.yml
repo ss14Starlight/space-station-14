@@ -1,0 +1,78 @@
+- type: tutorialRole
+  id: TutorialAntagMothershipCore
+  antag: MothershipCore
+  stub: false
+  simplifiedEnvironment: true
+  category: Wizden antagonists
+  name: tutorial-antag-mothership-core-name
+  spawnEntity: MothershipCore
+  shuttleArena: TutorialArenaMothership
+  guidebook: Xenoborgs
+  practiceSpawns:
+  - id: OrganHumanBrain
+    offset: 1, 0
+  - id: XenoborgModuleDoorControl
+    offset: -1, 0
+  - id: XenoborgEngiPrinted
+    offset: 0, -1.5
+  goals:
+  - id: welcome
+    title: tutorial-antag-mothership-core-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-mothership-core-sg-intro
+      complete: Acknowledge
+  - id: build
+    title: tutorial-antag-mothership-core-goal-build
+    subGoals:
+    - id: print-tip
+      text: tutorial-antag-mothership-core-sg-print-tip
+      complete: Acknowledge
+    - id: frame-tip
+      text: tutorial-antag-mothership-core-sg-frame-tip
+      complete: Acknowledge
+    - id: brain-tip
+      text: tutorial-antag-mothership-core-sg-brain-tip
+      complete: Acknowledge
+    - id: hold-brain
+      text: tutorial-antag-mothership-core-sg-hold-brain
+      complete: HoldItem
+      entity: OrganHumanBrain
+    - id: upgrade-tip
+      text: tutorial-antag-mothership-core-sg-upgrade-tip
+      complete: Acknowledge
+    - id: hold-module
+      text: tutorial-antag-mothership-core-sg-hold-module
+      complete: HoldItem
+      entity: XenoborgModuleDoorControl
+  - id: pilot
+    title: tutorial-antag-mothership-core-goal-pilot
+    subGoals:
+    - id: open-console
+      text: tutorial-antag-mothership-core-sg-open-console
+      complete: PilotShuttle
+    - id: undock-home
+      text: tutorial-antag-mothership-core-sg-undock-home
+      complete: UndockShuttle
+      marker: mothership-dock
+    - id: throttle
+      text: tutorial-antag-mothership-core-sg-throttle
+      complete: ShuttleThrottle
+    - id: dock-ats
+      text: tutorial-antag-mothership-core-sg-dock-ats
+      complete: DockShuttle
+      marker: ats
+    - id: undock-ats
+      text: tutorial-antag-mothership-core-sg-undock-ats
+      complete: UndockShuttle
+      marker: ats
+    - id: dock-home
+      text: tutorial-antag-mothership-core-sg-dock-home
+      complete: DockShuttle
+      marker: mothership-dock
+  - id: finish
+    title: tutorial-antag-mothership-core-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-mothership-core-sg-done
+      complete: Acknowledge

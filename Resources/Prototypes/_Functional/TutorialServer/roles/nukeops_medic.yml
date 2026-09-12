@@ -1,0 +1,84 @@
+- type: tutorialRole
+  id: TutorialAntagNukeopsMedic
+  mentorName: Urist McCombat
+  job: Passenger
+  antag: NukeopsMedic
+  stub: false
+  simplifiedEnvironment: true
+  category: Wizden antagonists
+  nukeopsOutpost: true
+  map: /Maps/_Functional/TutorialServer/Antag_NukeopsMedic.yml
+  guidebook: NuclearOperatives
+  startingGear: SyndicateOperativeMedicFull
+  roleLoadout: RoleSurvivalNukie
+  practiceSpawns:
+  - id: Beaker
+    offset: 0, -10
+  - id: LargeBeaker
+    offset: 0.8, -10
+  goals:
+  - id: welcome
+    title: tutorial-antag-nukeops-medic-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-nukeops-medic-sg-intro
+      complete: Acknowledge
+    - id: gear-tip
+      text: tutorial-antag-nukeops-medic-sg-gear
+      complete: Acknowledge
+  - id: glassware
+    title: tutorial-antag-nukeops-medic-goal-glassware
+    subGoals:
+    - id: hold-beaker
+      text: tutorial-antag-nukeops-medic-sg-beaker
+      complete: HoldItem
+      entity: Beaker
+    - id: dispenser
+      text: tutorial-antag-nukeops-medic-sg-dispenser
+      complete: InteractTargetTag
+      tag: TutorialChemDispenser
+  - id: bicaridine
+    title: tutorial-antag-nukeops-medic-goal-bicaridine
+    subGoals:
+    - id: mix-bicaridine
+      text: tutorial-antag-nukeops-medic-sg-bicaridine
+      complete: SolutionContains
+      reagent: Bicaridine
+      minAmount: 1
+  - id: dermaline
+    title: tutorial-antag-nukeops-medic-goal-dermaline
+    subGoals:
+    - id: mix-dermaline
+      text: tutorial-antag-nukeops-medic-sg-dermaline
+      complete: SolutionContains
+      reagent: Dermaline
+      minAmount: 1
+  - id: dexalinplus
+    title: tutorial-antag-nukeops-medic-goal-dexalinplus
+    subGoals:
+    - id: mix-dexalinplus
+      text: tutorial-antag-nukeops-medic-sg-dexalinplus
+      complete: SolutionContains
+      reagent: DexalinPlus
+      minAmount: 1
+  - id: puncturase
+    title: tutorial-antag-nukeops-medic-goal-puncturase
+    subGoals:
+    - id: hotplate-tip
+      text: tutorial-antag-nukeops-medic-sg-hotplate
+      complete: Acknowledge
+    - id: mix-puncturase
+      text: tutorial-antag-nukeops-medic-sg-puncturase
+      complete: SolutionContains
+      reagent: Puncturase
+      minAmount: 1
+    - id: chemmaster
+      text: tutorial-antag-nukeops-medic-sg-chemmaster
+      complete: InteractTargetTag
+      tag: TutorialChemMaster
+  - id: finish
+    title: tutorial-antag-nukeops-medic-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-nukeops-medic-sg-done
+      complete: Acknowledge

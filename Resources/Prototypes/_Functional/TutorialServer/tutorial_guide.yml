@@ -1,0 +1,41 @@
+- type: entity
+  parent: BaseItem
+  id: TutorialGuide
+  name: Urist McTutorial
+  description: A chatty tutorial coach for off-grid practice. Activate it to open your checklist. It speaks your current tip aloud. You can drop it when you need both hands free.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/tablets.rsi
+    layers:
+    - state: tablet
+    - state: generic
+      shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Objects/Devices/tablets.rsi
+  - type: TutorialGuide
+  - type: ActivatableUI
+    key: enum.TutorialPromptUiKey.Key
+    inHandsOnly: true
+    singleUser: true
+    # Off-hand (left) is fine — active right hand stays free for cargo practice.
+    requireActiveHand: false
+  - type: UserInterface
+    interfaces:
+      enum.TutorialPromptUiKey.Key:
+        type: TutorialPromptBoundUserInterface
+        # Stay open while boarding/flying even if the tablet was dropped in the bay.
+        interactionRange: 0
+
+# Action bar button to open the role picker (granted on tutorial spawn and ghosts).
+- type: entity
+  parent: BaseMentalAction
+  id: ActionTutorialChooseRole
+  name: Choose a tutorial
+  description: Open the Tutorial Server role picker. Click the dollar sign on the left side of the game window.
+  components:
+  - type: Action
+    checkCanInteract: false
+    icon: Interface/Actions/shop.png
+  - type: InstantAction
+    event: !type:TutorialChooseRoleActionEvent

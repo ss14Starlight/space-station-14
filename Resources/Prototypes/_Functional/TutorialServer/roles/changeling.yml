@@ -1,0 +1,78 @@
+- type: tutorialRole
+  id: TutorialAntagChangeling
+  mentorName: Urist McAbsorb
+  job: Passenger
+  antag: Changeling
+  stub: true # temporarily greyed pending manual test
+  simplifiedEnvironment: true
+  category: Server specific
+  subCategory: Starlight
+  name: tutorial-antag-changeling-name
+  roomTemplate: TutorialSectionMaintAntag
+  guidebook: Changelings
+  practiceSpawns:
+  - id: ToolboxMechanical
+    room: 0
+    offset: 0.5, 0
+  - id: TutorialPracticeMobVictim
+    room: 0
+    offset: -1, -0.5
+  - id: TutorialPracticeMobVictim
+    room: 0
+    offset: 1, -0.5
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: changeling-pass
+  goals:
+  - id: welcome
+    title: tutorial-antag-changeling-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-changeling-sg-intro
+      complete: Acknowledge
+  - id: kill
+    title: tutorial-antag-changeling-goal-kill
+    subGoals:
+    - id: hold-toolbox
+      text: tutorial-antag-changeling-sg-hold-toolbox
+      complete: HoldItem
+      entity: ToolboxMechanical
+    - id: kill-dummy
+      text: tutorial-antag-changeling-sg-kill
+      complete: PracticeMobDead
+  - id: sting
+    title: tutorial-antag-changeling-goal-sting
+    subGoals:
+    - id: sting-tip
+      text: tutorial-antag-changeling-sg-sting-tip
+      complete: Acknowledge
+    - id: sting-dummy
+      text: tutorial-antag-changeling-sg-sting
+      complete: ChangelingStung
+  - id: devour
+    title: tutorial-antag-changeling-goal-devour
+    subGoals:
+    - id: devour-corpse
+      text: tutorial-antag-changeling-sg-devour
+      complete: ChangelingDevoured
+  - id: evolve
+    title: tutorial-antag-changeling-goal-evolve
+    subGoals:
+    - id: store-tip
+      text: tutorial-antag-changeling-sg-store-tip
+      complete: Acknowledge
+    - id: buy-armblade
+      text: tutorial-antag-changeling-sg-buy-armblade
+      complete: HasAction
+      entity: ActionRetractableItemArmBlade
+    - id: walk
+      text: tutorial-antag-changeling-sg-walk
+      complete: ReachMarker
+      marker: changeling-pass
+  - id: finish
+    title: tutorial-antag-changeling-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-changeling-sg-done
+      complete: Acknowledge

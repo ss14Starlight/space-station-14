@@ -1,0 +1,97 @@
+- type: tutorialRole
+  id: TutorialWarden
+  mentorName: Urist McBrig
+  job: Warden
+  stub: false
+  simplifiedEnvironment: true
+  category: Security
+  map: /Maps/_Functional/TutorialServer/Roles/Warden.yml
+  roomTemplate: TutorialSectionBrig
+  guidebook: Security
+  practiceSpawns:
+  - id: LockerWardenFilled
+    room: 0
+    offset: -2, 1
+  - id: RubberStampWarden
+    room: 0
+    offset: 0.5, 0
+  - id: BoxFolderClipboard
+    room: 0
+    offset: 0.8, 0
+  - id: Handcuffs
+    room: 0
+    offset: -0.5, 0
+  - id: TutorialPracticeMobCriminal
+    room: 0
+    offset: 0, -1
+  - id: Stunbaton
+    room: 0
+    offset: 0.5, 0
+  - id: WeaponDisabler
+    room: 0
+    offset: 0.8, 0
+  - id: TutorialBrigTimer
+    room: 0
+    offset: -1.5, 1
+  - id: TutorialGunSafe
+    room: 0
+    offset: 1.5, 1
+  - id: TutorialVendingMachineSec
+    room: 0
+    offset: 0, 1.5
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: warden-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-warden-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-warden-sg-intro
+      complete: Acknowledge
+  - id: brig
+    title: tutorial-job-warden-goal-brig
+    subGoals:
+    - id: hold-stamp
+      text: tutorial-job-warden-sg-stamp
+      complete: HoldItem
+      entity: RubberStampWarden
+    - id: hold-clipboard
+      text: tutorial-job-warden-sg-clipboard
+      complete: HoldItem
+      entity: BoxFolderClipboard
+    - id: hold-cuffs
+      text: tutorial-job-warden-sg-cuffs
+      complete: HoldItem
+      entity: Handcuffs
+    - id: cuff-dummy
+      text: tutorial-job-warden-sg-cuff
+      complete: PracticeMobCuffed
+  - id: armory
+    title: tutorial-job-warden-goal-armory
+    subGoals:
+    - id: open-timer
+      text: tutorial-job-warden-sg-timer
+      complete: InteractTargetTag
+      tag: TutorialBrigTimer
+    - id: start-timer
+      text: tutorial-job-warden-sg-timer-start
+      complete: BrigTimerStarted
+    - id: gun-safe
+      text: tutorial-job-warden-sg-safe
+      complete: InteractTargetTag
+      tag: TutorialSecLocker
+    - id: cell-walk
+      text: tutorial-job-warden-sg-cell
+      complete: ReachMarker
+      marker: warden-pass
+    - id: armory-tip
+      text: tutorial-job-warden-sg-armory-tip
+      complete: Acknowledge
+  - id: finish
+    title: tutorial-job-warden-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-warden-sg-done
+      complete: Acknowledge

@@ -1,0 +1,106 @@
+- type: tutorialRole
+  id: TutorialResearchDirector
+  mentorName: Urist McGrant
+  job: ResearchDirector
+  stub: false
+  simplifiedEnvironment: true
+  category: Science
+  map: /Maps/_Functional/TutorialServer/Roles/ResearchDirector.yml
+  roomTemplate: TutorialSectionScience
+  guidebook: Science
+  practiceSpawns:
+  - id: LockerResearchDirectorFilled
+    room: 0
+    offset: -2, 1
+  - id: BoxFolderClipboard
+    room: 0
+    offset: 0.8, 0
+  - id: AnomalyScanner
+    room: 0
+    offset: -0.5, 0
+  - id: NodeScanner
+    room: 0
+    offset: -0.2, 0
+  - id: TutorialAnomalySpawnPad
+    room: 1
+    offset: -1.5, 0
+  - id: AnomalyScanner
+    room: 1
+    offset: -0.5, -1
+  - id: TutorialWeaponPistolCHIMP
+    room: 1
+    offset: 0.5, -1
+  - id: TutorialMachineAPE
+    room: 1
+    offset: 1.5, 1
+  - id: TutorialVendingMachineYouTool
+    room: 1
+    offset: 1.5, 1
+  - id: TutorialStepMarker
+    room: 1
+    offset: 0, -1.5
+    marker: rd-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-research-director-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-research-director-sg-intro
+      complete: Acknowledge
+  - id: command
+    title: tutorial-job-research-director-goal-command
+    subGoals:
+    - id: hold-clipboard
+      text: tutorial-job-research-director-sg-clipboard
+      complete: HoldItem
+      entity: BoxFolderClipboard
+  - id: anomaly
+    enterRoom: 1
+    title: tutorial-job-research-director-goal-anomaly
+    subGoals:
+    - id: hold-anomaly
+      text: tutorial-job-research-director-sg-anomaly
+      complete: HoldItem
+      entity: AnomalyScanner
+    - id: spawn-explain
+      text: tutorial-job-research-director-sg-spawn-explain
+      complete: Acknowledge
+    - id: spawn-anomaly
+      text: tutorial-job-research-director-sg-spawn
+      complete: SpawnAnomaly
+    - id: scan-anomaly
+      text: tutorial-job-research-director-sg-scan
+      complete: ScanAnomaly
+    - id: hold-chimp
+      text: tutorial-job-research-director-sg-chimp
+      complete: HoldItem
+      entity: TutorialWeaponPistolCHIMP
+    - id: stabilize-anomaly
+      text: tutorial-job-research-director-sg-stabilize
+      complete: StabilizeAnomaly
+    - id: remove-anomaly
+      text: tutorial-job-research-director-sg-remove
+      complete: RemoveAnomaly
+  - id: lab
+    title: tutorial-job-research-director-goal-lab
+    subGoals:
+    - id: lead-tip
+      text: tutorial-job-research-director-sg-lead-tip
+      complete: Acknowledge
+    - id: ra-tip
+      text: tutorial-job-research-director-sg-ra-tip
+      complete: Acknowledge
+    - id: tool-vend
+      text: tutorial-job-research-director-sg-youtool
+      complete: InteractTargetTag
+      tag: TutorialVending
+    - id: walk
+      text: tutorial-job-research-director-sg-walk
+      complete: ReachMarker
+      marker: rd-pass
+  - id: finish
+    title: tutorial-job-research-director-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-research-director-sg-done
+      complete: Acknowledge

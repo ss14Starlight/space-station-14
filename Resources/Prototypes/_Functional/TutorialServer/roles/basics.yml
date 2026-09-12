@@ -1,0 +1,172 @@
+- type: tutorialRole
+  id: TutorialBasics
+  job: Passenger
+  stub: false
+  liveTutorial: true
+  simplifiedEnvironment: true
+  category: Start Here
+  name: tutorial-basics-name
+  map: /Maps/_Functional/TutorialServer/Roles/Basics.yml
+  guidebook: NewPlayer
+
+  mentorName: N.A.N.C.I.
+  mentorEntity: TutorialHoloMentor
+  mentorMode: Holopad
+  mentorFollows: false
+  mentorSpawnOffset: 2, 0
+  autoOpenGuide: false
+
+  goals:
+  # --- Chamber 1 -----------------------------------------------------------------
+  - id: locomotion
+    title: tutorial-basics-goal-locomotion
+    subGoals:
+    - id: welcome
+      text: tutorial-basics-sg-welcome
+      complete: Acknowledge
+      autoAdvanceSeconds: 3
+    - id: move-any
+      text: tutorial-basics-sg-move-any
+      controlHint: tutorial-basics-control-move-any
+      complete: PlayerMoved
+    - id: reach-pad-1
+      text: tutorial-basics-sg-reach-pad-1
+      complete: ReachMarker
+      marker: basics-pad-1
+
+  # --- Chamber 2 -----------------------------------------------------------------
+  - id: gait
+    title: tutorial-basics-goal-gait
+    enterRoom: 1
+    subGoals:
+    - id: gait-intro
+      text: tutorial-basics-sg-gait-intro
+      complete: ReachMarker
+      marker: basics-pad-2-entry
+    - id: walk-toggle
+      text: tutorial-basics-sg-walk-toggle
+      controlHint: tutorial-basics-control-walk-toggle
+      complete: PlayerWalking
+      retryMarker: basics-pad-2
+      retryReturnMarker: basics-pad-2-entry
+      retryLine: tutorial-basics-nanci-walk-retry
+    - id: walk-lane
+      text: tutorial-basics-sg-walk-lane
+      controlHint: tutorial-basics-control-walk-lane
+      complete: ReachMarker
+      marker: basics-pad-2
+      posture: Walking
+      retryLine: tutorial-basics-nanci-walk-retry
+      retryReturnMarker: basics-pad-2-entry
+    - id: walk-done
+      text: tutorial-basics-sg-walk-done
+      complete: Acknowledge
+      autoAdvanceSeconds: 3
+
+  # --- Chamber 3 -----------------------------------------------------------------
+  - id: lowprofile
+    title: tutorial-basics-goal-lowprofile
+    enterRoom: 2
+    subGoals:
+    - id: lie-down
+      text: tutorial-basics-sg-lie-down
+      controlHint: tutorial-basics-control-lie-down
+      complete: PlayerCrawling
+    - id: crawl-lane
+      text: tutorial-basics-sg-crawl-lane
+      controlHint: tutorial-basics-control-crawl-lane
+      complete: ReachMarker
+      marker: basics-pad-3
+      posture: Crawling
+    - id: stand-up
+      text: tutorial-basics-sg-stand-up
+      controlHint: tutorial-basics-control-stand-up
+      complete: PlayerStanding
+    - id: stand-done
+      text: tutorial-basics-sg-stand-done
+      complete: Acknowledge
+      autoAdvanceSeconds: 3
+
+  # --- Chamber 4 -----------------------------------------------------------------
+  - id: obstacles
+    title: tutorial-basics-goal-obstacles
+    enterRoom: 3
+    subGoals:
+    - id: climb-table
+      text: tutorial-basics-sg-climb-table
+      controlHint: tutorial-basics-control-climb-table
+      complete: PlayerClimbed
+      tag: TutorialClimbTable
+    - id: reach-pad-4
+      text: tutorial-basics-sg-reach-pad-4
+      complete: ReachMarker
+      marker: basics-pad-4
+
+  # --- Chamber 5 -----------------------------------------------------------------
+  - id: seating
+    title: tutorial-basics-goal-seating
+    enterRoom: 4
+    subGoals:
+    - id: sit-down
+      text: tutorial-basics-sg-sit-down
+      controlHint: tutorial-basics-control-sit-down
+      complete: PlayerBuckled
+      tag: TutorialChair
+    - id: stand-from-chair
+      text: tutorial-basics-sg-stand-from-chair
+      controlHint: tutorial-basics-control-stand-from-chair
+      complete: PlayerUnbuckled
+
+  # --- Chamber 6 -----------------------------------------------------------------
+  - id: awareness
+    title: tutorial-basics-goal-awareness
+    enterRoom: 5
+    subGoals:
+    - id: rotate-camera
+      text: tutorial-basics-sg-rotate-camera
+      controlHint: tutorial-basics-control-rotate-camera
+      complete: CameraRotated
+    - id: reset-camera
+      text: tutorial-basics-sg-reset-camera
+      controlHint: tutorial-basics-control-reset-camera
+      complete: CameraResetDone
+    - id: point-at
+      text: tutorial-basics-sg-point-at
+      controlHint: tutorial-basics-control-point-at
+      complete: PlayerPointed
+      tag: TutorialPointTarget
+
+  # --- Chamber 7 -----------------------------------------------------------------
+  - id: access
+    title: tutorial-basics-goal-access
+    enterRoom: 6
+    subGoals:
+    - id: open-door
+      text: tutorial-basics-sg-open-door
+      controlHint: tutorial-basics-control-open-door
+      complete: TargetDoorOpen
+      tag: TutorialDoorPowered
+    - id: take-crowbar
+      text: tutorial-basics-sg-take-crowbar
+      controlHint: tutorial-basics-control-take-crowbar
+      complete: HoldTag
+      tag: Crowbar
+    - id: pry-door
+      text: tutorial-basics-sg-pry-door
+      controlHint: tutorial-basics-control-pry-door
+      complete: InteractTargetTag
+      tag: TutorialAirlock
+
+  # --- Chamber 8 -----------------------------------------------------------------
+  - id: certification
+    title: tutorial-basics-goal-certification
+    enterRoom: 7
+    subGoals:
+    - id: graduation
+      text: tutorial-basics-sg-graduation
+      complete: Acknowledge
+      autoAdvanceSeconds: 3
+    - id: farewell
+      text: tutorial-basics-sg-farewell
+      complete: Acknowledge
+      autoAdvanceSeconds: 3

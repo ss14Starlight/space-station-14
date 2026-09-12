@@ -1,0 +1,296 @@
+- type: tutorialRole
+  id: TutorialTide
+  job: Passenger
+  stub: false
+  liveTutorial: true
+  simplifiedEnvironment: true
+  category: Station Jobs
+  pickerOrder: 0
+  name: tutorial-tide-name
+  map: /Maps/_Functional/TutorialServer/Roles/Tide.yml
+  guidebook: NewPlayer
+  chamberEntryPads: false
+  mentorName: Tomasz Kowalski
+  mentorEntity: TutorialTideMentor
+  mentorMode: Lead
+  mentorFollows: false
+  mentorSpawnOffset: 1.2, 0
+  autoOpenGuide: false
+  goals:
+  # --- Arrivals -----------------------------------------------------
+  - id: arrivals
+    title: tutorial-tide-goal-arrivals
+    subGoals:
+    - id: welcome
+      text: tutorial-tide-sg-welcome
+      complete: Acknowledge
+      autoAdvanceSeconds: 9
+      mentorHolds: true
+  # --- Section 0. somewhere quieter ---------------------------------
+  - id: dorms
+    title: tutorial-tide-goal-dorms
+    subGoals:
+    - id: introductions
+      text: tutorial-tide-sg-introductions
+      complete: Acknowledge
+      autoAdvanceSeconds: 16
+  # --- Section 1. doors and cards -----------------------------------
+  - id: access
+    title: tutorial-tide-goal-access
+    enterRoom: 1
+    subGoals:
+    - id: try-cargo-door
+      text: tutorial-tide-sg-try-cargo-door
+      controlHint: tutorial-tide-control-try-cargo-door
+      complete: DoorAccessDenied
+      tag: TutorialTideCargoDoor
+    - id: eject-id
+      text: tutorial-tide-sg-eject-id
+      controlHint: tutorial-tide-control-eject-id
+      complete: HoldItem
+      entity: PassengerIDCard
+    - id: examine-id
+      text: tutorial-tide-sg-examine-id
+      controlHint: tutorial-tide-control-examine-id
+      complete: ExamineTag
+      entity: PassengerIDCard
+  # --- Chamber 2. maintenance ---------------------------------------
+  - id: maints
+    title: tutorial-tide-goal-maints
+    enterRoom: 2
+    subGoals:
+    - id: open-maints
+      text: tutorial-tide-sg-open-maints
+      controlHint: tutorial-tide-control-open-maints
+      mentorHolds: true
+      complete: TargetDoorOpen
+      tag: TutorialTideMaintDoor
+    - id: take-toolbox
+      text: tutorial-tide-sg-take-toolbox
+      controlHint: tutorial-tide-control-take-toolbox
+      complete: HoldTag
+      tag: TutorialTideToolbox
+    - id: open-toolbox
+      text: tutorial-tide-sg-open-toolbox
+      controlHint: tutorial-tide-control-open-toolbox
+      complete: StorageOpened
+      tag: TutorialTideToolbox
+    - id: take-belt
+      text: tutorial-tide-sg-take-belt
+      controlHint: tutorial-tide-control-take-belt
+      complete: HoldTag
+      tag: TutorialTideBelt
+    - id: wear-belt
+      text: tutorial-tide-sg-wear-belt
+      controlHint: tutorial-tide-control-wear-belt
+      complete: WearItem
+      tag: TutorialTideBelt
+      slot: belt
+    - id: fill-belt
+      text: tutorial-tide-sg-fill-belt
+      controlHint: tutorial-tide-control-fill-belt
+      complete: ContainerHasEntityCount
+      tag: TutorialTideBelt
+      minCount: 4
+  # --- Chamber 3. live cable ----------------------------------------
+  - id: current
+    title: tutorial-tide-goal-current
+    enterRoom: 3
+    subGoals:
+    - id: touch-grille
+      text: tutorial-tide-sg-touch-grille
+      controlHint: tutorial-tide-control-touch-grille
+      complete: PlayerShocked
+    - id: take-gloves
+      text: tutorial-tide-sg-take-gloves
+      complete: HoldItem
+      entity: ClothingHandsGlovesColorYellow
+    - id: wear-gloves
+      text: tutorial-tide-sg-wear-gloves
+      controlHint: tutorial-tide-control-wear-gloves
+      complete: WearItem
+      entity: ClothingHandsGlovesColorYellow
+      slot: gloves
+    - id: touch-grille-again
+      text: tutorial-tide-sg-touch-grille-again
+      controlHint: tutorial-tide-control-touch-grille-again
+      complete: InteractTargetTag
+      tag: TutorialTideGrille
+      mentorHolds: true
+  # --- Chamber 4. materials storage ---------------------------------
+  - id: storage
+    title: tutorial-tide-goal-storage
+    enterRoom: 4
+    subGoals:
+    - id: open-panel
+      text: tutorial-tide-sg-open-panel
+      controlHint: tutorial-tide-control-open-panel
+      complete: WiresPanelOpen
+      tag: TutorialTideStorageDoor
+    - id: cut-power
+      text: tutorial-tide-sg-cut-power
+      controlHint: tutorial-tide-control-cut-power
+      complete: PowerWiresCut
+      tag: TutorialTideStorageDoor
+    - id: restore-power
+      text: tutorial-tide-sg-restore-power
+      controlHint: tutorial-tide-control-restore-power
+      complete: TargetWiresIntact
+      tag: TutorialTideStorageDoor
+    - id: unbolt-door
+      text: tutorial-tide-sg-unbolt-door
+      controlHint: tutorial-tide-control-unbolt-door
+      complete: DoorBoltsRaised
+      tag: TutorialTideStorageDoor
+      retryLine: tutorial-tide-him-unbolt-door-retry
+    - id: cut-power-again
+      text: tutorial-tide-sg-cut-power-again
+      controlHint: tutorial-tide-control-cut-power-again
+      complete: PowerWiresCut
+      tag: TutorialTideStorageDoor
+    - id: pry-door
+      text: tutorial-tide-sg-pry-door
+      controlHint: tutorial-tide-control-pry-door
+      complete: TargetDoorOpen
+      tag: TutorialTideStorageDoor
+    - id: take-steel
+      text: tutorial-tide-sg-take-steel
+      complete: HoldTag
+      tag: TutorialTideSteel
+      mentorHolds: true
+  # --- Chamber 5. the pipe ------------------------------------------
+  - id: pipe
+    title: tutorial-tide-goal-pipe
+    enterRoom: 5
+    subGoals:
+    - id: see-the-hat
+      text: tutorial-tide-sg-see-the-hat
+      complete: Acknowledge
+      autoAdvanceSeconds: 9
+    - id: try-hat-door
+      text: tutorial-tide-sg-try-hat-door
+      controlHint: tutorial-tide-control-try-hat-door
+      complete: DoorAccessDenied
+      tag: TutorialTideVaultDoor
+    - id: find-the-pipe
+      text: tutorial-tide-sg-find-the-pipe
+      controlHint: tutorial-tide-control-find-the-pipe
+      complete: ExamineTag
+      tag: TutorialTidePipe
+    - id: open-construction
+      text: tutorial-tide-sg-open-construction
+      controlHint: tutorial-tide-control-open-construction
+      complete: ConstructionMenuOpened
+    - id: place-pipe
+      text: tutorial-tide-sg-place-pipe
+      controlHint: tutorial-tide-control-place-pipe
+      complete: EntityAtMarker
+      entity: DisposalPipe
+      marker: tide-pipe-1
+      markerRange: 0.4
+    - id: build-pipe
+      text: tutorial-tide-sg-build-pipe
+      controlHint: tutorial-tide-control-build-pipe
+      complete: EntityAtMarker
+      entity: DisposalPipe
+      marker: tide-pipe-2
+      markerRange: 0.4
+    - id: get-in-bin
+      text: tutorial-tide-sg-get-in-bin
+      controlHint: tutorial-tide-control-get-in-bin
+      complete: PlayerInDisposal
+      tag: TutorialTideDisposal
+      mentorHolds: true
+    # The bin is a bin: vanilla timings, and the player works the flush themselves. Sitting in one
+    # waiting for it to go off on its own teaches nothing and reads as the tutorial having hung.
+    - id: flush
+      text: tutorial-tide-sg-flush
+      controlHint: tutorial-tide-control-flush
+      complete: DisposalEngaged
+      tag: TutorialTideDisposal
+      mentorHolds: true
+    - id: ride-pipe
+      text: tutorial-tide-sg-ride-pipe
+      complete: ReachMarker
+      marker: tide-pad-vault
+      mentorHolds: true
+    - id: take-hat
+      text: tutorial-tide-sg-take-hat
+      complete: HoldItem
+      entity: ClothingHeadHatCapcap
+    - id: wear-hat
+      text: tutorial-tide-sg-wear-hat
+      controlHint: tutorial-tide-control-wear-hat
+      complete: WearItem
+      entity: ClothingHeadHatCapcap
+      slot: head
+      mentorHolds: true
+    - id: come-back
+      text: tutorial-tide-sg-come-back
+      controlHint: tutorial-tide-control-come-back
+      complete: ReachMarker
+      marker: walk-5
+      mentorHolds: true
+  # --- Chamber 6. unlisted stock ------------------------------------
+  - id: vendor
+    title: tutorial-tide-goal-vendor
+    enterRoom: 6
+    subGoals:
+    - id: try-vendor
+      text: tutorial-tide-sg-try-vendor
+      controlHint: tutorial-tide-control-try-vendor
+      complete: ActivateInWorldTag
+      tag: TutorialTideVendor
+    - id: hack-vendor
+      text: tutorial-tide-sg-hack-vendor
+      controlHint: tutorial-tide-control-hack-vendor
+      complete: WiresPanelOpen
+      tag: TutorialTideVendor
+    - id: cut-vendor-wire
+      text: tutorial-tide-sg-cut-vendor-wire
+      controlHint: tutorial-tide-control-cut-vendor-wire
+      complete: VendorContrabandUnlocked
+      tag: TutorialTideVendor
+      retryLine: tutorial-tide-him-cut-vendor-wire-retry
+    - id: take-contraband
+      text: tutorial-tide-sg-take-contraband
+      complete: HoldItem
+      entity: CigarGold
+      mentorHolds: true
+  # --- Chamber 7. the window ----------------------------------------
+  - id: window
+    title: tutorial-tide-goal-window
+    enterRoom: 7
+    subGoals:
+    - id: put-id-on-counter
+      text: tutorial-tide-sg-put-id-on-counter
+      controlHint: tutorial-tide-control-put-id-on-counter
+      complete: EntityAtMarker
+      entity: PassengerIDCard
+      marker: tide-counter
+    - id: refused
+      text: tutorial-tide-sg-refused
+      complete: Acknowledge
+      autoAdvanceSeconds: 22
+    - id: take-id-back
+      text: tutorial-tide-sg-take-id-back
+      complete: HoldItem
+      entity: PassengerIDCard
+      mentorHolds: true
+  # --- Chamber 8. graduation ----------------------------------------
+  - id: boots
+    title: tutorial-tide-goal-boots
+    enterRoom: 8
+    subGoals:
+    - id: graduation
+      text: tutorial-tide-sg-graduation
+      complete: Acknowledge
+      autoAdvanceSeconds: 16
+    - id: security
+      text: tutorial-tide-sg-security
+      complete: Acknowledge
+      autoAdvanceSeconds: 18
+    - id: farewell
+      text: tutorial-tide-sg-farewell
+      complete: Acknowledge
+      autoAdvanceSeconds: 12

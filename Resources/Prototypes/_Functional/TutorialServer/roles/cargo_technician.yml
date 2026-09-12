@@ -1,0 +1,116 @@
+- type: tutorialRole
+  id: TutorialCargoTechnician
+  job: CargoTechnician
+  stub: false
+  liveTutorial: true
+  category: Station Jobs
+  pickerOrder: 1
+  map: /Maps/_Functional/TutorialServer/Roles/CargoTechnician.yml
+  shuttleArena: TutorialArenaCargoShuttle
+  guidebook: Cargo
+  autoOpenGuide: false
+  spawnStationaryMentor: true
+  mentorFollows: false
+  mentorName: Urist McQuartermaster
+  practiceSpawns: []
+  goals:
+  - id: welcome
+    title: tutorial-job-cargo-technician-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-cargo-technician-sg-intro
+      complete: Acknowledge
+  - id: order
+    title: tutorial-job-cargo-technician-goal-order
+    subGoals:
+    - id: orders
+      text: tutorial-job-cargo-technician-sg-orders
+      complete: InteractTargetTag
+      tag: TutorialCargoOrders
+    - id: purchase
+      text: tutorial-job-cargo-technician-sg-purchase
+      complete: CargoOrderAdded
+    - id: confirm
+      text: tutorial-job-cargo-technician-sg-confirm
+      complete: CargoOrderApproved
+  - id: haul
+    title: tutorial-job-cargo-technician-goal-haul
+    subGoals:
+    - id: drag-crate
+      text: tutorial-job-cargo-technician-sg-drag-crate
+      complete: PullTag
+      tag: TutorialCargoBayCrate
+  - id: board
+    title: tutorial-job-cargo-technician-goal-board
+    subGoals:
+    - id: board-shuttle
+      text: tutorial-job-cargo-technician-sg-board-shuttle
+      complete: ReachMarker
+      marker: cargo-shuttle
+    - id: controls
+      text: tutorial-job-cargo-technician-sg-controls
+      complete: Acknowledge
+      suppressControlHint: true
+  - id: pilot
+    title: tutorial-job-cargo-technician-goal-pilot
+    subGoals:
+    - id: open-console
+      text: tutorial-job-cargo-technician-sg-open-console
+      complete: PilotShuttle
+  - id: undock-bay
+    title: tutorial-job-cargo-technician-goal-undock-bay
+    subGoals:
+    - id: undock-bay
+      text: tutorial-job-cargo-technician-sg-undock-bay
+      complete: UndockShuttle
+      marker: cargo-bay
+  - id: fly-ats
+    title: tutorial-job-cargo-technician-goal-fly-ats
+    subGoals:
+    # Teach flight keys only after undock — dock welds pin the shuttle until then.
+    - id: throttle
+      text: tutorial-job-cargo-technician-sg-throttle
+      complete: ShuttleThrottle
+    - id: fly-ats
+      text: tutorial-job-cargo-technician-sg-fly-ats
+      complete: NearDockStation
+      marker: ats
+  - id: dock-ats
+    title: tutorial-job-cargo-technician-goal-dock-ats
+    subGoals:
+    - id: dock-ats
+      text: tutorial-job-cargo-technician-sg-dock-ats
+      complete: DockShuttle
+      marker: ats
+  - id: sell
+    title: tutorial-job-cargo-technician-goal-sell
+    subGoals:
+    - id: sell-crate
+      text: tutorial-job-cargo-technician-sg-sell-crate
+      complete: CargoSold
+      tag: TutorialCargoBayCrate
+      minCount: 1
+  - id: retrieve
+    title: tutorial-job-cargo-technician-goal-retrieve
+    subGoals:
+    - id: retrieve
+      text: tutorial-job-cargo-technician-sg-retrieve
+      complete: PullTag
+      tag: TutorialCargoPurchase
+  - id: return-bay
+    title: tutorial-job-cargo-technician-goal-return-bay
+    subGoals:
+    - id: undock-ats
+      text: tutorial-job-cargo-technician-sg-undock-ats
+      complete: UndockShuttle
+      marker: ats
+    - id: dock-bay
+      text: tutorial-job-cargo-technician-sg-dock-bay
+      complete: DockShuttle
+      marker: cargo-bay
+  - id: finish
+    title: tutorial-job-cargo-technician-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-cargo-technician-sg-done
+      complete: Acknowledge

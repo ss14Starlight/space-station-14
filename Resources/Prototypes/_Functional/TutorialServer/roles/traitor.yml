@@ -1,0 +1,124 @@
+- type: tutorialRole
+  id: TutorialTraitor
+  mentorName: Urist McSyndicate
+  job: Passenger
+  antag: Traitor
+  stub: false
+  simplifiedEnvironment: true
+  category: Wizden antagonists
+  map: /Maps/_Functional/TutorialServer/Roles/Traitor.yml
+  roomTemplate: TutorialSectionMaintAntag
+  placeholderObjectives:
+  - TutorialTraitorKillPlaceholder
+  - TutorialTraitorStealPlaceholder
+  - TutorialTraitorEscapePlaceholder
+  practiceSpawns:
+  - id: Emag
+    room: 0
+    offset: 0.5, 0
+  - id: TutorialHackAirlock
+    room: 0
+    offset: 1.5, 0
+  - id: Flash
+    room: 0
+    offset: -0.5, 0
+  - id: Handcuffs
+    room: 0
+    offset: -0.2, 0
+  - id: Handcuffs
+    room: 0
+    offset: 0.2, -0.5
+  - id: TutorialPracticeMobVictim
+    room: 0
+    offset: 0, -1
+  - id: ClothingHeadsetAltSyndicate
+    room: 0
+    offset: 0.5, 0
+  - id: EncryptionKeySyndie
+    room: 0
+    offset: 0.8, 0
+  - id: RadioHandheld
+    room: 0
+    offset: -0.5, 0
+  - id: Crowbar
+    room: 0
+    offset: -0.2, 0
+  - id: NukeDiskFake
+    room: 0
+    offset: 0.2, -0.5
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: syndie-pass
+  goals:
+  - id: welcome
+    title: tutorial-antag-traitor-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-traitor-sg-intro
+      complete: Acknowledge
+  - id: objectives
+    title: tutorial-antag-traitor-goal-objectives
+    subGoals:
+    - id: review
+      text: tutorial-antag-traitor-sg-objectives
+      complete: Acknowledge
+    - id: hold-radio
+      text: tutorial-antag-traitor-sg-radio
+      complete: HoldItem
+      entity: RadioHandheld
+    - id: hold-intel
+      text: tutorial-antag-traitor-sg-hold-intel
+      complete: HoldItem
+      entity: NukeDiskFake
+    - id: stow-intel
+      text: tutorial-antag-traitor-sg-stow-intel
+      complete: StowItem
+      entity: NukeDiskFake
+  - id: gear
+    title: tutorial-antag-traitor-goal-gear
+    subGoals:
+    - id: hold-emag
+      text: tutorial-antag-traitor-sg-emag
+      complete: HoldItem
+      entity: Emag
+    - id: emag-door
+      text: tutorial-antag-traitor-sg-emag-door
+      complete: InteractTargetTag
+      tag: TutorialHackDoor
+    - id: hold-flash
+      text: tutorial-antag-traitor-sg-flash
+      complete: HoldItem
+      entity: Flash
+    - id: use-flash
+      text: tutorial-antag-traitor-sg-use-flash
+      complete: UseInHand
+      entity: Flash
+    - id: hold-cuffs
+      text: tutorial-antag-traitor-sg-cuffs
+      complete: HoldItem
+      entity: Handcuffs
+    - id: cuff-dummy
+      text: tutorial-antag-traitor-sg-cuff
+      complete: PracticeMobCuffed
+    - id: hold-pda
+      text: tutorial-antag-traitor-sg-pda
+      complete: HoldItem
+      entity: PassengerPDA
+    - id: uplink-open
+      text: tutorial-antag-traitor-sg-uplink-open
+      complete: Acknowledge
+    - id: uplink-buy
+      text: tutorial-antag-traitor-sg-uplink-buy
+      complete: StorePurchased
+      minCount: 1
+    - id: walk
+      text: tutorial-antag-traitor-sg-walk
+      complete: ReachMarker
+      marker: syndie-pass
+  - id: finish
+    title: tutorial-antag-traitor-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-traitor-sg-done
+      complete: Acknowledge

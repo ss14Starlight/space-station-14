@@ -1,0 +1,280 @@
+- type: tutorialRole
+  id: TutorialItems
+  job: Passenger
+  stub: false
+  liveTutorial: true
+  simplifiedEnvironment: true
+  category: Start Here
+  pickerOrder: 1
+  name: tutorial-items-name
+  map: /Maps/_Functional/TutorialServer/Roles/Items.yml
+  guidebook: NewPlayer
+  chamberEntryPads: false
+  blockedSpecies:
+  - Vox
+
+  mentorName: N.A.N.C.I.
+  mentorEntity: TutorialHoloMentorItems
+  mentorMode: Holopad
+  mentorFollows: false
+  mentorSpawnOffset: 2, 0
+  autoOpenGuide: false
+
+  goals:
+  # --- Chamber 1. hands, tools and the girder ----------------------------
+  - id: dexterity
+    title: tutorial-items-goal-dexterity
+    subGoals:
+    - id: welcome
+      text: tutorial-items-sg-welcome
+      complete: Acknowledge
+      autoAdvanceSeconds: 3
+    - id: take-tool
+      text: tutorial-items-sg-take-tool
+      controlHint: tutorial-items-control-take-tool
+      complete: HoldTag
+      tag: TutorialGirderTool
+    - id: swap-hands
+      text: tutorial-items-sg-swap-hands
+      controlHint: tutorial-items-control-swap-hands
+      complete: PlayerSwappedHands
+    - id: take-other-tool
+      text: tutorial-items-sg-take-other-tool
+      complete: HoldTag
+      tag: TutorialGirderTool
+      minCount: 2
+    - id: brief-girder
+      text: tutorial-items-sg-brief-girder
+      complete: Acknowledge
+      autoAdvanceSeconds: 3
+    - id: wrench-active
+      text: tutorial-items-sg-wrench-active
+      controlHint: tutorial-items-control-wrench-active
+      complete: ActiveHandItem
+      entity: TutorialWrench
+    - id: unbolt-girder
+      text: tutorial-items-sg-unbolt-girder
+      controlHint: tutorial-items-control-unbolt-girder
+      complete: TargetAnchored
+      tag: TutorialGirder
+      anchored: false
+    - id: driver-active
+      text: tutorial-items-sg-driver-active
+      controlHint: tutorial-items-control-driver-active
+      complete: ActiveHandItem
+      entity: TutorialScrewdriver
+    - id: strip-girder
+      text: tutorial-items-sg-strip-girder
+      complete: TargetAbsent
+      tag: TutorialGirder
+    - id: drop-tools
+      text: tutorial-items-sg-drop-tools
+      controlHint: tutorial-items-control-drop-tools
+      complete: HandsEmpty
+
+  # --- Chamber 2. examining and using ------------------------------------
+  - id: objects
+    title: tutorial-items-goal-objects
+    enterRoom: 1
+    subGoals:
+    - id: examine-plaque
+      text: tutorial-items-sg-examine-plaque
+      controlHint: tutorial-items-control-examine-plaque
+      complete: ExamineTag
+      tag: TutorialExamineTarget
+    - id: take-lantern
+      text: tutorial-items-sg-take-lantern
+      complete: HoldItem
+      entity: TutorialTrainingLantern
+    - id: light-lantern
+      text: tutorial-items-sg-light-lantern
+      controlHint: tutorial-items-control-light-lantern
+      complete: UseInHand
+      entity: TutorialTrainingLantern
+
+  # --- Chamber 3. locker, can and bin ------------------------------------
+  - id: context
+    title: tutorial-items-goal-context
+    enterRoom: 2
+    subGoals:
+    - id: open-locker
+      text: tutorial-items-sg-open-locker
+      controlHint: tutorial-items-control-open-locker
+      complete: ActivateInWorldTag
+      tag: TutorialGearLocker
+    - id: take-can
+      text: tutorial-items-sg-take-can
+      complete: HoldItem
+      entity: TutorialTrainingDrink
+    - id: throw-can
+      text: tutorial-items-sg-throw-can
+      controlHint: tutorial-items-control-throw-can
+      complete: ThrewItem
+      entity: TutorialTrainingDrink
+    - id: bin-can
+      text: tutorial-items-sg-bin-can
+      complete: ContainerHasEntityCount
+      tag: TutorialDisposal
+      minCount: 1
+    - id: flush-bin
+      text: tutorial-items-sg-flush-bin
+      controlHint: tutorial-items-control-flush-bin
+      complete: DisposalEngaged
+      tag: TutorialDisposal
+
+  # --- Chamber 4. bag, plushie and pulling -------------------------------
+  - id: storage
+    title: tutorial-items-goal-storage
+    enterRoom: 3
+    subGoals:
+    - id: take-plushie
+      text: tutorial-items-sg-take-plushie
+      controlHint: tutorial-items-control-take-plushie
+      complete: ObtainItem
+      entity: TutorialWehPlushie
+    - id: open-bag
+      text: tutorial-items-sg-open-bag
+      controlHint: tutorial-items-control-open-bag
+      complete: StorageOpened
+      slot: back
+    - id: stow-plushie
+      text: tutorial-items-sg-stow-plushie
+      controlHint: tutorial-items-control-stow-plushie
+      complete: StowItem
+      entity: TutorialWehPlushie
+      slot: back
+    - id: retrieve-plushie
+      text: tutorial-items-sg-retrieve-plushie
+      complete: HoldItem
+      entity: TutorialWehPlushie
+    - id: keep-plushie
+      text: tutorial-items-sg-keep-plushie
+      complete: StowItem
+      entity: TutorialWehPlushie
+      slot: back
+    - id: pull-crate
+      text: tutorial-items-sg-pull-crate
+      controlHint: tutorial-items-control-pull-crate
+      complete: PullTag
+      tag: TutorialPullCrate
+    - id: park-crate
+      text: tutorial-items-sg-park-crate
+      controlHint: tutorial-items-control-park-crate
+      complete: TargetParkedAtMarker
+      tag: TutorialPullCrate
+      marker: items-pad-3
+
+  # --- Chamber 5. tool belt ----------------------------------------------
+  - id: belt
+    title: tutorial-items-goal-belt
+    enterRoom: 4
+    subGoals:
+    - id: take-belt
+      text: tutorial-items-sg-take-belt
+      complete: ObtainItem
+      entity: ClothingBeltUtility
+    - id: wear-belt
+      text: tutorial-items-sg-wear-belt
+      controlHint: tutorial-items-control-wear-belt
+      complete: WearItem
+      entity: ClothingBeltUtility
+    - id: belt-crowbar
+      text: tutorial-items-sg-belt-crowbar
+      controlHint: tutorial-items-control-belt-crowbar
+      complete: StowItem
+      tag: Crowbar
+      slot: belt
+    - id: open-belt
+      text: tutorial-items-sg-open-belt
+      controlHint: tutorial-items-control-open-belt
+      complete: StorageOpened
+      slot: belt
+
+  # --- Chamber 6. the suit, the survival box, the breach and the crossing 
+  - id: provisions
+    title: tutorial-items-goal-provisions
+    enterRoom: 5
+    subGoals:
+    - id: wear-suit
+      text: tutorial-items-sg-wear-suit
+      controlHint: tutorial-items-control-wear-suit
+      complete: WearItem
+      entity: ClothingOuterSuitEmergency
+      stuckHint: tutorial-items-stuck-wear-suit
+    - id: deploy-helmet
+      text: tutorial-items-sg-deploy-helmet
+      controlHint: tutorial-items-control-deploy-helmet
+      complete: WearItem
+      entity: ClothingHeadHelmetEVALarge
+      stuckHint: tutorial-items-stuck-deploy-helmet
+    - id: find-box
+      text: tutorial-items-sg-find-box
+      controlHint: tutorial-items-control-find-box
+      complete: HoldTag
+      tag: TutorialSurvivalBox
+    - id: open-box
+      text: tutorial-items-sg-open-box
+      controlHint: tutorial-items-control-open-box
+      complete: StorageOpened
+      tag: TutorialSurvivalBox
+    - id: empty-hand-for-mask
+      text: tutorial-items-sg-empty-hand-for-mask
+      controlHint: tutorial-items-control-empty-hand-for-mask
+      complete: ActiveHandEmpty
+    - id: take-mask
+      text: tutorial-items-sg-take-mask
+      controlHint: tutorial-items-control-take-mask
+      complete: HoldItem
+      component: BreathMask
+      stuckHint: tutorial-items-stuck-take-mask
+    - id: wear-mask
+      text: tutorial-items-sg-wear-mask
+      controlHint: tutorial-items-control-wear-mask
+      complete: WearItem
+      component: BreathMask
+      slot: mask
+    - id: take-tank
+      text: tutorial-items-sg-take-tank
+      complete: ObtainItem
+      component: GasTank
+    - id: suit-stow-tank
+      text: tutorial-items-sg-suit-stow-tank
+      controlHint: tutorial-items-control-suit-stow-tank
+      complete: StowItem
+      component: GasTank
+      slot: suitstorage
+    - id: internals-on
+      text: tutorial-items-sg-internals-on
+      controlHint: tutorial-items-control-internals-on
+      complete: InternalsOn
+    - id: breach-brief
+      text: tutorial-items-sg-breach-brief
+      complete: Acknowledge
+      autoAdvanceSeconds: 22
+    - id: pry-firelock
+      text: tutorial-items-sg-pry-firelock
+      controlHint: tutorial-items-control-pry-firelock
+      complete: InteractTargetTag
+      tag: TutorialFirelock
+    - id: cross-vacuum
+      text: tutorial-items-sg-cross-vacuum
+      complete: ReachMarker
+      marker: items-pad-vacuum
+    - id: internals-off
+      text: tutorial-items-sg-internals-off
+      controlHint: tutorial-items-control-internals-off
+      complete: InternalsOff
+
+  # --- Chamber 7. graduation ---------------------------------------------
+  - id: certification
+    title: tutorial-items-goal-certification
+    enterRoom: 6
+    subGoals:
+    - id: graduation
+      text: tutorial-items-sg-graduation
+      complete: Acknowledge
+      autoAdvanceSeconds: 3
+    - id: farewell
+      text: tutorial-items-sg-farewell
+      complete: Acknowledge
+      autoAdvanceSeconds: 3

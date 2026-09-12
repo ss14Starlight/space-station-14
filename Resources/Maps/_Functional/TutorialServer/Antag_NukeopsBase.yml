@@ -1,0 +1,35 @@
+# Placeholder: Operative/Medic tutorials use nukeopsOutpost: true and
+# TutorialNukeopsBaseSystem (lounge + chem floating fragment), not this YAML grid.
+# Kept so the path documented in the plan resolves if referenced.
+meta:
+  format: 6
+  postmapinit: false
+tilemap:
+  0: Space
+  89: FloorSteel
+entities:
+- proto: ""
+  entities:
+  - uid: 2
+    components:
+    - type: MetaData
+    - type: Transform
+      parent: invalid
+    - type: MapGrid
+      chunks: {}
+    - type: Broadphase
+    - type: Physics
+      bodyStatus: InAir
+      bodyType: Dynamic
+    - type: Fixtures
+      fixtures: {}
+    - type: Gravity
+    - type: OccluderTree
+    - type: Shuttle
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 1
+    components:
+    - type: Transform
+      pos: 0.5,0.5
+      parent: 2

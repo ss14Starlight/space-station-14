@@ -1,0 +1,78 @@
+# Tutorial facade of Starlight eye-implant surgery (Open → Implant → Close).
+# Not a full body/organ sim — only needs to look and play like Starlight for teaching.
+
+- type: tutorialStarlightSurgery
+  id: TutorialSurgeryOpenIncision
+  name: Open Incision
+  priority: -100
+  parts:
+  - Head
+  steps:
+  - id: open-scalpel
+    name: Make incision
+    description: Hold a scalpel and cut carefully.
+    tool: Scalpel
+    duration: 0.8
+  - id: clamp-bleeders
+    name: Clamp bleeders
+    description: Hold a hemostat to clamp bleeding vessels.
+    tool: Hemostat
+    duration: 0.8
+  - id: retract-skin
+    name: Retract skin
+    description: Hold a retractor to hold the incision open.
+    tool: Retractor
+    duration: 0.8
+
+- type: tutorialStarlightSurgery
+  id: TutorialSurgeryImplantEyeImplant
+  name: Implant Eye Implant
+  priority: 0
+  parts:
+  - Head
+  requirements:
+  - TutorialSurgeryOpenIncision
+  requiresNoEyeImplant: true
+  grantsEyeImplant: true
+  steps:
+  - id: prepare-site
+    name: Prepare implant site
+    description: Hold a scalpel to prepare the eye socket.
+    tool: Scalpel
+    duration: 0.8
+  - id: insert-implant
+    name: Insert eye implant
+    description: Hold the welding eye implant and insert it.
+    tool: EyeImplant
+    duration: 1.2
+  - id: connect-nerve
+    name: Connect optic nerve
+    description: Hold a hemostat to connect the optic nerve.
+    tool: Hemostat
+    duration: 0.8
+
+- type: tutorialStarlightSurgery
+  id: TutorialSurgeryCloseIncisionHead
+  name: Close Incision
+  priority: 100
+  parts:
+  - Head
+  requirements:
+  - TutorialSurgeryOpenIncision
+  clearsIncisionProgress: true
+  steps:
+  - id: rejoin-vessels
+    name: Rejoin blood vessels
+    description: Hold a hemostat to rejoin vessels.
+    tool: Hemostat
+    duration: 0.8
+  - id: mend-skull
+    name: Mend skull
+    description: Hold bone gel to mend the skull.
+    tool: BoneGel
+    duration: 0.8
+  - id: close-incision
+    name: Cauterize incision
+    description: Hold a cautery to seal the incision shut.
+    tool: Cautery
+    duration: 0.8

@@ -1,0 +1,105 @@
+- type: tutorialRole
+  id: TutorialQuartermaster
+  mentorName: Urist McBudget
+  job: Quartermaster
+  stub: false
+  category: Cargo
+  map: /Maps/_Functional/TutorialServer/Roles/Quartermaster.yml
+  roomTemplate: TutorialSectionCargoOffice
+  guidebook: Cargo
+  practiceSpawns:
+  - id: LockerQuarterMasterFilled
+    room: 0
+    offset: -2, 1
+  - id: AppraisalTool
+    room: 0
+    offset: -0.5, 0
+  - id: CrateGenericSteel
+    room: 0
+    offset: -1.5, 1
+  - id: PackageDelivery
+    room: 0
+    offset: 0.5, 0
+  - id: PaperCargoBountyManifest
+    room: 0
+    offset: -0.5, 0
+  - id: TutorialComputerCargoOrders
+    room: 0
+    offset: 1.5, 1
+  - id: ComputerPalletConsole
+    room: 0
+    offset: 1.5, -0.5
+  - id: TutorialCargoPalletSell
+    room: 0
+    offset: -0.5, -0.5
+  - id: TutorialVendingMachineCart
+    room: 0
+    offset: 0, -1.5
+  - id: TutorialStepMarker
+    room: 0
+    offset: -1.5, -1.5
+    marker: qm-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-quartermaster-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-quartermaster-sg-intro
+      complete: Acknowledge
+  - id: lead
+    title: tutorial-job-quartermaster-goal-lead
+    subGoals:
+    - id: hold-appraise
+      text: tutorial-job-quartermaster-sg-appraise
+      complete: HoldItem
+      entity: AppraisalTool
+    - id: use-appraise
+      text: tutorial-job-quartermaster-sg-use-appraise
+      complete: UseInHand
+      entity: AppraisalTool
+  - id: floor
+    title: tutorial-job-quartermaster-goal-floor
+    subGoals:
+    - id: orders
+      text: tutorial-job-quartermaster-sg-orders
+      complete: InteractTargetTag
+      tag: TutorialCargoOrders
+    - id: approve-order
+      text: tutorial-job-quartermaster-sg-approve
+      complete: CargoOrderApproved
+    - id: budget-tip
+      text: tutorial-job-quartermaster-sg-priority-tip
+      complete: Acknowledge
+    - id: hold-package
+      text: tutorial-job-quartermaster-sg-package
+      complete: HoldItem
+      entity: PackageDelivery
+    - id: hold-manifest
+      text: tutorial-job-quartermaster-sg-manifest
+      complete: HoldItem
+      entity: PaperCargoBountyManifest
+    - id: cart
+      text: tutorial-job-quartermaster-sg-cart
+      complete: InteractTargetTag
+      tag: TutorialVending
+    - id: sell-pad
+      text: tutorial-job-quartermaster-sg-sell-pad
+      complete: InteractTargetTag
+      tag: TutorialCargoSell
+    - id: sell-crate
+      text: tutorial-job-quartermaster-sg-sell
+      complete: CargoSold
+      minCount: 1
+    - id: shuttle-tip
+      text: tutorial-job-quartermaster-sg-shuttle-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-job-quartermaster-sg-walk
+      complete: ReachMarker
+      marker: qm-pass
+  - id: finish
+    title: tutorial-job-quartermaster-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-quartermaster-sg-done
+      complete: Acknowledge

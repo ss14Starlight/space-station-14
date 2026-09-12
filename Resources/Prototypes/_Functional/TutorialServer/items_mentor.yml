@@ -1,0 +1,362 @@
+- type: entity
+  parent: TutorialHoloMentor
+  id: TutorialHoloMentorItems
+  suffix: Tutorial, Mentor, Items
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TutorialTrainer
+    speakRange: 3
+    startDelay: 0
+    sessionStartDelay: 4
+    minLineDelay: 3
+    maxLineDelay: 5
+    secondsPerCharacter: 0.075
+    lines:
+    - subGoalId: welcome
+      dialogue: tutorial-items-nanci-welcome-1
+    - subGoalId: welcome
+      dialogue: tutorial-items-nanci-welcome-2
+    - subGoalId: welcome
+      dialogue: tutorial-items-nanci-welcome-3
+    - subGoalId: welcome
+      dialogue: tutorial-items-nanci-welcome-4
+    - subGoalId: take-tool
+      dialogue: tutorial-items-nanci-take-tool-1
+    - subGoalId: take-tool
+      dialogue: tutorial-items-nanci-take-tool-2
+    - subGoalId: take-tool
+      dialogue: tutorial-items-nanci-take-tool-3
+      showControlHint: true
+    - subGoalId: take-tool
+      dialogue: tutorial-items-nanci-take-tool-4
+    - subGoalId: swap-hands
+      dialogue: tutorial-items-nanci-swap-hands-1
+      showControlHint: true
+    - subGoalId: swap-hands
+      dialogue: tutorial-items-nanci-swap-hands-2
+    - subGoalId: take-other-tool
+      dialogue: tutorial-items-nanci-take-other-tool-1
+      showControlHint: true
+    - subGoalId: take-other-tool
+      dialogue: tutorial-items-nanci-take-other-tool-2
+    - subGoalId: brief-girder
+      dialogue: tutorial-items-nanci-brief-girder-1
+    - subGoalId: brief-girder
+      dialogue: tutorial-items-nanci-brief-girder-2
+    - subGoalId: brief-girder
+      dialogue: tutorial-items-nanci-brief-girder-3
+    - subGoalId: wrench-active
+      dialogue: tutorial-items-nanci-wrench-active-1
+      showControlHint: true
+    - subGoalId: unbolt-girder
+      dialogue: tutorial-items-nanci-unbolt-girder-1
+      showControlHint: true
+    - subGoalId: driver-active
+      dialogue: tutorial-items-nanci-driver-active-1
+      showControlHint: true
+    - subGoalId: strip-girder
+      dialogue: tutorial-items-nanci-strip-girder-1
+      showControlHint: true
+    - subGoalId: strip-girder
+      dialogue: tutorial-items-nanci-strip-girder-2
+    - subGoalId: strip-girder
+      dialogue: tutorial-items-nanci-strip-girder-3
+    - subGoalId: drop-tools
+      dialogue: tutorial-items-nanci-drop-tools-1
+    - subGoalId: drop-tools
+      dialogue: tutorial-items-nanci-drop-tools-2
+      showControlHint: true
+    - subGoalId: drop-tools
+      dialogue: tutorial-items-nanci-drop-tools-3
+    - subGoalId: drop-tools
+      dialogue: tutorial-items-nanci-drop-tools-4
+    - subGoalId: examine-plaque
+      dialogue: tutorial-items-nanci-examine-plaque-1
+    - subGoalId: examine-plaque
+      dialogue: tutorial-items-nanci-examine-plaque-2
+      showControlHint: true
+    - subGoalId: examine-plaque
+      dialogue: tutorial-items-nanci-examine-plaque-3
+    - subGoalId: examine-plaque
+      dialogue: tutorial-items-nanci-examine-plaque-4
+    - subGoalId: take-lantern
+      dialogue: tutorial-items-nanci-take-lantern-1
+    - subGoalId: take-lantern
+      dialogue: tutorial-items-nanci-take-lantern-2
+    - subGoalId: take-lantern
+      dialogue: tutorial-items-nanci-take-lantern-3
+      showControlHint: true
+    - subGoalId: light-lantern
+      dialogue: tutorial-items-nanci-light-lantern-1
+    - subGoalId: light-lantern
+      dialogue: tutorial-items-nanci-light-lantern-2
+    - subGoalId: light-lantern
+      dialogue: tutorial-items-nanci-light-lantern-3
+    - subGoalId: light-lantern
+      dialogue: tutorial-items-nanci-light-lantern-4
+    - subGoalId: light-lantern
+      dialogue: tutorial-items-nanci-light-lantern-5
+      showControlHint: true
+    - subGoalId: open-locker
+      dialogue: tutorial-items-nanci-open-locker-1
+    - subGoalId: open-locker
+      dialogue: tutorial-items-nanci-open-locker-2
+    - subGoalId: open-locker
+      dialogue: tutorial-items-nanci-open-locker-3
+    - subGoalId: open-locker
+      dialogue: tutorial-items-nanci-open-locker-4
+      showControlHint: true
+    - subGoalId: take-can
+      dialogue: tutorial-items-nanci-take-can-1
+    - subGoalId: take-can
+      dialogue: tutorial-items-nanci-take-can-2
+      showControlHint: true
+    - subGoalId: take-can
+      dialogue: tutorial-items-nanci-take-can-3
+    - subGoalId: take-can
+      dialogue: tutorial-items-nanci-take-can-4
+    - subGoalId: throw-can
+      dialogue: tutorial-items-nanci-throw-can-1
+    - subGoalId: throw-can
+      dialogue: tutorial-items-nanci-throw-can-2
+      showControlHint: true
+    - subGoalId: throw-can
+      dialogue: tutorial-items-nanci-throw-can-3
+    - subGoalId: throw-can
+      dialogue: tutorial-items-nanci-throw-can-4
+    - subGoalId: bin-can
+      dialogue: tutorial-items-nanci-bin-can-1
+      showControlHint: true
+    - subGoalId: bin-can
+      dialogue: tutorial-items-nanci-bin-can-2
+    - subGoalId: bin-can
+      dialogue: tutorial-items-nanci-bin-can-3
+    - subGoalId: flush-bin
+      dialogue: tutorial-items-nanci-flush-bin-1
+      showControlHint: true
+    - subGoalId: flush-bin
+      dialogue: tutorial-items-nanci-flush-bin-2
+    - subGoalId: flush-bin
+      dialogue: tutorial-items-nanci-flush-bin-3
+    - subGoalId: flush-bin
+      dialogue: tutorial-items-nanci-flush-bin-4
+    - subGoalId: take-plushie
+      dialogue: tutorial-items-nanci-take-plushie-1
+    - subGoalId: take-plushie
+      dialogue: tutorial-items-nanci-take-plushie-2
+      showControlHint: true
+    - subGoalId: take-plushie
+      dialogue: tutorial-items-nanci-take-plushie-3
+    - subGoalId: take-plushie
+      dialogue: tutorial-items-nanci-take-plushie-4
+    - subGoalId: open-bag
+      dialogue: tutorial-items-nanci-open-bag-1
+    - subGoalId: open-bag
+      dialogue: tutorial-items-nanci-open-bag-2
+    - subGoalId: open-bag
+      dialogue: tutorial-items-nanci-open-bag-3
+      showControlHint: true
+    - subGoalId: open-bag
+      dialogue: tutorial-items-nanci-open-bag-4
+    - subGoalId: stow-plushie
+      dialogue: tutorial-items-nanci-stow-plushie-1
+      showControlHint: true
+    - subGoalId: stow-plushie
+      dialogue: tutorial-items-nanci-stow-plushie-2
+    - subGoalId: retrieve-plushie
+      dialogue: tutorial-items-nanci-retrieve-plushie-1
+      showControlHint: true
+    - subGoalId: retrieve-plushie
+      dialogue: tutorial-items-nanci-retrieve-plushie-2
+    - subGoalId: keep-plushie
+      dialogue: tutorial-items-nanci-keep-plushie-1
+      showControlHint: true
+    - subGoalId: keep-plushie
+      dialogue: tutorial-items-nanci-keep-plushie-2
+    - subGoalId: keep-plushie
+      dialogue: tutorial-items-nanci-keep-plushie-3
+    - subGoalId: pull-crate
+      dialogue: tutorial-items-nanci-pull-crate-1
+    - subGoalId: pull-crate
+      dialogue: tutorial-items-nanci-pull-crate-2
+    - subGoalId: pull-crate
+      dialogue: tutorial-items-nanci-pull-crate-3
+    - subGoalId: pull-crate
+      dialogue: tutorial-items-nanci-pull-crate-4
+      showControlHint: true
+    - subGoalId: park-crate
+      dialogue: tutorial-items-nanci-park-crate-1
+    - subGoalId: park-crate
+      dialogue: tutorial-items-nanci-park-crate-2
+    - subGoalId: park-crate
+      dialogue: tutorial-items-nanci-park-crate-3
+      showControlHint: true
+    - subGoalId: take-belt
+      dialogue: tutorial-items-nanci-take-belt-1
+    - subGoalId: take-belt
+      dialogue: tutorial-items-nanci-take-belt-2
+      showControlHint: true
+    - subGoalId: take-belt
+      dialogue: tutorial-items-nanci-take-belt-3
+    - subGoalId: take-belt
+      dialogue: tutorial-items-nanci-take-belt-4
+    - subGoalId: wear-belt
+      dialogue: tutorial-items-nanci-wear-belt-1
+      showControlHint: true
+    - subGoalId: wear-belt
+      dialogue: tutorial-items-nanci-wear-belt-2
+    - subGoalId: wear-belt
+      dialogue: tutorial-items-nanci-wear-belt-3
+    - subGoalId: wear-belt
+      dialogue: tutorial-items-nanci-wear-belt-4
+    - subGoalId: belt-crowbar
+      dialogue: tutorial-items-nanci-belt-crowbar-1
+    - subGoalId: belt-crowbar
+      dialogue: tutorial-items-nanci-belt-crowbar-2
+      showControlHint: true
+    - subGoalId: belt-crowbar
+      dialogue: tutorial-items-nanci-belt-crowbar-3
+    - subGoalId: belt-crowbar
+      dialogue: tutorial-items-nanci-belt-crowbar-4
+    - subGoalId: open-belt
+      dialogue: tutorial-items-nanci-open-belt-1
+    - subGoalId: open-belt
+      dialogue: tutorial-items-nanci-open-belt-2
+      showControlHint: true
+    - subGoalId: open-belt
+      dialogue: tutorial-items-nanci-open-belt-3
+    - subGoalId: open-belt
+      dialogue: tutorial-items-nanci-open-belt-4
+    - subGoalId: wear-suit
+      dialogue: tutorial-items-nanci-wear-suit-1
+    - subGoalId: wear-suit
+      dialogue: tutorial-items-nanci-wear-suit-2
+    - subGoalId: wear-suit
+      dialogue: tutorial-items-nanci-wear-suit-3
+    - subGoalId: wear-suit
+      dialogue: tutorial-items-nanci-wear-suit-4
+      showControlHint: true
+    - subGoalId: wear-suit
+      dialogue: tutorial-items-nanci-wear-suit-5
+    - subGoalId: deploy-helmet
+      dialogue: tutorial-items-nanci-deploy-helmet-1
+    - subGoalId: deploy-helmet
+      dialogue: tutorial-items-nanci-deploy-helmet-2
+    - subGoalId: deploy-helmet
+      dialogue: tutorial-items-nanci-deploy-helmet-3
+      showControlHint: true
+    - subGoalId: deploy-helmet
+      dialogue: tutorial-items-nanci-deploy-helmet-4
+    - subGoalId: deploy-helmet
+      dialogue: tutorial-items-nanci-deploy-helmet-5
+    - subGoalId: find-box
+      dialogue: tutorial-items-nanci-find-box-1
+    - subGoalId: find-box
+      dialogue: tutorial-items-nanci-find-box-2
+    - subGoalId: find-box
+      dialogue: tutorial-items-nanci-find-box-3
+    - subGoalId: find-box
+      dialogue: tutorial-items-nanci-find-box-4
+      showControlHint: true
+    - subGoalId: open-box
+      dialogue: tutorial-items-nanci-open-box-1
+      showControlHint: true
+    - subGoalId: open-box
+      dialogue: tutorial-items-nanci-open-box-2
+    - subGoalId: open-box
+      dialogue: tutorial-items-nanci-open-box-3
+    - subGoalId: empty-hand-for-mask
+      dialogue: tutorial-items-nanci-empty-hand-for-mask-1
+    - subGoalId: empty-hand-for-mask
+      dialogue: tutorial-items-nanci-empty-hand-for-mask-2
+      showControlHint: true
+    - subGoalId: take-mask
+      dialogue: tutorial-items-nanci-take-mask-1
+      showControlHint: true
+    - subGoalId: take-mask
+      dialogue: tutorial-items-nanci-take-mask-2
+    - subGoalId: wear-mask
+      dialogue: tutorial-items-nanci-wear-mask-1
+      showControlHint: true
+    - subGoalId: wear-mask
+      dialogue: tutorial-items-nanci-wear-mask-2
+    - subGoalId: wear-mask
+      dialogue: tutorial-items-nanci-wear-mask-3
+    - subGoalId: take-tank
+      dialogue: tutorial-items-nanci-take-tank-1
+      showControlHint: true
+    - subGoalId: take-tank
+      dialogue: tutorial-items-nanci-take-tank-2
+    - subGoalId: take-tank
+      dialogue: tutorial-items-nanci-take-tank-3
+    - subGoalId: suit-stow-tank
+      dialogue: tutorial-items-nanci-suit-stow-tank-1
+      showControlHint: true
+    - subGoalId: suit-stow-tank
+      dialogue: tutorial-items-nanci-suit-stow-tank-2
+    - subGoalId: suit-stow-tank
+      dialogue: tutorial-items-nanci-suit-stow-tank-3
+    - subGoalId: internals-on
+      dialogue: tutorial-items-nanci-internals-on-1
+    - subGoalId: internals-on
+      dialogue: tutorial-items-nanci-internals-on-2
+    - subGoalId: internals-on
+      dialogue: tutorial-items-nanci-internals-on-3
+      showControlHint: true
+    - subGoalId: internals-on
+      dialogue: tutorial-items-nanci-internals-on-4
+    - subGoalId: internals-on
+      dialogue: tutorial-items-nanci-internals-on-5
+    - subGoalId: breach-brief
+      dialogue: tutorial-items-nanci-breach-brief-1
+    - subGoalId: breach-brief
+      dialogue: tutorial-items-nanci-breach-brief-2
+    - subGoalId: breach-brief
+      dialogue: tutorial-items-nanci-breach-brief-3
+    - subGoalId: breach-brief
+      dialogue: tutorial-items-nanci-breach-brief-4
+    - subGoalId: breach-brief
+      dialogue: tutorial-items-nanci-breach-brief-5
+    - subGoalId: breach-brief
+      dialogue: tutorial-items-nanci-breach-brief-6
+    - subGoalId: pry-firelock
+      dialogue: tutorial-items-nanci-pry-firelock-1
+    - subGoalId: pry-firelock
+      dialogue: tutorial-items-nanci-pry-firelock-2
+    - subGoalId: pry-firelock
+      dialogue: tutorial-items-nanci-pry-firelock-3
+    - subGoalId: pry-firelock
+      dialogue: tutorial-items-nanci-pry-firelock-4
+      showControlHint: true
+    - subGoalId: cross-vacuum
+      dialogue: tutorial-items-nanci-cross-vacuum-1
+      showControlHint: true
+    - subGoalId: cross-vacuum
+      dialogue: tutorial-items-nanci-cross-vacuum-2
+    - subGoalId: cross-vacuum
+      dialogue: tutorial-items-nanci-cross-vacuum-3
+    - subGoalId: internals-off
+      dialogue: tutorial-items-nanci-internals-off-1
+    - subGoalId: internals-off
+      dialogue: tutorial-items-nanci-internals-off-2
+    - subGoalId: internals-off
+      dialogue: tutorial-items-nanci-internals-off-3
+      showControlHint: true
+    - subGoalId: internals-off
+      dialogue: tutorial-items-nanci-internals-off-4
+    - subGoalId: internals-off
+      dialogue: tutorial-items-nanci-internals-off-5
+    - subGoalId: graduation
+      dialogue: tutorial-items-nanci-graduation-1
+    - subGoalId: graduation
+      dialogue: tutorial-items-nanci-graduation-2
+    - subGoalId: graduation
+      dialogue: tutorial-items-nanci-graduation-3
+    - subGoalId: graduation
+      dialogue: tutorial-items-nanci-graduation-4
+    - subGoalId: farewell
+      dialogue: tutorial-items-nanci-farewell-1
+    - subGoalId: farewell
+      dialogue: tutorial-items-nanci-farewell-2
+    - subGoalId: farewell
+      dialogue: tutorial-items-nanci-farewell-3

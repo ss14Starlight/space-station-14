@@ -102,6 +102,16 @@ public sealed partial class VampireSystem : EntitySystem
         InitializeObjectives();
     }
 
+    /// <summary>Tutorial bootstrap: ensure vampire + lowered class threshold.</summary>
+    public void MakeTutorialVampire(EntityUid mob, int classSelectThreshold = 40)
+    {
+        var vamp = EnsureComp<VampireComponent>(mob);
+        vamp.ClassSelectThreshold = classSelectThreshold;
+        vamp.BaseVampireActions = ["ActionVampireToggleFangs"];
+        SyncVampireActions(mob, vamp);
+        Dirty(mob, vamp);
+    }
+
     private void OnVampireActionUseAttempt(ref VampireActionUseAttemptEvent args)
     {
         args.Allowed = CheckAndConsumeGrantedVampireAction(args.User, args.ActionEntity, args.BloodCost);

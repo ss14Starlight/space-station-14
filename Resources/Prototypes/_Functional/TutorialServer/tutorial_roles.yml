@@ -1,0 +1,154 @@
+﻿# TutorialRole prototypes — Functional Tutorial Server (stubs only)
+# Non-stub deep curricula live under roles/*.yml
+
+- type: tutorialRole
+  id: TutorialLawyer
+  mentorName: Urist McObjection
+  job: Lawyer
+  stub: true
+  category: Stub
+  map: /Maps/_Functional/TutorialServer/StubPractice.yml
+  steps:
+  - id: explore
+    text: tutorial-stub-explore-gear
+    complete: Acknowledge
+  - id: done
+    text: tutorial-stub-ghost-when-done
+    complete: Acknowledge
+
+
+- type: tutorialRole
+  id: TutorialLibrarian
+  mentorName: Urist McShush
+  job: Librarian
+  stub: true
+  category: Stub
+  map: /Maps/_Functional/TutorialServer/StubPractice.yml
+  steps:
+  - id: explore
+    text: tutorial-stub-explore-gear
+    complete: Acknowledge
+  - id: done
+    text: tutorial-stub-ghost-when-done
+    complete: Acknowledge
+
+
+- type: tutorialRole
+  id: TutorialMusician
+  mentorName: Urist McTone
+  job: Musician
+  stub: true
+  category: Stub
+  map: /Maps/_Functional/TutorialServer/StubPractice.yml
+  steps:
+  - id: explore
+    text: tutorial-stub-explore-gear
+    complete: Acknowledge
+  - id: done
+    text: tutorial-stub-ghost-when-done
+    complete: Acknowledge
+
+
+- type: tutorialRole
+  id: TutorialReporter
+  mentorName: Urist McScoop
+  job: Reporter
+  stub: true
+  category: Stub
+  map: /Maps/_Functional/TutorialServer/StubPractice.yml
+  steps:
+  - id: explore
+    text: tutorial-stub-explore-gear
+    complete: Acknowledge
+  - id: done
+    text: tutorial-stub-ghost-when-done
+    complete: Acknowledge
+
+
+- type: tutorialRole
+  id: TutorialVisitor
+  mentorName: Urist McTourist
+  job: Visitor
+  stub: true
+  category: Stub
+  map: /Maps/_Functional/TutorialServer/StubPractice.yml
+  steps:
+  - id: explore
+    text: tutorial-stub-explore-gear
+    complete: Acknowledge
+  - id: done
+    text: tutorial-stub-ghost-when-done
+    complete: Acknowledge
+
+
+- type: tutorialRole
+  id: TutorialMedicalIntern
+  mentorName: Urist McSponge
+  job: MedicalIntern
+  stub: true
+  category: Stub
+  map: /Maps/_Functional/TutorialServer/StubPractice.yml
+  steps:
+  - id: explore
+    text: tutorial-stub-explore-gear
+    complete: Acknowledge
+  - id: done
+    text: tutorial-stub-ghost-when-done
+    complete: Acknowledge
+
+
+- type: tutorialRole
+  id: TutorialPsychologist
+  mentorName: Urist McCouch
+  job: Psychologist
+  stub: true
+  category: Stub
+  map: /Maps/_Functional/TutorialServer/StubPractice.yml
+  steps:
+  - id: explore
+    text: tutorial-stub-explore-gear
+    complete: Acknowledge
+  - id: done
+    text: tutorial-stub-ghost-when-done
+    complete: Acknowledge
+
+
+# Deep Security Cadet tutorial lives in roles/security_cadet.yml
+# Deep Service Worker tutorial lives in roles/service_worker.yml
+
+# Deep Borg (+ Subverted Silicon) tutorial lives in roles/borg.yml
+
+- type: tutorialRole
+  id: TutorialStationAi
+  mentorName: Urist McSilicon
+  job: StationAi
+  stub: true
+  category: Stub
+  map: /Maps/_Functional/TutorialServer/StubPractice.yml
+  steps:
+  - id: explore
+    text: tutorial-stub-explore-gear
+    complete: Acknowledge
+  - id: done
+    text: tutorial-stub-ghost-when-done
+    complete: Acknowledge
+
+
+# Deep Changeling tutorial lives in roles/changeling.yml
+# Deep Space Dragon tutorial lives in roles/space_dragon.yml
+
+# Deep HeadRev (+ Rev) tutorial lives in roles/revolutionary.yml
+# Deep Zombie (+ Initial Infected) tutorial lives in roles/zombie.yml
+
+# Deep Mothership Core tutorial lives in roles/mothership_core.yml
+# Deep Vampire tutorial lives in roles/vampire.yml
+# Paradox Clone and Survivor have no tutorials (removed from picker)
+
+# Deep Nukeops / Medic / Commander tutorials live in roles/nukeops*.yml
+# Deep Space Ninja tutorial lives in roles/space_ninja.yml
+# Deep Thief tutorial lives in roles/thief.yml
+# Deep Wizard tutorial lives in roles/wizard.yml
+
+# Subverted Silicon is covered by the deep Borg tutorial (roles/borg.yml)
+
+# Deep Xenoborg tutorial lives in roles/xenoborg.yml

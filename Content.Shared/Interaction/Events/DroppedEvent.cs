@@ -13,8 +13,11 @@ public sealed class DroppedEvent : HandledEntityEventArgs
     /// </summary>
     public EntityUid User { get; }
 
-    public DroppedEvent(EntityUid user)
+    public EntityUid Item { get; } // Starlight
+
+    public DroppedEvent(EntityUid user, EntityUid item) // Starlight edit
     {
         User = user;
+        Item = item; // Starlight
     }
 }
