@@ -4,6 +4,8 @@ using Content.IntegrationTests.Fixtures;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Bed.Sleep;
+using Content.Shared._Starlight.Sleepiness.Events;
+using Robust.Shared.GameObjects;
 using Robust.Server.Player;
 
 namespace Content.IntegrationTests.Tests._Starlight.Actions;
@@ -24,6 +26,7 @@ public sealed class WakeActionTest : GameTest
         var clientEntity = client.Session!.AttachedEntity!.Value;
         var sleepingSystem = server.System<SleepingSystem>();
         var clientActions = client.System<Content.Client.Actions.ActionsSystem>();
+        var wakeTestSystem = server.System<WakeActionTestSystem>();
 
         await server.WaitPost(() => Assert.That(sleepingSystem.TrySleeping(serverEntity), Is.True));
         await pair.RunTicksSync(5);
@@ -37,5 +40,38 @@ public sealed class WakeActionTest : GameTest
         await pair.RunTicksSync(5);
 
         Assert.That(server.ResolveDependency<IEntityManager>().HasComponent<SleepingComponent>(serverEntity), Is.False);
+
+        await server.WaitPost(() => Assert.That(sleepingSystem.TrySleeping(serverEntity), Is.True));
+        await pair.RunTicksSync(5);
+        await pair.RunTicksSync(120);
+
+        wakeTestSystem.RejectNextWake = true;
+        wakeAction = clientActions.GetActions(clientEntity)
+            .Single(action => client.ResolveDependency<IEntityManager>()
+                .GetComponent<InstantActionComponent>(action).Event is WakeActionEvent);
+        clientActions.TriggerAction(wakeAction);
+        await pair.RunTicksSync(5);
+
+        Assert.That(server.ResolveDependency<IEntityManager>().HasComponent<SleepingComponent>(serverEntity), Is.True);
+    }
+
+    private sealed class WakeActionTestSystem : EntitySystem
+    {
+        public bool RejectNextWake;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<SleepinessWakeAttemptEvent>(OnWakeAttempt);
+        }
+
+        private void OnWakeAttempt(ref SleepinessWakeAttemptEvent args)
+        {
+            if (!RejectNextWake)
+                return;
+
+            RejectNextWake = false;
+            args.Result = false;
+        }
     }
 }

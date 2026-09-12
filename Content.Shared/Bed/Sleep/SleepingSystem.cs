@@ -316,8 +316,8 @@ public sealed partial class SleepingSystem : EntitySystem
     /// <summary>
     /// Tries to wake up <paramref name="ent"/>, with a cooldown between attempts to prevent spam.
     /// </summary>
-    /// <param name="wakePower">Optional sleepiness duration to remove from the target; defaults to 1 second.</param>
-    public bool TryWakeWithCooldown(Entity<SleepingComponent?> ent, EntityUid? user = null, TimeSpan? wakePower = null)
+    /// <param name="wakePower">Optional sleepiness duration to remove from the target; defaults to 1 second.</param> // Starlight
+    public bool TryWakeWithCooldown(Entity<SleepingComponent?> ent, EntityUid? user = null, TimeSpan? wakePower = null) // Starlight
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
@@ -335,9 +335,10 @@ public sealed partial class SleepingSystem : EntitySystem
     /// <summary>
     /// Try to wake up <paramref name="ent"/>.
     /// </summary>
-    /// <param name="wakePower">Optional sleepiness duration to remove from the target; defaults to 1 second.</param>
+    /// <param name="wakePower">Optional sleepiness duration to remove from the target; defaults to 1 second.</param> // Starlight
+    /// <param name="ignoreSsd">Whether to bypass the SSD wake restriction.</param> // Starlight
     public bool TryWaking(Entity<SleepingComponent?> ent, bool force = false, EntityUid? user = null,
-        TimeSpan? wakePower = null, bool ignoreSsd = false)
+        TimeSpan? wakePower = null, bool ignoreSsd = false) // Starlight
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
