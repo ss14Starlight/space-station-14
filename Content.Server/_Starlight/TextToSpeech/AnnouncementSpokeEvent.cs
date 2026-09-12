@@ -11,4 +11,5 @@ public sealed class AnnouncementSpokeEvent : EntityEventArgs
     public NetEntity? SpeakerUid { get; set; }
     public SpeechMessage Message { get; set; } = null!;
     public SoundSpecifier? AnnouncementSound { get; set; } = null!;
+    public bool SuppressTTS { get; set; } = false;
 }
