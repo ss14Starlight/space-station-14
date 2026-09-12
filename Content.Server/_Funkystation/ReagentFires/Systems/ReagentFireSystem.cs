@@ -1,4 +1,4 @@
-using Content.Server._Funkystation.Atmos.Events;
+﻿using Content.Server._Funkystation.Atmos.Events;
 using Content.Server._Funkystation.ReagentFires.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -51,7 +51,7 @@ public sealed partial class ReagentFireSystem : EntitySystem
     private static readonly Vector2i[] _cardinalOffsets = [new(0, 1), new(0, -1), new(1, 0), new(-1, 0)];
     private static readonly AtmosDirection[] _cardinalDirections = [AtmosDirection.North, AtmosDirection.South, AtmosDirection.East, AtmosDirection.West];
 
-    private const float UpdateInterval = 1f;
+    private const float UpdateInterval = 0.5f; // Starlight
 
     private readonly List<(EntityUid Uid, ReagentPuddleFireComponent FireComp, PuddleComponent Puddle, TransformComponent Xform)> _dueFires = [];
     private readonly List<EntityUid> _toExtinguish = [];
@@ -73,6 +73,10 @@ public sealed partial class ReagentFireSystem : EntitySystem
     private float _volumeScalingCurve = 1.5f;
     private float _smallPuddleBurnThreshold = 1.0f;
     private float _smallPuddleBurnPercent = 0.5f;
+
+    #region Starlight
+    private float _updateAccumulator;
+    #endregion
 
     public override void Initialize()
     {
@@ -284,8 +288,11 @@ public sealed partial class ReagentFireSystem : EntitySystem
             fireComp.FireEffectEntity = fireEnt;
         }
 
-        _appearance.SetData(fireComp.FireEffectEntity.Value, ReagentPuddleFireVisuals.FireState, fireComp.FireState);
-        _appearance.SetData(fireComp.FireEffectEntity.Value, ReagentPuddleFireVisuals.FireColor, fireColor);
+        if (fireComp.FireEffectEntity is { } fireEffect) // Starlight
+        {
+            _appearance.SetData(fireEffect, ReagentPuddleFireVisuals.FireState, fireComp.FireState);
+            _appearance.SetData(fireEffect, ReagentPuddleFireVisuals.FireColor, fireColor);
+        }
     }
 
     private void Extinguish(EntityUid uid)
@@ -334,6 +341,14 @@ public sealed partial class ReagentFireSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // Starlight-start: these fires advance in half-second steps, so skip their component query between steps.
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < UpdateInterval)
+            return;
+
+        _updateAccumulator = 0;
+        // Starlight-end
+
         _dueFires.Clear();
         _toExtinguish.Clear();
 
@@ -341,11 +356,6 @@ public sealed partial class ReagentFireSystem : EntitySystem
         var query = EntityQueryEnumerator<ReagentPuddleFireComponent, PuddleComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var fireComp, out var puddle, out var xform))
         {
-            fireComp.Accumulator += frameTime;
-            if (fireComp.Accumulator < UpdateInterval)
-                continue;
-
-            fireComp.Accumulator -= UpdateInterval;
             _dueFires.Add((uid, fireComp, puddle, xform));
         }
 

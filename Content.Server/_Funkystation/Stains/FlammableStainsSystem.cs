@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using Content.Server._Funkystation.Atmos.Events;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -32,6 +32,12 @@ public sealed partial class FlammableStainsSystem : EntitySystem
 
     // Fraction of a stain's flammable reagents consumed per second while on fire
     private const float StainBurnRatePerSecond = 0.2f;
+
+    #region Starlight
+    private const float UpdateInterval = 0.5f;
+    private float _updateAccumulator;
+    #endregion
+
     private float _stainStackMultiplier = 1.0f;
 
     private readonly HashSet<EntityUid> _flammableStains = [];
@@ -146,17 +152,31 @@ public sealed partial class FlammableStainsSystem : EntitySystem
         if (_flammableStains.Count == 0)
             return;
 
+        // Starlight-start: burning is rate-based, so avoid walking the tracked set every tick.
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < UpdateInterval)
+            return;
+
+        var burnTime = _updateAccumulator;
+        _updateAccumulator = 0f;
+        // Starlight-end
+
         _stainBuffer.Clear();
         _stainBuffer.AddRange(_flammableStains);
 
         // Actively burn off stains while the wearer is on fire, same as puddles.
         foreach (var item in _stainBuffer)
         {
-            if (TerminatingOrDeleted(item))
+            // Starlight-start: prune stale entries even while they are not being worn, and reuse the solution below.
+            if (TerminatingOrDeleted(item)
+                || !_stainableQuery.TryComp(item, out var stain)
+                || !_solution.TryGetSolution(item, stain.SolutionName, out var soln, out var solution)
+                || solution.GetSolutionFlammability(_prototypeManager) <= 0)
             {
                 _toPrune.Add(item);
                 continue;
             }
+            // Starlight-end
 
             if (!TryGetWearer(item, out var wearer, out var inv, out var slot))
                 continue;
@@ -167,15 +187,7 @@ public sealed partial class FlammableStainsSystem : EntitySystem
             if ((GetBlockedSlots(wearer, inv) & slot.SlotFlags) != 0)
                 continue;
 
-            if (!_stainableQuery.TryComp(item, out var stain)
-                || !_solution.TryGetSolution(item, stain.SolutionName, out var soln, out var solution)
-                || solution.GetSolutionFlammability(_prototypeManager) <= 0)
-            {
-                _toPrune.Add(item);
-                continue;
-            }
-
-            _solution.BurnFlammableReagents(soln.Value, StainBurnRatePerSecond * frameTime);
+            _solution.BurnFlammableReagents(soln.Value, StainBurnRatePerSecond * burnTime); // Starlight
         }
 
         PruneStains();
