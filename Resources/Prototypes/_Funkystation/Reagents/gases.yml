@@ -150,7 +150,19 @@
         messages: [ "effect-sleepy" ]
         probability: 0.01
 
-      - !type:ModifySleepiness # Starlight: Healium is around the level of NitrousOxide.
+      - !type:ModifySleepiness # Starlight: Healium is above NitrousOxide.
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 4
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+          max: 0.01
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 120s
+        time: 2.5
+
+      - !type:ModifySleepiness # Starlight: Healium is above NitrousOxide and adds up on higher doses.
         conditions:
         - !type:ReagentCondition
           reagent: Healium
@@ -159,8 +171,8 @@
           reagent: NitrosylPlasmide
           max: 0.01
         effectProto: StatusEffectSleepiness
-        maximumSleepiness: 60s
-        time: 2.5
+        maximumSleepiness: 120s
+        time: 4
 
       - !type:Drunk
         conditions:
@@ -184,8 +196,7 @@
           reagent: Healium
           min: 6
         effectProto: StatusEffectSleepiness
-        maximumSleepiness: 90s
-        maxScale: 1 # Starlight: a single gas effect cannot exceed its configured time
+        maximumSleepiness: 120s
         time: 3.5
 
       - !type:Drunk

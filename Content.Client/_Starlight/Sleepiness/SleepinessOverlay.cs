@@ -3,7 +3,6 @@ using Content.Shared.StatusEffectNew;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
-using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -25,7 +24,6 @@ public sealed partial class SleepinessOverlay : Robust.Client.Graphics.Overlay
     private readonly StatusEffectsSystem _statusEffects;
     private readonly ShaderInstance _shader;
     private readonly ShaderInstance _circleMaskShader;
-    private readonly ISawmill _sawmill;
     private const float IncreaseSmoothingSpeed = 3f;
     private const float DecreaseSmoothingSpeed = 8f;
     private const float VisualEpsilon = 0.001f;
@@ -35,9 +33,7 @@ public sealed partial class SleepinessOverlay : Robust.Client.Graphics.Overlay
     private const float CircleRadiusAtMinimumDarkness = 180f;
     private const float CircleRadiusAtMaximumDarkness = 60f;
     private static readonly TimeSpan _statusEffectGracePeriod = TimeSpan.FromSeconds(0.35);
-    private TimeSpan _nextDiagnostic;
     private TimeSpan _lastStatusEffectTime;
-    private string? _lastDiagnostic;
     private float _visualRatio;
     private float _lastTargetRatio;
     private bool _hasRecentStatusEffect;
@@ -53,7 +49,6 @@ public sealed partial class SleepinessOverlay : Robust.Client.Graphics.Overlay
         _statusEffects = _systemManager.GetEntitySystem<StatusEffectsSystem>();
         _shader = _prototypeManager.Index(_shaderId).InstanceUnique();
         _circleMaskShader = _prototypeManager.Index(_circleMaskShaderId).InstanceUnique();
-        _sawmill = _logManager.GetSawmill("sleepiness.client");
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -94,22 +89,14 @@ public sealed partial class SleepinessOverlay : Robust.Client.Graphics.Overlay
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         if (_playerManager.LocalEntity is not { } player)
-        {
-            ReportDiagnostic("BeforeDraw skipped: no local player");
             return false;
-        }
 
         if (!_entityManager.TryGetComponent(player, out EyeComponent? eye))
-        {
-            ReportDiagnostic("BeforeDraw skipped: local player has no eye");
             return false;
-        }
 
         if (args.Viewport.Eye != eye.Eye)
-        {
-            ReportDiagnostic("BeforeDraw skipped: viewport eye does not match local player eye");
             return false;
-        }
+        
 
         if (_visualRatio <= VisualEpsilon)
             return false;
@@ -124,23 +111,7 @@ public sealed partial class SleepinessOverlay : Robust.Client.Graphics.Overlay
         _circleMaskShader.SetParameter("CircleRadius",
             MathHelper.Lerp(CircleRadiusAtMinimumDarkness, CircleRadiusAtMaximumDarkness, darknessRatio));
 
-        if (_timing.RealTime >= _nextDiagnostic)
-        {
-            _nextDiagnostic = _timing.RealTime + TimeSpan.FromSeconds(1);
-            _sawmill.Info("Sleepiness overlay rendering: ratio={ratio:P1}, darkness={darkness:P1}, strength={strength:F3}, eye={eye}",
-                _visualRatio, darknessRatio, blurStrength, eye.Eye);
-        }
-
         return true;
-    }
-
-    private void ReportDiagnostic(string message)
-    {
-        if (_lastDiagnostic == message)
-            return;
-
-        _lastDiagnostic = message;
-        _sawmill.Info(message);
     }
 
     protected override void Draw(in OverlayDrawArgs args)
