@@ -8,11 +8,9 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared._Funkystation.Stains.Components;
 using Content.Shared._Funkystation.Stains.Systems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -35,7 +33,6 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private DamageableSystem _damageable = null!;
     [Dependency] private ReactiveSystem _reactive = null!;
-    [Dependency] private SharedSolutionContainerSystem _solution = default!;
     [Dependency] private SharedStainSystem _stains = default!;
 
     public override void Initialize()
@@ -195,11 +192,8 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
             foreach (var item in items)
             {
-                if (TryComp<StainableComponent>(item, out var stain) && _solution.TryGetSolution(item, stain.SolutionName, out var sol))
-                {
-                    _solution.RemoveAllSolution(sol.Value);
-                    _stains.UpdateVisuals((item, stain));
-                }
+                _stains.CleanStains(item);
+                _stains.CleanEquippedClothing(item);
             }
         }
 
