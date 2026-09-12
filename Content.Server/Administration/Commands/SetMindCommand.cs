@@ -72,7 +72,7 @@ namespace Content.Server.Administration.Commands
             var metadata = EntityManager.GetComponent<MetaDataComponent>(eUid.Value);
 
             var mind = playerCData.Mind ?? _mindSystem.CreateMind(session.UserId, metadata.EntityName);
-            _ai.TryControlAI(mind, eUid.Value); // Starlight
+            if (_ai.TryControlAI(mind, eUid.Value)) return; // Starlight
 
             _mindSystem.TransferTo(mind, eUid, ghostOverride);
         }

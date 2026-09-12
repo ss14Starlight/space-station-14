@@ -16,7 +16,6 @@ namespace Content.Server.Mind.Toolshed;
 public sealed class MindCommand : ToolshedCommand
 {
     private SharedMindSystem? _mind;
-    private StationAiSystem? _ai;
 
     // Starlight begin: I can't find any reason to get component instead of entity, so changed it to return entity.
     [CommandImplementation("get")]
@@ -51,6 +50,8 @@ public sealed class MindCommand : ToolshedCommand
     }
 
     #region Starlight
+
+    private StationAiSystem? _ai;
 
     [CommandImplementation("takeover")]
     public EntityUid Takeover(IInvocationContext ctx, [PipedArgument] EntityUid uid, [Optional] [DefaultParameterValue(true)] bool tryAi)
@@ -104,7 +105,13 @@ public sealed class MindCommand : ToolshedCommand
             return uid;
         }
 
-        if (tryAi && _ai.TryControlAI(mindId, uid)) return uid;
+        _mind.WipeMind(ctx.Session!);
+
+        if (tryAi)
+        {
+            mindId = _mind.GetOrCreateMind(ctx.Session!.UserId);
+            if (_ai.TryControlAI(mindId, uid)) return uid;
+        }
         _mind.ControlMob(ctx.Session!.UserId, uid);
         return uid;
     }
