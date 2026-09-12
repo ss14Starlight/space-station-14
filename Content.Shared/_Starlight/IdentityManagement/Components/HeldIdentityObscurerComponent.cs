@@ -7,7 +7,7 @@ namespace Content.Shared._Starlight.IdentityManagement.Components;
 /// When this item is held in hands, it blocks the holder's identity.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class HeldIdentityBlockerComponent : Component
+public sealed partial class HeldIdentityObscurerComponent : Component
 {
     [DataField, AutoNetworkedField]
     public bool Enabled = true;

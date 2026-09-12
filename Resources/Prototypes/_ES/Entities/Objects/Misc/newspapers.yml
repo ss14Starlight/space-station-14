@@ -76,7 +76,7 @@
   - type: Tag
     tags:
     - Paper
-  - type: HeldIdentityBlocker # SL End
+  - type: HeldIdentityObscurer # SL End
 
 # Newspapers
 

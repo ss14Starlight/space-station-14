@@ -5,7 +5,7 @@ using Content.Shared.IdentityManagement.Components;
 
 namespace Content.Shared._Starlight.IdentityManagement;
 
-public sealed partial class HeldIdentityBlockerSystem : EntitySystem
+public sealed partial class HeldIdentityObscurerSystem : EntitySystem
 {
     [Dependency] private SharedHandsSystem _hands = default!;
 
@@ -25,7 +25,7 @@ public sealed partial class HeldIdentityBlockerSystem : EntitySystem
 
         foreach (var held in _hands.EnumerateHeld((uid, hands)))
         {
-            if (!TryComp<HeldIdentityBlockerComponent>(held, out var blocker) || !blocker.Enabled)
+            if (!TryComp<HeldIdentityObscurerComponent>(held, out var blocker) || !blocker.Enabled)
                 continue;
 
             args.TotalCoverage |= blocker.Coverage;
