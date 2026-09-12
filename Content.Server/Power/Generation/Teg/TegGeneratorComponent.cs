@@ -17,7 +17,7 @@ public sealed partial class TegGeneratorComponent : Component
     /// </remarks>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("thermalEfficiency")]
-    public float ThermalEfficiency = 0.65f;
+    public float ThermalEfficiency = 1f; ///Starlight: .65 -> 1 Apparently, this gets overwritten on the prototype anyway, so may as well keep it on a default value.
 
     /// <summary>
     /// Simple factor that scales effective electricity generation.
