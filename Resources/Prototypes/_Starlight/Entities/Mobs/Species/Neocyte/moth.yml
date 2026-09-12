@@ -131,6 +131,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
+    allowedEmotes: ['Flap']
   - type: BodyEmotes
     soundsId: MothBodyEmotes
   - type: Inventory
