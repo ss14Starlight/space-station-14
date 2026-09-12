@@ -39,3 +39,6 @@ signal-port-description-enabled = Emitted when the device is turned on and enabl
 
 signal-port-name-disabled = Disabled
 signal-port-description-disabled = Emitted when the device is turned off and disabled.
+
+signal-port-name-material-sender = Material sender
+signal-port-description-material-sender = Sends materials to the connected receiver.

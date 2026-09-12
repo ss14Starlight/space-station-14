@@ -88,6 +88,7 @@ public sealed partial class LatheMenu : FancyWindow
         }
 
         MaterialsList.SetOwner(Entity);
+        LatheLinking.SetEntity(Entity); //Starlight-edit
     }
 
     /// <summary>

@@ -70,3 +70,8 @@
   id: Disabled
   name: signal-port-name-disabled
   description: signal-port-description-disabled
+
+- type: sourcePort
+  id: LatheSender
+  name: signal-port-name-material-sender
+  description: signal-port-description-material-sender
