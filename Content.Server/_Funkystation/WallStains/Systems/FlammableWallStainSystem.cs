@@ -35,6 +35,11 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
     private readonly List<(EntityUid Stain, FlammableWallStainComponent Comp)> _toIgnite = [];
     private readonly List<(EntityUid Uid, FlammableWallStainComponent FireComp, WallStainComponent Stain, TransformComponent Xform)> _activeStains = [];
 
+    #region Starlight
+    private const float UpdateInterval = 1f;
+    private float _updateAccumulator;
+    #endregion
+
     [Dependency] private EntityQuery<StainedWallComponent> _stainedWallQuery;
     [Dependency] private EntityQuery<FlammableWallStainComponent> _fireQuery;
     [Dependency] private EntityQuery<WallStainComponent> _stainQuery;
@@ -195,17 +200,19 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // Starlight-start: wall-stain fires advance once a second, so skip enumeration between steps.
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < UpdateInterval)
+            return;
+
+        _updateAccumulator -= UpdateInterval;
+        // Starlight-end
+
         _activeStains.Clear();
 
         var query = EntityQueryEnumerator<ActiveFlammableWallStainComponent, FlammableWallStainComponent, WallStainComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var fireComp, out var stain, out var xform))
         {
-            // Starlight - stains only burn once a second, don't touch their solutions every tick.
-            fireComp.Accumulator += frameTime;
-            if (fireComp.Accumulator < 1f)
-                continue;
-            fireComp.Accumulator -= 1f;
-
             _activeStains.Add((uid, fireComp, stain, xform));
         }
 
