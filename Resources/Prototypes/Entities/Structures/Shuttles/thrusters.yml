@@ -59,6 +59,18 @@
       - ShuttleCraft
     - type: Anchorable # Starlight
       delay: 10
+    # Starlight Start
+    - type: WiresPanel
+    - type: WiresVisuals
+    - type: AdjustableThruster
+    - type: ActivatableUI
+      key: enum.AdjustableThrusterUiKey.Key
+    - type: ActivatableUIRequiresPanel
+    - type: UserInterface
+      interfaces:
+        enum.AdjustableThrusterUiKey.Key:
+          type: AdjustableThrusterBoundUserInterface
+    # Starlight End
   placement:
     mode: SnapgridCenter
 
@@ -102,6 +114,11 @@
       shader: unshaded
       visible: false
       offset: 0, 1
+    # Starlight Start
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    # Starlight End
 
 - type: entity
   parent: Thruster
@@ -177,6 +194,11 @@
       shader: unshaded
       visible: false
       offset: 0, 2
+    # Starlight Start
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    # Starlight End
   - type: Anchorable
     flags: None
   - type: StaticPrice
@@ -216,6 +238,11 @@
       shader: unshaded
       visible: false
       offset: 0, 1
+    # Starlight Start
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    # Starlight End
 
 - type: entity
   id: Gyroscope
@@ -246,6 +273,11 @@
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
+    # Starlight Start
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    # Starlight End
   - type: PointLight
     radius: 1.3
     energy: 0.8
@@ -318,6 +350,11 @@
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
+    # Starlight Start
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    # Starlight End
 
 - type: entity
   id: RustedThruster
