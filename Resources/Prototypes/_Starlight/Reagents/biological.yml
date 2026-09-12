@@ -255,3 +255,44 @@
           min: 25
         reagent: PseudoceramicPlatelets
         amount: -25
+
+- type: reagent
+  id: DollBlood
+  name: reagent-name-doll-blood
+  group: Biological
+  desc: reagent-desc-doll-blood
+  flavor: spooky
+  color: "#660000"
+  metamorphicSprite:
+    sprite: Objects/Consumable/Drinks/bloodglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  recognizable: true
+  standsout: true
+  physicalDesc: reagent-physical-desc-thick
+  metabolisms:
+    Digestion:
+      metabolites:
+        Protein: 0.5 #Everyone can eat doll blood
+      effects:
+      - !type:SatiateThirst #Doll blood is hydrating for everyone, but does *not* heal dolls.
+        factor: 1.0
+        conditions:
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+        damage:
+          groups:
+            Brute: -3
+            Burn: -1.25
+    #No Bloodstream effects, Doll blood is unoffensive
+  plantMetabolism:
+    - !type:PlantAdjustWater
+      amount: 0.5
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6

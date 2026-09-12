@@ -957,8 +957,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1201,8 +1201,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1249,8 +1249,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -2107,8 +2107,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent
