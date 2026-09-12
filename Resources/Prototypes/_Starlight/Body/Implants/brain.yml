@@ -84,3 +84,6 @@
       - Nexus
       understood:
       - Nexus
+  - type: Tag
+    tags:
+      - NexusUplink

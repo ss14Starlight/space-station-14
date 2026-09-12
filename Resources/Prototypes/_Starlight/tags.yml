@@ -198,6 +198,15 @@
   id: ConstructionComment
 
 - type: Tag
+  id: CottonBread # BountyCottonBread
+
+- type: Tag
+  id: CottonCake # BountyCottonCake
+
+- type: Tag
+  id: CoupeGlass # BountyCoupeGlass
+
+- type: Tag
   id: CrispyRiceBar
 
 - type: Tag
@@ -577,6 +586,9 @@
   id: Nexus
 
 - type: Tag
+  id: NexusUplink # BountyNexusUplink
+
+- type: Tag
   id: NonLethalMech # Used to allow nonlethal mech equipment on a mech.
 
 - type: Tag
@@ -660,10 +672,16 @@
   id: RollerBed
 
 - type: Tag
+  id: Salad # BountySalad
+
+- type: Tag
   id: SalvageTicket
 
 - type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
+
+- type: Tag
+  id: SausageBun # BountySausageBun
 
 - type: Tag
   id: ScanGateMachineBoard
