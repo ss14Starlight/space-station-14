@@ -8,6 +8,6 @@
       steps:
       - material: Cable
         amount: 8
-        doAfter: 1
+        doAfter: 10
   - node: WireVest
     entity: ClothingOuterWireVest
