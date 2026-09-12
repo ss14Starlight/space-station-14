@@ -41,6 +41,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
 
 - type: emoteSounds
   id: FemaleFelionoid
@@ -85,6 +87,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
 
 - type: emoteSounds
   id: MaleCyclorite
@@ -109,6 +113,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
 
 - type: emoteSounds
   id: FemaleCyclorite
@@ -133,6 +139,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
 
 # Avali Sounds
 - type: emoteSounds
@@ -158,6 +166,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -208,6 +218,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -254,6 +266,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Gasp:
       path: /Audio/_Starlight/Voice/Resomi/resomi_gasp.ogg
     DefaultDeathgasp:
@@ -308,6 +322,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -350,6 +366,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -398,6 +416,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Hew:
+      collection: Hew
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -443,6 +463,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Hew:
+      collection: Hew
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -474,6 +496,8 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Hew:
+      collection: Hew
     ThavenGlub:
       collection: ThavenGlub
     ThavenHum:
@@ -503,6 +527,12 @@
       collection: MaleCry
     Whistle:
       collection: Whistles
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -539,6 +569,12 @@
       collection: FemaleCry
     Whistle:
       collection: Whistles
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
@@ -575,6 +611,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Honk:
       collection: BikeHorn
 
@@ -602,6 +640,8 @@
       collection: Hew
     Honk:
       collection: BikeHorn
+    ThavenGlub:
+      collection: ThavenGlub
     Crying:
       /Audio/_Starlight/Voice/Moth/moth_cry.ogg
     Cough:
@@ -672,6 +712,12 @@
       collection: Whistles
     Sneeze:
       collection: MaleSneezes
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
@@ -700,6 +746,12 @@
       collection: Whistles
     Sneeze:
       collection: FemaleSneezes
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Gasp:
       collection: FemaleGasp
     DefaultDeathgasp:
