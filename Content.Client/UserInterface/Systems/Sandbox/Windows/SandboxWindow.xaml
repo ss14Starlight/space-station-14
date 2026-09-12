@@ -9,6 +9,7 @@
         <Button Name="SpawnEntitiesButton" Access="Public" Text="{Loc sandbox-window-spawn-entities-button}"/>
         <Button Name="SpawnDecalsButton" Access="Public" Text="{Loc sandbox-window-spawn-decals-button}"/>
         <!-- Starlight-start -->
+        <Button Name="SpawnZonesButton" Access="Public" Text="{Loc sandbox-window-spawn-zones-button}"/>
         <Button Name="FinishConstructionGhostsButton" Access="Public"
             Text="{Loc sandbox-window-finish-construction-ghosts-button}"/>
         <!-- Starlight-end -->
@@ -22,6 +23,10 @@
         <Button Name="AiOverlayButton" Access="Public" Text="{Loc sandbox-window-ai-overlay-button}" ToggleMode="True"/>
         <Button Name="ShowMarkersButton" Access="Public" Text="{Loc sandbox-window-show-spawns-button}" ToggleMode="True"/>
         <Button Name="ShowBbButton" Access="Public" Text="{Loc sandbox-window-show-bb-button}" ToggleMode="True"/>
+        <!-- Starlight-start -->
+        <Button Name="ShowZonesButton" Access="Public" Text="{Loc sandbox-window-show-zones-button}" ToggleMode="True"/>
+        <Button Name="ShowRoomsButton" Access="Public" Text="{Loc sandbox-window-show-rooms-button}" ToggleMode="True"/>
+        <!-- Starlight-end -->
 
         <Label Text="{Loc sandbox-window-your-character-label}"/>
         <Button Name="GiveAghostButton" Access="Public" Text="{Loc sandbox-window-ghost-button}"/>
