@@ -330,8 +330,10 @@
   description: Stop sleeping.
   components:
   - type: Action
+    checkConsciousness: false # Starlight
     startDelay: true
     useDelay: 2
+    raiseOnUser: true # Starlight
     icon: { sprite: Clothing/Head/Hats/pyjamasyndicatered.rsi, state: icon }
   - type: InstantAction
     event: !type:WakeActionEvent

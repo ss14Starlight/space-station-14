@@ -26,6 +26,8 @@ using Content.Shared.Stunnable;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Verbs;
 using Content.Shared.Zombies;
+using Content.Shared._Starlight.Sleepiness.Components;
+using Content.Shared._Starlight.Sleepiness.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -138,8 +140,12 @@ public sealed partial class SleepingSystem : EntitySystem
             return;
         }
 
-        _stun.TryUnstun(ent.Owner);
-        _stun.TryStanding(ent.Owner);
+        // Starlight: State application already contains the authoritative stun/knockdown changes.
+        if (!_gameTiming.ApplyingState)
+        {
+            _stun.TryUnstun(ent.Owner);
+            _stun.TryStanding(ent.Owner);
+        }
         // Starlight edit Start
         if (!TerminatingOrDeleted(ent))
             RemCompDeferred<SpamEmitSoundComponent>(ent);
@@ -242,7 +248,7 @@ public sealed partial class SleepingSystem : EntitySystem
     {
         args.Handled = true;
 
-        TryWakeWithCooldown((ent, ent.Comp), args.User);
+        TryWakeWithCooldown((ent, ent.Comp), args.User, TimeSpan.FromSeconds(1)); // Starlight
     }
 
     /// <summary>
@@ -254,8 +260,10 @@ public sealed partial class SleepingSystem : EntitySystem
         if (!args.DamageIncreased || args.DamageDelta == null || _gameTiming.ApplyingState)
             return;
 
-        if (args.DamageDelta.GetTotal() >= ent.Comp.WakeThreshold)
-            TryWaking((ent, ent.Comp));
+        // Starlight - wake power from damage
+        var damage = args.DamageDelta.GetTotal();
+        if (damage >= ent.Comp.WakeThreshold)
+            TryWaking((ent, ent.Comp), wakePower: TimeSpan.FromSeconds((float) damage / 3));
     }
 
     /// <summary>
@@ -312,7 +320,8 @@ public sealed partial class SleepingSystem : EntitySystem
     /// <summary>
     /// Tries to wake up <paramref name="ent"/>, with a cooldown between attempts to prevent spam.
     /// </summary>
-    public bool TryWakeWithCooldown(Entity<SleepingComponent?> ent, EntityUid? user = null)
+    /// <param name="wakePower">Optional sleepiness duration to remove from the target; defaults to 1 second.</param> // Starlight
+    public bool TryWakeWithCooldown(Entity<SleepingComponent?> ent, EntityUid? user = null, TimeSpan? wakePower = null) // Starlight
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
@@ -324,13 +333,16 @@ public sealed partial class SleepingSystem : EntitySystem
 
         ent.Comp.CooldownEnd = curTime + ent.Comp.Cooldown;
         Dirty(ent, ent.Comp);
-        return TryWaking(ent, user: user);
+        return TryWaking(ent, user: user, wakePower: wakePower);
     }
 
     /// <summary>
     /// Try to wake up <paramref name="ent"/>.
     /// </summary>
-    public bool TryWaking(Entity<SleepingComponent?> ent, bool force = false, EntityUid? user = null)
+    /// <param name="wakePower">Optional sleepiness duration to remove from the target; defaults to 1 second.</param> // Starlight
+    /// <param name="ignoreSsd">Whether to bypass the SSD wake restriction.</param> // Starlight
+    public bool TryWaking(Entity<SleepingComponent?> ent, bool force = false, EntityUid? user = null,
+        TimeSpan? wakePower = null, bool ignoreSsd = false) // Starlight
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
@@ -339,26 +351,60 @@ public sealed partial class SleepingSystem : EntitySystem
         {
             if (user != null)
             {
-                _audio.PlayPredicted(ent.Comp.WakeAttemptSound, ent, user);
-                _popupSystem.PopupClient(Loc.GetString("wake-other-failure", ("target", Identity.Entity(ent, EntityManager))), ent, user, PopupType.SmallCaution);
+                PlayWakeFailure(ent.Owner, ent.Comp, user);
             }
             return false;
         }
 
+        /// Starlight
+        /// Ensures that people who are SSD cannot be woken up by others.
+        if (!ignoreSsd && !force && user != null && TryComp(ent.Owner, out SSDIndicatorComponent? SSDComp) && SSDComp.IsSSD)
+        {
+            PlayWakeFailure(ent.Owner, ent.Comp, user);
+            return false;
+        }
+
+        var sleepinessWake = new SleepinessWakeAttemptEvent(ent.Owner, wakePower ?? TimeSpan.FromSeconds(1));
+        RaiseLocalEvent(ref sleepinessWake);
+        // Starlight: Do not let client prediction bypass the server-side Sleepiness decision.
+        if (sleepinessWake.Result == false)
+        {
+            PlayWakeFailure(ent.Owner, ent.Comp, user, authoritative: true);
+            return false;
+        }
+
+        // Starlight: The client has no authoritative Sleepiness result. Wait for the server instead of showing failure.
+        if (sleepinessWake.Result == null && _statusEffect.HasEffectComp<SleepinessStatusEffectComponent>(ent))
+            return false;
+
         if (user != null)
         {
             _audio.PlayPredicted(ent.Comp.WakeAttemptSound, ent, user);
-            _popupSystem.PopupClient(Loc.GetString("wake-other-success", ("target", Identity.Entity(ent, EntityManager))), ent, user);
+            var message = Loc.GetString("wake-other-success", ("target", Identity.Entity(ent, EntityManager)));
+            if (sleepinessWake.Result == true)
+                _popupSystem.PopupEntity(message, ent, user.Value);
+            else
+                _popupSystem.PopupClient(message, ent, user);
         }
-
-        /// Starlight
-        /// Ensures that people who are SSD cannot be woken up by others.
-        if (TryComp(ent.Owner, out SSDIndicatorComponent? SSDComp) && SSDComp.IsSSD)
-            return false;
 
         return RemComp<SleepingComponent>(ent);
     }
 
+    #region Starlight
+    private void PlayWakeFailure(EntityUid uid, SleepingComponent sleeping, EntityUid? user,
+        bool authoritative = false)
+    {
+        if (user == null)
+            return;
+
+        _audio.PlayPredicted(sleeping.WakeAttemptSound, uid, user);
+        var message = Loc.GetString("wake-other-failure", ("target", Identity.Entity(uid, EntityManager)));
+        if (authoritative)
+            _popupSystem.PopupEntity(message, uid, user.Value, PopupType.SmallCaution);
+        else
+            _popupSystem.PopupClient(message, uid, user, PopupType.SmallCaution);
+    }
+    #endregion
     /// <summary>
     /// Prevents the use of emote actions while sleeping
     /// </summary>
@@ -372,7 +418,6 @@ public sealed partial class SleepingSystem : EntitySystem
         args.Prefix = ent.Comp.ForceSaySleepDataset;
     }
 }
-
 
 public sealed partial class SleepActionEvent : InstantActionEvent;
 

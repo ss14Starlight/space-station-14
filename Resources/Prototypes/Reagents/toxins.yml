@@ -82,6 +82,7 @@
   - Medical
   metabolisms:
     Bloodstream:
+      metabolismRate: 0.25 # Starlight: ChloralHydrate is slow and weak, but active for longer.
       effects:
       - !type:Emote
         emote: Yawn
@@ -90,10 +91,10 @@
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectDrowsiness
-        time: 4
-        type: Update
+      - !type:ModifySleepiness # Starlight: ChloralHydrate can put someone to sleep, but not easily
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 60s
+        time: 1.8 # Starlight
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition

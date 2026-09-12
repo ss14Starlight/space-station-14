@@ -18,6 +18,8 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+      - !type:ReduceSleepiness #Starlight
+        time: 0.25
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/coffeeglass.rsi
     state: icon_empty
@@ -109,6 +111,8 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+      - !type:ReduceSleepiness #Starlight
+        time: 0.25
 
 - type: reagent
   id: GreenTea
@@ -167,6 +171,8 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+      - !type:ReduceSleepiness #Starlight
+        time: 0.25
 
 - type: reagent
   id: IcedGreenTea
@@ -343,6 +349,8 @@
         effectProto: StatusEffectDrowsiness
         time: 3
         type: Remove
+      - !type:ReduceSleepiness #Starlight
+        time: 0.6
       - !type:HealthChange
         damage:
           types:
@@ -392,6 +400,8 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+      - !type:ReduceSleepiness #Starlight
+        time: 0.2
 
 - type: reagent
   id: Tea
