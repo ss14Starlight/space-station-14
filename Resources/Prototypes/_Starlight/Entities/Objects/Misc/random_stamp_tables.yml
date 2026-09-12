@@ -1,0 +1,79 @@
+﻿- type: entityTable
+  id: RandomCaptainStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampCaptainFake
+      - id: RubberStampCaptainFake1
+      - id: RubberStampCaptainFake2
+      - id: RubberStampCaptainJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomClownStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampClownFake
+      - id: RubberStampClownFake1
+      - id: RubberStampClownFake2
+      - id: RubberStampClownJoke
+        weight: 0.1 #Because funny
+
+- type: entityTable
+  id: RandomCEStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampCEFake
+      - id: RubberStampCEFake1
+      - id: RubberStampCEFake2
+      - id: RubberStampCEJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomCMOStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampCMOFake
+      - id: RubberStampCMOFake1
+      - id: RubberStampCMOFake2
+      - id: RubberStampCMOJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomHopStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampHopFake
+      - id: RubberStampHopFake1
+      - id: RubberStampHopFake2
+      - id: RubberStampHopJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomHosStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampHosFake
+      - id: RubberStampHosFake1
+      - id: RubberStampHosFake2
+      - id: RubberStampHosJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomQmStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampQmFake
+      - id: RubberStampQmFake1
+      - id: RubberStampQmFake2
+      - id: RubberStampQmJoke
+        weight: 0.05
+
+- type: entityTable
+  id: RandomRdStampFakeTable
+  table: !type:GroupSelector
+    children:
+      - id: RubberStampRdFake
+      - id: RubberStampRdFake1
+      - id: RubberStampRdFake2
+      - id: RubberStampRdJoke
+        weight: 0.05

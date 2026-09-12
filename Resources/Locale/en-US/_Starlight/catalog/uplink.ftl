@@ -27,3 +27,9 @@ uplink-x4-bundle-desc = A bundle of eight X-4. You must really want to blow the 
 
 uplink-disruptor-name = Syndicate Disruptor
 uplink-disruptor-desc = Call in various disruptions to create opportunities, such as power or comms outages.
+
+uplink-fake-stamps-name = Box of Counterfeit Stamps
+uplink-fake-stamps-desc = Fool the station with Syndicate replicas of REAL stamps. Quality not guaranteed.
+
+uplink-joke-stamps-name = Box of Joke Stamps
+uplink-joke-stamps-desc = For if you really, REALLY, want to make fun of someone.
