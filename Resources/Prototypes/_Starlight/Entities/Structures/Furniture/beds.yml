@@ -27,6 +27,7 @@
   - type: Strap
     position: Stand
     rotation: 0
+    needsHands: false
   - type: Damageable
     damageModifierSet: Inflatable
     damageContainer: Inorganic
