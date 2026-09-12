@@ -75,6 +75,20 @@
       sprite: _Starlight/Objects/Misc/stamps.rsi
       state: stamp-brigmedic
 
+# Gunnery Sergeant stamp
+- type: entity
+  name: gunnery sergeant's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampGunnerySergeant
+  suffix: DO NOT MAP
+  components:
+    - type: Stamp
+      stampedName: "Gunnery Sergeant"
+      stampedColor: "#ae2e33"
+      stampState: "paper_stamp-gunnerysergeant"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-gunnerysergeant
 # Assistant Manager stamp
 - type: entity
   name: assistant manager's stamp

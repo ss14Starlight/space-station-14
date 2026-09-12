@@ -1047,6 +1047,57 @@
   - SecurityBomber
   - WindbreakerSecurity
 
+#GunnerySergeant
+- type: loadoutGroup
+  id: GunnerySergeantHead
+  name: loadout-group-gunnery-sergeant-Head
+  loadouts:
+    - GunnerySergeantBeret
+    - GunnerySergeantDrillHat
+
+- type: loadoutGroup
+  id: GunnerySergeantJumpsuit
+  name: loadout-group-gunnery-sergeant-jumpsuit
+  loadouts:
+  - SecurityJumpsuit
+  - SecurityJumpskirt
+  - SecurityJumpsuitGrey
+  - SecurityJumpskirtGrey
+  - SeniorOfficerJumpsuit
+  - SeniorOfficerJumpskirt
+  - TrooperUniform
+  - SecurityJumpsuitBlue
+  - SecurityJumpskirtBlue # starlight start
+  - FormalOfficerJumpsuit
+  - FormalOfficerJumpskirt
+  - FormalSeniorOfficerJumpsuit
+  - FormalSeniorOfficerJumpskirt
+  - DeputyFormalJumpskirt
+  - DeputyFormalJumpsuit
+
+- type: loadoutGroup
+  id: GunnerySergeantOuterClothing
+  name: loadout-group-gunnery-sergeant-outerclothing
+  minLimit: 0 # starlight
+  defaultSelected: 1 # starlight
+  loadouts:
+  - ArmorVest
+  - ArmorVestSlim
+  - ArmorVestPlate
+  - ArmorVestStab
+  - ArmorVestHeatAbsorb
+  - SecurityOfficerWintercoat
+  - SecurityBomber #Starlight
+  - WindbreakerSecurity #Starlight
+
+- type: loadoutGroup
+  id: GunnerySergeantNeck
+  name: loadout-group-gunnery-sergeant-neck
+  minLimit: 0
+  loadouts:
+    - GunnerySergeantMantle
+    - GunnerySergeantCloak
+
 # Brighteye
 - type: loadoutGroup
   id: BrighteyeJumpsuit

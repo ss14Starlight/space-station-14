@@ -1,0 +1,65 @@
+<Document>
+# Gunnery Sergeant
+
+<GuideEntityEmbed Entity="ToyFigurineSecurity" Caption="Gunnery Sergeant"/>
+
+### §1.
+Standard [color=#00a933]Code Green[/color] equipment is:
+
+<Box>
+	<GuideEntityEmbed Entity="WeaponDisabler"/>
+	<GuideEntityEmbed Entity="Stunbaton"/>
+	<GuideEntityEmbed Entity="WeaponPistolMk58"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="HoloprojectorSecurity"/>
+	<GuideEntityEmbed Entity="FlashlightSeclite"/>
+	<GuideEntityEmbed Entity="RadioHandheldSecurity"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="CombatKnife"/>
+	in
+	<GuideEntityEmbed Entity="ClothingShoesBootsJack"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="GrenadeFlashBang"/>
+	<GuideEntityEmbed Entity="TearGasGrenade"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="Handcuffs"/>
+	or
+	<GuideEntityEmbed Entity="Zipties"/>
+</Box>
+
+### §2 Leader of Security's Policing Wing
+- 1.\n
+The Gunnery Sergeant is responsible for organizing and coordinating the regular policing duties of Security, including but not limited to:\n\n
+1.1\n
+[bold]Patrolling[/bold] - Ensuring adequate Security presence across the station.\n\n
+1.2\n
+[bold]Investigation[/bold] - Ensuring that reported crimes are followed up on in a timely manner.\n\n
+1.3\n
+[bold]Enforcement[/bold] - Ensuring that criminals are dealt with swiftly and in accordance with SOP and Corporate Law.\n
+- 2.\n
+The Gunnery Sergeant is responsible for organizing, equipping and leading squads to combat hostiles on the station.\n
+- 3.\n
+The Gunnery Sergeant is responsible for the education and allocation of cadets.\n
+- 4.\n
+The Gunnery Sergeant is responsible for taking over Security in the absence of its Head.\n
+- 5.\n
+The Gunnery Sergeant is cleared for sentencing on par with a Security Officer.
+
+### §3 Security Quartermaster
+- 1.\n
+The Gunnery Sergeant is responsible for ensuring that security officers are equipped in a manner befitting the threat level.\n\n
+1.1\n
+To this end, the Gunnery Sergeant is cleared to file and approve permits for the issuing of armoury equipment on [color=#2a6099]Code Blue[/color].\n\n
+1.2\n
+The Gunnery Sergeant may hand out armoury equipment freely on [color=#ff0000]Code Red[/color].\n
+- 2.\n
+The Gunnery Sergeant is responsible for ensuring that the Armory is accesible when mandated by alert SOP.\n
+- 3.\n
+The Gunnery Sergeant is responsible for ensuring that equipment lended during raised alerts is eventually returned to the Armory.\n
+- 4.\n
+The Gunnery Sergeant is responsible for the proper storage of contraband seized by Security Officers, via use of their armory access.
+</Document>

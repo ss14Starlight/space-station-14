@@ -1,0 +1,92 @@
+# Head
+- type: loadout
+  id: GunnerySergeantDrillHat
+  equipment:
+    head: ClothingHeadHatSergeantDrillHat
+
+- type: loadout
+  id: GunnerySergeantBeret
+  equipment:
+    head: ClothingHeadHatBeretGunnerySergeant
+
+# Jumpsuit
+- type: loadout
+  id: GunnerySergeantJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGunnerySergeant
+
+# Outer Clothing
+- type: loadout
+  id: SecurityJumpsuitBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecBlue
+
+- type: loadout
+  id: SecurityJumpskirtBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecBlue
+
+- type: loadout
+  id: FormalOfficerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSecoff
+
+- type: loadout
+  id: FormalOfficerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSecoff
+
+- type: loadout
+  id: FormalSeniorOfficerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSeniorSecoff
+
+- type: loadout
+  id: FormalSeniorOfficerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSeniorSecoff
+
+- type: loadout
+  id: DeputyFormalJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalDeputy
+
+- type: loadout
+  id: DeputyFormalJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalDeputy
+
+# Neck
+- type: loadout
+  id: GunnerySergeantCloak
+  equipment:
+    neck: ClothingNeckCloakGunnerySergeant
+
+- type: loadout
+  id: GunnerySergeantMantle
+  equipment:
+    neck: ClothingNeckMantleGunnerySergeant
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobGunnerySergeant
+      time: 108000 #30 hrs

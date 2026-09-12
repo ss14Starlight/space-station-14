@@ -206,6 +206,28 @@
   - SecurityJobTrinkets
   - GroupSpeciesBreathToolSecurity
 
+- type: roleLoadout
+  id: JobGunnerySergeant
+  groups:
+  - GunnerySergeantHead
+  - EliteSecurityMask
+  - GunnerySergeantNeck
+  - GunnerySergeantJumpsuit
+  - SecurityBackpack
+  - SecurityBelt
+  - GunnerySergeantOuterClothing
+  - SecurityEyewear
+  - SecurityShoes
+  - SurvivalExtended
+  - InsulsCombat
+  - SecurityNonLethalWeapon
+  - SecuritySidearm
+  - Trinkets
+  - Pins
+  - Pens
+  - SecurityJobTrinkets
+  - GroupSpeciesBreathToolSecurity
+
 # Science
 - type: roleLoadout
   id: JobRoboticist

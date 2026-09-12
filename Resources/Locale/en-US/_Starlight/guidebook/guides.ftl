@@ -84,6 +84,7 @@ guide-entry-sl-security-sop-detective = Detective
 guide-entry-sl-security-sop-brigmedic = Brigmedic
 guide-entry-sl-security-sop-warden = Warden
 guide-entry-sl-security-sop-headofsecurity = Head of Security
+guide-entry-sl-security-sop-gunnerysergeant = Gunnery Sergeant
 guide-entry-sl-security-sop-prisonertreatment = Prisoner Treatment
 guide-entry-sl-security-sop-parole = Parole
 guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton

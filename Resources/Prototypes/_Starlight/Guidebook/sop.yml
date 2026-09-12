@@ -301,6 +301,7 @@
   - security-sop-detective
   - security-sop-brigmedic
   - security-sop-warden
+  - security-sop-gunnerysergeant
   - security-sop-headofsecurity
   - security-sop-prisonertreatment
   - security-sop-parole
@@ -346,34 +347,40 @@
   priority: 6
 
 - type: guideEntry
+  id: security-sop-gunnerysergeant
+  name: guide-entry-sl-security-sop-gunnerysergeant
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/GunnerySergeant.xml"
+  priority: 7
+
+- type: guideEntry
   id: security-sop-headofsecurity
   name: guide-entry-sl-security-sop-headofsecurity
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/HeadOfSecurity.xml"
-  priority: 7
+  priority: 8
 
 - type: guideEntry
   id: security-sop-prisonertreatment
   name: guide-entry-sl-security-sop-prisonertreatment
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/PrisonerTreatment.xml"
-  priority: 8
+  priority: 9
 
 - type: guideEntry
   id: security-sop-parole
   name: guide-entry-sl-security-sop-parole
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/Parole.xml"
-  priority: 9
+  priority: 10
 
 - type: guideEntry
   id: security-sop-permitacquisition
   name: guide-entry-sl-security-sop-permitacquisition
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/PermitAcquisition.xml"
-  priority: 10
+  priority: 11
 
 - type: guideEntry
   id: security-sop-specialsituations
   name: guide-entry-sl-security-sop-specialsituations
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations.xml"
-  priority: 11
+  priority: 12
   children:
   - security-sop-enemy-of-corporation
   - security-sop-hostage-situations

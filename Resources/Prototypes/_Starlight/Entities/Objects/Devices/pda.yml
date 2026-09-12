@@ -173,6 +173,35 @@
       - NanoChatCartridge
 
 - type: entity
+  parent: BaseSecurityPDA
+  id: GunnerySergeantPDA
+  name: gunnery sergeant PDA
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: GunnerySergeantIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-gunnerysergeant
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-gunnerysergeant
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - WantedListCartridge
+      - NanoChatCartridge
+
+- type: entity
   parent: BasePDA
   id: MagistratePDA
   name: magistrate PDA
