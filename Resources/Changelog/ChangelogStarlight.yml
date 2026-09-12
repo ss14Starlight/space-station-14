@@ -1,20 +1,6 @@
 Entries:
 - author: OJG
   changes:
-  - message: (Refinery) adding missing items like jetpacks and keycard auth devices.
-    type: Tweak
-  id: 408087
-  time: '2026-09-03T19:00:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5875
-- author: OJG
-  changes:
-  - message: (Refinery) more dispos chutes in sec for clowns to escape with.
-    type: Tweak
-  id: 408088
-  time: '2026-09-03T19:00:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5875
-- author: OJG
-  changes:
   - message: (Refinery) a new docking arm between sci and bridge.
     type: Tweak
   id: 408089
@@ -2799,4 +2785,18 @@ Entries:
   id: 408486
   time: '2026-09-11T14:14:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6100
+- author: Rinary
+  changes:
+  - message: Added rooms and zones system. Now systems bounded to certain places like chaplain will have 100% accurate.
+    type: Add
+  id: 408487
+  time: '2026-09-12T04:53:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6017
+- author: Rinary
+  changes:
+  - message: Changed maintenance ambience, now it checks for maintenance zone instead of platings amount.
+    type: Tweak
+  id: 408488
+  time: '2026-09-12T04:53:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6017
 Order: -1
