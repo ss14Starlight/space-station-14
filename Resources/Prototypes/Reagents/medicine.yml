@@ -493,6 +493,8 @@
       - !type:ModifyKnockdown
         time: 0.75
         type: Remove
+      - !type:ReduceSleepiness # Starlight: Epinephrine strongly reduces Sleepiness
+        time: 2
       - !type:GenericStatusEffect
         key: Adrenaline # Guess what epinephrine is...
         component: IgnoreSlowOnDamage
@@ -1303,6 +1305,8 @@
         effectProto: StatusEffectDrowsiness
         time: 10
         type: Remove
+      - !type:ReduceSleepiness # Starlight: Ethyloxyephedrine reduces Sleepiness by less than epinephrine
+        time: 1.5
       - !type:ResetNarcolepsy
         conditions:
         - !type:ReagentCondition
@@ -1337,6 +1341,8 @@
         effectProto: StatusEffectDrowsiness
         time: 10
         type: Remove
+      - !type:ReduceSleepiness # Starlight: Diphenylmethylamine reduces Sleepiness similar to epinephrine
+        time: 2
       - !type:ResetNarcolepsy
         conditions:
         - !type:ReagentCondition

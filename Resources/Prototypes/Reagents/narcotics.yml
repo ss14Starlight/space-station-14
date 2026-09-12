@@ -48,6 +48,8 @@
       - !type:ModifyStatusEffect
         effectProto: StatusEffectPainNumbness
         time: 2
+      - !type:ReduceSleepiness # Starlight: Reduces sleepiness stronger than Epinephrine
+        time: 2.5
       # Interactions
       - !type:ModifyStatusEffect
         conditions:
@@ -94,6 +96,8 @@
       - !type:ModifyKnockdown
         time: 1
         type: Remove
+      - !type:ReduceSleepiness # Starlight: reduces sleepiness
+        time: 1.5
       # Side effects
       - !type:Jitter
       - !type:PopupMessage
@@ -159,6 +163,8 @@
         effectProto: StatusEffectForcedSleeping
         time: 3
         type: Remove
+      - !type:ReduceSleepiness # Starlight: Strongest sleep antagonist
+        time: 4.5
       - !type:GenericStatusEffect
         key: Adrenaline
         component: IgnoreSlowOnDamage
@@ -236,6 +242,10 @@
         effectProto: StatusEffectSeeingRainbow
         time: 16
         type: Add
+      - !type:ModifySleepiness # Starlight: THC causes sleepiness, but smoking has only little amounts of it. Can be used for sleep if refined.
+        effectProto: StatusEffectSleepiness
+        maximumSleepiness: 60s
+        time: 2.5 # Starlight
 
 - type: reagent
   id: Nicotine
@@ -324,15 +334,17 @@
   meltingPoint: 128.0
   metabolisms:
     Bloodstream:
-      metabolismRate: 1.0 # Starlight: Sleepiness metabolism, to archive sleep after 8 seconds, as before
+      metabolismRate: 0.5 # Starlight: Sleepiness metabolism, to archive sleep after 8 seconds, as before
       effects: # It would be nice to have speech slurred or mumbly, but accents are a bit iffy atm. Same for distortion effects.
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
       - !type:ModifySleepiness # Starlight: Nocturine uses the strongest Sleepiness profile.
         effectProto: StatusEffectSleepiness
-        maximumSleepiness: 2m
+        maximumSleepiness: 5m
         time: 4.75 # Starlight: Sleepiness added per metabolism cycle.
+        sleepInductionReagent: Nocturine
+        sleepInductionThreshold: 4
 
 - type: reagent
   id: MuteToxin
