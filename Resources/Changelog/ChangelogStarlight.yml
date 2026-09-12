@@ -1,11 +1,4 @@
 Entries:
-- author: Wizden Team
-  changes:
-  - message: Diona minds are now correctly transferred to their nymphs when they gib.
-    type: Fix
-  id: 408114
-  time: '2026-09-03T21:35:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5919
 - author: Conflee
   changes:
   - message: Fixed Box Shelves deleting their contents when deconstructed. Boxes on the shelves now drop properly.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408513
   time: '2026-09-12T07:49:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6119
+- author: Swonki
+  changes:
+  - message: Contra tags for salvage equipment.
+    type: Fix
+  id: 408514
+  time: '2026-09-12T18:45:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6121
 Order: -1
