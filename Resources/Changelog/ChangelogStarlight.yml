@@ -1,20 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: The health analyzer and the MedTek PDA app now reactivate once you get back in range of your patient.
-    type: Tweak
-  id: 408108
-  time: '2026-09-03T21:35:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5919
-- author: Wizden Team
-  changes:
-  - message: Log for buying from a store will be High instead of Low if user is not of an expected faction for that store, or Extreme if they also have mindshield.
-    type: Tweak
-  id: 408109
-  time: '2026-09-03T21:35:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5919
-- author: Wizden Team
-  changes:
   - message: Fireplaces can now ignite gases.
     type: Tweak
   id: 408110
@@ -2799,4 +2785,18 @@ Entries:
   id: 408507
   time: '2026-09-12T07:31:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6114
+- author: SeaborneProto
+  changes:
+  - message: (Manor) Moved all departmental communications consoles to their head of staff's offices..
+    type: Tweak
+  id: 408508
+  time: '2026-09-12T07:31:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6044
+- author: SeaborneProto
+  changes:
+  - message: (Manor) Salvgone. Miner's rejoice, the mining bay has been reduxed to reflect Salvage's departure from the station.
+    type: Remove
+  id: 408509
+  time: '2026-09-12T07:31:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6044
 Order: -1
