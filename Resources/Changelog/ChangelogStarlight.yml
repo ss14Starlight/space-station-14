@@ -1,39 +1,4 @@
 Entries:
-- author: OJG
-  changes:
-  - message: (Refinery) a new docking arm between sci and bridge.
-    type: Tweak
-  id: 408089
-  time: '2026-09-03T19:00:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5875
-- author: OJG
-  changes:
-  - message: (Refinery) RD has a proper bedroom with an interesting entrance.
-    type: Tweak
-  id: 408090
-  time: '2026-09-03T19:00:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5875
-- author: wonderfulnewworld, DuckManZach
-  changes:
-  - message: Added reagent footprints and crawling marks!
-    type: Add
-  id: 408091
-  time: '2026-09-03T19:25:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5899
-- author: wonderfulnewworld, DuckManZach
-  changes:
-  - message: Galoshes and Galoshnts don't leave footprints.
-    type: Tweak
-  id: 408092
-  time: '2026-09-03T19:25:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5899
-- author: Citrea
-  changes:
-  - message: Dolls can have hair now.
-    type: Fix
-  id: 408093
-  time: '2026-09-03T19:44:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5962
 - author: Citrea
   changes:
   - message: Doll organs no longer suffocate in their body when spaced.
@@ -2799,4 +2764,39 @@ Entries:
   id: 408488
   time: '2026-09-12T04:53:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6017
+- author: Johnny
+  changes:
+  - message: Added firelocks and other atmospheric devices to evac shuttles that never had any.
+    type: Add
+  id: 408489
+  time: '2026-09-12T07:01:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6056
+- author: Johnny
+  changes:
+  - message: Removed my sani- i mean the debug gens from most evac shuttles.
+    type: Remove
+  id: 408490
+  time: '2026-09-12T07:01:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6056
+- author: Johnny
+  changes:
+  - message: Changed most of the evacuation shuttles to use the cooler chairs.
+    type: Tweak
+  id: 408491
+  time: '2026-09-12T07:01:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6056
+- author: Johnny
+  changes:
+  - message: Changed most of the evac shuttles to have reinforced walls around the power areas.
+    type: Tweak
+  id: 408492
+  time: '2026-09-12T07:01:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6056
+- author: Johnny
+  changes:
+  - message: Fixed some small issues within most evac shuttles.
+    type: Fix
+  id: 408493
+  time: '2026-09-12T07:01:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6056
 Order: -1
