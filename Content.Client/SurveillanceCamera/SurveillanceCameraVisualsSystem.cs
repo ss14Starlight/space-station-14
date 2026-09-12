@@ -26,6 +26,7 @@ public sealed partial class SurveillanceCameraVisualsSystem : EntitySystem
             return;
         }
 
-        _sprite.LayerSetRsiState((uid, args.Sprite), layer, state);
+        // _sprite.LayerSetRsiState((uid, args.Sprite), layer, state);
+        SetStatePreserveTime((uid, args.Sprite), layer, state); // Starlight
     }
 }
