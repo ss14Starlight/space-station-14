@@ -760,3 +760,54 @@
         - CorgiWearable
         - ClothMade
         - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatBeretRD
+  name: research director's beret
+  description: A nice beret were it not tainted by the scars of many experiments.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/beret_rd.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/beret_rd.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+        - ClothMade
+        - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatBeretMagistrate
+  name: magistrate's beret
+  description: A beret for when a wig really doesn't cut it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/beret_magistrate.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/beret_magistrate.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+        - ClothMade
+        - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatBeretNTR
+  name: nanotrasen representative's beret
+  description: A decorated beret awarded to the best paperpushers in NT.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/beret_ntr.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/beret_ntr.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+        - ClothMade
+        - WhitelistChameleon

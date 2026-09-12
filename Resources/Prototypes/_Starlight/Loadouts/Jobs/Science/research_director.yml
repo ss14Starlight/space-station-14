@@ -13,3 +13,9 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorResearcher
+
+# Head
+- type: loadout
+  id: ResearchDirectorBeretRD
+  equipment:
+    head: ClothingHeadHatBeretRD
