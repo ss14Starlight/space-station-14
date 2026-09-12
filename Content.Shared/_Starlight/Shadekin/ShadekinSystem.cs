@@ -30,14 +30,18 @@ using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.Language.Systems;
-using Content.Shared._Starlight.Light;
 using Content.Shared._Starlight.NullSpace.Systems;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Stunnable;
+using Robust.Shared;
 using Robust.Shared.Network;
+using Robust.Shared.ComponentTrees;
+using Robust.Shared.Configuration;
+using Robust.Shared.Physics;
+using System.Numerics;
 
 namespace Content.Shared._Starlight.Shadekin;
 
@@ -67,9 +71,10 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private SharedLanguageSystem _language = default!;
-    [Dependency] private SharedPointLightSystem _pointLight = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedLightTreeSystem _lightTree = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     [Dependency] private EntityQuery<DarkLightComponent> _darkLightQuery = default!;
     [Dependency] private EntityQuery<ShadegenAffectedComponent> _shadegenAffected = default!;
@@ -82,16 +87,20 @@ public sealed partial class ShadekinSystem : EntitySystem
     private static readonly EntProtoId<GameRuleComponent> _theDarkMap = "TheDarkMap";
     private static readonly EntProtoId _theDarkMapStatus = "StatusEffectTheDarkMap";
 
-    /// <summary>
-    /// How far away lights are looked for. Light checks don't go above 20.
-    /// </summary>
-    private const float LightLookupRange = 10f;
-
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
 
-    private readonly HashSet<Entity<SLPointLightComponent>> _lightsInRange = new();
+    private float _maxLightRadius;
+
+    private readonly List<Entity<SharedPointLightComponent, TransformComponent>> _lightsInRange = new();
     private readonly HashSet<EntityUid> _theDarkMaps = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        Subs.CVar(_cfg, CVars.MaxLightRadius, value => _maxLightRadius = value, true);
+    }
 
     [SubscribeLocalEvent]
     private void OnDamageChanged(Entity<ShadekinComponent> ent, ref BeforeDamageChangedEvent args)
@@ -153,8 +162,9 @@ public sealed partial class ShadekinSystem : EntitySystem
     /// WARNING: This function might be expensive, Avoid calling it too much and CACHE THE RESULT!
     /// </summary>
     /// <remarks>
-    /// Not using RobustToolbox's LightLevelSystem: it needs the server light tree (disabled by default),
-    /// returns a clamped 0-1 luminance that doesn't match our thresholds, and can't ignore dark/shadegen lights.
+    /// Lights come from the engine light tree, so <c>lookup.enable_server_light_tree</c> has to stay on.
+    /// Not using LightLevelSystem itself: it returns a clamped 0-1 luminance that doesn't match our
+    /// thresholds, and it can't ignore dark/shadegen lights.
     /// </remarks>
     public float GetLightExposure(EntityUid uid, float cap = float.MaxValue)
     {
@@ -162,6 +172,10 @@ public sealed partial class ShadekinSystem : EntitySystem
 
         var targetCoords = _transform.GetMapCoordinates(uid);
         if (targetCoords.MapId == MapId.Nullspace)
+            return illumination;
+
+        // Lights inside an occluding container are kept out of the tree, so nothing can reach us in one either.
+        if (_container.TryGetContainingContainer(uid, out var targetContainer) && targetContainer.OccludesLight)
             return illumination;
 
         // Shadegens make everything around them dark. There are only ever a few of them,
@@ -172,16 +186,12 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (shadeXform.MapID != targetCoords.MapId)
                 continue;
 
-            var range = MathF.Min(shadegen.Range, LightLookupRange);
-            if ((_transform.GetWorldPosition(shadeXform) - targetCoords.Position).LengthSquared() < range * range)
+            if ((_transform.GetWorldPosition(shadeXform) - targetCoords.Position).LengthSquared() < shadegen.Range * shadegen.Range)
                 return illumination;
         }
 
-        var targetContainerOccluded = _container.TryGetContainingContainer(uid, out var targetContainer)
-            && targetContainer.OccludesLight;
-
         _lightsInRange.Clear();
-        _lookup.GetEntitiesInRange(targetCoords, LightLookupRange, _lightsInRange, LookupFlags.All | LookupFlags.Approximate);
+        GetLightsAt(targetCoords, _lightsInRange);
 
         // Cheapest checks first, the occlusion raycast is done last and only for lights that would actually add something.
         foreach (var light in _lightsInRange)
@@ -189,16 +199,11 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (_darkLightQuery.HasComp(light.Owner) || _shadegenAffected.HasComp(light.Owner))
                 continue;
 
-            SharedPointLightComponent? lightComp = null;
-            if (!_pointLight.ResolveLight(light, ref lightComp))
+            var lightComp = light.Comp1;
+            if (lightComp.Radius < 1 || lightComp.Energy <= 0)
                 continue;
 
-            if (!lightComp.Enabled
-                || lightComp.Radius < 1
-                || lightComp.Energy <= 0)
-                continue;
-
-            var (lightPos, lightRot) = _transform.GetWorldPositionRotation(light.Owner);
+            var (lightPos, lightRot) = _transform.GetWorldPositionRotation(light.Comp2);
             var dist = (targetCoords.Position - lightPos).Length();
 
             // Same range check InRangeUnOccluded does.
@@ -236,12 +241,6 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (calculatedLight <= 0f)
                 continue;
 
-            // If either we or the light are in a container that occludes light, it only counts if it's the same container.
-            if ((targetContainerOccluded ||
-                (_container.TryGetContainingContainer(light.Owner, out var lightContainer) && lightContainer.OccludesLight)) &&
-                !_container.IsInSameOrNoContainer(uid, light.Owner))
-                continue;
-
             if (!_examine.InRangeUnOccluded(new MapCoordinates(lightPos, targetCoords.MapId), targetCoords, lightComp.Radius, null))
                 continue;
 
@@ -254,7 +253,30 @@ public sealed partial class ShadekinSystem : EntitySystem
         return illumination;
     }
 
-    private static Angle GetAngleToTarget(SharedPointLightComponent lightComp, System.Numerics.Vector2 lightPos, Angle lightRot, System.Numerics.Vector2 targetPos)
+    /// <summary>
+    /// Collect every light whose radius covers <paramref name="coords"/>, straight out of the engine light tree.
+    /// </summary>
+    private void GetLightsAt(MapCoordinates coords, List<Entity<SharedPointLightComponent, TransformComponent>> lights)
+    {
+        // The area we want lights for is a single point, but lights on trees further away can still reach it.
+        var treeBounds = new Box2(coords.Position, coords.Position).Enlarged(_maxLightRadius);
+
+        foreach (var (tree, treeComp) in _lightTree.GetIntersectingTrees(coords.MapId, treeBounds))
+        {
+            var localPos = Vector2.Transform(coords.Position, _transform.GetInvWorldMatrix(tree));
+            treeComp.Tree.QueryPoint(ref lights, LightQueryCallback, localPos, true);
+        }
+    }
+
+    private static bool LightQueryCallback(
+        ref List<Entity<SharedPointLightComponent, TransformComponent>> lights,
+        in ComponentTreeEntry<SharedPointLightComponent> entry)
+    {
+        lights.Add(entry);
+        return true;
+    }
+
+    private static Angle GetAngleToTarget(SharedPointLightComponent lightComp, Vector2 lightPos, Angle lightRot, Vector2 targetPos)
     {
         var mapDiff = targetPos - (lightPos + lightRot.RotateVec(lightComp.Offset));
 
