@@ -99,7 +99,7 @@ public sealed partial class DragonRiftSystem
                 {
 
                     var totalCrewCount = _crewCount.GetTotalCrewCount();
-                    comp.SharkMinnowLimit = totalCrewCount / 2;
+                    comp.SharkMinnowLimit = totalCrewCount / 8;
                     Dirty(uid, comp);
 
                     var canSpawnSharkminnow = true;
