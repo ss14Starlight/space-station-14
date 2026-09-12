@@ -39,7 +39,8 @@ public sealed class WakeActionTest : GameTest
                     .GetComponent<InstantActionComponent>(action).Event is WakeActionEvent);
             clientActions.TriggerAction(wakeAction);
         });
-        await pair.RunTicksSync(5);
+        await pair.RunSeconds(2);
+        await pair.ReallyBeIdle();
 
         Assert.That(server.ResolveDependency<IEntityManager>().HasComponent<SleepingComponent>(serverEntity), Is.False);
 
@@ -68,10 +69,10 @@ public sealed class WakeActionTest : GameTest
                     .GetComponent<InstantActionComponent>(action).Event is WakeActionEvent);
             clientActions.TriggerAction(wakeAction);
         });
-        await pair.RunTicksSync(5);
+        await pair.RunSeconds(2);
+        await pair.ReallyBeIdle();
 
         Assert.That(server.ResolveDependency<IEntityManager>().HasComponent<SleepingComponent>(serverEntity), Is.False);
-        await pair.RunTicksSync(5);
         await pair.RunUntilSynced();
     }
 

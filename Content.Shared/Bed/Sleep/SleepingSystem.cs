@@ -140,8 +140,12 @@ public sealed partial class SleepingSystem : EntitySystem
             return;
         }
 
-        _stun.TryUnstun(ent.Owner);
-        _stun.TryStanding(ent.Owner);
+        // Starlight: State application already contains the authoritative stun/knockdown changes.
+        if (!_gameTiming.ApplyingState)
+        {
+            _stun.TryUnstun(ent.Owner);
+            _stun.TryStanding(ent.Owner);
+        }
         // Starlight edit Start
         if (!TerminatingOrDeleted(ent))
             RemCompDeferred<SpamEmitSoundComponent>(ent);
