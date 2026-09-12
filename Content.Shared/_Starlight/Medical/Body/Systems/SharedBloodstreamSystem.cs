@@ -35,7 +35,7 @@ namespace Content.Shared._Starlight.Medical.Body.Systems;
 public abstract partial class SharedBloodstreamSystem : EntitySystem
 {
     public static readonly EntProtoId Bloodloss = "StatusEffectBloodloss";
-    private static readonly ProtoId<ReagentPrototype> SlimeReagent = "Slime";
+    private static readonly ProtoId<ReagentPrototype> _slimeReagent = "Slime";
 
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
     [Dependency] protected SharedSolutionContainerSystem SolutionContainer = default!;
@@ -302,10 +302,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         }
     }
 
-    private void OnBeingGibbed(Entity<BloodstreamComponent> ent, ref GibbedBeforeDeletionEvent args)
-    {
-        SpillAllSolutions(ent.AsNullable());
-    }
+    private void OnBeingGibbed(Entity<BloodstreamComponent> ent, ref GibbedBeforeDeletionEvent args) => SpillAllSolutions(ent.AsNullable());
 
     private void OnApplyMetabolicMultiplier(Entity<BloodstreamComponent> ent, ref ApplyMetabolicMultiplierEvent args)
     {
@@ -337,7 +334,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
     private void OnMarkingsUpdate(Entity<BloodstreamComponent> ent, ref MarkingsUpdateEvent args)
     {
         if (ent.Comp.BloodReagentColor != null
-            || !ent.Comp.BloodReferenceSolution.ContainsPrototype(SlimeReagent))
+            || !ent.Comp.BloodReferenceSolution.ContainsPrototype(_slimeReagent))
         {
             return;
         }
@@ -464,7 +461,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
 
         foreach (var (referenceReagent, referenceQuantity) in ent.Comp.BloodReferenceSolution)
         {
-            var error = referenceQuantity * referenceFactor - bloodSolution.GetTotalPrototypeQuantity(referenceReagent.Prototype);
+            var error = (referenceQuantity * referenceFactor) - bloodSolution.GetTotalPrototypeQuantity(referenceReagent.Prototype);
             var adjustedAmount = referenceQuantity * ratio;
 
             if (error > 0)
@@ -626,10 +623,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
     /// Change what someone's blood is made of, on the fly.
     /// </summary>
     [Obsolete("ChangeBloodReagent is obsolete, please use ChangeBloodReagents.")]
-    public void ChangeBloodReagent(Entity<BloodstreamComponent?> ent, ProtoId<ReagentPrototype> reagent)
-    {
-        ChangeBloodReagents(ent, new([new(reagent, 1)]));
-    }
+    public void ChangeBloodReagent(Entity<BloodstreamComponent?> ent, ProtoId<ReagentPrototype> reagent) => ChangeBloodReagents(ent, new([new(reagent, 1)]));
 
     /// <summary>
     /// Change what someone's blood is made of, on the fly.
@@ -747,7 +741,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
             return true;
         }
 
-        if (!bloodstream.BloodReferenceSolution.ContainsPrototype(SlimeReagent)
+        if (!bloodstream.BloodReferenceSolution.ContainsPrototype(_slimeReagent)
             || !TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
         {
             return false;

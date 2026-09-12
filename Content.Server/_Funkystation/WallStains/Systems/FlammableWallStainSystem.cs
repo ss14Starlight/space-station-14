@@ -1,4 +1,4 @@
-using Content.Server._Funkystation.Atmos.Events;
+﻿using Content.Server._Funkystation.Atmos.Events;
 using Content.Server._Funkystation.WallStains.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared._Funkystation.ReagentFires;
@@ -36,7 +36,7 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
     private readonly List<(EntityUid Uid, FlammableWallStainComponent FireComp, WallStainComponent Stain, TransformComponent Xform)> _activeStains = [];
 
     #region Starlight
-    private const float UpdateInterval = 1f;
+    private const float UpdateInterval = 0.5f;
     private float _updateAccumulator;
     #endregion
 

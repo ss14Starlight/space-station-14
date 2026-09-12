@@ -16,14 +16,14 @@ namespace Content.Client._Funkystation.WallStains;
 
 public sealed partial class WallStainOverlay : Overlay
 {
-    private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
-    private static readonly ProtoId<ShaderPrototype> StencilMaskShader = "StencilMask";
-    private static readonly ProtoId<ShaderPrototype> StencilEqualDrawShader = "StencilEqualDraw";
+    private static readonly ProtoId<ShaderPrototype> _unshadedShader = "unshaded";
+    private static readonly ProtoId<ShaderPrototype> _stencilMaskShader = "StencilMask";
+    private static readonly ProtoId<ShaderPrototype> _stencilEqualDrawShader = "StencilEqualDraw";
 
-    private static readonly ProtoId<TagPrototype> DirectionalWindowTag = "DirectionalWindow";
-    private static readonly ProtoId<TagPrototype> WallTag = "Wall";
-    private static readonly ProtoId<TagPrototype> WindowTag = "Window";
-    private static readonly ProtoId<TagPrototype> AirlockTag = "Airlock";
+    private static readonly ProtoId<TagPrototype> _directionalWindowTag = "DirectionalWindow";
+    private static readonly ProtoId<TagPrototype> _wallTag = "Wall";
+    private static readonly ProtoId<TagPrototype> _windowTag = "Window";
+    private static readonly ProtoId<TagPrototype> _airlockTag = "Airlock";
 
     [Dependency] private IClyde _clyde = null!;
     [Dependency] private IEntityManager _entityManager = null!;
@@ -38,7 +38,7 @@ public sealed partial class WallStainOverlay : Overlay
     private readonly EntityQuery<TransformComponent> _transformQuery;
 
     private TimeSpan _lastLayoutPrune = TimeSpan.Zero;
-    private static readonly TimeSpan LayoutPruneInterval = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan _layoutPruneInterval = TimeSpan.FromSeconds(30);
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
@@ -50,7 +50,7 @@ public sealed partial class WallStainOverlay : Overlay
     private readonly Dictionary<EntityUid, SplatLayout> _splatLayouts = new();
 
     private readonly Dictionary<EntityUid, StencilCacheEntry> _stencilCache = new();
-    private static readonly TimeSpan StencilCacheLifetime = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan _stencilCacheLifetime = TimeSpan.FromSeconds(2);
 
     private sealed class StencilCacheEntry
     {
@@ -148,13 +148,13 @@ public sealed partial class WallStainOverlay : Overlay
                 continue;
 
             // AAAAAAAAAAND directional windows don't cover the full tile, so skip them to avoid floating stains
-            if (_tagSystem.HasTag(uid, DirectionalWindowTag))
+            if (_tagSystem.HasTag(uid, _directionalWindowTag))
                 continue;
 
             // Finally, make sure the entity is one of the following:
-            if (!_tagSystem.HasTag(uid, WallTag) &&
-                !_tagSystem.HasTag(uid, WindowTag) &&
-                !_tagSystem.HasTag(uid, AirlockTag))
+            if (!_tagSystem.HasTag(uid, _wallTag) &&
+                !_tagSystem.HasTag(uid, _windowTag) &&
+                !_tagSystem.HasTag(uid, _airlockTag))
             {
                 continue;
             }
@@ -208,7 +208,7 @@ public sealed partial class WallStainOverlay : Overlay
         if (_visibleStains.Count == 0)
             return;
 
-        if (realTime - _lastLayoutPrune > LayoutPruneInterval)
+        if (realTime - _lastLayoutPrune > _layoutPruneInterval)
         {
             PruneStaleCaches();
             _lastLayoutPrune = realTime;
@@ -227,7 +227,7 @@ public sealed partial class WallStainOverlay : Overlay
             {
                 _intersectingEntities.Clear();
 
-                worldHandle.UseShader(_prototypeManager.Index(UnshadedShader).Instance());
+                worldHandle.UseShader(_prototypeManager.Index(_unshadedShader).Instance());
 
                 foreach (var stainEntity in _visibleStains)
                 {
@@ -235,7 +235,7 @@ public sealed partial class WallStainOverlay : Overlay
                         continue;
 
                     if (!_stencilCache.TryGetValue(stainEntity.Owner, out var cacheEntry) ||
-                        realTime - cacheEntry.ComputedAt > StencilCacheLifetime)
+                        realTime - cacheEntry.ComputedAt > _stencilCacheLifetime)
                     {
                         cacheEntry = ComputeStencilTargets(stainEntity.Owner, stainXform, mapId, realTime);
                     }
@@ -262,16 +262,15 @@ public sealed partial class WallStainOverlay : Overlay
                     var bounds = _spriteSystem.CalculateBounds((uid, spriteComponent), transformComponent.Coordinates.Position, transformComponent.LocalRotation, viewport.Eye?.Rotation ?? Angle.Zero);
                     worldHandle.DrawRect(bounds, Color.White);
                 }
-
             },
             Color.Transparent);
 
         worldHandle.SetTransform(Matrix3x2.Identity);
 
-        worldHandle.UseShader(_prototypeManager.Index(StencilMaskShader).Instance());
+        worldHandle.UseShader(_prototypeManager.Index(_stencilMaskShader).Instance());
         worldHandle.DrawTextureRect(res.StainTarget.Texture, worldBounds);
 
-        worldHandle.UseShader(_prototypeManager.Index(StencilEqualDrawShader).Instance());
+        worldHandle.UseShader(_prototypeManager.Index(_stencilEqualDrawShader).Instance());
 
         foreach (var stainEntity in _visibleStains)
         {
@@ -338,9 +337,6 @@ public sealed partial class WallStainOverlay : Overlay
     {
         public IRenderTexture? StainTarget;
 
-        public void Dispose()
-        {
-            StainTarget?.Dispose();
-        }
+        public void Dispose() => StainTarget?.Dispose();
     }
 }
