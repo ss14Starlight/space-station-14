@@ -32,7 +32,9 @@ public sealed partial class FlammableStainsSystem : EntitySystem
 
     // Fraction of a stain's flammable reagents consumed per second while on fire
     private const float StainBurnRatePerSecond = 0.2f;
+    private const float BurnInterval = 1f;
     private float _stainStackMultiplier = 1.0f;
+    private float _burnAccumulator;
 
     private readonly HashSet<EntityUid> _flammableStains = [];
 
@@ -146,6 +148,15 @@ public sealed partial class FlammableStainsSystem : EntitySystem
         if (_flammableStains.Count == 0)
             return;
 
+        // Burning is rate-based, so batch it into one-second updates instead of walking the
+        // tracked stain set on every server tick.
+        _burnAccumulator += frameTime;
+        if (_burnAccumulator < BurnInterval)
+            return;
+
+        var burnTime = _burnAccumulator;
+        _burnAccumulator = 0f;
+
         _stainBuffer.Clear();
         _stainBuffer.AddRange(_flammableStains);
 
@@ -175,7 +186,7 @@ public sealed partial class FlammableStainsSystem : EntitySystem
                 continue;
             }
 
-            _solution.BurnFlammableReagents(soln.Value, StainBurnRatePerSecond * frameTime);
+            _solution.BurnFlammableReagents(soln.Value, StainBurnRatePerSecond * burnTime);
         }
 
         PruneStains();

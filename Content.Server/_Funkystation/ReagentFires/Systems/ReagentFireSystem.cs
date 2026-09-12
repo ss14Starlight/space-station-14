@@ -4,6 +4,7 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Decals;
 using Content.Shared._Funkystation.CCVar;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Funkystation.ReagentFires;
 using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Components;
@@ -67,18 +68,21 @@ public sealed partial class ReagentFireSystem : EntitySystem
     [Dependency] private EntityQuery<TransformComponent> _xformQuery;
 
     private float _puddleDamageMultiplier = 1.0f;
+    private bool _footprintsFlammable = true;
     private float _fireProtectionEffectiveness = 1.0f;
     private bool _volumeScalingEnabled = true;
     private float _volumeScalingReference = 20f;
     private float _volumeScalingCurve = 1.5f;
     private float _smallPuddleBurnThreshold = 1.0f;
     private float _smallPuddleBurnPercent = 0.5f;
+    private float _updateAccumulator;
 
     public override void Initialize()
     {
         base.Initialize();
 
         Subs.CVar(_cfg, ReagentFireCVars.PuddleFireDamageMultiplier, value => _puddleDamageMultiplier = value, true);
+        Subs.CVar(_cfg, ReagentFireCVars.FootprintsFlammable, value => _footprintsFlammable = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.FireProtectionEffectiveness, value => _fireProtectionEffectiveness = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.VolumeScalingEnabled, value => _volumeScalingEnabled = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.VolumeScalingReference, value => _volumeScalingReference = value, true);
@@ -166,6 +170,13 @@ public sealed partial class ReagentFireSystem : EntitySystem
     {
         if (ent.Comp.Solution == null)
             return;
+
+        if (!_footprintsFlammable && HasComp<FootprintComponent>(ent))
+        {
+            if (_fireQuery.HasComp(ent))
+                Extinguish(ent);
+            return;
+        }
 
         var solution = ent.Comp.Solution.Value.Comp.Solution;
 
@@ -284,8 +295,11 @@ public sealed partial class ReagentFireSystem : EntitySystem
             fireComp.FireEffectEntity = fireEnt;
         }
 
-        _appearance.SetData(fireComp.FireEffectEntity.Value, ReagentPuddleFireVisuals.FireState, fireComp.FireState);
-        _appearance.SetData(fireComp.FireEffectEntity.Value, ReagentPuddleFireVisuals.FireColor, fireColor);
+        if (fireComp.FireEffectEntity is { } fireEffect)
+        {
+            _appearance.SetData(fireEffect, ReagentPuddleFireVisuals.FireState, fireComp.FireState);
+            _appearance.SetData(fireEffect, ReagentPuddleFireVisuals.FireColor, fireColor);
+        }
     }
 
     private void Extinguish(EntityUid uid)
@@ -334,6 +348,14 @@ public sealed partial class ReagentFireSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // Reagent fires only advance in one-second steps. Avoid even enumerating dormant flammable
+        // puddles and footprints on every server tick.
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < UpdateInterval)
+            return;
+
+        _updateAccumulator -= UpdateInterval;
+
         _dueFires.Clear();
         _toExtinguish.Clear();
 
@@ -341,11 +363,6 @@ public sealed partial class ReagentFireSystem : EntitySystem
         var query = EntityQueryEnumerator<ReagentPuddleFireComponent, PuddleComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var fireComp, out var puddle, out var xform))
         {
-            fireComp.Accumulator += frameTime;
-            if (fireComp.Accumulator < UpdateInterval)
-                continue;
-
-            fireComp.Accumulator -= UpdateInterval;
             _dueFires.Add((uid, fireComp, puddle, xform));
         }
 
