@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
-using Content.Server._Starlight.Commands;
+using Content.Shared._Starlight.Commands;
 using Content.Server._Starlight.Toolshed;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;

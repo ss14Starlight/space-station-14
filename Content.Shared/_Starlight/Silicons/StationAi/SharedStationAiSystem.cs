@@ -1,6 +1,10 @@
+using System.Linq;
 using Content.Shared.Intellicard;
+using Content.Shared.Mind;
 using Content.Shared.PAI;
 using Content.Shared.Popups;
+using Robust.Shared.Containers;
+using Robust.Shared.Network;
 //ReSharper disable CheckNamespace
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
@@ -64,5 +68,19 @@ public abstract partial class SharedStationAiSystem
         _mind.TransferTo(paiMindId, brain, ghostCheckOverride: true, mind: paiMind);
         ResetNameToPrototype(pai);
         args.Handled = true;
+    }
+
+    public bool TryControlAI(EntityUid mindId, EntityUid uid)
+    {
+        if (!HasComp<StationAiCoreComponent>(uid)) return false;
+        foreach (var entity in _containers.GetAllContainers(uid).SelectMany(container => container.ContainedEntities))
+        {
+            if (!HasComp<BorgBrainComponent>(entity)) continue;
+            _mind.TransferTo(mindId, entity);
+            return true;
+        }
+        var brain = SpawnInContainerOrDrop("StationAiBrainConstructed", uid, StationAiCoreComponent.Container);
+        _mind.TransferTo(mindId, brain);
+        return true;
     }
 }

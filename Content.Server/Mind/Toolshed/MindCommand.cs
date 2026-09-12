@@ -2,7 +2,10 @@
 using Robust.Shared.Player;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Errors;
-using System.Linq; // Starlight
+using System.Linq;
+using System.Runtime.InteropServices;
+using Content.Server.Silicons.StationAi;
+using Content.Shared._Starlight.Commands;
 
 namespace Content.Server.Mind.Toolshed;
 
@@ -13,6 +16,7 @@ namespace Content.Server.Mind.Toolshed;
 public sealed class MindCommand : ToolshedCommand
 {
     private SharedMindSystem? _mind;
+    private StationAiSystem? _ai;
 
     // Starlight begin: I can't find any reason to get component instead of entity, so changed it to return entity.
     [CommandImplementation("get")]
@@ -31,17 +35,17 @@ public sealed class MindCommand : ToolshedCommand
     // Starlight end
 
     [CommandImplementation("control")]
-    public EntityUid Control(IInvocationContext ctx, [PipedArgument] EntityUid target, ICommonSession player)
+    public EntityUid Control(IInvocationContext ctx, [PipedArgument] EntityUid target, ICommonSession player, [Optional] [DefaultParameterValue(true)] bool tryAi) // Starlight edit
     {
         _mind ??= GetSys<SharedMindSystem>();
-
-
+        _ai ??= GetSys<StationAiSystem>(); // Starlight
         if (!_mind.TryGetMind(player, out var mindId, out var mind))
         {
             ctx.ReportError(new SessionHasNoEntityError(player));
             return target;
         }
 
+        if (tryAi && _ai.TryControlAI(mindId, target)) return target; // Starlight
         _mind.TransferTo(mindId, target, mind: mind);
         return target;
     }
@@ -49,9 +53,14 @@ public sealed class MindCommand : ToolshedCommand
     #region Starlight
 
     [CommandImplementation("takeover")]
-    public EntityUid Takeover(IInvocationContext ctx, [PipedArgument] EntityUid uid)
+    public EntityUid Takeover(IInvocationContext ctx, [PipedArgument] EntityUid uid, [Optional] [DefaultParameterValue(true)] bool tryAi)
     {
         _mind ??= GetSys<SharedMindSystem>();
+        _ai ??= GetSys<StationAiSystem>();
+        if (CommandHelpers.NoSession(ctx) ||
+            (tryAi && _mind.TryGetMind(ctx.Session, out var mindId, out _) &&
+             _ai.TryControlAI(mindId, uid))) return uid;
+
         _mind.ControlMob(ctx.Session!.UserId, uid);
         return uid;
     }
@@ -60,9 +69,9 @@ public sealed class MindCommand : ToolshedCommand
     public EntityUid Wipe(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
         _mind ??= GetSys<SharedMindSystem>();
-        if (!_mind.TryGetMind(uid, out var mindId, out var mind))
+        if (!_mind.TryGetMind(uid, out var mindId, out _))
         {
-            ctx.WriteLine("Entity has no mind to wipe.");
+            CommandMarkup.Error(ctx, "Entity has no mind to wipe.");
             return uid;
         }
 
@@ -74,7 +83,7 @@ public sealed class MindCommand : ToolshedCommand
     public ICommonSession Wipe(IInvocationContext ctx, [PipedArgument] ICommonSession player)
     {
         _mind ??= GetSys<SharedMindSystem>();
-        if (!_mind.TryGetMind(player, out var mindId, out var mind))
+        if (!_mind.TryGetMind(player, out var mindId, out _))
         {
             ctx.ReportError(new SessionHasNoEntityError(player));
             return player;
@@ -85,19 +94,38 @@ public sealed class MindCommand : ToolshedCommand
     }
 
     [CommandImplementation("takeoverwipe")]
-    public EntityUid TakeoverWipe(IInvocationContext ctx, [PipedArgument] EntityUid uid)
+    public EntityUid TakeoverWipe(IInvocationContext ctx, [PipedArgument] EntityUid uid, [Optional] [DefaultParameterValue(true)] bool tryAi)
     {
         _mind ??= GetSys<SharedMindSystem>();
-        _mind.WipeMind(ctx.Session!);
+        _ai ??= GetSys<StationAiSystem>();
+        if (CommandHelpers.NoSession(ctx)) return uid;
+
+        if (!_mind.TryGetMind(uid, out var mindId, out _))
+        {
+            CommandMarkup.Error(ctx, "Entity has no mind to wipe.");
+            return uid;
+        }
+
+        if (tryAi && _ai.TryControlAI(mindId, uid)) return uid;
         _mind.ControlMob(ctx.Session!.UserId, uid);
         return uid;
     }
 
     [CommandImplementation("controlwipe")]
-    public EntityUid ControlWipe(IInvocationContext ctx, [PipedArgument] EntityUid uid, ICommonSession player)
+    public EntityUid ControlWipe(IInvocationContext ctx, [PipedArgument] EntityUid uid, ICommonSession player, [Optional] [DefaultParameterValue(true)] bool tryAi)
     {
         _mind ??= GetSys<SharedMindSystem>();
+        _ai ??= GetSys<StationAiSystem>();
+
+        if (!_mind.TryGetMind(uid, out var mindId, out _))
+        {
+            CommandMarkup.Error(ctx, "Entity has no mind to wipe.");
+            return uid;
+        }
+
         _mind.WipeMind(player);
+
+        if (tryAi && _ai.TryControlAI(mindId, uid)) return uid;
         _mind.ControlMob(player.UserId, uid);
         return uid;
     }
