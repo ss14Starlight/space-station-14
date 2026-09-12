@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Fireplaces can now ignite gases.
-    type: Tweak
-  id: 408110
-  time: '2026-09-03T21:35:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5919
-- author: Wizden Team
-  changes:
   - message: Entities buckled to the bonfire with stake no longer suffocate in the walls above the bonfire.
     type: Fix
   id: 408111
@@ -2799,4 +2792,11 @@ Entries:
   id: 408509
   time: '2026-09-12T07:31:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6044
+- author: Dr_Nonnoob
+  changes:
+  - message: 'New traitor items: Fake command stamps. Make sure the stamp is real before approving it. (Also a very low chance of a joke stamp).'
+    type: Add
+  id: 408510
+  time: '2026-09-12T07:31:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5912
 Order: -1
