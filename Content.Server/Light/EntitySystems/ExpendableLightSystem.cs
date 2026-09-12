@@ -35,8 +35,10 @@ namespace Content.Server.Light.EntitySystems
 
         private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
 
-        private float _updateAccumulator; // Starlight
-        private const float UpdateInterval = 0.25f; // Starlight
+        #region Starlight
+        private float _updateAccumulator;
+        private const float UpdateInterval = 0.25f;
+        #endregion
 
         public override void Initialize()
         {

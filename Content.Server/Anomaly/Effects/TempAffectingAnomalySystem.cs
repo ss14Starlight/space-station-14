@@ -13,8 +13,10 @@ public sealed partial class TempAffectingAnomalySystem : EntitySystem
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private TransformSystem _xform = default!;
 
-    private float _updateAccumulator; // Starlight
-    private const float UpdateInterval = 0.25f; // Starlight
+    #region Starlight
+    private float _updateAccumulator;
+    private const float UpdateInterval = 0.25f;
+    #endregion
 
     public override void Update(float frameTime)
     {

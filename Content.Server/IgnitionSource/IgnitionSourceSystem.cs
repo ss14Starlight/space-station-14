@@ -7,8 +7,11 @@ public sealed partial class IgnitionSourceSystem : SharedIgnitionSourceSystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    private float _updateAccumulator; // Starlight
-    private const float UpdateInterval = 0.25f; // Starlight
+
+    #region Starlight
+    private float _updateAccumulator;
+    private const float UpdateInterval = 0.25f;
+    #endregion
 
     public override void Update(float frameTime)
     {

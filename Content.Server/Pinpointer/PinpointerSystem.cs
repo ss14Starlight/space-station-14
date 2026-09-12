@@ -14,8 +14,10 @@ public sealed partial class PinpointerSystem : SharedPinpointerSystem
 
     private EntityQuery<TransformComponent> _xformQuery;
 
-    private float _updateAccumulator; // Starlight
-    private const float UpdateInterval = 0.25f; // Starlight
+    #region Starlight
+    private float _updateAccumulator;
+    private const float UpdateInterval = 0.25f;
+    #endregion
 
     public override void Initialize()
     {
