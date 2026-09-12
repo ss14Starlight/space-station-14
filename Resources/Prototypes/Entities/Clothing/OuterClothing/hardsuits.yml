@@ -87,7 +87,7 @@
 
 #Spationaut Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
+  parent: [ClothingOuterHardsuitBase, BaseCargoSalvageContraband]
   id: ClothingOuterHardsuitSpatio
   name: spationaut hardsuit
   description: A lightweight hardsuit designed for industrial EVA in zero gravity.
@@ -165,7 +165,7 @@
 
 #Goliath Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
+  parent: [ClothingOuterHardsuitBase, BaseCargoSalvageContraband]
   id: ClothingOuterHardsuitGoliath
   name: goliath hardsuit
   description: A lightweight hardsuit, adorned with a patchwork of thick, chitinous goliath hide.
