@@ -398,6 +398,10 @@
     sprite: Clothing/Mask/plaguedoctormask.rsi
   - type: Clothing
     sprite: Clothing/Mask/plaguedoctormask.rsi
+  - type: Armor
+    modifiers: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.9
   - type: BreathMask
   - type: IngestionBlocker
   - type: IdentityBlocker

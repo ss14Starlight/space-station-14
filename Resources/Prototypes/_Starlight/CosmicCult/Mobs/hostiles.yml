@@ -73,7 +73,7 @@
   - type: GhostOnMove
     mustBeDead: true
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: MalignStructure
     damageModifierSet: Malignstone
   - type: CosmicRiftHealth
     healthPerCorpse: 5
