@@ -340,7 +340,7 @@
         # Funkystation End: Funky atmos - /tg/ gases
         effectProto: StatusEffectSleepiness # Starlight: Sleepiness effect
         maximumSleepiness: 60s # Starlight: Lower max sleepiness
-        time: 3.7 # Starlight: Weak effect
+        time: 4.0 # Starlight: Weak effect
       - !type:HealthChange
         minScale: 3.5
         conditions:
