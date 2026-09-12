@@ -705,7 +705,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Vampire, Avali, Rodentia, Neocyte, Doll ] # SL - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
+          type: [ Animal, Vox, Vampire, Avali, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
           inverted: true
         type: Local
         visualType: MediumCaution
