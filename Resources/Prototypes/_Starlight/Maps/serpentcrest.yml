@@ -19,7 +19,7 @@
           path: /Maps/_Starlight/Shuttles/Cargo/cargo_syndicate.yml
         - type: StationJobs
           availableJobs:
-            #command (8)
+            #command (7)
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             HeadOfSecurity: [ 1, 1 ]
@@ -27,12 +27,12 @@
             ChiefEngineer: [ 1, 1 ]
             ResearchDirector: [ 1, 1 ]
             Quartermaster: [ 1, 1 ]
-            AssistantManager: [ 2, 2 ]
             #Law
             Magistrate: [ 1, 1 ]
             IAA: [ 1, 2 ]
             #service
             Bartender: [ 2, 2 ]
+            AssistantManager: [ 2, 2 ]
             Botanist: [ 3, 3 ]
             Chef: [ 2, 2 ]
             Janitor: [ 4, 4 ]
