@@ -57,7 +57,7 @@ namespace Content.Server.Light.EntitySystems
                 return;
 
             var elapsed = _updateAccumulator;
-            _updateAccumulator -= UpdateInterval;
+            _updateAccumulator = 0f;
             #endregion
 
             var query = EntityQueryEnumerator<ExpendableLightComponent>();
