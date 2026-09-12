@@ -74,6 +74,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private INetManager _net = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedLightTreeSystem _lightTree = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
 
     [Dependency] private EntityQuery<DarkLightComponent> _darkLightQuery = default!;
@@ -164,7 +165,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     /// <remarks>
     /// Lights come from the engine light tree, so <c>lookup.enable_server_light_tree</c> has to stay on.
     /// Not using LightLevelSystem itself: it returns a clamped 0-1 luminance that doesn't match our
-    /// thresholds, and it can't ignore dark/shadegen lights.
+    /// thresholds, and it can't ignore dark/shadegen lights, nor see the ones shut in a container with us.
     /// </remarks>
     public float GetLightExposure(EntityUid uid, float cap = float.MaxValue)
     {
@@ -172,10 +173,6 @@ public sealed partial class ShadekinSystem : EntitySystem
 
         var targetCoords = _transform.GetMapCoordinates(uid);
         if (targetCoords.MapId == MapId.Nullspace)
-            return illumination;
-
-        // Lights inside an occluding container are kept out of the tree, so nothing can reach us in one either.
-        if (_container.TryGetContainingContainer(uid, out var targetContainer) && targetContainer.OccludesLight)
             return illumination;
 
         // Shadegens make everything around them dark. There are only ever a few of them,
@@ -191,7 +188,13 @@ public sealed partial class ShadekinSystem : EntitySystem
         }
 
         _lightsInRange.Clear();
-        GetLightsAt(targetCoords, _lightsInRange);
+
+        // Nothing outside an occluding container reaches us, but a light shut in here with us still does.
+        // Those are kept out of the light tree, so they have to come from the container itself.
+        if (_container.TryGetContainingContainer(uid, out var targetContainer) && targetContainer.OccludesLight)
+            GetLightsInContainer(targetContainer, _lightsInRange);
+        else
+            GetLightsAt(targetCoords, _lightsInRange);
 
         // Cheapest checks first, the occlusion raycast is done last and only for lights that would actually add something.
         foreach (var light in _lightsInRange)
@@ -200,7 +203,7 @@ public sealed partial class ShadekinSystem : EntitySystem
                 continue;
 
             var lightComp = light.Comp1;
-            if (lightComp.Radius < 1 || lightComp.Energy <= 0)
+            if (!lightComp.Enabled || lightComp.Radius < 1 || lightComp.Energy <= 0)
                 continue;
 
             var (lightPos, lightRot) = _transform.GetWorldPositionRotation(light.Comp2);
@@ -265,6 +268,18 @@ public sealed partial class ShadekinSystem : EntitySystem
         {
             var localPos = Vector2.Transform(coords.Position, _transform.GetInvWorldMatrix(tree));
             treeComp.Tree.QueryPoint(ref lights, LightQueryCallback, localPos, true);
+        }
+    }
+
+    /// <summary>
+    /// Collect the lights sharing an occluding container with us, which the light tree leaves out.
+    /// </summary>
+    private void GetLightsInContainer(BaseContainer container, List<Entity<SharedPointLightComponent, TransformComponent>> lights)
+    {
+        foreach (var contained in container.ContainedEntities)
+        {
+            if (_pointLight.TryGetLight(contained, out var light))
+                lights.Add((contained, light, Transform(contained)));
         }
     }
 

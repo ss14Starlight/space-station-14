@@ -1,6 +1,7 @@
 using Content.IntegrationTests.Fixtures;
 using Content.Shared._Starlight.Shadekin;
 using Content.Shared._Starlight.Shadekin.Components;
+using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using System.Numerics;
@@ -106,6 +107,74 @@ public sealed class ShadekinLightExposureTests : GameTest
 
             server.EntMan.DeleteEntity(shadegen);
             server.EntMan.DeleteEntity(light);
+            server.EntMan.DeleteEntity(target);
+        });
+    }
+
+    /// <summary>
+    /// Tests that a light shut inside an occluding container still lights up something in there with it, while
+    /// a light outside that container does not.
+    /// </summary>
+    [Test]
+    public async Task LightInSameClosedContainerStillCounts()
+    {
+        var server = Pair.Server;
+        var map = await Pair.CreateTestMap();
+
+        var shadekin = server.System<ShadekinSystem>();
+        var pointLight = server.System<SharedPointLightSystem>();
+        var containers = server.System<SharedContainerSystem>();
+
+        EntityUid outsideLight = default;
+        EntityUid insideLight = default;
+        EntityUid target = default;
+        EntityUid locker = default;
+
+        await server.WaitAssertion(() =>
+        {
+            locker = server.EntMan.SpawnAtPosition(null, map.GridCoords);
+            outsideLight = server.EntMan.SpawnAtPosition(null, map.GridCoords);
+            insideLight = server.EntMan.SpawnAtPosition(null, map.GridCoords);
+            target = server.EntMan.SpawnAtPosition(null, map.GridCoords);
+
+            foreach (var light in new[] { outsideLight, insideLight })
+            {
+                var lightComp = pointLight.EnsureLight(light);
+                pointLight.SetRadius(light, 5f, lightComp);
+                pointLight.SetEnergy(light, 2f, lightComp);
+                pointLight.SetEnabled(light, true, lightComp);
+            }
+
+            var container = containers.EnsureContainer<Container>(locker, "test");
+            Assert.That(container.OccludesLight, Is.True, "This test needs a light occluding container.");
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(containers.Insert(target, container, force: true), Is.True);
+                Assert.That(containers.Insert(insideLight, container, force: true), Is.True);
+            });
+        });
+
+        await server.WaitRunTicks(1);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(shadekin.GetLightExposure(target), Is.GreaterThan(0f),
+                "A light shut in the same container should still light us up.");
+
+            // Leaves only the light outside, which the container should be shielding us from.
+            pointLight.SetEnabled(insideLight, false);
+        });
+
+        await server.WaitRunTicks(1);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(shadekin.GetLightExposure(target), Is.Zero,
+                "A light outside our occluding container should not reach us.");
+
+            server.EntMan.DeleteEntity(locker);
+            server.EntMan.DeleteEntity(outsideLight);
             server.EntMan.DeleteEntity(target);
         });
     }
