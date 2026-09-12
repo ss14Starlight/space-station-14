@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Maps;
@@ -211,8 +212,18 @@ public abstract partial class SharedBiomeSystem : EntitySystem
         return TryGetEntity(indices, component, grid == null ? null : (grid.Owner, grid), out entity);
     }
 
+    /// <summary>
+    /// Tries to get the relevant entity for this tile.
+    /// </summary>
+    //Starlight - Begin
+    /// <param name="noiseCache">
+    /// Optional per-layer noise cache. Reuse a cache only for calls that pass the same
+    /// <paramref name="layers"/> instance and the same <paramref name="seed"/>, because entries are keyed by layer index.
+    /// </param>
+    //Starlight - End
     public bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, Entity<MapGridComponent>? grid,
-        [NotNullWhen(true)] out string? entity)
+        [NotNullWhen(true)] out string? entity,
+        Dictionary<int, FastNoiseLite>? noiseCache = null) //Starlight
     {
         var tileId = TileDefManager[tileRef.TypeId].ID;
 
@@ -225,7 +236,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
                 case BiomeDummyLayer:
                     continue;
                 case IBiomeWorldLayer worldLayer:
-                    if (!worldLayer.AllowedTiles.Contains(tileId))
+                    if (!worldLayer.AllowAllTiles && !worldLayer.AllowedTiles.Contains(tileId)) //Starlight: AllowAllTiles
                         continue;
 
                     break;
@@ -235,7 +246,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
                     continue;
             }
 
-            var noiseCopy = GetNoise(layer.Noise, seed);
+            var noiseCopy = GetOrCreateNoise(layers, i, seed, noiseCache); //Starlight: noise cache
 
             var invert = layer.Invert;
             var value = noiseCopy.GetNoise(indices.X, indices.Y);
@@ -246,7 +257,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
 
             if (layer is BiomeMetaLayer meta)
             {
-                if (TryGetEntity(indices, ProtoManager.Index<BiomeTemplatePrototype>(meta.Template).Layers, tileRef, seed, grid, out entity))
+                if (TryGetEntity(indices, ProtoManager.Index<BiomeTemplatePrototype>(meta.Template).Layers, tileRef, seed, grid, out entity, null)) //Starlight
                 {
                     return true;
                 }
@@ -270,18 +281,35 @@ public abstract partial class SharedBiomeSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Tries to get the relevant entity for this tile.
+    /// </summary>
+    //Starlight - Begin
+    /// <param name="noiseCache">
+    /// Optional per-layer noise cache. Reuse a cache only for calls that pass the same
+    /// <paramref name="layers"/> instance and the same <paramref name="seed"/>, because entries are keyed by layer index.
+    /// </param>
+    //Starlight - End
     [Obsolete("Use the Entity<MapGridComponent>? overload")]
     public bool TryGetEntity(Vector2i indices, List<IBiomeLayer> layers, Tile tileRef, int seed, MapGridComponent grid,
-        [NotNullWhen(true)] out string? entity)
+        [NotNullWhen(true)] out string? entity,
+        Dictionary<int, FastNoiseLite>? noiseCache = null) //Starlight
     {
-        return TryGetEntity(indices, layers, tileRef, seed, grid == null ? null : (grid.Owner, grid), out entity);
+        return TryGetEntity(indices, layers, tileRef, seed, grid == null ? null : (grid.Owner, grid), out entity, noiseCache); //Starlight
     }
 
     /// <summary>
     /// Tries to get the relevant decals for this tile.
     /// </summary>
+    //Starlight - Begin
+    /// <param name="noiseCache">
+    /// Optional per-layer noise cache. Reuse a cache only for calls that pass the same
+    /// <paramref name="layers"/> instance and the same <paramref name="seed"/>, because entries are keyed by layer index.
+    /// </param>
+    //Starlight - End
     public bool TryGetDecals(Vector2i indices, List<IBiomeLayer> layers, int seed, Entity<MapGridComponent>? grid,
-        [NotNullWhen(true)] out List<(string ID, Vector2 Position)>? decals)
+        [NotNullWhen(true)] out List<(string ID, Vector2 Position)>? decals,
+        Dictionary<int, FastNoiseLite>? noiseCache = null) //Starlight
     {
         if (!TryGetBiomeTile(indices, layers, seed, grid, out var tileRef))
         {
@@ -301,7 +329,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
                 case BiomeDummyLayer:
                     continue;
                 case IBiomeWorldLayer worldLayer:
-                    if (!worldLayer.AllowedTiles.Contains(tileId))
+                    if (!worldLayer.AllowAllTiles && !worldLayer.AllowedTiles.Contains(tileId)) //Starlight: AllowAllTiles
                         continue;
 
                     break;
@@ -312,7 +340,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
             }
 
             var invert = layer.Invert;
-            var noiseCopy = GetNoise(layer.Noise, seed);
+            var noiseCopy = GetOrCreateNoise(layers, i, seed, noiseCache); //Starlight: noise cache
             var value = noiseCopy.GetNoise(indices.X, indices.Y);
             value = invert ? value * -1 : value;
 
@@ -321,7 +349,7 @@ public abstract partial class SharedBiomeSystem : EntitySystem
 
             if (layer is BiomeMetaLayer meta)
             {
-                if (TryGetDecals(indices, ProtoManager.Index<BiomeTemplatePrototype>(meta.Template).Layers, seed, grid, out decals))
+                if (TryGetDecals(indices, ProtoManager.Index<BiomeTemplatePrototype>(meta.Template).Layers, seed, grid, out decals, null)) //Starlight
                 {
                     return true;
                 }
@@ -367,11 +395,18 @@ public abstract partial class SharedBiomeSystem : EntitySystem
     /// <summary>
     /// Tries to get the relevant decals for this tile.
     /// </summary>
+    //Starlight - Begin
+    /// <param name="noiseCache">
+    /// Optional per-layer noise cache. Reuse a cache only for calls that pass the same
+    /// <paramref name="layers"/> instance and the same <paramref name="seed"/>, because entries are keyed by layer index.
+    /// </param>
+    //Starlight - End
     [Obsolete("Use the Entity<MapGridComponent>? overload")]
     public bool TryGetDecals(Vector2i indices, List<IBiomeLayer> layers, int seed, MapGridComponent grid,
-        [NotNullWhen(true)] out List<(string ID, Vector2 Position)>? decals)
+        [NotNullWhen(true)] out List<(string ID, Vector2 Position)>? decals,
+        Dictionary<int, FastNoiseLite>? noiseCache = null) //Starlight
     {
-        return TryGetDecals(indices, layers, seed, grid == null ? null : (grid.Owner, grid), out decals);
+        return TryGetDecals(indices, layers, seed, grid == null ? null : (grid.Owner, grid), out decals, noiseCache); //Starlight
     }
 
     private FastNoiseLite GetNoise(FastNoiseLite seedNoise, int seed)
@@ -383,4 +418,16 @@ public abstract partial class SharedBiomeSystem : EntitySystem
         noiseCopy.SetFractalOctaves(noiseCopy.GetFractalOctaves());
         return noiseCopy;
     }
+
+    //Starlight - Begin
+    private FastNoiseLite GetOrCreateNoise(List<IBiomeLayer> layers, int layerIndex, int seed, Dictionary<int, FastNoiseLite>? cache)
+    {
+        if (cache != null && cache.TryGetValue(layerIndex, out var cached))
+            return cached;
+
+        var noise = GetNoise(layers[layerIndex].Noise, seed);
+        cache?.Add(layerIndex, noise);
+        return noise;
+    }
+    //Starlight - End
 }
