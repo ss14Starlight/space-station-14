@@ -22,7 +22,6 @@
       NitrousOxide: stationNO
       Frezon: danger
       BZ: stationBZ
-      Healium: stationHealium
       Nitrium: danger
       Pluoxium: stationPluoxium
       Hydrogen: danger
@@ -114,7 +113,6 @@
     - NitrousOxide
     - Frezon
     - BZ
-    - Healium
     - Nitrium
     - Hydrogen
     - HyperNoblium

@@ -34,6 +34,13 @@
   flavor: bitter
   color: "#869ea3"
   physicalDesc: reagent-physical-desc-nondescript
+  metabolisms:
+    Bloodstream:
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Cellular: -0.1
   # Just as BZ Metabolites don't actually function right now, neither do ZXA Metabolites. Maybe we could make it hurt vampires too or something.
   # metabolisms:
   #   Poison:

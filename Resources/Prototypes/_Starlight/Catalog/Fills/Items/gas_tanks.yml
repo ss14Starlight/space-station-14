@@ -1,9 +1,9 @@
 - type: entity
-  id: HealiumTankEmpty
+  id: StimTankEmpty
   parent: AirTank
   suffix: Empty
-  name: healium tank
-  description: Contains a mixture of air and healium. Keep the pressure at 65 and it should put even those nitrogen breathers to sleep. It can hold 5 L of gas.
+  name: stimpack tank
+  description: A tank containing a performance enhancing mixture of gasses designed to boost physical capabilities. Typically issued to those who get into heavy combat.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Tanks/anesthetic2.rsi
@@ -14,23 +14,22 @@
   - type: Clothing
     sprite: _Starlight/Objects/Tanks/anesthetic2.rsi
   - type: GasTank
-    outputPressure: 65
+    outputPressure: 22
 
 - type: entity
-  id: HealiumTankFilled
-  parent: HealiumTankEmpty
+  id: StimTankFilled
+  parent: StimTankEmpty
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 65
+    outputPressure: 25
     air:
-      # Will only last around 10-11 minutes.
       volume: 5
       moles:
-        Pluoxium: 0.4861768349 # 23.7% Pluoxium, so voxes don't get poisoned
-        Nitrogen: 0.4861768349 # 23.7% Nitrogen
-        Healium: 1.07902538 # 52.6% Healium
-        # 2.051379050       total
+        Pluoxium: 0.5
+        Ulnitranium: 0.5
+        Nitrium: 0.6
+        ZXA: 0.4
       temperature: 293.15
 
 - type: entity

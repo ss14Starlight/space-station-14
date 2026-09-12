@@ -26,7 +26,6 @@ internal static class Const
         new (0.13f, 2.19f, 2.2f, 0f, -0.02f, 0f, 0f), // nitrous oxide
         new (1.00f, 0.01f, 1.1f, 0f, -0.1f, 0f, 0f), // frezon
         new (0.25f, 1.20f, 1.80f, 0f, 0f, 0f, 0f), // BZ (catalist so an not competing gas) //FUNKY GASES
-        new (0.40f, 0.50f, 1.8f, 1f, -0.1f, -0.1f, 0f), // Healium (support gas) {Special effect: increase passive}
         new (0.30f, 0.50f, 1.2f, 0f, 0.75f, 0.5f, 0f), // Nitrium {Special effect: SM reacts more, cost of stability}
         new (0.30f, 1.0f, 1.7f, 0f, 0f, 0f, 0f), // Pluoxium better then o2 not insane
         new (0.35f, 0.35f, 1.1f, 0f, 0.25f, 0f, 0f), // Hydrogen Better heatT than Trit but "ignites" faster
