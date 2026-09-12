@@ -50,7 +50,7 @@
   parent: ClothingOuterVestWebETOBase
   id: ClothingOuterVestWebETOLead
   name: ETO leader web vest
-  description: A highly protective Web Vest designed for the team leader.
+  description: A highly protective web vest designed for the team leader.
   components:
     - type: Sprite
       sprite: _Starlight/Admeme/ETO/clothing/armour/etoleadvest.rsi
@@ -159,7 +159,7 @@
   parent: [ BaseETOContraband, ClothingOuterEVASuitBase ]
   id: ClothingOuterSoftsuitETO
   name: ETO space hazard suit
-  description: A Lightweight EVA Suit padded with ballistic protection.
+  description: A lightweight EVA suit padded with ballistic protection.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/ETO/clothing/armour/etoevasuit.rsi
