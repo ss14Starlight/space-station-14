@@ -25,6 +25,31 @@
         - state: equipped-HELMET
 
 - type: entity
+  parent: BaseResomiPlushie
+  id: PlushieChemmi # huaqas
+  name: chemmi plushie
+  description: An adorable plushie of the orange juice addicted senior researcher Chemmi. She comes equipped with her own XL orange juice bottle, and jam-jar glasses to match.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/chemmi_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/chemmi_plushie.rsi
+    state: icon
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/chemmi_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_squawk_1.ogg
+
+- type: entity
   parent: BaseLizardPlushie
   id: PlushieDoxes # SanityGecko
   name: doxes-the-captain plushie
@@ -63,15 +88,15 @@
       reagents:
       - ReagentId: JuiceThatMakesYouWeh
         Quantity: 30
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
-        - ReagentId: JuiceThatMakesYouWeh
-          Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 10
   - type: Clothing
     quickEquip: false
     sprite: _Starlight/Objects/Fun/Plushies/doxes_plushie.rsi
@@ -124,12 +149,6 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Animals/lizard_happy.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Animals/lizard_happy.ogg
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
@@ -146,15 +165,15 @@
       reagents:
       - ReagentId: JuiceThatMakesYouWeh
         Quantity: 30
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
-        - ReagentId: JuiceThatMakesYouWeh
-          Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 10
   - type: Clothing
     quickEquip: false
     sprite: _Starlight/Objects/Fun/Plushies/galio_plushie.rsi
@@ -167,6 +186,53 @@
     - ClothMade
     - Payload
     - PlushieLizard
+
+- type: entity
+  parent: BaseVoxPlushie
+  id: PlushieHrek # FlameyTheRandom
+  name: hrekrativi plushie
+  description: Has probably built more civilian infrastructure than any engineer you'll come across. Smells like space cleaner... and missing permits.
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/hrekrativi_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/hrekrativi_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Voice/Vox/vox_chitter.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Voice/Vox/vox_cry.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Voice/Vox/vox_click.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Voice/Vox/vox_sneeze.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Voice/Vox/vox_cry.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Vox/vox_cry.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Voice/Vox/shriek1.ogg
+      params:
+        volume: -5
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/hrekrativi_plushie.rsi
+    slots:
+    - HEAD
+  - type: Tag
+    tags:
+    - ClothMade
+    - Payload
 
 - type: entity
   parent: BaseMothPlushie
@@ -288,6 +354,72 @@
     clothingVisuals:
       head:
         - state: equipped-HELMET
+
+- type: entity
+  parent: BaseLizardPlushie
+  id: PlushieVictor # A_pet_tick
+  name: victor jr. plushie
+  description: Junior's marketable attempt at making chefs reconsider using kobolds as a food source. It looks tasty though...
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/victor_plushie.rsi
+    state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Fun/Plushies/victor_plushie.rsi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Toys/weh.ogg
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 15
+      - ReagentId: Saline
+        Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
+      - ReagentId: Saline
+        Quantity: 10
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/victor_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+  - type: Speech
+    speechVerb: Reptilian # for pais (In the secret stash)
+  - type: Tag
+    tags:
+    - Payload
+    - ClothMade
+    - PlushieLizard
 
 # General Plushies - Keep alphabetical, please!
 - type: entity

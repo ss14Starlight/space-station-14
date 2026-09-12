@@ -19,6 +19,33 @@
       metabolites:
         UncookedAnimalProteins: 0.2
       effects:
+      #Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: Protein
+        amount: 0.3
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
+      - !type:SatiateThirst
+        factor: 1.0
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Doll ] #Dolls share human metabolism too, so they need this extra
+      #Starlight End
       - !type:SatiateThirst
         factor: 1.0
         conditions:
@@ -33,6 +60,32 @@
           groups:
             Brute: -3
             Burn: -1.25
+    #Starlight Start
+    Bloodstream: #Dolls heal from injected blood too
+      effects:
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
+      - !type:HealthChange # Don't inject someone else's blood into yourself! Your own blood won't actually metabolise. #Starlight: Unless you are a doll. Also, ever heard of blood transfusions??
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+          inverted: true
+        damage:
+          types:
+            Poison: 0.2
+    #Starlight End
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
@@ -132,6 +185,17 @@
   recognizable: true
   physicalDesc: reagent-physical-desc-pungent
 
+- type: reagent
+  parent: Blood
+  id: SulfurBlood
+  name: reagent-name-sulfur-blood
+  group: Biological
+  desc: reagent-desc-sulfur-blood
+  flavor: bitter
+  color: "#ccac1f"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-strong-smelling
+
 - type: reagent #starlight start
   id: ZombieBlood
   name: reagent-name-mortucussus
@@ -165,7 +229,7 @@
   color: "#f4692e"
   recognizable: true
   metabolisms:
-    Digestion:
+    Bloodstream:
       effects:
       - !type:SatiateThirst
         factor: 1.5

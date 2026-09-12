@@ -7,10 +7,10 @@
       sprite: _Starlight/Objects/Specific/Xenobiology/slime_extract.rsi
       layers:
         - state: extract
-    - type: SolutionContainerManager
-      solutions:
-        container:
-          maxVol: 150
+    - type: Solution
+      id: container
+      solution:
+        maxVol: 150
     - type: Item
       size: Tiny
     - type: MixableSolution

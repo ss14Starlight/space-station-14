@@ -89,6 +89,7 @@
           False: {visible: false}
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
+  - type: JobStatus
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
@@ -222,10 +223,6 @@
     speechSounds: Alto
   - type: DamageForceSay
   - type: Vocal
-    sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: MaleHuman
   - type: Emoting
   - type: BodyEmotes
     soundsId: GeneralBodyEmotes
@@ -332,7 +329,6 @@
     thermalRegulationTemperatureThreshold: 2
   - type: Perishable
   - type: Butcherable
-    butcheringType: Spike # TODO human.
     spawned:
       - id: FoodMeat
         amount: 5

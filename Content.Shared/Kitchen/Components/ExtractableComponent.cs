@@ -13,5 +13,5 @@ public sealed partial class ExtractableComponent : Component
     public Solution? JuiceSolution;
 
     [DataField("grindableSolutionName")]
-    public string? GrindableSolution;
+    public string? GrindableSolutionName; // Starlight
 };

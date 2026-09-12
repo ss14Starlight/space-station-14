@@ -12,9 +12,7 @@ namespace Content.Client._Starlight.UI.Kitchen
     [GenerateTypedNameReferences]
     public sealed partial class IceCreamMakerMenu : FancyWindow
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-
-        public event Action<BaseButton.ButtonEventArgs, int>? OnCookTimeSelected;
+        [Dependency] private IGameTiming _timing = default!;
 
         public ButtonGroup CookTimeButtonGroup { get; }
 
@@ -47,9 +45,5 @@ namespace Content.Client._Starlight.UI.Kitchen
             CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", (_timing.CurTime - StartedCooktime).ToString(@"mm\:ss"))); // Starlight-edit
         }
 
-        public sealed class MicrowaveCookTimeButton : Button
-        {
-            public uint CookTime;
-        }
     }
 }

@@ -44,6 +44,17 @@
     stock: 1
 
 - type: listing
+  id: VendorPlushieHrek
+  productEntity: PlushieHrek
+  cost:
+    NTCredit: 20
+  categories:
+  - SLCrew
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: VendorPlushieKoni
   productEntity: PlushieKoni
   cost:
@@ -90,6 +101,28 @@
 - type: listing
   id: VendorPlushieOp
   productEntity: PlushieOp
+  cost:
+    NTCredit: 20
+  categories:
+  - SLCrew
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VendorPlushieVictor
+  productEntity: PlushieVictor
+  cost:
+    NTCredit: 20
+  categories:
+  - SLCrew
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VendorPlushieChemmi
+  productEntity: PlushieChemmi
   cost:
     NTCredit: 20
   categories:

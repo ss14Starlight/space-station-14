@@ -1,9 +1,6 @@
 using System.Linq;
-using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
 using Content.Shared.NodeContainer.NodeGroups;
-using Robust.Shared.Map;
-using Robust.Shared.Utility;
 
 namespace Content.Server.NodeContainer.NodeGroups
 {

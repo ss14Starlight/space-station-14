@@ -20,7 +20,6 @@
     prototype: NeoVox
     requiredLegs: 2
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatChicken
       amount: 5
@@ -87,7 +86,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: AmmoniaBlood
-        Quantity: 300
+        Quantity: 600
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -212,10 +211,6 @@
           sprite: Mobs/Species/Vox/displacement.rsi
           state: hand_r
   - type: Vocal
-    sounds:
-      Male: NeoVoxMSounds
-      Female: NeoVoxFSounds
-      Unsexed: NeoVoxMSounds
 
 - type: entity
   parent: BaseSpeciesDummy

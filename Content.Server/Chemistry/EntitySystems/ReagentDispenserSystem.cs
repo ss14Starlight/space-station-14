@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server.Chemistry.Components;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
@@ -20,7 +19,6 @@ using Content.Server.Hands.Systems;
 using Content.Shared.PowerCell;
 using Content.Shared.Destructible;
 using Content.Shared.PowerCell.Components;
-using Content.Server.Power.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
@@ -61,7 +59,7 @@ namespace Content.Server.Chemistry.EntitySystems
             base.Initialize();
 
             SubscribeLocalEvent<ReagentDispenserComponent, ComponentStartup>(SubscribeUpdateUiState);
-            SubscribeLocalEvent<ReagentDispenserComponent, SolutionContainerChangedEvent>(SubscribeUpdateUiState);
+            SubscribeLocalEvent<ReagentDispenserComponent, SolutionChangedEvent>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ReagentDispenserComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState, after: [typeof(SharedStorageSystem)]);
             SubscribeLocalEvent<ReagentDispenserComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState, after: [typeof(SharedStorageSystem)]);
             SubscribeLocalEvent<ReagentDispenserComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
