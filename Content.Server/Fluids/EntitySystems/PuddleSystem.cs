@@ -14,8 +14,6 @@ using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
 using Content.Shared._Funkystation.Fluids;
-using Content.Shared._Funkystation.Footprints;
-using Content.Shared._Funkystation.WallStains;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
 using Content.Shared.StepTrigger.Systems;
@@ -41,9 +39,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
-    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!;
-    [Dependency] private EntityQuery<FootprintComponent> _footprintQuery = default!; // Funky/Starlight
-    [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!;
+    private EntityQuery<PuddleComponent> _puddleQuery;
 
     /*
      * TODO: Need some sort of way to do blood slash / vomit solution spill on its own
@@ -54,6 +50,8 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     public override void Initialize()
     {
         base.Initialize();
+
+        _puddleQuery = GetEntityQuery<PuddleComponent>();
 
         SubscribeLocalEvent<PuddleComponent, SpreadNeighborsEvent>(OnPuddleSpread);
         SubscribeLocalEvent<PuddleComponent, SlipEvent>(OnPuddleSlip);
@@ -155,7 +153,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
                     break;
             }
 
-            // If there is nothing left to overflow from our tile, then we'll stop this tile being an active spreader
+            // If there is nothing left to overflow from our tile, then we'll stop this tile being a active spreader
             if (overflow.Volume == FixedPoint2.Zero)
             {
                 RemCompDeferred<ActiveEdgeSpreaderComponent>(entity);
@@ -275,10 +273,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         {
             var stainEv = new SpilledOnEvent(entity.Owner, splitSol.Clone());
             RaiseLocalEvent(args.Slipped, stainEv);
-
-            // Funky Wall Stains
-            var splashEv = new SplashOnWallEvent(Transform(entity.Owner).Coordinates, splitSol.Clone());
-            RaiseLocalEvent(ref splashEv);
         }
         // Funky - End
     }
@@ -462,10 +456,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         _color.RaiseEffect(spilled.GetColor(_prototypeManager), targets,
             Filter.Pvs(entity, entityManager: EntityManager));
 
-        // Funky Wall Stains
-        var splashEv = new SplashOnWallEvent(coordinates, spilled.Clone());
-        RaiseLocalEvent(ref splashEv);
-
         return TrySpillAt(coordinates, spilled, out puddleUid, sound);
     }
 
@@ -542,21 +532,20 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         // Get normalized co-ordinate for spill location and spill it in the centre
         // TODO: Does SnapGrid or something else already do this?
-        var anchored = _map.GetAnchoredEntities(gridId, mapGrid, tileRef.GridIndices);
+        var anchored = _map.GetAnchoredEntitiesEnumerator(gridId, mapGrid, tileRef.GridIndices);
+        var puddleQuery = GetEntityQuery<PuddleComponent>();
+        var sparklesQuery = GetEntityQuery<EvaporationSparkleComponent>();
 
         while (anchored.MoveNext(out var ent))
         {
             // If there's existing sparkles then delete it
-            if (_evaporationSparklesQuery.TryGetComponent(ent, out var sparkles))
+            if (sparklesQuery.TryGetComponent(ent, out var sparkles))
             {
                 QueueDel(ent.Value);
                 continue;
             }
 
-            if (!_puddleQuery.TryGetComponent(ent, out var puddle))
-                continue;
-
-            if (_footprintQuery.HasComponent(ent.Value)) // Funky/Starlight
+            if (!puddleQuery.TryGetComponent(ent, out var puddle))
                 continue;
 
             if (TryAddSolution(ent.Value, solution, sound, puddleComponent: puddle))
@@ -591,14 +580,12 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         if (!TryComp<MapGridComponent>(tile.GridUid, out var grid))
             return false;
 
-        var anc = _map.GetAnchoredEntities(tile.GridUid, grid, tile.GridIndices);
+        var anc = _map.GetAnchoredEntitiesEnumerator(tile.GridUid, grid, tile.GridIndices);
+        var puddleQuery = GetEntityQuery<PuddleComponent>();
 
         while (anc.MoveNext(out var ent))
         {
-            if (!_puddleQuery.HasComponent(ent.Value))
-                continue;
-
-            if (_footprintQuery.HasComponent(ent.Value)) // Funky/Starlight
+            if (!puddleQuery.HasComponent(ent.Value))
                 continue;
 
             puddleUid = ent.Value;

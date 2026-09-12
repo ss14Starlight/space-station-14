@@ -8,99 +8,98 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.GameStates;
 
-namespace Content.Client.Atmos.EntitySystems
+namespace Content.Client.Atmos.EntitySystems;
+
+[UsedImplicitly]
+public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
 {
-    [UsedImplicitly]
-    public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
+    [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private SpriteSystem _spriteSys = default!;
+    [Dependency] private SharedTransformSystem _xformSys = default!;
+
+    private GasTileOverlay _overlay = default!;
+
+    public override void Initialize()
     {
-        [Dependency] private IResourceCache _resourceCache = default!;
-        [Dependency] private IOverlayManager _overlayMan = default!;
-        [Dependency] private SpriteSystem _spriteSys = default!;
-        [Dependency] private SharedTransformSystem _xformSys = default!;
+        base.Initialize();
+        SubscribeNetworkEvent<GasOverlayUpdateEvent>(HandleGasOverlayUpdate);
+        SubscribeLocalEvent<GasTileOverlayComponent, ComponentHandleState>(OnHandleState);
 
-        private GasTileOverlay _overlay = default!;
+        _overlay = new GasTileOverlay(this, EntityManager, _resourceCache, ProtoMan, _spriteSys, _xformSys);
+        _overlayMan.AddOverlay(_overlay);
+    }
 
-        public override void Initialize()
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        _overlayMan.RemoveOverlay<GasTileOverlay>();
+    }
+
+    private void OnHandleState(EntityUid gridUid, GasTileOverlayComponent comp, ref ComponentHandleState args)
+    {
+        Dictionary<Vector2i, GasOverlayChunk> modifiedChunks;
+
+        switch (args.Current)
         {
-            base.Initialize();
-            SubscribeNetworkEvent<GasOverlayUpdateEvent>(HandleGasOverlayUpdate);
-            SubscribeLocalEvent<GasTileOverlayComponent, ComponentHandleState>(OnHandleState);
+            // is this a delta or full state?
+            case GasTileOverlayDeltaState delta:
+            {
+                modifiedChunks = delta.ModifiedChunks;
+                foreach (var index in comp.Chunks.Keys)
+                {
+                    if (!delta.AllChunks.Contains(index))
+                        comp.Chunks.Remove(index);
+                }
 
-            _overlay = new GasTileOverlay(this, EntityManager, _resourceCache, ProtoMan, _spriteSys, _xformSys);
-            _overlayMan.AddOverlay(_overlay);
+                break;
+            }
+            case GasTileOverlayState state:
+            {
+                modifiedChunks = state.Chunks;
+                foreach (var index in comp.Chunks.Keys)
+                {
+                    if (!state.Chunks.ContainsKey(index))
+                        comp.Chunks.Remove(index);
+                }
+
+                break;
+            }
+            default:
+                return;
         }
 
-        public override void Shutdown()
+        foreach (var (index, data) in modifiedChunks)
         {
-            base.Shutdown();
-            _overlayMan.RemoveOverlay<GasTileOverlay>();
+            comp.Chunks[index] = data;
         }
+    }
 
-        private void OnHandleState(EntityUid gridUid, GasTileOverlayComponent comp, ref ComponentHandleState args)
+    private void HandleGasOverlayUpdate(GasOverlayUpdateEvent ev)
+    {
+        foreach (var (nent, removedIndicies) in ev.RemovedChunks)
         {
-            Dictionary<Vector2i, GasOverlayChunk> modifiedChunks;
+            var grid = GetEntity(nent);
 
-            switch (args.Current)
+            if (!TryComp(grid, out GasTileOverlayComponent? comp))
+                continue;
+
+            foreach (var index in removedIndicies)
             {
-                // is this a delta or full state?
-                case GasTileOverlayDeltaState delta:
-                {
-                    modifiedChunks = delta.ModifiedChunks;
-                    foreach (var index in comp.Chunks.Keys)
-                    {
-                        if (!delta.AllChunks.Contains(index))
-                            comp.Chunks.Remove(index);
-                    }
-
-                    break;
-                }
-                case GasTileOverlayState state:
-                {
-                    modifiedChunks = state.Chunks;
-                    foreach (var index in comp.Chunks.Keys)
-                    {
-                        if (!state.Chunks.ContainsKey(index))
-                            comp.Chunks.Remove(index);
-                    }
-
-                    break;
-                }
-                default:
-                    return;
-            }
-
-            foreach (var (index, data) in modifiedChunks)
-            {
-                comp.Chunks[index] = data;
+                comp.Chunks.Remove(index);
             }
         }
 
-        private void HandleGasOverlayUpdate(GasOverlayUpdateEvent ev)
+        foreach (var (nent, gridData) in ev.UpdatedChunks)
         {
-            foreach (var (nent, removedIndicies) in ev.RemovedChunks)
+            var grid = GetEntity(nent);
+
+            if (!TryComp(grid, out GasTileOverlayComponent? comp))
+                continue;
+
+            foreach (var chunkData in gridData)
             {
-                var grid = GetEntity(nent);
-
-                if (!TryComp(grid, out GasTileOverlayComponent? comp))
-                    continue;
-
-                foreach (var index in removedIndicies)
-                {
-                    comp.Chunks.Remove(index);
-                }
-            }
-
-            foreach (var (nent, gridData) in ev.UpdatedChunks)
-            {
-                var grid = GetEntity(nent);
-
-                if (!TryComp(grid, out GasTileOverlayComponent? comp))
-                    continue;
-
-                foreach (var chunkData in gridData)
-                {
-                    comp.Chunks[chunkData.Index] = chunkData;
-                }
+                comp.Chunks[chunkData.Index] = chunkData;
             }
         }
     }
