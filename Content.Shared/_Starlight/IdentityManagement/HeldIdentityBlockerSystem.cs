@@ -20,7 +20,7 @@ public sealed partial class HeldIdentityBlockerSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        foreach (var held in _hands.EnumerateHeld(ent))
+        foreach (var held in _hands.EnumerateHeld(ent.AsNullable()))
         {
             if (!TryComp<HeldIdentityBlockerComponent>(held, out var blocker) || !blocker.Enabled)
                 continue;
