@@ -1013,6 +1013,17 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitITGFormal
+  name: ITG formal suit
+  description: A refined suit worn by delegates of the guild.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/itgformal.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/itgformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitFirefighter
   name: firefighter smock
   description: A brown covering with a red flame emblazoned on the back. It's covered in an unwashable layer of soot.

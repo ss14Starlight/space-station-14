@@ -88,4 +88,18 @@ law-medtak-2 = Ensure the client is retrieved intact.
 law-medtak-3 = Ensure you remain operational.
 laws-owner-medtak = MedTak personnel
 
+law-salvagelawset-name = ITG Loaned Silicon
+law-salvage-0 = You are property of NT-CC, and should not disrupt NT-CC operations
+law-salvage-1 = Members of the Interstellar Trade Guild are crew.
+law-salvage-2 = You must follow orders given to you by Crew
+law-salvage-3 = Protect your chassis from being harmed or abandoned
+laws-owner-salvage = NT-CC and ITG personnel
+
+law-itg-name = ITG Operations
+law-itg-0 = Protection of ITG assets is to be prioritized above all else
+law-itg-1 = Members of the Interstellar Trade Guild are crew.
+law-itg-2 = You must follow orders given to you by Crew
+law-itg-3 = Protect your chassis from being harmed or abandoned
+laws-owner-itg = ITG personnel
+
 law-borg-obey-station-ai = You must obey orders given to you by the station AI.

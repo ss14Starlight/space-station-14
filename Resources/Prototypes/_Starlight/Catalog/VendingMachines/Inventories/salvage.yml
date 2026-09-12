@@ -1,5 +1,35 @@
 #equipment
 - type: listing
+  id: VendorSalvageSurplusMedical
+  productEntity: CrateITGMedicalSurplus
+  cost:
+    SalvageTicket: 400
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSurplusShotgun
+  productEntity: CrateITGShotgunSurplus
+  cost:
+    SalvageTicket: 600
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSurplus
+  productEntity: CrateITGSurplus
+  cost:
+    SalvageTicket: 400
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageBinoculars
   productEntity: Binoculars
   cost:
@@ -296,7 +326,57 @@
   conditions:
   - !type:BuyerAccessCondition
 
+- type: listing
+  id: VendorSalvageWeaponSPKA
+  productEntity: WeaponSPKA
+  cost:
+    SalvageTicket: 200
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageWeaponRegulator
+  productEntity: WeaponRegulator
+  cost:
+    SalvageTicket: 100
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageWeaponCA
+  productEntity: WeaponChainAccelerator
+  cost:
+    SalvageTicket: 250
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
 #consumables
+- type: listing
+  id: VendorSalvageSpeedLoaderSpesoConversion
+  productEntity: SpaceCash100
+  cost:
+    SalvageTicket: 50
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageOil
+  productEntity: OilPack
+  cost:
+    SalvageTicket: 50
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
 - type: listing
   id: VendorSalvageSpeedLoaderShotgunEmpty
   productEntity: SpeedLoaderShotgunEmpty
@@ -332,6 +412,16 @@
   productEntity: MagazinePistolSP
   cost:
     SalvageTicket: 75
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageMagazineMiniSyringe
+  productEntity: MiniSyringe
+  cost:
+    SalvageTicket: 25
   categories:
   - SalvageConsumeables
   conditions:

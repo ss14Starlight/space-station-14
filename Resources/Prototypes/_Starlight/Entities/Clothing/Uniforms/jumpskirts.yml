@@ -890,6 +890,17 @@
       - state: trinkets-equipped-INNERCLOTHING
 
 - type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtFormalITG
+  name: ITG Formal Jumpskirt
+  description: A refined purple skirt worn by delegates of the guild.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/itgformal.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/itgformal.rsi
+
+- type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtSalvageMedic
   name: salvage medic's jumpskirt
