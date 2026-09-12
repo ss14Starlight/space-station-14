@@ -13,7 +13,7 @@ bounty-item-salad = Salad
 bounty-item-sausage-bun = Sausage on a bun
 
 bounty-description-cotton-bread = A cotton shortage has led to cotton bread prices skyrocketing. Ship some cotton bread before the moths start eating our clothes.
-bounty-description-cotton-cake = Moth friend's birthday is tomorrow, but we don't know how to bake them a cake. Help us!
+bounty-description-cotton-cake = Our moth friend's birthday is tomorrow, but we don't know how to bake them a cake. Help us!
 bounty-description-coupe-glass = Tomorrow's cocktail reception is about to be ruined because the host didn't acquire enough glasses for all the guests. Help us make up the shortfall.
 bounty-description-nexus-uplink = An avali officer's Nexus uplink has malfunctioned and they are at risk of developing pack loss. Urgently send a replacement.
 bounty-description-salad = Our chief medical officer just informed us that some crew aren't eating a varied diet. We figure a few salads would fix the problem.
