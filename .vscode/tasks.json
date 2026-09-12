@@ -34,6 +34,65 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "grafana-up",
+            "command": "docker",
+            "type": "process",
+            "args": [
+                "compose",
+                "-f",
+                "${workspaceFolder}/Tools/_Starlight/prometheus-grafana/compose.yml",
+                "up",
+                "-d",
+                "--wait",
+                "--wait-timeout",
+                "60"
+            ],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "grafana-link",
+            "command": "echo",
+            "type": "shell",
+            "args": [
+                "Grafana is ready: http://localhost:3000/d/qyFqpFiGk/perf-metrics"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "grafana-down",
+            "command": "docker",
+            "type": "process",
+            "args": [
+                "compose",
+                "-f",
+                "${workspaceFolder}/Tools/_Starlight/prometheus-grafana/compose.yml",
+                "down"
+            ],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "build-grafana",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build",
+                "grafana-up",
+                "grafana-link"
+            ],
+            "problemMatcher": []
+        },
+        {
             "label": "test",
             "command": "dotnet",
             "type": "shell",
