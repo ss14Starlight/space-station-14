@@ -53,12 +53,12 @@ public abstract partial class SharedStainSystem : EntitySystem
     }
 
     private bool HasStains(EntityUid item) => TryComp<StainableComponent>(item, out var stain) &&
-               _solution.TryGetSolution(item, stain.SolutionName, out _, out var solution) &&
-               solution.Volume > 0;
+                _solution.TryGetSolution(item, stain.SolutionName, out _, out var solution) &&
+                solution.Volume > 0;
 
     private bool AttachedClothingHasStains(EntityUid item) => TryComp<ToggleableClothingComponent>(item, out var toggleable) &&
-               toggleable.ClothingUid is { } attached &&
-               HasStains(attached);
+                toggleable.ClothingUid is { } attached &&
+                HasStains(attached);
 
     private void WringSingleItem(EntityUid item, Solution output)
     {
