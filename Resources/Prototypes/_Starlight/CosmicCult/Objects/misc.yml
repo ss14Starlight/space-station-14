@@ -53,3 +53,5 @@
     speechSounds: ColossusSpeech
   - type: NameIdentifier
     group: CosmicPositronicBrain
+  - type: StaticPrice
+    price: 10000
