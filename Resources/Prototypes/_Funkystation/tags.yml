@@ -32,6 +32,9 @@
   id: PlasmaTank
 
 - type: Tag
+  id: StargazerShellTag # Funky - ConstructionGraphs for stargazer lollipop
+
+- type: Tag
   id: AirTank
 
 - type: Tag

@@ -1,0 +1,24 @@
+- type: constructionGraph
+  id: StargazerLollipop
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: icon
+      steps:
+      - tag: StargazerShellTag
+        name: construction-lollipop-stargazer
+        icon:
+          sprite: _Funkystation/Objects/XenoArch/stargazer_shell.rsi
+          state: shell2
+        doAfter: 1
+      - tag: StargazerShellTag
+        name: construction-lollipop-stargazer
+        icon:
+          sprite: _Funkystation/Objects/XenoArch/stargazer_shell.rsi
+          state: shell3
+        doAfter: 1
+
+
+  - node: icon
+    entity: FoodSnackStargazerLollipop

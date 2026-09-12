@@ -1,0 +1,247 @@
+- type: entity
+  parent: DrinkShotGlass
+  id: TransmutationGlass
+  suffix: Transmutation
+  name: strange glass
+  description: At a glance this glass appears normal, except for an abnormal amount of condensation on the bottom, even when empty.
+  components:
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [ Touch ]
+    reactions:
+    - reagents: [ Wine ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Blood
+        solution: drink
+        strengthModifier: 1
+    # Nothing <-> Happiness
+    - reagents: [ Nothing ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Happiness
+        solution: drink
+        strengthModifier: 1
+    - reagents: [ Happiness ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Nothing
+        solution: drink
+        strengthModifier: 1
+    # Gold <-> Lead
+    - reagents: [ Lead ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Gold
+        solution: drink
+        strengthModifier: 0.2 # 5 to 1 unit conversion
+    - reagents: [ Gold ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Lead
+        solution: drink
+        strengthModifier: 0.2
+    # Dylo <-> 14loko
+    - reagents: [ FourteenLoko ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Dylovene
+        solution: drink
+        strengthModifier: 1
+    - reagents: [ Dylovene ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: FourteenLoko
+        solution: drink
+        strengthModifier: 1
+    # THC <-> Nicotine
+    - reagents: [ Nicotine ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: THC
+        solution: drink
+        strengthModifier: 1
+    - reagents: [ THC ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Nicotine
+        solution: drink
+        strengthModifier: 1
+    # Salt <-> Pepper
+    - reagents: [ Blackpepper ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: TableSalt
+        solution: drink
+        strengthModifier: 1
+    - reagents: [ TableSalt ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Blackpepper
+        solution: drink
+        strengthModifier: 1
+    # Lube <-> Glue
+    - reagents: [ SpaceLube ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: SpaceGlue
+        solution: drink
+        strengthModifier: 1
+    - reagents: [ SpaceGlue ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: SpaceLube
+        solution: drink
+        strengthModifier: 1
+    # Weh <-> Hew
+    - reagents: [ JuiceThatMakesYouWeh ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: JuiceThatMakesYouHew
+        solution: drink
+        strengthModifier: 1
+    - reagents: [ JuiceThatMakesYouHew ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: JuiceThatMakesYouWeh
+        solution: drink
+        strengthModifier: 1
+    # Hot <-> Coldsauce
+    - reagents: [ Hotsauce ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent:  Coldsauce
+        solution: drink
+        strengthModifier: 1
+    - reagents: [ Coldsauce ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Hotsauce
+        solution: drink
+        strengthModifier: 1
+    # Milk <-> Cream
+    - reagents: [ Milk ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Cream
+        solution: drink
+        strengthModifier: 1
+    - reagents: [ Cream ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Milk
+        solution: drink
+        strengthModifier: 1
+    # Flour <-> Rice
+    - reagents: [ Rice ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Flour
+        solution: drink
+        strengthModifier: 1
+    - reagents: [ Flour ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Rice
+        solution: drink
+        strengthModifier: 1
+    # Water -> Saline
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Saline
+        solution: drink
+        strengthModifier: 0.5
+    # Blood <-> CopperBlood
+    - reagents: [ Blood ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: CopperBlood
+        solution: drink
+        strengthModifier: 0.5
+    - reagents: [ CopperBlood ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Blood
+        solution: drink
+        strengthModifier: 2
+    # Iron <-> Copper
+    - reagents: [ Copper ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Iron
+        solution: drink
+        strengthModifier: 0.5
+    - reagents: [ Iron ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Copper
+        solution: drink
+        strengthModifier: 2
+    # Caninase <-> Felinase
+    - reagents: [ Caninase ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Felinase
+        solution: drink
+        strengthModifier: 0.5
+    - reagents: [ Felinase ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Caninase
+        solution: drink
+        strengthModifier: 2
+    # Omnizine <-> Healium
+    - reagents: [ Omnizine ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Healium
+        solution: drink
+        strengthModifier: 0.5
+    - reagents: [ Healium ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Omnizine
+        solution: drink
+        strengthModifier: 2
+    # Saline -> Vodka
+    - reagents: [ Saline ]
+      methods: [ Touch ]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Vodka
+        solution: drink
+        strengthModifier: 0.5
+# 31 reactions so far, still room for expansion
