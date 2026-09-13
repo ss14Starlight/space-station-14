@@ -50,7 +50,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
     private readonly Vector2 _modernMinSize; // Window size referenced from MinSize attribute
     private static readonly Vector2 ClassicMinSize = new(666, 670); // We specify the Classic MinSize here since the original value is in an upstream file and it needs to be a bit longer for spacing reasons
-    private const int MaxReagentNameLength = 35; // Amount of characters before truncating name in modern layout
+    private const int MaxReagentNameLength = 32; // Amount of characters before truncating name in modern layout
     private const int MaxClassicReagentNameLength = 25; // Amount of characters before truncating name in classic layout
 
     // Amount configs for the 2x5 modern grid: 9 numeric amounts + All.
@@ -638,12 +638,12 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         // Modern layout containers
         BuildContainerUI(InputContainerInfo, state.InputContainerInfo, true, modernMode: true);
-        BuildContainerUI(OutputContainerInfo, state.OutputContainerInfo, false, modernMode: true, "chem-master-window-no-output-container-loaded-text");
+        BuildContainerUI(OutputContainerInfo, state.OutputContainerInfo, false, modernMode: true, "chem-master-window-no-output-container-loaded-text", truncateName: false);
         BuildOutputLeftContainer(OutputInputContainerInfo, state, modernMode: false);
 
         // Classic layout containers
         BuildContainerUI(InputContainerInfoClassic, state.InputContainerInfo, true, modernMode: false);
-        BuildContainerUI(OutputContainerInfoClassic, state.OutputContainerInfo, false, modernMode: false, "chem-master-window-no-output-container-loaded-text");
+        BuildContainerUI(OutputContainerInfoClassic, state.OutputContainerInfo, false, modernMode: false, "chem-master-window-no-output-container-loaded-text", truncateName: false);
         BuildOutputLeftContainer(OutputInputContainerInfoClassic, state, modernMode: false);
 
         BufferInfo.Children.Clear();
@@ -743,14 +743,14 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             {
                 _prototypeManager.TryIndex(reagent.Prototype, out ReagentPrototype? proto);
                 var name = proto?.LocalizedName ?? Loc.GetString("chem-master-window-unknown-reagent-text");
-                control.Children.Add(BuildReagentRow(default, rowCount++, name, reagent, quantity, true, false, modernMode));
+                control.Children.Add(BuildReagentRow(default, rowCount++, name, reagent, quantity, true, false, modernMode, truncateName: false));
             }
             return;
         }
-        BuildContainerUI(control, state.InputContainerInfo, false, modernMode, "chem-master-window-no-input-container-loaded-text");
+        BuildContainerUI(control, state.InputContainerInfo, false, modernMode, "chem-master-window-no-input-container-loaded-text", truncateName: false);
     }
 
-    private void BuildContainerUI(Control control, ContainerInfo? info, bool addReagentButtons, bool modernMode, string emptyLoc = "chem-master-window-no-container-loaded-text")
+    private void BuildContainerUI(Control control, ContainerInfo? info, bool addReagentButtons, bool modernMode, string emptyLoc = "chem-master-window-no-container-loaded-text", bool truncateName = true)
     {
         control.Children.Clear();
 
@@ -788,7 +788,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                     quantity,
                     false,
                     addReagentButtons,
-                    modernMode));
+                    modernMode,
+                    truncateName: truncateName));
             }
         }
 
@@ -804,7 +805,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                     quantity,
                     false,
                     addReagentButtons,
-                    modernMode));
+                    modernMode,
+                    truncateName: truncateName));
             }
         }
 
@@ -815,12 +817,12 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                 _prototypeManager.TryIndex(reagent.Reagent.Prototype, out ReagentPrototype? proto);
                 var name = proto?.LocalizedName ?? Loc.GetString("chem-master-window-unknown-reagent-text");
                 var reagentColor = proto?.SubstanceColor ?? default(Color);
-                control.Children.Add(BuildReagentRow(reagentColor, rowCount++, name, reagent.Reagent, reagent.Quantity, false, addReagentButtons, modernMode));
+                control.Children.Add(BuildReagentRow(reagentColor, rowCount++, name, reagent.Reagent, reagent.Quantity, false, addReagentButtons, modernMode, truncateName: truncateName));
             }
         }
     }
 
-    private Control BuildReagentRow(Color reagentColor, int rowCount, string name, ReagentId reagent, FixedPoint2 quantity, bool isBuffer, bool addReagentButtons, bool modernMode)
+    private Control BuildReagentRow(Color reagentColor, int rowCount, string name, ReagentId reagent, FixedPoint2 quantity, bool isBuffer, bool addReagentButtons, bool modernMode, bool truncateName = true)
     {
         var rowColor1 = Color.FromHex("#1B1B1E");
         var rowColor2 = Color.FromHex("#202025");
@@ -830,8 +832,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         if (modernMode && addReagentButtons)
         {
             // Truncate very long names to prevent UI issues.
-            string? toolTip;
-            (name, toolTip) = TruncateReagentName(name, MaxReagentNameLength);
+            string? toolTip = null;
+            if (truncateName)
+                (name, toolTip) = TruncateReagentName(name, MaxReagentNameLength);
 
             // Modern: the entire row is a ReagentButton. Amount is read from the selected amount at click time. If custom amount is selected, send via custom message; otherwise use _selectedAmount.
             var rowBtn = new ReagentButton(string.Empty, _selectedAmount, reagent, isBuffer, StyleClass.ButtonSquare)
@@ -877,7 +880,10 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             reagentColor = currentRowColor;
 
         // Truncate very long names to prevent UI issues.
-        var (classicName, classicToolTip) = TruncateReagentName(name, MaxClassicReagentNameLength);
+        var classicName = name;
+        string? classicToolTip = null;
+        if (truncateName)
+            (classicName, classicToolTip) = TruncateReagentName(name, MaxClassicReagentNameLength);
 
         var reagentButtonConstructors = CreateReagentTransferButtons(reagent, isBuffer, addReagentButtons);
 
