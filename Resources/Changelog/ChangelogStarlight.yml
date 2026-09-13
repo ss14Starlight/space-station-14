@@ -1,20 +1,6 @@
 Entries:
 - author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
   changes:
-  - message: Salvage are now members of the Interstellar Trade Guild, and are no longer considered crew.
-    type: Tweak
-  id: 408129
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
-  - message: Quartermaster locker no longer has expedition comms or salvage related computer circuits.
-    type: Remove
-  id: 408130
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
   - message: Salvage Access From Command.
     type: Remove
   id: 408131
@@ -2799,4 +2785,18 @@ Entries:
   id: 408528
   time: '2026-09-13T18:03:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6039
+- author: Drakobird
+  changes:
+  - message: The ability to use quick menu for all glass type.
+    type: Fix
+  id: 408529
+  time: '2026-09-13T18:35:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6095
+- author: Drakobird
+  changes:
+  - message: The ability to use all glass types as floors again.
+    type: Fix
+  id: 408530
+  time: '2026-09-13T18:35:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6095
 Order: -1
