@@ -1,27 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Oasis) Added a lawyer's office by shrinking NCT office near chapel.
-    type: Add
-  id: 408139
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added box shelf storage to science storage room,cargo front, maints shop, gen pop island cargo dock.
-    type: Add
-  id: 408140
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a TON of toilet paper and hand santizers to several of the bathrooms and sinks.
-    type: Add
-  id: 408141
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
   - message: (Sepultum) Added two k9 to sepultum via prototypes (Spawners already mapped in).
     type: Add
   id: 408142
@@ -2799,4 +2778,25 @@ Entries:
   id: 408538
   time: '2026-09-13T23:01:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Citrea
+  changes:
+  - message: Dolls now have spooky, edible blood, which does not have healing properties for them.
+    type: Tweak
+  id: 408539
+  time: '2026-09-13T23:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6104
+- author: Citrea
+  changes:
+  - message: Doll blood healing reduced by 50%.
+    type: Tweak
+  id: 408540
+  time: '2026-09-13T23:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6104
+- author: Citrea
+  changes:
+  - message: Dolls with Fox and Moth masks can now use the respective emotes.
+    type: Add
+  id: 408541
+  time: '2026-09-13T23:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6104
 Order: -1
