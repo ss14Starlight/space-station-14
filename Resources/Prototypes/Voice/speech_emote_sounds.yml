@@ -57,6 +57,8 @@
       collection: Growl
     Howl:
       path: /Audio/_Starlight/Effects/howl.ogg
+    ThavenGlub:
+      collection: ThavenGlub
     #endregion Starlight
 
 - type: emoteSounds
@@ -117,6 +119,8 @@
       collection: Growl
     Howl:
       path: /Audio/_Starlight/Effects/howl.ogg
+    ThavenGlub:
+      collection: ThavenGlub
     #endregion Starlight
 
 - type: emoteSounds
@@ -150,6 +154,10 @@
       path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
     Rattle:
       path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
+    #region Starlight
+    ThavenGlub:
+      collection: ThavenGlub
+    #endregion Starlight
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -183,6 +191,40 @@
       path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
     Rattle:
       path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
+    ThavenGlub:
+      collection: ThavenGlub
+    # Starlight-End
+
+- type: emoteSounds
+  id: UnisexReptilian
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+    Honk:
+      collection: BikeHorn
+    Whistle:
+      collection: Whistles
+    Crying:
+      collection: FemaleCry
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
+    # Starlight-Start
+    Liss:
+      collection: ReptilianHiss
+    Lurr:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
+    Rattle:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
+    ThavenGlub:
+      collection: ThavenGlub
     # Starlight-End
 
 - type: emoteSounds
@@ -245,6 +287,8 @@
       collection: Bubbles
     Pop:
       collection: Pops
+    ThavenGlub:
+      collection: ThavenGlub
     #endregion Starlight
   params:
     variation: 0.125
@@ -309,6 +353,8 @@
       collection: Bubbles
     Pop:
       collection: Pops
+    ThavenGlub:
+      collection: ThavenGlub
     #endregion Starlight
   params:
     variation: 0.125
@@ -342,6 +388,10 @@
       path: /Audio/Effects/Gasp/vox_gasp.ogg
     DefaultDeathgasp:
       path: /Audio/Effects/Gasp/vox_DeathGasp.ogg
+    #region Starlight
+    ThavenGlub:
+      collection: ThavenGlub
+    #endregion Starlight
   params:
     variation: 0.125
     # TODO: We need vox sounds for the other emotes
@@ -367,6 +417,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+    #region Starlight
+    ThavenGlub:
+      collection: ThavenGlub
+    #endregion Starlight
   params:
     variation: 0.125
 
@@ -400,6 +454,8 @@
       path: /Audio/_Starlight/Voice/Arachnid/arachnid_sigh.ogg
     Gasp:
       path: /Audio/_Starlight/Voice/Arachnid/arachnid_gasp.ogg
+    ThavenGlub:
+      collection: ThavenGlub
     #endregion Starlight
     DefaultDeathgasp:
       collection: DeathGasp
@@ -443,6 +499,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    #region Starlight
+    ThavenGlub:
+      collection: ThavenGlub
+    #endregion Starlight
   params:
     variation: 0.125
     pitch: 0.75
@@ -486,6 +546,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    #region Starlight
+    ThavenGlub:
+      collection: ThavenGlub
+    #endregion Starlight
   params:
     variation: 0.125
     pitch: 0.75
@@ -522,6 +586,8 @@
       /Audio/_Starlight/Voice/Moth/moth_sigh.ogg
     Gasp:
       path: /Audio/_Starlight/Voice/Moth/moth_gasp.ogg
+    ThavenGlub:
+      collection: ThavenGlub
     #endregion Starlight
     DefaultDeathgasp:
       collection: MothDeathGasp
@@ -631,6 +697,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Honk:
       collection: BikeHorn
     Gasp:
@@ -679,6 +747,8 @@
       collection: Weh
     Hew:
       collection: Hew
+    ThavenGlub:
+      collection: ThavenGlub
     Honk:
       collection: BikeHorn
     Gasp:
@@ -870,3 +940,7 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: WawaDeath
+    #region Starlight
+    ThavenGlub:
+      collection: ThavenGlub
+    #endregion Starlight
