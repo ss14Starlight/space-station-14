@@ -114,26 +114,6 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
             }
         }
     }
-
-    #region Starlight
-    public void SetLawset(EntityUid entity, SiliconLawset? laws)
-    {
-        if (!TryComp<SiliconLawProviderComponent>(entity, out var provider))
-            return;
-        provider.Lawset = laws;
-    }
-
-    /// <summary>
-    /// Returns a standalone copy of an entity's lawset, so that handing it to another entity does not
-    /// leave the two sharing one mutable lawset.
-    /// </summary>
-    public SiliconLawset? CopyLawset(EntityUid entity)
-    {
-        if (!TryComp<SiliconLawProviderComponent>(entity, out var provider))
-            return null;
-        return provider.Lawset?.Clone();
-    }
-    #endregion
 }
 
 [ByRefEvent]
