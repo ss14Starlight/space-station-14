@@ -83,7 +83,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-#      - EncryptionKeyCargo # Starlight
+      - EncryptionKeyCargo
       - EncryptionKeyCommand
       - EncryptionKeyCommon
   - type: RadioChime

@@ -123,6 +123,12 @@
     - type: GhostTakeoverAvailable
     - type: Damageable
       damageModifierSet: DragonCarpResistances
+    - type: Prying
+      pryPowered: true
+      force: true
+      speedModifier: 2
+      useSound:
+        path: /Audio/Items/crowbar.ogg
 
 - type: entity
   name: holocarp
@@ -143,4 +149,10 @@
       mindRoles:
       - MindRoleGhostRoleTeamAntagonistFlock
     - type: GhostTakeoverAvailable
+    - type: Prying
+      pryPowered: true
+      force: true
+      speedModifier: 1
+      useSound:
+        path: /Audio/Items/crowbar.ogg
 

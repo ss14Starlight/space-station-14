@@ -32,6 +32,5 @@
   parent: Clothing
   id: ClothingShoesUnstainable
   components:
-  - type: NoFootprints
   - type: StainBlocker
     slots: [FEET]
