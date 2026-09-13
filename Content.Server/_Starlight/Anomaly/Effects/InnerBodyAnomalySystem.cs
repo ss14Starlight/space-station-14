@@ -96,7 +96,6 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         if (!ent.Comp.Injected)
             return;
 
-        // Starlight Start
         ent.Comp.Injected = false;
 
         if (ent.Comp.AddedCosmicCultFaction)
@@ -106,7 +105,6 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         }
 
         Dirty(ent);
-        // Starlight End
         if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
             ProcessComponents(ent, injectedAnom.Components, false); // Starlight
 
@@ -130,9 +128,6 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
             _adminLog.Add(LogType.Anomaly, LogImpact.Medium,$"{ToPrettyString(ent)} is no longer a host for the anomaly.");
         }
-
-        // ent.Comp.Injected = false; // Starlight Edit: Moved
-        // RemCompDeferred<AnomalyComponent>(ent); // Starlight Edit: Removed
     }
 
     private void ProcessComponents(
