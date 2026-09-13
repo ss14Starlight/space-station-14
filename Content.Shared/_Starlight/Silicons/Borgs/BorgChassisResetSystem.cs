@@ -119,16 +119,43 @@ public sealed partial class BorgChassisResetSystem : EntitySystem
             }
         }
 
+        var previousType = borg.Comp.SelectedBorgType;
+
         // Applying the blank type reuses the normal switching logic, which removes the old type's
         // components and resets modules, radio channels, inventory, transponder and appearance.
         // The blank type stays selected so that appearance code keeps having a prototype to work from,
         // selecting a real type again is allowed out of it.
         _switchableType.SelectBorgModule((borg.Owner, borg.Comp), UnselectedType);
 
+        RestoreChassisComponents(borg.Owner, previousType);
+
         EnsureComp<BorgChassisResetComponent>(borg);
 
         _actions.AddAction(borg, ref borg.Comp.SelectTypeAction, SharedBorgSwitchableTypeSystem.ActionId);
         Dirty(borg.Owner, borg.Comp);
+    }
+
+    /// <summary>
+    /// Puts back the components a borg type replaced rather than introduced. Switching away removes everything
+    /// the old type listed, which takes the whole component with it whenever that type redeclared one the chassis
+    /// prototype already had, such as the medical borg's user interfaces.
+    /// </summary>
+    private void RestoreChassisComponents(EntityUid borg, ProtoId<BorgTypePrototype>? previousType)
+    {
+        if (previousType is not { } type
+            || !_prototypes.TryIndex(type, out var typeProto)
+            || typeProto.AddComponents is not { } added
+            || MetaData(borg).EntityPrototype is not { } chassisProto)
+            return;
+
+        var restore = new ComponentRegistry();
+        foreach (var name in added.Keys)
+        {
+            if (chassisProto.Components.TryGetValue(name, out var entry))
+                restore.Add(name, entry);
+        }
+
+        EntityManager.AddComponents(borg, restore);
     }
 
     private void OnResetChassis(Entity<BorgSwitchableTypeComponent> borg, ref BorgResetChassisBuiMessage args)
