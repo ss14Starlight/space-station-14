@@ -1,13 +1,6 @@
 Entries:
 - author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
   changes:
-  - message: Salvage members are no longer the targets of antag objectives.
-    type: Tweak
-  id: 408128
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
   - message: Salvage are now members of the Interstellar Trade Guild, and are no longer considered crew.
     type: Tweak
   id: 408129
@@ -2799,4 +2792,11 @@ Entries:
   id: 408527
   time: '2026-09-13T18:03:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6127
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Ethylredoxrazine now removes ethanol from the metabolites container, making it actually effective at stopping drunkenness and ethanol poisoning.
+    type: Tweak
+  id: 408528
+  time: '2026-09-13T18:03:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6039
 Order: -1
