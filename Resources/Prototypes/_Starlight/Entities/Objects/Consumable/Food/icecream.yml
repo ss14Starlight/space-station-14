@@ -810,18 +810,16 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/tesla_cream_bowl.rsi
     state: icon
-<<<<<<< HEAD
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Tazinide
-          Quantity: 10
-        - ReagentId: Cream
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Tazinide
+        Quantity: 10
+      - ReagentId: Cream
+        Quantity: 5
 
 - type: entity
   name: banana ice cream
@@ -1195,15 +1193,3 @@
           Quantity: 5
         - ReagentId: Cream
           Quantity: 15
-=======
-  - type: Solution
-    id: food
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 5
-      - ReagentId: Tazinide
-        Quantity: 10
-      - ReagentId: Cream
-        Quantity: 5
->>>>>>> Starlight-dev
