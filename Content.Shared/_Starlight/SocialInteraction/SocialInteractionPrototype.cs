@@ -1,10 +1,10 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.PhysicalSocialInteraction;
+namespace Content.Shared._Starlight.SocialInteraction;
 
 [Prototype]
-public sealed partial class PhysicalSocialInteractionPrototype : IPrototype
+public sealed partial class SocialInteractionPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

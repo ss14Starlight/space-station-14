@@ -1,24 +1,24 @@
-# MUST be added to the InteractionPrototypes list of a PhysicalSocialInteractionReceiver component to be usable
-- type: physicalSocialInteraction
+# MUST be added to the InteractionPrototypes list of a SocialInteractionReceiver component to be usable
+- type: socialInteraction
   id: Pet
   verbName: pet-verb
   interactString: petting-success
   messagePerceivedByOthers: petting-success-others
 
-- type: physicalSocialInteraction
+- type: socialInteraction
   id: Boop
   verbName: boop-verb
   interactString: booping-success
   messagePerceivedByOthers: booping-success
 
-- type: physicalSocialInteraction
+- type: socialInteraction
   id: Wave
   verbName: wave-verb
   interactString: waving-success
   messagePerceivedByOthers: waving-success-others
   isPhysical: false
 
-- type: physicalSocialInteraction
+- type: socialInteraction
   id: Look
   verbName: look-verb
   interactString: looking-success

@@ -3,7 +3,7 @@
   abstract: true
   id: SocialInteractionReceiverSimple
   components:
-  - type: PhysicalSocialInteractionReceiver
+  - type: SocialInteractionReceiver
     interactionPrototypes:
     - Wave
     - Look
@@ -13,7 +13,7 @@
   abstract: true
   id: SocialInteractionReceiverComplex
   components:
-  - type: PhysicalSocialInteractionReceiver
+  - type: SocialInteractionReceiver
     interactionPrototypes:
     - Pet
     - Boop
@@ -25,4 +25,4 @@
   abstract: true
   id: SocialInteractionGiver
   components:
-  - type: PhysicalSocialInteractionGiver
+  - type: SocialInteractionGiver

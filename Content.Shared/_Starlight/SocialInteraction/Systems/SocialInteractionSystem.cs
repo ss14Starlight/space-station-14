@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.PhysicalSocialInteraction.Components;
+using Content.Shared._Starlight.SocialInteraction.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -9,9 +9,9 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.PhysicalSocialInteraction.Systems;
+namespace Content.Shared._Starlight.SocialInteraction.Systems;
 
-public sealed partial class PhysicalSocialInteractionSystem : EntitySystem
+public sealed partial class SocialInteractionSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _protoMan = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;
@@ -21,13 +21,13 @@ public sealed partial class PhysicalSocialInteractionSystem : EntitySystem
     public override void Initialize()
     {
         //subscribe to inspect events on the physical social interaction receiver component
-        SubscribeLocalEvent<PhysicalSocialInteractionReceiverComponent, GetVerbsEvent<Verb>>(AddPhysicalSocialInteractionVerbs);
+        SubscribeLocalEvent<SocialInteractionReceiverComponent, GetVerbsEvent<Verb>>(AddSocialInteractionVerbs);
     }
 
-    private void AddPhysicalSocialInteractionVerbs(EntityUid uid, PhysicalSocialInteractionReceiverComponent component, GetVerbsEvent<Verb> args)
+    private void AddSocialInteractionVerbs(EntityUid uid, SocialInteractionReceiverComponent component, GetVerbsEvent<Verb> args)
     {
         //check if the user also has a interaction giver
-        if (!HasComp<PhysicalSocialInteractionGiverComponent>(args.User))
+        if (!HasComp<SocialInteractionGiverComponent>(args.User))
             return;
 
         //create a verb subcategory
@@ -37,7 +37,7 @@ public sealed partial class PhysicalSocialInteractionSystem : EntitySystem
         foreach (var protoid in component.InteractionPrototypes)
         {
             //resolve the proto itself
-            if (!_protoMan.TryIndex<PhysicalSocialInteractionPrototype>(protoid, out var proto))
+            if (!_protoMan.TryIndex<SocialInteractionPrototype>(protoid, out var proto))
                 continue;
 
             // check if interaction needs physical contact
@@ -70,7 +70,7 @@ public sealed partial class PhysicalSocialInteractionSystem : EntitySystem
         return true;
     }
 
-    private void InteractionPopupAction(EntityUid uid, GetVerbsEvent<Verb> args, PhysicalSocialInteractionPrototype proto)
+    private void InteractionPopupAction(EntityUid uid, GetVerbsEvent<Verb> args, SocialInteractionPrototype proto)
     {
         // check if interaction needs physical contact
         if (proto.IsPhysical && !CheckInteractable(args.User, args.Target))
