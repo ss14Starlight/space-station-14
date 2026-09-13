@@ -1,32 +1,4 @@
 Entries:
-- author: Glomzubuk
-  changes:
-  - message: Reverted cryopod inject speed back to pre-ui update values.
-    type: Tweak
-  id: 408135
-  time: '2026-09-05T14:10:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5829
-- author: Way
-  changes:
-  - message: (Novo Lobster) Snow Storm ambience is slightly louder.
-    type: Tweak
-  id: 408136
-  time: '2026-09-05T14:10:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5770
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a single k9 spawn inside.
-    type: Add
-  id: 408137
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added all mailboxes.
-    type: Add
-  id: 408138
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
 - author: Cvlancer
   changes:
   - message: (Oasis) Added a lawyer's office by shrinking NCT office near chapel.
@@ -2799,4 +2771,32 @@ Entries:
   id: 408534
   time: '2026-09-13T22:06:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5982
+- author: Sir Lutz
+  changes:
+  - message: flatarmor from Carps.
+    type: Remove
+  id: 408535
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Sir Lutz
+  changes:
+  - message: Dragon rift rarespawns have been reduced, base spawn Holocarp from 20% to 7%, sharks from 5% to 2% (they are doubled when the rift is finished).
+    type: Tweak
+  id: 408536
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Sir Lutz
+  changes:
+  - message: Dragon Sharkminnows health has been lowered from 150HP to 120HP.
+    type: Tweak
+  id: 408537
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Sir Lutz
+  changes:
+  - message: CarpResistance pierce has been lowered from 50% to 35%.
+    type: Tweak
+  id: 408538
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
 Order: -1
