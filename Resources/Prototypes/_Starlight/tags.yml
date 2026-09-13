@@ -586,9 +586,6 @@
   id: Nexus
 
 - type: Tag
-  id: NexusUplink # BountyNexusUplink
-
-- type: Tag
   id: NonLethalMech # Used to allow nonlethal mech equipment on a mech.
 
 - type: Tag
