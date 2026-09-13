@@ -152,7 +152,7 @@ public abstract partial class SharedStainSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess || args.Using != ent.Owner)
             return;
 
-        if (!HasStains(ent.Owner) && !AttachedClothingHasStains(ent.Owner))
+        if (!HasStains(ent.Owner))
             return;
 
         var user = args.User;

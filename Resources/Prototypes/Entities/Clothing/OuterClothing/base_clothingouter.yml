@@ -31,6 +31,8 @@
   - type: StainBlocker
     slots: [INNERCLOTHING]
   # Forky - end
+  - type: ExaminableSolution # Starlight
+    solution: stain # Starlight
 
 - type: entity
   abstract: true
