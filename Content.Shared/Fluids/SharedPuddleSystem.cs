@@ -10,7 +10,6 @@ using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Friction;
-using Content.Shared.Maps;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -22,7 +21,6 @@ using Content.Shared.StepTrigger.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
-using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -43,14 +41,10 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [Dependency] private SpeedModifierContactsSystem _speedModContacts = default!;
     [Dependency] private StepTriggerSystem _stepTrigger = default!;
     [Dependency] private TileFrictionController _tile = default!;
-    [Dependency] private SharedMapSystem _map = default!;
-    [Dependency] private TurfSystem _turf = default!;
 
     private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
     private EntityQuery<ReactiveComponent> _reactiveQuery;
     private EntityQuery<EvaporationComponent> _evaporationQuery;
-    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery;
-    [Dependency] private INetManager _net = default!;
 
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
@@ -135,16 +129,13 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
         _deletionQueue.Remove(entity);
         UpdateSlip((entity, entity.Comp), args.Solution.Comp.Solution);
-        UpdateSlow(entity, args.Solution.Comp.Solution, entity.Comp); // <-- Pass the component here - Funky
+        UpdateSlow(entity, args.Solution.Comp.Solution);
         UpdateEvaporation(entity, args.Solution.Comp.Solution);
         UpdateAppearance((entity, entity.Comp));
     }
 
     private void OnGetFootstepSound(Entity<PuddleComponent> entity, ref GetFootstepSoundEvent args)
     {
-        if (!entity.Comp.AffectsSound) // Funky
-            return;
-
         if (!_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName, ref entity.Comp.Solution,
                 out var solution))
             return;
@@ -184,7 +175,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
     private void OnAnchorChanged(Entity<PuddleComponent> entity, ref AnchorStateChangedEvent args)
     {
-        if (!args.Anchored && !args.Detaching)
+        if (!args.Anchored)
             PredictedQueueDel(entity.Owner);
     }
 
@@ -196,30 +187,10 @@ public abstract partial class SharedPuddleSystem : EntitySystem
             ent.Comp.Solution = null;
     }
 
-    [SubscribeLocalEvent]
-    private void OnTileChanged(ref TileChangedEvent ev)
-    {
-        foreach (var change in ev.Changes)
-        {
-            if (!_turf.IsSpace(change.NewTile))
-                continue;
-
-            var anchored = _map.GetAnchoredEntities(ev.Entity, ev.Entity.Comp, change.GridIndices);
-            while (anchored.MoveNext(out var ent))
-            {
-                if (!_puddleQuery.HasComponent(ent))
-                    continue;
-
-                PredictedQueueDel(ent);
-            }
-        }
-    }
-
     private void UpdateAppearance(Entity<PuddleComponent?, AppearanceComponent?> ent)
     {
         var (uid, puddle, appearance) = ent;
-        // Uses TryComp behind the scenes now, protecting Footprints which lack it
-        if (!Resolve(ent, ref puddle, ref appearance, false)) // Funky
+        if (!Resolve(ent, ref puddle, ref appearance))
             return;
 
         var volume = FixedPoint2.Zero;
@@ -351,16 +322,8 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         Dirty(entity, slipComp);
     }
 
-    private void UpdateSlow(EntityUid uid, Solution solution, PuddleComponent puddle) // Funky
+    private void UpdateSlow(EntityUid uid, Solution solution)
     {
-        #region Funky
-        if (!puddle.AffectsMovement)
-        {
-            RemComp<SpeedModifierContactsComponent>(uid);
-            return;
-        }
-        #endregion
-
         var maxViscosity = 0f;
         foreach (var (reagent, _) in solution.Contents)
         {

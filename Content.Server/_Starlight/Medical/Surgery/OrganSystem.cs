@@ -180,8 +180,14 @@ public sealed partial class OrganSystem : EntitySystem
                 ent.Comp.Markings.Remove(key);
         }
         else
-            foreach(var markingProto in ent.Comp.AppliedMarkings)
-                UpdateMarking(ent, args.Body, args.Part, markingProto, true);
+        {
+            if(TryComp(args.Body, out ShellComponent? shell))
+                foreach (var marking in shell.OriginalMarkings)
+                    UpdateMarking(args.Body, args.Part, marking.MarkingId, marking.MarkingColors, isGlowing: marking.IsGlowing, add: true);
+            else
+                foreach (var markingProto in ent.Comp.AppliedMarkings)
+                    UpdateMarking(args.Body, args.Part, markingProto, new List<Color>(), isGlowing: ent.Comp.IsGlowing, add: true);
+        }
 
         UpdateEntity(args.Body, ent.Comp);
     }
@@ -216,7 +222,7 @@ public sealed partial class OrganSystem : EntitySystem
         }
         else
             foreach(var markingProto in ent.Comp.AppliedMarkings)
-                UpdateMarking(ent, args.Body, args.Part, markingProto, false);
+                UpdateMarking(args.Body, args.Part, markingProto, new List<Color>(), isGlowing: ent.Comp.IsGlowing, add: false);
 
         UpdateEntity(args.Body, ent.Comp);
     }
@@ -253,7 +259,7 @@ public sealed partial class OrganSystem : EntitySystem
         }
     }
 
-    private void UpdateMarking(Entity<MarkingOrganComponent> ent, EntityUid targetBody, EntityUid targetPart, string marking, bool add = true)
+    private void UpdateMarking(EntityUid targetBody, EntityUid targetPart, string marking, IReadOnlyList<Color> colors, bool isGlowing = false, bool add = true)
     {
         if (!_markingManager.Markings.TryGetValue(marking, out var prototype))
             return;
@@ -265,7 +271,7 @@ public sealed partial class OrganSystem : EntitySystem
             return;
 
         if(add)
-            _humanoidAppearanceSystem.AddMarking(targetBody, marking, ent.Comp.IsGlowing, forced: true);
+            _humanoidAppearanceSystem.AddMarking(targetBody, marking, colors, isGlowing, forced: true);
         else
             _humanoidAppearanceSystem.RemoveMarking(targetBody, marking);
 
