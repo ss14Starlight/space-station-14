@@ -42,9 +42,9 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private ReactiveSystem _reactive = null!;
     [Dependency] private SharedSolutionContainerSystem _solution = default!;
     [Dependency] private SharedStainSystem _stains = default!;
-    [Dependency] private SharedCreamPieSystem _creamPie = default!;
-    [Dependency] private GlueSystem _glueSystem = default!;
-    [Dependency] private SharedLubedSystem _lubedSystem = default!;
+    [Dependency] private SharedCreamPieSystem _creamPie = default!; // Starlight
+    [Dependency] private GlueSystem _glueSystem = default!;  // Starlight
+    [Dependency] private SharedLubedSystem _lubedSystem = default!;  // Starlight
 
     public override void Initialize()
     {
