@@ -1,13 +1,6 @@
 Entries:
 - author: Rhapsody (Pepta Vismahl)
   changes:
-  - message: The ChemMaster's Output tab now shows the contents of the inserted beaker or buffer depending on packaging mode.
-    type: Tweak
-  id: 408117
-  time: '2026-09-04T04:57:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5964
-- author: Rhapsody (Pepta Vismahl)
-  changes:
   - message: Various tooltips to help make it easier to understand how the Output tab works, and how to make pills/patches.
     type: Add
   id: 408118
@@ -2799,4 +2792,11 @@ Entries:
   id: 408516
   time: '2026-09-13T08:30:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6108
+- author: Trosling
+  changes:
+  - message: Security now has explicit knowledge of the syndicate number station via the metashield.
+    type: Add
+  id: 408517
+  time: '2026-09-13T08:56:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5922
 Order: -1
