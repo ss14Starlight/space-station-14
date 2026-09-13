@@ -281,10 +281,10 @@ public abstract partial class SharedBiomeSystem : EntitySystem
         return false;
     }
 
+    //Starlight - Begin
     /// <summary>
     /// Tries to get the relevant entity for this tile.
     /// </summary>
-    //Starlight - Begin
     /// <param name="noiseCache">
     /// Optional per-layer noise cache. Reuse a cache only for calls that pass the same
     /// <paramref name="layers"/> instance and the same <paramref name="seed"/>, because entries are keyed by layer index.
