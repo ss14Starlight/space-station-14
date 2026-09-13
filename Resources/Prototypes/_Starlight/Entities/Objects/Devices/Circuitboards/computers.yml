@@ -17,15 +17,13 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: SalvageShuttleConsoleCircuitboard
-  name: salvage shuttle console board
-  description: A computer printed circuit board for a salvage shuttle console.
+  name: remote salvage shuttle console board
+  description: A computer printed circuit board for a remote salvage shuttle console.
   components:
   - type: Sprite
     state: cpu_supply
   - type: ComputerBoard
-    prototype: CompuerShuttleSalvage
-  - type: StealTarget
-    stealGroup: SalvageShuttleConsoleCircuitboard
+    prototype: CompuerShuttleSalvageITG
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -59,8 +57,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: MiningShuttleConsoleCircuitboard
-  name: mining shuttle console board
-  description: A computer printed circuit board for a mining shuttle console.
+  name: remote mining shuttle console board
+  description: A computer printed circuit board for a remote mining shuttle console.
   components:
     - type: Sprite
       state: cpu_supply
@@ -72,8 +70,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: SecurityShuttleConsoleCircuitboard
-  name: security shuttle console board
-  description: A computer printed circuit board for a security shuttle console.
+  name: remote security shuttle console board
+  description: A computer printed circuit board for a remote security shuttle console.
   components:
     - type: Sprite
       state: cpu_supply
@@ -160,18 +158,6 @@
     - type: ComputerBoard
       prototype: ComputerCommsCargo
 
-- type: entity
-  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
-  id: LawCommsComputerCircuitboard
-  name: law communications console board
-  description: A computer printed circuit board for a law communications console.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Misc/module.rsi
-      state: cpu_law
-    - type: ComputerBoard
-      prototype: ComputerCommsLaw
-
 ## Departmental Communications Consoles END
 
 - type: entity
@@ -186,3 +172,5 @@
       prototype: ComputerShipyard
     - type: StaticPrice
       price: 750
+    - type: StealTarget
+      stealGroup: ShipyardComputerCircuitboard

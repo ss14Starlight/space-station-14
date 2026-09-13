@@ -153,7 +153,7 @@ public sealed partial class PlumbingSmartDispenserWindow : DefaultWindow
         {
             var localizedName = _prototypeManager.TryIndex(reagent.Prototype, out ReagentPrototype? proto)
                 ? proto.LocalizedName
-                : reagent.Prototype;
+                : reagent.Prototype.Id;
 
             var row = new BoxContainer
             {

@@ -125,7 +125,7 @@
     ears: ClothingHeadsetAssistant
     gloves: ClothingHandsGlovesFingerless
   inhand:
-    - WeaponMeleeToolboxRobust
+    - WeaponMeleeToolboxRobustDeathmatch # Starlight
 
 # Aghost
 - type: startingGear

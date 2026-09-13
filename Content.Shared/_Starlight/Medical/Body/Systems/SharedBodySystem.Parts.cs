@@ -198,6 +198,8 @@ public partial class SharedBodySystem
         if (!Resolve(bodyEnt, ref bodyEnt.Comp, logMissing: false))
             return;
 
+        if (TerminatingOrDeleted(bodyEnt.Owner)) return;
+
         if (!_timing.ApplyingState
             && partEnt.Comp.IsVital
             && !GetBodyChildrenOfType(bodyEnt, partEnt.Comp.PartType, bodyEnt.Comp).Any()

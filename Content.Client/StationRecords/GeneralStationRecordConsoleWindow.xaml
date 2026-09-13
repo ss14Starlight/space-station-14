@@ -1,7 +1,9 @@
-<DefaultWindow xmlns="https://spacestation14.io"
+<!-- Starlight: Reworked to PopOutWindow for popout support -->
+<sr:GeneralStationRecordConsoleWindow xmlns="https://spacestation14.io"
+               xmlns:sr="clr-namespace:Content.Client.StationRecords"
                Title="{Loc 'general-station-record-console-window-title'}"
                MinSize="750 500">
-    <BoxContainer Orientation="Vertical">
+    <BoxContainer Name="RootContainer" Orientation="Vertical">
         <BoxContainer Margin="5 5 5 10" HorizontalExpand="true" VerticalAlignment="Center">
             <OptionButton Name="StationRecordsFilterType" MinWidth="200" Margin="0 0 10 0"/>
             <LineEdit Name="StationRecordsFiltersValue"
@@ -23,4 +25,4 @@
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>
-</DefaultWindow>
+</sr:GeneralStationRecordConsoleWindow>

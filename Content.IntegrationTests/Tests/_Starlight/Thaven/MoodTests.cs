@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server._Starlight.Thaven;
 using Content.Shared.Dataset;
 using Content.Shared._Starlight.Thaven;
@@ -8,7 +9,7 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests._Starlight.Thaven;
 
 [TestFixture, TestOf(typeof(ThavenMoodPrototype))]
-public sealed class ThavenMoodTests
+public sealed class ThavenMoodTests : GameTest
 {
     [TestPrototypes]
     const string PROTOTYPES = @"
@@ -46,7 +47,7 @@ public sealed class ThavenMoodTests
     [Repeat(10)]
     public async Task TestDuplicatePrevention()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
         await server.WaitIdleAsync();
 
@@ -63,14 +64,13 @@ public sealed class ThavenMoodTests
         var moodVarSet = mood.MoodVars.Values.ToHashSet();
 
         Assert.That(moodVarSet, Is.EquivalentTo(datasetSet));
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     [Repeat(10)]
     public async Task TestDuplicateOverlap()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var entMan = server.ResolveDependency<IEntityManager>();
@@ -86,6 +86,5 @@ public sealed class ThavenMoodTests
         var moodVarSet = mood.MoodVars.Values.ToHashSet();
 
         Assert.That(moodVarSet, Is.EquivalentTo(datasetSet));
-        await pair.CleanReturnAsync();
     }
 }

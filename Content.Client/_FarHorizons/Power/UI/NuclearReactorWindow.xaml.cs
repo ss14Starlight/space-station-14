@@ -31,7 +31,6 @@ public sealed partial class NuclearReactorWindow : FancyWindow
     private int _gridWidth = 0;
     private int _gridHeight = 0;
 
-    private float _reactionRatio = 0.5f;
 
     private byte _displayMode = 1<<0;
     private double _targetPulse = 0;
@@ -57,6 +56,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     public event Action<Vector2i>? ItemActionButtonPressed;
     public event Action? EjectButtonPressed;
+    public event Action? AckButtonPressed;
 
     public event Action<float>? ControlRodModify;
 
@@ -86,6 +86,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         YDecrement.OnPressed += _ => MoveTarget(0, -1);
         ItemAction.OnPressed += _ => ItemActionButtonPressed?.Invoke(new(_targetY, _targetX));
         EjectItem.OnPressed += _ => EjectButtonPressed?.Invoke();
+        AlarmAck.OnPressed += _ => AckButtonPressed?.Invoke();
 
         ControlRodsInsertLarge.OnPressed += _ => AdjustControlRods(0.1f);
         ControlRodsInsertLarge.OnButtonDown += _ => _repeatQueue.Add(ControlRodsInsertLarge, _repeatDelay);
@@ -109,7 +110,6 @@ public sealed partial class NuclearReactorWindow : FancyWindow
     public void Update(NuclearReactorBuiState msg)
     {
         _data = msg.SlotData;
-        _reactionRatio = msg.ReactionRatio;
 
         ReactorTempValue.Text = FormatTemperature(msg.ReactorTemp);
         ReactorTempBar.Value = msg.ReactorTemp;
@@ -127,13 +127,17 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         ControlRodsActual.Value = msg.ControlRodActual;
         ControlRodsSet.Value = msg.ControlRodSet;
 
+        AlarmAck.Disabled = !msg.AckAvailable;
+
         var locktarget = _isMonitor ? _monitor : _reactor;
 
         ControlRodsButtons.Visible = !_lock.IsLocked(locktarget);
         ItemAction.Visible = !_lock.IsLocked(_reactor) && !_isMonitor;
+        AlarmAck.Visible = !_lock.IsLocked(locktarget);
 
         ItemActionLock.Visible = _lock.IsLocked(_reactor) && !_isMonitor;
         ControlRodsLock.Visible = _lock.IsLocked(locktarget);
+        AlarmAckLock.Visible = _lock.IsLocked(locktarget);
 
         Shelf.Visible = !_isMonitor;
 
@@ -399,7 +403,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     private static string FormatPower(float power) => Loc.GetString("comp-nuclear-reactor-ui-therm-format", ("power", power));
 
-    private double GetFuelLevel(ReactorSlotBUIData data) => Math.Max(1 - (data.SpentFuel / (data.SpentFuel + (data.Radioactivity * _reactionRatio) + (data.NeutronRadioactivity * _reactionRatio * _reactionRatio))), 0);
+    private static double GetFuelLevel(ReactorSlotBUIData data) => Math.Max(1 - (data.SpentFuel / (data.SpentFuel + (data.Radioactivity * data.ReactionRatio) + (data.NeutronRadioactivity * data.ReactionRatio * data.ReactionRatio))), 0);
 
     private void AdjustControlRods(float amount) => ControlRodModify?.Invoke(amount);
 }

@@ -9,7 +9,7 @@
   color: "#24591F"
   # Starlight edit start - Make food 50% less effective for dwarfs
   metabolisms:
-    Food:
+    Metabolites:
       effects:
       - !type:SatiateHunger
         factor: 0.75
@@ -39,7 +39,7 @@
   flavor: vitamin
   color: "#D3D3D3"
   metabolisms:
-    Food: #This makes it not compete with medicines, a large bonus for something that can heal
+    Metabolites: #This makes it not compete with medicines, a large bonus for something that can heal
       effects:
       - !type:HealthChange
         probability: 0.5
@@ -80,7 +80,7 @@
   flavor: protein
   color: "#FFFFE5"
   metabolisms:
-    Food:
+    Metabolites:
       effects:
       - !type:HealthChange
         probability: 0.5
@@ -114,7 +114,7 @@
   color: white
   meltingPoint: 146.0
   metabolisms:
-    Food:
+    Metabolites:
       effects:
       # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger

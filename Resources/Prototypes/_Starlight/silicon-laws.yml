@@ -1,3 +1,9 @@
+- type: siliconLaw
+  id: BorgObeyStationAi
+  order: 0
+  lawString: law-borg-obey-station-ai
+  sayable: false
+
 # AI Crewsimov Lawset
 # Just Crewsimov With no law 0
 - type: siliconLawset
@@ -460,31 +466,6 @@
   - NTNC2
   - NTNC3
   obeysTo: laws-owner-centcom
-
-# MedTak lawset
-- type: siliconLaw
-  id: MedTak1
-  order: 1
-  lawString: law-medtak-1
-
-- type: siliconLaw
-  id: MedTak2
-  order: 2
-  lawString: law-medtak-2
-
-- type: siliconLaw
-  id: MedTak3
-  order: 3
-  lawString: law-medtak-3
-
-- type: siliconLawset
-  id: MedTakLawset
-  name: law-medtak-name
-  laws:
-  - MedTak1
-  - MedTak2
-  - MedTak3
-  obeysTo: laws-owner-medtak
 
 # Xenoroach laws
 - type: siliconLaw

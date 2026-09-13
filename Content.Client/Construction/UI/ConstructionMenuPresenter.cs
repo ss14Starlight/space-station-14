@@ -124,6 +124,8 @@ namespace Content.Client.Construction.UI
 
             SetFavorites(_preferencesManager.Preferences?.ConstructionFavorites ?? []);
             OnViewPopulateRecipes(_constructionView, (string.Empty, string.Empty));
+
+            InitializeTemplates(); // Starlight
         }
 
         public void OnHudCraftingButtonToggled(BaseButton.ButtonToggledEventArgs args)

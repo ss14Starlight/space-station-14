@@ -25,7 +25,7 @@
       requirement:
         !type:RoleTimeRequirement
         role: JobHeadOfSecurity
-        time: 180000 #50 hrs
+        time: 216000 #60 hrs
 
 - type: loadout
   id: ClothingNeckCloakHosRetro
@@ -36,7 +36,7 @@
       requirement:
         !type:RoleTimeRequirement
         role: JobHeadOfSecurity
-        time: 180000 #50 hrs
+        time: 216000 #60 hrs
 
 - type: loadout
   id: HeadofSecurityBlueJumpsuit

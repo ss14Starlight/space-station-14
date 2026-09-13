@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made by conf (on discord)",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
@@ -13,19 +13,24 @@
             "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/f8f4aeda930fcd0805ca4cc76d9bc9412a5b3428"
         },
         {
-            "name": "rock_dark"
+            "name": "rock_dark",
+            "copyright": "Made by conf (on discord)"
         },
         {
-            "name": "rock_dark_east"
+            "name": "rock_dark_east",
+            "copyright": "Made by conf (on discord)"
         },
         {
-            "name": "rock_dark_north"
+            "name": "rock_dark_north",
+            "copyright": "Made by conf (on discord)"
         },
         {
-            "name": "rock_dark_south"
+            "name": "rock_dark_south",
+            "copyright": "Made by conf (on discord)"
         },
         {
-            "name": "rock_dark_west"
+            "name": "rock_dark_west",
+            "copyright": "Made by conf (on discord)"
         }
     ]
 }

@@ -11,7 +11,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Prying.Systems;
 using Content.Shared.Radio.EntitySystems;
-using Content.Shared.Stacks;
 using Content.Shared.Temperature;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Tools.Systems;
@@ -301,6 +300,9 @@ namespace Content.Server.Construction
                     if (validation)
                         return HandleResult.Validated;
 
+                    if (doAfterState == DoAfterState.None) // Starlight
+                        _interactionSystem.DoContactInteraction(interactUsing.User, uid, interactUsing.Used, false); // Moffstation
+
                     // If we still haven't completed this step's DoAfter...
                     if (doAfterState == DoAfterState.None && insertStep.DoAfter > 0)
                     {
@@ -383,6 +385,7 @@ namespace Content.Server.Construction
                     if (doAfterState == DoAfterState.Completed)
                         return  HandleResult.True;
 
+                    _interactionSystem.DoContactInteraction(interactUsing.User, uid, interactUsing.Used, false); // Moffstation - Interaction particles
                     var result  = _toolSystem.UseTool(
                         interactUsing.Used,
                         interactUsing.User,
@@ -426,7 +429,7 @@ namespace Content.Server.Construction
                     if ((!temperatureChangeStep.MinTemperature.HasValue || temp >= temperatureChangeStep.MinTemperature.Value) &&
                         (!temperatureChangeStep.MaxTemperature.HasValue || temp <= temperatureChangeStep.MaxTemperature.Value))
                     {
-                        return HandleResult.True;
+                        return validation ? HandleResult.Validated : HandleResult.True;
                     }
 
                     return HandleResult.False;
@@ -438,7 +441,7 @@ namespace Content.Server.Construction
                         break;
 
                     if (partAssemblyStep.Condition(uid, EntityManager))
-                        return HandleResult.True;
+                        return validation ? HandleResult.Validated : HandleResult.True;
                     return HandleResult.False;
                 }
 

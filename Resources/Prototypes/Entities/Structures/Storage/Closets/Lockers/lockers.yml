@@ -593,12 +593,13 @@
 # Clown
 - type: entity
   id: LockerClown
+  categories: [ ShouldMapStation ] # Starlight
   name: clown locker
   parent: LockerBaseSecure
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Theatre"]]
+    access: [["Clown"]] # Starlight
   - type: EntityStorageVisuals
     stateBaseClosed: clown
     stateDoorOpen: clown_open
@@ -607,12 +608,13 @@
 # Mime
 - type: entity
   id: LockerMime
+  categories: [ ShouldMapStation ] # Starlight
   name: mime locker
   parent: LockerBaseSecure
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Theatre"]]
+    access: [["Mime"]] # Starlight
   - type: EntityStorageVisuals
     stateBaseClosed: mime
     stateDoorOpen: mime_open

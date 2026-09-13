@@ -987,7 +987,7 @@ public sealed partial class VampireSystem : EntitySystem
 
             if (!_proto.TryIndex<ReagentPrototype>(quant.Reagent.Prototype, out var proto)
                 || proto.Metabolisms == null
-                || !proto.Metabolisms.Keys.Any(k => args.PurgedMetabolismGroups.Contains(k.Id)))
+                || !proto.Metabolisms.Metabolisms.Keys.Any(args.PurgedMetabolismStages.Contains))
                 continue;
 
             var remaining = args.ReagentPurgeAmount - toRemove;

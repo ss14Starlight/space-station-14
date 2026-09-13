@@ -4,7 +4,6 @@ using System.Threading;
 using Content.Server.Construction;
 using Content.Server.Construction.Components;
 using Content.Server.Hands.Systems;
-using Content.Server.Power.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
@@ -649,6 +648,8 @@ public sealed partial class WiresSystem : SharedWiresSystem
 
         if (wire == null)
             return;
+
+        _interactionSystem.DoContactInteraction(user, target, toolEntity, false); // Moffstation - Interaction particles
 
         switch (action)
         {

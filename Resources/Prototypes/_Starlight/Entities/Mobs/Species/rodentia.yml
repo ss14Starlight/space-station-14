@@ -27,7 +27,6 @@
     openStorageAction: ActionOpenMouthStorage
     spitDamageThreshold: 3
   - type: Butcherable
-    butcheringType: Spike
     spawned:
       - id: FoodMeat
         amount: 3
@@ -45,7 +44,6 @@
   - type: Speech
     speechVerb: Rodentia
     speechSounds: Squeak
-    allowedEmotes: ['Squeak']
   - type: Fixtures
     fixtures:
       fix1:
@@ -113,10 +111,6 @@
       types:
         Slash: 5
   - type: Vocal
-    sounds:
-      Male: MaleRodentia
-      Female: FemaleRodentia
-      Unsexed: MaleRodentia
   - type: AlwaysTriggerMousetrap
   - type: CrawlUnderObjects
     actionProto: ActionToggleSneakMode

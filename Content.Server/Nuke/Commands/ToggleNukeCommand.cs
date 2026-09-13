@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using JetBrains.Annotations;
@@ -64,7 +63,7 @@ public sealed partial class ToggleNukeCommand : LocalizedCommands
     {
         if (args.Length == 1)
         {
-            return CompletionResult.FromHint(Loc.GetString(Loc.GetString("cmd-nukearm-1-help")));
+            return CompletionResult.FromHint(Loc.GetString("cmd-nukearm-1-help"));
         }
 
         if (args.Length == 2)

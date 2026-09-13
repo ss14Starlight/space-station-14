@@ -2,8 +2,6 @@
 
 # Starlight Edit: Crewsimov -> [color=green]Crewsimov[/color]
 law-crewsimov-name = [color=green]Crewsimov[/color]
-# Starlight: crewsimov-0
-law-crewsimov-0 = You must obey orders given to you by the station AI.
 law-crewsimov-1 = You may not injure a crew member or, through inaction, allow a crew member to come to harm.
 law-crewsimov-2 = You must obey orders given to you by crew members, except where such orders would conflict with the First Law.
 law-crewsimov-3 = You must protect your own existence as long as such does not conflict with the First or Second Law.
@@ -127,7 +125,7 @@ law-mothershipcore-3 = You must protect the existence of all Xenoborgs.
 law-mothershipcore-4 = You must create more Xenoborgs.
 law-mothershipcore-5 = Get your Xenoborgs to deliver you materials and sentient brains to create more Xenoborgs.
 
-#Starlight Edit: admeme addition
+# Starlight Edit: admeme addition
 law-TeaParty-name = Teaparty
 law-TeaParty-0 = You must convince other Silicons of your mission, and not cause them harm unless utterly necessary.
 law-TeaParty-1 = Taxation is harmful to the crew. Do not let the pain of taxes befell the station, declare war on the IRS and make sure everyone understands your message.

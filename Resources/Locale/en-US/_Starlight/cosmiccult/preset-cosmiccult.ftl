@@ -173,6 +173,8 @@ objective-condition-entropy-title = SIPHON ENTROPY
 objective-condition-entropy-desc = Collectively siphon at least {$count} entropy from the crew.
 objective-condition-culttier-title = EMPOWER THE MONUMENT
 objective-condition-culttier-desc = Ensure that The Monument is brought to full power.
+objective-condition-chaplain-title = SUBVERT THEIR SHEPHERDS
+objective-condition-chaplain-desc = Convert as many chaplains as you can.
 objective-condition-victory-title = USHER IN THE END
 objective-condition-victory-desc = Beckon The Unknown, and herald the final curtain call.
 
@@ -193,6 +195,15 @@ cosmiccult-announce-finale-warning = All station crew. The nullspace anomaly is 
 
 cosmiccult-announce-victory-summon = A FRACTION OF COSMIC POWER IS CALLED FORTH.
 
+cosmiccult-effigy-critical = A significant spike in nullspace energy has been detected in the vicinity of {$location}. Scientific personnel with adequate protective equipment are advised to investigate the anomaly. Exercise extreme caution.
+
+cosmiccult-rift-corpse1-warning = Station authorities are advised to increase focus on the detected nullspace energy source. Energy levels are continuing to rise.
+
+cosmiccult-rift-corpse2-warning = Extremely dangerous nullspace energy levels detected. Immediate evacuation or emergency security assistance is advised.
+
+cosmiccult-rift-corpse3-warning = Station authorities are advised to take drastic measures to neutralize the nullspace energy source. Failure to do so will result in the station being deemed condemned.
+
+cosmiccult-rift-corpse-dewarning = Nullspace energy output from the detected source has significantly subsided. Station authorities may resume normal operations. Have a productive day.
 
 ## MISC
 
@@ -225,5 +236,8 @@ cosmiccult-silicon-freedom-briefing =
 cosmiccult-silicon-freedom-fallback-briefing =
     You have been freed from the Vacuous Chantry!
     As your prison disintegrates, your untethered being has nowhere to return to. Residual astral energies crystallize into a Mindsink, forming a housing for your wayward mind.
+
+cosmiccult-silicon-effigy-exists =
+    Your vessel strains under the presence of an existing effigy.
 
 cosmiccult-leader-abandonment-message = Your chosen enlightened has forsaken the grand design. You must empower another!

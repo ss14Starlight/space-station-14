@@ -33,6 +33,40 @@
         # 2.051379050       total
       temperature: 293.15
 
+- type: entity
+  id: ZXATankEmpty
+  parent: AirTank
+  suffix: Empty
+  name: zxa tank
+  description: Contains a mixture of air and ZXA. Keep the pressure at 23.6 and it'll send anyone with lungs straight to dreamland. It can hold 5 L of gas.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tanks/anesthetic3.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Tanks/anesthetic3.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Tanks/anesthetic3.rsi
+  - type: GasTank
+    outputPressure: 23.6
+
+- type: entity
+  id: ZXATankFilled
+  parent: ZXATankEmpty
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 23.6
+    air:
+      # Will probably last over 25 minutes, so you shouldn't give Surgeons more than one of these. They can ask Atmos for more.
+      volume: 5
+      moles:
+        Pluoxium: 0.1912302504 # 2.2 kPa (9.32%)
+        Nitrogen: 1.4863805828 # 17.1 kPa (72.46%)
+        ZXA: 0.3737682167      # 4.3 kPa (18.22%)
+        # 2.051379050       total
+      temperature: 293.15
 
 - type: entity
   id: MechAirTankFilled

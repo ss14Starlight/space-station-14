@@ -1,7 +1,6 @@
 ﻿using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
-using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components; //starlight

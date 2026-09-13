@@ -1,4 +1,4 @@
-﻿using Content.Shared.CharacterInfo;
+using Content.Shared.CharacterInfo;
 using Content.Shared.Objectives;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
@@ -32,6 +32,10 @@ public sealed partial class CharacterInfoSystem : EntitySystem
     private void OnCharacterInfoEvent(CharacterInfoEvent msg, EntitySessionEventArgs args)
     {
         var entity = GetEntity(msg.NetEntity);
+        if (!Exists(entity))
+        {
+            return;
+        }
         var data = new CharacterData(entity, msg.JobTitle, msg.Objectives, msg.Briefing, Name(entity));
 
         OnCharacterUpdate?.Invoke(data);

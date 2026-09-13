@@ -1,0 +1,101 @@
+- type: entity
+  id: BasePeacekeeperBox
+  name: grenade cartridge
+  parent: [BaseItem, BaseSecurityContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - MagazineGrenade
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - Grenade
+    capacity: 4
+  - type: Item
+    size: Normal
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Boxes/peacekeeper.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Appearance
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 200
+
+- type: entity
+  parent: BasePeacekeeperBox
+  id: BoxPeacekeeperFlash
+  name: peacekeeper flash ammo box
+  description: A box of flash grenades for the Peacekeeper, good for catching up to a running fiend or for dispersing crowds.
+  components:
+    - type: BallisticAmmoProvider
+      proto: GrenadeFlash
+      mayTransfer: true
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: flash
+
+- type: entity
+  parent: BasePeacekeeperBox
+  id: BoxPeacekeeperStinger
+  name: peacekeeper stinger ammo box
+  description: A box of stinger grenades for the Peacekeeper, very good at dispersing crowds and getting lawsuits.
+  components:
+    - type: BallisticAmmoProvider
+      proto: GrenadeStingerlauncher
+      mayTransfer: true
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: stinger
+
+- type: entity
+  parent: BasePeacekeeperBox
+  id: BoxPeacekeeperGas
+  name: peacekeeper tear gas ammo box
+  description: A box of teargas grenades for the Peacekeeper, the label has a big "DO NOT FORGET INTERNALS" written in red.
+  components:
+    - type: BallisticAmmoProvider
+      proto: GrenadeGaslauncher
+      mayTransfer: true
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: gas
+
+- type: entity
+  parent: BasePeacekeeperBox
+  id: BoxPeacekeeperBaton
+  name: peacekeeper baton ammo box
+  description: A box of less-lethal baton grenades for the Peacekeeper, do not forget that "less" means you can kill with it, just less.
+  components:
+    - type: BallisticAmmoProvider
+      proto: GrenadeBaton
+      mayTransfer: true
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: baton

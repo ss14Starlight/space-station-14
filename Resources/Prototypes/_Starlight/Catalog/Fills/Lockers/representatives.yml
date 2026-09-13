@@ -1,6 +1,6 @@
 - type: entity
   id: LockerRepresentativeFilled
-#  categories: [ ShouldMapStation ]
+  categories: [ ShouldMapStation ]
   suffix: Filled
   parent: LockerRepresentative
   components:
@@ -8,6 +8,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
+        - id: BookSecureTerminalManual
         - id: ClothingEyesHudSkills
         - id: ClothingEyesSunGlassesHudSkill
         - id: ClothingHeadHatCapNtrep
@@ -22,7 +23,6 @@
         - id: BoxFolderClipboardFilled
         - id: PrinterDocFlatpack
         - id: FaxMachineFlatpack
-        - id: PlushieEmmie
         - id: ClothingOuterHardsuitNtrep
         - id: BriefcaseSecure
         - !type:NestedSelector
@@ -40,7 +40,7 @@
 
 - type: entity
   id: LockerMagistrateFilled
-#  categories: [ ShouldMapStation ]
+  categories: [ ShouldMapStation ]
   suffix: Filled
   parent: LockerMagistrate
   components:
@@ -62,7 +62,6 @@
         - id: BoxFolderNanoTrasenClipboard
         - id: PrinterDocFlatpack
         - id: FaxMachineFlatpack
-        - id: BoxMagiCircuitBoards
         - !type:NestedSelector
           tableId: SecureDocumentTable
 
@@ -78,7 +77,7 @@
 
 - type: entity
   id: LockerIAAFilled
-#  categories: [ ShouldMapStation ]
+  categories: [ ShouldMapStation ]
   suffix: Filled
   parent: LockerIAA
   components:
@@ -97,6 +96,7 @@
         - id: LuxuryPen
         - id: BoxFolderNanoTrasenClipboard
         - id: BriefcaseBrown # Empty
+        - id: BoxTapeRecorder # Starlight
         - !type:NestedSelector
           tableId: CriminalDocumentTable
 
@@ -133,6 +133,7 @@
           amount: 3
         - id: MedkitAdvancedFilled
         - id: WeaponMultiphaseGun
+        - id: BlueLightShield
         - id: ClothingEyesGlassesBlueShield
         - id: ClothingEyesHudBlueShield
         - id: ClothingHeadHatBeretBlueShield

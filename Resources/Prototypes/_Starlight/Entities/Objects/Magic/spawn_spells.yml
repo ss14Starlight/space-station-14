@@ -1,0 +1,67 @@
+- type: entity
+  parent: BaseRuneAction
+  id: ActionRuneSummonIce
+  name: Summon ice sculpture
+  description: Summons an ice familiar after two seconds.
+  components:
+  - type: Action
+    useDelay: 60
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: sculptureicon
+  - type: TargetAction
+    range: 10
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: RuneSummonIce
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-summonice
+    tts: action-speech-spell-summonice-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  id: RuneSummonIce
+  parent: BaseRune
+  name: summoning pentagram
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Magic/summoning.rsi
+      layers:
+        - state: summonice
+    - type: TriggerOnSpawn
+    - type: TimerTrigger
+      delay: 2
+    - type: TimedDespawn
+      lifetime: 2.2
+    - type: SpawnOnTrigger
+      keysIn:
+      - timer
+      proto: SummonIceSculpture
+
+- type: entity
+  parent: ActionForceWall #kind of a summon wasnt sure where to put it
+  id: ActionIcePillars
+  name: Ice Pillars
+  description: Creates a row of ice pillars in front of you (20 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+    icon:
+      sprite: _Starlight/Objects/Magic/magicactions.rsi
+      state: icepillars
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: IcePillars
+      posData: !type:TargetInFront
+  - type: SpeakOnAction
+    sentence: action-speech-spell-icepillars
+    tts: action-speech-spell-icepillars-tts
+    modifier: Spell
+  - type: EorgPreventAction

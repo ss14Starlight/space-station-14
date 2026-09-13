@@ -110,7 +110,7 @@
   - type: IngestionBlocker
 
 - type: entity
-  parent: [ClothingMaskGas, BaseCargoContraband]
+  parent: [ClothingMaskGas, BaseCargoSalvageContraband] #starlight
   id: ClothingMaskGasExplorer
   name: explorer gas mask
   description: A military-grade gas mask that can be connected to an air supply.
@@ -327,6 +327,7 @@
   - type: IdentityBlocker
   - type: Tag
     tags:
+    - MimeMask #Starlight
     - HamsterWearable
     - WhitelistChameleon
   - type: HideLayerClothing
@@ -524,6 +525,8 @@
     - HeadSide
   - type: Pierceable
     level: Rock
+  - type: FlashImmunity # Starlight
+    blocksSpecialVision: False
   - type: Armor
     modifiers:
       coefficients:
@@ -735,6 +738,11 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  # Starlight-start
+  - type: Construction
+    graph: ClothingMaskMimeSecurity
+    node: mask
+  # Starlight-end
 
 - type: entity
   parent: ClothingMaskBase
@@ -748,9 +756,6 @@
     sprite: Clothing/Mask/italian_moustache.rsi
   - type: Item
     storedRotation: -90
-  - type: AddAccentClothing
-    accent: ReplacementAccent
-    replacement: italian
 
 - type: entity
   parent: ClothingMaskBase

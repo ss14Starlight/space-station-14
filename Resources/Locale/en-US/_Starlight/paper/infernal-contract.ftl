@@ -21,10 +21,15 @@ infernal-contract-base =
 infernal-contract-examined-Valid = The contract is ready for signing.
 infernal-contract-examined-InvalidFormat = The contract is invalid, as it is missing vital smallprint.
 infernal-contract-examined-TooCostly = The contract is not a fair deal for hell, it will not be actioned.
+infernal-contract-examined-OverusedDamnation = The contract contains a damnation that has been used too much, and is no longer fiscally advantageous.
 infernal-contract-examined-UnknownClauses = The contract contains clauses which are not permitted for mortals.
 infernal-contract-examined-Signed = The contract has been signed!
 
-infernal-contract-examine-cost = This contract has a cost of {$value}
+infernal-contract-examined-cost = This contract has a cost of {$value}
+infernal-contract-examined-misspelling = The contract has invalid clauses: {$items}
+
+infernal-contract-misspelled-name = misspelled infernal contract
+infernal-contract-valid-name = infernal contract
 
 infernal-contract-popup-fail = The contract burns your hand! Something about it isn't right!
 infernal-contract-popup-fail-self = Your hand passes through the contract! This deal isn't for you to sign!

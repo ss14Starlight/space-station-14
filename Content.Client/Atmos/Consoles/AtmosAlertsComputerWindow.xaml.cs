@@ -37,6 +37,7 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
 
     public event Action<NetEntity?>? SendFocusChangeMessageAction;
     public event Action<NetEntity, bool>? SendDeviceSilencedMessageAction;
+    public event Action<EntityCoordinates>? MapClicked; // Starlight: go to clicked location for AI
 
     private bool _autoScrollActive = false;
     private bool _autoScrollAwaitsUpdate = false;
@@ -95,6 +96,7 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
 
         // Set trackable entity selected action
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
+        NavMap.MapClickedAction += OnNavMapClicked; // Starlight: go to clicked location for AI
 
         // Update nav map
         NavMap.ForceNavMapUpdate();
@@ -113,8 +115,15 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
         // Set atmos monitoring message action
         SendFocusChangeMessageAction += userInterface.SendFocusChangeMessage;
         SendDeviceSilencedMessageAction += userInterface.SendDeviceSilencedMessage;
+        MapClicked += userInterface.SendMapClicked; // Starlight: go to clicked location for AI
     }
 
+    #region Starlight
+    private void OnNavMapClicked(EntityCoordinates coordinates)
+    {
+        MapClicked?.Invoke(coordinates);
+    }
+    #endregion
     #region Toggle handling
 
     private void OnShowAlarmsToggled(CheckBox toggle, AtmosAlarmType toggledAlarmState)

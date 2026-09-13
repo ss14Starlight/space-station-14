@@ -84,6 +84,12 @@
   materials:
     Cloth: 600
     Plasteel: 1900
+- type: latheRecipe
+  id: KnuckleDustersTA
+  result: ClothingHandsKnuckleDusters
+  completetime: 60
+  materials:
+    Plasteel: 600
 
 # ARMOR
 - type: latheRecipe

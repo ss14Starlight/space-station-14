@@ -1,19 +1,19 @@
-using System.Linq;
+using Content.Server.Actions; // Starlight
 using Content.Server.Clothing.Systems;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.KillTracking;
 using Content.Server.Mind;
 using Content.Server.Points;
-using Content.Server.Preferences.Managers;
+using Content.Server.Preferences.Managers; // Starlight
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
+using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Points;
-using Content.Shared.Storage;
-using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Deathmatch; // Starlight
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -29,18 +29,29 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
     [Dependency] private RespawnRuleSystem _respawn = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
-    [Dependency] private TransformSystem _transform = default!;
-    [Dependency] private IServerPreferencesManager _preferences = default!;
+    [Dependency] private IServerPreferencesManager _preferences = default!; // Starlight
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private ActionsSystem _actions = default!; // Starlight
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<DeathmatchComponent, ComponentStartup>(OnStartup); // Starlight
         SubscribeLocalEvent<PlayerBeforeSpawnEvent>(OnBeforeSpawn);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
         SubscribeLocalEvent<KillReportedEvent>(OnKillReported);
         SubscribeLocalEvent<DeathMatchRuleComponent, PlayerPointChangedEvent>(OnPointChanged);
     }
+
+    #region Starlight
+    private void OnStartup(EntityUid uid, DeathmatchComponent comp, ref ComponentStartup args)
+    {
+        // add actions
+        foreach (var actionId in comp.BaseDeathmatchActions)
+            _actions.AddAction(uid, actionId);
+    }
+    #endregion
 
     private void OnBeforeSpawn(PlayerBeforeSpawnEvent ev)
     {
@@ -50,21 +61,25 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
             if (!GameTicker.IsGameRuleActive(uid, rule))
                 continue;
 
+            #region Starlight
+            // Spawn in as YOUR character
             // If no profile is provided here, try to get any enabled profile for the player...
             var profile = ev.Profile ?? _preferences.GetPreferences(ev.Player.UserId).GetRandomEnabledProfile();
             if (profile == null)
                 return;
+            #endregion
 
-            var newMind = _mind.CreateMind(ev.Player.UserId, profile.Name);
+            var newMind = _mind.CreateMind(ev.Player.UserId, profile.Name); // Starlight
             _mind.SetUserId(newMind, ev.Player.UserId);
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(ev.Station, null, profile);
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(ev.Station, null, profile);  // Starlight
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
 
             _mind.TransferTo(newMind, mob);
             _outfitSystem.SetOutfit(mob, dm.Gear);
             EnsureComp<KillTrackerComponent>(mob);
+            EnsureComp<DeathmatchComponent>(mob); // Starlight
             _respawn.AddToTracker(ev.Player.UserId, (uid, tracker));
 
             _point.EnsurePlayer(ev.Player.UserId, uid, point);
@@ -107,8 +122,10 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
             if (ev.Assist is KillPlayerSource assist && dm.Victor == null)
                 _point.AdjustPointValue(assist.PlayerId, 1, uid, point);
 
-            var spawns = EntitySpawnCollection.GetSpawns(dm.RewardSpawns).Cast<string?>().ToList();
-            EntityManager.SpawnEntities(_transform.GetMapCoordinates(ev.Entity), spawns);
+            foreach (var spawn in _entityTable.GetSpawns(dm.RewardSpawns))
+            {
+                SpawnNextToOrDrop(spawn, ev.Entity);
+            }
         }
     }
 

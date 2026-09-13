@@ -6,3 +6,11 @@
     jumpsuit: ClothingUniformJumpskirtHydroponics
     belt: ClothingBeltPlantFilled
     id: KikiPDA
+
+- type: startingGear
+  id: MobStirStirGear
+  equipment:
+    ears: ClothingHeadsetAssistant
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    id: StirStirPDA
+    head: ClothingHeadHatBeretPrison

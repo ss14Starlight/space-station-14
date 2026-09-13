@@ -1,0 +1,323 @@
+- type: entity
+  parent: BookBase
+  id: BookCapnsScruples
+  name: "A Cap'n's Scruples"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-capns-scruples
+
+- type: entity
+  parent: BookBase
+  id: BookLastCow
+  name: "The Last Cow"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+        - state: overlay_blood
+    - type: Paper
+      content: book-last-cow
+
+- type: entity
+  parent: BookBase
+  id: BookThroughTheGlass
+  name: "Through the Glass"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-through-the-glass
+
+- type: entity
+  parent: BookBase
+  id: BookCavesOfUrania
+  name: "The Caves of Urania-9775"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-caves-of-urania
+
+- type: entity
+  parent: BookBase
+  id: BookChuckles
+  name: "Chuckles"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-chuckles
+
+- type: entity
+  parent: BookBase
+  id: BookCorridorNine
+  name: "Something Off with Corridor Nine"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-corridor-nine
+
+- type: entity
+  parent: BookBase
+  id: BookBedsidePhotograph
+  name: "Bedside Photograph"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-bedside-photograph
+
+- type: entity
+  parent: BookBase
+  id: BookDeathAlways
+  name: "Death Always"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-death-always
+
+- type: entity
+  parent: BookBase
+  id: BookMarty
+  name: "M.A.R.T.Y./Log#849211"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-marty
+
+- type: entity
+  parent: [BookBase, BaseMinorContraband]
+  id: BookNTsMartyr
+  name: "NT's Martyr"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-nts-martyr
+
+- type: entity
+  parent: BookBase
+  id: BookThoughtsEnd
+  name: "When Thoughts End"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-when-thoughts-end
+
+- type: entity
+  parent: BookBase
+  id: BookApocolypse
+  name: "Apocolypse"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-apocolypse
+
+- type: entity
+  parent: BookBase
+  id: BookWizardDice
+  name: "Wizard Dice"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-wizard-dice
+
+- type: entity
+  parent: BookBase
+  id: BookHopPlay
+  name: "A HOP Play"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-hop-play
+
+- type: entity
+  parent: BookBase
+  id: BookConfession
+  name: "A Confession"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-confession
+
+- type: entity
+  parent: BookBase
+  id: BookLifeOfAClown
+  name: "A Day in the Life of a Clown"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-life-of-a-clown
+
+- type: entity
+  parent: BookBase
+  id: BookUnnamedGod
+  name: "Theological Studies — The unnamed God"
+  description: An award winning entry from a writing contest. Recommended for slow shifts, long shuttle rides, and avoiding actual work. This is a work of fiction. Probably.
+  components:
+    - type: Sprite
+      layers:
+        - state: paper
+        - state: cover_strong
+          color: "#1134A6"
+        - state: decor_spine
+          color: "#d4af37"
+        - state: detail_rivets
+          color: "#888b8d"
+        - state: icon_temple
+    - type: Paper
+      content: book-unnamed-god

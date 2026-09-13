@@ -1,11 +1,16 @@
+# Hug Dispenser
 store-category-plushies = Plushies
+store-category-plushie-toys = Toys
 store-category-plushie-species = Species
+store-category-plushie-crew = Crew
 
 store-category-medical-chemistry = Chemistry
 store-category-medical-medical = Medical
 store-category-medical-surgery = Surgery
-store-category-enginery-main = Enginery
+store-category-engineering-main = Engineering
+store-category-engineering-atmos = Atmospherics
 store-category-service-clown = Clown
+store-category-service-mime = Mime
 store-category-security-main = Security
 store-category-secret = Secret
 

@@ -80,7 +80,11 @@ public sealed partial class CargoGiftsRule : StationEventSystem<CargoGiftsRuleCo
                     Loc.GetString(component.Dest),
                     cargoDb,
                     component.Account,
-                    (station.Value, stationData)
+                    (station.Value, stationData),
+                    productId, // Starlight
+                    product.GasType, // Starlight
+                    product.GasMoles, // Starlight
+                    product.GasTemperature // Starlight
             ))
             {
                 break;

@@ -27,6 +27,8 @@
     - CannotSuicide
     - VimPilot
 
+## KIKI
+
 - type: entity
   name: Kiki
   parent: MobKoboldAdvanced
@@ -38,10 +40,12 @@
     speaks:
     - Ancestor
     - Draconic
+    - Sign
     understands:
     - Ancestor
     - GalacticCommon
     - Draconic
+    - Sign
   - type: RandomSprite # Using random sprite since we need to overwrite the parent's random sprite, even if we're actually giving her a fixed appearance.
     getAllGroups: true
     available:
@@ -58,7 +62,6 @@
     job: Botanist
   - type: GhostTakeoverAvailable
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 3
@@ -72,10 +75,64 @@
     - AnomalyHost
   - type: Loadout
     prototypes: [ MobKoboldGear ]
+  - type: Vocal
+    sounds:
+      Male: MaleReptilian
+      Female: FemaleReptilian
+      Unsexed: FemaleReptilian
   - type: Grammar
     attributes:
       proper: true
       gender: female
+
+## STIR STIR
+
+- type: entity
+  name: Stir Stir
+  parent: MobMonkeyAdvanced # He's smarter than the average monkey. Also no vent crawling.
+  id: MobMonkeyStirStir
+  suffix: AI
+  description: A disreputable monkey who should not be trusted. A real cell stuffer.
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    - Sign
+    understands:
+    - Ancestor
+    - GalacticCommon
+    - Sign
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-stirstir-name
+    description: ghost-role-information-stirstir-description
+    rules: ghost-role-information-nonantagonist-rules
+    job: StirStir
+  - type: GhostTakeoverAvailable
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 3
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+    - AnomalyHost
+  - type: Loadout
+    prototypes: [ MobStirStirGear ]
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: GuideHelp
+    guides:
+    - StirStir
+
+## ADMIN MICE
 
 - type: entity
   parent: MobMouse
@@ -218,6 +275,7 @@
   - type: AutoImplant
     implants:
     - RedspaceImplant
+  - type: AntagImmune
 
 - type: entity
   parent: MobAdminMouse
@@ -258,3 +316,48 @@
   - type: AutoImplant
     implants:
     - BluespaceImplant
+
+- type: entity
+  name: Rt Hon. Flippers
+  parent: MobPenguin
+  id: MobPenguinFlippers
+  description: Emperor of the Court.
+  components:
+  # Starlight-start: Languages
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Penguin
+    understands:
+    - Penguin
+    - GalacticCommon
+  # Starlight-end
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Pets/flippers.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: flippers
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: flippers
+      Critical:
+        Base: flippers_dead
+      Dead:
+        Base: flippers_dead_blood
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: petting-success-bird
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/penguin_squawk.ogg
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot

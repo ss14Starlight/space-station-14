@@ -34,8 +34,11 @@
     - id: HandheldMachineAnalyzer
     - id: SurgicalKitRoboticsFilled
     - id: BottleCaseRoboticsFilled
-    - id: HealiumTankFilled
-    - id: NitrousOxideTankFilled
+    - !type:GroupSelector
+      children:
+      - id: NitrousOxideTankFilled
+      - id: ZXATankFilled
+        weight: 0.5
     - id: MedkitFilled
     - id: MedkitRoboticFilled
     - id: Welder
@@ -43,5 +46,5 @@
     - id: OilPack
     - id: ToolboxRoboticistFilled
       prob: 0.5
-    - id: PlushieLizardJobScientist
+    - id: PlushieLizardJobRoboticist
       prob: 0.02

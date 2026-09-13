@@ -1,9 +1,9 @@
 - type: entity
   id: OrganAvaliStomach
   parent: OrganAnimalStomach
+  name: avali stomach
   suffix: Avali
-  name: stomach
-  description: "The stomach of an avali, on closer inspection, actually consists of two stomachs."
+  description: "On closer inspection, actually consists of two stomachs."
   components:
   - type: Stomach
     specialDigestible:
@@ -13,32 +13,28 @@
       - Crayon
       - Paper
       - AvianFood
-  - type: SolutionContainerManager
+      - IceCream
+      - Birthday
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     state: stomach
 
+
 - type: entity
   id: OrganAvaliHeart
   parent: OrganHumanHeart
+  name: avali heart
   suffix: Avali
-  description: "The heart of an avali."
+  description: "The heart of an Avali."
   components:
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Avali]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     state: heart-on
@@ -46,14 +42,14 @@
 - type: entity
   id: OrganAvaliLiver
   parent: OrganHumanLiver
+  name: avali liver
   suffix: Avali
-  description: "The liver of an avali."
+  description: "The liver of an Avali."
   components:
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [Avali]
-    groups:
-    - id: Alcohol
+    stages: [ Metabolites ]
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     state: liver
@@ -61,8 +57,9 @@
 - type: entity
   id: OrganAvaliKidneys
   parent: OrganHumanKidneys
+  name: avali kidneys
   suffix: Avali
-  description: "The kidneys of an avali."
+  description: "The kidneys of an Avali."
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
@@ -73,17 +70,13 @@
 - type: entity
   id: OrganAvaliLungs
   parent: OrganHumanLungs
+  name: avali lungs
   suffix: Avali
-  description: "The lungs of an avali."
+  description: "The lungs of an Avali."
   components:
   - type: Metabolizer
-    removeEmpty: true
-    solutionOnBody: false
-    solution: "Lung"
     metabolizerTypes: [ Resomi, Human ] #They get both so they can still breathe oxygen without us needing to add Resomi everywhere Human is listed
-    groups:
-    - id: Gas
-      rateModifier: 100.0
+    stages: [ Respiration ]
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     layers:
@@ -93,7 +86,7 @@
 - type: entity
   id: OrganAvaliEyes
   parent: OrganHumanEyes
-  name: eyes
+  name: avali eyes
   suffix: Avali
   description: "The eyes of an Avali."
   components:
@@ -105,9 +98,22 @@
 - type: entity
   id: OrganAvaliBrain
   parent: OrganHumanBrain
+  name: avali brain
   suffix: Avali
-  description: "The brain of an Avali. Where Avali think of evil thoughts"
+  description: "Where Avali think evil thoughts."
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     state: brain
+
+- type: entity
+  id: OrganAvaliTongue
+  parent: OrganHumanTongue
+  suffix: Avali
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk']
+    sounds:
+      Male: MaleAvali
+      Female: FemaleAvali
+      Unsexed: MaleAvali

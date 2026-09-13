@@ -231,10 +231,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
         _entityLookup.GetEntitiesInRange(transform.Coordinates, range, _entSet);
         foreach (var entity in _entSet)
         {
-            // TODO: Use RandomPredicted https://github.com/space-wizards/RobustToolbox/pull/5849
-            var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(entity).Id);
-            var rand = new System.Random(seed);
-            if (!rand.Prob(probability))
+            if (!SharedRandomExtensions.PredictedProb(_timing, probability, GetNetEntity(entity)))
                 continue;
 
             // Is the entity affected by the flash either through status effects or by taking damage?
@@ -270,6 +267,16 @@ public abstract partial class SharedFlashSystem : EntitySystem
             }
         }
     }
+    // Updates whether flash immunity is visible in examine window
+    #region Starlight
+    public void SetShowInExamine(EntityUid uid, bool show, FlashImmunityComponent comp)
+    {
+        if (comp.ShowInExamine == show)
+            return;
+        comp.ShowInExamine = show;
+        Dirty(uid, comp);
+    }
+    #endregion
 
     private void OnPermanentBlindnessFlashAttempt(Entity<PermanentBlindnessComponent> ent, ref FlashAttemptEvent args)
     {

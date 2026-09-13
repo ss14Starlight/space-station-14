@@ -65,6 +65,7 @@ public sealed partial class AdminOptionsTab : Control
             playerTabHealthIconSettings.Add(new OptionDropDownCVar<string>.ValueOption(setting.ToString(), Loc.GetString($"ui-options-admin-ghost-hud-setting-health-{setting.ToString()!.ToLower()}")));
         }
 
+        Control.AddOptionLineEdit(StarlightCCVars.AdminGhostScriptPath, AghostScriptName);
         Control.AddOptionDropDown(StarlightCCVars.AdminGhostHudJobSetting, DropDownAGhostJobIconSetting, playerTabJobIconSettings);
         Control.AddOptionDropDown(StarlightCCVars.AdminGhostHudHealthSetting, DropDownAGhostHealthIconSetting, playerTabHealthIconSettings);
         Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHudShowCriminalRecordIcons, EnableAGhostCriminalRecordIcons);

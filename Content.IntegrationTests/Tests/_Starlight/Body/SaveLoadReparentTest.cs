@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Containers;
@@ -11,7 +12,7 @@ using Robust.Shared.Utility;
 namespace Content.IntegrationTests.Tests._Starlight.Body;
 
 [TestFixture]
-public sealed class SaveLoadReparentTest
+public sealed class SaveLoadReparentTest : GameTest
 {
     [TestPrototypes]
     private const string Prototypes = @"
@@ -26,11 +27,10 @@ public sealed class SaveLoadReparentTest
     [Test]
     public async Task Test()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var entities = server.ResolveDependency<IEntityManager>();
-        var maps = server.ResolveDependency<IMapManager>();
         var mapLoader = entities.System<MapLoaderSystem>();
         var bodySystem = entities.System<SharedBodySystem>();
         var containerSystem = entities.System<SharedContainerSystem>();
@@ -39,7 +39,7 @@ public sealed class SaveLoadReparentTest
         await server.WaitAssertion(() =>
         {
             mapSys.CreateMap(out var mapId);
-            maps.CreateGrid(mapId);
+            mapSys.CreateGridEntity(mapId);
             var human = entities.SpawnEntity("HumanBodyDummy", new MapCoordinates(0, 0, mapId));
 
             Assert.That(entities.HasComponent<BodyComponent>(human), Is.True);
@@ -176,7 +176,5 @@ public sealed class SaveLoadReparentTest
                 entities.DeleteEntity(map);
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

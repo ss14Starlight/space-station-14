@@ -9,49 +9,49 @@
   "states": [
     {
       "name": "bag",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord"
+      "copyright": "Bag sprites by SevenShades, label sprites by Vermidia, Green modification by born_stellar on discord"
     },
     {
       "name": "bag-inhand-left",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord",
+      "copyright": "Bag sprites by SevenShades, label sprites by Vermidia, Green modification by born_stellar on discord",
       "directions": 4
     },
     {
       "name": "bag-inhand-right",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord",
+      "copyright": "Bag sprites by SevenShades, label sprites by Vermidia, Green modification by born_stellar on discord",
       "directions": 4
     },
     {
       "name": "bag_folded",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord"
+      "copyright": "Bag sprites by SevenShades, label sprites by Vermidia, Green modification by born_stellar on discord"
     },
     {
       "name": "paper",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
+      "copyright": "Bag sprites by SevenShades, label sprites by Vermidia"
     },
     {
       "name": "open_overlay",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
+      "copyright": "Bag sprites by SevenShades, label sprites by Vermidia"
     },
     {
       "name": "bounty",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
+      "copyright": "Bag sprites by SevenShades, label sprites by Vermidia"
     },
     {
       "name": "captains_paper",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
+      "copyright": "Bag sprites by SevenShades, label sprites by Vermidia"
     },
     {
       "name": "invoice",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
+      "copyright": "Bag sprites by SevenShades, label sprites by Vermidia"
     },
     {
       "name": "locked",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
+      "copyright": "Bag sprites by SevenShades, label sprites by Vermidia"
     },
     {
       "name": "unlocked",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
+      "copyright": "Bag sprites by SevenShades, label sprites by Vermidia"
     }
   ]
 }

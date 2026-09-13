@@ -204,6 +204,7 @@
 #CE's hardsuit
 - type: entity
   id: SuitStorageCE
+  categories: [ ShouldMapStation ] # Starlight
   parent: SuitStorageBase
   suffix: Chief Engineer
   components:
@@ -217,6 +218,7 @@
 #CMO's hardsuit
 - type: entity
   id: SuitStorageCMO
+  categories: [ ShouldMapStation ] # Starlight
   parent: SuitStorageBase
   suffix: Chief Medical Officer
   components:
@@ -230,6 +232,7 @@
 #RD's hardsuit
 - type: entity
   id: SuitStorageRD
+  categories: [ ShouldMapStation ] # Starlight
   parent: SuitStorageBase
   suffix: Research Director
   components:
@@ -243,6 +246,7 @@
 #HOS's hardsuit
 - type: entity
   id: SuitStorageHOS
+  categories: [ ShouldMapStation ] # Starlight
   parent: SuitStorageBase
   suffix: Head of Security
   components:
@@ -256,6 +260,7 @@
 #Warden's hardsuit
 - type: entity
   id: SuitStorageWarden
+  categories: [ ShouldMapStation ] # Starlight
   parent: SuitStorageBase
   suffix: Warden
   components:
@@ -269,6 +274,7 @@
 #Captain's hardsuit
 - type: entity
   id: SuitStorageCaptain
+  categories: [ ShouldMapStation ] # Starlight
   parent: SuitStorageBase
   suffix: Captain
   components:

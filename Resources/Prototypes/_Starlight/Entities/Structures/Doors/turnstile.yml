@@ -1,36 +1,78 @@
 # Regular turnstiles
 
 - type: entity
+  id: DoorElectronicsTurnstileCommand
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - Command
+  - type: AccessReader
+    access: [["Command"]]
+
+- type: entity
   id: TurnstileCommand
   parent: Turnstile
   suffix: Command
   components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileCommand ]
+
+- type: entity
+  id: DoorElectronicsTurnstileSecurity
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - Security
   - type: AccessReader
-    access: [["Command"]]
+    access: [["Security"]]
 
 - type: entity
   id: TurnstileSecurity
   parent: Turnstile
   suffix: Security
   components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileSecurity ]
+
+- type: entity
+  id: DoorElectronicsTurnstileArmory
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - Armory
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Armory"]]
 
 - type: entity
   id: TurnstileArmory
   parent: Turnstile
   suffix: Armory
   components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileArmory ]
+
+- type: entity
+  id: DoorElectronicsTurnstileSyndicate
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
   - type: AccessReader
-    access: [["Armory"]]
+    access: [["SyndicateAgent"]]
 
 - type: entity
   id: TurnstileSyndicate
   parent: Turnstile
   suffix: Syndicate
   components:
-  - type: AccessReader
-    access: [["SyndicateAgent"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileSyndicate ]
 
 # CentComm turnstiles
 
@@ -46,13 +88,34 @@
           map: [ "enum.TurnstileVisualLayers.Base" ]
 
 - type: entity
+  id: DoorElectronicsTurnstileCentCommCommand
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - Command
+  - type: AccessReader
+    access: [["Command"]]
+
+- type: entity
   id: TurnstileCentCommCommand
   parent: TurnstileCentComm
   name: central command turnstile
   suffix: Command
   components:
-    - type: AccessReader
-      access: [["Command"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileCentCommCommand ]
+
+- type: entity
+  id: DoorElectronicsTurnstileCentCommCentralCommand
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - CentralCommand
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   id: TurnstileCentCommCentralCommand
@@ -60,8 +123,17 @@
   name: central command turnstile
   suffix: Central Command
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileCentCommCentralCommand ]
+
+- type: entity
+  id: DoorElectronicsTurnstileCentCommDebrief
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+  - type: AccessReader
+    access: [["Debrief"]]
 
 - type: entity
   id: TurnstileCentCommDebrief
@@ -69,8 +141,9 @@
   name: central command turnstile
   suffix: Debrief
   components:
-    - type: AccessReader
-      access: [["Debrief"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsTurnstileCentCommDebrief ]
     - type: Turnstile
       denySound:
         path: /Audio/Machines/airlock_deny.ogg

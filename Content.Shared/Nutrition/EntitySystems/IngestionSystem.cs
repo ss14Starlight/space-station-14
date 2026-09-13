@@ -1,4 +1,4 @@
-﻿using Content.Shared.Administration.Logs;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
@@ -19,6 +19,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Tools.EntitySystems;
+using Content.Shared.Tools.Systems;
 using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
@@ -27,6 +28,7 @@ using Robust.Shared.Prototypes;
 #region Starlight
 using Content.Shared.Body.Organ;
 using Content.Shared._Starlight.Abstract.Extensions;
+using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
 #endregion
 
@@ -71,7 +73,7 @@ public sealed partial class IngestionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<EdibleComponent, ComponentInit>(OnEdibleInit);
+        SubscribeLocalEvent<EdibleComponent, MapInitEvent>(OnEdibleInit, after: [typeof(SharedSolutionContainerSystem)]); // Starlight
 
         // Interactions
         SubscribeLocalEvent<EdibleComponent, UseInHandEvent>(OnUseEdibleInHand, after: [typeof(OpenableSystem), typeof(InventorySystem), typeof(ActivatableUISystem)]);
@@ -88,11 +90,11 @@ public sealed partial class IngestionSystem : EntitySystem
 
         // Verbs
         SubscribeLocalEvent<EdibleComponent, GetVerbsEvent<AlternativeVerb>>(AddEdibleVerbs);
-        SubscribeLocalEvent<EdibleComponent, SolutionContainerChangedEvent>(OnSolutionContainerChanged);
+        SubscribeLocalEvent<EdibleComponent, SolutionChangedEvent>(OnSolutionContainerChanged);
 
         // Misc
         SubscribeLocalEvent<EdibleComponent, AttemptShakeEvent>(OnAttemptShake);
-        SubscribeLocalEvent<EdibleComponent, BeforeFullySlicedEvent>(OnBeforeFullySliced);
+        SubscribeLocalEvent<EdibleComponent, BeforeToolRefinedEvent>(OnBeforeToolRefined);
 
         InitializeBlockers();
         InitializeUtensils();
@@ -140,19 +142,10 @@ public sealed partial class IngestionSystem : EntitySystem
         return ingestionEv.Handled;
     }
 
-    private void OnEdibleInit(Entity<EdibleComponent> entity, ref ComponentInit args)
+    private void OnEdibleInit(Entity<EdibleComponent> entity, ref MapInitEvent args)
     {
-        // Beakers, Soap and other items have drainable, and we should be able to eat that solution.
-        // This ensures that tests fail when you configured the yaml from and EdibleComponent uses the wrong solution,
-        if (TryComp<DrainableSolutionComponent>(entity, out var existingDrainable))
-            entity.Comp.Solution = existingDrainable.Solution;
-        else
-            _solutionContainer.EnsureSolution(entity.Owner, entity.Comp.Solution, out _);
-
+        _solutionContainer.EnsureSolution(entity.Owner, entity.Comp.Solution, out _);
         UpdateAppearance(entity);
-
-        if (TryComp(entity, out RefillableSolutionComponent? refillComp))
-            refillComp.Solution = entity.Comp.Solution;
     }
 
     #region Appearance System
@@ -166,8 +159,12 @@ public sealed partial class IngestionSystem : EntitySystem
         _appearance.SetData(entity, FoodVisuals.Visual, drainAvailable.Float(), entity.Comp2);
     }
 
-    private void OnSolutionContainerChanged(Entity<EdibleComponent> entity, ref SolutionContainerChangedEvent args)
+    private void OnSolutionContainerChanged(Entity<EdibleComponent> entity, ref SolutionChangedEvent args)
     {
+        // The changes are already networked as part of the same game state.
+        if (_timing.ApplyingState)
+            return;
+
         UpdateAppearance(entity);
     }
 
@@ -381,13 +378,25 @@ public sealed partial class IngestionSystem : EntitySystem
         _reaction.DoEntityReaction(entity, split, ReactionMethod.Ingestion);
 
         // Everything is good to go item has been successfuly eaten
-        var afterEv = new IngestedEvent(args.User, entity, split, forceFed);
+        var afterEv = new IngestedEvent(args.User, entity, split, forceFed, beforeEv.Transfer >= beforeEv.Max);
         RaiseLocalEvent(food, ref afterEv);
 
-        _stomach.TryTransferSolution(stomachToUse.Value.Owner, split, stomachToUse);
+        #region Starlight
+        if (!_stomach.TryTransferSolution((stomachToUse.Value, stomachToUse.Value.Comp), split))
+        {
+            // Stackable foods already restored the split earlier
+            if (!beforeEv.Refresh)
+                _solutionContainer.TryAddSolution(solution.Value, split);
+
+            return;
+        }
+        #endregion
 
         if (!afterEv.Destroy)
         {
+            if (beforeEv.Transfer >= beforeEv.Max)
+                return;
+
             args.Repeat = afterEv.Repeat;
             return;
         }
@@ -475,7 +484,7 @@ public sealed partial class IngestionSystem : EntitySystem
         {
             var targetName = Identity.Entity(args.Target, EntityManager);
             var userName = Identity.Entity(args.User, EntityManager);
-            _popup.PopupEntity(Loc.GetString("edible-force-feed-success", ("user", userName), ("verb", edible.Verb), ("flavors", flavors)), entity, entity);
+            _popup.PopupEntity(Loc.GetString("edible-force-feed-success", ("user", userName), ("verb", edible.Verb), ("flavors", flavors), ("satiated", args.Satiated)), entity, entity);
 
             _popup.PopupClient(Loc.GetString("edible-force-feed-success-user", ("target", targetName), ("verb", edible.Verb)), args.User, args.User);
 
@@ -485,7 +494,7 @@ public sealed partial class IngestionSystem : EntitySystem
         }
         else
         {
-            _popup.PopupPredicted(Loc.GetString(edible.Message, ("food", entity.Owner), ("flavors", flavors)),
+            _popup.PopupPredicted(Loc.GetString(edible.Message, ("food", entity.Owner), ("flavors", flavors), ("satiated", args.Satiated)),
                 Loc.GetString(edible.OtherMessage),
                 args.User,
                 args.User);
@@ -530,7 +539,7 @@ public sealed partial class IngestionSystem : EntitySystem
         SpawnTrash(entity, args.User);
     }
 
-    private void OnBeforeFullySliced(Entity<EdibleComponent> entity, ref BeforeFullySlicedEvent args)
+    private void OnBeforeToolRefined(Entity<EdibleComponent> entity, ref BeforeToolRefinedEvent args)
     {
         SpawnTrash(entity, args.User);
     }

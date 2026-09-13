@@ -4,7 +4,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 
@@ -204,7 +203,7 @@ public sealed partial class NPCCombatSystem
 
             EntityCoordinates targetCordinates;
 
-            if (_mapManager.TryFindGridAt(xform.MapID, targetPos, out var gridUid, out var mapGrid))
+            if (_map.TryFindGridAt(xform.MapID, targetPos, out var gridUid, out var mapGrid))
             {
                 targetCordinates = new EntityCoordinates(gridUid, _map.WorldToLocal(gridUid, mapGrid, targetSpot));
             }

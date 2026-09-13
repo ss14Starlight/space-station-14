@@ -73,6 +73,8 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
     /// </summary>
     private bool _isProcessingRift = false;
 
+    private readonly List<EntityUid> _nearbyHumanoids = new();
+
     public override void Initialize()
     {
         base.Initialize();
@@ -209,20 +211,25 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
             var riftTransform = Transform(uid);
 
             // Get all entities with HumanoidAppearanceComponent within a small radius
-            var nearbyHumanoids = EntityManager.EntityQuery<HumanoidAppearanceComponent, TransformComponent>()
-                .Where(pair =>
+            _nearbyHumanoids.Clear();
+            var query = EntityQueryEnumerator<HumanoidAppearanceComponent, TransformComponent>();
+            while (query.MoveNext(out var nearbyUid, out var nearbyHumanoid, out var nearbyTransform))
+            {
+                // 2 unit radius
+                if (riftTransform.MapID != nearbyTransform.MapID ||
+                    (_transform.GetWorldPosition(riftTransform) - _transform.GetWorldPosition(nearbyTransform))
+                    .LengthSquared() >= 4)
                 {
-                    var (_, otherTransform) = pair;
-                    return riftTransform.MapID == otherTransform.MapID &&
-                           (_transform.GetWorldPosition(riftTransform) - _transform.GetWorldPosition(otherTransform)).LengthSquared() < 4; // 2 unit radius
-                })
-                .Select(pair => pair.Item1.Owner)
-                .ToList();
+                    continue;
+                }
 
-            if (nearbyHumanoids.Count > 0)
+                _nearbyHumanoids.Add(nearbyUid);
+            }
+
+            if (_nearbyHumanoids.Count > 0)
             {
                 // Use the first nearby humanoid
-                var humanoid = nearbyHumanoids[0];
+                var humanoid = _nearbyHumanoids[0];
                 var name = Identity.Name(humanoid, EntityManager);
 
                 if (!string.IsNullOrEmpty(name))
@@ -461,11 +468,11 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
         int activeRiftCount = 0;
         EntityUid rift = default; // there has to be a better way to do this? (starlight)
         var riftsQuery = EntityQueryEnumerator<RevSupplyRiftComponent, DragonRiftComponent>();
-        while (riftsQuery.MoveNext(out _, out var revRift, out var dragonRift))
+        while (riftsQuery.MoveNext(out var uid, out var revRift, out var dragonRift))
         {
             if (revRift.State == DragonRiftState.Finished)
             {
-                rift = revRift.Owner;
+                rift = uid;
                 activeRiftCount++;
             }
 
@@ -553,22 +560,22 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
     /// Checks if a rift has been destroyed and updates the listing accordingly.
     /// This is called by the StoreSystem whenever listings are refreshed.
     /// </summary>
-    /// <param name="storeComp">The store component being refreshed</param>
-    public void CheckRiftDestroyedAndUpdateListing(StoreComponent storeComp)
+    /// <param name="ent">The store being refreshed</param>
+    public void CheckRiftDestroyedAndUpdateListing(Entity<StoreComponent> ent)
     {
         // If no rift has been destroyed, we don't need to do anything
         if (!_riftDestroyed)
             return;
 
         // Find the supply rift listing
-        foreach (var listing in storeComp.FullListingsCatalog)
+        foreach (var listing in ent.Comp.FullListingsCatalog)
         {
             if (listing.ID == RevSupplyRiftListingId)
             {
                 // Store the original description if we haven't already
-                if (!_originalDescriptions.TryGetValue(storeComp.Owner, out _))
+                if (!_originalDescriptions.TryGetValue(ent, out _))
                 {
-                    _originalDescriptions[storeComp.Owner] = listing.Description ?? "";
+                    _originalDescriptions[ent] = listing.Description ?? "";
                 }
 
                 // Update the description with the destroyed message

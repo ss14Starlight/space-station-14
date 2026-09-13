@@ -1,3 +1,5 @@
+using Content.Shared._ST.Interaction;
+using Content.Shared._Starlight.Movement.Pulling.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
@@ -89,6 +91,8 @@ public sealed partial class PullingSystem : EntitySystem
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ReleasePulledObject, InputCmdHandler.FromDelegate(OnReleasePulledObject, handle: false))
             .Register<PullingSystem>();
+
+        InitializeTrain(); // Starlight
     }
 
     private void OnTargetHandcuffed(Entity<ActivePullerComponent> ent, ref TargetHandcuffedEvent args)
@@ -304,6 +308,8 @@ public sealed partial class PullingSystem : EntitySystem
             args.ModifySpeed(walkMod, sprintMod);
             return;
         }
+
+        if (HasComp<PullTrainComponent>(uid)) return; // Starlight
 
         args.ModifySpeed(component.WalkSpeedModifier, component.SprintSpeedModifier);
     }
@@ -526,6 +532,8 @@ public sealed partial class PullingSystem : EntitySystem
         if (!TryComp(pullerUid, out PhysicsComponent? pullerPhysics) || !TryComp(pullableUid, out PhysicsComponent? pullablePhysics))
             return false;
 
+        if (TryComp<PullTrainComponent>(pullerUid, out var train) && CoupleToTrain(pullerUid, pullerComp, train, pullableUid) is { } coupled) return coupled; // Starlight
+
         // Ensure that the puller is not currently pulling anything.
         if (TryComp<PullableComponent>(pullerComp.Pulling, out var oldPullable)
             && !TryStopPull(pullerComp.Pulling.Value, oldPullable, pullerUid))
@@ -555,7 +563,7 @@ public sealed partial class PullingSystem : EntitySystem
 
         // Pulling confirmed
 
-        _interaction.DoContactInteraction(pullableUid, pullerUid);
+        _interaction.DoContactInteraction(pullerUid, pullableUid,null, true, interactionParticleType: StellarInteractionParticleType.Pull); // Stellar - Interaction particles
 
         // Use net entity so it's consistent across client and server.
         pullableComp.PullJointId = $"pull-joint-{GetNetEntity(pullableUid)}";

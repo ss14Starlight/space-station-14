@@ -1,0 +1,64 @@
+- type: entity
+  id: LockerClownFilled
+  suffix: Filled
+  parent: LockerClown
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerClown
+
+- type: entityTable
+  id: FillLockerClown
+  table: !type:AllSelector
+    children:
+    - id: ClothingMaskClown
+    - id: ClothingBackpackClown
+    - id: ClothingHeadsetService
+    - id: ClothingHandsGlovesColorOrange
+    - id: ClothingShoesClown
+    - id: ClothingUniformJumpskirtClown
+    - id: ClothingUniformJumpsuitClown
+    - id: PlushieLizardJobClown
+      prob: 0.02
+    - id: JailFree
+      prob: 0.5
+    - id: SprayFlowerPin
+      prob: 0.25
+    - id: DrinkSpaceGlue
+      prob: 0.25
+    - id: DrinkSpaceLube
+      prob: 0.25
+    - id: FoodPieBananaCream
+      prob: 0.25
+    - id: FoodBanana
+      prob: 0.25
+
+- type: entity
+  id: LockerMimeFilled
+  suffix: Filled
+  parent: LockerMime
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerMime
+
+- type: entityTable
+  id: FillLockerMime
+  table: !type:AllSelector
+    children:
+    - id: ClothingMaskMime
+    - id: ClothingBackpackMime
+    - id: ClothingHeadsetService
+    - id: ClothingHandsGlovesColorWhite
+    - id: ClothingHandsGlovesColorBlack
+    - id: ClothingHeadHatMimesoft
+    - id: ClothingShoesColorWhite
+    - id: ClothingShoesColorBlack
+    - id: ClothingUniformJumpskirtMime
+    - id: ClothingUniformJumpsuitMime
+    - id: PlushieLizardJobMime
+      prob: 0.02
+    - id: JailFree
+      prob: 0.5

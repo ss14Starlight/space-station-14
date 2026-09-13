@@ -85,6 +85,16 @@
 
 - type: entity
   parent: FaxMachineServiceBase
+  id: FaxMachineServiceBotany
+  suffix: "SRV: Botany"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Botany"
+      order: 510
+
+- type: entity
+  parent: FaxMachineServiceBase
   id: FaxMachineServiceShrine
   suffix: "SRV: Shrine"
   components:

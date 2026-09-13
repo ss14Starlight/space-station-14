@@ -32,6 +32,9 @@ using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Server._Starlight.Objectives.Components;
+using Content.Shared.Flash;
+using Content.Shared.Store;
+
 // Starlight edit end
 
 namespace Content.Server._Starlight.Changeling;
@@ -41,6 +44,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private StatusEffectsSystem _statusEffect = default!;
     [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private SharedFlashSystem _flashSystem = default!;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
@@ -79,7 +83,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, ActionLastResortEvent>(OnLastResort);
         SubscribeLocalEvent<ChangelingComponent, ActionLesserFormEvent>(OnLesserForm);
         SubscribeLocalEvent<ChangelingComponent, ActionSpacesuitEvent>(OnSpacesuit);
-        SubscribeLocalEvent<ChangelingComponent, ActionProtogenDisguiseEvent>(OnProtogenDisguise); // Starlight
+        SubscribeLocalEvent<ChangelingComponent, ActionNeocyteDisguiseEvent>(OnNeocyteDisguise); // Starlight
         SubscribeLocalEvent<ChangelingComponent, ActionHivemindAccessEvent>(OnHivemindAccess);
         SubscribeLocalEvent<ChangelingComponent, FakeMindShieldToggleEvent>(OnFakeMindShieldToggle);
 
@@ -188,7 +192,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         if (TryComp<StoreComponent>(uid, out var store))
         {
-            _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { "EvolutionPoint", bonusEvolutionPoints } }, uid, store);
+            _store.TryAddCurrency(new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> { { "EvolutionPoint", bonusEvolutionPoints } }, uid, store);
             _store.UpdateUserInterface(uid, uid, store);
         }
 
@@ -373,7 +377,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
 
         var target = args.Target;
-        var fakeArmblade = EntityManager.SpawnEntity(FakeArmbladePrototype, Transform(target).Coordinates);
+        var fakeArmblade = Spawn(FakeArmbladePrototype, Transform(target).Coordinates);
         if (!_hands.TryPickupAnyHand(target, fakeArmblade))
         {
             QueueDel(fakeArmblade);
@@ -411,8 +415,11 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-passive-disable"), uid, uid); // Starlight
             return;
         }
+        // Starlight START
+        var flashImmunity = EnsureComp<FlashImmunityComponent>(uid);
+        _flashSystem.SetShowInExamine(uid, false, flashImmunity);
+        // Starlight END
 
-        EnsureComp<FlashImmunityComponent>(uid);
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
     }
     #region Starlight
@@ -597,11 +604,11 @@ public sealed partial class ChangelingSystem : EntitySystem
         PlayMeatySound(uid, comp);
     }
     #region Starlight
-    public void OnProtogenDisguise(EntityUid uid, ChangelingComponent comp, ref ActionProtogenDisguiseEvent args)
+    public void OnNeocyteDisguise(EntityUid uid, ChangelingComponent comp, ref ActionNeocyteDisguiseEvent args)
     {
-        if (!TryToggleItem(uid, ProtogenDisguisePrototype, comp, "outerClothing2"))
+        if (!TryToggleItem(uid, NeocyteDisguisePrototype, comp, "outerClothing2"))
         {
-            _popup.PopupEntity(Loc.GetString("changeling-equip-protogen-fail"), uid, uid);
+            _popup.PopupEntity(Loc.GetString("changeling-equip-neocyte-fail"), uid, uid);
             comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
             return;
         }

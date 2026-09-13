@@ -23,6 +23,7 @@ using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
 #region Starlight
 using Content.Shared._Starlight.TextToSpeech;
+using Content.Shared._Starlight.Actions.Components;
 #endregion
 
 namespace Content.Shared.Humanoid;
@@ -440,7 +441,8 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
         var oldSex = humanoid.Sex;
         humanoid.Sex = sex;
         humanoid.MarkingSet.EnsureSexes(sex, _markingManager);
-        RaiseLocalEvent(uid, new SexChangedEvent(oldSex, sex));
+        var sexChangedEvent = new SexChangedEvent(oldSex, sex); // Starlight
+        RaiseLocalEvent(uid, ref sexChangedEvent); // Starlight
 
         if (sync)
         {
@@ -547,7 +549,18 @@ public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
 
         humanoid.Age = profile.Age;
 
-        humanoid.CustomSpecieName = profile.CustomSpecieName; // Starlight
+        //Starlight Start
+        humanoid.CustomSpecieName = profile.CustomSpecieName;
+
+        if(TryComp(uid, out ShellComponent? shell))
+        {
+            shell.OriginalMarkings.Clear();
+            foreach(var markingCategory in humanoid.MarkingSet.Markings)
+                foreach(var mark in markingCategory.Value)
+                    shell.OriginalMarkings.Add(mark);
+        }
+
+        //Starlight End
 
         Dirty(uid, humanoid);
         var update = new MarkingsUpdateEvent(); //starlight

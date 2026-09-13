@@ -49,8 +49,9 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
 
         // Gets the location of the user
         var posText = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString(target.Value));
+        var nameText = FormattedMessage.RemoveMarkupOrThrow(MetaData(target.Value).EntityName); // Starlight: Sanitize name
 
-        var message = Loc.GetString(messageId, ("user", target.Value), ("position", posText));
+        var message = Loc.GetString(messageId, ("user", nameText), ("position", posText)); // Starlight: Sanitized name
         #region Starlight
         //For global announcements, ie, DAGD nuke codes, so they can't just sabotage comms. Could also use this to announce when someone important is dead.
         if (ent.Comp.Global)
@@ -65,7 +66,7 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
         // Sends a message to the radio channels specified by the implant
         foreach (var radioChannel in ent.Comp.RadioChannel)
         {
-            _radio.SendRadioMessage(ent.Owner, message, _prototypeManager.Index(radioChannel), ent.Owner); //Starlight swapped ent.Comp.RadioChannel for radioChannel
+            _radio.SendRadioMessage(ent.Owner, message, _prototypeManager.Index(radioChannel), ent.Owner, escapeMarkup: false); //Starlight swapped ent.Comp.RadioChannel for radioChannel, disabled escapeMarkup to allow for stylized messages
         }
         #endregion
     }

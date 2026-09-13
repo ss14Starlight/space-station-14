@@ -21,7 +21,7 @@ public sealed partial class MetalHydrogenReaction : IGasReactionEffect
     private const float MinPressure = 10000f;
     private const float PressureThreshold = 20000f;
     private const float TemperatureThreshold = 50f;
-    private const float BaseRate = 0.10f;
+    private const float BaseRate = 0.20f; // Starlight: Was 0.10f
 
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {

@@ -159,7 +159,9 @@ namespace Content.Shared.Atmos
         public const float MinimumHeatCapacity = 0.0003f;
 
         /// <summary>
-        ///     For the purposes of making space "colder"
+        /// Allows Atmospherics to cool down rooms during spacing
+        /// by assigning a fake heat capacity to space,
+        /// making space "actually cold" for gameplay reasons.
         /// </summary>
         public const float SpaceHeatCapacity = 7000f;
 
@@ -190,6 +192,11 @@ namespace Content.Shared.Atmos
             [Gas.Helium] = Loc.GetString("gas-helium-abbreviation"),
             [Gas.AntiNoblium] = Loc.GetString("gas-anti-noblium-abbreviation"),
             // Funkystation End: Funky atmos - /tg/ gases
+            #region Starlight
+            // Starlight gases!
+            [Gas.Ulnitranium] = Loc.GetString("gas-ulnitranium-abbreviation"),
+            [Gas.ZXA] = Loc.GetString("gas-zxa-abbreviation"),
+            #endregion
         };
 
         #region Excited Groups
@@ -219,13 +226,19 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 20; // Funkystation Edit: 9 -> 20
+        public const int TotalNumberOfGases = 22; // Starlight Edit: 9 -> 22
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
         ///     Set to the closest multiple of 4 relative to <see cref="TotalNumberOfGases"/> for SIMD reasons.
         /// </summary>
         public const int AdjustedNumberOfGases = ((TotalNumberOfGases + 3) / 4) * 4;
+
+        #region Starlight
+        public const float AmmoniaProductionEnergyReleased = 67e3f;
+        public const float AmmoniaNegativeDeltaEnthalpyOverR = 11089.4f;
+        public const float AmmoniaDeltaEntropyOverR = -20.838f;
+        #endregion
 
         /// <summary>
         ///     Amount of heat released per mole of burnt hydrogen or tritium (hydrogen isotope)
@@ -394,6 +407,12 @@ namespace Content.Shared.Atmos
         public const float ProtoNitrateBZConversionEnergy = -10000f;
 
         /// <summary>
+        ///     Starlight, based on Funky Atmos
+        ///     The amount of energy 1 mol of Ulnitranium forming releases.
+        /// </summary>
+        public const float UlnitraniumProductionEnergy = 350;
+
+        /// <summary>
         ///     Determines at what pressure the ultra-high pressure red icon is displayed.
         /// </summary>
         public const float HazardHighPressure = 550f;
@@ -454,7 +473,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     The default pressure at which pumps and powered equipment max out at, in kPa.
         /// </summary>
-        public const float MaxOutputPressure = 9000; ///Starlight edit
+        public const float MaxOutputPressure = 4500;
 
         /// <summary>
         ///     The default maximum speed powered equipment can work at, in L/s.
@@ -492,5 +511,10 @@ namespace Content.Shared.Atmos
         Helium = 18,
         AntiNoblium = 19,
         // Funkystation End: Funky atmos - /tg/ gases
+        #region Starlight
+        // Starlight gases!
+        Ulnitranium = 20,
+        ZXA = 21,
+        #endregion
     }
 }

@@ -5,7 +5,6 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Vocalization.Systems;
 using Content.Shared.Cargo;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Power;
@@ -246,7 +245,7 @@ namespace Content.Server.VendingMachines
                         _playerResources.TryUpdateResource(buyerUid, "credits", -price);
                         vendComponent.DebitApplied = true;
                         Popup.PopupEntity($"Debited {price}\u20a1. Balance: {balance -= price}\u20a1", uid, buyerUid);
-                        SendBalanceUpdate(uid, buyerUid, (int)(balance -= price));
+                        SendBalanceUpdate(uid, buyerUid, (int)(balance -= price)!);
 
                         // Alogs
                         _adminLogger.Add(

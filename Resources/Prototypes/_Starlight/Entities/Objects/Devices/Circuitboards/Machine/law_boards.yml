@@ -1,19 +1,4 @@
 - type: entity
-  id: SyndimovCircuitBoard
-  parent: [BaseElectronics, BaseSyndicateContraband]
-  name: law board (Syndimov)
-  components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: std_mod
-  - type: SiliconLawProvider
-    laws: SyndimovLawset
-    lawUploadSound: /Audio/Ambience/Antag/silicon_lawboard_antimov.ogg
-    IsLawboard: true
-  - type: StaticPrice
-    price: 1000
-
-- type: entity
   id: PanicmovCircuitBoard
   parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Panicmov)

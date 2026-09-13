@@ -48,7 +48,11 @@ public abstract partial class SharedAnomalySystem : EntitySystem
 
     private void OnAnomalyThrowStart(Entity<AnomalyComponent> ent, ref MeleeThrowOnHitStartEvent args)
     {
-        if (!TryComp<CorePoweredThrowerComponent>(args.Weapon, out var corePowered) || !TryComp<PhysicsComponent>(ent, out var body))
+        // Starlight edit Start: Added CanBePunched
+        if (!ent.Comp.CanBePunched ||
+            !TryComp<CorePoweredThrowerComponent>(args.Weapon, out var corePowered) ||
+            !TryComp<PhysicsComponent>(ent, out var body))
+        // Starlight edit End
             return;
 
         // anomalies are static by default, so we have set them to dynamic to be throwable
@@ -465,6 +469,9 @@ public abstract partial class SharedAnomalySystem : EntitySystem
 
             if (!settings.CanSpawnOnEntities)
             {
+                // If it can't spawn on entities, ensure that maximum one entity will be spawned here this pulse.
+                tilerefs.Remove(tileref);
+
                 var valid = true;
                 foreach (var ent in _map.GetAnchoredEntities(xform.GridUid.Value, grid, tileref.GridIndices))
                 {
@@ -481,7 +488,6 @@ public abstract partial class SharedAnomalySystem : EntitySystem
                 }
                 if (!valid)
                 {
-                    tilerefs.Remove(tileref);
                     continue;
                 }
             }
@@ -516,6 +522,19 @@ public abstract partial class SharedAnomalySystem : EntitySystem
             return visual.Value;
 
         return AnomalyStabilityVisuals.Stable;
+    }
+
+    // Starlight
+    public void ShuffleParticlesEffect(Entity<AnomalyComponent> anomaly)
+    {
+        var particles = new List<AnomalousParticleType>
+            { AnomalousParticleType.Delta, AnomalousParticleType.Epsilon, AnomalousParticleType.Zeta, AnomalousParticleType.Sigma };
+
+        anomaly.Comp.SeverityParticleType = Random.PickAndTake(particles);
+        anomaly.Comp.DestabilizingParticleType = Random.PickAndTake(particles);
+        anomaly.Comp.WeakeningParticleType = Random.PickAndTake(particles);
+        anomaly.Comp.TransformationParticleType = Random.PickAndTake(particles);
+        Dirty(anomaly);
     }
 }
 

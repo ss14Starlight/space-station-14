@@ -2,7 +2,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.Trinary.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Atmos;
@@ -249,5 +248,18 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             args.DeviceFlipped = inletOne != null && inletTwo != null && inletOne.CurrentPipeDirection.ToDirection() == inletTwo.CurrentPipeDirection.ToDirection().GetClockwise90Degrees();
         }
+
+        #region Starlight
+
+        public void Set(EntityUid uid, GasMixerComponent component, bool value)
+        {
+            if (component.Enabled == value) return;
+            component.Enabled = value;
+            UpdateAppearance(uid, component);
+            DirtyUI(uid, component);
+        }
+
+        #endregion
     }
 }
+

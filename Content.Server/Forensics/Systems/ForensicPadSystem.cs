@@ -5,7 +5,6 @@ using Content.Shared.Forensics;
 using Content.Shared.Forensics.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
-using Content.Shared.Inventory;
 using Content.Shared.Labels.EntitySystems;
 
 namespace Content.Server.Forensics

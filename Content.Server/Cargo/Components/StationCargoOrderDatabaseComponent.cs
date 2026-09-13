@@ -17,7 +17,7 @@ public sealed partial class StationCargoOrderDatabaseComponent : Component
     /// Maximum amount of orders a station is allowed, approved or not.
     /// </summary>
     [DataField]
-    public int Capacity = 20;
+    public int Capacity = 70; // Starlight: Your limits cannot stop me.
 
     [ViewVariables]
     public IEnumerable<CargoOrderData> AllOrders => Orders.SelectMany(p => p.Value);

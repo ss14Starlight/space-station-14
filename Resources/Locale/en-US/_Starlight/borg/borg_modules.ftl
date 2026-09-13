@@ -1,5 +1,6 @@
 borg-slot-papers-empty = Documents and Stamps
-borg-slot-ore-empty = Ore
+borg-slot-idstamps-empty = PDAs, IDs and Stamps
+borg-slot-ore-ticket-empty = Ore and Tickets
 borg-slot-fuel-empty = Fuel tanks
 borg-slot-seeds-empty = Seeds
 borg-slot-syringe-empty = Syringes
@@ -17,3 +18,4 @@ borg-slot-knives-empty = Knives
 borg-slot-pkaupgrade-empty = PKA Upgrades
 borg-slot-goliath-empty = Goliath Plates
 borg-slot-rollerbeds-empty = Body Bags and RollerBeds
+borg-slot-music-media-empty = Vinyls and CDs

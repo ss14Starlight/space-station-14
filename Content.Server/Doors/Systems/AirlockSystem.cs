@@ -1,4 +1,3 @@
-using Content.Server.Power.Components;
 using Content.Server.Wires;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Doors.Components;

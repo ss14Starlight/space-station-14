@@ -55,3 +55,18 @@
   id: Gun6
   name: signal-port-name-gun-6
   description: signal-port-description-gun-6
+
+- type: sourcePort
+  id: SpawnTriggered
+  name: signal-port-name-spawn-triggered
+  description: signal-port-description-spawn-triggered
+
+- type: sourcePort
+  id: Enabled
+  name: signal-port-name-enabled
+  description: signal-port-description-enabled
+
+- type: sourcePort
+  id: Disabled
+  name: signal-port-name-disabled
+  description: signal-port-description-disabled

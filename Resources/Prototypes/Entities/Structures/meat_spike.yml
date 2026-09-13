@@ -1,5 +1,6 @@
 ﻿- type: entity
   id: KitchenSpike
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseStructure
   name: meat spike
   description: A spike for collecting meat from animals.

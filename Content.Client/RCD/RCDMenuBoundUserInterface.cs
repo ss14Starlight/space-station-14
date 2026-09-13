@@ -26,10 +26,11 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
             ["Lighting"] = ("rcd-component-lighting", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/lighting.png"))),
             // Starlight Start: RPD
             ["Piping"] = ("rpd-component-piping", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/fourway.png"))),
-            ["AtmosphericUtility"] = ("rpd-component-atmospheric-utility", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/port.png"))),
+            ["AtmosphericUtility"] = ("rpd-component-atmospheric-utility", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/v_gas_mixer.png"))),
             ["PumpsValves"] = ("rpd-component-pumps", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/pump_volume.png"))),
             ["Vents"] = ("rpd-component-vents", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/vent_passive.png"))),
             ["SensorsMonitors"] = ("rpd-component-sensors-monitors", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/airalarm.png"))),
+            ["InterfacesStorage"] = ("rpd-component-interfaces-storage", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/port.png"))),
             // Starlight End: RPD
             // Starlight Start: RPLD
             ["PlumbingDucts"] = ("rpld-component-ducts", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPLD/category_ducts.png"))),
@@ -132,7 +133,12 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
         if (_playerManager.LocalSession?.AttachedEntity == null)
             return;
 
-        var msg = Loc.GetString("rcd-component-change-mode", ("mode", Loc.GetString(proto.SetName)));
+        // Starlight-start
+        // Equivalent to EntitySystem.Name(uid), which is unavailable here as this is not a system.
+        var device = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
+        // Starlight-end
+
+        var msg = Loc.GetString("rcd-component-change-mode", ("device", device), ("mode", Loc.GetString(proto.SetName))); // Starlight-edit: name the actual device
 
         if (proto.Mode is RcdMode.ConstructTile or RcdMode.ConstructObject)
         {
@@ -144,7 +150,7 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
                 name = entProto.Name;
             }
 
-            msg = Loc.GetString("rcd-component-change-build-mode", ("name", name));
+            msg = Loc.GetString("rcd-component-change-build-mode", ("device", device), ("name", name)); // Starlight-edit: name the actual device
         }
 
         // Popup message
@@ -160,11 +166,11 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
             && proto.Prototype != null
             && _prototypeManager.TryIndex(proto.Prototype, out var entProto)) // don't use Resolve because this can be a tile
         {
-            tooltip = Loc.GetString(entProto.Name);
+            tooltip = entProto.Name; //Starlight: no name field?
         }
         else
         {
-            tooltip = Loc.GetString(proto.SetName);
+            tooltip = Loc.GetString(proto.SetName); //Starlight comment: Has name field?
         }
 
         tooltip = OopsConcat(char.ToUpper(tooltip[0]).ToString(), tooltip.Remove(0, 1));

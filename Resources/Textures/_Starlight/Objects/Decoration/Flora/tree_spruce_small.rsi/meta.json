@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 64,
+        "y": 90
+    },
+    "states": [
+        {
+            "name": "tree01",
+			"copyright": "Sprites by TheShuEd and Omsoyk"
+        },
+        {
+            "name": "tree02",
+			"copyright": "Sprites by TheShuEd and Omsoyk"
+        },
+        {
+            "name": "tree03",
+			"copyright": "Sprites by TheShuEd and Omsoyk"
+        },
+        {
+            "name": "tree04",
+			"copyright": "Sprites by TheShuEd and Omsoyk"
+        },
+        {
+            "name": "tree05",
+			"copyright": "Sprites by TheShuEd and Omsoyk"
+        },
+        {
+            "name": "tree06",
+			"copyright": "Sprites by TheShuEd and Omsoyk"
+        }
+    ]
+}

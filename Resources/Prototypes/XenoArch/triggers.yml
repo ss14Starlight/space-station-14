@@ -22,7 +22,7 @@
     TriggerPrying: 0.5
     TriggerScrewing: 0.5
     TriggerPulsing: 0.5
-    TriggerTimer: 0.25
+    #TriggerTimer: 0.25 # Starlight-edit: possibly unreliable, need to look into artifact's system to see why TriggerTimer sometimes causes malfunctions despite being so apparently simple. Uncomment once fixed or resolved.
     TriggerBlood: 1
     TriggerThrow: 1
     TriggerDeath: 1
@@ -242,8 +242,9 @@
     - Slime
     - AmmoniaBlood
     - ZombieBlood
-    - Sap # Starlight-start
-    - AvaliBlood
+    - Sap
+    - SulfurBlood
+    - AvaliBlood # Starlight-start
     - DarkBlood
     - ResomiBlood
     - CycloriteBlood # Starlight-end

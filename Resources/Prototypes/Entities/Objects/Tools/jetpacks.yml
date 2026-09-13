@@ -256,17 +256,17 @@
   suffix: Empty
   components:
   - type: Item
-    sprite: Objects/Tanks/Jetpacks/security.rsi
+    sprite: _Starlight/Objects/Tanks/Jetpacks/security_mini.rsi # Starlight - mini jetpack textures
   - type: Sprite
-    sprite: Objects/Tanks/Jetpacks/security.rsi
+    sprite: _Starlight/Objects/Tanks/Jetpacks/security_mini.rsi # Starlight - mini jetpack textures
   - type: Clothing
-    sprite: Objects/Tanks/Jetpacks/security.rsi
+    sprite: _Starlight/Objects/Tanks/Jetpacks/security_mini.rsi # Starlight - mini jetpack textures
 
 #Filled security
 - type: entity
   id: JetpackSecurityFilled
   parent: JetpackSecurity
-  name: security jetpack
+# name: security jetpack # Starlight - inherit name from parent
   suffix: Filled
   components:
   - type: GasTank

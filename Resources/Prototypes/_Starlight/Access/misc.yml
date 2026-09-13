@@ -10,7 +10,6 @@
     - Lawyer
     - Engineering
     - Medical
-    - Salvage
     - Cargo
     - Research
     - Service
@@ -33,9 +32,11 @@
     - Surgery
     - Paramedic
     - Mining
-    - SalvageLead
     - Mail
-    - Pirate
+    - Shuttle
+    - Journalism
+    - Clown
+    - Mime
 
 - type: accessLevel
   id: Debug1
@@ -83,6 +84,11 @@
   - Pirate
   - Blackstar
   - MedTak
+  - Casino
+  - Visitor
+  - ETO
+  - Salvage
+  - SalvageLead
 
 - type: accessGroup
   id: Syndicate
@@ -100,5 +106,5 @@
   - Pirate
 
 - type: accessLevel
-  id: MedTak
-  name: id-card-access-level-medtak
+  id: Visitor
+  name: id-card-access-level-visitor

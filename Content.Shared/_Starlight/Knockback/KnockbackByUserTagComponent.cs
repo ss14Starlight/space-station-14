@@ -20,5 +20,5 @@ public sealed partial class KnockbackData
     [DataField]
     public float Knockback = 0;
     [DataField]
-    public float StaminaMultiplier = 10;
+    public float StaminaMultiplier = 0;
 }

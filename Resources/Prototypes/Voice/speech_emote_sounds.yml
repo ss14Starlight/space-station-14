@@ -126,8 +126,10 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-    Laugh:
-      path: /Audio/Animals/lizard_happy.ogg
+    Laugh: # Starlight start
+      collection: MaleLaugh
+    Sneeze:
+      collection: MaleSneezes # Starlight end
     Honk:
       collection: BikeHorn
     Whistle:
@@ -156,40 +158,10 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-    Laugh:
-      path: /Audio/Animals/lizard_happy.ogg
-    Honk:
-      collection: BikeHorn
-    Whistle:
-      collection: Whistles
-    Crying:
-      collection: FemaleCry
-    Weh:
-      collection: Weh
-    Hew:
-      collection: Hew
-    Gasp:
-      collection: FemaleGasp
-    DefaultDeathgasp:
-      collection: FemaleDeathGasp
-    # Starlight-Start
-    Liss:
-      collection: ReptilianHiss
-    Lurr:
-      path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
-    Rattle:
-      path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
-    # Starlight-End
-
-- type: emoteSounds
-  id: UnisexReptilian
-  params:
-    variation: 0.125
-  sounds:
-    Scream:
-      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-    Laugh:
-      path: /Audio/Animals/lizard_happy.ogg
+    Laugh: # Starlight start
+      collection: FemaleLaugh
+    Sneeze:
+      collection: FemaleSneezes # Starlight end
     Honk:
       collection: BikeHorn
     Whistle:
@@ -634,6 +606,8 @@
       collection: Whistles
     Sigh:
       collection: MaleSigh
+    Yawn:
+      collection: VulpkaninYawns
     Scream:
       collection: VulpkaninScreams
     Growl:
@@ -651,8 +625,6 @@
     Yip:
       path: /Audio/_Starlight/Effects/yip.ogg #Starlight Yip
     # STARLIGHT START
-    Yawn:
-      collection: MaleYawn
     Snore:
       collection: Snores
     Weh:
@@ -682,6 +654,8 @@
       collection: Whistles
     Sigh:
       collection: FemaleSigh
+    Yawn:
+      collection: VulpkaninYawns
     Scream:
       collection: VulpkaninScreams
     Growl:
@@ -699,8 +673,6 @@
     Yip:
       path: /Audio/_Starlight/Effects/yip.ogg #Starlight Yip
     # STARLIGHT START
-    Yawn:
-      collection: FemaleYawn
     Snore:
       collection: Snores
     Weh:
@@ -754,6 +726,22 @@
       path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
       params:
         variation: 0.125
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Salute:
+      collection: Salutes
+
+- type: emoteSounds
+  id: MothBodyEmotes
+  sounds:
+    Flap:
+      path: /Audio/Voice/Moth/moth_flap.ogg
     Clap:
       collection: Claps
     ClapSingle:

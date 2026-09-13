@@ -1,5 +1,6 @@
 using Content.Shared.Item;
 using Content.Shared.Tag;
+using Content.Shared.Tools;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -26,6 +27,8 @@ namespace Content.Shared.Whitelist;
 ///   sizes:
 ///   - Tiny
 ///   - Large
+///   toolQuality: // Starlight, we support ToolQuality now
+///   - Slicing
 /// </code>
 [DataDefinition]
 [Serializable, NetSerializable]
@@ -52,9 +55,17 @@ public sealed partial class EntityWhitelist
     [DataField]
     public List<ProtoId<TagPrototype>>? Tags;
 
+    #region starlight
     /// <summary>
-    ///     If false, an entity only requires one of these components or tags to pass the whitelist. If true, an
-    ///     entity requires to have ALL of these components and tags to pass.
+    ///     Tool qualities that are allowed in the whitelist.
+    /// </summary>
+    [DataField("toolQuality")]
+    public HashSet<ProtoId<ToolQualityPrototype>>? ToolQualities;
+    #endregion
+
+    /// <summary>
+    ///     If false, an entity only requires one of these components, tags, or tool qualities to pass the whitelist.
+    ///     If true, an entity requires to have ALL of these components, tags, and tool qualities to pass.
     ///     The "Sizes" criteria will ignores this, since an item can only have one size.
     /// </summary>
     [DataField]

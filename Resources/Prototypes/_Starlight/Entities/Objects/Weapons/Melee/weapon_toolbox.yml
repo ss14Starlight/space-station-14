@@ -1,0 +1,8 @@
+- type: entity
+  parent: WeaponMeleeToolboxRobust
+  id: WeaponMeleeToolboxRobustDeathmatch
+  suffix: Deathmatch, DO NOT MAP
+  categories: [ DoNotMap ]
+  components:
+  - type: TriggerOnGotUnequippedHand
+  - type: DeleteOnTrigger

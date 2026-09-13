@@ -20,7 +20,7 @@
 
 - type: entity
   id: CyberEyeNightVision
-  name: nightvision cyber eyes
+  name: night vision cyber eyes
   description: Enables you to see in the dark.
   parent: [OrganCyber, BaseOrganEyes]
   components:
@@ -46,7 +46,7 @@
 
 - type: entity
   id: CyberEyeThermal
-  name: thermalvision cyber eyes
+  name: thermal vision cyber eyes
   description: Enables you to see in the dark and detect warm objects through walls.
   parent: [OrganCyber, BaseOrganEyes]
   components:
@@ -122,6 +122,22 @@
     - type: UnableToTaste
 
 - type: entity
+  id: VocalCyberTongue
+  name: vocal cyber tongue
+  description: An artificial tongue with full range of movement. Allows using all vocal sounds.
+  parent: [OrganCyber, BaseOrganTongue]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+      state: tongue
+    - type: OrganTongue
+      allowAllVocalEmotes: true
+      sounds:
+        Male: MaleAllEmotes
+        Female: FemaleAllEmotes
+        Unsexed: MaleAllEmotes
+
+- type: entity
   id: BudgetCyberLiver
   name: budget cyber liver
   description: "Design so reliable, it didn't have to be changed for the last 237 years! Warning: This product isn't meant for recreational drinking!"
@@ -133,10 +149,7 @@
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [BudgetCyber]
-    groups:
-    - id: Alcohol
-      rateModifier: 0.2 # removes alcohol very slowly along with the stomach removing it as a drink
-
+    stages: [ Metabolites ]
 - type: entity
   id: BudgetCyberStomach
   name: budget cyber stomach
@@ -146,21 +159,15 @@
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
     state: stomach
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 30
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach30
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [BudgetCyber]
-    groups:
-    - id: Food
-    - id: Drink
+    stages: [ Digestion ]
 
 - type: entity
   id: BudgetCyberKidneys

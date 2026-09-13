@@ -55,8 +55,11 @@
     - type: ShowHealthBars
       damageContainers:
       - Biological
-      - Hybrid # Protogens
+      - Hybrid # Neocytes
     - type: ShowHealthIcons
+      damageContainers:
+        - Biological
+        - Hybrid
 
 - type: entity
   id: EyeImplantChemistry
@@ -97,8 +100,11 @@
     - type: ShowHealthBars
       damageContainers:
       - Biological
-      - Hybrid # Protogens
+      - Hybrid # Neocytes
     - type: ShowHealthIcons
+      damageContainers:
+        - Biological
+        - Hybrid
     - type: ShowJobIcons
     - type: ShowMindShieldIcons
     - type: ShowCriminalRecordIcons

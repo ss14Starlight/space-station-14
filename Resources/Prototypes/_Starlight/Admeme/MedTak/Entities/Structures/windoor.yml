@@ -1,0 +1,10 @@
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureMedTakLocked
+  suffix: MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak

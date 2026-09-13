@@ -1,0 +1,7 @@
+- type: construction
+  id: ClothingHandsKnuckleDusters
+  graph: ClothingHandsKnuckleDusters
+  startNode: start
+  targetNode: knuckleDusters
+  category: construction-category-weapons
+  objectType: Item

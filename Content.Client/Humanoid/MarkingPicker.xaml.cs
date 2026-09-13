@@ -7,7 +7,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Client.Utility;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
@@ -254,7 +253,7 @@ public sealed partial class MarkingPicker : Control
         var sortedMarkings = GetMarkings(_selectedMarkingCategory).Values.Where(m =>
             m.ID.ToLower().Contains(filter.ToLower()) ||
             GetMarkingName(m).ToLower().Contains(filter.ToLower())
-        ).OrderBy(p => Loc.GetString(GetMarkingName(p)));
+        ).OrderBy(p => GetMarkingName(p)); // Starlight
 
         foreach (var marking in sortedMarkings)
         {

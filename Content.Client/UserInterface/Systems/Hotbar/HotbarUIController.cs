@@ -6,7 +6,6 @@ using Content.Client.UserInterface.Systems.Inventory;
 using Content.Client.UserInterface.Systems.Inventory.Controls;
 using Content.Client.UserInterface.Systems.Inventory.Widgets;
 using Content.Client.UserInterface.Systems.Storage;
-using Content.Client.UserInterface.Systems.Storage.Controls;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 
@@ -36,8 +35,6 @@ public sealed class HotbarUIController : UIController
         _inventory = UIManager.GetUIController<InventoryUIController>();
         _hands = UIManager.GetUIController<HandsUIController>();
         _storage = UIManager.GetUIController<StorageUIController>();
-        _hands.RegisterHandContainer(handsContainer);
-        _hands.RegisterHandContainer(FunctionalhandsContainer);  //🌟Starlight🌟
     }
 
     public void ReloadHotbar()

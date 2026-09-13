@@ -79,7 +79,7 @@
 
 - type: entity
   id: SecurityTechFabCircuitboard
-  parent: BaseMachineCircuitboard
+  parent: [BaseMachineCircuitboard, BaseSecurityContraband] # Starlight
   name: security techfab machine board
   description: A machine printed circuit board for a security techfab.
   components:
@@ -94,7 +94,7 @@
           amount: 2
           defaultPrototype: Beaker
     - type: StealTarget # Starlight
-      stealGroup: SecurityTechFabCircuitboard # Starlight
+      stealGroup: SecureTechFabCircuitboard # Starlight
 
 - type: entity
   id: AmmoTechFabCircuitboard
@@ -111,7 +111,7 @@
 
 - type: entity
   id: MedicalTechFabCircuitboard
-  parent: BaseMachineCircuitboard
+  parent: [BaseMachineCircuitboard, BaseMedicalContraband] # Starlight
   name: medical techfab machine board
   description: A machine printed circuit board for a medical techfab.
   components:
@@ -126,7 +126,7 @@
           amount: 2
           defaultPrototype: Beaker
     - type: StealTarget
-      stealGroup: MedicalTechFabCircuitboard
+      stealGroup: DepartmentalTechFabCircuitboard # Starlight
 
 - type: entity
   id: CircuitImprinterMachineCircuitboard
@@ -549,8 +549,8 @@
 - type: entity
   id: ChemDispenserMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: chem dispenser machine board
-  description: A machine printed circuit board for a chem dispenser.
+  name: chemical dispenser machine board # TRIESTE: "chem dispenser" -> "chemical dispenser
+  description: A machine printed circuit board for a chemical dispenser. # TRIESTE: "chem dispenser" -> "chemical dispenser"
   components:
     - type: Sprite
       state: medical
@@ -1057,7 +1057,7 @@
     - type: Tag
       tags:
       - MicrowaveMachineBoard
-      - RamChip #Protogen joke, makes them able to eat them. - FH
+      - RamChip # FH + Starlight
 
 - type: entity
   id: SyndicateMicrowaveMachineCircuitboard

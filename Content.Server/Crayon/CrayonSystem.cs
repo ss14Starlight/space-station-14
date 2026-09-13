@@ -8,7 +8,6 @@ using Content.Shared.Crayon;
 using Content.Shared.Database;
 using Content.Shared.Decals;
 using Content.Shared.Hands;
-using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -178,7 +177,7 @@ public sealed partial class CrayonSystem : SharedCrayonSystem
 
     private void OnGotEquipped(EntityUid uid, CrayonComponent component, ref GotEquippedEvent args)
     {
-        if (_handsSystem.GetActiveItem(args.Equipee) != uid)
+        if (_handsSystem.GetActiveItem(args.EquipTarget) != uid)
             return;
         SetPreviewVisible(uid, component, true);
     }

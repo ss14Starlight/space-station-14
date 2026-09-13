@@ -9,6 +9,9 @@ using Robust.Shared.Utility;
 
 #region Starlight
 using Content.Shared.Stunnable;
+using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Prototypes;
 #endregion Starlight
 
 namespace Content.Shared.Armor;
@@ -21,6 +24,7 @@ namespace Content.Shared.Armor;
 public abstract partial class SharedArmorSystem : EntitySystem
 {
     [Dependency] private ExamineSystemShared _examine = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Starlight
 
     /// <inheritdoc />
     public override void Initialize()
@@ -34,6 +38,7 @@ public abstract partial class SharedArmorSystem : EntitySystem
         SubscribeLocalEvent<ArmorComponent, GetVerbsEvent<ExamineVerb>>(OnArmorVerbExamine);
 
         SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<KnockDownAttemptEvent>>(OnKnockdownAttempt); // Starlight-edit
+        SubscribeLocalEvent<DamageableComponent, CoefficientQueryEvent>(OnDamageableCoefficientQuery); // Starlight-edit
     }
 
     #region Starlight
@@ -47,7 +52,23 @@ public abstract partial class SharedArmorSystem : EntitySystem
             args.Args.Cancelled = true;
         // Starlight edit end
     }
-    #endregion
+
+    private void OnDamageableCoefficientQuery(EntityUid uid, DamageableComponent component, ref CoefficientQueryEvent args)
+    {
+        if (component.DamageModifierSetId == null ||
+            !_prototypeManager.Resolve(component.DamageModifierSetId, out var modifierSet))
+            return;
+
+        foreach (var armorCoefficient in modifierSet.Coefficients)
+        {
+            args.DamageModifiers.Coefficients[armorCoefficient.Key] =
+                args.DamageModifiers.Coefficients.TryGetValue(armorCoefficient.Key, out var coefficient)
+                    ? coefficient * armorCoefficient.Value
+                    : armorCoefficient.Value;
+        }
+    }
+
+    #endregion Starlight
 
     /// <summary>
     /// Get the total Damage reduction value of all equipment caught by the relay.
@@ -115,7 +136,8 @@ public abstract partial class SharedArmorSystem : EntitySystem
         {
             msg.PushNewline();
 
-            var armorType = Loc.GetString("armor-damage-type-" + coefficientArmor.Key.ToLower());
+            // TODO: probably make these prototype fields or have a test that they all exist
+            var armorType = Loc.GetString("armor-damage-type-" + coefficientArmor.Key.Id.ToLower());
             msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
                 ("type", armorType),
                 ("value", MathF.Round((1f - coefficientArmor.Value) * 100, 1))
@@ -129,11 +151,11 @@ public abstract partial class SharedArmorSystem : EntitySystem
             ("value", MathF.Round((1f - component.StaminaDamageModifier) * 100, 1))
         ));
 
-        foreach (var flatArmor in armorModifiers.FlatReduction)
+        foreach (var flatArmor in armorModifiers.FlatReductions)
         {
             msg.PushNewline();
 
-            var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.ToLower());
+            var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.Id.ToLower());
             msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
                 ("type", armorType),
                 ("value", flatArmor.Value)

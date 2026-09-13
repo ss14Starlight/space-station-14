@@ -1,5 +1,7 @@
+using Content.Client.Graphics;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Robust.Client.GameObjects;
+using Robust.Client.Graphics;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._FarHorizons.Power.Generation.FissionGenerator;
@@ -9,9 +11,14 @@ public sealed partial class ReactorPartSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
+    private static readonly ProtoId<ShaderPrototype> _shaderID = "HeatDistortionFH";
+    private ShaderInstance _heatShader = default!;
+
     public override void Initialize()
     {
         base.Initialize();
+
+        _heatShader = _proto.Index(_shaderID).InstanceUnique();
 
         SubscribeLocalEvent<ReactorPartComponent, AppearanceChangeEvent>(OnAppearanceChange);
         SubscribeLocalEvent<ReactorPartComponent, ComponentInit>(OnComponentInit);
@@ -27,8 +34,25 @@ public sealed partial class ReactorPartSystem : EntitySystem
         //    return;
 
         _sprite.LayerSetColor((uid, args.Sprite), 0, _proto.Index(component.Material).Color);
+
+        if (args.AppearanceData.TryGetValue(ReactorPartVisuals.HeatDistort, out var value) && value is bool enabled)
+        {
+            if (enabled)
+            {
+                _sprite.SetPostShader(args.Sprite, new SpriteComponent.PostShaderArgs(ContentPostShaderIds.ReactorPart, _heatShader)
+                {
+                    GetScreenTexture = true,
+                    RaiseShaderEvent = true,
+                    Before = ContentPostShaderIds.BeforeOutlines,
+                });
+            }
+            else
+            {
+                _sprite.RemovePostShader(args.Sprite, ContentPostShaderIds.ReactorPart);
+            }
+        }
     }
 
     private void OnComponentInit(Entity<ReactorPartComponent> ent, ref ComponentInit args)
-        => _sprite.LayerSetColor((ent.Owner, EntityManager.GetComponent<SpriteComponent>(ent.Owner)), 0, _proto.Index(ent.Comp.Material).Color);
+        => _sprite.LayerSetColor((ent.Owner, Comp<SpriteComponent>(ent.Owner)), 0, _proto.Index(ent.Comp.Material).Color);
 }

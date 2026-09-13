@@ -1,6 +1,7 @@
 - type: entity
   parent: MarkerBase
   id: SpawnMobKoboldKiki
+  categories: [ ShouldMapStation ]
   name: Kiki Spawner
   suffix: Botanist Pet
   components:
@@ -12,3 +13,35 @@
   - type: ConditionalSpawner
     prototypes:
     - MobKoboldKiki
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobMonkeyStirStir
+  categories: [ ShouldMapStation ]
+  name: Stir Stir Spawner
+  suffix: Genpop Prisoner
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: monkey
+      sprite: Mobs/Animals/monkey.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMonkeyStirStir
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobPenguinFlippers
+  categories: [ ShouldMapStation ]
+  name: Rt Hon. Flippers Spawner
+  suffix: Law Pet
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: penguin
+      sprite: Mobs/Animals/penguin.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobPenguinFlippers

@@ -31,7 +31,7 @@ public sealed partial class IdClothingBlockerSystem : SharedIdClothingBlockerSys
     {
         if (component.FreezeUser)
         {
-            var blockedComponent = EntityManager.EnsureComponent<IdClothingFrozenComponent>(wearer);
+            var blockedComponent = EnsureComp<IdClothingFrozenComponent>(wearer);
             blockedComponent.ClothingItem = clothingUid;
             Dirty(wearer, blockedComponent);
         }
@@ -57,11 +57,11 @@ public sealed partial class IdClothingBlockerSystem : SharedIdClothingBlockerSys
 
     protected override void OnUnequipAttempt(EntityUid uid, IdClothingBlockerComponent component, BeingUnequippedAttemptEvent args)
     {
-        var wearerHasAccess = HasAccess(args.Unequipee, component);
+        var wearerHasAccess = HasAccess(args.User, component);
         if (wearerHasAccess)
             return;
 
-        if (args.UnEquipTarget == args.Unequipee)
+        if (args.UnEquipTarget == args.User)
         {
             args.Cancel();
         }

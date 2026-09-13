@@ -1,0 +1,49 @@
+- type: entity
+  id: BoxServiceCustomSmokable
+  parent: CardboardBoxLarge
+  name: DIY smokeables box
+  description: Want to get a little creative with what you use to destroy your lungs? Then this box is for you! Has everything you need to roll your own cigarettes.
+  components:
+  - type: StorageFill
+    contents:
+    - id: PackPaperRolling
+    - id: CigaretteFilter
+      amount: 8
+    - id: GroundTobacco
+      amount: 4
+    - id: SmokingPipe
+    - id: Matchbox
+
+- type: entity
+  id: BoxServiceBlankBooks
+  parent: CardboardBoxLarge
+  name: blank books box
+  description: Contains 10 empty books of random appearance.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BookRandom
+      amount: 10
+
+- type: entity
+  id: BoxServiceGuidebooks
+  parent: CardboardBoxLarge
+  name: guidebooks box
+  description: Contains guidebooks.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BookSpaceEncyclopedia
+    - id: BookTheBookOfControl
+    - id: BookBartendersManual
+    - id: BookHowToCookForFortySpaceman
+    - id: BookLeafLoversSecret
+    - id: BookEngineersHandbook
+    - id: BookScientistsGuidebook
+    - id: BookSecurity
+    - id: BookHowToKeepStationClean
+    - id: BookHowToRockAndStone
+    - id: BookMedicalReferenceBook
+    - id: BookHowToSurvive
+    - id: BookChemicalCompendium
+    - id: BookSpaceLaw

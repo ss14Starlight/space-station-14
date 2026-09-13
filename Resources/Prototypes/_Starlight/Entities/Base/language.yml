@@ -28,7 +28,9 @@
       - Classical
       - Grumbakul
       - Aielic
+      - Felyaic
       - Lagomorphian
+      - Squeakish
 
 - type: entity
   id: BaseBorgiLanguages
@@ -40,6 +42,7 @@
       - GalacticCommon
       - Machine
       - Dog
+      - DogFeral
       understands:
       - GalacticCommon
       - SolCommon
@@ -58,11 +61,14 @@
       - Scratch
       - Thaveyan
       - Dog
+      - DogFeral
       - Darktongue
       - Classical
       - Grumbakul
       - Aielic
+      - Felyaic
       - Lagomorphian
+      - Squeakish
 
 - type: entity
   id: BaseSiliconBrainLanguages
@@ -107,7 +113,9 @@
       - Classical
       - Grumbakul
       - Aielic
+      - Felyaic
       - Lagomorphian
+      - Squeakish
       - Xeno
       - Xenomind
 
@@ -121,6 +129,7 @@
       - GalacticCommon
       - Machine
       - Dog
+      - DogFeral
       understands:
       - GalacticCommon
       - SolCommon
@@ -139,9 +148,12 @@
       - Scratch
       - Thaveyan
       - Dog
+      - DogFeral
       - Darktongue
       - Classical
       - Grumbakul
       - Aielic
+      - Felyaic
       - Lagomorphian
+      - Squeakish
       - Xeno

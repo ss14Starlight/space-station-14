@@ -330,6 +330,7 @@
   parent: [ CrateBaseSecure, BaseSecurityContraband ]
   suffix: Armory, Secure
   id: CrateContrabandStorageSecure
+  categories: [ ShouldMapStation ] # Starlight
   name: contraband storage crate
   description: An armory access locked crate for storing contraband confiscated from suspects or prisoners.
   components:
@@ -941,7 +942,7 @@
   suffix: Stealth
   components:
   - type: Stealth
-    hadOutline: true
+    shimmerFrequency: 0.05
   - type: StealthOnMove
     passiveVisibilityRate: -0.10
     movementVisibilityRate: 0.10

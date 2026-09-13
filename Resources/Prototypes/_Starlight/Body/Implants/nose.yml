@@ -1,0 +1,25 @@
+- type: entity
+  id: BaseEntityNoseImplant
+  abstract: true
+  parent: [ BaseItem, BaseImplant ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+  - type: Organ
+  - type: NoseImplant
+  - type: FlavorProfile
+    flavors:
+      - people
+
+- type: entity
+  id: NoseImplantOlfactory
+  name: olfactory implant
+  description: Enables you to perceive and track scents.
+  parent: BaseEntityNoseImplant
+  components:
+  - type: Sprite
+    state: nose_implant_scent
+  - type: FunctionalOrgan
+    comps:
+    - type: Smeller
+      perception: Partial

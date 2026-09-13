@@ -6,7 +6,6 @@
   - type: Tag
     tags:
     - Knife
-  - type: Sharp
   - type: Utensil
     types:
       - Knife
@@ -21,15 +20,15 @@
   - type: Item
     size: Small
   - type: Tool # Starlight start
-    qualities: Slicing
+    qualities: [ Slicing ]
     speedModifier: 1
   - type: MultipleTool
     statusShowBehavior: true
     entries:
-      - behavior: Slicing
+      - behavior: [ Slicing ]
         useSound: /Audio/Items/Culinary/chop.ogg
         SpeedModifier: 1
-      - behavior: Screwing
+      - behavior: [ Screwing ]
         useSound: /Audio/Items/screwdriver.ogg
         SpeedModifier: 0.05
   - type: SurgeryTool
@@ -411,7 +410,6 @@
     components:
     - type: Execution
       #doAfterDuration: 4.0 # Starlight - commented out as our ExecutionComponent is somehow wildly different from upstream's
-    - type: Sharp
     - type: Utensil
       types:
       - Knife

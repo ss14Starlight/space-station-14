@@ -1,5 +1,5 @@
 - type: entity
-  name: Makeshift Repeater Rifle
+  name: makeshift repeater rifle
   parent: [BaseWeaponSniper, BaseMinorContraband]
   id: WeaponSniperMakeshift
   description: It'll blow a hole in the guy you point this at, if it doesn't snap your wrist first.
@@ -26,12 +26,13 @@
         staminaMultiplier: 100
       Rodentia:
         knockback: 1.5
+        staminaMultiplier: 20
       Resomi:
         knockback: 1.5
-      Avali:
-        knockback: 0.75 # half of what resomi take
+        staminaMultiplier: 20
       Felionoid:
         knockback: 0.75 # half of what resomi take
+        staminaMultiplier: 20
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -66,7 +67,7 @@
     supportedPins: [ Makeshift, GunUpgrade ]
 
 - type: entity
-  name: Improvised Repeater Rifle
+  name: improvised repeater rifle
   parent: WeaponSniperMakeshift
   id: WeaponSniperImprovised
   description: Can ALMOST reliably hit a target!
@@ -115,7 +116,7 @@
 
 
 - type: entity
-  name: Forged Repeater Rifle
+  name: forged repeater rifle
   parent: WeaponSniperMakeshift
   id: WeaponSniperForged
   description: The best a tider can achive, reliable fire-rate and accuracy with a satisfying lever-action system. What more can you ask for? Is fitted to be able to chamber both .35 / .45

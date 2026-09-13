@@ -156,7 +156,7 @@
   - type: StationEvent
     occursDuringRoundEnd: false
     globalAnnouncement: false
-    weight: 50
+    weight: 20
     startAnnouncement: station-event-nightshift-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
@@ -173,3 +173,19 @@
     permittedAlertLevels:
       - green
       - blue
+
+- type: entity
+  parent: BaseGameRule
+  id: FullMoonHowl
+  components:
+    - type: StationEvent
+      globalAnnouncement: false
+      weight: 3
+      duration: 1
+      maxDuration: 1
+      maxOccurrences: 1
+    - type: FullMoonHowlRule
+      eligibleInventorySpecies:
+        - vulpkanin
+        - dog
+        - puppy

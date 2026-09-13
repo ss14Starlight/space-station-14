@@ -1,0 +1,15 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "See each state for copyright.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "karelian_pastries",
+            "copyright": "Sprites by Limblesstar (GitHub)."
+        }
+    ]
+}

@@ -25,6 +25,9 @@
     KitchenOvenFlatpack: 1
     KitchenStoveFlatpack: 1
     SlopDispenserFlatpack: 1
+    JugIceCream: 2
+    JugCocoaPowder: 1
+    DrinkCreamCarton: 1
     # Starlight-end
   contrabandInventory:
     EggBoxBroken: 1

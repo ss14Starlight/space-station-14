@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "petbed",
+	  "copyright": "Made by Conflee for Starlight, inspired by TG sprites"
+    },
+	{
+      "name": "dogbed",
+	  "copyright": "Made by Conflee for Starlight, inspired by TG sprites"
+    },
+	{
+      "name": "catbed",
+	  "copyright": "Made by Conflee for Starlight, inspired by TG sprites"
+    },
+	{
+      "name": "raccoonbed",
+	  "copyright": "Made by Conflee for Starlight, inspired by TG sprites"
+    },
+	{
+      "name": "soft_blue",
+	  "copyright": "Made by Conflee for Starlight"
+    },
+	{
+      "name": "soft_darkblue",
+	  "copyright": "Made by Conflee for Starlight"
+    },
+	{
+      "name": "soft_gray",
+	  "copyright": "Made by Conflee for Starlight"
+    },
+	{
+      "name": "soft_green",
+	  "copyright": "Made by Conflee for Starlight"
+    },
+	{
+      "name": "soft_orange",
+	  "copyright": "Made by Conflee for Starlight"
+    },
+	{
+      "name": "soft_pink",
+	  "copyright": "Made by Conflee for Starlight"
+    },
+	{
+      "name": "soft_purple",
+	  "copyright": "Made by Conflee for Starlight"
+    },
+	{
+      "name": "soft_red",
+	  "copyright": "Made by Conflee for Starlight"
+    },
+	{
+      "name": "soft_yellow",
+	  "copyright": "Made by Conflee for Starlight"
+    }
+  ]
+}

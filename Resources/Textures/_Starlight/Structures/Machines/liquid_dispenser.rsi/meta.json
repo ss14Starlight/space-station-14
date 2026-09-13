@@ -4,12 +4,13 @@
     "x": 32,
     "y": 32
   },
-  "copyright": "Taked From Paradise Station",
+  "copyright": "State based copyright",
   "license": "CC-BY-SA-3.0",
   "states": [
     {
       "name": "base",
-      "directions": 1
+      "directions": 1,
+      "copyright": "Taken From tgstation"
     },
     {
       "name": "enabled",
@@ -23,7 +24,8 @@
           0.15,
           0.15
         ]
-      ]
+      ],
+      "copyright": "Taken From tgstation"
     }
   ]
 }

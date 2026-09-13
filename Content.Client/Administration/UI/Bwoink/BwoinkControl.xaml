@@ -15,6 +15,10 @@
                 <Control HorizontalExpand="True" MinWidth="5" />
                 <CheckBox Name="PlaySound" Access="Public" Text="{Loc 'admin-bwoink-play-sound'}" Pressed="True" />
                 <Control HorizontalExpand="True" MinWidth="5" />
+                <!-- Starlight begin -->
+                <CheckBox Name="RememberSelected" Access="Public" Text="{Loc 'admin-ahelp-remember-selected'}" ToolTip="{Loc 'admin-ahelp-remember-selected-tooltip'}" Pressed="True"/>
+                <Control HorizontalExpand="True" MinWidth="5" />
+                <!-- Starlight end -->
                 <Button Visible="True" Name="PopOut" Access="Public" Text="{Loc 'admin-logs-pop-out'}" StyleClasses="OpenBoth" HorizontalAlignment="Left" />
                 <Control HorizontalExpand="True" />
                 <Button Visible="False" Name="Bans" Text="{Loc 'admin-player-actions-bans'}" StyleClasses="OpenRight" />

@@ -175,7 +175,7 @@ namespace Content.Shared.Cuffs
 
         public void UpdateCuffState(EntityUid uid, CuffableComponent component)
         {
-            var canInteract = TryComp(uid, out HandsComponent? hands) && hands.Hands.Count > component.CuffedHandCount;
+            var canInteract = !TryComp(uid, out HandsComponent? hands) || hands.Hands.Count > component.CuffedHandCount; // Starlight, set true when no HandsComponent
 
             if (canInteract == component.CanStillInteract)
                 return;
@@ -875,14 +875,14 @@ namespace Content.Shared.Cuffs
         private void OnEquipAttempt(EntityUid uid, CuffableComponent component, IsEquippingAttemptEvent args)
         {
             // is this a self-equip, or are they being stripped?
-            if (args.Equipee == uid)
+            if (args.User == uid)
                 CheckAct(uid, component, args);
         }
 
         private void OnUnequipAttempt(EntityUid uid, CuffableComponent component, IsUnequippingAttemptEvent args)
         {
             // is this a self-equip, or are they being stripped?
-            if (args.Unequipee == uid)
+            if (args.User == uid)
                 CheckAct(uid, component, args);
         }
 

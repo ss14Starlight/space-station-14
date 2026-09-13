@@ -120,22 +120,21 @@
         - id: RemoteSignaller #SL EDIT
 
 - type: entity
-  parent: ClothingBackpackChameleon
-  id: ClothingBackpackChameleonFillAgent
-  suffix: Fill, Chameleon, Syndie
+  parent: ClothingBackpackDuffelSyndicateBundleDeluxe
+  id: ClothingBackpackDuffelSyndicateFilledRifleGrenade
+  name: firepower support bundle
+  suffix: Estoc, China Lake
+  description: "A marksman rifle and a grenade launcher, bundled with 4 magazines and 9 grenades of various capabilities."
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: ChameleonAgentPDA
-        - id: ClothingUniformJumpsuitChameleon
-        - id: ClothingOuterChameleon
-        - id: ClothingNeckChameleon
-        - id: ClothingMaskGasChameleon
-        - id: ClothingHeadHatChameleon
-        - id: ClothingHandsChameleon
-        - id: ClothingEyesChameleon
-        - id: ClothingHeadsetChameleon
-        - id: ClothingShoesChameleon
-        - id: ClothingMiscChameleon
+        - id: WeaponLauncherChinaLake
+        - id: GrenadeFlash
+          amount: 3
+        - id: GrenadeBlast
+          amount: 3
+        - id: WeaponRifleEstoc
+        - id: MagazineRifleFMJ
+          amount: 3

@@ -1,0 +1,168 @@
+- type: particleEffect
+  id: DrippingBlood
+  sprite:
+    sprite: _Starfall/Particles/generic.rsi
+    state: soft_dot
+  startColor: "#a80000"
+  endColor: "#730b0b"
+  alphaOverLifetime:
+    - time: 0.0
+      value: 1.0
+    - time: 1.0
+      value: 0.0
+  emissionRate: 10
+  maxCount: 100
+  particleSize: 1
+  burst: false
+  duration: 0
+  gravity: 1
+  drag: 0.1
+  noiseStrength: 0.15
+  noiseFrequency: 0.8
+  spreadAngle: 60
+  emitAngle: 180
+  shape:
+    type: CircleFill
+    radius: 0.3
+
+- type: particleEffect
+  id: SnowFall
+  sprite:
+    sprite: _Starfall/Particles/generic.rsi
+    state: cross
+  startColor: "#f0f0f0"
+  endColor: "#c2f0ff"
+  alphaOverLifetime:
+    - time: 0.0
+      value: 1.0
+    - time: 2.5
+      value: 0.1
+  lifetime: 2.5
+  lifetimeVariance: 0.8
+  speed: 0.9
+  emissionRate: 15
+  maxCount: 100
+  particleSize: 1
+  burst: false
+  duration: 0
+  gravity: 2.5
+  drag: 0.1
+  noiseStrength: 0.15
+  noiseFrequency: 0.8
+  spreadAngle: 60
+  emitAngle: 0
+  shape:
+    type: CircleFill
+    radius: 2
+
+- type: particleEffect
+  id: DrippingLiquid
+  sprite:
+    sprite: _Starfall/Particles/generic.rsi
+    state: soft_dot
+  startColor: "#c2f0ff"
+  endColor: "#d4feff"
+  alphaOverLifetime:
+    - time: 0.0
+      value: 1.0
+    - time: 1.0
+      value: 0.0
+  lifetime: 1
+  lifetimeVariance: 0.2
+  emissionRate: 10
+  maxCount: 100
+  particleSize: 1
+  burst: false
+  duration: 0
+  gravity: 0.8
+  drag: 0.1
+  noiseStrength: 0.15
+  noiseFrequency: 0.8
+  spreadAngle: 60
+  emitAngle: 180
+  shape:
+    type: CircleFill
+    radius: 0.3
+
+- type: particleEffect
+  id: ShadowMist
+  sprite:
+    sprite: _Starfall/Particles/generic.rsi
+    state: soft_dot
+  shader: unshaded
+  startColor: "#8f4be3"
+  endColor: "#603987"
+  alphaOverLifetime:
+    - time: 0.0
+      value: 1.0
+    - time: 2.5
+      value: 0.1
+  lifetime: 2.5
+  lifetimeVariance: 0.8
+  emissionRate: 15
+  maxCount: 100
+  particleSize: 1
+  burst: false
+  duration: 0
+  gravity: 2.5
+  drag: 0.1
+  noiseStrength: 0.15
+  noiseFrequency: 0.8
+  spreadAngle: 60
+  emitAngle: 0
+  shape:
+    type: CircleFill
+    radius: 1.5
+
+- type: particleEffect
+  id: BluespaceBurst
+  sprite:
+    sprite: _Starfall/Particles/generic.rsi
+    state: soft_dot
+  colorOverLifetime:
+    - time: 0.0
+      color: "#36a1ff"
+    - time: 0.3
+      color: "#1eafd4"
+  shader: unshaded
+  lifetime: 1.2
+  lifetimeVariance: 0.4
+  speed: 1.5
+  speedVariance: 0.5
+  particleSize: 0.5
+  sizeVariance: 0.5
+  stretchFactor: 0.25
+  emissionRate: 0
+  maxCount: 30
+  burst: true
+  gravity: -0.5
+  spreadAngle: 360
+  emitAngle: 0
+
+- type: particleEffect
+  id: BluespaceSparks
+  sprite:
+    sprite: _Starfall/Particles/generic.rsi
+    state: cross
+  shader: unshaded
+  startColor: "#36a1ff"
+  endColor: "#1eafd4"
+  alphaOverLifetime:
+    - time: 0.0
+      value: 1.0
+    - time: 1.0
+      value: 0.0
+  emissionRate: 10
+  maxCount: 50
+  particleSize: 1
+  burst: false
+  duration: 0
+  gravity: -0.2
+  drag: 0.1
+  noiseStrength: 0.15
+  noiseFrequency: 0.8
+  spreadAngle: 60
+  emitAngle: 180
+  shape:
+    type: CircleFill
+    radius: 0.8

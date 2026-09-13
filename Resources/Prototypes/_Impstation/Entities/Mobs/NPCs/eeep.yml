@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ SimpleSpaceMobBase, FlyingMobBase ]
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, BaseSlicingRefinable ] # Starlight
   id: MobEeepBase
   abstract: true
   categories: [ HideSpawnMenu ]
@@ -30,8 +30,8 @@
         - FlyingMobMask
         layer:
         - FlyingMobLayer
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable # Starlight
+    refineResult: # Starlight
       - id: EeepSpark
         amount: 1
   - type: StatusEffects
@@ -112,7 +112,9 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ChloralHydrate
-        Quantity: 200
+        Quantity: 400 # Starlight
+    bleedReductionAmount: 1
+    bloodRefreshAmount: 2
   - type: Sprite
     sprite: _Impstation/Mobs/Aliens/eeeplet.rsi
     noRot: true
@@ -145,12 +147,13 @@
         Brute: 2
   - type: StaminaDamageOnHit
     damage: 20
-  - type: SolutionContainerManager
-    solutions:
-      chloralhydrate:
-        reagents:
-        - ReagentId: ChloralHydrate
-          Quantity: 500
+  - type: Solution
+    id: chloralhydrate
+    solution:
+      maxVol: 500 # Starlight - preserve the melee injector reservoir after the solution refactor
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 500
   - type: MeleeChemicalInjector
     solution: chloralhydrate
     transferAmount: 5
@@ -194,7 +197,9 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ChloralHydrate
-        Quantity: 200
+        Quantity: 400 # Starlight
+    bleedReductionAmount: 1
+    bloodRefreshAmount: 4
   - type: Electrified
     requirePower: false
     shockDamage: 4
@@ -241,11 +246,13 @@
   - type: BatteryAmmoProvider
     proto: EeepGunBullet
     fireCost: 100
-  - type: BatterySelfRecharger
-    autoRechargeRate: 20
   - type: Battery
-    maxCharge: 1000
+    maxCharge: 3000 #Starlight 1000 -> 3000
     startingCharge: 1000
+    # Starlight-start - Resistance so Eeeps don't kill themselves when their lightning arcs blow up electronics
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+    # Starlight-end
   - type: LightningArcShooter
     arcDepth: 2
     maxLightningArc: 3
@@ -256,6 +263,7 @@
   - type: AnnounceOnSpawn
     message: eeep-spawn
     sender: eeep-spawn-sender
+    ignoreASpace: true # Starlight
     sound:
      path: /Audio/Effects/PowerSink/charge_fire.ogg
     color: yellow
@@ -266,3 +274,29 @@
     disableDuration: 20
   - type: Perishable
     rotAfter: 2000
+  # Starlight-start - Balance pass, PR #5171
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 7
+    baseWeightlessModifier: 0.6
+  - type: BatteryDrainer
+    fullDrain: true
+    drainTime: 4
+    sparkSound:
+     path: /Audio/Effects/PowerSink/charge_fire.ogg
+    minimumDrain: 1000
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 6
+        Shock: 6
+        Structural: 10
+  - type: AltFireMelee
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 8
+    useSound:
+      path: /Audio/Effects/tesla_consume.ogg
+  # Starlight-end

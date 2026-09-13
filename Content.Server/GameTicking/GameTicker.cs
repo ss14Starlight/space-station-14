@@ -1,4 +1,3 @@
-using System.Diagnostics; // Starlight
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -8,19 +7,19 @@ using Content.Server.Chat.Systems;
 using Content.Server.Database;
 using Content.Server.Ghost;
 using Content.Server.Maps;
-using Content.Server.Nuke; // Starlight
+using Content.Server.Nuke;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
-using Content.Server.RoundEnd; // Starlight
+using Content.Server.RoundEnd;
 using Content.Server.ServerUpdates;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
+using Content.Shared._Starlight.EntityTable;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Robust.Server;
-using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Console;
@@ -46,7 +45,6 @@ namespace Content.Server.GameTicking
         [Dependency] private IGameMapManager _gameMapManager = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private ILogManager _logManager = default!;
-        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private IRobustRandom _robustRandom = default!;
 #if EXCEPTION_TOLERANCE
@@ -103,7 +101,11 @@ namespace Content.Server.GameTicking
             InitializePlayer();
             InitializeLobbyBackground();
             InitializeGamePreset();
-            SubscribeLocalEvent<NukeExplodedEvent>(OnNukeExploded); // Starlight
+
+            #region Starlight
+            SubscribeAllEvent<PresetConditionCheckEvent>(CheckPresetCondition);
+            SubscribeLocalEvent<NukeExplodedEvent>(OnNukeExploded);
+            #endregion
             DebugTools.Assert(_prototypeManager.Index(FallbackOverflowJob).Name == FallbackOverflowJobName,
                 "Overflow role does not have the correct name!");
             InitializeGameRules();

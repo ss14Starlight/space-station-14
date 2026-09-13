@@ -6,9 +6,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Radiation.Systems;
 using Robust.Server.Audio;
-using Robust.Server.GameObjects;
 using Robust.Server.Player;
-using Robust.Shared.Player;
 
 namespace Content.Server.Radiation.Systems;
 
@@ -47,7 +45,7 @@ public sealed partial class GeigerSystem : SharedGeigerSystem
     {
         if (geiger.Comp.AttachedToSuit)
             SetEnabled(geiger, true);
-        SetUser(geiger, args.Equipee);
+        SetUser(geiger, args.EquipTarget);
     }
 
     private void OnEquippedHand(Entity<GeigerComponent> geiger, ref GotEquippedHandEvent args)

@@ -1,14 +1,11 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Shuttles.Components;
-using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared.Shuttles.Components;
-using Content.Shared.Shuttles.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
-using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -211,7 +208,7 @@ public sealed partial class DockingSystem
 
                     // Check if there's no intersecting grids (AKA oh god it's docking at cargo).
                     grids.Clear();
-                    _mapManager.FindGridsIntersecting(targetGridXform.MapID, dockedBounds, ref grids, includeMap: false);
+                    _mapSystem.FindGridsIntersecting(targetGridXform.MapID, dockedBounds, ref grids, includeMap: false);
                     if (grids.Any(o => o.Owner != targetGrid && o.Owner != targetGridXform.MapUid))
                     {
                         continue;

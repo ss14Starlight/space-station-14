@@ -1,0 +1,933 @@
+- type: voice
+  id: ICASSP133
+  voice: 133
+  name: tts-voice-name-133
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP134
+  voice: 134
+  name: tts-voice-name-134
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - breathy
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP135
+  voice: 135
+  name: tts-voice-name-135
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP136
+  voice: 136
+  name: tts-voice-name-136
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
+
+- type: voice
+  id: ICASSP137
+  voice: 137
+  name: tts-voice-name-137
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
+
+- type: voice
+  id: ICASSP138
+  voice: 138
+  name: tts-voice-name-138
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - raspy
+  - serious
+
+- type: voice
+  id: ICASSP139
+  voice: 139
+  name: tts-voice-name-139
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - clear
+  - sad
+  - serious
+  - soft
+
+- type: voice
+  id: ICASSP140
+  voice: 140
+  name: tts-voice-name-140
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP141
+  voice: 141
+  name: tts-voice-name-141
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+
+- type: voice
+  id: ICASSP142
+  voice: 142
+  name: tts-voice-name-142
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP143
+  voice: 143
+  name: tts-voice-name-143
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP144
+  voice: 144
+  name: tts-voice-name-144
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP146
+  voice: 146
+  name: tts-voice-name-146
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP147
+  voice: 147
+  name: tts-voice-name-147
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - soft
+
+- type: voice
+  id: ICASSP148
+  voice: 148
+  name: tts-voice-name-148
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP149
+  voice: 149
+  name: tts-voice-name-149
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+  - soft
+
+- type: voice
+  id: ICASSP150
+  voice: 150
+  name: tts-voice-name-150
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - british
+  - clear
+  - fancy
+  - serious
+  - smooth
+
+- type: voice
+  id: ICASSP151
+  voice: 151
+  name: tts-voice-name-151
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP152
+  voice: 152
+  name: tts-voice-name-152
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - breathy
+  - clear
+  - robotic
+  - serious
+
+- type: voice
+  id: ICASSP153
+  voice: 153
+  name: tts-voice-name-153
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - serious
+  - smooth
+
+- type: voice
+  id: ICASSP154
+  voice: 154
+  name: tts-voice-name-154
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - booming
+  - robotic
+  - serious
+
+- type: voice
+  id: ICASSP155
+  voice: 155
+  name: tts-voice-name-155
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP156
+  voice: 156
+  name: tts-voice-name-156
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - soft
+
+- type: voice
+  id: ICASSP157
+  voice: 157
+  name: tts-voice-name-157
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP158
+  voice: 158
+  name: tts-voice-name-158
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - muffled
+  - serious
+
+- type: voice
+  id: ICASSP159
+  voice: 159
+  name: tts-voice-name-159
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP160
+  voice: 160
+  name: tts-voice-name-160
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - raspy
+  - serious
+
+- type: voice
+  id: ICASSP161
+  voice: 161
+  name: tts-voice-name-161
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP162
+  voice: 162
+  name: tts-voice-name-162
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
+
+- type: voice
+  id: ICASSP163
+  voice: 163
+  name: tts-voice-name-163
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: mozillaAu17
+  voice: 164
+  name: tts-voice-name-164
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: mozillaAu18
+  voice: 165
+  name: tts-voice-name-165
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  pitch: High
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
+
+- type: voice
+  id: mozillaAu19
+  voice: 166
+  name: tts-voice-name-166
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - serious
+  - smooth
+
+- type: voice
+  id: mozillaAu20
+  voice: 167
+  name: tts-voice-name-167
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP163dot5
+  voice: 168
+  name: tts-voice-name-168
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - booming
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP164
+  voice: 169
+  name: tts-voice-name-169
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP165
+  voice: 170
+  name: tts-voice-name-170
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP166
+  voice: 171
+  name: tts-voice-name-171
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP167
+  voice: 172
+  name: tts-voice-name-172
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+
+- type: voice
+  id: ICASSP168
+  voice: 173
+  name: tts-voice-name-173
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP169
+  voice: 174
+  name: tts-voice-name-174
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+
+- type: voice
+  id: ICASSP170
+  voice: 175
+  name: tts-voice-name-175
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP171
+  voice: 176
+  name: tts-voice-name-176
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP172
+  voice: 177
+  name: tts-voice-name-177
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP173
+  voice: 178
+  name: tts-voice-name-178
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP175
+  voice: 180
+  name: tts-voice-name-180
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP176
+  voice: 181
+  name: tts-voice-name-181
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP177
+  voice: 182
+  name: tts-voice-name-182
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP178
+  voice: 183
+  name: tts-voice-name-183
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+
+- type: voice
+  id: ICASSP179
+  voice: 184
+  name: tts-voice-name-184
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP181
+  voice: 186
+  name: tts-voice-name-186
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - clear
+  - serious
+  - smooth
+
+- type: voice
+  id: ICASSP182
+  voice: 187
+  name: tts-voice-name-187
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP183
+  voice: 188
+  name: tts-voice-name-188
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - soft
+
+- type: voice
+  id: ICASSP185
+  voice: 190
+  name: tts-voice-name-190
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+
+- type: voice
+  id: ICASSP186
+  voice: 191
+  name: tts-voice-name-191
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP187
+  voice: 192
+  name: tts-voice-name-192
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - soft
+
+- type: voice
+  id: ICASSP188
+  voice: 193
+  name: tts-voice-name-193
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: ICASSP189
+  voice: 194
+  name: tts-voice-name-194
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+
+- type: voice
+  id: ICASSP190
+  voice: 195
+  name: tts-voice-name-195
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+  - soft
+
+- type: voice
+  id: ICASSP191
+  voice: 196
+  name: tts-voice-name-196
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - muffled
+  - robotic
+  - serious
+
+- type: voice
+  id: ICASSP192
+  voice: 197
+  name: tts-voice-name-197
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - booming
+  - serious
+
+- type: voice
+  id: mozillaAu21
+  voice: 198
+  name: tts-voice-name-198
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: mozillaAu22
+  voice: 199
+  name: tts-voice-name-199
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+
+- type: voice
+  id: mozillaAu23
+  voice: 200
+  name: tts-voice-name-200
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+
+- type: voice
+  id: mozillaAu24
+  voice: 201
+  name: tts-voice-name-201
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - serious
+  - smooth
+

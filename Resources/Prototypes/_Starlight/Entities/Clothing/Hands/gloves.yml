@@ -19,7 +19,7 @@
     zombificationResistanceCoefficient: 0.9
 
 - type: entity
-  parent: [ClothingHandsButcherable, BaseSecurityContraband]
+  parent: [ClothingHandsButcherable, ClothingHandsBaseWarm, BaseSecurityContraband]
   id: ClothingHandsGlovesSecurityRed
   name: red security gloves
   description: Black gloves, but slightly red! The detective will LOVE you if you wear these.
@@ -199,3 +199,10 @@
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-grey
+
+- type: entity
+  parent: ClothingHandsChameleon
+  id: ClothingHandsGlovesInsulatedChameleon
+  suffix: Chameleon, Insulated
+  components:
+  - type: Insulated

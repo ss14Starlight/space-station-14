@@ -102,6 +102,6 @@ public sealed partial class MeleeThrowOnHitSystem : EntitySystem
         if (direction == Vector2.Zero)
             return;
 
-        _throwing.TryThrow(target, direction.Normalized() * ent.Comp.Distance, ent.Comp.Speed, user, unanchor: ent.Comp.UnanchorOnHit);
+        _throwing.TryThrow(target, direction.Normalized() * ent.Comp.Distance, ent.Comp.Speed, user, unanchor: ent.Comp.UnanchorOnHit, predicted: true); // Starlight edit
     }
 }

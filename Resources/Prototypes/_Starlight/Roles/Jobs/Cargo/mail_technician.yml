@@ -12,8 +12,8 @@
   - Mail
   - Maintenance
   extendedAccess:
-  - Salvage
   - Mining
+  - Shuttle
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay

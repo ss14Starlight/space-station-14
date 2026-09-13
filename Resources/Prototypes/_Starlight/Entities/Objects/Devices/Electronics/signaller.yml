@@ -1,0 +1,47 @@
+#Dead man Remote Signaller Device
+
+- type: entity
+  parent: RemoteSignaller
+  id: DeadManRemoteSignaller
+  name: dead man remote signaller
+  description: A handheld device used for remotely sending signals to objects within a small radius of about 15 meters. This one has some wire kludged to the side that will cause it to trigger if dropped.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/deadmansignaller.rsi
+    state: signaller
+  - type: TriggerOnDropped
+  - type: TriggerOnMobstateChange
+    mobState:
+      - Dead
+      - Critical
+  - type: Construction
+    graph: makeshiftdeadmansignaler
+    node: msdeadmansignaler
+
+- type: entity
+  parent: RemoteSignallerAdvanced
+  id: DeadManRemoteSignallerAdvanced
+  name: dead man advanced remote signaller
+  description: A handheld device used for remotely sending signals to objects within a small radius of about 50 meters. This one has some wire kludged to the side that will cause it to trigger if dropped.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/deadmansignaller.rsi
+    state: advanced
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: advanced-inhand-left
+      right:
+      - state: advanced-inhand-right
+  - type: WirelessNetworkConnection
+    range: 50
+  - type: StaticPrice
+    price: 30
+  - type: TriggerOnDropped
+  - type: TriggerOnMobstateChange
+    mobState:
+      - Dead
+      - Critical
+  - type: Construction
+    graph: makeshiftdeadmansignaleradvanced
+    node: msdeadmansignaleradvanced

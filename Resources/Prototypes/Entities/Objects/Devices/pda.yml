@@ -100,7 +100,6 @@
   - type: UserInterface
     interfaces:
       enum.PdaUiKey.Key:
-        requireInputValidation: false #Starlight pAI can open PDAs, see PR #3272
         type: PdaBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
@@ -312,8 +311,6 @@
     borderColor: "#d7d7d0"
   - type: Icon
     state: pda-cook
-  - type: ReplacementAccent # for random sentience event
-    accent: italian
 
 - type: entity
   parent: BasePDA
@@ -431,6 +428,9 @@
       whitelist:
         components:
         - Cartridge
+    preinstalled:
+    - CrewManifestCartridge
+    - NewsReaderCartridge
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -1138,6 +1138,10 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  - type: CartridgeLoader # Starlight
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - AstroNavCartridge
 
 - type: entity
   parent: [ BasePDA, BaseSyndicateContraband ]

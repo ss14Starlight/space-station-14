@@ -21,7 +21,7 @@
       sprite: _Starlight/Clothing/Head/Hats/blueshield.rsi
 
 - type: entity
-  parent: [ClothingHeadBase, BaseBlueShieldContraband]
+  parent: [ClothingHeadBaseSummer, BaseBlueShieldContraband]
   id: ClothingHeadHatBlueShieldSheriff
   name: blueshield bounty hunter's hat
   description: For when your charges do not wish to be tracked down.
@@ -184,7 +184,7 @@
         - CorgiWearable
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandContraband]
+  parent: [ClothingHeadBaseSummer, BaseCommandContraband]
   id: ClothingHeadHatSheriffHat
   name: head of security's sheriff hat
   description: It's high noon.
@@ -200,9 +200,26 @@
         - HamsterWearable
         - WhitelistChameleon
 
+- type: entity
+  parent: [ClothingHeadBase, BaseSecurityContraband]
+  id: ClothingHeadDeputyHat
+  name: deputy's hat
+  description: el desperados...
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/deputy_hat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/deputy_hat.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
+
 #USSP
 - type: entity
-  parent: [ClothingHeadBase, BaseSovietContraband]
+  parent: [ClothingHeadBaseWinter, BaseSovietContraband]
   id: ClothingHeadHatUshankaAlt
   name: SNKVD ushanka
   description: Disappearances are entirely voluntary, tovarisch.
@@ -211,9 +228,6 @@
       sprite: _Starlight/Clothing/Head/Hats/Ushanka.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Head/Hats/Ushanka.rsi
-    - type: TemperatureProtection
-      heatingCoefficient: 1.025
-      coolingCoefficient: 0.65
     - type: Tag
       tags:
         - ClothMade
@@ -238,7 +252,7 @@
         - HamsterWearable
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseSummer
   id: ClothingHeadHatBrimHat
   name: wide brimmed hat
   description: Keep that bloody sun out of your eyes.
@@ -387,7 +401,7 @@
         offset: "0, 0.27"
 
 - type: entity
-  parent: [ClothingHeadBase]
+  parent: [ClothingHeadBaseSummer]
   id: ClothingHeadHatStrawHatWide
   name: wide straw hat
   description: Makes you look mysterious.
@@ -606,7 +620,7 @@
       sprite: _Starlight/Clothing/Head/Hats/beret_nct_green.rsi
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandContraband]
+  parent: [ClothingHeadBaseSummer, BaseCommandContraband]
   id: ClothingHeadHatDrilltrainer
   name: campaign hat
   description: A wide-brimmed campaign hat with a drill sergeant feel, worn by Career Trainers to project knowledge and guide new employees with classic style.
@@ -626,6 +640,17 @@
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
+
+- type: entity
+  parent: ClothingHeadHatWizard
+  id: ClothingHeadHatWitchyHat
+  name: witchy hat
+  description: Wicky-wicky-witchy hat!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/witchyhat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/witchyhat.rsi
 
 # Wizard duel!
 - type: entity
@@ -699,3 +724,39 @@
       sprite: _Starlight/Clothing/Head/Hats/bunnygang.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Head/Hats/bunnygang.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretPrison
+  name: prison beret
+  description: A criminal's least favorite headwear.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/beret_prison.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/beret_prison.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatBeretCaptain
+  name: captain's beret
+  description: A tight fitting beret that leaves you questioning if the headache is really from the crew.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/beret_captain.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/beret_captain.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+        - ClothMade
+        - WhitelistChameleon

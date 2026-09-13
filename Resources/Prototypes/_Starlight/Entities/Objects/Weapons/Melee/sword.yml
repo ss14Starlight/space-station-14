@@ -1,4 +1,20 @@
 - type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseSheatheWeapon
+  name: base sheathe
+  description: It's a sheathe.
+  components:
+  - type: MeleeWeapon
+    animation: WeaponArcSlash
+    wideAnimationRotation: -30
+    damage:
+      types:
+        Blunt: 9
+    soundHit:
+      collection: MetalThud
+
+- type: entity
   name: makeshift sword
   parent: [ BaseSword, BaseMinorContraband ]
   id: SwordMakeshift

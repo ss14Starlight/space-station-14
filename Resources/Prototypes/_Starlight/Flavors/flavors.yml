@@ -67,3 +67,168 @@
   id: stinky
   flavorType: Base
   description: flavor-base-stinky
+
+- type: flavor
+  id: vanillaIceCream
+  flavorType: Complex
+  description: flavor-complex-vanilla-ice-cream
+
+- type: flavor
+  id: chocolateIceCream
+  flavorType: Complex
+  description: flavor-complex-chocolate-ice-cream
+
+- type: flavor
+  id: strawberryIceCream
+  flavorType: Complex
+  description: flavor-complex-strawberry-ice-cream
+
+- type: flavor
+  id: mintChocolateIceCream
+  flavorType: Complex
+  description: flavor-complex-mint-ice-cream
+
+- type: flavor
+  id: coffeeIceCream
+  flavorType: Complex
+  description: flavor-complex-coffee-ice-cream
+
+- type: flavor
+  id: snowcreamIceCream
+  flavorType: Complex
+  description: flavor-complex-snowcream-ice-cream
+
+- type: flavor
+  id: sherbetIceCream
+  flavorType: Complex
+  description: flavor-complex-sherbet-ice-cream
+
+- type: flavor
+  id: bananaSplitIceCream
+  flavorType: Complex
+  description: flavor-complex-banana-split-ice-cream
+
+- type: flavor
+  id: orangeSwirlIceCream
+  flavorType: Complex
+  description: flavor-complex-orange-swirl-ice-cream
+
+- type: flavor
+  id: blueberryIceCream
+  flavorType: Complex
+  description: flavor-complex-blueberry-ice-cream
+
+- type: flavor
+  id: neapolitanIceCream
+  flavorType: Complex
+  description: flavor-complex-neapolitan-ice-cream
+
+- type: flavor
+  id: saltedCaramelIceCream
+  flavorType: Complex
+  description: flavor-complex-salted-caramel-ice-cream
+
+- type: flavor
+  id: rockyRoadIceCream
+  flavorType: Complex
+  description: flavor-complex-rocky-road-ice-cream
+
+- type: flavor
+  id: matchaIceCream
+  flavorType: Complex
+  description: flavor-complex-matcha-ice-cream
+
+- type: flavor
+  id: pistachioIceCream
+  flavorType: Complex
+  description: flavor-complex-pistachio-ice-cream
+
+- type: flavor
+  id: peanutButterIceCream
+  flavorType: Complex
+  description: flavor-complex-peanut-butter-ice-cream
+
+- type: flavor
+  id: cherryIceCream
+  flavorType: Complex
+  description: flavor-complex-cherry-ice-cream
+
+- type: flavor
+  id: appleCinnamonIceCream
+  flavorType: Complex
+  description: flavor-complex-apple-cinnamon-ice-cream
+
+- type: flavor
+  id: goldAppleCinnamonIceCream
+  flavorType: Complex
+  description: flavor-complex-gold-apple-cin-ice-cream
+
+- type: flavor
+  id: holyMelonIceCream
+  flavorType: Complex
+  description: flavor-complex-holy-melon-ice-cream
+
+- type: flavor
+  id: rainbowHighIceCream
+  flavorType: Complex
+  description: flavor-complex-rainbow-high-ice-cream
+
+- type: flavor
+  id: meatIceCream
+  flavorType: Complex
+  description: flavor-complex-meat-ice-cream
+
+- type: flavor
+  id: wehIceCream
+  flavorType: Complex
+  description: flavor-complex-weh-ice-cream
+
+- type: flavor
+  id: spaceDragonIceCream
+  flavorType: Complex
+  description: flavor-complex-space-dragon-ice-cream
+
+- type: flavor
+  id: silkThreadIceCream
+  flavorType: Complex
+  description: flavor-complex-silk-thread-ice-cream
+
+- type: flavor
+  id: dimensionalIceCream
+  flavorType: Complex
+  description: flavor-complex-dimensional-ice-cream
+
+- type: flavor
+  id: omnizineIceCream
+  flavorType: Complex
+  description: flavor-complex-omnizine-ice-cream
+
+- type: flavor
+  id: meanGirlIceCream
+  flavorType: Complex
+  description: flavor-complex-mean-girl-ice-cream
+
+- type: flavor
+  id: hewIceCream
+  flavorType: Complex
+  description: flavor-complex-hew-ice-cream
+
+- type: flavor
+  id: fluffyBoyIceCream
+  flavorType: Complex
+  description: flavor-complex-fluffy-boy-ice-cream
+
+- type: flavor
+  id: cinnamon
+  flavorType: Base
+  description: flavor-base-cinnamon
+
+- type: flavor
+  id: leaderIceCream
+  flavorType: Complex
+  description: flavor-complex-leader-ice-cream
+
+- type: flavor
+  id: teslaIceCream
+  flavorType: Complex
+  description: flavor-complex-tesla-ice-cream

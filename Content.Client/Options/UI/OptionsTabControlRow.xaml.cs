@@ -175,6 +175,13 @@ public sealed partial class OptionsTabControlRow : Control
         return AddOption(new OptionDropDownCVar<T>(this, _cfg, cVar, dropDown, options));
     }
 
+    #region Starlight
+
+    public OptionLineEditCvar AddOptionLineEdit(CVarDef<string> cVar, LineEdit lineEdit) =>
+        AddOption(new OptionLineEditCvar(this, _cfg, cVar, lineEdit));
+
+    #endregion Starlight
+
     /// <summary>
     /// Initializes the control row. This should be called after all options have been added.
     /// </summary>
@@ -454,6 +461,31 @@ public sealed class OptionCheckboxCVar : BaseOptionCVar<bool>
         };
     }
 }
+
+#region Starlight
+
+public sealed class OptionLineEditCvar : BaseOptionCVar<string>
+{
+    private readonly LineEdit _lineEdit;
+
+    protected override string Value
+    {
+        get => _lineEdit.Text;
+        set => _lineEdit.Text = value;
+    }
+
+    public OptionLineEditCvar(OptionsTabControlRow controller, IConfigurationManager cfg, CVarDef<string> cVar,
+        LineEdit lineEdit) : base(controller, cfg, cVar)
+    {
+        _lineEdit = lineEdit;
+        lineEdit.OnTextChanged += _ =>
+        {
+            ValueChanged();
+        };
+    }
+}
+
+#endregion Starlight
 
 /// <summary>
 /// Implementation of a CVar option that simply corresponds with a floating-point <see cref="OptionSlider"/>.

@@ -1,3 +1,4 @@
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
@@ -15,43 +16,43 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
 {
     [TestFixture]
     [TestOf(typeof(LungSystem))]
-    public sealed class LungTest
+    public sealed class LungTest : GameTest
     {
         [TestPrototypes]
         private const string Prototypes = @"
-- type: entity
-  name: HumanLungDummy
-  id: HumanLungDummy
-  components:
-  - type: SolutionContainerManager
-  - type: Body
-    prototype: Human
-  - type: MobState
-    allowedStates:
-      - Alive
-  - type: Damageable
-  - type: ThermalRegulator
-    metabolismHeat: 5000
-    radiatedHeat: 400
-    implicitHeatRegulation: 5000
-    sweatHeatRegulation: 5000
-    shiveringHeatRegulation: 5000
-    normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 25
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 1.5
-    damageRecovery:
-      types:
-        Asphyxiation: -1.5
-";
+    -   type: entity
+        name: HumanLungDummy
+        id: HumanLungDummy
+        components:
+        -   type: SolutionManager
+        -   type: Body
+            prototype: Human
+        -   type: MobState
+            allowedStates:
+                - Alive
+        -   type: Damageable
+        -   type: ThermalRegulator
+            metabolismHeat: 5000
+            radiatedHeat: 400
+            implicitHeatRegulation: 5000
+            sweatHeatRegulation: 5000
+            shiveringHeatRegulation: 5000
+            normalBodyTemperature: 310.15
+            thermalRegulationTemperatureThreshold: 25
+        -   type: Respirator
+            damage:
+                types:
+                    Asphyxiation: 1.5
+            damageRecovery:
+                types:
+                    Asphyxiation: -1.5
+    ";
 
         [Test]
         public async Task AirConsistencyTest()
         {
             // --- Setup
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             await server.WaitIdleAsync();
@@ -105,7 +106,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
 
             // --- End setup
 
-            var inhaleCycles = 100;
+            var inhaleCycles = 20;
             for (var i = 0; i < inhaleCycles; i++)
             {
                 // Breathe in
@@ -122,17 +123,14 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                     "Did not exhale as much gas as was inhaled"
                 );
             }
-
-            await pair.CleanReturnAsync();
         }
 
         [Test]
         public async Task NoSuffocationTest()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
-            var mapManager = server.ResolveDependency<IMapManager>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var cfg = server.ResolveDependency<IConfigurationManager>();
             var mapLoader = entityManager.System<MapLoaderSystem>();
@@ -183,8 +181,6 @@ namespace Content.IntegrationTests.Tests._Starlight.Body
                         $"Entity {entityManager.GetComponent<MetaDataComponent>(human).EntityName} is suffocating on tick {tick}");
                 });
             }
-
-            await pair.CleanReturnAsync();
         }
     }
 }

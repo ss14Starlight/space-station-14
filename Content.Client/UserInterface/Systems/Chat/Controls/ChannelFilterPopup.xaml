@@ -1,11 +1,17 @@
 <controls:ChannelFilterPopup
     xmlns="https://spacestation14.io"
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Systems.Chat.Controls">
     <PanelContainer Name="FilterPopupPanel" StyleClasses="BorderedWindowPanel">
         <BoxContainer Orientation="Horizontal" SeparationOverride="8" Margin="10 0">
-            <BoxContainer Name="FilterVBox" MinWidth="105" Margin="0 10" Orientation="Vertical" SeparationOverride="4"/>
-            <BoxContainer Name="HighlightsVBox" MinWidth="120" Margin="0 10" Orientation="Vertical" SeparationOverride="4">
+            <!-- Starlight start -->
+            <BoxContainer Name="FilterVBox" MinWidth="105" Margin="0 10" Orientation="Vertical" SeparationOverride="4">
+                <Label Text="{Loc 'hud-chatbox-channel-filter'}"/>
+            </BoxContainer>
+            <cc:VSeparator Margin="2 10" />
+            <BoxContainer Name="HighlightsVBox" MinWidth="160" Margin="0 10" Orientation="Vertical" SeparationOverride="4">
+                <!-- Starlight end -->
                 <Label Text="{Loc 'hud-chatbox-highlights'}"/>
                 <PanelContainer>
                     <!-- Begin custom background for TextEdit -->
@@ -13,11 +19,20 @@
                         <gfx:StyleBoxFlat BackgroundColor="#323446"/>
                     </PanelContainer.PanelOverride>
                     <!-- End custom background -->
-                    <TextEdit Name="HighlightEdit" MinHeight="150" Margin="5 5"/>
+                    <!-- Starlight start -->
+                    <TextEdit Name="HighlightEdit" MinHeight="75" Margin="5 5"/>
+                    <!-- Starlight end -->
                 </PanelContainer>
                 <Button Name="HighlightButton" Text="{Loc 'hud-chatbox-highlights-button'}" ToolTip="{Loc 'hud-chatbox-highlights-tooltip'}"/>
+                <!-- Starlight start -->
+                <CheckBox Name="AutoFillCheckBox" Text="{Loc 'hud-chatbox-auto-fill-toggle'}" Margin="0 4 0 0"/>
+                <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                    <RichTextLabel Name="AutoHighlightsLabel" Visible="False" Margin="2 0" VerticalAlignment="Top"/>
+                </ScrollContainer>
+                <!-- Starlight end -->
             </BoxContainer>
             <!-- Starlight start -->
+            <cc:VSeparator Margin="2 10" />
             <BoxContainer Name="TTSMuteVBox" MinWidth="120" Margin="0 10" Orientation="Vertical" SeparationOverride="4">
                 <Label Text="{Loc 'hud-chatbox-tts-mute'}"/>
                 <ScrollContainer VerticalExpand="True" HScrollEnabled="False" MinHeight="150">

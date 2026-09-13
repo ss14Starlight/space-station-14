@@ -1,80 +1,73 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Sprites based on leikha, Created by TacoLlama (github)",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "icon"
+            "name": "icon",
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
-            "name": "base"
+            "name": "base",
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
-            "name": "bolt-open"
+            "name": "bolt-open",
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
             "name": "mag-0",
-			"delays": [
-			[
-			0.5,
-			0.5
-			]
-		]
+			"delays": [[ 0.5, 0.5 ]],
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
             "name": "mag-1",
-			"delays": [
-			[
-			0.5,
-			0.5
-			]
-		]
+			"delays": [[ 0.5, 0.5 ]],
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
             "name": "mag-2",
-			"delays": [
-			[
-			0.5,
-			0.5
-			]
-		]
+			"delays": [[ 0.5, 0.5 ]],
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
             "name": "mag-3",
-			"delays": [
-			[
-			0.5,
-			0.5
-			]
-		]
+			"delays": [[ 0.5, 0.5 ]],
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
             "name": "inhand-left",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
             "name": "inhand-right",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
             "name": "wielded-inhand-left",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
             "name": "wielded-inhand-right",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
             "name": "equipped-BACKPACK",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         },
         {
             "name": "equipped-SUITSTORAGE",
-            "directions": 4
+            "directions": 4,
+            "copyright": "Sprites based on leikha, Created by SevenShades"
         }
     ]
 }
