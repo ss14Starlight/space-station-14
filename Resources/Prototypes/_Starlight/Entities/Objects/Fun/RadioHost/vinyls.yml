@@ -142,7 +142,7 @@
       color: "#00ff00"
   - type: Vinyl
     song:
-      path: /Audio/_starlight/RadioStation/Vinyls/music/DriverUpdate.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/DriverUpdate.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -158,7 +158,7 @@
       color: "#00ff00"
   - type: Vinyl
     song:
-      path: /Audio/_starlight/RadioStation/Vinyls/music/ResonantInfinite.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/ResonantInfinite.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -174,7 +174,7 @@
       color: "#00ff00"
   - type: Vinyl
     song:
-      path: /Audio/_starlight/RadioStation/Vinyls/music/VadeRetro.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/VadeRetro.ogg
 
 - type: entity
   parent: BaseVinylDisc
@@ -190,4 +190,4 @@
       color: "#00ff00"
   - type: Vinyl
     song:
-      path: /Audio/_starlight/RadioStation/Vinyls/music/ConcreteFlavoured.ogg
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/ConcreteFlavoured.ogg
