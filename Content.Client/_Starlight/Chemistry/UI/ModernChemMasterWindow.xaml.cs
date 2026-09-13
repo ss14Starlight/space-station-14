@@ -51,7 +51,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     private readonly Vector2 _modernMinSize; // Window size referenced from MinSize attribute
     private static readonly Vector2 ClassicMinSize = new(666, 670); // We specify the Classic MinSize here since the original value is in an upstream file and it needs to be a bit longer for spacing reasons
     private const int MaxReagentNameLength = 32; // Amount of characters before truncating name in modern layout
-    private const int MaxClassicReagentNameLength = 25; // Amount of characters before truncating name in classic layout
+    private const int MaxClassicReagentNameLength = 24; // Amount of characters before truncating name in classic layout
 
     // Amount configs for the 2x5 modern grid: 9 numeric amounts + All.
     private static readonly (string Label, ChemMasterReagentAmount Amount)[] AmountConfigs =
@@ -439,7 +439,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     /// </summary>
     private static (string display, string? toolTip) TruncateReagentName(string name, int maxLength)
     {
-        if (name.Length <= maxLength + 3)
+        if (name.Length <= maxLength)
             return (name, null);
 
         return (name.Substring(0, maxLength).TrimEnd() + "...", name);
