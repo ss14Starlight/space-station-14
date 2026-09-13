@@ -178,6 +178,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      default_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: default_fluff
@@ -189,6 +193,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      charred_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: charred_fluff
@@ -200,6 +208,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      dbushy_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: dbushy_fluff
@@ -213,6 +225,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      deathhead_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: deathhead_fluff
@@ -226,6 +242,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      fan_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: fan_fluff
@@ -237,6 +257,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      dfan_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: dfan_fluff
@@ -248,6 +272,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      feathery_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: feathery_fluff
@@ -259,6 +287,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      firewatch_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: firewatch_fluff
@@ -272,6 +304,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      gothic_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: gothic_fluff
@@ -283,6 +319,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      jungle_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: jungle_fluff
@@ -294,6 +334,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      ladybug_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: ladybug_fluff
@@ -305,6 +349,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      maple_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: maple_fluff
@@ -318,6 +366,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      moffra_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: moffra_fluff
@@ -331,6 +383,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      oakworm_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: oakworm_fluff
@@ -342,6 +398,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      plasmafire_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: plasmafire_fluff
@@ -355,6 +415,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      pointy_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: pointy_fluff
@@ -366,6 +430,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      royal_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: royal_fluff
@@ -379,6 +447,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      stellar_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: stellar_fluff
@@ -390,6 +462,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      striped_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: striped_fluff
@@ -401,6 +477,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      swirly_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: swirly_fluff
@@ -412,6 +492,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      whitefly_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: whitefly_fluff
@@ -423,6 +507,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      witchwing_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: witchwing_fluff
@@ -434,6 +522,10 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
+  coloring: # Starlight
+    layers:
+      underwing_fluff:
+        type: !type:SkinColoring
   sprites:
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
     state: underwing_fluff
