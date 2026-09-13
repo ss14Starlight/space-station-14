@@ -179,7 +179,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: default_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: default
 
 - type: marking
@@ -188,7 +190,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: charred_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: charred
 
 - type: marking
@@ -197,9 +201,11 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: dbushy_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: dbushy_primary
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: dbushy_secondary
 
 - type: marking
@@ -208,9 +214,11 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: deathhead_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: deathhead_primary
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: deathhead_secondary
 
 - type: marking
@@ -219,7 +227,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: fan_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: fan
 
 - type: marking
@@ -228,7 +238,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: dfan_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: dfan
 
 - type: marking
@@ -237,7 +249,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: feathery_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: feathery
 
 - type: marking
@@ -246,9 +260,11 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: firewatch_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: firewatch_primary
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: firewatch_secondary
 
 - type: marking
@@ -257,7 +273,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: gothic_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: gothic
 
 - type: marking
@@ -266,7 +284,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: jungle_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: jungle
 
 - type: marking
@@ -275,7 +295,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: ladybug_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: ladybug
 
 - type: marking
@@ -284,9 +306,11 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: maple_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: maple_primary
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: maple_secondary
 
 - type: marking
@@ -295,9 +319,11 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: moffra_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: moffra_primary
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: moffra_secondary
 
 - type: marking
@@ -306,7 +332,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: oakworm_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: oakworm
 
 - type: marking
@@ -315,9 +343,11 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: plasmafire_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: plasmafire_primary
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: plasmafire_secondary
 
 - type: marking
@@ -326,7 +356,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: pointy_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: pointy
 
 - type: marking
@@ -335,9 +367,11 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: royal_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: royal_primary
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: royal_secondary
 
 - type: marking
@@ -346,7 +380,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: stellar_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: stellar
 
 - type: marking
@@ -355,7 +391,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: striped_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: striped
 
 - type: marking
@@ -364,7 +402,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: swirly_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: swirly
 
 - type: marking
@@ -373,7 +413,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: whitefly_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: whitefly
 
 - type: marking
@@ -382,7 +424,9 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: witchwing_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: witchwing
 
 - type: marking
@@ -391,10 +435,13 @@
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
   sprites:
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: underwing_fluff
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: underwing_primary
-  - sprite: Mobs/Customization/Moth/moth_wings.rsi
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: underwing_secondary
+
 
 # Body markings:
 # Charred
