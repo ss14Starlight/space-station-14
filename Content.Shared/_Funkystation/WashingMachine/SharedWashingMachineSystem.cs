@@ -61,10 +61,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnMapInit(Entity<WashingMachineComponent> ent, ref MapInitEvent args)
-    {
-        _appearance.SetData(ent.Owner, WashingMachineVisuals.State, ent.Comp.State);
-    }
+    private void OnMapInit(Entity<WashingMachineComponent> ent, ref MapInitEvent args) => _appearance.SetData(ent.Owner, WashingMachineVisuals.State, ent.Comp.State);
 
     [SubscribeLocalEvent]
     private void OnBreak(Entity<WashingMachineComponent> ent, ref BreakageEventArgs args)

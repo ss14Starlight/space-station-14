@@ -15,7 +15,7 @@ public abstract partial class SharedStainSystem : EntitySystem
     public bool CleanStains(Entity<StainableComponent?> item, FixedPoint2? amount = null)
     {
         var cleaned = Resolve(item.Owner, ref item.Comp, false) &&
-                      CleanSingleItem((item.Owner, item.Comp), amount);
+                        CleanSingleItem((item.Owner, item.Comp), amount);
 
         if (TryComp<ToggleableClothingComponent>(item.Owner, out var toggleable) &&
             toggleable.ClothingUid is { } attached &&
@@ -77,9 +77,9 @@ public abstract partial class SharedStainSystem : EntitySystem
             return true;
 
         return TryComp<ToggleableClothingComponent>(item.Owner, out var toggleable) &&
-               toggleable.ClothingUid is { } attached &&
-               TryComp<StainableComponent>(attached, out var attachedStain) &&
-               SingleItemHasStains((attached, attachedStain));
+                toggleable.ClothingUid is { } attached &&
+                TryComp<StainableComponent>(attached, out var attachedStain) &&
+                SingleItemHasStains((attached, attachedStain));
     }
 
     private bool SingleItemHasStains(Entity<StainableComponent> item) =>
