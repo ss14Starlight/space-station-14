@@ -107,7 +107,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
 
         if (proto.SoundPerceivedByOthers)
         {
-            _audio.PlayPvs(sfx, args.Target);
+            _audio.PlayPredicted(sfx, Transform(args.Target).Coordinates, args.User);
         }
         else
         {
