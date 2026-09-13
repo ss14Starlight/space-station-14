@@ -7,8 +7,6 @@ using Content.Shared._Starlight.CosmicCult.Roles;
 using Robust.Shared.Random;
 using Content.Server.Station.Systems;
 using Content.Server._Starlight.CosmicCult.EntitySystems;
-using System.Numerics;
-using Robust.Shared.Map;
 using Content.Server.Nuke;
 
 namespace Content.Server._Starlight.CosmicCult;

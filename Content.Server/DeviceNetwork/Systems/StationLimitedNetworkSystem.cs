@@ -2,7 +2,6 @@ using Content.Server.DeviceNetwork.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.DeviceNetwork.Events;
 using JetBrains.Annotations;
-using Robust.Shared.Map;
 
 namespace Content.Server.DeviceNetwork.Systems
 {

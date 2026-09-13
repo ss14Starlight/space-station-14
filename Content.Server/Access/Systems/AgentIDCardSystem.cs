@@ -11,7 +11,6 @@ using Content.Shared.Roles;
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Clothing.Systems;
 using Content.Server.Implants;
-using Content.Server.VoiceMask;
 using Content.Shared.Implants;
 using Content.Shared.Inventory;
 using Content.Shared.Lock;

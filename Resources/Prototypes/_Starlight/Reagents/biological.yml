@@ -225,3 +225,33 @@
       intensityPerUnit: 0.5
       intensitySlope: 4
       maxTotalIntensity: 1
+
+- type: reagent
+  id: PseudoceramicPlatelets
+  name: reagent-name-pseudoceramic-platelets
+  group: Biological
+  desc: reagent-desc-pseudoceramic-platelets
+  flavor: spooky
+  color: "#FF7777"
+  recognizable: false
+  physicalDesc: reagent-physical-desc-abrasive
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.25 # Dolls build this stuff up, any excess needs to filter out slowly
+      effects:
+      - !type:RegrowShell
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        - !type:ReagentCondition
+          reagent: PseudoceramicPlatelets
+          min: 25
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        - !type:ReagentCondition
+          reagent: PseudoceramicPlatelets
+          min: 25
+        reagent: PseudoceramicPlatelets
+        amount: -25

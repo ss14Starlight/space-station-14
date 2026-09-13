@@ -1,19 +1,12 @@
-using System.Linq;
 using Content.Client.Guidebook;
-using Content.Client.Humanoid;
-using Content.Client.Inventory;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Shared.CCVar;
-using Content.Shared.Clothing;
-using Content.Shared.GameTicking;
-using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Traits;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.State;
@@ -28,7 +21,6 @@ using Content.Client._Starlight.Lobby.UI;
 using Content.Client._Starlight.Humanoid;
 using Content.Client._Starlight.UserInterface; // Starlight: popout support
 using Content.Shared._Starlight.CCVar;
-using Robust.Client.UserInterface.CustomControls;
 using System.Numerics;
 #endregion
 
@@ -45,7 +37,6 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     [Dependency] private IStateManager _stateManager = default!;
     [Dependency] private JobRequirementsManager _requirements = default!;
     [Dependency] private MarkingManager _markings = default!;
-    [UISystemDependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
 
     private CharacterSetupGui? _characterSetup;

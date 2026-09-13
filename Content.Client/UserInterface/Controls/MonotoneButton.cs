@@ -1,6 +1,4 @@
-using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controls;
-using static Robust.Client.UserInterface.Controls.Label;
 
 namespace Content.Client.UserInterface.Controls;
 

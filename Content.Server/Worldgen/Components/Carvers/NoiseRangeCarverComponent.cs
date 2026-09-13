@@ -2,7 +2,6 @@
 using Content.Server.Worldgen.Prototypes;
 using Content.Server.Worldgen.Systems.Carvers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Worldgen.Components.Carvers;
 

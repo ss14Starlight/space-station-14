@@ -18,10 +18,10 @@ namespace Content.Client._Funkystation.NanoChat;
 /// <summary>
 /// Markup tag for rendering emoji images inline in RichTextLabel.
 /// </summary>
-public sealed class EmojiTag : IMarkupTagHandler
+public sealed partial class EmojiTag : IMarkupTagHandler
 {
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
 
     private SpriteSystem? _spriteSystem;
 

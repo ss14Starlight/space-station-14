@@ -3,7 +3,6 @@ using System.Runtime.InteropServices;
 using Content.Client.Graphics;
 using Content.Shared.Maps;
 using Robust.Client.Graphics;
-using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
