@@ -66,6 +66,7 @@
     shape:
     - 0, 0, 0, 1
 
+
 # Reporter unlockable PRESS vest
 - type: entity
   parent: [ClothingOuterBase, AllowSuitStorageClothingGasTanks]
