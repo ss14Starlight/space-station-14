@@ -37,6 +37,34 @@
         - Iterator
       inverted: true
 
+- type: trait
+  id: Xenosocialized
+  name: trait-language-xenosocialized-name
+  description: trait-language-xenosocialized-desc
+  category: LanguageTraits
+  cost: -2
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: XenosocializedTrait
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Neocyte
+        - IPC
+      inverted: true
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
+    - !type:TraitsRequirement
+      traits:
+        - Foreigner
+      inverted: true
+    - !type:TraitsRequirement
+      traits:
+        - ForeignerLight
+      inverted: true
 # Galactic Languages // Should cost: 1
 
 - type: trait
