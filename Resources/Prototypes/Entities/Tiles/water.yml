@@ -62,4 +62,3 @@
   - type: TileEntityEffect
     effects:
     - !type:Extinguish
-  - type: WaterClothingWash # Starlight
