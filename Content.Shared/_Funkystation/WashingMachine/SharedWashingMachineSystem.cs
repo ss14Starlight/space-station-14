@@ -13,8 +13,10 @@ using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
+using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -32,7 +34,6 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private DamageableSystem _damageable = null!;
     [Dependency] private ReactiveSystem _reactive = null!;
     [Dependency] private SharedStainSystem _stains = default!;
-    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -60,7 +61,10 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnMapInit(Entity<WashingMachineComponent> ent, ref MapInitEvent args) => _appearance.SetData(ent.Owner, WashingMachineVisuals.State, ent.Comp.State);
+    private void OnMapInit(Entity<WashingMachineComponent> ent, ref MapInitEvent args)
+    {
+        _appearance.SetData(ent.Owner, WashingMachineVisuals.State, ent.Comp.State);
+    }
 
     [SubscribeLocalEvent]
     private void OnBreak(Entity<WashingMachineComponent> ent, ref BreakageEventArgs args)
@@ -142,7 +146,9 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
         var waterSpray = new Solution();
         waterSpray.AddReagent(comp.WaterSprayReagent, comp.WaterSprayAmount);
 
-        var sprayWater = _random.Prob(comp.WaterSprayChance * frameTime);
+        var rand = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(uid));
+
+        var sprayWater = rand.Prob(comp.WaterSprayChance * frameTime);
 
         var hasHeavyItems = false;
 
@@ -159,7 +165,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
         if (hasHeavyItems)
         {
-            if (_random.Prob(comp.ThumpSoundChance * frameTime))
+            if (rand.Prob(comp.ThumpSoundChance * frameTime))
                 _audio.PlayPredicted(comp.HitSound, uid, uid);
 
             comp.AccumulatedSelfDamage += comp.SelfDamagePerSecond * frameTime;

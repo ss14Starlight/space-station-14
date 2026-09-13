@@ -10,11 +10,13 @@ using Content.Shared.Fluids;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Popups;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Funkystation.Stains.Systems;
@@ -36,7 +38,7 @@ public abstract partial class SharedStainSystem : EntitySystem
     [Dependency] private SharedPuddleSystem _puddle = null!;
     [Dependency] private SharedPopupSystem _popup = null!;
     [Dependency] private IPrototypeManager _prototype = default!;
-    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -64,7 +66,8 @@ public abstract partial class SharedStainSystem : EntitySystem
             return;
 
         // Random chance that stains aren't applied
-        if (!_random.Prob(ent.Comp.StainChance))
+        var rand = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(ent.Owner));
+        if (!rand.Prob(ent.Comp.StainChance))
             return;
 
         // Get the puddle's solution component, so that we can split the puddle's solution in a way that
