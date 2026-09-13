@@ -127,3 +127,18 @@
   - type: Vinyl
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/DepressedWawatriestoprotest.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylSpaceAsshole
+  name: "vinyl: Space Asshole"
+  description: "The unofficial anthem of this god-forsaken station. By: Chris Remo"
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: label
+      color: red
+  - type: Vinyl
+    song:
+      path: /Audio/Lobby/space_asshole.ogg # Reusing the lobby music.
