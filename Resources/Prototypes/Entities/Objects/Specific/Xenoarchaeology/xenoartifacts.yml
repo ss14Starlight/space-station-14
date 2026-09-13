@@ -25,7 +25,7 @@
   # gameplay interactions
   - type: XenoArtifact
     effectsTable: !type:NestedSelector
-      tableId: XenoArtifactEffectsDefaultTable
+      tableId: SLXenoArtifactEffectsDefaultTable # Starlight
   - type: Damageable
   - type: Actions
   - type: Physics
