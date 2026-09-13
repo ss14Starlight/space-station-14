@@ -50,6 +50,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
     private readonly Vector2 _modernMinSize; // Window size referenced from MinSize attribute
     private static readonly Vector2 ClassicMinSize = new(666, 670); // We specify the Classic MinSize here since the original value is in an upstream file and it needs to be a bit longer for spacing reasons
+    private const int MaxReagentNameLength = 35; // Amount of characters before truncating name in modern layout
+    private const int MaxClassicReagentNameLength = 25; // Amount of characters before truncating name in classic layout
 
     // Amount configs for the 2x5 modern grid: 9 numeric amounts + All.
     private static readonly (string Label, ChemMasterReagentAmount Amount)[] AmountConfigs =
@@ -164,6 +166,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         // Build the amount 'grid' (2x5)
         BuildAmountGrid(AmountGrid);
+
+        BufferTransferButton.Group = BufferDiscardButton.Group = new ButtonGroup();
+        BufferTransferButtonClassic.Group = BufferDiscardButtonClassic.Group = new ButtonGroup();
 
         // Custom amount - shared validation and per-ChemMaster storage, Modern + Classic textboxes sync
         CustomAmountLineEdit.IsValid = IsInCustomAmountRange;
@@ -429,6 +434,18 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     }
 
     /// <summary>
+    /// Truncates a reagent name with an ellipsis if it exceeds the max length.
+    /// Returns the display name and a tooltip with the full name. No tooltip is shown when untruncated.
+    /// </summary>
+    private static (string display, string? toolTip) TruncateReagentName(string name, int maxLength)
+    {
+        if (name.Length <= maxLength + 3)
+            return (name, null);
+
+        return (name.Substring(0, maxLength).TrimEnd() + "...", name);
+    }
+
+    /// <summary>
     /// Classic mode only: generates the full set of per-row amount buttons.
     /// Modern mode rows are buttons themselves - this is not called for them.
     /// </summary>
@@ -616,6 +633,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     {
         BufferTransferButton.Pressed = state.Mode == ChemMasterMode.Transfer;
         BufferDiscardButton.Pressed = state.Mode == ChemMasterMode.Discard;
+        BufferTransferButtonClassic.Pressed = state.Mode == ChemMasterMode.Transfer;
+        BufferDiscardButtonClassic.Pressed = state.Mode == ChemMasterMode.Discard;
 
         // Modern layout containers
         BuildContainerUI(InputContainerInfo, state.InputContainerInfo, true, modernMode: true);
@@ -810,10 +829,15 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         if (modernMode && addReagentButtons)
         {
+            // Truncate very long names to prevent UI issues.
+            string? toolTip;
+            (name, toolTip) = TruncateReagentName(name, MaxReagentNameLength);
+
             // Modern: the entire row is a ReagentButton. Amount is read from the selected amount at click time. If custom amount is selected, send via custom message; otherwise use _selectedAmount.
             var rowBtn = new ReagentButton(string.Empty, _selectedAmount, reagent, isBuffer, StyleClass.ButtonSquare)
             {
                 HorizontalExpand = true,
+                ToolTip = toolTip, // Labels ignore the mouse, so the tooltip lives on the row button.
             };
             rowBtn.OnPressed += a => { if (_customSelected && _customAmount is {} c) OnCustomReagentButtonPressed?.Invoke(a, reagent, c, isBuffer); else { rowBtn.Amount = _selectedAmount; OnReagentButtonPressed?.Invoke(a, rowBtn); } };
 
@@ -852,6 +876,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         if (reagentColor == default || !addReagentButtons)
             reagentColor = currentRowColor;
 
+        // Truncate very long names to prevent UI issues.
+        var (classicName, classicToolTip) = TruncateReagentName(name, MaxClassicReagentNameLength);
+
         var reagentButtonConstructors = CreateReagentTransferButtons(reagent, isBuffer, addReagentButtons);
 
         var rowContainer = new BoxContainer
@@ -867,7 +894,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                     PanelOverride = new StyleBoxFlat { BackgroundColor = reagentColor },
                     Margin = new Thickness(0, 1, 4, 1)
                 },
-                new Label { Text = $"{name}: " },
+                new Label { Text = $"{classicName}: ", ToolTip = classicToolTip, MouseFilter = classicToolTip == null ? MouseFilterMode.Ignore : MouseFilterMode.Stop },
                 new Label
                 {
                     Text = $"{quantity}u",
