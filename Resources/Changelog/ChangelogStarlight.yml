@@ -1,53 +1,4 @@
 Entries:
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Added Mailboxes to every department.'
-    type: Add
-  id: 408121
-  time: '2026-09-05T13:19:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5977
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] K9 Job Slots are now permanently open.'
-    type: Tweak
-  id: 408122
-  time: '2026-09-05T13:19:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5977
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
-  - message: Added Salvage medic role.
-    type: Add
-  id: 408123
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
-  - message: Added ITG tracking Implant for salvagers.
-    type: Add
-  id: 408124
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
-  - message: Added new Salvage SOP.
-    type: Add
-  id: 408125
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
-  - message: Added New Salvage Armoury. The Salvage team can store all their extra loot aboard the ATS.
-    type: Add
-  id: 408126
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
-  - message: Salvage Icons are now greyscaled to differentiate from crew.
-    type: Tweak
-  id: 408127
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
 - author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
   changes:
   - message: Salvage members are no longer the targets of antag objectives.
@@ -2799,4 +2750,53 @@ Entries:
   id: 408520
   time: '2026-09-13T17:45:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5700
+- author: SirLutz
+  changes:
+  - message: Colossus and Malign Minion passive regeneration on tiles has been halved.
+    type: Tweak
+  id: 408521
+  time: '2026-09-13T18:03:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6127
+- author: SirLutz
+  changes:
+  - message: 'Colossus and minions gain less maxhealth per occupied rift, C: 25->20, M: 5->2.'
+    type: Tweak
+  id: 408522
+  time: '2026-09-13T18:03:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6127
+- author: SirLutz
+  changes:
+  - message: LoneColossus now spawns after 45 minutes and an population above 40.
+    type: Tweak
+  id: 408523
+  time: '2026-09-13T18:03:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6127
+- author: SirLutz
+  changes:
+  - message: Colossus now only gets 25% Maxhp boost from antagscaling instead of 50%.
+    type: Tweak
+  id: 408524
+  time: '2026-09-13T18:03:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6127
+- author: SirLutz
+  changes:
+  - message: Dragon Shark limit is now crewcount/8 instead of crewcount/2.
+    type: Tweak
+  id: 408525
+  time: '2026-09-13T18:03:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6127
+- author: SirLutz
+  changes:
+  - message: Shotgun Slugshots reduced from 0.3 to 0.2.
+    type: Tweak
+  id: 408526
+  time: '2026-09-13T18:03:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6127
+- author: SirLutz
+  changes:
+  - message: Dragon Sharkminnows and Holocarps can now pry doors.
+    type: Add
+  id: 408527
+  time: '2026-09-13T18:03:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6127
 Order: -1
