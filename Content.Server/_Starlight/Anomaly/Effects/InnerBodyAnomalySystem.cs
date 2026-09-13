@@ -29,9 +29,9 @@ namespace Content.Server.Anomaly.Effects;
 // Far Horizons - made partial
 public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
 {
-    [Dependency] private NpcFactionSystem _npcFaction = default!; // Starlight
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
 
-    private static readonly ProtoId<NpcFactionPrototype> _cosmicCultFaction = "CosmicCult"; // Starlight
+    private static readonly ProtoId<NpcFactionPrototype> _cosmicCultFaction = "CosmicCult";
 
     public bool AddedCosmicCultFaction;
 
@@ -106,7 +106,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
         Dirty(ent);
         if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
-            ProcessComponents(ent, injectedAnom.Components, false); // Starlight
+            ProcessComponents(ent, injectedAnom.Components, false);
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
 
