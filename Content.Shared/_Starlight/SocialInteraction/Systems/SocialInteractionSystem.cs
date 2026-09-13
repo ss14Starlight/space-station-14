@@ -31,7 +31,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
             return;
 
         //create a verb subcategory
-        var category = new VerbCategory("physical-social-interaction-component-verb", null);
+        var category = new VerbCategory("social-interaction-component-verb", null);
 
         //enumerate all the physical social interaction prototypes
         foreach (var protoid in component.InteractionPrototypes)
@@ -85,9 +85,9 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         if (proto.InteractSound != null)
             sfx = proto.InteractSound;
 
-        if (!string.IsNullOrEmpty(proto.MessagePerceivedByOthers))
+        if (proto.MessagePerceivedByOthers is { } message)
         {
-            var msgOthers = Loc.GetString(proto.MessagePerceivedByOthers,
+            var msgOthers = Loc.GetString(message,
                 ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target, EntityManager)));
             _popupSystem.PopupEntity(msgOthers, uid, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
         }
