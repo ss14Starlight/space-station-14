@@ -460,10 +460,8 @@
       reagents:
       - ReagentId: Nutriment
         Quantity: 5
-      - ReagentId: Theobromine
-        Quantity: 2
       - ReagentId: Cream
-        Quantity: 13
+        Quantity: 15
 
 - type: entity
   name: apple cinnamon ice cream
@@ -843,7 +841,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -867,12 +864,13 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
         - ReagentId: Cream
-          Quantity: 15
+          Quantity: 12
+        - ReagentId: Honk
+          Quantity: 3
 
 - type: entity
   name: coconut ice cream
@@ -891,7 +889,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -917,7 +914,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -941,7 +937,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -965,7 +960,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -989,7 +983,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1013,7 +1006,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1037,7 +1029,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1068,7 +1059,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1092,7 +1082,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1116,7 +1105,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1142,7 +1130,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1168,7 +1155,6 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
