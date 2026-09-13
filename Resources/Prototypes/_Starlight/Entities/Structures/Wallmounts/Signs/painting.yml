@@ -52,7 +52,7 @@
   parent: PaintingBase
   id: PaintingImmortals
   name: Panel with Immortals
-  description: This painting depicts theEight Immortals, Baxian, and the God of Longevity, Shoulao, important deities in the Chinese legend. China, 1800s Earth.
+  description: This painting depicts the Eight Immortals, Baxian, and the God of Longevity, Shoulao, important deities in the Chinese legend. China, 1800s Earth.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/paintings.rsi
@@ -72,7 +72,7 @@
   parent: PaintingBase
   id: PaintingShitao
   name: Shitao Landscape
-  description: This painting depicts a small house on an oceanside cliff with two fighing boats departing. China, 1690 Earth.
+  description: This painting depicts a small house on an oceanside cliff with two fishing boats departing. China, 1690 Earth.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/paintings.rsi
@@ -82,7 +82,7 @@
   parent: PaintingBase
   id: PaintingShankara
   name: Shri Shankara Shiva
-  description: This painting depicts Shiva's divine family, dressed richly and adorned with jewes. India, 1800s Earth.
+  description: This painting depicts Shiva's divine family, dressed richly and adorned with jewels. India, 1800s Earth.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/paintings.rsi
@@ -92,7 +92,7 @@
   parent: PaintingBase
   id: PaintingParadise
   name: The Creation of the World and the Expulsion from Paradise
-  description: This painting depicts a vision of Paradise reminiscent of 'The Divine Comedy', with the universe as a celestial globe with the Earth at it's center. Italy, 1445 Earth.
+  description: This painting depicts a vision of Paradise reminiscent of 'The Divine Comedy', with the universe as a celestial globe with the Earth at its center. Italy, 1445 Earth.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/paintings.rsi
@@ -132,7 +132,7 @@
   parent: PaintingBase
   id: PaintingWheatFields
   name: Wheat Field with Cypresses
-  description: This painting depicts a golden wheat field with cypress trees and rolling clouds depicted as swirling shaped in the sky, painted by Van Gogh. 1889 Earth.
+  description: This painting depicts a golden wheat field with cypress trees and rolling clouds depicted as swirling shapes in the sky, painted by Van Gogh. 1889 Earth.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/paintings.rsi
