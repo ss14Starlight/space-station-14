@@ -229,7 +229,7 @@
 # Clarke
 - type: entity
   id: MechClarke
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ BaseMech, IndustrialMech, BaseCargoSalvageContraband ]
   name: Clarke
   description: A special-purpose mech for heavy-duty mining operations. Outfitted with treads for stable locomotion in hazardous terrain.
   components:
