@@ -66,24 +66,7 @@
     shape:
     - 0, 0, 0, 1
 
-#Wire Harness
-- type: entity
-  parent: [ClothingOuterBase, AllowSuitStorageClothing, BaseMinorContraband]
-  id: ClothingOuterWireVest
-  name: wire harness
-  description: An assortment of knots used to hold things on your back.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Vests/wireharness.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Vests/wireharness.rsi
-  - type: Item
-    size: Normal # Make smaller than typical outer clothing
-    shape:
-    - 0, 0, 0, 1
-  - type: Construction
-    graph: WireHarness
-    node: WireVest
+
 # Reporter unlockable PRESS vest
 - type: entity
   parent: [ClothingOuterBase, AllowSuitStorageClothingGasTanks]
