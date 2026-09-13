@@ -9,8 +9,11 @@ public abstract partial class SharedGunSystem
     /// <summary>
     /// Bolts a gun and chambers a round for an unheld gun so the next shot fires.
     /// </summary>
-    public void ForceChamber(EntityUid gun)
+    public void ForceChamber(Entity<GunComponent?> gun)
     {
+        if (!Resolve(gun, ref gun.Comp, false))
+            return;
+
         if (!TryComp<ChamberMagazineAmmoProviderComponent>(gun, out var chamber))
             return;
 
@@ -26,12 +29,15 @@ public abstract partial class SharedGunSystem
     /// <summary>
     /// Cycles an unheld gun
     /// </summary>
-    public void ForceCycle(EntityUid gun)
+    public void ForceCycle(Entity<GunComponent?> gun)
     {
-        if (TryComp<GunComponent>(gun, out var gunComp) && gunComp.Pump &&
+        if (!Resolve(gun, ref gun.Comp, false))
+            return;
+
+        if (gun.Comp.Pump &&
             TryComp<BallisticAmmoProviderComponent>(gun, out var ballistic))
         {
-            ManualCycle((gun, ballistic), TransformSystem.GetMapCoordinates(gun));
+            ManualCycle((gun.Owner, ballistic), TransformSystem.GetMapCoordinates(gun));
             return;
         }
 

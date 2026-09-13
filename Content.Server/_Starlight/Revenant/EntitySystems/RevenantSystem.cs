@@ -75,7 +75,7 @@ public sealed partial class RevenantSystem
             _wieldable.ForceWielded((args.Target, wieldable), true);
 
         // Bolts unbolted guns and chamber a round so the gun actually fires
-        _gun.ForceChamber(args.Target);
+        _gun.ForceChamber(gun.AsNullable());
 
         // Turns the gun to face the target so burst fire weapons don't fire their other shots wrongly
         var direction = _transformSystem.GetWorldPosition(target) - gunPos;
@@ -88,7 +88,7 @@ public sealed partial class RevenantSystem
         _tag.RemoveTag(args.Target, MisfireBypassUserTag);
 
         // Cycles guns after shooting so you can shoot again
-        _gun.ForceCycle(args.Target);
+        _gun.ForceCycle(gun.AsNullable());
 
         // Clear the forced wield so guns are not left in a weird state
         if (wieldable != null)
