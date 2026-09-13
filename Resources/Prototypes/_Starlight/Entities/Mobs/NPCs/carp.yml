@@ -124,7 +124,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        100: Dead
+        120: Dead
     - type: Damageable
       damageModifierSet: DragonCarpResistances
     - type: Prying
