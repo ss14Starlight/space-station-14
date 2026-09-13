@@ -39,4 +39,11 @@ public sealed partial class PhysicalSocialInteractionPrototype : IPrototype
     /// </summary>
     [DataField("soundPerceivedByOthers")]
     public bool SoundPerceivedByOthers = true;
+
+    /// <summary>
+    /// Does this social interaction require being within interaction range of the target?
+    /// Stuff like 'waving at someone' wouldn't, while patting them would.
+    /// </summary>
+    [DataField("isPhysical")]
+    public bool IsPhysical = true;
 }

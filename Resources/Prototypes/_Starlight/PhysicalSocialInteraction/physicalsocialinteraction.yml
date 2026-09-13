@@ -1,5 +1,4 @@
 # MUST be added to the InteractionPrototypes list of a PhysicalSocialInteractionReceiver component to be usable
-
 - type: physicalSocialInteraction
   id: Pet
   verbName: pet-verb
@@ -11,3 +10,17 @@
   verbName: boop-verb
   interactString: booping-success
   messagePerceivedByOthers: booping-success
+
+- type: physicalSocialInteraction
+  id: Wave
+  verbName: wave-verb
+  interactString: waving-success
+  messagePerceivedByOthers: waving-success-others
+  isPhysical: false
+
+- type: physicalSocialInteraction
+  id: Look
+  verbName: look-verb
+  interactString: looking-success
+  messagePerceivedByOthers: looking-success-others
+  isPhysical: false

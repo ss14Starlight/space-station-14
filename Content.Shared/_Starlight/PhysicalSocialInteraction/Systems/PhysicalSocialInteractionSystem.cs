@@ -30,10 +30,6 @@ public sealed partial class PhysicalSocialInteractionSystem : EntitySystem
         if (!HasComp<PhysicalSocialInteractionGiverComponent>(args.User))
             return;
 
-        //check if interactable
-        if (!CheckInteractable(args.User, args.Target))
-            return;
-
         //create a verb subcategory
         var category = new VerbCategory("physical-social-interaction-component-verb", null);
 
@@ -42,6 +38,10 @@ public sealed partial class PhysicalSocialInteractionSystem : EntitySystem
         {
             //resolve the proto itself
             if (!_protoMan.TryIndex<PhysicalSocialInteractionPrototype>(protoid, out var proto))
+                continue;
+
+            // check if interaction needs physical contact
+            if (proto.IsPhysical && (!CheckInteractable(args.User, args.Target)))
                 continue;
 
             //make a verb for each one
@@ -72,7 +72,8 @@ public sealed partial class PhysicalSocialInteractionSystem : EntitySystem
 
     private void InteractionPopupAction(EntityUid uid, GetVerbsEvent<Verb> args, PhysicalSocialInteractionPrototype proto)
     {
-        if (!CheckInteractable(args.User, args.Target))
+        // check if interaction needs physical contact
+        if (proto.IsPhysical && !CheckInteractable(args.User, args.Target))
             return;
 
         var msg = ""; // Stores the text to be shown in the popup message
