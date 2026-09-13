@@ -1,4 +1,4 @@
-﻿using Content.Server._Funkystation.Atmos.Events;
+using Content.Server._Funkystation.Atmos.Events;
 using Content.Server._Funkystation.WallStains.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared._Funkystation.ReagentFires;
@@ -26,86 +26,83 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
     [Dependency] private DamageableSystem _damageable = null!;
     [Dependency] private SharedAudioSystem _audio = null!;
     [Dependency] private SharedPointLightSystem _light = null!;
-    [Dependency] private EntityLookupSystem _lookup = null!;
     [Dependency] private SharedAppearanceSystem _appearance = null!;
     [Dependency] private SharedMapSystem _map = null!;
 
-    public override void Initialize()
+    private static readonly Vector2i[] _tileAndCardinalOffsets = [Vector2i.Zero, new(0, 1), new(0, -1), new(1, 0), new(-1, 0)];
+
+    // Starlight - reused collections, these used to be allocated for every exposure / every tick.
+    private readonly List<(EntityUid Stain, FlammableWallStainComponent Comp)> _toIgnite = [];
+    private readonly List<(EntityUid Uid, FlammableWallStainComponent FireComp, WallStainComponent Stain, TransformComponent Xform)> _activeStains = [];
+
+    [Dependency] private EntityQuery<StainedWallComponent> _stainedWallQuery;
+    [Dependency] private EntityQuery<FlammableWallStainComponent> _fireQuery;
+    [Dependency] private EntityQuery<WallStainComponent> _stainQuery;
+    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery;
+
+    [SubscribeLocalEvent]
+    private void OnShutdown(Entity<FlammableWallStainComponent> ent, ref ComponentShutdown _)
+        => Extinguish(ent);
+
+    [SubscribeLocalEvent]
+    private void OnTileExposed(Entity<MapGridComponent> ent, ref TileExposedEvent args)
     {
-        base.Initialize();
-
-        SubscribeLocalEvent<MapGridComponent, TileExposedEvent>(OnTileExposed);
-        SubscribeLocalEvent<FlammableWallStainComponent, TileFireEvent>(OnTileFire);
-        SubscribeLocalEvent<FlammableWallStainComponent, ComponentShutdown>(OnShutdown);
-    }
-
-    private void OnShutdown(EntityUid uid, FlammableWallStainComponent component, ref ComponentShutdown args)
-    {
-        Extinguish(uid, component);
-    }
-
-    private void OnTileExposed(EntityUid gridUid, MapGridComponent component, ref TileExposedEvent args)
-    {
-        var fireTile = args.Tile;
-
-        if (!TryComp<MapGridComponent>(gridUid, out var grid))
+        // Starlight - nothing to ignite if there are no wall stains at all.
+        if (Count<FlammableWallStainComponent>() == 0)
             return;
 
-        var toIgnite = new List<(EntityUid Stain, FlammableWallStainComponent Comp)>();
+        var fireTile = args.Tile;
+        _toIgnite.Clear();
 
-        var offsets = new[] { Vector2i.Zero, new Vector2i(0, 1), new Vector2i(0, -1), new Vector2i(1, 0), new Vector2i(-1, 0) };
-        foreach (var offset in offsets)
+        foreach (var offset in _tileAndCardinalOffsets)
         {
             var wallTile = fireTile + offset;
-            var enumerator = _map.GetAnchoredEntitiesEnumerator(gridUid, grid, wallTile);
+            var enumerator = _map.GetAnchoredEntities(ent.Owner, ent.Comp, wallTile);
 
-            while (enumerator.MoveNext(out var ent))
+            while (enumerator.MoveNext(out var wall))
             {
-                var children = Transform(ent.Value).ChildEnumerator;
+                // Starlight - only stained walls have stain children.
+                if (!_stainedWallQuery.HasComp(wall))
+                    continue;
+
+                var children = Transform(wall.Value).ChildEnumerator;
                 while (children.MoveNext(out var child))
                 {
-                    if (TryComp<FlammableWallStainComponent>(child, out var fireComp) && !fireComp.OnFire &&
-                        TryComp<WallStainComponent>(child, out var stain))
+                    if (_fireQuery.TryComp(child, out var fireComp) && !fireComp.OnFire &&
+                        _stainQuery.TryComp(child, out var stain))
                     {
                         if (wallTile + stain.Direction == fireTile || offset == Vector2i.Zero)
                         {
-                            if (_solution.TryGetSolution(child, stain.SolutionName, out var solComp))
-                                fireComp.Flammability = solComp.Value.Comp.Solution.GetSolutionFlammability(_proto);
-                            else
-                                fireComp.Flammability = 0;
+                            fireComp.Flammability = _solution.TryGetSolution(child, stain.SolutionName, out var solComp)
+                                ? solComp.Value.Comp.Solution.GetSolutionFlammability(_proto)
+                                : 0;
 
                             if (fireComp.Flammability <= 0)
                                 continue;
 
                             var ignitionTemp = 573.15f - (50f * fireComp.Flammability);
                             if (args.Temperature >= ignitionTemp)
-                                toIgnite.Add((child, fireComp));
+                                _toIgnite.Add((child, fireComp));
                         }
                     }
                 }
             }
         }
 
-        foreach (var (stainUid, fireComp) in toIgnite)
-        {
+        foreach (var (stainUid, fireComp) in _toIgnite)
             Ignite(stainUid, fireComp);
-        }
     }
 
+    [SubscribeLocalEvent]
     private void OnTileFire(EntityUid uid, FlammableWallStainComponent component, ref TileFireEvent args)
     {
         if (component.OnFire)
             return;
 
-        if (TryComp<WallStainComponent>(uid, out var stain) &&
-            _solution.TryGetSolution(uid, stain.SolutionName, out var solComp))
-        {
-            component.Flammability = solComp.Value.Comp.Solution.GetSolutionFlammability(_proto);
-        }
-        else
-        {
-            component.Flammability = 0;
-        }
+        component.Flammability = TryComp<WallStainComponent>(uid, out var stain) &&
+            _solution.TryGetSolution(uid, stain.SolutionName, out var solComp)
+            ? solComp.Value.Comp.Solution.GetSolutionFlammability(_proto)
+            : 0;
 
         if (component.Flammability <= 0f)
             return;
@@ -115,9 +112,8 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
             Ignite(uid, component);
     }
 
-    private Color GetFireColor(int flammability)
-    {
-        return flammability switch
+    private static Color GetFireColor(int flammability)
+        => flammability switch
         {
             <= 1 => Color.FromHex("#FF5500"),
             2 => Color.FromHex("#FF9000"),
@@ -125,7 +121,6 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
             4 => Color.FromHex("#FFFFE0"),
             _ => Color.FromHex("#FFFFFF")
         };
-    }
 
     private void Ignite(EntityUid uid, FlammableWallStainComponent fireComp)
     {
@@ -170,29 +165,29 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
         }
     }
 
-    private void Extinguish(EntityUid uid, FlammableWallStainComponent fireComp)
+    private void Extinguish(Entity<FlammableWallStainComponent> ent)
     {
-        if (!fireComp.OnFire)
+        if (!ent.Comp.OnFire)
             return;
 
-        fireComp.OnFire = false;
+        ent.Comp.OnFire = false;
 
-        RemCompDeferred<ActiveFlammableWallStainComponent>(uid);
+        RemCompDeferred<ActiveFlammableWallStainComponent>(ent.Owner);
 
-        RemComp<PointLightComponent>(uid);
+        RemComp<PointLightComponent>(ent.Owner);
 
-        if (fireComp.PlayingStream != null)
+        if (ent.Comp.PlayingStream != null)
         {
-            _audio.Stop(fireComp.PlayingStream);
-            fireComp.PlayingStream = null;
+            _audio.Stop(ent.Comp.PlayingStream);
+            ent.Comp.PlayingStream = null;
         }
 
-        fireComp.CurrentPlayingSound = null;
+        ent.Comp.CurrentPlayingSound = null;
 
-        if (fireComp.FireEffectEntity != null)
+        if (ent.Comp.FireEffectEntity != null)
         {
-            QueueDel(fireComp.FireEffectEntity.Value);
-            fireComp.FireEffectEntity = null;
+            QueueDel(ent.Comp.FireEffectEntity.Value);
+            ent.Comp.FireEffectEntity = null;
         }
     }
 
@@ -200,15 +195,21 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var activeStains = new List<(EntityUid Uid, FlammableWallStainComponent FireComp, WallStainComponent Stain, TransformComponent Xform)>();
+        _activeStains.Clear();
 
         var query = EntityQueryEnumerator<ActiveFlammableWallStainComponent, FlammableWallStainComponent, WallStainComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var fireComp, out var stain, out var xform))
         {
-            activeStains.Add((uid, fireComp, stain, xform));
+            // Starlight - stains only burn once a second, don't touch their solutions every tick.
+            fireComp.Accumulator += frameTime;
+            if (fireComp.Accumulator < 1f)
+                continue;
+            fireComp.Accumulator -= 1f;
+
+            _activeStains.Add((uid, fireComp, stain, xform));
         }
 
-        foreach (var (uid, currentFireComp, currentStain, currentXform) in activeStains)
+        foreach (var (uid, currentFireComp, currentStain, currentXform) in _activeStains)
         {
             if (Deleted(uid))
                 continue;
@@ -217,14 +218,15 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
                 continue;
 
             var flammability = solComp.Value.Comp.Solution.GetSolutionFlammability(_proto);
-            var selfOxidizing = solComp.Value.Comp.Solution.IsSolutionSelfOxidizing(_proto);
             currentFireComp.Flammability = flammability;
 
             if (flammability <= 0)
             {
-                Extinguish(uid, currentFireComp);
+                Extinguish((uid, currentFireComp));
                 continue;
             }
+
+            var selfOxidizing = solComp.Value.Comp.Solution.IsSolutionSelfOxidizing(_proto);
 
             var gridId = currentXform.GridUid;
             if (gridId == null)
@@ -233,17 +235,12 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
             var wallPos = _transform.GetGridTilePositionOrDefault((uid, currentXform));
             var atmosTilePos = wallPos + currentStain.Direction;
 
-            currentFireComp.Accumulator += frameTime;
-            if (currentFireComp.Accumulator < 1f)
-                continue;
-            currentFireComp.Accumulator -= 1f;
-
             var tileMix = _atmos.GetTileMixture(gridId.Value, null, atmosTilePos, excite: true);
             var currentOxygen = tileMix?.GetMoles(Gas.Oxygen) ?? 0f;
 
             if (!selfOxidizing && currentOxygen <= 0.1f)
             {
-                Extinguish(uid, currentFireComp);
+                Extinguish((uid, currentFireComp));
                 continue;
             }
 
@@ -252,9 +249,9 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
 
             if (tileMix != null)
             {
-                var maxTemp = Atmospherics.T0C + 100f * MathF.Pow(flammability, 1.5f);
+                var maxTemp = Atmospherics.T0C + (100f * MathF.Pow(flammability, 1.5f));
                 if (tileMix.Temperature < maxTemp)
-                    tileMix.Temperature = MathF.Min(tileMix.Temperature + 10f * flammability, maxTemp);
+                    tileMix.Temperature = MathF.Min(tileMix.Temperature + (10f * flammability), maxTemp);
 
                 var burnAmount = selfOxidizing ? 0.2f * flammability : MathF.Min(0.2f * flammability, currentOxygen);
                 if (!selfOxidizing)
@@ -303,57 +300,52 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
                 }
             }
 
-            var entities = new HashSet<EntityUid>();
-            _lookup.GetLocalEntitiesIntersecting(gridId.Value, atmosTilePos, entities, 0f);
-            foreach (var ent in entities)
+            if (!TryComp<MapGridComponent>(gridId.Value, out var grid))
+                continue;
+
+            // Starlight - puddles are anchored, no need for a spatial lookup.
+            var fireEvent = new TileFireEvent(tileMix?.Temperature ?? 600f, 50f * flammability);
+            var puddles = _map.GetAnchoredEntities(gridId.Value, grid, atmosTilePos);
+            while (puddles.MoveNext(out var ent))
             {
-                if (HasComp<PuddleComponent>(ent))
-                {
-                    var fireEvent = new TileFireEvent(tileMix?.Temperature ?? 600f, 50f * flammability);
-                    RaiseLocalEvent(ent, ref fireEvent);
-                }
+                if (_puddleQuery.HasComp(ent))
+                    RaiseLocalEvent(ent.Value, ref fireEvent);
             }
 
-            var spreadOffsets = new[] { Vector2i.Zero, new Vector2i(0, 1), new Vector2i(0, -1), new Vector2i(1, 0), new Vector2i(-1, 0) };
-            if (TryComp<MapGridComponent>(gridId.Value, out var grid))
+            _toIgnite.Clear();
+
+            foreach (var offset in _tileAndCardinalOffsets)
             {
-                var adjacentStainsToIgnite = new List<(EntityUid, FlammableWallStainComponent)>();
-
-                foreach (var offset in spreadOffsets)
+                var checkWallTile = wallPos + offset;
+                var enumerator = _map.GetAnchoredEntities(gridId.Value, grid, checkWallTile);
+                while (enumerator.MoveNext(out var ent))
                 {
-                    var checkWallTile = wallPos + offset;
-                    var enumerator = _map.GetAnchoredEntitiesEnumerator(gridId.Value, grid, checkWallTile);
-                    while (enumerator.MoveNext(out var ent))
+                    if (!_stainedWallQuery.HasComp(ent))
+                        continue;
+
+                    var children = Transform(ent.Value).ChildEnumerator;
+                    while (children.MoveNext(out var child))
                     {
-                        var children = Transform(ent.Value).ChildEnumerator;
-                        while (children.MoveNext(out var child))
+                        if (child == uid)
+                            continue;
+
+                        if (_fireQuery.TryComp(child, out var adjacentFire) && !adjacentFire.OnFire)
                         {
-                            if (child == uid)
-                                continue;
+                            adjacentFire.Flammability = _stainQuery.TryComp(child, out var adjacentStain) &&
+                                _solution.TryGetSolution(child, adjacentStain.SolutionName, out var adjSol)
+                                ? adjSol.Value.Comp.Solution.GetSolutionFlammability(_proto)
+                                : 0;
 
-                            if (TryComp<FlammableWallStainComponent>(child, out var adjacentFire) && !adjacentFire.OnFire)
-                            {
-                                if (TryComp<WallStainComponent>(child, out var adjacentStain) &&
-                                    _solution.TryGetSolution(child, adjacentStain.SolutionName, out var adjSol))
-                                {
-                                    adjacentFire.Flammability = adjSol.Value.Comp.Solution.GetSolutionFlammability(_proto);
-                                }
-                                else
-                                {
-                                    adjacentFire.Flammability = 0;
-                                }
-
-                                if (adjacentFire.Flammability > 0)
-                                    adjacentStainsToIgnite.Add((child, adjacentFire));
-                            }
+                            if (adjacentFire.Flammability > 0)
+                                _toIgnite.Add((child, adjacentFire));
                         }
                     }
                 }
+            }
 
-                foreach (var (stainUid, fireCompAdjacent) in adjacentStainsToIgnite)
-                {
-                    Ignite(stainUid, fireCompAdjacent);
-                }
+            foreach (var (stainUid, fireCompAdjacent) in _toIgnite)
+            {
+                Ignite(stainUid, fireCompAdjacent);
             }
         }
     }
