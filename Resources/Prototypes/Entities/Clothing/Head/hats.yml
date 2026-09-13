@@ -518,9 +518,9 @@
     sprite: Clothing/Head/Hats/plaguedoctor.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/plaguedoctor.rsi
-  - type: Armor
+  - type: Armor  #SL
     modifiers: { }
-  - type: ZombificationResistance
+  - type: ZombificationResistance #SL
     zombificationResistanceCoefficient: 0.95
   - type: Tag
     tags:
