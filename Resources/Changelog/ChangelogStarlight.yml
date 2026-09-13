@@ -1,13 +1,6 @@
 Entries:
 - author: Rhapsody (Pepta Vismahl)
   changes:
-  - message: Various tooltips to help make it easier to understand how the Output tab works, and how to make pills/patches.
-    type: Add
-  id: 408118
-  time: '2026-09-04T04:57:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5964
-- author: Rhapsody (Pepta Vismahl)
-  changes:
   - message: Added search filtering to the ChemMaster's buffer on classic layout (modern layout already has it).
     type: Add
   id: 408119
@@ -2799,4 +2792,11 @@ Entries:
   id: 408517
   time: '2026-09-13T08:56:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5922
+- author: Johnny
+  changes:
+  - message: The AI has been removed from NT Personnel area in join menu, because it is not NT personnel.
+    type: Tweak
+  id: 408518
+  time: '2026-09-13T14:30:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6146
 Order: -1
