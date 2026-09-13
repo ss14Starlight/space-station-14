@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: ClothingSolution # Starlight
+  parent: Clothing
   id: ClothingMaskBase
   components:
   - type: Sprite

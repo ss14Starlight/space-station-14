@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [SolutionFood, SolutionToolNormal, ClothingSolution] # Starlight
+  parent: [SolutionFood, SolutionToolNormal, Clothing]
   id: ClothingShoesBase
   components:
   - type: Clothing
