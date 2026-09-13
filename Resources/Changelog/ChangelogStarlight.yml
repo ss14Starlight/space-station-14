@@ -1,60 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added two k9 to sepultum via prototypes (Spawners already mapped in).
-    type: Add
-  id: 408142
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Changed trimmed some grass near evac.
-    type: Tweak
-  id: 408143
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Changed nct office to be ALOT smaller.
-    type: Tweak
-  id: 408144
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Makeshift
-  changes:
-  - message: (Plasma) Radio Host!
-    type: Add
-  id: 408145
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) NCT Office.
-    type: Remove
-  id: 408146
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) K9 to security!
-    type: Add
-  id: 408147
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Departmental Techfabs.
-    type: Add
-  id: 408148
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Mailboxes for departments.
-    type: Add
-  id: 408149
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
 - author: Makeshift
   changes:
   - message: (Plasma) Shelves.
@@ -2799,4 +2743,60 @@ Entries:
   id: 408541
   time: '2026-09-13T23:38:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6104
+- author: wonderfulnewworld
+  changes:
+  - message: Walking in water tiles (not puddles) now gradually cleans your clothes.
+    type: Add
+  id: 408542
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Washing yourself in a washing machine now cleans your clothes.
+    type: Add
+  id: 408543
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: You can now examine stains on your clothes.
+    type: Add
+  id: 408544
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: The atmos fire extinguisher and bluespace fire extinguisher now accept bleach.
+    type: Add
+  id: 408545
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Wringing out/washing clothes with toggleable components now also cleans the toggleable part.
+    type: Tweak
+  id: 408546
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Wring out time is a little faster.
+    type: Tweak
+  id: 408547
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Wringing out your clothes now spills the liquid on the tile in front of you, instead of right below you, so you don't immediately get dirty again.
+    type: Tweak
+  id: 408548
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Using soap on your clothes now also cleans stains off of them.
+    type: Tweak
+  id: 408549
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
 Order: -1
