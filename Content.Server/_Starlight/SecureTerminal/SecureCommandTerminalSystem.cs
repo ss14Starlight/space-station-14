@@ -532,6 +532,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             ? proposal.Requester
             : stationComp.DeployedArmoryRequesters.GetValueOrDefault(msg.RequestId, EntityUid.Invalid);
 
+        // Attempt to recall the shuttle. If the recall fails abort the terminal state update.
+        if (proto.ArmoryKey != null && !_armory.RecallArmory(stationUid.Value, proto.ArmoryKey))
+            return;
+
         stationComp.ActiveProposals.Remove(msg.RequestId);
         stationComp.DeployedArmories.Remove(msg.RequestId);
         stationComp.DeployedArmoryRequesters.Remove(msg.RequestId);
@@ -714,6 +718,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                         if (_access.GetMainAccessReader(ent, out var accessEnt) && _access.AreAccessTagsAllowed(proto.AllowedAccesses, accessEnt.Value.Comp))
                             _airlock.SetEmergencyAccess((ent, airlockcomp), proto.AccessEnabled);
                 }
+                break;
+
+            case SecureTerminalActionType.Announcement:
+                // Nothing to execute — the announcement is dispatched on full authorization.
                 break;
         }
     }

@@ -96,6 +96,10 @@
 - type: entity
   parent: AirAlarm
   id: AirAlarmVox
+  # Starlight-start
+  name: vox air alarm
+  description: An air alarm set up for use in vox quarters. It expects nitrogen, and treats oxygen as a hazard.
+  # Starlight-end
   suffix: Vox Atmosphere, auto mode disabled
   components:
   - type: AirAlarm

@@ -35,6 +35,11 @@
 
   Because the lanes are separate, passthrough buildup will not prevent filtered reagents from being pulled into the machine.
 
+  ## Inline Filter: Selective Pulling
+  The [color=#a4885c]Inline Filter[/color] pulls the same targeted way the reactor does. It has one inlet and one outlet, and only ever requests the reagents you've selected, so everything else stays on the network for machines further down the line. Use it when you want to tap a reagent out of a shared line without diverting the rest of it.
+
+  Unlike the reactor you don't set quantities, every selected reagent gets the same [bold]10u allowance[/bold] and its own room in the buffer, so an abundant reagent can't crowd the rest of your selection out.
+
   ## Pill Press: Mixing Mode
   In [color=#a4885c]mixing mode[/color], the pill press ignores its main inlet and instead pulls from its [color=#59e659]mixing inlets[/color]. Each mixing inlet pulls from its own separate network into a staging area. Once both staging areas have enough reagent, they combine and press a pill at the configured ratio.
 

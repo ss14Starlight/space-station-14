@@ -1,0 +1,30 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            Title="{Loc 'job-identity-console-window-title'}"
+            MinSize="420 280">
+    <BoxContainer Orientation="Vertical">
+        <!-- Privileged and target IDs. -->
+        <GridContainer Columns="3" HorizontalExpand="True">
+            <Label Text="{Loc 'id-card-console-window-privileged-id'}" />
+            <Button Name="PrivilegedIdButton" Access="Public"/>
+            <Label Name="PrivilegedIdLabel" />
+
+            <Label Text="{Loc 'id-card-console-window-target-id'}" />
+            <Button Name="TargetIdButton" Access="Public"/>
+            <Label Name="TargetIdLabel" />
+        </GridContainer>
+        <Control MinSize="0 8" />
+        <!-- Job title editing. -->
+        <GridContainer Columns="3" HSeparationOverride="4">
+            <Label Name="JobTitleLabel" Text="{Loc 'id-card-console-window-job-title-label'}" />
+            <LineEdit Name="JobTitleLineEdit" HorizontalExpand="True" />
+            <Button Name="JobTitleSaveButton" Text="{Loc 'id-card-console-window-save-button'}" Disabled="True" />
+        </GridContainer>
+        <Control MinSize="0 8" />
+        <!-- Job icon selection. -->
+        <Label Name="IconGridLabel" Text="{Loc 'agent-id-card-job-icon-label'}"/>
+        <GridContainer Name="IconGrid" Columns="10">
+            <!-- Job icon buttons are generated in code -->
+        </GridContainer>
+    </BoxContainer>
+</DefaultWindow>

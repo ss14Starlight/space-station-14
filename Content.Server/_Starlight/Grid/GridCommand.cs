@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Server._Starlight.Commands;
+using Content.Server._Starlight.Toolshed;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Ghost;
@@ -44,7 +46,7 @@ public sealed partial class GridCommand : ToolshedCommand
     {
         if (TryComp<StationMemberComponent>(uid, out var member) || TryComp(Transform(uid).GridUid, out member))
             return member.Station;
-        ctx.WriteMarkup($"[color=red]Entity {uid} is not on a station and is not a station grid.[/color]");
+        CommandMarkup.Error(ctx, $"Entity {uid} is not on a station and is not a station grid.");
         return EntityUid.Invalid;
     }
 

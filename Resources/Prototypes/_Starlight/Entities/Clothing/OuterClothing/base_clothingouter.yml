@@ -1,0 +1,25 @@
+# Major temperature protection for winter clothing, heavy coats, etc.
+- type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: ClothingOuterBaseWinter
+  components:
+  - type: TemperatureProtection
+    heatingCoefficient: 1.10 # gets hot 10% faster
+    coolingCoefficient: 0.35 # gets cold 65% slower
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.85 # winter clothing protects from cold
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75 # thick coats protect from bites
+
+# Minor temperature protection for light clothing - hoodies, jackets, etc.
+- type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: ClothingOuterBaseWarm
+  components:
+  - type: TemperatureProtection
+    heatingCoefficient: 1.05 # gets hot 5% faster
+    coolingCoefficient: 0.95 # gets cold 5% slower

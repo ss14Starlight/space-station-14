@@ -117,6 +117,16 @@
 
 - type: entity
   parent: LabellerRefillPaper
+  id: LabellerRefillPaper999
+  suffix: 999
+  components:
+  - type: Sprite
+    state: icon_100
+  - type: Stack
+    count: 999
+
+- type: entity
+  parent: LabellerRefillPaper
   id: LabellerRefillPaper50
   suffix: 50
   components:

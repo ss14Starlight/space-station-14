@@ -20,6 +20,14 @@
                 sprite: "Objects/Misc/module.rsi"
                 state: "charger_APC"
               doAfter: 2
+
+        #region Starlight
+        - to: apcAdvancedFrame
+          steps:
+            - material: Plasteel
+              amount: 2
+              doAfter: 1
+        #endregion Starlight
         - to: start
           completed:
             - !type:GivePrototype
@@ -29,6 +37,29 @@
           steps:
             - tool: Screwing
               doAfter: 2
+
+    #region Starlight
+    - node: apcAdvancedFrame
+      entity: APCAdvancedFrame
+      edges:
+        - to: apcAdvanced
+          steps:
+            - tag: ApcAdvancedElectronics
+              name: construction-graph-component-advanced-apc-electronics
+              icon:
+                sprite: "Objects/Misc/module.rsi"
+                state: "engineering"
+              doAfter: 2
+
+        - to: apcFrame
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 2
+          steps:
+            - tool: Welding
+              doAfter: 2
+      #endregion Starlight
 
     - node: apc
       entity: APCConstructed
@@ -44,3 +75,20 @@
           steps:
             - tool: Prying
               doAfter: 4
+
+    #region Starlight
+    - node: apcAdvanced
+      entity: APCAdvancedConstructed
+      edges:
+        - to: apcAdvancedFrame
+          completed:
+            - !type:GivePrototype
+              prototype: APCAdvancedElectronics
+              amount: 1
+          conditions:
+            - !type:WirePanel
+              open: true
+          steps:
+            - tool: Prying
+              doAfter: 4
+      #endregion Starlight

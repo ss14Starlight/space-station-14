@@ -8,3 +8,11 @@
   - !type:OverallPlaytimeRequirement
     time: 48h
   playTimeTracker: AntagTerrorPrincess
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: TerrorPrincess
+  spawnerPrototype: SpawnPointGhostTerrorPrincess
+  pickPlayer: false
+  mindRoles:
+  - MindRoleTerrorPrincess

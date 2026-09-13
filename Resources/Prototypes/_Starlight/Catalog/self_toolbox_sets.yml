@@ -1,0 +1,43 @@
+- type: thiefBackpackSet
+  id: SaboteurSELF
+  name: The Saboteur
+  description: self-backpack-category-saboteur-description
+  sprite:
+    sprite: Objects/Tools/jaws_of_life.rsi
+    state: syn_jaws_pry
+  content:
+  - SyndicateJawsOfLife
+  - WelderIndustrialAdvanced
+  - PowerDrill
+  - Multitool
+  - ClothingHandsGlovesInsulatedChameleon
+  - RadioJammer
+  - FreedomImplanter
+  - ClothingEyesGlassesMeson
+
+- type: thiefBackpackSet
+  id: PressSELF
+  name: The Press
+  description: self-backpack-category-press-description
+  sprite:
+    sprite: _Moffstation/Objects/Tools/handheld_camera.rsi
+    state: icon
+  content:
+  - SurveillanceWirelessCameraHandheld
+  - EncryptionKeyBinarySyndicate
+  - MicrophoneInstrument
+  - VoiceMaskImplanter
+  - ScramImplanter
+
+- type: thiefBackpackSet
+  id: SpySELF
+  name: The Spy
+  description: self-backpack-category-spy-description
+  sprite:
+    sprite: Objects/Devices/camera_bug.rsi
+    state: camera_bug
+  content:
+  - StorageImplanter
+  - ChameleonProjector
+  - WeaponPistolStechkin
+  - CameraBug

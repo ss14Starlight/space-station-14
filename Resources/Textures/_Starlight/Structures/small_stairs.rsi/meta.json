@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprites taken from TG Station",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -9,11 +9,13 @@
   "states": [
     {
       "name": "small_stairs",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Sprites taken from TG Station"
     },
-	{
+    {
       "name": "small_stairs_wood",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Sprites taken from TG Station"
     }
   ]
 }

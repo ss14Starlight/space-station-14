@@ -6,13 +6,12 @@
   suffix: the last call
   description: There are no good or bad choices. Only consequences.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: TheLastCall
-          Quantity: 30
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: TheLastCall
+        Quantity: 30
   - type: Icon
     sprite: _Starlight/Objects/Consumable/Drinks/thelastcall.rsi
     state: icon
@@ -23,10 +22,9 @@
   id: DrinkWhiteGilgameshGlass
   suffix: white gilgamesh
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: WhiteGilgamesh
-          Quantity: 30
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: WhiteGilgamesh
+        Quantity: 30

@@ -14,8 +14,8 @@ public sealed partial class TTSSystem
         if (component is null && !TryComp(uid, out component))
             return fallbackVoice.Value;
 
-        if (component.VoicePrototypeId is string voiceId
-            && _prototypeManager.TryIndex(voiceId, out VoicePrototype? proto))
+        if (component.VoicePrototypeId is { } voiceId
+            && _prototypeManager.TryIndex(voiceId, out var proto))
             return proto.Voice;
 
         var isHumanoid = false;

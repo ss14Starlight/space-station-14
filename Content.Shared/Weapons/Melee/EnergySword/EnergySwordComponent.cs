@@ -2,6 +2,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Weapons.Melee.EnergySword;
 
+[Obsolete("Use EnergyColorComponent instead.")] // Starlight
 [RegisterComponent, NetworkedComponent, Access(typeof(EnergySwordSystem))]
 [AutoGenerateComponentState]
 public sealed partial class EnergySwordComponent : Component

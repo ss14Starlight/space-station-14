@@ -12,3 +12,6 @@ construction-graph-tag-mech-reactor = mech reactor
 
 construction-graph-tag-mime-mask = Mime Mask
 construction-graph-tag-cheap-sunglasses = Cheap Sunglasses
+
+construction-graph-tag-remote-signaller = a basic remote signaler
+construction-graph-tag-remote-signaller-adv = an advanced remote signaler

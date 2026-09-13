@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "full",
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "rwindow0",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "rwindow1",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "rwindow2",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "rwindow3",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "rwindow4",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "rwindow5",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "rwindow6",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    },
+    {
+      "name": "rwindow7",
+      "directions": 4,
+	  "copyright": "Conflee, ItsMaitake"
+    }
+  ]
+}

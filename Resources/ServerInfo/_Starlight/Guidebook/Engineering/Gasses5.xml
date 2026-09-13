@@ -1,0 +1,36 @@
+﻿<Document>
+  # Gasses 5
+  Rare, incredibly niche gasses and materials that are primarily novelties for the advanced atmosians.
+
+  ## Anti-Noblium
+  <Box>
+    <GuideEntityEmbed Entity="AntiNobliumCanister" Caption=""/>
+  </Box>
+
+  An incredibly light gas that interacts with absolutely nothing.
+
+  Anti-noblium can be made by electrolyzing hyper-noblium.
+
+  ## Zauker
+  <Box>
+    <GuideEntityEmbed Entity="ZaukerCanister" Caption=""/>
+  </Box>
+
+  An incredibly difficult to synthesize gas that is highly unstable and incredibly toxic.
+
+  Although lethality is largely limited by zauker's propensity to decay in presence of nitrogen, directly breathing it rapidly destroys one's life expectancy.
+
+  Zauker can be made by combining 50 nitrium with 1 hyper-noblium at between 50000 K and 100000 K.
+
+  ## Metal Hydrogen
+  <Box>
+    <GuideEntityEmbed Entity="MetalHydrogen" Caption=""/>
+  </Box>
+
+  Impossibly dense hydrogen kept stable by BZ.
+
+  Though dense, metal hydrogen is malleable enough to be worked with common tools into incredibly durable items.
+
+  Metal hydrogen ingots are formed by combining 300 mols hydrogen and 50 mols BZ on a tile at over 10000 kpa and under 273 K.
+
+</Document>

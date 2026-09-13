@@ -15,6 +15,14 @@
     tags:
     - HideContextMenu
   - type: AnimationPlayer
+  # Moffstation - Start - More sparks
+  - type: ESSparkOnTrigger
+    count: 2 # Starlight, less sparks
+    sparkPrototype: SLEffectSparksRCD # Starlight, a little smaller
+  #- type: RepeatingTrigger # Starlight, we only need this once, no doublespark
+  #  delay: 1 # Starlight
+  - type: TriggerOnSpawn
+  # Moffstation - End
 
 - type: entity
   parent: EffectRCDBase

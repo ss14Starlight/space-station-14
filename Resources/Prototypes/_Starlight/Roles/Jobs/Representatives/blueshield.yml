@@ -23,7 +23,6 @@
   icon: JobIconBlueShield
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-nt-personnel
-  canBeAntag: false
   displayWeight: 4
   access:
     - Command
@@ -41,7 +40,6 @@
     - Research
     - Robotics
     - Detective
-    - Salvage
     - Security
     - Brigmedic
     - Brig
@@ -55,8 +53,10 @@
     - Surgery
     - Paramedic
     - Mining
-    - SalvageLead
     - Debrief
+    - Journalism
+    - Clown
+    - Mime
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

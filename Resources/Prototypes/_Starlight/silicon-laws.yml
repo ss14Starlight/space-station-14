@@ -1,3 +1,9 @@
+- type: siliconLaw
+  id: BorgObeyStationAi
+  order: 0
+  lawString: law-borg-obey-station-ai
+  sayable: false
+
 # AI Crewsimov Lawset
 # Just Crewsimov With no law 0
 - type: siliconLawset

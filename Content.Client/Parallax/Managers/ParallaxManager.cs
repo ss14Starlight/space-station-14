@@ -5,7 +5,6 @@ using Content.Client.Parallax.Data;
 using Content.Shared.CCVar;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Configuration;
-using Robust.Shared.Utility;
 
 namespace Content.Client.Parallax.Managers;
 

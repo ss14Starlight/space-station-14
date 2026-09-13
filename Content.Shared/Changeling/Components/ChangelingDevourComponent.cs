@@ -2,6 +2,7 @@ using Content.Shared.Changeling.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
+using Content.Shared.Store;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -126,6 +127,15 @@ public sealed partial class ChangelingDevourComponent : Component
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
     public TimeSpan NextTick = TimeSpan.Zero;
+
+    /// <summary>
+    /// DNA awarded for successfully devouring a new identity.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> DevourDnaReward = new()
+    {
+        { "ChangelingDNA", 10 }
+    };
 
     /// <summary>
     /// The percentage of ANY brute damage resistance that will prevent devouring

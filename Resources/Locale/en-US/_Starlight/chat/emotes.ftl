@@ -37,7 +37,6 @@ chat-emote-msg-squawk = squawks
 chat-emote-msg-lurr = purrs
 chat-emote-msg-liss = hisses
 chat-emote-msg-rattle = rattles
-chat-emote-msg-flap-wings = flaps {POSS-ADJ($entity)} wings.
 chat-emote-msg-bubble = bubbles
 chat-emote-msg-pop = pops
 chat-emote-msg-squee = squeaks
@@ -45,3 +44,8 @@ chat-emote-msg-snort = snorts
 chat-emote-msg-stomp = stomps
 chat-emote-msg-hum = hums
 chat-emote-msg-glub = glubs
+
+# Emote binding
+
+emote-menu-bound = Bound {$emote} to a quick action
+emote-menu-already-bound = Unbound {$emote} from quick actions

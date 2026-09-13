@@ -219,31 +219,31 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
 
         foreach (var neutron in neutrons)
         {
-            if (Prob(reactorPart.Properties.Density * ReactionRate * reactorPart.NeutronCrossSection * NeutronReactionBias))
+            if (Prob(reactorPart.Properties.Density * reactorPart.ReactionRate * reactorPart.NeutronCrossSection * reactorPart.NeutronReactionBias))
             {
-                if (neutron.velocity <= 1 && Prob(ReactionRate * reactorPart.Properties.NeutronRadioactivity * NeutronReactionBias)) // neutron stimulated emission
+                if (neutron.velocity <= 1 && Prob(reactorPart.ReactionRate * reactorPart.Properties.NeutronRadioactivity * reactorPart.NeutronReactionBias)) // neutron stimulated emission
                 {
-                    reactorPart.Properties.NeutronRadioactivity -= ReactionReactant;
-                    reactorPart.Properties.Radioactivity += ReactionProduct;
+                    reactorPart.Properties.NeutronRadioactivity -= reactorPart.ReactionReactant;
+                    reactorPart.Properties.Radioactivity += reactorPart.ReactionProduct;
                     for (var i = 0; i < _random.Next(1, 5 + 1); i++)
                     {
                         result.Add(new() { dir = _random.NextAngle().GetDir(), velocity = _random.Next(2, 3 + 1) });
                     }
-                    reactorPart.Temperature += 50f * StimulatedHeatingFactor;
+                    reactorPart.Temperature += reactorPart.NeutronStimulatedHeating * reactorPart.StimulatedHeatingFactor;
                 }
-                else if (neutron.velocity <= 5 && Prob(ReactionRate * reactorPart.Properties.Radioactivity * NeutronReactionBias)) // stimulated emission
+                else if (neutron.velocity <= 5 && Prob(reactorPart.ReactionRate * reactorPart.Properties.Radioactivity * reactorPart.NeutronReactionBias)) // stimulated emission
                 {
-                    reactorPart.Properties.Radioactivity -= ReactionReactant;
-                    reactorPart.Properties.FissileIsotopes += ReactionProduct;
+                    reactorPart.Properties.Radioactivity -= reactorPart.ReactionReactant;
+                    reactorPart.Properties.FissileIsotopes += reactorPart.ReactionProduct;
                     for (var i = 0; i < _random.Next(1, 5 + 1); i++)
                     {
                         result.Add(new() { dir = _random.NextAngle().GetDir(), velocity = _random.Next(1, 3 + 1) });
                     }
-                    reactorPart.Temperature += 25f * StimulatedHeatingFactor;
+                    reactorPart.Temperature += reactorPart.StimulatedHeating * reactorPart.StimulatedHeatingFactor;
                 }
                 else
                 {
-                    if (Prob(ReactionRate * reactorPart.Properties.Hardness)) // reflection, based on hardness
+                    if (Prob(reactorPart.ReactionRate * reactorPart.Properties.Hardness)) // reflection, based on hardness
                         // A really complicated way of saying do a 180 or a 180+/-45
                         neutron.dir = (neutron.dir.GetOpposite().ToAngle() + (_random.NextAngle() / 4) - (MathF.Tau / 8)).GetDir();
                     else if (reactorPart.IsControlRod)
@@ -254,7 +254,7 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
                     if (neutron.velocity > 0)
                         result.Add(neutron);
 
-                    reactorPart.Temperature += 1f * StimulatedHeatingFactor;
+                    reactorPart.Temperature += 1f * reactorPart.StimulatedHeatingFactor;
                 }
             }
             else
@@ -262,25 +262,25 @@ public sealed partial class ReactorPartSystem : SharedReactorPartSystem
                 result.Add(neutron);
             }
         }
-        if (Prob(reactorPart.Properties.NeutronRadioactivity * ReactionRate * reactorPart.NeutronCrossSection))
+        if (Prob(reactorPart.Properties.NeutronRadioactivity * reactorPart.ReactionRate * reactorPart.NeutronCrossSection))
         {
             for (var i = 0; i < _random.Next(1, 3 + 1); i++)
             {
                 result.Add(new() { dir = _random.NextAngle().GetDir(), velocity = 3 });
             }
-            reactorPart.Properties.NeutronRadioactivity -= ReactionReactant * SpontaneousReactionConsumptionMultiplier;
-            reactorPart.Properties.Radioactivity += ReactionProduct * SpontaneousReactionConsumptionMultiplier;
-            reactorPart.Temperature += 20f * SpontaneousHeatingFactor;
+            reactorPart.Properties.NeutronRadioactivity -= reactorPart.ReactionReactant * reactorPart.SpontaneousReactionConsumptionMultiplier;
+            reactorPart.Properties.Radioactivity += reactorPart.ReactionProduct * reactorPart.SpontaneousReactionConsumptionMultiplier;
+            reactorPart.Temperature += reactorPart.SpontaneousNeutronHeating * reactorPart.SpontaneousHeatingFactor;
         }
-        if (Prob(reactorPart.Properties.Radioactivity * ReactionRate * reactorPart.NeutronCrossSection))
+        if (Prob(reactorPart.Properties.Radioactivity * reactorPart.ReactionRate * reactorPart.NeutronCrossSection))
         {
             for (var i = 0; i < _random.Next(1, 3 + 1); i++)
             {
                 result.Add(new() { dir = _random.NextAngle().GetDir(), velocity = _random.Next(1, 3 + 1) });
             }
-            reactorPart.Properties.Radioactivity -= ReactionReactant * SpontaneousReactionConsumptionMultiplier;
-            reactorPart.Properties.FissileIsotopes += ReactionProduct * SpontaneousReactionConsumptionMultiplier;
-            reactorPart.Temperature += 10f * SpontaneousHeatingFactor;
+            reactorPart.Properties.Radioactivity -= reactorPart.ReactionReactant * reactorPart.SpontaneousReactionConsumptionMultiplier;
+            reactorPart.Properties.FissileIsotopes += reactorPart.ReactionProduct * reactorPart.SpontaneousReactionConsumptionMultiplier;
+            reactorPart.Temperature += reactorPart.SpontaneousHeating * reactorPart.SpontaneousHeatingFactor;
         }
 
         if (reactorPart.HasRodType(ReactorPartComponent.RodTypes.ControlRod))

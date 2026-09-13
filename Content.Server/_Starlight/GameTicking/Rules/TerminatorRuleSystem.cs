@@ -47,7 +47,7 @@ public sealed partial class TerminatorRuleSystem : GameRuleSystem<TerminatorRule
             ent.Comp.Target = newTarget.Owner;
         }
 
-        var terminator = Spawn(ent.Comp.TerminatorEntityPrototype);
+        var terminator = Spawn(ent.Comp.TerminatorEntityPrototype, args.Coords);
         var targetOverride = EnsureComp<TargetOverrideComponent>(terminator);
         targetOverride.Target = ent.Comp.Target;
 

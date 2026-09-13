@@ -810,10 +810,6 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Zookeeper
-  # Starlight start
-  - type: PresetIdCard
-    job: Zookeeper
-  # Starlight end
 
 #Supply
 
@@ -1004,6 +1000,8 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Syndicate
+  - type: IdCard
+    jobIcon: JobIconSyndicate
   - type: Item
     heldPrefix: black
   - type: Access

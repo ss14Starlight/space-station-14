@@ -1,0 +1,63 @@
+- type: constructionGraph
+  id: MilkCrateGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: milkCrate
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plastic
+              amount: 4
+              doAfter: 3
+        - to: recordMilkCrate
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plastic
+              amount: 4
+              doAfter: 3
+        - to: syndicateMilkCrate
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plastic
+              amount: 4
+              doAfter: 3
+
+    - node: milkCrate
+      entity: MilkCrate
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 4
+    - node: recordMilkCrate
+      entity: RecordMilkCrate
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 4
+    - node: syndicateMilkCrate
+      entity: SyndicateMilkCrate
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 4

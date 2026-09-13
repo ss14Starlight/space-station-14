@@ -1,9 +1,9 @@
-﻿using Content.Server._Starlight.Objectives.Events;
-using Content.Shared._Starlight.Railroading.Components.Tasks;
+﻿using Content.Shared._Starlight.Railroading.Components.Tasks;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Objectives;
 using Robust.Shared.Timing;
 using Content.Shared._Starlight.Abstract;
+using Content.Shared._Starlight.Objectives.Events;
 using Content.Shared._Starlight.Railroading.Components;
 
 namespace Content.Server._Starlight.Railroading.TaskSystems;
@@ -12,6 +12,7 @@ public sealed partial class RailroadingTimerTaskSystem : AccUpdateEntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private RailroadingSystem _railroading = default!;
+
     public override void Initialize()
     {
         base.Initialize();

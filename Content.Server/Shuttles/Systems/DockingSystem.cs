@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Server.Doors.Systems;
 using Content.Server.NPC.Pathfinding;
 using Content.Server.Shuttles.Components;
@@ -6,13 +5,10 @@ using Content.Server.Shuttles.Events;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Content.Shared.Popups;
-using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics.Joints;
 using Robust.Shared.Physics.Systems;
@@ -22,7 +18,6 @@ namespace Content.Server.Shuttles.Systems
 {
     public sealed partial class DockingSystem : SharedDockingSystem
     {
-        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] private SharedMapSystem _mapSystem = default!;
         [Dependency] private DoorSystem _doorSystem = default!;
         [Dependency] private EntityLookupSystem _lookup = default!;
@@ -142,8 +137,10 @@ namespace Content.Server.Shuttles.Systems
 
             var msg = new UndockEvent
             {
-                DockA = dockA,
-                DockB = dockB,
+                // Starlight-start
+                DockA = (dockAUid, dockA),
+                DockB = (dockBUid.Value, dockB),
+                // Starlight-end
                 GridAUid = gridAUid!.Value,
                 GridBUid = gridBUid!.Value,
             };

@@ -1,6 +1,5 @@
 using Content.Shared.Salvage.Expeditions.Modifiers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 using Content.Shared.Procedural;
 
 namespace Content.Shared.Salvage.Expeditions;
@@ -16,12 +15,12 @@ public sealed partial class SalvageFactionPrototype : IPrototype
     public List<SalvageMobEntry> MobGroups = new();
 
     // 🌟Starlight🌟
-    [DataField("biomes", customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageBiomeModPrototype>))]
-    public List<string>? Biomes { get; private set; } = null;
+    [DataField("biomes")]
+    public List<ProtoId<SalvageBiomeModPrototype>>? Biomes { get; private set; } = null;
 
     // 🌟Starlight🌟
-    [ViewVariables(VVAccess.ReadWrite), DataField("difficulties", required: true, customTypeSerializer: typeof(PrototypeIdListSerializer<SalvageDifficultyPrototype>))]
-    public List<string> Difficulties = [];
+    [ViewVariables(VVAccess.ReadWrite), DataField("difficulties", required: true)]
+    public List<ProtoId<SalvageDifficultyPrototype>> Difficulties = [];
 
     /// <summary>
     /// Miscellaneous data for factions.

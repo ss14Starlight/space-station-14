@@ -11,6 +11,7 @@
   requirements:
   - !type:UserIdRequirement
     userId: e3555fad-8915-4dd7-8e68-6851d5fd8629 # darkrell
+  category: Staff
 
 - type: ghostTheme
   id: Firewraith
@@ -25,6 +26,7 @@
   requirements:
   - !type:UserIdRequirement
     userId: e3555fad-8915-4dd7-8e68-6851d5fd8629 # Killerdash
+  category: Staff
 
 
 - type: ghostTheme
@@ -40,6 +42,7 @@
   requirements:
   - !type:UserIdRequirement
     userId: 95745755-8eba-4d6a-a360-5c88260d432f # Rinary
+  category: Staff
 
 - type: ghostTheme
   id: pai_fox
@@ -52,8 +55,9 @@
       state: pai_fox
     color: "#ffffff"
   requirements:
-    - !type:UserIdRequirement
-      userId: da91f87d-7665-4487-8852-12f655498413 # KarmaKitsuna
+  - !type:UserIdRequirement
+    userId: da91f87d-7665-4487-8852-12f655498413 # KarmaKitsuna
+  category: Staff
 
 - type: ghostTheme
   id: sombrero_penguin
@@ -66,8 +70,9 @@
       state: sombrero_penguin
     color: "#ffffff"
   requirements:
-    - !type:UserIdRequirement
-      userId: 7b7269e0-b094-4719-8ec1-cfdd93afe6e2 # Bird
+  - !type:UserIdRequirement
+    userId: 7b7269e0-b094-4719-8ec1-cfdd93afe6e2 # Bird
+  category: Staff
 
 - type: ghostTheme
   id: TessTheEvil
@@ -80,8 +85,9 @@
       state: tess_the_evil
     color: "#ffffff"
   requirements:
-    - !type:UserIdRequirement
-      userId: 0639ce52-b9af-4507-89fe-a526cd43db37 # Tess_the_Evil
+  - !type:UserIdRequirement
+    userId: 0639ce52-b9af-4507-89fe-a526cd43db37 # Tess_the_Evil
+  category: Staff
 
 - type: ghostTheme
   id: ghost-kamila
@@ -96,6 +102,7 @@
   requirements:
   - !type:UserIdRequirement
     userId: 39eacc1a-d19f-4972-be1e-db37e4308ff0 # KamilaAvali
+  category: Staff
 
 - type: ghostTheme
   id: ConfGhost
@@ -110,3 +117,4 @@
   requirements:
   - !type:UserIdRequirement
     userId: d1af6fab-4693-49ba-8c11-12a8a5ba949c # Conflee
+  category: Staff

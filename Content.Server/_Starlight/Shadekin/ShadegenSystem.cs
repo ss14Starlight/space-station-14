@@ -1,8 +1,8 @@
-using Content.Server._Starlight.Shadekin.Components;
-using Content.Server.Light.EntitySystems;
 using Content.Shared._Starlight.Railroading.Components.Tasks;
 using Content.Shared._Starlight.Shadekin.Components;
+using Content.Shared.Light;
 using Content.Shared.Light.Components;
+using Content.Shared.Light.EntitySystems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 
@@ -11,15 +11,11 @@ namespace Content.Server._Starlight.Shadekin;
 public sealed partial class ShadegenSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private PoweredLightSystem _light = default!;
+    [Dependency] private SharedPoweredLightSystem _light = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private HandheldLightSystem _handheldLight = default!;
-    private readonly HashSet<EntityUid> _updateQueue = new();
+    [Dependency] private SharedHandheldLightSystem _handheldLight = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-    }
+    private readonly HashSet<EntityUid> _updateQueue = new();
 
     public override void Update(float frameTime)
     {

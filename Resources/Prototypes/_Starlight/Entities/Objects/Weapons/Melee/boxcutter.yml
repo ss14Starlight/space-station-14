@@ -15,7 +15,7 @@
     state: sheathed
     states:
       sheathed: !type:ItemSwitchState
-        verb: unsheath
+        verb: sheathe
         sprite:
           sprite: _Starlight/Objects/Weapons/Melee/boxcutter.rsi
           state: boxcutter
@@ -35,7 +35,7 @@
           embedOnThrow: false
 
       unsheathed: !type:ItemSwitchState
-        verb: sheathe
+        verb: unsheathe
         sprite:
           sprite: _Starlight/Objects/Weapons/Melee/boxcutter.rsi
           state: icon

@@ -9,23 +9,23 @@
   "states": [
     {
       "name": "broken",
-	  "copyright": "Made by Conflee for Starlight"
+      "copyright": "Made by Conflee for Starlight"
     },
     {
       "name": "burned",
-	  "copyright": "Made by Conflee for Starlight"
+      "copyright": "Made by Conflee for Starlight"
     },
     {
       "name": "base",
-	  "copyright": "Made by Conflee for Starlight"
+      "copyright": "Made by Conflee for Starlight"
     },
-	{
-	  "name": "empty",
-	  "copyright": "Made by Conflee for Starlight"
-	},
+    {
+      "name": "empty",
+      "copyright": "Made by Conflee for Starlight"
+    },
     {
       "name": "glow",
-	  "copyright": "Made by Conflee for Starlight"
+      "copyright": "Made by Conflee for Starlight"
     }
   ]
 }

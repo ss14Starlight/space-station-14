@@ -58,6 +58,12 @@ namespace Content.Shared.GameTicking
         {
             return _gameTiming.CurTime.Subtract(RoundStartTimeSpan);
         }
+
+        // Starlight
+        public virtual bool StartGameRule(string ruleId)
+        {
+            return false;
+        }
     }
 
     [Serializable, NetSerializable]
@@ -223,6 +229,13 @@ namespace Content.Shared.GameTicking
             RestartSound = restartSound;
         }
     }
+
+    #region Starlight
+
+    [Serializable, NetSerializable]
+    public sealed class RoundEndCancelMessageEvent : EntityEventArgs;
+
+    #endregion
 
     [Serializable, NetSerializable]
     public enum PlayerGameStatus : sbyte

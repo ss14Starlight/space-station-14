@@ -120,6 +120,11 @@
 
 - type: latheRecipe
   parent: BaseSteelTileRecipe
+  id: FloorTileItemCarpetArt
+  result: FloorTileItemCarpetArt
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
   id: FloorTileItemHierophant
   result: FloorTileItemHierophant
 

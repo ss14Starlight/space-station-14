@@ -6,7 +6,6 @@ using Content.Shared.Maps;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components.Effects;
 using Robust.Server.GameObjects;
-using Robust.Shared.Map;
 
 namespace Content.Server.Trigger.Systems;
 
@@ -15,7 +14,7 @@ namespace Content.Server.Trigger.Systems;
 /// </summary>
 public sealed partial class SmokeOnTriggerSystem : EntitySystem
 {
-    [Dependency] private IMapManager _mapMan = default!;
+    [Dependency] private SharedMapSystem _mapMan = default!;
     [Dependency] private MapSystem _map = default!;
     [Dependency] private SmokeSystem _smoke = default!;
     [Dependency] private TransformSystem _transform = default!;

@@ -20,6 +20,7 @@
     - id: UnknownShuttleSpacebus
     - id: UnknownShuttleFireResponse
     - id: UnknownShuttleQuail
+    - id: UnknownShuttleInquisitor
 
 - type: entityTable
   id: UnknownShuttlesFreelanceTable
@@ -204,3 +205,12 @@
     weight: 2
   - type: LoadMapRule
     gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/honki.yml
+
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: UnknownShuttleInquisitor
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming #!!
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/VisitorInquisitor.yml

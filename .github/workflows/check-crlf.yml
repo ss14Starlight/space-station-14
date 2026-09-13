@@ -1,4 +1,4 @@
-﻿name: EditorConfig Check
+name: EditorConfig Check
 
 # Cancel older jobs on PRs when new changes are pushed
 concurrency:
@@ -14,7 +14,61 @@ jobs:
     name: EditorConfig Check
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
     - uses: actions/checkout@v7
-    - name: Check for CRLF, trailing whitespace, and missing final newlines
-      run: Tools/check_crlf.py
+      with:
+        fetch-depth: 0
+    - uses: editorconfig-checker/action-editorconfig-checker@v2
+      with:
+        version: 'v3.8.0'
+    - name: Setup Reviewdog
+      uses: reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f # v1.5.0
+      with:
+        reviewdog_version: v0.21.0
+    - name: Check changed files against .editorconfig
+      env:
+        BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        mapfile -d '' -t added_modified_files \
+          < <(git diff --name-only --diff-filter=ACMR -z "${BASE_SHA}...HEAD")
+        editorconfig-checker --version
+        checker_status=0
+        checked=0
+        report="$(mktemp)"
+        for added_modified_file in "${added_modified_files[@]}"; do
+          if [ -n "$added_modified_file" ]; then
+            echo "Checking ${added_modified_file}"
+            set +e
+            editorconfig-checker --no-color --format gcc \
+              --exclude '\.(sf2|icns|aseprite)$' "${added_modified_file}" >> "$report" 2>&1
+            file_status=$?
+            set -e
+            if (( file_status > checker_status )); then
+              checker_status=$file_status
+            fi
+            checked=$((checked + 1))
+          fi
+        done
+        echo "Checked ${checked} file(s), result ${checker_status}"
+
+        set +e
+        reviewdog \
+          -efm='%f:%l:%c: %t%*[^:]: %m' \
+          -name="EditorConfig" \
+          -reporter=github-pr-annotations \
+          -filter-mode=added \
+          -fail-level=any \
+          < "$report"
+        reviewdog_status=$?
+        set -e
+
+        if (( checker_status > 1 )); then
+          echo "::error::EditorConfig Checker failed with exit code ${checker_status}."
+          exit "${checker_status}"
+        fi
+
+        exit "${reviewdog_status}"

@@ -97,3 +97,5 @@
       color: "#d55858"
       radius: 5
       energy: 3
+    - type: Damageable
+      damageModifierSet: ArmoredSilicon

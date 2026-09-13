@@ -3,12 +3,16 @@
   name: store-category-plushies
 
 - type: storeCategory
+  id: SLToys
+  name: store-category-plushie-toys
+
+- type: storeCategory
   id: SLSpecies
   name: store-category-plushie-species
 
 - type: storeCategory
   id: SLCrew
-  name: Crew
+  name: store-category-plushie-crew
 
 - type: storeCategory
   id: SLChemistry
@@ -23,8 +27,14 @@
   name: store-category-medical-surgery
 
 - type: storeCategory
-  id: SLEnginery
-  name: store-category-enginery-main
+  id: SLAtmospherics
+  name: store-category-engineering-atmos
+  priority: 0
+
+- type: storeCategory
+  id: SLEngineering
+  name: store-category-engineering-main
+  priority: 1
 
 - type: storeCategory
   id: SLClown

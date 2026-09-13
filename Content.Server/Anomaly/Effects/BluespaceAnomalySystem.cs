@@ -37,6 +37,7 @@ public sealed partial class BluespaceAnomalySystem : EntitySystem
         // we filter out those inside a container
         // otherwise borg brains get removed from their body, or PAIs from a PDA
         var mobs = new HashSet<Entity<MobStateComponent>>();
+        Spawn(component.TeleportEffect, xform.Coordinates); // Moffstation - Sparks and fx
         _lookup.GetEntitiesInRange(xform.Coordinates, range, mobs, flags: LookupFlags.Uncontained);
         var allEnts = new ValueList<EntityUid>(mobs.Select(m => m.Owner)) { uid };
         var coords = new ValueList<Vector2>();
@@ -51,6 +52,7 @@ public sealed partial class BluespaceAnomalySystem : EntitySystem
         {
             _adminLogger.Add(LogType.Teleport, $"{ToPrettyString(allEnts[i])} has been shuffled to {coords[i]} by the {ToPrettyString(uid)} at {xform.Coordinates}");
             _xform.SetWorldPosition(allEnts[i], coords[i]);
+            Spawn(component.TeleportEffect, Transform(allEnts[i]).Coordinates); // Moffstation - Sparks and fx
         }
     }
 
@@ -61,6 +63,7 @@ public sealed partial class BluespaceAnomalySystem : EntitySystem
         var radius = component.SupercriticalTeleportRadius * args.PowerModifier;
         var gridBounds = new Box2(mapPos - new Vector2(radius, radius), mapPos + new Vector2(radius, radius));
         var mobs = new HashSet<Entity<MobStateComponent>>();
+        Spawn(component.TeleportEffect, xform.Coordinates); // Moffstation - Sparks and fx
         _lookup.GetEntitiesInRange(xform.Coordinates, component.MaxShuffleRadius, mobs, flags: LookupFlags.Uncontained);
         foreach (var comp in mobs)
         {
@@ -73,7 +76,10 @@ public sealed partial class BluespaceAnomalySystem : EntitySystem
             _adminLogger.Add(LogType.Teleport, $"{ToPrettyString(ent)} has been teleported to {pos} by the supercritical {ToPrettyString(uid)} at {mapPos}");
 
             _xform.SetWorldPosition(ent, pos);
-            _audio.PlayPvs(component.TeleportSound, ent);
+            // Moffstation - Start - Sparks and fx
+            // _audio.PlayPvs(component.TeleportSound, ent);
+            Spawn(component.TeleportEffect, _xform.GetMapCoordinates(ent));
+            // Moffstation - End
         }
     }
 

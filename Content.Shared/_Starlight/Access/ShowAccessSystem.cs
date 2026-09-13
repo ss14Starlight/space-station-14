@@ -37,6 +37,9 @@ public sealed partial class ShowAccessSystem : EntitySystem
 
     private void OnGetExamineVerbsPda(Entity<PdaComponent> ent, ref GetVerbsEvent<ExamineVerb> args)
     {
+        if (!args.CanAccess || !args.CanInteract)
+            return;
+
         if (args.Verbs.Any(verb => verb.Text == Loc.GetString("show-access-verb-text")))
             return;
 

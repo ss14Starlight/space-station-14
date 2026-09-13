@@ -14,9 +14,9 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'CW'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_silica.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/Evac/emergency_silica.yml
         - type: StationCargoShuttle
-          path: /Maps/_Starlight/Shuttles/cargo_silica.yml
+          path: /Maps/_Starlight/Shuttles/Cargo/cargo_silica.yml
         - type: StationJobs
           availableJobs:
             #service
@@ -61,6 +61,7 @@
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            SalvageMedic: [ 1, 1 ]
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 4, 6 ]
             MailTech: [ 1, 2 ]

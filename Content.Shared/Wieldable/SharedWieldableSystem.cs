@@ -9,6 +9,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
@@ -23,6 +24,7 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Wieldable.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Wieldable;
@@ -39,6 +41,7 @@ public abstract partial class SharedWieldableSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private UseDelaySystem _delay = default!;
+    [Dependency] private INetManager _net = default!; // Starlight
 
     public override void Initialize()
     {
@@ -421,8 +424,9 @@ public abstract partial class SharedWieldableSystem : EntitySystem
 
     private void OnVirtualItemDeleted(EntityUid uid, WieldableComponent component, VirtualItemDeletedEvent args)
     {
-        if (args.BlockingEntity == uid)
-            TryUnwield(uid, component, args.User, force: true);
+        if (args.BlockingEntity != uid) return;
+        if (_net.IsClient && IsClientSide(args.VirtualItem)) return;
+        TryUnwield(uid, component, args.User, force: true);
     }
 
     private void OnGetMeleeDamage(EntityUid uid, IncreaseDamageOnWieldComponent component, ref GetMeleeDamageEvent args)
@@ -432,6 +436,11 @@ public abstract partial class SharedWieldableSystem : EntitySystem
 
         if (!wield.Wielded)
             return;
+
+        // Starlight begin
+        if (component.RespectActiveState && TryComp<ItemToggleComponent>(uid, out var toggle) && !toggle.Activated)
+            return;
+        // Starlight end
 
         args.Damage += component.BonusDamage;
     }

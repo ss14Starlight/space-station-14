@@ -44,8 +44,11 @@
     },
 	{
       "name": "performer",
-	  "copyright": "wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0"
+	  "copyright": "wonderfulnewworld"
+    },
+	{
+      "name": "assistantmanager",
+	  "copyright": "wonderfulnewworld"
     },
     {
       "name": "decimusicon"
@@ -116,6 +119,9 @@
       "name": "GSO",
       "copyright": "Made by born_stellar on discord",
       "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "salvagemedic"
     }
   ]
 }

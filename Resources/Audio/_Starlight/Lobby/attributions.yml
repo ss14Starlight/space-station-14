@@ -72,3 +72,8 @@
   license: "CC-BY-4.0"
   copyright: "Stench of Whiskey, by hermitsabee"
   source: "https://www.youtube.com/watch?v=DEnavbxRlf8"
+
+- files: [ "Null_Scar_Gaze.ogg" ]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Null Scar Gaze by Beptol Corporation Acoustics"
+  source: "https://soundcloud.com/beptolacoustics"

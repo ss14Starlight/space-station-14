@@ -30,6 +30,7 @@
     - alertType: Rooted
     - alertType: Pacified
     - alertType: Stealthy
+    - alertType: GPSAlert # Starlight
     - alertType: DwarfCourage # Starlight
     - alertType: Offer # Starlight
 

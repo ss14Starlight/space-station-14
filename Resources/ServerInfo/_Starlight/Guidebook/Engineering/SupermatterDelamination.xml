@@ -1,0 +1,68 @@
+<Document>
+  # Supermatter Delamination
+
+  Delamination occurs when the Supermatter can no longer recover from the amount of stress applied to it.
+
+  When recovery fails, the crystal enters an unstable state where damage accelerates faster than the crystal can repair itself.
+
+  A delamination event is considered a critical station emergency.
+
+  ## Emergency Response
+
+  If a Supermatter begins to destabilize, engineering personnel should immediately attempt to reduce stress on the crystal.
+
+  Priority actions:
+
+  1. Disable destabilizing equipment.
+
+  <Box>
+    <GuideEntityEmbed Entity="Emitter" Caption="Emitter" />
+  </Box>
+
+  2. Correct dangerous chamber conditions.
+
+  <Box>
+    <GuideEntityEmbed Entity="ThermiteFire" Caption="Atmospheric Hazard" />
+  </Box>
+
+  3. Deploy containment measures if required.
+
+  <Box>
+    <GuideEntityEmbed Entity="MetalFoamGrenade" Caption="Metal Foam Grenade" />
+  </Box>
+
+  Failure to stabilize the crystal will result in complete structural collapse.
+
+  ## Final Emergency Procedures
+
+  If delamination cannot be prevented:
+
+  1. Notify the crew of the ongoing Supermatter emergency.
+  2. Recommend evacuation procedures.
+  3. Distribute approved protective equipment.
+  4. Prepare engineering equipment for post-event cleanup.
+
+  ## Delamination Cleanup
+
+  <Box>
+    <GuideEntityEmbed Entity="Cascad1" Caption="Cascad Crystal" />
+  </Box>
+
+  During complete failure, the original Supermatter crystal collapses and transforms into cascad crystals.
+
+  Cascad crystals are extremely hardened structures that expand through surrounding materials.
+
+  Due to their structure, they require heavy-duty tools for efficient removal.
+
+  Approved equipment includes:
+
+  <Box>
+    <GuideEntityEmbed Entity="FireAxe" Caption="Fire Axe" />
+    <GuideEntityEmbed Entity="HammerBreachingNT" Caption="Breaching Hammer" />
+  </Box>
+
+  Emergency tools may damage cascad crystals, but are not considered suitable for cleanup operations.
+
+  Personnel should avoid entering affected areas until the cascad has been fully removed and the area declared safe.
+
+</Document>

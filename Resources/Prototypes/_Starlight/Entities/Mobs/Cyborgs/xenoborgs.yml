@@ -41,7 +41,7 @@
 
 - type: entity
   parent: BaseXenoborgChassisDerelict
-  id: XenoborgEngiDerelict
+  id: DerelictEngiXenoborg
   name: derelict engi xenoborg
   components:
     - type: Sprite
@@ -81,7 +81,7 @@
 
 - type: entity
   parent: BaseXenoborgChassisDerelict
-  id: XenoborgHeavyDerelict
+  id: DerelictHeavyXenoborg
   name: derelict heavy xenoborg
   components:
     - type: Sprite
@@ -151,7 +151,7 @@
 
 - type: entity
   parent: BaseXenoborgChassisDerelict
-  id: XenoborgScoutDerelict
+  id: DerelictScoutXenoborg
   name: derelict scout xenoborg
   components:
     - type: Sprite
@@ -189,7 +189,7 @@
 
 - type: entity
   parent: BaseXenoborgChassisDerelict
-  id: XenoborgStealthDerelict
+  id: DerelictStealthXenoborg
   name: derelict stealth xenoborg
   components:
     - type: Sprite

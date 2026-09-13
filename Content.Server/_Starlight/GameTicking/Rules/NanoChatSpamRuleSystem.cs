@@ -2,7 +2,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.CartridgeLoader;
 using Content.Server._CD.CartridgeLoader.Cartridges;
-using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Systems;
 using Robust.Server.Player;
 using Content.Shared._CD.NanoChat;
@@ -22,13 +21,15 @@ using Content.Server.Mind;
 using Content.Shared._CD.CartridgeLoader.Cartridges;
 using Content.Shared._Starlight.Time;
 using Robust.Server.Containers;
+using Content.Server.StationEvents.Events;
+using Content.Server.StationEvents.Components;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
 /// <summary>
-/// Game rule that periodically sends spam advertisements via NanoChat.
+/// Game rule that sends spam advertisements via NanoChat.
 /// </summary>
-public sealed partial class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComponent>
+public sealed partial class NanoChatSpamRuleSystem : StationEventSystem<NanoChatSpamRuleComponent>
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -43,33 +44,20 @@ public sealed partial class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpam
     [Dependency] private SharedTimeSystem _timeSystem = default!;
     [Dependency] private ContainerSystem _container = default!;
 
-    private static readonly Regex _randomNumberPattern = new(@"\[\[randomnumber:(\d+):(\d+)\]\]", RegexOptions.Compiled);
+    private static readonly Regex _randomNumberPattern = RandomNumberPatternRegex();
 
     protected override void Started(EntityUid uid, NanoChatSpamRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
 
-        // Schedule first spam
-        component.NextSpamTime = _random.NextFloat(component.MinDelay, component.MaxDelay);
-    }
-
-    protected override void ActiveTick(EntityUid uid, NanoChatSpamRuleComponent component, GameRuleComponent gameRule, float frameTime)
-    {
-        base.ActiveTick(uid, component, gameRule, frameTime);
-
-        component.NextSpamTime -= frameTime;
-
-        if (component.NextSpamTime > 0)
+        // Fire once, auto ended by StationEventSystem
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
             return;
 
-        // Reset timer
-        component.NextSpamTime += _random.NextFloat(component.MinDelay, component.MaxDelay);
-
-        // Send spam
-        SendSpamMessage(component);
+        SendSpamMessage(component, stationEvent.TargetStation);
     }
 
-    private void SendSpamMessage(NanoChatSpamRuleComponent component)
+    private void SendSpamMessage(NanoChatSpamRuleComponent component, EntityUid? targetStation)
     {
         // Get all advertisement prototypes
         var adPrototypes = _prototype.EnumeratePrototypes<NanoChatAdvertisementPrototype>().ToList();
@@ -84,6 +72,10 @@ public sealed partial class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpam
         {
             // Skip if no number assigned
             if (card.Number == null)
+                continue;
+
+            // Only include NanoChat cards belonging to the event's target station.
+            if (targetStation == null || _station.GetOwningStation(cardUid) != targetStation)
                 continue;
 
             // Check if card is in a PDA that belongs to a player
@@ -386,4 +378,7 @@ public sealed partial class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpam
 
         return allNames.Count > 0 ? _random.Pick(allNames) : "John Doe";
     }
+
+    [GeneratedRegex(@"\[\[randomnumber:(\d+):(\d+)\]\]", RegexOptions.Compiled)]
+    private static partial Regex RandomNumberPatternRegex();
 }

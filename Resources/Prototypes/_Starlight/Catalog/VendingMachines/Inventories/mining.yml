@@ -122,6 +122,18 @@
     - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorMiningSeismicCharge
+  productEntity: SeismicCharge
+  cost:
+    SalvageTicket: 300
+  categories:
+    - MiningEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 10
+    - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorMiningPKAUpgradeDamage
   productEntity: PKAUpgradeDamage
   cost:

@@ -32,7 +32,9 @@ hud-chatbox-channel-Visual = Actions
 hud-chatbox-channel-Damage = Damage
 hud-chatbox-channel-Unspecified = Unspecified
 
-hud-chatbox-highlights = Highlights:
+# Starlight start
+hud-chatbox-highlights = Chat Highlights
+# Starlight end
 hud-chatbox-highlights-button = Submit
 hud-chatbox-highlights-tooltip = The words need to be separated by a newline,
                                  if wrapped around " they will be highlighted

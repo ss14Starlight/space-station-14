@@ -40,8 +40,31 @@
   name: Heat Exchanger Rod Crate
   description: 4 steel heat exchanger rods for a nuclear reactor.
   components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        id: SteelReactorHeatExchanger
+  - type: StorageFill
+    contents:
+      - id: SteelReactorHeatExchanger
         amount: 4
+
+- type: entity
+  id: CrateNuclearFissionGenerator
+  parent: CrateEngineeringSecure
+  name: Nuclear Generator Construction Crate
+  description: A crate containing all that's needed to build your very own nuclear reactor power generator.
+  suffix: Mapping
+  components:
+  - type: AccessReader
+    access: [["ChiefEngineer"]] # CE's choice to build the engine
+  - type: StorageFill
+    contents:
+      - id: NuclearReactorFlatpack
+        amount: 1
+      - id: GasTurbineFlatpack
+        amount: 1
+      - id: NuclearFabricatorMachineCircuitboard
+        amount: 1
+      - id: BohrumReactorControlRod
+        amount: 2
+      - id: CerenkiteReactorFuelRod
+        amount: 3
+      - id: SheetSteel
+        amount: 6 # This is just enough to make 8 steel gas exchangers and 8 steel heat exchangers

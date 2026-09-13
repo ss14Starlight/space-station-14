@@ -3,13 +3,10 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Silicons.Borgs;
 using Content.Shared.Destructible;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
-using Content.Shared.Roles.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Xenoborgs.Components;
-using Robust.Shared.Audio;
 using Robust.Shared.Player;
 
 namespace Content.Server.Xenoborgs;
@@ -96,6 +93,8 @@ public sealed partial class XenoborgSystem : EntitySystem
 
     private void OnXenoborgMindRemoved(EntityUid ent, XenoborgComponent comp, MindRemovedMessage args)
     {
-        _roles.MindRemoveRole(args.Mind.Owner, comp.MindRole);
+        // We don't need to update the mind if the mind is being fully detached!
+        if (args.TransferEntity != null)
+            _roles.MindRemoveRole(args.Mind.Owner, comp.MindRole);
     }
 }

@@ -12,3 +12,6 @@ thaven-mood-admin-ui-delete = Delete
 
 admin-trick-add-random-mood-description = Add a random mood to this entity.
 admin-trick-give-moods-description = Give this entity moods.
+
+admin-trick-floodpipes = Floodfill colors
+admin-trick-floodpipes-description = Floods pipe color to all connected pipes.

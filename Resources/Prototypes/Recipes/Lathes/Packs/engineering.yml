@@ -47,15 +47,13 @@
   - CellRechargerCircuitboard
   - WeaponCapacitorRechargerCircuitboard
   - FreezerElectronics
-  # Starlight-start
-  - MassDriverCircuitboard
-  - MassDriverComputerCircuitboard
-  # Starlight-end
 
 - type: latheRecipePack
   id: EngineeringBoardsStatic
   recipes:
   - SpaceHeaterMachineCircuitBoard
+  - MassDriverCircuitboard # Starlight
+  - MassDriverComputerCircuitboard # Starlight
 
 ## Dynamic
 
@@ -65,13 +63,14 @@
   - PowerDrill
   - WelderExperimental
   - JawsOfLife
-  - Fulton
-  - FultonBeacon
+  #- Fulton # Starlight, moved to science
+  #- FultonBeacon # Starlight, moved to science
 
 - type: latheRecipePack
   id: AtmosTools
   recipes:
   - HolofanProjector
+  - BluespaceFireExtinguisher # Starlight
 
 - type: latheRecipePack
   id: EngineeringWeapons
@@ -98,3 +97,4 @@
   - BladeServerRackMachineCircuitboard # Moffstation - Blade Server Rack constructibility
   - ElectrolyzerMachineCircuitboard # Funky atmos - /tg/ gases
   - SMESHyperAdvancedMachineCircuitboard #SL Edit
+  - APCAdvancedElectronics # Starlight

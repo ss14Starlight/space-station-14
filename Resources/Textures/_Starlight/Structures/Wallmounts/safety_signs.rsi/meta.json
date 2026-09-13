@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Evac sign by Conflee for Starlight, Exit sign taken from Aurora Station",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -9,19 +9,23 @@
   "states": [
     {
       "name": "evac",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Evac sign by Conflee for Starlight"
     },
-	{
+    {
       "name": "evac_unlit",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Evac sign by Conflee for Starlight"
     },
-	{
+    {
       "name": "exit",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Exit sign taken from Aurora Station"
     },
-	{
+    {
       "name": "exit_unlit",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Exit sign taken from Aurora Station"
     }
   ]
 }

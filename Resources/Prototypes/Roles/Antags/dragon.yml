@@ -12,3 +12,11 @@
     time: 3h
   playTimeTracker: AntagDragon
   # Starlight end
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Dragon
+  spawnerPrototype: SpawnPointGhostDragon
+  pickPlayer: false
+  mindRoles:
+  - MindRoleDragon

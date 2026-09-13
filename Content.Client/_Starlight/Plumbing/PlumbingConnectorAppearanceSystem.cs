@@ -1,9 +1,11 @@
 using System.Numerics;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
+using Content.Client.Power;
 using Content.Client.SubFloor;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Power;
 using Content.Shared.SubFloor;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -87,6 +89,8 @@ public sealed partial class PlumbingConnectorAppearanceSystem : EntitySystem
     {
         if (args.Sprite == null)
             return;
+
+        UpdatePoweredLayer(uid, args.Sprite, args.Component);
 
         if (!args.Sprite.Visible)
             return;
@@ -177,6 +181,17 @@ public sealed partial class PlumbingConnectorAppearanceSystem : EntitySystem
                 }
             }
         }
+    }
+
+    private void UpdatePoweredLayer(EntityUid uid, SpriteComponent sprite, AppearanceComponent appearance)
+    {
+        if (!_sprite.LayerMapTryGet((uid, sprite), PowerDeviceVisualLayers.Powered, out var layerIndex, false))
+            return;
+
+        if (!_appearance.TryGetData<bool>(uid, PowerDeviceVisuals.Powered, out var powered, appearance))
+            return;
+
+        _sprite.LayerSetVisible((uid, sprite), layerIndex, powered);
     }
 
     private void UpdateManifoldAppearance(EntityUid uid, PlumbingConnectorAppearanceComponent component, ref AppearanceChangeEvent args)

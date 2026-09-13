@@ -3,7 +3,6 @@ using Content.Shared.Radio;
 using Content.Shared.Salvage;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Chat.Managers;
@@ -27,7 +26,6 @@ namespace Content.Server.Salvage
         [Dependency] private IConfigurationManager _configurationManager = default!;
         [Dependency] private IGameTiming _timing = default!;
         [Dependency] private ILogManager _logManager = default!;
-        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private IRobustRandom _random = default!;
         [Dependency] private AnchorableSystem _anchorable = default!;

@@ -3,16 +3,20 @@
   id: NinjaThreats
   weights:
     Dragon: 1
-    Revenant: 1
     # Starlight Start
-    Clown: 1
-    LoneOp: 0.25
-    NinjaBackup: 0.75
-    Rod: 0.75
-    Wizard: 0.1
+    Revenant: 0.75 # Changed from 1 to .75 to aloow other threats to shine a bit more *revenant sucks*
+    DisasterSyndies: 0.8
+    LoneOp: 0.2
+    StrikeTeam: 0.15
+    NinjaBackup: 0.7
+    Rod: 0.8
+    Wizard: 0.25
+    Terminator: 0.2
+    TheClownening: 0.1
     #Xenoborgs: 0.05
-    Eeeplet: 0.5
-    Colossus: 0.2
+    Eeeplet: 0.45
+    Abductors: 0.5
+    Colossus: 0.25
     # Starlight End
 
 - type: ninjaHackingThreat

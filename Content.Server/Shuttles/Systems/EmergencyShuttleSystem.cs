@@ -43,10 +43,8 @@ using Content.Shared._Starlight.CustomObjectiveSummary;
 using Content.Shared.Station.Components;
 using Robust.Shared.Audio;
 using Content.Server.Parallax;
-using Content.Shared.Parallax.Biomes;
 using Content.Server.Procedural;
-using Robust.Shared.Map;
-using Content.Shared._Starlight.Shuttles.Components;
+
 // Starlight End
 
 namespace Content.Server.Shuttles.Systems;
@@ -79,7 +77,6 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private UserInterfaceSystem _uiSystem = default!;
     // Starlight Start
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private BiomeSystem _biomes = default!;
     [Dependency] private DungeonSystem _dungeon = default!;

@@ -9,3 +9,9 @@
   name: guide-entry-sl-ice-cream-recipes
   text: "/ServerInfo/_Starlight/Guidebook/Service/IceCreamMakerRecipes.xml"
   filterEnabled: True
+
+- type: guideEntry
+  id: DoughRecipes # Starlight-add
+  name: guide-entry-sl-dough-recipes
+  text: "/ServerInfo/_Starlight/Guidebook/Service/DoughRecipes.xml"
+  filterEnabled: True

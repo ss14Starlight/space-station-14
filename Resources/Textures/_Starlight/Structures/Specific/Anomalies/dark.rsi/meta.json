@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from https://github.com/CHOMPStation2/CHOMPStation2/",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -52,7 +52,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Taken from https://github.com/CHOMPStation2/CHOMPStation2/"
     },
     {
       "name": "portal",
@@ -67,7 +68,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Taken from https://github.com/CHOMPStation2/CHOMPStation2/"
     },
     {
       "name": "darktrap-spawn",
@@ -94,7 +96,8 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Taken from https://github.com/CHOMPStation2/CHOMPStation2/"
     },
     {
       "name": "darktrap-active",
@@ -108,10 +111,12 @@
           0.1,
           0.1
         ]
-      ]
+      ],
+      "copyright": "Taken from https://github.com/CHOMPStation2/CHOMPStation2/"
     },
     {
-      "name": "darktrap"
+      "name": "darktrap",
+      "copyright": "Taken from https://github.com/CHOMPStation2/CHOMPStation2/"
     }
   ]
 }

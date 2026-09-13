@@ -14,7 +14,6 @@
   icon: JobIconNanoTrasenSpecialForces
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-nanotrasen
-  canBeAntag: false
   bypassEorPacification: true
   accessGroups:
   - AllAccess
@@ -102,7 +101,7 @@
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited
     pocket2: EnergyShield
-    belt: WeaponEnergyMagnumGun
+    belt: WeaponEnergyMagnumSeven
     neck: ClothingNeckCapeNTSF2
     suitstorage: WeaponPulseCarbine
   storage:

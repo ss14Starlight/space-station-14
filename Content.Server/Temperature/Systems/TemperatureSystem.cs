@@ -8,6 +8,7 @@ using Content.Shared.Temperature;
 using Content.Shared.Projectiles;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Temperature.Systems;
+using Content.Shared._Starlight.Temperature.Components;
 
 namespace Content.Server.Temperature.Systems;
 

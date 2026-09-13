@@ -35,12 +35,8 @@ public sealed partial class LoadoutComponent : Component
     [AutoNetworkedField]
     public List<ProtoId<StartingGearPrototype>>? PostSpawnGear;
 
-    /// <summary>
-    /// A flag to determine whether to apply <see cref="PostSpawnGear"/>.
-    /// </summary>
-    [DataField]
-    [AutoNetworkedField]
     public bool PostStationSpawn;
+    public bool AppliedPostSpawnGear;
 
     #endregion Starlight
 }

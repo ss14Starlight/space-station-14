@@ -13,7 +13,7 @@
   - type: Appearance
   - type: MobilityAid
   - type: MeleeWeapon
-    wideAnimationRotation: 45
+    wideAnimationRotation: 60 # Starlight
     damage:
       types:
         Blunt: 5

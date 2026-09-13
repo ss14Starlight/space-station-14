@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from BayStation, Edited by Conf",
+    "copyright": "State based copyright",
     "size": {
         "x": 32,
         "y": 32
@@ -14,7 +14,8 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from BayStation, Edited by Conf"
         },
         {
             "name": "lights",
@@ -27,10 +28,12 @@
                     0.1,
                     0.1
                 ]
-            ]
+            ],
+            "copyright": "Taken from BayStation, Edited by Conf"
         },
         {
-            "name": "off"
+            "name": "off",
+            "copyright": "Taken from BayStation, Edited by Conf"
         }
     ]
 }

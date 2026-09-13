@@ -15,3 +15,15 @@ trait-scottish-accent-desc = You speak like ye aboot ta go ta the Loch!
 
 trait-polite-accent-name = Polite Accent
 trait-polite-accent-desc = You speak without using all of the crass language that others do!
+
+trait-pirate-accent-name = Pirate accent
+trait-pirate-accent-desc = You can't stop speaking like a pirate!
+
+trait-southern-name = Southern drawl
+trait-southern-desc = You have a different way of speakin'.
+
+trait-cowboy-name = Cowboy accent
+trait-cowboy-desc = You speak with a distinct cowboy accent!
+
+trait-italian-name = Italian accent
+trait-italian-desc = Mamma mia! You seem to have lived in space Italy!

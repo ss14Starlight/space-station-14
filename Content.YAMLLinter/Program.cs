@@ -29,7 +29,7 @@ namespace Content.YAMLLinter
 
             var (errors, fieldErrors) = await RunValidation();
 
-            var count = errors.Count + fieldErrors.Count;
+            var count = errors.Sum(pair => pair.Value.Count) + fieldErrors.Count; // Starlight
 
             if (count == 0)
             {
@@ -44,18 +44,29 @@ namespace Content.YAMLLinter
                 {
                     // TODO YAML LINTER Fix inheritance
                     // If a parent/abstract prototype has na error, this will misreport the file name (but with the correct line/column).
-                    Console.WriteLine($"::error in {file}({errorNode.Node.Start.Line},{errorNode.Node.Start.Column})  {errorNode.ErrorReason}");
+                    Console.WriteLine($"{GetRepositoryPath(file)}:{errorNode.Node.Start.Line}:{errorNode.Node.Start.Column}: error: {errorNode.ErrorReason}");
                 }
             }
 
             foreach (var error in fieldErrors)
             {
-                Console.WriteLine(error);
+                Console.Error.WriteLine($"YAML field validation error: {error}"); // Starlight
             }
 
             Console.WriteLine($"{count} errors found in {(int) stopwatch.Elapsed.TotalMilliseconds} ms.");
             PoolManager.Shutdown();
-            return -1;
+            // Starlight begin
+            return fieldErrors.Count > 0 ? 2 : 1;
+        }
+
+        private static string GetRepositoryPath(string file)
+        {
+            var path = file.Replace('\\', '/').TrimStart('/');
+
+            return path.StartsWith("RobustToolbox/", StringComparison.Ordinal) || path.StartsWith("Resources/", StringComparison.Ordinal) ? path :
+                path.StartsWith("EnginePrototypes/", StringComparison.Ordinal) ? $"RobustToolbox/Resources/{path}" : $"Resources/{path}";
+
+            // Starlight End
         }
 
         private static async Task<(Dictionary<string, HashSet<ErrorNode>> YamlErrors, List<string> FieldErrors)>

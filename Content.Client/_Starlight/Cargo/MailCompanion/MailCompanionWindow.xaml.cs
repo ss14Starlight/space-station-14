@@ -1,5 +1,4 @@
 using Content.Client.Pinpointer.UI;
-using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.Cargo.MailCompanion;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.StatusIcon;

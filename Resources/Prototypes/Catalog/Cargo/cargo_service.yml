@@ -83,7 +83,7 @@
   icon:
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/green.rsi
     state: icon
-  product: CrateServiceCustomSmokable
+  product: BoxServiceCustomSmokable #Funky change boxification
   cost: 1000
   category: cargoproduct-category-name-service
   group: market
@@ -123,7 +123,7 @@
   icon:
     sprite: Objects/Misc/books.rsi
     state: book_icon
-  product: CrateServiceBooks
+  product: BoxServiceBlankBooks #Funky change boxification
   cost: 1000
   category: cargoproduct-category-name-service
   group: market
@@ -133,7 +133,7 @@
   icon:
     sprite: Objects/Misc/books.rsi
     state: book_icon
-  product: CrateServiceGuidebooks
+  product: BoxServiceGuidebooks #Funky change boxification
   cost: 1300
   category: cargoproduct-category-name-service
   group: market

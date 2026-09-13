@@ -7,10 +7,10 @@
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
       time: 18000 # 5 hrs
+  displayWeight: 1
   startingGear: DutyOfficerGear
   icon: "JobIconDutyOfficer"
   supervisors: job-supervisors-warden
-  canBeAntag: false
   access:
   - Security
   - Brig

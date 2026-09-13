@@ -87,3 +87,8 @@
   parent: BaseCircuitboardRecipe
   id: IceCreamMakerMachineCircuitBoard
   result: IceCreamMakerMachineCircuitBoard
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: APCAdvancedElectronics
+  result: APCAdvancedElectronics

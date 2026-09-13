@@ -1,0 +1,9 @@
+- files: ["dog_sneeze.ogg"]
+  license: "CC0-1.0"
+  copyright: "sneezing the dog.wav by blukotek"
+  source: "https://freesound.org/s/424949/"
+
+- files: ["dog_sniff.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "OWI_Dog sniffing and licking by Cllari"
+  source: "https://freesound.org/s/445610/"

@@ -1,0 +1,27 @@
+# Terror Spiders
+- type: entity
+  parent: BaseAntagGhostRoleRule
+  id: TerrorSpidersSpawn
+  components:
+  - type: GameRule
+    minPlayers: 50
+    delay:
+      min: 240
+      max: 420
+  - type: VentSpawnRule
+  - type: AntagSpawner
+    prototype: MobTerrorPrincess
+  - type: TerrorSpiderRule
+  - type: StationEvent
+  - type: AntagSelection
+    agentName: terror-princess-round-end-agent-name
+    antags:
+    - !type:LinearAntagCount
+      proto: TerrorPrincess
+      playerRatio: 50
+      range:
+        min: 1
+        max: 5 # I don't expect us to reach this, but we need to include a max now.
+  - type: DynamicRuleCost
+    cost: 200
+    cooldown: 1

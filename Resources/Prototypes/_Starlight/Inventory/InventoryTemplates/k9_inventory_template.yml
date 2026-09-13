@@ -1,0 +1,42 @@
+- type: inventoryTemplate
+  id: K9
+  slots:
+  - name: outerClothing
+    slotTexture: suit
+    slotFlags: OUTERCLOTHING
+    stripTime: 6
+    uiWindowPos: 1,1
+    strippingWindowPos: 1,2
+    displayName: Vest
+    whitelist:
+      tags:
+      - K9Wearable
+  - name: eyes
+    slotTexture: glasses
+    slotFlags: EYES
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,0
+    displayName: Eyes
+    whitelist:
+      tags:
+      - PetWearable
+  - name: mask
+    slotTexture: mask
+    slotFlags: MASK
+    uiWindowPos: 0,1
+    strippingWindowPos: 1,1
+    displayName: Mask
+    whitelist:
+      tags:
+      - PetWearable
+      - CorgiWearable
+  - name: suitstorage
+    slotTexture: suit_storage
+    slotFlags: SUITSTORAGE
+    stripTime: 3
+    uiWindowPos: 0,0
+    strippingWindowPos: 2,5
+    displayName: Suit Storage
+    whitelist:
+      components:
+      - GasTank

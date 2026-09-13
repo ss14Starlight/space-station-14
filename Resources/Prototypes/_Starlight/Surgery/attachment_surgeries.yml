@@ -7,6 +7,7 @@
   - type: Surgery
     requirement:
     - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepExposeNerves
     - SurgeryStepExposeBloodVessels
@@ -17,7 +18,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
     - IPC
   - type: SurgeryLimbSlotCondition
     slot: head
@@ -36,6 +37,7 @@
   - type: Surgery
     requirement:
     - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepExposeNerves
     - SurgeryStepExposeBloodVessels
@@ -64,6 +66,7 @@
   - type: Surgery
     requirement:
     - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepExposeNerves
     - SurgeryStepExposeBloodVessels
@@ -152,7 +155,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - ProtoSlimePerson
+    - NeoSlimePerson
 
 
 - type: entity

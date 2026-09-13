@@ -1,23 +1,27 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprites by wayiscute",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "reinforced_camera"
+      "name": "reinforced_camera",
+      "copyright": "Sprites by wayiscute"
     },
     {
-      "name": "reinforced_camera_off"
+      "name": "reinforced_camera_off",
+      "copyright": "Sprites by wayiscute"
     },
     {
-      "name": "reinforced_camera_in_use"
+      "name": "reinforced_camera_in_use",
+      "copyright": "Sprites by wayiscute"
     },
     {
-      "name": "reinforced_camera_assembly"
+      "name": "reinforced_camera_assembly",
+      "copyright": "Sprites by wayiscute"
     }
   ]
 }

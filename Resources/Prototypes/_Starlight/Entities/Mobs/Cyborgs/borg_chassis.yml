@@ -121,7 +121,7 @@
   description: A man-machine hybrid of the purrfus variety. This one is in a state of great disrepair.
   components:
   - type: Sprite
-    sprite: _Starlight/Mobs/Silicon/Chassis/purrfus.rsi
+    sprite: _Starlight/Mobs/Silicon/Chassis/derelict.rsi
     layers:
     - state: borg
     - state: borg_e_r

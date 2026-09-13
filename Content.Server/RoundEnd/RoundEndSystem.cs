@@ -9,6 +9,8 @@ using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Server.Voting;
+using Content.Server.Voting.Managers;
 using Content.Shared.Screen.Components;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
@@ -41,6 +43,7 @@ namespace Content.Server.RoundEnd
         [Dependency] private EmergencyShuttleSystem _shuttle = default!;
         [Dependency] private SharedAudioSystem _audio = default!;
         [Dependency] private StationSystem _stationSystem = default!;
+        [Dependency] private IVoteManager _voteManager = default!; // Starlight
 
         public TimeSpan DefaultCooldownDuration { get; set; } = TimeSpan.FromSeconds(30);
 
@@ -68,6 +71,8 @@ namespace Content.Server.RoundEnd
             ? DefaultCooldownDuration - (_gameTiming.CurTime - (_countdownTokenSource?.Token.CanBeCanceled ?? false ? LastCountdownStart : _gameTiming.CurTime))
             : null;
         private bool _shuttleCallsEnabled = true;
+
+        public bool StartTimerOnRestart { get; private set; } = true;
         // Starlight End
 
         public override void Initialize()
@@ -103,6 +108,8 @@ namespace Content.Server.RoundEnd
             SetAutoCallTime();
             _autoCalledBefore = false;
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
+
+            StartTimerOnRestart = true; // Starlight
         }
 
         /// <summary>
@@ -140,12 +147,13 @@ namespace Content.Server.RoundEnd
         /// <summary>
         /// Starts the process of ending the round by calling evac
         /// </summary>
-        /// <param name="requester"></param>
+        /// <param name="requester">who called evac</param>
+        /// <param name="machine">machine used to call evac</param>
         /// <param name="checkCooldown"></param>
         /// <param name="text">text in the announcement of shuttle calling</param>
         /// <param name="name">name in the announcement of shuttle calling</param>
         /// <param name="cantRecall">if the station shouldn't be able to recall the shuttle</param>
-        public void RequestRoundEnd(EntityUid? requester = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement", bool cantRecall = false)
+        public void RequestRoundEnd(EntityUid? requester = null, EntityUid? machine = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement", bool cantRecall = false)
         {
             var duration = DefaultCountdownDuration;
 
@@ -160,19 +168,20 @@ namespace Content.Server.RoundEnd
                 }
             }
 
-            RequestRoundEnd(duration, requester, checkCooldown, text, name, cantRecall);
+            RequestRoundEnd(duration, requester, machine, checkCooldown, text, name, cantRecall);
         }
 
         /// <summary>
         /// Starts the process of ending the round by calling evac
         /// </summary>
         /// <param name="countdownTime">time for evac to arrive</param>
-        /// <param name="requester"></param>
+        /// <param name="requester">who called evac</param>
+        /// <param name="machine">machine used to call evac</param>
         /// <param name="checkCooldown"></param>
         /// <param name="text">text in the announcement of shuttle calling</param>
         /// <param name="name">name in the announcement of shuttle calling</param>
         /// <param name="cantRecall">if the station shouldn't be able to recall the shuttle</param>
-        public void RequestRoundEnd(TimeSpan countdownTime, EntityUid? requester = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement", bool cantRecall = false)
+        public void RequestRoundEnd(TimeSpan countdownTime, EntityUid? requester = null, EntityUid? machine = null, bool checkCooldown = true, string text = "round-end-system-shuttle-called-announcement", string name = "round-end-system-shuttle-sender-announcement", bool cantRecall = false)
         {
             if (_gameTicker.RunLevel != GameRunLevel.InRound)
                 return;
@@ -190,14 +199,11 @@ namespace Content.Server.RoundEnd
             _countdownTokenSource = new();
             CantRecall = cantRecall;
 
+            var what = machine != null ? $" with {ToPrettyString(machine.Value):entity} " : "";
             if (requester != null)
-            {
-                _adminLogger.Add(LogType.ShuttleCalled, LogImpact.High, $"Shuttle called by {ToPrettyString(requester.Value):user}");
-            }
+                _adminLogger.Add(LogType.ShuttleCalled, LogImpact.High, $"Shuttle called by {ToPrettyString(requester.Value):player}{what}");
             else
-            {
-                _adminLogger.Add(LogType.ShuttleCalled, LogImpact.High, $"Shuttle called");
-            }
+                _adminLogger.Add(LogType.ShuttleCalled, LogImpact.High, $"Shuttle called{what}");
 
             // I originally had these set up here but somehow time gets passed as 0 to Loc so IDEK.
             int time;
@@ -254,7 +260,7 @@ namespace Content.Server.RoundEnd
         public bool GetShuttleCallsEnabled() => _shuttleCallsEnabled;
         // Starlight End
 
-        public void CancelRoundEndCountdown(EntityUid? requester = null, bool forceRecall = false)
+        public void CancelRoundEndCountdown(EntityUid? requester = null, EntityUid? machine = null, bool forceRecall = false)
         {
             if (_gameTicker.RunLevel != GameRunLevel.InRound)
                 return;
@@ -268,14 +274,11 @@ namespace Content.Server.RoundEnd
             _countdownTokenSource.Cancel();
             _countdownTokenSource = null;
 
+            var what = machine != null ? $" with {ToPrettyString(machine.Value):entity} " : "";
             if (requester != null)
-            {
-                _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled by {ToPrettyString(requester.Value):user}");
-            }
+                _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled by {ToPrettyString(requester.Value):player}{what}");
             else
-            {
-                _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled");
-            }
+                _adminLogger.Add(LogType.ShuttleRecalled, LogImpact.High, $"Shuttle recalled{what}");
 
             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
                 Loc.GetString("round-end-system-shuttle-sender-announcement"), false, colorOverride: Color.Gold);
@@ -312,28 +315,15 @@ namespace Content.Server.RoundEnd
             ExpectedCountdownEnd = null;
             RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
             _gameTicker.EndRound();
-            _countdownTokenSource?.Cancel();
-            _countdownTokenSource = new();
-
-            countdownTime ??= TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.RoundRestartTime));
-            int time;
-            string unitsLocString;
-            if (countdownTime.Value.TotalSeconds < 60)
+            // Starlight begin
+            if (!StartTimerOnRestart)
             {
-                time = countdownTime.Value.Seconds;
-                unitsLocString = "eta-units-seconds";
+                _countdownTokenSource?.Cancel();
+                _countdownTokenSource = null;
+                return;
             }
-            else
-            {
-                time = countdownTime.Value.Minutes;
-                unitsLocString = "eta-units-minutes";
-            }
-            _chatManager.DispatchServerAnnouncement(
-                Loc.GetString(
-                    "round-end-system-round-restart-eta-announcement",
-                    ("time", time),
-                    ("units", Loc.GetString(unitsLocString))));
-            Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
+            StartRestartTimer(countdownTime);
+            // Starlight end
         }
 
         /// <summary>
@@ -365,8 +355,8 @@ namespace Content.Server.RoundEnd
                     }
                     else
                     {
-                        RequestRoundEnd(time, null, false, textCall,
-                            Loc.GetString(sender));
+                        RequestRoundEnd(time, checkCooldown: false, text: textCall,
+                            name: Loc.GetString(sender));
                     }
                     break;
             }
@@ -400,9 +390,9 @@ namespace Content.Server.RoundEnd
                                         : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
             if (mins != 0 && _gameTiming.CurTime - AutoCallStartTime > TimeSpan.FromMinutes(mins))
             {
-                if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
+                if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null && _shuttleCallsEnabled) //Starlight-edit
                 {
-                    RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
+                    StartCallVote(); // Starlight-edit
                     _autoCalledBefore = true;
                 }
 
@@ -418,6 +408,107 @@ namespace Content.Server.RoundEnd
                 : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
             return AutoCallStartTime + TimeSpan.FromMinutes(autoCalledBefore);
         }
+
+        #region Starlight
+
+        /// <summary>
+        /// Cancels the round restart timer, allowing the round to stay in post-round indefinitely.
+        /// </summary>
+        /// <param name="canceller">The session that caused the timer to be canceled, if applicable.</param>
+        public void CancelRoundRestartTimer(ICommonSession? canceller = null)
+        {
+            if (_gameTicker.RunLevel != GameRunLevel.PostRound)
+                return;
+
+            if (_countdownTokenSource is null)
+                return;
+
+            _countdownTokenSource.Cancel();
+            _countdownTokenSource = null;
+            _adminLogger.Add(LogType.AdminCommands, LogImpact.High,
+                $"Round restart timer was delayed{(canceller is not null ? $" by {canceller.Name}." : ".")}");
+            _chatManager.SendAdminAnnouncement(
+                $"Round restart timer was delayed{(canceller is not null ? $" by {canceller.Name}!" : "!")}");
+        }
+
+        /// <summary>
+        /// Starts the round restart timer, making the game return
+        /// to <see cref="GameRunLevel.PreRoundLobby"/> after it expires.
+        /// </summary>
+        public void StartRestartTimer(TimeSpan? countdownTime = null)
+        {
+            _countdownTokenSource?.Cancel();
+            _countdownTokenSource = new CancellationTokenSource();
+
+            countdownTime ??= TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.RoundRestartTime));
+            int time;
+            string unitsLocString;
+            if (countdownTime.Value.TotalDays >= 1)
+            {
+                time = (int) countdownTime.Value.TotalDays;
+                unitsLocString = "eta-units-days";
+            }
+            else if (countdownTime.Value.TotalHours >= 1)
+            {
+                time = (int) countdownTime.Value.TotalHours;
+                unitsLocString = "eta-units-hours";
+            }
+            else if (countdownTime.Value.TotalMinutes >= 1)
+            {
+                time = (int) countdownTime.Value.TotalMinutes;
+                unitsLocString = "eta-units-minutes";
+            }
+            else
+            {
+                time = (int) countdownTime.Value.TotalSeconds;
+                unitsLocString = "eta-units-seconds";
+            }
+
+            _chatManager.DispatchServerAnnouncement(
+                Loc.GetString(
+                    "round-end-system-round-restart-eta-announcement",
+                    ("time", time),
+                    ("units", Loc.GetString(unitsLocString))));
+            Timer.Spawn(countdownTime.Value, AfterEndRoundRestart, _countdownTokenSource.Token);
+        }
+
+        public bool IsRestartTimerActive() =>
+            _gameTicker.RunLevel == GameRunLevel.PostRound && _countdownTokenSource is not null;
+
+        private void StartCallVote()
+        {
+            var options = new VoteOptions() { DisplayVotes = false, Duration = TimeSpan.FromSeconds(30), VoterEligibility = VoteManager.VoterEligibility.NonAntag, Title = Loc.GetString("round-end-system-shuttle-auto-called-call-vote")};
+            options.SetInitiatorOrServer(null);
+            options.Options.Add(("Yes", 0));
+            options.Options.Add(("No", 1));
+
+            var vote = _voteManager.CreateVote(options);
+            vote.OnFinished += (_, args) =>
+            {
+                if (args.Winner == null)
+                {
+                    RequestRoundEnd(null, null, false, "round-end-system-shuttle-auto-called-announcement");
+                    return;
+                }
+
+                if ((int)args.Winner == 0)
+                {
+                    RequestRoundEnd(null, null, false, "round-end-system-shuttle-auto-called-announcement");
+                }
+                else
+                {
+                    _chatManager.DispatchServerAnnouncement(Loc.GetString("round-end-system-shuttle-auto-vote-result-no", ("minutes",_cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime))));
+                }
+            };
+        }
+
+        public void ToggleTimerOnEnd(bool state, ICommonSession? session = null)
+        {
+            StartTimerOnRestart = state;
+            _adminLogger.Add(LogType.AdminCommands, LogImpact.Medium, $"{session?.Name ?? "unknown"} toggled {(state ? "on" : "off")} the restart timer on round end.");
+        }
+
+        #endregion
     }
 
     public sealed class RoundEndSystemChangedEvent : EntityEventArgs

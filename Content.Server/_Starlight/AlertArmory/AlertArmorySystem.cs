@@ -1,5 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Pinpointer;
+using Robust.Shared.Audio.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
@@ -33,6 +34,7 @@ public sealed partial class AlertArmorySystem : EntitySystem
     [Dependency] private NavMapSystem _nav = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private EntityQuery<PendingClockInComponent> _pendingQuery;
     private EntityQuery<ArrivalsBlacklistComponent> _blacklistQuery;
@@ -217,6 +219,14 @@ public sealed partial class AlertArmorySystem : EntitySystem
         // Check if already in armory space
         if (xform.MapUid == shuttleComp.ArmorySpaceUid)
             return false;
+
+        // Clean up any lingering FTLComponent (which tracks the active cooldown) and stop FTL audio streams so that FTL can start immediately if recalled.
+        if (TryComp<FTLComponent>(shuttle, out var ftl))
+        {
+            _audio.Stop(ftl.StartupStream);
+            _audio.Stop(ftl.TravelStream);
+            RemComp<FTLComponent>(shuttle);
+        }
 
         _shuttles.FTLToCoordinates(
             shuttle,

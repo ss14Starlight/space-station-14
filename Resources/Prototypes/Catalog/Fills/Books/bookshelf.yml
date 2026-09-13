@@ -62,10 +62,28 @@
     - id: BookTruth
     - id: BookWatched
     - id: BookWorld
-    - id: BookConspiracies #This is a Starlight edit
-    - id: BookMoreConspiracies #This is a Starlight edit
-    - id: BookClownMimeWar #This is a Starlight edit
-    - id: BookMarsIncident #This is a Starlight edit
+      #Starlight Edits
+    - id: BookConspiracies
+    - id: BookMoreConspiracies
+    - id: BookClownMimeWar
+    - id: BookMarsIncident
+    - id: BookCapnsScruples
+    - id: BookLastCow
+    - id: BookThroughTheGlass
+    - id: BookCavesOfUrania
+    - id: BookChuckles
+    - id: BookCorridorNine
+    - id: BookBedsidePhotograph
+    - id: BookDeathAlways
+    - id: BookMarty
+    - id: BookNTsMartyr
+    - id: BookThoughtsEnd
+    - id: BookApocolypse
+    - id: BookWizardDice
+    - id: BookHopPlay
+    - id: BookConfession
+    - id: BookLifeOfAClown
+    - id: BookUnnamedGod
 
 - type: entityTable
   id: RandomGuidebookTable

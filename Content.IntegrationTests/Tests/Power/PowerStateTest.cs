@@ -35,14 +35,13 @@ public sealed class PowerStateTest : GameTest
         var pair = Pair;
         var server = pair.Server;
 
-        var mapManager = server.ResolveDependency<IMapManager>();
         var entManager = server.ResolveDependency<IEntityManager>();
         var mapSys = entManager.System<SharedMapSystem>();
 
         await server.WaitAssertion(() =>
         {
             mapSys.CreateMap(out var mapId);
-            var grid = mapManager.CreateGridEntity(mapId);
+            var grid = mapSys.CreateGridEntity(mapId);
 
             mapSys.SetTile(grid, Vector2i.Zero, new Tile(1));
 
@@ -57,7 +56,7 @@ public sealed class PowerStateTest : GameTest
                 Assert.That(receiver.Load, Is.EqualTo(powerState.IdlePowerDraw).Within(0.01f));
             });
 
-            var system = entManager.System<PowerStateSystem>();
+            var system = entManager.System<SharedPowerStateSystem>();
             system.SetWorkingState((ent, powerState), true);
 
             Assert.Multiple(() =>
@@ -77,7 +76,7 @@ public sealed class PowerStateTest : GameTest
         var pair = Pair;
         var server = pair.Server;
 
-        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapManager = server.System<SharedMapSystem>();
         var entManager = server.ResolveDependency<IEntityManager>();
         var mapSys = entManager.System<SharedMapSystem>();
 
@@ -92,7 +91,7 @@ public sealed class PowerStateTest : GameTest
 
             var receiver = entManager.GetComponent<Server.Power.Components.ApcPowerReceiverComponent>(ent);
             var powerState = entManager.GetComponent<PowerStateComponent>(ent);
-            var system = entManager.System<PowerStateSystem>();
+            var system = entManager.System<SharedPowerStateSystem>();
             Entity<PowerStateComponent> newEnt = (ent, powerState);
 
             Assert.Multiple(() =>
@@ -128,7 +127,7 @@ public sealed class PowerStateTest : GameTest
         var pair = Pair;
         var server = pair.Server;
 
-        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapManager = server.System<SharedMapSystem>();
         var entManager = server.ResolveDependency<IEntityManager>();
         var mapSys = entManager.System<SharedMapSystem>();
 
@@ -143,7 +142,7 @@ public sealed class PowerStateTest : GameTest
 
             var receiver = entManager.GetComponent<Server.Power.Components.ApcPowerReceiverComponent>(ent);
             var powerState = entManager.GetComponent<PowerStateComponent>(ent);
-            var system = entManager.System<PowerStateSystem>();
+            var system = entManager.System<SharedPowerStateSystem>();
             Entity<PowerStateComponent> valueTuple = (ent, powerState);
 
             Assert.Multiple(() =>

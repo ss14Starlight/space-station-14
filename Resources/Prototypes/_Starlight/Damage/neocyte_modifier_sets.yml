@@ -1,0 +1,122 @@
+- type: damageModifierSet
+  id: Neocyte # Weaker IPC values, on account of being half-robot
+  coefficients:
+    Shock: 1.25
+    Heat: 1.2 # Fur my beloved
+    Cold: 0.5 # Base Neocyte has *nothing* else going for them, so they're allowed to have this massive resist. The other Neocyte subspecies, however, have all received a 15-20% increase on Cold, since we actually have Cold weapons now.
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: NeoVulpkanin # Inherits Neocyte with Vulpkanin-like twist (better/worse cold/heat)
+  coefficients:
+    Shock: 1.25
+    Heat: 1.25 # Fur my beloved
+    Cold: 0.45 # Vulps also have nothing else going for them.
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: NeoVox
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Heat: 1.2
+    Cold: 0.7
+    Poison: 0.9
+
+# Thaven, despite having a reference to it.. Doesn't actually have a damage modifier? Ingame guidebook says they have one. Very odd.
+- type: damageModifierSet
+  id: NeoThaven
+  coefficients:
+    Shock: 1.25
+    Heat: 1.15
+    Cold: 0.65
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: NeoSlimePerson # Roundstart armor nullifies the brute weaknesses pmuch
+  coefficients:
+    Shock: 1.25
+    Blunt: 0.7
+    Slash: 1.1 # Same as our base Laspi
+    Piercing: 1.1 # Same as our base Laspi
+    Cold: 1.3
+    Poison: 0.8
+
+- type: damageModifierSet
+  id: NeoKin
+  coefficients:
+    Asphyxiation: 0 # They don't breathe, but there's still ways to get airloss damage via chem OD.
+    Cold: 0.6
+    Heat: 1.15
+    Cellular: 0.50 # We're not giving them 75% Cellular on top of all the other stuff.
+    Bloodloss: 1.35
+    Shock: 1.35 # They're already weak to Shock.
+    Radiation: 1.3
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: NeoResomi
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.55 # Starlight
+    Heat: 1.25
+
+- type: damageModifierSet
+  id: NeoReptilian
+  coefficients: # Swaps heat with cold
+    Shock: 1.25
+    Cold: 1.15 # They can actually lose a little.
+    Heat: 0.85 # 50% was a bit too much.
+    Slash: 0.9 # Something they should have with "tougher skin" according to the notes in the other modifer file
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: NeoMoth
+  coefficients:
+    Shock: 1.25
+    Cold: 0.55
+    Heat: 1.25
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: NeoHuman
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.7
+    Heat: 1.1 #Insulated but no fur
+
+- type: damageModifierSet
+  id: NeoFelionoid
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.65
+    Heat: 1.2 #Short fur, not thick enough to add to insulation
+
+- type: damageModifierSet
+  id: NeoDiona
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.75
+    Heat: 1.65
+    Cold: 0.65 # They don't have much going for them...
+    Shock: 1.3 # They're made of wood.
+
+- type: damageModifierSet
+  id: NeoCyclorite
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.85
+    Shock: 1.25
+    Cold: 0.55 # Rock
+    Heat: 1.15 # Same reason
+
+- type: damageModifierSet
+  id: NeoAvali
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.5
+    Heat: 1.4

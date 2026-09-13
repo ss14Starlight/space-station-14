@@ -2,25 +2,28 @@
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>..\bin\Content.Tests\</OutputPath>
+    <OutputType>Exe</OutputType>
     <Nullable>disable</Nullable>
   </PropertyGroup>
-  <Import Project="../MSBuild/Content.props" />
+  <Import Project="../MSBuild/Content.props"/>
   <ItemGroup>
-    <PackageReference Include="NUnit" />
-    <PackageReference Include="NUnit3TestAdapter" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" />
-    <PackageReference Include="Moq" />
+    <PackageReference Include="NUnit"/>
+    <PackageReference Include="NUnit3TestAdapter" VersionOverride="6.2.0"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk"/>
+    <PackageReference Include="Microsoft.Testing.Extensions.Retry"/>
+    <PackageReference Include="Microsoft.Testing.Extensions.CtrfReport"/>
+    <PackageReference Include="Moq"/>
   </ItemGroup>
 
-  <Import Project="..\RobustToolbox\Imports\Client.props" />
-  <Import Project="..\RobustToolbox\Imports\Server.props" />
-  <Import Project="..\RobustToolbox\Imports\Shared.props" />
-  <Import Project="..\RobustToolbox\Imports\Testing.props" />
+  <Import Project="..\RobustToolbox\Imports\Client.props"/>
+  <Import Project="..\RobustToolbox\Imports\Server.props"/>
+  <Import Project="..\RobustToolbox\Imports\Shared.props"/>
+  <Import Project="..\RobustToolbox\Imports\Testing.props"/>
   <ItemGroup>
-    <ProjectReference Include="..\Content.Client\Content.Client.csproj" />
-    <ProjectReference Include="..\Content.Server\Content.Server.csproj" />
-    <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
+    <ProjectReference Include="..\Content.Client\Content.Client.csproj"/>
+    <ProjectReference Include="..\Content.Server\Content.Server.csproj"/>
+    <ProjectReference Include="..\Content.Shared\Content.Shared.csproj"/>
   </ItemGroup>
 
-  <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
+  <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets"/>
 </Project>

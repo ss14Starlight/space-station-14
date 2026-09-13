@@ -1,0 +1,12 @@
+- type: listing
+  id: RevenantChillOfTheGrave
+  name: revenant-chill-name
+  description: revenant-chill-desc
+  productAction: ActionRevenantChill
+  cost:
+    StolenEssence: 50
+  categories:
+  - RevenantAbilities
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

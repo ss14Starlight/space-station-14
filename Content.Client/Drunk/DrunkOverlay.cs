@@ -1,27 +1,33 @@
 using Content.Shared.Drunk;
-using Content.Shared.StatusEffect;
 using Content.Shared.StatusEffectNew;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.CCVar;
+using Robust.Shared.Configuration;
 
 namespace Content.Client.Drunk;
 
 public sealed partial class DrunkOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> Shader = "Drunk";
+    private static readonly TimeSpan _screenCaptureInterval = TimeSpan.FromSeconds(1.0 / 30.0); // Starlight
 
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IEntitySystemManager _sysMan = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IConfigurationManager _cfg = default!; // Starlight
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
     public override bool RequestScreenTexture => true;
+    // Starlight Start
     private readonly ShaderInstance _drunkShader;
+    private readonly StatusEffectsSystem _statusEffects;
+    // Starlight End
 
     public float CurrentBoozePower = 0.0f;
 
@@ -39,11 +45,33 @@ public sealed partial class DrunkOverlay : Overlay
 
     private float _visualScale = 0;
 
+    // Starlight Start
+    private bool _drunkRenderFix;
+    private TimeSpan _nextScreenCapture;
+    private Texture? _cachedScreenTexture;
+    // Starlight End
+
     public DrunkOverlay()
     {
         IoCManager.InjectDependencies(this);
         _drunkShader = _prototypeManager.Index(Shader).InstanceUnique();
+        // Starlight Start: cache status effect system and register cvar listener
+        _statusEffects = _sysMan.GetEntitySystem<StatusEffectsSystem>();
+        _cfg.OnValueChanged(StarlightCCVars.DrunkRenderFix, OnDrunkRenderFixChanged, invokeImmediately: true);
+        // Starlight End
     }
+
+    // Starlight Start
+    private void OnDrunkRenderFixChanged(bool enabled)
+    {
+        _drunkRenderFix = enabled;
+
+        if (!enabled)
+        {
+            _cachedScreenTexture = null;
+        }
+    }
+    // Starlight End
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
@@ -53,8 +81,7 @@ public sealed partial class DrunkOverlay : Overlay
         if (playerEntity == null)
             return;
 
-        var statusSys = _sysMan.GetEntitySystem<Shared.StatusEffectNew.StatusEffectsSystem>();
-        if (!statusSys.TryGetMaxTime<DrunkStatusEffectComponent>(playerEntity.Value, out var status))
+        if (!_statusEffects.TryGetMaxTime<DrunkStatusEffectComponent>(playerEntity.Value, out var status)) // Starlight Edit: use cached status system
             return;
 
         var time = status.Item2;
@@ -78,11 +105,26 @@ public sealed partial class DrunkOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (ScreenTexture == null)
+        // Starlight edit Start: capture frame update every 30Hz if render fix on, otherwise everyframe
+        var screen = ScreenTexture;
+
+        if (_drunkRenderFix)
+        {
+            if (_cachedScreenTexture == null || _timing.RealTime >= _nextScreenCapture)
+            {
+                _cachedScreenTexture = ScreenTexture;
+                _nextScreenCapture = _timing.RealTime + _screenCaptureInterval;
+            }
+
+            screen = _cachedScreenTexture;
+        }
+
+        if (screen == null)
+        // Starlight edit End
             return;
 
         var handle = args.WorldHandle;
-        _drunkShader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
+        _drunkShader.SetParameter("SCREEN_TEXTURE", screen); // Starlight Edit: ScreenTexture -> screen
         _drunkShader.SetParameter("boozePower", _visualScale);
         handle.UseShader(_drunkShader);
         handle.DrawRect(args.WorldBounds, Color.White);
