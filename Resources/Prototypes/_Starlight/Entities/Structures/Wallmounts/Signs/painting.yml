@@ -17,3 +17,123 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/paintings.rsi
     state: Hammer_Painting
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingSeaside
+  name: At the Seaside
+  description: This painting depicts several women and children relaxing on a beach along Shinnecock Bay in New York, 1892 Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: at_the_seaside
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingElijahBoardman
+  name: Elijah Boardman
+  description: This painting depicts Elijah Boardman, a dry-goods merchant in his shop in New Milford, Connecticut, 1789 Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: elijah_boardman
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingKurukulla
+  name: Kurukulla
+  description: This painting depicts a large-scale appliqué showing the Vajrayana goddess Kurukulla, known as a beautiful bewitcher of men. Tibet, 1900s Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: kurukulla
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingImmortals
+  name: Panel with Immortals
+  description: This painting depicts theEight Immortals, Baxian, and the God of Longevity, Shoulao, important deities in the Chinese legend. China, 1800s Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: panel_with_immortals
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingMarco
+  name: Piazza San Marco
+  description: This painting depicts a belltower in Piazza San Marco, Venice, 1720s Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: piazza_san_marco
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingShitao
+  name: Shitao Landscape
+  description: This painting depicts a small house on an oceanside cliff with two fighing boats departing. China, 1690 Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: shitao_landscapes
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingShankara
+  name: Shri Shankara Shiva
+  description: This painting depicts Shiva's divine family, dressed richly and adorned with jewes. India, 1800s Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: shri_shankara_shiva
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingParadise
+  name: The Creation of the World and the Expulsion from Paradise
+  description: This painting depicts a vision of Paradise reminiscent of 'The Divine Comedy', with the universe as a celestial globe with the Earth at it's center. Italy, 1445 Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: the_creation_of_the_world_and_the_expulsion_from_paradise
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingLandersPeak
+  name: The Rocky Mountains, Lander's Peak
+  description: This painting depicts the Rocky Mountains in Wyoming, with a camp of the Shoshone Indigenous people in the foreground. 1863 Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: the_rocky_mountains_landers_peak
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingKanagawa
+  name: Under the Wave Off Kanagawa
+  description: This painting depicts a crashing wave overcoming several fishing boats, framed to make Mount Fuji appear small in the distance beneath the enormous wave's crest. Japan, 1830s Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: under_the_wave_off_kanagawa
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingVanGogh
+  name: Van Gogh's Self Portrait with a Straw Hat
+  description: This painting depicts Van Gogh wearing a straw hat in a Neo-Impressionist style. 1880s Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: van_gogh_self_portrait
+
+- type: entity
+  parent: PaintingBase
+  id: PaintingWheatFields
+  name: Wheat Field with Cypresses
+  description: This painting depicts a golden wheat field with cypress trees and rolling clouds depicted as swirling shaped in the sky, painted by Van Gogh. 1889 Earth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/paintings.rsi
+    state: wheat_field_with_cypresses
