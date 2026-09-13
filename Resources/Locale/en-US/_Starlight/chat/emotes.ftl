@@ -37,7 +37,6 @@ chat-emote-msg-squawk = squawks
 chat-emote-msg-lurr = purrs
 chat-emote-msg-liss = hisses
 chat-emote-msg-rattle = rattles
-chat-emote-msg-flap-wings = flaps {POSS-ADJ($entity)} wings.
 chat-emote-msg-bubble = bubbles
 chat-emote-msg-pop = pops
 chat-emote-msg-squee = squeaks

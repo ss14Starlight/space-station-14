@@ -54,3 +54,35 @@
       reagents:
       - ReagentId: Water
         Quantity: 360
+
+- type: entity
+  parent: FireExtinguisher
+  id: BluespaceFireExtinguisher
+  name: bluespace fire extinguisher
+  description: It extinguishes fires, and slowly refills with water.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/bluespace_extinguisher.rsi
+    layers:
+    - state: fire_extinguisher_closed
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Item
+    sprite: _Starlight/Objects/Misc/bluespace_extinguisher.rsi
+    size: Normal
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Misc/bluespace_extinguisher.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: RefillableSolution
+    solution: spray
+    reagentWhitelist:
+    - Water
+    - SpaceCleaner
+    - SyndicateSpaceCleaner
+  - type: SolutionRegeneration
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 2

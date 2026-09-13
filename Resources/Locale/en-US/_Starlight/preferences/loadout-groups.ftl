@@ -6,6 +6,7 @@ loadout-group-roboticist-gloves = Roboticist gloves
 loadout-group-roboticist-goggles = Roboticist eyewear
 loadout-group-roboticist-backpack = Roboticist backpack
 loadout-group-roboticist-shoes = Roboticist shoes
+loadout-group-roboticist-neck = Roboticist neck
 
 # Civilian
 loadout-group-assistant-glasses = Assistant glasses
@@ -21,8 +22,6 @@ loadout-group-assistantmanager-shoes = Assistant Manager shoes
 
 loadout-group-boxer-jumpsuit = Boxer jumpsuit
 loadout-group-boxer-gloves = Boxer gloves
-
-loadout-group-reporter-head = Reporter head
 
 loadout-group-musician-head = Musician head
 

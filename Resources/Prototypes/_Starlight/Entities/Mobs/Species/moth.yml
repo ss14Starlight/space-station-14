@@ -39,7 +39,6 @@
   - type: Speech
     speechVerb: Moth
     speechSounds: UnisexMoth # Starlight: Add talk sounds
-    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: TypingIndicator
     proto: moth
   - type: Butcherable
@@ -60,10 +59,6 @@
         sprite: Mobs/Effects/burn_damage.rsi
   - type: MothAccent
   - type: Vocal
-    sounds:
-      Male: UnisexMoth
-      Female: UnisexMoth
-      Unsexed: UnisexMoth
   - type: BodyEmotes # Starlight: Add separate sound set for Moth bodies
     soundsId: MothBodyEmotes
   - type: MovementSpeedModifier

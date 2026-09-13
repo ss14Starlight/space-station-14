@@ -1109,9 +1109,11 @@
   - type: LanguageKnowledge
     speaks:
     - Ancestor
+    - Sign
     understands:
     - Ancestor
     - GalacticCommon
+    - Sign
   # Starlight-end
   - type: GhostRole
     prob: 1

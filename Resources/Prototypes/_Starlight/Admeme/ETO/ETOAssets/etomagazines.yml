@@ -1,0 +1,220 @@
+- type: entity
+  id: MagazinePistolSubMachineGunBottomMountedDDBase
+  name: DD-22 magazine (.35 auto bottom-mounted)
+  parent: [ BaseItem, BaseSecurityContraband ]
+  description: A unique 64-round magazine that loads into the DD22, holds .35 auto.
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolSubMachineGunBottomMountedDD
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: null
+    whitelist:
+      tags:
+      - CartridgePistol
+    capacity: 64
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+  - type: Sprite
+    sprite: _Starlight/Admeme/ETO/weapons/ammo/bizonmag.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: false
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
+- type: entity
+  id: MagazinePistolSubMachineGunBottomMountedDDSP
+  name: PS DD-22 magazine (.35 SP bottom-mounted)
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistolSP
+    whitelist:
+      tags:
+      - CartridgePistol
+  - type: Sprite
+    layers:
+      - state: sp
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazinePistolSubMachineGunBottomMountedDDFMJ
+  name: PS DD-22 magazine (.35 FMJ bottom-mounted)
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistolFMJ
+    whitelist:
+      tags:
+      - CartridgePistol
+  - type: Sprite
+    layers:
+      - state: fmj
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazinePistolSubMachineGunBottomMountedDDHP
+  name: PS DD-22 magazine (.35 HP bottom-mounted)
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistolHP
+    whitelist:
+      tags:
+      - CartridgePistol
+  - type: Sprite
+    layers:
+      - state: red
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazinePistolSubMachineGunBottomMountedDDAP
+  name: PS DD-22 magazine (.35 AP bottom-mounted)
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistolAP
+    whitelist:
+      tags:
+      - CartridgePistol
+  - type: Sprite
+    layers:
+      - state: ap
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazinePistolSubMachineGunBottomMountedDDPractice
+  name: PS DD-22 magazine (.35 Practice bottom-mounted)
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistolPractice
+    whitelist:
+      tags:
+      - CartridgePistol
+  - type: Sprite
+    layers:
+      - state: practice
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazinePistolSubMachineGunBottomMountedDDIncendiary
+  name: PS DD-22 magazine (.35 Incendiary bottom-mounted)
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistolIncendiary
+    whitelist:
+      tags:
+      - CartridgePistol
+  - type: Sprite
+    layers:
+      - state: incendiary
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazinePistolSubMachineGunBottomMountedDDUranium
+  name: PS DD-22 magazine (.35 Uranium bottom-mounted)
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistolUranium
+    whitelist:
+      tags:
+      - CartridgePistol
+  - type: Sprite
+    layers:
+      - state: uranium
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazinePistolSubMachineGunBottomMountedDDImprovised
+  name: PS DD-22 magazine (.35 Improvised bottom-mounted)
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
+  description: A unique 64-round magazine that loads into the DD-22, holds .35 ammo. Some idiot filled this one with improvised rounds.
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistolImprovised
+    whitelist:
+      tags:
+      - CartridgePistol
+  - type: Sprite
+    layers:
+      - state: improvised
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazinePistolSubMachineGunBottomMountedDDAntimaterial
+  suffix: Admeme
+  name: PS DD-22 magazine (.60 Antimaterial bottom-mounted)
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
+  description: A unique 64-round magazine that loads into the DD-22, usually holds .35 auto, however this magazine was modified to hold Antimaterial rounds, you've got no clue how it works and you're scared to see the outcome.
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeAntiMateriel
+    whitelist:
+      tags:
+      - CartridgeAntiMateriel
+  - type: Sprite
+    layers:
+      - state: antimateriel
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazinePistolSubMachineGunBottomMountedDDRubber
+  name: PS DD-22 magazine (.35 Rubber bottom-mounted)
+  parent: [ MagazinePistolSubMachineGunBottomMountedDDBase, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistolRubber
+    whitelist:
+      tags:
+      - CartridgePistol
+  - type: Sprite
+    layers:
+      - state: rubber
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]

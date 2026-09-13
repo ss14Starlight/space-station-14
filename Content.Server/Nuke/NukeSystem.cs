@@ -59,6 +59,8 @@ public sealed partial class NukeSystem : EntitySystem
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private AchievementSystem _achievements = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
+
+    private static readonly string _nukeOpsGamerule = "Nukeops";
     #endregion
 
     /// <summary>
@@ -534,7 +536,7 @@ public sealed partial class NukeSystem : EntitySystem
         var posText = $"({x}, {y})";
 
         // Starlight-start
-        if (_gameTicker.IsGameRuleActive("Nukeops"))
+        if (_gameTicker.IsGameRuleActive(_nukeOpsGamerule))
         {
             // We are collapsing the randomness here, otherwise we would get separate random song picks for checking duration and when actually playing the song afterwards
             _selectedNukeSong = _audio.ResolveSound(component.ArmMusic);

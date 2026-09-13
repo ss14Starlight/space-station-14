@@ -102,7 +102,7 @@
     sprite: Clothing/Shoes/Specific/cult.rsi
 
 - type: entity
-  parent: [ ClothingShoesBase, BaseJanitorContraband ]
+  parent: [ ClothingShoesBase, ClothingShoesUnstainable, BaseJanitorContraband ] # Starlight, untaintable, no footprints
   id: ClothingShoesGaloshes
   name: galoshes
   description: Specialised non-slip rubber boots, designed to reduce janitorial workplace accidents; a tider's treasure.
@@ -117,7 +117,6 @@
   - type: SpeedModifierContactCapClothing
     maxContactSprintSlowdown: 0.7
     maxContactWalkSlowdown: 0.7
-  - type: NoFootprints # Funky change
   - type: StealTarget # Starlight
     stealGroup: GaloshesCollection # Starlight
 

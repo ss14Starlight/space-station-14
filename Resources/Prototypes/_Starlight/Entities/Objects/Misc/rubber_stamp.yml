@@ -75,6 +75,22 @@
       sprite: _Starlight/Objects/Misc/stamps.rsi
       state: stamp-brigmedic
 
+# Assistant Manager stamp
+- type: entity
+  name: assistant manager's stamp
+  parent: RubberStampBase
+  id: RubberStampAssistantManager
+  description: A rubber stamp for stamping important documents. The only vestige of authority for middle managers.
+  suffix: DO NOT MAP
+  components:
+    - type: Stamp
+      stampedName: "Assistant Manager"
+      stampedColor: "#51c053"
+      stampState: "paper_stamp-assistantmanager"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-assistantmanager
+
 # CC Division Stamps
 - type: entity
   name: central administration division rubber stamp

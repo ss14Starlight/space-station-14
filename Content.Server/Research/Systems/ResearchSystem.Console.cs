@@ -4,7 +4,6 @@ using Content.Server._Starlight.Achievement; // Starlight: Achievements
 using Content.Server.Station.Systems; // Starlight: Achievements
 using Content.Shared.UserInterface;
 using Content.Shared.Access.Components;
-using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Research.Components;

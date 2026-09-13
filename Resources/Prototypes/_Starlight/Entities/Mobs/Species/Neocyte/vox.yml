@@ -211,10 +211,6 @@
           sprite: Mobs/Species/Vox/displacement.rsi
           state: hand_r
   - type: Vocal
-    sounds:
-      Male: NeoVoxMSounds
-      Female: NeoVoxFSounds
-      Unsexed: NeoVoxMSounds
 
 - type: entity
   parent: BaseSpeciesDummy

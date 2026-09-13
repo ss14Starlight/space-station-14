@@ -941,10 +941,16 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
-  metabolisms: # SL Dolls
+  metabolisms: # SL Dolls - Easter Egg, since it contains *no* blood
     Digestion:
       effects:
       #Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
@@ -1181,6 +1187,12 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
         reagent: UncookedAnimalProteins
         amount: 0.5
       - !type:HealthChange
@@ -1219,6 +1231,12 @@
             Brute: -3
             Burn: -1.25
       #Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
@@ -1514,6 +1532,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: hooch
   color: "#664e00"
+  flammability: 2 # Starlight
   # Starlight edit start - Make Hooch work like Ephedrine for dwarves
   metabolisms:
     Digestion:
@@ -1933,6 +1952,7 @@
   physicalDesc: reagent-physical-desc-pungent
   flavor: moonshine
   color: "#d1d7d155"
+  flammability: 2 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/moonshineglass.rsi
     state: icon_empty
@@ -2069,6 +2089,12 @@
             Brute: -3
             Burn: -1.25
       #Dolls
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
@@ -2401,6 +2427,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: vodkamartini
   color: "#004666"
+  flammability: 1 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/martiniglass.rsi
     state: icon_empty
@@ -2420,6 +2447,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: vodkatonic
   color: "#0064C8"
+  flammability: 1 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/vodkatonicglass.rsi
     state: icon_empty
@@ -2523,6 +2551,7 @@
   physicalDesc: reagent-physical-desc-bubbly
   flavor: vodkaredbool
   color: "#c4c27655"
+  flammability: 1 # Starlight
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/ginvodkaglass.rsi
     state: icon_empty
@@ -2674,7 +2703,6 @@
   physicalDesc: reagent-physical-desc-sweet
   flavor: watermelonwakeup
   color: "#d49dca"
-  flammability: 0 # Starlight, vaguely related to water
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/champagneglass.rsi
     state: icon_empty

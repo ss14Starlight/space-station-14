@@ -1638,6 +1638,6 @@ public sealed class LancerCombatSimulator
         public bool Destroyed;
         public bool Fleeing;
         public bool Hunkered;
-        public bool Shredded;
+        public bool Shredded = false;
     }
 }

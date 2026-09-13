@@ -154,3 +154,54 @@
           amount: 2
         - id: PartRodMetal
           amount: 2
+
+- type: entity
+  parent: CardboardBoxLargeEngi
+  id: CardboardBoxLargeEngiGasGrenades
+  name: atmos gas grenades box
+  suffix: Atmos Gas Grenades
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: HalonGasGrenade
+          amount: 2
+        - id: MetalFoamGrenade
+          amount: 4
+        - id: AirGrenade
+          amount: 4
+
+- type: entity
+  parent: CardboardBoxLargeEngi
+  id: CardboardBoxLargeAtmosLocker
+  name: atmos equipment box
+  suffix: Atmos Equipment
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: HalonGasGrenade
+        - id: AirGrenade
+        - id: GasAnalyzer
+        - id: HolofanProjector
+        - id: trayScanner
+        - id: HoloprojectorEngineering
+        - id: WeaponGrapplingGun
+
+- type: entity
+  parent: CardboardBoxLargeEngi
+  id: CardboardBoxLargeEngiLocker
+  name: engie equipment box
+  suffix: Engie  Equipment
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MetalFoamGrenade
+        - id: HoloprojectorEngineering
+        - id: WeaponGrapplingGun
+        - id: trayScanner
+        - id: FlashlightLantern

@@ -138,3 +138,15 @@
   products:
     Necrosol: 2
 
+- type: reaction
+  id: OpporozidoneAlt
+  minTemp: 400
+  reactants:
+    ZXA:
+      amount: 10
+    TableSalt:
+      amount: 10
+    Doxarubixadone:
+      amount: 1
+  products:
+    Opporozidone: 3

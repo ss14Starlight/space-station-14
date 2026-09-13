@@ -126,6 +126,10 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+    Laugh: # Starlight start
+      collection: MaleLaugh
+    Sneeze:
+      collection: MaleSneezes # Starlight end
     Honk:
       collection: BikeHorn
     Whistle:
@@ -154,6 +158,10 @@
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+    Laugh: # Starlight start
+      collection: FemaleLaugh
+    Sneeze:
+      collection: FemaleSneezes # Starlight end
     Honk:
       collection: BikeHorn
     Whistle:
@@ -598,6 +606,8 @@
       collection: Whistles
     Sigh:
       collection: MaleSigh
+    Yawn:
+      collection: VulpkaninYawns
     Scream:
       collection: VulpkaninScreams
     Growl:
@@ -615,8 +625,6 @@
     Yip:
       path: /Audio/_Starlight/Effects/yip.ogg #Starlight Yip
     # STARLIGHT START
-    Yawn:
-      collection: MaleYawn
     Snore:
       collection: Snores
     Weh:
@@ -646,6 +654,8 @@
       collection: Whistles
     Sigh:
       collection: FemaleSigh
+    Yawn:
+      collection: VulpkaninYawns
     Scream:
       collection: VulpkaninScreams
     Growl:
@@ -663,8 +673,6 @@
     Yip:
       path: /Audio/_Starlight/Effects/yip.ogg #Starlight Yip
     # STARLIGHT START
-    Yawn:
-      collection: FemaleYawn
     Snore:
       collection: Snores
     Weh:
@@ -718,6 +726,22 @@
       path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
       params:
         variation: 0.125
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Salute:
+      collection: Salutes
+
+- type: emoteSounds
+  id: MothBodyEmotes
+  sounds:
+    Flap:
+      path: /Audio/Voice/Moth/moth_flap.ogg
     Clap:
       collection: Claps
     ClapSingle:

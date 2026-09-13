@@ -4,3 +4,9 @@
     - type: Solution
       solution:
         maxVol: 1200
+        
+- type: !PartialOnly entity
+  id: BaseSyringe
+  components:
+  - type: RefillableSolution
+    solution: injector

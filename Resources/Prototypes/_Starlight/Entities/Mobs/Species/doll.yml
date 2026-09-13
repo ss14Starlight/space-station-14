@@ -34,10 +34,6 @@
     damageContainer: Biological
     damageModifierSet: Doll
   - type: Vocal
-    sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: FemaleHuman
   - type: Inventory
     speciesId: Doll
     femaleDisplacements:
@@ -148,10 +144,6 @@
     damageContainer: Biological
     damageModifierSet: Doll
   - type: Vocal
-    sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: FemaleHuman
   - type: Inventory
     speciesId: Doll
     femaleDisplacements:

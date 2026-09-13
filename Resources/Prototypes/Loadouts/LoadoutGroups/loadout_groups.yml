@@ -75,6 +75,7 @@
   - TacticalMaidGloves
   - JanitorMaidOutfit
   - JanitorMaidOutfitMini
+  - EdgerunnerJacket
   - CoderSocks
   - PawBootTrinket
   - CatEars
@@ -197,6 +198,7 @@
   loadouts:
   - CaptainHead
   - CaptainCap
+  - CapBeret # Starlight
 
 - type: loadoutGroup
   id: CaptainJumpsuit
@@ -1646,6 +1648,24 @@
   - ReporterJumpsuit
   - ReporterJumpskirt
   - JournalistJumpsuit
+  - JournalistJumpskirt # Starlight
+
+- type: loadoutGroup
+  id: ReporterHead
+  name: loadout-group-reporter-head
+  minLimit: 0
+  loadouts:
+  - ReporterPressFedora
+  - ReporterHeadphonesJob # Starlight
+  - ReporterHeadphonesGeneric # Starlight
+  - ReporterHeadphonesHighEnd # Starlight
+
+- type: loadoutGroup
+  id: ReporterOuterClothing
+  name: loadout-group-reporter-outerclothing
+  minLimit: 0
+  loadouts:
+  - ReporterPressVest
 
 #- type: loadoutGroup
 #  id: ReporterJobTrinkets
