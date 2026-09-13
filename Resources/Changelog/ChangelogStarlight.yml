@@ -1,32 +1,4 @@
 Entries:
-- author: Wizden Team
-  changes:
-  - message: Diona minds are now correctly transferred to their nymphs when they gib.
-    type: Fix
-  id: 408114
-  time: '2026-09-03T21:35:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5919
-- author: Conflee
-  changes:
-  - message: Fixed Box Shelves deleting their contents when deconstructed. Boxes on the shelves now drop properly.
-    type: Fix
-  id: 408115
-  time: '2026-09-04T04:33:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5972
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Visual polish on the ChemMaster's modern and classic layouts.
-    type: Tweak
-  id: 408116
-  time: '2026-09-04T04:57:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5964
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: The ChemMaster's Output tab now shows the contents of the inserted beaker or buffer depending on packaging mode.
-    type: Tweak
-  id: 408117
-  time: '2026-09-04T04:57:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5964
 - author: Rhapsody (Pepta Vismahl)
   changes:
   - message: Various tooltips to help make it easier to understand how the Output tab works, and how to make pills/patches.
@@ -2799,4 +2771,32 @@ Entries:
   id: 408513
   time: '2026-09-12T07:49:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6119
+- author: Swonki
+  changes:
+  - message: Contra tags for salvage equipment.
+    type: Fix
+  id: 408514
+  time: '2026-09-12T18:45:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6121
+- author: Forrestgod
+  changes:
+  - message: Quartermaster now starts with a cargo key in it.
+    type: Fix
+  id: 408515
+  time: '2026-09-13T08:01:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6141
+- author: Citrea
+  changes:
+  - message: Jet injectors can be refilled at smart dispensers again.
+    type: Fix
+  id: 408516
+  time: '2026-09-13T08:30:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6108
+- author: Trosling
+  changes:
+  - message: Security now has explicit knowledge of the syndicate number station via the metashield.
+    type: Add
+  id: 408517
+  time: '2026-09-13T08:56:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5922
 Order: -1
