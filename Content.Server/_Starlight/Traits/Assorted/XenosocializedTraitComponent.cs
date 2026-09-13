@@ -10,10 +10,6 @@ namespace Content.Server._Starlight.Traits.Assorted;
 [RegisterComponent]
 public sealed partial class XenosocializedTraitComponent : Component
 {
-    [DataField]
-    public ProtoId<LanguagePrototype> BaseLanguage = SharedLanguageSystem.FallbackLanguagePrototype;
-
-
     /// <summary>
     ///     The language added by being a Neocyte.
     ///     This language is ignored when checking for base languages, unless no other languages could be found.
@@ -21,3 +17,4 @@ public sealed partial class XenosocializedTraitComponent : Component
     [DataField]
     public ProtoId<LanguagePrototype> NeocyteLanguage = "Machine";
 }
+// Derived from ForeignerTraitComponent.cs

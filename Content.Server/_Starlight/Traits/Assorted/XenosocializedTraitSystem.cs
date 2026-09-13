@@ -47,7 +47,6 @@ public sealed partial class XenosocializedTraitSystem : EntitySystem // Talita h
         var prototypeLanguages = ((LanguageKnowledgeComponent)component).Speaks;
 
         var nativeLanguage = prototypeLanguages.Find(it => it != SharedLanguageSystem.FallbackLanguagePrototype && it != entity.Comp.NeocyteLanguage);
-        if (nativeLanguage == default) prototypeLanguages.Find(it => it != SharedLanguageSystem.FallbackLanguagePrototype); // Try again (IPC, I don't see any other case where this happens and nativeLanguage changes.)
         if (nativeLanguage == default)
         {
             Log.Warning($"Entity {entity.Owner} does not have an native language to choose from (must have at least one non-GC for XenosocializedTrait!");
@@ -57,3 +56,4 @@ public sealed partial class XenosocializedTraitSystem : EntitySystem // Talita h
         _languages.RemoveLanguage(entity.Owner, nativeLanguage, true, true);
     }
 }
+// Derived from ForeignerTraitSystem.cs

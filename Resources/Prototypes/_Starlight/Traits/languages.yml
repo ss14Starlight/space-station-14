@@ -51,6 +51,7 @@
     - !type:SpeciesRequirement
       species:
         - Neocyte
+        - IPC
       inverted: true
     - !type:TraitsRequirement
       traits:
