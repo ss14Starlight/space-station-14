@@ -1,18 +1,4 @@
 Entries:
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Added search filtering to the ChemMaster's buffer on classic layout (modern layout already has it).
-    type: Add
-  id: 408119
-  time: '2026-09-04T04:57:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5964
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Added custom unit amount dispensing to the ChemMaster.
-    type: Add
-  id: 408120
-  time: '2026-09-04T04:57:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5964
 - author: Forrestgod
   changes:
   - message: '[Serpentcrest] Added Mailboxes to every department.'
@@ -2799,4 +2785,18 @@ Entries:
   id: 408518
   time: '2026-09-13T14:30:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6146
+- author: neomoth
+  changes:
+  - message: Fix a bug regarding the insertion of entities into Cryo Pods where depending on the method of insertion, the inserted entity would be unaffected by the Cryo Pod.
+    type: Fix
+  id: 408519
+  time: '2026-09-13T17:17:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6130
+- author: Terkala
+  changes:
+  - message: Changed the "A wreck is approaching" event to use space station debris.
+    type: Tweak
+  id: 408520
+  time: '2026-09-13T17:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5700
 Order: -1
