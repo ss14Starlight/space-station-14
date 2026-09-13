@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [SolutionFood, SolutionToolNormal, Clothing]
+  parent: [SolutionFood, SolutionToolNormal, ClothingSolution] # Starlight
   id: ClothingShoesBase
   components:
   - type: Clothing
@@ -37,8 +37,6 @@
     solutions:
     - SolutionStain
   # Forky - end
-  - type: ExaminableSolution # Starlight
-    solution: stain # Starlight
 
 - type: entity
   abstract: true

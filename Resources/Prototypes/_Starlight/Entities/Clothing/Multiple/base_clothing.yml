@@ -1,0 +1,7 @@
+- type: entity
+  abstract: true
+  parent: Clothing
+  id: ClothingSolution
+  components:
+  - type: ExaminableSolution
+    solution: stain

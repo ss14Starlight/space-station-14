@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: ClothingSolution # Starlight
   id: ClothingMaskBase
   components:
   - type: Sprite
@@ -25,8 +25,6 @@
     solutions:
     - SolutionStain
   # Forky - end
-  - type: ExaminableSolution # Starlight
-    solution: stain # Starlight
 
 - type: entity
   abstract: true

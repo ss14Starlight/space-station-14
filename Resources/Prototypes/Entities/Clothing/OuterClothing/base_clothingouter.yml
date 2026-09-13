@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: ClothingSolution # Starlight
   id: ClothingOuterBase
   components:
   - type: Clothing
@@ -31,8 +31,6 @@
   - type: StainBlocker
     slots: [INNERCLOTHING]
   # Forky - end
-  - type: ExaminableSolution # Starlight
-    solution: stain # Starlight
 
 - type: entity
   abstract: true

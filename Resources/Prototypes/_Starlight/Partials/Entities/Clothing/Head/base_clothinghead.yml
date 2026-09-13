@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: ClothingHeadHardsuitBase
+  components:
+  - type: ExaminableSolution
+    solution: stain
+
+- type: !PartialOnly entity
+  id: ClothingHeadHatHoodWinterBase
+  components:
+  - type: ExaminableSolution
+    solution: stain
