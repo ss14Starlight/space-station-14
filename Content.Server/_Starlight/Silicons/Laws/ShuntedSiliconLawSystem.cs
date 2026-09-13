@@ -24,11 +24,7 @@ public sealed partial class ShuntedSiliconLawSystem : EntitySystem
         if (args.Handled || chassis.Comp.Return is not { } ai || TerminatingOrDeleted(ai))
             return;
 
-        var laws = _siliconLaw.GetLaws(ai);
-        if (laws.Laws.Count == 0)
-            return;
-
-        args.Laws = laws;
+        args.Laws = _siliconLaw.GetLaws(ai);
         args.Handled = true;
     }
 }
