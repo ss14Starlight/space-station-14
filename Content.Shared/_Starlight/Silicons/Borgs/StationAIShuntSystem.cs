@@ -111,13 +111,13 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         shuntable.LastShunt = target;
         Dirty(uid, shuntable);
 
-        if (TryComp<SiliconLawProviderComponent>(uid, out var coreLaws))
+        if (_siliconLaw.CopyLawset(uid) is { } coreLaws)
         {
             var getLaws = new GetSiliconLawsEvent(target);
             RaiseLocalEvent(target, ref getLaws);
-            shunt.OldLawset = getLaws.Laws;
+            shunt.OldLawset = getLaws.Laws.Clone();
 
-            _siliconLaw.SetLawset(target, coreLaws.Lawset);
+            _siliconLaw.SetLawset(target, coreLaws);
         }
 
         EnsureComp<UncryoableComponent>(uid);
@@ -194,8 +194,10 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             }
         }
 
-        _siliconLaw.SetLawset(uid, shunt.OldLawset);
+        if (shunt.OldLawset != null)
+            _siliconLaw.SetLawset(uid, shunt.OldLawset);
 
+        shunt.OldLawset = null;
         shunt.ReturnAction = null;
         shunt.Return = null;
         shuntable.Inhabited = null;
