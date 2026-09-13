@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared._Starlight.Revenant;
 using Content.Shared.Atmos;
+using Content.Shared.Item;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Revenant.Components;
 using Content.Shared.Tag;
@@ -44,6 +45,10 @@ public sealed partial class RevenantSystem
             return;
 
         if (!TryComp<GunComponent>(args.Target, out var gunComp))
+            return;
+
+        // Only handheld items can be misfired. Stops revenants from firing ship weapons and anchored weapons.
+        if (!HasComp<ItemComponent>(args.Target))
             return;
 
         // Don't fire if the gun is still on its shot cooldown
