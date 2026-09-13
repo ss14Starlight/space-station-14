@@ -178,361 +178,269 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      default_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: default_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: default
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: default_fluff
 
 - type: marking
   id: MothWingsCharred
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      charred_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: charred_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: charred
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: charred_fluff
 
 - type: marking
   id: MothWingsDbushy
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      dbushy_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: dbushy_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: dbushy_primary
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: dbushy_secondary
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: dbushy_fluff
 
 - type: marking
   id: MothWingsDeathhead
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      deathhead_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: deathhead_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: deathhead_primary
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: deathhead_secondary
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: deathhead_fluff
 
 - type: marking
   id: MothWingsFan
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      fan_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: fan_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: fan
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: fan_fluff
 
 - type: marking
   id: MothWingsDfan
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      dfan_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: dfan_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: dfan
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: dfan_fluff
 
 - type: marking
   id: MothWingsFeathery
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      feathery_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: feathery_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: feathery
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: feathery_fluff
 
 - type: marking
   id: MothWingsFirewatch
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      firewatch_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: firewatch_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: firewatch_primary
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: firewatch_secondary
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: firewatch_fluff
 
 - type: marking
   id: MothWingsGothic
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      gothic_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: gothic_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: gothic
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: gothic_fluff
 
 - type: marking
   id: MothWingsJungle
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      jungle_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: jungle_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: jungle
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: jungle_fluff
 
 - type: marking
   id: MothWingsLadybug
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      ladybug_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: ladybug_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: ladybug
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: ladybug_fluff
 
 - type: marking
   id: MothWingsMaple
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      maple_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: maple_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: maple_primary
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: maple_secondary
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: maple_fluff
 
 - type: marking
   id: MothWingsMoffra
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      moffra_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: moffra_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: moffra_primary
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: moffra_secondary
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: moffra_fluff
 
 - type: marking
   id: MothWingsOakworm
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      oakworm_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: oakworm_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: oakworm
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: oakworm_fluff
 
 - type: marking
   id: MothWingsPlasmafire
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      plasmafire_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: plasmafire_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: plasmafire_primary
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: plasmafire_secondary
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: plasmafire_fluff
 
 - type: marking
   id: MothWingsPointy
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      pointy_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: pointy_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: pointy
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: pointy_fluff
 
 - type: marking
   id: MothWingsRoyal
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      royal_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: royal_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: royal_primary
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: royal_secondary
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: royal_fluff
 
 - type: marking
   id: MothWingsStellar
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      stellar_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: stellar_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: stellar
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: stellar_fluff
 
 - type: marking
   id: MothWingsStriped
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      striped_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: striped_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: striped
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: striped_fluff
 
 - type: marking
   id: MothWingsSwirly
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      swirly_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: swirly_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: swirly
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: swirly_fluff
 
 - type: marking
   id: MothWingsWhitefly
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      whitefly_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: whitefly_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: whitefly
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: whitefly_fluff
 
 - type: marking
   id: MothWingsWitchwing
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      witchwing_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: witchwing_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: witchwing
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: witchwing_fluff
 
 - type: marking
   id: MothWingsUnderwing
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth, NeoMoth, Neocyte] # FH + Starlight
-  coloring: # Starlight
-    layers:
-      underwing_fluff:
-        type: !type:SkinColoring
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
-    state: underwing_fluff
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: underwing_primary
   - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
     state: underwing_secondary
+  - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi # Starlight
+    state: underwing_fluff
 
 
 # Body markings:
