@@ -26,6 +26,7 @@
             Chaplain: [ 1, 1 ]
             ServiceWorker: [ 1, 1 ]
             Reporter: [ 1, 1 ]
+            RadioHost: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             Lawyer: [ 1, 1 ]
             #Boxer: [ 1, 2 ]
