@@ -1,7 +1,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Monitor.Systems;
 using Content.Server.Atmos.Piping.Components;
-using Content.Server.Atmos.Piping.Unary.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
@@ -13,7 +12,6 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos.Piping.Unary.Systems;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
-using Content.Shared.Examine;
 using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.Atmos.Piping.Unary.EntitySystems

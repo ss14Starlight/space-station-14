@@ -36,9 +36,7 @@ using Content.Shared.Radio.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Actions.Components;
 using Content.Shared.NameModifier.EntitySystems;
-using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.TextToSpeech;
-using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Tag;
 
 namespace Content.Shared.Silicons.Borgs;

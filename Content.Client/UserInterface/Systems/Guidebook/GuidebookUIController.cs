@@ -4,7 +4,6 @@ using Content.Client.Guidebook;
 using Content.Client.Guidebook.Controls;
 using Content.Client.Lobby;
 using Content.Client.Players.PlayTimeTracking;
-using Content.Client.UserInterface.Controls;
 using Content.Shared.CCVar;
 using Content.Shared.Guidebook;
 using Content.Shared.Input;

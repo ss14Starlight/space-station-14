@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: BaseSyringe
+  components:
+  - type: RefillableSolution
+    solution: injector

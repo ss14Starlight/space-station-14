@@ -1,21 +1,18 @@
-using Content.Server.Ghost;
 using Content.Shared.Ghost;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using AlertLevelDimmedLightComponent = Content.Shared._Starlight.Light.AlertLevelDimmedLightComponent;
 
 #region Starlight
-using Content.Server.Administration.Logs;
+
 using Content.Server.AlertLevel;
-using Content.Server.DeviceLinking.Systems;
 using Content.Shared.Station.Components; // Starlight
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Systems;
-using Content.Server._Starlight.GameTicking.Rules.Components; // SL
-using Content.Shared.GameTicking.Components; // SL
+// SL
+// SL
 using Content.Server.GameTicking; // SL
 using Content.Server.Chat.Systems; // SL
-using Robust.Shared.Player; // SL
+
+// SL
 #endregion Starlight
 
 namespace Content.Server.Light.EntitySystems;
@@ -62,7 +59,7 @@ public sealed partial class PoweredLightSystem : SharedPoweredLightSystem
         // TODO: Use ContainerFill dog
         if (light.HasLampOnSpawn != null)
         {
-            var entity = EntityManager.SpawnEntity(light.HasLampOnSpawn, EntityManager.GetComponent<TransformComponent>(uid).Coordinates);
+            var entity = Spawn(light.HasLampOnSpawn, Comp<TransformComponent>(uid).Coordinates);
             ContainerSystem.Insert(entity, light.LightBulbContainer);
         }
         // need this to update visualizers

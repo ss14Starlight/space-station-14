@@ -6,7 +6,6 @@ using Content.Server.Hands.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Temperature.Systems;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
@@ -585,8 +584,6 @@ namespace Content.Server.Kitchen.EntitySystems
             var solidsDict = new Dictionary<string, int>();
             var reagentDict = new Dictionary<string, FixedPoint2>();
             var malfunctioning = false;
-
-            int notTrueTypeCount = 0;
 
             // TODO use lists of Reagent quantities instead of reagent prototype ids.
             foreach (var item in component.Storage.ContainedEntities.ToArray())
