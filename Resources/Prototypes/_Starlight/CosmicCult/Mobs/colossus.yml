@@ -170,7 +170,7 @@
     - Dead
   - type: AntagMonsterScaling
     minimumHealthScaling: -0.25
-    maximumHealthScaling: 0.50
+    maximumHealthScaling: 0.25
   - type: ToolRefinable
     refineTime: 16
     refineResult:
@@ -298,7 +298,7 @@
     allowRevives: true
     thresholds:
       0: Alive
-      450: Dead
+      400: Dead
   - type: CosmicCorrupting
     mobile: true
     autoDisable: false
@@ -317,7 +317,7 @@
     allowRevives: true
     thresholds:
       0: Alive
-      400: Dead
+      350: Dead
   - type: CosmicColossus
   - type: CosmicCorrupting
     mobile: true
