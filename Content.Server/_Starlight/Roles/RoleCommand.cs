@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Runtime.InteropServices;
+using Content.Server._Starlight.Commands;
+using Content.Server._Starlight.Toolshed;
 using Content.Server.Administration;
 using Content.Server.Mind;
 using Content.Server.Roles;
@@ -107,20 +109,20 @@ public sealed partial class RoleCommand : ToolshedCommand
     {
         if (!_proto.TryIndex(mindRolePrototype.ProtoId, out var proto))
         {
-            ctx.WriteMarkup($"[color=red]Invalid prototype id: {mindRolePrototype.ProtoId.Id}[/color]");
+            CommandMarkup.Error(ctx, $"Invalid prototype id: {mindRolePrototype.ProtoId.Id}");
             return uid;
         }
 
-        if (!proto.TryGetComponent(out MindRoleComponent? _, _factory))
+        if (!proto.TryComp(out MindRoleComponent? _, _factory))
         {
-            ctx.WriteMarkup($"[color=red]Prototype ID {proto.ID} is not a mind role.[/color]");
+            CommandMarkup.Error(ctx, $"Prototype ID {proto.ID} is not a mind role.");
             return uid;
         }
 
         if (proto.ID == "MindRoleJob")
         {
-            ctx.WriteMarkup(
-                $"[color=red]Prototype ID {proto.ID} is for job roles and does nothing. Don't use this, use [color=magenta]role:setjob[/color] to set job role.[/color]");
+            CommandMarkup.Error(ctx,
+                $"Prototype ID {proto.ID} is for job roles and does nothing. Don't use this, use {CommandMarkup.Highlight(ctx, "role:setjob")} to set job role.");
             return uid;
         }
 

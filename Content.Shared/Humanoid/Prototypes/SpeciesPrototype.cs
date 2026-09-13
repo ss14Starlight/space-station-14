@@ -2,10 +2,6 @@ using Content.Shared.Dataset;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Preferences.Loadouts;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-#region Starlight
-using Content.Shared.Humanoid;
-#endregion
 
 namespace Content.Shared.Humanoid.Prototypes;
 
@@ -218,15 +214,6 @@ public sealed partial class SpeciesPrototype : IPrototype
     // Far Horizons species loadout
     [DataField]
     public ProtoId<RoleLoadoutPrototype>? Loadout = null;
-
-    #region Starlight
-    /// <summary>
-    /// Migration information for character profiles saved using an older species ID.
-    /// </summary>
-    [DataField]
-    public SpeciesProfileMigration? ProfileMigration { get; private set; }
-    #endregion
-
 }
 
 public enum SpeciesNaming : byte
@@ -238,17 +225,3 @@ public enum SpeciesNaming : byte
     PrefixSuffix, // Starlight
     LastFirst,        // Starlight Rodentia
 }
-
-#region Starlight
-[DataDefinition]
-public sealed partial class SpeciesProfileMigration
-{
-    /// <summary>
-    /// Previous species prototype IDs that should be converted to this species.
-    /// Keep every historical ID here so profiles belonging to inactive players
-    /// can still be migrated in the future.
-    /// </summary>
-    [DataField]
-    public HashSet<string> OldSpecies { get; private set; } = [];
-}
-#endregion

@@ -1,5 +1,4 @@
-﻿using Content.Shared.Access.Systems;
-using Content.Shared.Interaction;
+﻿using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Storage.Components;
@@ -38,7 +37,6 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private ReactiveSystem _reactive = null!;
     [Dependency] private SharedSolutionContainerSystem _solution = default!;
     [Dependency] private SharedStainSystem _stains = default!;
-    [Dependency] private AccessReaderSystem _accessReader = default!; // Starlight
 
     public override void Initialize()
     {
@@ -85,19 +83,8 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnStorageOpenAttempt(Entity<WashingMachineComponent> ent, ref StorageOpenAttemptEvent args)
     {
-        #region Starlight
         if (ent.Comp.State != WashingMachineState.Idle)
-        {
             args.Cancelled = true;
-            return;
-        }
-
-        if (_accessReader.IsAllowed(args.User, ent.Owner))
-            return;
-
-        args.Cancelled = true;
-        _popup.PopupClient(Loc.GetString("lock-comp-has-user-access-fail"), ent.Owner, args.User);
-        #endregion
     }
 
     [SubscribeLocalEvent]
@@ -113,12 +100,10 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
             return;
 
         var user = args.User;
-        var access = _accessReader.IsAllowed(user, ent.Owner); // Starlight
         args.Verbs.Add(new ActivationVerb
         {
             Text = Loc.GetString("washing-machine-start"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
-            Disabled = !access, // Starlight
             Act = () =>
             {
                 if (_timing.CurTime < ent.Comp.NextWashAllowed)
@@ -241,14 +226,6 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
 
     private void TryStartWash(Entity<WashingMachineComponent> ent, EntityUid user)
     {
-        #region Starlight
-        if (!_accessReader.IsAllowed(user, ent.Owner))
-        {
-            _popup.PopupClient(Loc.GetString("lock-comp-has-user-access-fail"), ent.Owner, user);
-            return;
-        }
-        #endregion
-
         if (ent.Comp.State != WashingMachineState.Idle || !_power.IsPowered(ent.Owner) || _storage.IsOpen(ent.Owner))
             return;
 

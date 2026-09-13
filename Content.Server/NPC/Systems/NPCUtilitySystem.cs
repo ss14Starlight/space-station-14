@@ -63,6 +63,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
     private EntityQuery<PuddleComponent> _puddleQuery;
     private EntityQuery<TransformComponent> _xformQuery;
+    private static readonly ProtoId<TagPrototype> _reagentFireTag = "ReagentFire";
 
     private ObjectPool<HashSet<EntityUid>> _entPool =
         new DefaultObjectPool<HashSet<EntityUid>>(new SetPolicy<EntityUid>(), 256);
@@ -371,7 +372,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                         return 1f;
 
                     // Persistence Start: Firebots can target reagent fires
-                    if (TryComp(targetUid, out TagComponent? tags) && tags.Tags.AsReadOnly().Contains((_proto.Index<TagPrototype>("ReagentFire"))))
+                    if (TryComp(targetUid, out TagComponent? tags) && tags.Tags.AsReadOnly().Contains(_reagentFireTag))
                         return 1f;
                     // Persistence End
 

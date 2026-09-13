@@ -4,7 +4,7 @@ using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client.Administration.UI.CustomControls;
 
-public sealed class AdminLogLabel : RichTextLabel
+[Virtual] public class AdminLogLabel : RichTextLabel // Starlight
 {
     public AdminLogLabel(ref SharedAdminLog log, HSeparator separator)
     {

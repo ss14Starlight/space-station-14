@@ -610,7 +610,6 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
-    requireStomach: true # Required for Ichor
 
 - type: entity
   id: ActionToggleLesserForm

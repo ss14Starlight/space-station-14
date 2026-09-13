@@ -13,3 +13,8 @@ entity-effect-guidebook-modify-solution-reagent =
         [1] to
         *[-1] from
     } the {$solution} solution
+entity-effect-guidebook-regrow-doll-shell =
+    { $chance ->
+        [1] Regrows
+        *[other] regrow
+    } one piece of shell

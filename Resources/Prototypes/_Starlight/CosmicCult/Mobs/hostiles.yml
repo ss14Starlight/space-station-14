@@ -98,6 +98,7 @@
       reagents:
       - ReagentId: Entropy
         Quantity: 200
+    examineLocPrefix: cosmic-bloodstream
     maxBleedAmount: 10.75
     bleedReductionAmount: 0.1
     bloodlossDamage:
@@ -129,6 +130,8 @@
        enabled: true
        isLooped: true
        reverseWhenFinished: true
+  - type: HealthExaminable
+    locPrefix: cosmic
 
 - type: entity
   parent: [ BaseMobCosmicHostile, MobCosmicCustodian ]

@@ -1,13 +1,11 @@
 ﻿using System.Numerics;
 using Content.Client._Starlight.UserInterface; // Starlight
 using Content.Client.Resources;
-using Content.Client.UserInterface.Controls;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
-using Robust.Shared.Maths;
 
 namespace Content.Client.Stylesheets
 {

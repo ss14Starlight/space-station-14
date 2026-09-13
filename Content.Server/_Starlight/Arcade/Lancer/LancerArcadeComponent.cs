@@ -1,5 +1,3 @@
-using Robust.Shared.Player;
-
 namespace Content.Server._Starlight.Arcade.Lancer;
 
 [RegisterComponent]
