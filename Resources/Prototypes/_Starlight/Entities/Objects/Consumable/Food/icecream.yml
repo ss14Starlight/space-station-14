@@ -34,8 +34,13 @@
   - type: Appearance
   - type: Edible
     transferAmount: 4
+    utensil: Spoon
     trash:
     - DrinkGlass
+  - type: Solution
+    solution:
+      id: food
+      maxVol: 20
   - type: Sprite
     layers:
     - state: icon_empty
@@ -834,30 +839,6 @@
     sprite: _Starlight/Objects/Consumable/IceCream/banana_bowl.rsi
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/banana_bowl.rsi
-    state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 15
-
-- type: entity
-  name: bluespace ice cream
-  parent: FoodIceCreamBase
-  id: FoodBluespaceIceCream
-  description: Ice cream and blue space crystals fused in a new sweet experiment.
-  components:
-  - type: FlavorProfile
-    flavors:
-    - bluespaceIceCream
-  - type: Sprite
-    sprite: _Starlight/Objects/Consumable/IceCream/bluespace_bowl.rsi
-  - type: Icon
-    sprite: _Starlight/Objects/Consumable/IceCream/bluespace_bowl.rsi
     state: icon
   - type: SolutionContainerManager
     solutions:

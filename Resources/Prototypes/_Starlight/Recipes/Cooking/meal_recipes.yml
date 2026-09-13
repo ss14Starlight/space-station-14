@@ -952,20 +952,6 @@
     IceCream: 15
 
 - type: microwaveMealRecipe
-  id: RecipeBluespaceIceCream
-  name: bluespace ice cream
-  result: FoodBluespaceIceCream
-  deviceType: IceCreamMaker
-  time: 5
-  group: IceCream
-  solids:
-    DrinkGlass: 1
-    BluespaceCrystal1: 1
-    IngotSilver1: 1
-  reagents:
-    IceCream: 15
-
-- type: microwaveMealRecipe
   id: RecipeClownIceCream
   name: clown ice cream
   result: FoodClownIceCream

@@ -46,7 +46,6 @@ flavor-complex-fluffy-boy-ice-cream = like vanilla, lime, and a gentle kindness
 flavor-complex-leader-ice-cream = like vanilla, blueberry, and a crunchy sword cookie
 flavor-complex-tesla-ice-cream = like vanilla and your hairs raising up
 flavor-complex-banana-ice-cream = like banana and ice cream
-flavor-complex-bluespace-ice-cream = like a blueberry that appears suddenly in a new place
 flavor-complex-clown-ice-cream = like mischief, cherry, and banana
 flavor-complex-coconut-ice-cream = like coconut and smooth ice cream
 flavor-complex-ian-ice-cream = like orange, vanilla, and a small guilt

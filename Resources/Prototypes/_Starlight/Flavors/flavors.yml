@@ -239,11 +239,6 @@
   description: flavor-complex-banana-ice-cream
 
 - type: flavor
-  id: bluespaceIceCream
-  flavorType: Complex
-  description: flavor-complex-bluespace-ice-cream
-
-- type: flavor
   id: clownIceCream
   flavorType: Complex
   description: flavor-complex-clown-ice-cream
