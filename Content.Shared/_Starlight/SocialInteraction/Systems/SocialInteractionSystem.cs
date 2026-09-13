@@ -1,5 +1,6 @@
 using Content.Shared._Starlight.SocialInteraction.Components;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Chat;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -18,6 +19,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private SharedChatSystem _chatSystem = default!;
     public override void Initialize()
     {
         //subscribe to inspect events on the physical social interaction receiver component
@@ -90,6 +92,14 @@ public sealed partial class SocialInteractionSystem : EntitySystem
             var msgOthers = Loc.GetString(message,
                 ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target, EntityManager)));
             _popupSystem.PopupEntity(msgOthers, uid, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
+        }
+
+        if (proto.EmoteMessage is { } emoteMessage)
+        {
+            var emote = Loc.GetString(emoteMessage, ("target", Identity.Entity(args.Target, EntityManager)));
+
+            // emote message!
+            _chatSystem.TrySendInGameICMessage(args.User, emote, InGameICChatType.Emote, ChatTransmitRange.Normal);
         }
 
         //now popup filtered to user

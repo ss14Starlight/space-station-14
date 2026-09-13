@@ -35,6 +35,12 @@ public sealed partial class SocialInteractionPrototype : IPrototype
     public LocId? MessagePerceivedByOthers;
 
     /// <summary>
+    /// The message that shows that will post to the chatbox.
+    /// </summary>
+    [DataField("emoteMessage")]
+    public LocId? EmoteMessage;
+
+    /// <summary>
     /// Will the sound effect be perceived by entities not involved in the interaction?
     /// </summary>
     [DataField("soundPerceivedByOthers")]

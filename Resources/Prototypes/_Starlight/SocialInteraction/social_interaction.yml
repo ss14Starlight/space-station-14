@@ -4,18 +4,21 @@
   verbName: pet-verb
   interactString: petting-success
   messagePerceivedByOthers: petting-success-others
+  emoteMessage: petting-emote
 
 - type: socialInteraction
   id: Boop
   verbName: boop-verb
   interactString: booping-success
   messagePerceivedByOthers: booping-success
+  emoteMessage: booping-emote
 
 - type: socialInteraction
   id: Wave
   verbName: wave-verb
   interactString: waving-success
   messagePerceivedByOthers: waving-success-others
+  emoteMessage: waving-emote
   isPhysical: false
 
 - type: socialInteraction
@@ -23,4 +26,5 @@
   verbName: look-verb
   interactString: looking-success
   messagePerceivedByOthers: looking-success-others
+  emoteMessage: looking-emote
   isPhysical: false
