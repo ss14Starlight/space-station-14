@@ -1,11 +1,4 @@
 Entries:
-- author: DevCS-CP
-  changes:
-  - message: Added visuals for each mode on the energy magnum, and MT-7.
-    type: Add
-  id: 408212
-  time: '2026-09-05T20:37:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5843
 - author: (Upstream) ScarKy0
   changes:
   - message: Surveillance cameras will now show they're being used (turn on their red lights) when the AI's eye is nearby.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408611
   time: '2026-09-14T12:40:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6144
+- author: DenneMiao
+  changes:
+  - message: Added four new vinyls by randomcuts.
+    type: Add
+  id: 408612
+  time: '2026-09-14T12:40:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6151
 Order: -1
