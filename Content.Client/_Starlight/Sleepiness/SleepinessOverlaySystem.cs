@@ -19,7 +19,6 @@ public sealed partial class SleepinessOverlaySystem : EntitySystem
     {
         base.Initialize();
         _overlay = new SleepinessOverlay();
-
     }
 
     public override void Shutdown()
