@@ -1,20 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: new kind of Sharkminnow, exclusive to Dragonrifts.
-    type: Add
-  id: 408223
-  time: '2026-09-05T22:44:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5886
-- author: SirLutz
-  changes:
-  - message: new kind if Holocarp exclusive to Dragonrifts.
-    type: Add
-  id: 408224
-  time: '2026-09-05T22:44:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5886
-- author: SirLutz
-  changes:
   - message: Dragon gained an counter which limits amount of Sharkminnows.
     type: Add
   id: 408225
@@ -2799,4 +2785,18 @@ Entries:
   id: 408622
   time: '2026-09-14T12:40:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6155
+- author: Sparlight
+  changes:
+  - message: K9s and other handless creatures can now buckle themselves to pet and dog beds.
+    type: Add
+  id: 408623
+  time: '2026-09-14T13:45:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6074
+- author: Sparlight
+  changes:
+  - message: Removed K9 loadout options for air tanks since one was simply the better option.
+    type: Remove
+  id: 408624
+  time: '2026-09-14T13:45:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6074
 Order: -1
