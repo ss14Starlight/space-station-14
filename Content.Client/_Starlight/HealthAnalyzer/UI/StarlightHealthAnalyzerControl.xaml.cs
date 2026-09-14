@@ -39,10 +39,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
     /// <summary>
     /// Sets the print report button visible
     /// </summary>
-    public void SetPrintReportVisible(bool visible)
-    {
-        PrintReportButton.Visible = visible;
-    }
+    public void SetPrintReportVisible(bool visible) => PrintReportButton.Visible = visible;
 
     public StarlightHealthAnalyzerControl()
     {
@@ -94,7 +91,6 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             .OrderBy(g => HealthAnalyzerFormatting.GetDamageGroupSortKey(g.Key))
             .ThenBy(g => g.Key)
             .ToDictionary(g => g.Key, g => g.Value);
-
 
         DrawHeader(state, target.Value);
         DrawVitals(state, target.Value, damageable, deathValue);
@@ -227,13 +223,13 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         foreach (var group in groups)
         {
-            grid.AddChild(GenerateDamageCategoryBlock(group.Key, group.Value, groups, damageDict, deathValue));
+            grid.AddChild(GenerateDamageCategoryBlock(group.Key, group.Value, damageDict, deathValue));
         }
 
         GroupsContainer.AddChild(grid);
     }
 
-    private BoxContainer GenerateDamageCategoryBlock(string categoryId, FixedPoint2 damageValue, Dictionary<string, FixedPoint2> groups,
+    private BoxContainer GenerateDamageCategoryBlock(string categoryId, FixedPoint2 damageValue,
         IReadOnlyDictionary<string, FixedPoint2> damageDict, FixedPoint2 deathValue)
     {
         var block = new BoxContainer
@@ -263,7 +259,6 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             HealthAnalyzerFormatting.GetDamageSeverityColorUi(dmgRatio);
 
         block.AddChild(progressBar);
-
 
         var groupHeader = new BoxContainer
         {
@@ -402,8 +397,8 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
                 MinWidth = 10,
                 MinHeight = 16,
                 Margin = new Thickness(0, 0, 6, 0),
+                PanelOverride = new StyleBoxFlat(reagentColor)
             };
-            colorBar.PanelOverride = new StyleBoxFlat(reagentColor);
 
             var nameLabel = new Label
             {
@@ -523,12 +518,10 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         return _spriteSystem.Frame0(rsiSprite);
     }
 
-    private float CalculateDamageRatio(FixedPoint2 current, FixedPoint2? deathValue)
-    {
-        return deathValue is { } maximum
+    private float CalculateDamageRatio(FixedPoint2 current, FixedPoint2? deathValue) =>
+        deathValue is { } maximum
             ? Math.Clamp((float)current / (float)maximum, 0f, 1f)
             : 0f;
-    }
 
     public struct VitalsInformationBlockData
     {

@@ -19,37 +19,30 @@ public static class HealthAnalyzerFormatting
     /// <summary>
     /// Returns an interpolated accent color for a 0-1 float ratio
     /// </summary>
-    public static Color GetDamageSeverityColorUi(float ratio)
-    {
-        return ratio switch
+    public static Color GetDamageSeverityColorUi(float ratio) =>
+        ratio switch
         {
             <= 0.35f => Color.InterpolateBetween(LowDamageColor, MediumDamageColor, ratio / 0.35f),
             <= 0.7f => Color.InterpolateBetween(MediumDamageColor, HighDamageColor, (ratio - 0.35f) / 0.35f),
             _ => Color.InterpolateBetween(HighDamageColor, MaxDamageColor, (ratio - 0.7f) / 0.3f)
         };
-    }
 
     /// <summary>
     /// Returns an interpolated accent color for a 0-1 float ratio
     /// </summary>
-    public static Color GetBloodLevelAccentColorUi(float ratio)
-    {
-        return GetDamageSeverityColorUi(Math.Clamp((1 - ratio), 0f, 1f));
-    }
+    public static Color GetBloodLevelAccentColorUi(float ratio) => GetDamageSeverityColorUi(Math.Clamp((1 - ratio), 0f, 1f));
 
     /// <summary>
     /// Returns green for Alive, yellow for critical, and red for dead.
     /// </summary>
-    public static Color GetStatusColor(MobState mobState)
-    {
-        return mobState switch
+    public static Color GetStatusColor(MobState mobState) =>
+        mobState switch
         {
             MobState.Alive => Color.FromHex("#5ABCAA"),
             MobState.Critical => Color.FromHex("#E19955"),
             MobState.Dead => Color.FromHex("#E56F79"),
             _ => Color.FromHex("#FFFFFF"),
         };
-    }
 
     /// <summary>
     /// Formats a given temperature into a display string
@@ -86,12 +79,10 @@ public static class HealthAnalyzerFormatting
             : $"{formattedBloodLevel} {severitySuffix}";
     }
 
-    public static string FormatBloodLevelMarkup(float bloodLevel)
-    {
-        return WrapTextWithColorMarkup(
+    public static string FormatBloodLevelMarkup(float bloodLevel) =>
+        WrapTextWithColorMarkup(
             FormatBloodLevelWithSeverity(bloodLevel),
             GetBloodLevelSeverityColorPrint(bloodLevel));
-    }
 
     public static string GetBloodLevelSeveritySuffix(float bloodLevel)
     {
