@@ -444,7 +444,7 @@
   name: cherry ice cream
   parent: FoodIceCreamBase
   id: FoodCherryIceCream
-  description: Rich cherry ice cream with some crunchy chocolate chips.
+  description: Rich cherry ice cream.
   components:
   - type: FlavorProfile
     flavors:
@@ -838,14 +838,14 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/banana_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
 
 - type: entity
   name: clown ice cream
@@ -861,16 +861,16 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/clown_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 12
-        - ReagentId: Honk
-          Quantity: 3
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 12
+      - ReagentId: Honk
+        Quantity: 3
 
 - type: entity
   name: coconut ice cream
@@ -886,16 +886,16 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/coconut_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 10
-        - ReagentId: CoconutWater
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 10
+      - ReagentId: CoconutWater
+        Quantity: 5
 
 - type: entity
   name: ian ice cream
@@ -911,14 +911,14 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/ian_cream_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
 
 - type: entity
   name: nanotrasen ice cream
@@ -934,14 +934,14 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/nt_cream_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
 
 - type: entity
   name: nanotrasen marine ice cream
@@ -957,14 +957,14 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/nt_marine_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
 
 - type: entity
   name: pinapple ice cream
@@ -980,14 +980,14 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/pineapple_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
 
 - type: entity
   name: rising sun ice cream
@@ -1003,14 +1003,14 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/rising_sun_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
 
 - type: entity
   name: rocky ore ice cream
@@ -1026,14 +1026,14 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/rocky_ore_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
 
 - type: entity
   name: stun baton ice cream
@@ -1056,14 +1056,14 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/stun_baton_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
 
 - type: entity
   name: syndie-land ice cream
@@ -1079,14 +1079,14 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/syndie_land_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
 
 - type: entity
   name: tiramisu ice cream
@@ -1102,16 +1102,16 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/tiramisu_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 10
-        - ReagentId: Theobromine
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 10
+      - ReagentId: Theobromine
+        Quantity: 5
 
 - type: entity
   name: uranium ice cream
@@ -1127,16 +1127,16 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/uranium_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 10
-        - ReagentId: Uranium
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 10
+      - ReagentId: Uranium
+        Quantity: 5
 
 - type: entity
   name: vox ice cream
@@ -1152,11 +1152,11 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/IceCream/vox_bowl.rsi
     state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Cream
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Cream
+        Quantity: 15
