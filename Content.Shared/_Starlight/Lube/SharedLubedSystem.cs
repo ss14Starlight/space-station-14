@@ -24,13 +24,7 @@ public abstract partial class SharedLubedSystem : EntitySystem
             _nameMod.RefreshNameModifiers(uid);
     }
 
-    private void OnInit(EntityUid uid, LubedComponent component, ComponentInit args)
-    {
-        _nameMod.RefreshNameModifiers(uid);
-    }
+    private void OnInit(EntityUid uid, LubedComponent component, ComponentInit args) => _nameMod.RefreshNameModifiers(uid);
 
-    private void OnRefreshNameModifiers(Entity<LubedComponent> entity, ref RefreshNameModifiersEvent args)
-    {
-        args.AddModifier("lubed-name-prefix");
-    }
+    private void OnRefreshNameModifiers(Entity<LubedComponent> entity, ref RefreshNameModifiersEvent args) => args.AddModifier("lubed-name-prefix");
 }
