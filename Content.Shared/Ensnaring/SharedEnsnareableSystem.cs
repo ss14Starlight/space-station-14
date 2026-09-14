@@ -87,7 +87,7 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         component.IsEnsnared = component.Container.ContainedEntities.Count > 0;
         Dirty(uid, component);
         ensnaring.Ensnared = null;
-        ensnaring.EnsnaredHandled = false;
+        ensnaring.EnsnaredHandled = false; // Starlight
 
         _hands.PickupOrDrop(args.Args.User, args.Args.Used.Value);
 
@@ -278,13 +278,13 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         if (numEnsnares >= component.MaxEnsnares)
             return false;
 
-        #region Starlight
+        // Starlight begin
         component.EnsnaredHandled = true;
 
         var ensnareObject = component.ensnareFreedPrototype != null ? Spawn(component.ensnareFreedPrototype) : ensnare;
 
         Container.Insert(ensnareObject, ensnareable.Container);
-        #endregion
+        // Starlight end
 
         // Apply stamina damage to target
         if (TryComp<StaminaComponent>(target, out var stamina))
@@ -319,9 +319,7 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         ensnareable.IsEnsnared = ensnareable.Container.ContainedEntities.Count > 0;
         Dirty(component.Ensnared.Value, ensnareable);
         component.Ensnared = null;
-        #region Starlight
-        component.EnsnaredHandled = true;
-        #endregion
+        component.EnsnaredHandled = true; // Starlight
 
         UpdateAlert(target, ensnareable);
         var ev = new EnsnareRemoveEvent(component.WalkSpeed, component.SprintSpeed);
