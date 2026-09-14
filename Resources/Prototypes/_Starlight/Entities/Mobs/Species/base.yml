@@ -240,13 +240,6 @@
     - AnomalyHost
     - NotLabelable # Starlight, no more labeling people.
   - type: ActiveInputMover # Starlight
-  # Starlight Start: Social Interactions
-  - type: PhysicalSocialInteractionGiver
-  - type: PhysicalSocialInteractionReceiver
-    interactionPrototypes:
-    - Pet
-    - Boop
-  # Starlight End
   - type: CosmicCenserTarget # Stellar - Cosmic Cult
   - type: Scent # Starlight - smell system
 

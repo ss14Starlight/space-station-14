@@ -115,8 +115,8 @@ public sealed partial class DragonRiftSystem
                     }
 
                     var finishedMultiplier = comp.State == DragonRiftState.Finished ? 1 : 0;
-                    var rareChance = 20 * (1 + finishedMultiplier);
-                    var sharkChance = 5 * (1 + finishedMultiplier);
+                    var rareChance = 7 * (1 + finishedMultiplier); // 7 -> 14 -4 sharks so when rift is done 10%
+                    var sharkChance = 2 * (1 + finishedMultiplier);
 
                     var roll = _random.Next(1, 101);
 
