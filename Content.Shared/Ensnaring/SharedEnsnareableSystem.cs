@@ -157,9 +157,7 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         if (!HasComp<EnsnareableComponent>(target))
             return;
 
-        #region Starlight
-        var freeTime = TimeSpan.FromSeconds((double) (user == target ? component.BreakoutTime : component.FreeTime));
-        #endregion
+        var freeTime = TimeSpan.FromSeconds((double) (user == target ? component.BreakoutTime : component.FreeTime)); // Starlight
         var breakOnMove = !component.CanMoveBreakout;
 
         var doAfterEventArgs = new DoAfterArgs(EntityManager, user, freeTime, new EnsnareableDoAfterEvent(), target, target: target, used: ensnare)
