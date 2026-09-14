@@ -1,74 +1,4 @@
 Entries:
-- author: (Upstream) ScarKy0
-  changes:
-  - message: Surveillance cameras will now show they're being used (turn on their red lights) when the AI's eye is nearby.
-    type: Add
-  id: 408213
-  time: '2026-09-05T21:25:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5854
-- author: (Upstream) ScarKy0
-  changes:
-  - message: The AI's ability to toggle "camera lights" has been removed.
-    type: Remove
-  id: 408214
-  time: '2026-09-05T21:25:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5854
-- author: RedSpeeds
-  changes:
-  - message: Fixed Romerol not working when ingested.
-    type: Fix
-  id: 408215
-  time: '2026-09-05T21:55:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5857
-- author: RedSpeeds
-  changes:
-  - message: Added Godo cloud emote.
-    type: Add
-  id: 408216
-  time: '2026-09-05T22:18:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5885
-- author: Swonki
-  changes:
-  - message: Payroll can now be configured to come from different senders.
-    type: Add
-  id: 408217
-  time: '2026-09-05T22:18:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5996
-- author: Limblesstar, Teddiousbear.
-  changes:
-  - message: 3 new coats/jackets.
-    type: Add
-  id: 408218
-  time: '2026-09-05T22:44:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5880
-- author: Limblesstar, Teddiousbear.
-  changes:
-  - message: 2 new outfit/jumpsuits.
-    type: Add
-  id: 408219
-  time: '2026-09-05T22:44:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5880
-- author: Limblesstar, Teddiousbear.
-  changes:
-  - message: 2 new boots.
-    type: Add
-  id: 408220
-  time: '2026-09-05T22:44:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5880
-- author: 0warie
-  changes:
-  - message: Fixed being unable to construct screen and brig timers.
-    type: Fix
-  id: 408221
-  time: '2026-09-05T22:44:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5884
-- author: 0warie
-  changes:
-  - message: Fixed signal timers turning into un-clickable timer frames after beginning construction.
-    type: Fix
-  id: 408222
-  time: '2026-09-05T22:44:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5884
 - author: SirLutz
   changes:
   - message: new kind of Sharkminnow, exclusive to Dragonrifts.
@@ -2799,4 +2729,74 @@ Entries:
   id: 408612
   time: '2026-09-14T12:40:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6151
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added several toilet paper holders and hand sanitizers around station.
+    type: Add
+  id: 408613
+  time: '2026-09-14T12:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6155
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added washroom to the bathroom area near hop, and another one near dorms.
+    type: Add
+  id: 408614
+  time: '2026-09-14T12:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6155
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added a laundry machine to maints sauna, gen pop substation.
+    type: Add
+  id: 408615
+  time: '2026-09-14T12:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6155
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added a laundry machine to captains bathroom alongside increasing captains bathroom size.
+    type: Add
+  id: 408616
+  time: '2026-09-14T12:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6155
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added proper disposals piping to several toilets.
+    type: Add
+  id: 408617
+  time: '2026-09-14T12:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6155
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Added a small cargo breakroom where salv used to be.
+    type: Add
+  id: 408618
+  time: '2026-09-14T12:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6155
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Changed lawyers office to be able to see into processing room and Speak directly with gen pop prisoners through a window.
+    type: Tweak
+  id: 408619
+  time: '2026-09-14T12:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6155
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Fixed armory and brigmedic station beacons.
+    type: Fix
+  id: 408620
+  time: '2026-09-14T12:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6155
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Fixed an airvent in security that wasnt connected via piping error.
+    type: Fix
+  id: 408621
+  time: '2026-09-14T12:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6155
+- author: Cvlancer
+  changes:
+  - message: (Orwell) Fixed PA control computer being mapped the wrong direction.
+    type: Fix
+  id: 408622
+  time: '2026-09-14T12:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6155
 Order: -1
