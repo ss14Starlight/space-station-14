@@ -705,7 +705,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Vampire, Rodentia, Neocyte, Doll ] # SL - add Vampire, Rodentia and Doll / FH - add Neocyte
+          type: [ Animal, Vox, Vampire, Avali, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -715,12 +715,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Rodentia and Doll / FH - add Neocyte
+          type: [ Animal, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Rodentia and Doll / FH - add Neocyte
+          type: [ Animal, Vox, Plant, Vampire, Avali, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
           inverted: true
         damage:
           types:
@@ -735,7 +735,7 @@
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal ]
+          type: [ Animal, Vampire, Avali, Rodentia, Neocyte, Doll ] # Starlight - add Vampire, Avali, Rodentia and Doll / FH - add Neocyte
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent
@@ -744,18 +744,6 @@
           type: [ Vox ]
         reagent: Protein
         amount: 0.25
-      - !type:AdjustReagent
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Vampire, Rodentia, Doll ] # Starlight - add Vampire, Rodentia
-        reagent: Protein
-        amount: 0.5
-      - !type:AdjustReagent #FH
-        conditions: #FH
-        - !type:MetabolizerTypeCondition #FH
-          type: [ Neocyte ] # FH + Starlight
-        reagent: Protein #FH
-        amount: 0.5 #FH
       # Starlight Start
       # Cyclorite Metabolism
       - !type:AdjustReagent
