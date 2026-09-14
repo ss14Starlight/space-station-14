@@ -2,6 +2,7 @@
 using Content.Server.Medical.Components;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.DoAfter;
+using Content.Shared.Emp;
 using Content.Shared.MedicalScanner;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -16,32 +17,60 @@ public sealed partial class HealthSelfAnalyzerSystem : EntitySystem
 
     private const string HealthAnalyzerBoundUserInterface = "HealthAnalyzerBoundUserInterface";
 
-    public override void Initialize()
-    {
-        base.Initialize();
 
-        SubscribeLocalEvent<HealthAnalyzerComponent, HealthSelfAnalyzeActionEvent>(OnHealthSelfAnalyze);
+    [SubscribeLocalEvent]
+    private void OnHealthSelfAnalyze(Entity<HealthSelfAnalyzerComponent> entity, ref HealthSelfAnalyzeActionEvent args)
+    {
+        if(HasComp<EmpDisabledComponent>(entity))
+            return;
+
+        entity.Comp.Toggled = !entity.Comp.Toggled;
+        ToggleUi(entity, entity.Comp.Toggled);
     }
 
-    private void OnHealthSelfAnalyze(Entity<HealthAnalyzerComponent> entity, ref HealthSelfAnalyzeActionEvent args)
+    [SubscribeLocalEvent]
+    private void OnEmpPulse(Entity<HealthSelfAnalyzerComponent> entity, ref EmpPulseEvent args)
     {
-        if (!TryComp<UserInterfaceComponent>(entity, out var comp))
+        args.Affected = true;
+        args.Disabled = true;
+
+        if (!entity.Comp.Toggled)
             return;
 
-        if (_uiSystem.IsUiOpen((entity, comp), HealthAnalyzerUiKey.Key))
+        ToggleUi(entity, false);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnEmpRemoved(Entity<HealthSelfAnalyzerComponent> entity, ref EmpDisabledRemovedEvent args)
+    {
+        if (!entity.Comp.Toggled)
+            return;
+
+        ToggleUi(entity, true);
+    }
+
+    private void ToggleUi(EntityUid uid, bool toggled)
+    {
+        if (!TryComp<HealthAnalyzerComponent>(uid, out var analyzerComponent) || !TryComp<UserInterfaceComponent>(uid, out var interfaceComp))
+            return;
+
+        if (toggled)
         {
-            _audio.PlayEntity(entity.Comp.ScanningEndSound, entity, entity);
-            _healthAnalyzerSystem.StopAnalyzingEntity(entity, args.Performer);
-            _uiSystem.CloseUi((entity, comp), HealthAnalyzerUiKey.Key);
-            return;
+            if (!_uiSystem.HasUi(uid, HealthAnalyzerUiKey.Key))
+                _uiSystem.SetUi(uid, HealthAnalyzerUiKey.Key, new InterfaceData(HealthAnalyzerBoundUserInterface));
+
+            _audio.PlayPredicted(analyzerComponent.ScanningBeginSound, uid, uid);
+            _healthAnalyzerSystem.BeginAnalyzingEntity((uid, analyzerComponent), uid);
+            _uiSystem.OpenUi((uid, interfaceComp), HealthAnalyzerUiKey.Key, uid);
         }
+        else
+        {
+            if(!_uiSystem.IsUiOpen(uid, HealthAnalyzerUiKey.Key))
+                return;
 
-        if (!_uiSystem.HasUi(entity, HealthAnalyzerUiKey.Key))
-            _uiSystem.SetUi((entity, comp),  HealthAnalyzerUiKey.Key, new InterfaceData(HealthAnalyzerBoundUserInterface));
-
-        _audio.PlayEntity(entity.Comp.ScanningBeginSound, entity, entity);
-        _healthAnalyzerSystem.BeginAnalyzingEntity(entity, args.Performer);
-        _uiSystem.OpenUi((entity, comp), HealthAnalyzerUiKey.Key, args.Performer);
-
+            _audio.PlayPredicted(analyzerComponent.ScanningEndSound, uid, uid);
+            _healthAnalyzerSystem.StopAnalyzingEntity((uid, analyzerComponent), uid);
+            _uiSystem.CloseUi((uid, interfaceComp), HealthAnalyzerUiKey.Key);
+        }
     }
 }

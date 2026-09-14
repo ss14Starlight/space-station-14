@@ -95,6 +95,7 @@
     state: brain_implant_scan
   - type: FunctionalOrgan
     comps:
+    - type: HealthSelfAnalyzer
     - type: HealthAnalyzer
       damageContainers:
         - Biological
@@ -117,7 +118,11 @@
         100:
           sound: !type:SoundPathSpecifier
             path: /Audio/_FarHorizons/Effects/Alerts/healthpanel-alert.ogg
-          ambient: true
+            params:
+              loop: true
+          #ambient: true
+          empEffected: true
         200:
           sound: !type:SoundPathSpecifier
             path: /Audio/_Starlight/Effects/Experiment/flatline.ogg
+          empEffected: true
