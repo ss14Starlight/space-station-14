@@ -13,7 +13,7 @@
   <GuideEntityEmbed Entity="AppearanceDwarf" Caption="Dwarf"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="AppearanceExperiment" Caption="Experiment"/>
+  <GuideEntityEmbed Entity="GuideExpie" Caption="Experiment"/>
   <GuideEntityEmbed Entity="AppearanceFelionoid" Caption="Felionoid"/>
   <GuideEntityEmbed Entity="AppearanceHuman" Caption="Human"/>
   <GuideEntityEmbed Entity="AppearanceLagomorph" Caption="Lagomorph"/>

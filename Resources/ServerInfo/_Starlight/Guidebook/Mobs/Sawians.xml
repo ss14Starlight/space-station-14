@@ -2,18 +2,18 @@
     # Sawians
 
     <Box>
-	    <GuideEntityEmbed Entity="AppearanceExperiment" Caption=""/>
+	    <GuideEntityEmbed Entity="GuideExpie" Caption=""/>
     </Box>
 
     Sawians are a group of artificially created species based off of various earth genomes, often manning Nanotrasen stations.
     Sawians are biologically genderless, though some still sport masculine/feminine features visually.
-    They are not accustomed to wearing clothes. The less they're wearing the faster they move.
+    They are not accustomed to wearing clothes. [color=yellow]The less they're wearing the faster they move[/color].
 
     #Health
     Sawians are remarkably durable, made to live in conditions deadly to most species
     - Most are given brain implants allowing them an advance readout of their bodies condition.
-    - Their durability allows them to endure the effects of [color=red]critical condition[/color] for some time.
-    they can [color=yellow]crawl, talk, and use items.[/color] they will however take [color=red]Asphyxiation[/color] Damage,
+    - Their durability allows them to endure the effects of being in [color=red]critical condition[/color] for some time.
+    They can [color=yellow]crawl, talk, and use items.[/color] They will however take [color=red]Asphyxiation[/color] Damage,
     eventually passing out before death.
     - Their extremely fast metabolism makes them great at healing most wounds, though it comes at the cost of highly increased hunger.
 

@@ -117,6 +117,7 @@
         100:
           sound: !type:SoundPathSpecifier
             path: /Audio/_FarHorizons/Effects/Alerts/healthpanel-alert.ogg
+          ambient: true
         200:
           sound: !type:SoundPathSpecifier
             path: /Audio/_Starlight/Effects/Experiment/flatline.ogg
