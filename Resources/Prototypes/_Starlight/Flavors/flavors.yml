@@ -295,7 +295,7 @@
 
 - type: flavor
   id: stunBatonIceCream
-  falvorType: Complex
+  flavorType: Complex
   description: flavor-complex-stun-baton-ice-cream
 
 - type: flavor

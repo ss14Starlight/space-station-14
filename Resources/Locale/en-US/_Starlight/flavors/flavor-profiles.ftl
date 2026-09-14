@@ -55,10 +55,10 @@ flavor-complex-pineapple-ice-cream = like crisp pineapple ice cream
 flavor-complex-rising-sun-ice-cream = like orange, lemon, and raspberry ice cream sunset
 flavor-complex-rocky-ore-ice-cream = like cherry ice cream with crunchy cookies
 flavor-complex-stun-baton-ice-cream = like orange ice cream and a feeling to charge batong
-flavor-complex-syndie-land-ice-cream = like cherry and lime ice cream and a paid advertisements
-flavor-complex-tiramisu-ice-cream = like chocolate, expresso, and cinnamon
+flavor-complex-syndie-land-ice-cream = like cherry and lime ice cream and paid advertisements
+flavor-complex-tiramisu-ice-cream = like chocolate, espresso, and cinnamon
 flavor-complex-uranium-ice-cream = like sickening green candy apple
-flavor-complex-vox-ice-cream = like crisp mint and faint after taste of welding fluid
+flavor-complex-vox-ice-cream = like crisp mint and faint aftertaste of welding fluid
 flavor-base-cinnamon = cinnamony
 
 # Milks

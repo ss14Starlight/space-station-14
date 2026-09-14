@@ -967,7 +967,7 @@
         Quantity: 15
 
 - type: entity
-  name: pinapple ice cream
+  name: pineapple ice cream
   parent: FoodIceCreamBase
   id: FoodPineappleIceCream
   description: A cup of tropical pineapple ice cream not under the sea.
