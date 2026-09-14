@@ -1,5 +1,4 @@
 using Content.Shared.Alert;
-using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -13,6 +12,7 @@ using Content.Shared.Strip.Components;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Physics.Events;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Ensnaring;
@@ -52,6 +52,9 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         SubscribeLocalEvent<EnsnaringComponent, StepTriggerAttemptEvent>(AttemptStepTrigger);
         SubscribeLocalEvent<EnsnaringComponent, StepTriggeredOffEvent>(OnStepTrigger);
         SubscribeLocalEvent<EnsnaringComponent, ThrowDoHitEvent>(OnThrowHit);
+        #region Starlight
+        SubscribeLocalEvent<EnsnaringComponent, StartCollideEvent>(OnStartCollide);
+        #endregion
     }
 
     protected virtual void OnEnsnareInit(Entity<EnsnareableComponent> ent, ref ComponentInit args)
@@ -85,6 +88,7 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         component.IsEnsnared = component.Container.ContainedEntities.Count > 0;
         Dirty(uid, component);
         ensnaring.Ensnared = null;
+        ensnaring.EnsnaredHandled = false;
 
         _hands.PickupOrDrop(args.Args.User, args.Args.Used.Value);
 
@@ -239,6 +243,19 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         }
     }
 
+    #region Starlight
+    private void OnStartCollide(EntityUid uid, EnsnaringComponent component, StartCollideEvent args)
+    {
+        if (!component.CanImpactTrigger)
+            return;
+
+        if (TryEnsnare(args.OtherEntity, uid, component))
+        {
+            _audio.PlayPvs(component.EnsnareSound, uid);
+        }
+    }
+    #endregion
+
     /// <summary>
     /// Used where you want to try to ensnare an entity with the <see cref="EnsnareableComponent"/>
     /// </summary>
@@ -247,6 +264,11 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
     /// <param name="component">The ensnaring component</param>
     public bool TryEnsnare(EntityUid target, EntityUid ensnare, EnsnaringComponent component)
     {
+        #region Starlight
+        if (component.EnsnaredHandled)
+            return false;
+        #endregion
+
         //Don't do anything if they don't have the ensnareable component.
         if (!TryComp<EnsnareableComponent>(target, out var ensnareable))
             return false;
@@ -256,6 +278,10 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         //Don't do anything if the maximum number of ensnares is applied.
         if (numEnsnares >= component.MaxEnsnares)
             return false;
+
+        #region Starlight
+        component.EnsnaredHandled = true;
+        #endregion
 
         Container.Insert(ensnare, ensnareable.Container);
 
@@ -292,6 +318,9 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         ensnareable.IsEnsnared = ensnareable.Container.ContainedEntities.Count > 0;
         Dirty(component.Ensnared.Value, ensnareable);
         component.Ensnared = null;
+        #region Starlight
+        component.EnsnaredHandled = true;
+        #endregion
 
         UpdateAlert(target, ensnareable);
         var ev = new EnsnareRemoveEvent(component.WalkSpeed, component.SprintSpeed);

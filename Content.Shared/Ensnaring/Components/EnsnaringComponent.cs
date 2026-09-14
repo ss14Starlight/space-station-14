@@ -1,5 +1,6 @@
 ﻿using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Ensnaring.Components;
 /// <summary>
@@ -61,6 +62,16 @@ public sealed partial class EnsnaringComponent : Component
     /// </summary>
     [DataField]
     public bool CanMoveBreakout;
+
+    #region Starlight
+    /// <summary>
+    /// Should this ensnare someone when impact is made?
+    /// </summary>
+    [DataField]
+    public bool CanImpactTrigger;
+
+    public bool EnsnaredHandled = false;
+    #endregion
 
     [DataField]
     public SoundSpecifier? EnsnareSound = new SoundPathSpecifier("/Audio/Effects/snap.ogg");
