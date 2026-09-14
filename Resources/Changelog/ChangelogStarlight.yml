@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Cluster) Fixed an airvent on the scrubber line and a scrubber on the distro line near cargo front.
-    type: Fix
-  id: 408163
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
-- author: Cvlancer
-  changes:
   - message: (Bagel) Added a nuclear reactor east if PA room.
     type: Add
   id: 408164
@@ -2799,4 +2792,11 @@ Entries:
   id: 408562
   time: '2026-09-14T08:27:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6088
+- author: Teddiousbear, ya314a.
+  changes:
+  - message: New Plushie.
+    type: Add
+  id: 408563
+  time: '2026-09-14T08:58:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6096
 Order: -1
