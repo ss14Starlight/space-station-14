@@ -306,3 +306,33 @@
     damage: 20
   - type: TimedDespawn
     lifetime: 0.25
+
+- type: entity
+  id: BulletGrenadeBola
+  name: bola grenade
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    deleteOnCollide: true
+    damage:
+      types:
+        Blunt: 0 # Bolas don't do damage
+    soundHit:
+      path: /Audio/Effects/snap.ogg
+  - type: Ensnaring
+    freeTime: 2.0
+    breakoutTime: 3.5 # all bola should generally be fast to remove
+    walkSpeed: 0.5 # makeshift bola shouldn't slow too much
+    sprintSpeed: 0.5
+    staminaDamage: 0 # anything but this is gamebreaking
+    canThrowTrigger: false
+    canImpactTrigger: true
+    ensnareFreedPrototype: Bola
+    canMoveBreakout: true
+    maxEnsnares: 1

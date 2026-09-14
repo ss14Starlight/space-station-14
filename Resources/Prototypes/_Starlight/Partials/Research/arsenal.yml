@@ -1,0 +1,4 @@
+- type: !PartialOnly technology
+  id: NonlethalAmmunition
+  recipeUnlocks:
+  - BoxPeacekeeperBola

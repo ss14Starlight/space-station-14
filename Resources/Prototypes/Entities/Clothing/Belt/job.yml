@@ -468,7 +468,6 @@
       - Truncheon
       - HandGrenade
       - SecTicket # Starlight
-      - Bola # Starlight
       components:
       - Stunbaton
       - FlashOnTrigger

@@ -70,6 +70,9 @@ public sealed partial class EnsnaringComponent : Component
     [DataField]
     public bool CanImpactTrigger;
 
+    /// <summary>
+    /// Has the ensnaring been handled?
+    /// </summary>
     [DataField]
     public bool EnsnaredHandled = false;
 
