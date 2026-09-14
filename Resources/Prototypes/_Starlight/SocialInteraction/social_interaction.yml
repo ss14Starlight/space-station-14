@@ -27,4 +27,6 @@
   interactString: looking-success
   messagePerceivedByOthers: looking-success-others
   emoteMessage: looking-emote
+  interactSound: /Audio/Effects/pop_high.ogg
+  soundPerceivedByOthers: false
   isPhysical: false
