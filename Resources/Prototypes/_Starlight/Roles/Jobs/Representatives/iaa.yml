@@ -27,6 +27,7 @@
   - GenpopEnter
   - GenpopLeave
 # - Command # IAAs are not members of Command.
+  - NTPersonnel
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
