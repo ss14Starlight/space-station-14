@@ -32,6 +32,15 @@ public sealed partial class WallStainSystem : EntitySystem
     private static readonly ProtoId<ReagentPrototype> WaterReagent = "Water";
     private static readonly ProtoId<ReagentPrototype> SpaceCleanerReagent = "SpaceCleaner";
 
+    private static readonly Vector2i[] AdjacentTileOffsets =
+    {
+        new(0, 0),
+        new(0, 1),
+        new(0, -1),
+        new(1, 0),
+        new(-1, 0)
+    };
+
     [Dependency] private SharedMapSystem _map = null!;
     [Dependency] private SharedTransformSystem _transform = null!;
     [Dependency] private SharedSolutionContainerSystem _solution = null!;
@@ -47,6 +56,7 @@ public sealed partial class WallStainSystem : EntitySystem
     private Shared.Chemistry.Reaction.ReactiveReagentEffectEntry _stainCleanEffectEntry = null!;
 
     private float _evaporationAccumulator;
+    private readonly List<(EntityUid Wall, Vector2i Offset)> _wallHits = [];
 
     public override void Initialize()
     {
@@ -62,6 +72,11 @@ public sealed partial class WallStainSystem : EntitySystem
         SubscribeLocalEvent<StainedWallComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<StainedWallComponent, CleanWallStainDoAfterEvent>(OnCleanDoAfter);
         SubscribeLocalEvent<StainedWallComponent, CleanWallStainsEvent>(OnCleanEvent);
+        // Starlight-start: keep an event-driven set of stains which actually need evaporation work.
+        SubscribeLocalEvent<WallStainComponent, MapInitEvent>(OnStainMapInit);
+        SubscribeLocalEvent<WallStainComponent, ComponentShutdown>(OnStainShutdown);
+        SubscribeLocalEvent<WallStainComponent, SolutionChangedEvent>(OnStainSolutionChanged);
+        // Starlight-end
         SubscribeLocalEvent<SpillableComponent, AfterInteractEvent>(OnSpillableAfterInteract);
         SubscribeLocalEvent<SpillableComponent, PourOnWallDoAfterEvent>(OnPourDoAfter);
         SubscribeLocalEvent<SplashOnWallEvent>(OnSplashOnWall);
@@ -82,26 +97,24 @@ public sealed partial class WallStainSystem : EntitySystem
             return;
 
         var tilePos = _map.TileIndicesFor(gridUid.Value, grid, coords);
-        var checkOffsets = new[]
-        {
-            new Vector2i(0, 0),
-            new Vector2i(0, 1),
-            new Vector2i(0, -1),
-            new Vector2i(1, 0),
-            new Vector2i(-1, 0)
-        };
+        _wallHits.Clear();
 
-        foreach (var offset in checkOffsets)
+        foreach (var offset in AdjacentTileOffsets)
         {
             var targetTile = tilePos + offset;
-            var anchored = _map.GetAnchoredEntitiesEnumerator(gridUid.Value, grid, targetTile);
+            var anchored = _map.GetAnchoredEntities(gridUid.Value, grid, targetTile); // Starlight
             while (anchored.MoveNext(out var ent))
             {
                 if (!IsWall(ent.Value))
                     continue;
 
-                ApplyStainToWall(ent.Value, solution, -offset, fraction: 0.25f);
+                _wallHits.Add((ent.Value, offset));
             }
+        }
+
+        foreach (var (wall, offset) in _wallHits)
+        {
+            ApplyStainToWall(wall, solution, -offset, fraction: 0.25f);
         }
     }
 
@@ -150,6 +163,7 @@ public sealed partial class WallStainSystem : EntitySystem
 
             stainComp = Comp<WallStainComponent>(stainUid);
             stainComp.Direction = direction;
+            stainComp.SplatSeed = _random.Next();
             Dirty(stainUid, stainComp);
         }
 
@@ -170,7 +184,7 @@ public sealed partial class WallStainSystem : EntitySystem
             }
         }
 
-        UpdateVisuals(stainUid, stainComp);
+        // Starlight - TryAddSolution raises SolutionChangedEvent, which updates visuals once.
         return actualTransfer;
     }
 
@@ -304,9 +318,11 @@ public sealed partial class WallStainSystem : EntitySystem
                 var totalVolume = solComp.Value.Comp.Solution.Volume;
                 if (totalVolume <= 0)
                     continue;
-                _solution.RemoveAllSolution(solComp.Value);
-                _solution.TryAddReagent(solComp.Value, WaterReagent, totalVolume, out _);
-                UpdateVisuals(child, stain);
+                // Starlight-start: mutate once and issue one solution update.
+                solComp.Value.Comp.Solution.RemoveAllSolution();
+                solComp.Value.Comp.Solution.AddReagent(WaterReagent, totalVolume);
+                _solution.UpdateChemicals(solComp.Value);
+                // Starlight-end
             }
 
             if (TryComp<ForensicsComponent>(uid, out var forensics))
@@ -337,17 +353,26 @@ public sealed partial class WallStainSystem : EntitySystem
         return HasComp<AbsorbentComponent>(uid) || _tag.HasTag(uid, SoapTag);
     }
 
-    private void UpdateVisuals(EntityUid uid, WallStainComponent? comp = null)
+    private void UpdateVisuals(EntityUid uid, WallStainComponent? comp = null, Solution? solution = null) // Starlight
     {
         if (!Resolve(uid, ref comp))
             return;
 
-        if (!_solution.TryGetSolution(uid, comp.SolutionName, out _, out var solution))
+        if (solution == null && !_solution.TryGetSolution(uid, comp.SolutionName, out _, out solution)) // Starlight
             return;
 
         var color = solution.GetColor(_prototype);
-        comp.Color = color.WithAlpha(color.A * 0.6f);
-        comp.StainState = solution.ContainsPrototype(WaterReagent) || solution.ContainsPrototype(SpaceCleanerReagent) ? "drip" : "splatter";
+        // Starlight-start: avoid networking an unchanged visual state.
+        var stainColor = color.WithAlpha(color.A * 0.6f);
+        var stainState = solution.ContainsPrototype(WaterReagent) || solution.ContainsPrototype(SpaceCleanerReagent) ? "drip" : "splatter";
+        var fillLevel = comp.MaxStainVolume > 0 ? (float) (solution.Volume / comp.MaxStainVolume) : 0f;
+        if (comp.Color == stainColor && comp.StainState == stainState && comp.FillLevel == fillLevel)
+            return;
+
+        comp.Color = stainColor;
+        comp.StainState = stainState;
+        comp.FillLevel = fillLevel;
+        // Starlight-end
         Dirty(uid, comp);
     }
 
@@ -361,15 +386,28 @@ public sealed partial class WallStainSystem : EntitySystem
 
         _evaporationAccumulator -= 1f;
 
-        var query = EntityQueryEnumerator<WallStainComponent>();
-        while (query.MoveNext(out var uid, out var stain))
+        // Starlight-start: process only stains known to contain an evaporating reagent.
+        _evaporatingStainsSnapshot.Clear();
+        _evaporatingStainsSnapshot.AddRange(_evaporatingStains);
+
+        foreach (var uid in _evaporatingStainsSnapshot)
         {
-            if (!_solution.TryGetSolution(uid, stain.SolutionName, out var solComp))
+            if (!TryComp<WallStainComponent>(uid, out var stain))
+            {
+                _evaporatingStains.Remove(uid);
                 continue;
+            }
+
+            if (!_solution.TryGetSolution(uid, stain.SolutionName, out var solComp))
+            {
+                _evaporatingStains.Remove(uid);
+                continue;
+            }
 
             var solution = solComp.Value.Comp.Solution;
             if (solution.Volume <= 0)
             {
+                _evaporatingStains.Remove(uid);
                 QueueDel(uid);
                 continue;
             }
@@ -377,29 +415,33 @@ public sealed partial class WallStainSystem : EntitySystem
             var waterQty = solution.GetTotalPrototypeQuantity(WaterReagent);
             var cleanerQty = solution.GetTotalPrototypeQuantity(SpaceCleanerReagent);
 
-            if (waterQty > 0 || cleanerQty > 0)
+            if (waterQty <= 0 && cleanerQty <= 0)
             {
-                var evaporationAmount = FixedPoint2.New(0.5f);
-
-                if (waterQty > 0)
-                {
-                    var toRemove = FixedPoint2.Min(evaporationAmount, waterQty);
-                    _solution.RemoveReagent(solComp.Value, WaterReagent, toRemove);
-                    evaporationAmount -= toRemove;
-                }
-
-                if (evaporationAmount > 0 && cleanerQty > 0)
-                {
-                    var toRemove = FixedPoint2.Min(evaporationAmount, cleanerQty);
-                    _solution.RemoveReagent(solComp.Value, SpaceCleanerReagent, toRemove);
-                }
-
-                _solution.UpdateChemicals(solComp.Value);
-                UpdateVisuals(uid, stain);
+                _evaporatingStains.Remove(uid);
+                continue;
             }
+
+            var evaporationAmount = FixedPoint2.New(0.5f);
+
+            if (waterQty > 0)
+            {
+                var toRemove = FixedPoint2.Min(evaporationAmount, waterQty);
+                solution.RemoveReagent(WaterReagent, toRemove);
+                evaporationAmount -= toRemove;
+            }
+
+            if (evaporationAmount > 0 && cleanerQty > 0)
+            {
+                var toRemove = FixedPoint2.Min(evaporationAmount, cleanerQty);
+                solution.RemoveReagent(SpaceCleanerReagent, toRemove);
+            }
+
+            _solution.UpdateChemicals(solComp.Value);
 
             if (solution.Volume > 0)
                 continue;
+            _evaporatingStains.Remove(uid);
+            // Starlight-end
             var parent = Transform(uid).ParentUid;
 
             Spawn("WallStainSparkle", Transform(uid).Coordinates);
