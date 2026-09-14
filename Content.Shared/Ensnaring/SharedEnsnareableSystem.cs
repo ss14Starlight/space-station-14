@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -158,7 +159,9 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         if (!HasComp<EnsnareableComponent>(target))
             return;
 
-        var freeTime = user == target ? component.BreakoutTime : component.FreeTime;
+        #region Starlight
+        var freeTime = TimeSpan.FromSeconds((double) (user == target ? component.BreakoutTime : component.FreeTime));
+        #endregion
         var breakOnMove = !component.CanMoveBreakout;
 
         var doAfterEventArgs = new DoAfterArgs(EntityManager, user, freeTime, new EnsnareableDoAfterEvent(), target, target: target, used: ensnare)
@@ -281,9 +284,11 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
 
         #region Starlight
         component.EnsnaredHandled = true;
-        #endregion
 
-        Container.Insert(ensnare, ensnareable.Container);
+        var ensnareObject = component.ensnareFreedPrototype != null ? Spawn(component.ensnareFreedPrototype) : ensnare;
+
+        Container.Insert(ensnareObject, ensnareable.Container);
+        #endregion
 
         // Apply stamina damage to target
         if (TryComp<StaminaComponent>(target, out var stamina))

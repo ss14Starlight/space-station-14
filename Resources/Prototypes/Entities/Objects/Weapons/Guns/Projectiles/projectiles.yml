@@ -900,12 +900,12 @@
       - state: grenade
   - type: Projectile
     impactEffect: BulletImpactEffect
-    deleteOnCollide: false
+    deleteOnCollide: true
     damage:
       types:
         Blunt: 0 # Bolas don't do damage
     soundHit:
-      path: /Audio/Effects/hit_kick.ogg
+      path: /Audio/Effects/snap.ogg
   - type: Ensnaring
     freeTime: 2.0
     breakoutTime: 3.5 # all bola should generally be fast to remove
@@ -914,7 +914,7 @@
     staminaDamage: 0 # anything but this is gamebreaking
     canThrowTrigger: false
     canImpactTrigger: true
-    deleteOnImpact: true
+    ensnareFreedPrototype: Bola
     canMoveBreakout: true
     maxEnsnares: 1
 # Starlight-end

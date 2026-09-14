@@ -70,7 +70,14 @@ public sealed partial class EnsnaringComponent : Component
     [DataField]
     public bool CanImpactTrigger;
 
+    [DataField]
     public bool EnsnaredHandled = false;
+
+    /// <summary>
+    /// If we want to replace the original ensnaring item with something else when freed.
+    /// </summary>
+    [DataField]
+    public EntProtoId? ensnareFreedPrototype;
     #endregion
 
     [DataField]
