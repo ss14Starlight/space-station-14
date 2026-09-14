@@ -8,7 +8,7 @@
         board: [DoorElectronicsNtrep]
 
 - type: entity
-  parent: AirlockCommandGlass
+  parent: AirlockNTGlass
   id: AirlockNTGlassLocked
   suffix: Nanotrasen, Locked
   components:
@@ -35,7 +35,7 @@
         board: [DoorElectronicsNtrep]
 
 - type: entity
-  parent: AirlockCommand
+  parent: AirlockNT
   id: AirlockNTLocked
   suffix: Nanotrasen, Locked
   components:
