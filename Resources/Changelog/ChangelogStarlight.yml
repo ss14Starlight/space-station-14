@@ -1,13 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: Dragon gained an counter which limits amount of Sharkminnows.
-    type: Add
-  id: 408225
-  time: '2026-09-05T22:44:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5886
-- author: SirLutz
-  changes:
   - message: RiftShark have an 5% chance to spawn instead of an carp from an Dragonrift.
     type: Add
   id: 408226
@@ -2799,4 +2792,11 @@ Entries:
   id: 408624
   time: '2026-09-14T13:45:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6074
+- author: FishtopherDoe
+  changes:
+  - message: Fixed the ETO medipen and the Advanced medipen, alongside fixing the combat stim injector so it actually starts with its injection. also fixes some small grammar issues on some eto items.
+    type: Fix
+  id: 408625
+  time: '2026-09-14T14:15:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6060
 Order: -1
