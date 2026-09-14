@@ -40,8 +40,10 @@ using Robust.Shared.Utility;
 // Starlight Start
 using Content.Shared._Starlight.Chat;
 using Content.Shared._Starlight.Language.Systems;
+using Content.Shared.Humanoid;
 using Content.Shared._Starlight.Radio;
 using Content.Server._Starlight.TextToSpeech;
+using Content.Shared._Starlight.Humanoid.IgnoreHumanoids;
 // Starlight End
 
 namespace Content.Server.Chat.Systems;
@@ -551,7 +553,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         var wrappedObfuscated = WrapPublicMessage(source, name, obfuscated, language: language, obfuscated: true);
         // Starlight End
 
-        SendInVoiceRange(ChatChannel.Local, name, message.Text, wrappedMessage, obfuscated, wrappedObfuscated, source, range, languageOverride: language); // Starlight-edit: Languages
+        SendInVoiceRange(ChatChannel.Local, message.Text, wrappedMessage, obfuscated, wrappedObfuscated, source, range, languageOverride: language); // Starlight-edit: Languages and ignoreHumanoidOverlay
 
         var ev = new EntitySpokeEvent(source, message, null, null, false, language); // Starlight-edit: Languages
         RaiseLocalEvent(source, ev, true);
@@ -728,7 +730,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             !TryEmoteChatInput(source, action))
             return;
 
-        SendInVoiceRange(ChatChannel.Emotes, name, action, wrappedMessage, obfuscated: "", obfuscatedWrappedMessage: "", source, range, author); // Starlight
+        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, obfuscated: "", obfuscatedWrappedMessage: "", source, range, author); // Starlight
         if (!hideLog)
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {source} as {name}: {action}");
@@ -759,7 +761,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entityName", name),
             ("message", FormattedMessage.EscapeText(message)));
 
-        SendInVoiceRange(ChatChannel.LOOC, name, message, wrappedMessage,
+        SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, // Starlight edit
             obfuscated: string.Empty,
             obfuscatedWrappedMessage: string.Empty, // will be skipped anyway
             source,
@@ -802,6 +804,17 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     #region Utility
 
+    #region Starlight
+    private string WrapAnonymizedMessage(ChatChannel channel, EntityUid source, string content, string unknownName, LanguagePrototype language, string fallback, bool isObfuscated = false) =>
+        channel switch
+        {
+            ChatChannel.Local => WrapPublicMessage(source, unknownName, content, language: language, obfuscated: isObfuscated),
+            ChatChannel.Whisper => WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", unknownName, content, language),
+            ChatChannel.Emotes => WrapMessage("chat-manager-entity-emote-wrap-message", InGameICChatType.Emote, source, unknownName, content, language),
+            ChatChannel.LOOC => Loc.GetString("chat-manager-entity-looc-wrap-message", ("entityName", unknownName), ("message", FormattedMessage.EscapeText(content))),
+            _ => fallback
+        };
+    #endregion
     private enum MessageRangeCheckResult
     {
         Disallowed,
@@ -851,7 +864,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     Sends a chat message to the given players in range of the source entity.
     /// </summary>
-    private void SendInVoiceRange(ChatChannel channel, string name, string message, string wrappedMessage, string obfuscated, string obfuscatedWrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null, LanguagePrototype? languageOverride = null) // Starlight
+    private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, string obfuscated, string obfuscatedWrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null, LanguagePrototype? languageOverride = null) // Starlight
     {
         // Starlight - Start
         var ignoreLanguage = channel.IsExemptFromLanguages();
@@ -874,10 +887,20 @@ public sealed partial class ChatSystem : SharedChatSystem
             EntityUid listener = session.AttachedEntity.Value;
 
             // If the channel does not support languages, or the entity can understand the message, send the original message, otherwise send the obfuscated version
+            var displayWrappedMessage = wrappedMessage;
+            var displayObfuscatedMessage = obfuscatedWrappedMessage;
+
+            if (HasComp<IgnoreHumanoidsComponent>(listener) && HasComp<HumanoidAppearanceComponent>(source))
+            {
+                var unknownName = Loc.GetString("ignore-humanoids-unknown-name");
+                displayWrappedMessage = WrapAnonymizedMessage(channel, source, message, unknownName, language, wrappedMessage, false);
+                displayObfuscatedMessage = WrapAnonymizedMessage(channel, source, obfuscated, unknownName, language, obfuscatedWrappedMessage, true);
+            }
+
             if (ignoreLanguage || _language.CanUnderstand(listener, language.ID))
-                _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author);
+                _chatManager.ChatMessageToOne(channel, message, displayWrappedMessage, source, entHideChat, session.Channel, author: author);
             else
-                _chatManager.ChatMessageToOne(channel, obfuscated, obfuscatedWrappedMessage, source, entHideChat, session.Channel, author: author);
+                _chatManager.ChatMessageToOne(channel, obfuscated, displayObfuscatedMessage, source, entHideChat, session.Channel, author: author);
             // Starlight - end
         }
 

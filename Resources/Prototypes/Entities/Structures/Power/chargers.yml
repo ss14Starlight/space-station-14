@@ -262,6 +262,7 @@
       - BorgChassis
       tags:
       - IPC
+      - Drone # Starlight: Drones
   - type: Construction
     containers:
     - machine_parts
@@ -307,6 +308,7 @@
       - BorgChassis
       tags:
       - IPC
+      - Drone # Starlight: Drones
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container
