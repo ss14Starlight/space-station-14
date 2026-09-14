@@ -1,25 +1,4 @@
 Entries:
-- author: qbrx
-  changes:
-  - message: Changeling's Fleshmend ability requires a stomach to activate.
-    type: Tweak
-  id: 408156
-  time: '2026-09-05T15:27:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5970
-- author: Cvlancer
-  changes:
-  - message: (Cluster) Added all departmental techfabs with service being near clown/mime room.
-    type: Add
-  id: 408157
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
-- author: Cvlancer
-  changes:
-  - message: (Cluster) Added all departmental mailboxes.
-    type: Add
-  id: 408158
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
 - author: Cvlancer
   changes:
   - message: (Cluster) Added a cyborg charger and intellicard to ai core.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408555
   time: '2026-09-14T04:15:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: ya314a, Fahreyy, Teddiousbear.
+  changes:
+  - message: 16 New Jumpsuits.
+    type: Add
+  id: 408556
+  time: '2026-09-14T07:34:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6038
+- author: ya314a, Fahreyy, Teddiousbear.
+  changes:
+  - message: 16 New Jumpskirts.
+    type: Add
+  id: 408557
+  time: '2026-09-14T07:34:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6038
+- author: ya314a, Fahreyy, Teddiousbear.
+  changes:
+  - message: 24 New Beret/BountyHunterHats/Caps.
+    type: Add
+  id: 408558
+  time: '2026-09-14T07:34:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6038
 Order: -1
