@@ -1,137 +1,4 @@
 Entries:
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
-  - message: Salvage Access From Command.
-    type: Remove
-  id: 408131
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
-  - message: Cargo Access from Salvage.
-    type: Remove
-  id: 408132
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
-  - message: Salvage bay's from all stations.
-    type: Remove
-  id: 408133
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
-- author: Swonki, Born Stellar, Mikeysaurus, itsmaitake
-  changes:
-  - message: Salvage steal objectives.
-    type: Remove
-  id: 408134
-  time: '2026-09-05T13:46:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5619
-- author: Glomzubuk
-  changes:
-  - message: Reverted cryopod inject speed back to pre-ui update values.
-    type: Tweak
-  id: 408135
-  time: '2026-09-05T14:10:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5829
-- author: Way
-  changes:
-  - message: (Novo Lobster) Snow Storm ambience is slightly louder.
-    type: Tweak
-  id: 408136
-  time: '2026-09-05T14:10:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5770
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a single k9 spawn inside.
-    type: Add
-  id: 408137
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added all mailboxes.
-    type: Add
-  id: 408138
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a lawyer's office by shrinking NCT office near chapel.
-    type: Add
-  id: 408139
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added box shelf storage to science storage room,cargo front, maints shop, gen pop island cargo dock.
-    type: Add
-  id: 408140
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a TON of toilet paper and hand santizers to several of the bathrooms and sinks.
-    type: Add
-  id: 408141
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added two k9 to sepultum via prototypes (Spawners already mapped in).
-    type: Add
-  id: 408142
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Changed trimmed some grass near evac.
-    type: Tweak
-  id: 408143
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Changed nct office to be ALOT smaller.
-    type: Tweak
-  id: 408144
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Makeshift
-  changes:
-  - message: (Plasma) Radio Host!
-    type: Add
-  id: 408145
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) NCT Office.
-    type: Remove
-  id: 408146
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) K9 to security!
-    type: Add
-  id: 408147
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Departmental Techfabs.
-    type: Add
-  id: 408148
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Mailboxes for departments.
-    type: Add
-  id: 408149
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
 - author: Makeshift
   changes:
   - message: (Plasma) Shelves.
@@ -2799,4 +2666,137 @@ Entries:
   id: 408530
   time: '2026-09-13T18:35:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6095
+- author: wonderfulnewworld, mkanke, Tea, Frogoo, TheSecondLord, ratsmageddon, Miish, G, Sparlight, gaesnek, ItsMaitake
+  changes:
+  - message: Added over 40 new Arti Sci nodes as well as mobs and objects to populate them.
+    type: Add
+  id: 408531
+  time: '2026-09-13T22:06:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5982
+- author: wonderfulnewworld, mkanke, Tea, Frogoo, TheSecondLord, ratsmageddon, Miish, G, Sparlight, gaesnek, ItsMaitake
+  changes:
+  - message: Added over 20 new triggers that an Artifact can require to activate.
+    type: Add
+  id: 408532
+  time: '2026-09-13T22:06:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5982
+- author: wonderfulnewworld, mkanke, Tea, Frogoo, TheSecondLord, ratsmageddon, Miish, G, Sparlight, gaesnek, ItsMaitake
+  changes:
+  - message: Meowls, available at cargo.
+    type: Add
+  id: 408533
+  time: '2026-09-13T22:06:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5982
+- author: wonderfulnewworld, mkanke, Tea, Frogoo, TheSecondLord, ratsmageddon, Miish, G, Sparlight, gaesnek, ItsMaitake
+  changes:
+  - message: Artifacts, on average, are 4 nodes bigger, but they can also be both wider and taller now.
+    type: Tweak
+  id: 408534
+  time: '2026-09-13T22:06:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5982
+- author: Sir Lutz
+  changes:
+  - message: flatarmor from Carps.
+    type: Remove
+  id: 408535
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Sir Lutz
+  changes:
+  - message: Dragon rift rarespawns have been reduced, base spawn Holocarp from 20% to 7%, sharks from 5% to 2% (they are doubled when the rift is finished).
+    type: Tweak
+  id: 408536
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Sir Lutz
+  changes:
+  - message: Dragon Sharkminnows health has been lowered from 150HP to 120HP.
+    type: Tweak
+  id: 408537
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Sir Lutz
+  changes:
+  - message: CarpResistance pierce has been lowered from 50% to 35%.
+    type: Tweak
+  id: 408538
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Citrea
+  changes:
+  - message: Dolls now have spooky, edible blood, which does not have healing properties for them.
+    type: Tweak
+  id: 408539
+  time: '2026-09-13T23:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6104
+- author: Citrea
+  changes:
+  - message: Doll blood healing reduced by 50%.
+    type: Tweak
+  id: 408540
+  time: '2026-09-13T23:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6104
+- author: Citrea
+  changes:
+  - message: Dolls with Fox and Moth masks can now use the respective emotes.
+    type: Add
+  id: 408541
+  time: '2026-09-13T23:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6104
+- author: wonderfulnewworld
+  changes:
+  - message: Walking in water tiles (not puddles) now gradually cleans your clothes.
+    type: Add
+  id: 408542
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Washing yourself in a washing machine now cleans your clothes.
+    type: Add
+  id: 408543
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: You can now examine stains on your clothes.
+    type: Add
+  id: 408544
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: The atmos fire extinguisher and bluespace fire extinguisher now accept bleach.
+    type: Add
+  id: 408545
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Wringing out/washing clothes with toggleable components now also cleans the toggleable part.
+    type: Tweak
+  id: 408546
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Wring out time is a little faster.
+    type: Tweak
+  id: 408547
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Wringing out your clothes now spills the liquid on the tile in front of you, instead of right below you, so you don't immediately get dirty again.
+    type: Tweak
+  id: 408548
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Using soap on your clothes now also cleans stains off of them.
+    type: Tweak
+  id: 408549
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
 Order: -1
