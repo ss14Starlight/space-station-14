@@ -1,46 +1,4 @@
 Entries:
-- author: Makeshift
-  changes:
-  - message: (Plasma) Shelves.
-    type: Add
-  id: 408150
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Vault now stocks a little bit of silver!
-    type: Add
-  id: 408151
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Cargo now has full pipe dock compatibility! Engineering still needs to finish the gas line, though.
-    type: Add
-  id: 408152
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) General aesthetic tweaks.
-    type: Tweak
-  id: 408153
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Minor fixes.
-    type: Fix
-  id: 408154
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: qbrx
-  changes:
-  - message: Changeling's Fleshmend ability transfers Ichor into the stomach, allowing it to digest.
-    type: Tweak
-  id: 408155
-  time: '2026-09-05T15:27:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5970
 - author: qbrx
   changes:
   - message: Changeling's Fleshmend ability requires a stomach to activate.
@@ -2799,4 +2757,46 @@ Entries:
   id: 408549
   time: '2026-09-13T23:58:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: Caws
+  changes:
+  - message: The right-click menu "Physical Social Interaction" has been renamed to "Social Interaction".
+    type: Tweak
+  id: 408550
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: Caws
+  changes:
+  - message: You can now Wave at people through the Social Interaction right-click menu.
+    type: Add
+  id: 408551
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: Caws
+  changes:
+  - message: You can now Look at people through the Social Interaction right-click menu.
+    type: Add
+  id: 408552
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: Caws
+  changes:
+  - message: All Social Interactions now have sounds. Some sounds only play for the target, like Wave and Look to help you distinguish if someone is waving at you specifically.
+    type: Add
+  id: 408553
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: Caws
+  changes:
+  - message: Social Interactions now post an emote message in chat when you perform them.
+    type: Add
+  id: 408554
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: Caws
+  changes:
+  - message: Social Interactions can be performed on a wider variety of entities now, allowing you to finally be able to Boop or Pet Ian.
+    type: Add
+  id: 408555
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
 Order: -1

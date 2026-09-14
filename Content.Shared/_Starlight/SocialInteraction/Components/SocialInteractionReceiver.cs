@@ -1,9 +1,9 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.PhysicalSocialInteraction.Components;
+namespace Content.Shared._Starlight.SocialInteraction.Components;
 
 [RegisterComponent]
-public sealed partial class PhysicalSocialInteractionReceiverComponent : Component
+public sealed partial class SocialInteractionReceiverComponent : Component
 {
     //list of all valid physical social interaction prototypes
     /// <summary>
@@ -11,5 +11,5 @@ public sealed partial class PhysicalSocialInteractionReceiverComponent : Compone
     /// Anything defined in this list will be ADDED to the parents list, if it exists
     /// </summary>
     [DataField, AlwaysPushInheritance]
-    public List<ProtoId<PhysicalSocialInteractionPrototype>> InteractionPrototypes = new();
+    public List<ProtoId<SocialInteractionPrototype>> InteractionPrototypes = new();
 }
