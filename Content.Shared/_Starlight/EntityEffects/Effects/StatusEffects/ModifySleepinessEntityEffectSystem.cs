@@ -14,12 +14,7 @@ public sealed partial class ModifySleepinessEntityEffectSystem : EntityEffectSys
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private StatusEffectsSystem _status = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-    }
-
+    public override void Initialize() => base.Initialize();
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<ModifySleepiness> args)
     {
         if (args.Effect.Time is not { } effectTime)
