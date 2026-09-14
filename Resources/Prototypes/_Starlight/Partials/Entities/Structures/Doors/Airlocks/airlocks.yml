@@ -1,0 +1,23 @@
+- type: entity
+  parent: Airlock
+  id: AirlockNT
+  suffix: Nanotrasen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/Nanotrasen.rsi
+  - type: Wires
+    layoutId: AirlockNanotrasen
+  - type: Paintable
+    group: AirlockStandard
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockNTGlass
+  suffix: Nanotrasen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/Nanotrasen.rsi
+  - type: Wires
+    layoutId: AirlockNanotrasen
+  - type: Paintable
+    group: AirlockGlass
