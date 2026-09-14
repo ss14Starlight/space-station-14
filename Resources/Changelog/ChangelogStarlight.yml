@@ -1,34 +1,6 @@
 Entries:
 - author: Swonki, SirLutz
   changes:
-  - message: Malign Minions (0.1) and the Colossus (0.2) now regenerate health while standing on malign tiles.
-    type: Add
-  id: 408167
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
-  - message: Malign Minions and the Colossus can come back from death, make sure to destroy them.
-    type: Add
-  id: 408168
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
-  - message: Added new damage modifiers for Malign Minions and the Colossus, providing increased piercing resistance and flat damage reduction against cold damage.
-    type: Add
-  id: 408169
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
-  - message: Malign Oracles now have thermal vision, allowing them to better guide and advise their fellow Minions.
-    type: Add
-  id: 408170
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
   - message: The Colossus can now use the Ingress ability on rifts, transforming them into Malign Empowered Rifts.
     type: Add
   id: 408171
@@ -2799,4 +2771,32 @@ Entries:
   id: 408566
   time: '2026-09-14T09:24:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6115
+- author: wonderfulnewworld, YaraaraY
+  changes:
+  - message: Wall stains no longer have mixels.
+    type: Tweak
+  id: 408567
+  time: '2026-09-14T09:54:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6120
+- author: wonderfulnewworld, YaraaraY
+  changes:
+  - message: Wall stains will now visibly vary depending on how much liquid is on them.
+    type: Tweak
+  id: 408568
+  time: '2026-09-14T09:54:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6120
+- author: wonderfulnewworld, YaraaraY
+  changes:
+  - message: Reduced server CPU cost of reagent fires, flammable clothes, and flammable wall stains by throttling their update rate.
+    type: Tweak
+  id: 408569
+  time: '2026-09-14T09:54:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6120
+- author: wonderfulnewworld, YaraaraY
+  changes:
+  - message: Fires should spread a little slower.
+    type: Fix
+  id: 408570
+  time: '2026-09-14T09:54:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6120
 Order: -1
