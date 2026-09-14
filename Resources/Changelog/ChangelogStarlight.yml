@@ -1,11 +1,4 @@
 Entries:
-- author: SirLutz
-  changes:
-  - message: An finished Rift has an 10% chance for Sharks and 30% for an Holocarp to replace an regular carp.
-    type: Add
-  id: 408228
-  time: '2026-09-05T22:44:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5886
 - author: Limblesstar, Teddiousbear.
   changes:
   - message: 6 new items to Salvage Ticket Box.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408627
   time: '2026-09-14T14:15:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6105
+- author: RedSpeeds
+  changes:
+  - message: Fixed Tongue containing body emotes and it overriding existing emotes.
+    type: Fix
+  id: 408628
+  time: '2026-09-14T14:44:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6112
 Order: -1
