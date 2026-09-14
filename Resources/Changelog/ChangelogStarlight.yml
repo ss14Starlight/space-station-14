@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Bagel) Added a nuclear reactor east if PA room.
-    type: Add
-  id: 408164
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
-- author: Cvlancer
-  changes:
   - message: (Bagel) Added a single k9 to security.
     type: Add
   id: 408165
@@ -2799,4 +2792,11 @@ Entries:
   id: 408563
   time: '2026-09-14T08:58:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6096
+- author: RedSpeeds
+  changes:
+  - message: Changed Groupchat to have a member limit of 30 to combat lag.
+    type: Tweak
+  id: 408564
+  time: '2026-09-14T09:24:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6111
 Order: -1
