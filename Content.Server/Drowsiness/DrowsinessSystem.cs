@@ -2,6 +2,7 @@
 using Content.Shared.Drowsiness;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
+using Content.Shared._Starlight.Sleepiness.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -43,7 +44,17 @@ public sealed partial class DrowsinessSystem : SharedDrowsinessSystem
 
             // Starlight - Start
             if (drowsiness.SleepIncident)
-                _statusEffects.TryAddStatusEffectDuration(statusEffect.AppliedTo.Value, "StatusEffectSleepiness", duration);
+            {
+                var target = statusEffect.AppliedTo.Value;
+                _statusEffects.TryAddStatusEffectDuration(target, "StatusEffectSleepiness", duration);
+
+                if (_statusEffects.TryGetTime(target, "StatusEffectSleepiness", out var sleepinessEffect) &&
+                    TryComp<SleepinessStatusEffectComponent>(sleepinessEffect.EffectEnt, out var sleepiness))
+                {
+                    sleepiness.SleepImmediately = true;
+                    Dirty(sleepinessEffect.EffectEnt, sleepiness);
+                }
+            }
 
             if (drowsiness.KnockdownIncident)
                 _stunSystem.TryKnockdown(statusEffect.AppliedTo.Value, duration, force: true);

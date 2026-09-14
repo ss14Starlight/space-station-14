@@ -10,4 +10,3 @@
     maximumDuration: 2m
   - type: SleepinessStatusEffect
     sleepThreshold: 30s
-    recoveryThreshold: 5s

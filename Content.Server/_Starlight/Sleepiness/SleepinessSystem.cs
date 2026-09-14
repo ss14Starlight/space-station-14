@@ -62,16 +62,6 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
                 Dirty(uid, sleepiness);
             }
 
-            if (remaining <= sleepiness.RecoveryThreshold)
-            {
-                if (!TryComp<SleepingComponent>(target, out var sleeping))
-                    continue;
-
-                _sleeping.TryWaking((target, sleeping), ignoreSsd: true);
-
-                continue;
-            }
-
             if (sleepiness.WakeRequested && remaining < sleepiness.SleepThreshold)
             {
                 sleepiness.WakeRequested = false;

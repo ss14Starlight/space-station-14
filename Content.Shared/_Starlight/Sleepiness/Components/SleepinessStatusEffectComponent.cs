@@ -21,12 +21,6 @@ public sealed partial class SleepinessStatusEffectComponent : Component
     public bool SleepImmediately;
 
     /// <summary>
-    /// Remaining sleepiness duration at which recovery automatically wakes the entity. Defaults to 10 seconds.
-    /// </summary>
-    [DataField]
-    public TimeSpan RecoveryThreshold = TimeSpan.FromSeconds(10);
-
-    /// <summary>
     /// Reagent used to induce sleep when the configured induction threshold is reached.
     /// </summary>
     [DataField]
