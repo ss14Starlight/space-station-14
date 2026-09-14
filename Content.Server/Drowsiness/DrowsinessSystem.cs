@@ -1,5 +1,4 @@
 ﻿using Content.Server.Stunnable;
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Drowsiness;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
@@ -16,15 +15,14 @@ public sealed partial class DrowsinessSystem : SharedDrowsinessSystem
     [Dependency] private StunSystem _stunSystem = default!; // Starlight
 
     /// <inheritdoc/>
-    public override void Initialize()
-    {
+    public override void Initialize() =>
         SubscribeLocalEvent<DrowsinessStatusEffectComponent, StatusEffectAppliedEvent>(OnEffectApplied);
-    }
 
-    private void OnEffectApplied(Entity<DrowsinessStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
-    {
-        ent.Comp.NextIncidentTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(ent.Comp.TimeBetweenIncidents.X, ent.Comp.TimeBetweenIncidents.Y));
-    }
+    private void OnEffectApplied(Entity<DrowsinessStatusEffectComponent> ent, ref StatusEffectAppliedEvent args) => ent.Comp.NextIncidentTime = _timing.CurTime + GetIncidentDelay(ent.Comp);
+
+    private TimeSpan GetIncidentDelay(DrowsinessStatusEffectComponent drowsiness) => TimeSpan.FromSeconds(_random.NextFloat(
+        drowsiness.SleepIncident ? drowsiness.SleepinessTimeBetweenIncidents.X : drowsiness.TimeBetweenIncidents.X,
+        drowsiness.SleepIncident ? drowsiness.SleepinessTimeBetweenIncidents.Y : drowsiness.TimeBetweenIncidents.Y));
 
     public override void Update(float frameTime)
     {
@@ -39,21 +37,28 @@ public sealed partial class DrowsinessSystem : SharedDrowsinessSystem
             if (statusEffect.AppliedTo is null)
                 continue;
 
-            // Set the new time.
-            drowsiness.NextIncidentTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(drowsiness.TimeBetweenIncidents.X, drowsiness.TimeBetweenIncidents.Y));
-
-            // sleep duration
-            var duration = TimeSpan.FromSeconds(_random.NextFloat(drowsiness.DurationOfIncident.X, drowsiness.DurationOfIncident.Y));
-
-            // Make sure the sleep time doesn't cut into the time to next incident.
-            drowsiness.NextIncidentTime += duration;
-
             // Starlight - Start
             if (drowsiness.SleepIncident)
-                _statusEffects.TryAddStatusEffectDuration(statusEffect.AppliedTo.Value, SleepingSystem.StatusEffectForcedSleeping, duration);
+            {
+                drowsiness.NextIncidentTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(
+                    drowsiness.SleepinessTimeBetweenIncidents.X, drowsiness.SleepinessTimeBetweenIncidents.Y));
+
+                var sleepiness = TimeSpan.FromSeconds(_random.NextFloat(
+                    drowsiness.SleepinessIncrement.X, drowsiness.SleepinessIncrement.Y));
+                _statusEffects.TryAddStatusEffectDuration(statusEffect.AppliedTo.Value, "StatusEffectSleepiness", sleepiness);
+            }
 
             if (drowsiness.KnockdownIncident)
+            {
+                var duration = TimeSpan.FromSeconds(_random.NextFloat(drowsiness.DurationOfIncident.X, drowsiness.DurationOfIncident.Y));
+                drowsiness.NextIncidentTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(
+                    drowsiness.TimeBetweenIncidents.X, drowsiness.TimeBetweenIncidents.Y)) + duration;
                 _stunSystem.TryKnockdown(statusEffect.AppliedTo.Value, duration, force: true);
+            }
+
+            if (!drowsiness.SleepIncident && !drowsiness.KnockdownIncident)
+                drowsiness.NextIncidentTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(
+                    drowsiness.TimeBetweenIncidents.X, drowsiness.TimeBetweenIncidents.Y));
             // Starlight - End
         }
     }
