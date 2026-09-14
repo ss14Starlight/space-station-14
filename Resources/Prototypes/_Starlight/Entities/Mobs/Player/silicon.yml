@@ -9,6 +9,7 @@
     context: "human"
   - type: MovementAlwaysTouching
   - type: NoSlip
+  - type: Pacified
   - type: Fixtures
     fixtures:
       fix1:
