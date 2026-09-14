@@ -234,6 +234,21 @@
   description: flavor-complex-tesla-ice-cream
 
 - type: flavor
+  id: chocolateMilk
+  flavorType: Complex
+  description: flavor-complex-chocolate-milk
+
+- type: flavor
+  id: strawberryMilk
+  flavorType: Complex
+  description: flavor-complex-strawberry-milk
+
+- type: flavor
+  id: bananaMilk
+  flavorType: Complex
+  description: flavor-complex-banana-milk
+
+- type: flavor
   id: bananaIceCream
   flavorType: Complex
   description: flavor-complex-banana-ice-cream

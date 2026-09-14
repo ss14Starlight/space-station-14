@@ -1,0 +1,43 @@
+- type: !PartialOnly emoteSounds
+  id: MaleHuman
+  sounds:
+    Mew:
+      collection: FelionoidMews
+    Meow:
+      collection: FelionoidMeows
+    Trill:
+      collection: FelionoidTrills
+    Bark:
+      collection: Bark
+    Yip:
+      path: /Audio/_Starlight/Effects/yip.ogg
+    Whine:
+      collection: Whine
+    Growl:
+      collection: Growl
+    Howl:
+      path: /Audio/_Starlight/Effects/howl.ogg
+    Chitter:
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+
+- type: !PartialOnly emoteSounds
+  id: FemaleHuman
+  sounds:
+    Mew:
+      collection: FelionoidMews
+    Meow:
+      collection: FelionoidMeows
+    Trill:
+      collection: FelionoidTrills
+    Bark:
+      collection: Bark
+    Yip:
+      path: /Audio/_Starlight/Effects/yip.ogg
+    Whine:
+      collection: Whine
+    Growl:
+      collection: Growl
+    Howl:
+      path: /Audio/_Starlight/Effects/howl.ogg
+    Chitter:
+      path: /Audio/Voice/Moth/moth_chitter.ogg
