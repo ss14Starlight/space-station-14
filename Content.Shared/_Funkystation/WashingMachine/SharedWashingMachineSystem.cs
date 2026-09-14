@@ -1,13 +1,10 @@
-﻿using System.Linq;
-using Content.Shared._Funkystation.Stains.Components;
+using System.Linq;
 using Content.Shared._Funkystation.Stains.Systems;
 using Content.Shared._Starlight.Lube;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
 using Content.Shared.Glue;
@@ -40,7 +37,6 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private DamageableSystem _damageable = null!;
     [Dependency] private ReactiveSystem _reactive = null!;
-    [Dependency] private SharedSolutionContainerSystem _solution = default!;
     [Dependency] private SharedStainSystem _stains = default!;
     [Dependency] private SharedCreamPieSystem _creamPie = default!; // Starlight
     [Dependency] private GlueSystem _glueSystem = default!;  // Starlight
@@ -72,10 +68,7 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnMapInit(Entity<WashingMachineComponent> ent, ref MapInitEvent args)
-    {
-        _appearance.SetData(ent.Owner, WashingMachineVisuals.State, ent.Comp.State);
-    }
+    private void OnMapInit(Entity<WashingMachineComponent> ent, ref MapInitEvent args) => _appearance.SetData(ent.Owner, WashingMachineVisuals.State, ent.Comp.State);
 
     [SubscribeLocalEvent]
     private void OnBreak(Entity<WashingMachineComponent> ent, ref BreakageEventArgs args)
@@ -210,13 +203,10 @@ public abstract partial class SharedWashingMachineSystem : EntitySystem
                     _lubedSystem.RemoveLubed(item);
                 if (HasComp<GluedComponent>(item))
                     _glueSystem.RemoveGlued(item);
-                // Starlight End
 
-                if (TryComp<StainableComponent>(item, out var stain) && _solution.TryGetSolution(item, stain.SolutionName, out var sol))
-                {
-                    _solution.RemoveAllSolution(sol.Value);
-                    _stains.UpdateVisuals((item, stain));
-                }
+                _stains.CleanStains(item);
+                _stains.CleanEquippedClothing(item);
+                // Starlight End
             }
         }
 

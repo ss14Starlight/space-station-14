@@ -46,3 +46,8 @@ flavor-complex-fluffy-boy-ice-cream = like vanilla, lime, and a gentle kindness
 flavor-complex-leader-ice-cream = like vanilla, blueberry, and a crunchy sword cookie
 flavor-complex-tesla-ice-cream = like vanilla and your hairs raising up
 flavor-base-cinnamon = cinnamony
+
+# Milks
+flavor-complex-chocolate-milk = like chocolate milk
+flavor-complex-strawberry-milk = like strawberry milk
+flavor-complex-banana-milk = like banana milk

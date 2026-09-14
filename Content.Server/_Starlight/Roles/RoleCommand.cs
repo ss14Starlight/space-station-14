@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Runtime.InteropServices;
-using Content.Server._Starlight.Commands;
-using Content.Server._Starlight.Toolshed;
+using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
 using Content.Server.Mind;
 using Content.Server.Roles;
