@@ -1,179 +1,4 @@
 Entries:
-- author: Glomzubuk
-  changes:
-  - message: Reverted cryopod inject speed back to pre-ui update values.
-    type: Tweak
-  id: 408135
-  time: '2026-09-05T14:10:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5829
-- author: Way
-  changes:
-  - message: (Novo Lobster) Snow Storm ambience is slightly louder.
-    type: Tweak
-  id: 408136
-  time: '2026-09-05T14:10:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5770
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a single k9 spawn inside.
-    type: Add
-  id: 408137
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added all mailboxes.
-    type: Add
-  id: 408138
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a lawyer's office by shrinking NCT office near chapel.
-    type: Add
-  id: 408139
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added box shelf storage to science storage room,cargo front, maints shop, gen pop island cargo dock.
-    type: Add
-  id: 408140
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Added a TON of toilet paper and hand santizers to several of the bathrooms and sinks.
-    type: Add
-  id: 408141
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added two k9 to sepultum via prototypes (Spawners already mapped in).
-    type: Add
-  id: 408142
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Changed trimmed some grass near evac.
-    type: Tweak
-  id: 408143
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Cvlancer
-  changes:
-  - message: (Oasis) Changed nct office to be ALOT smaller.
-    type: Tweak
-  id: 408144
-  time: '2026-09-05T14:38:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5947
-- author: Makeshift
-  changes:
-  - message: (Plasma) Radio Host!
-    type: Add
-  id: 408145
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) NCT Office.
-    type: Remove
-  id: 408146
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) K9 to security!
-    type: Add
-  id: 408147
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Departmental Techfabs.
-    type: Add
-  id: 408148
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Mailboxes for departments.
-    type: Add
-  id: 408149
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Shelves.
-    type: Add
-  id: 408150
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Vault now stocks a little bit of silver!
-    type: Add
-  id: 408151
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Cargo now has full pipe dock compatibility! Engineering still needs to finish the gas line, though.
-    type: Add
-  id: 408152
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) General aesthetic tweaks.
-    type: Tweak
-  id: 408153
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: Makeshift
-  changes:
-  - message: (Plasma) Minor fixes.
-    type: Fix
-  id: 408154
-  time: '2026-09-05T15:06:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5965
-- author: qbrx
-  changes:
-  - message: Changeling's Fleshmend ability transfers Ichor into the stomach, allowing it to digest.
-    type: Tweak
-  id: 408155
-  time: '2026-09-05T15:27:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5970
-- author: qbrx
-  changes:
-  - message: Changeling's Fleshmend ability requires a stomach to activate.
-    type: Tweak
-  id: 408156
-  time: '2026-09-05T15:27:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5970
-- author: Cvlancer
-  changes:
-  - message: (Cluster) Added all departmental techfabs with service being near clown/mime room.
-    type: Add
-  id: 408157
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
-- author: Cvlancer
-  changes:
-  - message: (Cluster) Added all departmental mailboxes.
-    type: Add
-  id: 408158
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
-- author: Cvlancer
-  changes:
-  - message: (Cluster) Added a cyborg charger and intellicard to ai core.
-    type: Add
-  id: 408159
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
 - author: Cvlancer
   changes:
   - message: (Cluster) Removed infinite power generation from ai core.
@@ -2799,4 +2624,179 @@ Entries:
   id: 408534
   time: '2026-09-13T22:06:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5982
+- author: Sir Lutz
+  changes:
+  - message: flatarmor from Carps.
+    type: Remove
+  id: 408535
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Sir Lutz
+  changes:
+  - message: Dragon rift rarespawns have been reduced, base spawn Holocarp from 20% to 7%, sharks from 5% to 2% (they are doubled when the rift is finished).
+    type: Tweak
+  id: 408536
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Sir Lutz
+  changes:
+  - message: Dragon Sharkminnows health has been lowered from 150HP to 120HP.
+    type: Tweak
+  id: 408537
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Sir Lutz
+  changes:
+  - message: CarpResistance pierce has been lowered from 50% to 35%.
+    type: Tweak
+  id: 408538
+  time: '2026-09-13T23:01:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6154
+- author: Citrea
+  changes:
+  - message: Dolls now have spooky, edible blood, which does not have healing properties for them.
+    type: Tweak
+  id: 408539
+  time: '2026-09-13T23:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6104
+- author: Citrea
+  changes:
+  - message: Doll blood healing reduced by 50%.
+    type: Tweak
+  id: 408540
+  time: '2026-09-13T23:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6104
+- author: Citrea
+  changes:
+  - message: Dolls with Fox and Moth masks can now use the respective emotes.
+    type: Add
+  id: 408541
+  time: '2026-09-13T23:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6104
+- author: wonderfulnewworld
+  changes:
+  - message: Walking in water tiles (not puddles) now gradually cleans your clothes.
+    type: Add
+  id: 408542
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Washing yourself in a washing machine now cleans your clothes.
+    type: Add
+  id: 408543
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: You can now examine stains on your clothes.
+    type: Add
+  id: 408544
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: The atmos fire extinguisher and bluespace fire extinguisher now accept bleach.
+    type: Add
+  id: 408545
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Wringing out/washing clothes with toggleable components now also cleans the toggleable part.
+    type: Tweak
+  id: 408546
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Wring out time is a little faster.
+    type: Tweak
+  id: 408547
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Wringing out your clothes now spills the liquid on the tile in front of you, instead of right below you, so you don't immediately get dirty again.
+    type: Tweak
+  id: 408548
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: wonderfulnewworld
+  changes:
+  - message: Using soap on your clothes now also cleans stains off of them.
+    type: Tweak
+  id: 408549
+  time: '2026-09-13T23:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6123
+- author: Caws
+  changes:
+  - message: The right-click menu "Physical Social Interaction" has been renamed to "Social Interaction".
+    type: Tweak
+  id: 408550
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: Caws
+  changes:
+  - message: You can now Wave at people through the Social Interaction right-click menu.
+    type: Add
+  id: 408551
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: Caws
+  changes:
+  - message: You can now Look at people through the Social Interaction right-click menu.
+    type: Add
+  id: 408552
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: Caws
+  changes:
+  - message: All Social Interactions now have sounds. Some sounds only play for the target, like Wave and Look to help you distinguish if someone is waving at you specifically.
+    type: Add
+  id: 408553
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: Caws
+  changes:
+  - message: Social Interactions now post an emote message in chat when you perform them.
+    type: Add
+  id: 408554
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: Caws
+  changes:
+  - message: Social Interactions can be performed on a wider variety of entities now, allowing you to finally be able to Boop or Pet Ian.
+    type: Add
+  id: 408555
+  time: '2026-09-14T04:15:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6156
+- author: ya314a, Fahreyy, Teddiousbear.
+  changes:
+  - message: 16 New Jumpsuits.
+    type: Add
+  id: 408556
+  time: '2026-09-14T07:34:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6038
+- author: ya314a, Fahreyy, Teddiousbear.
+  changes:
+  - message: 16 New Jumpskirts.
+    type: Add
+  id: 408557
+  time: '2026-09-14T07:34:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6038
+- author: ya314a, Fahreyy, Teddiousbear.
+  changes:
+  - message: 24 New Beret/BountyHunterHats/Caps.
+    type: Add
+  id: 408558
+  time: '2026-09-14T07:34:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6038
+- author: STARLIGHT TEAM
+  changes:
+  - message: '"Damper II" by Beptol Corporation to vinyls and NukeOps music list.'
+    type: Add
+  id: 408559
+  time: '2026-09-14T08:00:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6065
 Order: -1
