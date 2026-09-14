@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Cluster) Removed hv wires in engie that went around smes room.
-    type: Remove
-  id: 408162
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
-- author: Cvlancer
-  changes:
   - message: (Cluster) Fixed an airvent on the scrubber line and a scrubber on the distro line near cargo front.
     type: Fix
   id: 408163
@@ -2799,4 +2792,11 @@ Entries:
   id: 408561
   time: '2026-09-14T08:27:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6071
+- author: Xale
+  changes:
+  - message: Avali can now eat raw food again.
+    type: Fix
+  id: 408562
+  time: '2026-09-14T08:27:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6088
 Order: -1
