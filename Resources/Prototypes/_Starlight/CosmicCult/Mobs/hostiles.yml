@@ -48,8 +48,8 @@
     factions:
     - CosmicCult
   - type: CosmicMalignantHealing
-    healInterval: 1s
-    healAmount: 0.1
+    healInterval: 10s
+    healAmount: 0.5
   - type: GhostRole
     allowMovement: true
     allowSpeech: true
@@ -76,7 +76,7 @@
     damageContainer: StructuralInorganic
     damageModifierSet: Malignstone
   - type: CosmicRiftHealth
-    healthPerCorpse: 5
+    healthPerCorpse: 2
   - type: Destructible
     thresholds:
       - trigger:

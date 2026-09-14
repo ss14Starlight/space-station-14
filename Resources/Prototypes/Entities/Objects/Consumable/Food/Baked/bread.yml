@@ -141,6 +141,7 @@
     tags:
     - ClothMade
     - Bread
+    - CottonBread # Starlight
   - type: Solution
     solution:
       reagents:
@@ -169,6 +170,7 @@
     - ClothMade
     - Bread
     - Slice
+    - CottonBread # Starlight
   - type: Solution
     solution:
       reagents:
