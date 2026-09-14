@@ -39,7 +39,7 @@ public sealed partial class RevenantSystem
     ///<summary>
     /// Activates guns and has them shoot the nearest person
     ///</summary>
-    private void OnMisfireAction(EntityUid uid, RevenantComponent component, RevenantMisfireActionEvent args)
+    private void OnMisfireAction(Entity<RevenantComponent> ent, ref RevenantMisfireActionEvent args)
     {
         if (args.Handled)
             return;
@@ -56,19 +56,21 @@ public sealed partial class RevenantSystem
         if (gunComp.NextFire > _timing.CurTime)
             return;
 
-        if (!TryUseAbility(uid, component, component.misfireCost, component.MisfireDebuffs))
+        if (!TryUseAbility(ent, ent.Comp, ent.Comp.misfireCost, ent.Comp.MisfireDebuffs))
             return;
 
         args.Handled = true;
 
-        Entity<GunComponent> gun = (args.Target, gunComp);
+        var gunUid = args.Target;
+
+        Entity<GunComponent> gun = (gunUid, gunComp);
         var mobStateQuery = GetEntityQuery<MobStateComponent>();
-        var gunPos = _transformSystem.GetWorldPosition(args.Target);
+        var gunPos = _transformSystem.GetWorldPosition(gunUid);
 
         // Find the nearest living mob to shoot.
-        var target = _lookup.GetEntitiesInRange(args.Target, component.MisfireTargetRadius)
+        var target = _lookup.GetEntitiesInRange(gunUid, ent.Comp.MisfireTargetRadius)
             .Where(e => mobStateQuery.HasComponent(e) && _mobState.IsAlive(e) &&
-                        _interact.InRangeUnobstructed(e, args.Target, -1))
+                        _interact.InRangeUnobstructed(e, gunUid, -1))
             .OrderBy(e => (_transformSystem.GetWorldPosition(e) - gunPos).LengthSquared())
             .FirstOrDefault();
 
@@ -76,8 +78,8 @@ public sealed partial class RevenantSystem
             return;
 
         //Allows guns that have to be wielded to be fired
-        if (TryComp<WieldableComponent>(args.Target, out var wieldable))
-            _wieldable.ForceWielded((args.Target, wieldable), true);
+        if (TryComp<WieldableComponent>(gunUid, out var wieldable))
+            _wieldable.ForceWielded((gunUid, wieldable), true);
 
         // Bolts unbolted guns and chamber a round so the gun actually fires
         _gun.ForceChamber(gun.AsNullable());
@@ -85,35 +87,35 @@ public sealed partial class RevenantSystem
         // Turns the gun to face the target so burst fire weapons don't fire their other shots wrongly
         var direction = _transformSystem.GetWorldPosition(target) - gunPos;
         if (direction != Vector2.Zero)
-            _transformSystem.SetWorldRotation(args.Target, new Angle(direction) - new Angle(gunComp.DefaultDirection));
+            _transformSystem.SetWorldRotation(gunUid, new Angle(direction) - new Angle(gunComp.DefaultDirection));
 
         // Certain guns require a user to be able to fire
-        _tag.AddTag(args.Target, MisfireBypassUserTag);
-        _gun.AttemptShoot(args.Target, gun, Transform(target).Coordinates, target);
-        _tag.RemoveTag(args.Target, MisfireBypassUserTag);
+        _tag.AddTag(gunUid, MisfireBypassUserTag);
+        _gun.AttemptShoot(gunUid, gun, Transform(target).Coordinates, target);
+        _tag.RemoveTag(gunUid, MisfireBypassUserTag);
 
         // Cycles guns after shooting so you can shoot again
         _gun.ForceCycle(gun.AsNullable());
 
         // Clear the forced wield so guns are not left in a weird state
         if (wieldable != null)
-            _wieldable.ForceWielded((args.Target, wieldable), false);
+            _wieldable.ForceWielded((gunUid, wieldable), false);
     }
 
     ///<summary>
     /// Creates ice tiles and adds freezon per ice tile
     ///</summary>
-    private void OnChillAction(EntityUid uid, RevenantComponent component, RevenantChillActionEvent args)
+    private void OnChillAction(Entity<RevenantComponent> ent, ref RevenantChillActionEvent args)
     {
         if (args.Handled)
             return;
 
-        if (!TryUseAbility(uid, component, component.chillCost, component.ChillDebuffs))
+        if (!TryUseAbility(ent, ent.Comp, ent.Comp.chillCost, ent.Comp.ChillDebuffs))
             return;
 
         args.Handled = true;
 
-        var xform = Transform(uid);
+        var xform = Transform(ent);
         if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
             return;
 
@@ -122,7 +124,7 @@ public sealed partial class RevenantSystem
             xform.GridUid.Value,
             map,
             Box2.CenteredAround(_transformSystem.GetWorldPosition(xform),
-            new Vector2(component.ChillCoreRadius, component.ChillCoreRadius)))
+            new Vector2(ent.Comp.ChillCoreRadius, ent.Comp.ChillCoreRadius)))
             .ToArray();
 
         //The tiles with a random chance of spawning
@@ -130,7 +132,7 @@ public sealed partial class RevenantSystem
             xform.GridUid.Value,
             map,
             Box2.CenteredAround(_transformSystem.GetWorldPosition(xform),
-            new Vector2(component.ChillFalloffRadius, component.ChillFalloffRadius)))
+            new Vector2(ent.Comp.ChillFalloffRadius, ent.Comp.ChillFalloffRadius)))
             .ToArray();
 
         //Generate the ice tiles and add the moles for freezon
@@ -140,14 +142,14 @@ public sealed partial class RevenantSystem
             if(coreTiles.Contains(tileref))
             {
                 Spawn("IceCrust", _mapSystem.ToCenterCoordinates(tileref, map));
-                _atmosphere.GetTileMixture(xform.GridUid.Value, null, tileref.GridIndices, true)?.AdjustMoles(Gas.Frezon, component.ChillFrezonPerTile);
+                _atmosphere.GetTileMixture(xform.GridUid.Value, null, tileref.GridIndices, true)?.AdjustMoles(Gas.Frezon, ent.Comp.ChillFrezonPerTile);
                 continue;
             }
 
             //Percentage chance to generate ice tiles in the falloff area
-            if(_random.Prob(component.ChillFalloffChance)) {
+            if(_random.Prob(ent.Comp.ChillFalloffChance)) {
                 Spawn("IceCrust", _mapSystem.ToCenterCoordinates(tileref, map));
-                _atmosphere.GetTileMixture(xform.GridUid.Value, null, tileref.GridIndices, true)?.AdjustMoles(Gas.Frezon, component.ChillFrezonPerTile);
+                _atmosphere.GetTileMixture(xform.GridUid.Value, null, tileref.GridIndices, true)?.AdjustMoles(Gas.Frezon, ent.Comp.ChillFrezonPerTile);
             }
         }
 
