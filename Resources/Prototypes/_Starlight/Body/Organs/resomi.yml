@@ -92,3 +92,15 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Resomi/organs.rsi
     state: stomach
+
+- type: entity
+  id: OrganResomiTongue
+  parent: OrganHumanTongue
+  suffix: Resomi
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk']
+    sounds:
+      Male: UnisexResomi
+      Female: UnisexResomi
+      Unsexed: UnisexResomi

@@ -13,7 +13,7 @@ namespace Content.Shared._Starlight.VentCrawl.EntitySystems;
 
 public sealed partial class SharedVentCrawlSystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     public void InitializeTubes()
     {

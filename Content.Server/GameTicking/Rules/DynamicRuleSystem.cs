@@ -8,7 +8,6 @@ using Content.Shared.EntityTable.Conditions;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.GameTicking.Rules;
-using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
@@ -26,7 +25,7 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
     #region Starlight
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private IChatManager _chat = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
 
     private ISawmill _sawmill = default!;
 

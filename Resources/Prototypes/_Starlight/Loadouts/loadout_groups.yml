@@ -200,6 +200,7 @@
   loadouts:
   - RoboticistLabCoat
   - RoboticistWintercoat
+  - RoboticistWintercoatAlt
 
 - type: loadoutGroup
   id: RoboticistHead
@@ -235,6 +236,14 @@
   - RoboticistSatchel
   - RoboticistDuffel
   - LeatherSatchel
+
+- type: loadoutGroup
+  id: RoboticistNeck
+  name: loadout-group-roboticist-neck
+  minLimit: 0
+  loadouts:
+  - RoboticistScarf
+  - ScientistTie
 
 # IAA
 - type: loadoutGroup
@@ -448,6 +457,7 @@
   defaultSelected: 1
   loadouts:
   - BlackShoes
+  - RoboticistWinterBoots
   - ScienceWinterBoots
   - Heels
   - LeatherShoes

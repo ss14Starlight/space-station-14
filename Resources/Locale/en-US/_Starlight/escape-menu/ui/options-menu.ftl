@@ -74,6 +74,14 @@ ui-options-admin-ghost-script-tooltip =
 ui-options-hud-theme-mpurp = M-Purp
 
 # Graphics
+# Technically this is a more general Sprite Effects option, but right now it's literally only used for weather, so I'm just going to label it that for now
+ui-options-sprite-quality = Weather Quality:
+ui-options-sprite-quality-low = Low
+ui-options-sprite-quality-medium = Medium
+ui-options-sprite-quality-high = High
+ui-options-sprite-quality-tooltip =
+    Selects the visual quality used by sprites and effects that provide alternate versions.
+
 ui-options-interaction-particles = Interaction particles:
 ui-options-interaction-particles-all = All
 ui-options-interaction-particles-without-inhand = Except In-hand

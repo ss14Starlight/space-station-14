@@ -1,7 +1,5 @@
-using System; // Starlight
+// Starlight
 using System.Linq;
-using Content.Server.DeviceNetwork;
-using Content.Server.DeviceNetwork.Systems;
 using Content.Shared.PowerCell;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
@@ -18,7 +16,6 @@ using Content.Shared.Silicons.StationAi;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
-using System.ComponentModel.DataAnnotations;
 using Content.Shared._Starlight.Medical.CrewMonitoring;
 #endregion
 

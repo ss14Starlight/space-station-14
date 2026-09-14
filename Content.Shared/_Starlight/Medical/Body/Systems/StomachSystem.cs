@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Medical.Body.Components;
+﻿using Content.Shared._Starlight.Medical.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -8,9 +8,9 @@ using Content.Shared._Starlight.Medical.Body.Events;
 
 namespace Content.Shared._Starlight.Medical.Body.Systems;
 
-public sealed class StomachSystem : EntitySystem
+public sealed partial class StomachSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
     public const string DefaultSolutionName = "stomach";
 

@@ -212,6 +212,7 @@
   groups:
   - GroupTankHarness # for Vox
   - RoboticistHead
+  - RoboticistNeck
   - RoboticistGoggles
   - RoboticistJumpsuit
   - RoboticistGloves
@@ -369,4 +370,6 @@
     - Glasses
     - Survival
     - Trinkets
+    - Scarves
+    - Pins
     - GroupSpeciesBreathTool

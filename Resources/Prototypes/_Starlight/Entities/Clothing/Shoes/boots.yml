@@ -92,6 +92,16 @@
 
 - type: entity
   parent: ClothingShoesBaseWinterBoots
+  id: ClothingShoesBootsWinterRobo
+  name: robotics winter boots
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Boots/winterbootsroboticist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Boots/winterbootsroboticist.rsi
+
+- type: entity
+  parent: ClothingShoesBaseWinterBoots
   id: ClothingShoesBootsWinterBlue
   name: blue winter boots
   components:

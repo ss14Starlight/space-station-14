@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Client.Humanoid;
 using Content.Client.Station;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
@@ -112,7 +111,7 @@ public sealed partial class ProfilePreviewSpriteView
                     EntMan,
                     _prototypeManager);
             }
-            catch (UnknownPrototypeException e)
+            catch (UnknownPrototypeException)
             {
                 loadout = new RoleLoadout();
             }

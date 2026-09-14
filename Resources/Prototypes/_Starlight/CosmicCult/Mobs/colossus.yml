@@ -14,8 +14,8 @@
     factions:
     - CosmicCult
   - type: CosmicMalignantHealing
-    healInterval: 1s
-    healAmount: 0.2
+    healInterval: 10s
+    healAmount: 1
   - type: StaminaResistance
     damageCoefficient: 0 # No more stunning colossi
   - type: Sprite
@@ -149,12 +149,13 @@
         sound:
           collection: MeatLaserImpact
   - type: CosmicRiftHealth
-    healthPerCorpse: 25
+    healthPerCorpse: 20
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
       - ReagentId: Entropy
         Quantity: 1300
+    examineLocPrefix: cosmic-bloodstream
     maxBleedAmount: 0.1
     bleedReductionAmount: 0.1
     bloodlossDamage:
@@ -169,7 +170,7 @@
     - Dead
   - type: AntagMonsterScaling
     minimumHealthScaling: -0.25
-    maximumHealthScaling: 0.50
+    maximumHealthScaling: 0.25
   - type: ToolRefinable
     refineTime: 16
     refineResult:
@@ -278,6 +279,8 @@
     understands:
     - Cosmic
   - type: UniversalLanguageSpeaker
+  - type: HealthExaminable
+    locPrefix: cosmic
 
 - type: entity
   parent: [ MobCosmicColossusBase ]
