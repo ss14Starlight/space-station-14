@@ -21,8 +21,10 @@
   interactString: waving-success
   messagePerceivedByOthers: waving-success-others
   emoteMessage: waving-emote
+  emoteMessageSelf: waving-emote-self
   interactSound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
   soundPerceivedByOthers: false
+  allowSelfTarget: true
   isPhysical: false
 
 - type: socialInteraction
@@ -31,6 +33,8 @@
   interactString: looking-success
   messagePerceivedByOthers: looking-success-others
   emoteMessage: looking-emote
+  emoteMessageSelf: looking-emote-self
   interactSound: /Audio/Effects/pop_high.ogg
   soundPerceivedByOthers: false
+  allowSelfTarget: true
   isPhysical: false

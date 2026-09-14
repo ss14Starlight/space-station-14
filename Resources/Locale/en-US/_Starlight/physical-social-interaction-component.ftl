@@ -14,8 +14,10 @@ wave-verb = Wave
 waving-success = You wave at { THE($target) }.
 waving-success-others = { CAPITALIZE(THE($user)) } waves at {THE($target)}.
 waving-emote = waves at {THE($target)}.
+waving-emote-self = waves.
 
 look-verb = Look
 looking-success = You look at { THE($target) }.
 looking-success-others = { CAPITALIZE(THE($user)) } looks at {THE($target)}.
 looking-emote = looks at {THE($target)}.
+looking-emote-self = looks at {REFLEXIVE($target)}.

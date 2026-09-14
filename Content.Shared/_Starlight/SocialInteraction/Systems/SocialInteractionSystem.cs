@@ -48,6 +48,10 @@ public sealed partial class SocialInteractionSystem : EntitySystem
             if (proto.IsPhysical && (!CheckInteractable(args.User, args.Target)))
                 continue;
 
+            // check if this interaction allows self-targeting
+            if (!proto.AllowSelfTarget && args.User == args.Target)
+                continue;
+
             //make a verb for each one
             Verb verb = new()
             {
@@ -81,6 +85,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         if (proto.IsPhysical && !CheckInteractable(args.User, args.Target))
             return;
 
+        var selfTarget = args.User == args.Target; // whether or not we're interacting with ourselves
         var msg = ""; // Stores the text to be shown in the popup message
         SoundSpecifier? sfx = null; // Stores the filepath of the sound to be played
 
@@ -90,23 +95,37 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         if (proto.InteractSound != null)
             sfx = proto.InteractSound;
 
-        if (proto.MessagePerceivedByOthers is { } message)
+        // pop-up message for the target - skip if self targeted
+        if (!selfTarget && proto.MessagePerceivedByOthers is { } message)
         {
             var msgOthers = Loc.GetString(message,
-                ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target, EntityManager)));
+                ("user", Identity.Entity(args.User, EntityManager)),
+                ("target", Identity.Entity(args.Target, EntityManager)));
+
             _popupSystem.PopupEntity(msgOthers, uid, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
         }
 
+        // emote message for chat
         if (proto.EmoteMessage is { } emoteMessage)
         {
-            var emote = Loc.GetString(emoteMessage, ("target", Identity.Entity(args.Target, EntityManager)));
+            // show a different message if we're using the emote on ourselves
+            var emoteTarget = selfTarget
+                ? proto.EmoteMessageSelf ?? emoteMessage
+                : emoteMessage;
 
-            // emote message!
+            // resolve localization
+            var emote = Loc.GetString(
+                emoteTarget,
+                ("user", Identity.Entity(args.User, EntityManager)),
+                ("target", Identity.Entity(args.Target, EntityManager)));
+
+            // post emote
             _chatSystem.TrySendInGameICMessage(args.User, emote, InGameICChatType.Emote, ChatTransmitRange.Normal);
         }
 
-        //now popup filtered to user
-        _popupSystem.PopupClient(msg, uid, args.User);
+        // now popup filtered to user - skip if it's self-targeted
+        if(!selfTarget)
+            _popupSystem.PopupClient(msg, uid, args.User);
 
         if (proto.SoundPerceivedByOthers)
         {

@@ -35,16 +35,28 @@ public sealed partial class SocialInteractionPrototype : IPrototype
     public LocId? MessagePerceivedByOthers;
 
     /// <summary>
-    /// The message that shows that will post to the chatbox.
+    /// The emote that will be posted in chat.
     /// </summary>
     [DataField("emoteMessage")]
     public LocId? EmoteMessage;
+
+    /// <summary>
+    /// Alternative emote if we end up targeting ourselves instead.
+    /// </summary>
+    [DataField("emoteMessageSelf")]
+    public LocId? EmoteMessageSelf;
 
     /// <summary>
     /// Will the sound effect be perceived by entities not involved in the interaction?
     /// </summary>
     [DataField("soundPerceivedByOthers")]
     public bool SoundPerceivedByOthers = true;
+
+    /// <summary>
+    /// Can you perform this interaction on yourself?
+    /// </summary>
+    [DataField("allowSelfTarget")]
+    public bool AllowSelfTarget = false;
 
     /// <summary>
     /// Does this social interaction require being within interaction range of the target?
