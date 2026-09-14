@@ -1,25 +1,4 @@
 Entries:
-- author: Mack
-  changes:
-  - message: Station radio server now has a microphone indicator.
-    type: Tweak
-  id: 408232
-  time: '2026-09-05T23:09:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5874
-- author: Johnny
-  changes:
-  - message: Added some forms into the document printer for science sop.
-    type: Add
-  id: 408233
-  time: '2026-09-05T23:36:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5862
-- author: bynddark8
-  changes:
-  - message: Adds an Assistant Manager stamp.
-    type: Add
-  id: 408234
-  time: '2026-09-05T23:36:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5864
 - author: bynddark8
   changes:
   - message: Adds an additional icon to the Assistant Manager's digi-board.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408631
   time: '2026-09-14T20:15:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6164
+- author: Fahreyy, @TeddiousbearPA
+  changes:
+  - message: Added NTR Beret.
+    type: Add
+  id: 408632
+  time: '2026-09-14T20:15:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6067
+- author: Fahreyy, @TeddiousbearPA
+  changes:
+  - message: Added Magistrate Beret.
+    type: Add
+  id: 408633
+  time: '2026-09-14T20:15:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6067
+- author: Fahreyy, @TeddiousbearPA
+  changes:
+  - message: Added RD Beret.
+    type: Add
+  id: 408634
+  time: '2026-09-14T20:15:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6067
 Order: -1
