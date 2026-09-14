@@ -55,29 +55,6 @@
     size: Small
   - type: Sprite
 
-# Starlight-start
-- type: entity
-  id: GrenadeBola
-  name: bola grenade
-  description:
-  parent: [BaseGrenade, BaseSecurityContraband]
-  components:
-  - type: CartridgeAmmo
-    proto: BulletGrenadeBola
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    layers:
-    - state: bola
-      map: ["enum.AmmoVisualLayers.Base"]
-  - type: Appearance
-  - type: SpentAmmoVisuals
-    state: bola
-    suffix: false
-  - type: Tag
-    tags:
-    - GrenadeLessLethal
-# Starlight-end
-
 - type: entity
   id: GrenadeBaton
   name: baton grenade
