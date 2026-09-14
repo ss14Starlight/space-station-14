@@ -13,7 +13,6 @@ public sealed partial class SleepinessOverlay : Robust.Client.Graphics.Overlay
     private static readonly ProtoId<ShaderPrototype> _shaderId = "Drowsiness";
     private static readonly ProtoId<ShaderPrototype> _circleMaskShaderId = "CircleMask";
 
-    // Required IoC-injected overlay dependencies.
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
