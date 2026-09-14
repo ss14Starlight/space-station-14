@@ -1,27 +1,6 @@
 Entries:
 - author: Swonki, SirLutz
   changes:
-  - message: 'New Objective SACRIFICE: have 5–8 filled empowered rifts at the same time.'
-    type: Add
-  id: 408175
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
-  - message: Empowered Rifts now have separate sprites for their unoccupied and occupied states.
-    type: Add
-  id: 408176
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
-  - message: Added a guidebook section covering Malign Empowered Rifts.
-    type: Add
-  id: 408177
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
   - message: The Colossus now tracks Effigy criticals and alerts the station when subsequent Effigies become critical. The first Effigy remains unannounced.
     type: Add
   id: 408178
@@ -2799,4 +2778,25 @@ Entries:
   id: 408574
   time: '2026-09-14T10:29:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6129
+- author: Mack
+  changes:
+  - message: Station AI getting Law 0 when exiting a shunt.
+    type: Fix
+  id: 408575
+  time: '2026-09-14T11:16:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6138
+- author: Mack
+  changes:
+  - message: Cyborgs not having a brain.
+    type: Fix
+  id: 408576
+  time: '2026-09-14T11:16:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6138
+- author: Mack
+  changes:
+  - message: Medical Cyborgs breaking when reset.
+    type: Fix
+  id: 408577
+  time: '2026-09-14T11:16:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6138
 Order: -1
