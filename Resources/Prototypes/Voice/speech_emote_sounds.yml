@@ -791,25 +791,27 @@
 
 - type: emoteSounds
   id: Cerberus
+starlight-start
   params:
     variation: 0.125
-  sounds:  # SL
-    Growl: # SL
+  sounds:
+    Growl:
       collection: Growl
-    Snarl: # SL
+    Snarl:
       collection: VulpkaninSnarls
-    Bark: # SL
+    Bark:
       path: /Audio/Animals/cerberus.ogg
-    Whine: # SL
+    Whine:
       collection: VulpkaninWhines
-    Crying: # SL
+    Crying:
       collection: VulpkaninWhines
-    Howl: # SL
+    Howl:
       path: /Audio/_Starlight/Effects/howl.ogg
-    Yip: # SL
+    Yip:
       path: /Audio/_Starlight/Effects/yip.ogg
-    Sneeze: # SL
+    Sneeze:
       collection: VulpkaninSneeze
+starlight-end
 
 - type: emoteSounds
   id: Kangaroo
