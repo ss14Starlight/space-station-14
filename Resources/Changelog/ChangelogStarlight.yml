@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Sepultum) Added some spacing protection to the mines.
-    type: Add
-  id: 408245
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
   - message: (Sepultum) Added some curtains, a television, a station radio and a light switch to robotics.
     type: Add
   id: 408246
@@ -2799,4 +2792,11 @@ Entries:
   id: 408644
   time: '2026-09-14T21:42:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6076
+- author: dove15567
+  changes:
+  - message: Added the Xenosocialized trait, a language trait costing -2 points that removes the species' native language from the character.
+    type: Add
+  id: 408645
+  time: '2026-09-14T22:06:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6137
 Order: -1
