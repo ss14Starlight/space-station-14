@@ -1,41 +1,6 @@
 Entries:
 - author: Swonki, SirLutz
   changes:
-  - message: TimedDoorComponent now checks for entities blocking doors.
-    type: Fix
-  id: 408181
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
-  - message: Colossus occurrence has become rarer, with its weight reduced from 3 to 2.
-    type: Tweak
-  id: 408182
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
-  - message: Minimum player count raised from 25 to 35.
-    type: Tweak
-  id: 408183
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
-  - message: Lodestar projectiles now go 1.8 tiles further.
-    type: Tweak
-  id: 408184
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
-  - message: Antagscaling has now has two healthmodifier limits.
-    type: Add
-  id: 408185
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
   - message: Colossus has Antagscaling, possible -25%MaxHP to +50MaxHP.
     type: Add
   id: 408186
@@ -2799,4 +2764,39 @@ Entries:
   id: 408580
   time: '2026-09-14T11:16:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6139
+- author: Conflee
+  changes:
+  - message: 'Box: Added Laundry Rooms, Round Tables, Box Shelves, and Random Medical Vend  Markers, Evidence Room.'
+    type: Tweak
+  id: 408581
+  time: '2026-09-14T11:16:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6132
+- author: Conflee
+  changes:
+  - message: "Cog: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, K9's, Assistant Managers, Mail Boxes, and removed Salvage from the station."
+    type: Tweak
+  id: 408582
+  time: '2026-09-14T11:16:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6132
+- author: Conflee
+  changes:
+  - message: 'Fland: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, Assistant Managers, and removed Salvage from the station.'
+    type: Tweak
+  id: 408583
+  time: '2026-09-14T11:16:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6132
+- author: Conflee
+  changes:
+  - message: 'Kiloton: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, Evidence Room, Assistant Managers, and removed Salvage from the station.'
+    type: Tweak
+  id: 408584
+  time: '2026-09-14T11:16:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6132
+- author: Conflee
+  changes:
+  - message: "Space Mall: Added Laundry Rooms, Round Tables, Box Shelves, Random Medical Vend Markers, K9's, Assistant Managers, Mail Boxes, a plumbing line from Chemistry to Brigmedical, and removed Salvage from the station."
+    type: Tweak
+  id: 408585
+  time: '2026-09-14T11:16:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6132
 Order: -1
