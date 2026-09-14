@@ -5,6 +5,7 @@
   interactString: petting-success
   messagePerceivedByOthers: petting-success-others
   emoteMessage: petting-emote
+  interactSound: /Audio/Effects/thudswoosh.ogg
 
 - type: socialInteraction
   id: Boop
@@ -12,6 +13,7 @@
   interactString: booping-success
   messagePerceivedByOthers: booping-success
   emoteMessage: booping-emote
+  interactSound: /Audio/_Starlight/Effects/yip.ogg
 
 - type: socialInteraction
   id: Wave
@@ -19,6 +21,8 @@
   interactString: waving-success
   messagePerceivedByOthers: waving-success-others
   emoteMessage: waving-emote
+  interactSound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
+  soundPerceivedByOthers: false
   isPhysical: false
 
 - type: socialInteraction
