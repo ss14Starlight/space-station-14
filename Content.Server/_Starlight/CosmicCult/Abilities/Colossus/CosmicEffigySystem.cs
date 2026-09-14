@@ -20,7 +20,6 @@ using Content.Server.Pinpointer;
 using Content.Shared.Anomaly.Components;
 using Content.Server.Nuke;
 using Content.Server.Station.Systems;
-using Content.Shared.Station.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities.Colossus;
 

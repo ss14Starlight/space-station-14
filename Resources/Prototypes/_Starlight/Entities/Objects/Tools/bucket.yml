@@ -1,0 +1,17 @@
+- type: entity
+  parent: Bucket
+  id: BucketSmall
+  name: small bucket
+  description: A boring old bucket, in a size that fits in a bag.
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+  - type: Solution
+    solution:
+      maxVol: 180
+  - type: SolutionTransfer
+    transferAmount: 60
+    maxTransferAmount: 180
+    minTransferAmount: 30

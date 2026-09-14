@@ -32,13 +32,7 @@
     - type: Body
       prototype: Shadekin
       requiredLegs: 2
-    - type: Speech
-      allowedEmotes: ["Marr", "Wurble", "Hisses", "Growl", "Purr"]
     - type: Vocal
-      sounds:
-        Male: MaleShadekin
-        Female: FemaleShadekin
-        Unsexed: MaleShadekin
     - type: MeleeWeapon
       soundHit:
         collection: AlienClaw

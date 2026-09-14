@@ -5,7 +5,9 @@ using Robust.Shared.Animations;
 using Robust.Shared.Collections;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+#if DEBUG
 using Robust.Shared.Utility;
+#endif
 
 namespace Content.Client.Effects;
 

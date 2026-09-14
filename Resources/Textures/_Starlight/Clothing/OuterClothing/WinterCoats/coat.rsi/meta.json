@@ -1,45 +1,73 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/77cff42b6c514e73881a885036be4b4dd2949f62 recolored by Github user Dutch-VanDerLinde, CAP edited by Skarletto (github), equipped-OUTERCLOTHING-vox states taken from /vg/station at commit https://github.com/vgstation-coders/vgstation13/commit/31d6576ba8102135d058ef49c3cb6ecbe8db8a79 and repaletted to match by Flareguy, grayscale layering & armor by IProduceWidgets (Github). CHEM SENIOR and CARGO SENIOR edited by wonderfulnewworld (github).",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
 	{
-      "name": "CHEM-SENIOR-icon"
+      "name": "CHEM-SENIOR-icon",
+	  "copyright": "TG Station at commit https://github.com/tgstation/tgstation/commit/77cff42b6c514e73881a885036be4b4dd2949f62, recolored by Dutch-VanDerLinde, CHEM SENIOR by wonderfulnewworld"
     },
     {
       "name": "CHEM-SENIOR-equipped-OUTERCLOTHING",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, wonderfulnewworld"
     },
     {
       "name": "CHEM-SENIOR-inhand-left",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, wonderfulnewworld"
     },
     {
       "name": "CHEM-SENIOR-inhand-right",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, wonderfulnewworld"
     },
 	{
-      "name": "CARGO-SENIOR-icon"
+      "name": "CARGO-SENIOR-icon",
+	  "copyright": "TG Station, Dutch-VanDerLinde, CARGO SENIOR bywonderfulnewworld"
     },
     {
       "name": "CARGO-SENIOR-equipped-OUTERCLOTHING",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, wonderfulnewworld"
     },
 	{
       "name": "CARGO-SENIOR-equipped-OUTERCLOTHING-vox",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "TG Station, VG Station at commit https://github.com/vgstation-coders/vgstation13/commit/31d6576ba8102135d058ef49c3cb6ecbe8db8a79, repaletted by Flareguy, wonderfulnewworld"
     },
     {
       "name": "CARGO-SENIOR-inhand-left",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, wonderfulnewworld"
     },
     {
       "name": "CARGO-SENIOR-inhand-right",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, wonderfulnewworld"
+    },
+	{
+      "name": "ROBO-icon",
+	  "copyright": "TG Station, Dutch-VanDerLinde, ROBO by Cvlancer"
+    },
+    {
+      "name": "ROBO-equipped-OUTERCLOTHING",
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, Cvlancer"
+    },
+    {
+      "name": "ROBO-inhand-left",
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, Cvlancer"
+    },
+    {
+      "name": "ROBO-inhand-right",
+      "directions": 4,
+	  "copyright": "TG Station, Dutch-VanDerLinde, Cvlancer"
     }
   ]
 }

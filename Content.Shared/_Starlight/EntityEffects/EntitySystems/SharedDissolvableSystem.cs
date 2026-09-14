@@ -61,7 +61,7 @@ public abstract partial class SharedDissolvableSystem : EntitySystem
 
         if (dissolvable.Effect != null)
         {
-            EntityManager.QueueDeleteEntity(dissolvable.Effect);
+            QueueDel(dissolvable.Effect);
             dissolvable.Effect = null;
         }
 

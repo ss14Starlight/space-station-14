@@ -180,7 +180,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         var curTime = _timing.CurTime;
         args.Handled = true;
 
-        if (!EntityManager.EntityExists(ent.Comp.CurrentDevourSound))
+        if (!Exists(ent.Comp.CurrentDevourSound))
             _audio.Stop(ent.Comp.CurrentDevourSound!);
 
         if (args.Cancelled)
@@ -231,7 +231,7 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         if (target == null)
             return;
 
-        if (EntityManager.EntityExists(ent.Comp.CurrentDevourSound))
+        if (Exists(ent.Comp.CurrentDevourSound))
             _audio.Stop(ent.Comp.CurrentDevourSound!);
 
         if (args.Cancelled)

@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McHands the Dwarf
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable, BaseInventoryFemaleJumpsuit] # Starlight. They are small.
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable, BaseInventoryDwarf] # Starlight. They are small.
   id: BaseMobDwarf
   abstract: true
   components:
@@ -55,10 +55,6 @@
         layer:
         - MobLayer
   - type: Vocal
-    sounds:
-      Male: UnisexDwarf
-      Female: FemaleDwarf
-      Unsexed: UnisexDwarf
   - type: ReplacementAccent
     accent: dwarf
   - type: Speech
@@ -78,3 +74,18 @@
     hideLayersOnEquip:
     - Hair
     - Snout
+  - type: CreamPied
+    displacement: Dwarfism
+  - type: Damageable
+    displacement: Dwarfism
+  - type: Flammable
+    displacement: Dwarfism
+  - type: InnerBodyAnomalyVisuals
+    displacement: Dwarfism
+- type: displacementData
+  id: Dwarfism
+  displacement:
+    sizeMaps:
+      32:
+        sprite: Mobs/Species/Human/displacement.rsi
+        state: dwarfism

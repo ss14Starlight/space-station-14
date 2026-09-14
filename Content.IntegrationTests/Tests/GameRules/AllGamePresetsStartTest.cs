@@ -120,7 +120,6 @@ public sealed class AllGamePresetsStartTest : AntagTest
             STicker.ToggleReadyAll(true);
         });
 
-        var i = 0;
         #region Starlight
         /*foreach (var (antag, amount) in rules)
         {

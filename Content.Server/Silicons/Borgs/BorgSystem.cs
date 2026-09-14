@@ -1,7 +1,5 @@
 using Content.Server.Administration.Managers;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Emag.Systems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;

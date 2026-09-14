@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: OrganReptilianStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
   name: reptilian stomach
@@ -19,3 +19,15 @@
     solutions:
     - SolutionOrganFoodMeat
     - SolutionOrganStomach50
+
+- type: entity
+  id: OrganReptilianTongue
+  parent: OrganHumanTongue
+  suffix: Reptilian
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Thump', 'Liss', 'Lurr', 'Rattle']
+    sounds:
+      Male: MaleReptilian
+      Female: FemaleReptilian
+      Unsexed: MaleReptilian

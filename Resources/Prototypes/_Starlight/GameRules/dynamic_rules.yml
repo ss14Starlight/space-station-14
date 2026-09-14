@@ -377,9 +377,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
-            min: 25
+            min: 40
           - !type:RoundDurationCondition
-            min: 1500 # 25 minutes
+            min: 2700 # 45 minutes
 
 - type: entity
   parent: BaseGameRule

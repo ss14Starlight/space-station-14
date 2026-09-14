@@ -579,8 +579,9 @@
   id: JobReporter
   groups:
   - GroupTankHarness
-  - ReporterHead # Starlight
   - ReporterJumpsuit
+  - ReporterHead
+  - ReporterOuterClothing
   - CommonBackpack
   - CivilianShoes # Starlight
   - Glasses

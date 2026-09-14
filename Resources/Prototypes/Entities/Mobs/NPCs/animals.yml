@@ -523,10 +523,6 @@
     - Moffic
     - Mothroach
   # Starlight-end
-  # Starlight-start: Body emotes (wing flap!)
-  - type: BodyEmotes
-    soundsId: MothroachBodyEmotes
-  # Starlight-end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -551,7 +547,7 @@
   - type: Speech
     speechVerb: Moth
     speechSounds: Squeak
-    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
+    allowedEmotes: ['Chitter', 'Squeak', 'Flap']
   - type: FaxableObject
     insertingState: inserting_mothroach
     outputtingText: "mothroach.txt" # Starlight-edit
@@ -631,6 +627,8 @@
       Female: UnisexMoth
       Unsexed: UnisexMoth
     wilhelmProbability: 0.001
+  - type: BodyEmotes
+    soundsId: MothBodyEmotes
   - type: MobPrice
     price: 150
   - type: Tag
@@ -1839,6 +1837,8 @@
     interactSuccessString: petting-success-monkey
     interactFailureString: petting-failure-monkey
     interactSuccessSpawn: EffectHearts
+    #interactSuccessSound: # Starlight, can't use this due to copyright
+    #  path: /Audio/Animals/lizard_happy.ogg # Starlight
     interactFailureSound:
       path: /Audio/Items/wirecutter.ogg
   - type: MobThresholds
@@ -2363,6 +2363,8 @@
     interactSuccessString: petting-success-reptile
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
+    #interactSuccessSound: # Starlight, can't use this due to copyright
+    #  path: /Audio/Animals/lizard_happy.ogg # Starlight
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
