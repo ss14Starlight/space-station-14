@@ -265,10 +265,10 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
     /// <param name="component">The ensnaring component</param>
     public bool TryEnsnare(EntityUid target, EntityUid ensnare, EnsnaringComponent component)
     {
-        #region Starlight
+        // Starlight begin
         if (component.EnsnaredHandled)
             return false;
-        #endregion
+        // Starlight end
 
         //Don't do anything if they don't have the ensnareable component.
         if (!TryComp<EnsnareableComponent>(target, out var ensnareable))
