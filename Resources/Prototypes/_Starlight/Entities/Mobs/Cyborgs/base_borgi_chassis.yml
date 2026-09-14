@@ -201,7 +201,7 @@
   abstract: true
   components:
     - type: AccessReader
-      access: [["Command"], ["NTPersonnel"], ["Robotics"]]
+      access: [["Command"], ["Robotics"]]
     - type: EmagSiliconLaw
       stunTime: 5
     - type: BorgTransponder

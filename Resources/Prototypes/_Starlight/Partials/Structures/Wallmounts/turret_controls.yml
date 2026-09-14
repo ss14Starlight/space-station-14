@@ -1,5 +1,0 @@
-- type: !PartialOnly entity
-  id: WeaponEnergyTurretCommandControlPanel
-  components:
-  - type: AccessReader
-    access: [["StationAi"], ["Command"], ["NTPersonnel"]]
