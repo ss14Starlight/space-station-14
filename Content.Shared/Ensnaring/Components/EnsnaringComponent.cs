@@ -63,26 +63,6 @@ public sealed partial class EnsnaringComponent : Component
     [DataField]
     public bool CanMoveBreakout;
 
-    #region Starlight
-    /// <summary>
-    /// Should this ensnare someone when impact is made?
-    /// </summary>
-    [DataField]
-    public bool CanImpactTrigger;
-
-    /// <summary>
-    /// Has the ensnaring been handled?
-    /// </summary>
-    [DataField]
-    public bool EnsnaredHandled = false;
-
-    /// <summary>
-    /// If we want to replace the original ensnaring item with something else when freed.
-    /// </summary>
-    [DataField]
-    public EntProtoId? ensnareFreedPrototype;
-    #endregion
-
     [DataField]
     public SoundSpecifier? EnsnareSound = new SoundPathSpecifier("/Audio/Effects/snap.ogg");
 }
