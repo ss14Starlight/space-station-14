@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Sepultum) Added distro to the mines.
-    type: Add
-  id: 408244
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
   - message: (Sepultum) Added some spacing protection to the mines.
     type: Add
   id: 408245
@@ -2799,4 +2792,11 @@ Entries:
   id: 408643
   time: '2026-09-14T21:42:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6102
+- author: STARLIGHT TEAM
+  changes:
+  - message: Cold Case pistol now uses the correct firing pin.
+    type: Fix
+  id: 408644
+  time: '2026-09-14T21:42:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6076
 Order: -1
