@@ -1,20 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Sepultum) Added a large empty gas tank into atsmo to store air mixture.
-    type: Add
-  id: 408242
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added a ton of pipes deep into maints to allow refilling of air if these areas get spaced.
-    type: Add
-  id: 408243
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
   - message: (Sepultum) Added distro to the mines.
     type: Add
   id: 408244
@@ -2799,4 +2785,18 @@ Entries:
   id: 408641
   time: '2026-09-14T21:11:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6159
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Re-added AI's ability to toggle camera lights when their view is near a camera.
+    type: Add
+  id: 408642
+  time: '2026-09-14T21:42:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6102
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed sprite jittering when moving in and out of range of a camera as AI.
+    type: Fix
+  id: 408643
+  time: '2026-09-14T21:42:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6102
 Order: -1
