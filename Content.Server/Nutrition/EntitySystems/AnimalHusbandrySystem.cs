@@ -35,7 +35,9 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private NameModifierSystem _nameMod = default!;
-    [Dependency] private SharedContainerSystem _container = default!; // Starlight
+    #region Starlight
+    [Dependency] private SharedContainerSystem _container = default!;
+    #endregion
 
     private readonly HashSet<EntityUid> _failedAttempts = new();
     private readonly HashSet<EntityUid> _birthQueue = new();
