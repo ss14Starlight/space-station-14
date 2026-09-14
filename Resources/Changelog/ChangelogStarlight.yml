@@ -1,13 +1,6 @@
 Entries:
 - author: Swonki, SirLutz
   changes:
-  - message: Added a global Rift Corpse counter, with each stored corpse affecting the Colossus & Minions' maximum health.
-    type: Add
-  id: 408174
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
   - message: 'New Objective SACRIFICE: have 5–8 filled empowered rifts at the same time.'
     type: Add
   id: 408175
@@ -2799,4 +2792,11 @@ Entries:
   id: 408573
   time: '2026-09-14T10:29:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6128
+- author: Teddiousbear.
+  changes:
+  - message: remove duplicate items from cap's locker.
+    type: Fix
+  id: 408574
+  time: '2026-09-14T10:29:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6129
 Order: -1
