@@ -15,6 +15,12 @@ public sealed partial class SleepinessStatusEffectComponent : Component
     public TimeSpan SleepThreshold = TimeSpan.FromSeconds(60);
 
     /// <summary>
+    /// Whether the target should fall asleep immediately, regardless of the sleep threshold.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool SleepImmediately;
+
+    /// <summary>
     /// Remaining sleepiness duration at which recovery automatically wakes the entity. Defaults to 10 seconds.
     /// </summary>
     [DataField]

@@ -44,6 +44,18 @@ public sealed partial class SleepinessSystem : SharedSleepinessSystem
 
             var remaining = endTime - _timing.CurTime;
 
+            if (sleepiness.SleepImmediately && !HasComp<SleepingComponent>(target) &&
+                CanInduceSleep(target, sleepiness))
+            {
+                if (_sleeping.TrySleeping(target))
+                {
+                    sleepiness.SleepImmediately = false;
+                    Dirty(uid, sleepiness);
+                }
+
+                continue;
+            }
+
             if (HasComp<SleepingComponent>(target))
             {
                 sleepiness.SleepResistance += TimeSpan.FromSeconds(updateTime);

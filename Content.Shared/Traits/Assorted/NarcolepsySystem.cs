@@ -63,11 +63,15 @@ public sealed partial class NarcolepsySystem : EntitySystem
             DirtyField(uid, narcolepsy, nameof(narcolepsy.NextIncidentTime));
 
             // Starlight-start
-            // Add just enough sleep to immediatly cause it, waking effects/damage/drugs and shaking can shorten it now.
             if (HasComp<SleepingComponent>(uid))
                 continue;
 
-            _statusEffects.TryAddStatusEffectDuration(uid, "StatusEffectSleepiness", TimeSpan.FromSeconds(31));
+            if (!_statusEffects.TryAddStatusEffectDuration(uid, "StatusEffectSleepiness", out var statusEffect, duration) ||
+                statusEffect is null || !TryComp<SleepinessStatusEffectComponent>(statusEffect.Value, out var sleepiness))
+                continue;
+
+            sleepiness.SleepImmediately = true;
+            Dirty(statusEffect.Value, sleepiness);
             // Starlight-end
         }
     }
