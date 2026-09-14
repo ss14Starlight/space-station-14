@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Cluster) Added a cyborg charger and intellicard to ai core.
-    type: Add
-  id: 408159
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
-- author: Cvlancer
-  changes:
   - message: (Cluster) Removed infinite power generation from ai core.
     type: Remove
   id: 408160
@@ -2799,4 +2792,11 @@ Entries:
   id: 408558
   time: '2026-09-14T07:34:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6038
+- author: STARLIGHT TEAM
+  changes:
+  - message: '"Damper II" by Beptol Corporation to vinyls and NukeOps music list.'
+    type: Add
+  id: 408559
+  time: '2026-09-14T08:00:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6065
 Order: -1
