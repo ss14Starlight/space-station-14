@@ -47,16 +47,10 @@ public sealed partial class SleepinessOverlaySystem : EntitySystem
         if (localEntity is not { } player)
             return;
 
-        if (_statusEffects.TryGetEffectsEndTimeWithComp<SleepinessStatusEffectComponent>(player, out _))
-        {
-            if (!_overlayManager.HasOverlay<SleepinessOverlay>())
-            {
-                _overlayManager.AddOverlay(_overlay);
-            }
-        }
+        if (_statusEffects.TryGetEffectsEndTimeWithComp<SleepinessStatusEffectComponent>(player, out _) 
+            && !_overlayManager.HasOverlay<SleepinessOverlay>())
+            _overlayManager.AddOverlay(_overlay);
         else if (_overlayManager.HasOverlay<SleepinessOverlay>() && _overlay.IsAtRest)
-        {
             _overlayManager.RemoveOverlay(_overlay);
-        }
     }
 }
