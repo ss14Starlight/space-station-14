@@ -11,8 +11,10 @@ using Robust.Shared.Map;
 using Content.Shared.Stunnable;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
+#region Starlight Usings
 using Content.Shared.Popups;
 using Content.Shared._Starlight.Cybernetics.Components;
+#endregion Starlight Usings
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
 
@@ -27,7 +29,7 @@ public abstract partial class SharedJumpSystem : EntitySystem
     [Dependency] private ActionContainerSystem _actionContainer = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private SharedChargesSystem _chargesSystem = default!;
-    [Dependency] private SharedPopupSystem _popups = default!;
+    [Dependency] private SharedPopupSystem _popups = default!; //Starlight
 
     public override void Initialize()
     {
