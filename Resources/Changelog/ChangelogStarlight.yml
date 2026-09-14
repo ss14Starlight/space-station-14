@@ -1,20 +1,6 @@
 Entries:
 - author: SirLutz
   changes:
-  - message: RiftShark have an 5% chance to spawn instead of an carp from an Dragonrift.
-    type: Add
-  id: 408226
-  time: '2026-09-05T22:44:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5886
-- author: SirLutz
-  changes:
-  - message: Holocarps have an 15% chance to spawn instead of an carp, or when Riftshark limit is reached.
-    type: Add
-  id: 408227
-  time: '2026-09-05T22:44:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5886
-- author: SirLutz
-  changes:
   - message: An finished Rift has an 10% chance for Sharks and 30% for an Holocarp to replace an regular carp.
     type: Add
   id: 408228
@@ -2799,4 +2785,18 @@ Entries:
   id: 408625
   time: '2026-09-14T14:15:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6060
+- author: Xale
+  changes:
+  - message: Washing machine now removes lube and glue from items.
+    type: Add
+  id: 408626
+  time: '2026-09-14T14:15:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6105
+- author: Xale
+  changes:
+  - message: Washing machine now cleans any crewmember that happens to find themselves inside. Crew are still advised to use sinks to safely to wash themselves.
+    type: Add
+  id: 408627
+  time: '2026-09-14T14:15:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6105
 Order: -1
