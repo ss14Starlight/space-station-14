@@ -37,5 +37,5 @@
     comps:
       - type: PointLight
         color: orange
-      - type: InventorySlotTogglePointLight
-        offSlots: EYES
+      - type: FlashImmunityTogglePointLight
+        Invert: true
