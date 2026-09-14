@@ -4,7 +4,7 @@
   suffix: Nanotrasen
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/Nanotrasen.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen.rsi
     state: "assembly"
 
 - type: entity
@@ -13,5 +13,5 @@
   suffix: Nanotrasen, Glass
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Glass/Nanotrasen.rsi
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/nanotrasen.rsi
     state: "assembly"
