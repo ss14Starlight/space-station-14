@@ -1,13 +1,6 @@
 Entries:
 - author: bynddark8
   changes:
-  - message: Adds an additional icon to the Assistant Manager's digi-board.
-    type: Add
-  id: 408235
-  time: '2026-09-05T23:36:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5864
-- author: bynddark8
-  changes:
   - message: Enables loud mode on the Assistant Manager's headset.
     type: Tweak
   id: 408236
@@ -2799,4 +2792,11 @@ Entries:
   id: 408634
   time: '2026-09-14T20:15:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6067
+- author: STARLIGHT ADMINISTRATION
+  changes:
+  - message: Rule 6 now explicitly forbids pursuing radical character alteration (like cognizine injections, borgification, corgification, amputations, etc) from shift-start, you may of course still pursue these routes with RP-justification.
+    type: Tweak
+  id: 408635
+  time: '2026-09-14T20:47:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6163
 Order: -1
