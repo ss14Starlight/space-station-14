@@ -1,6 +1,6 @@
 - type: entity
   name: golden beaker
-  parent: Beaker
+  parent: LargeBeaker
   description: Used to contain a gigantic amount of chemicals and solutions.
   id: GoldenBeaker
   components:
@@ -129,7 +129,7 @@
 
 - type: entity
   name: silver beaker
-  parent: Beaker
+  parent: LargeBeaker
   description: Used to contain a huge amount of chemicals and solutions.
   id: SilverBeaker
   components:
