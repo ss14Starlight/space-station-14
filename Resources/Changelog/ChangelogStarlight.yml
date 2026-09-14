@@ -1,13 +1,6 @@
 Entries:
 - author: Swonki, SirLutz
   changes:
-  - message: The Colossus can now use the Ingress ability on rifts, transforming them into Malign Empowered Rifts.
-    type: Add
-  id: 408171
-  time: '2026-09-05T16:10:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5581
-- author: Swonki, SirLutz
-  changes:
   - message: Changed the description of the Ingress ability and its guidebook entry.
     type: Tweak
   id: 408172
@@ -2799,4 +2792,11 @@ Entries:
   id: 408570
   time: '2026-09-14T09:54:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6120
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Newspapers now obscure your identity when held.
+    type: Add
+  id: 408571
+  time: '2026-09-14T09:54:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6126
 Order: -1
