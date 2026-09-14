@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Cluster) Removed an airvent that wasn't being used in salvage room.
-    type: Remove
-  id: 408161
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
-- author: Cvlancer
-  changes:
   - message: (Cluster) Removed hv wires in engie that went around smes room.
     type: Remove
   id: 408162
@@ -2799,4 +2792,11 @@ Entries:
   id: 408560
   time: '2026-09-14T08:27:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6092
+- author: qbrx
+  changes:
+  - message: Changeling biodegrade can melt bolas.
+    type: Tweak
+  id: 408561
+  time: '2026-09-14T08:27:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6071
 Order: -1
