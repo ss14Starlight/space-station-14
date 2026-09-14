@@ -34,7 +34,9 @@ using Content.Shared._Starlight.Changeling;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Flash;
 using Content.Shared.Store;
-
+using Content.Server.Ensnaring;
+using Content.Shared.Ensnaring.Components;
+using Content.Shared.Tag;
 // Starlight edit end
 
 namespace Content.Server._Starlight.Changeling;
@@ -45,9 +47,12 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private LanguageSystem _language = default!;
     [Dependency] private SharedFlashSystem _flashSystem = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private EnsnareableSystem _ensnareable = default!;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
+    private static readonly ProtoId<TagPrototype> BolaTag = "Bola";
 
     public void SubscribeAbilities()
     {
@@ -460,6 +465,20 @@ public sealed partial class ChangelingSystem : EntitySystem
             }
 
             QueueDel(cuff);
+        }
+
+        // Remove bolas
+        if (TryComp<EnsnareableComponent>(uid, out var ensnareable))
+        {
+            foreach (var ensnaring in ensnareable.Container.ContainedEntities)
+            {
+                if (!TryComp<EnsnaringComponent>(ensnaring, out var ensnaringComponent) || !_tag.HasTag(ensnaring, BolaTag))
+                    continue;
+
+                _ensnareable.ForceFree(ensnaring, ensnaringComponent);
+                QueueDel(ensnaring);
+                break;
+            }
         }
 
         var soln = new Solution();
