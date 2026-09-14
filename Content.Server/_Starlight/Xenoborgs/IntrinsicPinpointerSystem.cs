@@ -15,6 +15,9 @@ public sealed partial class IntrinsicPinpointerSystem : EntitySystem
 
     private EntityQuery<TransformComponent> _xformQuery;
 
+    private float _updateAccumulator;
+    private const float UpdateInterval = 0.25f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -23,6 +26,12 @@ public sealed partial class IntrinsicPinpointerSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < UpdateInterval)
+            return;
+
+        _updateAccumulator -= UpdateInterval;
+
         var query = EntityQueryEnumerator<IntrinsicPinpointerComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var xform))
         {

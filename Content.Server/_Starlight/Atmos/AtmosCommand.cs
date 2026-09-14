@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server._Starlight.Commands;
-using Content.Server._Starlight.Toolshed;
+using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;

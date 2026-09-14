@@ -1,9 +1,10 @@
 using Content.Client.Administration.Managers;
-using Content.Client.Construction; // Starlight
+using Content.Client.Construction;
 using Content.Client.Gameplay;
 using Content.Client.Sandbox;
 using Content.Client.UserInterface.Systems.DecalPlacer;
 using Content.Client.UserInterface.Systems.Sandbox.Windows;
+using Content.Client._Starlight.Zones;
 using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Input;
@@ -17,6 +18,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BaseButton;
+using Content.Client._Starlight.UserInterface.Systems.ZonePlacer;
 
 namespace Content.Client.UserInterface.Systems.Sandbox;
 
@@ -38,6 +40,9 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
     private EntitySpawningUIController EntitySpawningController => UIManager.GetUIController<EntitySpawningUIController>();
     private TileSpawningUIController TileSpawningController => UIManager.GetUIController<TileSpawningUIController>();
     private DecalPlacerUIController DecalPlacerController => UIManager.GetUIController<DecalPlacerUIController>();
+    #region Starlight
+    private ZonePlacerUIController ZonePlacerController => UIManager.GetUIController<ZonePlacerUIController>();
+    #endregion
 
     private Controls.MenuButton? SandboxButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.SandboxButton;
 
@@ -128,6 +133,9 @@ public sealed partial class SandboxUIController : UIController, IOnStateChanged<
         _window.SpawnTilesButton.OnPressed += _ => TileSpawningController.ToggleWindow();
         _window.SpawnEntitiesButton.OnPressed += _ => EntitySpawningController.ToggleWindow();
         _window.SpawnDecalsButton.OnPressed += _ => DecalPlacerController.ToggleWindow();
+        _window.SpawnZonesButton.OnPressed += _ => ZonePlacerController.ToggleWindow(); // Starlight
+        _window.ShowZonesButton.OnPressed += _ => EntityManager.System<ZonePlacementSystem>().ToggleShowZones(); // Starlight
+        _window.ShowRoomsButton.OnPressed += _ => EntityManager.System<ZonePlacementSystem>().ToggleShowRooms(); // Starlight
         _window.FinishConstructionGhostsButton.OnPressed += _ => _construction.DebugFinishAllGhosts(); // Starlight
         _window.GiveFullAccessButton.OnPressed += _ => _sandbox.GiveAdminAccess();
         _window.GiveAghostButton.OnPressed += _ => _sandbox.GiveAGhost();
