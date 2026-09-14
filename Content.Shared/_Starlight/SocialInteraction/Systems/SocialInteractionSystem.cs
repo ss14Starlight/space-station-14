@@ -9,6 +9,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.SocialInteraction.Systems;
 
@@ -20,6 +21,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
     [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private SharedChatSystem _chatSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
     public override void Initialize()
     {
         //subscribe to inspect events on the physical social interaction receiver component
@@ -51,10 +53,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
             {
                 Text = Loc.GetString(proto.VerbName),
                 Category = category,
-                Act = () =>
-                {
-                    InteractionPopupAction(uid, args, proto);
-                }
+                Act = () => InteractionPopupAction(uid, args, proto)
             };
 
             args.Verbs.Add(verb);
@@ -74,6 +73,10 @@ public sealed partial class SocialInteractionSystem : EntitySystem
 
     private void InteractionPopupAction(EntityUid uid, GetVerbsEvent<Verb> args, SocialInteractionPrototype proto)
     {
+        // needed to not play interaction audio multiple times
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
         // check if interaction needs physical contact
         if (proto.IsPhysical && !CheckInteractable(args.User, args.Target))
             return;
@@ -111,7 +114,11 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         }
         else
         {
-            _audio.PlayEntity(sfx, Filter.Entities(args.User, args.Target), args.Target, false);
+            _audio.PlayLocal(sfx, args.Target, args.User);
+
+            // don't play sounds twice if you're the target
+            if(args.User != args.Target)
+                _audio.PlayEntity(sfx, Filter.Entities(args.Target), args.Target, false);
         }
     }
 }
