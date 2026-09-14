@@ -370,6 +370,7 @@
     - MobChicken2
     intervalSeconds: 20
     despawnWhenDone: true # Starlight-edit
+    allowContainerPlacement: true # Starlight
 #  - type: TimedDespawn Starlight-edit #delete the egg after the chicken spawns
 #    lifetime: 21
 
@@ -838,6 +839,7 @@
       - MobDuckBrown
       intervalSeconds: 20
       despawnWhenDone: true # Starlight-edit: delete the egg after the duck spawns
+      allowContainerPlacement: true # Starlight
     #- type: TimedDespawn Starlight-edit
     #  lifetime: 21
 
