@@ -13,7 +13,7 @@ namespace Content.IntegrationTests.Tests._Starlight.Actions;
 [TestFixture]
 public sealed class WakeActionTest : GameTest
 {
-    public override PoolSettings PoolSettings => new PoolSettings { Connected = true, DummyTicker = false };
+    public override PoolSettings PoolSettings => new() { Connected = true, DummyTicker = false };
 
     [Test]
     public async Task SleepingUserCanInvokeWakeAction()
