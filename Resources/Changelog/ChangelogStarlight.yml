@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Cluster) Removed infinite power generation from ai core.
-    type: Remove
-  id: 408160
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
-- author: Cvlancer
-  changes:
   - message: (Cluster) Removed an airvent that wasn't being used in salvage room.
     type: Remove
   id: 408161
@@ -2799,4 +2792,11 @@ Entries:
   id: 408559
   time: '2026-09-14T08:00:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6065
+- author: Xale
+  changes:
+  - message: Avali are again poisoned by theobromine.
+    type: Fix
+  id: 408560
+  time: '2026-09-14T08:27:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6092
 Order: -1
