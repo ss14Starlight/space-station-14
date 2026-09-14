@@ -192,8 +192,8 @@ public sealed partial class CosmicColossusSystem : EntitySystem
 
         var health = damagePercentage switch
         {
-            < 0.25f => ColossusHealth.Healthy,
-            < 0.50f => ColossusHealth.Damaged,
+            < 0.10f => ColossusHealth.Healthy,
+            < 0.35f => ColossusHealth.Damaged,
             < 0.75f => ColossusHealth.HeavilyDamaged,
             _ => ColossusHealth.Crumbling,
         };
