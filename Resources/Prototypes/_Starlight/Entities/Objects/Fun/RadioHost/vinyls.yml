@@ -127,3 +127,19 @@
   - type: Vinyl
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/DepressedWawatriestoprotest.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylDamperII
+  name: "vinyl: Damper II"
+  description: "A remix of a very familiar, dramatically fast paced electronic tune. By: Beptol Corporation Acoustics"
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#baa459"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/damper_ii.ogg
