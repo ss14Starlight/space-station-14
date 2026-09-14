@@ -1,13 +1,6 @@
 Entries:
 - author: Limblesstar, Teddiousbear.
   changes:
-  - message: Seismic Charges to Mining Ticket Box.
-    type: Add
-  id: 408230
-  time: '2026-09-05T23:09:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5877
-- author: Limblesstar, Teddiousbear.
-  changes:
   - message: Salvage Death Rattle, Salvage Magboots.
     type: Add
   id: 408231
@@ -2799,4 +2792,11 @@ Entries:
   id: 408629
   time: '2026-09-14T15:07:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6136
+- author: STARLIGHT TEAM
+  changes:
+  - message: You can now customise the fluff of Moth person wing markings separatey from the wings.
+    type: Tweak
+  id: 408630
+  time: '2026-09-14T15:32:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6140
 Order: -1
