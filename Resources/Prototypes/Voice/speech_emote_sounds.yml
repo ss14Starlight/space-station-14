@@ -791,7 +791,7 @@
 
 - type: emoteSounds
   id: Cerberus
-starlight-start
+#starlight-start
   params:
     variation: 0.125
   sounds:
@@ -811,7 +811,7 @@ starlight-start
       path: /Audio/_Starlight/Effects/yip.ogg
     Sneeze:
       collection: VulpkaninSneeze
-starlight-end
+#starlight-end
 
 - type: emoteSounds
   id: Kangaroo
