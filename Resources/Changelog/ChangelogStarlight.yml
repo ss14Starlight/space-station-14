@@ -1,11 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Bagel) Added mailboxes to all departments.
-    type: Add
-  id: 408166
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
 - author: Swonki, SirLutz
   changes:
   - message: Malign Minions (0.1) and the Colossus (0.2) now regenerate health while standing on malign tiles.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408565
   time: '2026-09-14T09:24:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6077
+- author: Xale
+  changes:
+  - message: Added 5 new cargo bounties.
+    type: Add
+  id: 408566
+  time: '2026-09-14T09:24:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6115
 Order: -1
