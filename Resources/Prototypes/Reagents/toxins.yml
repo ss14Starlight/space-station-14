@@ -747,7 +747,7 @@
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Vampire, Rodentia ] # Starlight - add Vampire, Rodentia
+          type: [ Vampire, Rodentia, Doll ] # Starlight - add Vampire, Rodentia
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent #FH
@@ -757,12 +757,6 @@
         reagent: Protein #FH
         amount: 0.5 #FH
       # Starlight Start
-      - !type:AdjustReagent
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Doll ]
-        reagent: Protein
-        amount: 0.5
       # Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:

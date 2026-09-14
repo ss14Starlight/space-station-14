@@ -25,8 +25,9 @@ scent-cleaning-cannot-clean-self = You have no evidence to wash away.
 scent-cleaning-cannot-clean-other = There is no evidence to wash off { $target }.
 
 scent-verb-text = Remove evidence
-scent-verb-message = Wash scent, fingerprints, and DNA residue off the object!
+scent-verb-message = Wash scent, stains, fingerprints, and DNA residue off the object!
 
 scent-evidence-scent = scent
 scent-evidence-forensics = fingerprints and other evidence
 scent-evidence-both = scent, fingerprints, and other evidence
+scent-evidence-stains = stains

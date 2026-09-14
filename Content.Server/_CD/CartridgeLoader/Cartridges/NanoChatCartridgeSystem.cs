@@ -27,20 +27,20 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedNanoChatSystem _nanoChat = default!;
     [Dependency] private StationSystem _station = default!;
-    [Dependency] private PopupSystem _popupSystem = default!; // Starlight
-    [Dependency] private AlertsSystem _alerts = default!; // Starlight
+
     // Messages in notifications get cut off after this point
     // no point in storing it on the comp
     private const int NotificationMaxLength = 64;
 
-    public override void Initialize()
-    {
-        base.Initialize();
+    #region Starlight
 
-        SubscribeLocalEvent<NanoChatCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
-        SubscribeLocalEvent<NanoChatCartridgeComponent, CartridgeMessageEvent>(OnMessage);
-        SubscribeLocalEvent<NanoChatMessageReceivedEvent>(OnMessageReceived);
-    }
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private EntityQuery<PdaComponent> _pdaQuery;
+
+    private readonly Dictionary<EntityUid, EntityUid> _alertedHolders = [];
+    private readonly List<EntityUid> _clearedAlerts = [];
+    #endregion
 
     public override void Update(float frameTime)
     {
@@ -50,40 +50,77 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
         var query = EntityQueryEnumerator<NanoChatCartridgeComponent, CartridgeComponent>();
         while (query.MoveNext(out var uid, out var nanoChat, out var cartridge))
         {
-            if (cartridge.LoaderUid == null)
+            if (cartridge.LoaderUid is not { } loader)
                 continue;
 
             // Check if we need to update our card reference
-            var q = GetEntityQuery<PdaComponent>();
-            if (!q.TryGetComponent(cartridge.LoaderUid, out var pda))
+            if (!_pdaQuery.TryGetComponent(loader, out var pda))
                 continue;
 
             var newCard = pda.ContainedId;
-            var currentCard = nanoChat.Card;
-
-            //Starlight start
-            if (newCard.HasValue)
-            {
-                var holder = _nanoChat.GetPdaHolder(newCard.Value!);
-                if(holder.HasValue && !_nanoChat.HasUnreadMessages(newCard.Value) && TryComp<NanoChatCardComponent>(newCard.Value, out var cardComp)) _alerts.ClearAlert(holder.Value, cardComp.Alert);
-            }
-            //Starlight end
 
             // If the cards match, nothing to do
-            if (newCard == currentCard)
+            if (newCard == nanoChat.Card)
                 continue;
 
             // Update card reference
             nanoChat.Card = newCard;
 
             // Update UI state since card reference changed
-            UpdateUI((uid, nanoChat), cartridge.LoaderUid.Value);
+            UpdateUI((uid, nanoChat), loader);
         }
+
+        UpdateUnreadAlerts();
     }
+
+    #region Starlight
+    /// <summary>
+    /// Clears the unread messages alert once all messages on the card were read.
+    /// </summary>
+    private void UpdateUnreadAlerts()
+    {
+        if (_alertedHolders.Count == 0)
+            return;
+
+        foreach (var (card, holder) in _alertedHolders)
+        {
+            if (TryComp<NanoChatCardComponent>(card, out var cardComp))
+            {
+                if (_nanoChat.HasUnreadMessages((card, cardComp)))
+                    continue;
+
+                _alerts.ClearAlert(holder, cardComp.Alert);
+            }
+
+            _clearedAlerts.Add(card);
+        }
+
+        foreach (var card in _clearedAlerts)
+        {
+            _alertedHolders.Remove(card);
+        }
+
+        _clearedAlerts.Clear();
+    }
+
+    private void ShowUnreadAlert(Entity<NanoChatCardComponent> card)
+    {
+        if (_nanoChat.GetPdaHolder(card) is not { } holder)
+            return;
+
+        // The card changed hands since the last alert, the previous holder no longer has anything unread.
+        if (_alertedHolders.TryGetValue(card, out var previousHolder) && previousHolder != holder)
+            _alerts.ClearAlert(previousHolder, card.Comp.Alert);
+
+        _alerts.ShowAlert(holder, card.Comp.Alert);
+        _alertedHolders[card] = holder;
+    }
+    #endregion
 
     /// <summary>
     ///     Handles incoming UI messages from the NanoChat cartridge.
     /// </summary>
+    [SubscribeLocalEvent]
     private void OnMessage(Entity<NanoChatCartridgeComponent> ent, ref CartridgeMessageEvent args)
     {
         if (args is not NanoChatUiMessageEvent msg)
@@ -207,9 +244,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     ///     Handles closing the current chat conversation.
     /// </summary>
     private void HandleCloseChat(Entity<NanoChatCardComponent> card)
-    {
-        _nanoChat.SetCurrentChat((card, card.Comp), null);
-    }
+        => _nanoChat.SetCurrentChat((card, card.Comp), null);
 
     /// <summary>
     ///     Handles deletion of a chat conversation.
@@ -299,7 +334,6 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
         _nanoChat.SetListNumber((card, card.Comp), !_nanoChat.GetListNumber((card, card.Comp)));
         UpdateUIForAllCards();
     }
-
 
     /// <summary>
     ///     Handles sending a new message in a chat conversation.
@@ -399,9 +433,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     /// <param name="recipientNumber">The recipient's number to check</param>
     /// <returns>True if the recipient exists or was created successfully</returns>
     private bool EnsureRecipientExists(Entity<NanoChatCardComponent> card, uint recipientNumber)
-    {
-        return _nanoChat.EnsureRecipientExists((card, card.Comp), recipientNumber, GetCardInfo(recipientNumber));
-    }
+        => _nanoChat.EnsureRecipientExists((card, card.Comp), recipientNumber, GetCardInfo(recipientNumber));
 
     /// <summary>
     ///     Attempts to deliver a message to recipients.
@@ -500,11 +532,6 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     /// <summary>
     ///     Delivers a message to the recipient and handles associated notifications.
     /// </summary>
-    /// <param name="sender">The sender's card entity</param>
-    /// <param name="recipient">The recipient's card entity</param>
-    /// <param name="message">The <see cref="NanoChatMessage" /> to deliver</param>
-    /// <param name="chatNumber">The chat number (for group chats, this is the group number)</param>
-    /// <param name="groupRecipient">Optional group recipient info if this is a group chat</param>
     private void DeliverMessageToRecipient(Entity<NanoChatCardComponent> sender,
         Entity<NanoChatCardComponent> recipient,
         NanoChatMessage message,
@@ -559,7 +586,6 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     }
     // Funky Station End - Heavily modified to support group chats
 
-
     /// <summary>
     ///     Attempts to deliver a message to all members of a group chat.
     /// </summary>
@@ -586,6 +612,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
         return (false, deliverableRecipients);
     }
 
+    [SubscribeLocalEvent]
     private void OnMessageReceived(ref NanoChatMessageReceivedEvent args)
     {
         var query = EntityQueryEnumerator<NanoChatCartridgeComponent>();
@@ -653,8 +680,7 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
         else
             title = Loc.GetString("nano-chat-new-message-title", ("sender", senderName));
         // Starlight start
-        var holder = _nanoChat.GetPdaHolder(recipient);
-        if (holder.HasValue) _alerts.ShowAlert(holder.Value, recipient.Comp.Alert);
+        ShowUnreadAlert(recipient);
         // Starlight end
 
         _cartridge.SendNotification(pda,
@@ -723,12 +749,11 @@ public sealed partial class NanoChatCartridgeSystem : EntitySystem
     ///     Truncates a message to the notification maximum length.
     /// </summary>
     private static string TruncateMessage(string message)
-    {
-        return message.Length <= NotificationMaxLength
+        => message.Length <= NotificationMaxLength
             ? message
             : message[..(NotificationMaxLength - 4)] + " [...]";
-    }
 
+    [SubscribeLocalEvent]
     private void OnUiReady(Entity<NanoChatCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
         _cartridge.RegisterBackgroundProgram(args.Loader, ent);
