@@ -331,7 +331,7 @@
   - type: Solution
     id: output
     solution:
-      maxVol: 100
+      maxVol: 120
       canReact: false
 
 - type: entity
@@ -342,7 +342,7 @@
   - type: Solution
     id: drain
     solution:
-      maxVol: 100
+      maxVol: 120
       canReact: false
 
 - type: entity
@@ -419,7 +419,7 @@
   - type: Solution
     id: output
     solution:
-      maxVol: 100
+      maxVol: 120
       canReact: false
 
 - type: entity
@@ -508,7 +508,7 @@
   - type: Solution
     id: buffer
     solution:
-      maxVol: 100
+      maxVol: 120
       canReact: false  # Reactions triggered manually when targets met
 
 - type: entity
@@ -519,7 +519,7 @@
   - type: Solution
     id: output
     solution:
-      maxVol: 100
+      maxVol: 120
       canReact: false
 
 - type: entity
@@ -1082,7 +1082,7 @@
   parent: PlumbingMachineBase
   id: PlumbingDisposal
   name: plumbing disposal
-  description: Pulls reagents from a south inlet into an internal 200u buffer and destroys them.
+  description: Pulls reagents from a south inlet into an internal 240u buffer and destroys them.
   components:
   - type: Sprite
     drawdepth: FloorObjects
