@@ -29,7 +29,8 @@ public sealed partial class XenosocializedTraitSystem : EntitySystem // Talita h
             Log.Warning($"Entity {entity.Owner} does not have a LanguageKnowledge but has a XenosocializedTrait!");
             return;
         }
-        if (!TryComp(entity, out MetaDataComponent? metadata))
+        var metadata = MetaData(entity);
+        if (metadata == null)
         {
             Log.Warning($"Entity {entity.Owner} does not have a MetaDataComponent?!");
             return;
