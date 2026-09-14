@@ -1,6 +1,5 @@
 ﻿using Content.Server.Worldgen.Systems;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Worldgen.Components;
 

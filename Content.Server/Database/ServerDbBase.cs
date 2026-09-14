@@ -21,7 +21,6 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Traits;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
@@ -82,7 +81,7 @@ namespace Content.Server.Database
                 : 0;
             // 🌟Starlight🌟 end
 
-            var profiles = new Dictionary<int, ICharacterProfile>(maxSlot);
+            var profiles = new Dictionary<int, HumanoidCharacterProfile>(maxSlot);
             foreach (var profile in prefs.Profiles)
             {
                 profiles[profile.Slot] = ConvertProfiles(profile);
@@ -97,21 +96,15 @@ namespace Content.Server.Database
             return new PlayerPreferences(profiles, Color.FromHex(prefs.AdminOOCColor), constructionFavorites, jobPriorities);
         }
 
-        public async Task SaveCharacterSlotAsync(NetUserId userId, ICharacterProfile? profile, int slot)
+        public async Task SaveCharacterSlotAsync(NetUserId userId, HumanoidCharacterProfile? humanoid, int slot)
         {
             await using var db = await GetDb();
 
-            if (profile is null)
+            if (humanoid is null)
             {
                 await DeleteCharacterSlot(db.DbContext, userId, slot);
                 await db.DbContext.SaveChangesAsync();
                 return;
-            }
-
-            if (profile is not HumanoidCharacterProfile humanoid)
-            {
-                // TODO: Handle other ICharacterProfile implementations properly
-                throw new NotImplementedException();
             }
 
             var oldProfile = db.DbContext.Profile
@@ -185,7 +178,7 @@ namespace Content.Server.Database
             db.Profile.Remove(profile);
         }
 
-        public async Task<PlayerPreferences> InitPrefsAsync(NetUserId userId, ICharacterProfile defaultProfile)
+        public async Task<PlayerPreferences> InitPrefsAsync(NetUserId userId, HumanoidCharacterProfile defaultProfile)
         {
             await using var db = await GetDb();
 
@@ -213,7 +206,7 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
 
             return new PlayerPreferences(
-                new[] { new KeyValuePair<int, ICharacterProfile>(0, defaultProfile) },
+                new[] { new KeyValuePair<int, HumanoidCharacterProfile>(0, defaultProfile) },
                 Color.FromHex(prefs.AdminOOCColor),
                 [],
                 priorities
@@ -396,7 +389,7 @@ namespace Content.Server.Database
         private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
         {
             profile ??= new Profile();
-            var appearance = (HumanoidCharacterAppearance)humanoid.CharacterAppearance;
+            var appearance =humanoid.Appearance;
             List<string> markingStrings = new();
             foreach (var marking in appearance.Markings)
             {

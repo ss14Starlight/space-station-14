@@ -78,11 +78,9 @@
     - outletSouth
     - outletEast
     - outletWest
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      tank:
-        maxVol: 2000
-        canReact: false
+    - SolutionPlumbingTankTank
   - type: ExaminableSolution
     solution: tank
   - type: NodeContainer
@@ -119,6 +117,18 @@
 # =============================================================================
 # Plumbing Buffer - small low-profile tank for reagent buffering
 # =============================================================================
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingTankTank
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: tank
+    solution:
+      maxVol: 2000
+      canReact: false
+
 - type: entity
   parent: PlumbingTank
   id: PlumbingBuffer
@@ -142,15 +152,25 @@
     - outletSouth
     - outletEast
     - outletWest
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      tank:
-        maxVol: 200
-        canReact: false
+    - SolutionPlumbingBufferTank
+
+- type: entity
+  parent: SolutionPlumbingTankTank
+  id: SolutionPlumbingBufferTank
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: tank
+    solution:
+      maxVol: 200
+      canReact: false
 
 # =============================================================================
 # Plumbing Input - pour reagents into the network
 # =============================================================================
+
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingInput
@@ -176,11 +196,9 @@
     - outletEast
     - outletSouth
     - outletWest
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      input:
-        maxVol: 100
-        canReact: false
+    - SolutionPlumbingInputInput
   - type: ExaminableSolution
     solution: input
   - type: NodeContainer
@@ -217,6 +235,18 @@
 # =============================================================================
 # Plumbing Sink - draws reagents from the network, has an outlet for solutions dumped into it
 # =============================================================================
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingInputInput
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: input
+    solution:
+      maxVol: 100
+      canReact: false
+
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingSink
@@ -250,14 +280,10 @@
   - type: DumpableSolution
     solution: drain
   - type: Plungeable
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      output:
-        maxVol: 100
-        canReact: false
-      drain:
-        maxVol: 100
-        canReact: false
+    - SolutionPlumbingSinkOutput
+    - SolutionPlumbingSinkDrain
   - type: ExaminableSolution
     solution: output
   - type: NodeContainer
@@ -296,6 +322,29 @@
 # =============================================================================
 # Plumbing Output - draw reagents from the network
 # =============================================================================
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingSinkOutput
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: output
+    solution:
+      maxVol: 100
+      canReact: false
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingSinkDrain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: drain
+    solution:
+      maxVol: 100
+      canReact: false
+
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingOutput
@@ -322,11 +371,9 @@
   - type: PlumbingOutput
     solutionName: output
   - type: Plungeable
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      output:
-        maxVol: 100
-        canReact: false
+    - SolutionPlumbingOutputOutput
   - type: ExaminableSolution
     solution: output
   - type: NodeContainer
@@ -363,6 +410,18 @@
 # =============================================================================
 # Plumbing Reactor - accumulates reagents and triggers reactions
 # =============================================================================
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingOutputOutput
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: output
+    solution:
+      maxVol: 100
+      canReact: false
+
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingReactor
@@ -397,14 +456,10 @@
   - type: PlumbingOutlet
     solutionName: output
     connectedOutlets: true
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      buffer:
-        maxVol: 100
-        canReact: false  # Reactions triggered manually when targets met
-      output:
-        maxVol: 100
-        canReact: false
+    - SolutionPlumbingReactorBuffer
+    - SolutionPlumbingReactorOutput
   - type: ExaminableSolution
     solution: output
   - type: NodeContainer
@@ -444,6 +499,29 @@
 # =============================================================================
 # Plumbing Smart Dispenser - stores reagents from the network, fills labeled jugs
 # =============================================================================
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingReactorBuffer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: buffer
+    solution:
+      maxVol: 100
+      canReact: false  # Reactions triggered manually when targets met
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingReactorOutput
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: output
+    solution:
+      maxVol: 100
+      canReact: false
+
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingSmartDispenser
@@ -492,11 +570,9 @@
   - type: PlumbingSmartDispenser
     solutionName: fridge
     maxPerReagent: 200
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      fridge:
-        maxVol: 50000
-        canReact: false
+    - SolutionPlumbingSmartDispenserFridge
   - type: ExaminableSolution
     solution: fridge
   - type: NodeContainer
@@ -542,6 +618,18 @@
 # =============================================================================
 # Plumbing Pill Press - automatically creates pills or patches from reagents
 # =============================================================================
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingSmartDispenserFridge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: fridge
+    solution:
+      maxVol: 50000
+      canReact: false
+
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingPillPress
@@ -572,17 +660,11 @@
     solutionName: buffer
     inletNames:
     - inlet
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      buffer:
-        maxVol: 20
-        canReact: false
-      stagingEast:
-        maxVol: 20
-        canReact: false
-      stagingWest:
-        maxVol: 20
-        canReact: false
+    - SolutionPlumbingPillPressBuffer
+    - SolutionPlumbingPillPressStagingEast
+    - SolutionPlumbingPillPressStagingWest
   - type: ExaminableSolution
     solution: buffer
   - type: NodeContainer
@@ -623,6 +705,40 @@
 # =============================================================================
 # Plumbing Filter - separates specific reagents into two outputs
 # =============================================================================
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingPillPressBuffer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: buffer
+    solution:
+      maxVol: 20
+      canReact: false
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingPillPressStagingEast
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stagingEast
+    solution:
+      maxVol: 20
+      canReact: false
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingPillPressStagingWest
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stagingWest
+    solution:
+      maxVol: 20
+      canReact: false
+
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingFilter
@@ -658,14 +774,10 @@
     outletNames:
     - outletFilter
     - outletPassthrough
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      buffer:
-        maxVol: 40
-        canReact: false
-      bufferFiltered:
-        maxVol: 40
-        canReact: false
+    - SolutionPlumbingFilterBuffer
+    - SolutionPlumbingFilterBufferFiltered
   - type: ExaminableSolution
     solution: buffer
   - type: NodeContainer
@@ -706,6 +818,29 @@
         acts: ["Destruction"]
   - type: StaticPrice
     price: 125
+
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingFilterBuffer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: buffer
+    solution:
+      maxVol: 40
+      canReact: false
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingFilterBufferFiltered
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: bufferFiltered
+    solution:
+      maxVol: 40
+      canReact: false
 
 - type: entity
   parent: PlumbingFilter
@@ -775,12 +910,9 @@
   - type: Plungeable
   - type: PlumbingOutlet
     solutionName: buffer
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      buffer:
-        # 10 filtered reagents at 10u each.
-        maxVol: 100
-        canReact: false
+    - SolutionPlumbingInlineFilterBuffer
   - type: ExaminableSolution
     solution: buffer
   - type: NodeContainer
@@ -817,6 +949,19 @@
 # =============================================================================
 # Plumbing Synthesizer - generates reagents from power
 # =============================================================================
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingInlineFilterBuffer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: buffer
+    solution:
+      # 10 filtered reagents at 10u each.
+      maxVol: 100
+      canReact: false
+
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingSynthesizer
@@ -861,11 +1006,9 @@
     - outletSouth
     - outletEast
     - outletWest
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      buffer:
-        maxVol: 10
-        canReact: false
+    - SolutionPlumbingSynthesizerBuffer
   - type: ExaminableSolution
     solution: buffer
   - type: NodeContainer
@@ -923,6 +1066,18 @@
 # =============================================================================
 # Plumbing Disposal - destroys reagents pulled from plumbing network
 # =============================================================================
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingSynthesizerBuffer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: buffer
+    solution:
+      maxVol: 10
+      canReact: false
+
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingDisposal
@@ -955,11 +1110,9 @@
     unitsDestroyedPerSecond: 15
   - type: DumpableSolution
     solution: drainBuffer
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      drainBuffer:
-        maxVol: 200
-        canReact: false
+    - SolutionPlumbingDisposalDrainBuffer
   - type: ExaminableSolution
     solution: drainBuffer
   - type: NodeContainer
@@ -984,6 +1137,18 @@
 # =============================================================================
 # Plumbing Drain - floor drain that outputs to plumbing network
 # =============================================================================
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingDisposalDrainBuffer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: drainBuffer
+    solution:
+      maxVol: 200
+      canReact: false
+
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingDrain
@@ -1027,10 +1192,9 @@
     - outletEast
     - outletSouth
     - outletWest
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      drainBuffer:
-        maxVol: 400
+    - SolutionPlumbingDrainDrainBuffer
   - type: NodeContainer
     nodes:
       outletNorth:
@@ -1063,3 +1227,13 @@
         acts: ["Destruction"]
   - type: StaticPrice
     price: 150
+
+- type: entity
+  parent: Solution
+  id: SolutionPlumbingDrainDrainBuffer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: drainBuffer
+    solution:
+      maxVol: 400

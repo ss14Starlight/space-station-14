@@ -40,12 +40,11 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/hypospray.rsi
     state: combat_hypo
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 10
+  - type: Solution
+    id: hypospray
+    solution:
+      maxVol: 10
   - type: SolutionRegeneration
-    solution: hypospray
     generated:
       reagents:
       - ReagentId: Ipecac

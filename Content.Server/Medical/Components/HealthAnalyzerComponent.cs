@@ -2,7 +2,8 @@ using Robust.Shared.Audio;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Prototypes; //FarHorizons
-using Content.Shared.Actions;//FarHorizons
+
+//FarHorizons
 
 namespace Content.Server.Medical.Components;
 
@@ -28,6 +29,12 @@ public sealed partial class HealthAnalyzerComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(1);
+
+    /// <summary>
+    /// If the last state of the health analyzer was active (e.g. they are in range of the patient).
+    /// </summary>
+    [DataField]
+    public bool IsAnalyzerActive = false;
 
     /// <summary>
     /// How long it takes to scan someone.

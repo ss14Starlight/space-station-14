@@ -113,6 +113,8 @@
       - id: Plunger
       - id: WireBrush
       - id: MoproachBox #Starlight
+    - id: WashingMachineFlatpack # Starlight
+    - id: BucketSmall # Starlight
     - id: PlushieLizardJobJanitor
       prob: 0.02
 

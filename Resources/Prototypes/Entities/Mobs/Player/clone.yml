@@ -12,6 +12,8 @@
   - DetailExaminable
   - Dna
   - Fingerprint
+  - Grammar # Pronouns
+  #- HumanoidProfile # Age, Sex, Gender # Starlight, no nubody
   - NpcFactionMember
   # traits
   - BlackAndWhiteOverlay
@@ -62,6 +64,7 @@
   - TextToSpeech
   eventComponents:
   - LanguageKnowledge #Clone languages via event so if they get changed you dont suddently re-learn languages.
+  - Vocal # voice sounds
 
 # for job-specific traits etc.
 - type: cloningSettings
@@ -89,7 +92,7 @@
   blacklist:
     components:
     - AttachedClothing # helmets, which are part of the suit
-    - HumanoidAppearance # will cause problems for downstream felinids getting cloned as Urists
+    - HumanoidAppearance # Starlight, no nubody, so we need to keep this - Wizden's comment: will cause problems for downstream felinids getting cloned as Urists
     - Implanter # they will spawn full again, but you already get the implant. And we can't do item slot copying yet
     - VirtualItem
 
@@ -135,7 +138,6 @@
   # these need special treatment in the event subscription
   - Inventory # arachnid pockets and diona feet
   - Wagging # lizard tails
-  - Vocal # voice sounds
   - Storage # slime storage
   - Rootable # diona
   - Sericulture # arachnids

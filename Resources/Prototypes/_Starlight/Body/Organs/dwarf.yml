@@ -25,17 +25,24 @@
   - type: Sprite
     state: stomach
   - type: Organ
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 75
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach75
   - type: Stomach
   - type: Metabolizer
     # mm very yummy
     maxReagents: 5
     metabolizerTypes: [Dwarf, Animal]
+
+- type: entity
+  id: OrganDwarfTongue
+  parent: OrganHumanTongue
+  suffix: Dwarf
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: UnisexDwarf
+      Female: FemaleDwarf
+      Unsexed: UnisexDwarf

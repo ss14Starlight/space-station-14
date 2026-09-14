@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Magic.Events;
@@ -10,6 +11,12 @@ public sealed partial class SpawnItemInHandEvent : InstantActionEvent
     /// </summary>
     [DataField(required: true)]
     public EntProtoId Spawned = string.Empty;
+
+    /// <summary>
+    /// Damage applied to user when used
+    /// </summary>
+    [DataField]
+    public DamageSpecifier? SelfDamage;
 
     /// <summary>
     /// Should this require a free hand to work?

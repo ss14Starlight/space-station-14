@@ -75,6 +75,7 @@
   - TacticalMaidGloves
   - JanitorMaidOutfit
   - JanitorMaidOutfitMini
+  - EdgerunnerJacket
   - CoderSocks
   - PawBootTrinket
   - CatEars
@@ -157,6 +158,7 @@
   - EmergencyOxygen
   - EmergencyElfOxygen # Starlight
   - EmergencyDwarfOxygen # Starlight
+  - EmergencyOxygenBlood # 🌟Starlight🌟
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreather # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -196,6 +198,7 @@
   loadouts:
   - CaptainHead
   - CaptainCap
+  - CapBeret # Starlight
 
 - type: loadoutGroup
   id: CaptainJumpsuit
@@ -754,6 +757,7 @@
   - EmergencyOxygenClown
   - EmergencyElfOxygenClown # Starlight
   - EmergencyDwarfOxygenClown # Starlight
+  - EmergencyOxygenClownBlood # 🌟Starlight🌟
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherClown # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -824,6 +828,7 @@
   - EmergencyOxygenMime
   - EmergencyElfOxygenMime # Starlight
   - EmergencyDwarfOxygenMime # Starlight
+  - EmergencyOxygenMimeBlood # 🌟Starlight🌟
   - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherMime # 🌟Starlight🌟
@@ -1229,6 +1234,7 @@
   - EmergencyOxygenExtended
   - EmergencyElfOxygenExtended # Starlight
   - EmergencyDwarfOxygenExtended # Starlight
+  - EmergencyOxygenExtendedBlood # 🌟Starlight🌟
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherExtended # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -1628,6 +1634,7 @@
   - EmergencyOxygenSecurity
   - EmergencyElfOxygenSecurity # Starlight
   - EmergencyDwarfOxygenSecurity # Starlight
+  - EmergencyOxygenSecurityBlood # 🌟Starlight🌟
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonbreatherSecurity # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -1641,6 +1648,24 @@
   - ReporterJumpsuit
   - ReporterJumpskirt
   - JournalistJumpsuit
+  - JournalistJumpskirt # Starlight
+
+- type: loadoutGroup
+  id: ReporterHead
+  name: loadout-group-reporter-head
+  minLimit: 0
+  loadouts:
+  - ReporterPressFedora
+  - ReporterHeadphonesJob # Starlight
+  - ReporterHeadphonesGeneric # Starlight
+  - ReporterHeadphonesHighEnd # Starlight
+
+- type: loadoutGroup
+  id: ReporterOuterClothing
+  name: loadout-group-reporter-outerclothing
+  minLimit: 0
+  loadouts:
+  - ReporterPressVest
 
 #- type: loadoutGroup
 #  id: ReporterJobTrinkets
@@ -1672,6 +1697,7 @@
   - EmergencyOxygenSyndicate
   - EmergencyElfOxygenSyndicate # Starlight
   - EmergencyDwarfOxygenSyndicate # Starlight
+  - EmergencyOxygenSyndicateBlood # 🌟Starlight🌟
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -1689,6 +1715,7 @@
   - EmergencyDwarfOxygenMilitaryDouble # Starlight
   - EmergencyIPC # 🌟Starlight🌟
   - EmergencyCheeseMilitary # Starlight
+  - EmergencyOxygenMilitaryDoubleBlood # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool

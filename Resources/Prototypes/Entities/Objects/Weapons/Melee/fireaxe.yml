@@ -7,7 +7,6 @@
   - type: Tag
     tags:
     - FireAxe
-  - type: Sharp
   - type: Sprite
     sprite: Objects/Weapons/Melee/fireaxe.rsi
     state: icon
@@ -39,8 +38,10 @@
     - suitStorage
   - type: Tool
     qualities:
-      - Prying
-      - Tearing # Starlight
+    - Prying
+    - Slicing
+    - Sawing
+    - Tearing # Starlight
   - type: ToolTileCompatible
     delay: 6 # Starlight
   - type: Prying

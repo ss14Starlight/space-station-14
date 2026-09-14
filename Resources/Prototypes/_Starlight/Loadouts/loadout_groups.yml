@@ -200,6 +200,7 @@
   loadouts:
   - RoboticistLabCoat
   - RoboticistWintercoat
+  - RoboticistWintercoatAlt
 
 - type: loadoutGroup
   id: RoboticistHead
@@ -235,6 +236,14 @@
   - RoboticistSatchel
   - RoboticistDuffel
   - LeatherSatchel
+
+- type: loadoutGroup
+  id: RoboticistNeck
+  name: loadout-group-roboticist-neck
+  minLimit: 0
+  loadouts:
+  - RoboticistScarf
+  - ScientistTie
 
 # IAA
 - type: loadoutGroup
@@ -448,9 +457,12 @@
   defaultSelected: 1
   loadouts:
   - BlackShoes
+  - RoboticistWinterBoots
   - ScienceWinterBoots
   - Heels
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: CaptainShoes
@@ -476,6 +488,8 @@
   - Heels
   - LaceupShoes
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: MagistrateShoes
@@ -485,6 +499,8 @@
   loadouts:
   - LaceupShoes
   - Heels
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeShoes
@@ -495,6 +511,8 @@
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: DetectiveShoes
@@ -523,6 +541,8 @@
   - LeatherShoes
   - Heels
   - LaceupShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: LawyerShoes
@@ -534,6 +554,8 @@
   - Heels
   - LeatherShoes
   - BlackShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: IAAShoes
@@ -545,6 +567,8 @@
   - Heels
   - LeatherShoes
   - BlackShoes
+  - AnkleBootsBlack
+  - AnkleBootsWhite
 
 - type: loadoutGroup
   id: BlueShieldShoes
@@ -783,15 +807,6 @@
   - YellowBoxingGloves
 
 # Reporter
-- type: loadoutGroup
-  id: ReporterHead
-  name: loadout-group-reporter-head
-  minLimit: 0
-  loadouts:
-  - ReporterHeadphonesJob
-  - ReporterHeadphonesGeneric
-  - ReporterHeadphonesHighEnd
-
 - type: loadoutGroup
   id: ReporterJobTrinkets
   name: loadout-group-jobtrinkets

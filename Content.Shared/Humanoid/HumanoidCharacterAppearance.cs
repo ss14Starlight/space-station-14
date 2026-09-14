@@ -10,7 +10,7 @@ namespace Content.Shared.Humanoid;
 
 [DataDefinition]
 [Serializable, NetSerializable]
-public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, IEquatable<HumanoidCharacterAppearance>
+public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCharacterAppearance>
 {
     [DataField("hair")]
     public string HairStyleId { get; set; } = HairStyles.DefaultHairStyle;
@@ -344,7 +344,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             height); //starlight
     }
 
-    public bool MemberwiseEquals(ICharacterAppearance maybeOther)
+    public bool MemberwiseEquals(HumanoidCharacterAppearance maybeOther)
     {
         if (maybeOther is not HumanoidCharacterAppearance other) return false;
         if (HairStyleId != other.HairStyleId) return false;
