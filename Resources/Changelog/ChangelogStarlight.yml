@@ -1,25 +1,4 @@
 Entries:
-- author: bynddark8
-  changes:
-  - message: Enables loud mode on the Assistant Manager's headset.
-    type: Tweak
-  id: 408236
-  time: '2026-09-05T23:36:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5864
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added station maps at all mine entrances.
-    type: Add
-  id: 408237
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added a inflatable airlock at the once space mine entranced that just spaced the entire mine at shift start.
-    type: Add
-  id: 408238
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
 - author: Cvlancer
   changes:
   - message: (Sepultum) Added all the new tech fabs's to their departments with service fab being near clown/mime room.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408635
   time: '2026-09-14T20:47:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6163
+- author: Xale
+  changes:
+  - message: Animals in different containers can no longer breed.
+    type: Tweak
+  id: 408636
+  time: '2026-09-14T21:10:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6085
+- author: Xale
+  changes:
+  - message: Animal offspring will now be placed in the same container as the parent.
+    type: Tweak
+  id: 408637
+  time: '2026-09-14T21:10:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6085
+- author: Xale
+  changes:
+  - message: There is now a delay after spawning before animals will attempt to breed.
+    type: Tweak
+  id: 408638
+  time: '2026-09-14T21:10:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6085
 Order: -1
