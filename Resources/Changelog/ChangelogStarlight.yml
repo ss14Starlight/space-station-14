@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Syndicate PJ hats are now warm.
-    type: Tweak
-  id: 408209
-  time: '2026-09-05T19:37:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5903
 - author: Foxterosa
   changes:
   - message: Patients with the Numb trait will no longer scream or wake up from pain during surgery.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408608
   time: '2026-09-14T11:46:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6142
+- author: Swonki
+  changes:
+  - message: Salvage ID card computer perms.
+    type: Fix
+  id: 408609
+  time: '2026-09-14T12:12:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6143
 Order: -1
