@@ -47,8 +47,6 @@
         damage:
           types:
             Cellular: -0.01 # It can heal you a *tiny* amount, if you wanna sleep it off.
-
-
       - !type:ModifyStatusEffect
         minScale: 0.6
         effectProto: StatusEffectSeeingRainbow
@@ -86,7 +84,6 @@
         messages: [ "effect-sleepy" ]
         probability: 0.1
 
-
       - !type:MovementSpeedModifier
         minScale: 1
         conditions:
@@ -96,7 +93,7 @@
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
 
-      - !type:ModifyStatusEffect
+      - !type:ModifySleepiness # Starlight: Sleepiness reservoir.
         conditions:
         - !type:ReagentCondition
           reagent: ZXA
@@ -104,9 +101,9 @@
         - !type:BloodReagentCondition
           reagent: NitrosylPlasmide
           max: 0.1
-        effectProto: StatusEffectForcedSleeping
-        type: Update
-        time: 10
+        effectProto: StatusEffectSleepiness # Starlight: Sleepiness effect
+        maximumSleepiness: 120s # Starlight: Low max sleepiness
+        time: 9.0 # Starlight: this might sound overly strong, but its somehow only a little stronger than NitrousOxide. Ticks also seam to happen less often
 
       - !type:AdjustReagent
         conditions:

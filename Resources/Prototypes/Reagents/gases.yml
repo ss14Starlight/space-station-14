@@ -328,7 +328,7 @@
         # Funkystation End: Funky atmos - /tg/ gases
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
-      - !type:ModifyStatusEffect
+      - !type:ModifySleepiness # Starlight: NitrousOxide uses the Sleepiness reservoir.
         minScale: 1.8
         conditions:
         - !type:MetabolizerTypeCondition
@@ -338,9 +338,9 @@
         - !type:BloodReagentCondition
           reagent: NitrosylPlasmide
         # Funkystation End: Funky atmos - /tg/ gases
-        effectProto: StatusEffectForcedSleeping
-        time: 12 #Starlight
-        type: Update
+        effectProto: StatusEffectSleepiness # Starlight: Sleepiness effect
+        maximumSleepiness: 60s # Starlight: Lower max sleepiness
+        time: 4.0 # Starlight: Weak effect
       - !type:HealthChange
         minScale: 3.5
         conditions:
