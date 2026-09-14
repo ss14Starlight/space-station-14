@@ -95,7 +95,9 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
         _deletionQueue.Clear();
 
-        TickEvaporation();
+        // Starlight - avoid enumerating every evaporation component between scheduled ticks.
+        if (_timing.CurTime >= _nextEvaporationUpdate)
+            TickEvaporation();
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
