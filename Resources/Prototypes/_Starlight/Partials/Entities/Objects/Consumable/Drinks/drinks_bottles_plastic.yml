@@ -5,6 +5,9 @@
   components:
   - type: Item
     size: Normal #revert container size ballooning
+    shape:
+    - !Remove 0,0,1,3
+    - 0,0,1,1
 
 # Small Plastic Bottles
 
