@@ -1,10 +1,10 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.PhysicalSocialInteraction;
+namespace Content.Shared._Starlight.SocialInteraction;
 
 [Prototype]
-public sealed partial class PhysicalSocialInteractionPrototype : IPrototype
+public sealed partial class SocialInteractionPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
@@ -35,8 +35,33 @@ public sealed partial class PhysicalSocialInteractionPrototype : IPrototype
     public LocId? MessagePerceivedByOthers;
 
     /// <summary>
+    /// The emote that will be posted in chat.
+    /// </summary>
+    [DataField("emoteMessage")]
+    public LocId? EmoteMessage;
+
+    /// <summary>
+    /// Alternative emote if we end up targeting ourselves instead.
+    /// </summary>
+    [DataField("emoteMessageSelf")]
+    public LocId? EmoteMessageSelf;
+
+    /// <summary>
     /// Will the sound effect be perceived by entities not involved in the interaction?
     /// </summary>
     [DataField("soundPerceivedByOthers")]
     public bool SoundPerceivedByOthers = true;
+
+    /// <summary>
+    /// Can you perform this interaction on yourself?
+    /// </summary>
+    [DataField("allowSelfTarget")]
+    public bool AllowSelfTarget = false;
+
+    /// <summary>
+    /// Does this social interaction require being within interaction range of the target?
+    /// Stuff like 'waving at someone' wouldn't, while patting them would.
+    /// </summary>
+    [DataField("isPhysical")]
+    public bool IsPhysical = true;
 }
