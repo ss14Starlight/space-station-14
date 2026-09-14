@@ -1,18 +1,4 @@
 Entries:
-- author: Foxterosa
-  changes:
-  - message: Patients with the Numb trait will no longer scream or wake up from pain during surgery.
-    type: Fix
-  id: 408210
-  time: '2026-09-05T19:37:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5787
-- author: Sparlight
-  changes:
-  - message: Extra character info screens (i.e. antag info, extra character info, mind secrets) no longer appear on jobspawn entities (k9s, cyborgs, ai).
-    type: Remove
-  id: 408211
-  time: '2026-09-05T20:37:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5845
 - author: DevCS-CP
   changes:
   - message: Added visuals for each mode on the energy magnum, and MT-7.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408609
   time: '2026-09-14T12:12:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6143
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed the Transfer/Discard buttons in the ChemMaster's Classic layout not working correctly.
+    type: Fix
+  id: 408610
+  time: '2026-09-14T12:40:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6144
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Extremely long chemical names in the ChemMaster now truncate.
+    type: Tweak
+  id: 408611
+  time: '2026-09-14T12:40:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6144
 Order: -1
