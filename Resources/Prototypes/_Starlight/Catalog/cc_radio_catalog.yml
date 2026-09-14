@@ -1,0 +1,43 @@
+- type: thiefBackpackSet
+  id: ERTLoadoutSecLaserRifle
+  name: Laser Riflemen
+  description: cc-radio-category-laser-rifle-description
+  sprite:
+    sprite: Objects/Tools/jaws_of_life.rsi
+    state: syn_jaws_pry
+  content:
+  - ClothingBackpackERTSecurityLaserRiflemenFilled
+  - WelderIndustrialAdvanced
+  - PowerDrill
+  - Multitool
+  - ClothingHandsGlovesInsulatedChameleon
+  - RadioJammer
+  - FreedomImplanter
+  - ClothingEyesGlassesMeson
+
+- type: thiefBackpackSet
+  id: ERTLoadoutSecLaserShotgun
+  name: Laser Shotgunner
+  description: cc-radio-category-laser-shotgun-description
+  sprite:
+    sprite: _Moffstation/Objects/Tools/handheld_camera.rsi
+    state: icon
+  content:
+  - SurveillanceWirelessCameraHandheld
+  - EncryptionKeyBinarySyndicate
+  - MicrophoneInstrument
+  - VoiceMaskImplanter
+  - ScramImplanter
+
+- type: thiefBackpackSet
+  id: ERTLoadoutSecLaserCannon
+  name: Laser Cannon
+  description: cc-radio-category-laser-cannon-description
+  sprite:
+    sprite: Objects/Devices/camera_bug.rsi
+    state: camera_bug
+  content:
+  - StorageImplanter
+  - ChameleonProjector
+  - WeaponPistolStechkin
+  - CameraBug

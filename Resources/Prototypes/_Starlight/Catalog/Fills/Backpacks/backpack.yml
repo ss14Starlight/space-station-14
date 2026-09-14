@@ -56,3 +56,23 @@
             - id: SmokeGrenade
             - id: GrenadeFlashBang
             - id: DrinkMREFlask
+
+# Emergency Response Teams
+- type: entity
+  id: ClothingBackpackERTSecurityLaserRiflemenFilled
+  parent: ClothingBackpackERTSecurity
+  suffix: Filled, Lasers
+  categories: [ DoNotMap ]
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: MedicatedSuture
+            - id: MedicatedSuture
+            - id: MagazineBatteryLr30
+              amount: 7
+            - id: GrenadeIncendiary
+            - id: GrenadeShrapnel
+            - id: EmpGrenade
+            - id: MedkitCombatFilled
