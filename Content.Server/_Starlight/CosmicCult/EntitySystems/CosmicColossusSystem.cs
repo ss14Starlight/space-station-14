@@ -44,6 +44,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<CosmicColossusComponent, ComponentInit>(OnSpawn);
         SubscribeLocalEvent<CosmicColossusComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<CosmicColossusComponent, DamageChangedEvent>(OnDamageChanged);
     }
 
     public override void Update(float frameTime)
@@ -109,6 +110,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
             _appearance.SetData(ent, ColossusVisuals.Status, ColossusStatus.Alive);
             _appearance.SetData(ent, ColossusVisuals.Hibernation, ColossusAction.Stopped);
             _appearance.SetData(ent, ColossusVisuals.Sunder, ColossusAction.Stopped);
+            UpdateHealthVisual(ent);
 
             _ambientSound.SetAmbience(ent, true);
 
@@ -168,5 +170,34 @@ public sealed partial class CosmicColossusSystem : EntitySystem
         //Turn off corruption
         if (TryComp<CosmicCorruptingComponent>(ent, out var deathCorrupting))
             _corrupting.Disable((ent.Owner, deathCorrupting));
+    }
+
+    private void OnDamageChanged(Entity<CosmicColossusComponent> ent, ref DamageChangedEvent args)
+    {
+        if (args.DamageDelta == null)
+            return;
+
+        UpdateHealthVisual(ent);
+    }
+
+    private void UpdateHealthVisual(Entity<CosmicColossusComponent> ent)
+    {
+        if (!TryComp<DamageableComponent>(ent, out var damageable))
+            return;
+
+        if (!_threshold.TryGetThresholdForState(ent, MobState.Dead, out var maxHealth))
+            return;
+
+        var damagePercentage = (float) damageable.TotalDamage / (float) maxHealth.Value;
+
+        var health = damagePercentage switch
+        {
+            < 0.10f => ColossusHealth.Healthy,
+            < 0.35f => ColossusHealth.Damaged,
+            < 0.75f => ColossusHealth.HeavilyDamaged,
+            _ => ColossusHealth.Crumbling,
+        };
+
+        _appearance.SetData(ent, ColossusVisuals.Health, health);
     }
 }
