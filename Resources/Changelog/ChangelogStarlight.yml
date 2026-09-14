@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Bagel) Added a single k9 to security.
-    type: Add
-  id: 408165
-  time: '2026-09-05T15:48:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5975
-- author: Cvlancer
-  changes:
   - message: (Bagel) Added mailboxes to all departments.
     type: Add
   id: 408166
@@ -2799,4 +2792,11 @@ Entries:
   id: 408564
   time: '2026-09-14T09:24:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6111
+- author: Mack
+  changes:
+  - message: Fixed issue when trying to pry the a tile when something ontop is blocking it.
+    type: Fix
+  id: 408565
+  time: '2026-09-14T09:24:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6077
 Order: -1
