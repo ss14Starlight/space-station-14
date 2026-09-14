@@ -19,10 +19,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
     [ViewVariables]
     private ShuttleConsoleWindow? _window;
 
-    public ShuttleConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-        IoCManager.InjectDependencies(this); // Starlight
-    }
+    public ShuttleConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) => IoCManager.InjectDependencies(this); // Starlight
 
     protected override void Open()
     {
@@ -77,8 +74,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
 
         if (disposing)
         {
-            if (_window != null)
-                _window.RadarClicked -= OnRadarClicked; // Starlight
+            _window?.RadarClicked -= OnRadarClicked; // Starlight
             _window?.DisposePopOut(); // Starlight: close the popout if exists
         }
     }

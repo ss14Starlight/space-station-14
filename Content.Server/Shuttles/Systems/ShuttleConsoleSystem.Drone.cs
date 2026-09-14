@@ -43,10 +43,7 @@ public sealed partial class ShuttleConsoleSystem
         }
     }
 
-    private void OnDronePilotConsoleOpen(EntityUid uid, DroneConsoleComponent component, AfterActivatableUIOpenEvent args)
-    {
-        UpdateRemoteGridAccess(uid, component); // Starlight
-    }
+    private void OnDronePilotConsoleOpen(EntityUid uid, DroneConsoleComponent component, AfterActivatableUIOpenEvent args) => UpdateRemoteGridAccess(uid, component); // Starlight
 
     private void OnDronePilotConsoleClose(EntityUid uid, DroneConsoleComponent component, BoundUIClosedEvent args)
     {
@@ -110,10 +107,7 @@ public sealed partial class ShuttleConsoleSystem
         _gridAccess.RemoveAccessibleGrid((access.SourceGrid, null), (access.TargetGrid, null));
     }
 
-    private bool IsConsoleOperational(EntityUid uid)
-    {
-        return TryComp<ShuttleConsoleComponent>(uid, out _) && MetaData(uid).EntityLifeStage < EntityLifeStage.Terminating && Transform(uid).Anchored && this.IsPowered(uid, EntityManager);
-    }
+    private bool IsConsoleOperational(EntityUid uid) => TryComp<ShuttleConsoleComponent>(uid, out _) && MetaData(uid).EntityLifeStage < EntityLifeStage.Terminating && Transform(uid).Anchored && this.IsPowered(uid, EntityManager);
     #endregion Starlight
 
     /// <summary>
