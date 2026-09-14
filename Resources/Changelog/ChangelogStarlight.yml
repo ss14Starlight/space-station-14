@@ -1,11 +1,4 @@
 Entries:
-- author: Limblesstar, Teddiousbear.
-  changes:
-  - message: Salvage Death Rattle, Salvage Magboots.
-    type: Add
-  id: 408231
-  time: '2026-09-05T23:09:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5877
 - author: Mack
   changes:
   - message: Station radio server now has a microphone indicator.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408630
   time: '2026-09-14T15:32:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6140
+- author: Krasunir
+  changes:
+  - message: Added Janimov lawset. Maybe Barratry would be playable now...
+    type: Add
+  id: 408631
+  time: '2026-09-14T20:15:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6164
 Order: -1
