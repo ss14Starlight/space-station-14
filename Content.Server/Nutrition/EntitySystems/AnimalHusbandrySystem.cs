@@ -45,7 +45,6 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<ReproductiveComponent, ComponentInit>(OnComponentInit); // Starlight
         SubscribeLocalEvent<ReproductiveComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<InfantComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
     }
@@ -54,6 +53,7 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
     /// <summary>
     /// On initialization, delay first breeding attempt by one cycle so that animals do not breed when they spawn
     /// </summary>
+    [SubscribeLocalEvent]
     private void OnComponentInit(Entity<ReproductiveComponent> ent, ref ComponentInit args) =>
         ent.Comp.NextBreedAttempt = _timing.CurTime + _random.Next(ent.Comp.MinBreedAttemptInterval, ent.Comp.MaxBreedAttemptInterval);
     #endregion
