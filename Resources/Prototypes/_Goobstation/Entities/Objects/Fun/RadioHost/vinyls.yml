@@ -1114,7 +1114,6 @@
     song:
       path: /Audio/_Goobstation/RadioStation/Vinyls/music/peakasshole.ogg
   # Starlight begin
-  - type: LightningTarget
   - type: Destructible
     thresholds:
     - trigger:
