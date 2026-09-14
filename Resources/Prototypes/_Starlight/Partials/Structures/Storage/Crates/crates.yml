@@ -1,7 +1,0 @@
-# Secure Crates
-
-- type: !PartialOnly entity
-  id: CrateCommandSecure
-  components:
-  - type: AccessReader
-    access: [["Command"], ["NTPersonnel"]]

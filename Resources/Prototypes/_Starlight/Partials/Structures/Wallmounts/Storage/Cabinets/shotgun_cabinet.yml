@@ -1,5 +1,0 @@
-﻿- type: !PartialOnly entity
-  id: ShotGunCabinet
-  components:
-  - type: AccessReader
-    access: [["Security"], ["Command"], ["NTPersonnel"]]
