@@ -743,7 +743,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Medical"], ["Command"]] # They all have a gimmick; this one is service access.
+    access: [["Medical"], ["Command"], ["NTPersonnel"]] # They all have a gimmick; this one is service access.
 
 # Wallmounts
 - type: entity
@@ -799,7 +799,7 @@
     - texture: Structures/Machines/VendingMachines/maintenance_panel.png
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Medical"], ["Command"]] # They all have a gimmick; this one is command access.
+    access: [["Medical"], ["Command"], ["NTPersonnel"]] # They all have a gimmick; this one is command access.
 
 - type: entity
   parent: VendingMachine

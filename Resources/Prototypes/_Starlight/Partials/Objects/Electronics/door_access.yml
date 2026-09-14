@@ -1,0 +1,13 @@
+# Command
+- type: !PartialOnly entity
+  id: DoorElectronicsCommand
+  components:
+  - type: AccessReader
+    access: [["Command"], ["NTPersonnel"]]
+
+# Misc
+- type: !PartialOnly entity
+  id: DoorElectronicsVault
+  components:
+  - type: AccessReader
+    access: [["Security"], ["Command"], ["NTPersonnel"]]

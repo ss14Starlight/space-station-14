@@ -1,0 +1,37 @@
+# AutoLink variants of BlastDoor (from Outer Rim)
+
+- type: !PartialOnly entity
+  id: BlastDoorBridge
+  components:
+    - type: AccessReader
+      access: [["Command"], ["NTPersonnel"]]
+
+- type: !PartialOnly entity
+  id: BlastDoorBridgeOpen
+  components:
+    - type: AccessReader
+      access: [["Command"], ["NTPersonnel"]]
+
+- type: !PartialOnly entity
+  id: BlastDoorEngineering
+  components:
+  - type: AccessReader
+    access: [["Command"], ["Engineering"], ["NTPersonnel"]]
+
+- type: !PartialOnly entity
+  id: BlastDoorEngineeringOpen
+  components:
+  - type: AccessReader
+    access: [["Command"], ["Engineering"], ["NTPersonnel"]]
+
+- type: !PartialOnly entity
+  id: BlastDoorScience
+  components:
+  - type: AccessReader
+    access: [["Command"], ["Research"], ["NTPersonnel"]]
+
+- type: !PartialOnly entity
+  id: BlastDoorScienceOpen
+  components:
+  - type: AccessReader
+    access: [["Command"], ["Research"], ["NTPersonnel"]]

@@ -46,7 +46,7 @@
   suffix: Command, Locked
   components:
   - type: AccessReader
-    access: [["Command"]]
+    access: [["Command"], ["NTPersonnel"], ["NTPersonnel"]]
   - type: Sprite
     sprite: _Starlight/Structures/Storage/gunsafe.rsi
     noRot: true

@@ -1,0 +1,7 @@
+# lockable buttons
+
+- type: !PartialOnly entity
+  id: LockableButtonCommand
+  components:
+  - type: AccessReader
+    access: [["Command"], ["NTPersonnel"]]
