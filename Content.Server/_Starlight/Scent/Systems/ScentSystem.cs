@@ -3,6 +3,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.DoAfter;
 using Content.Server.Forensics;
 using Content.Server.Popups;
+using Content.Server._Funkystation.Stains;
 using Content.Server._Starlight.Scent.Components;
 using Content.Shared._Starlight.Scent;
 using Content.Shared._Starlight.Scent.Components;
@@ -21,6 +22,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
+using Content.Shared.Localizations;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
@@ -53,6 +55,7 @@ public sealed partial class ScentSystem : SharedScentSystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private TagSystem _tags = default!;
     [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private StainSystem _stains = default!;
 
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
@@ -248,8 +251,9 @@ public sealed partial class ScentSystem : SharedScentSystem
         var hasForensics = TryComp<ForensicsComponent>(target, out var forensics) &&
                             (forensics.Fingerprints.Count + forensics.Fibers.Count > 0 ||
                              (forensics.DNAs.Count > 0 && forensics.CanDnaBeCleaned));
+        var hasStains = _stains.HasStains(target);
 
-        if (!hasScent && !hasForensics)
+        if (!hasScent && !hasForensics && !hasStains)
         {
             if (!HasComp<CleansForensicsComponent>(cleaner.Owner))
             {
@@ -262,13 +266,13 @@ public sealed partial class ScentSystem : SharedScentSystem
             return false;
         }
 
-        string evidence;
-        if (hasScent && hasForensics)
-            evidence = Loc.GetString("scent-evidence-both");
-        else if (hasScent)
-            evidence = Loc.GetString("scent-evidence-scent");
-        else
-            evidence = Loc.GetString("scent-evidence-forensics");
+        var evidence = new List<string>(3);
+        if (hasScent)
+            evidence.Add(Loc.GetString("scent-evidence-scent"));
+        if (hasForensics)
+            evidence.Add(Loc.GetString("scent-evidence-forensics"));
+        if (hasStains)
+            evidence.Add(Loc.GetString("scent-evidence-stains"));
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, cleaner.Comp.CleanDelay,
             new CleanScentDoAfterEvent(), cleaner, target: target, used: cleaner)
@@ -292,7 +296,8 @@ public sealed partial class ScentSystem : SharedScentSystem
         _doAfterSystem.TryStartDoAfter(doAfterArgs);
         _popup.PopupEntity(
             Loc.GetString(isSelf ? "scent-cleaning-self" : "scent-cleaning-other",
-                ("evidence", evidence), ("target", Identity.Entity(target, EntityManager))),
+                ("evidence", ContentLocalizationManager.FormatList(evidence)),
+                ("target", Identity.Entity(target, EntityManager))),
             user, user);
         return true;
     }
@@ -315,6 +320,8 @@ public sealed partial class ScentSystem : SharedScentSystem
             if (forensics.CanDnaBeCleaned)
                 forensics.DNAs.Clear();
         }
+
+        _stains.CleanStains(target);
 
         args.Handled = true;
     }

@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Server._Starlight.Commands;
+using Content.Shared._Starlight.Commands;
 using Content.Server.Administration;
 using Content.Shared._Starlight.Devil;
 using Content.Shared.Administration;
