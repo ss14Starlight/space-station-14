@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._Starlight.GameTicking.Rules;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Presets;
@@ -24,6 +25,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
     // Starlight begin
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private DynamicRuleCooldownSystem _dynamicRuleCooldown = default!;
     // Starlight end
 
     private readonly Dictionary<string, int> _secretPresetCooldown = new();
@@ -83,6 +85,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
     private bool TryPickPreset(ProtoId<WeightedRandomPrototype> weights, [NotNullWhen(true)] out GamePresetPrototype? preset)
     {
         // Starligth edit Start: Extra Logging and Cooldown
+        _dynamicRuleCooldown.EnsureRoundInitialized(dynamicRound: false);
         var baseOptions = _prototypeManager.Index(weights).Weights.ShallowClone();
         var players = GameTicker.ReadyPlayerCount();
 
@@ -93,7 +96,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
             $"options=[{string.Join(", ", baseOptions.OrderBy(x => x.Key).Select(x => $"{x.Key}:{x.Value}"))}]");
 
         var options = baseOptions.ShallowClone();
-        RemoveSecretCooldownOptions(options);
+        RemovePresetCooldownOptions(options, includeSecretCooldowns: true);
 
         if (TryPickPresetFromOptions(options, weights, players, out preset))
         {
@@ -101,9 +104,10 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
             return true;
         }
 
-        Log.Warning("Secret preset cooldown removed every valid option. Retrying without cooldowns.");
+        Log.Warning("Preset cooldowns removed every valid option. Retrying without Secret's own cooldowns.");
 
         options = baseOptions.ShallowClone();
+        RemovePresetCooldownOptions(options, includeSecretCooldowns: false);
 
         if (TryPickPresetFromOptions(options, weights, players, out preset))
         {
@@ -232,15 +236,26 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
         return false;
     }
 
-    private void RemoveSecretCooldownOptions(Dictionary<string, float> options)
+    private void RemovePresetCooldownOptions(Dictionary<string, float> options, bool includeSecretCooldowns)
     {
         foreach (var key in options.Keys.ToList())
         {
-            if (!_secretPresetCooldown.TryGetValue(key, out var cooldown))
+            var secretCooldown = includeSecretCooldowns
+                ? _secretPresetCooldown.GetValueOrDefault(key)
+                : 0;
+            var dynamicCooldown = _dynamicRuleCooldown.TryGetPresetCooldown(
+                new ProtoId<GamePresetPrototype>(key),
+                out var remaining)
+                ? remaining
+                : 0;
+
+            if (secretCooldown <= 0 && dynamicCooldown <= 0)
                 continue;
 
             options.Remove(key);
-            Log.Info($"Preset {key} skipped for secret selection due to cooldown ({cooldown} rounds remaining).");
+            Log.Info(
+                $"Preset {key} skipped for secret selection due to cooldown " +
+                $"(Secret: {secretCooldown}, Dynamic: {dynamicCooldown} rounds remaining).");
         }
     }
 
@@ -259,6 +274,8 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
             _secretPresetCooldown.Remove(key);
             Log.Info($"Preset {key} removed from secret cooldown.");
         }
+
+        _dynamicRuleCooldown.ApplyPresetCooldown(pickedPreset);
 
         if (pickedPreset.VoteCooldown <= 0)
             return;

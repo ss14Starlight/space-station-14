@@ -1,0 +1,23 @@
+- type: !PartialOnly entity
+  id: Nukeops
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1
+
+- type: !PartialOnly entity
+  id: NukeopsLate
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1
+
+- type: !PartialOnly entity
+  id: Revolutionary
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1
+
+- type: !PartialOnly entity
+  id: Zombie
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1

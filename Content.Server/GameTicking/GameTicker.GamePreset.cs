@@ -217,6 +217,7 @@ public sealed partial class GameTicker
             return false;
 
         CurrentPreset = Preset;
+        _dynamicRuleCooldown.BeginRound(Preset); // Starlight
         #region Starlight
         /*foreach (var rule in Preset.Rules)
         {

@@ -1,7 +1,9 @@
 #nullable enable
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
+using Content.Server._Starlight.GameTicking.Rules;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules;
 using Content.Shared.GameTicking.Rules;
 using Robust.Shared.GameObjects;
@@ -17,6 +19,11 @@ public sealed class DynamicRuleTest : GameTest
     private const string MutualExclusionRule = "TestDynamicMutualExclusion";
     private const string CooldownRule = "TestDynamicCooldown";
     private const string CooldownChildRule = "TestDynamicCooldownChild";
+    private const string CooldownGroupOwnerRule = "TestDynamicCooldownGroupOwner";
+    private const string CooldownGroupRelatedRule = "TestDynamicCooldownGroupRelated";
+    private const string CooldownPreset = "TestDynamicCooldownPreset";
+    private const string DefaultCooldownRule = "TestDynamicDefaultCooldown";
+    private const string DynamicOnlyCooldownRule = "TestDynamicOnlyCooldown";
 
     [TestPrototypes]
     private const string Prototypes = @"
@@ -128,7 +135,46 @@ public sealed class DynamicRuleTest : GameTest
   components:
   - type: DynamicRuleCost
     cost: 10
+  - type: DynamicRuleCooldown
     cooldown: 1
+
+- type: entity
+  id: TestDynamicCooldownGroupOwner
+  parent: BaseGameRule
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 2
+    rules:
+    - TestDynamicCooldownGroupRelated
+    presets:
+    - TestDynamicCooldownPreset
+
+- type: entity
+  id: TestDynamicCooldownGroupRelated
+  parent: BaseGameRule
+
+- type: entity
+  id: TestDynamicDefaultCooldown
+  parent: BaseGameRule
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1
+
+- type: entity
+  id: TestDynamicOnlyCooldown
+  parent: BaseGameRule
+  components:
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    decrementOnNonDynamicRounds: false
+
+- type: gamePreset
+  id: TestDynamicCooldownPreset
+  name: Test Dynamic Cooldown Preset
+  description: Test preset for Dynamic cooldowns.
+  showInVote: false
+  voteCooldown: 3
+  rules: []
 ";
 
     public override PoolSettings PoolSettings => new()
@@ -248,6 +294,143 @@ public sealed class DynamicRuleTest : GameTest
             Assert.That(component.Rules, Has.Count.EqualTo(1));
             Assert.That(GetPrototypeId(server.EntMan, component.Rules.Single()),
                 Is.EqualTo(CooldownChildRule));
+        });
+    }
+
+    /// <summary>
+    /// Tests that related rules and presets form one cooldown group, and that selecting a linked preset
+    /// applies the preset's own vote cooldown back to the Dynamic rules.
+    /// </summary>
+    [Test]
+    public async Task DynamicRuleCooldownGroupTest()
+    {
+        var server = Pair.Server;
+        var ticker = server.System<GameTicker>();
+        var cooldowns = server.System<DynamicRuleCooldownSystem>();
+        var prototypes = server.ResolveDependency<IPrototypeManager>();
+        var ownerRule = new EntProtoId(CooldownGroupOwnerRule);
+        var relatedRule = new EntProtoId(CooldownGroupRelatedRule);
+
+        await server.WaitPost(() => ticker.RestartRound());
+        await Pair.RunUntilSynced();
+
+        await server.WaitAssertion(() =>
+        {
+            cooldowns.EnsureRoundInitialized(dynamicRound: true);
+            // Selecting an included rule activates the owning rule's whole cooldown group.
+            cooldowns.ApplyRuleCooldown(relatedRule);
+        });
+
+        await server.WaitPost(() => ticker.RestartRound());
+        await Pair.RunUntilSynced();
+
+        await server.WaitAssertion(() =>
+        {
+            cooldowns.EnsureRoundInitialized(dynamicRound: false);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(cooldowns.CurrentRuleCooldowns, Does.Contain(ownerRule));
+                Assert.That(cooldowns.CurrentRuleCooldowns, Does.Contain(relatedRule));
+                Assert.That(
+                    cooldowns.TryGetPresetCooldown(new ProtoId<GamePresetPrototype>(CooldownPreset), out var remaining),
+                    Is.True);
+                Assert.That(remaining, Is.EqualTo(2));
+            });
+        });
+
+        await server.WaitPost(() => ticker.RestartRound());
+        await Pair.RunUntilSynced();
+        await server.WaitAssertion(() => cooldowns.EnsureRoundInitialized(dynamicRound: true));
+
+        await server.WaitPost(() => ticker.RestartRound());
+        await Pair.RunUntilSynced();
+
+        await server.WaitAssertion(() =>
+        {
+            cooldowns.EnsureRoundInitialized(dynamicRound: true);
+            Assert.That(cooldowns.CurrentRuleCooldowns, Does.Not.Contain(ownerRule));
+
+            var preset = prototypes.Index(new ProtoId<GamePresetPrototype>(CooldownPreset));
+            cooldowns.ApplyPresetCooldown(preset);
+        });
+
+        await server.WaitPost(() => ticker.RestartRound());
+        await Pair.RunUntilSynced();
+
+        await server.WaitAssertion(() =>
+        {
+            cooldowns.EnsureRoundInitialized(dynamicRound: true);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(cooldowns.CurrentRuleCooldowns, Does.Contain(ownerRule));
+                Assert.That(cooldowns.CurrentRuleCooldowns, Does.Contain(relatedRule));
+                Assert.That(
+                    cooldowns.TryGetPresetCooldown(new ProtoId<GamePresetPrototype>(CooldownPreset), out var remaining),
+                    Is.True);
+                Assert.That(remaining, Is.EqualTo(3));
+            });
+        });
+    }
+
+    /// <summary>
+    /// Tests that cooldowns count non-Dynamic rounds by default and can opt out.
+    /// </summary>
+    [Test]
+    public async Task DynamicRuleCooldownNonDynamicDecrementTest()
+    {
+        var server = Pair.Server;
+        var ticker = server.System<GameTicker>();
+        var cooldowns = server.System<DynamicRuleCooldownSystem>();
+        var defaultRule = new EntProtoId(DefaultCooldownRule);
+        var dynamicOnlyRule = new EntProtoId(DynamicOnlyCooldownRule);
+
+        await server.WaitPost(() => ticker.RestartRound());
+        await Pair.RunUntilSynced();
+
+        await server.WaitAssertion(() =>
+        {
+            cooldowns.EnsureRoundInitialized(dynamicRound: true);
+            cooldowns.ApplyRuleCooldown(defaultRule);
+            cooldowns.ApplyRuleCooldown(dynamicOnlyRule);
+        });
+
+        await server.WaitPost(() => ticker.RestartRound());
+        await Pair.RunUntilSynced();
+
+        await server.WaitAssertion(() =>
+        {
+            cooldowns.EnsureRoundInitialized(dynamicRound: false);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(cooldowns.CurrentRuleCooldowns, Does.Contain(defaultRule));
+                Assert.That(cooldowns.CurrentRuleCooldowns, Does.Contain(dynamicOnlyRule));
+            });
+        });
+
+        await server.WaitPost(() => ticker.RestartRound());
+        await Pair.RunUntilSynced();
+
+        await server.WaitAssertion(() =>
+        {
+            cooldowns.EnsureRoundInitialized(dynamicRound: true);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(cooldowns.CurrentRuleCooldowns, Does.Not.Contain(defaultRule));
+                Assert.That(cooldowns.CurrentRuleCooldowns, Does.Contain(dynamicOnlyRule));
+            });
+        });
+
+        await server.WaitPost(() => ticker.RestartRound());
+        await Pair.RunUntilSynced();
+
+        await server.WaitAssertion(() =>
+        {
+            cooldowns.EnsureRoundInitialized(dynamicRound: true);
+            Assert.That(cooldowns.CurrentRuleCooldowns, Does.Not.Contain(dynamicOnlyRule));
         });
     }
 
