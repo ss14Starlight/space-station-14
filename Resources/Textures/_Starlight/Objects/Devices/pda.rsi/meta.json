@@ -217,6 +217,10 @@
       ]
     },
     {
+      "name": "pda-gunnerysergeant",
+      "copyright": "Taken from tgstation, resprited into Gunnery Sergeant by AnyTap (GitHub)",
+    },
+    {
       "name": "pda-salvagemedic",
       "copyright": "mikeysaurus, ParadiseStation",
       "license": "CC-BY-SA-3.0"
