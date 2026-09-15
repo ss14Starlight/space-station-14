@@ -60,8 +60,3 @@ flavor-complex-tiramisu-ice-cream = like chocolate, espresso, and cinnamon
 flavor-complex-uranium-ice-cream = like sickening green candy apple
 flavor-complex-vox-ice-cream = like crisp mint and faint aftertaste of welding fluid
 flavor-base-cinnamon = cinnamony
-
-# Milks
-flavor-complex-chocolate-milk = like chocolate milk
-flavor-complex-strawberry-milk = like strawberry milk
-flavor-complex-banana-milk = like banana milk
