@@ -214,7 +214,7 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
     {
         component = null;
         return _prototypeManager.TryIndex(owner, out var prototype) &&
-               prototype.TryComp<DynamicRuleCooldownComponent>(out component, EntityManager.ComponentFactory);
+                    prototype.TryComp<DynamicRuleCooldownComponent>(out component, EntityManager.ComponentFactory);
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent _)
