@@ -7,6 +7,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Revenant.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio;
@@ -84,6 +85,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         if (HasComp<GhostComponent>(user)
             || HasComp<StunnedComponent>(user)
             || HasComp<SleepingComponent>(user)
+            || HasComp<RevenantComponent>(user) // revenants are ghosts
             || _mobStateSystem.IsIncapacitated(user))
             return true;
 
@@ -114,6 +116,14 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         // check if interaction needs physical contact
         if (proto.IsPhysical && !CheckInteractable(args.User, args.Target))
             return;
+
+        var curTime = _timing.CurTime;
+
+        // prevent spamming interactions
+        if (curTime < proto.LastInteractTime + proto.InteractDelay)
+            return;
+
+        proto.LastInteractTime = curTime;
 
         var selfTarget = args.User == args.Target; // whether or not we're interacting with ourselves
         var msg = ""; // Stores the text to be shown in the popup message
