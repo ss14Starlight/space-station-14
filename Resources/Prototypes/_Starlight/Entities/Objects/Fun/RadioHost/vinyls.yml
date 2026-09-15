@@ -143,6 +143,7 @@
     song:
       path: /Audio/Lobby/space_asshole.ogg # Reusing the lobby music.
       
+- type: entity
   id: VinylDriverUpdate
   name: "vinyl: Driver Update"
   description: "A synth heavy ambient track. By: randomcuts" #SL  Addition
