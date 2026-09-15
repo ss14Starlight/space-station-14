@@ -28,7 +28,7 @@
 - type: zone
   id: Nanotrasen
   name: zone-nanotrasen
-  color: "#292E50"
+  color: "#dfe4ed"
   priority: 20
   doors:
   - AirlockNT
