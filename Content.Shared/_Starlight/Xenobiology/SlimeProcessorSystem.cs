@@ -1,4 +1,7 @@
 using System.Numerics;
+using Content.Shared._Starlight.Genetics.Genes.Components;
+using Content.Shared._Starlight.Genetics.Genes.Systems;
+using Content.Shared._Starlight.Xenobiology.Genetics;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage.Components;
 using Content.Shared.Interaction;
@@ -109,6 +112,8 @@ public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
     [Dependency] private EntityManager _entityManager = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private GenesSystem _genesSystem = default!;
+    [Dependency] private IndividualGeneSystem _individualGeneSystem = default!;
 
     public override void Update(float frameTime)
     {
@@ -125,17 +130,36 @@ public sealed partial class ActiveSlimeProcessorSystem : EntitySystem
             }
 
             if (activeSlimeProcessorComponent.ProcessingFinishedMoment.Value > _gameTiming.CurTime) continue;
-            var random = _robustRandom.GetRandom();
             foreach (var entity in slimeProcessorComponent.SlimeContainer.ContainedEntities)
             {
-                if (!_entityManager.TryGetComponent(entity, out SlimeComponent? slimeComponent)) continue;
-                for (int i = 0; i < slimeProcessorComponent.YieldMultiplier + slimeComponent.SlimeSteroidAmount; i++)
+                if (_entityManager.TryGetComponent(entity, out SlimeComponent? slimeComponent))
                 {
-                    Vector2 randomOffset = new Vector2(random.NextFloat(-0.2F, 0.2F), random.NextFloat(-0.2F, 0.2F));
-                    EntityCoordinates ec = new EntityCoordinates(uid, uid.ToCoordinates().Position + randomOffset);
-                    _entityManager.PredictedSpawnAtPosition(slimeComponent.Extract, ec);
+                    for (var i = 0;
+                         i < slimeProcessorComponent.YieldMultiplier + slimeComponent.SlimeSteroidAmount;
+                         i++)
+                    {
+                        var randomOffset =
+                            new Vector2(_robustRandom.NextFloat(-0.2F, 0.2F), _robustRandom.NextFloat(-0.2F, 0.2F));
+                        var ec = new EntityCoordinates(uid, uid.ToCoordinates().Position + randomOffset);
+                        _entityManager.PredictedSpawnAtPosition(slimeComponent.Extract, ec);
+                    }
+
+                    PredictedQueueDel(entity);
                 }
-                PredictedQueueDel(entity);
+                else if (_entityManager.TryGetComponent(entity, out GeneticSlimeComponent? geneticSlimeComponent))
+                {
+                    if (!_entityManager.TryGetComponent<GenesComponent>(entity, out var slimeGenesComponent)) continue;
+
+                    var randomOffset =
+                        new Vector2(_robustRandom.NextFloat(-0.2F, 0.2F), _robustRandom.NextFloat(-0.2F, 0.2F));
+                    var ec = new EntityCoordinates(uid, uid.ToCoordinates().Position + randomOffset);
+                    var extract = _entityManager.PredictedSpawnAtPosition(geneticSlimeComponent.ExtractEntity, ec);
+                    _entityManager.EnsureComponent<GenesComponent>(extract, out var extractGenesComponent);
+                    extractGenesComponent.Genes = new HashSet<EntityUid>(slimeGenesComponent.Genes);
+                    _genesSystem.UpdateTraits((extract, extractGenesComponent));
+
+                    PredictedQueueDel(entity);
+                }
             }
 
             RemCompDeferred<JitteringComponent>(uid);
@@ -168,17 +192,34 @@ public sealed partial class CollectingSlimeProcessorSystem : EntitySystem
             }
 
             if (collectingSlimeProcessorComponent.SlimeAcquireMoment.Value > _gameTiming.CurTime) continue;
-            foreach (var entity in _entityLookupSystem.GetEntitiesInRange<SlimeComponent>(Transform(uid).Coordinates, 1F))
+            var slimesInRange = _entityLookupSystem.GetEntitiesInRange<SlimeComponent>(Transform(uid).Coordinates, 1F);
+            var successfulPickup = PickupSlime(slimesInRange, slimeProcessorComponent, collectingSlimeProcessorComponent);
+            if (!successfulPickup)
             {
-                if (_container.IsEntityOrParentInContainer(entity.Owner)) continue;
-                if (!_entityManager.TryGetComponent(entity, out DamageableComponent? damageableComponent)) continue;
-                if (damageableComponent.TotalDamage >= 200)
-                {
-                    _container.Insert(entity.Owner, slimeProcessorComponent.SlimeContainer);
-                    collectingSlimeProcessorComponent.SlimeAcquireMoment = _gameTiming.CurTime + slimeProcessorComponent.SlimeAcquireCooldown;
-                    break;
-                }
+                var geneticSlimesInRange = _entityLookupSystem.GetEntitiesInRange<GeneticSlimeComponent>(Transform(uid).Coordinates, 1F);
+                PickupSlime(geneticSlimesInRange, slimeProcessorComponent, collectingSlimeProcessorComponent);
             }
         }
+    }
+
+    /// <summary>
+    /// Picks up a slime from a query. Returns true if a slime was found, false otherwise.
+    /// </summary>
+    private bool PickupSlime<T>(HashSet<Entity<T>> slimesInRange, SlimeProcessorComponent slimeProcessorComponent,
+        CollectingSlimeProcessorComponent collectingSlimeProcessorComponent) where T : IComponent
+    {
+        foreach (var entity in slimesInRange)
+        {
+            if (_container.IsEntityOrParentInContainer(entity.Owner)) continue;
+            if (!_entityManager.TryGetComponent(entity, out DamageableComponent? damageableComponent)) continue;
+            if (damageableComponent.TotalDamage >= 200)
+            {
+                _container.Insert(entity.Owner, slimeProcessorComponent.SlimeContainer);
+                collectingSlimeProcessorComponent.SlimeAcquireMoment = _gameTiming.CurTime + slimeProcessorComponent.SlimeAcquireCooldown;
+                return true;
+            }
+        }
+
+        return false;
     }
 }
