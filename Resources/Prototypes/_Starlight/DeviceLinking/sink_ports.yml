@@ -37,3 +37,8 @@
   id: TriggerSpawn
   name: signal-port-name-trigger-spawn
   description: signal-port-description-trigger-spawn
+
+- type: sinkPort
+  id: LatheReceiver
+  name: signal-port-name-material-receiver
+  description: signal-port-description-material-receiver

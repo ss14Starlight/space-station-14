@@ -35,3 +35,8 @@ lathe-menu-move-up-tooltip = Move this batch ahead in the queue.
 lathe-menu-move-down-tooltip = Move this batch back in the queue.
 lathe-menu-item-single = {$index}. {$name}
 lathe-menu-item-batch = {$index}. {$name} ({$printed}/{$total})
+
+# Starlight
+lathe-menu-linking-eject-tooltip = Output the materials directly on top of the {$lathename}
+lathe-menu-linking-eject = Eject
+lathe-menu-linking-linked-tooltip = Sends materials to a linked device. Requires linking to a device first
