@@ -1,7 +1,7 @@
 using Robust.Shared.Audio; // Starlight - Dehardcode Audio Params
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
+namespace Content.Shared._Starlight.StationRadio.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class VinylPlayerComponent : Component

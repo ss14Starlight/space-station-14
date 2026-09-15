@@ -63,6 +63,11 @@ public sealed partial class AudioTab : Control
         // Starlight start
 
         Control.AddOptionPercentSlider(
+            StarlightCCVars.StationRadioVolume,
+            SliderMusicRadio,
+            scale: ContentAudioSystem.AmbientMusicMultiplier);
+
+        Control.AddOptionPercentSlider(
             StarlightCCVars.TTSVolume,
             SliderTts,
             scale: ContentAudioSystem.TtsMultiplier);
