@@ -65,7 +65,8 @@
   - Debrief
   - Shuttle
   - Clown
-  - Mime # Starlight end
+  - Mime
+  - EVA # Starlight end
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

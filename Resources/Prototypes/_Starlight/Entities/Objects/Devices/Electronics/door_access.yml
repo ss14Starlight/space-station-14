@@ -160,3 +160,13 @@
   components:
     - type: AccessReader
       access: [["Visitor"]]
+
+
+#EVA
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsEVA
+  suffix: EVA, Locked
+  components:
+  - type: AccessReader
+    access: [["EVA"]]
