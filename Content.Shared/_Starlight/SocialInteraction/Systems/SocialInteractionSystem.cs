@@ -1,9 +1,13 @@
 using Content.Shared._Starlight.SocialInteraction.Components;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Chat;
+using Content.Shared.Ghost;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Stunnable;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -21,7 +25,9 @@ public sealed partial class SocialInteractionSystem : EntitySystem
     [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private SharedChatSystem _chatSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private IGameTiming _timing = default!;
+
     public override void Initialize()
     {
         //subscribe to inspect events on the physical social interaction receiver component
@@ -30,6 +36,10 @@ public sealed partial class SocialInteractionSystem : EntitySystem
 
     private void AddSocialInteractionVerbs(EntityUid uid, SocialInteractionReceiverComponent component, GetVerbsEvent<Verb> args)
     {
+        // ensure the Giver is awake and alive
+        if (IsDeadOrIncapacitated(args.User))
+            return;
+
         //check if the user also has a interaction giver
         if (!HasComp<SocialInteractionGiverComponent>(args.User))
             return;
@@ -64,6 +74,22 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         }
     }
 
+    /// <summary>
+    /// Used to check if the SocialInteractionGiver is alive and conscious,
+    /// as the dead and incapaciated aren't known for being very socialable.
+    /// </summary>
+    private bool IsDeadOrIncapacitated(EntityUid user)
+    {
+        // no social interactions when ghosted, stunned, sleeping, critical or dead
+        if (HasComp<GhostComponent>(user)
+            || HasComp<StunnedComponent>(user)
+            || HasComp<SleepingComponent>(user)
+            || _mobStateSystem.IsIncapacitated(user))
+            return true;
+
+        return false;
+    }
+
     private bool CheckInteractable(EntityUid user, EntityUid target)
     {
         if (!_actionBlockerSystem.CanInteract(user, target))
@@ -77,6 +103,10 @@ public sealed partial class SocialInteractionSystem : EntitySystem
 
     private void InteractionPopupAction(EntityUid uid, GetVerbsEvent<Verb> args, SocialInteractionPrototype proto)
     {
+        // ensure the Giver is awake and alive
+        if (IsDeadOrIncapacitated(args.User))
+            return;
+
         // needed to not play interaction audio multiple times
         if (!_timing.IsFirstTimePredicted)
             return;
