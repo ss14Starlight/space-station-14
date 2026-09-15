@@ -119,7 +119,7 @@ public sealed partial class XenoArtifactComponent : Component
     /// A segment is an interconnected series of nodes.
     /// </summary>
     [DataField]
-    public MinMax SegmentSize = new(4, 10); // Starlight
+    public MinMax SegmentSize = new(4, 8);
 
     /// <summary>
     /// For each "layer" in a segment (set of nodes with equal depth), how many will we generate?
