@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Sepultum) Added some curtains, a television, a station radio and a light switch to robotics.
-    type: Add
-  id: 408246
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
   - message: (Sepultum) Added storage rack to science front desk, cargo front desk, hop office.
     type: Add
   id: 408247
@@ -2799,4 +2792,11 @@ Entries:
   id: 408645
   time: '2026-09-14T22:06:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6137
+- author: Caws
+  changes:
+  - message: Social Interactions are now disabled when ghosted, stunned, sleeping, critical or dead.
+    type: Fix
+  id: 408646
+  time: '2026-09-15T01:45:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6167
 Order: -1
