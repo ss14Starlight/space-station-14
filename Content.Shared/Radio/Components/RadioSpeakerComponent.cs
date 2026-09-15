@@ -2,7 +2,7 @@ using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Chat;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Content.Shared._Goobstation.StationRadio.Systems; // Starlight - Radio Host _Goob -> _Goobstation
+using Content.Shared._Starlight.StationRadio.Systems;
 
 namespace Content.Shared.Radio.Components;
 

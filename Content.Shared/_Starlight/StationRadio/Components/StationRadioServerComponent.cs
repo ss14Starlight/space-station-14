@@ -1,6 +1,6 @@
 using Robust.Shared.Audio; // Starlight - Add Station Radio Resume Play
 
-namespace Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
+namespace Content.Shared._Starlight.StationRadio.Components;
 
 [RegisterComponent] // Starlight edit - did not need to be networked.
 public sealed partial class StationRadioServerComponent : Component

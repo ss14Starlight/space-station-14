@@ -1,15 +1,14 @@
-using Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
-using Content.Shared._Goobstation.StationRadio.Events;
-using Content.Shared.Construction.Components; // Starlight - _Goob -> _Goobstation
+using Content.Shared._Starlight.StationRadio.Components; // Starlight - _Goob -> _Starlight
+using Content.Shared._Starlight.StationRadio.Events;
+using Content.Shared.Construction.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Robust.Shared.Audio.Systems;
-using Content.Shared.Examine; // Starlight - Shift Click to view what volume the radio is at.
-using Content.Shared.Verbs; // Starlight - Alt click to lower volume.
+using Content.Shared.Examine;
+using Content.Shared.Verbs;
 
 
-// Starlight - _Goob -> _Goobstation
-namespace Content.Shared._Goobstation.StationRadio.Systems;
+namespace Content.Shared._Starlight.StationRadio.Systems;
 
 public abstract partial class SharedStationRadioReceiverSystem : EntitySystem // Starlight - made abstract
 {

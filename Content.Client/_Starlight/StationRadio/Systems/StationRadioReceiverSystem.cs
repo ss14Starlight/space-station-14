@@ -1,5 +1,5 @@
-﻿using Content.Shared._Goobstation.StationRadio.Components;
-using Content.Shared._Goobstation.StationRadio.Systems;
+﻿using Content.Shared._Starlight.StationRadio.Components;
+using Content.Shared._Starlight.StationRadio.Systems;
 using Content.Shared._Starlight.CCVar;
 using Content.Shared.Interaction;
 using Content.Shared.Power;

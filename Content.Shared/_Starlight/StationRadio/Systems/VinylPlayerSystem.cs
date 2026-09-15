@@ -1,12 +1,12 @@
-using Content.Shared._Goobstation.StationRadio.Components; // Starlight - _Goob -> _Goobstation
+using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Power;
 using Robust.Shared.Containers;
-using Content.Shared.Examine; // Starlight - Shift Click to view what Vinyl is inserted.
+using Content.Shared.Examine;
 
-namespace Content.Shared._Goobstation.StationRadio.Systems; // Starlight - _Goob -> _Goobstation
+namespace Content.Shared._Starlight.StationRadio.Systems;
 
-public abstract partial class SharedVinylPlayerSystem : EntitySystem // Starlight edit made partial
+public abstract partial class SharedVinylPlayerSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
 

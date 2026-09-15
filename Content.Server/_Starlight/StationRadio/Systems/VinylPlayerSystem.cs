@@ -1,6 +1,6 @@
-﻿using Content.Shared._Goobstation.StationRadio.Components;
-using Content.Shared._Goobstation.StationRadio.Events;
-using Content.Shared._Goobstation.StationRadio.Systems;
+﻿using Content.Shared._Starlight.StationRadio.Events;
+using Content.Shared._Starlight.StationRadio.Systems;
+using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;

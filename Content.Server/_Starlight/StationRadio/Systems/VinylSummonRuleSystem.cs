@@ -1,5 +1,5 @@
-using Content.Shared._Goobstation.StationRadio.Components;
-using Content.Shared._Goobstation.StationRadio.Events;
+using Content.Shared._Starlight.StationRadio.Components;
+using Content.Shared._Starlight.StationRadio.Events;
 using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Shared.Communications;
@@ -15,10 +15,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
 using Content.Server.Chat.Systems;
-using Content.Server._Starlight.StationRadio.Systems;
-using Content.Shared._Starlight.StationRadio.Events;
 
-namespace Content.Server._Goobstation.StationRadio; // Starlight - _Goob -> _Goobstation
+namespace Content.Server._Starlight.StationRadio.Systems;
 
 /// <summary>
 /// System that handles spawning game rules when vinyl disks finish playing.
@@ -36,7 +34,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private SharedPopupSystem _popups = default!;
     [Dependency] private ChatSystem _chat = default!;
-    [Dependency] private StationRadioReceiverSystem _stationRadio = default!; // Starlight - Station Radio Check oved to StationRadioReceiverSystem
+    [Dependency] private StationRadioReceiverSystem _stationRadio = default!;
 
     private record struct TrackingData(EntityUid VinylPlayerUid, TimeSpan EndTime);
     private readonly Dictionary<EntityUid, TrackingData> _trackingVinyls = new();
@@ -55,7 +53,7 @@ public sealed partial class VinylSummonRuleSystem : EntitySystem
         var playerUid = uid;
         var vinylUid = args.Vinyl;
 
-        void QueueSafeEject() => Timer.Spawn(0, () => EjectVinyl(playerUid, vinylUid)); //starlight edit: one-liner, and moved above the Validation
+        void QueueSafeEject() => Timer.Spawn(0, () => EjectVinyl(playerUid, vinylUid));
 
         // Check if the inserted entity has the summon rule component / A song
         if (!TryComp<VinylComponent>(vinylUid, out var vinylComp) //starlight edit: Track any vinyl playing.

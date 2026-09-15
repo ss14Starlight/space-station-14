@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Station.Systems;
-using Content.Shared._Goobstation.StationRadio.Components;
-using Content.Shared._Goobstation.StationRadio.Events;
-using Content.Shared._Goobstation.StationRadio.Systems;
+using Content.Shared._Starlight.StationRadio.Components;
+using Content.Shared._Starlight.StationRadio.Events;
+using Content.Shared._Starlight.StationRadio.Systems;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Popups;
 using Content.Shared.Power;
