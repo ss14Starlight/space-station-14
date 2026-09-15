@@ -167,7 +167,7 @@
       proto: GrapplingHook
       capacity: 1
     - type: Sprite
-      sprite: Objects/Weapons/Guns/Launchers/improvised_grappling_gun.rsi
+      sprite: _Starlight/Objects/Weapons/Guns/Launchers/improvised_grappling_gun.rsi
       layers:
         - state: base
         - state: base-unshaded
