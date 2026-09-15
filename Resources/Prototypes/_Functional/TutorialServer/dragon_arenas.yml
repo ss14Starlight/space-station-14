@@ -1,0 +1,7 @@
+- type: tutorialDragonArena
+  id: TutorialDragonPrey
+  stationOffset: 40, 0
+  spaceSpawnOffset: -25, 5
+  pinpointerOffset: 1.5, 0
+  dockProto: AirlockGlassShuttle
+  stationId: dragon-prey

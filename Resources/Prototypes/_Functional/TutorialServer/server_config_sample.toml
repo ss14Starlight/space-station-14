@@ -1,0 +1,56 @@
+# Sample configuration for The Functional Tutorial Server.
+# Copy values into your instance server_config.toml / secrets as appropriate.
+
+[game]
+hostname = "The Functional Tutorial Server"
+defaultpreset = "TutorialServer"
+fallbackpreset = "TutorialServer"
+soft_max_players = 40
+
+[chat]
+motd = "Press Join in the lobby, then pick a job (Passenger is first for the basics). Type /ghost and respawn or use Choose a tutorial to try another."
+# ooc.enabled / looc.enabled are also forced off by the TutorialServer rule at runtime.
+
+[ooc]
+enabled = false
+# Prevent ChatSystem from turning OOC back on at round end / lobby.
+enable_during_round = true
+
+[looc]
+enabled = false
+
+[dead_chat]
+enabled = false
+
+[vote]
+# Player-started votes off. Admins with Moderator can still call votes.
+enabled = false
+
+[shuttle]
+# Lobby has no StationEmergencyShuttle. TutorialServerRule also forces this to 0 at runtime.
+auto_call_time = 0
+
+[server]
+rules_file = "TutorialServerRules"
+uptime_restart_minutes = 1440
+
+[rules]
+# Connect-time rules acceptance popup. Admins can still use showrules.
+enabled = true
+time = 5
+# 0 = show the updated rules on every connect (default is 60 days).
+validity_days = 0
+
+[tutorial]
+# Deployed host: picker lists only liveTutorial roles. Development leaves this off.
+live_tutorials = true
+
+[infolinks]
+discord = "https://discord.gg/jkvg7k9w2n"
+github = "https://github.com/FunctionalTutorial/TheFunctionalTutorial"
+
+[hub]
+advertise = true
+tags = "lang:en,region:am_n_c"
+hub_urls = "https://hub.spacestation14.com/"
+server_url = "ss14://ss14tutorial.mynetgear.com:1212"

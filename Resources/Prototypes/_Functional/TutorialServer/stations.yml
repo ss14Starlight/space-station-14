@@ -1,0 +1,34 @@
+# Lightweight station entity so cargo ATS pallet sales have a bank account owner.
+
+- type: entity
+  id: TutorialCargoTradeStation
+  parent:
+  - BaseStation
+  - BaseStationCargo
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+  - type: TutorialCargoStation
+
+# Command practice grids need alert levels for the comms console.
+
+- type: entity
+  id: TutorialCommandStation
+  parent:
+  - BaseStation
+  - BaseStationAlertLevels
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+
+# Lobby station for TutorialServer — no CentComm / arrivals / shuttles.
+- type: entity
+  id: TutorialLobbyStation
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationAlertLevels
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform

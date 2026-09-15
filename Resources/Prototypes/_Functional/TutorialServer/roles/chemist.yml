@@ -1,0 +1,130 @@
+# Medical chemistry — Saltern chem crop already has dispenser / ChemMaster / grinder / hotplate.
+# Practice spawns are glassware + water jug + apple; machines are tagged by TutorialChemBootstrapSystem.
+- type: tutorialRole
+  id: TutorialChemist
+  mentorName: Urist McMeth
+  job: Chemist
+  stub: false
+  liveTutorial: true
+  simplifiedEnvironment: true
+  category: Station Jobs
+  pickerOrder: 3
+  map: /Maps/_Functional/TutorialServer/Roles/Chemist.yml
+  roomTemplate: TutorialSectionChem
+  guidebook: Medical
+  practiceSpawns:
+  # Open floor band around zone origin (5.5, 5.5): y≈5 row and south-west clear tiles.
+  # Avoid north machine row (y+1), spawn tile (0,0), and floor drain (0,-1.5).
+  # Same-tile glassware is auto-scattered slightly so piles stay visible.
+  - id: Beaker
+    room: 0
+    offset: 0.5, 0
+  - id: Beaker
+    room: 0
+    offset: 0.55, 0
+  - id: LargeBeaker
+    room: 0
+    offset: -1.5, 0
+  - id: PillCanister
+    room: 0
+    offset: -1.0, -0.5
+  - id: JugWater
+    room: 0
+    offset: 1.0, -0.5
+  - id: FoodApple
+    room: 0
+    offset: 0.5, -0.05
+  - id: TutorialStepMarker
+    room: 0
+    offset: -1.5, -1.5
+    marker: chem-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-chemist-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-chemist-sg-intro
+      complete: Acknowledge
+  - id: glassware
+    title: tutorial-job-chemist-goal-glassware
+    subGoals:
+    - id: hold-beaker
+      text: tutorial-job-chemist-sg-beaker
+      complete: HoldItem
+      entity: Beaker
+    - id: hold-large
+      text: tutorial-job-chemist-sg-large-beaker
+      complete: HoldItem
+      entity: LargeBeaker
+  - id: mix
+    title: tutorial-job-chemist-goal-mix
+    subGoals:
+    - id: dispenser
+      text: tutorial-job-chemist-sg-dispenser
+      complete: InteractTargetTag
+      tag: TutorialChemDispenser
+    - id: inaprovaline
+      text: tutorial-job-chemist-sg-inaprovaline
+      complete: SolutionContains
+      reagent: Inaprovaline
+      minAmount: 1
+    - id: dylovene
+      text: tutorial-job-chemist-sg-dylovene
+      complete: SolutionContains
+      reagent: Dylovene
+      minAmount: 1
+    - id: chemmaster
+      text: tutorial-job-chemist-sg-chemmaster
+      complete: InteractTargetTag
+      tag: TutorialChemMaster
+    - id: pills
+      text: tutorial-job-chemist-sg-pills
+      complete: ObtainItem
+      entity: PillCanister
+      minCount: 1
+  - id: saline
+    title: tutorial-job-chemist-goal-saline
+    subGoals:
+    - id: hotplate-tip
+      text: tutorial-job-chemist-sg-hotplate
+      hint: tutorial-job-chemist-hint-hotplate
+      stuckHint: tutorial-job-chemist-stuck-hotplate
+      complete: Acknowledge
+    - id: table-salt
+      text: tutorial-job-chemist-sg-table-salt
+      hint: tutorial-job-chemist-hint-table-salt
+      stuckHint: tutorial-job-chemist-stuck-table-salt
+      complete: SolutionContains
+      reagent: TableSalt
+      minAmount: 1
+    - id: make-saline
+      text: tutorial-job-chemist-sg-saline
+      hint: tutorial-job-chemist-hint-saline
+      stuckHint: tutorial-job-chemist-stuck-saline
+      complete: SolutionContains
+      reagent: Saline
+      minAmount: 1
+  - id: grind
+    title: tutorial-job-chemist-goal-grind
+    subGoals:
+    - id: hold-produce
+      text: tutorial-job-chemist-sg-produce
+      complete: HoldItem
+      entity: FoodApple
+    - id: grinder
+      text: tutorial-job-chemist-sg-grinder
+      complete: InteractTargetTag
+      tag: TutorialGrinder
+    - id: tip
+      text: tutorial-job-chemist-sg-deliver-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-job-chemist-sg-walk
+      complete: ReachMarker
+      marker: chem-pass
+  - id: finish
+    title: tutorial-job-chemist-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-chemist-sg-done
+      complete: Acknowledge

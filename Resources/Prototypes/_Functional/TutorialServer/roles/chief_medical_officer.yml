@@ -1,0 +1,121 @@
+- type: tutorialRole
+  id: TutorialChiefMedicalOfficer
+  mentorName: Urist McScalpel
+  job: ChiefMedicalOfficer
+  stub: false
+  simplifiedEnvironment: true
+  category: Medical
+  map: /Maps/_Functional/TutorialServer/Roles/ChiefMedicalOfficer.yml
+  roomTemplate: TutorialSectionMedbay
+  guidebook: Medical
+  practiceSpawns:
+  - id: LockerChiefMedicalOfficerFilled
+    room: 0
+    offset: -2, 1
+  - id: BoxFolderClipboard
+    room: 0
+    offset: 0.8, 0
+  - id: HandheldCrewMonitor
+    room: 0
+    offset: -0.5, 0
+  - id: HandheldHealthAnalyzer
+    room: 0
+    offset: 0.5, 0
+  - id: Hypospray
+    room: 0
+    offset: 0.8, 0
+  - id: Brutepack
+    room: 0
+    offset: -0.5, 0
+  - id: Ointment
+    room: 0
+    offset: -0.2, 0
+  - id: TutorialPracticeMobPatient
+    room: 0
+    offset: 0, -0.5
+  - id: TutorialPracticeMobCorpse
+    room: 0
+    offset: -1, -0.5
+  - id: DefibrillatorOneHandedUnpowered
+    room: 0
+    offset: -1, -1
+  - id: TutorialVendingMachineMedical
+    room: 0
+    offset: 1.5, 1
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: cmo-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-chief-medical-officer-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-chief-medical-officer-sg-intro
+      complete: Acknowledge
+  - id: command
+    title: tutorial-job-chief-medical-officer-goal-command
+    subGoals:
+    - id: hold-clipboard
+      text: tutorial-job-chief-medical-officer-sg-clipboard
+      complete: HoldItem
+      entity: BoxFolderClipboard
+    - id: hold-crew-monitor
+      text: tutorial-job-chief-medical-officer-sg-crew-monitor
+      complete: HoldItem
+      entity: HandheldCrewMonitor
+    - id: use-crew-monitor
+      text: tutorial-job-chief-medical-officer-sg-use-crew-monitor
+      complete: UseInHand
+      entity: HandheldCrewMonitor
+    - id: triage-tip
+      text: tutorial-job-chief-medical-officer-sg-triage-tip
+      complete: Acknowledge
+  - id: clinic
+    title: tutorial-job-chief-medical-officer-goal-clinic
+    subGoals:
+    - id: hold-analyzer
+      text: tutorial-job-chief-medical-officer-sg-analyzer
+      complete: HoldItem
+      entity: HandheldHealthAnalyzer
+    - id: medhud-tip
+      text: tutorial-job-chief-medical-officer-sg-medhud-tip
+      complete: Acknowledge
+    - id: hold-hypo
+      text: tutorial-job-chief-medical-officer-sg-hypo
+      complete: HoldItem
+      entity: Hypospray
+    - id: use-hypo
+      text: tutorial-job-chief-medical-officer-sg-use-hypo
+      complete: UseInHand
+      entity: Hypospray
+    - id: get-brute
+      text: tutorial-job-chief-medical-officer-sg-brutepack
+      complete: ObtainItem
+      entity: Brutepack
+    - id: heal-dummy
+      text: tutorial-job-chief-medical-officer-sg-heal
+      complete: PracticeMobDamageBelow
+      maxDamage: 5
+    - id: defib-tip
+      text: tutorial-job-chief-medical-officer-sg-defib-tip
+      complete: Acknowledge
+    - id: hold-defib
+      text: tutorial-job-chief-medical-officer-sg-hold-defib
+      complete: HoldItem
+      entity: DefibrillatorOneHandedUnpowered
+    - id: revive-corpse
+      text: tutorial-job-chief-medical-officer-sg-revive
+      hint: tutorial-job-chief-medical-officer-sg-revive-hint
+      stuckHint: tutorial-job-chief-medical-officer-sg-revive-stuck
+      complete: PracticeMobRevived
+    - id: walk
+      text: tutorial-job-chief-medical-officer-sg-walk
+      complete: ReachMarker
+      marker: cmo-pass
+  - id: finish
+    title: tutorial-job-chief-medical-officer-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-chief-medical-officer-sg-done
+      complete: Acknowledge

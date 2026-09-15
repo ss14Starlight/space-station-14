@@ -1,0 +1,465 @@
+- type: startingGear
+  id: TutorialTideGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    back: ClothingBackpackSatchel
+    ears: ClothingHeadsetGrey
+    mask: ClothingMaskGas
+    id: PassengerPDA
+    gloves: ClothingHandsGlovesColorYellow
+    belt: ClothingBeltUtilityFilled
+
+- type: entity
+  parent: TutorialMentor
+  id: TutorialTideMentor
+  name: passenger
+  suffix: Tutorial, Mentor, Tide
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TutorialAppearance
+    hair: HumanHairMessy
+    facialHair: HumanFacialHairChin
+    hairColor: "#4A3B2E"
+  - type: Loadout
+    prototypes: [TutorialTideGear]
+  - type: Access
+    tags:
+    - Maintenance
+  - type: Tag
+    tags:
+    - TutorialPracticeMob
+    - TutorialTideTider
+    - DoorBumpOpener
+  - type: HTN
+    rootTask:
+      task: TutorialFollowCompound
+    blackboard:
+      FollowCloseRange: !type:Single
+        0.5
+      FollowRange: !type:Single
+        1.0
+      NavInteract: !type:Bool
+        true
+      NavDoors: !type:Bool
+        true
+      MinimumIdleTime: !type:Single
+        0.5
+      MaximumIdleTime: !type:Single
+        1.5
+  - type: TutorialMentor
+    facing:
+    - subGoalId: refused
+      tag: TutorialTideHoP
+    - subGoalId: security
+      tag: TutorialTideSecOfficer
+  - type: TutorialTrainer
+    speakRange: 5
+    startDelay: 0
+    sessionStartDelay: 4
+    minLineDelay: 3
+    maxLineDelay: 5
+    secondsPerCharacter: 0.075
+    interjectionCooldown: 8
+    silentSubGoals:
+    - farewell
+    lines:
+    - subGoalId: welcome
+      dialogue: tutorial-tide-him-welcome-1
+    - subGoalId: welcome
+      dialogue: tutorial-tide-him-welcome-2
+    - subGoalId: welcome
+      dialogue: tutorial-tide-him-welcome-3
+    - subGoalId: welcome
+      dialogue: tutorial-tide-him-welcome-4
+    - subGoalId: introductions
+      dialogue: tutorial-tide-him-introductions-1
+    - subGoalId: introductions
+      dialogue: tutorial-tide-him-introductions-2
+    - subGoalId: introductions
+      dialogue: tutorial-tide-him-introductions-3
+    - subGoalId: introductions
+      dialogue: tutorial-tide-him-introductions-4
+    - subGoalId: introductions
+      dialogue: tutorial-tide-him-introductions-5
+    - subGoalId: introductions
+      dialogue: tutorial-tide-him-introductions-6
+    - subGoalId: introductions
+      dialogue: tutorial-tide-him-introductions-7
+    - subGoalId: introductions
+      dialogue: tutorial-tide-him-introductions-8
+    - subGoalId: introductions
+      dialogue: tutorial-tide-him-introductions-9
+    - subGoalId: try-cargo-door
+      dialogue: tutorial-tide-him-try-cargo-door-1
+    - subGoalId: try-cargo-door
+      dialogue: tutorial-tide-him-try-cargo-door-2
+      showControlHint: true
+    - subGoalId: eject-id
+      dialogue: tutorial-tide-him-eject-id-1
+    - subGoalId: eject-id
+      dialogue: tutorial-tide-him-eject-id-2
+    - subGoalId: eject-id
+      dialogue: tutorial-tide-him-eject-id-3
+    - subGoalId: eject-id
+      dialogue: tutorial-tide-him-eject-id-4
+    - subGoalId: eject-id
+      dialogue: tutorial-tide-him-eject-id-5
+    - subGoalId: eject-id
+      dialogue: tutorial-tide-him-eject-id-6
+      showControlHint: true
+    - subGoalId: eject-id
+      dialogue: tutorial-tide-him-eject-id-7
+    - subGoalId: examine-id
+      dialogue: tutorial-tide-him-examine-id-1
+      showControlHint: true
+    - subGoalId: examine-id
+      dialogue: tutorial-tide-him-examine-id-2
+      afterComplete: true
+    - subGoalId: examine-id
+      dialogue: tutorial-tide-him-examine-id-3
+      afterComplete: true
+    - subGoalId: examine-id
+      dialogue: tutorial-tide-him-examine-id-4
+      afterComplete: true
+    - subGoalId: examine-id
+      dialogue: tutorial-tide-him-examine-id-5
+      afterComplete: true
+    - subGoalId: open-maints
+      dialogue: tutorial-tide-him-open-maints-1
+    - subGoalId: open-maints
+      dialogue: tutorial-tide-him-open-maints-2
+    - subGoalId: open-maints
+      dialogue: tutorial-tide-him-open-maints-3
+      showControlHint: true
+    - subGoalId: open-maints
+      dialogue: tutorial-tide-him-open-maints-4
+    - subGoalId: take-toolbox
+      dialogue: tutorial-tide-him-take-toolbox-1
+    - subGoalId: take-toolbox
+      dialogue: tutorial-tide-him-take-toolbox-2
+    - subGoalId: take-toolbox
+      dialogue: tutorial-tide-him-take-toolbox-3
+    - subGoalId: take-toolbox
+      dialogue: tutorial-tide-him-take-toolbox-4
+    - subGoalId: take-toolbox
+      dialogue: tutorial-tide-him-take-toolbox-5
+    - subGoalId: take-toolbox
+      dialogue: tutorial-tide-him-take-toolbox-6
+    - subGoalId: take-toolbox
+      dialogue: tutorial-tide-him-take-toolbox-7
+      showControlHint: true
+    - subGoalId: open-toolbox
+      dialogue: tutorial-tide-him-open-toolbox-1
+    - subGoalId: open-toolbox
+      dialogue: tutorial-tide-him-open-toolbox-2
+      showControlHint: true
+    - subGoalId: take-belt
+      dialogue: tutorial-tide-him-take-belt-1
+    - subGoalId: take-belt
+      dialogue: tutorial-tide-him-take-belt-2
+    - subGoalId: take-belt
+      dialogue: tutorial-tide-him-take-belt-3
+    - subGoalId: take-belt
+      dialogue: tutorial-tide-him-take-belt-4
+    - subGoalId: take-belt
+      dialogue: tutorial-tide-him-take-belt-5
+      showControlHint: true
+    - subGoalId: wear-belt
+      dialogue: tutorial-tide-him-wear-belt-1
+      showControlHint: true
+    - subGoalId: fill-belt
+      dialogue: tutorial-tide-him-fill-belt-1
+    - subGoalId: fill-belt
+      dialogue: tutorial-tide-him-fill-belt-2
+      showControlHint: true
+    - subGoalId: fill-belt
+      dialogue: tutorial-tide-him-fill-belt-3
+    - subGoalId: touch-grille
+      dialogue: tutorial-tide-him-touch-grille-1
+    - subGoalId: touch-grille
+      dialogue: tutorial-tide-him-touch-grille-2
+    - subGoalId: touch-grille
+      dialogue: tutorial-tide-him-touch-grille-3
+      showControlHint: true
+    - subGoalId: touch-grille
+      dialogue: tutorial-tide-him-touch-grille-4
+    - subGoalId: take-gloves
+      dialogue: tutorial-tide-him-take-gloves-1
+    - subGoalId: take-gloves
+      dialogue: tutorial-tide-him-take-gloves-2
+    - subGoalId: take-gloves
+      dialogue: tutorial-tide-him-take-gloves-3
+    - subGoalId: take-gloves
+      dialogue: tutorial-tide-him-take-gloves-4
+    - subGoalId: take-gloves
+      dialogue: tutorial-tide-him-take-gloves-5
+    - subGoalId: take-gloves
+      dialogue: tutorial-tide-him-take-gloves-6
+    - subGoalId: wear-gloves
+      dialogue: tutorial-tide-him-wear-gloves-1
+      showControlHint: true
+    - subGoalId: touch-grille-again
+      dialogue: tutorial-tide-him-touch-grille-again-1
+    - subGoalId: touch-grille-again
+      dialogue: tutorial-tide-him-touch-grille-again-2
+    - subGoalId: touch-grille-again
+      dialogue: tutorial-tide-him-touch-grille-again-3
+      showControlHint: true
+    - subGoalId: touch-grille-again
+      dialogue: tutorial-tide-him-touch-grille-again-4
+    - subGoalId: touch-grille-again
+      dialogue: tutorial-tide-him-touch-grille-again-5
+      afterComplete: true
+    - subGoalId: touch-grille-again
+      dialogue: tutorial-tide-him-touch-grille-again-6
+      afterComplete: true
+    - subGoalId: open-panel
+      dialogue: tutorial-tide-him-open-panel-1
+    - subGoalId: open-panel
+      dialogue: tutorial-tide-him-open-panel-2
+    - subGoalId: open-panel
+      dialogue: tutorial-tide-him-open-panel-3
+    - subGoalId: open-panel
+      dialogue: tutorial-tide-him-open-panel-4
+      showControlHint: true
+    - subGoalId: open-panel
+      dialogue: tutorial-tide-him-open-panel-5
+    - subGoalId: open-panel
+      dialogue: tutorial-tide-him-open-panel-6
+    - subGoalId: cut-power
+      dialogue: tutorial-tide-him-cut-power-1
+    - subGoalId: cut-power
+      dialogue: tutorial-tide-him-cut-power-2
+    - subGoalId: cut-power
+      dialogue: tutorial-tide-him-cut-power-3
+      showControlHint: true
+    - subGoalId: cut-power
+      dialogue: tutorial-tide-him-cut-power-4
+    - subGoalId: restore-power
+      dialogue: tutorial-tide-him-restore-power-1
+    - subGoalId: restore-power
+      dialogue: tutorial-tide-him-restore-power-2
+      showControlHint: true
+    - subGoalId: restore-power
+      dialogue: tutorial-tide-him-restore-power-3
+    - subGoalId: unbolt-door
+      dialogue: tutorial-tide-him-unbolt-door-1
+      showControlHint: true
+    - subGoalId: unbolt-door
+      dialogue: tutorial-tide-him-unbolt-door-2
+    - subGoalId: cut-power-again
+      dialogue: tutorial-tide-him-cut-power-again-1
+    - subGoalId: cut-power-again
+      dialogue: tutorial-tide-him-cut-power-again-2
+      showControlHint: true
+    - subGoalId: pry-door
+      dialogue: tutorial-tide-him-pry-door-1
+      showControlHint: true
+    - subGoalId: pry-door
+      dialogue: tutorial-tide-him-pry-door-2
+    - subGoalId: pry-door
+      dialogue: tutorial-tide-him-pry-door-3
+    - subGoalId: take-steel
+      dialogue: tutorial-tide-him-take-steel-1
+    - subGoalId: take-steel
+      dialogue: tutorial-tide-him-take-steel-2
+    - subGoalId: take-steel
+      dialogue: tutorial-tide-him-take-steel-3
+    - subGoalId: take-steel
+      dialogue: tutorial-tide-him-take-steel-4
+      afterComplete: true
+    - subGoalId: take-steel
+      dialogue: tutorial-tide-him-take-steel-5
+      afterComplete: true
+    - subGoalId: see-the-hat
+      dialogue: tutorial-tide-him-see-the-hat-1
+    - subGoalId: see-the-hat
+      dialogue: tutorial-tide-him-see-the-hat-2
+    - subGoalId: see-the-hat
+      dialogue: tutorial-tide-him-see-the-hat-3
+    - subGoalId: see-the-hat
+      dialogue: tutorial-tide-him-see-the-hat-4
+    - subGoalId: see-the-hat
+      dialogue: tutorial-tide-him-see-the-hat-5
+    - subGoalId: try-hat-door
+      dialogue: tutorial-tide-him-try-hat-door-1
+      showControlHint: true
+    - subGoalId: find-the-pipe
+      dialogue: tutorial-tide-him-find-the-pipe-1
+    - subGoalId: find-the-pipe
+      dialogue: tutorial-tide-him-find-the-pipe-2
+    - subGoalId: find-the-pipe
+      dialogue: tutorial-tide-him-find-the-pipe-3
+    - subGoalId: find-the-pipe
+      dialogue: tutorial-tide-him-find-the-pipe-4
+    - subGoalId: find-the-pipe
+      dialogue: tutorial-tide-him-find-the-pipe-5
+    - subGoalId: find-the-pipe
+      dialogue: tutorial-tide-him-find-the-pipe-6
+      showControlHint: true
+    - subGoalId: open-construction
+      dialogue: tutorial-tide-him-open-construction-1
+    - subGoalId: open-construction
+      dialogue: tutorial-tide-him-open-construction-2
+    - subGoalId: open-construction
+      dialogue: tutorial-tide-him-open-construction-3
+    - subGoalId: open-construction
+      dialogue: tutorial-tide-him-open-construction-4
+    - subGoalId: open-construction
+      dialogue: tutorial-tide-him-open-construction-5
+      showControlHint: true
+    - subGoalId: place-pipe
+      dialogue: tutorial-tide-him-place-pipe-1
+      showControlHint: true
+    - subGoalId: place-pipe
+      dialogue: tutorial-tide-him-place-pipe-2
+    - subGoalId: place-pipe
+      dialogue: tutorial-tide-him-place-pipe-3
+    - subGoalId: build-pipe
+      dialogue: tutorial-tide-him-build-pipe-1
+      showControlHint: true
+    - subGoalId: build-pipe
+      dialogue: tutorial-tide-him-build-pipe-2
+    - subGoalId: build-pipe
+      dialogue: tutorial-tide-him-build-pipe-3
+    - subGoalId: get-in-bin
+      dialogue: tutorial-tide-him-get-in-bin-1
+    - subGoalId: get-in-bin
+      dialogue: tutorial-tide-him-get-in-bin-2
+      showControlHint: true
+    - subGoalId: get-in-bin
+      dialogue: tutorial-tide-him-get-in-bin-3
+    - subGoalId: get-in-bin
+      dialogue: tutorial-tide-him-get-in-bin-4
+    - subGoalId: get-in-bin
+      dialogue: tutorial-tide-him-get-in-bin-5
+    - subGoalId: flush
+      dialogue: tutorial-tide-him-flush-1
+      showControlHint: true
+    - subGoalId: flush
+      dialogue: tutorial-tide-him-flush-2
+    - subGoalId: flush
+      dialogue: tutorial-tide-him-flush-3
+    - subGoalId: ride-pipe
+      dialogue: tutorial-tide-him-ride-pipe-1
+    - subGoalId: take-hat
+      dialogue: tutorial-tide-him-take-hat-1
+    - subGoalId: take-hat
+      dialogue: tutorial-tide-him-take-hat-2
+    - subGoalId: wear-hat
+      dialogue: tutorial-tide-him-wear-hat-1
+      showControlHint: true
+    - subGoalId: come-back
+      dialogue: tutorial-tide-him-come-back-1
+    - subGoalId: come-back
+      dialogue: tutorial-tide-him-come-back-2
+    - subGoalId: come-back
+      dialogue: tutorial-tide-him-come-back-3
+      showControlHint: true
+    - subGoalId: come-back
+      dialogue: tutorial-tide-him-come-back-4
+    - subGoalId: come-back
+      dialogue: tutorial-tide-him-come-back-5
+      afterComplete: true
+    - subGoalId: try-vendor
+      dialogue: tutorial-tide-him-try-vendor-1
+      showControlHint: true
+    - subGoalId: try-vendor
+      dialogue: tutorial-tide-him-try-vendor-2
+    - subGoalId: hack-vendor
+      dialogue: tutorial-tide-him-hack-vendor-1
+    - subGoalId: hack-vendor
+      dialogue: tutorial-tide-him-hack-vendor-2
+    - subGoalId: hack-vendor
+      dialogue: tutorial-tide-him-hack-vendor-3
+      showControlHint: true
+    - subGoalId: hack-vendor
+      dialogue: tutorial-tide-him-hack-vendor-4
+    - subGoalId: hack-vendor
+      dialogue: tutorial-tide-him-hack-vendor-5
+    - subGoalId: hack-vendor
+      dialogue: tutorial-tide-him-hack-vendor-6
+    - subGoalId: cut-vendor-wire
+      dialogue: tutorial-tide-him-cut-vendor-wire-1
+      showControlHint: true
+    - subGoalId: cut-vendor-wire
+      dialogue: tutorial-tide-him-cut-vendor-wire-2
+    - subGoalId: cut-vendor-wire
+      dialogue: tutorial-tide-him-cut-vendor-wire-3
+    - subGoalId: take-contraband
+      dialogue: tutorial-tide-him-take-contraband-1
+    - subGoalId: take-contraband
+      dialogue: tutorial-tide-him-take-contraband-2
+    - subGoalId: take-contraband
+      dialogue: tutorial-tide-him-take-contraband-3
+    - subGoalId: take-contraband
+      dialogue: tutorial-tide-him-take-contraband-4
+    - subGoalId: take-contraband
+      dialogue: tutorial-tide-him-take-contraband-5
+    - subGoalId: take-contraband
+      dialogue: tutorial-tide-him-take-contraband-6
+      afterComplete: true
+    - subGoalId: take-contraband
+      dialogue: tutorial-tide-him-take-contraband-7
+      afterComplete: true
+    - subGoalId: take-contraband
+      dialogue: tutorial-tide-him-take-contraband-8
+      afterComplete: true
+    - subGoalId: take-contraband
+      dialogue: tutorial-tide-him-take-contraband-9
+      afterComplete: true
+    - subGoalId: put-id-on-counter
+      dialogue: tutorial-tide-him-put-id-on-counter-1
+    - subGoalId: put-id-on-counter
+      dialogue: tutorial-tide-him-put-id-on-counter-2
+    - subGoalId: put-id-on-counter
+      dialogue: tutorial-tide-him-put-id-on-counter-3
+    - subGoalId: put-id-on-counter
+      dialogue: tutorial-tide-him-put-id-on-counter-4
+      showControlHint: true
+    - subGoalId: refused
+      dialogue: tutorial-tide-him-refused-1
+    - subGoalId: refused
+      dialogue: tutorial-tide-him-refused-2
+    - subGoalId: refused
+      dialogue: tutorial-tide-him-refused-3
+    - subGoalId: refused
+      dialogue: tutorial-tide-him-refused-4
+    - subGoalId: refused
+      dialogue: tutorial-tide-him-refused-5
+    - subGoalId: refused
+      dialogue: tutorial-tide-him-refused-6
+    - subGoalId: take-id-back
+      dialogue: tutorial-tide-him-take-id-back-1
+    - subGoalId: take-id-back
+      dialogue: tutorial-tide-him-take-id-back-2
+    - subGoalId: take-id-back
+      dialogue: tutorial-tide-him-take-id-back-3
+    - subGoalId: take-id-back
+      dialogue: tutorial-tide-him-take-id-back-4
+      afterComplete: true
+    - subGoalId: take-id-back
+      dialogue: tutorial-tide-him-take-id-back-5
+      afterComplete: true
+    - subGoalId: take-id-back
+      dialogue: tutorial-tide-him-take-id-back-6
+      afterComplete: true
+    - subGoalId: graduation
+      dialogue: tutorial-tide-him-graduation-1
+    - subGoalId: graduation
+      dialogue: tutorial-tide-him-graduation-2
+    - subGoalId: graduation
+      dialogue: tutorial-tide-him-graduation-3
+    - subGoalId: security
+      dialogue: tutorial-tide-him-security-1
+    - subGoalId: security
+      dialogue: tutorial-tide-him-security-2
+    - subGoalId: security
+      dialogue: tutorial-tide-him-security-3
+    - subGoalId: security
+      dialogue: tutorial-tide-him-security-4
+    - subGoalId: security
+      dialogue: tutorial-tide-him-security-5
+    - subGoalId: security
+      dialogue: tutorial-tide-him-security-6

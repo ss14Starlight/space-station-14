@@ -1,0 +1,78 @@
+- type: tutorialRole
+  id: TutorialAntagNukeops
+  mentorName: Urist McNuke
+  job: Passenger
+  antag: Nukeops
+  stub: false
+  liveTutorial: true
+  simplifiedEnvironment: true
+  category: Antagonist
+  pickerOrder: 1
+  nukeopsOutpost: true
+  map: /Maps/_Functional/TutorialServer/Antag_Nukeops.yml
+  guidebook: NuclearOperatives
+  startingGear: SyndicateOperativeGearFull
+  roleLoadout: RoleSurvivalNukie
+  practiceSpawns:
+  - id: TutorialNuclearBomb
+    offset: 0, -10
+  - id: NukeDisk
+    offset: 1, -9.5
+  - id: BoxFolderNuclearCodes
+    offset: -1, -9.5
+  goals:
+  - id: welcome
+    title: tutorial-antag-nukeops-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-nukeops-sg-intro
+      complete: Acknowledge
+  - id: uplink
+    title: tutorial-antag-nukeops-goal-uplink
+    subGoals:
+    - id: hold-uplink
+      text: tutorial-antag-nukeops-sg-uplink
+      complete: ObtainItem
+      entity: BaseUplinkRadio40TC
+    - id: uplink-tip
+      text: tutorial-antag-nukeops-sg-uplink-tip
+      complete: Acknowledge
+  - id: disk
+    title: tutorial-antag-nukeops-goal-disk
+    subGoals:
+    - id: hold-pinpointer
+      text: tutorial-antag-nukeops-sg-pinpointer
+      complete: ObtainItem
+      entity: PinpointerSyndicateNuclear
+    - id: hold-disk
+      text: tutorial-antag-nukeops-sg-disk
+      complete: ObtainItem
+      entity: NukeDisk
+    - id: disk-tip
+      text: tutorial-antag-nukeops-sg-disk-tip
+      complete: Acknowledge
+  - id: codes
+    title: tutorial-antag-nukeops-goal-codes
+    subGoals:
+    - id: hold-folder
+      text: tutorial-antag-nukeops-sg-codes
+      complete: ObtainItem
+      entity: BoxFolderNuclearCodes
+    - id: codes-tip
+      text: tutorial-antag-nukeops-sg-codes-tip
+      complete: Acknowledge
+  - id: arm
+    title: tutorial-antag-nukeops-goal-arm
+    subGoals:
+    - id: arm-tip
+      text: tutorial-antag-nukeops-sg-arm-tip
+      complete: Acknowledge
+    - id: arm-nuke
+      text: tutorial-antag-nukeops-sg-arm
+      complete: NukeArmed
+  - id: finish
+    title: tutorial-antag-nukeops-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-nukeops-sg-done
+      complete: Acknowledge

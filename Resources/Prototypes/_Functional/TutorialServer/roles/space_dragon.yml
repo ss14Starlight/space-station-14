@@ -1,0 +1,112 @@
+# Engineering progression — Space Dragon prey arena (space → cargo-bay box).
+- type: tutorialRole
+  id: TutorialAntagDragon
+  mentorName: Urist McRift
+  antag: Dragon
+  stub: false
+  liveTutorial: true
+  simplifiedEnvironment: true
+  category: Antagonist
+  pickerOrder: 0
+  name: tutorial-antag-dragon-name
+  spawnEntity: MobDragon
+  dragonArena: TutorialDragonPrey
+  guidebook: MinorAntagonists
+  placeholderObjectives:
+  - CarpRiftsObjective
+  - DragonSurviveObjective
+  practiceSpawns:
+  - id: TutorialPracticeMobIdleVictim
+    room: 0
+    offset: -2, -1
+  - id: TutorialPracticeMobIdleAudience
+    room: 0
+    offset: 2, -1
+  - id: TutorialPracticeMobIdleParishioner
+    room: 0
+    offset: -2, 1
+  - id: TutorialPracticeMobIdleCrew
+    room: 0
+    offset: 2, 1
+  - id: TutorialPracticeMobIdlePassenger
+    room: 0
+    offset: 0, -2
+  - id: TutorialPracticeMobIdleEngineer
+    room: 0
+    offset: -1, 2
+  - id: TutorialPracticeMobIdleVictim
+    room: 0
+    offset: 1, 2
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: dragon-pass
+  goals:
+  - id: welcome
+    title: tutorial-antag-dragon-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-dragon-sg-intro
+      complete: Acknowledge
+    - id: pinpointer-tip
+      text: tutorial-antag-dragon-sg-pinpointer-tip
+      complete: Acknowledge
+      hint: tutorial-antag-dragon-sg-pinpointer-hint
+  - id: approach
+    title: tutorial-antag-dragon-goal-approach
+    subGoals:
+    - id: reach-station
+      text: tutorial-antag-dragon-sg-reach-station
+      complete: ReachMarker
+      marker: dragon-station
+      hint: tutorial-antag-dragon-sg-reach-station-hint
+  - id: portal
+    title: tutorial-antag-dragon-goal-portal
+    subGoals:
+    - id: rift-tip
+      text: tutorial-antag-dragon-sg-rift-tip
+      complete: Acknowledge
+      hint: tutorial-antag-dragon-sg-rift-hint
+      stuckHint: tutorial-antag-dragon-sg-rift-stuck
+    - id: open-rift
+      text: tutorial-antag-dragon-sg-open-rift
+      complete: MapHasEntity
+      entity: CarpRift
+    - id: defend-tip
+      text: tutorial-antag-dragon-sg-defend-tip
+      complete: Acknowledge
+  - id: feast
+    title: tutorial-antag-dragon-goal-feast
+    subGoals:
+    - id: devour-tip
+      text: tutorial-antag-dragon-sg-devour-tip
+      complete: Acknowledge
+      hint: tutorial-antag-dragon-sg-devour-hint
+    - id: kill-dummy
+      text: tutorial-antag-dragon-sg-kill
+      complete: PracticeMobDead
+      hint: tutorial-antag-dragon-sg-kill-hint
+    - id: devour-human
+      text: tutorial-antag-dragon-sg-devour
+      complete: DragonDevoured
+  - id: abilities
+    title: tutorial-antag-dragon-goal-abilities
+    subGoals:
+    - id: breath-tip
+      text: tutorial-antag-dragon-sg-breath-tip
+      complete: Acknowledge
+      hint: tutorial-antag-dragon-sg-breath-hint
+    - id: use-breath
+      text: tutorial-antag-dragon-sg-use-breath
+      complete: ActionUsed
+      entity: ActionDragonsBreath
+  - id: finish
+    title: tutorial-antag-dragon-goal-finish
+    subGoals:
+    - id: walk
+      text: tutorial-antag-dragon-sg-walk
+      complete: ReachMarker
+      marker: dragon-pass
+    - id: done
+      text: tutorial-antag-dragon-sg-done
+      complete: Acknowledge

@@ -1,0 +1,116 @@
+- type: tutorialRole
+  id: TutorialSurgeryStarlight
+  mentorName: Urist McCybersurgeon
+  job: MedicalDoctor
+  stub: true # temporarily greyed pending manual test
+  simplifiedEnvironment: true
+  category: Server specific
+  subCategory: Starlight
+  name: tutorial-job-surgery-starlight-name
+  roomTemplate: TutorialSectionSurgery
+  guidebook: Medical
+  practiceSpawns:
+  - id: LockerMedicalFilled
+    room: 0
+    offset: -2, 1
+  - id: OperatingTable
+    room: 0
+    offset: 0, 0.5
+  - id: TutorialStarlightScalpel
+    room: 0
+    offset: -1.5, -1
+  - id: TutorialStarlightHemostat
+    room: 0
+    offset: -1.0, -1
+  - id: TutorialStarlightRetractor
+    room: 0
+    offset: -0.5, -1
+  - id: TutorialStarlightCautery
+    room: 0
+    offset: 0, -1
+  - id: TutorialStarlightBoneGel
+    room: 0
+    offset: 0.5, -1
+  - id: TutorialStarlightEyeImplantWelding
+    room: 0
+    offset: 1.0, -1
+  - id: TutorialPracticeMobStarlightSurgery
+    room: 0
+    offset: 0, 0.5
+  - id: TutorialStarlightScalpel
+    room: 0
+    offset: -1.5, -1
+  - id: TutorialStarlightHemostat
+    room: 0
+    offset: -1.0, -1
+  - id: TutorialStarlightRetractor
+    room: 0
+    offset: -0.5, -1
+  - id: TutorialStarlightCautery
+    room: 0
+    offset: 0, -1
+  - id: TutorialStarlightBoneGel
+    room: 0
+    offset: 0.5, -1
+  - id: TutorialStarlightEyeImplantWelding
+    room: 0
+    offset: 1.0, -1
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: surgery-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-surgery-starlight-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-surgery-starlight-sg-intro
+      complete: Acknowledge
+  - id: tools
+    title: tutorial-job-surgery-starlight-goal-tools
+    subGoals:
+    - id: hold-scalpel
+      text: tutorial-job-surgery-starlight-sg-scalpel
+      complete: HoldItem
+      entity: TutorialStarlightScalpel
+    - id: hold-hemostat
+      text: tutorial-job-surgery-starlight-sg-hemostat
+      complete: HoldItem
+      entity: TutorialStarlightHemostat
+    - id: hold-retractor
+      text: tutorial-job-surgery-starlight-sg-retractor
+      complete: HoldItem
+      entity: TutorialStarlightRetractor
+    - id: hold-cautery
+      text: tutorial-job-surgery-starlight-sg-cautery
+      complete: HoldItem
+      entity: TutorialStarlightCautery
+    - id: hold-gel
+      text: tutorial-job-surgery-starlight-sg-bonegel
+      complete: HoldItem
+      entity: TutorialStarlightBoneGel
+    - id: hold-implant
+      text: tutorial-job-surgery-starlight-sg-implant
+      complete: HoldItem
+      entity: TutorialStarlightEyeImplantWelding
+  - id: surgery
+    title: tutorial-job-surgery-starlight-goal-surgery
+    subGoals:
+    - id: open-ui
+      text: tutorial-job-surgery-starlight-sg-open-ui
+      hint: tutorial-job-surgery-starlight-hint-open-ui
+      stuckHint: tutorial-job-surgery-starlight-stuck-open-ui
+      complete: StarlightSurgeryUiOpened
+    - id: implant
+      text: tutorial-job-surgery-starlight-sg-do-surgery
+      complete: StarlightSurgeryEyeImplanted
+    - id: walk
+      text: tutorial-job-surgery-starlight-sg-walk
+      complete: ReachMarker
+      marker: surgery-pass
+  - id: finish
+    title: tutorial-job-surgery-starlight-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-surgery-starlight-sg-done
+      complete: Acknowledge

@@ -1,0 +1,126 @@
+- type: tutorialRole
+  id: TutorialSurgeryCyberMed
+  mentorName: Urist McCyberdoc
+  job: MedicalDoctor
+  stub: true # temporarily greyed pending manual test
+  simplifiedEnvironment: true
+  category: Server specific
+  subCategory: BPL14
+  name: tutorial-job-surgery-cybermed-name
+  roomTemplate: TutorialSectionSurgery
+  guidebook: Medical
+  practiceSpawns:
+  - id: LockerMedicalFilled
+    room: 0
+    offset: -2, 1
+  - id: OperatingTable
+    room: 0
+    offset: 0, 0.5
+  - id: TutorialCyberMedAnalyzer
+    room: 0
+    offset: 1.5, 0
+  - id: TutorialCyberMedScalpel
+    room: 0
+    offset: -1.5, -1
+  - id: TutorialCyberMedHemostat
+    room: 0
+    offset: -1.0, -1
+  - id: TutorialCyberMedRetractor
+    room: 0
+    offset: -0.5, -1
+  - id: TutorialCyberMedSaw
+    room: 0
+    offset: 0, -1
+  - id: TutorialCyberMedCautery
+    room: 0
+    offset: 0.5, -1
+  - id: TutorialCyberMedCyberHeart
+    room: 0
+    offset: 1.0, -1
+  - id: TutorialPracticeMobCyberMedSurgery
+    room: 0
+    offset: 0, 0.5
+  - id: TutorialCyberMedAnalyzer
+    room: 0
+    offset: 1.5, 0
+  - id: TutorialCyberMedScalpel
+    room: 0
+    offset: -1.5, -1
+  - id: TutorialCyberMedHemostat
+    room: 0
+    offset: -1.0, -1
+  - id: TutorialCyberMedRetractor
+    room: 0
+    offset: -0.5, -1
+  - id: TutorialCyberMedSaw
+    room: 0
+    offset: 0, -1
+  - id: TutorialCyberMedCautery
+    room: 0
+    offset: 0.5, -1
+  - id: TutorialCyberMedCyberHeart
+    room: 0
+    offset: 1.0, -1
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: cybermed-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-surgery-cybermed-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-surgery-cybermed-sg-intro
+      complete: Acknowledge
+  - id: tools
+    title: tutorial-job-surgery-cybermed-goal-tools
+    subGoals:
+    - id: hold-analyzer
+      text: tutorial-job-surgery-cybermed-sg-analyzer
+      complete: HoldItem
+      entity: TutorialCyberMedAnalyzer
+    - id: hold-scalpel
+      text: tutorial-job-surgery-cybermed-sg-scalpel
+      complete: HoldItem
+      entity: TutorialCyberMedScalpel
+    - id: hold-hemostat
+      text: tutorial-job-surgery-cybermed-sg-hemostat
+      complete: HoldItem
+      entity: TutorialCyberMedHemostat
+    - id: hold-retractor
+      text: tutorial-job-surgery-cybermed-sg-retractor
+      complete: HoldItem
+      entity: TutorialCyberMedRetractor
+    - id: hold-saw
+      text: tutorial-job-surgery-cybermed-sg-saw
+      complete: HoldItem
+      entity: TutorialCyberMedSaw
+    - id: hold-cautery
+      text: tutorial-job-surgery-cybermed-sg-cautery
+      complete: HoldItem
+      entity: TutorialCyberMedCautery
+    - id: hold-heart
+      text: tutorial-job-surgery-cybermed-sg-heart
+      complete: HoldItem
+      entity: TutorialCyberMedCyberHeart
+  - id: surgery
+    title: tutorial-job-surgery-cybermed-goal-surgery
+    subGoals:
+    - id: open-ui
+      text: tutorial-job-surgery-cybermed-sg-open-ui
+      hint: tutorial-job-surgery-cybermed-hint-open-ui
+      stuckHint: tutorial-job-surgery-cybermed-stuck-open-ui
+      complete: CyberMedSurgeryUiOpened
+    - id: implant
+      text: tutorial-job-surgery-cybermed-sg-do-surgery
+      complete: CyberMedSurgeryComplete
+    - id: walk
+      text: tutorial-job-surgery-cybermed-sg-walk
+      complete: ReachMarker
+      marker: cybermed-pass
+  - id: finish
+    title: tutorial-job-surgery-cybermed-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-surgery-cybermed-sg-done
+      complete: Acknowledge

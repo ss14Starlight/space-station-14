@@ -1,0 +1,95 @@
+- type: tutorialRole
+  id: TutorialAntagSpaceNinja
+  mentorName: Urist McKatana
+  job: Passenger
+  antag: SpaceNinja
+  stub: false
+  simplifiedEnvironment: true
+  category: Wizden antagonists
+  name: tutorial-antag-space-ninja-name
+  startingGear: SpaceNinjaGear
+  roleLoadout: RoleSurvivalSpaceNinja
+  roomTemplate: TutorialSectionMaintAntag
+  guidebook: SpaceNinja
+  practiceSpawns:
+  - id: TutorialHackAirlock
+    room: 0
+    offset: 1.5, 0
+  - id: TutorialResearchConsole
+    room: 0
+    offset: -1.5, 1
+  - id: TutorialResearchServer
+    room: 0
+    offset: -1.5, -0.5
+  - id: TutorialComputerComms
+    room: 0
+    offset: -1.5, 1
+  - id: TutorialComputerCriminalRecords
+    room: 0
+    offset: 1.5, 1
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: ninja-pass
+  goals:
+  - id: welcome
+    title: tutorial-antag-space-ninja-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-space-ninja-sg-intro
+      complete: Acknowledge
+  - id: suit
+    title: tutorial-antag-space-ninja-goal-suit
+    subGoals:
+    - id: suit-tip
+      text: tutorial-antag-space-ninja-sg-suit-tip
+      complete: Acknowledge
+    - id: hold-katana
+      text: tutorial-antag-space-ninja-sg-hold-katana
+      complete: HoldItem
+      entity: EnergyKatana
+    - id: hold-charge
+      text: tutorial-antag-space-ninja-sg-hold-charge
+      complete: HoldItem
+      entity: SpiderCharge
+    - id: dash-tip
+      text: tutorial-antag-space-ninja-sg-dash-tip
+      complete: Acknowledge
+  - id: gloves
+    title: tutorial-antag-space-ninja-goal-gloves
+    subGoals:
+    - id: gloves-tip
+      text: tutorial-antag-space-ninja-sg-gloves-tip
+      complete: Acknowledge
+    - id: doorjack
+      text: tutorial-antag-space-ninja-sg-doorjack
+      complete: InteractTargetTag
+      tag: TutorialHackDoor
+    - id: research
+      text: tutorial-antag-space-ninja-sg-research
+      complete: InteractTargetTag
+      tag: TutorialResearchConsole
+    - id: terror
+      text: tutorial-antag-space-ninja-sg-terror
+      complete: InteractTargetTag
+      tag: TutorialCommsConsole
+    - id: records
+      text: tutorial-antag-space-ninja-sg-records
+      complete: InteractTargetTag
+      tag: TutorialCriminalRecords
+    - id: charge-tip
+      text: tutorial-antag-space-ninja-sg-charge-tip
+      complete: Acknowledge
+    - id: survive-tip
+      text: tutorial-antag-space-ninja-sg-survive-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-antag-space-ninja-sg-walk
+      complete: ReachMarker
+      marker: ninja-pass
+  - id: finish
+    title: tutorial-antag-space-ninja-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-space-ninja-sg-done
+      complete: Acknowledge

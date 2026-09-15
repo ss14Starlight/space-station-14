@@ -1,0 +1,39 @@
+- type: tutorialShuttleArena
+  id: TutorialArenaCargoShuttle
+  # Full station cargo shuttle + mini cargo bay + mini ATS for trade-run practice.
+  shuttleMap: /Maps/Shuttles/cargo.yml
+  startDocked: true
+  dockProto: AirlockGlassShuttle
+  consoleProto: ComputerShuttle
+  cargoBayOffset: 28, 0
+  atsOffset: 95, 0
+  includeAtsSell: true
+  homeStationId: cargo-bay
+  distantStationId: ats
+
+- type: tutorialShuttleArena
+  id: TutorialArenaNukeopsInfiltrator
+  # Full GX-13 Infiltrator + home/distant dock platforms (no cargo sell).
+  shuttleMap: /Maps/Shuttles/infiltrator.yml
+  fallbackShuttleMap: /Maps/_Functional/TutorialServer/Shuttles/infiltrator_tutorial.yml
+  startDocked: true
+  dockProto: AirlockGlassShuttleSyndicate
+  consoleProto: ComputerShuttleSyndie
+  cargoBayOffset: 40, 0
+  atsOffset: 120, 0
+  includeAtsSell: false
+  homeStationId: nukie-dock
+  distantStationId: nukie-rally
+
+- type: tutorialShuttleArena
+  id: TutorialArenaMothership
+  # Full xenoborg mothership + mini home dock + mini ATS for pilot practice.
+  shuttleMap: /Maps/Shuttles/mothership.yml
+  startDocked: true
+  dockProto: AirlockGlassShuttle
+  consoleProto: ComputerShuttle
+  cargoBayOffset: 50, 0
+  atsOffset: 140, 0
+  includeAtsSell: false
+  homeStationId: mothership-dock
+  distantStationId: ats

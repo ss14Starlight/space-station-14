@@ -1,0 +1,15 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+         MouseFilter="Ignore"
+         Visible="False">
+    <PanelContainer Name="HintPanel"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    MaxWidth="420"
+                    MouseFilter="Ignore">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#0E1A1FEE" BorderColor="#65B8E2" BorderThickness="2" />
+        </PanelContainer.PanelOverride>
+        <RichTextLabel Name="HintLabel" Margin="18 10 18 10" />
+    </PanelContainer>
+</Control>

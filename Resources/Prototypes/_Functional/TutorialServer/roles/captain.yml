@@ -1,0 +1,87 @@
+- type: tutorialRole
+  id: TutorialCaptain
+  mentorName: Urist McDisk
+  job: Captain
+  stub: false
+  simplifiedEnvironment: true
+  category: Command
+  map: /Maps/_Functional/TutorialServer/Roles/Captain.yml
+  roomTemplate: TutorialSectionCommand
+  guidebook: Command
+  practiceSpawns:
+  - id: LockerCaptainFilled
+    room: 0
+    offset: -2, 1
+  - id: RubberStampCaptain
+    room: 0
+    offset: 0.8, 0
+  - id: TutorialComputerComms
+    room: 0
+    offset: 1.5, 1
+  - id: TutorialFaxCentcom
+    room: 0
+    offset: -1.5, 1
+  - id: NukeDiskFake
+    room: 0
+    offset: 0.5, 0
+  - id: Paper
+    room: 0
+    offset: 0.8, 0
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: bridge-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-captain-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-captain-sg-intro
+      complete: Acknowledge
+  - id: command
+    title: tutorial-job-captain-goal-command
+    subGoals:
+    - id: hold-stamp
+      text: tutorial-job-captain-sg-stamp
+      complete: HoldItem
+      entity: RubberStampCaptain
+    - id: stamp-paper
+      text: tutorial-job-captain-sg-stamp-paper
+      complete: InteractTargetTag
+      tag: Paper
+    - id: open-comms
+      text: tutorial-job-captain-sg-comms
+      complete: InteractTargetTag
+      tag: TutorialCommsConsole
+    - id: set-alert
+      text: tutorial-job-captain-sg-alert
+      complete: AlertLevelChanged
+      alertLevel: Blue
+    - id: open-fax
+      text: tutorial-job-captain-sg-fax
+      complete: InteractTargetTag
+      tag: TutorialFax
+  - id: disk
+    title: tutorial-job-captain-goal-disk
+    subGoals:
+    - id: hold-disk
+      text: tutorial-job-captain-sg-disk
+      complete: HoldItem
+      entity: NukeDiskFake
+    - id: stow-disk
+      text: tutorial-job-captain-sg-stow-disk
+      complete: StowItem
+      entity: NukeDiskFake
+    - id: shuttle-tip
+      text: tutorial-job-captain-sg-shuttle-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-job-captain-sg-walk
+      complete: ReachMarker
+      marker: bridge-pass
+  - id: finish
+    title: tutorial-job-captain-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-captain-sg-done
+      complete: Acknowledge

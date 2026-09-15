@@ -1,0 +1,68 @@
+- type: tutorialRole
+  id: TutorialSalvageSpecialist
+  job: SalvageSpecialist
+  stub: false
+  category: Cargo
+  map: /Maps/_Functional/TutorialServer/Roles/SalvageSpecialist.yml
+  salvageArena: TutorialArenaSalvageBay
+  guidebook: Cargo
+  practiceSpawns: []
+  goals:
+  - id: welcome
+    title: tutorial-job-salvage-specialist-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-salvage-specialist-sg-intro
+      complete: Acknowledge
+  - id: eva
+    title: tutorial-job-salvage-specialist-goal-eva
+    subGoals:
+    - id: hold-magboots
+      text: tutorial-job-salvage-specialist-sg-magboots
+      complete: HoldItem
+      entity: ClothingShoesBootsMag
+    - id: use-magboots
+      text: tutorial-job-salvage-specialist-sg-use-magboots
+      # Z/Use quick-equips clothing (boot swap); toggle is the item action.
+      complete: ActionUsed
+      entity: ActionToggleMagboots
+    - id: hold-pka
+      text: tutorial-job-salvage-specialist-sg-pka
+      complete: HoldItem
+      entity: WeaponProtoKineticAccelerator
+  - id: magnet
+    title: tutorial-job-salvage-specialist-goal-magnet
+    subGoals:
+    - id: activate-magnet
+      text: tutorial-job-salvage-specialist-sg-activate-magnet
+      complete: InteractTargetTag
+      tag: TutorialSalvageMagnet
+    - id: reach-debris
+      text: tutorial-job-salvage-specialist-sg-reach-debris
+      complete: ReachMarker
+      marker: debris-pass
+    - id: stuff-locker
+      text: tutorial-job-salvage-specialist-sg-stuff-locker
+      complete: ContainerHasEntityCount
+      tag: TutorialDebrisLocker
+      minCount: 3
+    - id: return-bay
+      text: tutorial-job-salvage-specialist-sg-return-bay
+      complete: ReachMarker
+      marker: salvage-bay
+    - id: hold-loot
+      text: tutorial-job-salvage-specialist-sg-hold-loot
+      complete: HoldItem
+      entity: ScrapSteel
+    - id: feed-recycler
+      text: tutorial-job-salvage-specialist-sg-feed-recycler
+      complete: RecyclerProcessed
+    - id: magnet-tip
+      text: tutorial-job-salvage-specialist-sg-magnet-tip
+      complete: Acknowledge
+  - id: finish
+    title: tutorial-job-salvage-specialist-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-salvage-specialist-sg-done
+      complete: Acknowledge

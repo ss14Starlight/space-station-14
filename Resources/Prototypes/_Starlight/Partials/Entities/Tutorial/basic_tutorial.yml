@@ -1,0 +1,12 @@
+- type: !ParitalOnly entity
+  id: Holopad
+  components:
+    - !Remove: type: Holopad
+
+- type: !PartialOnly entity
+  id: SLTutorialHolopad
+  parent: Holopad
+  suffix: Tutorial
+  components:
+    - type: TutorialHoloPoint
+      room: 0

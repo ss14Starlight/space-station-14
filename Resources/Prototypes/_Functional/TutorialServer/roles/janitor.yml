@@ -1,0 +1,106 @@
+- type: tutorialRole
+  id: TutorialJanitor
+  mentorName: Urist McMop
+  job: Janitor
+  stub: false
+  simplifiedEnvironment: true
+  category: Service
+  map: /Maps/_Functional/TutorialServer/Roles/Janitor.yml
+  roomTemplate: TutorialSectionJanitor
+  guidebook: Janitorial
+  practiceSpawns:
+  - id: ClosetJanitorFilled
+    room: 0
+    offset: -1.5, 1
+  - id: MopItem
+    room: 0
+    offset: 1, 0
+  - id: Bucket
+    room: 0
+    offset: 0.5, 0
+  - id: ClothingShoesGaloshes
+    room: 0
+    offset: -0.5, 0
+  - id: WaterTankFull
+    room: 0
+    offset: -1.5, 1
+  - id: TutorialPracticePuddleBlood
+    room: 0
+    offset: 0, -1
+    marker: blood-puddle
+  - id: TutorialFloorDrain
+    room: 0
+    offset: -1.5, 1
+  - id: SprayBottleSpaceCleaner
+    room: 0
+    offset: 1, 0
+  - id: SoapNT
+    room: 0
+    offset: 0.5, 0
+  - id: TrashBag
+    room: 0
+    offset: 0.8, 0
+  - id: CrateJanitorialSupplies
+    room: 0
+    offset: 1.5, 1
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: clean-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-janitor-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-janitor-sg-intro
+      complete: Acknowledge
+  - id: kit
+    title: tutorial-job-janitor-goal-kit
+    subGoals:
+    - id: hold-mop
+      text: tutorial-job-janitor-sg-mop
+      complete: HoldTag
+      tag: Mop
+    - id: hold-bucket
+      text: tutorial-job-janitor-sg-bucket
+      complete: HoldItem
+      entity: Bucket
+    - id: hold-galoshes
+      text: tutorial-job-janitor-sg-galoshes
+      complete: HoldItem
+      entity: ClothingShoesGaloshes
+  - id: mop
+    title: tutorial-job-janitor-goal-mop
+    subGoals:
+    - id: clear-puddle
+      text: tutorial-job-janitor-sg-clear-puddle
+      complete: PuddleCleared
+      marker: blood-puddle
+    - id: drain
+      text: tutorial-job-janitor-sg-drain
+      complete: InteractTargetTag
+      tag: TutorialDrain
+  - id: clean
+    title: tutorial-job-janitor-goal-clean
+    subGoals:
+    - id: hold-spray
+      text: tutorial-job-janitor-sg-spray
+      complete: HoldItem
+      entity: SprayBottleSpaceCleaner
+    - id: potassium-tip
+      text: tutorial-job-janitor-sg-potassium-tip
+      complete: Acknowledge
+    - id: hold-bag
+      text: tutorial-job-janitor-sg-trash-bag
+      complete: HoldItem
+      entity: TrashBag
+    - id: walk
+      text: tutorial-job-janitor-sg-walk
+      complete: ReachMarker
+      marker: clean-pass
+  - id: finish
+    title: tutorial-job-janitor-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-janitor-sg-done
+      complete: Acknowledge

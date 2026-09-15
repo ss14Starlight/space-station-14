@@ -1,0 +1,66 @@
+- type: tutorialRole
+  id: TutorialSecurityCadet
+  mentorName: Urist McRookie
+  job: SecurityCadet
+  stub: false
+  simplifiedEnvironment: true
+  category: Security
+  map: /Maps/_Functional/TutorialServer/Roles/SecurityOfficer.yml
+  roomTemplate: TutorialSectionSecurity
+  guidebook: Security
+  practiceSpawns:
+  - id: LockerSecurityFilled
+    room: 0
+    offset: -2, 1
+  - id: Stunbaton
+    room: 0
+    offset: 0.5, 0
+  - id: WeaponDisabler
+    room: 0
+    offset: 0.8, 0
+  - id: Flash
+    room: 0
+    offset: -0.5, 0
+  - id: FlashlightSeclite
+    room: 0
+    offset: -0.2, 0
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: cadet-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-security-cadet-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-security-cadet-sg-intro
+      complete: Acknowledge
+  - id: tools
+    title: tutorial-job-security-cadet-goal-tools
+    subGoals:
+    - id: hold-baton
+      text: tutorial-job-security-cadet-sg-baton
+      complete: HoldItem
+      entity: Stunbaton
+    - id: hold-disabler
+      text: tutorial-job-security-cadet-sg-disabler
+      complete: HoldItem
+      entity: WeaponDisabler
+    - id: hold-flash
+      text: tutorial-job-security-cadet-sg-flash
+      complete: HoldItem
+      entity: Flash
+    - id: use-seclite
+      text: tutorial-job-security-cadet-sg-use-seclite
+      complete: UseInHand
+      entity: FlashlightSeclite
+    - id: walk
+      text: tutorial-job-security-cadet-sg-walk
+      complete: ReachMarker
+      marker: cadet-pass
+  - id: finish
+    title: tutorial-job-security-cadet-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-security-cadet-sg-done
+      complete: Acknowledge

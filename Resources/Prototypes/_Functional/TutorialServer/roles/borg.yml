@@ -1,0 +1,90 @@
+- type: tutorialRole
+  id: TutorialBorg
+  mentorName: Urist McLaws
+  job: Borg
+  spawnEntity: TutorialPlayerBorg
+  stub: false
+  simplifiedEnvironment: true
+  category: Science
+  name: tutorial-job-borg-name
+  roomTemplate: TutorialSectionScience
+  guidebook: Cyborgs
+  practiceSpawns:
+  - id: Screwdriver
+    room: 0
+    offset: 0.5, 0
+  - id: AccessBreaker
+    room: 0
+    offset: -0.5, 0
+  - id: Emag
+    room: 0
+    offset: 0, -0.5
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: borg-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-borg-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-borg-sg-intro
+      complete: Acknowledge
+    - id: laws-tip
+      text: tutorial-job-borg-sg-laws
+      complete: Acknowledge
+  - id: chassis
+    title: tutorial-job-borg-goal-chassis
+    subGoals:
+    - id: chassis-tip
+      text: tutorial-job-borg-sg-chassis-tip
+      complete: Acknowledge
+    - id: select-chassis
+      text: tutorial-job-borg-sg-select-chassis
+      hint: tutorial-job-borg-sg-select-chassis-hint
+      complete: BorgTypeSelected
+      marker: generic
+  - id: modules
+    title: tutorial-job-borg-goal-modules
+    subGoals:
+    - id: modules-tip
+      text: tutorial-job-borg-sg-modules-tip
+      complete: Acknowledge
+    - id: select-tool-module
+      text: tutorial-job-borg-sg-select-tool-module
+      hint: tutorial-job-borg-sg-select-module-hint
+      complete: BorgModuleSelected
+      entity: BorgModuleTool
+    - id: select-inflatable-module
+      text: tutorial-job-borg-sg-select-inflatable-module
+      hint: tutorial-job-borg-sg-select-module-hint
+      complete: BorgModuleSelected
+      entity: BorgModuleInflatable
+    - id: install-tip
+      text: tutorial-job-borg-sg-install-tip
+      complete: Acknowledge
+  - id: subversion
+    title: tutorial-job-borg-goal-subversion
+    subGoals:
+    - id: saboteur-tip
+      text: tutorial-job-borg-sg-saboteur-tip
+      complete: Acknowledge
+    - id: panel-open
+      text: tutorial-job-borg-sg-panel-open
+      complete: PlayerWiresPanelOpen
+    - id: emagged
+      text: tutorial-job-borg-sg-emagged
+      complete: SiliconSubverted
+    - id: new-laws
+      text: tutorial-job-borg-sg-new-laws
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-job-borg-sg-walk
+      complete: ReachMarker
+      marker: borg-pass
+  - id: finish
+    title: tutorial-job-borg-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-borg-sg-done
+      complete: Acknowledge

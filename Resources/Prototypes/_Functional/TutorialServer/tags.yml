@@ -1,0 +1,239 @@
+- type: Tag
+  id: TutorialMicrowave
+
+- type: Tag
+  id: TutorialGrill
+
+- type: Tag
+  id: TutorialVending
+
+- type: Tag
+  id: TutorialHydroTray
+
+- type: Tag
+  id: TutorialAirlock
+
+- type: Tag
+  id: TutorialAnomalySpawner
+
+- type: Tag
+  id: TutorialChemDispenser
+
+- type: Tag
+  id: TutorialChemMaster
+
+- type: Tag
+  id: TutorialGrinder
+
+- type: Tag
+  id: TutorialHotplate
+
+- type: Tag
+  id: TutorialPracticePuddle
+
+- type: Tag
+  id: TutorialDrain
+
+- type: Tag
+  id: TutorialPracticeMob
+
+- type: Tag
+  id: TutorialPracticePatient
+
+- type: Tag
+  id: TutorialPracticeCorpse
+
+- type: Tag
+  id: TutorialForensicsEvidence
+
+- type: Tag
+  id: TutorialGasCanister
+
+- type: Tag
+  id: TutorialCargoOrders
+
+- type: Tag
+  id: TutorialCargoPurchase
+
+- type: Tag
+  id: TutorialCargoBayCrate
+
+- type: Tag
+  id: TutorialIdConsole
+
+- type: Tag
+  id: TutorialBrigTimer
+
+- type: Tag
+  id: TutorialSecLocker
+
+- type: Tag
+  id: TutorialHackDoor
+
+- type: Tag
+  id: TutorialSpacingBreach
+
+- type: Tag
+  id: TutorialApc
+
+- type: Tag
+  id: TutorialSubstation
+
+- type: Tag
+  id: TutorialSmes
+
+- type: Tag
+  id: TutorialPowerMonitor
+
+- type: Tag
+  id: TutorialSinguloGen
+
+- type: Tag
+  id: TutorialTeslaGen
+
+- type: Tag
+  id: TutorialTeg
+
+- type: Tag
+  id: TutorialTegCirculator
+
+- type: Tag
+  id: TutorialResearchServer
+
+- type: Tag
+  id: TutorialResearchConsole
+
+- type: Tag
+  id: TutorialLathe
+
+- type: Tag
+  id: TutorialGasFilter
+
+- type: Tag
+  id: TutorialDistroVent
+
+- type: Tag
+  id: TutorialWasteScrubber
+
+- type: Tag
+  id: TutorialFax
+
+- type: Tag
+  id: TutorialCommsConsole
+
+- type: Tag
+  id: TutorialCriminalRecords
+
+- type: Tag
+  id: TutorialXenoborgCrusher
+
+- type: Tag
+  id: TutorialRollerBed
+
+- type: Tag
+  id: TutorialStarlightSurgeryPatient
+
+- type: Tag
+  id: TutorialCyberMedAnalyzer
+
+- type: Tag
+  id: TutorialCyberMedSurgeryPatient
+
+- type: Tag
+  id: TutorialSalvageMagnet
+
+- type: Tag
+  id: TutorialRecycler
+
+- type: Tag
+  id: TutorialDebrisLocker
+
+- type: Tag
+  id: TutorialCargoSell
+
+# Basic Controls curriculum (TutorialBasics).
+- type: Tag
+  id: TutorialClimbTable
+
+- type: Tag
+  id: TutorialChair
+
+- type: Tag
+  id: TutorialPointTarget
+
+- type: Tag
+  id: TutorialDoorPowered
+
+# Items and Survival curriculum (TutorialItems).
+- type: Tag
+  id: TutorialExamineTarget
+
+- type: Tag
+  id: TutorialGearLocker
+
+- type: Tag
+  id: TutorialDisposal
+
+- type: Tag
+  id: TutorialPullCrate
+
+- type: Tag
+  id: TutorialFirelock
+
+# Both tools carry this, so the two pick-up drills are one sensor with a count and no fixed order.
+- type: Tag
+  id: TutorialGirderTool
+
+- type: Tag
+  id: TutorialGirder
+
+# On BoxSurvival itself, so it covers every species and departmental variant at once.
+- type: Tag
+  id: TutorialSurvivalBox
+
+# --- Passenger / greytide curriculum -------------------------------------------
+
+- type: Tag
+  id: TutorialTideCargoDoor
+
+- type: Tag
+  id: TutorialTideMaintDoor
+
+- type: Tag
+  id: TutorialTideToolbox
+
+- type: Tag
+  id: TutorialTideBelt
+
+- type: Tag
+  id: TutorialTideGrille
+
+- type: Tag
+  id: TutorialTideStorageDoor
+
+- type: Tag
+  id: TutorialTideSteel
+
+- type: Tag
+  id: TutorialTideVaultDoor
+
+- type: Tag
+  id: TutorialTidePipe
+
+- type: Tag
+  id: TutorialTideDisposal
+
+- type: Tag
+  id: TutorialTideVendor
+
+- type: Tag
+  id: TutorialTideTider
+
+- type: Tag
+  id: TutorialTideHoP
+
+- type: Tag
+  id: TutorialTideSecOfficer
+
+- type: Tag
+  id: TutorialTideShutterButton

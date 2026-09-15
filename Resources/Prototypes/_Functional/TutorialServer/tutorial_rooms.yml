@@ -1,0 +1,634 @@
+# Multi-chamber department practice suites.
+# Chamber count is driven by each role's goal count at build time.
+# Inter-chamber doors unlock when the next goal starts.
+
+- type: tutorialRoom
+  id: TutorialRoomCivilian
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorSteel
+  altFloorTile: FloorSteelCheckerLight
+  wall: WallSolid
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: East
+  door: TutorialAirlockMaint
+  gateDoor: Airlock
+  furniture:
+  - room: 0
+    id: TableWood
+    offset: -1.5, 1
+  - room: 0
+    id: ChairWood
+    offset: -1.5, 0
+  - room: 0
+    id: ChairWood
+    offset: -0.5, 0
+  - room: 1
+    id: BenchComfy
+    offset: 0, 1.5
+  - room: 2
+    id: TableCounterMetal
+    offset: 0, 1.5
+  - room: 4
+    id: TableWood
+    offset: 0, 1.5
+  - room: 5
+    id: TableCounterMetal
+    offset: -1.5, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomKitchen
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorKitchen
+  altFloorTile: FloorSteelCheckerLight
+  wall: WallSolid
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockServiceLocked
+  gateDoor: Airlock
+  furniture:
+  - room: 0
+    id: TableCounterMetal
+    offset: -1.5, 1.5
+  - room: 0
+    id: ChairWood
+    offset: -1.5, 0.5
+  - room: 1
+    id: TableCounterMetal
+    offset: 0, 1.5
+  - room: 1
+    id: Sink
+    offset: -2, 1.5
+  - room: 2
+    id: TableCounterMetal
+    offset: -1.5, 1.5
+  - room: 3
+    id: TableCounterMetal
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomBar
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorWood
+  altFloorTile: FloorBar
+  wall: WallSolid
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockServiceLocked
+  gateDoor: Airlock
+  furniture:
+  - room: 0
+    id: TableWood
+    offset: -1.5, 1
+  - room: 0
+    id: ChairWood
+    offset: -1.5, 0
+  - room: 0
+    id: ChairWood
+    offset: -0.5, 0
+  - room: 1
+    id: TableCounterMetal
+    offset: 0, 1.5
+  - room: 2
+    id: TableCounterMetal
+    offset: -1, 1.5
+  - room: 2
+    id: ChairWood
+    offset: -1, 0.5
+  - room: 3
+    id: BenchComfy
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomBotany
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorHydro
+  altFloorTile: FloorSteel
+  wall: WallSolid
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockHydroponicsLocked
+  gateDoor: AirlockHydroponics
+  furniture:
+  - room: 0
+    id: TableWood
+    offset: -1.5, 1
+  - room: 0
+    id: ChairWood
+    offset: -1.5, 0
+  - room: 1
+    id: TableCounterMetal
+    offset: 0, 1.5
+  - room: 2
+    id: Sink
+    offset: -2, 1.5
+  - room: 3
+    id: BenchComfy
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomChapel
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorDark
+  altFloorTile: FloorWood
+  wall: WallSolid
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockServiceLocked
+  gateDoor: Airlock
+  furniture:
+  - room: 0
+    id: BenchComfy
+    offset: -1.5, 1
+  - room: 0
+    id: BenchComfy
+    offset: 1.5, 1
+  - room: 1
+    id: Bookshelf
+    offset: -2, 1.5
+  - room: 2
+    id: TableWood
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomJanitor
+  chamberWidth: 6
+  chamberHeight: 6
+  floorTile: FloorSteel
+  altFloorTile: FloorTechMaint
+  wall: WallSolid
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: false
+  doorSide: South
+  door: AirlockMaint
+  gateDoor: Airlock
+  furniture:
+  - room: 0
+    id: TableCounterMetal
+    offset: -1, 1
+  - room: 1
+    id: Rack
+    offset: 1.5, 1
+  - room: 2
+    id: Sink
+    offset: -1.5, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomService
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorSteel
+  altFloorTile: FloorSteelCheckerLight
+  wall: WallSolid
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockServiceLocked
+  gateDoor: Airlock
+  furniture:
+  - room: 0
+    id: TableWood
+    offset: -1.5, 1
+  - room: 0
+    id: ChairWood
+    offset: -1.5, 0
+  - room: 1
+    id: BenchComfy
+    offset: 0, 1.5
+  - room: 2
+    id: TableWood
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomClown
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorSteelCheckerDark
+  altFloorTile: FloorSteelCheckerLight
+  wall: WallSolid
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockServiceLocked
+  gateDoor: Airlock
+  furniture:
+  - room: 0
+    id: TableWood
+    offset: -1.5, 1
+  - room: 0
+    id: ChairWood
+    offset: -1.5, 0
+  - room: 0
+    id: ChairWood
+    offset: -0.5, 0
+  - room: 1
+    id: BenchComfy
+    offset: 0, 1.5
+  - room: 2
+    id: TableWood
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomMime
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorWood
+  altFloorTile: FloorDark
+  wall: WallSolid
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockServiceLocked
+  gateDoor: Airlock
+  furniture:
+  - room: 0
+    id: TableWood
+    offset: -1.5, 1
+  - room: 0
+    id: ChairWood
+    offset: -1.5, 0
+  - room: 1
+    id: Bookshelf
+    offset: -2, 1.5
+  - room: 2
+    id: TableWood
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomCargo
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorSteel
+  wall: WallSolid
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockCargoLocked
+  gateDoor: AirlockCargo
+  furniture:
+  - room: 0
+    id: TableCounterMetal
+    offset: -1.5, 1.5
+  - room: 0
+    id: ChairOfficeLight
+    offset: -1.5, 0.5
+  - room: 1
+    id: Rack
+    offset: 1.5, 1.5
+  - room: 2
+    id: TableCounterMetal
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomSalvage
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: Lattice
+  altFloorTile: FloorAsteroidTile
+  wall: WallSolid
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: false
+  doorSide: South
+  door: AirlockExternal
+  gateDoor: AirlockExternal
+  furniture:
+  - room: 0
+    id: Rack
+    offset: -1.5, 1.5
+  - room: 1
+    id: Rack
+    offset: 1.5, 1.5
+  - room: 2
+    id: OreBox
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomEngineering
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorSteelLime
+  altFloorTile: FloorSteel
+  wall: WallReinforced
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockEngineeringLocked
+  gateDoor: AirlockEngineering
+  furniture:
+  - room: 0
+    id: TableCounterMetal
+    offset: -1.5, 1.5
+  - room: 1
+    id: Rack
+    offset: 1.5, 1.5
+  - room: 2
+    id: TableCounterMetal
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomCE
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorSteelLime
+  altFloorTile: FloorBlueCircuit
+  wall: WallReinforced
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockEngineeringLocked
+  gateDoor: AirlockEngineering
+  furniture:
+  - room: 0
+    id: TableWood
+    offset: -1.5, 1
+  - room: 0
+    id: ChairOfficeLight
+    offset: -1.5, 0
+  - room: 1
+    id: TableWood
+    offset: 0, 1.5
+  - room: 2
+    id: Rack
+    offset: 1.5, 1.5
+  - room: 3
+    id: TableCounterMetal
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomMedical
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorWhite
+  altFloorTile: FloorWhitePlastic
+  wall: WallReinforced
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockMedicalLocked
+  gateDoor: AirlockMedical
+  furniture:
+  - room: 0
+    id: MedicalBed
+    offset: -1.5, 1
+  - room: 0
+    id: ChairOfficeLight
+    offset: 1.5, 1
+  - room: 1
+    id: TableCounterMetal
+    offset: 0, 1.5
+  - room: 2
+    id: MedicalBed
+    offset: 0, 1
+
+- type: tutorialRoom
+  id: TutorialRoomChem
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorWhite
+  altFloorTile: FloorWhitePlastic
+  wall: WallReinforced
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockChemistryLocked
+  gateDoor: AirlockChemistry
+  furniture:
+  - room: 0
+    id: TableCounterMetal
+    offset: -1.5, 1
+  - room: 0
+    id: ChairOfficeLight
+    offset: 1.5, 1
+  - room: 1
+    id: TableCounterMetal
+    offset: -1.5, 1.5
+  - room: 1
+    id: TableCounterMetal
+    offset: 1.5, 1.5
+  - room: 2
+    id: TableCounterMetal
+    offset: 0, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomSecurity
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorDark
+  altFloorTile: FloorSteel
+  wall: WallReinforced
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: false
+  doorSide: South
+  door: AirlockSecurityLocked
+  gateDoor: AirlockSecurity
+  furniture:
+  - room: 0
+    id: TableCounterMetal
+    offset: -1.5, 1.5
+  - room: 0
+    id: ChairOfficeLight
+    offset: -1.5, 0.5
+  - room: 1
+    id: TableCounterMetal
+    offset: 0, 1.5
+  - room: 2
+    id: Rack
+    offset: 1.5, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomBrig
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorDark
+  altFloorTile: FloorSteel
+  wall: WallReinforced
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: false
+  doorSide: South
+  door: AirlockSecurityLocked
+  gateDoor: AirlockSecurity
+  furniture:
+  - room: 0
+    id: TableCounterMetal
+    offset: -1.5, 1.5
+  - room: 0
+    id: ChairOfficeLight
+    offset: -1.5, 0.5
+  - room: 1
+    id: Rack
+    offset: -1.5, 1.5
+  - room: 1
+    id: ChairOfficeDark
+    offset: 1.5, 0
+  - room: 2
+    id: Rack
+    offset: 1.5, 1.5
+  - room: 2
+    id: TableCounterMetal
+    offset: -1.5, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomAtmos
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorSteelLime
+  altFloorTile: FloorSteel
+  wall: WallReinforced
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockAtmosphericsLocked
+  gateDoor: AirlockAtmospherics
+  furniture:
+  - room: 0
+    id: TableCounterMetal
+    offset: -1.5, 1
+  - room: 1
+    id: Rack
+    offset: 1.5, 1.5
+  - room: 2
+    id: TableCounterMetal
+    offset: 0, 1.5
+  - room: 3
+    id: Rack
+    offset: -1.5, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomScience
+  chamberWidth: 7
+  chamberHeight: 7
+  maxChambers: 8
+  floorTile: FloorWhite
+  altFloorTile: FloorDark
+  wall: WallReinforced
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockScienceLocked
+  gateDoor: AirlockScience
+  furniture:
+  - room: 0
+    id: TableCounterMetal
+    offset: -1.5, 1.5
+  - room: 0
+    id: ChairOfficeLight
+    offset: -1.5, 0.5
+  - room: 1
+    id: TableCounterMetal
+    offset: 0, 1.5
+  - room: 2
+    id: TableCounterMetal
+    offset: -2, 1.5
+  - room: 2
+    id: Rack
+    offset: 2, 1.5
+  - room: 3
+    id: Rack
+    offset: 1.5, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomCommand
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorDark
+  altFloorTile: FloorBlueCircuit
+  wall: WallReinforced
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockCommandLocked
+  gateDoor: AirlockCommand
+  furniture:
+  - room: 0
+    id: TableWood
+    offset: -1.5, 1
+  - room: 0
+    id: ChairOfficeLight
+    offset: -1.5, 0
+  - room: 1
+    id: TableWood
+    offset: 0, 1.5
+  - room: 2
+    id: Bookshelf
+    offset: -2, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomCentComm
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorDark
+  altFloorTile: FloorSteel
+  wall: WallReinforced
+  light: AlwaysPoweredWallLight
+  lightSpacing: 5
+  windows: true
+  doorSide: South
+  door: AirlockCentralCommand
+  gateDoor: AirlockCommand
+  furniture:
+  - room: 0
+    id: TableWood
+    offset: -1.5, 1
+  - room: 0
+    id: ChairOfficeLight
+    offset: -1.5, 0
+  - room: 1
+    id: TableWood
+    offset: 0, 1.5
+  - room: 2
+    id: Bookshelf
+    offset: -2, 1.5
+
+- type: tutorialRoom
+  id: TutorialRoomAntag
+  chamberWidth: 7
+  chamberHeight: 7
+  floorTile: FloorTechMaint
+  altFloorTile: FloorDark
+  wall: WallReinforced
+  light: AlwaysPoweredlightRed
+  lightSpacing: 5
+  windows: false
+  doorSide: South
+  door: AirlockMaint
+  gateDoor: Airlock
+  furniture:
+  - room: 0
+    id: TableCounterMetal
+    offset: -1.5, 1.5
+  - room: 1
+    id: Rack
+    offset: 1.5, 1.5
+  - room: 2
+    id: TableCounterMetal
+    offset: 0, 1.5
+

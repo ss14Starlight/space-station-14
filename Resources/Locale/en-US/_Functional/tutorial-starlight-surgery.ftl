@@ -1,0 +1,10 @@
+tutorial-starlight-surgery-window-title = Surgery
+tutorial-starlight-surgery-window-title-part = Surgery - {$part}
+tutorial-starlight-surgery-window-title-detail = Surgery - {$part}, {$surgery}
+tutorial-starlight-surgery-self = You can't perform surgery on yourself!
+tutorial-starlight-surgery-need-lying = They need to be lying down!
+tutorial-starlight-surgery-missing-tool = Missing tool: {$tool}
+tutorial-starlight-surgery-wrong-step = That is not the next surgery step.
+tutorial-starlight-surgery-step-done = Completed: {$step}
+tutorial-starlight-surgery-verb = Perform surgery
+tutorial-starlight-surgery-verb-message = Open the Starlight surgery interface on this patient.

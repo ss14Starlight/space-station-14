@@ -1,0 +1,124 @@
+# Fixed tutorial anomaly: particle roles never shuffle (LockParticles).
+# Containment / weakening particle is always Zeta.
+
+- type: entity
+  parent: BaseAnomaly
+  id: TutorialAnomaly
+  name: practice anomaly
+  suffix: Tutorial
+  description: A tame anomaly for training. Its containment particle is always Zeta — it will not reshuffle.
+  components:
+  - type: Anomaly
+    lockParticles: true
+    lockBehavior: true
+    currentBehavior: FullSafe
+    severityParticleType: Delta
+    destabilizingParticleType: Epsilon
+    weakeningParticleType: Zeta
+    transformationParticleType: Sigma
+    minContituty: 0
+    maxContituty: 0
+    minPulseLength: 20
+    maxPulseLength: 30
+    healthChangePerSecond: -0.08
+    pulseStabilityVariation: 0, 0
+    deleteEntity: true
+    corePrototype: AnomalyCoreGravity
+    coreInertPrototype: AnomalyCoreGravityInert
+  - type: TutorialAnomaly
+  - type: Sprite
+    sprite: Structures/Specific/anomaly.rsi
+    layers:
+    - state: anom2
+      map: ["enum.AnomalyVisualLayers.Base"]
+    - state: anom2-pulse
+      map: ["enum.AnomalyVisualLayers.Animated"]
+      visible: false
+  - type: PointLight
+    radius: 3.0
+    energy: 2.0
+    color: "#88aaff"
+    castShadows: false
+  - type: SecretDataAnomaly
+    randomStartSecretMin: 0
+    randomStartSecretMax: 0
+  - type: DamageOnInteract
+    damage:
+      types:
+        Radiation: 1
+    popupText: anomaly-component-contact-damage
+  - type: DamageOnAttacked
+    damage:
+      types:
+        Radiation: 1
+
+- type: entity
+  id: TutorialAnomalySpawnPad
+  name: anomaly containment pad
+  suffix: Tutorial
+  description: Activate to release a practice anomaly for scanning and containment drills.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Structures/Machines/Anomaly/anomaly_generator.rsi
+    state: base
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: TutorialAnomalySpawner
+    anomalyProto: TutorialAnomaly
+    offset: 1.5, 0
+  - type: Tag
+    tags:
+    - TutorialAnomalySpawner
+  - type: ApcPowerReceiver
+    needsPower: false
+
+- type: entity
+  parent: MachineAPE
+  id: TutorialMachineAPE
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Emitter
+    boltType: AnomalousParticleZeta
+    fireBurstDelayMin: 1
+    fireBurstDelayMax: 2
+
+- type: entity
+  parent: WeaponPistolCHIMP
+  id: TutorialWeaponPistolCHIMP
+  suffix: Tutorial
+  components:
+  - type: Battery
+    maxCharge: 20000
+    startingCharge: 20000
+  - type: BatteryAmmoProvider
+    proto: AnomalousParticleZetaStrong
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    currentFireMode: 2 # Zeta Strong — containment for TutorialAnomaly
+    fireModes:
+    - proto: AnomalousParticleDeltaStrong
+      fireCost: 100
+    - proto: AnomalousParticleEpsilonStrong
+      fireCost: 100
+    - proto: AnomalousParticleZetaStrong
+      fireCost: 100
+    - proto: AnomalousParticleSigmaStrong
+      fireCost: 100
