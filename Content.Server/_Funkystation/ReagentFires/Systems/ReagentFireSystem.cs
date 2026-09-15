@@ -4,6 +4,7 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Decals;
 using Content.Shared._Funkystation.CCVar;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Funkystation.ReagentFires;
 using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Components;
@@ -67,6 +68,7 @@ public sealed partial class ReagentFireSystem : EntitySystem
     [Dependency] private EntityQuery<TransformComponent> _xformQuery;
 
     private float _puddleDamageMultiplier = 1.0f;
+    private bool _footprintsFlammable = true;
     private float _fireProtectionEffectiveness = 1.0f;
     private bool _volumeScalingEnabled = true;
     private float _volumeScalingReference = 20f;
@@ -83,6 +85,7 @@ public sealed partial class ReagentFireSystem : EntitySystem
         base.Initialize();
 
         Subs.CVar(_cfg, ReagentFireCVars.PuddleFireDamageMultiplier, value => _puddleDamageMultiplier = value, true);
+        Subs.CVar(_cfg, ReagentFireCVars.FootprintsFlammable, value => _footprintsFlammable = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.FireProtectionEffectiveness, value => _fireProtectionEffectiveness = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.VolumeScalingEnabled, value => _volumeScalingEnabled = value, true);
         Subs.CVar(_cfg, ReagentFireCVars.VolumeScalingReference, value => _volumeScalingReference = value, true);
@@ -170,6 +173,13 @@ public sealed partial class ReagentFireSystem : EntitySystem
     {
         if (ent.Comp.Solution == null)
             return;
+
+        if (!_footprintsFlammable && HasComp<FootprintComponent>(ent))
+        {
+            if (_fireQuery.HasComp(ent))
+                Extinguish(ent);
+            return;
+        }
 
         var solution = ent.Comp.Solution.Value.Comp.Solution;
 
