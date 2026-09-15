@@ -232,3 +232,88 @@
   id: teslaIceCream
   flavorType: Complex
   description: flavor-complex-tesla-ice-cream
+
+- type: flavor
+  id: chocolateMilk
+  flavorType: Complex
+  description: flavor-complex-chocolate-milk
+
+- type: flavor
+  id: strawberryMilk
+  flavorType: Complex
+  description: flavor-complex-strawberry-milk
+
+- type: flavor
+  id: bananaMilk
+  flavorType: Complex
+  description: flavor-complex-banana-milk
+
+- type: flavor
+  id: bananaIceCream
+  flavorType: Complex
+  description: flavor-complex-banana-ice-cream
+
+- type: flavor
+  id: clownIceCream
+  flavorType: Complex
+  description: flavor-complex-clown-ice-cream
+
+- type: flavor
+  id: coconutIceCream
+  flavorType: Complex
+  description: flavor-complex-coconut-ice-cream
+
+- type: flavor
+  id: ianIceCream
+  flavorType: Complex
+  description: flavor-complex-ian-ice-cream
+
+- type: flavor
+  id: ntIceCream
+  flavorType: Complex
+  description: flavor-complex-nt-ice-cream
+
+- type: flavor
+  id: ntMarineIceCream
+  flavorType: Complex
+  description: flavor-complex-nt-marine-ice-cream
+
+- type: flavor
+  id: pineappleIceCream
+  flavorType: Complex
+  description: flavor-complex-pineapple-ice-cream
+
+- type: flavor
+  id: risingSunIceCream
+  flavorType: Complex
+  description: flavor-complex-rising-sun-ice-cream
+
+- type: flavor
+  id: rockyOreIceCream
+  flavorType: Complex
+  description: flavor-complex-rocky-ore-ice-cream
+
+- type: flavor
+  id: stunBatonIceCream
+  flavorType: Complex
+  description: flavor-complex-stun-baton-ice-cream
+
+- type: flavor
+  id: syndieLandIceCream
+  flavorType: Complex
+  description: flavor-complex-syndie-land-ice-cream
+
+- type: flavor
+  id: tiramisuIceCream
+  flavorType: Complex
+  description: flavor-complex-tiramisu-ice-cream
+
+- type: flavor
+  id: uraniumIceCream
+  flavorType: Complex
+  description: flavor-complex-uranium-ice-cream
+
+- type: flavor
+  id: voxIceCream
+  flavorType: Complex
+  description: flavor-complex-vox-ice-cream

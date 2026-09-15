@@ -171,6 +171,11 @@
     - id: VinylSilverAndCold
     - id: VinylCirclesOfBlackAndRed
     - id: VinylDepressedWawaTriesToProtest
+    - id: VinylDriverUpdate
+    - id: VinylResonantInfinite
+    - id: VinylVadeRetro
+    - id: VinylConcreteFlavoured
+    - id: VinylDamperII
     #Starlight-end
 
 - type: entityTable
