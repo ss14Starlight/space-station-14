@@ -70,9 +70,11 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private SharedPointLightSystem _pointLight = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SLPointLightIndexSystem _lightIndex = default!;
 
     [Dependency] private EntityQuery<DarkLightComponent> _darkLightQuery = default!;
     [Dependency] private EntityQuery<ShadegenAffectedComponent> _shadegenAffected = default!;
+    [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
 
     private static readonly ProtoId<TagPrototype> _theDarkTag = "TheDark";
     private static readonly ProtoId<TagPrototype> _coreTag = "ShadekinCore";
@@ -90,8 +92,22 @@ public sealed partial class ShadekinSystem : EntitySystem
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
 
-    private readonly HashSet<Entity<SLPointLightComponent>> _lightsInRange = new();
+    private readonly List<EntityUid> _lightsInRange = new();
+    private readonly List<LightCandidate> _lightCandidates = new();
+    private static readonly Comparison<LightCandidate> BrightestFirst = (a, b) => b.Potential.CompareTo(a.Potential);
     private readonly HashSet<EntityUid> _theDarkMaps = new();
+
+    /// <summary>
+    /// Mobs we handed "The Dark" status effect to, so the rest of the server's mobs can be left alone.
+    /// </summary>
+    private readonly HashSet<EntityUid> _theDarkAffected = new();
+    private readonly List<EntityUid> _theDarkUnaffected = new();
+
+    /// <summary>
+    /// How many updates between full "The Dark" status re-checks.
+    /// </summary>
+    private const int TheDarkResyncInterval = 30;
+    private int _theDarkResyncCounter;
 
     [SubscribeLocalEvent]
     private void OnDamageChanged(Entity<ShadekinComponent> ent, ref BeforeDamageChangedEvent args)
@@ -152,9 +168,12 @@ public sealed partial class ShadekinSystem : EntitySystem
     /// Return an illumination float value with is how many "energy" of light is hitting our ent.
     /// WARNING: This function might be expensive, Avoid calling it too much and CACHE THE RESULT!
     /// </summary>
+    /// <param name="uid"></param>
+    /// <param name="cap">Stop adding up lights once the illumination reaches this value.</param>
     /// <remarks>
-    /// Not using RobustToolbox's LightLevelSystem: it needs the server light tree (disabled by default),
-    /// returns a clamped 0-1 luminance that doesn't match our thresholds, and can't ignore dark/shadegen lights.
+    /// Not using RobustToolbox's LightLevelSystem: it needs the server light tree, which makes every entity
+    /// movement on the server more expensive, returns a clamped 0-1 luminance that doesn't match our thresholds,
+    /// and can't ignore dark/shadegen lights.
     /// </remarks>
     public float GetLightExposure(EntityUid uid, float cap = float.MaxValue)
     {
@@ -162,6 +181,10 @@ public sealed partial class ShadekinSystem : EntitySystem
 
         var targetCoords = _transform.GetMapCoordinates(uid);
         if (targetCoords.MapId == MapId.Nullspace)
+            return illumination;
+
+        // Sitting inside something that blocks light (a closed locker, a bag) means nothing outside of it reaches us.
+        if (_container.TryGetContainingContainer(uid, out var targetContainer) && targetContainer.OccludesLight)
             return illumination;
 
         // Shadegens make everything around them dark. There are only ever a few of them,
@@ -177,16 +200,17 @@ public sealed partial class ShadekinSystem : EntitySystem
                 return illumination;
         }
 
-        var targetContainerOccluded = _container.TryGetContainingContainer(uid, out var targetContainer)
-            && targetContainer.OccludesLight;
-
         _lightsInRange.Clear();
-        _lookup.GetEntitiesInRange(targetCoords, LightLookupRange, _lightsInRange, LookupFlags.All | LookupFlags.Approximate);
+        _lightCandidates.Clear();
+        _lightIndex.GetLightsInRange(targetCoords, LightLookupRange, _lightsInRange);
 
-        // Cheapest checks first, the occlusion raycast is done last and only for lights that would actually add something.
         foreach (var light in _lightsInRange)
         {
-            if (_darkLightQuery.HasComp(light.Owner) || _shadegenAffected.HasComp(light.Owner))
+            if (_darkLightQuery.HasComp(light) || _shadegenAffected.HasComp(light))
+                continue;
+
+            // Lights stuffed into a bag or a locker don't light up the room.
+            if (_container.IsEntityInContainer(light))
                 continue;
 
             SharedPointLightComponent? lightComp = null;
@@ -198,7 +222,7 @@ public sealed partial class ShadekinSystem : EntitySystem
                 || lightComp.Energy <= 0)
                 continue;
 
-            var (lightPos, lightRot) = _transform.GetWorldPositionRotation(light.Owner);
+            var (lightPos, lightRot) = _transform.GetWorldPositionRotation(light);
             var dist = (targetCoords.Position - lightPos).Length();
 
             // Same range check InRangeUnOccluded does.
@@ -207,11 +231,24 @@ public sealed partial class ShadekinSystem : EntitySystem
 
             var denom = dist / lightComp.Radius;
             var attenuation = 1 - (denom * denom);
-            var calculatedLight = 0f;
+
+            // Light masks can only cut this down, so it doubles as an upper bound for the sorting below.
+            _lightCandidates.Add(new LightCandidate(lightComp, lightPos, lightRot, lightComp.Energy * attenuation * attenuation));
+        }
+
+        // Brightest first: the state can't get any worse past the cap, so the occlusion raycasts
+        // for the remaining lights can be skipped entirely.
+        _lightCandidates.Sort(BrightestFirst);
+
+        foreach (var candidate in _lightCandidates)
+        {
+            var lightComp = candidate.Light;
+            var calculatedLight = candidate.Potential;
 
             if (_prototype.TryIndex(lightComp.LightMask, out var mask))
             {
-                var angleToTarget = GetAngleToTarget(lightComp, lightPos, lightRot, targetCoords.Position);
+                calculatedLight = 0f;
+                var angleToTarget = GetAngleToTarget(lightComp, candidate.Position, candidate.Rotation, targetCoords.Position);
                 foreach (var cone in mask.LightCones)
                 {
                     var angleOffset = Math.Abs(Angle.ShortestDistance(angleToTarget, cone.Direction));
@@ -219,7 +256,7 @@ public sealed partial class ShadekinSystem : EntitySystem
                     if (angleOffset > cone.OuterWidth)
                         continue;
 
-                    var coneLight = lightComp.Energy * attenuation * attenuation;
+                    var coneLight = candidate.Potential;
                     if (angleOffset > cone.InnerWidth)
                     {
                         var angleAttenuation = (float) ((cone.OuterWidth - angleOffset) /
@@ -230,19 +267,11 @@ public sealed partial class ShadekinSystem : EntitySystem
                     calculatedLight = Math.Max(calculatedLight, coneLight);
                 }
             }
-            else
-                calculatedLight = lightComp.Energy * attenuation * attenuation;
 
             if (calculatedLight <= 0f)
                 continue;
 
-            // If either we or the light are in a container that occludes light, it only counts if it's the same container.
-            if ((targetContainerOccluded ||
-                (_container.TryGetContainingContainer(light.Owner, out var lightContainer) && lightContainer.OccludesLight)) &&
-                !_container.IsInSameOrNoContainer(uid, light.Owner))
-                continue;
-
-            if (!_examine.InRangeUnOccluded(new MapCoordinates(lightPos, targetCoords.MapId), targetCoords, lightComp.Radius, null))
+            if (!_examine.InRangeUnOccluded(new MapCoordinates(candidate.Position, targetCoords.MapId), targetCoords, lightComp.Radius, null))
                 continue;
 
             illumination += calculatedLight;
@@ -253,6 +282,12 @@ public sealed partial class ShadekinSystem : EntitySystem
 
         return illumination;
     }
+
+    private readonly record struct LightCandidate(
+        SharedPointLightComponent Light,
+        System.Numerics.Vector2 Position,
+        Angle Rotation,
+        float Potential);
 
     private static Angle GetAngleToTarget(SharedPointLightComponent lightComp, System.Numerics.Vector2 lightPos, Angle lightRot, System.Numerics.Vector2 targetPos)
     {
@@ -443,6 +478,10 @@ public sealed partial class ShadekinSystem : EntitySystem
     /// <summary>
     /// Gives "The Dark" status effect to mobs on The Dark map, and removes it from everyone else.
     /// </summary>
+    /// <remarks>
+    /// Only mobs that are on a dark map, or that we gave the status to, are touched. Asking the status system
+    /// about every mob in the game once a second made this scale with the whole server's population.
+    /// </remarks>
     private void UpdateTheDarkStatus()
     {
         _theDarkMaps.Clear();
@@ -453,20 +492,75 @@ public sealed partial class ShadekinSystem : EntitySystem
                 _theDarkMaps.Add(mapUid);
         }
 
+        // Cheap bookkeeping can drift (someone else removing the effect, an entity we lost track of),
+        // so every so often everything gets checked against the status system again.
+        if (++_theDarkResyncCounter >= TheDarkResyncInterval)
+        {
+            _theDarkResyncCounter = 0;
+            ResyncTheDarkStatus();
+            return;
+        }
+
+        // Everyone we affected who left the dark loses the status again.
+        foreach (var uid in _theDarkAffected)
+        {
+            if (!TerminatingOrDeleted(uid) && _xformQuery.TryComp(uid, out var xform) && IsInTheDark(uid, xform))
+                continue;
+
+            _theDarkUnaffected.Add(uid);
+        }
+
+        foreach (var uid in _theDarkUnaffected)
+        {
+            _theDarkAffected.Remove(uid);
+
+            if (!TerminatingOrDeleted(uid))
+                _status.TryRemoveStatusEffect(uid, _theDarkMapStatus);
+        }
+
+        _theDarkUnaffected.Clear();
+
+        if (_theDarkMaps.Count == 0)
+            return;
+
         var mobQuery = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
         while (mobQuery.MoveNext(out var uid, out _, out var xform))
         {
-            var inTheDark = xform.MapUid is { } mapUid
-                && _theDarkMaps.Contains(mapUid)
-                && !IsImmuneToTheDark(uid, xform);
+            if (_theDarkAffected.Contains(uid) || !IsInTheDark(uid, xform))
+                continue;
 
+            if (_status.TrySetStatusEffectDuration(uid, _theDarkMapStatus))
+                _theDarkAffected.Add(uid);
+        }
+    }
+
+    /// <summary>
+    /// Full pass over every mob, syncing the status effect with reality. See <see cref="UpdateTheDarkStatus"/>.
+    /// </summary>
+    private void ResyncTheDarkStatus()
+    {
+        _theDarkAffected.Clear();
+
+        var mobQuery = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
+        while (mobQuery.MoveNext(out var uid, out _, out var xform))
+        {
+            var inTheDark = IsInTheDark(uid, xform);
             var hasStatus = _status.HasStatusEffect(uid, _theDarkMapStatus);
-            if (inTheDark && !hasStatus)
-                _status.TrySetStatusEffectDuration(uid, _theDarkMapStatus);
-            else if (!inTheDark && hasStatus)
+
+            if (inTheDark)
+            {
+                if (hasStatus || _status.TrySetStatusEffectDuration(uid, _theDarkMapStatus))
+                    _theDarkAffected.Add(uid);
+            }
+            else if (hasStatus)
                 _status.TryRemoveStatusEffect(uid, _theDarkMapStatus);
         }
     }
+
+    private bool IsInTheDark(EntityUid uid, TransformComponent xform)
+        => xform.MapUid is { } mapUid
+            && _theDarkMaps.Contains(mapUid)
+            && !IsImmuneToTheDark(uid, xform);
 
     private bool IsImmuneToTheDark(EntityUid uid, TransformComponent xform)
     {

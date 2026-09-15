@@ -16,7 +16,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Threading;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 // ReSharper disable once RedundantUsingDirective
 
@@ -37,8 +39,18 @@ public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
     /// </summary>
     private readonly List<ICommonSession> _sessions = new();
     private UpdatePlayerJob _updateJob;
+    private UpdateChunksJob _updateChunksJob;
 
-    private readonly Dictionary<ICommonSession, Dictionary<NetEntity, HashSet<Vector2i>>> _lastSentChunks = new();
+    #region Starlight
+
+    private readonly List<(GasOverlayChunk Chunk, Vector2i Tile)> _tileUpdates = [];
+    private readonly List<GasOverlayChunk> _chunkUpdates = [];
+
+    private const int ParallelTileThreshold = 64;
+
+    private readonly Dictionary<ICommonSession, Dictionary<NetEntity, HashSet<Vector2i>>> _lastSentChunks = [];
+
+    #endregion
 
     // Oh look its more duplicated decal system code!
     private readonly ObjectPool<HashSet<Vector2i>> _chunkIndexPool =
@@ -78,6 +90,15 @@ public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
             LastSentChunks = _lastSentChunks,
             GridQuery = _gridQuery,
         };
+        // Starlight-start
+
+        _updateChunksJob = new UpdateChunksJob
+        {
+            System = this,
+            Tiles = _tileUpdates,
+        };
+
+        // Starlight-end
 
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
 
@@ -171,44 +192,42 @@ public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
         else
             byteTemp = new(mixture.Temperature);
 
-        var data = new GasOverlayData(0, new byte[VisibleGasId.Length], byteTemp);
+        var opacity = new GasOpacityData(); // Starlight-edit
 
         for (var i = 0; i < VisibleGasId.Length; i++)
         {
             var id = VisibleGasId[i];
             var gas = _atmosphereSystem.GetGas(id);
             var moles = mixture?[id] ?? 0f;
-            ref var opacity = ref data.Opacity[i];
 
             if (moles < gas.GasMolesVisible)
-            {
                 continue;
-            }
 
-            opacity = (byte) (ContentHelpers.RoundToLevels(
-                MathHelper.Clamp01((moles - gas.GasMolesVisible) / (gas.GasMolesVisibleMax - gas.GasMolesVisible)) * 255, byte.MaxValue, _thresholds) * 255 / (_thresholds - 1));
+            opacity[i] = GetOpacity(moles, gas.GasMolesVisible, gas.GasMolesVisibleMax); // Starlight-edit
         }
 
-        return data;
+        return new GasOverlayData(0, opacity, byteTemp); // Starlight-edit
     }
 
     /// <summary>
     ///     Updates the visuals for a tile on some grid chunk. Returns true if the visuals have changed.
     /// </summary>
-    private bool UpdateChunkTile(GridAtmosphereComponent gridAtmosphere, GasOverlayChunk chunk, Vector2i index)
+    private void UpdateChunkTile(GridAtmosphereComponent gridAtmosphere, GasOverlayChunk chunk, Vector2i index, GameTick curTick) // Starlight-edit
     {
-        ref var oldData = ref chunk.TileData[chunk.GetDataIndex(index)];
+        // Starlight-start
+        var dataIndex = chunk.GetDataIndex(index);
+        ref var oldData = ref chunk.TileData[dataIndex];
+        // Starlight-end
+
         if (!gridAtmosphere.Tiles.TryGetValue(index, out var tile))
         {
             if (oldData.Equals(default))
-                return false;
+                return; // Starlight-edit
 
-            chunk.LastUpdate = _gameTiming.CurTick;
             oldData = default;
-            return true;
+            MarkTileDirty(chunk, dataIndex, curTick); // Starlight-edit
+            return; // Starlight-edit
         }
-
-        var changed = false;
 
         ThermalByte newByteTemp = new();
 
@@ -219,18 +238,17 @@ public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
         else if (!tile.Space && tile.Air != null)
             newByteTemp = new(tile.Air.Temperature);
 
-        if (oldData.Equals(default))
-        {
-            changed = true;
-            oldData = new GasOverlayData(tile.Hotspot.State, new byte[VisibleGasId.Length], newByteTemp);
-        }
-        else if (oldData.FireState != tile.Hotspot.State ||
-                    Math.Abs(oldData.ByteGasTemperature.Value - newByteTemp.Value) > 1 || // Dirty Temperature when there is more then 1 byte difference. That should measure up to minimum 4 degreese difference, 6 degreese on average.
-                    (oldData.ByteGasTemperature.Value != newByteTemp.Value && newByteTemp.Value > ThermalByte.TempResolution)) // change of special ThermalByte value
-        {
-            changed = true;
-            oldData = new GasOverlayData(tile.Hotspot.State, oldData.Opacity, newByteTemp);
-        }
+        // Starlight-start
+
+        var changed = oldData.Equals(default)
+            || oldData.FireState != tile.Hotspot.State
+            || Math.Abs(oldData.ByteGasTemperature.Value - newByteTemp.Value) > 1
+            || (oldData.ByteGasTemperature.Value != newByteTemp.Value && newByteTemp.Value > ThermalByte.TempResolution);
+
+        var temperature = changed ? newByteTemp : oldData.ByteGasTemperature;
+        var opacity = oldData.Opacity;
+
+        // Starlight-end
 
         if (tile is {Air: not null, NoGridTile: false})
         {
@@ -239,51 +257,59 @@ public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
                 var id = VisibleGasId[i];
                 var gas = _atmosphereSystem.GetGas(id);
                 var moles = tile.Air[id];
-                ref var oldOpacity = ref oldData.Opacity[i];
 
-                if (moles < gas.GasMolesVisible)
-                {
-                    if (oldOpacity != 0)
-                    {
-                        oldOpacity = 0;
-                        changed = true;
-                    }
+                // Starlight-start
+                var newOpacity = moles < gas.GasMolesVisible
+                    ? (byte) 0
+                    : GetOpacity(moles, gas.GasMolesVisible, gas.GasMolesVisibleMax);
 
-                    continue;
-                }
-
-                var opacity = GetOpacity(moles, gas.GasMolesVisible, gas.GasMolesVisibleMax);
-
-                if (oldOpacity == opacity)
+                if (opacity[i] == newOpacity)
                     continue;
 
-                oldOpacity = opacity;
+                opacity[i] = newOpacity;
+                // Starlight-end
                 changed = true;
             }
         }
-        else
+        // Starlight-start
+        else if (!opacity.IsEmpty)
         {
-            for (var i = 0; i < VisibleGasId.Length; i++)
-            {
-                changed |= oldData.Opacity[i] != 0;
-                oldData.Opacity[i] = 0;
-            }
+            opacity = default;
+            changed = true;
         }
 
         if (!changed)
-            return false;
+            return;
 
-        chunk.LastUpdate = _gameTiming.CurTick;
-        return true;
+        oldData = new GasOverlayData(tile.Hotspot.State, opacity, temperature);
+        MarkTileDirty(chunk, dataIndex, curTick);
+        // Starlight-end
+    }
+
+    #region Starlight
+
+    private static void MarkTileDirty(GasOverlayChunk chunk, int dataIndex, GameTick curTick)
+    {
+        chunk.LastUpdate = curTick;
+        // Tiles of the same chunk can be updated by different threads.
+        Interlocked.Or(ref chunk.DirtyTiles, 1ul << dataIndex);
     }
 
     private void UpdateOverlayData()
     {
-        // TODO parallelize?
+        var curTick = _gameTiming.CurTick;
+
         var query = AllEntityQuery<GasTileOverlayComponent, GridAtmosphereComponent, MetaDataComponent>();
         while (query.MoveNext(out var uid, out var overlay, out var gam, out var meta))
         {
-            var changed = false;
+            if (overlay.InvalidTiles.Count == 0)
+                continue;
+
+            // Resolving which chunk every invalidated tile belongs to happens before the parallel pass,
+            // since it can create new chunks.
+            _tileUpdates.Clear();
+            _chunkUpdates.Clear();
+
             foreach (var index in overlay.InvalidTiles)
             {
                 var chunkIndex = GetGasChunkIndices(index);
@@ -291,15 +317,108 @@ public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
                 if (!overlay.Chunks.TryGetValue(chunkIndex, out var chunk))
                     overlay.Chunks[chunkIndex] = chunk = new GasOverlayChunk(chunkIndex);
 
-                changed |= UpdateChunkTile(gam, chunk, index);
+                if (!chunk.UpdateQueued)
+                {
+                    chunk.UpdateQueued = true;
+                    // Whatever changed in the previous update has been sent out by now.
+                    chunk.DirtyTiles = 0;
+                    chunk.Delta = null;
+                    _chunkUpdates.Add(chunk);
+                }
+
+                _tileUpdates.Add((chunk, index));
+            }
+
+            overlay.InvalidTiles.Clear();
+
+            try
+            {
+                // Only worth spreading over threads once there is a decent amount of tiles to go through.
+                if (_tileUpdates.Count >= ParallelTileThreshold)
+                {
+                    _updateChunksJob.Atmosphere = gam;
+                    _updateChunksJob.CurTick = curTick;
+                    _parMan.ProcessNow(_updateChunksJob, _tileUpdates.Count);
+                }
+                else
+                {
+                    foreach (var (chunk, tile) in _tileUpdates)
+                    {
+                        UpdateChunkTile(gam, chunk, tile, curTick);
+                    }
+                }
+            }
+            finally
+            {
+                foreach (var chunk in _chunkUpdates)
+                {
+                    chunk.UpdateQueued = false;
+                }
+            }
+
+            var changed = false;
+
+            foreach (var chunk in _chunkUpdates)
+            {
+                if (chunk.LastUpdate != curTick)
+                    continue;
+
+                changed = true;
+                BuildChunkDelta(chunk);
             }
 
             if (changed)
                 Dirty(uid, overlay, meta);
-
-            overlay.InvalidTiles.Clear();
         }
     }
+
+    /// <summary>
+    ///     Collects the tiles that changed this update, so players that already have the chunk only get those.
+    /// </summary>
+    private static void BuildChunkDelta(GasOverlayChunk chunk)
+    {
+        var count = BitOperations.PopCount(chunk.DirtyTiles);
+
+        // Past a point, sending the whole chunk is cheaper than describing which tiles changed.
+        if (count is 0 or > (ChunkSize * ChunkSize / 2))
+            return;
+
+        var delta = new GasOverlayChunkDelta
+        {
+            Index = chunk.Index,
+            Tiles = chunk.DirtyTiles,
+            Data = new GasOverlayData[count],
+        };
+
+        var tiles = chunk.DirtyTiles;
+        var i = 0;
+        while (tiles != 0)
+        {
+            var dataIndex = BitOperations.TrailingZeroCount(tiles);
+            tiles &= tiles - 1;
+            delta.Data[i++] = chunk.TileData[dataIndex];
+        }
+
+        chunk.Delta = delta;
+    }
+
+    private record struct UpdateChunksJob : IParallelRobustJob
+    {
+        public int BatchSize => 16;
+
+        public GasTileOverlaySystem System;
+        public List<(GasOverlayChunk Chunk, Vector2i Tile)> Tiles;
+        public GridAtmosphereComponent Atmosphere;
+        public GameTick CurTick;
+
+        public void Execute(int index)
+        {
+            var (chunk, tile) = Tiles[index];
+            System.UpdateChunkTile(Atmosphere, chunk, tile, CurTick);
+        }
+    }
+
+    #endregion
 
     public override void Update(float frameTime)
     {
@@ -438,6 +557,7 @@ public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
                 // Starlight - only allocate & send grids that actually have new chunk data,
                 // otherwise every player gets an (empty) update every overlay tick.
                 List<GasOverlayChunk>? dataToSend = null;
+                List<GasOverlayChunkDelta>? deltasToSend = null;
 
                 previouslySent.TryGetValue(netGrid, out var previousChunks);
 
@@ -446,21 +566,34 @@ public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
                     if (!overlay.Chunks.TryGetValue(gIndex, out var value))
                         continue;
 
+                    var known = previousChunks != null && previousChunks.Contains(gIndex); // Starlight-edit
+
                     // If the chunk was updated since we last sent it, send it again
                     if (value.LastUpdate > LastSessionUpdate)
                     {
-                        (dataToSend ??= new()).Add(value); // Starlight-edit
+                        // Starlight-start
+                        if (known && value.Delta is { } delta)
+                            (deltasToSend ??= []).Add(delta);
+                        else
+                            (dataToSend ??= []).Add(value);
+                        // Starlight-end
+
                         continue;
                     }
 
                     // Always send it if we didn't previously send it
-                    if (previousChunks == null || !previousChunks.Contains(gIndex))
-                        (dataToSend ??= new()).Add(value); // Starlight-edit
+                    // Starlight-start
+                    if (!known)
+                        (dataToSend ??= []).Add(value);
+                    // Starlight-end
                 }
 
                 // Starlight-start
                 if (dataToSend != null)
                     ev.UpdatedChunks[netGrid] = dataToSend;
+
+                if (deltasToSend != null)
+                    ev.DeltaChunks[netGrid] = deltasToSend;
                 // Starlight-end
 
                 previouslySent[netGrid] = gridChunks;
@@ -471,12 +604,13 @@ public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
                 }
             }
 
-            // Starlight - the per-grid sets now live in previouslySent (or were dropped), reuse the dictionary.
+            // Starlight-start: the per-grid sets now live in previouslySent (or were dropped), reuse the dictionary.
             chunksInRange.Clear();
             ChunkViewerPool.Return(chunksInRange);
 
-            if (ev.UpdatedChunks.Count != 0 || ev.RemovedChunks.Count != 0)
+            if (ev.UpdatedChunks.Count != 0 || ev.DeltaChunks.Count != 0 || ev.RemovedChunks.Count != 0)
                 System.RaiseNetworkEvent(ev, playerSession.Channel);
+            // Starlight-end
         }
     }
 
