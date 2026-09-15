@@ -26,3 +26,5 @@
     cost: 200
   - type: DynamicRuleCooldown
     cooldown: 1
+    presets:
+    - TerrorSpiders
