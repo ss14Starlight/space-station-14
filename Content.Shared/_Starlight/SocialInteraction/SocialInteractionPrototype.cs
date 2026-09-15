@@ -21,9 +21,6 @@ public sealed partial class SocialInteractionPrototype : IPrototype
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan InteractDelay = TimeSpan.FromSeconds(1.0);
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan LastInteractTime;
-
     /// <summary>
     /// String will be used to fetch the localized message to be played if the interaction succeeds.
     /// Nullable in case none is specified on the yaml prototype.
