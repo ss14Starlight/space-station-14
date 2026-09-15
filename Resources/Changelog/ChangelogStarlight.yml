@@ -1,116 +1,4 @@
 Entries:
-- author: Limblesstar, Teddiousbear.
-  changes:
-  - message: Salvage Death Rattle, Salvage Magboots.
-    type: Add
-  id: 408231
-  time: '2026-09-05T23:09:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5877
-- author: Mack
-  changes:
-  - message: Station radio server now has a microphone indicator.
-    type: Tweak
-  id: 408232
-  time: '2026-09-05T23:09:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5874
-- author: Johnny
-  changes:
-  - message: Added some forms into the document printer for science sop.
-    type: Add
-  id: 408233
-  time: '2026-09-05T23:36:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5862
-- author: bynddark8
-  changes:
-  - message: Adds an Assistant Manager stamp.
-    type: Add
-  id: 408234
-  time: '2026-09-05T23:36:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5864
-- author: bynddark8
-  changes:
-  - message: Adds an additional icon to the Assistant Manager's digi-board.
-    type: Add
-  id: 408235
-  time: '2026-09-05T23:36:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5864
-- author: bynddark8
-  changes:
-  - message: Enables loud mode on the Assistant Manager's headset.
-    type: Tweak
-  id: 408236
-  time: '2026-09-05T23:36:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5864
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added station maps at all mine entrances.
-    type: Add
-  id: 408237
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added a inflatable airlock at the once space mine entranced that just spaced the entire mine at shift start.
-    type: Add
-  id: 408238
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added all the new tech fabs's to their departments with service fab being near clown/mime room.
-    type: Add
-  id: 408239
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added k9 to security locker room. but no prototype.
-    type: Add
-  id: 408240
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added assistant manager spawn but no prototype.
-    type: Add
-  id: 408241
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added a large empty gas tank into atsmo to store air mixture.
-    type: Add
-  id: 408242
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added a ton of pipes deep into maints to allow refilling of air if these areas get spaced.
-    type: Add
-  id: 408243
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added distro to the mines.
-    type: Add
-  id: 408244
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added some spacing protection to the mines.
-    type: Add
-  id: 408245
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added some curtains, a television, a station radio and a light switch to robotics.
-    type: Add
-  id: 408246
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
 - author: Cvlancer
   changes:
   - message: (Sepultum) Added storage rack to science front desk, cargo front desk, hop office.
@@ -2799,4 +2687,116 @@ Entries:
   id: 408630
   time: '2026-09-14T15:32:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6140
+- author: Krasunir
+  changes:
+  - message: Added Janimov lawset. Maybe Barratry would be playable now...
+    type: Add
+  id: 408631
+  time: '2026-09-14T20:15:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6164
+- author: Fahreyy, @TeddiousbearPA
+  changes:
+  - message: Added NTR Beret.
+    type: Add
+  id: 408632
+  time: '2026-09-14T20:15:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6067
+- author: Fahreyy, @TeddiousbearPA
+  changes:
+  - message: Added Magistrate Beret.
+    type: Add
+  id: 408633
+  time: '2026-09-14T20:15:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6067
+- author: Fahreyy, @TeddiousbearPA
+  changes:
+  - message: Added RD Beret.
+    type: Add
+  id: 408634
+  time: '2026-09-14T20:15:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6067
+- author: STARLIGHT ADMINISTRATION
+  changes:
+  - message: Rule 6 now explicitly forbids pursuing radical character alteration (like cognizine injections, borgification, corgification, amputations, etc) from shift-start, you may of course still pursue these routes with RP-justification.
+    type: Tweak
+  id: 408635
+  time: '2026-09-14T20:47:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6163
+- author: Xale
+  changes:
+  - message: Animals in different containers can no longer breed.
+    type: Tweak
+  id: 408636
+  time: '2026-09-14T21:10:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6085
+- author: Xale
+  changes:
+  - message: Animal offspring will now be placed in the same container as the parent.
+    type: Tweak
+  id: 408637
+  time: '2026-09-14T21:10:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6085
+- author: Xale
+  changes:
+  - message: There is now a delay after spawning before animals will attempt to breed.
+    type: Tweak
+  id: 408638
+  time: '2026-09-14T21:10:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6085
+- author: DreadfulTaco, FlameyTheRandom
+  changes:
+  - message: 14 more flavors of ice cream to make.
+    type: Add
+  id: 408639
+  time: '2026-09-14T21:11:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6159
+- author: DreadfulTaco, FlameyTheRandom
+  changes:
+  - message: The ability to eat ice cream with a spoon.
+    type: Add
+  id: 408640
+  time: '2026-09-14T21:11:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6159
+- author: DreadfulTaco, FlameyTheRandom
+  changes:
+  - message: Fixed sprites to properly reflect their volume.
+    type: Fix
+  id: 408641
+  time: '2026-09-14T21:11:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6159
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Re-added AI's ability to toggle camera lights when their view is near a camera.
+    type: Add
+  id: 408642
+  time: '2026-09-14T21:42:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6102
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed sprite jittering when moving in and out of range of a camera as AI.
+    type: Fix
+  id: 408643
+  time: '2026-09-14T21:42:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6102
+- author: STARLIGHT TEAM
+  changes:
+  - message: Cold Case pistol now uses the correct firing pin.
+    type: Fix
+  id: 408644
+  time: '2026-09-14T21:42:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6076
+- author: dove15567
+  changes:
+  - message: Added the Xenosocialized trait, a language trait costing -2 points that removes the species' native language from the character.
+    type: Add
+  id: 408645
+  time: '2026-09-14T22:06:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6137
+- author: Caws
+  changes:
+  - message: Social Interactions are now disabled when ghosted, stunned, sleeping, critical or dead.
+    type: Fix
+  id: 408646
+  time: '2026-09-15T01:45:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6167
 Order: -1
