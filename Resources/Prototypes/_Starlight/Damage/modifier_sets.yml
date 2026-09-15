@@ -326,7 +326,6 @@
     Heat: 0.8
   flatReductions:
     Blunt: 5
-    Heat: 5
 
 - type: damageModifierSet
   id: ArmoredSilicon
@@ -338,4 +337,4 @@
     Heat: 0.65
   flatReductions:
     Blunt: 8
-    Heat: 6
+    Heat: 2
