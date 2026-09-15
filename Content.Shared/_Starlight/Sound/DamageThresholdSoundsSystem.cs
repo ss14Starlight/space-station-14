@@ -103,15 +103,15 @@ public sealed partial class DamageThresholdSoundsSystem : EntitySystem
         if(!selectedThreshold.EmpEffected)
             return;
 
-        if (false)//(selectedThreshold.Ambient)//TODO Ambient sounds currently cannot stop due to an RT bug, uncomment this if they ever get around to fixing that
-        {
-            EnsureComp<AmbientSoundComponent>(uid);
-            _ambient.SetSound(uid, selectedThreshold.Sound);
-        }
-        else
-        {
-            if(_net.IsServer) //TODO Remove once RT bug fixed
-                comp.AudioStream ??= _audio.PlayPredicted(selectedThreshold.Sound, uid, uid, selectedThreshold.Sound.Params);
-        }
+        //if (selectedThreshold.Ambient)//TODO Ambient sounds currently cannot stop due to an RT bug, uncomment this if they ever get around to fixing that
+        //{
+        //    //EnsureComp<AmbientSoundComponent>(uid);
+        //    //_ambient.SetSound(uid, selectedThreshold.Sound);
+        //}
+        //else
+        //{
+        if(_net.IsServer) //TODO Remove once RT bug fixed
+            comp.AudioStream ??= _audio.PlayPredicted(selectedThreshold.Sound, uid, uid, selectedThreshold.Sound.Params);
+        //}
     }
 }
