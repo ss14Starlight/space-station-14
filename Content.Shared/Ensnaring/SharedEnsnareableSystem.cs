@@ -305,7 +305,7 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         ensnareable.IsEnsnared = ensnareable.Container.ContainedEntities.Count > 0;
         Dirty(component.Ensnared.Value, ensnareable);
         component.Ensnared = null;
-        component.EnsnaredHandled = true; // Starlight
+        component.EnsnaredHandled = false; // Starlight
 
         UpdateAlert(target, ensnareable);
         var ev = new EnsnareRemoveEvent(component.WalkSpeed, component.SprintSpeed);

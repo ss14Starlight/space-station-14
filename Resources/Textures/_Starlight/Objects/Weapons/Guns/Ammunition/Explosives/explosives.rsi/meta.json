@@ -9,6 +9,9 @@
     "states": [
         {
             "name": "bola"
+        },
+        {
+            "name": "spent"
         }
     ]
 }
