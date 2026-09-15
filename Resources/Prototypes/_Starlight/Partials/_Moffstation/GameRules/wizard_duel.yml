@@ -3,3 +3,5 @@
   components:
   - type: DynamicRuleCooldown
     cooldown: 1
+    presets:
+    - WizardDuel

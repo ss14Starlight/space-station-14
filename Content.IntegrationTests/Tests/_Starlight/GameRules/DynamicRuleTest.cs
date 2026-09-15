@@ -26,156 +26,156 @@ public sealed class DynamicRuleTest : GameTest
     private const string DynamicOnlyCooldownRule = "TestDynamicOnlyCooldown";
 
     [TestPrototypes]
-    private const string Prototypes = @"
-- type: entity
-  id: TestDynamicSequentialBudget
-  parent: BaseGameRule
-  components:
-  - type: GameRule
-    minPlayers: 0
-  - type: DynamicRule
-    startingBudgetMin: 325
-    startingBudgetMax: 326
-    budgetPerSecond: 0
-    variantBudgetPerSecond: 0
-    minRuleInterval: 86400
-    maxRuleInterval: 86401
-    table: !type:AllSelector
-      children:
-      - id: TestDynamicBudgetFirst
-        conditions:
-        - !type:HasBudgetCondition
-      - id: TestDynamicBudgetSecond
-        conditions:
-        - !type:HasBudgetCondition
+    private const string Prototypes = """
+    -   type: entity
+        id: TestDynamicSequentialBudget
+        parent: BaseGameRule
+        components:
+        -   type: GameRule
+            minPlayers: 0
+        -   type: DynamicRule
+            startingBudgetMin: 325
+            startingBudgetMax: 326
+            budgetPerSecond: 0
+            variantBudgetPerSecond: 0
+            minRuleInterval: 86400
+            maxRuleInterval: 86401
+            table: !type:AllSelector
+                children:
+                -   id: TestDynamicBudgetFirst
+                    conditions:
+                    -   !type:HasBudgetCondition
+                -   id: TestDynamicBudgetSecond
+                    conditions:
+                    -   !type:HasBudgetCondition
 
-- type: entity
-  id: TestDynamicBudgetFirst
-  parent: BaseGameRule
-  components:
-  - type: DynamicRuleCost
-    cost: 125
+    -   type: entity
+        id: TestDynamicBudgetFirst
+        parent: BaseGameRule
+        components:
+        -   type: DynamicRuleCost
+            cost: 125
 
-- type: entity
-  id: TestDynamicBudgetSecond
-  parent: BaseGameRule
-  components:
-  - type: DynamicRuleCost
-    cost: 300
+    -   type: entity
+        id: TestDynamicBudgetSecond
+        parent: BaseGameRule
+        components:
+        -   type: DynamicRuleCost
+            cost: 300
 
-- type: entity
-  id: TestDynamicMutualExclusion
-  parent: BaseGameRule
-  components:
-  - type: GameRule
-    minPlayers: 0
-  - type: DynamicRule
-    startingBudgetMin: 100
-    startingBudgetMax: 101
-    budgetPerSecond: 0
-    variantBudgetPerSecond: 0
-    minRuleInterval: 86400
-    maxRuleInterval: 86401
-    table: !type:AllSelector
-      children:
-      - id: TestDynamicExclusiveFirst
-        conditions:
-        - !type:HasBudgetCondition
-      - id: TestDynamicExclusiveSecond
-        conditions:
-        - !type:HasBudgetCondition
-        - !type:MutuallyExclusiveRuleCondition
-          rules:
-          - TestDynamicExclusiveFirst
-      - id: TestDynamicExclusiveFirst
-        conditions:
-        - !type:HasBudgetCondition
-        - !type:MaxRuleOccurenceCondition
+    -   type: entity
+        id: TestDynamicMutualExclusion
+        parent: BaseGameRule
+        components:
+        -   type: GameRule
+            minPlayers: 0
+        -   type: DynamicRule
+            startingBudgetMin: 100
+            startingBudgetMax: 101
+            budgetPerSecond: 0
+            variantBudgetPerSecond: 0
+            minRuleInterval: 86400
+            maxRuleInterval: 86401
+            table: !type:AllSelector
+                children:
+                -   id: TestDynamicExclusiveFirst
+                    conditions:
+                    -   !type:HasBudgetCondition
+                -   id: TestDynamicExclusiveSecond
+                    conditions:
+                    -   !type:HasBudgetCondition
+                    -   !type:MutuallyExclusiveRuleCondition
+                        rules:
+                        - TestDynamicExclusiveFirst
+                -   id: TestDynamicExclusiveFirst
+                    conditions:
+                    -   !type:HasBudgetCondition
+                    -   !type:MaxRuleOccurenceCondition
 
-- type: entity
-  id: TestDynamicExclusiveFirst
-  parent: BaseGameRule
-  components:
-  - type: GameRule
-    delay:
-      min: 60
-      max: 60
-  - type: DynamicRuleCost
-    cost: 10
+    -   type: entity
+        id: TestDynamicExclusiveFirst
+        parent: BaseGameRule
+        components:
+        -   type: GameRule
+            delay:
+                min: 60
+                max: 60
+        -   type: DynamicRuleCost
+            cost: 10
 
-- type: entity
-  id: TestDynamicExclusiveSecond
-  parent: BaseGameRule
-  components:
-  - type: DynamicRuleCost
-    cost: 10
+    -   type: entity
+        id: TestDynamicExclusiveSecond
+        parent: BaseGameRule
+        components:
+        -   type: DynamicRuleCost
+            cost: 10
 
-- type: entity
-  id: TestDynamicCooldown
-  parent: BaseGameRule
-  components:
-  - type: GameRule
-    minPlayers: 0
-  - type: DynamicRule
-    startingBudgetMin: 100
-    startingBudgetMax: 101
-    budgetPerSecond: 0
-    variantBudgetPerSecond: 0
-    minRuleInterval: 86400
-    maxRuleInterval: 86401
-    table: !type:AllSelector
-      children:
-      - id: TestDynamicCooldownChild
-        conditions:
-        - !type:HasBudgetCondition
+    -   type: entity
+        id: TestDynamicCooldown
+        parent: BaseGameRule
+        components:
+        -   type: GameRule
+            minPlayers: 0
+        -   type: DynamicRule
+            startingBudgetMin: 100
+            startingBudgetMax: 101
+            budgetPerSecond: 0
+            variantBudgetPerSecond: 0
+            minRuleInterval: 86400
+            maxRuleInterval: 86401
+            table: !type:AllSelector
+                children:
+                -   id: TestDynamicCooldownChild
+                    conditions:
+                    -   !type:HasBudgetCondition
 
-- type: entity
-  id: TestDynamicCooldownChild
-  parent: BaseGameRule
-  components:
-  - type: DynamicRuleCost
-    cost: 10
-  - type: DynamicRuleCooldown
-    cooldown: 1
+    -   type: entity
+        id: TestDynamicCooldownChild
+        parent: BaseGameRule
+        components:
+        -   type: DynamicRuleCost
+            cost: 10
+        -   type: DynamicRuleCooldown
+            cooldown: 1
 
-- type: entity
-  id: TestDynamicCooldownGroupOwner
-  parent: BaseGameRule
-  components:
-  - type: DynamicRuleCooldown
-    cooldown: 2
-    rules:
-    - TestDynamicCooldownGroupRelated
-    presets:
-    - TestDynamicCooldownPreset
+    -   type: entity
+        id: TestDynamicCooldownGroupOwner
+        parent: BaseGameRule
+        components:
+        -   type: DynamicRuleCooldown
+            cooldown: 2
+            rules:
+            - TestDynamicCooldownGroupRelated
+            presets:
+            - TestDynamicCooldownPreset
 
-- type: entity
-  id: TestDynamicCooldownGroupRelated
-  parent: BaseGameRule
+    -   type: entity
+        id: TestDynamicCooldownGroupRelated
+        parent: BaseGameRule
 
-- type: entity
-  id: TestDynamicDefaultCooldown
-  parent: BaseGameRule
-  components:
-  - type: DynamicRuleCooldown
-    cooldown: 1
+    -   type: entity
+        id: TestDynamicDefaultCooldown
+        parent: BaseGameRule
+        components:
+        -   type: DynamicRuleCooldown
+            cooldown: 1
 
-- type: entity
-  id: TestDynamicOnlyCooldown
-  parent: BaseGameRule
-  components:
-  - type: DynamicRuleCooldown
-    cooldown: 1
-    decrementOnNonDynamicRounds: false
+    -   type: entity
+        id: TestDynamicOnlyCooldown
+        parent: BaseGameRule
+        components:
+        -   type: DynamicRuleCooldown
+            cooldown: 1
+            decrementOnNonDynamicRounds: false
 
-- type: gamePreset
-  id: TestDynamicCooldownPreset
-  name: Test Dynamic Cooldown Preset
-  description: Test preset for Dynamic cooldowns.
-  showInVote: false
-  voteCooldown: 3
-  rules: []
-";
+    -   type: gamePreset
+        id: TestDynamicCooldownPreset
+        name: Test Dynamic Cooldown Preset
+        description: Test preset for Dynamic cooldowns.
+        showInVote: false
+        voteCooldown: 3
+        rules: []
+    """;
 
     public override PoolSettings PoolSettings => new()
     {

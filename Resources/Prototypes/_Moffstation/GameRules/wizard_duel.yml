@@ -45,7 +45,7 @@
         min: 0
         max: 1 # Starlight end
   - type: DynamicRuleCost
-    cost: 150
+    cost: 250 # Starlight
 
 - type: antagSpecifier
   parent: RestrictedAntag

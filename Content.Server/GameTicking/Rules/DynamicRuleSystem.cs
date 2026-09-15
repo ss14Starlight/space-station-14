@@ -113,7 +113,7 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
         foreach (var rule in _entityTable.GetSpawns(entity.Comp.Table, ctx: ctx))
         {
             _prototypeManager.Index(rule)
-                .TryGetComponent(out DynamicRuleCostComponent? cost, EntityManager.ComponentFactory);
+                .TryComp(out DynamicRuleCostComponent? cost, EntityManager.ComponentFactory);
 
             if (_cooldowns.CurrentRuleCooldowns.Contains(rule))
                 continue;
