@@ -102,7 +102,7 @@ public sealed partial class SharedMailBoxesSystem : EntitySystem
         if (!HasComp<DeliveryComponent>(args.EntityUid) || HasComp<DeliveryBombComponent>(args.EntityUid) ||
             HasComp<DeliveryPriorityComponent>(args.EntityUid) || HasComp<DeliveryFragileComponent>(args.EntityUid))
         {
-            _popup.PopupPredicted(Loc.GetString("mailbox-special-mail"), ent, args.EntityUid);
+            _popup.PopupEntity(Loc.GetString("mailbox-special-mail"), ent);
             args.Cancel();
             return;
         }
@@ -115,14 +115,14 @@ public sealed partial class SharedMailBoxesSystem : EntitySystem
         }
         else if (!_jobSystem.TryGetDepartment(delivery.RecipientJobId, out department) || delivery.RecipientName == null)
         {
-            _popup.PopupPredicted(Loc.GetString("mailbox-no-department"), ent, args.EntityUid);
+            _popup.PopupEntity(Loc.GetString("mailbox-no-department"), ent);
             args.Cancel();
             return;
         }
 
         if (department != ent.Comp.Department)
         {
-            _popup.PopupPredicted(Loc.GetString("mailbox-wrong-department"), ent, args.EntityUid);
+            _popup.PopupEntity(Loc.GetString("mailbox-wrong-department"), ent);
             args.Cancel();
             return;
         }

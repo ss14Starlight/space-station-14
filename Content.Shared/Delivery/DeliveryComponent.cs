@@ -104,7 +104,7 @@ public sealed partial class DeliveryComponent : Component
     /// <summary>
     /// The job prototype of the delivery's recipient.
     /// </summary>
-    [DataField] public ProtoId<JobPrototype> RecipientJobId;
+    [DataField, AutoNetworkedField] public string RecipientJobId;
 
     #endregion
 }
