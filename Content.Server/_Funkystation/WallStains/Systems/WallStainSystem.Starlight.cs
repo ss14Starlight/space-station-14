@@ -5,8 +5,12 @@ using Content.Shared.FixedPoint;
 
 namespace Content.Server._Funkystation.WallStains.Systems;
 
-public sealed partial class WallStainSystem : EntitySystem
+public sealed partial class WallStainSystem
 {
+    #region Starlight
+    private readonly HashSet<EntityUid> _evaporatingStains = [];
+    private readonly List<EntityUid> _evaporatingStainsSnapshot = [];
+
     private void OnStainMapInit(Entity<WallStainComponent> entity, ref MapInitEvent args)
     {
         if (!_solution.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out _, out var solution))
@@ -17,7 +21,8 @@ public sealed partial class WallStainSystem : EntitySystem
             UpdateVisuals(entity.Owner, entity.Comp, solution);
     }
 
-    private void OnStainShutdown(Entity<WallStainComponent> entity, ref ComponentShutdown args) => _evaporatingStains.Remove(entity.Owner);
+    private void OnStainShutdown(Entity<WallStainComponent> entity, ref ComponentShutdown args)
+        => _evaporatingStains.Remove(entity.Owner);
 
     private void OnStainSolutionChanged(Entity<WallStainComponent> entity, ref SolutionChangedEvent args)
     {
@@ -33,8 +38,8 @@ public sealed partial class WallStainSystem : EntitySystem
     private void UpdateEvaporationTracking(EntityUid uid, Solution solution)
     {
         if (solution.Volume <= FixedPoint2.Zero ||
-            solution.GetTotalPrototypeQuantity(_waterReagent) > FixedPoint2.Zero ||
-            solution.GetTotalPrototypeQuantity(_spaceCleanerReagent) > FixedPoint2.Zero)
+            solution.GetTotalPrototypeQuantity(WaterReagent) > FixedPoint2.Zero ||
+            solution.GetTotalPrototypeQuantity(SpaceCleanerReagent) > FixedPoint2.Zero)
         {
             _evaporatingStains.Add(uid);
             return;
@@ -42,4 +47,5 @@ public sealed partial class WallStainSystem : EntitySystem
 
         _evaporatingStains.Remove(uid);
     }
+    #endregion
 }

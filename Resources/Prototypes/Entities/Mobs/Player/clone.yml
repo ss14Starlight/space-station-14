@@ -60,6 +60,7 @@
     # Languages - Starlight
   - LanguageSpeaker
   - ForeignerTrait
+  - XenosocializedTrait
     # TTS - Starlight
   - TextToSpeech
   eventComponents:

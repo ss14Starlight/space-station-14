@@ -1214,6 +1214,7 @@
     tags:
     - Cake
     - ClothMade
+    - CottonCake # Starlight
   - type: Solution
     solution:
       reagents:
@@ -1241,6 +1242,7 @@
     - Cake
     - ClothMade
     - Slice
+    - CottonCake # Starlight
   - type: Solution
     solution:
       reagents:

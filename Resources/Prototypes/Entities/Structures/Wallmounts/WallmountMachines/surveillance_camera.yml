@@ -26,6 +26,7 @@
         - TabletopMachineLayer
   - type: CameraActiveOnCollide
     requiresPower: false # TODO: Change this when AI can no longer see via unpowered cameras
+  - type: LightOnCollide # Starlight: Restored removed surveillance camera lights from upstream
   - type: PointLight
     enabled: false
     radius: 5

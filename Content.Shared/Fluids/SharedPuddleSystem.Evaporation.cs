@@ -8,37 +8,35 @@ namespace Content.Shared.Fluids;
 
 public abstract partial class SharedPuddleSystem
 {
-    private static readonly TimeSpan _evaporationCooldown = TimeSpan.FromSeconds(1);
-    private TimeSpan _nextEvaporationUpdate = TimeSpan.MaxValue; // Starlight
-    private readonly List<ProtoId<ReagentPrototype>> _evaporationReagents = []; // Starlight
+    private static readonly TimeSpan EvaporationCooldown = TimeSpan.FromSeconds(1);
 
     private void OnEvaporationMapInit(Entity<EvaporationComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.NextTick = _timing.CurTime + _evaporationCooldown;
+        ent.Comp.NextTick = _timing.CurTime + EvaporationCooldown;
         ScheduleEvaporation(ent.Comp.NextTick); // Starlight
         Dirty(ent);
     }
 
     private void UpdateEvaporation(EntityUid uid, Solution solution)
     {
-        if (!HasEvaporatingReagent(solution)) // Starlight
+        // Starlight-start: only track puddles which contain something that can evaporate.
+        if (!HasEvaporatingReagent(solution))
         {
-            RemComp<EvaporationComponent>(uid); // Starlight
+            RemComp<EvaporationComponent>(uid);
             return;
         }
 
-        if (_evaporationQuery.TryGetComponent(uid, out var existing)) // Starlight
+        if (_evaporationQuery.TryGetComponent(uid, out var existing))
         {
-            ScheduleEvaporation(existing.NextTick); // Starlight
+            ScheduleEvaporation(existing.NextTick);
             return;
         }
 
-        #region Starlight
         var evaporation = AddComp<EvaporationComponent>(uid);
-        evaporation.NextTick = _timing.CurTime + _evaporationCooldown;
+        evaporation.NextTick = _timing.CurTime + EvaporationCooldown;
         ScheduleEvaporation(evaporation.NextTick);
         Dirty<EvaporationComponent>((uid, evaporation));
-        #endregion
+        // Starlight-end
     }
 
     private void TickEvaporation()
@@ -56,7 +54,7 @@ public abstract partial class SharedPuddleSystem
             }
 
             // Necessary to keep client and server in sync so they don't drift
-            evaporation.NextTick += _evaporationCooldown;
+            evaporation.NextTick += EvaporationCooldown;
             ScheduleEvaporation(evaporation.NextTick); // Starlight
             Dirty(uid, evaporation);
 
@@ -65,7 +63,7 @@ public abstract partial class SharedPuddleSystem
 
             // If we have multiple evaporating reagents in one puddle, just take the average evaporation speed and apply
             // that to all of them.
-            #region Starlight
+            // Starlight-start: reuse one buffer instead of allocating dictionaries for every puddle.
             _evaporationReagents.Clear();
             var totalEvaporationSpeed = FixedPoint2.Zero;
             foreach (var (reagent, _) in puddleSolution.Contents)
@@ -84,26 +82,25 @@ public abstract partial class SharedPuddleSystem
 
             if (_evaporationReagents.Count == 0)
                 continue;
-            #endregion
 
-            var evaporationSpeed = totalEvaporationSpeed / _evaporationReagents.Count; // Starlight
-            var initialVolume = puddleSolution.Volume; // Starlight
+            var evaporationSpeed = totalEvaporationSpeed / _evaporationReagents.Count;
+            var initialVolume = puddleSolution.Volume;
 
             // Still have to iterate over one-by-one since the full solution could have non-evaporating solutions.
-            #region Starlight
             foreach (var reagent in _evaporationReagents)
             {
                 var factor = puddleSolution.GetTotalPrototypeQuantity(reagent) / initialVolume;
-                var reagentTick = evaporation.EvaporationAmount * _evaporationCooldown.TotalSeconds * evaporationSpeed * factor;
+                var reagentTick = evaporation.EvaporationAmount * EvaporationCooldown.TotalSeconds * evaporationSpeed * factor;
                 puddleSolution.RemoveReagent(reagent, reagentTick, ignoreReagentData: true);
             }
-            #endregion
+            // Starlight-end
 
             // Despawn if we're done
             if (puddleSolution.Volume == FixedPoint2.Zero)
             {
                 // Spawn a *sparkle*
-                if (_net.IsServer) // TODO: Change this once we have entity spawn prediction V2
+                // TODO: Change this once entity spawn prediction V2 exists.
+                if (_net.IsServer) // Starlight
                     SpawnAttachedTo(evaporation.EvaporationEffect, Transform(uid).Coordinates);
                 PredictedQueueDel(uid);
             }
@@ -111,6 +108,7 @@ public abstract partial class SharedPuddleSystem
             _solutionContainerSystem.UpdateChemicals(puddle.Solution.Value);
         }
     }
+
 
     public ProtoId<ReagentPrototype>[] GetEvaporatingReagents(Solution solution)
     {
@@ -136,7 +134,7 @@ public abstract partial class SharedPuddleSystem
 
     public bool CanFullyEvaporate(Solution solution)
     {
-        #region Starlight
+        // Starlight-start: avoid allocating the reagent array for this hot-path predicate.
         foreach (var (reagent, _) in solution.Contents)
         {
             if (_prototypeManager.Index<ReagentPrototype>(reagent.Prototype).EvaporationSpeed <= FixedPoint2.Zero)
@@ -144,7 +142,7 @@ public abstract partial class SharedPuddleSystem
         }
 
         return true;
-        #endregion
+        // Starlight-end
     }
 
     /// <summary>

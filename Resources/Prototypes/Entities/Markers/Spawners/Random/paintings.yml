@@ -26,6 +26,20 @@
       - PaintingSleepingGypsy
       - PaintingRedBlueYellow
       - PaintingHelloWorld
+      # Starlight Start
+      - PaintingSeaside
+      - PaintingElijahBoardman
+      - PaintingKurukulla
+      - PaintingImmortals
+      - PaintingMarco
+      - PaintingShitao
+      - PaintingShankara
+      - PaintingParadise
+      - PaintingLandersPeak
+      - PaintingKanagawa
+      - PaintingVanGogh
+      - PaintingWheatFields
+      # Starlight End
     chance: 1
     rarePrototypes:
       - PaintingSkeletonBoof
