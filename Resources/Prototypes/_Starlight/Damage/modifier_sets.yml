@@ -326,16 +326,15 @@
     Heat: 0.8
   flatReductions:
     Blunt: 5
-    Heat: 5
 
 - type: damageModifierSet
   id: ArmoredSilicon
   coefficients:
     Blunt: 0.45
     Slash: 0.3
-    Piercing: 0.5
+    Piercing: 0.55
     Shock: 1.1
     Heat: 0.65
   flatReductions:
     Blunt: 8
-    Heat: 6
+    Heat: 2
