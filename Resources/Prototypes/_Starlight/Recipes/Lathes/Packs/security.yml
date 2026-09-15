@@ -122,7 +122,6 @@
   - BoxPeacekeeperStinger
   - BoxPeacekeeperFlash
   - BoxPeacekeeperBaton
-  - BoxPeacekeeperBola
 ####################################################
 
 - type: latheRecipePack
@@ -245,6 +244,8 @@
   - CartridgePistolRubber
 # Rifle
   - CartridgeRifleRubber
+#####################PEACEKEEPER#####################
+  - BoxPeacekeeperBola
 ####################################################
 
 - type: latheRecipePack
