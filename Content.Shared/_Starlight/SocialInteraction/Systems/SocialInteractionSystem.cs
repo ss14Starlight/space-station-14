@@ -128,7 +128,7 @@ public sealed partial class SocialInteractionSystem : EntitySystem
         var curTime = _timing.CurTime;
 
         // prevent spamming interactions
-        if(giverComp.LastInteractTime is { } lastInteractTime
+        if (giverComp.LastInteractTime is { } lastInteractTime
             && curTime < lastInteractTime + proto.InteractDelay)
             return;
 
