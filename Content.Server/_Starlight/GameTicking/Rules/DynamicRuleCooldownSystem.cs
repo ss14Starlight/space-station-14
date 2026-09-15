@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._Starlight.GameTicking;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Presets;
 using Content.Shared.GameTicking;
@@ -37,17 +38,19 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
         base.Initialize();
 
         _sawmill = _logManager.GetSawmill("dynamic.cooldown");
+        SubscribeLocalEvent<DynamicRuleCooldownRoundInitializingEvent>(OnRoundInitializing);
+        SubscribeLocalEvent<DynamicRuleCooldownRoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
     }
 
+    private void OnRoundInitializing(DynamicRuleCooldownRoundInitializingEvent ev) => BeginRound(ev.Preset);
+
+    private void OnRoundStarted(DynamicRuleCooldownRoundStartedEvent ev) => ApplyPresetCooldown(ev.Preset);
+
     /// <summary>
-    /// Initializes the cooldown snapshot for the current round and records its selected preset.
+    /// Initializes the cooldown snapshot for the current round.
     /// </summary>
-    public void BeginRound(GamePresetPrototype preset)
-    {
-        EnsureRoundInitialized(IsDynamicPreset(preset));
-        ApplyPresetCooldown(preset);
-    }
+    public void BeginRound(GamePresetPrototype preset) => EnsureRoundInitialized(IsDynamicPreset(preset));
 
     /// <summary>
     /// Ensures cooldowns have advanced for this round. Calls may upgrade a round to Dynamic,
@@ -108,10 +111,7 @@ public sealed partial class DynamicRuleCooldownSystem : EntitySystem
     /// <summary>
     /// Returns whether a preset is blocked this round by a linked Dynamic rule cooldown.
     /// </summary>
-    public bool TryGetPresetCooldown(ProtoId<GamePresetPrototype> preset, out int remaining)
-    {
-        return _currentPresetCooldowns.TryGetValue(preset, out remaining);
-    }
+    public bool TryGetPresetCooldown(ProtoId<GamePresetPrototype> preset, out int remaining) => _currentPresetCooldowns.TryGetValue(preset, out remaining);
 
     private void BuildRoundSnapshot()
     {

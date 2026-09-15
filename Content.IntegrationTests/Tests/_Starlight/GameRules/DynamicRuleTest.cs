@@ -341,7 +341,20 @@ public sealed class DynamicRuleTest : GameTest
 
         await server.WaitPost(() => ticker.RestartRound());
         await Pair.RunUntilSynced();
-        await server.WaitAssertion(() => cooldowns.EnsureRoundInitialized(dynamicRound: true));
+        await server.WaitAssertion(() =>
+        {
+            cooldowns.EnsureRoundInitialized(dynamicRound: true);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(cooldowns.CurrentRuleCooldowns, Does.Contain(ownerRule));
+                Assert.That(cooldowns.CurrentRuleCooldowns, Does.Contain(relatedRule));
+                Assert.That(
+                    cooldowns.TryGetPresetCooldown(new ProtoId<GamePresetPrototype>(CooldownPreset), out var remaining),
+                    Is.True);
+                Assert.That(remaining, Is.EqualTo(1));
+            });
+        });
 
         await server.WaitPost(() => ticker.RestartRound());
         await Pair.RunUntilSynced();

@@ -2,6 +2,6 @@
   id: WizardDuel
   components:
   - type: DynamicRuleCooldown
-    cooldown: 1
+    cooldown: 2
     presets:
     - WizardDuel
