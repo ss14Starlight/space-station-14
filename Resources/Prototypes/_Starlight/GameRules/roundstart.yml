@@ -112,7 +112,7 @@
   - type: DynamicRuleCost
     cost: 150 # Lowering this, since BasicRoundstartVariation doesn't do much in Dynamic due to how Dynamic functions.
   - type: DynamicRuleCooldown
-    cooldown: 1
+    cooldown: 2
     presets:
     - ShitStation
 
