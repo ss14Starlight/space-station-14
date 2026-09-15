@@ -8,5 +8,5 @@ public sealed partial class SocialInteractionGiverComponent : Component
     /// Needed to prevent Givers from spamming social interactions.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan LastInteractTime;
+    public TimeSpan? LastInteractTime;
 }
