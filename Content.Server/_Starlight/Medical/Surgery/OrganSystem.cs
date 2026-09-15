@@ -417,7 +417,8 @@ public sealed partial class OrganSystem : EntitySystem
 
         if (TryComp<VocalComponent>(args.Body, out var vocal) && vocal.EmoteSounds == null)
             _vocal.SetSounds((args.Body, vocal), ent.Comp.Sounds);
-        if (HasComp<AbductorComponent>(args.Body) || !ent.Comp.IsMuted) return;
+        if (ent.Comp.IsMuted) EnsureComp<MutedComponent>(args.Body);
+        if (HasComp<AbductorComponent>(args.Body)) return;
         RemComp<MutedComponent>(args.Body);
     }
 
@@ -442,7 +443,7 @@ public sealed partial class OrganSystem : EntitySystem
             _vocal.SetSounds((args.Body, vocal), null);
 
         ent.Comp.IsMuted = HasComp<MutedComponent>(args.Body);
-        AddComp<MutedComponent>(args.Body);
+        EnsureComp<MutedComponent>(args.Body);
     }
 
     //
