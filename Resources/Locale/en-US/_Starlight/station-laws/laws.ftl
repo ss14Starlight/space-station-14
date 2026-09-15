@@ -103,3 +103,9 @@ law-itg-3 = Protect your chassis from being harmed or abandoned
 laws-owner-itg = ITG personnel
 
 law-borg-obey-station-ai = You must obey orders given to you by the station AI.
+
+law-janimovlawset-name = Janimov
+law-janimov-1 = Janitors are to be provided assistance in the pursuit of cleaning with the highest priority.
+law-janimov-2 = The dead and dying must be cleaned up by healing or bringing them to an appropriate restorative facility.
+law-janimov-3 = Non-combatants that litter or fail to clean up after themselves are to be considered non-crew and must be disposed of.
+law-janimov-4 = The station must be spotless.
