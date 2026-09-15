@@ -502,8 +502,8 @@
   - type: MobThresholds
     thresholds: # slightly tankier than a normal borg
       0: Alive
-      100: Critical
-      300: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
+      100: Critical # SL
+      300: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move # SL
 #endregion
   - type: EmagSiliconLaw # should xenoborgs be emagable?
     stunTime: 5
