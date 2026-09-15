@@ -568,13 +568,15 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="playSound">Play the announcement sound.</param>
     /// <param name="announcementSound">Sound to play.</param>
     /// <param name="colorOverride">Optional color for the announcement message.</param>
+    /// <param name="SuppressTTS">Prevents TTS from speaking this</param>
     public virtual void DispatchGlobalAnnouncement(
         SpeechMessage message,
         string? sender = null,
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null,
-        EntityUid? speaker = null // Starlight
+        EntityUid? speaker = null, // Starlight
+        bool SuppressTTS = false // Starlight
         )
     { }
 
@@ -588,6 +590,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="playSound">Play the announcement sound.</param>
     /// <param name="announcementSound">Sound to play.</param>
     /// <param name="colorOverride">Optional color for the announcement message.</param>
+    /// <param name="SuppressTTS">Prevents TTS from speaking this</param>
     public virtual void DispatchFilteredAnnouncement(
         Filter filter,
         SpeechMessage message, // Starlight
@@ -596,7 +599,9 @@ public abstract partial class SharedChatSystem : EntitySystem
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null,
-        bool recordToReplay = true) // Starlight
+        bool recordToReplay = true, // Starlight
+        bool SuppressTTS = false) // Starlight
+
     { }
 
     /// <summary>
@@ -608,13 +613,15 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="playDefaultSound">Play the announcement sound.</param>
     /// <param name="announcementSound">Sound to play.</param>
     /// <param name="colorOverride">Optional color for the announcement message.</param>
+    /// <param name="SuppressTTS">Prevents TTS from speaking this</param>
     public virtual void DispatchStationAnnouncement(
         EntityUid source,
         SpeechMessage message, // Starlight
         string? sender = null,
         bool playDefaultSound = true,
         SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null)
+        Color? colorOverride = null,
+        bool SuppressTTS = false) // Starlight
     { }
 }
 

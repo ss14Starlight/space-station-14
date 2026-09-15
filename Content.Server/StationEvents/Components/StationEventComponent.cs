@@ -98,5 +98,10 @@ public sealed partial class StationEventComponent : Component
     /// Whether to announce globally or only announce on the target station.
     /// </summary>
     [DataField] public bool GlobalAnnouncement = true;
+
+    /// <summary>
+    /// Whether the TTS, if it is enabled, will speak this announcement.
+    /// </summary>
+    [DataField] public bool SuppressTTS = false;
     //Starlight end
 }

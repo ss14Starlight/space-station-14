@@ -88,13 +88,13 @@ public sealed partial class NightShiftRule : StationEventSystem<NightShiftRuleCo
             {
                 // If the alert level is permitted, enable night shift dimming, and announce if that changed anything.
                 if (EnableNightShiftDimming(ev.Station, nightShift))
-                    Announce(stationEvent, Loc.GetString(nightShift.EnableAnnouncement), true);
+                    Announce(stationEvent, Loc.GetString(nightShift.EnableAnnouncement), true, SuppressTTS: stationEvent.SuppressTTS);
             }
             else
             {
                 // If the alert level is not permitted, disable night shift dimming, and announce if that changed anything.
                 if (DisableNightShiftDimming(ev.Station))
-                    Announce(stationEvent, Loc.GetString(nightShift.DisableAnnouncement), true);
+                    Announce(stationEvent, Loc.GetString(nightShift.DisableAnnouncement), true, SuppressTTS: stationEvent.SuppressTTS);
             }
         }
     }
