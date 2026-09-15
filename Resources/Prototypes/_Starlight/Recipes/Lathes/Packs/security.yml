@@ -245,9 +245,6 @@
   - CartridgePistolRubber
 # Rifle
   - CartridgeRifleRubber
-#####################PEACEKEEPER#####################
-  - BoxPeacekeeperBola
-####################################################
 
 - type: latheRecipePack
   id: StarlightSecurityWeapons
