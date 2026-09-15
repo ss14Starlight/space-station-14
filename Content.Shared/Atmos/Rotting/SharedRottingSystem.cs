@@ -153,7 +153,10 @@ public abstract partial class SharedRottingSystem : EntitySystem
             DirtyField(uid, perishable, nameof(PerishableComponent.RotAccumulator));
         }
         else
+        {
             rotting.TotalRotTime = total - perishable.RotAfter;
+            Dirty(uid, rotting); // Starlight
+        }
     }
 
     /// <summary>
