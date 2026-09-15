@@ -15,9 +15,3 @@
         friction: 0.2
   - type: ThrowingAngle
     angularVelocity: true # spins
-  - type: MeleeChemicalInjector
-    transferAmount: 5
-    solution: food
-  - type: SolutionInjectOnEmbed
-    transferAmount: 5
-    solution: food

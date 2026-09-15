@@ -12,6 +12,3 @@
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: DisarmMalus
-  - type: MeleeChemicalInjector
-    transferAmount: 5
-    solution: food
