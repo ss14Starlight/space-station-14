@@ -96,7 +96,7 @@
     reagents:
     - Egg
     - Eggnog # Starlight start
-    - Mayonnaise
+    - Mayo
     - Mayojito # Starlight end
 
 - type: xenoArchTrigger
