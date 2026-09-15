@@ -422,7 +422,7 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            if (CurrentPreset is { } currentPreset)
+            if (CurrentPreset is { } currentPreset) // Starlight
                 RaiseLocalEvent(new DynamicRuleCooldownRoundStartedEvent(currentPreset)); // Starlight
 
             // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
