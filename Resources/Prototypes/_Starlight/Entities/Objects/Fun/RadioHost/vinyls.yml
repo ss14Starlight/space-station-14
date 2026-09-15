@@ -219,7 +219,7 @@
     layers:
     - state: default
     - state: label
-      color: "#cfd6dd"
+      color: "#d1382f"
   - type: Vinyl
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/Cathode.ogg
