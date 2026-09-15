@@ -53,7 +53,7 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
         SubscribeLocalEvent<EnsnaringComponent, StepTriggerAttemptEvent>(AttemptStepTrigger);
         SubscribeLocalEvent<EnsnaringComponent, StepTriggeredOffEvent>(OnStepTrigger);
         SubscribeLocalEvent<EnsnaringComponent, ThrowDoHitEvent>(OnThrowHit);
-        SubscribeLocalEvent<EnsnaringComponent, StartCollideEvent>(OnStartCollide); // Starlight
+        InitializeImpactTrigger(); // Starlight
     }
 
     protected virtual void OnEnsnareInit(Entity<EnsnareableComponent> ent, ref ComponentInit args)
@@ -241,19 +241,6 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
             _audio.PlayPvs(component.EnsnareSound, uid);
         }
     }
-
-    #region Starlight
-    private void OnStartCollide(EntityUid uid, EnsnaringComponent component, StartCollideEvent args)
-    {
-        if (!component.CanImpactTrigger)
-            return;
-
-        if (TryEnsnare(args.OtherEntity, uid, component))
-        {
-            _audio.PlayPvs(component.EnsnareSound, uid);
-        }
-    }
-    #endregion
 
     /// <summary>
     /// Used where you want to try to ensnare an entity with the <see cref="EnsnareableComponent"/>
