@@ -4,11 +4,10 @@ using Content.Server.Humanoid;
 using Content.Server.Mind;
 using Content.Server.PDA;
 using Content.Server.Station.Components;
+using Content.Shared._Starlight.Roles;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.CCVar;
 using Content.Shared.Clothing;
-using Content.Shared.DetailExaminable;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
@@ -18,7 +17,6 @@ using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Station;
 using JetBrains.Annotations;
-using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -33,6 +31,10 @@ using Prometheus;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Antags.Components;
+using Content.Shared._Starlight.Station;
+using Content.Shared._Starlight.Humanoid;
+using Content.Shared.Clothing.Components;
+using Robust.Server.GameObjects;
 // Starlight End
 
 namespace Content.Server.Station.Systems;
@@ -42,27 +44,28 @@ namespace Content.Server.Station.Systems;
 /// Also provides helpers for spawning in the player's mob.
 /// </summary>
 [PublicAPI]
-public sealed class StationSpawningSystem : SharedStationSpawningSystem
+public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 {
-    [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
-    [Dependency] private readonly ActorSystem _actors = default!;
-    [Dependency] private readonly IdCardSystem _cardSystem = default!;
+    [Dependency] private SharedAccessSystem _accessSystem = default!;
+    [Dependency] private ActorSystem _actors = default!;
+    [Dependency] private IdCardSystem _cardSystem = default!;
     //[Dependency] private readonly IConfigurationManager _configurationManager = default!; // Starlight-removed - we dropped the one use of this
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly PdaSystem _pdaSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly LimbSystem _limbSystem = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly GrammarSystem _grammarSystem = default!; // Starlight
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; // Starlight
+    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private IdentitySystem _identity = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private PdaSystem _pdaSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private LimbSystem _limbSystem = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private GrammarSystem _grammarSystem = default!; // Starlight
+    [Dependency] private AutoDiscordLogSystem _autolog = default!; // Starlight
 
     private List<CyberneticImplant> _allCybernetics = default!; // Starlight
 
     #region Starlight
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private TransformSystem _xform = default!;
     private static readonly ProtoId<SpeciesPrototype> FallbackSpecies = "Human";
     private static readonly ProtoId<JobPrototype> FallbackJob = "Assistant";
     private static readonly Gauge _speciesJobsSpawns = Metrics.CreateGauge(
@@ -146,13 +149,20 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (prototype?.JobEntity != null)
         {
             DebugTools.Assert(entity is null);
-            var jobEntity = Spawn(prototype.JobEntity, coordinates);
+            var jobEntity = SLSpawn(prototype.JobEntity, coordinates); // Starlight edit
             _mindSystem.MakeSentient(jobEntity);
+
+            // Starlight - match Grammar gender to profile for jobEntity roles that have it (K9)
+            if (profile != null && TryComp<GrammarComponent>(jobEntity, out var jobEntityGrammar))
+                _grammarSystem.SetGender((jobEntity, jobEntityGrammar), profile.Gender);
 
             // Make sure custom names get handled, what is gameticker control flow whoopy.
             if (loadout != null)
             {
                 EquipRoleLoadout(jobEntity, loadout, roleProto!, profile); // Starlight edit
+                // Starlight - jobEntity mobs skipped the humanoid name/loadout-reaction pipeline entirely
+                EquipRoleName(jobEntity, loadout, roleProto!);
+                RaiseLocalEvent(jobEntity, new RoleLoadoutAppliedEvent(loadout));
             }
 
             // Raise gear equipped event for non-humanoid jobs
@@ -176,18 +186,15 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         {
             if (!_prototypeManager.Resolve(profile.ForcedPrototype, out _))
                 throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
-            entity = Spawn(profile.ForcedPrototype, coordinates);
+            entity = SLSpawn(profile.ForcedPrototype, coordinates);
             var resolvedEntity = (EntityUid)entity;
-            var grammar = EntityManager.EnsureComponent<GrammarComponent>(resolvedEntity);
+            var grammar = EnsureComp<GrammarComponent>(resolvedEntity);
             _grammarSystem.SetGender((resolvedEntity, grammar), profile.Gender);
 
             _autolog.LogToDiscord(Loc.GetString("autolog-forcedprototype", ("character", profile.Name), ("prototype", profile.ForcedPrototype)));
         }
         else
-        {
-            // Starlight End
-            entity ??= Spawn(species.Prototype, coordinates);
-        } // Starlight
+            entity ??= SLSpawn(species.Prototype, coordinates);
 
         if (profile != null)
         {
@@ -207,6 +214,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         // make it more consistent and equip things in a more effective order.
         if (loadout != null)
         {
+            EquipRoleName(entity.Value, loadout, roleProto!); // Set custom humaniod name based on job loadout
             var startingGear = prototype?.StartingGear != null ? [_prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear)] : Array.Empty<IEquipmentLoadout>();
             StarlightEquipRoleLoadout(entity.Value, loadout, startingGear, roleProto!);
         }
@@ -217,8 +225,9 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         }
 
         // Far Horizons species loadouts
-        if (species.Loadout != null && _prototypeManager.TryIndex(species.Loadout.Value, out var speciesLoadoutProto) && profile != null && profile.SpeciesLoadout != null)
-            EquipRoleLoadout(entity.Value, profile.SpeciesLoadout, speciesLoadoutProto);
+        var speciesLoadout = profile?.GetSpeciesLoadoutOrDefault(_actors.GetSession(entity), _prototypeManager);
+        if (species.Loadout != null && _prototypeManager.TryIndex(species.Loadout.Value, out var speciesLoadoutProto) && speciesLoadout != null)
+            EquipRoleLoadout(entity.Value, speciesLoadout, speciesLoadoutProto, profile);
 
         // Starlight end
 
@@ -384,6 +393,24 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (pdaComponent != null)
             _pdaSystem.SetOwner(idUid.Value, pdaComponent, entity, characterName);
     }
+
+    #region Starlight - Loadout stuff
+
+    // Helper method to stop LoadoutSystem's MapInit callback from working if spawning through this system.
+    public EntityUid SLSpawn(string prototype, EntityCoordinates coords)
+    {
+        var uid = Spawn(prototype, [], false);
+        if (TryComp<LoadoutComponent>(uid, out var loadout))
+        {
+            loadout.PostStationSpawn = true;
+            Dirty(uid, loadout);
+        }
+        _xform.SetCoordinates(uid, coords);
+        EntityManager.RunMapInit(uid, MetaData(uid));
+        return uid;
+    }
+
+    #endregion
 
     #endregion Player spawning helpers
 }

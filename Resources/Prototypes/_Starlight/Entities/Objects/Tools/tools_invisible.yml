@@ -1,0 +1,162 @@
+- type: entity
+  name: invisible wirecutters
+  parent: BaseItem
+  id: WirecuttersInvisible
+  description: The perfect piece of invisible equipment to snip those nasty wires of that invisible door! Insulation not included.
+  components:
+  - type: Tag
+    tags:
+    - PlantSampleTaker
+  - type: Sprite
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/wirecutters_invisible.rsi
+    state: cutters
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    damage:
+      types:
+        Piercing: 0
+    attackRate: 2
+  - type: Tool
+    qualities:
+    - Cutting
+    useSound:
+      path: /Audio/Items/wirecutter.ogg
+    speedModifier: 0.05
+  - type: Item
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/wirecutters_invisible.rsi
+
+- type: entity
+  name: invisible screwdriver
+  parent: BaseItem
+  id: ScrewdriverInvisible
+  description: Go ahead. Open the invisible maintenance panel.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/screwdriver_invisible.rsi
+    state: screwdriver
+  - type: Item
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/screwdriver_invisible.rsi
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: 0.1 #poke poke poke
+  - type: Tool
+    qualities:
+    - Screwing
+    useSound:
+      collection: Screwdriver
+    speedModifier: 0.05
+
+- type: entity
+  name: invisible wrench
+  parent: BaseItem
+  id: WrenchInvisible
+  description: Impress everyone by anchoring that invisible machine!
+  components:
+  - type: Sprite
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/wrench_invisible.rsi
+    state: icon
+  - type: Item
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/wrench_invisible.rsi
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: 0.1
+  - type: Tool
+    qualities:
+    - Anchoring
+    useSound:
+      path: /Audio/Items/ratchet.ogg
+    speedModifier: 0.05
+
+- type: entity
+  name: invisible crowbar
+  parent: BaseItem
+  id: CrowbarInvisible
+  description: Why cry those silent tears when you could pry instead!
+  components:
+  - type: Sprite
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/crowbar_invisible.rsi
+    state: icon
+  - type: Item
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/crowbar_invisible.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 1
+  - type: StaminaDamageOnHit
+    damage: 5 #have you ever been hit with a plastic bat? that shit hurts
+  - type: Tool
+    qualities:
+    - Prying
+  - type: ToolTileCompatible
+    delay: 10
+  - type: Prying
+    speedModifier: 0.05
+
+- type: entity
+  name: invisible multitool
+  parent: BaseItem
+  id: MultitoolInvisible
+  description: Pulse, pulse, pulse- wait, I thought it was supposed to be silent?
+  components:
+  - type: Sprite
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/multitool_invisible.rsi
+    state: icon
+  - type: Item
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/multitool_invisible.rsi
+  - type: Tool
+    qualities:
+    - Pulsing
+  - type: Tag
+    tags:
+      - Multitool
+
+- type: entity
+  name: invisible welding tool
+  parent: Welder
+  id: WelderInvisible
+  description: Despite being invisible, you still need eye protection. Somehow.
+  components:
+  - type: Sprite
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/welder_invisible.rsi
+  - type: Item
+    size: Small
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/welder_invisible.rsi
+  - type: Tool
+    speedModifier: 0.05
+
+- type: entity
+  name: invisible toolbox
+  parent: ToolboxBase
+  id: ToolboxInvisible
+  description: The perfect invisible carrier to hold your invisible equipment!
+  components:
+  - type: Sprite
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/toolbox_invisible.rsi
+    state: icon
+  - type: Item
+    sprite: /Textures/_Starlight/Objects/Tools/Invisible/toolbox_invisible.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 4
+
+- type: entity
+  id: ToolboxInvisibleFilled
+  name: invisible toolbox
+  suffix: Filled
+  parent: ToolboxInvisible
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WirecuttersInvisible
+        - id: ScrewdriverInvisible
+        - id: WrenchInvisible
+        - id: CrowbarInvisible
+        - id: MultitoolInvisible
+        - id: WelderInvisible

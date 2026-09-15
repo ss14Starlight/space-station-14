@@ -10,6 +10,7 @@ using Content.Server.Discord;
 using Content.Server.Discord.DiscordLink;
 using Content.Server.Discord.WebhookMessages;
 using Content.Server.EUI;
+using Content.Server.FeedbackSystem;
 using Content.Server.GhostKick;
 using Content.Server.Info;
 using Content.Server.Mapping;
@@ -26,6 +27,7 @@ using Content.Server.Worldgen.Tools;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
+using Content.Shared.FeedbackSystem;
 using Content.Shared.IoC;
 using Content.Shared.Kitchen;
 using Content.Shared.Players.PlayTimeTracking;
@@ -35,10 +37,9 @@ using Content.Shared.Players.RateLimiting;
 using Content.Server._Starlight.BugReports;
 using Content.Shared._Starlight.Achievement;
 using Content.Server.Holiday;
-using Content.Server.Starlight;
-using Content.Shared.Starlight;
-using Content.Server.Economy;
+using Content.Shared._Starlight;
 using Content.Shared._Starlight.DocumentManager;
+using Content.Server._Starlight;
 #endregion Starlight
 
 #region Nulllink
@@ -48,6 +49,7 @@ using Content.Server._NullLink.EventBus;
 using Content.Server._NullLink.PlayerData;
 using Content.Shared._NullLink;
 using Content.Server._Starlight.TextToSpeech;
+using Content.Server._Starlight.Economy;
 #endregion Nulllink
 
 namespace Content.Server.IoC;
@@ -102,6 +104,8 @@ internal static class ServerContentIoC
         deps.Register<CVarControlManager>();
         deps.Register<DiscordLink>();
         deps.Register<DiscordChatLink>();
+        deps.Register<ServerFeedbackManager>();
+        deps.Register<ISharedFeedbackManager, ServerFeedbackManager>();
 
         // 🌟Starlight🌟 start
         deps.Register<ISharedPlayersRoleManager, PlayerRolesManager>();

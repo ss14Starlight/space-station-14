@@ -38,7 +38,7 @@
 - type: humanoidBaseSprite
   id: MobMothEyes
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: eyes
 
 - type: markingPoints
@@ -87,83 +87,83 @@
 - type: humanoidBaseSprite
   id: MobMothHead
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobMothHeadMale
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: head_m
 
 - type: humanoidBaseSprite
   id: MobMothHeadFemale
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: head_f
 
 - type: humanoidBaseSprite
   id: MobMothTorso
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobMothTorsoMale
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobMothTorsoFemale
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: torso_f
 
 - type: humanoidBaseSprite
   id: MobMothLLeg
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: l_leg
 
 - type: humanoidBaseSprite
   id: MobMothLHand
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: l_hand
 
 - type: humanoidBaseSprite
   id: MobMothLArm
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: l_arm
 
 - type: humanoidBaseSprite
   id: MobMothLFoot
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: l_foot
 
 - type: humanoidBaseSprite
   id: MobMothRLeg
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: r_leg
 
 - type: humanoidBaseSprite
   id: MobMothRHand
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: r_hand
 
 - type: humanoidBaseSprite
   id: MobMothRArm
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: r_arm
 
 - type: humanoidBaseSprite
   id: MobMothRFoot
   baseSprite:
-    sprite: Mobs/Species/Moth/parts.rsi
+    sprite: _Starlight/Mobs/Species/Moth/parts.rsi # Starlight
     state: r_foot

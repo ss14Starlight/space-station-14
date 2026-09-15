@@ -1,7 +1,7 @@
-using Content.Shared.Starlight;
-using static Content.Server.Starlight.PlayerRolesManager;
+using Content.Shared._Starlight;
+using static Content.Server._Starlight.PlayerRolesManager;
 
-namespace Content.Server.Administration.Managers;
+namespace Content.Server._Starlight;
 
 public interface IPlayerRolesManager : ISharedPlayersRoleManager
 {

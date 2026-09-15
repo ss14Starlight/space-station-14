@@ -1,7 +1,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Monitor.Systems;
 using Content.Server.Atmos.Piping.Components;
-using Content.Server.Atmos.Piping.Unary.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
@@ -13,18 +12,17 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos.Piping.Unary.Systems;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
-using Content.Shared.Examine;
 using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class GasThermoMachineSystem : SharedGasThermoMachineSystem
+    public sealed partial class GasThermoMachineSystem : SharedGasThermoMachineSystem
     {
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly PowerReceiverSystem _power = default!;
-        [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-        [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
+        [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private PowerReceiverSystem _power = default!;
+        [Dependency] private NodeContainerSystem _nodeContainer = default!;
+        [Dependency] private DeviceNetworkSystem _deviceNetwork = default!;
 
         public override void Initialize()
         {

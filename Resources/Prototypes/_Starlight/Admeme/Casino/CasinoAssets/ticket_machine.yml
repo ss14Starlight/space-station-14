@@ -1,0 +1,13 @@
+- type: entity
+  id: TicketMachineFilledCasino
+  parent: TicketMachine
+  suffix: Casino, Filled, Gold, ADMEME
+  components:
+  - type: TicketMachine
+    ticketProtoId: "TicketGold"
+  - type: AccessReader
+    access: [["Casino"]]
+  - type: ContainerFill
+    containers:
+      TicketMachinePaper:
+        - LabellerRefillPaper999

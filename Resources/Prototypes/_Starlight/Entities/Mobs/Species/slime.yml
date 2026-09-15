@@ -29,11 +29,13 @@
         type: VampireClassBui
       enum.VampireLocateUiKey.Key: # SL
         type: VampireLocateBui
+  - type: InteractionPopup # Starlight
+    interactSuccessSound: /Audio/Voice/Slime/slime_squish.ogg # Starlight
   - type: Absorbable
   - type: Hunger
   - type: Thirst
   - type: Icon
-    sprite: Mobs/Species/Slime/parts.rsi
+    sprite: _Starlight/Mobs/Species/Slime/parts.rsi
     state: full
   - type: Body
     prototype: Slime
@@ -67,14 +69,9 @@
   - type: Speech
     speechVerb: Slime
     speechSounds: Slime
-    allowedEmotes: ['Squish', 'Bubble', 'Pop'] # Starlight
   - type: TypingIndicator
     proto: slime
   - type: Vocal
-    sounds:
-      Male: MaleSlime
-      Female: FemaleSlime
-      Unsexed: MaleSlime
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
@@ -95,10 +92,10 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Bloodstream
-    bloodReferenceSolution: # TODO Color slime blood based on their slime color or smth
+    bloodReferenceSolution:
       reagents:
       - ReagentId: Slime
-        Quantity: 300
+        Quantity: 600
   - type: Barotrauma
     damage:
       types:
@@ -119,14 +116,13 @@
       - !type:HealthChange
         damage:
           types:
-            Heat: 0.25 # Starlight-edit
+            Heat: 0.5 # Starlight-edit
       - !type:PopupMessage
         type: Local
         visualType: Large
         messages: [ "slime-hurt-by-water-popup" ]
         probability: 0.25
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatSlime
       amount: 5

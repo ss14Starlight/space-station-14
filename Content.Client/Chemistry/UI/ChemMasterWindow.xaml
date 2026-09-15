@@ -100,8 +100,16 @@
                 <!-- Packaging Info -->
                 <BoxContainer Orientation="Vertical" Margin="4" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="5">
                     <!-- Label for output -->
+					<!-- Starlight Container Label start-->
+					<BoxContainer Orientation="Horizontal">
+						<Label Text="{Loc 'chem-master-containerlabel-text-label'}" />
+						<Control HorizontalExpand="True" MinSize="50 0"/>
+						<LineEdit Name="ContainerLabelLineEdit" SetWidth="455"/>
+					</BoxContainer>
+					<!-- Starlight Container Label end-->
+
                     <BoxContainer Orientation="Horizontal">
-                        <Label Text="{Loc 'chem-master-current-text-label'}" />
+                        <Label Text="{Loc 'chem-master-pillpatch-text-label'}" />
                         <Control HorizontalExpand="True" MinSize="50 0"/>
                         <LineEdit Name="LabelLineEdit" SetWidth="455"/>
                     </BoxContainer>

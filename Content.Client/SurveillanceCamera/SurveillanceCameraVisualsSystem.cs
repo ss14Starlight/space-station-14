@@ -3,9 +3,9 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client.SurveillanceCamera;
 
-public sealed class SurveillanceCameraVisualsSystem : EntitySystem
+public sealed partial class SurveillanceCameraVisualsSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -26,6 +26,7 @@ public sealed class SurveillanceCameraVisualsSystem : EntitySystem
             return;
         }
 
-        _sprite.LayerSetRsiState((uid, args.Sprite), layer, state);
+        // _sprite.LayerSetRsiState((uid, args.Sprite), layer, state);
+        SetStatePreserveTime((uid, args.Sprite), layer, state); // Starlight
     }
 }

@@ -1,9 +1,10 @@
 ﻿using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared.Disposal.Unit;
 
 namespace Content.Server.Disposal.Unit;
 
-public sealed class BeingDisposedSystem : EntitySystem
+public sealed class BeingDisposedSystem : SharedBeingDisposedSystem
 {
     public override void Initialize()
     {
@@ -14,26 +15,26 @@ public sealed class BeingDisposedSystem : EntitySystem
         SubscribeLocalEvent<BeingDisposedComponent, AtmosExposedGetAirEvent>(OnGetAir);
     }
 
-    private void OnGetAir(EntityUid uid, BeingDisposedComponent component, ref AtmosExposedGetAirEvent args)
+    private void OnGetAir(Entity<BeingDisposedComponent> ent, ref AtmosExposedGetAirEvent args)
     {
-        if (TryComp<DisposalHolderComponent>(component.Holder, out var holder))
+        if (TryComp<DisposalHolderComponent>(ent.Comp.Holder, out var holder))
         {
             args.Gas = holder.Air;
             args.Handled = true;
         }
     }
 
-    private void OnInhaleLocation(EntityUid uid, BeingDisposedComponent component, InhaleLocationEvent args)
+    private void OnInhaleLocation(Entity<BeingDisposedComponent> ent, ref InhaleLocationEvent args)
     {
-        if (TryComp<DisposalHolderComponent>(component.Holder, out var holder))
+        if (TryComp<DisposalHolderComponent>(ent.Comp.Holder, out var holder))
         {
             args.Gas = holder.Air;
         }
     }
 
-    private void OnExhaleLocation(EntityUid uid, BeingDisposedComponent component, ExhaleLocationEvent args)
+    private void OnExhaleLocation(Entity<BeingDisposedComponent> ent, ref ExhaleLocationEvent args)
     {
-        if (TryComp<DisposalHolderComponent>(component.Holder, out var holder))
+        if (TryComp<DisposalHolderComponent>(ent.Comp.Holder, out var holder))
         {
             args.Gas = holder.Air;
         }

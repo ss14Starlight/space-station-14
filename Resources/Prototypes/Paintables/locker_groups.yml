@@ -14,10 +14,12 @@
     chemical: LockerChemistry
     clown: LockerClown
     cmo: LockerChiefMedicalOfficer
+    coroner: LockerCoroner # Starlight
     doctor: LockerMedical
     electrical: LockerElectricalSupplies
     engineer: LockerEngineer
     evac: LockerEvacRepair
+    geneticist: LockerGeneticist # Starlight
     hop: LockerHeadOfPersonnel
     hos: LockerHeadOfSecurity
     iaa: LockerIAA # Starlight
@@ -30,10 +32,13 @@
     quartermaster: LockerQuarterMaster
     rd: LockerResearchDirector
     representative: LockerRepresentative
+    roboticist: LockerRoboticist # Starlight
     salvage: LockerSalvageSpecialist
     salvagelead: LockerSalvageLead # Starlight
     scientist: LockerScientist
     security: LockerSecurity
+    surgeon: LockerSurgeon # Starlight
+    virologist: LockerVirologist # Starlight
     warden: LockerWarden # Starlight
     welding: LockerWeldingSupplies
 

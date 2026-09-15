@@ -24,7 +24,5 @@ public sealed partial class ActionSpawnEntity : OnSignAction
     }
 
     public override void ResolveIoC()
-    {
-        _entityManager = IoCManager.Resolve<IEntityManager>();
-    }
+        => _entityManager = IoCManager.Resolve<IEntityManager>();
 }

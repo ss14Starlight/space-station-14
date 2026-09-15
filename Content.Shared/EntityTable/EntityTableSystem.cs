@@ -6,10 +6,10 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.EntityTable;
 
-public sealed class EntityTableSystem : EntitySystem
+public sealed partial class EntityTableSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public IEnumerable<EntProtoId> GetSpawns(EntityTablePrototype entTableProto, System.Random? rand = null, EntityTableContext? ctx = null)
     {
@@ -26,6 +26,46 @@ public sealed class EntityTableSystem : EntitySystem
         ctx ??= new EntityTableContext();
         return table.GetSpawns(rand, EntityManager, _prototypeManager, ctx);
     }
+
+    public IEnumerable<(EntProtoId spawn, double)> ListSpawns(EntityTablePrototype entTableProto, EntityTableContext? ctx = null)
+    {
+        return ListSpawns(entTableProto.Table, ctx);
+    }
+
+    /// <summary>
+    /// Builds a list of all the spawns in an EntityTable as keys, and their modified weights as values.
+    /// </summary>
+    /// <param name="table">Table we're examining</param>
+    /// <param name="ctx">Optional extra context</param>
+    public IEnumerable<(EntProtoId spawn, double)> ListSpawns(EntityTableSelector? table, EntityTableContext? ctx = null)
+    {
+        if (table == null)
+            return new List<(EntProtoId spawn, double)>();
+
+        ctx ??= new EntityTableContext();
+        return table.ListSpawns(EntityManager, _prototypeManager, ctx);
+    }
+
+    /// <inheritdoc cref="AverageSpawns(EntityTableSelector?,EntityTableContext?)"/>
+    public IEnumerable<(EntProtoId spawn, double)> AverageSpawns(EntityTablePrototype entTableProto, EntityTableContext? ctx = null)
+    {
+        return AverageSpawns(entTableProto.Table, ctx);
+    }
+
+    /// <summary>
+    /// Returns the average expected spawns of a specific entity table.
+    /// </summary>
+    /// <param name="table">The entity table we want the spawns of</param>
+    /// <param name="ctx">Optional EntityTableContext</param>
+    /// <returns></returns>
+    public IEnumerable<(EntProtoId spawn, double)> AverageSpawns(EntityTableSelector? table, EntityTableContext? ctx = null)
+    {
+        if (table == null)
+            return new List<(EntProtoId spawn, double)>();
+
+        ctx ??= new EntityTableContext();
+        return table.AverageSpawns(EntityManager, _prototypeManager, ctx);
+    }
 }
 
 /// <summary>
@@ -34,6 +74,7 @@ public sealed class EntityTableSystem : EntitySystem
 public sealed class EntityTableContext
 {
     private readonly Dictionary<string, object> _data = new();
+    private readonly Dictionary<Type, object> _typedData = new(); // Starlight
 
     public EntityTableContext()
     {
@@ -44,6 +85,26 @@ public sealed class EntityTableContext
     {
         _data = data;
     }
+
+    #region Starlight
+    /// <summary>
+    /// Sets arbitrary context data for selectors and conditions that are evaluated later in the same table roll.
+    /// </summary>
+    [PublicAPI]
+    public void SetData<T>([ForbidLiteral] string key, T value) where T : notnull
+    {
+        _data[key] = value;
+    }
+
+    /// <summary>
+    /// Sets strongly-typed context data for selectors and conditions that are evaluated later in the same table roll.
+    /// </summary>
+    [PublicAPI]
+    public void SetData<T>(T value) where T : notnull
+    {
+        _typedData[typeof(T)] = value;
+    }
+    #endregion
 
     /// <summary>
     /// Retrieves an arbitrary piece of data from the context based on a provided key.
@@ -62,4 +123,20 @@ public sealed class EntityTableContext
         value = castValueData;
         return true;
     }
+
+    #region Starlight
+    /// <summary>
+    /// Retrieves strongly-typed context data.
+    /// </summary>
+    [PublicAPI]
+    public bool TryGetData<T>([NotNullWhen(true)] out T? value)
+    {
+        value = default;
+        if (!_typedData.TryGetValue(typeof(T), out var valueData) || valueData is not T castValueData)
+            return false;
+
+        value = castValueData;
+        return true;
+    }
+    #endregion
 }

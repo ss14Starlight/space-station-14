@@ -13,18 +13,18 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
-public sealed class CosmicChantrySystem : EntitySystem
+public sealed partial class CosmicChantrySystem : EntitySystem
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ServerGlobalSoundSystem _sound = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
-    [Dependency] private readonly NavMapSystem _navMap = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private ServerGlobalSoundSystem _sound = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedRoleSystem _role = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
 
     /// <summary>
     /// Mind role to add to colossi.
@@ -92,9 +92,20 @@ public sealed class CosmicChantrySystem : EntitySystem
         var comp = ent.Comp;
         if (!_mind.TryGetMind(comp.InternalVictim, out var mindId, out var mind))
             return;
-
-        mind.PreventGhosting = false;
-        _mind.TransferTo(mindId, comp.VictimBody);
-        QueueDel(comp.InternalVictim);
+        if (TerminatingOrDeleted(comp.VictimBody))
+        {
+            var tgtpos = Transform(comp.InternalVictim).Coordinates;
+            var fallbackEnt = Spawn(comp.FallbackBrain, tgtpos);
+            Spawn(comp.FallbackVFX, tgtpos);
+            mind.PreventGhosting = false;
+            _mind.TransferTo(mindId, fallbackEnt);
+            QueueDel(comp.InternalVictim);
+        }
+        else
+        {
+            mind.PreventGhosting = false;
+            _mind.TransferTo(mindId, comp.VictimBody);
+            QueueDel(comp.InternalVictim);
+        }
     }
 }

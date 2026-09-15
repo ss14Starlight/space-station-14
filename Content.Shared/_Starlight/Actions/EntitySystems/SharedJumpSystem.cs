@@ -8,7 +8,6 @@ using Content.Shared.Throwing;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Timing;
 using Content.Shared.Stunnable;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
@@ -16,16 +15,16 @@ using Content.Shared.Charges.Systems;
 namespace Content.Shared._Starlight.Actions.EntitySystems;
 
 //idea taked from VigersRay
-public abstract class SharedJumpSystem : EntitySystem
+public abstract partial class SharedJumpSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _action = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IMapManager _mapMan = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedChargesSystem _chargesSystem = default!;
+    [Dependency] private SharedActionsSystem _action = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedMapSystem _mapMan = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedChargesSystem _chargesSystem = default!;
 
     public override void Initialize()
     {
@@ -111,7 +110,7 @@ public abstract class SharedJumpSystem : EntitySystem
 
     public bool TryJump(EntityUid performer, EntityCoordinates targetCoords, JumpActionEvent args, EntityUid? target = null, float speed = 15f, bool toPointer = false, SoundSpecifier? sound = null, float? distance = null, bool decreaseCharges = false)
     {
-        if (args.Action == null || _action.IsCooldownActive(args.Action))
+        if (_action.IsCooldownActive(args.Action))
             return false;
 
         if (target == null)
@@ -137,13 +136,10 @@ public abstract class SharedJumpSystem : EntitySystem
 
     public void Jump(EntityUid performer, EntityUid target, EntityCoordinates targetCoords,  JumpActionEvent args, float speed = 15f, bool toPointer = false, SoundSpecifier? sound = null, float? distance = null, bool decreaseCharges = false)
     {
-        if (args.Action == null)
-            return;
-
         if (TryComp<LimitedChargesComponent>(args.Action.Owner, out var limitedCharges)
             && !_chargesSystem.HasCharges((args.Action.Owner, limitedCharges), 1))
             return;
-        else if (args.Action.Owner != null && decreaseCharges)
+        else if (decreaseCharges)
             _chargesSystem.TryUseCharge(args.Action.Owner);
 
         var userTransform = Transform(target);

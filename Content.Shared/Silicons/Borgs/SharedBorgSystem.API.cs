@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Player;
@@ -16,6 +17,9 @@ public abstract partial class SharedBorgSystem
     /// </summary>
     public bool CanActivate(Entity<BorgChassisComponent> chassis)
     {
+        if (HasComp<BorgLockdownComponent>(chassis)) // Starlight
+            return false; // Starlight
+
         if (!_powerCell.HasDrawCharge(chassis.Owner))
             return false;
 
@@ -235,6 +239,17 @@ public abstract partial class SharedBorgSystem
                     return false;
                 }
             }
+        }
+
+        var attemptEv = new BorgModuleInsertAttemptEvent(module.Owner, chassis.Owner);
+        RaiseLocalEvent(chassis, ref attemptEv);
+        RaiseLocalEvent(module, ref attemptEv);
+
+        if (attemptEv.Cancelled)
+        {
+            var reason = attemptEv.Reason ?? Loc.GetString("borg-module-incompatible"); // Starlight
+            _popup.PopupClient(reason, chassis.Owner, user); // Starlight
+            return false;
         }
 
         return true;

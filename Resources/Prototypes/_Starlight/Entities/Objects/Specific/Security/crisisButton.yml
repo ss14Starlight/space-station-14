@@ -16,7 +16,8 @@
         collection: TriggerActivate
   - type: TriggerOnUse
   - type: RattleOnTrigger
-    radioChannel: Security
+    radioChannel:
+    - Security
     targetUser: true
     messages:
       Alive: rattle-on-trigger-distress-message

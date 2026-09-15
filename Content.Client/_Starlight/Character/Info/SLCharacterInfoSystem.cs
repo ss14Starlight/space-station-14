@@ -4,9 +4,9 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._Starlight.Character.Info;
 
-public sealed class SLCharacterInfoSystem : SLSharedCharacterInfoSystem
+public sealed partial class SLCharacterInfoSystem : SLSharedCharacterInfoSystem
 {
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
 
     private CharacterUIController _controller => _ui.GetUIController<CharacterUIController>();
 

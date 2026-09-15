@@ -1,13 +1,12 @@
 using Content.Server.Light.Components;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Power;
 
 namespace Content.Server.Light.EntitySystems
 {
-    public sealed class LitOnPoweredSystem : EntitySystem
+    public sealed partial class LitOnPoweredSystem : EntitySystem
     {
-        [Dependency] private readonly SharedPointLightSystem _lights = default!;
+        [Dependency] private SharedPointLightSystem _lights = default!;
 
         public override void Initialize()
         {

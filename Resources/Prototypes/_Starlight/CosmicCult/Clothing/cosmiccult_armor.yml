@@ -57,7 +57,7 @@
     color: "#42a4ae"
     radius: 5
     energy: 3.4
-    mask: /Textures/_Starlight/CosmicCult/LightMasks/cosmic.png
+    lightMask: SLCosmic
     autoRot: true
     netsync: false
   - type: LightBehaviour

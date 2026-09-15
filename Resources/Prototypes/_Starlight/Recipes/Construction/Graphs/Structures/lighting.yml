@@ -1,0 +1,26 @@
+﻿- type: constructionGraph
+  id: FloorLightFixture
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: floorLight
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+    - node: floorLight
+      entity: PoweredFloorLightEmpty
+      edges:
+        - to: start
+          conditions:
+            - !type:ContainerEmpty
+              container: "light_bulb"
+          steps:
+            - tool: Screwing
+              doAfter: 2
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}

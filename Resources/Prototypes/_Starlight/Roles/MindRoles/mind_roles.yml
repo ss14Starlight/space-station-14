@@ -8,6 +8,15 @@
 
 - type: entity
   parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostCentCommAligned
+  name: Ghost Role (CentComm Aligned)
+  components:
+    - type: MindRole
+      roleType: CentCommAligned
+      subtype: role-subtype-CentComm
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
   id: MindRoleGhostTSFAligned
   name: Ghost Role (TSF Aligned)
   components:
@@ -158,6 +167,17 @@
     roleType: TeamAntagonist
     subtype: role-subtype-thrall
   - type: VampireThrall
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleMindControlled
+  name: Mind Controlled Role
+  components:
+  - type: MindRole
+    antagPrototype: MindControlled
+    roleType: TeamAntagonist
+    subtype: role-subtype-mind-controlled
+  - type: MindControl
 
 - type: entity
   parent: BaseMindRoleAntag

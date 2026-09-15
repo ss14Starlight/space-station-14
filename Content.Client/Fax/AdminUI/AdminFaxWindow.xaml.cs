@@ -4,7 +4,6 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Fax.AdminUI;
@@ -17,7 +16,7 @@ public sealed partial class AdminFaxWindow : DefaultWindow
     public Action<(NetEntity entity, string title, string stampedBy, string message, string stampSprite, Color stampColor, bool locked)>? OnMessageSend;
     public Action<NetEntity>? OnFollowFax;
 
-    [Dependency] private readonly IResourceCache _resCache = default!;
+    [Dependency] private IResourceCache _resCache = default!;
 
     public AdminFaxWindow()
     {

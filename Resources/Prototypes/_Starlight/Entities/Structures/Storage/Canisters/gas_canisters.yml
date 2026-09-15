@@ -1,5 +1,84 @@
-# Empty variants
+- type: entity
+  parent: GasCanister
+  id: UlnitraniumCanister
+  name: ulnitranium canister
+  components:
+  - type: Sprite
+    layers:
+    - state: ulnitranium
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+      moles:
+        Ulnitranium: 2769.36
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          UlnitraniumCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
 
+- type: entity
+  parent: GasCanister
+  id: ZXACanister
+  name: zxa canister
+  components:
+  - type: Sprite
+    layers:
+    - state: zxa
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+      moles:
+        ZXA: 2769.36
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ZXACanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+# Empty variants
 - type: entity
   parent: AirCanister
   id: AirCanisterEmpty
@@ -8,7 +87,6 @@
   - type: GasCanister
     gasMixture:
       volume: 1500
-
 
 - type: entity
   parent: OxygenCanister
@@ -233,6 +311,25 @@
     gasMixture:
       volume: 1500
 
+# Starlight gases empty section, after Funky since they require Funky's gases to exist
+- type: entity
+  parent: UlnitraniumCanister
+  id: UlnitraniumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: ZXACanister
+  id: ZXACanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
 # Broken variants
 
 - type: entity
@@ -266,3 +363,19 @@
   - type: Sprite
     sprite: _Starlight/Structures/Storage/canister.rsi
     state: rainbow_broken
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: UlnitraniumCanisterBroken
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    state: ulnitranium_broken
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ZXACanisterBroken
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    state: zxa_broken

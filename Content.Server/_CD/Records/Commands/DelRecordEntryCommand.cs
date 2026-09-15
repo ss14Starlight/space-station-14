@@ -1,4 +1,3 @@
-using System;
 using Content.Server.Administration;
 using Content.Server.Station.Systems;
 using Content.Shared._CD.Records;
@@ -11,9 +10,9 @@ namespace Content.Server._CD.Records.Commands;
 /// Removes a single record entry from a player's record at runtime.
 /// </summary>
 [AdminCommand(AdminFlags.Ban)]
-public sealed class DelRecordEntryCommand : IConsoleCommand
+public sealed partial class DelRecordEntryCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     public string Command => "delrecordentry";
 

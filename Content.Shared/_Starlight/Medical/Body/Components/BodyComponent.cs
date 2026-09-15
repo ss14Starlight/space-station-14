@@ -5,6 +5,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]

@@ -36,6 +36,14 @@
                                   Visible="False"
                                   StyleClasses="OpenBoth"/>
                           <!-- NullLink end-->
+                          <!-- Starlight start -->
+                          <Button Name="OpenUrlButton"
+                                  Text="{Loc 'connecting-open-browser'}"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Bottom"
+                                  Visible="False"
+                                  StyleClasses="OpenBoth"/>
+                          <!-- Starlight end -->
                             <Button Name="CopyButton"
                                     Text="{Loc 'connecting-copy'}"
                                     HorizontalAlignment="Center"

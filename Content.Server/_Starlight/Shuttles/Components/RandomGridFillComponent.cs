@@ -2,7 +2,7 @@ using Content.Server.Shuttles.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Shuttles.Components;
+namespace Content.Server._Starlight.Shuttles.Components;
 
 /// <summary>
 /// If added to an airlock will try to autofill a grid onto it on MapInit

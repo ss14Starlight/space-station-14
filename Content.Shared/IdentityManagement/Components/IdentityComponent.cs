@@ -32,16 +32,22 @@ public sealed class IdentityRepresentation
     public Gender TrueGender;
 
     public string AgeString;
+    #region Starlight
+    public bool IsAnimal; // Starlight
+    public string? AnimalNoun; // Starlight
+    #endregion
 
     public string? PresumedName;
     public string? PresumedJob;
 
-    public IdentityRepresentation(string trueName, Gender trueGender, string ageString, string? presumedName = null, string? presumedJob = null)
+    public IdentityRepresentation(string trueName, Gender trueGender, string ageString, string? presumedName = null, string? presumedJob = null, bool isAnimal = false, string? animalNoun = null) // Starlight
     {
         TrueName = trueName;
         TrueGender = trueGender;
 
         AgeString = ageString;
+        IsAnimal = isAnimal; // Starlight
+        AnimalNoun = animalNoun; // Starlight
 
         PresumedJob = presumedJob;
         PresumedName = presumedName;
@@ -67,6 +73,18 @@ public sealed class IdentityRepresentation
     /// </summary>
     public string ToStringUnknown()
     {
+        // Starlight Begin
+        if (IsAnimal)
+        {
+            return TrueGender switch
+            {
+                Gender.Female => Loc.GetString("identity-gender-animal-feminine"),
+                Gender.Male => Loc.GetString("identity-gender-animal-masculine"),
+                Gender.Epicene or Gender.Neuter or _ => Loc.GetString("identity-gender-animal-generic", ("noun", AnimalNoun ?? Loc.GetString("identity-animal-noun-dog")))
+            };
+        }
+        // Starlight End
+
         var genderString = TrueGender switch
         {
             Gender.Female => Loc.GetString("identity-gender-feminine"),

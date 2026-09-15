@@ -236,11 +236,20 @@ public abstract class RadialMenuButtonBase : BaseButton
         EnableAllKeybinds = true;
     }
 
+    /// <summary>
+    /// Starlight-edit
+    /// Whether this button should also respond to right clicks (<see cref="EngineKeyFunctions.UIRightClick"/>).
+    /// Handlers can distinguish the button used via <see cref="BaseButton.ButtonEventArgs.Event"/>.
+    /// </summary>
+    public bool AllowRightClick { get; set; }
+
     /// <inheritdoc />
     protected override void KeyBindUp(GUIBoundKeyEventArgs args)
     {
+        //Starlight-edit
         if (args.Function == EngineKeyFunctions.UIClick
-            || args.Function == ContentKeyFunctions.AltActivateItemInWorld)
+            || args.Function == ContentKeyFunctions.AltActivateItemInWorld
+            || (args.Function == EngineKeyFunctions.UIRightClick && AllowRightClick))
         {
             base.KeyBindUp(args);
         }

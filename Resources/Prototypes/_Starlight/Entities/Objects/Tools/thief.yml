@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseThiefStealObjective
+  id: MiningShuttleCircuitboardStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ CargoTechnician ]
+  - type: StealCondition
+    stealGroup: MiningShuttleConsoleCircuitboard
+  - type: Objective
+    difficulty: 0.7
+
+- type: entity
+  parent: BaseThiefStealObjective
+  id: ShipyardCircuitboardStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: ShipyardComputerCircuitboard
+  - type: Objective
+    difficulty: 1

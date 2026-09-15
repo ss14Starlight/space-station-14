@@ -1,46 +1,55 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "darkrell",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "full"
+      "name": "full",
+      "copyright": "darkrell"
     },
     {
       "name": "rswindow0",
-      "directions": 4
+      "directions": 4,
+      "copyright": "darkrell"
     },
     {
       "name": "rswindow1",
-      "directions": 4
+      "directions": 4,
+      "copyright": "darkrell"
     },
     {
       "name": "rswindow2",
-      "directions": 4
+      "directions": 4,
+      "copyright": "darkrell"
     },
     {
       "name": "rswindow3",
-      "directions": 4
+      "directions": 4,
+      "copyright": "darkrell"
     },
     {
       "name": "rswindow4",
-      "directions": 4
+      "directions": 4,
+      "copyright": "darkrell"
     },
     {
       "name": "rswindow5",
-      "directions": 4
+      "directions": 4,
+      "copyright": "darkrell"
     },
     {
       "name": "rswindow6",
-      "directions": 4
+      "directions": 4,
+      "copyright": "darkrell"
     },
     {
       "name": "rswindow7",
-      "directions": 4
+      "directions": 4,
+      "copyright": "darkrell"
     }
   ]
 }

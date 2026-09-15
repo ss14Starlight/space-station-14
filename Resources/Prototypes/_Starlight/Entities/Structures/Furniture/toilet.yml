@@ -1,0 +1,10 @@
+- type: entity
+  parent: BaseToilet
+  id: BaseToiletRegen
+  suffix: Empty
+  components:
+    - type: SolutionRegeneration
+      generated:
+        reagents:
+          - ReagentId: Water
+            Quantity: 1

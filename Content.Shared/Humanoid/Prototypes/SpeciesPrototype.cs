@@ -2,7 +2,6 @@ using Content.Shared.Dataset;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Preferences.Loadouts;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Humanoid.Prototypes;
 
@@ -80,7 +79,7 @@ public sealed partial class SpeciesPrototype : IPrototype
 
     /// <summary>
     /// Starlight
-    /// Allow Custom Specie Name for this Specie.
+    /// Allow Custom Species Name for this Specie.
     /// </summary>
     [DataField]
     public Boolean CustomName { get; private set; } = false;
@@ -215,7 +214,6 @@ public sealed partial class SpeciesPrototype : IPrototype
     // Far Horizons species loadout
     [DataField]
     public ProtoId<RoleLoadoutPrototype>? Loadout = null;
-
 }
 
 public enum SpeciesNaming : byte
@@ -225,4 +223,5 @@ public enum SpeciesNaming : byte
     FirstDashFirst,
     TheFirstofLast,
     PrefixSuffix, // Starlight
+    LastFirst,        // Starlight Rodentia
 }

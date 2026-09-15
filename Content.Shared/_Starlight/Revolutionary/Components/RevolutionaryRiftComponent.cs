@@ -1,7 +1,6 @@
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 
-namespace Content.Shared.Revolutionary.Components;
+namespace Content.Shared._Starlight.Revolutionary.Components;
 
 /// <summary>
 /// Component to identify a revolutionary rift just for special visual handling. It's no different to dragon really

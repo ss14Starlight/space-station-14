@@ -47,8 +47,10 @@
   - type: LanguageKnowledge
     speaks:
     - Cat
+    - CatFeral
     understands:
     - Cat
+    - CatFeral
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs

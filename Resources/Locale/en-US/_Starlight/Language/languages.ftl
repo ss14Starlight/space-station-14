@@ -55,10 +55,10 @@ language-Sylvan-name = Sylvan
 language-Sylvan-description = Plants speaks this language.
 
 language-Chittin-name = Chittin
-language-Chittin-description = The noise made by rubbing its antennae together is actually a complex form of communication.
-chat-speech-verb-chittin-1 = rubs their antennae together
-chat-speech-verb-chittin-2 = rustles with their antennae
-chat-speech-verb-chittin-3 = shakes their antennae together
+language-Chittin-description = The noise made by rubbing its chelicerae together is actually a complex form of communication.
+chat-speech-verb-chittin-1 = rubs their chelicerae together
+chat-speech-verb-chittin-2 = rustles with their chelicerae
+chat-speech-verb-chittin-3 = shakes their chelicerae together
 chat-chittin-whisper-wrap = [italic][BubbleHeader][Name]{$entityName}[/Name][/BubbleHeader] [BubbleContent]subtly rustles "[font="{$fontType}" size={$fontSize}][color={$color}]{$message}[/color][/font]"[/italic][/BubbleContent]
 
 language-VoxPidgin-name = Vox-Pidgin
@@ -79,8 +79,14 @@ language-Xeno-description = The common tongue of the xenos.
 language-Cat-name = Cat
 language-Cat-description = Meow
 
+language-CatFeral-name = Cat (Feral)
+language-CatFeral-description = A less refined feline dialect, only interpretable by cats.
+
 language-Dog-name = Dog
 language-Dog-description = Bark!
+
+language-DogFeral-name = Dog (Feral)
+language-DogFeral-description = A less refined canine dialect, only interpretable by dogs.
 
 language-Fox-name = Fox
 language-Fox-description = Yeeps!
@@ -120,3 +126,27 @@ language-Lagomorphian-description = A very lynarxical tongue, developed as an in
 
 language-Cosmic-name = Astral Murmur
 language-Cosmic-description = THE CURTAINS MUST FALL
+
+language-Abductor-name = Abductor
+language-Abductor-description = ...
+
+language-Nexus-name = Nexus
+language-Nexus-description = A neural connection that allows them to communicate with others of their species over a technological network.
+
+language-Changeling-name = Hivemind
+language-Changeling-description = ...
+
+language-Dantalion-name = Thrall
+language-Dantalion-description = ...
+
+language-Empathy-name = Empathy
+language-Empathy-description = ...
+
+language-Carpmind-name = Hivemind
+language-Carpmind-description = Various fishy minds.
+
+language-Xenomind-name = Hivemind
+language-Xenomind-description = Various minds of xenos and terrors.
+
+language-Squeakish-name = Squeakish
+language-Squeakish-description = The language of the Rodentia, made up of a series of chirps and squeaks.

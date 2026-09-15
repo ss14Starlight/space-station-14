@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Resomi sprites by Huaqas (GitHub). | Lagomorph srpiets by InanimateIJK",
+    "copyright": "Resomi sprites by Huaqas (GitHub). | Lagomorph srpiets by InanimateIJK | Rodentia sprites by portfiend",
     "size": {
         "x": 32,
         "y": 32
@@ -46,6 +46,23 @@
                     0.5
                 ]
             ]
+        },
+        {
+          "name": "rodentia0",
+          "delays": [
+            [
+              0.2,
+              0.3,
+              0.3,
+              0.5
+            ]
+          ]
+        },
+        {
+          "name": "rodentia1"
+        },
+        {
+          "name": "rodentia2"
         }
     ]
 }

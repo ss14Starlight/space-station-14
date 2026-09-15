@@ -1,4 +1,85 @@
-# Industrial Mechs
+- type: entity
+  id: CombatMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - CombatMech
+      - NonLethalMech
+
+- type: entity
+  id: IndustrialMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - IndustrialMech
+  - type: MeleeThrowOnHit
+    speed: 10
+    distance: 1
+
+- type: entity
+  id: SpecialMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - SpecialMech
+
+- type: entity
+  id: SmallMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - SmallMech
+
+- type: entity
+  id: NanotrasenMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    firstStart: true
+    lowPowerSound:
+      path: /Audio/Mecha/lowpowernano.ogg
+    nominalSound:
+      path: /Audio/Mecha/nominalnano.ogg
+
+- type: entity
+  id: SyndieMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    firstStart: true
+    lowPowerSound:
+      path: /Audio/Mecha/lowpowersyndi.ogg
+    nominalSound:
+      path: /Audio/Mecha/nominalsyndi.ogg
+    nominalLongSound:
+      path: /Audio/Mecha/longsyndiactivation.ogg
+    criticalDamageSound:
+      path: /Audio/Mecha/critdestrsyndi.ogg
+
+- type: entity
+  parent: MechHonkerBattery
+  id: MechHonkerFilled
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechSpecialBananaMortar
+      - WeaponMechSpecialMousetrapMortar
+      - MechEquipmentHorn
 
 # Ripley MK-II
 - type: entity
@@ -18,6 +99,7 @@
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
     - type: Mech
+      maxIntegrity: 250 # Plasteel armor grants this mech superior durability
       equipmentWhitelist:
         tags:
           - IndustrialMech
@@ -42,7 +124,7 @@
     - type: Damageable
       damageModifierSet: MediumArmorNT
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 3
       energy: 5
@@ -90,13 +172,14 @@
     - type: Mech
       equipmentWhitelist:
         tags:
-          - PaddyMech
           - IndustrialMech
+          - NonLethalMech
       baseState: base
       openState: base-open
       brokenState: base-broken
       mechToPilotDamageMultiplier: 0.0
       airtight: true
+      maxIntegrity: 250
       maxEquipmentAmount: 4
       pilotWhitelist:
         components:
@@ -105,19 +188,21 @@
     - type: MeleeWeapon
       hidden: true
       attackRate: 1
-      bluntStaminaDamageFactor: 1.5
+      bluntStaminaDamageFactor: 2 # Raised from 1.5 to give it more nonlethal capacity.
       damage:
         types:
-          Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. #
+          Blunt: 20 # Lowered from 30 to 20 to emphasize it to be nonlethal and put it onpar with a truncheon.
     - type: MovementSpeedModifier
       baseWalkSpeed: 2
       baseSprintSpeed: 4
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 5
       energy: 5
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechPaddyBattery
@@ -144,7 +229,7 @@
 # Clarke
 - type: entity
   id: MechClarke
-  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  parent: [ BaseMech, IndustrialMech, BaseCargoSalvageContraband ]
   name: Clarke
   description: A special-purpose mech for heavy-duty mining operations. Outfitted with treads for stable locomotion in hazardous terrain.
   components:
@@ -178,7 +263,7 @@
       baseSprintSpeed: 4.5
     - type: MechThrusters
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 7
       energy: 6
@@ -242,11 +327,13 @@
       damageModifierSet: GygaxArmor
     - type: MechThrusters
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 6
       energy: 5
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechGygaxBattery
@@ -304,11 +391,13 @@
       damageModifierSet: DurandArmor
     - type: MechThrusters
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 7
       energy: 5
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechDurandBattery
@@ -368,6 +457,8 @@
     - type: Damageable
       damageModifierSet: HeavyArmorNT
     - type: MechThrusters
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechMarauderBattery
@@ -396,7 +487,7 @@
 # Seraph
 - type: entity
   id: MechSeraph
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband, NanotrasenMech ]
+  parent: [ BaseMech, CombatMech, BaseNanoTrasenContraband, NanotrasenMech ]
   name: Seraph
   description: That's the last thing you'll see. # Death Squad mech
   components:
@@ -437,6 +528,8 @@
     - type: Damageable
       damageModifierSet: HeavyArmorNT
     - type: MechThrusters
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechSeraphBattery
@@ -507,14 +600,16 @@
       baseWalkSpeed: 2
       baseSprintSpeed: 4.5
     - type: Damageable
-      damageModifierSet: MediumArmorSyndi
+      damageModifierSet: DarkGygaxArmor
     - type: MechThrusters
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 7
       energy: 6
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -586,12 +681,14 @@
     - type: MechThrusters
     - type: Magboots
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 6
       energy: 5
       color: "#ff0000"
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechMaulerSyndieBattery
@@ -659,6 +756,8 @@
       pilotWhitelist:
         components:
           - HumanoidAppearance
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   parent: MechHonkerDark
@@ -731,11 +830,13 @@
       damageModifierSet: MediumArmorSyndi
     - type: MechThrusters
     - type: PointLight
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: ConeSingle
       autoRot: true
       radius: 7
       energy: 6
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   parent: MechMimeSyndie
@@ -757,3 +858,15 @@
     - type: Mech
       startingEquipment:
         - WeaponMechSniperMime
+
+- type: entity
+  parent: MechZleeb
+  id: MechZleebBattery
+  suffix: Battery
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorHigh
+        mech-gas-tank-slot:
+          - MechAirTankFilled

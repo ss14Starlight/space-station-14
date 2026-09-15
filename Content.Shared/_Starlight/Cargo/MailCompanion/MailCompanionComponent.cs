@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Content.Shared.Medical.SuitSensor;
 

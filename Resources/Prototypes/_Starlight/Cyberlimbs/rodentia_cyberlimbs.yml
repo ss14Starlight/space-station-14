@@ -1,0 +1,789 @@
+- type: humanoidBaseSprite
+  id: RodentiaCyberLLeg
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArm
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHand
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLFoot
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRLeg
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArm
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHand
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRFoot
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_foot
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLLegSpeed
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+    state: l_leg_rodentia
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRLegSpeed
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+    state: r_leg_rodentia
+
+#silver
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmSilver
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_silver_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandSilver
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_silver_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandSilverReaper
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_silver_hand_SURG
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmSilver
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_silver_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandSilver
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_silver_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandSilverReaper
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_silver_hand_SURG
+
+#Steel
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmSteel
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_steel_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandSteel
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_steel_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandSteelMechwright
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_steel_hand_TOOLS
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmSteel
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_steel_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandSteel
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_steel_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandSteelMechwright
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_steel_hand_TOOLS
+
+#Security Red
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmBulwark
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_bulwark_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandBulwark
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_bulwark_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandBulwarkToggled
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_bulwark_hand_TOOLS
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmBulwark
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_bulwark_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandBulwark
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_bulwark_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandBulwarkToggled
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_bulwark_hand_TOOLS
+
+#Mantis Blade
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmMantisBlade
+  matchSkin: true
+  markingsMatchSkin: true
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_mantis_blade_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandMantisBlade
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_mantis_blade_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandMantisBladeToggled
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_mantis_blade_hand_BLADE
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmMantisBlade
+  matchSkin: true
+  markingsMatchSkin: true
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_mantis_blade_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandMantisBlade
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_mantis_blade_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandMantisBladeToggled
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_mantis_blade_hand_BLADE
+
+#ripper
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmRipper
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_ripper_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandRipper
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_ripper_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandRipperRipping
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_ripper_hand_SURG
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmRipper
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_ripper_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandRipper
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_ripper_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandRipperRipping
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_ripper_hand_SURG
+
+# Spacer
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmSpacer
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_spacer_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandSpacer
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_spacer_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandSpacerTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_spacer_hand_TOOLS
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmSpacer
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_spacer_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandSpacer
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_spacer_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandSpacerTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_spacer_hand_TOOLS
+
+# Gorilla
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmGorilla
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_gorilla_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandGorilla
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_gorilla_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandGorillaTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_gorilla_hand_TOOLS
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmGorilla
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_gorilla_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandGorilla
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_gorilla_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandGorillaTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_gorilla_hand_TOOLS
+
+# Angel
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmAngel
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_angel_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandAngel
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_angel_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandAngelTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_angel_hand_TOOLS
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmAngel
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_angel_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandAngel
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_angel_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandAngelTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_angel_hand_TOOLS
+
+# Zeus
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmZeus
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_zeus_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandZeus
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_zeus_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmZeus
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_zeus_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandZeus
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_zeus_hand
+
+# Riplet
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmRiplet
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_riplet_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandRiplet
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_riplet_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandRipletTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_riplet_hand_TOOLS
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmRiplet
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_riplet_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandRiplet
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_riplet_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandRipletTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_riplet_hand_TOOLS
+
+# Persephone
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmPersephone
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_persephone_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandPersephone
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_persephone_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandPersephoneTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_persephone_hand_TOOLS
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmPersephone
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_persephone_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandPersephone
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_persephone_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandPersephoneTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_persephone_hand_TOOLS
+
+# Scribe
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmScribe
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_scribe_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandScribe
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_scribe_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandScribeTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_scribe_hand_TOOLS
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmScribe
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_scribe_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandScribe
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_scribe_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandScribeTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_scribe_hand_TOOLS
+
+# Herakles
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmHerakles
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_bulwark_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandHerakles
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_bulwark_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandHeraklesTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_herakles_hand_TOOLS
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmHerakles
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_bulwark_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandHerakles
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_bulwark_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandHeraklesTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_herakles_hand_TOOLS
+
+# Investigator
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmInvestigator
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_investigator_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandInvestigator
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_investigator_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandInvestigatorTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_investigator_hand_TOOLS
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmInvestigator
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_investigator_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandInvestigator
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_investigator_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandInvestigatorTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_investigator_hand_TOOLS
+
+#Engineer
+- type: humanoidBaseSprite
+  id: RodentiaCyberLArmEngineer
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_engineer_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandEngineer
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_engineer_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberLHandEngineerTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_engineer_hand_TOOLS
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRArmEngineer
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_engineer_arm
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandEngineer
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_engineer_hand
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRHandEngineerTools
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_engineer_hand_TOOLS
+
+# Hydraulic
+- type: humanoidBaseSprite
+  id: RodentiaCyberLLegHydraulic
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_leg_hydraulic
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRLegHydraulic
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_leg_hydraulic
+
+# Pilebunker
+- type: humanoidBaseSprite
+  id: RodentiaCyberLLegPilebunker
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_leg_pilebunker
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRLegPilebunker
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_leg_pilebunker
+
+# Cargo
+- type: humanoidBaseSprite
+  id: RodentiaCyberLLegCargo
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: l_leg_cargo
+
+- type: humanoidBaseSprite
+  id: RodentiaCyberRLegCargo
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/rodentiaparts.rsi
+    state: r_leg_cargo

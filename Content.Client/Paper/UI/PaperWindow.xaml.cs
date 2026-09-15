@@ -9,14 +9,11 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
-using Robust.Client.UserInterface.RichText;
-using Content.Client.UserInterface.RichText;
 using Robust.Shared.Input;
 
 #region Starlight
 using Robust.Client.UserInterface;
-using Robust.Shared.IoC;
-using static Content.Shared.Paper.PaperComponent;
+using Content.Client._Starlight.UserInterface.RichText;
 #endregion Starlight
 
 namespace Content.Client.Paper.UI
@@ -26,10 +23,13 @@ namespace Content.Client.Paper.UI
     {
         private PaperComponent.PaperBoundUserInterfaceState _currentState = default!;
         private string _currentRawText = string.Empty;
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IResourceCache _resCache = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private IResourceCache _resCache = default!;
 
         private static Color DefaultTextColor = new(25, 25, 25);
+
+        // Default color for text which hasn't been changed using markup
+        private Color _writtenTextColor = DefaultTextColor;
 
         // Size of resize handles around the paper
         private const int DRAG_MARGIN_SIZE = 16;
@@ -161,7 +161,7 @@ namespace Content.Client.Paper.UI
                     visuals.FooterMargin.Right, visuals.FooterMargin.Bottom);
 
             PaperContent.ModulateSelfOverride = visuals.ContentImageModulate;
-            FillStatus.ModulateSelfOverride = visuals.FontAccentColor;
+            _writtenTextColor = visuals.DefaultTextColor ?? DefaultTextColor;
 
             var contentImage = visuals.ContentImagePath != null ? _resCache.GetResource<TextureResource>(visuals.ContentImagePath) : null;
             if (contentImage != null)
@@ -303,7 +303,7 @@ namespace Content.Client.Paper.UI
             // The markup system converts [form] and [signature] tags into interactive buttons
             var fm = new FormattedMessage();
             fm.AddMarkupPermissive(state.Text);
-            WrittenTextLabel.SetMessage(fm, UserFormattableTags.BaseAllowedTags, DefaultTextColor);
+            WrittenTextLabel.SetMessage(fm, UserFormattableTags.BaseAllowedTags, _writtenTextColor);
 
             // Add extra bottom margin based on tag count to prevent cutoff (only in read mode)
             var tagCount = CountTags(state.Text);
@@ -406,7 +406,7 @@ namespace Content.Client.Paper.UI
                 formButton.ModulateSelfOverride = Color.LightBlue;
 
             // Create the popup dialog structure
-            var popup = new Popup();
+            var popup = new Popup { CloseOnClick = false }; // Starlight
             var vbox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(10) };
             var editContainer = new PanelContainer { StyleClasses = { "TransparentBorderedWindowPanel" } };
             var edit = new LineEdit { MinSize = new Vector2(200, 0), Margin = new Thickness(5) };

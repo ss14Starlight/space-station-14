@@ -1,20 +1,19 @@
 ﻿using System.Threading.Tasks;
-using Content.Server.Administration.Managers;
 using Content.Server.Database;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 
-namespace Content.Server.Starlight;
+namespace Content.Server._Starlight;
 
 public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjectInit
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IServerDbManager _dbManager = default!;
-    [Dependency] private readonly IServerNetManager _netMgr = default!;
-    [Dependency] private readonly ILogManager _logger = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IServerDbManager _dbManager = default!;
+    [Dependency] private IServerNetManager _netMgr = default!;
+    [Dependency] private ILogManager _logger = default!;
 
     private readonly Dictionary<ICommonSession, PlayerReg> _players = new();
 

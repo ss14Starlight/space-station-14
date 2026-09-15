@@ -13,7 +13,6 @@
       Flammable: [Touch]
       Extinguish: [Touch]
       Acidic: [Touch, Ingestion]
-  - type: Internals
   - type: MovementSpeedModifier
     baseWalkSpeed : 4
     baseSprintSpeed : 4
@@ -42,7 +41,7 @@
   - MobBloodstream
   - MobFlammable
   # - BaseMobAnimal # Starlight Edit: Reverted NuBody
-  id: SimpleSpaceMobBase # Mob without barotrauma, freezing and asphyxiation (for space carps!?)
+  id: SimpleSpaceMobBaseTemplate # Mob without barotrauma, freezing and asphyxiation (for space carps!?) + Starlight, changed to template so we can allow some things to roll antags
   suffix: AI
   components:
   - type: NpcFactionMember
@@ -73,8 +72,8 @@
   parent:
   - MobRespirator
   - MobAtmosStandard
-  - SimpleSpaceMobBase
-  id: SimpleMobBase # for air breathers
+  - SimpleSpaceMobBaseTemplate # Starlight
+  id: SimpleMobBaseTemplate # Starlight, changed so we can inherit this among antag-rolling and non-antag rolling animals
   suffix: AI
   abstract: true
   components:
@@ -110,5 +109,3 @@
   - type: MobPrice
     price: 150
   - type: FloatingVisuals
-  - type: GhostOnMove
-    mustBeDead: true

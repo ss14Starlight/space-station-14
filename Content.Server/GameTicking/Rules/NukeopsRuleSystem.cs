@@ -35,7 +35,7 @@ using Robust.Shared.Prototypes;
 using Content.Server.AlertLevel;
 using Content.Server._NullLink.Helpers;
 using Content.Server._Starlight.Station;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Server.Player;
 using Content.Server._Starlight.Achievement;
@@ -43,7 +43,7 @@ using Content.Server._Starlight.Achievement;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
+public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 {
     // Starlight start: Achievements
     private static readonly (int Threshold, string AchievementId)[] LoneOperativeAchievements =
@@ -61,24 +61,31 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         ["results"]);
     #endregion
 
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
-    [Dependency] private readonly StoreSystem _store = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private EmergencyShuttleSystem _emergency = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private RoundEndSystem _roundEndSystem = default!;
+    [Dependency] private StoreSystem _store = default!;
+    [Dependency] private TagSystem _tag = default!;
     // Starlight Start
-    [Dependency] private readonly SharedCuffableSystem _cuffable = default!;
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
-    [Dependency] private readonly StationCrewCountSystem _stationCrewCount = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly AchievementSystem _achievements = default!; // Starlight: Achievements
-    [Dependency] private readonly IPlayerManager _playerManager = default!; // StarlightL Achievements
+    [Dependency] private SharedCuffableSystem _cuffable = default!;
+    [Dependency] private AlertLevelSystem _alertLevel = default!;
+    [Dependency] private StationCrewCountSystem _stationCrewCount = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private AchievementSystem _achievements = default!; // Starlight: Achievements
+    [Dependency] private IPlayerManager _playerManager = default!; // StarlightL Achievements
     // Starlight End
 
     private static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly ProtoId<TagPrototype> NukeOpsUplinkTagPrototype = "NukeOpsUplink";
+
+    // TODO: This shouldn't be matching by ProtoId.
+    // It would be better if this were checked by component or something,
+    // but it needs to be distinct between the full Nukeops and Loneops rules,
+    // which NukeopsRuleComponent currently isn't.
+    // Better yet, maybe the behaviors this is used for could be moved to the rule component.
+    private static readonly EntProtoId NukeopsGameRule = "Nukeops";
 
     public override void Initialize()
     {
@@ -163,8 +170,8 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 if (ev.OwningStation == GetOutpost(uid))
                 {
                     nukeops.WinConditions.Add(WinCondition.NukeExplodedOnNukieOutpost);
-                    SetWinType((uid, nukeops), WinType.CrewMajor, GameTicker.IsGameRuleActive("Nukeops")); // End the round ONLY if the actual gamemode is NukeOps.
-                    if (!GameTicker.IsGameRuleActive("Nukeops")) // End the rule if the LoneOp shuttle got nuked, because that particular LoneOp clearly failed, and should not be considered a Syndie victory even if a future LoneOp wins.
+                    SetWinType((uid, nukeops), WinType.CrewMajor, GameTicker.IsGameRuleActive(NukeopsGameRule)); // End the round ONLY if the actual gamemode is NukeOps.
+                    if (!GameTicker.IsGameRuleActive(NukeopsGameRule)) // End the rule if the LoneOp shuttle got nuked, because that particular LoneOp clearly failed, and should not be considered a Syndie victory even if a future LoneOp wins.
                         GameTicker.EndGameRule(uid);
                     continue;
                 }
@@ -195,7 +202,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 nukeops.WinConditions.Add(WinCondition.NukeExplodedOnIncorrectLocation);
             }
 
-            if (GameTicker.IsGameRuleActive("Nukeops")) // If it's Nukeops then end the round on any detonation
+            if (GameTicker.IsGameRuleActive(NukeopsGameRule)) // If it's Nukeops then end the round on any detonation
             {
                 _roundEndSystem.EndRound(TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.NukeRoundRestartTime))); // Starlight Edit: Round end timer set by Cvar
             }

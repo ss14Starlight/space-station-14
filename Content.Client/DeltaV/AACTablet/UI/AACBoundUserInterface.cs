@@ -3,9 +3,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.DeltaV.AACTablet.UI;
 
-public sealed class AACBoundUserInterface : BoundUserInterface
+public sealed partial class AACBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     [ViewVariables]
     private AACWindow? _window;

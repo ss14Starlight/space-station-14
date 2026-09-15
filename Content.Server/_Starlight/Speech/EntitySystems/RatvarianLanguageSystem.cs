@@ -6,11 +6,11 @@ using Content.Shared.Speech.EntitySystems;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Speech.EntitySystems;
+namespace Content.Server._Starlight.Speech.EntitySystems;
 
 public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSystem
 {
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
     private static readonly ProtoId<StatusEffectPrototype> _ratvarianKey = "RatvarianLanguage";
 

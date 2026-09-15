@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using Content.Shared.Teleportation.Systems;
 using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
@@ -11,10 +10,12 @@ public sealed class MsgUpdatePlayerRoles : NetMessage
 
     public ImmutableHashSet<ulong> Roles = [];
     public string? DiscordLink;
+    public string? SteamLink;
 
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {
         DiscordLink = buffer.ReadString();
+        SteamLink = buffer.ReadString();
 
         var length = buffer.ReadVariableInt32();
         var roles = new HashSet<ulong>(length);
@@ -27,6 +28,7 @@ public sealed class MsgUpdatePlayerRoles : NetMessage
     public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
     {
         buffer.Write(DiscordLink);
+        buffer.Write(SteamLink);
 
         buffer.WriteVariableInt32(Roles.Count);
         foreach (var role in Roles)

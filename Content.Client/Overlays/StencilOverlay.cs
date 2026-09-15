@@ -1,7 +1,9 @@
 using System.Numerics;
 using Content.Client.Graphics;
+using Content.Client.Light.EntitySystems;
 using Content.Client.Parallax;
 using Content.Client.Weather;
+using Content.Client._Starlight.Sprite;
 using Content.Shared.Salvage;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
@@ -9,7 +11,6 @@ using Content.Shared.Weather;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -24,17 +25,18 @@ public sealed partial class StencilOverlay : Overlay
     private static readonly ProtoId<ShaderPrototype> StencilMask = "StencilMask";
     private static readonly ProtoId<ShaderPrototype> StencilDraw = "StencilDraw";
 
-    [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private IClyde _clyde = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
     private readonly ParallaxSystem _parallax;
     private readonly SharedTransformSystem _transform;
     private readonly SharedMapSystem _map;
     private readonly SpriteSystem _sprite;
+    private readonly SpriteQualitySystem _spriteQuality; // Starlight
     private readonly WeatherSystem _weather;
     private readonly StatusEffectsSystem _statusEffects;
+    private GridStencilSystem _gridStencil = default!;
     private HashSet<Entity<WeatherStatusEffectComponent, StatusEffectComponent>>? _weatherSet = new();
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
@@ -43,16 +45,18 @@ public sealed partial class StencilOverlay : Overlay
 
     private readonly ShaderInstance _shader;
 
-    public StencilOverlay(ParallaxSystem parallax, SharedTransformSystem transform, SharedMapSystem map, SpriteSystem sprite, WeatherSystem weather, StatusEffectsSystem statusEffects)
+    public StencilOverlay(ParallaxSystem parallax, SharedTransformSystem transform, SharedMapSystem map, SpriteSystem sprite, SpriteQualitySystem spriteQuality, WeatherSystem weather, StatusEffectsSystem statusEffects) // Starlight
     {
         ZIndex = ParallaxSystem.ParallaxZIndex + 1;
         _parallax = parallax;
         _transform = transform;
         _map = map;
         _sprite = sprite;
+        _spriteQuality = spriteQuality; // Starlight
         _weather = weather;
         _statusEffects = statusEffects;
         IoCManager.InjectDependencies(this);
+        _gridStencil = _entManager.System<GridStencilSystem>();
         _shader = _protoManager.Index(CircleShader).InstanceUnique();
     }
 
@@ -70,7 +74,7 @@ public sealed partial class StencilOverlay : Overlay
         }
 
         if (_statusEffects.TryEffectsWithComp(mapUid, out _weatherSet))
-            DrawWeather(args, res, _weatherSet, invMatrix);
+            DrawWeather(args, _weatherSet);
 
         if (_entManager.TryGetComponent<RestrictedRangeComponent>(mapUid, out var restrictedRangeComponent))
             DrawRestrictedRange(args, res, restrictedRangeComponent, invMatrix);

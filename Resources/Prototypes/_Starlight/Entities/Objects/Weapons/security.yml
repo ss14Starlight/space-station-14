@@ -108,8 +108,15 @@
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/doublestunbaton.rsi
     layers:
+    - state: stunbaton_on
+      visible: true
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_on" ]
     - state: stunbaton_off
-      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_off" ]
+    - state: stunbaton_nocell
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_nocell" ]
 
 - type: entity
   name: purple stun baton
@@ -119,5 +126,12 @@
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/purplestunbaton.rsi
     layers:
+    - state: stunbaton_on
+      visible: true
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_on" ]
     - state: stunbaton_off
-      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_off" ]
+    - state: stunbaton_nocell
+      visible: false
+      map: [ "enum.StunbatonVisualLayers.Stunbaton_nocell" ]

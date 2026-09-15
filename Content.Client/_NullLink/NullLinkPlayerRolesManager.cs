@@ -6,13 +6,14 @@ using Robust.Shared.Network;
 
 namespace Content.Client._NullLink;
 
-public sealed class NullLinkPlayerRolesManager : INullLinkPlayerRolesManager
+public sealed partial class NullLinkPlayerRolesManager : INullLinkPlayerRolesManager
 {
-    [Dependency] private readonly IClientNetManager _netMgr = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private IClientNetManager _netMgr = default!;
+    [Dependency] private ILogManager _logManager = default!;
 
     private ImmutableHashSet<ulong> _roles = [];
     private string? _discordLink;
+    private string? _steamLink;
     private ISawmill _sawmill = default!;
 
     public event Action PlayerRolesChanged = delegate { };
@@ -27,6 +28,7 @@ public sealed class NullLinkPlayerRolesManager : INullLinkPlayerRolesManager
     {
         _roles = message.Roles;
         _discordLink = message.DiscordLink;
+        _steamLink = message.SteamLink;
 
         _sawmill.Info("Updated player roles");
         PlayerRolesChanged?.Invoke();
@@ -34,6 +36,9 @@ public sealed class NullLinkPlayerRolesManager : INullLinkPlayerRolesManager
 
     public string? GetDiscordLink()
         => _discordLink;
+
+    public string? GetSteamLink()
+        => _steamLink;
 
     public bool ContainsAny(ulong[] roles)
         => roles.Any(_roles.Contains);

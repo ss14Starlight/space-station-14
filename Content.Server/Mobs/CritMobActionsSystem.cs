@@ -9,22 +9,22 @@ using Robust.Server.Console;
 using Robust.Shared.Player;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffectNew; //Starlight
-using Content.Shared._Starlight.BreathOrgan; //Starlight
+using Content.Shared._Starlight.BreathOrgan.Systems; //Starlight
 
 namespace Content.Server.Mobs;
 
 /// <summary>
 ///     Handles performing crit-specific actions.
 /// </summary>
-public sealed class CritMobActionsSystem : EntitySystem
+public sealed partial class CritMobActionsSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly DeathgaspSystem _deathgasp = default!;
-    [Dependency] private readonly IServerConsoleHost _host = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!; // Starlight
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private DeathgaspSystem _deathgasp = default!;
+    [Dependency] private IServerConsoleHost _host = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private StatusEffectsSystem _status = default!; // Starlight
 
     private const int MaxLastWordsLength = 30;
 
@@ -48,7 +48,7 @@ public sealed class CritMobActionsSystem : EntitySystem
 
     private void OnFakeDeath(EntityUid uid, MobStateActionsComponent component, CritFakeDeathEvent args)
     {
-        if (!_mobState.IsCritical(uid))
+        if (_mobState.IsDead(uid)) //Starlight - changed to checking if the creature is *dead*, rather than not critical, now we can use the same action to fake death on anyone still alive.
             return;
 
         //Starlight Start

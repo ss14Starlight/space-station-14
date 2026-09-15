@@ -13,10 +13,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._DEN.QuickConstruction.UI;
 [UsedImplicitly]
-public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
+public sealed partial class QuickConstructionBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IPlacementManager _placementMan = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlacementManager _placementMan = default!;
 
     private SimpleRadialMenu? _menu;
 

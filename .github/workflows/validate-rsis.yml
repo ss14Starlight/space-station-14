@@ -1,5 +1,10 @@
 name: RSI Validator
 
+# Cancel older jobs on PRs when new changes are pushed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 on:
   push:
     branches: [ master, staging, stable, Starlight ]
@@ -13,7 +18,7 @@ jobs:
     name: Validate RSIs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v7
       - name: Setup Submodule
         run: git submodule update --init
       - name: Pull engine updates

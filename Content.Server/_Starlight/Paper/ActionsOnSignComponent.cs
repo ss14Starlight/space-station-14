@@ -24,7 +24,7 @@ public sealed partial class ActionsOnSignComponent : Component
     /// A set of every entity that signed this paper. both to prevent re-signing and to deploy the effects once all signatures are collected
     /// </summary>
     [ViewVariables]
-    public HashSet<EntityUid> Signers = new();
+    public HashSet<EntityUid> Signers = [];
 
     /// <summary>
     /// is the faxable component kept? this is for admeme protos

@@ -1,7 +1,7 @@
-﻿using Content.Server.DoAfter;
-using Content.Server.Lube;
-using Content.Server.Nutrition.EntitySystems;
+﻿using Content.Server._Starlight.Nutrition.EntitySystems;
+using Content.Server.DoAfter;
 using Content.Server.Popups;
+using Content.Shared._Starlight.Lube;
 using Content.Shared._Starlight.Washing;
 using Content.Shared.DoAfter;
 using Content.Shared.Glue;
@@ -17,14 +17,14 @@ namespace Content.Server._Starlight.Washing;
 /// <summary>
 /// System for using washing fixtures for self-cleaning.
 /// </summary>
-public sealed class WashingFixtureSystem : EntitySystem
+public sealed partial class WashingFixtureSystem : EntitySystem
 {
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly CreamPieSystem _creamPie = default!;
-    [Dependency] private readonly GlueSystem _glueSystem = default!;
-    [Dependency] private readonly LubedSystem _lubedSystem = default!;
+    [Dependency] private AudioSystem _audioSystem = default!;
+    [Dependency] private DoAfterSystem _doAfterSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private CreamPieSystem _creamPie = default!;
+    [Dependency] private GlueSystem _glueSystem = default!;
+    [Dependency] private SharedLubedSystem _lubedSystem = default!;
 
     public override void Initialize()
     {

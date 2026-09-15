@@ -1,4 +1,3 @@
-using Content.Server._Starlight.Bluespace;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stacks;
@@ -7,14 +6,14 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server._Starlight.NullSpace;
+namespace Content.Server._Starlight.Bluespace;
 
-public sealed class BluespaceCrystalSystem : EntitySystem
+public sealed partial class BluespaceCrystalSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedStackSystem _sharedStackSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedStackSystem _sharedStackSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
     public EntProtoId BluespaceCrystalEffect = "EffectFlashBluespace"; //TODO: Change this?
     private const int MaxRandomTeleportAttempts = 20;
     public override void Initialize()

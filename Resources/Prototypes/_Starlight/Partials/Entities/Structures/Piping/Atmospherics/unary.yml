@@ -1,0 +1,20 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values: &protos
+    - GasVentPump
+    - GasPassiveVent
+    - GasVentScrubber
+    - GasOutletInjector
+    - GasThermoMachineFreezer
+    - GasThermoMachineFreezerEnabled
+    - GasThermoMachineHeater
+    - GasThermoMachineHeaterEnabled
+    - GasThermoMachineHellfireFreezer
+    - GasThermoMachineHellfireHeater
+    - BaseGasCondenser
+  components:
+    - type: SandboxCopyOverride
+      override: !type:CreateVariants
+        values: *protos
+
+

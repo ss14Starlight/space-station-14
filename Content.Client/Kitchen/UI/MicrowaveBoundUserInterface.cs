@@ -1,5 +1,5 @@
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Kitchen.Components;
+using Content.Shared.Kitchen;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;

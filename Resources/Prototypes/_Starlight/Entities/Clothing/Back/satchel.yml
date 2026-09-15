@@ -44,7 +44,7 @@
     sprite: _Starlight/Clothing/Back/Satchels/hop.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  parent: [ClothingBackpackSatchel, BaseCommandManagerContraband]
   id: ClothingBackpackSatchelCommandGeneric
   name: command satchel
   description: A satchel in command's distinctive shade of blue.

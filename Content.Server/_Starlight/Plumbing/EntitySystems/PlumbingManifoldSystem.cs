@@ -1,8 +1,7 @@
 using Content.Server._Starlight.Plumbing.Components;
 using Content.Server._Starlight.Plumbing.Nodes;
+using Content.Shared.Atmos;
 using Content.Shared.NodeContainer;
-using System;
-using System.Collections.Generic;
 
 namespace Content.Server._Starlight.Plumbing.EntitySystems;
 
@@ -12,6 +11,7 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 /// </summary>
 public sealed class PlumbingManifoldSystem : EntitySystem
 {
+    internal readonly Dictionary<(EntityUid Owner, string NodeName, PipeDirection Direction), EntityUid> SelectedDuctByMachineSide = [];
     /// <summary>
     /// Gets all sibling manifold nodes that should be internally bridged with the provided node.
     /// </summary>

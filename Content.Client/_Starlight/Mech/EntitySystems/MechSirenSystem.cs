@@ -5,9 +5,9 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Starlight.Mech.EntitySystems;
 
-public sealed class MechSirenSystem : SharedMechSirenSystem
+public sealed partial class MechSirenSystem : SharedMechSirenSystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

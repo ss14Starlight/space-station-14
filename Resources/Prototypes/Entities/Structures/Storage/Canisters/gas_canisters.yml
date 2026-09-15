@@ -45,6 +45,17 @@
         enum.StorageVisuals.Open:
           enum.PaperLabelVisuals.Layer:
             True: { visible: false }
+        # Starlight BEGIN
+        enum.TamperSealVisuals.Opened:
+          enum.TamperSealLayers.Sealed:
+            False: {
+              sprite: _Starlight/Structures/Storage/tamper_seal64.rsi,
+              visible: true,
+              state: canister_cap_sealed,
+              color: "#ffffff"
+            }
+            True: { visible: false }
+        # Starlight END
         enum.PaperLabelVisuals.LabelType:
           enum.PaperLabelVisuals.Layer:
             Paper: { state: paper }
@@ -132,6 +143,21 @@
       - GasCanisters
     - type: Paintable
       group: Canisters
+    # Starlight BEGIN
+    - type: TamperSealable
+      destroyToolQualities: [Prying]
+    - type: PaperLabel # Overrides parent
+      labelSlot:
+        priority: 100 # <-- Only change relative to BasePaperLabelable.
+        insertVerbText: comp-paper-label-insert
+        ejectVerbText: comp-paper-label-eject
+        whitelist:
+          components:
+            - Paper
+        blacklist:
+          tags:
+            - Book
+    # Starlight END
 
 - type: entity
   parent: GasCanister

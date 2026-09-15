@@ -241,7 +241,7 @@
     variation: 0.125
   sounds:
     Scream:
-      path: /Audio/_Starlight/Effects/avali_scream.ogg
+      path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
     Laugh:
       collection: ResomiLaugh
     Honk:
@@ -255,17 +255,17 @@
     Hew:
       collection: Hew
     Gasp:
-      collection: FemaleGasp
+      path: /Audio/_Starlight/Voice/Resomi/resomi_gasp.ogg
     DefaultDeathgasp:
       path: /Audio/_Starlight/Voice/Resomi/resomi_deathgrasp.ogg
     Sigh:
-      collection: FemaleSigh
+      path: /Audio/_Starlight/Voice/Resomi/resomi_sigh.ogg
     Crying:
       collection: ResomiCry
     Cough:
-      collection: FemaleCoughs
+      path: /Audio/_Starlight/Voice/Resomi/resomi_cough.ogg
     Yawn:
-      collection: FemaleYawn
+      path: /Audio/_Starlight/Voice/Resomi/resomi_yawn.ogg
     Hisses:
       collection: FelionoidHisses
     Purr:
@@ -511,12 +511,10 @@
       collection: LagomorphSqueak
     Snort:
       collection: LagomorphSnort
-    LagomorphSneeze:
+    Sneeze:
       collection: LagomorphSneeze
     LagomorphSnore:
       collection: LagomorphSnore
-    LagomorphStomp:
-      collection: LagomorphStomp
 
 - type: emoteSounds
   id: FemaleLagomorph
@@ -549,12 +547,10 @@
       collection: LagomorphSqueak
     Snort:
       collection: LagomorphSnort
-    LagomorphSneeze:
+    Sneeze:
       collection: LagomorphSneeze
     LagomorphSnore:
       collection: LagomorphSnore
-    LagomorphStomp:
-      collection: LagomorphStomp
 
 - type: emoteSounds
   id: Dog
@@ -598,6 +594,8 @@
       path: /Audio/Voice/Moth/moth_chitter.ogg
     Squeak:
       path: /Audio/Voice/Moth/moth_squeak.ogg
+    Marr:
+      path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
     Weh:
       collection: Weh
     Hew:
@@ -634,3 +632,412 @@
       collection: FelionoidTrills
     DefaultDeathgasp:
       collection: MothDeathGasp
+
+- type: emoteSounds
+  id: CatMothBodyEmotes
+  sounds:
+    Flap:
+      path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
+    Thump:
+      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
+      params:
+        variation: 0.125
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Salute:
+      collection: Salutes
+
+- type: emoteSounds
+  id: MaleRodentia
+  sounds:
+    Scream:
+      path: /Audio/Animals/mouse_squeak.ogg
+    Laugh:
+      collection: MaleLaugh
+    Cough:
+      collection: MaleCoughs
+    Yawn:
+      collection: MaleYawn
+    Sigh:
+      collection: MaleSigh
+    Crying:
+      collection: MaleCry
+    Whistle:
+      collection: Whistles
+    Sneeze:
+      collection: MaleSneezes
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
+    Snore:
+      collection: Snores
+    Squeak:
+      path: /Audio/Animals/mouse_squeak.ogg
+
+- type: emoteSounds
+  id: FemaleRodentia
+  sounds:
+    Scream:
+      path: /Audio/Animals/mouse_squeak.ogg
+    Laugh:
+      collection: FemaleLaugh
+    Cough:
+      collection: FemaleCoughs
+    Yawn:
+      collection: FemaleYawn
+    Sigh:
+      collection: FemaleSigh
+    Crying:
+      collection: FemaleCry
+    Whistle:
+      collection: Whistles
+    Sneeze:
+      collection: FemaleSneezes
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
+    Snore:
+      collection: Snores
+    Squeak:
+      path: /Audio/Animals/mouse_squeak.ogg
+
+- type: emoteSounds
+  id: CluwneBeast
+  sound:
+    collection: CluwneBeastScreams
+    params:
+      variation: 0.125
+
+- type: emoteSounds
+  id: MothroachBodyEmotes
+  sounds:
+    Flap:
+      path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
+      params:
+        pitch: 1.45
+
+- type: emoteSounds
+  id: LagomorphBodyEmotes
+  sounds:
+    LagomorphStomp:
+      collection: LagomorphStomp
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Salute:
+      collection: Salutes
+
+- type: emoteSounds
+  id: Monkey
+  sounds:
+    Scream:
+      path: /Audio/Animals/monkey_scream.ogg
+      params:
+        variation: 0.125
+    Whistle:
+      collection: Whistles
+      params:
+        variation: 0.125
+    Snore:
+      collection: Snores
+      params:
+        pitch: 1.3
+        volume: -5
+        variation: 0.125
+    Gasp:
+      collection: MaleGasp
+      params:
+        pitch: 1.3
+        volume: -5
+        variation: 0.025
+
+# Generic male sounds for every emote
+- type: emoteSounds
+  id: MaleAllEmotes
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: MaleScreams
+    Laugh:
+      collection: MaleLaugh
+    Honk:
+      collection: BikeHorn
+    Sigh:
+      collection: MaleSigh
+    Whistle:
+      collection: Whistles
+    Crying:
+      collection: MaleCry
+    Squish:
+      collection: Squishes
+    Chitter:
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+    Squeak:
+      path: /Audio/Voice/Moth/moth_squeak.ogg
+    Click:
+      path: /Audio/Voice/Vox/vox_click.ogg
+    Bark:
+      collection: Bark
+    Snarl:
+      collection: VulpkaninSnarls
+    Whine:
+      collection: Whine
+    Howl:
+      path: /Audio/_Starlight/Effects/howl.ogg
+    Growl:
+      collection: Growl
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Thump:
+      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
+      params:
+        variation: 0.125
+    Salute:
+      collection: Salutes
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
+    MonkeyDeathgasp:
+      collection: MaleDeathGasp
+    ScurretDeathgasp:
+      collection: MaleDeathGasp
+    Buzz:
+      path: /Audio/Machines/buzz-sigh.ogg
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Chirp:
+      path: /Audio/Animals/nymph_chirp.ogg
+    Beep:
+      path: /Audio/Machines/twobeep.ogg
+    Chime:
+      path: /Audio/Machines/chime.ogg
+    Buzz-Two:
+      path: /Audio/Machines/buzz-two.ogg
+    Ping:
+      path: /Audio/Effects/Cargo/ping.ogg
+    Yip:
+      path: /Audio/_Starlight/Effects/yip.ogg
+    Mew:
+      collection: FelionoidMews
+    Hisses:
+      collection: FelionoidHisses
+    Meow:
+      collection: FelionoidMeows
+    Purr:
+      collection: FelionoidPurrs
+    Trill:
+      collection: FelionoidTrills
+    Marr:
+      path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
+    Wurble:
+      path: /Audio/_Starlight/Voice/Shadekin/wurble.ogg
+    Scree:
+      collection: ResomiScrees
+    Call:
+      collection: ResomiCalls
+    Squawk:
+      collection: ResomiSquawk
+    Lurr:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
+    Liss:
+      collection: ReptilianHiss
+    Rattle:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
+    Flap:
+      path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops
+    Squee:
+      collection: LagomorphSqueak
+    Snort:
+      collection: LagomorphSnort
+    LagomorphSnore:
+      collection: LagomorphSnore
+    LagomorphStomp:
+      collection: LagomorphStomp
+    ThavenGlub:
+      collection: ThavenGlub
+    ThavenHum:
+      collection: ThavenMHum
+    DeathgaspIPC:
+      collection: MaleDeathGasp
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    CatMeow:
+      collection: CatMeows
+    CatHisses:
+      collection: CatHisses
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    RobotBeep:
+      collection: RobotBeeps
+    Yawn:
+      collection: MaleYawn
+    Snore:
+      collection: Snores
+
+# Generic female sounds for every emote
+- type: emoteSounds
+  id: FemaleAllEmotes
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FemaleScreams
+    Laugh:
+      collection: FemaleLaugh
+    Honk:
+      collection: CluwneHorn
+    Sigh:
+      collection: FemaleSigh
+    Whistle:
+      collection: Whistles
+    Crying:
+      collection: FemaleCry
+    Squish:
+      collection: Squishes
+    Chitter:
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+    Squeak:
+      path: /Audio/Voice/Moth/moth_squeak.ogg
+    Click:
+      path: /Audio/Voice/Vox/vox_click.ogg
+    Bark:
+      collection: Bark
+    Snarl:
+      collection: VulpkaninSnarls
+    Whine:
+      collection: Whine
+    Howl:
+      path: /Audio/_Starlight/Effects/howl.ogg
+    Growl:
+      collection: Growl
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Thump:
+      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
+      params:
+        variation: 0.125
+    Salute:
+      collection: Salutes
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
+    MonkeyDeathgasp:
+      collection: FemaleDeathGasp
+    ScurretDeathgasp:
+      collection: FemaleDeathGasp
+    Buzz:
+      path: /Audio/Machines/buzz-sigh.ogg
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Chirp:
+      path: /Audio/Animals/nymph_chirp.ogg
+    Beep:
+      path: /Audio/Machines/twobeep.ogg
+    Chime:
+      path: /Audio/Machines/chime.ogg
+    Buzz-Two:
+      path: /Audio/Machines/buzz-two.ogg
+    Ping:
+      path: /Audio/Effects/Cargo/ping.ogg
+    Yip:
+      path: /Audio/_Starlight/Effects/yip.ogg
+    Mew:
+      collection: FelionoidMews
+    Hisses:
+      collection: FelionoidHisses
+    Meow:
+      collection: FelionoidMeows
+    Purr:
+      collection: FelionoidPurrs
+    Trill:
+      collection: FelionoidTrills
+    Marr:
+      path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
+    Wurble:
+      path: /Audio/_Starlight/Voice/Shadekin/wurble.ogg
+    Scree:
+      collection: ResomiScrees
+    Call:
+      collection: ResomiCalls
+    Squawk:
+      collection: ResomiSquawk
+    Lurr:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
+    Liss:
+      collection: ReptilianHiss
+    Rattle:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
+    Flap:
+      path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops
+    Squee:
+      collection: LagomorphSqueak
+    Snort:
+      collection: LagomorphSnort
+    LagomorphSnore:
+      collection: LagomorphSnore
+    LagomorphStomp:
+      collection: LagomorphStomp
+    ThavenGlub:
+      collection: ThavenGlub
+    ThavenHum:
+      collection: ThavenFHum
+    DeathgaspIPC:
+      collection: FemaleDeathGasp
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    CatMeow:
+      collection: CatMeows
+    CatHisses:
+      collection: CatHisses
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    RobotBeep:
+      collection: RobotBeeps
+    Yawn:
+      collection: FemaleYawn
+    Snore:
+      collection: Snores

@@ -11,11 +11,11 @@ namespace Content.Server._Starlight.Antags.Actions;
 
 public sealed partial class EMPScreamSystem : EntitySystem
 {
-    [Dependency] private readonly EmpSystem _emp = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private EmpSystem _emp = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private SharedCameraRecoilSystem _recoil = default!;
+    [Dependency] private AudioSystem _audio = default!;
 
     public override void Initialize()
     {

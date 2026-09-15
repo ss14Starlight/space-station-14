@@ -1,16 +1,12 @@
-﻿using Content.Client.Beam.Components;
-using Content.Shared.Beam;
+﻿using Content.Shared.Beam;
 using Content.Shared.Beam.Components;
 using Robust.Client.GameObjects;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Toolshed.TypeParsers;
 
 namespace Content.Client.Beam;
 
-public sealed class BeamSystem : SharedBeamSystem
+public sealed partial class BeamSystem : SharedBeamSystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

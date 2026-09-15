@@ -457,6 +457,23 @@
 
 # generic modules
 - type: entity
+  id: BorgModulePrying
+  parent: [ BaseBorgModule ]
+  name: prying module
+  description: A universal cyborg module which allows the unit to pry open doors.
+  components:
+  - type: Sprite
+    layers:
+    - state: generic
+    - state: icon-tools
+  - type: ComponentBorgModule
+    components:
+    - type: Prying
+      speedModifier: 1.5
+      useSound:
+        path: /Audio/Items/jaws_pry.ogg
+
+- type: entity
   id: BorgModuleCable
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: cable cyborg module
@@ -610,7 +627,8 @@
   components:
   - type: Sprite
     layers:
-    - state: mining # Starlight
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi # Starlight
+      state: mining
     - state: icon-mining
   - type: ItemBorgModule
     hands:
@@ -621,10 +639,11 @@
     - item: RadioHandheldExpedition # Starlight
     - hand: # Starlight
         emptyRepresentative: GoldOre
-        emptyLabel: borg-slot-ore-empty
+        emptyLabel: borg-slot-ore-ticket-empty
         whitelist:
           tags:
             - Ore
+            - SalvageTicket # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: mining-module }
 
@@ -636,7 +655,8 @@
   components:
   - type: Sprite
     layers:
-    - state: mining # Starlight
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+      state: mining # Starlight
     - state: icon-mining-adv
   - type: ItemBorgModule
     hands:
@@ -646,10 +666,11 @@
     - item: OreBagOfHolding
     - hand: # Starlight
         emptyRepresentative: GoldOre
-        emptyLabel: borg-slot-ore-empty
+        emptyLabel: borg-slot-ore-ticket-empty
         whitelist:
           tags:
             - Ore
+            - SalvageTicket # Starlight
     - item: RadioHandheldExpedition # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }
@@ -661,7 +682,8 @@
   components:
   - type: Sprite
     layers:
-    - state: mining # Starlight
+    - sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi # Starlight
+      state: mining
     - state: icon-grappling-gun
   - type: ItemBorgModule
     hands:
@@ -696,6 +718,7 @@
 
 - type: entity
   id: BorgModuleConstructionMaterialPlaceholder
+  categories: [ HideSpawnMenu ] # Starlight
   parent: BaseItem
   components:
   - type: Sprite
@@ -796,8 +819,17 @@
     - state: icon-rcd
   - type: ItemBorgModule
     hands:
-    - item: RCDRecharging
-    - item: RPDRecharging # Starlight: RPD
+    #region Starlight
+    - item: RCD
+    - item: RPD
+    - item: RCDAmmo
+      hand:
+        emptyRepresentative: RCDAmmo
+        emptyLabel: borg-slot-rcd-ammo-empty
+        whitelist:
+          components:
+          - RCDAmmo
+    #endregion Starlight
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic
     - item: GasAnalyzer
@@ -906,7 +938,7 @@
     - state: icon-treatment
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    #- item: HandheldHealthAnalyzer # Starlight
     #- item: AdvancedJetInjector # Starlight-disable - remove jet injector in favor of a syringe that can be replaced with a jet injector as resources allow
     # Starlight start - add swappable syringe slot
     - item: Syringe
@@ -976,7 +1008,7 @@
     - state: icon-defib
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    #- item: HandheldHealthAnalyzer # Starlight
     - item: DefibrillatorOneHandedUnpowered
     - item: Crowbar
     - item: BorgFireExtinguisher
@@ -1049,7 +1081,7 @@
     - state: icon-chem
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
+    #- item: HandheldHealthAnalyzer # Starlight
     - item: BorgHypo
     # Starlight-remove - drop the topical slots to make room for our added automenders and beaker slots
     #- item: Gauze
@@ -1096,15 +1128,17 @@
           - Pill
           - PatchPack # Starlight
           - Patch # Starlight
-    - item: Beaker
-      hand:
-        emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Beaker
-        whitelist:
-          components:
-          - FitsInDispenser
-          tags:
-          - ChemDispensable
+    # Starlight-remove - replace first freeform beaker slot with built-in chemical case
+    #- item: Beaker
+    #      hand:
+    #        emptyLabel: borg-slot-chemical-containers-empty
+    #        emptyRepresentative: Beaker
+    #        whitelist:
+    #          components:
+    #          - FitsInDispenser
+    #          tags:
+    #          - ChemDispensable
+    - item: BottleCaseMedical # Starlight
     - item: Beaker
       hand:
         emptyLabel: borg-slot-chemical-containers-empty
@@ -1268,6 +1302,16 @@
         whitelist:
           components:
           - Instrument
+    # Starlight start
+    - hand:
+        emptyLabel: borg-slot-music-media-empty
+        emptyRepresentative: VinylAirportLounge
+        whitelist:
+          tags:
+          - VinylSleeveFit
+          - VinylSleeve
+          - CD
+    # Starlight end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: musical-module }
 
@@ -1676,6 +1720,22 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-door-remote-module }
 
 - type: entity
+  parent: [ BaseXenoborgModuleEngiWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklist
+  id: XenoborgModuleTileGun
+  name: tile gun xenoborg module
+  description: Module with a tile gun. wait, a what?
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_engi
+    - state: icon-xenoborg-tile
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponTileGun
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-tile-module }
+
+- type: entity
   parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleJammer
   name: jammer xenoborg module
@@ -1692,7 +1752,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-jammer-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
   id: XenoborgModuleLaser
   name: laser xenoborg module
   description: Module with a laser gun.
@@ -1704,11 +1764,12 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserGunXenoborg
+    - item: XenoShiv # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
   id: XenoborgModuleHeavyLaser
   name: laser cannon xenoborg module
   description: Module with a laser cannon.
@@ -1720,6 +1781,7 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserCannonXenoborg
+    - item: XenoKnife # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
 
@@ -1745,7 +1807,24 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleScout, BaseXenoborgContraband ]
+  id: XenoborgModuleJump
+  name: xenoborg jump module
+  description: Module that allows a xenoborg to jump forward.
+  components:
+  - type: ComponentBorgModule
+    components:
+    - type: JumpAbility
+      action: ActionJumpBoost
+      jumpDistance: 4
+      jumpSound: /Audio/Effects/stealthoff.ogg
+  - type: Sprite
+    layers:
+    - state: xenoborg_scout
+    - state: icon-xenoborg-jump
+
+- type: entity
+  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
   id: XenoborgModuleSword
   name: knife xenoborg module
   description: Module with a kukri knife.
@@ -1762,7 +1841,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
   id: XenoborgModuleEnergySword
   name: energy dagger xenoborg module
   description: Module with an energy dagger.
@@ -1779,10 +1858,10 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword2-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleStealth, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleStealthWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
   id: XenoborgModuleHypo
-  name: nocturine hypo xenoborg module
-  description: Module with a self-refilling nocturine hypo.
+  name: hypo xenoborg module # Starlight
+  description: Module with self-refilling hypos. # Starlight
   components:
   - type: Sprite
     layers:
@@ -1791,6 +1870,7 @@
   - type: ItemBorgModule
     hands:
     - item: NocturineHypo
+    - item: LicoxideHypo # Starlight. It's not that good. They can have it.
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-hypo-module }
 

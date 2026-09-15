@@ -53,13 +53,34 @@
             <RichTextLabel Margin="8,8,8,8" Name="PageText" VerticalAlignment="Top"/>
         </ScrollContainer>
     </PanelContainer>
-    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5,5,5,5">
-        <Button
-            Name="NotificationSwitch"
-            ToolTip="{Loc news-reader-ui-mute-tooltip}"
-            MinWidth="20"/>
-        <RichTextLabel Margin="5,2,2,2" Name="ShareTime" VerticalAlignment="Top"/>
-        <customControls:VSeparator Margin="2 0"/>
-        <RichTextLabel Margin="5,2,2,2" Name="Author" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+    <!-- Starlight-edit start -->
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="5,1,5,2">
+        <RichTextLabel
+            Margin="0,0,0,1"
+            Name="Author"
+            HorizontalExpand="True"
+            VerticalAlignment="Bottom"/>
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Button
+                Name="NotificationSwitch"
+                ToolTip="{Loc news-reader-ui-mute-tooltip}"
+                MinWidth="20"
+                VerticalAlignment="Bottom"/>
+            <RichTextLabel Margin="5,1,2,1" Name="ShareTime" VerticalAlignment="Bottom"/>
+            <customControls:VSeparator Name="ReactionsSeparator" Margin="2 0"/>
+            <Button
+                Name="Like"
+                MinWidth="52"
+                VerticalAlignment="Bottom"
+                ToolTip="{Loc 'news-read-ui-like-tooltip'}"/>
+            <Button
+                Name="Dislike"
+                MinWidth="52"
+                VerticalAlignment="Bottom"
+                ToolTip="{Loc 'news-read-ui-dislike-tooltip'}"/>
+            <customControls:VSeparator Name="ViewsSeparator" Margin="2 0"/>
+            <RichTextLabel Margin="5,1,2,1" Name="Views" VerticalAlignment="Bottom"/>
+        </BoxContainer>
+    <!-- Starlight-edit end -->
     </BoxContainer>
 </cartridges:NewsReaderUiFragment>

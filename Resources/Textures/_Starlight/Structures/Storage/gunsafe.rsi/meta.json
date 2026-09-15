@@ -1,0 +1,127 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "copyright": "State based copyright",
+    "license": "CC-BY-SA-3.0",
+    "states": [
+        {
+            "name": "gunsafe",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "gunsafe_open",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "command_gunsafe",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "command_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "command_gunsafe_open",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "lawyer_gunsafe",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "lawyer_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "lawyer_gunsafe_open",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "syndicate_gunsafe",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "syndicate_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "syndicate_gunsafe_open",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "locked",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "unlocked",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "welded",
+			"copyright": "Made by Conflee for Starlight"
+        },
+		{
+            "name": "disabler_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "dmr_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "drozd_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "enforcer_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "kammerer_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "laser_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "lecter_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "lmg_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "lwap_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "pistol_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "rifle_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "shotgun_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "smg_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        },
+		{
+            "name": "wt550_gunsafe_doors",
+			"copyright": "Made by Conflee for Starlight, gun icon by @Stxcking (github) for DeltaV"
+        }
+    ]
+}

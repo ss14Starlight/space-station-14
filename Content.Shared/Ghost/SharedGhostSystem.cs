@@ -11,9 +11,9 @@ namespace Content.Shared.Ghost
     /// System for the <see cref="GhostComponent"/>.
     /// Prevents ghosts from interacting when <see cref="GhostComponent.CanGhostInteract"/> is false.
     /// </summary>
-    public abstract class SharedGhostSystem : EntitySystem
+    public abstract partial class SharedGhostSystem : EntitySystem
     {
-        [Dependency] protected readonly SharedPopupSystem Popup = default!;
+        [Dependency] protected SharedPopupSystem Popup = default!;
 
         public override void Initialize()
         {
@@ -99,6 +99,15 @@ namespace Content.Shared.Ghost
 
             entity.Comp.CanGhostInteract = value;
             Dirty(entity);
+        }
+
+        // Starlight
+        public bool DoGhostBooEvent(EntityUid target)
+        {
+            var ghostBoo = new GhostBooEvent();
+            RaiseLocalEvent(target, ghostBoo, true);
+
+            return ghostBoo.Handled;
         }
     }
 

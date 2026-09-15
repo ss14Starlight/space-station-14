@@ -1,0 +1,14 @@
+# Blackstar NPC Faction
+
+- type: npcFaction
+  id: Blackstar
+  hostile:
+  - NanoTrasen
+  - NanoTrasenSilicon
+  - PetsNT
+  - SimpleHostile
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - AllHostile
+  - Gorilla

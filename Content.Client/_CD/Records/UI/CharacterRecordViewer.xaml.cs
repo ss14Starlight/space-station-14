@@ -1,7 +1,5 @@
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Administration;
-using System;
-using System.Collections.Generic;
 using Content.Shared.Security;
 using Content.Shared.StationRecords;
 using Content.Shared.CriminalRecords;
@@ -140,7 +138,7 @@ public sealed partial class CharacterRecordViewer : FancyWindow
         {
             var status = (SecurityStatus)args.Id;
             // This should reflect SetStatus in CriminalRecordsConsoleWindow.xaml.cs
-            if (status == SecurityStatus.Wanted || status == SecurityStatus.Suspected)
+            if (status == SecurityStatus.Wanted || status == SecurityStatus.Suspected || status == SecurityStatus.Arrestonsight || status == SecurityStatus.Hostile) // Starlight Edit
                 SetStatusWithReason(status);
             else
                 OnSetSecurityStatus?.Invoke(status, null);

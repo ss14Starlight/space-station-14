@@ -2,10 +2,10 @@ using Content.Shared.Actions;
 
 namespace Content.Shared._Starlight.Actions.InherentAction;
 
-public abstract class SharedInherentActionSystem : EntitySystem
+public abstract partial class SharedInherentActionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _action = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+    [Dependency] private SharedActionsSystem _action = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
 
 
     public override void Initialize()

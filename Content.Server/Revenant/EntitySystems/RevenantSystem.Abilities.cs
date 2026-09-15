@@ -1,10 +1,10 @@
+using Content.Shared._Starlight.Revenant;
 using Content.Shared.Popups;
 using Content.Shared.Damage;
 using Content.Shared.Revenant;
 using Robust.Shared.Random;
 using Content.Shared.Tag;
 using Content.Shared.Storage.Components;
-using Content.Server.Light.Components;
 using Content.Server.Ghost;
 using Robust.Shared.Physics;
 using Content.Shared.Throwing;
@@ -18,7 +18,6 @@ using Content.Server.Revenant.Components;
 using Content.Shared.Physics;
 using Content.Shared.DoAfter;
 using Content.Shared.Emag.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Light.Components;
 using Content.Shared.Maps;
@@ -31,22 +30,23 @@ using Robust.Shared.Utility;
 using Robust.Shared.Map.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
-using Content.Shared.SSDIndicator; // Starlight-edit
+using Content.Shared.SSDIndicator;
+using Content.Shared.Atmos;
 
 namespace Content.Server.Revenant.EntitySystems;
 
 public sealed partial class RevenantSystem
 {
-    [Dependency] private readonly EmagSystem _emagSystem = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private EmagSystem _emagSystem = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private EntityStorageSystem _entityStorage = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private TileSystem _tile = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
 
     private static readonly ProtoId<TagPrototype> WindowTag = "Window";
 
@@ -59,6 +59,7 @@ public sealed partial class RevenantSystem
         SubscribeLocalEvent<RevenantComponent, RevenantDefileActionEvent>(OnDefileAction);
         SubscribeLocalEvent<RevenantComponent, RevenantOverloadLightsActionEvent>(OnOverloadLightsAction);
         SubscribeLocalEvent<RevenantComponent, RevenantBlightActionEvent>(OnBlightAction);
+        SubscribeLocalEvent<RevenantComponent, RevenantChillActionEvent>(OnChillAction); // Starlight-edit
         SubscribeLocalEvent<RevenantComponent, RevenantMalfunctionActionEvent>(OnMalfunctionAction);
     }
 
@@ -201,7 +202,7 @@ public sealed partial class RevenantSystem
 
         essence.Harvested = true;
         ChangeEssenceAmount(uid, essence.EssenceAmount, component);
-        _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
+        _store.TryAddCurrency(new()
             { {component.StolenEssenceCurrencyPrototype, essence.EssenceAmount} }, uid);
 
         if (!HasComp<MobStateComponent>(args.Args.Target))
@@ -223,6 +224,63 @@ public sealed partial class RevenantSystem
 
         args.Handled = true;
     }
+
+    #region Starlight
+
+    ///<summary>
+    /// Creates ice tiles and adds freezon per ice tile
+    ///</summary>
+    private void OnChillAction(EntityUid uid, RevenantComponent component, RevenantChillActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryUseAbility(uid, component, component.chillCost, component.ChillDebuffs))
+            return;
+
+        args.Handled = true;
+
+        var xform = Transform(uid);
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
+            return;
+
+        //The tiles that always spawn
+        var coreTiles = _mapSystem.GetTilesIntersecting(
+            xform.GridUid.Value,
+            map,
+            Box2.CenteredAround(_transformSystem.GetWorldPosition(xform),
+            new Vector2(component.ChillCoreRadius, component.ChillCoreRadius)))
+            .ToArray();
+
+        //The tiles with a random chance of spawning
+        var falloffTiles = _mapSystem.GetTilesIntersecting(
+            xform.GridUid.Value,
+            map,
+            Box2.CenteredAround(_transformSystem.GetWorldPosition(xform),
+            new Vector2(component.ChillFalloffRadius, component.ChillFalloffRadius)))
+            .ToArray();
+
+        //Generate the ice tiles and add the moles for freezon
+        foreach (var tileref in falloffTiles)
+        {
+            //Generate the tiles in a radius that always spawn.
+            if(coreTiles.Contains(tileref))
+            {
+                Spawn("IceCrust", _mapSystem.ToCenterCoordinates(tileref, map));
+                _atmosphere.GetTileMixture(xform.GridUid.Value, null, tileref.GridIndices, true)?.AdjustMoles(Gas.Frezon, component.ChillFrezonPerTile);
+                continue;
+            }
+
+            //Percentage chance to generate ice tiles in the falloff area
+            if(_random.Prob(component.ChillFalloffChance)) {
+                Spawn("IceCrust", _mapSystem.ToCenterCoordinates(tileref, map));
+                _atmosphere.GetTileMixture(xform.GridUid.Value, null, tileref.GridIndices, true)?.AdjustMoles(Gas.Frezon, component.ChillFrezonPerTile);
+            }
+        }
+
+        return;
+    }
+    #endregion
 
     private void OnDefileAction(EntityUid uid, RevenantComponent component, RevenantDefileActionEvent args)
     {

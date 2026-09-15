@@ -1,11 +1,7 @@
 using Content.Shared.EntityTable;
 using Content.Shared.EntityTable.Conditions;
 using Content.Shared.EntityTable.EntitySelectors;
-using Content.Shared.GameTicking;
-using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.EntityTable;
 

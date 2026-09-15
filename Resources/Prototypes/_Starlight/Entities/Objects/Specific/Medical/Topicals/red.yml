@@ -1,0 +1,137 @@
+## Bruise packs
+- type: entity
+  name: red bruise pack
+  description: Security-Graded Bruise Packs for all your harmbaton needs!
+  parent: BaseStarlightHealingItem
+  id: RedBrutePack
+  suffix: 20
+  components:
+  - type: Tag
+    tags:
+    - Brutepack
+  - type: Sprite
+    state: redbrutepack3
+  - type: Item
+    heldPrefix: redbrutepack
+  - type: Healing
+    damageContainers:
+      - Biological
+      - Hybrid
+    delay: 1.6 # STARLIGHT
+    damage:
+      groups:
+        Brute: -18 # 6 for each type in the group :3
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Stack
+    stackType: RedBrutePack
+    count: 20
+  - type: InteractRestriction #FH - Edit
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
+
+- type: entity
+  name: red bruise pack
+  description: Security-Graded Bruise Packs for all your harmbaton needs! You really went ham with that baton, huh?
+  parent: RedBrutePack
+  id: RedBrutePack1
+  suffix: 1
+  components:
+  - type: Sprite
+    state: redbrutepack
+  - type: Stack
+    stackType: RedBrutePack
+    count: 1
+
+- type: entity
+  name: red bruise pack
+  description: Security-Graded Bruise Packs for all your harmbaton needs! Someone's been busy!
+  parent: RedBrutePack
+  id: RedBrutePack10
+  suffix: 10
+  components:
+  - type: Sprite
+    state: redbrutepack2
+  - type: Stack
+    stackType: RedBrutePack
+    count: 10
+
+- type: stack
+  id: RedBrutePack
+  name: stack-redbrutepack
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: redbrutepack }
+  spawn: RedBrutePack1
+  maxCount: 20
+
+# Ointments
+- type: entity
+  name: red ointment
+  description: Uses a special blend of pyrazine and aloe to treat severe burns. Does nothing for caustic.
+  parent: BaseStarlightHealingItem
+  id: RedOintment
+  suffix: 20
+  components:
+  - type: Tag
+    tags:
+    - Ointment
+  - type: Sprite
+    state: redointment3
+  - type: Item
+    heldPrefix: redointment
+  - type: Healing
+    damageContainers:
+      - Biological
+      - Hybrid
+    delay: 1.6 # STARLIGHT
+    damage:
+      types:
+        Heat: -6
+        Cold: -6
+        Shock: -6
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+  - type: Stack
+    stackType: RedOintment
+    count: 20
+  - type: InteractRestriction #FH - Edit
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
+
+- type: entity
+  name: red ointment
+  description: Uses a special blend of pyrazine and aloe to treat severe burns. Does nothing for caustic. Gotta really squeeze for that last bit.
+  parent: RedOintment
+  id: RedOintment1
+  suffix: 1
+  components:
+  - type: Sprite
+    state: redointment
+  - type: Stack
+    stackType: RedOintment
+    count: 1
+
+- type: entity
+  name: red ointment
+  description: Uses a special blend of pyrazine and aloe to treat severe burns. Does nothing for caustic. Partially used..
+  parent: RedOintment
+  id: RedOintment10
+  suffix: 10
+  components:
+  - type: Sprite
+    state: redointment2
+  - type: Stack
+    stackType: RedOintment
+    count: 10
+
+- type: stack
+  id: RedOintment
+  name: stack-redointment
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: redointment }
+  spawn: RedOintment1
+  maxCount: 20

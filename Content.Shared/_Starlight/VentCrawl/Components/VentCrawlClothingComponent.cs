@@ -1,4 +1,4 @@
-namespace Content.Shared.VentCrawl.Components;
+namespace Content.Shared._Starlight.VentCrawl.Components;
 
 [RegisterComponent]
 public sealed partial class VentCrawlClothingComponent : Component

@@ -3,10 +3,11 @@ using Content.Shared.StationAi;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Threading;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Silicons.StationAi;
 
-public sealed class StationAiVisionSystem : EntitySystem
+public sealed partial class StationAiVisionSystem : EntitySystem
 {
     /*
      * This class handles 2 things:
@@ -14,11 +15,12 @@ public sealed class StationAiVisionSystem : EntitySystem
      * 2. It does single-tile lookups to tell if they're visible or not with support for a faster range-only path.
      */
 
-    [Dependency] private readonly IParallelManager _parallel = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedMapSystem _maps = default!;
-    [Dependency] private readonly SharedTransformSystem _xforms = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+    [Dependency] private IParallelManager _parallel = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
+    [Dependency] private SharedTransformSystem _xforms = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private IGameTiming _timing = default!; // STARLIGHT
 
     private SeedJob _seedJob;
     private ViewJob _job;
@@ -47,6 +49,24 @@ public sealed class StationAiVisionSystem : EntitySystem
     /// </summary>
     private bool FastPath;
 
+    #region Starlight
+    /// <summary>
+    /// cache for ai occlusion
+    /// </summary>
+    private readonly Dictionary<EntityUid, (bool, TimeSpan)> _isOutsideViewCache = new();
+
+    /// <summary>
+    /// how long for "is outside view" cache entries to live for?
+    /// </summary>
+    private readonly TimeSpan _isOutsideViewCacheLifespan = TimeSpan.FromSeconds(5);
+
+    /// <summary>
+    /// How often to clean through entire cache to stop memory ballooning out?
+    /// </summary>
+    private readonly TimeSpan _isOutsideViewCacheCleanPeriod = TimeSpan.FromMinutes(1);
+    private TimeSpan _isOutsideViewCacheNextClean = TimeSpan.Zero;
+    #endregion
+
     public override void Initialize()
     {
         base.Initialize();
@@ -70,8 +90,76 @@ public sealed class StationAiVisionSystem : EntitySystem
         };
     }
 
+    #region Starlight
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        // perform full clean on cache periodically, because some ents are likely to be forgotten about
+        // and just sit there hogging memory
+        if (_timing.CurTime > _isOutsideViewCacheNextClean)
+        {
+            _isOutsideViewCacheNextClean = _timing.CurTime + _isOutsideViewCacheCleanPeriod;
+
+            List<EntityUid> toRemove = new();
+            foreach (var (key, value) in _isOutsideViewCache)
+            {
+                if (_timing.CurTime > value.Item2)
+                    toRemove.Add(key);
+            }
+
+            foreach (var key in toRemove) _isOutsideViewCache.Remove(key);
+        }
+    }
+
+    /// <summary>
+    /// What say you? an incredibly expensive operation, running every single tick for every single ai for every bui open??
+    /// To check if something is within camera view? a thing that doesn't change frequently????
+    ///
+    /// Use this unless you have a very good reason not to, which you won't
+    ///
+    /// </summary>
+    /// <param name="entity"></param>
+    /// <returns></returns>
+    public bool IsOutsideCameraViewCached(EntityUid entity, bool forceCacheGen = false)
+    {
+        if (_isOutsideViewCache.TryGetValue(entity, out var cacheHit) && !forceCacheGen)
+        {
+            // if expired we continue which will overwrite old entry
+            if (cacheHit.Item2 >= _timing.CurTime) return cacheHit.Item1;
+        }
+
+        // ok, we need to generate
+        bool result = IsOutsideCameraView(entity);
+        _isOutsideViewCache[entity] = (result, _timing.CurTime + _isOutsideViewCacheLifespan);
+
+        return result;
+    }
+
+    /// <summary>
+    /// Returns whether an entity is in fog of war
+    /// STARLIGHT - Use IsOutsideViewCached wherever possible! This is an expensive call, and you shouldn't have a reason to use it!
+    /// </summary>
+    public bool IsOutsideCameraView(EntityUid entity)
+    {
+        var xform = Transform(entity);
+
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
+            return true;
+
+        if (!TryComp<BroadphaseComponent>(xform.GridUid, out var broadphase))
+            return true;
+
+        var tile = _maps.LocalToTile(xform.GridUid.Value, grid, xform.Coordinates);
+
+        // Returns true if outside of view
+        return !IsAccessible((xform.GridUid.Value, broadphase, grid), tile);
+    }
+    #endregion
+
     /// <summary>
     /// Returns whether a tile is accessible based on vision.
+    /// STARLIGHT - Use IsOutsideViewCached wherever possible! This is an expensive call, and you shouldn't have a reason to use it!
     /// </summary>
     public bool IsAccessible(Entity<BroadphaseComponent, MapGridComponent> grid, Vector2i tile, float expansionSize = 8.5f, bool fastPath = false, HashSet<string>? requiredTags = null)
     {
@@ -152,28 +240,6 @@ public sealed class StationAiVisionSystem : EntitySystem
         return true;
         // Starlight - end
     }
-
-    /// <summary>
-    /// Returns whether an entity is in fog of war
-    /// </summary>
-    // Starlight Start
-    public bool IsOutsideCameraView(EntityUid entity)
-    {
-        var xform = Transform(entity);
-
-        if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
-            return true;
-
-        if (!TryComp<BroadphaseComponent>(xform.GridUid, out var broadphase))
-            return true;
-
-        var tile = _maps.LocalToTile(xform.GridUid.Value, grid, xform.Coordinates);
-
-        // Returns true if outside of view
-        return !IsAccessible((xform.GridUid.Value, broadphase, grid), tile);
-    }
-    // Starlight End
-
     private bool IsOccluded(Entity<BroadphaseComponent, MapGridComponent> grid, Vector2i tile)
     {
         var tileBounds = _lookup.GetLocalBounds(tile, grid.Comp2.TileSize).Enlarged(-0.05f);

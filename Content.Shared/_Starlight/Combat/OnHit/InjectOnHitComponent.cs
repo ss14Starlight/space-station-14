@@ -1,6 +1,6 @@
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Audio;
-namespace Content.Shared.Damage.Components;
+namespace Content.Shared._Starlight.Combat.OnHit;
 [RegisterComponent]
 public sealed partial class InjectOnHitComponent : Component
 {

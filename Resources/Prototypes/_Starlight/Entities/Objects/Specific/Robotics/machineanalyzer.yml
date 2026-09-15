@@ -12,6 +12,7 @@
     damageContainers:
     - Silicon
     - IPC
+    - Hybrid
   - type: GuideHelp
     guides:
     - Robotics

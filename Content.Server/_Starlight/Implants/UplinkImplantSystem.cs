@@ -5,9 +5,9 @@ using Content.Shared.FixedPoint;
 
 namespace Content.Server._Starlight.Implants;
 
-public sealed class UplinkImplantSystem : EntitySystem
+public sealed partial class UplinkImplantSystem : EntitySystem
 {
-    [Dependency] private readonly UplinkSystem _uplink = default!;
+    [Dependency] private UplinkSystem _uplink = default!;
 
     public override void Initialize()
     {

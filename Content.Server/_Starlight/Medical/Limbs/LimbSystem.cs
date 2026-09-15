@@ -8,19 +8,19 @@ using Content.Shared.Body.Part;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
-using Content.Shared.Starlight.Medical.Surgery;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class LimbSystem : SharedLimbSystem
 {
-    [Dependency] private readonly ContainerSystem _containers = default!;
-    [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private ContainerSystem _containers = default!;
+    [Dependency] private BodySystem _body = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private readonly EntProtoId _virtual = "PartVirtual";
     public override void Initialize()

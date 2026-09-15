@@ -1,4 +1,6 @@
-﻿namespace Content.Shared._Starlight.Railroading.Events;
+﻿using Content.Shared._Starlight.Railroading.Components;
+
+namespace Content.Shared._Starlight.Railroading.Events;
 
 [ByRefEvent]
 public record struct RailroadingAssignedEvent(Entity<RailroadableComponent> Subject, bool Cancelled = false);

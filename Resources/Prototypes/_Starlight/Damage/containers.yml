@@ -1,0 +1,8 @@
+- type: damageContainer
+  id: Hybrid
+  supportedGroups:
+    - Brute
+    - Burn
+    - Toxin
+    - Airloss
+    - Genetic

@@ -1,6 +1,8 @@
 using Content.Shared.Kitchen.EntitySystems;
 using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Kitchen.Components;
 
@@ -10,10 +12,18 @@ namespace Content.Shared.Kitchen.Components;
 /// converting something into its single juice form. E.g, grind an apple and get the nutriment and sugar
 /// it contained, juice an apple and get "apple juice".
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true), AutoGenerateComponentPause] // Starlight
 [Access(typeof(SharedReagentGrinderSystem))]
 public sealed partial class ReagentGrinderComponent : Component
 {
+    #region Starlight
+    public const string BeakerSlotId = "beakerSlot";
+    public const string InputContainerId = "inputContainer";
+
+    [ViewVariables]
+    public Container InputContainer = default!;
+    #endregion
+
     [DataField, AutoNetworkedField]
     public int StorageMaxEntities = 6;
 
@@ -38,6 +48,13 @@ public sealed partial class ReagentGrinderComponent : Component
     public EntityUid? AudioStream;
 
     #region Starlight
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan? EndTime;
+
+    [DataField, AutoNetworkedField]
+    public GrinderProgram? Program;
+
     [DataField]
     public bool NeedsPower = true;
     #endregion Starlight
@@ -56,3 +73,11 @@ public sealed partial class ActiveReagentGrinderComponent : Component
     [ViewVariables]
     public GrinderProgram Program;
 }
+
+#region Starlight
+/// <summary>
+/// Marks a beaker inserted into a reagent grinder so solution changes refresh its UI.
+/// </summary>
+[RegisterComponent, NetworkedComponent]
+public sealed partial class InsideReagentGrinderComponent : Component;
+#endregion

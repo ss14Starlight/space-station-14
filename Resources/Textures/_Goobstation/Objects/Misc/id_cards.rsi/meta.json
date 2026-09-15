@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "default",
+            "copyright": "Taken and modified from /tg/station 13 at commit https://github.com/tgstation/tgstation/commit/d917f4c, edited by AJCM-git, CrudeWax, and DinnerCalzone (github)"
+        },
+        {
+            "name": "idradiohost",
+            "copyright": "made by john john (github), editted by Huaqas (GitHub)"
+        }
+    ]
+}

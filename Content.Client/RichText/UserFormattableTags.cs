@@ -1,5 +1,8 @@
 ﻿using Content.Client.UserInterface.RichText;
 using Robust.Client.UserInterface.RichText;
+#region Starlight
+using Content.Client._Starlight.UserInterface.RichText;
+#endregion
 
 namespace Content.Client.RichText;
 
@@ -26,6 +29,9 @@ public static class UserFormattableTags
         typeof(SignatureTagHandler),
         typeof(DateTimeTagHandler),
         typeof(CheckTagHandler),
+        typeof(DotsTagHandler),
+        typeof(DotHeadTagHandler),
+        typeof(MetaTagHandler),
         // Starlight end
     ];
 }

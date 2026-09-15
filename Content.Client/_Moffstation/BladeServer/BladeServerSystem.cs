@@ -10,8 +10,8 @@ namespace Content.Client._Moffstation.BladeServer;
 /// </summary>
 public sealed partial class BladeServerSystem : SharedBladeServerSystem
 {
-    [Dependency] private readonly IUserInterfaceManager _userInterfaceMan = default!;
-    [Dependency] private readonly ExamineSystem _examine = default!;
+    [Dependency] private IUserInterfaceManager _userInterfaceMan = default!;
+    [Dependency] private ExamineSystem _examine = default!;
 
     /// <summary>
     /// Relays examine interactions to <see cref="_userInterfaceMan"/> for the entity in the given

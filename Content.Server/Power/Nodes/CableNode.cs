@@ -2,8 +2,8 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Map.Components;
 // Starlight Start: CableDockingSystem
-using System.Collections.Generic;
 using Robust.Shared.Utility;
+using Content.Server._Starlight.Power;
 // Starlight End: CableDockingSystem
 
 namespace Content.Server.Power.Nodes
@@ -114,7 +114,7 @@ namespace Content.Server.Power.Nodes
         {
             base.OnAnchorStateChanged(entityManager, anchored);
 
-            var dockCableSystem = entityManager.System<Server._Starlight.Power.EntitySystems.CableDockingSystem>();
+            var dockCableSystem = entityManager.System<CableDockingSystem>();
             if (anchored)
             {
                 dockCableSystem.TryConnectDockedCable(this);

@@ -8,6 +8,15 @@
       role: JobCargoTechnician
       time: 360000 # 100 hrs
 
+
+- type: loadout
+  id: CargoTechnicianOveralls
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+  equipment:
+    jumpsuit: CargoOverallsUniformSuit
+
 - type: loadout
   id: CargoTechnicianJumpsuitAlt
   equipment:

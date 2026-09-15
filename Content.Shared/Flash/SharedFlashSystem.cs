@@ -23,24 +23,25 @@ using System.Linq;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Clothing.Components;
+using Content.Shared._Starlight.Flash.Components;
 
 namespace Content.Shared.Flash;
 
-public abstract class SharedFlashSystem : EntitySystem
+public abstract partial class SharedFlashSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedChargesSystem _sharedCharges = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private StatusEffectsSystem _statusEffectsSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
 
     private EntityQuery<StatusEffectsComponent> _statusEffectsQuery;
     private EntityQuery<DamagedByFlashingComponent> _damagedByFlashingQuery;
@@ -177,6 +178,16 @@ public abstract class SharedFlashSystem : EntitySystem
         if (attempt.Cancelled)
             return;
 
+        #region Starlight
+        // Increase the flash duration if the flashed entity has a multiplier (some species are more vulnerable to flashes)
+        if(TryComp<FlashModifierComponent>(target, out var flashMod)
+            && float.IsFinite(flashMod.Modifier)
+            && flashMod.Modifier > 0)
+        {
+            flashDuration *= flashMod.Modifier;
+        }
+        #endregion Starlight
+
         // don't paralyze, slowdown or convert to rev if the target is immune to flashes
         if (!_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, flashDuration, true))
             return;
@@ -220,10 +231,7 @@ public abstract class SharedFlashSystem : EntitySystem
         _entityLookup.GetEntitiesInRange(transform.Coordinates, range, _entSet);
         foreach (var entity in _entSet)
         {
-            // TODO: Use RandomPredicted https://github.com/space-wizards/RobustToolbox/pull/5849
-            var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(entity).Id);
-            var rand = new System.Random(seed);
-            if (!rand.Prob(probability))
+            if (!SharedRandomExtensions.PredictedProb(_timing, probability, GetNetEntity(entity)))
                 continue;
 
             // Is the entity affected by the flash either through status effects or by taking damage?
@@ -259,6 +267,16 @@ public abstract class SharedFlashSystem : EntitySystem
             }
         }
     }
+    // Updates whether flash immunity is visible in examine window
+    #region Starlight
+    public void SetShowInExamine(EntityUid uid, bool show, FlashImmunityComponent comp)
+    {
+        if (comp.ShowInExamine == show)
+            return;
+        comp.ShowInExamine = show;
+        Dirty(uid, comp);
+    }
+    #endregion
 
     private void OnPermanentBlindnessFlashAttempt(Entity<PermanentBlindnessComponent> ent, ref FlashAttemptEvent args)
     {

@@ -1,16 +1,16 @@
-﻿using Content.Server.Administration.Systems;
-using Content.Server.Atmos.EntitySystems;
+﻿using Content.Server.Atmos.EntitySystems;
 using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Atmos.Components;
+using Content.Shared._Starlight;
 
 namespace Content.Server._Starlight.Actions.EntitySystems;
-public sealed class JumpSystem : SharedJumpSystem
+public sealed partial class JumpSystem : SharedJumpSystem
 {
-    [Dependency] private readonly GasTankSystem _gasTank = default!;
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly StarlightEntitySystem _entities = default!;
+    [Dependency] private GasTankSystem _gasTank = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private StarlightEntitySystem _entities = default!;
 
     protected override bool TryReleaseGas(Entity<JumpComponent> ent, ref JetJumpActionEvent args)
     {

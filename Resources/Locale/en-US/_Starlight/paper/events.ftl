@@ -22,6 +22,19 @@ paper-too-quiet-need-chaos-few = Do you feel like this shift has been way too qu
 
 doc-text-printer-station-location = Hello, I am not supposed to be telling you this, but we accidentally bluespaced your station into NT aligned space. We have left enough spesos in your QM's locker for a nice Pizza party.                                                                                                             [color=white].[/color]                                   - NTCC Corrections Officer "Envy"
 
+doc-text-printer-endymion-memorial = {" "}
+                                     {"[color=blue][head=1][bold]Endymion Memorial Unveiled[/bold][/head][/color]"}
+                                     Article by Elise Ashford
+
+                                     A somber mood fell over the Federation as the Endymion Memorial was officially unveiled, ten years after the tragic accident that claimed thousands of lives aboard two vessels. The event drew attendees from across systems and hosted survivors as well as friends and family of those lost.
+
+                                     As the President remarked: “In reaching to the future, we must never forget those who came before us. The further detached we become from the past the easier it is to forget the struggles it took to become who we are. Their legacy is our inheritance and what shapes us today, if not for the boldness shown by the pioneers of the Endymion or the courage of those lost on the Blu-E, there would be no Federation. Although their lives ended in tragedy they by no means died in vain. May their example inspire greatness in us all.”
+
+                                     With those poignant words, the memorial was unveiled. Fashioned from a fragment of the Endymion’s hull into the shape of the vessel itself and engraved with the names of its crew. It’d be joined shortly after by another, similar sculpture made in the likeness of the Selene.
+                                     The President concluded by announcing further plans to memorialize the event. “All fragments recovered from the crash site will be engraved and sent out across the galaxy, so no matter how far we go, we’ll never forget what it took to achieve it.”
+
+                                     Also in attendance were representatives of the Skrellian Central Authority who stated, “We mourn with our friends of the Trans-Solar Federation and wish their families well in this difficult time.”
+
 paper-ionstorm-borgs = {"[color=green][bold]Robots Too Orderly?[/bold][/color]"}
 
                        Is your robotics department feeling a bit... predictable?

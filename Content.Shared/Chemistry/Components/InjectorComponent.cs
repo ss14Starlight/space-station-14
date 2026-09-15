@@ -72,6 +72,14 @@ public sealed partial class InjectorComponent : Component
     [DataField]
     public bool IgnoreClosed = true;
 
+    #region Starlight
+    /// <summary>
+    /// Whether using this injector displays interaction particles.
+    /// </summary>
+    [DataField]
+    public bool ShowInteractionParticles = true;
+    #endregion
+
     /// <summary>
     /// Reagents that are allowed to be within this injector.
     /// If a solution has both allowed and non-allowed reagents, only allowed reagents will be drawn into this injector.

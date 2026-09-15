@@ -1,0 +1,14 @@
+- type: entity
+  id: PlushieSuperLizard
+  parent: PlushieRainbowLizard
+  suffix: Fast
+  description: An adorable stuffed toy that resembles a lizardperson of every color. Abnormally lightweight, allowing you to swing it with great speed.
+  components:
+    - type: MeleeWeapon
+      autoAttack: true
+      attackRate: 30
+      swingBeverage: false
+      wideAnimation: WeaponArcSlashOld
+      animation: WeaponArcThrustOld
+    - type: DisarmMalus
+      malus: 100

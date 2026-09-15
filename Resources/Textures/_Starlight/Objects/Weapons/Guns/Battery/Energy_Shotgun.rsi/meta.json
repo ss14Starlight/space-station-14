@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Icon sprite made by Papermaker48 for SS14, other sprites made by Boaz1111 with that sprite as reference.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "base"
+    },
+    {
+      "name": "energy-unshaded-1"
+    },
+    {
+      "name": "energy-unshaded-2"
+    },
+    {
+      "name": "energy-unshaded-3"
+    },
+    {
+      "name": "energy-unshaded-4"
+    },
+    {
+      "name": "disable-unshaded-1"
+    },
+    {
+      "name": "disable-unshaded-2"
+    },
+    {
+      "name": "disable-unshaded-3"
+    },
+    {
+      "name": "disable-unshaded-4"
+    },
+    {
+      "name": "equipped-BACKPACK",
+      "directions": 4
+    },
+    {
+      "name": "equipped-SUITSTORAGE",
+      "directions": 4
+    }
+  ]
+}

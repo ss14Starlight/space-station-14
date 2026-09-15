@@ -1,5 +1,7 @@
 using Content.Shared.Access.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.StatusIcon;
+using Content.Shared.Tag;
 using JetBrains.Annotations;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -8,13 +10,17 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Access.Systems
 {
     [UsedImplicitly]
-    public abstract class SharedIdCardConsoleSystem : EntitySystem
+    public abstract partial class SharedIdCardConsoleSystem : EntitySystem
     {
-        [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
-        [Dependency] private readonly ILogManager _log = default!;
+        [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+        [Dependency] private ILogManager _log = default!;
 
         public const string Sawmill = "idconsole";
         protected ISawmill _sawmill = default!;
+
+        // Starlight-edit: Without a EMAG the ID card console can only assign hud icons that are properly tagged.
+        // Using a EMAG will enable "AllIconsUnlocked", making all other icons visable.
+        public static readonly ProtoId<TagPrototype> CrewJobIconTag = "JobIconCrew";
 
         public override void Initialize()
         {

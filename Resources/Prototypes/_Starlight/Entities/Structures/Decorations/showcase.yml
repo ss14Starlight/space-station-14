@@ -1,0 +1,21 @@
+- type: entity
+  id: ShowcaseRobotPobeda
+  parent: BaseShowcaseRobot
+  name: pobeda mech showcase
+  description: A non-functional replica of an old USSP Pobeda mech.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Decorations/showcase.rsi #SL Edit
+    state: showcase_5
+    noRot: true #SL Edit
+
+- type: entity
+  id: ShowcaseAbyssalSuit
+  parent: BaseShowcaseRobot
+  name: abyssal diving suit showcase
+  description: A non-functional replica of an old diving suit recovered from beyond the Null Scar.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Decorations/showcase.rsi #SL Edit
+    state: showcase_6
+    noRot: true #SL Edit

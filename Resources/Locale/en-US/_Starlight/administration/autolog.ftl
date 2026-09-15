@@ -5,5 +5,6 @@ autolog-admin-mouse = Became Admin Mouse
 autolog-mentor-mouse = Became Mentor Mouse
 
 autolog-setgamemap = Map forced to {$map} by {$admin}
+autolog-setalertlevel = Alert level forced to {$level} by {$admin} (locked: {$locked})
 autolog-announce = {$admin} sent a announcement {$sender} Announcement: {$message}
 autolog-tippy = Sent a tippy {$message} with {$prototype} prototype

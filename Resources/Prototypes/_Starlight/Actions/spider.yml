@@ -190,6 +190,25 @@
       building: WebCocoon
 
 - type: entity
+  parent: BaseAction
+  id: ActionSpiderBuildingGenerator
+  name: Ammonia generator
+  description: Spawns an ammonia generator that fills rooms with atmosphere.
+  components:
+  - type: Action
+    icon:
+      sprite: _Starlight/Structures/Specific/TerrorSpiders/buildings.rsi
+      state: ammonia_gen
+    useDelay: 3
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 600 # 10 mins
+  - type: InstantAction
+    event: !type:SpiderWebBuildingActionEvent
+      building: AmmoniaEggGenerator
+
+- type: entity
   id: ActionEntityWrap
   name: Wrap
   description: Wrap a target in web, immobilizing them.

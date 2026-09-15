@@ -10,12 +10,12 @@ using Content.Shared.Power.EntitySystems;
 
 namespace Content.Shared.Atmos.EntitySystems;
 
-public abstract class SharedGasPressurePumpSystem : EntitySystem
+public abstract partial class SharedGasPressurePumpSystem : EntitySystem
 {
-    [Dependency] private   readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private   readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private   readonly SharedPowerReceiverSystem _receiver = default!;
-    [Dependency] protected readonly SharedUserInterfaceSystem UserInterfaceSystem = default!;
+    [Dependency] private   ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private   SharedAppearanceSystem _appearance = default!;
+    [Dependency] private   SharedPowerReceiverSystem _receiver = default!;
+    [Dependency] protected SharedUserInterfaceSystem UserInterfaceSystem = default!;
 
     // TODO: Check enabled for activatableUI
     // TODO: Add activatableUI to it.
@@ -115,4 +115,25 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
     protected virtual void UpdateUi(Entity<GasPressurePumpComponent> ent)
     {
     }
+
+    #region Starlight
+
+    protected void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null)
+    {
+        if (!Resolve(uid, ref pump, ref appearance, false))
+            return;
+
+        var pumpOn = pump.Enabled && _receiver.IsPowered(uid);
+        _appearance.SetData(uid, PumpVisuals.Enabled, pumpOn, appearance);
+    }
+
+    public void Set(EntityUid uid, GasPressurePumpComponent component, bool value)
+    {
+        if (component.Enabled == value) return;
+        component.Enabled = value;
+        Dirty(uid, component);
+        UpdateAppearance(uid, component);
+    }
+
+    #endregion
 }

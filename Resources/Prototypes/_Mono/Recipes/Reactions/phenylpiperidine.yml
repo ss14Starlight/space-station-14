@@ -1,0 +1,73 @@
+- type: reaction
+  id: Phenylpiperidine
+  impact: Low
+  minTemp: 475
+  reactants:
+    SpaceDrugs:
+      amount: 1
+    Desoxyephedrine:
+      amount: 2
+    Cognizine:
+      amount: 1
+    SodiumHydroxide:
+      amount: 0.5
+    Phenol:
+      amount: 0.5
+    Kelotane:
+      amount: 0.5
+  products:
+    Phenylpiperidine: 5.5
+
+# Starlight start
+- type: reaction
+  id: PhenylpiperidineEvil
+  impact: Low
+  minTemp: 475
+  reactants:
+    SpaceDrugs:
+      amount: 1
+    Desoxyephedrine:
+      amount: 2
+    Vestine:
+      amount: 1
+    SodiumHydroxide:
+      amount: 0.5
+    Phenol:
+      amount: 0.5
+    Kelotane:
+      amount: 0.5
+  products:
+    Phenylpiperidine: 5.5
+# Starlight end
+
+- type: reaction # this reaction is to prevent people from mixing fent and dylo for combat meds, and to serve as something to prevent mass crystallization
+  id: PhenylpiperidineIncompatibility
+  impact: High
+  reactants:
+    Phenylpiperidine:
+      amount: 1
+    Dylovene:
+      amount: 1
+  effects:
+  - !type:Explosion
+    explosionType: Default
+    maxIntensity: 8 # Starlight, christ this was a death mix before
+    intensityPerUnit: 0.35 # It's pretty much just slightly stronger than potassium and water now.
+    intensitySlope: 4 # Starlight end
+    maxTotalIntensity: 100
+
+- type: reaction
+  id: PhenylpiperidineSolidification
+  impact: Low
+  minTemp: 375 # Starlight, fix temp
+  reactants:
+    Phenylpiperidine:
+      amount: 5
+    Tricordrazine:
+      amount: 1
+  products:
+    Tricordrazine: 1
+    Dylovene: 5
+  effects:
+    - !type:SpawnEntity
+      entity: PhenylpiperidineSolidified

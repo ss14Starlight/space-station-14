@@ -76,8 +76,8 @@ namespace Content.Shared.Atmos.Prototypes
         /// <summary>
         /// The reagent that this gas will turn into when inhaled.
         /// </summary>
-        [DataField("reagent", customTypeSerializer:typeof(PrototypeIdSerializer<ReagentPrototype>))]
-        public string? Reagent { get; private set; } = default!;
+        [DataField("reagent")]
+        public ProtoId<ReagentPrototype>? Reagent { get; private set; } = default!;
 
         [DataField("color")] public string Color { get; private set; } = string.Empty;
 

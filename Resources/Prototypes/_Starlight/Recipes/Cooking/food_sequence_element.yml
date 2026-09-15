@@ -8,44 +8,9 @@
   - Meat
   - Sausage
 
-#Panda Plushie
-- type: foodSequenceElement
-  id: PandaPlushie
-  scale: 0.75, 0.75
-  name: food-sequence-cotton-burger-content-plushie-panda
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
-    state: icon
-
-#Deer Plushie
-- type: foodSequenceElement
-  id: DeerPlushie
-  scale: 0.8, 0.8
-  name: food-sequence-cotton-burger-content-plushie-deer
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/deer_plushie.rsi
-    state: icon_no_eyebrows
-
-#Odd Deer Plushie
-- type: foodSequenceElement
-  id: OddDeerPlushie
-  scale: 0.8, 0.8
-  name: food-sequence-cotton-burger-content-plushie-deer
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/deer_plushie.rsi
-    state: icon_eyebrows
-
-#Lizard Mime Plushie
-- type: foodSequenceElement
-  id: PlushieMimeLizard
-  name: food-sequence-cotton-burger-content-plushie-mimelizard
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/mime_lizard_plushie.rsi
-    state: icon
-
 #Abductor Plushie
 - type: foodSequenceElement
-  id: AbductorPlushie
+  id: PlushieAbductor
   scale: 0.8, 0.8
   name: food-sequence-cotton-burger-content-plushie-abductor
   sprites:
@@ -54,7 +19,7 @@
 
 #Axolotl Plushie
 - type: foodSequenceElement
-  id: AxolotlPlushie
+  id: PlushieAxolotl
   scale: 0.75, 0.75
   name: food-sequence-cotton-burger-content-plushie-axolotl
   sprites:
@@ -63,67 +28,86 @@
 
 #Borb Plushie
 - type: foodSequenceElement
-  id: BorbPlushie
+  id: PlushieBorb
   name: food-sequence-cotton-burger-content-plushie-borb
   sprites:
   - sprite: _Starlight/Objects/Fun/Plushies/borb_plushie.rsi
     state: icon
 
+#Borg Plushie
+- type: foodSequenceElement
+  id: PlushieBorg
+  name: food-sequence-cotton-burger-content-plushie-borg
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/borg_plushie.rsi
+    state: icon
+
+#Cow Squishims Plushie
+- type: foodSequenceElement
+  id: PlushieCowSquishims
+  scale: 0.5, 0.5
+  name: food-sequence-cotton-burger-content-plushie-cow-squishims
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/cow_squishims_plushie.rsi
+    state: icon
+
 #Creature Plushie
 - type: foodSequenceElement
-  id: CreaturePlushie
+  id: PlushieCreature
   scale: 0.8, 0.8
   name: food-sequence-cotton-burger-content-plushie-creature
   sprites:
   - sprite: _Starlight/Objects/Fun/Plushies/creature_plushie.rsi
     state: icon
 
-#Gnome Plushie
+#Frog Squishims Plushie
 - type: foodSequenceElement
-  id: GnomePlushie
-  scale: 0.8, 0.8
-  name: food-sequence-cotton-burger-content-plushie-gnome
+  id: PlushieFrogSquishims
+  scale: 0.5, 0.5
+  name: food-sequence-cotton-burger-content-plushie-frog-squishims
   sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/gnome_plushie.rsi
+  - sprite: _Starlight/Objects/Fun/Plushies/frog_squishims_plushie.rsi
     state: icon
 
 #Goat Plushie
 - type: foodSequenceElement
-  id: GoatPlushie
+  id: PlushieGoat
   scale: 0.8, 0.8
   name: food-sequence-cotton-burger-content-plushie-goat
   sprites:
   - sprite: _Starlight/Objects/Fun/Plushies/goat_plushie.rsi
     state: icon
 
-#Ian Plushie
+#Gnome Plushie
 - type: foodSequenceElement
-  id: StarlightIanPlushie
-  name: food-sequence-cotton-burger-content-plushie-ian
+  id: PlushieGnome
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-gnome
   sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/ian_plushie.rsi
-    state: icon
-
-#Lisa Plushie
-- type: foodSequenceElement
-  id: LisaPlushie
-  name: food-sequence-cotton-burger-content-plushie-lisa
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/lisa_plushie.rsi
+  - sprite: _Starlight/Objects/Fun/Plushies/gnome_plushie.rsi
     state: icon
 
 #Kitten Plushie
 - type: foodSequenceElement
-  id: KittenPlushie
+  id: PlushieKitten
   scale: 0.8, 0.8
   name: food-sequence-cotton-burger-content-plushie-kitten
   sprites:
   - sprite: _Starlight/Objects/Fun/Plushies/kitten_plushie.rsi
     state: icon
 
+#Panda Plushie
+- type: foodSequenceElement
+  id: PlushiePanda
+  scale: 0.75, 0.75
+  name: food-sequence-cotton-burger-content-plushie-panda
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/panda_plushie.rsi
+    state: icon
+
 #Pig Plushie
 - type: foodSequenceElement
-  id: PigPlushie
+  id: PlushiePig
   scale: 0.75, 0.75
   name: food-sequence-cotton-burger-content-plushie-pig
   sprites:
@@ -132,10 +116,19 @@
 
 #Renault Plushie
 - type: foodSequenceElement
-  id: RenaultPlushie
+  id: PlushieRenault
   name: food-sequence-cotton-burger-content-plushie-renault
   sprites:
   - sprite: _Starlight/Objects/Fun/Plushies/renault_plushie.rsi
+    state: icon
+
+#Shadekin Plushie
+- type: foodSequenceElement
+  id: PlushieShadekin
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-shadekin
+  sprites:
+  - sprite: _Starlight/Objects/Fun/Plushies/shadekin_plushie.rsi
     state: icon
 
 #Snail Plushie
@@ -147,38 +140,11 @@
   - sprite: _Starlight/Objects/Fun/Plushies/snail_plushie.rsi
     state: icon
 
-#Squishims Cow Plushie
-- type: foodSequenceElement
-  id: SquishimsCow
-  scale: 0.5, 0.5
-  name: food-sequence-cotton-burger-content-plushie-cow
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/cow_squishims_plushie.rsi
-    state: icon
-
-#Squishims Frog Plushie
-- type: foodSequenceElement
-  id: SquishimsFrog
-  scale: 0.5, 0.5
-  name: food-sequence-cotton-burger-content-plushie-frog
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/frog_squishims_plushie.rsi
-    state: icon
-
 #Sus Plushie
 - type: foodSequenceElement
-  id: SusPlushie
+  id: PlushieSus
   scale: 0.8, 0.8
   name: food-sequence-cotton-burger-content-plushie-sus
   sprites:
   - sprite: _Starlight/Objects/Fun/Plushies/sus_plushie.rsi
-    state: icon
-
-#Shadekin Plushie
-- type: foodSequenceElement
-  id: PlushieShadekin
-  scale: 0.8, 0.8
-  name: food-sequence-cotton-burger-content-plushie-shadekin
-  sprites:
-  - sprite: _Starlight/Objects/Fun/Plushies/shadekin_plushie.rsi
     state: icon

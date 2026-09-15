@@ -17,10 +17,10 @@ namespace Content.Shared.Silicons.Bots;
 /// <summary>
 /// Handles emagging medibots and provides api.
 /// </summary>
-public sealed class MedibotSystem : EntitySystem
+public sealed partial class MedibotSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private EmagSystem _emag = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
@@ -132,7 +132,6 @@ public sealed class MedibotSystem : EntitySystem
         if (!TryGetTreatment(medibot.Comp, mobState.CurrentState, out var treatment)) return false;
         if (!_solutionContainer.TryGetInjectableSolution(target, out var injectable, out _)) return false;
 
-        EnsureComp<NPCRecentlyInjectedComponent>(target);
         _solutionContainer.TryAddReagent(injectable.Value, treatment.Reagent, treatment.Quantity, out _);
 
         _popup.PopupEntity(Loc.GetString("injector-component-feel-prick-message"), target, target);

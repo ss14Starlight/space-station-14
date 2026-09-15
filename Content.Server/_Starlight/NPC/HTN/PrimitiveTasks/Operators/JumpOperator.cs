@@ -13,7 +13,7 @@ namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators;
 /// </summary
 public sealed partial class JumpOperator : HTNOperator, IHtnConditionalShutdown
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     private JumpSystem _jumpSystem = default!;
 

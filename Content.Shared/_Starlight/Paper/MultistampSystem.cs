@@ -7,8 +7,8 @@ namespace Content.Shared._Starlight.Paper;
 
 public abstract partial class SharedMultistampSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     public override void Initialize()
     {

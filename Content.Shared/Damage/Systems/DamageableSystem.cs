@@ -1,7 +1,9 @@
 using System.Linq;
 using Content.Shared.Chemistry;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Explosion.EntitySystems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
@@ -13,13 +15,13 @@ namespace Content.Shared.Damage.Systems;
 
 public sealed partial class DamageableSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly SharedChemistryGuideDataSystem _chemistryGuideData = default!;
-    [Dependency] private readonly SharedExplosionSystem _explosion = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private SharedChemistryGuideDataSystem _chemistryGuideData = default!;
+    [Dependency] private SharedExplosionSystem _explosion = default!;
 
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     private EntityQuery<DamageableComponent> _damageableQuery;
@@ -62,13 +64,26 @@ public sealed partial class DamageableSystem : EntitySystem
                 new DamageVisualizerGroupData(ent.Comp.DamagePerGroup.Keys.ToList()),
                 appearance
             );
+
+            if (ent.Comp.Displacement != null)
+            {
+                _appearance.SetData(
+                    ent,
+                    DamageVisualizerKeys.Displacement,
+                    ent.Comp.Displacement.Value.Id,
+                    appearance
+                );
+            }
+            else
+            {
+                _appearance.RemoveData(ent, DamageVisualizerKeys.Displacement);
+            }
         }
 
         // TODO DAMAGE
         // byref struct event.
         RaiseLocalEvent(ent, new DamageChangedEvent(ent.Comp, damageDelta, interruptsDoAfters, origin));
     }
-
     private void DamageableGetState(Entity<DamageableComponent> ent, ref ComponentGetState args)
     {
         if (_netMan.IsServer)
@@ -93,5 +108,27 @@ public sealed partial class DamageableSystem : EntitySystem
             ent.Comp.DamageModifierSetId,
             ent.Comp.HealthBarThreshold
         );
+    }
+
+    /// <summary>
+    /// Goes through an entity damage's and saves them inside a dictionary if the value is higher than 0
+    /// The dictionary is structured with a string for the name of the damage type, and a FixedPoint2 for the numeric damage value
+    /// </summary>
+    public Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> GetDamages(Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> damagePerGroup, DamageSpecifier damage)
+    {
+        var damageTypes = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>();
+
+        foreach (var (damageGroupId, _) in damagePerGroup)  //go through each group
+        {
+            var group = _prototypeManager.Index<DamageGroupPrototype>(damageGroupId);  //get group
+            foreach (var type in group.DamageTypes) //go through each type inside that group
+            {
+                if (!damage.DamageDict.TryGetValue(type, out var damageValue) || damageValue == 0) //get value and make sure it isn't 0
+                    continue;
+
+                damageTypes.Add(type, damageValue);
+            }
+        }
+        return damageTypes;
     }
 }

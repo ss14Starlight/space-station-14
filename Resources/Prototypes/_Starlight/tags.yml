@@ -1,8 +1,5 @@
 # PLEASE, KEEP THIS FILE ALPHABETIZED
 - type: Tag
-  id: AnomalyCoreShadow
-
-- type: Tag
   id: AbductedTraitBackground
 
 - type: Tag
@@ -12,7 +9,16 @@
   id: AbductorScientist
 
 - type: Tag
+  id: AbyssiumOre #BountySalvageAbyssiumOre
+
+- type: Tag
   id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
+
+- type: Tag
+  id: AnomalyCoreShadow
+
+- type: Tag
+  id: ApcAdvancedElectronics # ConstructionGraph: APC
 
 - type: Tag
   id: Arachnid
@@ -27,13 +33,22 @@
   id: AvianFood
 
 - type: Tag
+  id: Bandolier #CargoBounty: BountySalvageBandolier
+
+- type: Tag
   id: BibleThwackRemovable
+
+- type: Tag
+  id: Birthday
 
 - type: Tag
   id: BladePlasteel
 
 - type: Tag
   id: BladeSteel
+
+- type: Tag
+  id: Blood
 
 - type: Tag
   id: BloodSplatter
@@ -78,6 +93,9 @@
   id: Bow
 
 - type: Tag
+  id: BrigmedicBeltEquip
+
+- type: Tag
   id: BulletUnarmedCollide
 
 - type: Tag
@@ -110,14 +128,26 @@
 - type: Tag
   id: CantBecomeRevolutionary
 
+- type: Tag # used for camera construction graphs
+  id: Camera
+
+- type: Tag # used for camera construction graphs
+  id: CameraReinforced
+
+- type: Tag
+  id: CasinoChip
+
 - type: Tag
   id: CentcommVibroblade
 
 - type: Tag
-  id: CombatRemote # Tag: used on the RemoteSignallerCombat
+  id: CheapInsulatedFabric
 
 - type: Tag
-  id: CheapInsulatedFabric
+  id: CheapSunglasses #used in the security mime mask crafting graph
+
+- type: Tag
+  id: ChonoLoke
 
 - type: Tag
   id: Cleanade
@@ -150,10 +180,34 @@
   id: CluwneBeastWearable
 
 - type: Tag
+  id: CombatMech
+
+- type: Tag
+  id: CombatRemote # Tag: used on the RemoteSignallerCombat
+
+- type: Tag
+  id: CommieID # BountySalvageCommieID
+
+- type: Tag
   id: Compy
 
 - type: Tag
   id: Condiment
+
+- type: Tag
+  id: ConstructionComment
+
+- type: Tag
+  id: CottonBread # BountyCottonBread
+
+- type: Tag
+  id: CottonCake # BountyCottonCake
+
+- type: Tag
+  id: CoupeGlass # BountyCoupeGlass
+
+- type: Tag
+  id: CrispyRiceBar
 
 - type: Tag
   id: CyberHandItem
@@ -216,13 +270,19 @@
   id: DurandTargetingControlModule
 
 - type: Tag
+  id: Dwarf
+
+- type: Tag
   id: ElderArena
+
+- type: Tag
+  id: Elf
 
 - type: Tag
   id: EmergencyWelder
 
 - type: Tag
-  id: ExternalAirlock
+  id: ERTShuttle
 
 - type: Tag
   id: Felionoid
@@ -243,6 +303,12 @@
   id: FormerSoldierTraitBackground
 
 - type: Tag
+  id: FringeTraitBackground
+
+- type: Tag
+  id: FrontierTraitBackground
+
+- type: Tag
   id: FlatpackBlacklist
 
 - type: Tag
@@ -256,6 +322,9 @@
 
 - type: Tag
   id: Grenade120mm # Ammo: Magazine120mmGrenadeBlast, ShuttleGunNTSFCyerxa120mm
+
+- type: Tag
+  id: GrenadeLessLethal #Ammo for the peacekeeper
 
 - type: Tag
   id: GygaxArmor
@@ -285,10 +354,25 @@
   id: GygaxTargetingControlModule
 
 - type: Tag
+  id: HandheldEngineeringMonitor #CE's handheld monitor
+
+- type: Tag
+  id: HighTierCell #Blacklist for stunprod, used by the hyper and microreactor.
+
+- type: Tag
   id: HiltPlasteel
 
 - type: Tag
   id: HiltWood
+
+- type: Tag
+  id: HoloprojectorCrafting # Defines which projectors can be used to craft a False Shutters Projector
+
+- type: Tag
+  id: HuntedTraitBackground
+
+- type: Tag
+  id: IceCream
 
 - type: Tag
   id: ImprovisedAmmoBox
@@ -309,7 +393,13 @@
   id: ImprovisedWrench
 
 - type: Tag
+  id: IgnoreMele
+
+- type: Tag
   id: Inedible # Prevents something from being eaten using DevourSystem, but only if on the direct target (e.g. doesn't apply if in inventory of target)
+
+- type: Tag
+  id: IndustrialMech
 
 - type: Tag
   id: InsulatedFabric
@@ -324,8 +414,28 @@
 - type: Tag
   id: JetInjector
 
+# JobIcon tags below classify JobIconPrototypes for console icon pickers (see JobIconPrototype.Tags)
+- type: Tag
+  id: JobIconAssistantManager
+
+- type: Tag
+  id: JobIconCentComm
+
+- type: Tag
+  id: JobIconCrew
+
+- type: Tag
+  id: JobIconSyndicate
+
+# Used to define clothing that the security K9 can wear.
+- type: Tag
+  id: K9Wearable
+
 - type: Tag
   id: L6Saw
+
+- type: Tag
+  id: Labelable
 
 - type: Tag
   id: LightRifleHeavy
@@ -338,6 +448,9 @@
 
 - type: Tag
   id: LabellerRefillPaper
+
+- type: Tag
+  id: Lagomorph
 
 - type: Tag
   id: LoneOpsUplink
@@ -379,6 +492,9 @@
   id: MagazineAK570_90mm
 
 - type: Tag
+  id: PaddyUpgradeKit
+
+- type: Tag
   id: PowerCageOmega
 
 - type: Tag
@@ -397,7 +513,13 @@
   id: MagazinePistolDP
 
 - type: Tag
+  id: MagazinePistolHighCapacitySP
+
+- type: Tag
   id: MagazinePistolImprovised
+
+- type: Tag
+  id: MagazinePistolSubMachineGunSP
 
 - type: Tag
   id: MagazineRifleM52
@@ -418,7 +540,13 @@
   id: MagicalEncounterTraitBackground
 
 - type: Tag
+  id: MechAirTank
+
+- type: Tag
   id: MechReactor
+
+- type: Tag
+  id: MechThruster
 
 - type: Tag
   id: MedCyberEyes
@@ -434,10 +562,31 @@
   id: MicroManipulatorStockPart
 
 - type: Tag
+  id: MilkCarton # Storage whitelist: MilkCrate
+
+- type: Tag
+  id: MimeMask #used in the security mime mask crafting graph
+
+- type: Tag
   id: ModularBarrel
 
 - type: Tag
+  id: ModuleBlacklistXenoborgEngiWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgHeavyWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgScoutWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgStealthWeapon
+
+- type: Tag
   id: Nexus
+
+- type: Tag
+  id: NonLethalMech # Used to allow nonlethal mech equipment on a mech.
 
 - type: Tag
   id: NotLabelable
@@ -446,13 +595,16 @@
   id: NukiePlanet
 
 - type: Tag
+  id: OldTreasure #BountySalvageOldTreasure
+
+- type: Tag
   id: OmniCyberEyes
 
 - type: Tag
   id: OvenMachineBoard
 
 - type: Tag
-  id: PaddyMech
+  id: ParadoxCloneTraitBackground
 
 - type: Tag
   id: ParaKnife
@@ -473,6 +625,9 @@
   id: PlasteelFilament
 
 - type: Tag
+  id: PlayingCardDeckBox
+
+- type: Tag
   id: PlumbingDuct
 
 - type: Tag
@@ -485,10 +640,19 @@
   id: PrototypeVibroblade
 
 - type: Tag
+  id: RemoteSignallerAdvanced # Crafting whitelist: Advanced Deadman remote trigger
+
+- type: Tag
   id: RequiredForLmgTag
 
 - type: Tag
   id: Resomi
+
+- type: Tag
+  id: RipleyMKIIUpgradeKit
+
+- type: Tag
+  id: Rodentia
 
 - type: Tag
   id: RomerolDisasterSurvivorTraitBackground
@@ -505,7 +669,16 @@
   id: RollerBed
 
 - type: Tag
+  id: Salad # BountySalad
+
+- type: Tag
+  id: SalvageTicket
+
+- type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
+
+- type: Tag
+  id: SausageBun # BountySausageBun
 
 - type: Tag
   id: ScanGateMachineBoard
@@ -515,6 +688,9 @@
 
 - type: Tag
   id: SecuredLocker
+
+- type: Tag
+  id: Shadekin
 
 - type: Tag
   id: ShadekinCore
@@ -548,6 +724,12 @@
 
 - type: Tag
   id: SovietWarehouse
+
+- type: Tag
+  id: SpaceBearHide #BountySalvageSpaceBearHide
+
+- type: Tag
+  id: SpecialMech
 
 - type: Tag
   id: SpeedLoaderMagnumImprovised
@@ -595,16 +777,28 @@
   id: TiderAnvilParts
 
 - type: Tag
+  id: TrashBagBlue
+
+- type: Tag
   id: UnDissolvable
 
 - type: Tag
+  id: USSPTraitBackground
+
+- type: Tag
   id: Vial
+
+- type: Tag
+  id: VinylSleeve # Storage whitelist: RecordMilkCrate, SyndicateMilkCrate
 
 - type: Tag
   id: WallmountMassScannerElectronics
 
 - type: Tag
   id: Wizard
+
+- type: Tag
+  id: RawXenoMeat #BountySalvageRawXenoMeat
 
 - type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.

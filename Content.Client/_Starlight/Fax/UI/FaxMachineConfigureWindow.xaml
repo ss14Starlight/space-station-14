@@ -1,0 +1,47 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:sl-controls="clr-namespace:Content.Client._Starlight.UserInterface.Controls"
+                      Title="{Loc 'fax-machine-configure-ui-window'}"
+                      MinSize="320 185">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+
+        <!-- Name -->
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Text="{Loc 'fax-machine-configure-ui-name'}"
+                   MinWidth="80"
+                   VerticalAlignment="Center" />
+            <LineEdit Name="NameEdit"
+                      ToolTip="{Loc 'fax-machine-configure-ui-name-tooltip'}"
+                      HorizontalExpand="True"
+                      PlaceHolder="{Loc 'fax-machine-configure-ui-name-placeholder'}" />
+        </BoxContainer>
+
+        <!-- Group -->
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Text="{Loc 'fax-machine-configure-ui-group'}"
+                   MinWidth="80"
+                   VerticalAlignment="Center" />
+            <sl-controls:ColoredOptionButton
+                Name="GroupSelector"
+                ToolTip="{Loc 'fax-machine-configure-ui-group-tooltip'}"
+                HorizontalExpand="True" />
+        </BoxContainer>
+
+        <!-- Order -->
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Text="{Loc 'fax-machine-configure-ui-order'}"
+                   MinWidth="80"
+                   VerticalAlignment="Center" />
+            <SpinBox Name="OrderSpinBox"
+                     ToolTip="{Loc 'fax-machine-configure-ui-order-tooltip'}"
+                     HorizontalExpand="True" />
+        </BoxContainer>
+
+        <PanelContainer StyleClasses="LowDivider" Margin="0 4 0 4" />
+
+        <Button Name="SubmitButton"
+                Text="{Loc 'fax-machine-configure-ui-submit'}"
+                HorizontalExpand="True" />
+
+    </BoxContainer>
+</controls:FancyWindow>

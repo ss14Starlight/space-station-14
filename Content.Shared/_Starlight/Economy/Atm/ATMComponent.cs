@@ -2,7 +2,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.Economy.Atm;
+namespace Content.Shared._Starlight.Economy.Atm;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ATMComponent : Component

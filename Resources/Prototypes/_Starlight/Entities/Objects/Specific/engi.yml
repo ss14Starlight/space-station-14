@@ -37,13 +37,13 @@
   - type: MultipleTool
     statusShowBehavior: true
     entries:
-      - behavior: Prying
+      - behavior: [ Prying ]
         sprite:
           sprite: Objects/Tools/jaws_of_life.rsi
           state: proto_jaws_pry
         useSound: /Audio/Items/jaws_pry.ogg
         changeSound: /Audio/Items/change_jaws.ogg
-      - behavior: Cutting
+      - behavior: [ Cutting ]
         sprite:
           sprite: Objects/Tools/jaws_of_life.rsi
           state: proto_jaws_cutter

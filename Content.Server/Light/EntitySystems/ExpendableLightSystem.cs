@@ -1,3 +1,5 @@
+using Content.Server.Botany.Components; // Starlight Edit
+using Content.Server.Botany.Systems;   // Starlight Edit
 using Content.Server.Light.Components;
 using Content.Server.Stack;
 using Content.Shared.Clothing.Components;
@@ -20,17 +22,23 @@ using Robust.Shared.Utility;
 namespace Content.Server.Light.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class ExpendableLightSystem : EntitySystem
+    public sealed partial class ExpendableLightSystem : EntitySystem
     {
-        [Dependency] private readonly SharedItemSystem _item = default!;
-        [Dependency] private readonly ClothingSystem _clothing = default!;
-        [Dependency] private readonly TagSystem _tagSystem = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly StackSystem _stackSystem = default!;
-        [Dependency] private readonly NameModifierSystem _nameModifier = default!;
+        [Dependency] private SharedItemSystem _item = default!;
+        [Dependency] private ClothingSystem _clothing = default!;
+        [Dependency] private TagSystem _tagSystem = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
+        [Dependency] private StackSystem _stackSystem = default!;
+        [Dependency] private NameModifierSystem _nameModifier = default!;
+        [Dependency] private BotanySystem _botanySystem = default!; // Starlight Edit
 
         private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
+
+        #region Starlight
+        private float _updateAccumulator;
+        private const float UpdateInterval = 0.25f;
+        #endregion
 
         public override void Initialize()
         {
@@ -45,10 +53,22 @@ namespace Content.Server.Light.EntitySystems
 
         public override void Update(float frameTime)
         {
+            #region Starlight
+            _updateAccumulator += frameTime;
+            if (_updateAccumulator < UpdateInterval)
+                return;
+
+            var elapsed = _updateAccumulator;
+            _updateAccumulator = 0f;
+            #endregion
+
             var query = EntityQueryEnumerator<ExpendableLightComponent>();
             while (query.MoveNext(out var uid, out var light))
             {
-                UpdateLight((uid, light), frameTime);
+                if (!light.Activated) // Starlight
+                    continue;
+
+                UpdateLight((uid, light), elapsed); // Starlight-edit: was frameTime
             }
         }
 
@@ -104,6 +124,15 @@ namespace Content.Server.Light.EntitySystems
                 {
                     _item.SetHeldPrefix(ent, "lit", component: item);
                 }
+
+                // Starlight Edit Start
+                // For botany grown cinnaflares, add the to the burn time by adding modifier * plant potency.
+                if (TryComp<ProduceComponent>(ent, out var produceComp) &&
+                    _botanySystem.TryGetSeed(produceComp, out var seedData))
+                    {
+                        ent.Comp.StateExpiryTime +=  ent.Comp.PlantBurnTimeModifier * seedData.Potency;
+                    }
+                // Starlight Edit Stop
 
                 var ignite = new IgnitionEvent(true);
                 RaiseLocalEvent(ent, ref ignite);

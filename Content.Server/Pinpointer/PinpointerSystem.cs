@@ -4,16 +4,20 @@ using System.Linq;
 using System.Numerics;
 using Robust.Shared.Utility;
 using Content.Server.Shuttles.Events;
-using Content.Shared.IdentityManagement;
 
 namespace Content.Server.Pinpointer;
 
-public sealed class PinpointerSystem : SharedPinpointerSystem
+public sealed partial class PinpointerSystem : SharedPinpointerSystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
+
+    #region Starlight
+    private float _updateAccumulator;
+    private const float UpdateInterval = 0.25f;
+    #endregion
 
     public override void Initialize()
     {
@@ -94,11 +98,19 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
     {
         base.Update(frameTime);
 
-        // because target or pinpointer can move
-        // we need to update pinpointers arrow each frame
+        // Starlight: only active pinpointers need their arrow refreshed, and not every single tick
+        _updateAccumulator += frameTime;
+        if (_updateAccumulator < UpdateInterval)
+            return;
+
+        _updateAccumulator -= UpdateInterval;
+
         var query = EntityQueryEnumerator<PinpointerComponent>();
         while (query.MoveNext(out var uid, out var pinpointer))
         {
+            if (!pinpointer.IsActive) // Starlight
+                continue;
+
             UpdateDirectionToTarget(uid, pinpointer);
         }
     }

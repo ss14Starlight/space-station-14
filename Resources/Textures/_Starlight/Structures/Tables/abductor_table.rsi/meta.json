@@ -5,7 +5,7 @@
     "y": 32
   },
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tg station",
+  "copyright": "State based copyright",
   "states": [
     {
       "name": "full",
@@ -13,7 +13,8 @@
         [
           1
         ]
-      ]
+      ],
+      "copyright": "Taken from tg station"
     },
     {
       "name": "state_0",
@@ -31,7 +32,8 @@
         [
           1.0
         ]
-      ]
+      ],
+      "copyright": "Taken from tg station"
     },
     {
       "name": "state_1",
@@ -49,7 +51,8 @@
         [
           1.0
         ]
-      ]
+      ],
+      "copyright": "Taken from tg station"
     },
     {
       "name": "state_2",
@@ -67,7 +70,8 @@
         [
           1.0
         ]
-      ]
+      ],
+      "copyright": "Taken from tg station"
     },
     {
       "name": "state_3",
@@ -85,7 +89,8 @@
         [
           1.0
         ]
-      ]
+      ],
+      "copyright": "Taken from tg station"
     },
     {
       "name": "state_4",
@@ -103,7 +108,8 @@
         [
           1.0
         ]
-      ]
+      ],
+      "copyright": "Taken from tg station"
     },
     {
       "name": "state_5",
@@ -121,7 +127,8 @@
         [
           1.0
         ]
-      ]
+      ],
+      "copyright": "Taken from tg station"
     },
     {
       "name": "state_6",
@@ -139,7 +146,8 @@
         [
           1.0
         ]
-      ]
+      ],
+      "copyright": "Taken from tg station"
     },
     {
       "name": "state_7",
@@ -157,7 +165,8 @@
         [
           1.0
         ]
-      ]
+      ],
+      "copyright": "Taken from tg station"
     }
   ]
 }

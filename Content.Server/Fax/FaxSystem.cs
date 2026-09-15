@@ -5,6 +5,7 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Tools;
+using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
@@ -15,6 +16,7 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.Fax;
 using Content.Shared.Fax.Components;
 using Content.Shared.Fax.Systems;
+using Content.Shared.GameTicking;
 using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Labels.EntitySystems;
@@ -32,38 +34,46 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 #region Starlight
+using Content.Shared._Starlight.Fax;
+using Content.Shared._Starlight.Fax.UI;
+using Content.Shared._Starlight.Time;
+using Content.Shared._Starlight.Utility;
 using Content.Shared.Cargo.Components;
-using Content.Server.Storage.EntitySystems;
+using Content.Shared.Emag.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Inventory;
-using Robust.Server.Containers;
-using System.Linq;
+using Robust.Shared.Utility;
 #endregion Starlight
 
 namespace Content.Server.Fax;
 
-public sealed class FaxSystem : EntitySystem
+public sealed partial class FaxSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-    [Dependency] private readonly PaperSystem _paperSystem = default!;
-    [Dependency] private readonly LabelSystem _labelSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly ToolSystem _toolSystem = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly FaxecuteSystem _faxecute = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private SharedGameTicker _gameTicker = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
+    [Dependency] private PaperSystem _paperSystem = default!;
+    [Dependency] private LabelSystem _labelSystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private ToolSystem _toolSystem = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private FaxecuteSystem _faxecute = default!;
+    [Dependency] private EmagSystem _emag = default!;
 
-    // Starlight start
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    // Starlight end
+    #region Starlight
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedTimeSystem _time = default!;
+    [Dependency] private PreWrittenDocumentManager _documentManager = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    #endregion
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 
@@ -89,6 +99,7 @@ public sealed class FaxSystem : EntitySystem
 
         // UI
         SubscribeLocalEvent<FaxMachineComponent, AfterActivatableUIOpenEvent>(OnToggleInterface);
+        SubscribeLocalEvent<FaxMachineComponent, FaxMachineConfigureMessage>(OnConfigure); // Starlight
         SubscribeLocalEvent<FaxMachineComponent, FaxFileMessage>(OnFileButtonPressed);
         SubscribeLocalEvent<FaxMachineComponent, FaxCopyMessage>(OnCopyButtonPressed);
         SubscribeLocalEvent<FaxMachineComponent, FaxSendMessage>(OnSendButtonPressed);
@@ -229,33 +240,12 @@ public sealed class FaxSystem : EntitySystem
             !_toolSystem.HasQuality(args.Used, ScrewingQuality)) // Screwing because Pulsing already used by device linking
             return;
 
-        _quickDialog.OpenDialog(actor.PlayerSession,
-            Loc.GetString("fax-machine-dialog-rename"),
-            Loc.GetString("fax-machine-dialog-field-name"),
-            (string newName) =>
-        {
-            if (component.FaxName == newName)
-                return;
-
-            if (newName.Length > 20)
-            {
-                _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-name-long"), uid);
-                return;
-            }
-
-            if (component.KnownFaxes.ContainsValue(newName) && !_emag.CheckFlag(uid, EmagType.Interaction)) // Allow existing names if emagged for fun
-            {
-                _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-name-exist"), uid);
-                return;
-            }
-
-            _adminLogger.Add(LogType.Action,
-                LogImpact.Low,
-                $"{ToPrettyString(args.User):user} renamed {ToPrettyString(uid):tool} from \"{component.FaxName}\" to \"{newName}\"");
-            component.FaxName = newName;
-            _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-name-set"), uid);
-            UpdateUserInterface(uid, component);
-        });
+        #region Starlight
+        // Instead of upstreams basic dialog, we have our own custom UI for configuring fax machines.
+        // All that remains to do here is to just open it!
+        UpdateMachineConfigureUserInterface(uid, component);
+        _userInterface.OpenUi(uid, FaxMachineConfigureUiKey.Key, actor.PlayerSession);
+        #endregion
 
         args.Handled = true;
 
@@ -290,6 +280,8 @@ public sealed class FaxSystem : EntitySystem
                     var payload = new NetworkPayload()
                     {
                         { DeviceNetworkConstants.Command, FaxConstants.FaxPongCommand },
+                        { FaxConstants.FaxGroupIdData, component.CurrentGroup }, // Starlight
+                        { FaxConstants.FaxOrderData, component.Order }, // Starlight
                         { FaxConstants.FaxNameData, component.FaxName }
                     };
                     _deviceNetworkSystem.QueuePacket(uid, args.SenderAddress, payload);
@@ -299,7 +291,21 @@ public sealed class FaxSystem : EntitySystem
                     if (!args.Data.TryGetValue(FaxConstants.FaxNameData, out string? faxName))
                         return;
 
-                    component.KnownFaxes[args.SenderAddress] = faxName;
+                    #region Starlight
+                    if (!args.Data.TryGetValue(FaxConstants.FaxOrderData, out int faxOrder))
+                        return;
+
+                    // Load the fax machine's own configuration, plus the current fax machine's group prototype,
+                    // into a KnownFax object for use in the UI.
+                    var knownFax = new KnownFax(args.SenderAddress, faxName, faxOrder);
+                    if (args.Data.TryGetValue(FaxConstants.FaxGroupIdData, out ProtoId<FaxGroupPrototype>? groupingProtoId) &&
+                        _proto.TryIndex(groupingProtoId, out var groupingProto))
+                    {
+                        knownFax.GroupColor = groupingProto.Color;
+                        knownFax.GroupOrder = groupingProto.Order;
+                    }
+                    component.KnownFaxes[args.SenderAddress] = knownFax;
+                    #endregion
 
                     UpdateUserInterface(uid, component);
 
@@ -314,12 +320,15 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampedByData, out List<StampDisplayInfo>? stampedBy);
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
                     args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
+                    args.Data.TryGetValue(FaxConstants.FaxPaperSenderFaxNameData, out string? senderFaxName);
                     // Starlight-start
                     args.Data.TryGetValue(FaxConstants.FaxSlipProduct, out string? slipProduct);
                     args.Data.TryGetValue(FaxConstants.FaxSlipRequester,  out string? slipRequester);
                     args.Data.TryGetValue(FaxConstants.FaxSlipReason, out string? slipReason);
                     args.Data.TryGetValue(FaxConstants.FaxSlipOrderQuantity, out int? slipOrderQuantity);
                     args.Data.TryGetValue(FaxConstants.FaxSlipOrderAccount, out string? slipAccount);
+                    args.Data.TryGetValue(FaxConstants.FaxMetaSender, out string? metaSender);
+                    args.Data.TryGetValue(FaxConstants.FaxMetaSentAt, out string? metaSentAt);
                     // Starlight-end
 
 
@@ -330,13 +339,16 @@ public sealed class FaxSystem : EntitySystem
                         prototypeId,
                         stampState,
                         stampedBy,
-                        locked ?? false,
+                        locked ?? false, senderFaxName,
                         // Starlight-start
                         slipProduct,
                         slipRequester,
                         slipReason,
                         slipOrderQuantity,
-                        slipAccount); // Starlight-end
+                        slipAccount,
+                        retainMetadata: true,
+                        metaSender,
+                        metaSentAt); // Starlight-end
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -359,7 +371,20 @@ public sealed class FaxSystem : EntitySystem
     private void OnCopyButtonPressed(EntityUid uid, FaxMachineComponent component, FaxCopyMessage args)
     {
         if (HasComp<MobStateComponent>(component.PaperSlot.Item))
+        {
             _faxecute.Faxecute(uid, component); // when button pressed it will hurt the mob.
+
+            // Starlight-edit
+            var printout = TryGetFaxablePrintout(component.PaperSlot.Item, component);
+            if (printout != null)
+            {
+                if (component.SendTimeoutRemaining > 0) return;
+                component.PrintingQueue.Enqueue(printout);
+                UpdateUserInterface(uid, component);
+                component.SendTimeoutRemaining += component.SendTimeout;
+            }
+            // Starlight-edit
+        }
         else
             Copy(uid, component, args);
     }
@@ -367,7 +392,11 @@ public sealed class FaxSystem : EntitySystem
     private void OnSendButtonPressed(EntityUid uid, FaxMachineComponent component, FaxSendMessage args)
     {
         if (HasComp<MobStateComponent>(component.PaperSlot.Item))
-            _faxecute.Faxecute(uid, component); // when button pressed it will hurt the mob.
+        {
+            // Starlight-edit
+            if(SendFaxablePrintout(uid, component)) _faxecute.Faxecute(uid, component);
+            // Starlight-edit
+        }
         else
             Send(uid, component, args);
     }
@@ -427,6 +456,7 @@ public sealed class FaxSystem : EntitySystem
             return;
 
         component.DestinationFaxAddress = destAddress;
+        component.DestinationFaxName = component.KnownFaxes[destAddress].Name; // Starlight
 
         UpdateUserInterface(uid, component);
     }
@@ -464,7 +494,7 @@ public sealed class FaxSystem : EntitySystem
 
         var name = Loc.GetString("fax-machine-printed-paper-name");
 
-        var printout = new FaxPrintout(args.Content, name, args.Label, prototype);
+        var printout = new FaxPrintout(args.Content, name, args.Label, prototype, retainMetadata: true); // Starlight
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
 
@@ -505,18 +535,20 @@ public sealed class FaxSystem : EntitySystem
 
         // TODO: See comment in 'Send()' about not being able to copy whole entities
         var printout = new FaxPrintout(paper.Content,
-                                       nameMod?.BaseName ?? metadata.EntityName,
-                                       labelComponent?.CurrentLabel,
-                                       metadata.EntityPrototype?.ID ?? component.PrintPaperId,
-                                       paper.StampState,
-                                       paper.StampedBy,
-                                       paper.EditingDisabled,
-                                       //starlight-start
-                                       cargoSlipComponent?.Product.Id,
-                                       cargoSlipComponent?.Requester,
-                                       cargoSlipComponent?.Reason,
-                                       cargoSlipComponent?.OrderQuantity,
-                                       cargoSlipComponent?.Account); //starlight-end
+                                        nameMod?.BaseName ?? metadata.EntityName,
+                                        labelComponent?.CurrentLabel,
+                                        metadata.EntityPrototype?.ID ?? component.PrintPaperId,
+                                        paper.StampState,
+                                        paper.StampedBy,
+                                        paper.EditingDisabled,
+                                        component.FaxName, // Starlight
+                                        //starlight-start
+                                        cargoSlipComponent?.Product.Id,
+                                        cargoSlipComponent?.Requester,
+                                        cargoSlipComponent?.Reason,
+                                        cargoSlipComponent?.OrderQuantity,
+                                        cargoSlipComponent?.Account,
+                                        retainMetadata: true); //starlight-end
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -552,7 +584,7 @@ public sealed class FaxSystem : EntitySystem
         if (component.DestinationFaxAddress == null)
             return;
 
-        if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var faxName))
+        if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var knownFax)) // Starlight
             return;
 
         if (!TryComp(sendEntity, out MetaDataComponent? metadata) ||
@@ -563,14 +595,39 @@ public sealed class FaxSystem : EntitySystem
 
         TryComp<LabelComponent>(sendEntity, out var labelComponent);
 
+        var content = paper.Content;
+
+        #region Starlight
+        // Starlight, we have our own way to handle this, so we disable Wizden's implementation.
+        /*if (component.AddSenderInfo)
+        {
+            var faxMachineAddress = TryComp<DeviceNetworkComponent>(uid, out var deviceNetworkComponent)
+            ? deviceNetworkComponent.Address
+            : Loc.GetString("device-address-unknown");
+
+            var time = _gameTicker.RoundDuration();
+            var timeString = TimeSpan.FromSeconds(Math.Truncate(time.TotalSeconds)).ToString();
+
+            content += "\n";
+            content += Loc.GetString(component.SenderInfo,
+                ("sender_name", component.FaxName),
+                ("sender_addr", faxMachineAddress),
+                ("recipient_name", component.DestinationFaxName ?? Loc.GetString("fax-machine-popup-source-unknown")),
+                ("recipient_addr", component.DestinationFaxAddress),
+                ("time", timeString)
+            );
+        }*/
+        #endregion
+
 
         var payload = new NetworkPayload()
         {
             { DeviceNetworkConstants.Command, FaxConstants.FaxPrintCommand },
             { FaxConstants.FaxPaperNameData, nameMod?.BaseName ?? metadata.EntityName },
             { FaxConstants.FaxPaperLabelData, labelComponent?.CurrentLabel },
-            { FaxConstants.FaxPaperContentData, paper.Content },
+            { FaxConstants.FaxPaperContentData, content },
             { FaxConstants.FaxPaperLockedData, paper.EditingDisabled },
+            { FaxConstants.FaxPaperSenderFaxNameData, component.FaxName ?? Loc.GetString("fax-machine-popup-source-unknown") }
         };
 
         if (metadata.EntityPrototype != null)
@@ -588,8 +645,13 @@ public sealed class FaxSystem : EntitySystem
             payload[FaxConstants.FaxPaperStampedByData] = paper.StampedBy;
         }
 
-        //starlight start
-        //This feels bad and hacky, probably better ways to do this...
+        #region Starlight
+        payload[FaxConstants.FaxMetaSender] = component.FaxName;
+        var time = _gameTicker.RoundDuration();
+        payload[FaxConstants.FaxMetaSentAt] = TimeSpan.FromSeconds(Math.Truncate(time.TotalSeconds)).ToString();
+
+        // Cargo slip logic
+        // This feels bad and hacky, probably better ways to do this...
         //chnaged faxConstants.cs and FaxMachineComponent.cs with hacky
         if (TryComp<CargoSlipComponent>(sendEntity, out var cargoSlipComponent))
         {
@@ -599,9 +661,7 @@ public sealed class FaxSystem : EntitySystem
             payload[FaxConstants.FaxSlipOrderQuantity] = cargoSlipComponent?.OrderQuantity;
             payload[FaxConstants.FaxSlipOrderAccount] = cargoSlipComponent?.Account.Id;
         }
-
-
-        //starlight end
+        #endregion Starlight
 
         _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
 
@@ -609,7 +669,7 @@ public sealed class FaxSystem : EntitySystem
             LogImpact.Low,
             $"{ToPrettyString(args.Actor):actor} " +
             $"sent fax from \"{component.FaxName}\" {ToPrettyString(uid):tool} " +
-            $"to \"{faxName}\" ({component.DestinationFaxAddress}) " +
+            $"to \"{knownFax.Name}\" ({component.DestinationFaxAddress}) " + // Starlight
             $"of {ToPrettyString(sendEntity):subject}: {paper.Content}");
 
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -628,9 +688,7 @@ public sealed class FaxSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        var faxName = Loc.GetString("fax-machine-popup-source-unknown");
-        if (fromAddress != null && component.KnownFaxes.TryGetValue(fromAddress, out var fax)) // If message received from unknown fax address
-            faxName = fax;
+        var faxName = printout.SenderFaxName ?? Loc.GetString("fax-machine-popup-source-unknown");
 
         _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-received", ("from", faxName)), uid);
         _appearanceSystem.SetData(uid, FaxMachineVisuals.VisualState, FaxMachineVisualState.Printing);
@@ -648,12 +706,24 @@ public sealed class FaxSystem : EntitySystem
 
         var printout = component.PrintingQueue.Dequeue();
 
-        var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;
-        var printed = Spawn(entityToSpawn, Transform(uid).Coordinates);
+        var entityToSpawn = printout.PrototypeId;
+        // Starlight start
+        if (printout.PrototypeId == default)
+            entityToSpawn = component.PrintPaperId;
+        var xform = Transform(uid);
+        var coords = _container.TryGetOuterContainer(uid, xform, out var outerContainer)
+            ? Transform(outerContainer.Owner).Coordinates
+            : xform.Coordinates;
+        var printed = Spawn(entityToSpawn, coords);
+        // Starlight end
 
         if (TryComp<PaperComponent>(printed, out var paper))
         {
-            _paperSystem.SetContent((printed, paper), printout.Content);
+            #region Starlight
+            _paperSystem.SetContent((printed, paper), printout.MetaSentAt != null
+                ? PrependContentMetadata(uid, printout.Content, printout, component)
+                : printout.Content);
+            #endregion
 
             // Apply stamps
             if (printout.StampState != null)
@@ -675,8 +745,9 @@ public sealed class FaxSystem : EntitySystem
             _labelSystem.Label(printed, label);
         }
 
-        // Starlight Start || this is such a hack T-T
-        if (printout.Product != null && printout.Requester != null && printout.Reason != null && printout.OrderQuantity != null && printout.Account != null)
+        #region Starlight
+        // this is such a hack T-T
+        if (printout is { Product: not null, Requester: not null, Reason: not null, OrderQuantity: not null, Account: not null })
         {
             var slip = EnsureComp<CargoSlipComponent>(printed);
             slip.Product = printout.Product;
@@ -685,7 +756,7 @@ public sealed class FaxSystem : EntitySystem
             slip.OrderQuantity = printout.OrderQuantity.Value;
             slip.Account = printout.Account;
         }
-        // Starlight end
+        #endregion
 
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"\"{component.FaxName}\" {ToPrettyString(uid):tool} printed {ToPrettyString(printed):subject}: {printout.Content}");
     }
@@ -718,7 +789,7 @@ public sealed class FaxSystem : EntitySystem
                 Log.Info($"Admin {client.Name} has a back slot, sending fax to them.");
                 //generate the entity
                 var entityToSpawn = printout.PrototypeId;
-                if (EntityManager.TrySpawnInContainer(entityToSpawn, worn.Value, "storagebase", out var printed))
+                if (TrySpawnInContainer(entityToSpawn, worn.Value, "storagebase", out var printed))
                 {
                     if (TryComp<PaperComponent>(printed.Value, out var paper))
                     {
@@ -747,4 +818,102 @@ public sealed class FaxSystem : EntitySystem
         }
         //starlight end
     }
+
+    #region Starlight
+
+    private string GetTimeStamp()
+    {
+        var date = _time.GetDate();
+        var time = _time.GetShiftDuration();
+        return string.Format($"{date} {time:hh\\:mm}");
+    }
+
+    private static string StripContentMetadata(string content)
+    {
+        var parsed = new FormattedMessage();
+        parsed.AddMarkupPermissive(content);
+        return parsed.RemoveLeading(["meta"]).ToMarkup();
+    }
+
+    private string PrependContentMetadata(EntityUid uid, string content, FaxPrintout payload, FaxMachineComponent comp)
+    {
+        const string MetaFormat = """
+        [meta][dots bold]Sent: {0} at {1}
+        Rcvd: {2} at {3}[/dots]
+        [/meta]{4}
+        """;
+
+        return string.Format(MetaFormat, payload.MetaSentAt, FormattedMessage.EscapeText(payload.MetaSender ?? ""),
+            TimeSpan.FromSeconds(Math.Truncate(_gameTicker.RoundDuration().TotalSeconds)).ToString(), FormattedMessage.EscapeText(comp.FaxName ?? ""), content);
+    }
+
+    private FaxPrintout? TryGetFaxablePrintout(EntityUid? item, FaxMachineComponent component)
+    {
+        if (item is not { } sendEntity ||
+            !TryComp<FaxableObjectComponent>(sendEntity, out var faxable) ||
+            string.IsNullOrEmpty(faxable.OutputtingText))
+            return null;
+
+        return !_documentManager.TryGetDocumentContents(faxable.OutputtingText, out var text)
+            ? null
+            : new FaxPrintout(
+                text,
+                Loc.GetString("fax-machine-printed-paper-name"),
+                prototypeId: component.PrintPaperId,
+                retainMetadata: true);
+    }
+
+    private bool SendFaxablePrintout(EntityUid uid, FaxMachineComponent component)
+    {
+        var printout = TryGetFaxablePrintout(component.PaperSlot.Item, component);
+        if (printout == null)
+            return false;
+
+        if (component.SendTimeoutRemaining > 0) return false;
+
+        if (component.DestinationFaxAddress == null ||
+            !component.KnownFaxes.ContainsKey(component.DestinationFaxAddress))
+            return false;
+
+        var payload = new NetworkPayload()
+        {
+            { DeviceNetworkConstants.Command, FaxConstants.FaxPrintCommand },
+            { FaxConstants.FaxPaperNameData, printout.Name },
+            { FaxConstants.FaxPaperContentData, printout.Content },
+            { FaxConstants.FaxPaperPrototypeData, printout.PrototypeId },
+            { FaxConstants.FaxPaperLockedData, false },
+            { FaxConstants.FaxMetaSender, component.FaxName },
+            { FaxConstants.FaxMetaSentAt, GetTimeStamp() }
+        };
+
+        _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
+        _audioSystem.PlayPvs(component.SendSound, uid);
+        component.SendTimeoutRemaining += component.SendTimeout;
+        UpdateUserInterface(uid, component);
+        return true;
+    }
+
+    private void UpdateMachineConfigureUserInterface(EntityUid uid, FaxMachineComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        var state = new FaxMachineConfigureState(component.FaxName, component.CurrentGroup,
+            component.IntrinsicGroup, component.IntrinsicLocked,
+            component.Order, HasComp<EmaggedComponent>(uid));
+        _userInterface.SetUiState(uid, FaxMachineConfigureUiKey.Key, state);
+    }
+
+    private void OnConfigure(EntityUid uid, FaxMachineComponent component, FaxMachineConfigureMessage args)
+    {
+        component.FaxName = args.Name;
+        component.CurrentGroup = args.Grouping;
+        component.Order = args.Order;
+
+        _popupSystem.PopupEntity(Loc.GetString("fax-machine-configure-ui-saved"), uid, args.Actor);
+        UpdateUserInterface(uid, component);
+        UpdateMachineConfigureUserInterface(uid, component);
+    }
+
+    #endregion
 }

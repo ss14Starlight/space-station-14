@@ -1,6 +1,4 @@
-using Content.Shared.Hands.Components;
 using Content.Shared.Nutrition.Components;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.NPC.HTN.Preconditions;
 
@@ -9,7 +7,7 @@ namespace Content.Server.NPC.HTN.Preconditions;
 /// </summary>
 public sealed partial class HungryPrecondition : HTNPrecondition
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     [DataField(required: true)]
     public HungerThreshold MinHungerState = HungerThreshold.Starving;

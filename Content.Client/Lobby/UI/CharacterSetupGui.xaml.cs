@@ -12,6 +12,9 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Client._Starlight.Lobby.UI;
+#endregion
 
 namespace Content.Client.Lobby.UI
 {
@@ -21,11 +24,11 @@ namespace Content.Client.Lobby.UI
     [GenerateTypedNameReferences]
     public sealed partial class CharacterSetupGui : Control
     {
-        [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
-        [Dependency] private readonly IPrototypeManager _protoManager = default!;
-        [Dependency] private readonly IResourceCache _resourceCache = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+        [Dependency] private IClientPreferencesManager _preferencesManager = default!;
+        [Dependency] private IPrototypeManager _protoManager = default!;
+        [Dependency] private IResourceCache _resourceCache = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private ISharedPlayerManager _playerManager = default!;
 
         private readonly Button _createNewCharacterButton;
         private readonly HumanoidProfileEditor _humanoidProfileEditor;

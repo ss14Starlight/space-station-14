@@ -7,11 +7,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Silicons.Borgs;
 
-public sealed class SecurityBorgActionsSystem : EntitySystem
+public sealed partial class SecurityBorgActionsSystem : EntitySystem
 {
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private static readonly ProtoId<RadioChannelPrototype> _securityChannel = "Security";
 

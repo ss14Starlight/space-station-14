@@ -3,16 +3,15 @@ using Content.Shared.FixedPoint;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
 namespace Content.Client.Fluids;
 
-public sealed class PuddleOverlay : Overlay
+public sealed partial class PuddleOverlay : Overlay
 {
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
     private readonly PuddleDebugOverlaySystem _debugOverlaySystem;
     private readonly SharedTransformSystem _transformSystem;
 

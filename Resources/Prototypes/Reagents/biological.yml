@@ -15,21 +15,43 @@
   standsout: true
   physicalDesc: reagent-physical-desc-ferrous
   metabolisms:
-    Drink:
+    Digestion:
+      metabolites:
+        UncookedAnimalProteins: 0.2
       effects:
+      #Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: Protein
+        amount: 0.3
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -0.75
+            Burn: -0.375
+      - !type:SatiateThirst
+        factor: 1.0
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Doll ] #Dolls share human metabolism too, so they need this extra
+      #Starlight End
       - !type:SatiateThirst
         factor: 1.0
         conditions:
           - !type:MetabolizerTypeCondition
             type: [ Human ]
             inverted: true
-    Food:
-      effects:
-        - !type:AdjustReagent
-          reagent: UncookedAnimalProteins
-          amount: 0.1
-    Medicine:
-      effects:
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
@@ -38,6 +60,32 @@
           groups:
             Brute: -3
             Burn: -1.25
+    #Starlight Start
+    Bloodstream: #Dolls heal from injected blood too
+      effects:
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -0.75
+            Burn: -0.375
+      - !type:HealthChange # Don't inject someone else's blood into yourself! Your own blood won't actually metabolise. #Starlight: Unless you are a doll. Also, ever heard of blood transfusions??
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+          inverted: true
+        damage:
+          types:
+            Poison: 0.2
+    #Starlight End
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
@@ -71,7 +119,7 @@
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:
-    Food:
+    Digestion:
       # Delicious!
       effects:
       - !type:SatiateHunger
@@ -103,7 +151,7 @@
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:
-    Food:
+    Digestion:
       # Sweet!
       effects:
       - !type:SatiateHunger
@@ -138,27 +186,38 @@
   physicalDesc: reagent-physical-desc-pungent
 
 - type: reagent
-  id: ZombieBlood
-  name: reagent-name-zombie-blood
+  parent: Blood
+  id: SulfurBlood
+  name: reagent-name-sulfur-blood
   group: Biological
-  desc: reagent-desc-zombie-blood
+  desc: reagent-desc-sulfur-blood
+  flavor: bitter
+  color: "#ccac1f"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-strong-smelling
+
+- type: reagent #starlight start
+  id: ZombieBlood
+  name: reagent-name-mortucussus
+  group: Biological
+  desc: reagent-desc-mortucussus
   physicalDesc: reagent-physical-desc-necrotic
   flavor: bitter
   color: "#2b0700"
   metabolisms:
-    Drink:
+    Digestion:
       # Disgusting!
       effects:
       - !type:SatiateThirst
         factor: -0.5
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
             Poison: 4
       - !type:Vomit
-        probability: 0.25
+        probability: 0.25 # starlight end
 
 - type: reagent
   id: Ichor
@@ -170,7 +229,7 @@
   color: "#f4692e"
   recognizable: true
   metabolisms:
-    Drink:
+    Bloodstream:
       effects:
       - !type:SatiateThirst
         factor: 1.5
@@ -222,13 +281,12 @@
     requiredSlipSpeed: 4.0 #It's not as slippery as water
   friction: 0.4
   metabolisms:
-    Drink:
+    Digestion:
+      metabolites:
+        Nutriment: 0.1
       effects:
       - !type:SatiateThirst
         factor: 0.5
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.1
   footstepSound:
     collection: FootstepBlood
     params:
@@ -243,41 +301,11 @@
   flavor: mindful
   color: "#C584B8"
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateHunger
         factor: 1.5
-    Poison:
-      effects:
       - !type:HealthChange
         damage:
           types:
             Cellular: 2
-
-- type: reagent
-  parent: Blood
-  id: BloodChangeling
-
-- type: reaction
-  id: ChangelingBloodBreakdown
-  source: true
-  requiredMixerCategories:
-  - Centrifuge
-  reactants:
-    BloodChangeling:
-      amount: 5
-  products:
-    Water: 11
-    Iron: 0.5
-    Sugar: 2
-    CarbonDioxide: 3
-    Protein: 4
-  effects:
-    - !type:SpawnEntity
-      entity: FleshKudzu
-    - !type:Explosion
-      explosionType: Default
-      maxIntensity: 2
-      intensityPerUnit: 0.5
-      intensitySlope: 4
-      maxTotalIntensity: 1

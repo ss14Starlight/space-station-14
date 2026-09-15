@@ -22,7 +22,6 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using YamlDotNet.Serialization.TypeInspectors;
 
 namespace Content.Client.Gameplay
 {
@@ -30,19 +29,18 @@ namespace Content.Client.Gameplay
     // Ok actually it's fine.
     // Instantiated dynamically through the StateManager, Dependencies will be resolved.
     [Virtual]
-    public class GameplayStateBase : State, IEntityEventSubscriber
+    public partial class GameplayStateBase : State, IEntityEventSubscriber
     {
-        [Dependency] private readonly IEyeManager _eyeManager = default!;
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IMapManager _mapManager = default!;
-        [Dependency] protected readonly IUserInterfaceManager UserInterfaceManager = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IViewVariablesManager _vvm = default!;
-        [Dependency] private readonly IConsoleHost _conHost = default!;
-        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+        [Dependency] private IEyeManager _eyeManager = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private IEntitySystemManager _entitySystemManager = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] protected IUserInterfaceManager UserInterfaceManager = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private IViewVariablesManager _vvm = default!;
+        [Dependency] private IConsoleHost _conHost = default!;
+        [Dependency] private IConfigurationManager _configurationManager = default!;
 
         private ClickableEntityComparer _comparer = default!;
 
@@ -231,7 +229,8 @@ namespace Content.Client.Gameplay
             {
                 var mousePosWorld = vp.PixelToMap(kArgs.PointerLocation.Position);
 
-                if (_mapManager.MapExists(mousePosWorld.MapId))
+                var map = _entitySystemManager.GetEntitySystem<SharedMapSystem>();
+                if (map.MapExists(mousePosWorld.MapId))
                 {
                     if (vp is ScalingViewport svp)
                     {
@@ -245,7 +244,7 @@ namespace Content.Client.Gameplay
                     var transformSystem = _entitySystemManager.GetEntitySystem<SharedTransformSystem>();
                     var mapSystem = _entitySystemManager.GetEntitySystem<MapSystem>();
 
-                    coordinates = _mapManager.TryFindGridAt(mousePosWorld, out var uid, out _)
+                    coordinates = map.TryFindGridAt(mousePosWorld, out var uid, out _)
                         ? mapSystem.MapToGrid(uid, mousePosWorld)
                         : transformSystem.ToCoordinates(mousePosWorld);
                 }

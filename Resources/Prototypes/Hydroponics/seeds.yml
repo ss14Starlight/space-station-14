@@ -744,6 +744,7 @@
     - FoodApple
   mutationPrototypes:
     - goldenApple
+    - evilApple # starlight
   harvestRepeat: Repeat
   lifespan: 55
   maturation: 6

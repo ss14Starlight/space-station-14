@@ -70,4 +70,9 @@ public sealed partial class AnomalousParticleComponent : Component
     /// </summary>
     [DataField]
     public bool TransmutationOverride = false;
+
+    #region Starlight
+    [DataField]
+    public string? InteractionKey;
+    #endregion
 }

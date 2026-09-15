@@ -1,0 +1,40 @@
+# MUST be added to the InteractionPrototypes list of a SocialInteractionReceiver component to be usable
+- type: socialInteraction
+  id: Pet
+  verbName: pet-verb
+  interactString: petting-success
+  messagePerceivedByOthers: petting-success-others
+  emoteMessage: petting-emote
+  interactSound: /Audio/Effects/thudswoosh.ogg
+
+- type: socialInteraction
+  id: Boop
+  verbName: boop-verb
+  interactString: booping-success
+  messagePerceivedByOthers: booping-success
+  emoteMessage: booping-emote
+  interactSound: /Audio/_Starlight/Effects/yip.ogg
+
+- type: socialInteraction
+  id: Wave
+  verbName: wave-verb
+  interactString: waving-success
+  messagePerceivedByOthers: waving-success-others
+  emoteMessage: waving-emote
+  emoteMessageSelf: waving-emote-self
+  interactSound: /Audio/_Starlight/Effects/CloudEmotes/pop.ogg
+  soundPerceivedByOthers: false
+  allowSelfTarget: true
+  isPhysical: false
+
+- type: socialInteraction
+  id: Look
+  verbName: look-verb
+  interactString: looking-success
+  messagePerceivedByOthers: looking-success-others
+  emoteMessage: looking-emote
+  emoteMessageSelf: looking-emote-self
+  interactSound: /Audio/Effects/pop_high.ogg
+  soundPerceivedByOthers: false
+  allowSelfTarget: true
+  isPhysical: false

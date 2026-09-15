@@ -1,4 +1,4 @@
-﻿using Content.Shared.Humanoid;
+using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Client.UserInterface.Controls;
@@ -41,9 +41,9 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
     public string? FullDescription { get; private set; }
 
     /// <summary>
-    /// The Uid of the currently loaded dummy
+    /// Entity used for the profile editor preview
     /// </summary>
-    public EntityUid PreviewDummy { get; private set; } = EntityUid.Invalid;
+    public EntityUid PreviewDummy;
 
     /// <summary>
     /// This MUST be called before loading a profile to initialize the managers.
@@ -74,19 +74,12 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
     /// <param name="showClothes">If false, render the dummy without clothes</param>
     /// <param name="antagOverride"> Starlight: Optional antag prototype override to preview</param>
     /// <exception cref="ArgumentException">Throws if something other than <see cref="HumanoidCharacterProfile"/> is passed in</exception>
-    public void LoadPreview(ICharacterProfile profile, JobPrototype? jobOverride = null, bool showClothes = true, ProtoId<AntagPrototype>? antagOverride = null) // Starlight edit: Antag Loadouts
+    public void LoadPreview(HumanoidCharacterProfile profile, JobPrototype? jobOverride = null, bool showClothes = true, ProtoId<AntagPrototype>? antagOverride = null) // Starlight edit: Antag Loadouts
     {
         EntMan.DeleteEntity(PreviewDummy);
         PreviewDummy = EntityUid.Invalid;
 
-        switch (profile)
-        {
-            case HumanoidCharacterProfile humanoid:
-                LoadHumanoidEntity(humanoid, jobOverride, showClothes, antagOverride); // Starlight edit: Antag Loadouts
-                break;
-            default:
-                throw new ArgumentException("Only humanoid profiles are implemented in ProfilePreviewSpriteView");
-        }
+        LoadHumanoidEntity(profile, jobOverride, showClothes, antagOverride); // Starlight edit: Antag Loadouts
 
         FullDescription = ConstructFullDescription();
 
@@ -101,16 +94,9 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
     /// </summary>
     /// <param name="profile"></param>
     /// <exception cref="ArgumentException"></exception>
-    public void ReloadProfilePreview(ICharacterProfile profile)
+    public void ReloadProfilePreview(HumanoidCharacterProfile profile)
     {
-        switch (profile)
-        {
-            case HumanoidCharacterProfile humanoid:
-                ReloadHumanoidEntity(humanoid);
-                break;
-            default:
-                throw new ArgumentException("Only humanoid profiles are implemented in ProfilePreviewSpriteView");
-        }
+        ReloadHumanoidEntity(profile);
     }
 
     private string ConstructFullDescription()
@@ -129,6 +115,12 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
         return string.Join("\n", descriptionLines);
     }
 
+    public void ClearPreview()
+    {
+        EntMan.DeleteEntity(PreviewDummy);
+        PreviewDummy = EntityUid.Invalid;
+    }
+
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
@@ -137,5 +129,11 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
 
         EntMan.DeleteEntity(PreviewDummy);
         PreviewDummy = EntityUid.Invalid;
+    }
+
+    protected override void ExitedTree()
+    {
+        base.ExitedTree();
+        ClearPreview();
     }
 }

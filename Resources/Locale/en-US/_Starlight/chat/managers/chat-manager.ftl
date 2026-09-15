@@ -17,6 +17,8 @@ chat-speech-verb-felionoid-3 = hisses
 chat-speech-verb-felionoid-4 = yowls
 chat-speech-verb-name-vulpkanin = Vulpkanin
 
+chat-speech-verb-suffix-pause = ...
+
 chat-speech-verb-marish = marrs
 
 chat-manager-language-requires-hands = You need free hands to speak this language!
@@ -32,3 +34,12 @@ chat-speech-verb-lagomorph = squeaks
 chat-speech-verb-name-resomi = Resomi
 chat-speech-verb-resomi-1 = squawks
 chat-speech-verb-resomi-2 = chirps
+
+chat-speech-verb-name-rodentia = Rodentia
+chat-speech-verb-rodentia-1 = squeaks
+chat-speech-verb-rodentia-2 = pieps
+chat-speech-verb-rodentia-3 = chatters
+chat-speech-verb-rodentia-4 = squeals
+
+chat-speech-verb-name-pause = Pausing
+chat-speech-verb-pause = pauses

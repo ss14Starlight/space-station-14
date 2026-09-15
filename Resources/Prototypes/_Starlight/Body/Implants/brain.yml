@@ -77,8 +77,10 @@
   components:
   - type: Sprite
     state: brain_implant_nexus
-  - type: CollectiveMindIdentity
-    prototypeId: Nexus
-  - type: TaggedOrgan
-    addTags:
+  - type: FunctionalOrgan
+    comps:
+    - type: IntrinsicTranslator
+      spoken:
+      - Nexus
+      understood:
       - Nexus

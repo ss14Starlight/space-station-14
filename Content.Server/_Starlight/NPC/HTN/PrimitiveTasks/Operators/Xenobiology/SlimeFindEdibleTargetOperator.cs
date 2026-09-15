@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using Content.Server._Starlight.Xenobiology;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN.PrimitiveTasks;
-using Content.Server.NPC.Pathfinding;
 using Content.Shared._Starlight.Xenobiology;
-using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 
@@ -19,7 +17,7 @@ public sealed partial class SlimeFindEdibleTargetOperator : HTNOperator
      * This doesn't require pathfinding, so slimes can theoretically smell targets through walls.
      */
 
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     private SlimeBrainSystem _slimeBrainSystem = default!;
     private EntityLookupSystem _lookup = default!;

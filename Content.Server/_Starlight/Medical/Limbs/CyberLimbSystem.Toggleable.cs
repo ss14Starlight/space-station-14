@@ -1,6 +1,6 @@
 using Content.Shared._Starlight.Medical.Limbs;
 using Content.Shared.Actions.Components;
-using Content.Shared.Starlight.Abstract.Codegen;
+using Content.Shared._Starlight.Abstract.Codegen;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 

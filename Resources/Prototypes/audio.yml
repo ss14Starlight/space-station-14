@@ -205,6 +205,7 @@
     - /Audio/Ambience/spookyspace2.ogg
     - /Audio/Ambience/ambispace2.ogg
     - /Audio/Lobby/title2.ogg
+    - /Audio/_Starlight/Lobby/HOME_Burn_Chamber_Starlight.ogg # Starlight
 
 - type: soundCollection
   id: AmbienceSpooky

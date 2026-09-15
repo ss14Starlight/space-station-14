@@ -11,7 +11,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Players;
-using Content.Shared.Preferences;
 using Content.Shared.Roles.Components;
 using JetBrains.Annotations;
 using Prometheus;
@@ -32,10 +31,10 @@ namespace Content.Server.GameTicking
 {
     public sealed partial class GameTicker
     {
-        [Dependency] private readonly DiscordWebhook _discord = default!;
-        [Dependency] private readonly RoleSystem _role = default!;
-        [Dependency] private readonly ITaskManager _taskManager = default!;
-        [Dependency] private readonly IBugReportManager _bugManager = default!; // Starlight
+        [Dependency] private DiscordWebhook _discord = default!;
+        [Dependency] private RoleSystem _role = default!;
+        [Dependency] private ITaskManager _taskManager = default!;
+        [Dependency] private IBugReportManager _bugManager = default!; // Starlight
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -364,6 +363,7 @@ namespace Content.Server.GameTicking
                 return;
 
             _startingRound = true;
+            RoundStartTimeSpan = _gameTiming.CurTime;
 
             if (RoundId == 0)
                 IncrementRoundNumber();
@@ -433,7 +433,6 @@ namespace Content.Server.GameTicking
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
 
-            RoundStartTimeSpan = _gameTiming.CurTime;
             SendStatusToAll();
             ReqWindowAttentionAll();
             UpdateLateJoinStatus();
@@ -728,8 +727,6 @@ namespace Content.Server.GameTicking
 
             EntityManager.FlushEntities();
 
-            _mapManager.Restart();
-
             _banManager.Restart();
 
             _bugManager.Restart(); // Starlight
@@ -831,6 +828,32 @@ namespace Content.Server.GameTicking
                 Log.Error($"Error while sending discord round start message:\n{e}");
             }
         }
+
+        #region Starlight
+
+        /// <summary>
+        /// Cancels the postround state and raises an event that systems can listen to in order to undo
+        /// anything they did upon the round ending.
+        /// </summary>
+        public void CancelPostRound(ICommonSession? canceller = null)
+        {
+            if (RunLevel != GameRunLevel.PostRound)
+                throw new Exception("Not in post-round.");
+            if (DummyTicker) return;
+            _sawmill.Info("Never mind actually, round end was cancelled!");
+            _adminLogger.Add(LogType.AdminCommands, LogImpact.Extreme,
+                $"Round end was cancelled{(canceller is not null ? $" by {canceller.Name}!" : "!")}");
+            _chatManager.SendAdminAnnouncement(
+                $"Round end was cancelled{(canceller is not null ? $" by {canceller.Name}!" : "!")}");
+
+            RunLevel = GameRunLevel.InRound;
+
+            var ev = new RoundEndCancelMessageEvent();
+            RaiseLocalEvent(ev);
+            RaiseNetworkEvent(ev);
+        }
+
+        #endregion
     }
 
     public enum GameRunLevel

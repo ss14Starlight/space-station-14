@@ -75,3 +75,12 @@ lobby-state-background-katievssyndie-artist = ramblinger
 
 lobby-state-background-nogalcom-title = When the brigmedic's starting chems run out
 lobby-state-background-nogalcom-artist = deltaVelocity
+
+lobby-state-background-aiderthief-title = Maints Discovery
+lobby-state-background-aiderthief-artist = silkielol
+
+lobby-state-background-aeuroracaelus-title = The Aurora Caelus Event is Now Ending
+lobby-state-background-aeuroracaelus-artist = xxhotgirl69
+
+lobby-state-background-ipcandmoff-title = "Eepy time"
+lobby-state-background-ipcandmoff-artist = "Doner"

@@ -12,7 +12,7 @@ namespace Content.Server._Moffstation.Power.EntitySystems;
 /// </summary>
 public sealed partial class InnerCableSystem : EntitySystem
 {
-    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     public override void Initialize()
     {

@@ -1,14 +1,15 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprites taken from Paradise Station",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "wardrobe"
+      "name": "wardrobe",
+      "copyright": "Sprites taken from Paradise Station"
     }
   ]
 }

@@ -15,11 +15,13 @@
   components:
   - type: GameRule
   - type: StationEvent
-    reoccurrenceDelay: 1
-    earliestStart: 12
+    reoccurrenceDelay: 5
+    earliestStart: 15
     minimumPlayers: 25
     globalAnnouncement: false
   - type: WreckSwarm
+    chunkConfig: Medium
+    velocity: 50
 
 - type: entity
   parent: GameRuleWreckSwarmSpawn
@@ -27,11 +29,12 @@
   components:
   - type: StationEvent
     weight: 20
-    earliestStart: 5
+    earliestStart: 15
     minimumPlayers: 10
     globalAnnouncement: false
   - type: WreckSwarm
-    sizeFilter: salvage-map-wreck-size-small
+    chunkConfig: Small
+    velocity: 50
 
 - type: entity
   parent: GameRuleWreckSwarmSpawn
@@ -39,11 +42,12 @@
   components:
   - type: StationEvent
     weight: 20
-    earliestStart: 15
+    earliestStart: 20
     minimumPlayers: 30
     globalAnnouncement: false
   - type: WreckSwarm
-    sizeFilter: salvage-map-wreck-size-medium
+    chunkConfig: Medium
+    velocity: 50
 
 - type: entity
   parent: GameRuleWreckSwarmSpawn
@@ -57,4 +61,5 @@
   - type: WreckSwarm
     announcement: station-event-incoming-wreck-large-announcement
     announcementSound: /Audio/Announcements/attention.ogg
-    sizeFilter: salvage-map-wreck-size-large
+    chunkConfig: Large
+    velocity: 50

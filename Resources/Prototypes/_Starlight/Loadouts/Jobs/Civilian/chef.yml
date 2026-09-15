@@ -1,0 +1,27 @@
+# Senior Time
+- type: loadoutEffectGroup
+  id: SeniorChef
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChef
+      time: 216000 # 60 hrs
+
+# Senior Outer Clothing
+- type: loadout
+  id: ChefJacketSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorChef
+  equipment:
+    outerClothing: ClothingOuterCoatChefSenior
+
+# Senior Jumpsuit
+- type: loadout
+  id: ChefJumpsuitSenior
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SeniorChef
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChefSenior

@@ -8,3 +8,35 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 10h
+  - !type:SpeciesRequirement
+    species:
+    - IPC
+    inverted: true
+  playTimeTracker: AntagDevil
+
+- type: antagSpecifier
+  parent: DevilRestrictedAntag
+  id: Devil
+  prefRoles:
+  - Devil
+  allowNonHumans: true
+  multiAntagSetting: NotExclusive
+  blacklist:
+    components:
+    - AntagImmune
+  mindRoles:
+  - MindRoleDevil
+  briefing:
+    sound: "/Audio/_Starlight/Misc/devil_greeting.ogg"
+  tags:
+    - CantBecomeRevolutionary
+  components:
+  - type: ActiveListener
+  - type: Unholy
+  - type: Clumsy
+    clumsyDefaultCheck: 1
+    clumsyGuns: true
+    clumsySound: "/Audio/Weapons/Guns/Gunshots/bang.ogg"
+    clumsyDefib: false
+    clumsyHypo: false
+    clumsyVaulting: false

@@ -1,8 +1,9 @@
-<DefaultWindow xmlns="https://spacestation14.io"
+<!-- Starlight: Reworked to PopOutWindow for popout support -->
+<local:SurveillanceCameraMonitorWindow xmlns="https://spacestation14.io"
                xmlns:viewport="clr-namespace:Content.Client.Viewport"
                xmlns:local="clr-namespace:Content.Client.SurveillanceCamera.UI"
                Title="{Loc 'surveillance-camera-monitor-ui-window'}">
-    <BoxContainer>
+    <BoxContainer Name="RootContainer">
         <!-- Panel with tabs -->
         <BoxContainer Orientation="Vertical" MinWidth="350">
             <TabContainer Name="ViewModeTabs" VerticalExpand="True">
@@ -68,4 +69,4 @@
             </Control>
         </BoxContainer>
     </BoxContainer>
-</DefaultWindow>
+</local:SurveillanceCameraMonitorWindow>

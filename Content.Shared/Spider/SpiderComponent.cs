@@ -1,7 +1,6 @@
 using Content.Shared.Actions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Spider;
 
@@ -9,13 +8,11 @@ namespace Content.Shared.Spider;
 [Access(typeof(SharedSpiderSystem))]
 public sealed partial class SpiderComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("webPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string WebPrototype = "SpiderWeb";
+    [DataField]
+    public EntProtoId WebPrototype = "SpiderWeb";
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("webAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string WebAction = "ActionSpiderWeb";
+    [DataField]
+    public EntProtoId WebAction = "ActionSpiderWeb";
 
     [DataField] public EntityUid? Action;
 
@@ -39,19 +36,37 @@ public sealed partial class SpiderComponent : Component
 
     #region Starlight
 
+    /// <summary>
+    /// Determines should we spawn only 1 web or five(like plus symbol)?
+    /// </summary>
     [DataField]
     public bool OneWebSpawn = true;
 
+    /// <summary>
+    /// Determines ability of breaking webs. Added to avoid evolution farm.
+    /// </summary>
     [DataField]
     public bool CantBreakWeb = true;
 
+    /// <summary>
+    /// Is this spider has building?
+    /// </summary>
     [DataField]
     public bool HasBuilding = false;
 
+    /// <summary>
+    /// Building action proto.
+    /// </summary>
     [DataField]
     public string BuildingActionProto = "";
 
-    [DataField] public EntityUid? BuildingAction;
+    public EntityUid? BuildingAction;
+
+    /// <summary>
+    /// Determines can we replace web if there's another web on this tile?
+    /// </summary>
+    [DataField]
+    public bool ReplacementAllowed = true;
 
     #endregion
 }

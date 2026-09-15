@@ -1,5 +1,4 @@
 using Content.Server.DeviceLinking.Components;
-using Content.Server.DeviceNetwork;
 using Content.Server.Doors.Systems;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceLinking.Events;
@@ -11,10 +10,10 @@ using JetBrains.Annotations;
 namespace Content.Server.DeviceLinking.Systems
 {
     [UsedImplicitly]
-    public sealed class DoorSignalControlSystem : EntitySystem
+    public sealed partial class DoorSignalControlSystem : EntitySystem
     {
-        [Dependency] private readonly DoorSystem _doorSystem = default!;
-        [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
+        [Dependency] private DoorSystem _doorSystem = default!;
+        [Dependency] private DeviceLinkSystem _signalSystem = default!;
 
         public override void Initialize()
         {

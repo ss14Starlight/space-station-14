@@ -1,12 +1,78 @@
 # Regular turnstiles
 
 - type: entity
+  id: DoorElectronicsTurnstileCommand
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - Command
+  - type: AccessReader
+    access: [["Command"]]
+
+- type: entity
   id: TurnstileCommand
   parent: Turnstile
   suffix: Command
   components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileCommand ]
+
+- type: entity
+  id: DoorElectronicsTurnstileSecurity
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - Security
   - type: AccessReader
-    access: [["Command"]]
+    access: [["Security"]]
+
+- type: entity
+  id: TurnstileSecurity
+  parent: Turnstile
+  suffix: Security
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileSecurity ]
+
+- type: entity
+  id: DoorElectronicsTurnstileArmory
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - Armory
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: entity
+  id: TurnstileArmory
+  parent: Turnstile
+  suffix: Armory
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileArmory ]
+
+- type: entity
+  id: DoorElectronicsTurnstileSyndicate
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+
+- type: entity
+  id: TurnstileSyndicate
+  parent: Turnstile
+  suffix: Syndicate
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileSyndicate ]
 
 # CentComm turnstiles
 
@@ -14,15 +80,60 @@
   id: TurnstileCentComm
   parent: Turnstile
   name: central command turnstile
-  suffix: Command
   components:
     - type: Sprite
       sprite: _Starlight/Structures/Doors/cc-turnstile.rsi
       layers:
         - state: turnstile
           map: [ "enum.TurnstileVisualLayers.Base" ]
-    - type: AccessReader
-      access: [["Command"]]
+
+- type: entity
+  id: DoorElectronicsTurnstileCentCommCommand
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - Command
+  - type: AccessReader
+    access: [["Command"]]
+
+- type: entity
+  id: TurnstileCentCommCommand
+  parent: TurnstileCentComm
+  name: central command turnstile
+  suffix: Command
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileCentCommCommand ]
+
+- type: entity
+  id: DoorElectronicsTurnstileCentCommCentralCommand
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+    accessGroups:
+    - CentralCommand
+  - type: AccessReader
+    access: [["CentralCommand"]]
+
+- type: entity
+  id: TurnstileCentCommCentralCommand
+  parent: TurnstileCentComm
+  name: central command turnstile
+  suffix: Central Command
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsTurnstileCentCommCentralCommand ]
+
+- type: entity
+  id: DoorElectronicsTurnstileCentCommDebrief
+  parent: DoorElectronics
+  components:
+  - type: DoorElectronics
+  - type: AccessReader
+    access: [["Debrief"]]
 
 - type: entity
   id: TurnstileCentCommDebrief
@@ -30,5 +141,12 @@
   name: central command turnstile
   suffix: Debrief
   components:
-    - type: AccessReader
-      access: [["Debrief"]]
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsTurnstileCentCommDebrief ]
+    - type: Turnstile
+      denySound:
+        path: /Audio/Machines/airlock_deny.ogg
+        params:
+          maxDistance: 1.5 # Small range to prevent disturbing debrief.
+          volume: -7

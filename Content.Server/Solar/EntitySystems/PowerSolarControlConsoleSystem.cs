@@ -1,5 +1,4 @@
 using Content.Server.Solar.Components;
-using Content.Server.UserInterface;
 using Content.Shared.Solar;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
@@ -10,10 +9,10 @@ namespace Content.Server.Solar.EntitySystems
     /// Responsible for updating solar control consoles.
     /// </summary>
     [UsedImplicitly]
-    internal sealed class PowerSolarControlConsoleSystem : EntitySystem
+    internal sealed partial class PowerSolarControlConsoleSystem : EntitySystem
     {
-        [Dependency] private readonly PowerSolarSystem _powerSolarSystem = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+        [Dependency] private PowerSolarSystem _powerSolarSystem = default!;
+        [Dependency] private UserInterfaceSystem _uiSystem = default!;
 
         /// <summary>
         /// Timer used to avoid updating the UI state every frame (which would be overkill)

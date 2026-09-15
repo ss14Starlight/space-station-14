@@ -9,20 +9,29 @@ using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
-using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
-using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Starlight.Medical.Surgery.Steps;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared.Tag;
 
-namespace Content.Shared.Starlight.Medical.Surgery;
+namespace Content.Shared._Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
 public abstract partial class SharedSurgerySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
+
+    // limb attachment blacklist, array because,,, future proofing.
+    private static readonly string[] _nonImplantableTags =
+    {
+        "CyberHandItem",
+    };
+
+    private static readonly ProtoId<TagPrototype> _surgeryCompatibleTag = "SurgeryCompatibleArmor";
+
     private void InitializeSteps()
     {
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepCompleteEvent>(OnStepComplete);
@@ -32,6 +41,7 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent<SurgeryTargetComponent, AccessibleOverrideEvent>(OnOverrideAccess);
 
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryCanPerformStepEvent>(OnCanPerformStep);
+        SubscribeLocalEvent<SurgeryStepAttachLimbEffectComponent, SurgeryCanPerformStepEvent>(OnStepAttachCanPerform);
 
         Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs => subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen));
     }
@@ -114,7 +124,7 @@ public abstract partial class SharedSurgerySystem
             var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
             if (tool == default) return;
 
-            var specificToolComp = EntityManager.GetComponents(tool)
+            var specificToolComp = AllComps(tool)
                 .OfType<ISurgeryToolComponent>();
 
             SoundSpecifier? endSound = null;
@@ -194,7 +204,7 @@ public abstract partial class SharedSurgerySystem
             while (enumerator.MoveNext(out var con))
             {
                 total++;
-                if (con.ContainedEntity != null && !_tag.HasTag(con.ContainedEntity.Value, "SurgeryCompatibleArmor"))
+                if (con.ContainedEntity != null && !_tag.HasTag(con.ContainedEntity.Value, _surgeryCompatibleTag))
                     items++;
             }
 
@@ -247,6 +257,18 @@ public abstract partial class SharedSurgerySystem
         }
     }
 
+    // block blacklisted items, the UI for surgury can act a bit strange so it does a little double check and lets the player know.
+    private void OnStepAttachCanPerform(Entity<SurgeryStepAttachLimbEffectComponent> ent, ref SurgeryCanPerformStepEvent args)
+    {
+        if (args.Tools.FirstOrDefault() is not { Valid: true } itemId
+            || HasComp<BodyPartComponent>(itemId)
+            || !_nonImplantableTags.Any(tag => _tag.HasTag(itemId, tag)))
+            return;
+
+        args.Invalid = StepInvalidReason.MissingLimb;
+        args.Popup = $"You can't attach {Name(itemId)} as a limb!";
+    }
+
     private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
     {
         var user = args.Actor;
@@ -282,7 +304,7 @@ public abstract partial class SharedSurgerySystem
                 var toolSpeed = 1f;
                 var toolSuccessRate = 1f;
                 SoundSpecifier? startSound = null;
-                var specificToolComp = EntityManager.GetComponents(tool)
+                var specificToolComp = AllComps(tool)
                     .OfType<ISurgeryToolComponent>();
 
                 foreach(var usedTool in specificToolComp)

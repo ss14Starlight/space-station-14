@@ -5,6 +5,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared._Starlight.Hands; // Starlight
 
 namespace Content.Shared.Hands.Components;
 
@@ -71,6 +72,7 @@ public sealed partial class HandsComponent : Component
     ///     The time at which throws will be allowed again.
     /// </summary>
     [DataField, AutoPausedField]
+    [Access(typeof(SharedHandsSystem), typeof(PredictedHandsSystem))] // Starlight
     public TimeSpan NextThrowTime;
 
     /// <summary>
@@ -173,6 +175,7 @@ public sealed class HandsComponentState : ComponentState
     public readonly Dictionary<string, Hand> Hands;
     public readonly List<string> SortedHands;
     public readonly string? ActiveHandId;
+    public readonly TimeSpan NextThrowTime; // Starlight
 
     public HandsComponentState(HandsComponent handComp)
     {
@@ -180,56 +183,17 @@ public sealed class HandsComponentState : ComponentState
         Hands = new(handComp.Hands);
         SortedHands = new(handComp.SortedHands);
         ActiveHandId = handComp.ActiveHandId;
+        NextThrowTime = handComp.NextThrowTime; // Starlight
     }
 }
 
 /// <summary>
 ///     What side of the body this hand is on.
 /// </summary>
-/// <seealso cref="HandUILocation"/>
-/// <seealso cref="HandLocationExt"/>
 public enum HandLocation : byte
 {
-    //Starlight start
     Right,
     Middle,
     Left,
-    //Starlight end
-    Functional
-}
-
-/// <summary>
-/// What side of the UI a hand is on.
-/// </summary>
-/// <seealso cref="HandLocationExt"/>
-/// <seealso cref="HandLocation"/>
-public enum HandUILocation : byte
-{
-    //Starlight start
-    Right,
-    Left,
-    //Starlight end
-    Functional
-}
-
-/// <summary>
-/// Helper functions for working with <see cref="HandLocation"/>.
-/// </summary>
-public static class HandLocationExt
-{
-    /// <summary>
-    /// Convert a <see cref="HandLocation"/> into the appropriate <see cref="HandUILocation"/>.
-    /// This maps "middle" hands to <see cref="HandUILocation.Right"/>.
-    /// </summary>
-    public static HandUILocation GetUILocation(this HandLocation location)
-    {
-        return location switch
-        {
-            HandLocation.Left => HandUILocation.Left,
-            HandLocation.Middle => HandUILocation.Right,
-            HandLocation.Right => HandUILocation.Right,
-            HandLocation.Functional => HandUILocation.Functional,
-            _ => throw new ArgumentOutOfRangeException(nameof(location), location, null)
-        };
-    }
+    Functional // Starlight
 }

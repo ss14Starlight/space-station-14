@@ -6,26 +6,28 @@ using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Stunnable;
 using Content.Shared.Damage.Systems;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Mind;
-using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.Shadekin.Components;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.Changeling;
+using Content.Shared._Starlight.Devil;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicConversionSystem : EntitySystem
+public sealed partial class CosmicConversionSystem : EntitySystem
 {
-    [Dependency] private readonly CosmicCultRuleSystem _cultRule = default!;
-    [Dependency] private readonly CosmicGlyphSystem _cosmicGlyph = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedCosmicCultSystem _cosmicCult = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private CosmicCultRuleSystem _cultRule = default!;
+    [Dependency] private CosmicGlyphSystem _cosmicGlyph = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedRoleSystem _role = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     public override void Initialize()
     {
@@ -70,6 +72,11 @@ public sealed class CosmicConversionSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-chaplain"), uid, args.User);
                 args.Cancel();
             }
+            else if (uid.Comp.NegateProtection == false && HasComp<ChangelingComponent>(target))
+            {
+                _popup.PopupEntity(Loc.GetString("cult-glyph-target-otherantag"), uid, args.User);
+                args.Cancel();
+            }
             else if (uid.Comp.NegateProtection == false && HasComp<MindShieldComponent>(target))
             {
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-mindshield"), uid, args.User);
@@ -78,6 +85,11 @@ public sealed class CosmicConversionSystem : EntitySystem
             else if (uid.Comp.NegateProtection == false && HasComp<BrighteyeComponent>(target))
             {
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-brighteye"), uid, args.User);
+                args.Cancel();
+            }
+            else if (uid.Comp.NegateProtection == false && HasComp<DevilComponent>(target))
+            {
+                _popup.PopupEntity(Loc.GetString("cult-glyph-target-devil"), uid, args.User);
                 args.Cancel();
             }
             else if (uid.Comp.NegateProtection == false && _mind.TryGetMind(args.User, out var mind, out _) && _role.MindHasRole<WizardRoleComponent>(mind))

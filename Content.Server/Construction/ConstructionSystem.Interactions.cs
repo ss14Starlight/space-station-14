@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Construction.Components;
 using Content.Server.Temperature.Components;
-using Content.Shared._Starlight.FiringPins; // starlight
 using Content.Shared.Construction;
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;
@@ -12,7 +11,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Prying.Systems;
 using Content.Shared.Radio.EntitySystems;
-using Content.Shared.Stacks;
 using Content.Shared.Temperature;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Tools.Systems;
@@ -23,13 +21,18 @@ using Robust.Shared.Utility;
 using Robust.Shared.Exceptions;
 #endif
 
+#region Starlight
+using Content.Shared._Starlight.Construction;
+using Content.Shared._Starlight.FiringPins;
+#endregion
+
 namespace Content.Server.Construction
 {
     public sealed partial class ConstructionSystem
     {
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
 #if EXCEPTION_TOLERANCE
-        [Dependency] private readonly IRuntimeLog _runtimeLog = default!;
+        [Dependency] private IRuntimeLog _runtimeLog = default!;
 #endif
 
         private readonly Queue<EntityUid> _constructionUpdateQueue = new();
@@ -249,6 +252,17 @@ namespace Content.Server.Construction
                 doAfterState = DoAfterState.Completed;
             }
 
+            #region Starlight
+            // Fire an event for intercepting construction steps caused by user interaction.
+            if (doAfterState == DoAfterState.None && ev is InteractUsingEvent earlyCheck)
+            {
+                var attemptEv = new ConstructionInteractAttemptEvent(earlyCheck.User, uid);
+                RaiseLocalEvent(uid, ref attemptEv);
+                if (attemptEv.Canceled)
+                    return HandleResult.False;
+            }
+            #endregion
+
             // The cases in this switch will handle the interaction and return
             switch (step)
             {
@@ -285,6 +299,9 @@ namespace Content.Server.Construction
                     // If we're only testing whether this step would be handled by the given event, then we're done.
                     if (validation)
                         return HandleResult.Validated;
+
+                    if (doAfterState == DoAfterState.None) // Starlight
+                        _interactionSystem.DoContactInteraction(interactUsing.User, uid, interactUsing.Used, false); // Moffstation
 
                     // If we still haven't completed this step's DoAfter...
                     if (doAfterState == DoAfterState.None && insertStep.DoAfter > 0)
@@ -368,6 +385,7 @@ namespace Content.Server.Construction
                     if (doAfterState == DoAfterState.Completed)
                         return  HandleResult.True;
 
+                    _interactionSystem.DoContactInteraction(interactUsing.User, uid, interactUsing.Used, false); // Moffstation - Interaction particles
                     var result  = _toolSystem.UseTool(
                         interactUsing.Used,
                         interactUsing.User,
@@ -411,7 +429,7 @@ namespace Content.Server.Construction
                     if ((!temperatureChangeStep.MinTemperature.HasValue || temp >= temperatureChangeStep.MinTemperature.Value) &&
                         (!temperatureChangeStep.MaxTemperature.HasValue || temp <= temperatureChangeStep.MaxTemperature.Value))
                     {
-                        return HandleResult.True;
+                        return validation ? HandleResult.Validated : HandleResult.True;
                     }
 
                     return HandleResult.False;
@@ -423,7 +441,7 @@ namespace Content.Server.Construction
                         break;
 
                     if (partAssemblyStep.Condition(uid, EntityManager))
-                        return HandleResult.True;
+                        return validation ? HandleResult.Validated : HandleResult.True;
                     return HandleResult.False;
                 }
 

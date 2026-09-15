@@ -1,0 +1,57 @@
+{
+  "version": 2,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "unwired",
+      "directions": 4,
+	  "copyright": "Sprites by buhojmed (Github) for AdventureTime14, modified by HyperB1 (GitHub) for Enterprise/Ganimede14, AftrLite(GitHub) for Impstation, modified by Lightning (Discord) for Impstation"
+    },
+    {
+      "name": "completed",
+      "directions": 4,
+	  "copyright": "Sprites by buhojmed (Github) for AdventureTime14, modified by HyperB1 (GitHub) for Enterprise/Ganimede14, AftrLite(GitHub) for Impstation, modified by Lightning (Discord) for Impstation"
+    },
+    {
+      "name": "unlitp",
+      "directions": 4,
+	  "copyright": "Sprites by buhojmed (Github) for AdventureTime14, modified by HyperB1 (GitHub) for Enterprise/Ganimede14, AftrLite(GitHub) for Impstation, modified by Lightning (Discord) for Impstation"
+    },
+    {
+      "name": "unlitp0",
+      "directions": 4,
+	  "copyright": "Sprites by buhojmed (Github) for AdventureTime14, modified by HyperB1 (GitHub) for Enterprise/Ganimede14, AftrLite(GitHub) for Impstation, modified by Lightning (Discord) for Impstation"
+    },
+    {
+      "name": "unlitp1",
+      "directions": 4,
+	  "copyright": "Sprites by buhojmed (Github) for AdventureTime14, modified by HyperB1 (GitHub) for Enterprise/Ganimede14, AftrLite(GitHub) for Impstation, modified by Lightning (Discord) for Impstation"
+    },
+    {
+      "name": "unlitp2",
+      "directions": 4,
+	  "copyright": "Sprites by buhojmed (Github) for AdventureTime14, modified by HyperB1 (GitHub) for Enterprise/Ganimede14, AftrLite(GitHub) for Impstation, modified by Lightning (Discord) for Impstation"
+    },
+    {
+      "name": "unlitp3",
+      "directions": 4,
+	  "copyright": "Sprites by buhojmed (Github) for AdventureTime14, modified by HyperB1 (GitHub) for Enterprise/Ganimede14, AftrLite(GitHub) for Impstation, modified by Lightning (Discord) for Impstation",
+      "delays": [
+        [0.5, 0.5],
+        [0.5, 0.5],
+        [0.5, 0.5],
+        [0.5, 0.5]
+      ]
+    },
+    {
+      "name": "wired",
+      "directions": 4,
+	  "copyright": "Sprites by buhojmed (Github) for AdventureTime14, modified by HyperB1 (GitHub) for Enterprise/Ganimede14, AftrLite(GitHub) for Impstation, modified by Lightning (Discord) for Impstation"
+    }
+  ]
+}

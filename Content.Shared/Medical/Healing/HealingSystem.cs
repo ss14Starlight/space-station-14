@@ -21,25 +21,27 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
+using Content.Shared._FarHorizons.Medical.ConditionalHealing;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared._Starlight.Medical.Body.Systems;
 
 namespace Content.Shared.Medical.Healing;
 
-public sealed class HealingSystem : EntitySystem
+public sealed partial class HealingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedStackSystem _stacks = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly BlindableSystem _blindable = default!; // Far Horizons
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedStackSystem _stacks = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private ConditionalHealingSystem _conditionalHealing = default!; // Far Horizons
+    [Dependency] private BlindableSystem _blindable = default!; // Far Horizons
 
     public override void Initialize()
     {
@@ -57,7 +59,13 @@ public sealed class HealingSystem : EntitySystem
             return;
 
         if (!TryComp(args.Used, out HealingComponent? healing))
-            return;
+        {
+            // Far Horizons, handle conditional healing items.
+            if (args.Used is null || _conditionalHealing.SelectBestMatch(args.Used.Value, target) is not ConditionalHealingData healingData)
+                return;
+            var healingEntity = _conditionalHealing.ValidateConditionalHealing(args.Used.Value, healingData); // Starlight, healing component validation
+            healing = healingEntity.Comp; // Starlight, apply it.
+        }
 
         if (healing.DamageContainers is not null &&
             target.Comp.DamageContainerID is not null &&
@@ -108,31 +116,24 @@ public sealed class HealingSystem : EntitySystem
             if (_stacks.GetCount((args.Used.Value, stackComp)) <= 0)
                 dontRepeat = true;
         }
-        // Starlight start
-        else if (healing.SolutionDrain && TryComp<SolutionContainerManagerComponent>(args.Used, out var solutionManager))
+        #region Starlight
+        else if (healing.SolutionDrain &&
+                    _solutionContainerSystem.TryGetSolution(args.Used.Value, "injector", out var solutionEntity, out var solution))
         {
-            Entity<SolutionComponent>? solutionEntity = null;
-            if (_solutionContainerSystem.ResolveSolution(args.Used.Value, "injector", ref solutionEntity, out var solution))
+            var reagentsToRemove = new List<(ReagentQuantity Reagent, FixedPoint2 Amount)>();
+            foreach(var reagent in solution.Contents)
             {
-                var reagentsToRemove = new List<(ReagentQuantity Reagent, FixedPoint2 Amount)>();
-                foreach(var reagent in solution.Contents)
-                {
-                    var drainReagent = healing.ReagentsToDrain.FirstOrDefault(drain => drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
-                    if (solutionEntity != null && drainReagent != null)
-                        reagentsToRemove.Add((reagent, drainReagent.Quantity));
-                }
-
-                foreach (var (reagent, amount) in reagentsToRemove)
-                {
-                    if (solutionEntity != null)
-                        _solutionContainerSystem.RemoveReagent(solutionEntity.Value, reagent.Reagent, amount);
-                }
-
-                if (!solution.Contents.Any(sol => healing.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
-                    dontRepeat = true;
+                var drainReagent = healing.ReagentsToDrain.FirstOrDefault(drain => drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
+                reagentsToRemove.Add((reagent, drainReagent.Quantity));
             }
+
+            foreach (var (reagent, amount) in reagentsToRemove)
+                _solutionContainerSystem.RemoveReagent(solutionEntity.Value, reagent.Reagent, amount);
+
+            if (!solution.Contents.Any(sol => healing.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
+                dontRepeat = true;
         }
-        // Starlight end
+        #endregion
         else
         {
             PredictedQueueDel(args.Used.Value);
@@ -242,11 +243,10 @@ public sealed class HealingSystem : EntitySystem
         if (TryComp<StackComponent>(healing, out var stack) && stack.Count < 1)
             return false;
 
-        // Starlight start
-        if (healing.Comp.SolutionDrain && TryComp<SolutionContainerManagerComponent>(healing.Owner, out var solutionManager))
+        #region Starlight
+        if (healing.Comp.SolutionDrain)
         {
-            Entity<SolutionComponent>? solutionEntity = null;
-            if (_solutionContainerSystem.ResolveSolution(healing.Owner, "injector", ref solutionEntity, out var solution))
+            if (_solutionContainerSystem.TryGetSolution(healing.Owner, "injector", out _, out var solution))
             {
                 if (!solution.Contents.Any(sol => healing.Comp.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
                 {
@@ -257,7 +257,7 @@ public sealed class HealingSystem : EntitySystem
             else
                 return false;
         }
-        // Starlight end
+        #endregion
         if (!HasDamage(healing, target!))
         {
             _popupSystem.PopupClient(Loc.GetString("medical-item-cant-use", ("item", healing.Owner)), healing, user);

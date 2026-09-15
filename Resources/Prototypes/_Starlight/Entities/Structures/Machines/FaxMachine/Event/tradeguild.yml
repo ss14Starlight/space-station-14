@@ -1,0 +1,16 @@
+# Group and base in ../tradeguild.yml.
+# Order = 10_000, so I can't imagine you'd really want to use this particular group for events.
+
+# Single fax -- can be edited for mapping/event purposes.
+- type: entity
+  parent: FaxMachineITGBase
+  id: FaxMachineITG
+  suffix: "ITG"
+  categories: [ DoNotMap ]
+  components:
+    - type: FaxMachine
+      group: FaxGroupITG
+      intrinsicGroup: FaxGroupITG
+      intrinsicLocked: true # No impersonating unless emagged
+      name: "Interstellar Trade Guild"
+      order: 500

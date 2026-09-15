@@ -6,10 +6,10 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
-public sealed class HideLayerClothingSystem : EntitySystem
+public sealed partial class HideLayerClothingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -51,7 +51,7 @@ public sealed class HideLayerClothingSystem : EntitySystem
 
         hideLayers &= IsEnabled(clothing!);
 
-        var hideable = user.Comp.HideLayersOnEquip;
+        var hideable = user.Comp.HideLayersOnEquip; // Starlight, no visual nubody
         var inSlot = clothing.Comp2.InSlotFlag ?? SlotFlags.NONE;
 
         // This method should only be getting called while the clothing is equipped (though possibly currently in
@@ -66,12 +66,12 @@ public sealed class HideLayerClothingSystem : EntitySystem
         // the clothing is (or was)equipped in a matching slot.
         foreach (var (layer, validSlots) in clothing.Comp1.Layers)
         {
-            if (!hideable.Contains(layer))
-                continue;
+            if (!hideable.Contains(layer)) // Starlight
+                continue; // Starlight
 
             // Only update this layer if we are currently equipped to the relevant slot.
             if (validSlots.HasFlag(inSlot))
-                _humanoid.SetLayerVisibility(user!, layer, !hideLayers, inSlot, ref dirty);
+                _humanoid.SetLayerVisibility(user!, layer, !hideLayers, inSlot, ref dirty); // Starlight, no vis nubody
         }
 
         // Fallback for obsolete field: assume we want to hide **all** layers, as long as we are equipped to any
@@ -83,7 +83,7 @@ public sealed class HideLayerClothingSystem : EntitySystem
             foreach (var layer in slots)
             {
                 if (hideable.Contains(layer))
-                    _humanoid.SetLayerVisibility(user!, layer, !hideLayers, inSlot, ref dirty);
+                    _humanoid.SetLayerVisibility(user!, layer, !hideLayers, inSlot, ref dirty); // Starlight, no vis nubody
             }
         }
 

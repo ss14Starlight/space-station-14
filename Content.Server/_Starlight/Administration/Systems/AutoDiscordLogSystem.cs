@@ -2,18 +2,18 @@ using System.Threading.Tasks;
 using Content.Server.Discord;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Administration.Systems;
 
-public sealed class AutoDiscordLogSystem : EntitySystem
+public sealed partial class AutoDiscordLogSystem : EntitySystem
 {
-    [Dependency] private readonly DiscordWebhook _discord = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private DiscordWebhook _discord = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private WebhookIdentifier? _webhookId = null;
 

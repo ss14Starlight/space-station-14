@@ -1,16 +1,16 @@
-using System.Linq; // Starlight-edit
-using Content.Server.Chat.Systems; // Starlight-edit
+using System.Linq;
+using Content.Server.Chat.Systems;
 using Content.Server.Medical.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Chat; // Starlight
+using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Prototypes; // Starlight-edit
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint; // Starlight
-using Content.Shared.Hands.EntitySystems; // Starlight-edit
-using Content.Shared.Humanoid; // Starlight-edit
-using Content.Shared.Humanoid.Prototypes; // Starlight-edit
+using Content.Shared.FixedPoint;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -18,43 +18,48 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Paper; // Starlight-edit
+using Content.Shared.Paper;
 using Content.Shared.Popups;
 using Content.Shared.PowerCell;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Traits.Assorted;
-using Content.Shared._Starlight.Time; // Starlight-edit
+using Content.Shared._Starlight.Time;
+using Content.Shared._Starlight.Medical.Body.Components;
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Prototypes; // Starlight-edit
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility; // Starlight-edit
+using Robust.Shared.Utility;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Medical;
 
-public sealed class HealthAnalyzerSystem : EntitySystem
+public sealed partial class HealthAnalyzerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PowerCellSystem _cell = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PowerCellSystem _cell = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
     // Starlight-start: Printable health reports.
-    [Dependency] private readonly SharedTimeSystem _timeSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly PaperSystem _paperSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private SharedTimeSystem _timeSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private PaperSystem _paperSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     // Starlight-end
 
-    [Dependency] private readonly ChatSystem _chat = default!; // Starlight-edit
+    [Dependency] private ChatSystem _chat = default!; // Starlight-edit
 
     public override void Initialize()
     {
@@ -91,11 +96,12 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             var patientCoordinates = Transform(patient).Coordinates;
             if (component.MaxScanRange != null && !_transformSystem.InRange(patientCoordinates, transform.Coordinates, component.MaxScanRange.Value))
             {
-                //Range too far, disable updates
-                StopAnalyzingEntity((uid, component), patient);
+                //Range too far, disable updates until they are back in range
+                PauseAnalyzingEntity((uid, component), patient);
                 continue;
             }
 
+            component.IsAnalyzerActive = true;
             UpdateScannedUser(uid, patient, true);
         }
     }
@@ -112,7 +118,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         if (uid.Comp.DamageContainers is not null
             && TryComp<DamageableComponent>(args.Target, out var damageable)
             && damageable.DamageContainerID is not null
-            && !uid.Comp.DamageContainers.Contains(damageable.DamageContainerID))
+            && !uid.Comp.DamageContainers.Contains(damageable.DamageContainerID.Value))
             return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);
@@ -238,6 +244,21 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         UpdateScannedUser(healthAnalyzer, target, false);
     }
 
+
+    /// <summary>
+    /// If the scanner is active, sends one last update and sets it to inactive.
+    /// </summary>
+    /// <param name="healthAnalyzer">The health analyzer that's receiving the updates</param>
+    /// <param name="target">The entity to analyze</param>
+    private void PauseAnalyzingEntity(Entity<HealthAnalyzerComponent> healthAnalyzer, EntityUid target)
+    {
+        if (!healthAnalyzer.Comp.IsAnalyzerActive)
+            return;
+
+        UpdateScannedUser(healthAnalyzer, target, false);
+        healthAnalyzer.Comp.IsAnalyzerActive = false;
+    }
+
     /// <summary>
     /// Send an update for the target to the healthAnalyzer
     /// </summary>
@@ -311,12 +332,13 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         if (TryComp<UnrevivableComponent>(entity, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
 
-        // Starlight begin - Get a list of metabolizing chemicals
-        List<(string ReagentId, FixedPoint2 Quantity)>? metabolizingReagents = null;
+        // Starlight begin - Collect bloodstream and stomach chemicals into a single merged list
+        var chemicalsDict = new Dictionary<string, (FixedPoint2 Blood, FixedPoint2 Stomach)>();
+
+        // Bloodstream chemicals
         if (TryComp<BloodstreamComponent>(entity, out var bloodstreamComp) &&
             _solutionContainerSystem.TryGetSolution(entity, bloodstreamComp.BloodSolutionName, out _, out var chemicalsSolution))
         {
-            metabolizingReagents = new List<(string, FixedPoint2)>();
             foreach (var (reagent, quantity) in chemicalsSolution.Contents)
             {
                 // Skip blood and only show actual chemicals being metabolized
@@ -332,8 +354,38 @@ public sealed class HealthAnalyzerSystem : EntitySystem
                 if (isBlood)
                     continue;
 
-                metabolizingReagents.Add((reagent.Prototype, quantity));
+                if (chemicalsDict.TryGetValue(reagent.Prototype, out var existing))
+                    chemicalsDict[reagent.Prototype] = (existing.Blood + quantity, existing.Stomach);
+                else
+                    chemicalsDict[reagent.Prototype] = (quantity, FixedPoint2.Zero);
             }
+        }
+
+        var stomachs = _bodySystem.GetBodyOrganEntityComps<StomachComponent>((entity, null));
+        foreach (var stomach in stomachs)
+        {
+            if (_solutionContainerSystem.ResolveSolution(stomach.Owner, StomachSystem.DefaultSolutionName,
+                ref stomach.Comp1.Solution, out var stomachSol))
+            {
+                foreach (var (reagent, quantity) in stomachSol.Contents)
+                {
+                    if (quantity <= FixedPoint2.Zero)
+                        continue;
+
+                    if (chemicalsDict.TryGetValue(reagent.Prototype, out var existing))
+                        chemicalsDict[reagent.Prototype] = (existing.Blood, existing.Stomach + quantity);
+                    else
+                        chemicalsDict[reagent.Prototype] = (FixedPoint2.Zero, quantity);
+                }
+            }
+        }
+
+        List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? chemicals = null;
+        if (chemicalsDict.Count > 0)
+        {
+            chemicals = new List<(string, FixedPoint2, FixedPoint2)>();
+            foreach (var (reagentId, amounts) in chemicalsDict)
+                chemicals.Add((reagentId, amounts.Blood, amounts.Stomach));
         }
         // Starlight end
 
@@ -345,11 +397,11 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             null,
             bleeding,
             unrevivable,
-            metabolizingReagents // Starlight - add metabolizing chemicals to ui message
+            chemicals // Starlight - merged bloodstream and stomach chemicals
         );
     }
 
-    // Starlight-start: Printable health reports.
+    #region Starlight
     private void PrintPatientReport(Entity<HealthAnalyzerComponent> analyzer, EntityUid user, EntityUid patient)
     {
         var snapshot = BuildPatientSnapshot(patient);
@@ -398,6 +450,19 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             .Cast<HealthAnalyzerDamageGroupSnapshot>()
             .ToList();
 
+        var reagents = new List<HealthAnalyzerReagentSnapshot>();
+        if (uiState.Chemicals is { Count: > 0 } chemicals)
+        {
+            foreach (var (reagentId, quantity, stomachQuantity) in chemicals.OrderByDescending(r => r.Quantity + r.StomachQuantity))
+            {
+                var localizedName = Loc.GetString("health-analyzer-window-entity-unknown-text");
+                if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId, out var reagentProto))
+                    localizedName = reagentProto.LocalizedName;
+
+                reagents.Add(new HealthAnalyzerReagentSnapshot(FormattedMessage.EscapeText(localizedName), quantity, stomachQuantity));
+            }
+        }
+
         return new HealthAnalyzerPatientSnapshot(
             entityName,
             FormattedMessage.EscapeText(entityName),
@@ -407,7 +472,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             uiState.Temperature,
             uiState.BloodLevel,
             damageable.TotalDamage,
-            groupedInjuries);
+            groupedInjuries,
+            reagents);
     }
 
     private HealthAnalyzerDamageGroupSnapshot? BuildDamageGroupSnapshot(
@@ -469,7 +535,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         if (snapshot.DamageGroups.Count == 0)
         {
             message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-no-injuries"));
-            return message.ToMarkup();
+            message.PushNewline();
         }
 
         foreach (var group in snapshot.DamageGroups)
@@ -498,6 +564,34 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             }
         }
 
+        message.PushNewline();
+        message.AddMarkupOrThrow($"[head=2][bold]{Loc.GetString("health-analyzer-report-section-chemicals")}[/bold][/head]");
+        message.PushNewline();
+
+        if (snapshot.Reagents.Count == 0)
+        {
+            message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-no-chemicals"));
+        }
+        else
+        {
+            foreach (var reagent in snapshot.Reagents.OrderByDescending(r => r.Amount + r.StomachAmount))
+            {
+                string quantityStr;
+                if (reagent.StomachAmount > FixedPoint2.Zero && reagent.Amount > FixedPoint2.Zero)
+                    quantityStr = Loc.GetString("health-analyzer-report-quantity-both", ("stomach", reagent.StomachAmount), ("blood", reagent.Amount));
+                else if (reagent.StomachAmount > FixedPoint2.Zero)
+                    quantityStr = Loc.GetString("health-analyzer-report-quantity-stomach", ("stomach", reagent.StomachAmount));
+                else
+                    quantityStr = Loc.GetString("health-analyzer-report-quantity-blood", ("blood", reagent.Amount));
+                var reagentLine = Loc.GetString(
+                    "health-analyzer-report-chemical-line",
+                    ("name", reagent.Name),
+                    ("quantity", quantityStr));
+                message.AddMarkupOrThrow($"- {reagentLine}");
+                message.PushNewline();
+            }
+        }
+
         return message.ToMarkup();
     }
 
@@ -510,7 +604,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         float Temperature,
         float BloodLevel,
         FixedPoint2 TotalDamage,
-        List<HealthAnalyzerDamageGroupSnapshot> DamageGroups);
+        List<HealthAnalyzerDamageGroupSnapshot> DamageGroups,
+        List<HealthAnalyzerReagentSnapshot> Reagents);
 
     private sealed record HealthAnalyzerDamageGroupSnapshot(
         string Name,
@@ -518,5 +613,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         List<HealthAnalyzerDamageTypeSnapshot> DamageTypes);
 
     private sealed record HealthAnalyzerDamageTypeSnapshot(string Name, FixedPoint2 Amount);
-    // Starlight-end
+
+    private sealed record HealthAnalyzerReagentSnapshot(string Name, FixedPoint2 Amount, FixedPoint2 StomachAmount);
+    #endregion
 }

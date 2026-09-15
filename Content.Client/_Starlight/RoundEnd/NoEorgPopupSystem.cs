@@ -1,12 +1,12 @@
 using Content.Shared.GameTicking;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 
 namespace Content.Client._Starlight.RoundEnd;
 
-public sealed class NoEorgPopupSystem : EntitySystem
+public sealed partial class NoEorgPopupSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private NoEorgPopup? _window;
 

@@ -1,15 +1,13 @@
 using Content.Server.Mind;
-using Content.Server.Roles;
-using Content.Shared.Mind;
 using Content.Shared.Roles;
 
 namespace Content.Server._Starlight.Roles;
 
-// Starlight - adds pirate objectives when the pirate mind role is assigned
-public sealed class PirateRoleSystem : EntitySystem
+// Adds pirate objectives when the pirate mind role is assigned
+public sealed partial class PirateRoleSystem : EntitySystem
 {
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
 
     public override void Initialize()
     {

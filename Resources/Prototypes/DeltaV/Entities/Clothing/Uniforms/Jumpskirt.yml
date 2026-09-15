@@ -1,6 +1,6 @@
 ﻿#CMO
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpskirtCmoFormal
   name: chief medical officer's formal skirtsuit
   description: A lavish greenish blue skirtsuit with golden buttons and a green cross pin, fitted for the head of medical.
@@ -9,7 +9,7 @@
       sprite: DeltaV/Clothing/Uniforms/Jumpskirt/cmo_formal.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpskirtCmoVest
   name: chief medical officer's vest jumpskirt
   description: A cozy teal cotton vest with a green cross pin paired with a white button-up.
@@ -19,7 +19,7 @@
 
 #HOP
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpskirtHopFormal
   name: head of personnel's formal dress
   description: A well-made dress with gold buttons and a red trim. Might as well look sharp when botany goes up in flames.
@@ -29,7 +29,7 @@
 
 #QM
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpskirtQmFormal
   name: quartermaster's formal dress
   description: Inspired by the logistics officers of military's past, the perfect outfit for supplying a formal occasion.
@@ -39,7 +39,7 @@
 
 #Duty officer
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, BaseSecurityContraband]
   id: ClothingUniformJumpskirtDutyOfficerOrange
   name: duty officer's orange uniform
   description: A bright security skirt to distinguish yourself from the warden, while giving them an excuse to beat you saying you looked like a prisoner.

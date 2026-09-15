@@ -9,11 +9,16 @@
       time: 30h # Still less than Magistrate. You should be experienced with Command before you tell them how to do their jobs.
     - !type:RolesRequirement
       proto: ExtRolesReq
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+        - Muted
+      inverted: true
   startingGear: NanoTrasenRepresentativeGear
   icon: JobIconNanoTrasenRepresentative
   rules: job-rules-corporate-aligned
-  supervisors: job-supervisors-centcom
-  canBeAntag: false
+  supervisors: job-supervisors-nanotrasen
+  displayWeight: 6
   access:
     - Cryogenics
     - Lawyer
@@ -32,9 +37,7 @@
     - Research
     - Robotics
     - Detective
-    - Salvage
     - Mining
-    - SalvageLead
     - Security
     - Brig
     - Cargo
@@ -47,6 +50,9 @@
     - Surgery
     - Paramedic
     - Debrief
+    - Journalism
+    - Clown
+    - Mime
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
@@ -60,13 +66,14 @@
     #shoes: ClothingShoesBootsLaceup
     #head: ClothingHeadHatCapNtrep
     id: NanoTrasenRepresentativePDA
-    ears: ClothingHeadsetAltCommand
+    ears: ClothingHeadsetAltRepresentative
     outerClothing: ClothingOuterCoatNtrep
     belt: BoxFolderNanoTrasenClipboard
   storage:
     back:
     - RubberStampNtrep
     - CaneNT
+    - Flash
 
 - type: chameleonOutfit
   id: NanoTrasenRepresentativeChameleonOutfit

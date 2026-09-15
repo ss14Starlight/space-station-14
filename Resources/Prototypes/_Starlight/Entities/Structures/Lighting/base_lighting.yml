@@ -29,3 +29,28 @@
     softness: 1
     color: "#5D0CED"
   - type: DarkLight
+
+- type: entity
+  id: PoweredlightWarm
+  suffix: Warm
+  parent: Poweredlight
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: LightTubeWarm
+  - type: PointLight
+    enabled: true
+    radius: 10
+    energy: 0.8
+    softness: 3
+    color: "#ff9833"
+
+- type: entity
+  parent: AlwaysPoweredWallLight
+  id: AlwaysPoweredLightWarm
+  suffix: Always Powered, Warm
+  components:
+  - type: PointLight
+    radius: 10
+    energy: 0.8
+    softness: 3
+    color: "#ff9833"

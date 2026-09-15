@@ -1,32 +1,39 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprites by TacoLlama (github) created for Starlight",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "clipboard"
+      "name": "clipboard",
+      "copyright": "SevenShades"
     },
     {
-      "name": "clipboard_over"
+      "name": "clipboard_over",
+      "copyright": "SevenShades"
     },
     {
-      "name": "clipboard_paper"
+      "name": "clipboard_paper",
+      "copyright": "SevenShades"
     },
     {
-      "name": "clipboard_pen"
+      "name": "clipboard_pen",
+      "copyright": "SevenShades"
     },
     {
-      "name": "equipped-BELT"
+      "name": "equipped-BELT",
+      "copyright": "SevenShades"
     },
     {
-      "name": "inhand-left"
+      "name": "inhand-left",
+      "copyright": "SevenShades"
     },
     {
-      "name": "inhand-right"
+      "name": "inhand-right",
+      "copyright": "SevenShades"
     }
   ]
 }

@@ -12,10 +12,9 @@
       understands:
         - GalacticCommon
         - Marish
+        - Empathy
     - type: Inventory
       speciesId: shadekin
-    - type: CollectiveMind
-      blockWhenUnconscious: true
     - type: Shadekin
       thresholds:
         0.8: Low
@@ -33,13 +32,7 @@
     - type: Body
       prototype: Shadekin
       requiredLegs: 2
-    - type: Speech
-      allowedEmotes: ["Marr", "Wurble", "Hisses", "Growl", "Purr"]
     - type: Vocal
-      sounds:
-        Male: MaleShadekin
-        Female: FemaleShadekin
-        Unsexed: MaleShadekin
     - type: MeleeWeapon
       soundHit:
         collection: AlienClaw
@@ -48,11 +41,11 @@
       damage:
         types:
           Slash: 5
-    - type: FlashModifier
-      modifier: 2
     - type: Damageable
       damageContainer: Biological
       damageModifierSet: Shadekin
+    - type: Deathgasp
+      damageType: Bloodloss
     - type: Reactive
       groups:
         Flammable: [Touch]
@@ -76,7 +69,7 @@
       bloodReferenceSolution:
         reagents:
           - ReagentId: DarkBlood
-            Quantity: 300
+            Quantity: 600
     - type: Flammable
       damage:
         types:
@@ -126,6 +119,13 @@
           Heat: 0.1
     - type: Fingerprint
     - type: Blindable
+    # god's most useless bui bind; shadekins by design don't have the capacity to breathe
+    # and therefore the code paths that would lead them to smell are nonexistent
+    # however in case SmellerComponent is admemed onto them, this is necessary
+    - type: UserInterface
+      interfaces:
+        enum.ScentSniffUiKey.Key:
+          type: ScentSniffBoundUserInterface
     - type: DarkenedVision
     # Other
     - type: TemperatureDamage
@@ -155,7 +155,6 @@
       thermalRegulationTemperatureThreshold: 2
     - type: Perishable
     - type: Butcherable
-      butcheringType: Spike # TODO human.
       spawned:
         - id: FoodMeat
           amount: 5

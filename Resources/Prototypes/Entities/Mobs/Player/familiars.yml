@@ -54,10 +54,12 @@
   - type: LanguageKnowledge
     speaks:
     - Dog
+    - DogFeral
     - Darktongue
     understands:
     - GalacticCommon
     - Dog
+    - DogFeral
     - Fox
     - Darktongue
   # end starlight

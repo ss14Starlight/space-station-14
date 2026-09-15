@@ -1,0 +1,30 @@
+- type: entity
+  parent: ESEffectSparks
+  id: SLEffectSparksBaton
+  name: sparks
+  components:
+  - type: Sprite
+    sprite: _ES/Effects/sparks.rsi
+    scale: 0.5, 0.5
+    layers:
+    - state: sparks
+      shader: unshaded
+    drawdepth: Effects
+    noRot: true
+    loop: false
+
+- type: entity
+  parent: MoffEffectSparksWelding
+  id: SLEffectSparksRCD
+  name: sparks
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _ES/Effects/sparks.rsi
+    scale: 0.75, 0.75
+    layers:
+    - state: sparks
+      shader: unshaded
+    drawdepth: Effects
+    noRot: true
+    loop: false

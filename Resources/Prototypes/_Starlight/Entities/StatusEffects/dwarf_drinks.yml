@@ -1,0 +1,440 @@
+# special modifiers and status effects used exclusively by dwarves getting drunk
+
+# Courage Effects
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: MobThresholdsTheHighlander
+  name: uncrittable
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+        - MobState
+        - StandingState
+      requireAll: true
+    blacklist:
+      tags:
+      - KnockdownImmune
+    maximumDuration: 3s
+  - type: StatusEffectAlert
+    alert: DwarfCourage
+  - type: MobThresholdsStatusEffect
+    thresholds:
+      0: Alive
+      219: Critical
+      220: Dead
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-highlander.ogg
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: MobThresholdsDeathInTheAfternoon
+  name: resilience to death
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+        - MobState
+        - StandingState
+      requireAll: true
+    blacklist:
+      tags:
+      - KnockdownImmune
+    maximumDuration: 3s
+  - type: StatusEffectAlert
+    alert: DwarfCourage
+  - type: MobThresholdsStatusEffect
+    thresholds:
+      0: Alive
+      129: Critical
+      130: Dead
+
+- type: entity
+  abstract: true
+  id: BonusArmorDwarfGeneric
+  name: <<Dwarf Armor Mod Status Effect>>
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+        - MobState
+        - StandingState
+      requireAll: true
+    blacklist:
+      tags:
+      - KnockdownImmune
+  - type: StatusEffectAlert
+    alert: DwarfFortitude
+
+# Fortitude Effects
+
+# Example of BonusArmorStatusEffect and SoundStatusEffect with all parameters set:
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorWhiskey
+  name: 10% resistance to Blunt damage
+  components:
+  - type: BonusArmorStatusEffect
+    ignoreKnockdown: false
+    staminaDamageModifier: 1.0
+    explosionResistance: 1.00
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-whiskey.ogg
+      params:
+        volume: -3.0
+    startPositional: false
+    #endSound:
+    #  path: /Audio/_Starlight/Magic/gust.ogg
+    endPositional: false
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorIrishBool
+  name: 90% resistance to Stamina damage
+  components:
+  - type: BonusArmorStatusEffect
+    ignoreKnockdown: false
+    staminaDamageModifier: 0.1
+    explosionResistance: 1.00
+    modifiers:
+      coefficients:
+        Blunt: 1.00
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+      params:
+        volume: -3.0
+    startPositional: false
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorAbsinthe
+  name: 10% resistance to Piercing damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Piercing: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorCognac
+  name: 10% resistance to Cold damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Cold: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-cognac.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorAntifreeze
+  name: 50% resistance to Cold damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Cold: 0.50
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-cognac.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorGin
+  name: 10% resistance to Caustic damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Caustic: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-gin.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorRum
+  name: 10% resistance to Slash damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Slash: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-rum.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorTequila
+  name: 10% resistance to Heat damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Heat: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-tequila.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorVermouth
+  name: 10% resistance to Shock damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Shock: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-vermouth.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorAndalusia
+  name: 10% resistance to Shock and Piercing damage, +5% vulnerability to Slash and Heat damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Shock: 0.90
+        Piercing: 0.90
+        Slash: 1.05
+        Heat: 1.05
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-rum.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorB52
+  name: 25% resistance to explosions
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Heat: 1.0
+    explosionResistance: 0.75
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-cognac.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorDriestMartini
+  name: 15% resistance to Brute damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Slash: 0.85
+        Blunt: 0.85
+        Piercing: 0.85
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-gin.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorPainkiller
+  name: immunity to Bloodloss
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Bloodloss: 0.0 # the pain has been killed
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-rum.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorErikaSurprise
+  name: 15% resistance to all Burn damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Heat: 0.85
+        Cold: 0.85
+        Shock: 0.85
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorGargleBlaster
+  name: 10% resistance to Brute damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Slash: 0.90
+        Blunt: 0.90
+        Piercing: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-cognac.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorGrog
+  name: 10% resistance to Slash and Heat damage, +5% vulnerability to Blunt and Cold damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Heat: 0.9
+        Blunt: 1.05
+        Cold: 1.05
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-rum.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorMoscowMule
+  name: 10% resistance to Poison and Radiation damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Poison: 0.9
+        Radiation: 0.9
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-moscowmule.ogg
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorDaiquiri
+  name: 10% resistance to Blunt and Cold damage, +5% vulnerability to Piercing and Shock damage
+  components:
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Cold: 0.9
+        Piercing: 1.05
+        Shock: 1.05
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-rum.ogg
+
+# Fury Effects
+
+- type: entity
+  abstract: true
+  id: BonusScalarDwarfGeneric
+  name: <<Dwarf BonusScalar Status Effect>>
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+        - MobState
+        - StandingState
+      requireAll: true
+    blacklist:
+      tags:
+      - KnockdownImmune
+  - type: StatusEffectAlert
+    alert: DwarfFury
+
+- type: entity
+  parent: BonusScalarDwarfGeneric
+  id: BonusScalarIrishCream
+  name: 25% increased attack rate when unarmed
+  components:
+  - type: BonusScalarStatusEffect
+    # reference example of all possible effects for BonusScalarStatusEffect:
+    coefficients:
+      unarmedAttackRate: 1.25 # bigger is faster
+      unarmedDamage: 1.0 # bigger is more damaging
+      meleeWeaponAttackRate: 1.0 # bigger is faster
+      meleeWeaponDamage: 1.0 # bigger is more damaging
+      doAfterDelay: 1.0 # smaller is faster!
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+
+- type: entity
+  parent: BonusScalarDwarfGeneric # not actually a BonusScalarStatusEffect, but whatever -- we're using the same icon anyway
+  id: BonusDamageBraveBull
+  name: added Structural damage to unarmed attacks
+  components:
+  - type: BonusDamageStatusEffect
+    # reference example of all possible effects for BonusDamageStatusEffect:
+    affectsUnarmed: true
+    affectsMeleeWeapons: false
+    damage:
+      types:
+        Structural: 10 # you will rarely actually see this number, because most structures have damage reduction
+      groups:
+        Brute: 0
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+
+- type: entity
+  parent: BonusScalarDwarfGeneric
+  id: BonusScalarBronx
+  name: 50% increased unarmed damage
+  components:
+  - type: BonusScalarStatusEffect
+    coefficients:
+      unarmedDamage: 1.5 # bigger is more damaging
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+
+- type: entity
+  parent: BonusScalarDwarfGeneric
+  id: BonusScalarXenoBasher
+  name: 10% increased attack speed with melee weapons
+  components:
+  - type: BonusScalarStatusEffect
+    coefficients:
+      meleeWeaponAttackRate: 1.1 # 1.1 # +10% speed; bigger is faster
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+
+- type: entity
+  parent: BonusScalarDwarfGeneric
+  id: BonusScalarIrishCarBomb
+  name: 20% increased damage with melee weapons
+  components:
+  - type: BonusScalarStatusEffect
+    coefficients:
+      meleeWeaponDamage: 1.2 # bigger is more damaging
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+
+- type: entity
+  parent: BonusScalarDwarfGeneric
+  id: BonusScalarSyndicateBomb
+  name: 25% reduced interaction time
+  components:
+  - type: BonusScalarStatusEffect
+    coefficients:
+      doAfterDelay: 0.75 # smaller is faster
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg

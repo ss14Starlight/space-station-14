@@ -35,3 +35,39 @@
     energy: 0.6
     radius: 1.4
 
+- type: entity
+  parent: [BaseItem, BaseToggleClothing, BaseReporterContraband]
+  id: HoloReporterPin
+  name: reporter holo-pin
+  description: "It's an electronic pin with a microphone-shaped button. A way of more clearly saying, DON'T SHOOT!"
+  components:
+    - type: Item
+      size: Tiny
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/holo_pin_reporter.rsi
+      state: icon
+    - type: Clothing
+      equippedPrefix: holopin
+      sprite: _Starlight/Clothing/Neck/holo_pin_reporter.rsi
+      quickEquip: true
+      slots:
+        - neck
+    - type: ToggleClothing
+      action: ActionHoloPin
+      disableOnUnequip: true
+    - type: ComponentToggler
+      parent: true
+      components:
+        - type: KillSign
+          sprite:
+            sprite: _Starlight/Clothing/Neck/holo_pin_reporter.rsi
+            state: holopin-sign
+    - type: Tag
+      tags: [] # ignore "WhitelistChameleon" tag
+
+
+- type: entity
+  parent: BaseToggleAction
+  id: ActionHoloPin
+  name: Activate Holo-Pin
+  description: "BREAKING NEWS! DON'T KILL ME PLEASE!"

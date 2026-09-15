@@ -14,7 +14,7 @@ public sealed partial class AdminNotesLinePopup : Popup
     public event Action<int, NoteType, string?>? OnEditPressed; // Starlight-edit: ID, Type, Project
     public event Action<int, NoteType, string?>? OnDeletePressed; // Starlight-edit ID, Type, Project
 
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     public AdminNotesLinePopup(SharedAdminNote note, string playerName, bool showDelete, bool showEdit)
     {

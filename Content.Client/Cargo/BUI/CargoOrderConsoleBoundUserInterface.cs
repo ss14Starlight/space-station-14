@@ -9,7 +9,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Utility;
 using Robust.Shared.Prototypes;
-using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client.Cargo.BUI
 {
@@ -70,9 +69,9 @@ namespace Content.Client.Cargo.BUI
 
             _menu.OnClose += Close;
 
-            _menu.OnItemSelected += (args) =>
+            _menu.OnItemSelected += (row) =>
             {
-                if (args.Button.Parent is not CargoProductRow row)
+                if (row == null)
                     return;
 
                 description.Clear();
@@ -175,23 +174,23 @@ namespace Content.Client.Cargo.BUI
             return true;
         }
 
-        private void RemoveOrder(ButtonEventArgs args)
+        private void RemoveOrder(CargoOrderData? order)
         {
-            if (args.Button.Parent?.Parent is not CargoOrderRow row || row.Order == null)
+            if (order == null)
                 return;
 
-            SendMessage(new CargoConsoleRemoveOrderMessage(row.Order.OrderId));
+            SendMessage(new CargoConsoleRemoveOrderMessage(order.OrderId));
         }
 
-        private void ApproveOrder(ButtonEventArgs args)
+        private void ApproveOrder(CargoOrderData? order)
         {
-            if (args.Button.Parent?.Parent is not CargoOrderRow row || row.Order == null)
+            if (order == null)
                 return;
 
             if (OrderCount >= OrderCapacity)
                 return;
 
-            SendMessage(new CargoConsoleApproveOrderMessage(row.Order.OrderId));
+            SendMessage(new CargoConsoleApproveOrderMessage(order.OrderId));
         }
     }
 }

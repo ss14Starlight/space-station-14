@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: CleanbotAds
+  values:
+    prefix: advertisement-cleanbot-
+    count: 12

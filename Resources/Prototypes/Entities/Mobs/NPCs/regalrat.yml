@@ -1,7 +1,7 @@
 - type: entity
   name: rat king
   id: MobRatKing
-  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobRat
+  parent: [ SimpleMobBase, MobCombat, BaseSlicingRefinable ] # Starlight Edit: Removed BaseMobRat
   description: He's da rat. He make da roolz.
   components:
   # Starlight-start: Languages
@@ -9,9 +9,11 @@
     speaks:
     - GalacticCommon
     - Mouse
+    - Squeakish # Rodentia language
     understands:
     - GalacticCommon
     - Mouse
+    - Squeakish # Rodentia language
   # Starlight-end
   - type: ThermalVision # Starlight-edit: Thermal Vision
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -116,6 +118,8 @@
       - CannotSuicide
       - FootstepSound
   - type: NoSlip
+  - type: Insulated
+    coefficient: 0.5 # rat king touches more wires, see?
   - type: Rummager
   - type: RatKing
     hungerPerArmyUse: 25
@@ -123,8 +127,8 @@
   - type: MobsterAccent
   - type: Speech
     speechVerb: SmallMob
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: ClothingHeadHatFancyCrown #how did that get there?
       amount: 1
   - type: MobPrice
@@ -140,7 +144,8 @@
   - type: Grammar
     attributes:
       gender: male
-  - type: Sharp
+  - type: Tool
+    qualities: [Slicing] # Starlight
 
 - type: entity
   id: MobRatKingBuff
@@ -182,7 +187,7 @@
 - type: entity
   name: rat servant
   id: MobRatServant
-  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobRat
+  parent: [ SimpleMobBase, MobCombat, BaseSlicingRefinable ] # Starlight Edit: Removed BaseMobRat
   description: He's da mini rat. He don't make da roolz.
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
@@ -193,6 +198,7 @@
     understands:
     - GalacticCommon
     - Mouse
+    - Squeakish # Rodentia language
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
@@ -305,8 +311,8 @@
         Base: smallrat_dead #SLEdit
       Dead:
         Base: smallrat_splat #SLEdit
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatRat
       amount: 1
   - type: Vocal
@@ -320,6 +326,8 @@
       - CannotSuicide
       - FootstepSound
   - type: NoSlip
+  - type: Insulated
+    coefficient: 0.2 # they don't make da roolz, but they sneaky
   - type: MobPrice
     price: 500 # rat wealth
   - type: MobsterAccent
@@ -341,11 +349,13 @@
 - type: entityTable
   id: RatKingLoot
   table: !type:GroupSelector
-    children:
+    children: # Starlight - Food table update
     - id: RandomSpawner100
-      weight: 66
+      weight: 70
     - id: FoodCheese
-      weight: 28
+      weight: 15
+    - id: FoodCheese
+      weight: 10
     - id: IngotGold1
       weight: 5
 

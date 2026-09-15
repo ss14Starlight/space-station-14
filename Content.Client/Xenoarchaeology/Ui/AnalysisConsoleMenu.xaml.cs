@@ -23,9 +23,9 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
 {
     private static readonly TimeSpan ExtractInfoDisplayForDuration = TimeSpan.FromSeconds(3);
 
-    [Dependency] private readonly IEntityManager _ent = default!;
-    [Dependency] private readonly IResourceCache _resCache = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IEntityManager _ent = default!;
+    [Dependency] private IResourceCache _resCache = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private readonly ArtifactAnalyzerSystem _artifactAnalyzer;
     private readonly XenoArtifactSystem _xenoArtifact;
@@ -227,7 +227,7 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
         }
 
         ClassValueLabel.SetMarkup(Loc.GetString("analysis-console-info-class-value",
-            ("class", Loc.GetString($"artifact-node-class-{Math.Min(6, predecessorNodes.Count + 1)}"))));
+            ("class", Loc.GetString($"artifact-node-class-{Math.Min(8, predecessorNodes.Count + 1)}")))); // Starlight
     }
 }
 

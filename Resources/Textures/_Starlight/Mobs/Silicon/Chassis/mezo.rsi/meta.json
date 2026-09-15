@@ -1,0 +1,125 @@
+{
+    "version": 1,
+    "size": {
+        "x": 48,
+        "y": 48
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Created by Mintly-Fresh (GitHub).",
+    "states": [
+        {
+            "name": "service",
+            "directions": 4
+        },
+	    {
+            "name": "service_e",
+            "directions": 4
+        },
+	    {
+            "name": "service_e_r",
+            "directions": 4
+        },
+	    {
+            "name": "service_l",
+            "directions": 4
+        },
+	    {
+            "name": "cargo",
+            "directions": 4
+        },
+	    {
+            "name": "cargo_e",
+            "directions": 4
+        },
+	    {
+            "name": "cargo_e_r",
+            "directions": 4
+        },
+	    {
+            "name": "cargo_l",
+            "directions": 4
+        },
+	    {
+            "name": "jani",
+            "directions": 4
+        },
+	    {
+            "name": "jani_e",
+            "directions": 4
+        },
+	    {
+            "name": "jani_e_r",
+            "directions": 4
+        },
+	    {
+            "name": "jani_l",
+            "directions": 4
+        },
+
+	    {
+            "name": "medi",
+            "directions": 4
+        },
+	    {
+            "name": "medi_e",
+            "directions": 4
+        },
+	    {
+            "name": "medi_e_r",
+            "directions": 4
+        },
+	    {
+            "name": "medi_l",
+            "directions": 4
+        },
+
+	    {
+            "name": "engi",
+            "directions": 4
+        },
+	    {
+            "name": "engi_e",
+            "directions": 4
+        },
+	    {
+            "name": "engi_e_r",
+            "directions": 4
+        },
+	    {
+            "name": "engi_l",
+            "directions": 4
+        },
+	    {
+            "name": "mining",
+            "directions": 4
+        },
+	    {
+            "name": "mining_e",
+            "directions": 4
+        },
+	    {
+            "name": "mining_e_r",
+            "directions": 4
+        },
+	    {
+            "name": "mining_l",
+            "directions": 4
+        },
+	    {
+            "name": "borg",
+            "directions": 4
+        },
+	    {
+            "name": "borg_e",
+            "directions": 4
+        },
+	    {
+            "name": "borg_e_r",
+            "directions": 4
+        },
+	    {
+            "name": "borg_l",
+            "directions": 4
+        }
+    ]
+}

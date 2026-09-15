@@ -7,7 +7,6 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;
 using static Content.Client.Changelog.ChangelogManager;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
@@ -17,8 +16,8 @@ namespace Content.Client.Changelog;
 [GenerateTypedNameReferences]
 public sealed partial class ChangelogTab : Control
 {
-    [Dependency] private readonly ChangelogManager _changelog = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private ChangelogManager _changelog = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
 
     public bool AdminOnly;
 

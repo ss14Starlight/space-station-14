@@ -1,5 +1,4 @@
 using Content.Shared.Alert;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.BreathOrgan.Components;
 

@@ -1,6 +1,7 @@
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
-using Content.Shared._Starlight.CloudEmotes; // Starlight
+using Content.Shared._Starlight.Chat;
+using Content.Shared._Starlight.CloudEmotes;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Input;
@@ -18,11 +19,11 @@ using Robust.Shared.Utility;
 namespace Content.Client.UserInterface.Systems.Emotes;
 
 [UsedImplicitly]
-public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayState>
+public sealed partial class EmotesUIController : UIController, IOnStateChanged<GameplayState>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IClientConsoleHost _consoleHost = default!; // Starlight
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IClientConsoleHost _consoleHost = default!; // Starlight
 
     private MenuButton? EmotesButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.EmotesButton;
     private SimpleRadialMenu? _menu;
@@ -162,7 +163,7 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
                 emotesByCategory.Add(emote.Category, list);
             }
 
-            var actionOption = new RadialMenuActionOption<EmotePrototype>(HandleRadialButtonClick, emote)
+            var actionOption = new RadialMenuActionOption<EmotePrototype>(HandleRadialButtonClick, emote, HandleAlternativeRadialButtonClick) //Starlight-edit
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(emote.Icon),
                 ToolTip = Loc.GetString(emote.Name)
@@ -183,7 +184,7 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
             var actionOption = new RadialMenuActionOption<CloudEmotePrototype>(HandleCloudRadialButtonClick, emote)
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(emote.Icon),
-                ToolTip = Loc.GetString(emote.ID)
+                ToolTip = Loc.GetString(emote.Name)
             };
             list.Add(actionOption);
         }
@@ -205,6 +206,12 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
 
         return models;
     }
+
+    #region Starlight
+
+    private void HandleAlternativeRadialButtonClick(EmotePrototype emote) => EntityManager.RaisePredictiveEvent(new RequestBindEmoteMessage(emote.ID));
+
+    #endregion
 
     private void HandleRadialButtonClick(EmotePrototype prototype)
     {

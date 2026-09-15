@@ -1,8 +1,4 @@
-using Robust.Shared.GameObjects;
-using Robust.Shared.Serialization.Manager.Attributes;
-using Robust.Shared.ViewVariables;
-
-namespace Content.Shared.Implants.Components
+namespace Content.Shared._Starlight.Implants.Components
 {
     /// <summary>
     /// Component used for tracking which head revolutionary owns a USSP uplink.

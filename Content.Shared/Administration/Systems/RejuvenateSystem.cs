@@ -11,12 +11,12 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared.Administration.Systems;
 
-public sealed class RejuvenateSystem : EntitySystem
+public sealed partial class RejuvenateSystem : EntitySystem
 {
     // starlight start - add instant action handler for rejuvenate action
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     private SoundPathSpecifier Sound = new("/Audio/_Starlight/Misc/rejuvenate.ogg");
 

@@ -1,10 +1,7 @@
-using System.Linq;
-using Content.Shared.Decals;
 using Microsoft.Extensions.ObjectPool;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
@@ -16,11 +13,11 @@ namespace Content.Shared.Chunking;
 ///     This system just exists to provide some utility functions for other systems that chunk data that needs to be
 ///     sent to players. In particular, see <see cref="GetChunksForSession"/>.
 /// </summary>
-public sealed class ChunkingSystem : EntitySystem
+public sealed partial class ChunkingSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private SharedMapSystem _mapManager = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 

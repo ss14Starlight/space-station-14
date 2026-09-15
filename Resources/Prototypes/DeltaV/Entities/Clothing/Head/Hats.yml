@@ -1,4 +1,5 @@
-﻿- type: entity
+﻿#Surgical caps
+- type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatSurgcapBlack
   name: black surgical cap
@@ -52,6 +53,7 @@
     - type: Sprite
       sprite: DeltaV/Clothing/Head/Hats/surgcap_white.rsi
 
+#Autodrobe
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatWrestlingMaskLuchaBlue
@@ -76,8 +78,9 @@
       slots:
         - Hair
 
+#Duty officer
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, BaseSecurityContraband]
   id: ClothingHeadHatDutyOfficerOrange
   name: duty officer's orange cap
   description: The orange hat signifies your superiority towards the poor inmates that have to stand you.
@@ -85,8 +88,9 @@
     - type: Sprite
       sprite: DeltaV/Clothing/Head/Hats/prisonguard.rsi
 
+#HoP
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatHopCapFormal
   name: head of personnel's formal cap
   description: An ever so slightly bluer cap to complement the dashing outfit of the modern HoP.

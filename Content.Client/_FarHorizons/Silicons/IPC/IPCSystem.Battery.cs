@@ -7,7 +7,7 @@ namespace Content.Client._FarHorizons.Silicons.IPC;
 
 public sealed partial class IPCSystem
 {
-    [Dependency] private readonly BatteryAlertSystem _batteryAlert = default!;
+    [Dependency] private BatteryAlertSystem _batteryAlert = default!;
 
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private static readonly TimeSpan _updateRate = TimeSpan.FromSeconds(1f);

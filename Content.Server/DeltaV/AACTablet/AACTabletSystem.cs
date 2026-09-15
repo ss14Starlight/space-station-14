@@ -1,4 +1,6 @@
 using Content.Server.Chat.Systems;
+using Content.Server.Popups; // Starlight
+using Content.Shared.Abilities.Mime; // Starlight
 using Content.Shared.Chat;
 using Content.Shared.DeltaV.AACTablet;
 using Content.Shared.DeltaV.QuickPhrase;
@@ -8,12 +10,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.DeltaV.AACTablet;
 
-public sealed class AACTabletSystem : EntitySystem
+public sealed partial class AACTabletSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!; // Starlight Edit: Timing -> _timing. protected -> private
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IGameTiming _timing = default!; // Starlight Edit: Timing -> _timing. protected -> private
+    [Dependency] private PopupSystem _popupSystem = default!; // Starlight
 
     public override void Initialize()
     {
@@ -23,6 +26,15 @@ public sealed class AACTabletSystem : EntitySystem
 
     private void OnSendPhrase(EntityUid uid, AACTabletComponent component, AACTabletSendPhraseMessage message)
     {
+        #region Starlight
+        // prevent use of the AAC tablet while a mime's vow of silence is active
+        if (TryComp<MimePowersComponent>(message.Actor, out var mime) && !mime.VowBroken)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("mime-cant-speak"), message.Actor, message.Actor);
+            return;
+        }
+        #endregion Starlight
+
         if (component.NextPhrase > _timing.CurTime) // Starlight Edit: Timing -> _timing
             return;
 

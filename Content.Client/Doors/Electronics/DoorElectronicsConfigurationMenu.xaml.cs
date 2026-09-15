@@ -5,13 +5,10 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Content.Client.Access.UI;
-using Content.Client.Doors.Electronics;
 using Content.Shared.Access;
-using Content.Shared.Doors.Electronics;
-using FancyWindow = Content.Client.UserInterface.Controls.FancyWindow;
 // Starlight Start
 using Content.Client._Starlight.Access.UI;
-using System.Collections.Generic;
+
 // Starlight End
 
 namespace Content.Client.Doors.Electronics;
@@ -31,7 +28,7 @@ public sealed partial class DoorElectronicsConfigurationMenu : DefaultWindow
     private List<ProtoId<AccessLevelPrototype>> _allLevels = new();
     private HashSet<ProtoId<AccessLevelPrototype>> _pressedLevels = new();
     private ButtonGroup _accessGroupButtonGroup = new();
-    public event Action<List<ProtoId<AccessLevelPrototype>>>? OnSubmit;
+
     public event Action<ProtoId<AccessGroupPrototype>>? OnGroupSelected;
     // Starlight End
 
@@ -107,7 +104,9 @@ public sealed partial class DoorElectronicsConfigurationMenu : DefaultWindow
                     _pressedLevels.Add(id);
                 else
                     _pressedLevels.Remove(id);
-                OnAccessChanged?.Invoke(_pressedLevels.Where(level => levels.Contains(level)).ToList());
+                // Submit every pressed access, not just the selected group's, or switching
+                // groups would wipe the accesses set from the previous one.
+                OnAccessChanged?.Invoke(_pressedLevels.ToList());
             };
         }
     // Starlight edit End

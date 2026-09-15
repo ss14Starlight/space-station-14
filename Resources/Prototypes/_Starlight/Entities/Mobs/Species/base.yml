@@ -89,6 +89,7 @@
           False: {visible: false}
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
+  - type: JobStatus
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
@@ -202,10 +203,18 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-      enum.VampireClassUiKey.Key: # SL
+      # starlight start
+      enum.VampireClassUiKey.Key:
         type: VampireClassBui
-      enum.VampireLocateUiKey.Key: # SL
+      enum.VampireLocateUiKey.Key:
         type: VampireLocateBui
+      enum.DamnationsMenuUiKey.Key:
+        type: DevilDamnationsBoundUserInterface
+        requireInputValidation: false
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+        requireInputValidation: false
+      # starlight end
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
@@ -214,10 +223,6 @@
     speechSounds: Alto
   - type: DamageForceSay
   - type: Vocal
-    sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: MaleHuman
   - type: Emoting
   - type: BodyEmotes
     soundsId: GeneralBodyEmotes
@@ -235,14 +240,8 @@
     - AnomalyHost
     - NotLabelable # Starlight, no more labeling people.
   - type: ActiveInputMover # Starlight
-  # Starlight Start: Social Interactions
-  - type: PhysicalSocialInteractionGiver
-  - type: PhysicalSocialInteractionReceiver
-    interactionPrototypes:
-    - Pet
-    - Boop
-  # Starlight End
   - type: CosmicCenserTarget # Stellar - Cosmic Cult
+  - type: Scent # Starlight - smell system
 
 - type: entity
   save: false
@@ -276,6 +275,8 @@
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
+      enum.ScentSniffUiKey.Key: # Starlight
+        type: ScentSniffBoundUserInterface
   - type: Barotrauma
     damage:
       types:
@@ -321,7 +322,6 @@
     thermalRegulationTemperatureThreshold: 2
   - type: Perishable
   - type: Butcherable
-    butcheringType: Spike # TODO human.
     spawned:
       - id: FoodMeat
         amount: 5

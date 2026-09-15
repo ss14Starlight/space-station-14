@@ -10,10 +10,10 @@ using Robust.Shared.Player;
 namespace Content.Client._Starlight.Radio.UI;
 
 [UsedImplicitly]
-public sealed class EncryptionKeyHolderBoundUserInterface : BoundUserInterface
+public sealed partial class EncryptionKeyHolderBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
     private SimpleRadialMenu? _menu;
 
     public EncryptionKeyHolderBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) => IoCManager.InjectDependencies(this);

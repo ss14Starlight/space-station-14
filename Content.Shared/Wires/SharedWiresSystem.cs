@@ -8,13 +8,13 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared.Wires;
 
-public abstract class SharedWiresSystem : EntitySystem
+public abstract partial class SharedWiresSystem : EntitySystem
 {
-    [Dependency] protected readonly ISharedAdminLogManager AdminLogger = default!;
-    [Dependency] private readonly ActivatableUISystem _activatableUI = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] protected readonly SharedToolSystem Tool = default!;
+    [Dependency] protected ISharedAdminLogManager AdminLogger = default!;
+    [Dependency] private ActivatableUISystem _activatableUI = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] protected SharedToolSystem Tool = default!;
 
     public override void Initialize()
     {
@@ -70,7 +70,7 @@ public abstract class SharedWiresSystem : EntitySystem
 
         AdminLogger.Add(LogType.Action, LogImpact.Low,
             $"{ToPrettyString(args.User):user} is screwing {ToPrettyString(ent):target}'s {(ent.Comp.Open ? "open" : "closed")} maintenance panel at {Transform(ent).Coordinates:targetlocation}");
-        args.Handled = true;
+        //args.Handled = true; #Starlight not cancelling it here is required to make constructions with wire panels work.
     }
 
     private void OnExamine(EntityUid uid, WiresPanelComponent component, ExaminedEvent args)

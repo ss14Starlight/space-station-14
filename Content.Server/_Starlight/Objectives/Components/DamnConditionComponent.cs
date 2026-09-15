@@ -1,9 +1,8 @@
 using Content.Server._Starlight.Objectives.Systems;
 using Content.Shared._Starlight.Devil;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
-namespace Content.Server.Objectives.Components;
+namespace Content.Server._Starlight.Objectives.Components;
 
 /// <summary>
 /// Requires the owner to damn a set number of people

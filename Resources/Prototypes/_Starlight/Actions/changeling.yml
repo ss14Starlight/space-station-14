@@ -647,6 +647,23 @@
     chemicalCost: 20
 
 - type: entity
+  id: ActionToggleNeocyteDisguise
+  name: Toggle Neocyte Disguise
+  description: Form a fake neocyte cybernetic frame. Costs 0 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: protogen_armor
+  - type: InstantAction
+    event: !type:ActionNeocyteDisguiseEvent {}
+  - type: ChangelingAction
+    chemicalCost: 0
+
+- type: entity
   id: ActionHivemindAccess
   name: Hivemind Access
   description: Tune your chemical receptors for hivemind communication.

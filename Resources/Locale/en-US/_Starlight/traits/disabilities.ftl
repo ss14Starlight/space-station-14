@@ -6,3 +6,6 @@ trait-highlightsensitivity-desc = You are much more sensitive to light than most
 
 trait-extremelightsensitivity-name = Extreme Light Sensitivity
 trait-extremelightsensitivity-desc = You are extremely more sensitive to light than most shadekins.
+
+trait-nightblind-name = Nightblind
+trait-nightblind-desc = Unlike the rest of your species, you cannot see in the dark.

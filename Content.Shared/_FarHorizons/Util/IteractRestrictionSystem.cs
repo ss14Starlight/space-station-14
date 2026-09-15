@@ -5,10 +5,10 @@ using Content.Shared.Tag;
 
 namespace Content.Shared._FarHorizons.Util;
 
-public sealed class InteractRestrictionSystem : EntitySystem
+public sealed partial class InteractRestrictionSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {

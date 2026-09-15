@@ -2,7 +2,6 @@ using Content.Server.Administration;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
-using Content.Server.Radio.EntitySystems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Interaction;
@@ -14,16 +13,16 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Mentor;
 
-public sealed class NCTTerminalSystem : EntitySystem
+public sealed partial class NCTTerminalSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly IdExaminableSystem _idExaminableSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private IdExaminableSystem _idExaminableSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
     public override void Initialize()
     {
         base.Initialize();

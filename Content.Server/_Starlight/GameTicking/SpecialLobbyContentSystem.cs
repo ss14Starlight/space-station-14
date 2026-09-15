@@ -1,18 +1,19 @@
 using Content.Server.Audio;
+using Content.Server.GameTicking;
 using Content.Shared._Starlight.GameTicking.Components;
 using Content.Shared.GameTicking.Prototypes;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.GameTicking;
+namespace Content.Server._Starlight.GameTicking;
 
 /// <summary>
 /// System that handles special lobby content (music and backgrounds) for game rules.
 /// </summary>
-public sealed class SpecialLobbyContentSystem : EntitySystem
+public sealed partial class SpecialLobbyContentSystem : EntitySystem
 {
-    [Dependency] private readonly ContentAudioSystem _contentAudioSystem = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private ContentAudioSystem _contentAudioSystem = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
 
     /// <summary>
     /// Attempts to get special lobby content from a game rule entity.
