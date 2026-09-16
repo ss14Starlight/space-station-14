@@ -159,6 +159,9 @@
       storedOffset: 0,-6
     - type: AmmoCounter
     - type: GrapplingGun
+      ropeSprite:
+        sprite: _Starlight/Objects/Weapons/Guns/Launchers/improvised_grappling_gun.rsi
+        state: rope
     - type: Gun
       soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
       fireRate: 0.5
