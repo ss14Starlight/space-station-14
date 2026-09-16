@@ -104,8 +104,8 @@
   - type: MobThresholds # tankier
     thresholds:
       0: Alive
-      200: Critical # Starlight
-      600: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move # Starlight
+      175: Critical # Starlight
+      525: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move # Starlight
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
