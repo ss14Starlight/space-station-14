@@ -103,7 +103,7 @@ public sealed class EvacShuttleTest : GameTest
         server.CfgMan.SetCVar(CCVars.EmergencyShuttleDockTime, 2);
 
         // Call evac shuttle.
-        await pair.WaitCommand("callshuttle 0:02");
+        await pair.WaitCommand("shuttle:callemergencyshuttle 2");
         await pair.RunSeconds(3);
 
         // Shuttle should have arrived on the station
