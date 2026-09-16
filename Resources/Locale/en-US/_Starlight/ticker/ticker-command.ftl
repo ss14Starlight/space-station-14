@@ -21,7 +21,7 @@ command-description-ticker-getrulesoftype =
 command-description-ticker-getactiverules =
     Get all ACTIVE gamerules that are currently added.
 command-description-ticker-getactiverulesoftype =
-    Get all ACTIVE gamerule entities thar are currently added of a given rule prototype.
+    Get all ACTIVE gamerule entities that are currently added of a given rule prototype.
 command-description-ticker-addrule =
     Add a gamerule entity prototype to the round.
 command-description-ticker-endrule =

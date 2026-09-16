@@ -72,7 +72,7 @@ public sealed partial class ShuttleCommand : ToolshedCommand
             _chat.DispatchGlobalAnnouncement(str, "Central Command");
         }
 
-        ctx.WriteLine($"Delayed shuttle departure by {seconds} seconds.");
+        ctx.WriteLine($"Delayed shuttle arrival by {seconds} seconds.");
     }
 
     /// Instantly dock the emergency shuttle.
