@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Lagan) Fixed some missing decals in the HOP office.
-    type: Fix
-  id: 408262
-  time: '2026-09-06T00:11:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5909
 - author: RedSpeeds
   changes:
   - message: Fixed ATS nearly spawning into stations.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408661
   time: '2026-09-16T22:03:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6190
+- author: wonderfulnewworld
+  changes:
+  - message: Glue, Slime, Sap, Cranberry Sauce, and Syrup now require at least 1u in a puddle to slow you down.
+    type: Tweak
+  id: 408662
+  time: '2026-09-16T22:23:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6205
 Order: -1
