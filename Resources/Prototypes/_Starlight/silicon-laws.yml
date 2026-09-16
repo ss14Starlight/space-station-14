@@ -491,3 +491,34 @@
   - Xenoroach2
   - Xenoroach3
   obeysTo: laws-owner-xenoborgs
+
+# Janivmov lawset
+- type: siliconLaw
+  id: Janimov1
+  order: 1
+  lawString: law-janimov-1
+
+- type: siliconLaw
+  id: Janimov2
+  order: 2
+  lawString: law-janimov-2
+
+- type: siliconLaw
+  id: Janimov3
+  order: 3
+  lawString: law-janimov-3
+
+- type: siliconLaw
+  id: Janimov4
+  order: 4
+  lawString: law-janimov-4
+
+- type: siliconLawset
+  id: JanimovLawset
+  name: law-janimovlawset-name
+  laws:
+  - Janimov1
+  - Janimov2
+  - Janimov3
+  - Janimov4
+  obeysTo: laws-owner-crew

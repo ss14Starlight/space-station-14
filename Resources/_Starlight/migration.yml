@@ -374,3 +374,15 @@ AirlockRetroSalvageMiningGlassLocked: AirlockMiningCargoLocked
 
 #2026-09-04 - Removing a singular washing machine flatpack
 FlatpackWashingMachine: WashingMachineFlatpack
+
+#2026-09-08 - Removing access-locked washing machines
+WashingMachineCargo: WashingMachine
+WashingMachineCommand: WashingMachine
+WashingMachineEngineering: WashingMachine
+WashingMachineMedical: WashingMachine
+WashingMachineScience: WashingMachine
+WashingMachineSecurity: WashingMachine
+WashingMachineService: WashingMachine
+WashingMachineSecurityFlatpack: WashingMachineFlatpack
+WashingMachineCommandFlatpack: WashingMachineFlatpack
+WashingMachineMedicalFlatpack: WashingMachineFlatpack
