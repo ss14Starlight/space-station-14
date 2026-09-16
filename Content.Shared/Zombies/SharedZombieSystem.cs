@@ -2,14 +2,10 @@
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NameModifier.EntitySystems;
-#region Starlight
-using Content.Shared._Starlight.Dolls.Events;
-using Content.Shared._Starlight.Actions.Components;
-#endregion Starlight
 
 namespace Content.Shared.Zombies;
 
-public abstract class SharedZombieSystem : EntitySystem
+public abstract partial class SharedZombieSystem : EntitySystem //Starlight: Made this partial
 {
     /// <inheritdoc/>
     public override void Initialize()
@@ -48,19 +44,4 @@ public abstract class SharedZombieSystem : EntitySystem
     {
         args.AddModifier("zombie-name-prefix");
     }
-
-    #region Starlight
-    protected void DiscardShell(EntityUid target)
-    {
-        if(HasComp<ShellComponent>(target))
-        {
-            var shellEv = new SnapShellPieceEvent
-            {
-                Performer = target,
-                DeShell = true
-            };
-            RaiseLocalEvent(target, shellEv);
-        }
-    }
-    #endregion Starlight
 }
