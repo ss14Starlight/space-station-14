@@ -15,17 +15,31 @@
   activationDelaySecs: 1500
   requiresWarDeclared: true
   fee: 8000
-  salaryPenalty: 0.1
+  salaryModifiers:
+    - source: Everyone
+      change: -0.1
   actionType: GameRule
   gameruleId: WarOpsERTSpawn
   oneTimeUse: true
   sortOrder: 35
-  authGroups:
-    - [Captain, HeadOfSecurity]
-    - [Captain, HeadOfSecurity]
-  authGroupLabels:
-    - "Captain / HoS (1)"
-    - "Captain / HoS (2)"
+  authSchemes:
+    - id: SecurityLeadership
+      groups:
+        - [Captain, Ntrep, HeadOfSecurity]
+        - [Captain, Ntrep, HeadOfSecurity]
+    - id: CommandVoted
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: SecurityLeadership
+      groups:
+        - [Captain, HeadOfSecurity, Ntrep]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 3600
 
 # ── ERT Security ─────────────────────────────────────────────────────────────
@@ -35,24 +49,37 @@
   description: secure-terminal-ert-security-desc
   announcement: secure-terminal-ert-security-announcement
   announcementColor: "#ff4444"
-  activationDelaySecs: 600
+  activationDelaySecs: 300
   requiresWarNotDeclared: true
   requireReason: true
   requiresAdminApproval: true
   fee: 5000
-  salaryPenalty: 0.05
+  salaryModifiers:
+    - source: Everyone
+      change: -0.05
   actionType: GameRule
   gameruleId: ERTSecSpawn
   oneTimeUse: true
   sortOrder: 40
-  authGroups:
-    - [Captain, HeadOfSecurity]
-    - [Captain, HeadOfSecurity]
-  authGroupLabels:
-    - "Captain / HoS (1)"
-    - "Captain / HoS (2)"
+  authSchemes:
+    - id: SecurityLeadership
+      groups:
+        - [Captain, Ntrep, HeadOfSecurity]
+        - [Captain, Ntrep, HeadOfSecurity]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: SecurityLeadership
+      groups:
+        - [Captain, HeadOfSecurity, Ntrep]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 3600
-  authTimer: 30
 
 # ── ERT Engineering ───────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -61,22 +88,35 @@
   description: secure-terminal-ert-engineering-desc
   announcement: secure-terminal-ert-engineering-announcement
   announcementColor: "#ffaa33"
-  activationDelaySecs: 600
+  activationDelaySecs: 300
   requireReason: true
   fee: 5000
-  salaryPenalty: 0.05
+  salaryModifiers:
+    - source: Everyone
+      change: -0.05
   actionType: GameRule
   gameruleId: ERTEngiSpawn
   oneTimeUse: true
   sortOrder: 50
-  authGroups:
-    - [Captain, ChiefEngineer]
-    - [Captain, ChiefEngineer]
-  authGroupLabels:
-    - "Captain / CE (1)"
-    - "Captain / CE (2)"
+  authSchemes:
+    - id: EngineeringLeadership
+      groups:
+        - [Captain, Ntrep, ChiefEngineer]
+        - [Captain, Ntrep, ChiefEngineer]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: EngineeringLeadership
+      groups:
+        - [Captain, ChiefEngineer, Ntrep]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 3600
-  authTimer: 30
 
 # ── ERT Medical ───────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -85,22 +125,35 @@
   description: secure-terminal-ert-medical-desc
   announcement: secure-terminal-ert-medical-announcement
   announcementColor: "#33ff66"
-  activationDelaySecs: 600
+  activationDelaySecs: 300
   requireReason: true
   fee: 5000
-  salaryPenalty: 0.05
+  salaryModifiers:
+    - source: Everyone
+      change: -0.05
   actionType: GameRule
   gameruleId: ERTMedSpawn
   oneTimeUse: true
   sortOrder: 60
-  authGroups:
-    - [Captain, ChiefMedicalOfficer]
-    - [Captain, ChiefMedicalOfficer]
-  authGroupLabels:
-    - "Captain / CMO (1)"
-    - "Captain / CMO (2)"
+  authSchemes:
+    - id: MedicalLeadership
+      groups:
+        - [Captain, Ntrep, ChiefMedicalOfficer]
+        - [Captain, Ntrep, ChiefMedicalOfficer]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: MedicalLeadership
+      groups:
+        - [Captain, HeadOfPersonnel, Ntrep]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 3600
-  authTimer: 30
 
 # ── ERT Janitorial ────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -109,22 +162,35 @@
   description: secure-terminal-ert-janitorial-desc
   announcement: secure-terminal-ert-janitorial-announcement
   announcementColor: "#aaffaa"
-  activationDelaySecs: 600
+  activationDelaySecs: 300
   requireReason: true
   fee: 5000
-  salaryPenalty: 0.05
+  salaryModifiers:
+    - source: Everyone
+      change: -0.05
   actionType: GameRule
   gameruleId: ERTJaniSpawn
   oneTimeUse: true
   sortOrder: 70
-  authGroups:
-    - [Captain, HeadOfPersonnel]
-    - [Captain, HeadOfPersonnel]
-  authGroupLabels:
-    - "Captain / HoP (1)"
-    - "Captain / HoP (2)"
+  authSchemes:
+    - id: CivilianLeadership
+      groups:
+        - [Captain, Ntrep, HeadOfPersonnel]
+        - [Captain, Ntrep, HeadOfPersonnel]
+    - id: CommandVoted
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: CivilianLeadership
+      groups:
+        - [Captain, HeadOfPersonnel, Ntrep]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 3600
-  authTimer: 30
 
 # ── ERT Chaplain ──────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -133,22 +199,35 @@
   description: secure-terminal-ert-chaplain-desc
   announcement: secure-terminal-ert-chaplain-announcement
   announcementColor: "#ddddff"
-  activationDelaySecs: 600
+  activationDelaySecs: 300
   requireReason: true
   fee: 5000
-  salaryPenalty: 0.05
+  salaryModifiers:
+    - source: Everyone
+      change: -0.05
   actionType: GameRule
   gameruleId: ERTChaplainSpawn
   oneTimeUse: true
   sortOrder: 80
-  authGroups:
-    - [Captain, Ntrep]
-    - [Captain, Ntrep]
-  authGroupLabels:
-    - "Captain / NTR (1)"
-    - "Captain / NTR (2)"
+  authSchemes:
+    - id: CaptainAndNtrep
+      groups:
+        - [Captain, Ntrep]
+        - [Captain, Ntrep]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: CaptainOrNtrep
+      groups:
+        - [Captain, Ntrep]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 3600
-  authTimer: 30
 
 # ── ERT CBURN ──────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -161,22 +240,35 @@
   requiresWarNotDeclared: true
   requireReason: true
   fee: 8000
-  salaryPenalty: 0.1
+  salaryModifiers:
+    - source: Everyone
+      change: -0.1
   actionType: GameRule
   gameruleId: ERTCBURNSpawn
   oneTimeUse: true
   requiresAlertLevel: violet
   sortOrder: 90
-  authGroups:
-    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
-    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
-    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
-  authGroupLabels:
-    - "Captain / HoS / CMO / RD (1)"
-    - "Captain / HoS / CMO / RD (2)"
-    - "Captain / HoS / CMO / RD (3)"
+  authSchemes:
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: CaptainNtrep
+      groups:
+        - [Captain, HeadOfSecurity, Ntrep]
+        - [Captain, HeadOfSecurity, Ntrep]
+    - id: Security
+      groups:
+        - [HeadOfSecurity]
+        - [Command, Ntrep]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 3600
-  authTimer: 30
 
 #region Alert Levels
 
@@ -191,18 +283,23 @@
   requireReason: true
   requiresAdminApproval: true
   fee: 2500
-  salaryPenalty: 0.1
+  salaryModifiers:
+    - source: Everyone
+      change: -0.1
   actionType: AlertLevel
   alertLevel: gamma
   sortOrder: 10
-  authGroups:
-    - [Captain, HeadOfSecurity, Ntrep]
-    - [Captain, HeadOfSecurity, Ntrep]
-  authGroupLabels:
-    - "Captain / HoS / NTR (1)"
-    - "Captain / HoS / NTR (2)"
+  authSchemes:
+    - id: default
+      groups:
+        - [Captain, Ntrep, HeadOfSecurity]
+        - [Captain, Ntrep, HeadOfSecurity]
+    - id: CommandVoted
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 900
-  authTimer: 30
 
 # ── Code PSI ──────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -213,18 +310,23 @@
   announcementColor: "#2288ff"
   activationDelaySecs: 5
   fee: 2500
-  salaryPenalty: 0.1
+  salaryModifiers:
+    - source: Everyone
+      change: -0.1
   actionType: AlertLevel
   alertLevel: psi
   sortOrder: 20
-  authGroups:
-    - [Captain, HeadOfSecurity, ResearchDirector]
-    - [Captain, HeadOfSecurity, ResearchDirector]
-  authGroupLabels:
-    - "Captain / HoS / RD (1)"
-    - "Captain / HoS / RD (2)"
+  authSchemes:
+    - id: AiLeadershipVoted
+      groups:
+        - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
+        - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
+    - id: CommandVoted
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 900
-  authTimer: 30
 
 # ── Code Violet ──────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -235,18 +337,20 @@
   proposalAnnouncement: false
   activationDelaySecs: 5
   fee: 0
-  salaryPenalty: 0.0
   actionType: AlertLevel
   alertLevel: violet
   sortOrder: 25
-  authGroups:
-    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
-    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
-  authGroupLabels:
-    - "Captain / HoS / CMO / RD (1)"
-    - "Captain / HoS / CMO / RD (2)"
+  authSchemes:
+    - id: MedAndScienceLeadership
+      groups:
+        - [Captain, Ntrep, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+        - [Captain, Ntrep, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 600
-  authTimer: 30
 
 # ── End GAMMA ─────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -258,18 +362,21 @@
   proposalAnnouncement: false
   activationDelaySecs: 5
   fee: 0
-  salaryPenalty: 0.0
   actionType: AlertLevel
   alertLevel: green
   requiresAlertLevel: gamma
   requiresAlertActiveMinutes: 15
   sortOrder: 12
-  authGroups:
-    - [Captain, HeadOfSecurity, Ntrep]
-    - [Captain, HeadOfSecurity, Ntrep]
-  authGroupLabels:
-    - "Captain / HoS / NTR (1)"
-    - "Captain / HoS / NTR (2)"
+  authSchemes:
+    - id: SecurityLeadership
+      groups:
+        - [Captain, Ntrep, HeadOfSecurity]
+        - [Captain, Ntrep, HeadOfSecurity]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 0
 
 # ── End Violet ─────────────────────────────────────────────────────────────────
@@ -282,16 +389,19 @@
   proposalAnnouncement: false
   activationDelaySecs: 5
   fee: 0
-  salaryPenalty: 0.0
   actionType: AlertLevel
   alertLevel: green
   requiresAlertLevel: violet
   requiresAlertActiveMinutes: 10
   sortOrder: 12
-  authGroups:
-    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
-  authGroupLabels:
-    - "Captain / HoS / CMO / RD (1)"
+  authSchemes:
+    - id: MedAndScienceLeadership
+      groups:
+        - [Captain, Ntrep, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 0
 
 # ── End PSI ───────────────────────────────────────────────────────────────────
@@ -305,18 +415,21 @@
   proposalAnnouncement: false
   activationDelaySecs: 5
   fee: 0
-  salaryPenalty: 0.0
   actionType: AlertLevel
   alertLevel: green
   requiresAlertLevel: psi
   requiresAlertActiveMinutes: 15
   sortOrder: 22
-  authGroups:
-    - [Captain, HeadOfSecurity, ResearchDirector]
-    - [Captain, HeadOfSecurity, ResearchDirector]
-  authGroupLabels:
-    - "Captain / HoS / RD (1)"
-    - "Captain / HoS / RD (2)"
+  authSchemes:
+    - id: AiLeadership
+      groups:
+        - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
+        - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 0
 #region Armory
 
@@ -330,21 +443,37 @@
   activationDelaySecs: 60
   requiresWarNotDeclared: true
   fee: 5000
-  salaryPenalty: 0.08
+  salaryModifiers:
+    - source: Everyone
+      change: -0.08
   actionType: Armory
   armoryKey: gamma
   requiresAlertLevel: gamma
   recallMinDelaySecs: 120
   oneTimeUse: true
   sortOrder: 11
-  authGroups:
-    - [Captain, HeadOfSecurity, Ntrep]
-    - [Captain, HeadOfSecurity, Ntrep]
-  authGroupLabels:
-    - "Captain / HoS / NTR (1)"
-    - "Captain / HoS / NTR (2)"
+  authSchemes:
+    - id: SecurityLeadership
+      groups:
+        - [Captain, Ntrep, HeadOfSecurity]
+        - [Captain, Ntrep, HeadOfSecurity]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: Captain
+      groups:
+        - [Captain]
+    - id: RD
+      groups:
+        - [ResearchDirector]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 3600
-  authTimer: 30
 
 # ── Psi Armory ────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -356,21 +485,37 @@
   activationDelaySecs: 60
   requiresWarNotDeclared: true
   fee: 5000
-  salaryPenalty: 0.08
+  salaryModifiers:
+    - source: Everyone
+      change: -0.08
   actionType: Armory
   armoryKey: psi
   requiresAlertLevel: psi
   recallMinDelaySecs: 120
   oneTimeUse: true
   sortOrder: 21
-  authGroups:
-    - [Captain, HeadOfSecurity, ResearchDirector]
-    - [Captain, HeadOfSecurity, ResearchDirector]
-  authGroupLabels:
-    - "Captain / HoS / RD (1)"
-    - "Captain / HoS / RD (2)"
+  authSchemes:
+    - id: AiLeadership
+      groups:
+        - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
+        - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: Captain
+      groups:
+        - [Captain]
+    - id: RD
+      groups:
+        - [ResearchDirector]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 3600
-  authTimer: 30
 
 # ── Emergency Medical Pod ─────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -379,20 +524,36 @@
   description: secure-terminal-med-pod-desc
   announcement: secure-terminal-med-pod-announcement
   announcementColor: "#33ff66"
-  activationDelaySecs: 300
+  activationDelaySecs: 120
   fee: 5000
-  salaryPenalty: 0.05
+  salaryModifiers:
+    - source: Everyone
+      change: -0.05
   actionType: Armory
   armoryKey: medical
   sortOrder: 30
-  authGroups:
-    - [Captain, ChiefMedicalOfficer]
-    - [Captain, ChiefMedicalOfficer]
-  authGroupLabels:
-    - "Captain / CMO (1)"
-    - "Captain / CMO (2)"
+  authSchemes:
+    - id: MedicalLeadership
+      groups:
+        - [Captain, Ntrep, ChiefMedicalOfficer]
+        - [Captain, Ntrep, ChiefMedicalOfficer]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: Captain
+      groups:
+        - [Captain]
+    - id: CMO
+      groups:
+        - [ChiefMedicalOfficer]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 3600
-  authTimer: 30
 
 #region Emergency Access
 
@@ -405,21 +566,18 @@
   proposalAnnouncement: false
   activationDelaySecs: 0
   fee: 0
-  salaryPenalty: 0.0
   actionType: AirlockAccess
   accessEnabled: true
   allowedAccesses:
     - Maintenance
     - External
   sortOrder: 100
-  authGroups:
-    - [Command]
-    - [Command]
-  authGroupLabels:
-    - "Command Member (1)"
-    - "Command Member (2)"
+  authSchemes:
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 600
-  authTimer: 30
 
 # ── End Emergency Maintenance Access ─────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -431,17 +589,16 @@
   proposalAnnouncement: false
   activationDelaySecs: 0
   fee: 0
-  salaryPenalty: 0.0
   actionType: AirlockAccess
   accessEnabled: false
   allowedAccesses:
     - Maintenance
     - External
   sortOrder: 101
-  authGroups:
-    - [Command]
-  authGroupLabels:
-    - "Command Member (1)"
+  authSchemes:
+    - id: Command
+      groups:
+        - [Command, Ntrep]
   cooldownSecs: 0
 
 # ── Station-Wide Emergency Access ─────────────────────────────────────────────────────
@@ -453,18 +610,15 @@
   proposalAnnouncement: false
   activationDelaySecs: 0
   fee: 0
-  salaryPenalty: 0.0
   actionType: AirlockAccess
   accessEnabled: true
   sortOrder: 120
-  authGroups:
-    - [Command]
-    - [Command]
-  authGroupLabels:
-    - "Command Member (1)"
-    - "Command Member (2)"
+  authSchemes:
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 600
-  authTimer: 30
 
 # ── End Station-Wide Emergency Access ─────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -476,14 +630,13 @@
   proposalAnnouncement: false
   activationDelaySecs: 0
   fee: 0
-  salaryPenalty: 0.0
   actionType: AirlockAccess
   accessEnabled: false
   sortOrder: 121
-  authGroups:
-    - [Command]
-  authGroupLabels:
-    - "Command (1)"
+  authSchemes:
+    - id: Command
+      groups:
+        - [Command, Ntrep]
   cooldownSecs: 0
 
 #region Misc
@@ -495,19 +648,37 @@
   description: secure-terminal-itg-salvage-team-desc
   announcement: secure-terminal-itg-salvage-team-announcement
   announcementColor: "#ff4444"
-  activationDelaySecs: 0
-  fee: 10000
-  salaryPenalty: 0.05
+  activationDelaySecs: 60
+  fee: 5000
+  salaryModifiers:
+    - source: Interstellar Trade Guild
+      change: 0.1
+    - source: Everyone
+      change: -0.05
   actionType: Announcement
   sortOrder: 200
-  authGroups:
-    - [Captain]
-    - [HeadOfSecurity]
-  authGroupLabels:
-    - "Captain (1)"
-    - "Head of Security (2)"
+  authSchemes:
+    - id: SecurityLeadership
+      groups:
+        - [Captain, HeadOfSecurity, Ntrep]
+        - [Captain, HeadOfSecurity, Ntrep]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: Captain
+      groups:
+        - [Captain]
+    - id: HoS
+      groups:
+        - [HeadOfSecurity]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 600
-  authTimer: 60
 
 # ── Dismiss ITG Salvage Team ──────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -518,13 +689,16 @@
   announcementColor: "#ff4444"
   activationDelaySecs: 0
   fee: 0
-  salaryPenalty: 0.0
   actionType: Announcement
   sortOrder: 201
-  authGroups:
-    - [Captain, HeadOfSecurity]
-  authGroupLabels:
-    - "Captain / HoS (1)"
+  authSchemes:
+    - id: SecurityLeadership
+      groups:
+        - [Captain, Ntrep, HeadOfSecurity]
+    - id: Command
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
   cooldownSecs: 0
 
 # ── Self Destruct Code ─────────────────────────────────────────────────────
@@ -538,20 +712,31 @@
   bypassIfNoAdmin: false
   activationDelaySecs: 30
   fee: 10000
-  salaryPenalty: 1
+  salaryModifiers:
+    - source: Everyone
+      change: -1
   actionType: NukeCodes
   oneTimeUse: true
   sortOrder: 500
-  authGroups:
-    - [Captain, Ntrep]
-    - [Captain, Ntrep]
-    - [Command]
-    - [Command]
-    - [Command]
-  authGroupLabels:
-    - "Captain / NTR (1)"
-    - "Captain / NTR (2)"
-    - "Command Member (3)"
-    - "Command Member (4)"
-    - "Command Member (5)"
-  authTimer: 30
+  authSchemes:
+    - id: SecurityLeadership
+      groups:
+        - [Captain, HeadOfSecurity, Ntrep]
+        - [Captain, HeadOfSecurity, Ntrep]
+        - [Command, HeadOfSecurity, Ntrep]
+    - id: CaptainAndCommand
+      groups:
+        - [Captain, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: CaptainAndCommand
+      groups:
+        - [Captain]
+        - [Command, Ntrep]
+    - id: HoSOrNtrepAndCommand
+      groups:
+        - [HeadOfSecurity, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]

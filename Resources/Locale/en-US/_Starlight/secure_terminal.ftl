@@ -19,7 +19,7 @@ secure-terminal-recall-locked = { $minutes ->
 secure-terminal-used-note = This armory has been permanently activated or recalled this round and cannot be deployed again.
 secure-terminal-already-used = This resource has already been used this round and cannot be requested again.
 
-secure-terminal-auth-waiting = No active proposal for this request.
+secure-terminal-auth-waiting = No active proposal for this request. Required authorization:
 secure-terminal-auth-desc = Current proposal — no response = [color=red]red[/color], agreed = [color=green]green[/color]:
 secure-terminal-awaiting-member = Awaiting {$label}
 
@@ -27,7 +27,7 @@ secure-terminal-pending-countdown-label = Expires in {$minutes}m {$seconds}s…
 secure-terminal-countdown-label = Activating in {$minutes}m {$seconds}s…
 
 secure-terminal-fee-note = Processing fee: {$fee}
-secure-terminal-salary-note = Station salary reduced by {$penalty}% due to mobilization cost.
+secure-terminal-salary-note = Changes to salaries:
 secure-terminal-delay-note = { $minutes ->
     [1] ETA: 1 minute after authorization.
    *[other] ETA: {$minutes} minutes after authorization.
@@ -171,7 +171,7 @@ secure-terminal-nukerequest-desc = Request the nuclear self-destruct codes.
                                    Transmission does not guarantee a response.
 
 secure-terminal-code-violet-name = Code Violet
-secure-terminal-code-violet-desc = Escalates the station to [color=Violet]Violet[/color] alert.
+secure-terminal-code-violet-desc = Declares [color=Violet]Violet[/color] alert in response to a confirmed station-wide outbreak.
 
 secure-terminal-end-violet-name = End Violet Alert
 secure-terminal-end-violet-desc = Lifts [color=Violet]Violet[/color] alert and returns the station to Green. Requires Violet to have been active for at least 10 minutes.
