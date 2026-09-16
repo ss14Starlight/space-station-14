@@ -121,12 +121,6 @@
       mindRoles:
       - MindRoleGhostRoleTeamAntagonistFlock
     - type: GhostTakeoverAvailable
-    - type: MovementSpeedModifier
-      baseWalkSpeed: 0.5 # orignal 2.5
-      baseSprintSpeed: 0.75 # orignal 3.5
-    - type: MovementBodyPart
-      walkSpeed: 0.5
-      sprintSpeed: 0.75
     - type: MobThresholds
       thresholds:
         0: Alive
