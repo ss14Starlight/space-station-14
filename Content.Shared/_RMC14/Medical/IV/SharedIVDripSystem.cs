@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Body.Components;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
@@ -60,29 +61,17 @@ public abstract partial class SharedIVDripSystem : EntitySystem
         SubscribeLocalEvent<BloodPackComponent, ExaminedEvent>(OnBloodPackExamine);
     }
 
-    private void OnIVDripEntInserted(Entity<IVDripComponent> iv, ref EntInsertedIntoContainerMessage args)
-    {
-        UpdateIVVisuals(iv);
-    }
+    private void OnIVDripEntInserted(Entity<IVDripComponent> iv, ref EntInsertedIntoContainerMessage args) => UpdateIVVisuals(iv);
 
-    private void OnIVDripEntRemoved(Entity<IVDripComponent> iv, ref EntRemovedFromContainerMessage args)
-    {
-        UpdateIVVisuals(iv);
-    }
+    private void OnIVDripEntRemoved(Entity<IVDripComponent> iv, ref EntRemovedFromContainerMessage args) => UpdateIVVisuals(iv);
 
-    private void OnIVDripAfterHandleState(Entity<IVDripComponent> iv, ref AfterAutoHandleStateEvent args)
-    {
-        UpdateIVAppearance(iv);
-    }
+    private void OnIVDripAfterHandleState(Entity<IVDripComponent> iv, ref AfterAutoHandleStateEvent args) => UpdateIVAppearance(iv);
 
-    private void OnIVDripCanDrag(Entity<IVDripComponent> iv, ref CanDragEvent args)
-    {
-        args.Handled = true;
-    }
+    private void OnIVDripCanDrag(Entity<IVDripComponent> iv, ref CanDragEvent args) => args.Handled = true;
 
     private void OnIVDripCanDropDragged(Entity<IVDripComponent> iv, ref CanDropDraggedEvent args)
     {
-        if (!HasComp<MobStateComponent>(args.Target) || !InRange(iv, args.Target, iv.Comp.Range))
+        if (!CanAttach(args.Target) || !InRange(iv, args.Target, iv.Comp.Range)) // Starlight
             return;
         args.Handled = true;
         args.CanDrop = true;
@@ -99,10 +88,7 @@ public abstract partial class SharedIVDripSystem : EntitySystem
             DetachIV(iv, args.User, false, true);
     }
 
-    private void OnIVInteractHand(Entity<IVDripComponent> iv, ref InteractHandEvent args)
-    {
-        DetachIV(iv, args.User, false, true);
-    }
+    private void OnIVInteractHand(Entity<IVDripComponent> iv, ref InteractHandEvent args) => DetachIV(iv, args.User, false, true);
 
     private void OnIVVerbs(Entity<IVDripComponent> iv, ref GetVerbsEvent<InteractionVerb> args)
     {
@@ -146,27 +132,18 @@ public abstract partial class SharedIVDripSystem : EntitySystem
         }
     }
 
-    private void OnBloodPackMapInit(Entity<BloodPackComponent> pack, ref MapInitEvent args)
-    {
-        _packsToUpdate.Add(pack);
-    }
+    private void OnBloodPackMapInit(Entity<BloodPackComponent> pack, ref MapInitEvent args) => _packsToUpdate.Add(pack);
 
-    private void OnBloodPackAfterState(Entity<BloodPackComponent> pack, ref AfterAutoHandleStateEvent args)
-    {
-        UpdatePackVisuals(pack);
-    }
+    private void OnBloodPackAfterState(Entity<BloodPackComponent> pack, ref AfterAutoHandleStateEvent args) => UpdatePackVisuals(pack);
 
-    private void OnBloodPackSolutionChanged(Entity<BloodPackComponent> pack, ref SolutionChangedEvent args)
-    {
-        UpdatePackVisuals(pack);
-    }
+    private void OnBloodPackSolutionChanged(Entity<BloodPackComponent> pack, ref SolutionChangedEvent args) => UpdatePackVisuals(pack);
 
     private void OnBloodPackAfterInteract(Entity<BloodPackComponent> pack, ref AfterInteractEvent args)
     {
         if (args.Target is not { } target)
             return;
 
-        if (!HasComp<MobStateComponent>(target) || !InRange(pack, target, pack.Comp.Range))
+        if (!CanAttach(target) || !InRange(pack, target, pack.Comp.Range)) // Starlight
             return;
 
         args.Handled = true;
@@ -215,10 +192,7 @@ public abstract partial class SharedIVDripSystem : EntitySystem
         AttachPack(pack, args.User, target);
     }
 
-    private void OnBloodPackUnequippedHand(Entity<BloodPackComponent> pack, ref GotUnequippedHandEvent args)
-    {
-        DetachPack((pack, pack), args.User, true, true);
-    }
+    private void OnBloodPackUnequippedHand(Entity<BloodPackComponent> pack, ref GotUnequippedHandEvent args) => DetachPack((pack, pack), args.User, true, true);
 
     private void OnBloodPackVerbs(Entity<BloodPackComponent> pack, ref GetVerbsEvent<InteractionVerb> args)
     {
@@ -261,7 +235,7 @@ public abstract partial class SharedIVDripSystem : EntitySystem
 
     private void AttachIV(Entity<IVDripComponent> iv, EntityUid user, EntityUid to)
     {
-        if (!InRange(iv, to, iv.Comp.Range))
+        if (!CanAttach(to) || !InRange(iv, to, iv.Comp.Range)) // Starlight
             return;
 
         iv.Comp.AttachedTo = to;
@@ -286,7 +260,7 @@ public abstract partial class SharedIVDripSystem : EntitySystem
 
     private void AttachPack(Entity<BloodPackComponent> pack, EntityUid user, EntityUid to)
     {
-        if (!InRange(pack, to, pack.Comp.Range))
+        if (!CanAttach(to) || !InRange(pack, to, pack.Comp.Range)) // Starlight
             return;
 
         pack.Comp.AttachedTo = to;

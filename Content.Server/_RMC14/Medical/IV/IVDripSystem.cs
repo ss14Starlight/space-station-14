@@ -56,7 +56,10 @@ public sealed partial class IVDripSystem : SharedIVDripSystem
                 continue;
 
             if (!InRange(ivId, attachedTo, ivComp.Range))
+            {
                 DetachIV((ivId, ivComp), null, true, false);
+                continue;
+            }
 
             if (time < ivComp.TransferAt)
                 continue;
@@ -140,7 +143,10 @@ public sealed partial class IVDripSystem : SharedIVDripSystem
                 continue;
 
             if (!InRange(packId, attachedTo, packComp.Range))
+            {
                 DetachPack((packId, packComp), null, true, false);
+                continue;
+            }
 
             if (time < packComp.TransferAt)
                 continue;
