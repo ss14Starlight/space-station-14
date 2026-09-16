@@ -21,6 +21,23 @@
     hideOnToggle: true
 
 - type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskkGasHalf
+  name: half mask
+  description: a half mask that covers the mouth and nose, but not the eyes.
+  components:
+  - type: Sprite
+    sprite: Clothing/Mask/gashalf.rsi
+  - type: Clothing
+    sprite: Clothing/Mask/gashalf.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: HideLayerClothing
+    layers:
+      Snout: Mask
+    hideOnToggle: true
+
+- type: entity
   parent: [ClothingMaskGas, BaseSecurityContraband]
   id: ClothingMaskGasSecurity
   name: security gas mask
