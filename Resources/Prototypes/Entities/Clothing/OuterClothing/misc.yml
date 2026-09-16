@@ -256,10 +256,6 @@
     sprite: Clothing/OuterClothing/Misc/plaguedoctorsuit.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Misc/plaguedoctorsuit.rsi
-  - type: Armor  #SL
-    modifiers: { }
-  - type: ZombificationResistance  #SL
-    zombificationResistanceCoefficient: 0.8
 
 - type: entity
   parent: ClothingOuterBaseWarm # Starlight
