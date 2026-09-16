@@ -295,7 +295,7 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
 
         UpdateAlert(target, ensnareable);
         var ev = new EnsnareRemoveEvent(component.WalkSpeed, component.SprintSpeed);
-        RaiseLocalEvent(ensnare, ev);
+        RaiseLocalEvent(target, ev); // Starlight
     }
 
     /// <summary>
