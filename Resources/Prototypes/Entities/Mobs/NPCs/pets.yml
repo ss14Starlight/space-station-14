@@ -860,6 +860,7 @@
     - Hamster
     - VimPilot
     - ChefPilot
+  # Starlight-start Audio Emotes
   - type: Speech
     speechVerb: SmallMob
     speechSounds: Squeak
@@ -869,6 +870,7 @@
       Male: Mouse
       Female: Mouse
       Unsexed: Mouse
+  # Starlight-end
   - type: FlavorProfile
     flavors:
     - meaty
