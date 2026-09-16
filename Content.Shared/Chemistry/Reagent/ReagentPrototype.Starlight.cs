@@ -1,3 +1,4 @@
+using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Chemistry.Reagent
@@ -15,5 +16,11 @@ namespace Content.Shared.Chemistry.Reagent
         /// </summary>
         [DataField]
         public bool SelfOxidizing;
+
+        /// <summary>
+        /// Minimum quantity required for this reagent's movement effects to apply in a puddle.
+        /// </summary>
+        [DataField]
+        public FixedPoint2 MovementMinimum = FixedPoint2.Zero;
     }
 }
