@@ -206,8 +206,12 @@ public sealed partial class AtmosphereSystem
             return;
 
         // Funky start
-        var ev = new TileExposedEvent(tile.GridIndices, exposedTemperature, exposedVolume, sparkSourceUid);
-        RaiseLocalEvent(gridAtmosphere.Owner, ref ev);
+        // Starlight - throttled, continuous ignition sources expose the same tile every tick.
+        if (ShouldRaiseTileExposed(gridAtmosphere.Owner, tile.GridIndices, exposedTemperature))
+        {
+            var ev = new TileExposedEvent(tile.GridIndices, exposedTemperature, exposedVolume, sparkSourceUid);
+            RaiseLocalEvent(gridAtmosphere.Owner, ref ev);
+        }
         // Funky end
         var oxygen = tile.Air.GetMoles(Gas.Oxygen);
 
