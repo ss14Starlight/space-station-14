@@ -1,48 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Sepultum) Added storage rack to science front desk, cargo front desk, hop office.
-    type: Add
-  id: 408247
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added buy and sell decals to cargo.
-    type: Add
-  id: 408248
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added a guidebooks box to library.
-    type: Add
-  id: 408249
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added a second hop window and expanded the hop office with more space and new items.
-    type: Add
-  id: 408250
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added an observer ghost spawn near medical.
-    type: Add
-  id: 408251
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added a station beacon to xenobiology.
-    type: Add
-  id: 408252
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
   - message: (Sepultum) Removed NCT bedroom to make way for more hop office.
     type: Remove
   id: 408253
@@ -2799,4 +2757,46 @@ Entries:
   id: 408646
   time: '2026-09-15T01:45:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6167
+- author: SirLutz
+  changes:
+  - message: Heavy Xenoborg health has also been lowered, Crit 250 -> 150, Dead 750 -> 450.
+    type: Tweak
+  id: 408647
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: SirLutz
+  changes:
+  - message: Armored Silicon (Xenos & Assaultborg) armor reduced from 50% to 40%.
+    type: Tweak
+  id: 408648
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: SirLutz
+  changes:
+  - message: Civilian Silicon Heat Flat Reduction removed.
+    type: Remove
+  id: 408649
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: SirLutz
+  changes:
+  - message: Armored Silicon Heat Flat Reduction lowered from 6 to 3.
+    type: Tweak
+  id: 408650
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: SirLutz
+  changes:
+  - message: Civilian Silicon Blunt reduced from 5 -> 2.
+    type: Tweak
+  id: 408651
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: SirLutz
+  changes:
+  - message: Armored Silicon Blunt reduced from 8 -> 5.
+    type: Tweak
+  id: 408652
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
 Order: -1
