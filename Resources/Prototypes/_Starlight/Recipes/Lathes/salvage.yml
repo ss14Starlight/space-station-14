@@ -1,0 +1,76 @@
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SalvageTicketSteel
+  result: SalvageTicket25
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SalvageTicketGlass
+  result: SalvageTicket25
+  materials:
+    Glass: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SalvageTicketCloth
+  result: SalvageTicket25
+  materials:
+    Cloth: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SalvageTicketPlastic
+  result: SalvageTicket50
+  materials:
+    Plastic: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SalvageTicketPlasSteel
+  result: SalvageTicket100
+  materials:
+    Plasteel: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SalvageTicketPlasma
+  result: SalvageTicket100
+  materials:
+    Plasma: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SalvageTicketSilver
+  result: SalvageTicket100
+  materials:
+    Silver: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SalvageTicketGold
+  result: SalvageTicket100
+  materials:
+    Gold: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SalvageTicketUranium
+  result: SalvageTicket100
+  materials:
+    Uranium: 500
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SalvageTicketDiamond
+  result: SalvageTicket100
+  materials:
+    Diamond: 100
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SalvageTicketBluespaceCrystal
+  result: SalvageTicket100
+  materials:
+    BluespaceCrystal: 100

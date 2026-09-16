@@ -598,3 +598,58 @@
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
+
+# Salvage
+- type: entity
+  id: SalvageTechFab
+  categories: [ ShouldMapStation ]
+  parent: BaseLatheLube
+  name: salvage techfab
+  description: Prints equipment for use by the station's supply department.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/techfab.rsi
+      layers:
+        - state: icon
+          map: ["enum.LatheVisualLayers.IsRunning"]
+        - state: salvage
+        - state: unlit
+          shader: unshaded
+          map: ["enum.PowerDeviceVisualLayers.Powered"]
+        - state: inserting
+          map: ["enum.MaterialStorageVisualLayers.Inserting"]
+        - state: panel
+          map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: Machine
+      board: SalvageTechFabCircuitboard
+    - type: Lathe
+      idleState: icon
+      runningState: icon
+      staticPacks:
+        # Static stuff that Salvage could reasonable use
+        - StarlightCargoToolsStatic
+        - PartsStatic
+        - CablesStatic
+        - PaperworkStatic
+        - CargoStatic
+        - MaterialsStatic
+        - PowerCellsStatic
+        - StarlightContainersStatic
+        - StarlightSalvageTicketStatic
+      dynamicPacks:
+        - StarlightAutolatheLootable
+        - StarlightProtolatheLootable
+        - Mining
+        - SalvageSecurityWeapons # It's just the pkas + firing pin
+        - Equipment
+        - StarlightCargoDynamic
+    - type: EmagLatheRecipes
+      emagStaticPacks:
+        - StarlightSecurityEmagWeaponsStatic
+        - StarlightSecurityAmmoStatic
+        - StarlightSyndicateAmmoStatic
+    - type: MaterialStorage
+      whitelist: *StandardMaterialWhitelist
+    - type: StealTarget
+      stealGroup: DepartmentalTechFabCircuitboard
+    - type: OreSiloClient

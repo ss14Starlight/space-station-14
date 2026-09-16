@@ -1451,3 +1451,20 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+
+- type: entity
+  id: SalvageTechFabCircuitboard
+  parent: [BaseMachineCircuitboard, BaseSalvageContraband]
+  name: salvage techfab machine board
+  description: A machine printed circuit board for a salvage techfab.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: SalvageTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
