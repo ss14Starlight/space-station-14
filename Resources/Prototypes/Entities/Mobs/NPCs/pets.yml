@@ -860,6 +860,15 @@
     - Hamster
     - VimPilot
     - ChefPilot
+  - type: Speech
+    speechVerb: SmallMob
+    speechSounds: Squeak
+    allowedEmotes: ['Squeak'] # love ya Hammy - Charles
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
   - type: FlavorProfile
     flavors:
     - meaty
