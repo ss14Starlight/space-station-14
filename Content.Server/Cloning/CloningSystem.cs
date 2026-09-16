@@ -22,6 +22,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared.Mindshield.Components;
 
 namespace Content.Server.Cloning;
 
@@ -94,6 +95,16 @@ public sealed partial class CloningSystem : SharedCloningSystem
         _metaData.SetEntityName(clone.Value, originalName);
 
         _adminLogger.Add(LogType.Chat, LogImpact.Medium, $"The body of {original:player} was cloned as {clone.Value:player}");
+
+        // Starlight start
+        if (!HasComp<MindShieldImplantComponent>(clone) || !HasComp<FakeMindShieldImplantComponent>(clone))
+        {
+            // Does not have mindshield, remove the funny blinking display around their icon, and the actual mindshield effect.
+            RemComp<MindShieldComponent>(clone.Value);
+        }
+
+        // Starlight end
+
         return true;
     }
 
