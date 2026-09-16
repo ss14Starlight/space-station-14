@@ -195,6 +195,7 @@
       proto: NukeopsMedic
     - !type:LinearAntagCount
       proto: NukeopsOperative
+      playerRatio: 18 # Starlight - max of 3 operatives on Beta
       range:
         min: 1
         max: 4 # Starlight
