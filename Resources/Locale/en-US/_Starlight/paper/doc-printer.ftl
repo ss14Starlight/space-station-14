@@ -1320,8 +1320,11 @@ doc-text-printer-borgification-consent-form =
 
     WHEREBY the Customer acknowledges that, following the end of this contract, they are bound by the NanoTrasen Cyborg Subscription Contract unto death or removal from their NanoTrasen Cyborg™ chassis.
 
+    WHEREBY the NT-CC Consortium releases non-essential assistant personnel from Clause 6 of their Employment Contract, in exchange for the above-stated terms.
+
     Procedure approved by: (Name + Position): [signature]
 
-   ⠀ [italic]Procedure can only be approved by a NanoTrasen™ Certified Roboticist[/italic]
+   ⠀ [italic]This procedure can only be approved by a[/italic]
+   ⠀ [italic]NanoTrasen™ Certified Roboticist or CMO.[/italic]
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
