@@ -116,6 +116,7 @@
   standsout: true
   physicalDesc: reagent-physical-desc-viscous
   viscosity: 0.25
+  viscosityMin: 1 # Starlight
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:
@@ -148,6 +149,7 @@
   recognizable: true
   physicalDesc: reagent-physical-desc-sticky
   viscosity: 0.10
+  viscosityMin: 1 # Starlight
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:
