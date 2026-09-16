@@ -1,39 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Removed NCT bedroom to make way for more hop office.
-    type: Remove
-  id: 408253
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Changed a lot of the mines to not be spaced at shift start.
-    type: Tweak
-  id: 408254
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Changed IAA's office a little by moving it to a room next door allowing lawyer to also have an office.
-    type: Tweak
-  id: 408255
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Changed all mine entrance's to not to be spaced for consistency.
-    type: Tweak
-  id: 408256
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Changed engi HV wiring around to make SM's SMES downstream from smes bank.
-    type: Tweak
-  id: 408257
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
 - author: Johnny
   changes:
   - message: Added a dragon :godo:.
@@ -2799,4 +2764,39 @@ Entries:
   id: 408652
   time: '2026-09-16T18:34:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: wonderfulnewworld, mkanke
+  changes:
+  - message: Reverted Artifact size increase.
+    type: Tweak
+  id: 408653
+  time: '2026-09-16T21:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6170
+- author: wonderfulnewworld, mkanke
+  changes:
+  - message: The egg, tech disk, and flash protection triggers are now more legible.
+    type: Tweak
+  id: 408654
+  time: '2026-09-16T21:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6170
+- author: wonderfulnewworld, mkanke
+  changes:
+  - message: Combined bleach and space cleaner triggers.
+    type: Tweak
+  id: 408655
+  time: '2026-09-16T21:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6170
+- author: wonderfulnewworld, mkanke
+  changes:
+  - message: You now get turned back into yourself if you die as a skeleton polymorph.
+    type: Tweak
+  id: 408656
+  time: '2026-09-16T21:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6170
+- author: wonderfulnewworld, mkanke
+  changes:
+  - message: No more infinite agent ids.
+    type: Fix
+  id: 408657
+  time: '2026-09-16T21:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6170
 Order: -1
