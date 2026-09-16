@@ -21,6 +21,6 @@ namespace Content.Shared.Chemistry.Reagent
         /// Minimum quantity required for this reagent's movement effects to apply in a puddle.
         /// </summary>
         [DataField]
-        public FixedPoint2 MovementMinimum = FixedPoint2.Zero;
+        public FixedPoint2 ViscosityMin = FixedPoint2.Zero;
     }
 }

@@ -330,7 +330,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         foreach (var (reagent, quantity) in solution.Contents) // Starlight
         {
             var reagentProto = _prototypeManager.Index<ReagentPrototype>(reagent.Prototype);
-            if (quantity < reagentProto.MovementMinimum) // Starlight
+            if (quantity < reagentProto.ViscosityMin) // Starlight
                 continue; // Starlight
 
             maxViscosity = Math.Max(maxViscosity, reagentProto.Viscosity);

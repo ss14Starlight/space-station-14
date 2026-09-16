@@ -117,7 +117,7 @@
   tileReactions:
   - !type:SpillTileReaction
   viscosity: 0.5
-  movementMinimum: 1 # Starlight
+  viscosityMin: 1 # Starlight
   reactiveEffects:
     Acidic:
       methods: [ Touch ]
