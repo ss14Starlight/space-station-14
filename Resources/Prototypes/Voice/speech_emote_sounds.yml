@@ -58,7 +58,7 @@
     Howl:
       path: /Audio/_Starlight/Effects/howl.ogg
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
 
 - type: emoteSounds
@@ -120,7 +120,7 @@
     Howl:
       path: /Audio/_Starlight/Effects/howl.ogg
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
 
 - type: emoteSounds
@@ -156,7 +156,7 @@
       path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
     #region Starlight
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
 
 - type: emoteSounds
@@ -192,7 +192,7 @@
     Rattle:
       path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     # Starlight-End
 
 - type: emoteSounds
@@ -224,7 +224,7 @@
     Rattle:
       path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     # Starlight-End
 
 - type: emoteSounds
@@ -288,7 +288,7 @@
     Pop:
       collection: Pops
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
   params:
     variation: 0.125
@@ -354,7 +354,7 @@
     Pop:
       collection: Pops
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
   params:
     variation: 0.125
@@ -390,7 +390,7 @@
       path: /Audio/Effects/Gasp/vox_DeathGasp.ogg
     #region Starlight
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
   params:
     variation: 0.125
@@ -419,7 +419,7 @@
       collection: DeathGasp
     #region Starlight
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
   params:
     variation: 0.125
@@ -455,7 +455,7 @@
     Gasp:
       path: /Audio/_Starlight/Voice/Arachnid/arachnid_gasp.ogg
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
     DefaultDeathgasp:
       collection: DeathGasp
@@ -501,7 +501,7 @@
       collection: MaleDeathGasp
     #region Starlight
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
   params:
     variation: 0.125
@@ -548,7 +548,7 @@
       collection: FemaleDeathGasp
     #region Starlight
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
   params:
     variation: 0.125
@@ -577,17 +577,17 @@
       collection: BikeHorn
     #region Starlight
     Crying:
-      /Audio/_Starlight/Voice/Moth/moth_cry.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_cry.ogg
     Cough:
-      /Audio/_Starlight/Voice/Moth/moth_cough.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_cough.ogg
     Yawn:
-      /Audio/_Starlight/Voice/Moth/moth_yawn.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_yawn.ogg
     Sigh:
-      /Audio/_Starlight/Voice/Moth/moth_sigh.ogg
+      path: /Audio/_Starlight/Voice/Moth/moth_sigh.ogg
     Gasp:
       path: /Audio/_Starlight/Voice/Moth/moth_gasp.ogg
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
     DefaultDeathgasp:
       collection: MothDeathGasp
@@ -698,7 +698,7 @@
     Hew:
       collection: Hew
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     Honk:
       collection: BikeHorn
     Gasp:
@@ -748,7 +748,7 @@
     Hew:
       collection: Hew
     ThavenGlub:
-      collection: ThavenGlub
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     Honk:
       collection: BikeHorn
     Gasp:
