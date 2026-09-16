@@ -116,7 +116,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 152 # Starlight
+        damage: 132 # Starlight crit * 0.75
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -125,7 +125,7 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 600 # Starlight
+        damage: 525 # Starlight
       behaviors:
       - !type:PlaySoundBehavior
         sound:
