@@ -20,6 +20,8 @@
     sound: *BasePlushieSound
   - type: EmitSoundOnTrigger
     sound: *BasePlushieSound
+  - type: ActivateOnWearerHugged # Starlight: activate when the wearer is hugged
+    slot: head
   - type: UseDelay
     delay: 1.0 # Starlight change: 3s -> 1s
   - type: MeleeWeapon
