@@ -100,7 +100,7 @@
   - type: RefillableSolution
     solution: pack
   - type: Damageable
-  - type: Injurable
+  #- type: Injurable # Starlight, still don't have this comp...
     damageContainer: Inorganic
   - type: DamageOnHighSpeedImpact
     minimumSpeed: 2
