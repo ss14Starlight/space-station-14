@@ -22,5 +22,5 @@
 // }
 /*
  * STARLIGHT
- * Disabled due to being obsolete.
+ * Disabled due to being obsolete. Use shuttle:dockemergencyshuttle.
  */
