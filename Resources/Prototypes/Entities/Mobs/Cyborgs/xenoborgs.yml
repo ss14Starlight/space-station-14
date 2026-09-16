@@ -116,7 +116,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 152 # Starlight 
+        damage: 152 # Starlight
       behaviors:
       - !type:PlaySoundBehavior
         sound:
