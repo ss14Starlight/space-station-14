@@ -13,7 +13,7 @@ public sealed partial class ActivateOnWearerHuggedComponent : Component
     /// back, belt, ears, eyes, gloves, head, id, jumpsuit, mask, misc,
     /// neck, outerClothing, pocket1, pocket2, shoes, suitstorage, suitstorage2.
     /// Other species use their own templates and may have additional slots.
-	/// Defaults to "head".
+    /// Defaults to "head".
     /// </summary>
     [DataField]
     public string Slot = "head";
