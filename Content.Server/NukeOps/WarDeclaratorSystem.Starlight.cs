@@ -14,9 +14,7 @@ public sealed partial class WarDeclaratorSystem
     /// re-firing the announcement, war music, or gamma alert.
     /// </summary>
     private bool HasWarBeenDeclared(Entity<WarDeclaratorComponent> ent)
-    {
-        return ent.Comp.CurrentStatus == WarConditionStatus.WarReady;
-    }
+        => ent.Comp.CurrentStatus == WarConditionStatus.WarReady;
 
     /// <summary>
     /// War music and gamma alert played after the war declaration announcement.
