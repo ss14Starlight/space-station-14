@@ -24,12 +24,13 @@
   parent: ClothingMaskPullableBase
   id: ClothingMaskGasHalf
   name: half mask
-  description: a half mask that covers the mouth and nose, but not the eyes.
+  description: A half mask that covers the mouth and nose, but not the eyes.
   components:
   - type: Sprite
     sprite: Clothing/Mask/gashalf.rsi
   - type: Clothing
     sprite: Clothing/Mask/gashalf.rsi
+  - type: BreathMask
   - type: HideLayerClothing
     layers:
       Snout: Mask
