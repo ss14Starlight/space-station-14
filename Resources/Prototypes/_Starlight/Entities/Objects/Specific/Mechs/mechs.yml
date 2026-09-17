@@ -858,3 +858,15 @@
     - type: Mech
       startingEquipment:
         - WeaponMechSniperMime
+
+- type: entity
+  parent: MechZleeb
+  id: MechZleebBattery
+  suffix: Battery
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorHigh
+        mech-gas-tank-slot:
+          - MechAirTankFilled

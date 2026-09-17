@@ -58,7 +58,7 @@
           - !type:PlayerCountCondition
             min: 5
         - id: Vampire
-          weight: 15
+          weight: 20
           prob: 0.90 # Vampire can have a slightly higher chance to fail than the other gamemodes, it's the other "most likely" gamemode
           conditions:
           - !type:HasBudgetCondition
@@ -101,7 +101,7 @@
           - !type:PlayerCountCondition
             min: 20
         - id: WizardDuel
-          weight: 10
+          weight: 5
           prob: 0.95
           conditions:
           - !type:HasBudgetCondition
@@ -211,7 +211,7 @@
           - !type:PlayerCountCondition
             min: 20
         - id: WizardDuel
-          weight: 4
+          weight: 2
           prob: 0.40
           conditions:
           - !type:HasBudgetCondition
@@ -377,9 +377,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
-            min: 25
+            min: 40
           - !type:RoundDurationCondition
-            min: 1500 # 25 minutes
+            min: 2700 # 45 minutes
 
 - type: entity
   parent: BaseGameRule
@@ -433,7 +433,7 @@
           max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
         children:
         - id: TraitorLess
-          weight: 43
+          weight: 45
           prob: 0.75 # Beta has an innate chance at Extended, so we give TraitorLes and Vampire a higher chance to fail to roll here. It roughly equals their Secret chance at Extended.
           conditions:
           - !type:HasBudgetCondition
@@ -441,7 +441,7 @@
           - !type:PlayerCountCondition
             min: 5
         - id: Vampire # We can count Vampires as being a major on Beta.
-          weight: 23
+          weight: 24
           prob: 0.75
           conditions:
           - !type:HasBudgetCondition
@@ -484,7 +484,7 @@
           - !type:PlayerCountCondition
             min: 20
         - id: WizardDuel
-          weight: 6
+          weight: 3
           prob: 0.95
           conditions:
           - !type:HasBudgetCondition
@@ -594,7 +594,7 @@
           - !type:PlayerCountCondition
             min: 20
         - id: WizardDuel
-          weight: 4
+          weight: 2
           prob: 0.40
           conditions:
           - !type:HasBudgetCondition
