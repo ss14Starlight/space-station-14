@@ -19,6 +19,7 @@ using Content.Server._Starlight.SecureTerminal;
 using Content.Shared._Starlight.Economy;
 
 namespace Content.Server._Starlight.Economy;
+
 public sealed partial class SalarySystem : SharedSalarySystem
 {
     [Dependency] private IEntityManager _entityManager = default!;
@@ -95,7 +96,7 @@ public sealed partial class SalarySystem : SharedSalarySystem
                 if (bonus.Roles.Any(playerData.Roles.Contains))
                     bonusMultiplier += bonus.Multiplayer;
         }
-        
+
         var sourceModifier = GetStationSalaryModifier("Everyone") + GetStationSalaryModifier(source);
         var multiplier = Math.Max(0.2f, 1f + sourceModifier); // Minimum income is 20% of the base salary
         bonusMultiplier = Math.Max(0f, bonusMultiplier); // Bonus has to be positive
