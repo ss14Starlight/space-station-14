@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Content.Server._Starlight.GameTicking.Rules;
 using Content.Server.Administration.Logs;
 using Content.Server.RoundEnd;
 using Content.Shared._Starlight.EntityTable;
@@ -25,21 +26,7 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
     #region Starlight
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private IChatManager _chat = default!;
-    [Dependency] private ILogManager _logManager = default!;
-
-    private ISawmill _sawmill = default!;
-
-    private readonly Dictionary<EntProtoId, int> _ruleCooldowns = new();
-    private readonly HashSet<EntProtoId> _roundCooldowns = new();
-    private bool _roundCooldownsInitialized;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        _sawmill = _logManager.GetSawmill("dynamic");
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
-    }
+    [Dependency] private DynamicRuleCooldownSystem _cooldowns = default!;
     #endregion
 
     protected override void Added(EntityUid uid, DynamicRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
@@ -98,7 +85,7 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
     {
         #region Starlight
         // Modified heavily to support the new GameRuleTableContext, which allows us to check for cooldowns and previous rules.
-        InitializeRoundCooldowns();
+        _cooldowns.EnsureRoundInitialized(dynamicRound: true);
         UpdateBudget((entity.Owner, entity.Comp));
         var budget = entity.Comp.Budget;
         var previousRules = new List<EntProtoId>();
@@ -116,7 +103,7 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
             previousRules.Add(prototype);
         }
 
-        var gameRuleContext = new GameRuleTableContext(previousRules, _roundCooldowns);
+        var gameRuleContext = new GameRuleTableContext(previousRules, _cooldowns.CurrentRuleCooldowns);
         var ctx = new EntityTableContext(new Dictionary<string, object>
         {
             { HasBudgetCondition.BudgetContextKey, budget },
@@ -126,9 +113,9 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
         foreach (var rule in _entityTable.GetSpawns(entity.Comp.Table, ctx: ctx))
         {
             _prototypeManager.Index(rule)
-                .TryGetComponent(out DynamicRuleCostComponent? cost, EntityManager.ComponentFactory);
+                .TryComp(out DynamicRuleCostComponent? cost, EntityManager.ComponentFactory);
 
-            if (_roundCooldowns.Contains(rule))
+            if (_cooldowns.CurrentRuleCooldowns.Contains(rule))
                 continue;
 
             // HasBudgetCondition should normally reject this rule, but we check here just in case.
@@ -198,17 +185,11 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
 
             executedRules.Add(ruleUid);
 
+            _cooldowns.ApplyRuleCooldown(rule); // Starlight
+
             if (TryComp<DynamicRuleCostComponent>(ruleUid, out var cost))
             {
                 entity.Comp.Budget -= cost.Cost;
-
-                #region Starlight
-                if (cost.Cooldown > 0)
-                {
-                    _ruleCooldowns[rule] = cost.Cooldown;
-                    _sawmill.Info($"Rule {rule} added to the Dynamic cooldown for {cost.Cooldown} rounds.");
-                }
-                #endregion
 
                 _adminLog.Add(LogType.EventRan, LogImpact.High, $"{ToPrettyString(entity)} ran rule {ToPrettyString(ruleUid)} with cost {cost.Cost} on budget {entity.Comp.Budget}.");
             }
@@ -232,48 +213,6 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
 
         return executedRules;
     }
-
-    #region Starlight
-    /// <summary>
-    /// Builds the cooldown snapshot used by all Dynamic rolls in the current round.
-    /// This runs once when Dynamic first selects rules, advancing persistent cooldowns
-    /// while keeping those rules unavailable for the entire current Dynamic round.
-    /// </summary>
-    private void InitializeRoundCooldowns()
-    {
-        if (_roundCooldownsInitialized)
-            return;
-
-        _roundCooldownsInitialized = true;
-        _roundCooldowns.Clear();
-
-        foreach (var (rule, remaining) in _ruleCooldowns.ToArray())
-        {
-            if (remaining <= 0)
-            {
-                _ruleCooldowns.Remove(rule);
-                continue;
-            }
-
-            _roundCooldowns.Add(rule);
-
-            if (remaining <= 1)
-                _ruleCooldowns.Remove(rule);
-            else
-                _ruleCooldowns[rule] = remaining - 1;
-        }
-    }
-
-    /// <summary>
-    /// Clears the cooldown snapshot for the round that just ended and marks it for rebuilding.
-    /// Persistent cooldowns are preserved and applied when the next Dynamic round begins.
-    /// </summary>
-    private void OnRoundRestartCleanup(RoundRestartCleanupEvent _)
-    {
-        _roundCooldownsInitialized = false;
-        _roundCooldowns.Clear();
-    }
-    #endregion
 
     #region Command Methods
 
