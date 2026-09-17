@@ -205,13 +205,59 @@ public sealed partial class EmergencyShuttleSystem
         int timeDelay = 0; //starlight, used to stagger arrival times
         while (podLaunchQuery.MoveNext(out var uid, out var pod, out var shuttle))
         {
+            // Starlight edit Start: Commented out for evacuation pod planet landing
+            // var stationUid = _station.GetOwningStation(uid);
+
+            // if (!TryComp<StationCentcommComponent>(stationUid, out var centcomm) ||
+            //     Deleted(centcomm.Entity) ||
+            //     pod.LaunchTime == null ||
+            // Starlight edit End: Commented out for evacuation pod planet landing
             if (pod.LaunchTime == null || // Starlght Edit: added ``if`` for evacuation pod planet landing
                 pod.LaunchTime > _timing.CurTime)
             {
                 continue;
             }
+            // Starlight edit Start: Commented out for evacuation pod planet landing
+            // // Don't dock them. If you do end up doing this then stagger launch.
+            // _shuttle.FTLToDock(uid, shuttle, centcomm.Entity.Value, hyperspaceTime: TransitTime + 1 + timeDelay++); //starlight edit, add seconds onto the transit time to ENSURE the emergency shuttle tries to find a dock first
+            // Starlight edit End: Commented out for evacuation pod planet landing
+
+            // Starlight Start: Evacuation pod planet landing
+            // if (_evacuationPlanetMap == null || _evacuationLandingZone == null)
+            //     SetupEvacuationPlanet();
+            //
+            // if (_evacuationPlanetMap == null || _evacuationLandingZone is not { } evacuationLandingZone)
+            // {
+            //     Log.Error($"Evacuation pod {ToPrettyString(uid)} failed to setup evacuation planet destination.");
+            //     continue;
+            // }
+            //
+            // var angle = _random.NextAngle();
+            // var distance = _random.NextFloat(0, PodSpreadRadius);
+            // var offset = angle.ToVec() * distance;
+            // var landingCoords = evacuationLandingZone.Offset(offset);
+            //
+            // var rotations = new[]
+            // {
+            //     Angle.Zero,
+            //     Angle.FromDegrees(90),
+            //     Angle.FromDegrees(180),
+            //     Angle.FromDegrees(270)
+            // };
+            // var podRotation = _random.Pick(rotations);
+            //
+            // _shuttle.FTLToCoordinates(
+            //     uid,
+            //     shuttle,
+            //     landingCoords,
+            //     podRotation,
+            //     startupTime: 0f,
+            //     hyperspaceTime: TransitTime + 1 + timeDelay++);
+
+            // RemCompDeferred<EscapePodComponent>(uid);
             LaunchEscapePod(uid, shuttle, TransitTime + 1 + timeDelay); //Starlight edit: Had to move this to an outside function
             timeDelay++;
+            // Starlight End: Evacuation pod planet landing
         }
 
         // Departed
