@@ -1,18 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Ore box can now pick up artifact fragment.
-    type: Tweak
-  id: 408265
-  time: '2026-09-06T00:44:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5924
-- author: xxhotgirl69, Doner & RedSpeeds
-  changes:
-  - message: Added new lobby art.
-    type: Add
-  id: 408266
-  time: '2026-09-06T01:11:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5928
 - author: Floximo
   changes:
   - message: AI Ability to reconnect to the last shunt.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408664
   time: '2026-09-17T01:51:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6183
+- author: OJG
+  changes:
+  - message: (Novo Lobster) A supermatter array north of the containment engine and east of the AI core.
+    type: Add
+  id: 408665
+  time: '2026-09-17T04:56:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6148
+- author: OJG
+  changes:
+  - message: (Novo Lobster) A pipe from the new supermatter to transport products directly to atmos for either fueling the TEG or economic uses.
+    type: Add
+  id: 408666
+  time: '2026-09-17T04:56:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6148
 Order: -1
