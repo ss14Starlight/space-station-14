@@ -1,11 +1,4 @@
 Entries:
-- author: Floximo
-  changes:
-  - message: AI Ability to reconnect to the last shunt.
-    type: Add
-  id: 408267
-  time: '2026-09-06T01:11:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5933
 - author: Conflee
   changes:
   - message: Added Particles to several anomalies for more visual polish. Pyro, Ice, Bluespace, Tech, Flesh, Liquid, Dark, and Shadow.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408666
   time: '2026-09-17T04:56:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6148
+- author: Caws
+  changes:
+  - message: "Added a new setting: Automatically punctuate in-character messages, which is on by default. This adds a period to the end of your IC messages if you didn't put any punctuation at the end. Can be turned off under Escape -> Options -> General."
+    type: Add
+  id: 408667
+  time: '2026-09-17T16:16:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6215
 Order: -1

@@ -40,6 +40,8 @@ ui-options-sight-second-color = Sight Second Color
 
 ## General
 
+ui-starlight = Starlight
+ui-options-auto-punctuate = Automatically punctuate in-character messages
 ui-options-general-ghost-themes = Ghost Themes
 ui-options-general-ghost-themes-force-tester = Force display the Tester tab in the Ghost Themes menu
 
