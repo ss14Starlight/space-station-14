@@ -771,7 +771,7 @@
   parent: BaseLizardPlushie
   id: PlushieKiki
   name: Kiki plushie
-  description: An honorable member of the kob... Wait a minute, this is just a cute marketable plushie of Kiki!
+  description: An honorable member of the kob... wait a minute, this is just a cute marketable plushie of Kiki!
   components:
   - type: Item
     size: Small
