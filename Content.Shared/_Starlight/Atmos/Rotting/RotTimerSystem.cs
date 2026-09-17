@@ -1,5 +1,6 @@
 using Content.Shared.Atmos.Rotting;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Atmos.Rotting;
 
 public abstract partial class SharedRottingSystem
