@@ -66,7 +66,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!;
     [Dependency] private EuiManager _euiManager = default!;
 
-    private readonly Dictionary<string, HashSet<SecureTerminalAdminApprovalEui>> _adminApprovalEuis = new();
+    private readonly Dictionary<(EntityUid StationUid, string RequestId), HashSet<SecureTerminalAdminApprovalEui>> _adminApprovalEuis = new();
 
     public override void Initialize()
     {
@@ -587,28 +587,29 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         UpdateAllConsolesForStation(stationUid.Value);
     }
 
-    private void OpenAdminApprovalEuis(string requestId, SecureCommandTerminalRequestPrototype proto,
+    private void OpenAdminApprovalEuis(EntityUid stationUid, string requestId, SecureCommandTerminalRequestPrototype proto,
         SecureTerminalProposalData proposal)
     {
         if (!proto.RequiresAdminApproval)
             return;
 
-        if (_adminApprovalEuis.ContainsKey(requestId))
+        var key = (stationUid, requestId);
+        if (_adminApprovalEuis.ContainsKey(key))
             return;
 
         foreach (var admin in _adminManager.ActiveAdmins)
         {
-            var eui = new SecureTerminalAdminApprovalEui(this, requestId, Loc.GetString(proto.Name),
+            var eui = new SecureTerminalAdminApprovalEui(this, stationUid, requestId, Loc.GetString(proto.Name),
                 Loc.GetString(proto.Description),
                 string.IsNullOrWhiteSpace(proposal.Reason) ? null : proposal.Reason,
                 proposal.Authorizers
                     .Select(authorizer => $"{authorizer.Name} ({authorizer.Job})")
                     .Distinct()
                     .ToList());
-            if (!_adminApprovalEuis.TryGetValue(requestId, out var euis))
+            if (!_adminApprovalEuis.TryGetValue(key, out var euis))
             {
                 euis = new HashSet<SecureTerminalAdminApprovalEui>();
-                _adminApprovalEuis[requestId] = euis;
+                _adminApprovalEuis[key] = euis;
             }
 
             euis.Add(eui);
@@ -618,17 +619,18 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
 
     public void OnAdminApprovalEuiClosed(SecureTerminalAdminApprovalEui eui)
     {
-        if (!_adminApprovalEuis.TryGetValue(eui.RequestId, out var euis))
+        var key = (eui.StationUid, eui.RequestId);
+        if (!_adminApprovalEuis.TryGetValue(key, out var euis))
             return;
 
         euis.Remove(eui);
         if (euis.Count == 0)
-            _adminApprovalEuis.Remove(eui.RequestId);
+            _adminApprovalEuis.Remove(key);
     }
 
-    private void CloseAdminApprovalEuis(string requestId)
+    private void CloseAdminApprovalEuis(EntityUid stationUid, string requestId)
     {
-        if (!_adminApprovalEuis.Remove(requestId, out var euis))
+        if (!_adminApprovalEuis.Remove((stationUid, requestId), out var euis))
             return;
 
         foreach (var eui in euis)
@@ -638,37 +640,33 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         }
     }
 
-    public void HandleAdminApproval(ICommonSession admin, string requestId, bool approved)
+    public void HandleAdminApproval(ICommonSession admin, EntityUid stationUid, string requestId, bool approved)
     {
         if (!_adminManager.ActiveAdmins.Any(session => session.UserId == admin.UserId))
             return;
 
-        var stationQuery = EntityQueryEnumerator<SecureCommandTerminalStationComponent>();
-        while (stationQuery.MoveNext(out var stationUid, out var stationComp))
-        {
-            if (!stationComp.ActiveProposals.TryGetValue(requestId, out var proposal) ||
-                proposal.Status != SecureTerminalProposalStatus.Pending ||
-                !_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
-                continue;
-
-            if (approved)
-            {
-                proposal.AdminApproved = true;
-                _adminLog.Add(LogType.Action, LogImpact.Medium,
-                    $"{admin.Name} approved secure terminal proposal: {requestId}");
-                CheckAndStartCountdown(stationUid, stationComp, requestId, proto);
-            }
-            else
-            {
-                CancelProposal(stationUid, stationComp, requestId, proposal, EntityUid.Invalid,
-                    admin.AttachedEntity ?? EntityUid.Invalid, true);
-            }
-
-            CloseAdminApprovalEuis(requestId);
-
-            UpdateAllConsolesForStation(stationUid);
+        if (!TryComp<SecureCommandTerminalStationComponent>(stationUid, out var stationComp) ||
+            !stationComp.ActiveProposals.TryGetValue(requestId, out var proposal) ||
+            proposal.Status != SecureTerminalProposalStatus.Pending ||
+            !_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
             return;
+
+        if (approved)
+        {
+            proposal.AdminApproved = true;
+            _adminLog.Add(LogType.Action, LogImpact.Medium,
+                $"{admin.Name} approved secure terminal proposal: {requestId}");
+            CheckAndStartCountdown(stationUid, stationComp, requestId, proto);
         }
+        else
+        {
+            CancelProposal(stationUid, stationComp, requestId, proposal, EntityUid.Invalid,
+                admin.AttachedEntity ?? EntityUid.Invalid, true);
+        }
+
+        CloseAdminApprovalEuis(stationUid, requestId);
+
+        UpdateAllConsolesForStation(stationUid);
     }
 
     /// <summary>
@@ -722,7 +720,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     /// <summary>
     /// If all auth groups are satisfied, begin the countdown and charge the fee.
     /// </summary>
-    private void CheckAndStartCountdown(EntityUid _,
+    private void CheckAndStartCountdown(EntityUid stationUid,
         SecureCommandTerminalStationComponent stationComp,
         string requestId, SecureCommandTerminalRequestPrototype proto)
     {
@@ -741,7 +739,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         {
             if (_adminManager.ActiveAdmins.Count() > 0 || !proto.BypassIfNoAdmin)
             {
-                OpenAdminApprovalEuis(requestId, proto, proposal);
+                OpenAdminApprovalEuis(stationUid, requestId, proto, proposal);
                 _chat.DispatchGlobalAnnouncement(Loc.GetString("secure-terminal-awaiting-admin", ("request", Loc.GetString(proto.Name))), colorOverride: proto.AnnouncementColor);
                 _chatManager.SendAdminAlert(Loc.GetString("secure-terminal-admin", ("request", Loc.GetString(proto.Name)), ("reason", proposal.Reason)));
                 _audio.PlayGlobal("/Audio/Misc/adminlarm.ogg",
@@ -808,7 +806,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         string requestId, SecureTerminalProposalData proposal, EntityUid terminalUid, EntityUid actor, bool admin,
         bool veto = false)
     {
-        CloseAdminApprovalEuis(requestId);
+        CloseAdminApprovalEuis(stationUid, requestId);
         stationComp.ActiveProposals.Remove(requestId);
         RefundFee(proposal);
 

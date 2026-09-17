@@ -19,18 +19,21 @@ public sealed class SecureTerminalAdminApprovalEui : BaseEui
         _window.DenyButton.OnPressed += _ => Respond(false);
     }
 
+    /// <inheritdoc/>
     public override void Opened()
     {
         base.Opened();
         _window.OpenCentered();
     }
 
+    /// <inheritdoc/>
     public override void Closed()
     {
         base.Closed();
         _window.Close();
     }
 
+    /// <inheritdoc/>
     public override void HandleState(EuiStateBase state)
     {
         base.HandleState(state);
@@ -54,7 +57,7 @@ public sealed class SecureTerminalAdminApprovalEui : BaseEui
         {
             HorizontalExpand = true
         };
-        authorizedBy.SetMessage(FormattedMessage.FromMarkupOrThrow(
+        authorizedBy.SetMessage(FormattedMessage.FromUnformatted(
             string.Join(", ", approvalState.AuthorizedBy)));
         _window.AuthorizedByContainer.AddChild(authorizedBy);
     }
