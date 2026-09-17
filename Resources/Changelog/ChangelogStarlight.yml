@@ -1,151 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added storage rack to science front desk, cargo front desk, hop office.
-    type: Add
-  id: 408247
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added buy and sell decals to cargo.
-    type: Add
-  id: 408248
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added a guidebooks box to library.
-    type: Add
-  id: 408249
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added a second hop window and expanded the hop office with more space and new items.
-    type: Add
-  id: 408250
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added an observer ghost spawn near medical.
-    type: Add
-  id: 408251
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Added a station beacon to xenobiology.
-    type: Add
-  id: 408252
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Removed NCT bedroom to make way for more hop office.
-    type: Remove
-  id: 408253
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Changed a lot of the mines to not be spaced at shift start.
-    type: Tweak
-  id: 408254
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Changed IAA's office a little by moving it to a room next door allowing lawyer to also have an office.
-    type: Tweak
-  id: 408255
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Changed all mine entrance's to not to be spaced for consistency.
-    type: Tweak
-  id: 408256
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Cvlancer
-  changes:
-  - message: (Sepultum) Changed engi HV wiring around to make SM's SMES downstream from smes bank.
-    type: Tweak
-  id: 408257
-  time: '2026-09-05T23:36:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5868
-- author: Johnny
-  changes:
-  - message: Added a dragon :godo:.
-    type: Add
-  id: 408258
-  time: '2026-09-06T00:11:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5908
-- author: Caws
-  changes:
-  - message: (Lagan) Mailboxes.
-    type: Add
-  id: 408259
-  time: '2026-09-06T00:11:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5909
-- author: Caws
-  changes:
-  - message: (Lagan) Station radio receivers around the map.
-    type: Add
-  id: 408260
-  time: '2026-09-06T00:11:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5909
-- author: Caws
-  changes:
-  - message: (Lagan) Moved funding allocation computer out of QM's office and into HOP.
-    type: Tweak
-  id: 408261
-  time: '2026-09-06T00:11:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5909
-- author: Caws
-  changes:
-  - message: (Lagan) Fixed some missing decals in the HOP office.
-    type: Fix
-  id: 408262
-  time: '2026-09-06T00:11:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5909
-- author: RedSpeeds
-  changes:
-  - message: Fixed ATS nearly spawning into stations.
-    type: Fix
-  id: 408263
-  time: '2026-09-06T00:44:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5917
-- author: Johnny
-  changes:
-  - message: Ore box has bigger magnet now, pull from further away.
-    type: Tweak
-  id: 408264
-  time: '2026-09-06T00:44:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5924
-- author: Johnny
-  changes:
-  - message: Ore box can now pick up artifact fragment.
-    type: Tweak
-  id: 408265
-  time: '2026-09-06T00:44:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5924
-- author: xxhotgirl69, Doner & RedSpeeds
-  changes:
-  - message: Added new lobby art.
-    type: Add
-  id: 408266
-  time: '2026-09-06T01:11:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5928
-- author: Floximo
-  changes:
-  - message: AI Ability to reconnect to the last shunt.
-    type: Add
-  id: 408267
-  time: '2026-09-06T01:11:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5933
 - author: Conflee
   changes:
   - message: Added Particles to several anomalies for more visual polish. Pyro, Ice, Bluespace, Tech, Flesh, Liquid, Dark, and Shadow.
@@ -2799,4 +2652,151 @@ Entries:
   id: 408646
   time: '2026-09-15T01:45:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6167
+- author: SirLutz
+  changes:
+  - message: Heavy Xenoborg health has also been lowered, Crit 250 -> 150, Dead 750 -> 450.
+    type: Tweak
+  id: 408647
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: SirLutz
+  changes:
+  - message: Armored Silicon (Xenos & Assaultborg) armor reduced from 50% to 40%.
+    type: Tweak
+  id: 408648
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: SirLutz
+  changes:
+  - message: Civilian Silicon Heat Flat Reduction removed.
+    type: Remove
+  id: 408649
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: SirLutz
+  changes:
+  - message: Armored Silicon Heat Flat Reduction lowered from 6 to 3.
+    type: Tweak
+  id: 408650
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: SirLutz
+  changes:
+  - message: Civilian Silicon Blunt reduced from 5 -> 2.
+    type: Tweak
+  id: 408651
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: SirLutz
+  changes:
+  - message: Armored Silicon Blunt reduced from 8 -> 5.
+    type: Tweak
+  id: 408652
+  time: '2026-09-16T18:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6180
+- author: wonderfulnewworld, mkanke
+  changes:
+  - message: Reverted Artifact size increase.
+    type: Tweak
+  id: 408653
+  time: '2026-09-16T21:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6170
+- author: wonderfulnewworld, mkanke
+  changes:
+  - message: The egg, tech disk, and flash protection triggers are now more legible.
+    type: Tweak
+  id: 408654
+  time: '2026-09-16T21:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6170
+- author: wonderfulnewworld, mkanke
+  changes:
+  - message: Combined bleach and space cleaner triggers.
+    type: Tweak
+  id: 408655
+  time: '2026-09-16T21:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6170
+- author: wonderfulnewworld, mkanke
+  changes:
+  - message: You now get turned back into yourself if you die as a skeleton polymorph.
+    type: Tweak
+  id: 408656
+  time: '2026-09-16T21:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6170
+- author: wonderfulnewworld, mkanke
+  changes:
+  - message: No more infinite agent ids.
+    type: Fix
+  id: 408657
+  time: '2026-09-16T21:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6170
+- author: wonderfulnewworld
+  changes:
+  - message: Dynamic will now share game preset cooldowns with Secret.
+    type: Add
+  id: 408658
+  time: '2026-09-16T22:03:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6190
+- author: wonderfulnewworld
+  changes:
+  - message: 'The following gamerules/presets will now share cooldowns with each other when rolled via Dynamic into Secret/ Dynamic into Dynamic/Secret into Dynamic: (Nukeops + NukeopsLate + Nukeops (Preset)), (Zombie + Zombieteor), (Xenoborgs + SubXenoborgs), (Survival + KesslerSyndrome), (KesslerSyndrome + Zombieteor).'
+    type: Add
+  id: 408659
+  time: '2026-09-16T22:03:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6190
+- author: wonderfulnewworld
+  changes:
+  - message: Halved rarity of WizardDuel in both Secret and Dynamic, and increased its Dynamic cost.
+    type: Tweak
+  id: 408660
+  time: '2026-09-16T22:03:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6190
+- author: wonderfulnewworld
+  changes:
+  - message: Extended no longer has a cooldown, ShitStation and WizardDuel now have a 2 round cooldown.
+    type: Tweak
+  id: 408661
+  time: '2026-09-16T22:03:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6190
+- author: wonderfulnewworld
+  changes:
+  - message: Glue, Slime, Sap, Cranberry Sauce, and Syrup now require at least 1u in a puddle to slow you down.
+    type: Tweak
+  id: 408662
+  time: '2026-09-16T22:23:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6205
+- author: Caws
+  changes:
+  - message: Revenants can no longer socially interact with stuff. The dead aren't very sociable, after all.
+    type: Fix
+  id: 408663
+  time: '2026-09-17T01:51:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6183
+- author: Caws
+  changes:
+  - message: Social interactions now have a one (1) second cooldown to mitigate spamming.
+    type: Fix
+  id: 408664
+  time: '2026-09-17T01:51:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6183
+- author: OJG
+  changes:
+  - message: (Novo Lobster) A supermatter array north of the containment engine and east of the AI core.
+    type: Add
+  id: 408665
+  time: '2026-09-17T04:56:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6148
+- author: OJG
+  changes:
+  - message: (Novo Lobster) A pipe from the new supermatter to transport products directly to atmos for either fueling the TEG or economic uses.
+    type: Add
+  id: 408666
+  time: '2026-09-17T04:56:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6148
+- author: Caws
+  changes:
+  - message: "Added a new setting: Automatically punctuate in-character messages, which is on by default. This adds a period to the end of your IC messages if you didn't put any punctuation at the end. Can be turned off under Escape -> Options -> General."
+    type: Add
+  id: 408667
+  time: '2026-09-17T16:16:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6215
 Order: -1
