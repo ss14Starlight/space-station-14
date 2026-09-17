@@ -1,5 +1,4 @@
 using Content.Server.NPC.Systems;
-using Content.Shared.Actions.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.NPC.Components;

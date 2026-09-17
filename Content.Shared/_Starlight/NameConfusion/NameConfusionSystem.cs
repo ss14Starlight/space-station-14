@@ -32,7 +32,7 @@ public sealed partial class NameConfusionSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityManager.EntityQueryEnumerator<NameConfusionComponent>();
+        var query = EntityQueryEnumerator<NameConfusionComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             if (!comp.ConfuseOnInterval) continue;

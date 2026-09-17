@@ -4,7 +4,6 @@ using Content.Server.ParticleAccelerator.EntitySystems;
 using Content.Server.Wires;
 using Content.Shared.Singularity.Components;
 using Content.Shared.Wires;
-using Robust.Shared.Player;
 
 namespace Content.Server.ParticleAccelerator.Wires;
 

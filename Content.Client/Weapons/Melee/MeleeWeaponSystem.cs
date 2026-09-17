@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Client.Gameplay;
 using Content.Shared.CCVar;
-using Content.Shared.CombatMode;
 using Content.Shared.Effects;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;

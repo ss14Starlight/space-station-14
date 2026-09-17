@@ -46,5 +46,5 @@
     - id: OilPack
     - id: ToolboxRoboticistFilled
       prob: 0.5
-    - id: PlushieLizardJobScientist
+    - id: PlushieLizardJobRoboticist
       prob: 0.02

@@ -58,6 +58,7 @@
             SecurityCadet: [ 6, 6 ]
             Brigmedic: [ 2, 2 ]
             Detective: [ 2, 2 ]
+            K9: [ 2, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
@@ -67,6 +68,7 @@
             CargoTechnician: [ 4, 4 ]
             MailTech: [ 2, 2 ]
             #civilian
+            AssistantManager: [ 2, 2 ]
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]

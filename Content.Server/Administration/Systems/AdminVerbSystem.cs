@@ -38,12 +38,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Utility;
-using System.Linq;
 using Content.Shared.Chemistry.Components;
 using static Content.Shared.Configurable.ConfigurationComponent;
 #region Starlight
 using Content.Server._Starlight.Thaven;
-using Content.Server.Traits;
 using Content.Shared._Starlight.Character.Info;
 using Content.Server._Starlight.Traits;
 using Content.Server._Starlight.GameTicking;
@@ -507,7 +505,7 @@ namespace Content.Server.Administration.Systems
             }
 
             // Control mob verb
-            if (_toolshed.ActivePermissionController?.CheckInvokable(new CommandSpec(_toolshed.DefaultEnvironment.GetCommand("mind"), "control"), player, out _) ?? false &&
+            if ((_toolshed.ActivePermissionController?.CheckInvokable(new CommandSpec(_toolshed.DefaultEnvironment.GetCommand("mind"), "control"), player, out _) ?? false) &&
                 args.User != args.Target)
             {
                 Verb verb = new()

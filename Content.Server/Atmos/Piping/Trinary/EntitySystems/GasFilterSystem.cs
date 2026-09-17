@@ -3,7 +3,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Piping.Trinary.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Atmos;
@@ -78,24 +77,26 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             if (filter.FilteredGases.Count > 0) // Starlight
             {
-                var wantsToFilter = new GasMixture(removed.Volume) { Temperature = removed.Temperature };
-                SetMixture(filter, removed, wantsToFilter); // Starlight, split all selected gases from passthrough.
+                var filteredGasMixture = new GasMixture(removed.Volume) { Temperature = removed.Temperature }; // Starlight
+                SetMixture(filter, removed, filteredGasMixture); // Starlight, split all selected gases from passthrough.
 
                 #region Starlight
                 // Wizden only handles one selected gas. We need to apply the cap proportionally
                 // across all selected gases so multi-gas filters preserve their composition.
-                var availableMoles = wantsToFilter.TotalMoles;
+                var availableMoles = filteredGasMixture.TotalMoles;
                 var limitMolesFilter =
-                    AtmosphereSystem.MolesToMaxPressure(wantsToFilter, filterNode.Air, Atmospherics.MaxOutputPressure);
+                    AtmosphereSystem.MolesToMaxPressure(filteredGasMixture, filterNode.Air, Atmospherics.MaxOutputPressure);
 
                 var filteredMoles = Math.Clamp(limitMolesFilter, 0f, availableMoles); // clamp against all selected gases
                 var filterRatio = availableMoles > 0f ? filteredMoles / availableMoles : 0f;
-                var actuallyFiltered = wantsToFilter.RemoveRatio(filterRatio); // preserve selected-gas ratios
+
+                filteredGasMixture.Multiply(filterRatio);
+                foreach (var (gas, moles) in filteredGasMixture)
+                    removed.AdjustMoles(gas, -moles);
                 #endregion
 
-                _atmosphereSystem.Merge(filterNode.Air, actuallyFiltered);
-                _atmosphereSystem.Merge(inletNode.Air, wantsToFilter); // Starlight, return selected gas that did not fit.
-                transferredMoles += actuallyFiltered.TotalMoles; // Starlight
+                _atmosphereSystem.Merge(filterNode.Air, filteredGasMixture);
+                transferredMoles += filteredGasMixture.TotalMoles; // Starlight
             }
 
             if (removed.TotalMoles > 0f) // Starlight
@@ -260,14 +261,12 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
         #region Starlight
 
-        private void SetMixture(GasFilterComponent component, GasMixture removed, GasMixture wantsToFilter)
+        private void SetMixture(GasFilterComponent component, GasMixture removed, GasMixture filteredGasMixture)
         {
             foreach (Gas gas in component.FilteredGases)
             {
                 var moles = removed.GetMoles(gas);
-
-                wantsToFilter.SetMoles(gas, moles);
-                removed.SetMoles(gas, 0f);
+                filteredGasMixture.SetMoles(gas, moles);
             }
         }
 

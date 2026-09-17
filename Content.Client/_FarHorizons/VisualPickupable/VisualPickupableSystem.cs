@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared._FarHorizons.VisualPickupable;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;

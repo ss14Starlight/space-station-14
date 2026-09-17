@@ -136,3 +136,8 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [ Slime ]
+
+- type: entity
+  id: OrganAbductorTongue
+  parent: OrganHumanTongue
+  suffix: Abductor

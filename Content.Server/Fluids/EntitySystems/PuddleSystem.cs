@@ -14,8 +14,10 @@ using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
 using Content.Shared._Funkystation.Fluids;
-using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Funkystation.WallStains;
+using Content.Shared.Gravity;
+using Content.Shared.Standing;
+using Content.Shared.StepTrigger.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -38,10 +40,10 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
-    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!; // Moff
-    [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!; // Moff
-
-    [Dependency] private EntityQuery<FootprintComponent> _footprintQuery; // Moff - Funky footprints
+    #region Starlight
+    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!;
+    [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!;
+    #endregion
 
     /*
      * TODO: Need some sort of way to do blood slash / vomit solution spill on its own
@@ -52,8 +54,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     public override void Initialize()
     {
         base.Initialize();
-
-        _puddleQuery = GetEntityQuery<PuddleComponent>();
 
         SubscribeLocalEvent<PuddleComponent, SpreadNeighborsEvent>(OnPuddleSpread);
         SubscribeLocalEvent<PuddleComponent, SlipEvent>(OnPuddleSlip);
@@ -542,26 +542,21 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         // Get normalized co-ordinate for spill location and spill it in the centre
         // TODO: Does SnapGrid or something else already do this?
-        var anchored = _map.GetAnchoredEntitiesEnumerator(gridId, mapGrid, tileRef.GridIndices);
-        var puddleQuery = GetEntityQuery<PuddleComponent>();
-        var sparklesQuery = GetEntityQuery<EvaporationSparkleComponent>();
+        // Starlight-start: reuse injected queries and the current anchored-entity API.
+        var anchored = _map.GetAnchoredEntities(gridId, mapGrid, tileRef.GridIndices);
 
         while (anchored.MoveNext(out var ent))
         {
             // If there's existing sparkles then delete it
-            if (sparklesQuery.TryGetComponent(ent, out var sparkles))
+            if (_evaporationSparklesQuery.TryGetComponent(ent, out _))
             {
                 QueueDel(ent.Value);
                 continue;
             }
 
-            if (!puddleQuery.TryGetComponent(ent, out var puddle))
+            if (!_puddleQuery.TryGetComponent(ent, out var puddle))
                 continue;
-
-            // Funky start - footprints
-            if (_footprintQuery.HasComponent(ent.Value))
-                continue;
-            // Funky end
+            // Starlight-end
 
             if (TryAddSolution(ent.Value, solution, sound, puddleComponent: puddle))
             {
@@ -595,18 +590,14 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         if (!TryComp<MapGridComponent>(tile.GridUid, out var grid))
             return false;
 
-        var anc = _map.GetAnchoredEntitiesEnumerator(tile.GridUid, grid, tile.GridIndices);
-        var puddleQuery = GetEntityQuery<PuddleComponent>();
+        // Starlight-start: reuse the injected query and the current anchored-entity API.
+        var anc = _map.GetAnchoredEntities(tile.GridUid, grid, tile.GridIndices);
 
         while (anc.MoveNext(out var ent))
         {
-            if (!puddleQuery.HasComponent(ent.Value))
+            if (!_puddleQuery.HasComponent(ent.Value))
                 continue;
-
-            // Funky start - footprints
-            if (_footprintQuery.HasComponent(ent.Value))
-                continue;
-            // Funky end
+            // Starlight-end
 
             puddleUid = ent.Value;
             return true;
