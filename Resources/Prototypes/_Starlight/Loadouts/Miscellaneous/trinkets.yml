@@ -546,6 +546,19 @@
   groupBy: "cybernetic trinkets"
 
 - type: loadout
+  id: VocalTongue
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobRoboticist
+        time: 72000 # 20 hours of tinkering with cybernetics
+  storage:
+     back:
+       - VocalCyberTongue
+  groupBy: "cybernetic trinkets"
+
+- type: loadout
   id: CigPackBub
   effects:
     - !type:JobRequirementLoadoutEffect
