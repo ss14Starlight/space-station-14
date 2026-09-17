@@ -52,11 +52,11 @@ public sealed partial class MiscTab : Control
         Control.AddOptionCheckBox(CCVars.ChatEnableFancyBubbles, FancySpeechBubblesCheckBox);
         Control.AddOptionCheckBox(CCVars.ChatFancyNameBackground, FancyNameBackgroundsCheckBox);
         Control.AddOptionCheckBox(CCVars.StaticStorageUI, StaticStorageUI);
-        #region Starlight
+        // Starlight-start
         Control.AddOptionCheckBox(StarlightCCVars.AutoPunctuate, AutoPunctuate);
         Control.AddOptionSlider(StarlightCCVars.ChatSeparatedMinWidth, SeparatedChatWidthSlider, 300, 580);
         Control.AddOptionCheckBox(StarlightCCVars.ForceTestersTab, ForceTestersTab);
-        #endregion Starlight
+        // Starlight-end
 
         Control.Initialize();
     }
