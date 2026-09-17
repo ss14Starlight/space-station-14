@@ -119,6 +119,7 @@
   components:
   - type: SpawnPoint
     job_id: TechnicalAssistant
+  - type: AntagImmune # Starlight
   - type: Sprite
     layers:
       - state: green
@@ -132,6 +133,7 @@
   components:
   - type: SpawnPoint
     job_id: MedicalIntern
+  - type: AntagImmune # Starlight
   - type: Sprite
     layers:
       - state: green
@@ -145,6 +147,7 @@
   components:
   - type: SpawnPoint
     job_id: SecurityCadet
+  - type: AntagImmune # Starlight
   - type: Sprite
     layers:
       - state: green
@@ -158,6 +161,7 @@
   components:
   - type: SpawnPoint
     job_id: ResearchAssistant
+  - type: AntagImmune # Starlight
   - type: Sprite
     layers:
       - state: green
