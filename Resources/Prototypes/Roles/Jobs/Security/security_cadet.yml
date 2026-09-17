@@ -21,6 +21,7 @@
   - Maintenance
   - External
   - Cryogenics
+# starlight-start
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -28,6 +29,7 @@
     components:
     - type: AntagImmune
     - type: NoObjectiveTarget
+# starlight-end
 
 - type: startingGear
   id: SecurityCadetGear
