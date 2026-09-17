@@ -126,11 +126,11 @@
     - id: XenoArtifactShatterWindows
       weight: 1.0
     - id: XenoArtifactFoamDermaline #Funky changes start, splitting up the table for repeatability
-      weight: 0.7
+      weight: 0.6
     - id: XenoArtifactFoamArithrazine
-      weight: 0.7
+      weight: 0.4
     - id: XenoArtifactFoamBicaridine
-      weight: 0.7
+      weight: 0.6
     - id: XenoArtifactFoamInaprovaline
       weight: 0.7
     - id: XenoArtifactFoamKelotane
@@ -138,7 +138,7 @@
     - id: XenoArtifactFoamDexalin
       weight: 0.7
     - id: XenoArtifactFoamOmnizine
-      weight: 0.5
+      weight: 0.2
     - id: XenoArtifactFoamTritium
       weight: 0.7
     - id: XenoArtifactFoamPlasma
@@ -154,7 +154,7 @@
     - id: XenoArtifactFoamNapalm
       weight: 0.7
     - id: XenoArtifactFoamCarpoToxin
-      weight: 0.7
+      weight: 0.4
     - id: XenoArtifactFoamChloralHydrate
       weight: 0.7
     - id: XenoArtifactFoamMold
@@ -162,11 +162,11 @@
     - id: XenoArtifactFoamAmatoxin
       weight: 0.7
     - id: XenoArtifactPuddleDermaline
-      weight: 0.7
+      weight: 0.6
     - id: XenoArtifactPuddleArithrazine
-      weight: 0.7
+      weight: 0.5
     - id: XenoArtifactPuddleBicaridine
-      weight: 0.7
+      weight: 0.6
     - id: XenoArtifactPuddleInaprovaline
       weight: 0.7
     - id: XenoArtifactPuddleKelotane
@@ -174,17 +174,17 @@
     - id: XenoArtifactPuddleDexalin
       weight: 0.7
     - id: XenoArtifactPuddleOmnizine
-      weight: 0.5
+      weight: 0.2
     - id: XenoArtifactPuddleNapalm
       weight: 0.7
     - id: XenoArtifactPuddleToxin
       weight: 0.7
     - id: XenoArtifactPuddleEpinephrine
-      weight: 0.7
+      weight: 0.5
     - id: XenoArtifactPuddleCognizine
-      weight: 0.5
+      weight: 0.2
     - id: XenoArtifactPuddleUltravasculine
-      weight: 0.5
+      weight: 0.2
     - id: XenoArtifactPuddleDesoxyephedrine
       weight: 0.5
     - id: XenoArtifactPuddlePax
@@ -1069,7 +1069,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 100
       canReact: false
     possibleChemicals:
     - Dermaline
@@ -1085,7 +1085,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 100
       canReact: false
     possibleChemicals:
     - Arithrazine
@@ -1101,7 +1101,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 100
       canReact: false
     possibleChemicals:
     - Bicaridine
@@ -1165,7 +1165,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Omnizine
@@ -1181,7 +1181,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 100
       canReact: false
     possibleChemicals:
     - Napalm
@@ -1213,7 +1213,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 100
       canReact: false
     possibleChemicals:
     - Epinephrine
@@ -1229,7 +1229,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Cognizine
@@ -1245,7 +1245,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Ultravasculine
@@ -1277,7 +1277,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Pax
@@ -1293,7 +1293,7 @@
       max: 3
     replaceDescription: true
     chemicalSolution:
-      maxVol: 300
+      maxVol: 50
       canReact: false
     possibleChemicals:
     - Siderlac
