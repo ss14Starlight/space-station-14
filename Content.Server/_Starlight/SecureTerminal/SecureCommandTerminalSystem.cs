@@ -22,6 +22,7 @@ using Content.Server.Mind;
 using Content.Server.Chat.Managers;
 using Content.Shared.Roles.Jobs;
 using Content.Server.Administration;
+using Content.Server.EUI;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Content.Server.Nuke;
@@ -63,6 +64,9 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private AutoDiscordLogSystem _autolog = default!;
     [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+
+    private readonly Dictionary<string, HashSet<SecureTerminalAdminApprovalEui>> _adminApprovalEuis = new();
 
     public override void Initialize()
     {
@@ -475,7 +479,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                 !TryVeto(actor, deniedProposal, proto, uid))
                 _popup.PopupCursor(Loc.GetString("secure-terminal-request-denied"), actor, PopupType.Medium);
             else if (HasVeto(deniedProposal, proto))
-                CancelProposal(stationUid.Value, stationComp, msg.RequestId, deniedProposal, uid, actor, comp.Admin);
+                CancelProposal(stationUid.Value, stationComp, msg.RequestId, deniedProposal, uid, actor, comp.Admin, true);
             return;
         }
 
@@ -583,6 +587,90 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         UpdateAllConsolesForStation(stationUid.Value);
     }
 
+    private void OpenAdminApprovalEuis(string requestId, SecureCommandTerminalRequestPrototype proto,
+        SecureTerminalProposalData proposal)
+    {
+        if (!proto.RequiresAdminApproval)
+            return;
+
+        if (_adminApprovalEuis.ContainsKey(requestId))
+            return;
+
+        foreach (var admin in _adminManager.ActiveAdmins)
+        {
+            var eui = new SecureTerminalAdminApprovalEui(this, requestId, Loc.GetString(proto.Name),
+                Loc.GetString(proto.Description),
+                string.IsNullOrWhiteSpace(proposal.Reason) ? null : proposal.Reason,
+                proposal.Authorizers
+                    .Select(authorizer => $"{authorizer.Name} ({authorizer.Job})")
+                    .Distinct()
+                    .ToList());
+            if (!_adminApprovalEuis.TryGetValue(requestId, out var euis))
+            {
+                euis = new HashSet<SecureTerminalAdminApprovalEui>();
+                _adminApprovalEuis[requestId] = euis;
+            }
+
+            euis.Add(eui);
+            _euiManager.OpenEui(eui, admin);
+        }
+    }
+
+    public void OnAdminApprovalEuiClosed(SecureTerminalAdminApprovalEui eui)
+    {
+        if (!_adminApprovalEuis.TryGetValue(eui.RequestId, out var euis))
+            return;
+
+        euis.Remove(eui);
+        if (euis.Count == 0)
+            _adminApprovalEuis.Remove(eui.RequestId);
+    }
+
+    private void CloseAdminApprovalEuis(string requestId)
+    {
+        if (!_adminApprovalEuis.Remove(requestId, out var euis))
+            return;
+
+        foreach (var eui in euis)
+        {
+            if (!eui.IsShutDown)
+                eui.Close();
+        }
+    }
+
+    public void HandleAdminApproval(ICommonSession admin, string requestId, bool approved)
+    {
+        if (!_adminManager.ActiveAdmins.Any(session => session.UserId == admin.UserId))
+            return;
+
+        var stationQuery = EntityQueryEnumerator<SecureCommandTerminalStationComponent>();
+        while (stationQuery.MoveNext(out var stationUid, out var stationComp))
+        {
+            if (!stationComp.ActiveProposals.TryGetValue(requestId, out var proposal) ||
+                proposal.Status != SecureTerminalProposalStatus.Pending ||
+                !_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
+                continue;
+
+            if (approved)
+            {
+                proposal.AdminApproved = true;
+                _adminLog.Add(LogType.Action, LogImpact.Medium,
+                    $"{admin.Name} approved secure terminal proposal: {requestId}");
+                CheckAndStartCountdown(stationUid, stationComp, requestId, proto);
+            }
+            else
+            {
+                CancelProposal(stationUid, stationComp, requestId, proposal, EntityUid.Invalid,
+                    admin.AttachedEntity ?? EntityUid.Invalid, true);
+            }
+
+            CloseAdminApprovalEuis(requestId);
+
+            UpdateAllConsolesForStation(stationUid);
+            return;
+        }
+    }
+
     /// <summary>
     /// Attempts to satisfy one available auth group in every scheme for <paramref name="actor"/>.
     /// Returns true if at least one unsatisfied group was claimed.
@@ -608,7 +696,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             {
                 if (satisfied[groupIndex]) continue;
                 var group = scheme.Groups[groupIndex];
-                if (!group.Any(tag => accessTags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)tag)))
+                if (!group.Any(tag => accessTags.Contains(tag)))
                     continue;
 
                 string name, job;
@@ -646,11 +734,14 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             .Any(satisfiedGroups => satisfiedGroups.All(satisfied => satisfied));
         if (!schemeSatisfied) return;
 
+        var adminApprovalBypassed = false;
+
         // Admin Approval
         if (proto.RequiresAdminApproval && !proposal.AdminApproved)
         {
             if (_adminManager.ActiveAdmins.Count() > 0 || !proto.BypassIfNoAdmin)
             {
+                OpenAdminApprovalEuis(requestId, proto, proposal);
                 _chat.DispatchGlobalAnnouncement(Loc.GetString("secure-terminal-awaiting-admin", ("request", Loc.GetString(proto.Name))), colorOverride: proto.AnnouncementColor);
                 _chatManager.SendAdminAlert(Loc.GetString("secure-terminal-admin", ("request", Loc.GetString(proto.Name)), ("reason", proposal.Reason)));
                 _audio.PlayGlobal("/Audio/Misc/adminlarm.ogg",
@@ -659,6 +750,8 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     AudioParams.Default.WithVolume(-8f));
                 return;
             }
+
+            adminApprovalBypassed = true;
         }
 
         _autolog.LogToDiscord($"activating secure terminal proposal: {requestId}");
@@ -680,11 +773,18 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     .GroupBy(authorizer => authorizer.PlayerUid)
                     .Select(group => group.First())
                     .Select(authorizer => $"{authorizer.Name} ({authorizer.Job})"));
-            _chat.DispatchGlobalAnnouncement(
-                Loc.GetString("secure-terminal-authorized-by",
-                    ("request", Loc.GetString(proto.Name)),
-                    ("signatories", signatories)),
-                colorOverride: proto.AnnouncementColor);
+            var authorizationMessage = Loc.GetString("secure-terminal-authorized-by",
+                ("request", Loc.GetString(proto.Name)),
+                ("signatories", signatories));
+            if (proto.RequiresAdminApproval)
+            {
+                var approvalNote = adminApprovalBypassed
+                    ? "secure-terminal-authorized-by-central-command-deferred"
+                    : "secure-terminal-authorized-by-central-command";
+                authorizationMessage += $" {Loc.GetString(approvalNote, ("request", Loc.GetString(proto.Name)))}";
+            }
+
+            _chat.DispatchGlobalAnnouncement(authorizationMessage, colorOverride: proto.AnnouncementColor);
         }
 
         // Per-request announcement (ERT dispatch notice, Code GAMMA text, etc.)
@@ -705,8 +805,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     }
 
     private void CancelProposal(EntityUid stationUid, SecureCommandTerminalStationComponent stationComp,
-        string requestId, SecureTerminalProposalData proposal, EntityUid terminalUid, EntityUid actor, bool admin)
+        string requestId, SecureTerminalProposalData proposal, EntityUid terminalUid, EntityUid actor, bool admin,
+        bool veto = false)
     {
+        CloseAdminApprovalEuis(requestId);
         stationComp.ActiveProposals.Remove(requestId);
         RefundFee(proposal);
 
@@ -728,17 +830,37 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
 
         if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
         {
-            _chatManager.SendAdminAnnouncement(
-                $"Secure Terminal — {actorName} cancelled: {Loc.GetString(proto.Name)}.");
+            var vetoers = string.Join(", ", proposal.Vetoers
+                .GroupBy(vetoer => vetoer.PlayerUid)
+                .Select(group => group.First())
+                .Select(vetoer => $"{vetoer.Name} ({vetoer.Job})"));
+            _chatManager.SendAdminAnnouncement(veto
+                ? Loc.GetString("secure-terminal-proposal-vetoed-by",
+                    ("vetoers", vetoers),
+                    ("request", Loc.GetString(proto.Name)))
+                : Loc.GetString("secure-terminal-proposal-cancelled-by",
+                    ("actor", actorName),
+                    ("request", Loc.GetString(proto.Name))));
 
             if (proto.ProposalAnnouncement)
             {
-                var locKey = admin
-                    ? "secure-terminal-proposal-denied-cc"
-                    : "secure-terminal-proposal-denied";
-                _chat.DispatchGlobalAnnouncement(
-                    Loc.GetString(locKey, ("request", Loc.GetString(proto.Name))),
-                    colorOverride: proto.AnnouncementColor);
+                if (veto)
+                {
+                    _chat.DispatchGlobalAnnouncement(
+                        Loc.GetString("secure-terminal-proposal-vetoed-by",
+                            ("vetoers", vetoers),
+                            ("request", Loc.GetString(proto.Name))),
+                        colorOverride: proto.AnnouncementColor);
+                }
+                else
+                {
+                    var locKey = admin
+                        ? "secure-terminal-proposal-denied-cc"
+                        : "secure-terminal-proposal-denied";
+                    _chat.DispatchGlobalAnnouncement(
+                        Loc.GetString(locKey, ("request", Loc.GetString(proto.Name))),
+                        colorOverride: proto.AnnouncementColor);
+                }
             }
 
             if (terminalUid.IsValid() && !admin)
@@ -853,7 +975,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             var satisfied = BuildSatisfiedVetoGroups(proposal, schemeIndex, scheme.Groups.Count);
             for (var groupIndex = 0; groupIndex < scheme.Groups.Count; groupIndex++)
             {
-                if (satisfied[groupIndex] || !scheme.Groups[groupIndex].Any(tag => accessTags.Contains((ProtoId<Content.Shared.Access.AccessLevelPrototype>)tag)))
+                if (satisfied[groupIndex] || !scheme.Groups[groupIndex].Any(tag => accessTags.Contains(tag)))
                     continue;
 
                 string name, job;
@@ -908,7 +1030,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             return true;
         });
 
-        removedTerminals.ForEach(terminalUid => proposal.UsedVetoTerminals.Remove(terminalUid));
+        removedTerminals.ForEach(terminalUid => proposal.UsedTerminals.Remove(terminalUid));
     }
 
     private bool IsRequesterPresent(SecureTerminalProposalData proposal) =>
@@ -923,7 +1045,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     {
         var tags = _access.FindAccessTags(actor);
         return proto.AuthSchemes.Any(scheme => scheme.Groups.Any(group =>
-            group.Any(tag => tags.Contains((ProtoId<Content.Shared.Access.AccessLevelPrototype>)tag))));
+            group.Any(tag => tags.Contains(tag))));
     }
 
     private bool IsWarDeclared()
@@ -1017,6 +1139,11 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     RequestId = requestId,
                     AuthSchemes = schemeStates,
                     VetoSchemes = vetoSchemeStates,
+                    AuthorizedBy = data.Authorizers
+                        .GroupBy(authorizer => authorizer.PlayerUid)
+                        .Select(group => group.First())
+                        .Select(authorizer => (authorizer.Name, authorizer.Job))
+                        .ToList(),
                     ActivateAt = data.ActivateAt,
                     Status = data.Status,
                 });

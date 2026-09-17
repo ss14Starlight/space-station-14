@@ -1,5 +1,7 @@
 using Content.Server.Administration;
+using Content.Server.Administration.Logs;
 using Content.Shared.Administration;
+using Content.Shared.Database;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 
@@ -10,6 +12,7 @@ public sealed partial class SalaryPayoutCommand : LocalizedEntityCommands
 {
     [Dependency] private IPlayerManager _players = default!;
     [Dependency] private SalarySystem _salary = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
 
     public override string Command => "salarypayout";
 
@@ -29,5 +32,8 @@ public sealed partial class SalaryPayoutCommand : LocalizedEntityCommands
 
         var amount = _salary.PaySalary(player);
         shell.WriteLine($"Paid {amount} credits to {player.Name}.");
+
+        _adminLog.Add(LogType.Action, LogImpact.High,
+            $"{shell.Player?.Name ?? "Console"} paid a salary of {amount} credits to {player.Name}");
     }
 }

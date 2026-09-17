@@ -22,6 +22,8 @@ secure-terminal-already-used = This resource has already been used this round an
 secure-terminal-auth-waiting = No active proposal for this request. Required authorization:
 secure-terminal-auth-desc = Current proposal — no response = [color=red]red[/color], agreed = [color=green]green[/color]:
 secure-terminal-awaiting-member = Awaiting {$label}
+secure-terminal-authorized-by-label = Signed by:
+secure-terminal-veto-label = Veto
 
 secure-terminal-pending-countdown-label = Expires in {$minutes}m {$seconds}s…
 secure-terminal-countdown-label = Activating in {$minutes}m {$seconds}s…
@@ -56,6 +58,8 @@ secure-terminal-proposal-created = {$request} has been requested and is awaiting
 secure-terminal-proposal-created-reason = {$request} has been requested and is awaiting co-authorization. Reason: {$reason}
 secure-terminal-proposal-denied = {$request} request has been cancelled.
 secure-terminal-proposal-denied-cc = {$request} request has been denied by Central Command.
+secure-terminal-proposal-cancelled-by = Secure Terminal — {$actor} cancelled the {$request} request.
+secure-terminal-proposal-vetoed-by = Secure Terminal — {$request} request was vetoed by: {$vetoers}.
 secure-terminal-radio-proposal = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny.
 secure-terminal-radio-proposal-reason = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny. Reason: {$reason}
 secure-terminal-radio-denied = {$request} request has been cancelled.
@@ -85,9 +89,35 @@ secure-terminal-armory-recalled = {$request} recall order issued. Armory deploym
 secure-terminal-awaiting-admin = Attention — {$request} request has been sent. Awaiting authorization by Central Command.
 secure-terminal-admin = Requesting Admin Approval for: {$request}
                         Reason: {$reason}
-                        Use the AGhost to Approve/Deny the request.
+                        Use the popup or AGhost (communication interface) to Approve/Deny.
+                        Closing the popup will NOT deny the request.
+secure-terminal-admin-approval-title = Secure Terminal Admin Approval
+secure-terminal-admin-approval-request = Request: {$request}
+secure-terminal-admin-approval-description = Action: {$description}
+secure-terminal-admin-approval-reason = Reason: {$reason}
+secure-terminal-admin-approval-authorized-by = Signed by:
+secure-terminal-admin-approval-approve = Approve
+secure-terminal-admin-approval-deny = Deny
+secure-terminal-authorized-by-central-command = Central Command has countersigned this request.
+secure-terminal-authorized-by-central-command-deferred = Central Command has deferred to station command authority.
 
 ## Request names & descriptions
+
+secure-terminal-ai-leadership-name = AI Leadership
+secure-terminal-captain-and-ntrep-name = Captain and NanoTrasen Representative
+secure-terminal-captain-name = Captain
+secure-terminal-captain-or-ntrep-name = Captain or NanoTrasen Representative
+secure-terminal-chief-medical-officer-name = Chief Medical Officer
+secure-terminal-civilian-leadership-name = Civilian Leadership
+secure-terminal-command-name = Command
+secure-terminal-engineering-leadership-name = Engineering Leadership
+secure-terminal-head-of-security-name = Head of Security
+secure-terminal-med-and-science-leadership-name = Medical and Science Leadership
+secure-terminal-medical-leadership-name = Medical Leadership
+secure-terminal-research-director-name = Research Director
+secure-terminal-security-and-command-name = Security and Command
+secure-terminal-security-leadership-name = Security Leadership
+secure-terminal-security-name = Security
 
 secure-terminal-warops-security-name = Nuclear Response Team
 secure-terminal-warops-security-desc = Deploys an ERT Security detail specialized for War Ops. Only available during War Ops.

@@ -24,19 +24,23 @@
   sortOrder: 35
   authSchemes:
     - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfSecurity]
         - [Captain, Ntrep, HeadOfSecurity]
-    - id: CommandVoted
+    - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   vetoSchemes:
     - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
       groups:
         - [Captain, HeadOfSecurity, Ntrep]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -63,19 +67,23 @@
   sortOrder: 40
   authSchemes:
     - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfSecurity]
         - [Captain, Ntrep, HeadOfSecurity]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   vetoSchemes:
     - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
       groups:
         - [Captain, HeadOfSecurity, Ntrep]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -100,19 +108,23 @@
   sortOrder: 50
   authSchemes:
     - id: EngineeringLeadership
+      name: secure-terminal-engineering-leadership-name
       groups:
         - [Captain, Ntrep, ChiefEngineer]
         - [Captain, Ntrep, ChiefEngineer]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   vetoSchemes:
     - id: EngineeringLeadership
+      name: secure-terminal-engineering-leadership-name
       groups:
         - [Captain, ChiefEngineer, Ntrep]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -137,19 +149,23 @@
   sortOrder: 60
   authSchemes:
     - id: MedicalLeadership
+      name: secure-terminal-medical-leadership-name
       groups:
         - [Captain, Ntrep, ChiefMedicalOfficer]
         - [Captain, Ntrep, ChiefMedicalOfficer]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   vetoSchemes:
     - id: MedicalLeadership
+      name: secure-terminal-medical-leadership-name
       groups:
-        - [Captain, HeadOfPersonnel, Ntrep]
+        - [Captain, ChiefMedicalOfficer, Ntrep]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -174,19 +190,23 @@
   sortOrder: 70
   authSchemes:
     - id: CivilianLeadership
+      name: secure-terminal-civilian-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfPersonnel]
         - [Captain, Ntrep, HeadOfPersonnel]
-    - id: CommandVoted
+    - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   vetoSchemes:
     - id: CivilianLeadership
+      name: secure-terminal-civilian-leadership-name
       groups:
         - [Captain, HeadOfPersonnel, Ntrep]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -211,19 +231,23 @@
   sortOrder: 80
   authSchemes:
     - id: CaptainAndNtrep
+      name: secure-terminal-captain-and-ntrep-name
       groups:
         - [Captain, Ntrep]
         - [Captain, Ntrep]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   vetoSchemes:
     - id: CaptainOrNtrep
+      name: secure-terminal-captain-or-ntrep-name
       groups:
         - [Captain, Ntrep]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -250,20 +274,24 @@
   sortOrder: 90
   authSchemes:
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   vetoSchemes:
-    - id: CaptainNtrep
+    - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
       groups:
         - [Captain, HeadOfSecurity, Ntrep]
         - [Captain, HeadOfSecurity, Ntrep]
     - id: Security
+      name: secure-terminal-security-name
       groups:
         - [HeadOfSecurity]
         - [Command, Ntrep]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -290,11 +318,13 @@
   alertLevel: gamma
   sortOrder: 10
   authSchemes:
-    - id: default
+    - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfSecurity]
         - [Captain, Ntrep, HeadOfSecurity]
-    - id: CommandVoted
+    - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -317,11 +347,13 @@
   alertLevel: psi
   sortOrder: 20
   authSchemes:
-    - id: AiLeadershipVoted
+    - id: AiLeadership
+      name: secure-terminal-ai-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
         - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
-    - id: CommandVoted
+    - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -342,10 +374,12 @@
   sortOrder: 25
   authSchemes:
     - id: MedAndScienceLeadership
+      name: secure-terminal-med-and-science-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
         - [Captain, Ntrep, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -369,10 +403,12 @@
   sortOrder: 12
   authSchemes:
     - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfSecurity]
         - [Captain, Ntrep, HeadOfSecurity]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -396,9 +432,11 @@
   sortOrder: 12
   authSchemes:
     - id: MedAndScienceLeadership
+      name: secure-terminal-med-and-science-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -422,10 +460,12 @@
   sortOrder: 22
   authSchemes:
     - id: AiLeadership
+      name: secure-terminal-ai-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
         - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -454,22 +494,27 @@
   sortOrder: 11
   authSchemes:
     - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfSecurity]
         - [Captain, Ntrep, HeadOfSecurity]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   vetoSchemes:
     - id: Captain
+      name: secure-terminal-captain-name
       groups:
         - [Captain]
     - id: RD
+      name: secure-terminal-research-director-name
       groups:
         - [ResearchDirector]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -496,22 +541,27 @@
   sortOrder: 21
   authSchemes:
     - id: AiLeadership
+      name: secure-terminal-ai-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
         - [Captain, Ntrep, HeadOfSecurity, ResearchDirector]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   vetoSchemes:
     - id: Captain
+      name: secure-terminal-captain-name
       groups:
         - [Captain]
     - id: RD
+      name: secure-terminal-research-director-name
       groups:
         - [ResearchDirector]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -534,22 +584,27 @@
   sortOrder: 30
   authSchemes:
     - id: MedicalLeadership
+      name: secure-terminal-medical-leadership-name
       groups:
         - [Captain, Ntrep, ChiefMedicalOfficer]
         - [Captain, Ntrep, ChiefMedicalOfficer]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   vetoSchemes:
     - id: Captain
+      name: secure-terminal-captain-name
       groups:
         - [Captain]
     - id: CMO
+      name: secure-terminal-chief-medical-officer-name
       groups:
         - [ChiefMedicalOfficer]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -574,6 +629,7 @@
   sortOrder: 100
   authSchemes:
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -597,6 +653,7 @@
   sortOrder: 101
   authSchemes:
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
   cooldownSecs: 0
@@ -615,6 +672,7 @@
   sortOrder: 120
   authSchemes:
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -635,6 +693,7 @@
   sortOrder: 121
   authSchemes:
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
   cooldownSecs: 0
@@ -659,22 +718,27 @@
   sortOrder: 200
   authSchemes:
     - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
       groups:
         - [Captain, HeadOfSecurity, Ntrep]
         - [Captain, HeadOfSecurity, Ntrep]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
   vetoSchemes:
     - id: Captain
+      name: secure-terminal-captain-name
       groups:
         - [Captain]
     - id: HoS
+      name: secure-terminal-head-of-security-name
       groups:
         - [HeadOfSecurity]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -693,9 +757,11 @@
   sortOrder: 201
   authSchemes:
     - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
       groups:
         - [Captain, Ntrep, HeadOfSecurity]
     - id: Command
+      name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
@@ -720,11 +786,13 @@
   sortOrder: 500
   authSchemes:
     - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
       groups:
         - [Captain, HeadOfSecurity, Ntrep]
         - [Captain, HeadOfSecurity, Ntrep]
         - [Command, HeadOfSecurity, Ntrep]
     - id: CaptainAndCommand
+      name: secure-terminal-command-name
       groups:
         - [Captain, Ntrep]
         - [Command, Ntrep]
@@ -732,10 +800,12 @@
         - [Command, Ntrep]
   vetoSchemes:
     - id: CaptainAndCommand
+      name: secure-terminal-command-name
       groups:
         - [Captain]
         - [Command, Ntrep]
-    - id: HoSOrNtrepAndCommand
+    - id: SecurityAndCommand
+      name: secure-terminal-security-and-command-name
       groups:
         - [HeadOfSecurity, Ntrep]
         - [Command, Ntrep]

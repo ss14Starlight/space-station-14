@@ -381,13 +381,42 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         {
             AuthDescLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
                 Loc.GetString("secure-terminal-auth-desc")));
-            RebuildAuthorizerList(proposal);
+            if (proposal.Status == SecureTerminalProposalStatus.Activating)
+                RebuildAuthorizedList(proposal);
+            else
+                RebuildAuthorizerList(proposal);
 
             AuthorizeButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending;
             var vetoAvailable = proposal.Status == SecureTerminalProposalStatus.Activating
                 && proto.VetoSchemes.Count > 0
                 && proposal.ActivateAt > _timing.CurTime;
             DenyButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending && !vetoAvailable;
+        }
+    }
+
+    private void RebuildAuthorizedList(SecureTerminalProposalState proposal)
+    {
+        AuthorizerListContainer.RemoveAllChildren();
+
+        var authorizedBy = string.Join(", ", proposal.AuthorizedBy.Select(authorizer =>
+            string.IsNullOrEmpty(authorizer.Job)
+                ? authorizer.Name
+                : $"{authorizer.Name} ({authorizer.Job})"));
+        var authorizedByLabel = new RichTextLabel
+        {
+            HorizontalExpand = true
+        };
+        authorizedByLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
+            $"{Loc.GetString("secure-terminal-authorized-by-label")} {authorizedBy}"));
+        AuthorizerListContainer.AddChild(authorizedByLabel);
+
+        if (proposal.VetoSchemes.Count > 0)
+        {
+            var vetoHeader = new RichTextLabel();
+            vetoHeader.SetMessage(FormattedMessage.FromMarkupOrThrow(
+                $"[bold]{Loc.GetString("secure-terminal-veto-label")}[/bold]"));
+            AuthorizerListContainer.AddChild(vetoHeader);
+            AddSchemeStates(proposal.VetoSchemes);
         }
     }
 

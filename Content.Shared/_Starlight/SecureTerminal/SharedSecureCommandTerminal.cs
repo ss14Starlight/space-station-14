@@ -83,6 +83,7 @@ public sealed class SecureTerminalProposalState
     /// <summary>Authorization progress for each alternative scheme.</summary>
     public List<SecureTerminalAuthSchemeState> AuthSchemes = new();
     public List<SecureTerminalAuthSchemeState> VetoSchemes = new();
+    public List<(string Name, string Job)> AuthorizedBy = new();
 
     /// <summary>
     /// When the action will fire (CurTime, server-side).

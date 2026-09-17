@@ -174,7 +174,7 @@ public sealed partial class SecureTerminalAuthScheme
     /// all groups must be satisfied by distinct individuals.
     /// </summary>
     [DataField(required: true)]
-    public List<List<string>> Groups = new();
+    public List<List<ProtoId<AccessLevelPrototype>>> Groups = new();
 }
 
 [DataDefinition]

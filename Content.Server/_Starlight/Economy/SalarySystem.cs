@@ -88,15 +88,18 @@ public sealed partial class SalarySystem : SharedSalarySystem
     {
         var bonusMultiplier = _defaultBonusMultiplier;
 
-        if (!_nullLinkRoles.TryGetPlayerData(session.UserId, out var playerData))
-            return baseSalary;
+        if (_nullLinkRoles.TryGetPlayerData(session.UserId, out var playerData))
+        {
 
-        foreach (var bonus in _prototypes.EnumeratePrototypes<SalaryRoleBonusPrototype>())
-            if(bonus.Roles.Any(playerData.Roles.Contains))
-                bonusMultiplier += bonus.Multiplayer;
-
+            foreach (var bonus in _prototypes.EnumeratePrototypes<SalaryRoleBonusPrototype>())
+                if (bonus.Roles.Any(playerData.Roles.Contains))
+                    bonusMultiplier += bonus.Multiplayer;
+        }
+        
         var sourceModifier = GetStationSalaryModifier("Everyone") + GetStationSalaryModifier(source);
-        return (int)Math.Ceiling(baseSalary * bonusMultiplier * (1f + sourceModifier));
+        var multiplier = Math.Max(0.2f, 1f + sourceModifier); // Minimum income is 20% of the base salary
+        bonusMultiplier = Math.Max(0f, bonusMultiplier); // Bonus has to be positive
+        return (int)Math.Ceiling(baseSalary * bonusMultiplier * multiplier);
     }
 
     private float GetStationSalaryModifier(string source)
