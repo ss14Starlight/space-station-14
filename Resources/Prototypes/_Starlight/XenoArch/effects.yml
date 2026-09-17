@@ -830,7 +830,7 @@
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
       min: 1
-      max: 5
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -845,7 +845,7 @@
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
       min: 1
-      max: 5
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -860,7 +860,7 @@
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
       min: 1
-      max: 5
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -875,7 +875,7 @@
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
       min: 1
-      max: 5
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -890,7 +890,7 @@
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
       min: 1
-      max: 5
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -905,7 +905,7 @@
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
       min: 1
-      max: 5
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
@@ -920,7 +920,7 @@
     maxDurability: 7
     maxDurabilityCanDecreaseBy:
       min: 1
-      max: 5
+      max: 4
   - type: XAEFoam
     replaceDescription: true
     reagents:
