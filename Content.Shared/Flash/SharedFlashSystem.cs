@@ -23,6 +23,7 @@ using System.Linq;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Clothing.Components;
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared._Starlight.Flash.Components;
 
 namespace Content.Shared.Flash;
@@ -42,6 +43,7 @@ public abstract partial class SharedFlashSystem : EntitySystem
     [Dependency] private StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private UseDelaySystem _useDelay = default!;
+    [Dependency] private IRobustRandom _rand = default!;
 
     private EntityQuery<StatusEffectsComponent> _statusEffectsQuery;
     private EntityQuery<DamagedByFlashingComponent> _damagedByFlashingQuery;
@@ -241,20 +243,15 @@ public abstract partial class SharedFlashSystem : EntitySystem
         _entityLookup.GetEntitiesInRange(transform.Coordinates, range, _entSet);
         foreach (var entity in _entSet)
         {
-            // starlight edit - functionality to ignore certain entities when flashing
+            // starlight start - functionality to ignore certain entities when flashing
             if (ignoreEntities != null)
             {
                 if (ignoreEntities.Contains(entity))
                     continue;
             }
 
-            // TODO: Use RandomPredicted https://github.com/space-wizards/RobustToolbox/pull/5849
-            var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(entity).Id);
-            var rand = new System.Random(seed);
-            if (!rand.Prob(probability))
-                continue;
-
-            if (!SharedRandomExtensions.PredictedProb(_timing, probability, GetNetEntity(entity)))
+            var seed = GetNetEntity(entity).Id;
+            if (!_rand.ProbPredicted(_timing, probability, seed))
                 continue;
 
             // Is the entity affected by the flash either through status effects or by taking damage?
