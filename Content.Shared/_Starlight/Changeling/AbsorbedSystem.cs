@@ -1,6 +1,6 @@
 using Content.Shared.Examine;
 using Content.Shared.Mobs;
-using Content.Shared.Atmos.Rotting; // starlight edit
+using Content.Shared.Atmos.Rotting;
 
 namespace Content.Shared._Starlight.Changeling;
 
@@ -24,13 +24,12 @@ public sealed partial class AbsorbedSystem : EntitySystem
     private void OnMobStateChange(Entity<AbsorbedComponent> ent, ref MobStateChangedEvent args)
     {
         // in case one somehow manages to dehusk someone
-        if (args.NewMobState != MobState.Dead) {
+        if (args.NewMobState != MobState.Dead)
+        {
             RemComp<AbsorbedComponent>(ent);
             // The changeling devour changes the rot timer, so we need to reset it when reviving someone
             if (TryComp<PerishableComponent>(ent, out var perishable))
-            {
                 _rotting.SetRotAfter(ent, TimeSpan.FromMinutes(10), perishable);
-            }
         }
     }
 }
