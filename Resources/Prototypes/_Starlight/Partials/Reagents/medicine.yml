@@ -17,23 +17,3 @@
             type: [ Cyclorite ]
           reagent: Saline
           amount: -0.5
-
-- type: !PartialOnly reagent
-  id: Amoxla
-  metabolisms:
-    Bloodstream:
-      effects:
-      - !type:ModifyBloodLevel
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Avali, Resomi, Vox ]
-        amount: 6
-      - !type:AdjustReagent # Amoxla for Cyclorites is a toxin not medicine
-        conditions:
-          - !type:ReagentCondition
-            reagent: Amoxla
-            min: 0.26
-          - !type:MetabolizerTypeCondition
-            type: [ Cyclorite ]
-        reagent: Amoxla
-        amount: 0.25
