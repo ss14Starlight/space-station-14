@@ -169,9 +169,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         EnsureComp<AbsorbedComponent>(target);
         if (TryComp<PerishableComponent>(target, out var perishable))
-        {
             _rotting.SetRotAfter(target, TimeSpan.FromMinutes(20), perishable);
-        }
 
         var popup = Loc.GetString("changeling-absorb-end-self-ling");
         var bonusChemicals = 0f;
