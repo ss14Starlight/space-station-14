@@ -15,8 +15,11 @@
   access:
   - Medical
   - Maintenance
-  components:
-  - type: NoObjectiveTarget
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AntagImmune
+    - type: NoObjectiveTarget
 
 - type: startingGear
   id: MedicalInternGear

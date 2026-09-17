@@ -24,6 +24,10 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: AntagImmune
+    - type: NoObjectiveTarget
 
 - type: startingGear
   id: SecurityCadetGear

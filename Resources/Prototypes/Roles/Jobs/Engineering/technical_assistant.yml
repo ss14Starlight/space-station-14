@@ -18,6 +18,11 @@
   - Maintenance
   - Engineering
   - External
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AntagImmune
+    - type: NoObjectiveTarget
 
 - type: startingGear
   id: TechnicalAssistantGear
