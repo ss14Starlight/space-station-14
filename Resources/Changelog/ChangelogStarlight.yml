@@ -1,18 +1,4 @@
 Entries:
-- author: RedSpeeds
-  changes:
-  - message: Fixed ATS nearly spawning into stations.
-    type: Fix
-  id: 408263
-  time: '2026-09-06T00:44:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5917
-- author: Johnny
-  changes:
-  - message: Ore box has bigger magnet now, pull from further away.
-    type: Tweak
-  id: 408264
-  time: '2026-09-06T00:44:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5924
 - author: Johnny
   changes:
   - message: Ore box can now pick up artifact fragment.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408662
   time: '2026-09-16T22:23:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6205
+- author: Caws
+  changes:
+  - message: Revenants can no longer socially interact with stuff. The dead aren't very sociable, after all.
+    type: Fix
+  id: 408663
+  time: '2026-09-17T01:51:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6183
+- author: Caws
+  changes:
+  - message: Social interactions now have a one (1) second cooldown to mitigate spamming.
+    type: Fix
+  id: 408664
+  time: '2026-09-17T01:51:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6183
 Order: -1
