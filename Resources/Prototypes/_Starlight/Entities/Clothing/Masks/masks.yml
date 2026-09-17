@@ -65,8 +65,8 @@
     sprite: _Starlight/Clothing/Mask/gasroboticist.rsi
 
 - type: entity
-  parent: ClothingMaskGasHalf
-  id: ClothingMaskGasHalfStarlight
+  parent: [ClothingMaskGas]
+  id: ClothingMaskGasHalf
   name: half mask
   description: A half mask that covers the mouth and nose, but not the eyes.
   components:
