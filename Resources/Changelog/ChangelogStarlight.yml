@@ -1,25 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Added Particles to several anomalies for more visual polish. Pyro, Ice, Bluespace, Tech, Flesh, Liquid, Dark, and Shadow.
-    type: Add
-  id: 408268
-  time: '2026-09-06T01:36:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5905
-- author: Sparlight
-  changes:
-  - message: Shadekins can no longer use the olfactory (smell) implant.  They can't breathe to begin with.
-    type: Remove
-  id: 408269
-  time: '2026-09-06T01:36:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5935
-- author: stinkiestdog, Conflee
-  changes:
-  - message: Firebots will now correctly target and attempt to extinguish Reagent Fires (but not Wall Stain fires as they get stuck and bug out if you have them target those).
-    type: Tweak
-  id: 408270
-  time: '2026-09-06T01:36:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5980
 - author: wonderfulnewworld, roryflowers
   changes:
   - message: Added a redspace beaker that Nukie Corpsmen now spawn with.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408667
   time: '2026-09-17T16:16:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6215
+- author: Citrea
+  changes:
+  - message: Returned many reagent storage containers to more reasonable inventory sizes.
+    type: Tweak
+  id: 408668
+  time: '2026-09-17T19:18:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6109
+- author: Citrea
+  changes:
+  - message: Plumbing machines now follow the 240 unit jug standard.
+    type: Tweak
+  id: 408669
+  time: '2026-09-17T19:18:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6109
+- author: Citrea
+  changes:
+  - message: Water bottles, flasks and drink cans hold exactly one drink again.
+    type: Tweak
+  id: 408670
+  time: '2026-09-17T19:18:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6109
 Order: -1
