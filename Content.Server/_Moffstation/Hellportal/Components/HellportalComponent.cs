@@ -25,14 +25,14 @@ public sealed partial class HellportalComponent : Component
     /// Cooldown duration between hellportal spawn waves, in seconds.
     /// </summary>
     [DataField]
-    public TimeSpan SpawnCooldown = TimeSpan.FromSeconds(30f);
+    public TimeSpan SpawnCooldown = TimeSpan.FromSeconds(45f);
 
     /// <summary>
     /// If the number of existing hellportal-spawned entities exceed this number,
     /// the hellportal will not spawn any further entities.
     /// </summary>
     [DataField]
-    public int MaxSpawns = 100;
+    public int MaxSpawns = 50;
 
     /// <summary>
     /// Determines the sound to play on spawn trigger, if not null.
