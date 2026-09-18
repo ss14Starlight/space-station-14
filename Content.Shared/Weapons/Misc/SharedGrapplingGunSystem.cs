@@ -21,7 +21,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Weapons.Misc;
 
-public abstract class SharedGrapplingGunSystem : VirtualController
+public abstract partial class SharedGrapplingGunSystem : VirtualController
 {
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] private IEntityManager _entities = default!;

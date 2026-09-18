@@ -58,6 +58,17 @@
     - TSF
 
 - type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantSalvage
+  name: Salvage death rattle implant
+  description: This implant will inform the Expedition radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: RattleOnTrigger
+      radioChannel:
+        - Expedition
+
+- type: entity
   parent: BaseSubdermalImplant
   id: BluespaceImplant
   name: bluespace implant
@@ -263,3 +274,16 @@
     tags:
     - SubdermalImplant
     - HideContextMenu
+
+# ITG Implants
+- type: entity
+  parent: TrackingImplant
+  id: ITGTrackingImplant
+  name: itg tracking implant
+  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the expedition channel.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: RattleOnTrigger
+      targetUser: true
+      radioChannel:
+      - Expedition

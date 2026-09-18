@@ -24,9 +24,10 @@ namespace Content.Client._Starlight.Chemistry.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ModernChemMasterWindow : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     public event Action<BaseButton.ButtonEventArgs, ReagentButton>? OnReagentButtonPressed;
+    public event Action<BaseButton.ButtonEventArgs, ReagentId, FixedPoint2, bool>? OnCustomReagentButtonPressed;
     public event Action? OnToggleValveButtonPressed;
     public readonly Button[] PillTypeButtons;
     public readonly Button[] PillTypeButtonsClassic;
@@ -41,6 +42,16 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     private bool _settingContainerLabelProgrammatically;
 
     private ChemMasterReagentAmount _selectedAmount = ChemMasterReagentAmount.U5;
+    private FixedPoint2? _customAmount;
+    private bool _customSelected;
+
+    private static readonly Dictionary<NetEntity, (string Text, FixedPoint2? Amount, bool Selected)> _customPerChemMaster = new();
+    private NetEntity? _chemMasterNetEntity;
+
+    private readonly Vector2 _modernMinSize; // Window size referenced from MinSize attribute
+    private static readonly Vector2 ClassicMinSize = new(666, 670); // We specify the Classic MinSize here since the original value is in an upstream file and it needs to be a bit longer for spacing reasons
+    private const int MaxReagentNameLength = 32; // Amount of characters before truncating name in modern layout
+    private const int MaxClassicReagentNameLength = 24; // Amount of characters before truncating name in classic layout
 
     // Amount configs for the 2x5 modern grid: 9 numeric amounts + All.
     private static readonly (string Label, ChemMasterReagentAmount Amount)[] AmountConfigs =
@@ -57,6 +68,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         (Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All),
     };
 
+    private static bool IsInCustomAmountRange(string s) => int.TryParse(s, out var v) && v > 0 && v <= 1000;
+    private bool IsCustomAmountValid(string s) => !string.IsNullOrWhiteSpace(s) && IsInCustomAmountRange(s);
+
     /// <summary>
     /// Create and initialize the chem master UI client-side. Creates the basic layout,
     /// actual data isn't filled in until the server sends data about the chem master.
@@ -64,6 +78,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     public ModernChemMasterWindow()
     {
         RobustXamlLoader.Load(this);
+        _modernMinSize = MinSize; // Captures ModernChemMasterWindow.xaml MinSize
         IoCManager.InjectDependencies(this);
         var sprite = _entityManager.System<SpriteSystem>();
 
@@ -131,7 +146,17 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         ValveButton.OnPressed += _ => OnToggleValveButtonPressed?.Invoke();
         ValveButtonClassic.OnPressed += _ => OnToggleValveButtonPressed?.Invoke();
 
-        SearchBar.OnTextChanged += _ => UpdateReagentPrototypes(SearchBar.Text);
+        SearchBar.OnTextChanged += _ =>
+        {
+            SearchBarClassic.Text = SearchBar.Text;
+            UpdateReagentPrototypes(SearchBar.Text);
+        };
+
+        SearchBarClassic.OnTextChanged += _ =>
+        {
+            SearchBar.Text = SearchBarClassic.Text;
+            UpdateReagentPrototypes(SearchBarClassic.Text);
+        };
 
         ClassicTabs.SetTabTitle(0, Loc.GetString("chem-master-window-input-tab"));
         ClassicTabs.SetTabTitle(1, Loc.GetString("chem-master-window-output-tab"));
@@ -142,24 +167,75 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         // Build the amount 'grid' (2x5)
         BuildAmountGrid(AmountGrid);
 
+        BufferTransferButton.Group = BufferDiscardButton.Group = new ButtonGroup();
+        BufferTransferButtonClassic.Group = BufferDiscardButtonClassic.Group = new ButtonGroup();
+
+        // Custom amount - shared validation and per-ChemMaster storage, Modern + Classic textboxes sync
+        CustomAmountLineEdit.IsValid = IsInCustomAmountRange;
+        CustomAmountLineEditClassic.IsValid = IsInCustomAmountRange;
+        CustomAmountLineEdit.OnTextChanged += _ => HandleCustomAmountTextChanged(CustomAmountLineEdit, CustomAmountLineEditClassic, isModern: true);
+        CustomAmountLineEditClassic.OnTextChanged += _ => HandleCustomAmountTextChanged(CustomAmountLineEditClassic, CustomAmountLineEdit, isModern: false);
+        CustomAmountButton.Disabled = true;
+        CustomAmountButton.ToggleMode = true;
+        CustomAmountButton.OnPressed += _ =>
+        {
+            if (!IsCustomAmountValid(CustomAmountLineEdit.Text))
+            {
+                _customSelected = false;
+                CustomAmountButton.Pressed = false;
+                SaveCustomPerChemMaster();
+                return;
+            }
+            _customAmount = FixedPoint2.New(int.Parse(CustomAmountLineEdit.Text));
+            _customSelected = true;
+            CustomAmountButton.Pressed = true;
+            DeselectGrid();
+            SaveCustomPerChemMaster();
+            OnAmountSelected?.Invoke(_selectedAmount);
+        };
+
         ApplyLayout();
 
-        if (FindControl<Button>("ModernModeButton") is { } modernBtn)
+        // Layout toggle in title bar, left of close button (same pattern as PopOutFancyWindow).
+        if (CloseButton.Parent is { } header)
         {
-            modernBtn.OnPressed += _ =>
+            var layoutLabel = new Label
             {
-                _classicMode = false;
-                ApplyLayout();
+                Text = _classicMode
+                    ? Loc.GetString("chem-master-window-mode-classic")
+                    : Loc.GetString("chem-master-window-mode-modern"),
+                VerticalAlignment = VAlignment.Center,
+                Margin = new Thickness(0, 0, 8, 0),
             };
-        }
 
-        if (FindControl<Button>("ClassicModeButton") is { } classicBtn)
-        {
-            classicBtn.OnPressed += _ =>
+            var layoutToggle = new SwitchButton
             {
-                _classicMode = true;
+                VerticalAlignment = VAlignment.Center,
+                OffStateText = string.Empty,
+                OnStateText = string.Empty,
+                Pressed = _classicMode,
+                ToolTip = Loc.GetString("chem-master-window-mode-tooltip"),
+            };
+
+            layoutToggle.OnPressed += args =>
+            {
+                _classicMode = layoutToggle.Pressed;
+                layoutLabel.Text = _classicMode
+                    ? Loc.GetString("chem-master-window-mode-classic")
+                    : Loc.GetString("chem-master-window-mode-modern");
                 ApplyLayout();
             };
+
+            var layoutContainer = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Horizontal,
+                VerticalAlignment = VAlignment.Center,
+                Margin = new Thickness(0, 0, 6, 0),
+                Children = { layoutLabel, layoutToggle },
+            };
+
+            header.AddChild(layoutContainer);
+            layoutContainer.SetPositionInParent(header.ChildCount - 2);
         }
     }
 
@@ -176,12 +252,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         for (uint i = 0; i < buttons.Length; i++)
         {
             var styleBase = StyleClass.ButtonOpenBoth;
-            var modulo = i % 10;
-            if (i > 0 && modulo == 0)
-                styleBase = StyleClass.ButtonOpenRight;
-            else if (i > 0 && modulo == 9)
+            if (i == 9)
                 styleBase = StyleClass.ButtonOpenLeft;
-            else if (i == 0)
+            else if (i == 10)
                 styleBase = StyleClass.ButtonOpenRight;
 
             buttons[i] = new Button
@@ -215,8 +288,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     {
         var amountGroup = new ButtonGroup();
 
-        foreach (var (label, amount) in AmountConfigs)
+        for (var idx = 0; idx < AmountConfigs.Length; idx++)
         {
+            var (label, amount) = AmountConfigs[idx];
             var btn = new Button
             {
                 Access = AccessLevel.Public,
@@ -224,13 +298,16 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                 ToggleMode = true,
                 Group = amountGroup,
                 MinSize = new Vector2(46, 0),
-                Pressed = amount == _selectedAmount,
-                StyleClasses = { StyleClass.ButtonOpenBoth },
+                Pressed = !_customSelected && amount == _selectedAmount,
+                StyleClasses = { idx == 8 ? StyleClass.ButtonOpenRight : StyleClass.ButtonOpenBoth },
             };
 
             var capturedAmount = amount;
             btn.OnPressed += _ =>
             {
+                _customSelected = false;
+                CustomAmountButton.Pressed = false;
+                SaveCustomPerChemMaster();
                 OnAmountSelected?.Invoke(capturedAmount);
             };
 
@@ -238,8 +315,16 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         }
     }
 
+    private void DeselectGrid() { foreach (var c in AmountGrid.Children) if (c is Button b) b.Pressed = false; }
+
     private void SyncGrid(GridContainer grid)
     {
+        if (_customSelected)
+        {
+            DeselectGrid();
+            return;
+        }
+
         var i = 0;
         foreach (var child in grid.Children)
         {
@@ -251,15 +336,93 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         }
     }
 
+    private void SaveCustomPerChemMaster() { if (_chemMasterNetEntity is {} id) _customPerChemMaster[id] = (CustomAmountLineEdit.Text, _customAmount, _customSelected); }
+
+    private void HandleCustomAmountTextChanged(LineEdit source, LineEdit target, bool isModern)
+    {
+        if (target.Text != source.Text)
+            target.Text = source.Text;
+        if (isModern)
+            CustomAmountButton.Disabled = !IsCustomAmountValid(source.Text);
+        if (_customSelected)
+        {
+            if (IsCustomAmountValid(source.Text) && int.TryParse(source.Text, out var v))
+                _customAmount = FixedPoint2.New(v);
+            else
+            {
+                _customAmount = null;
+                _customSelected = false;
+                if (isModern)
+                    CustomAmountButton.Pressed = false;
+            }
+        }
+        SaveCustomPerChemMaster();
+        UpdateClassicCustomButtons();
+    }
+
+    private void UpdateClassicCustomButtons()
+    {
+        var valid = IsCustomAmountValid(CustomAmountLineEditClassic.Text);
+        void UpdateIn(Control root)
+        {
+            foreach (var child in root.Children)
+            {
+                if (child is ReagentButton rb && rb.Text == "#")
+                    rb.Disabled = !valid;
+                else if (child is Control c)
+                    UpdateIn(c);
+            }
+        }
+        UpdateIn(BufferInfoClassic);
+        UpdateIn(InputContainerInfoClassic);
+        UpdateIn(OutputContainerInfoClassic);
+    }
+
+    public void SetChemMasterEntity(NetEntity id)
+    {
+        _chemMasterNetEntity = id;
+        if (!_customPerChemMaster.TryGetValue(id, out var s)) return;
+        CustomAmountLineEdit.Text = s.Text;
+        CustomAmountLineEditClassic.Text = s.Text;
+        _customAmount = s.Amount;
+        _customSelected = s.Selected;
+        CustomAmountButton.Disabled = string.IsNullOrWhiteSpace(s.Text) || (CustomAmountLineEdit!.IsValid != null && !CustomAmountLineEdit!.IsValid(s.Text));
+        CustomAmountButton.Pressed = _customSelected && !CustomAmountButton.Disabled;
+        _customSelected = CustomAmountButton.Pressed;
+        UpdateClassicCustomButtons();
+        SyncGrid(AmountGrid);
+    }
+
+    /// <summary>
+    /// Removes cached custom-amount state for the specified ChemMaster entity.
+    /// </summary>
+    /// <param name="id">The ChemMaster entity whose custom-amount state should be removed.</param>
+    public static void ClearCustomForEntity(NetEntity id) => _customPerChemMaster.Remove(id);
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && _chemMasterNetEntity is {} id)
+            _customPerChemMaster.Remove(id);
+        base.Dispose(disposing);
+    }
+
     private void ApplyLayout()
     {
         ModernTabs.Visible = !_classicMode;
         ClassicTabs.Visible = _classicMode;
-        if (FindControl<Button>("ModernModeButton") is { } modernBtn)
-            modernBtn.Disabled = !_classicMode;
 
-        if (FindControl<Button>("ClassicModeButton") is { } classicBtn)
-            classicBtn.Disabled = _classicMode;
+        var targetSize = _classicMode ? ClassicMinSize : _modernMinSize;
+        MinSize = targetSize;
+        // Force window to specified dimensions, MinSize alone doesn't shrink an already larger window
+        SetSize = targetSize;
+        if (!_classicMode)
+        {
+            CustomAmountButton.Disabled = !IsCustomAmountValid(CustomAmountLineEdit.Text);
+        }
+        else
+        {
+            UpdateClassicCustomButtons();
+        }
     }
 
     private ReagentButton MakeReagentButton(string text, ChemMasterReagentAmount amount, ReagentId id, bool isBuffer, string styleClass)
@@ -271,6 +434,18 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     }
 
     /// <summary>
+    /// Truncates a reagent name with an ellipsis if it exceeds the max length.
+    /// Returns the display name and a tooltip with the full name. No tooltip is shown when untruncated.
+    /// </summary>
+    private static (string display, string? toolTip) TruncateReagentName(string name, int maxLength)
+    {
+        if (name.Length <= maxLength)
+            return (name, null);
+
+        return (name.Substring(0, maxLength).TrimEnd() + "...", name);
+    }
+
+    /// <summary>
     /// Classic mode only: generates the full set of per-row amount buttons.
     /// Modern mode rows are buttons themselves - this is not called for them.
     /// </summary>
@@ -279,7 +454,16 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         if (!addReagentButtons)
             return new List<ReagentButton>();
 
-        // Classic: full button strip
+        // Classic: full button strip with # preceding 1 for custom amount
+        var buttons = new List<ReagentButton>();
+
+        var hashButton = new ReagentButton("#", ChemMasterReagentAmount.U1, reagent, isBuffer, StyleClass.ButtonOpenRight)
+        {
+            Disabled = !IsCustomAmountValid(CustomAmountLineEditClassic.Text)
+        };
+        hashButton.OnPressed += a => { if (IsCustomAmountValid(CustomAmountLineEditClassic.Text) && int.TryParse(CustomAmountLineEditClassic.Text, out var v)) OnCustomReagentButtonPressed?.Invoke(a, reagent, FixedPoint2.New(v), isBuffer); };
+        buttons.Add(hashButton);
+
         var buttonConfigs = new (string text, ChemMasterReagentAmount amount, string styleClass)[]
         {
             ("1",   ChemMasterReagentAmount.U1,   StyleClass.ButtonOpenBoth),
@@ -294,7 +478,6 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             (Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All, StyleClass.ButtonOpenLeft),
         };
 
-        var buttons = new List<ReagentButton>();
         foreach (var (text, amount, styleClass) in buttonConfigs)
         {
             buttons.Add(MakeReagentButton(text, amount, reagent, isBuffer, styleClass));
@@ -346,14 +529,25 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         OutputEjectButton.Disabled = castState.OutputContainerInfo is null;
         OutputEjectButtonClassic.Disabled = castState.OutputContainerInfo is null;
 
-        CreateBottleButton.Disabled = castState.OutputContainerInfo?.Reagents == null;
-        CreateBottleButtonClassic.Disabled = castState.OutputContainerInfo?.Reagents == null;
+        var output = castState.OutputContainerInfo;
+        var bottleFull = output?.Reagents != null && output.CurrentVolume >= output.MaxVolume;
+        var pillFull = output?.PillEntities != null && output.CurrentVolume >= output.MaxVolume;
+        var patchFull = output?.PatchEntities != null && output.CurrentVolume >= output.MaxVolume;
 
-        CreatePillButton.Disabled = castState.OutputContainerInfo?.PillEntities == null;
-        CreatePillButtonClassic.Disabled = castState.OutputContainerInfo?.PillEntities == null;
+        CreateBottleButton.Disabled = castState.OutputContainerInfo?.Reagents == null || bottleFull;
+        CreateBottleButtonClassic.Disabled = castState.OutputContainerInfo?.Reagents == null || bottleFull;
+        CreateBottleButton.ToolTip = !CreateBottleButton.Disabled ? null : bottleFull ? Loc.GetString("chem-master-window-create-bottle-full-tooltip") : Loc.GetString("chem-master-window-create-bottle-tooltip");
+        CreateBottleButtonClassic.ToolTip = !CreateBottleButtonClassic.Disabled ? null : bottleFull ? Loc.GetString("chem-master-window-create-bottle-full-tooltip") : Loc.GetString("chem-master-window-create-bottle-tooltip");
 
-        CreatePatchButton.Disabled = castState.OutputContainerInfo?.PatchEntities == null;
-        CreatePatchButtonClassic.Disabled = castState.OutputContainerInfo?.PatchEntities == null;
+        CreatePillButton.Disabled = castState.OutputContainerInfo?.PillEntities == null || pillFull;
+        CreatePillButtonClassic.Disabled = castState.OutputContainerInfo?.PillEntities == null || pillFull;
+        CreatePillButton.ToolTip = !CreatePillButton.Disabled ? null : pillFull ? Loc.GetString("chem-master-window-create-pill-full-tooltip") : Loc.GetString("chem-master-window-create-pill-tooltip");
+        CreatePillButtonClassic.ToolTip = !CreatePillButtonClassic.Disabled ? null : pillFull ? Loc.GetString("chem-master-window-create-pill-full-tooltip") : Loc.GetString("chem-master-window-create-pill-tooltip");
+
+        CreatePatchButton.Disabled = castState.OutputContainerInfo?.PatchEntities == null || patchFull;
+        CreatePatchButtonClassic.Disabled = castState.OutputContainerInfo?.PatchEntities == null || patchFull;
+        CreatePatchButton.ToolTip = !CreatePatchButton.Disabled ? null : patchFull ? Loc.GetString("chem-master-window-create-patch-full-tooltip") : Loc.GetString("chem-master-window-create-patch-tooltip");
+        CreatePatchButtonClassic.ToolTip = !CreatePatchButtonClassic.Disabled ? null : patchFull ? Loc.GetString("chem-master-window-create-patch-full-tooltip") : Loc.GetString("chem-master-window-create-patch-tooltip");
 
         var valveText = Loc.GetString(castState.ValveOpen
             ? "chem-master-window-valve-open"
@@ -439,14 +633,18 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     {
         BufferTransferButton.Pressed = state.Mode == ChemMasterMode.Transfer;
         BufferDiscardButton.Pressed = state.Mode == ChemMasterMode.Discard;
+        BufferTransferButtonClassic.Pressed = state.Mode == ChemMasterMode.Transfer;
+        BufferDiscardButtonClassic.Pressed = state.Mode == ChemMasterMode.Discard;
 
         // Modern layout containers
         BuildContainerUI(InputContainerInfo, state.InputContainerInfo, true, modernMode: true);
-        BuildContainerUI(OutputContainerInfo, state.OutputContainerInfo, false, modernMode: true);
+        BuildContainerUI(OutputContainerInfo, state.OutputContainerInfo, false, modernMode: true, "chem-master-window-no-output-container-loaded-text", truncateName: false);
+        BuildOutputLeftContainer(OutputInputContainerInfo, state, modernMode: false);
 
         // Classic layout containers
         BuildContainerUI(InputContainerInfoClassic, state.InputContainerInfo, true, modernMode: false);
-        BuildContainerUI(OutputContainerInfoClassic, state.OutputContainerInfo, false, modernMode: false);
+        BuildContainerUI(OutputContainerInfoClassic, state.OutputContainerInfo, false, modernMode: false, "chem-master-window-no-output-container-loaded-text", truncateName: false);
+        BuildOutputLeftContainer(OutputInputContainerInfoClassic, state, modernMode: false);
 
         BufferInfo.Children.Clear();
         BufferInfoClassic.Children.Clear();
@@ -520,13 +718,45 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             UpdateReagentPrototypes(SearchBar.Text);
     }
 
-    private void BuildContainerUI(Control control, ContainerInfo? info, bool addReagentButtons, bool modernMode)
+    private void BuildOutputLeftContainer(Control control, ChemMasterBoundUserInterfaceState state, bool modernMode)
+    {
+        if (state.DrawSource == ChemMasterDrawSource.Internal)
+        {
+            // Show buffer contents when packaging from buffer
+            control.Children.Clear();
+            if (!state.BufferReagents.Any())
+            {
+                control.Children.Add(new Label { Text = Loc.GetString("chem-master-window-buffer-empty-text") });
+                return;
+            }
+            control.Children.Add(new BoxContainer
+            {
+                Orientation = LayoutOrientation.Horizontal,
+                Children =
+                {
+                    new Label { Text = $"{Loc.GetString("chem-master-window-buffer-label")} " },
+                    new Label { Text = $"{state.BufferCurrentVolume}u", StyleClasses = { StyleClass.LabelWeak } }
+                }
+            });
+            var rowCount = 0;
+            foreach (var (reagent, quantity) in state.BufferReagents)
+            {
+                _prototypeManager.TryIndex(reagent.Prototype, out ReagentPrototype? proto);
+                var name = proto?.LocalizedName ?? Loc.GetString("chem-master-window-unknown-reagent-text");
+                control.Children.Add(BuildReagentRow(default, rowCount++, name, reagent, quantity, true, false, modernMode, truncateName: false));
+            }
+            return;
+        }
+        BuildContainerUI(control, state.InputContainerInfo, false, modernMode, "chem-master-window-no-input-container-loaded-text", truncateName: false);
+    }
+
+    private void BuildContainerUI(Control control, ContainerInfo? info, bool addReagentButtons, bool modernMode, string emptyLoc = "chem-master-window-no-container-loaded-text", bool truncateName = true)
     {
         control.Children.Clear();
 
         if (info is null)
         {
-            control.Children.Add(new Label { Text = Loc.GetString("chem-master-window-no-container-loaded-text") });
+            control.Children.Add(new Label { Text = Loc.GetString(emptyLoc) });
             return;
         }
 
@@ -558,7 +788,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                     quantity,
                     false,
                     addReagentButtons,
-                    modernMode));
+                    modernMode,
+                    truncateName: truncateName));
             }
         }
 
@@ -574,7 +805,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                     quantity,
                     false,
                     addReagentButtons,
-                    modernMode));
+                    modernMode,
+                    truncateName: truncateName));
             }
         }
 
@@ -585,12 +817,12 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                 _prototypeManager.TryIndex(reagent.Reagent.Prototype, out ReagentPrototype? proto);
                 var name = proto?.LocalizedName ?? Loc.GetString("chem-master-window-unknown-reagent-text");
                 var reagentColor = proto?.SubstanceColor ?? default(Color);
-                control.Children.Add(BuildReagentRow(reagentColor, rowCount++, name, reagent.Reagent, reagent.Quantity, false, addReagentButtons, modernMode));
+                control.Children.Add(BuildReagentRow(reagentColor, rowCount++, name, reagent.Reagent, reagent.Quantity, false, addReagentButtons, modernMode, truncateName: truncateName));
             }
         }
     }
 
-    private Control BuildReagentRow(Color reagentColor, int rowCount, string name, ReagentId reagent, FixedPoint2 quantity, bool isBuffer, bool addReagentButtons, bool modernMode)
+    private Control BuildReagentRow(Color reagentColor, int rowCount, string name, ReagentId reagent, FixedPoint2 quantity, bool isBuffer, bool addReagentButtons, bool modernMode, bool truncateName = true)
     {
         var rowColor1 = Color.FromHex("#1B1B1E");
         var rowColor2 = Color.FromHex("#202025");
@@ -599,16 +831,18 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
 
         if (modernMode && addReagentButtons)
         {
-            // Modern: the entire row is a ReagentButton. Amount is read from the _selectedAmount at click time.
+            // Truncate very long names to prevent UI issues.
+            string? toolTip = null;
+            if (truncateName)
+                (name, toolTip) = TruncateReagentName(name, MaxReagentNameLength);
+
+            // Modern: the entire row is a ReagentButton. Amount is read from the selected amount at click time. If custom amount is selected, send via custom message; otherwise use _selectedAmount.
             var rowBtn = new ReagentButton(string.Empty, _selectedAmount, reagent, isBuffer, StyleClass.ButtonSquare)
             {
                 HorizontalExpand = true,
+                ToolTip = toolTip, // Labels ignore the mouse, so the tooltip lives on the row button.
             };
-            rowBtn.OnPressed += args =>
-            {
-                rowBtn.Amount = _selectedAmount;
-                OnReagentButtonPressed?.Invoke(args, rowBtn);
-            };
+            rowBtn.OnPressed += a => { if (_customSelected && _customAmount is {} c) OnCustomReagentButtonPressed?.Invoke(a, reagent, c, isBuffer); else { rowBtn.Amount = _selectedAmount; OnReagentButtonPressed?.Invoke(a, rowBtn); } };
 
             // Color row at the start of the button
             var row = new PanelContainer
@@ -645,6 +879,12 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         if (reagentColor == default || !addReagentButtons)
             reagentColor = currentRowColor;
 
+        // Truncate very long names to prevent UI issues.
+        var classicName = name;
+        string? classicToolTip = null;
+        if (truncateName)
+            (classicName, classicToolTip) = TruncateReagentName(name, MaxClassicReagentNameLength);
+
         var reagentButtonConstructors = CreateReagentTransferButtons(reagent, isBuffer, addReagentButtons);
 
         var rowContainer = new BoxContainer
@@ -658,9 +898,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
                     VerticalExpand = true,
                     MinWidth = 4,
                     PanelOverride = new StyleBoxFlat { BackgroundColor = reagentColor },
-                    Margin = new Thickness(0, 1)
+                    Margin = new Thickness(0, 1, 4, 1)
                 },
-                new Label { Text = $"{name}: " },
+                new Label { Text = $"{classicName}: ", ToolTip = classicToolTip, MouseFilter = classicToolTip == null ? MouseFilterMode.Ignore : MouseFilterMode.Stop },
                 new Label
                 {
                     Text = $"{quantity}u",
@@ -719,12 +959,25 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
             return;
 
         BufferInfo.Children.Clear();
+        BufferInfoClassic.Children.Clear();
 
         if (!_lastState.BufferReagents.Any())
         {
             BufferInfo.Children.Add(new Label { Text = Loc.GetString("chem-master-window-buffer-empty-text") });
+            BufferInfoClassic.Children.Add(new Label { Text = Loc.GetString("chem-master-window-buffer-empty-text") });
             return;
         }
+
+        // Re-add header (mirrors UpdatePanelInfo) so search doesn't hide buffer volume
+        void AddHeader(BoxContainer target)
+        {
+            var h = new BoxContainer { Orientation = LayoutOrientation.Horizontal };
+            h.AddChild(new Label { Text = $"{Loc.GetString("chem-master-window-buffer-label")} " });
+            h.AddChild(new Label { Text = $"{_lastState.BufferCurrentVolume}u", StyleClasses = { StyleClass.LabelWeak } });
+            target.AddChild(h);
+        }
+        AddHeader(BufferInfo);
+        AddHeader(BufferInfoClassic);
 
         var reagentList = new List<(ReagentId reagentId, string name, Color color, FixedPoint2 quantity)>();
         foreach (var (reagent, quantity) in _lastState.BufferReagents)
@@ -761,7 +1014,9 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         var rowCount = 0;
         foreach (var reagent in reagentList)
         {
-            BufferInfo.Children.Add(BuildReagentRow(reagent.color, rowCount++, reagent.name, reagent.reagentId, reagent.quantity, true, true, modernMode: true));
+            BufferInfo.Children.Add(BuildReagentRow(reagent.color, rowCount, reagent.name, reagent.reagentId, reagent.quantity, true, true, modernMode: true));
+            BufferInfoClassic.Children.Add(BuildReagentRow(reagent.color, rowCount, reagent.name, reagent.reagentId, reagent.quantity, true, true, modernMode: false));
+            rowCount++;
         }
     }
 
@@ -770,6 +1025,8 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
     public void SetSelectedAmount(ChemMasterReagentAmount amount)
     {
         _selectedAmount = amount;
+        if (!_customSelected)
+            CustomAmountButton.Pressed = false;
         SyncGrid(AmountGrid);
     }
 }

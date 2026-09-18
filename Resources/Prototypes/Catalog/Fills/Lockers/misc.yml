@@ -141,6 +141,7 @@
     - id: ClothingOuterSuitFire
     - id: ClothingHeadHelmetFire
     - id: ClothingMaskGas
+    - id: ClothingUniformJumpsuitFirefighter # SL Edit - Adding Firefighter Smock
     - !type:GroupSelector
       children:
       - id: EmergencyOxygenTankFilled

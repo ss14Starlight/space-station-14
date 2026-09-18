@@ -82,6 +82,11 @@
   name: tongue
   description: "A fleshy muscle mostly used for lying."
   components:
+  - type: OrganTongue
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
   - type: Sprite
     state: tongue
 

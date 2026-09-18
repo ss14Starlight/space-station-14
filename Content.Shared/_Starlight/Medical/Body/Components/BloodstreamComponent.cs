@@ -187,6 +187,13 @@ public sealed partial class BloodstreamComponent : Component
     public string MetabolitesSolutionName = DefaultMetabolitesSolutionName;
 
     /// <summary>
+    /// Localization prefix for bleeding and low blood level descriptions on health examine.
+    /// Hidden when set to null.
+    /// </summary>
+    [DataField]
+    public string? ExamineLocPrefix = "bloodstream-component";
+
+    /// <summary>
     /// Internal solution for blood storage
     /// </summary>
     [ViewVariables]

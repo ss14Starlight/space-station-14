@@ -426,7 +426,7 @@ public sealed partial class StarlightEntitySystem : EntitySystem
     {
         var mainTransform = Transform(uid);
         var worldPosition = _transformSystem.GetWorldPosition(mainTransform);
-        var entityQuery = EntityManager.EntityQueryEnumerator<T, TransformComponent>();
+        var entityQuery = EntityQueryEnumerator<T, TransformComponent>();
         entity = default;
         float? latestDistance = null;
         while (entityQuery.MoveNext(out var ent, out var comp, out var transform))
@@ -461,7 +461,7 @@ public sealed partial class StarlightEntitySystem : EntitySystem
     {
         var mainTransform = Transform(uid);
         var worldPosition = _transformSystem.GetWorldPosition(mainTransform);
-        var entityQuery = EntityManager.EntityQueryEnumerator<T1, T2, TransformComponent>();
+        var entityQuery = EntityQueryEnumerator<T1, T2, TransformComponent>();
         entity = default;
         float? latestDistance = null;
         while (entityQuery.MoveNext(out var ent, out var comp1, out var comp2, out var transform))
@@ -497,7 +497,7 @@ public sealed partial class StarlightEntitySystem : EntitySystem
     {
         var mainTransform = Transform(uid);
         var worldPosition = _transformSystem.GetWorldPosition(mainTransform);
-        var entityQuery = EntityManager.EntityQueryEnumerator<T1, T2, T3, TransformComponent>();
+        var entityQuery = EntityQueryEnumerator<T1, T2, T3, TransformComponent>();
         entity = default;
         float? latestDistance = null;
         while (entityQuery.MoveNext(out var ent, out var comp1, out var comp2, out var comp3, out var transform))

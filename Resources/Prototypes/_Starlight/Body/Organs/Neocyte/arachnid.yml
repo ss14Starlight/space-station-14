@@ -14,3 +14,14 @@
     maxReagents: 2
     metabolizerTypes: [ Arachnid, Neocyte ]
     stages: [ Bloodstream ]
+
+- type: entity
+  id: OrganNeoArachnidTongue
+  parent: OrganNeocyteTongue
+  suffix: Neo-Arachnid
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: NeoArachnidMSounds
+      Female: NeoArachnidFSounds
+      Unsexed: NeoArachnidMSounds

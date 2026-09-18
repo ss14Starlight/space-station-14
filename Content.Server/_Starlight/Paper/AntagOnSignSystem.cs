@@ -72,8 +72,7 @@ public sealed partial class AntagOnSignSystem : EntitySystem
             generic.Invoke(_antag, [session, antag.Antag]);
         }
         // Starlight Start: Achievements
-        if (TryComp<MetaDataComponent>(uid, out var meta)
-            && meta.EntityPrototype?.ID is SyndicateRecruitmentLetterId or RRSyndicateRecruitmentLetterId)
+        if (MetaData(uid).EntityPrototype?.ID is SyndicateRecruitmentLetterId or RRSyndicateRecruitmentLetterId)
         {
             _achievements.QueueUnlockAchievement(signer, "treason");
         }

@@ -19,7 +19,7 @@
     zombificationResistanceCoefficient: 0.9
 
 - type: entity
-  parent: [ClothingHandsButcherable, BaseSecurityContraband]
+  parent: [ClothingHandsButcherable, ClothingHandsBaseWarm, BaseSecurityContraband]
   id: ClothingHandsGlovesSecurityRed
   name: red security gloves
   description: Black gloves, but slightly red! The detective will LOVE you if you wear these.

@@ -27,6 +27,22 @@ namespace Content.Shared.Chemistry
     {
     }
 
+    // Custom unit selection handling
+    [Serializable, NetSerializable]
+    public sealed class ChemMasterReagentCustomAmountButtonMessage : BoundUserInterfaceMessage
+    {
+        public readonly ReagentId ReagentId;
+        public readonly FixedPoint2 Amount;
+        public readonly bool FromBuffer;
+
+        public ChemMasterReagentCustomAmountButtonMessage(ReagentId reagentId, FixedPoint2 amount, bool fromBuffer)
+        {
+            ReagentId = reagentId;
+            Amount = amount;
+            FromBuffer = fromBuffer;
+        }
+    }
+
     /// <summary>
     /// Information about the capacity and contents of a container for display in the UI
     /// </summary>

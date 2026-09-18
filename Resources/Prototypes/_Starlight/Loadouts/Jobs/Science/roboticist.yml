@@ -1,3 +1,13 @@
+# Skilled Time
+- type: loadoutEffectGroup
+  id: SkilledRoboticist
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobRoboticist
+      time: 54000 # 15 hrs
+
 # Head
 
 - type: loadout
@@ -14,6 +24,30 @@
   id: RoboticistBlackCapFlipped
   equipment:
     head: ClothingHeadHatBlacksoftFlipped
+
+# Neck
+- type: loadout
+  id: RoboticistScarf
+  equipment:
+    neck: ClothingNeckScarfRoboticist
+
+# Outer clothing
+- type: loadout
+  id: RoboticistWintercoatAlt
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledRoboticist
+  equipment:
+    outerClothing: ClothingOuterWinterRoboAlt
+
+# Shoes
+- type: loadout
+  id: RoboticistWinterBoots
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledRoboticist
+  equipment:
+    shoes: ClothingShoesBootsWinterRobo
 
 # Back
 

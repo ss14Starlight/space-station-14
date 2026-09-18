@@ -26,6 +26,7 @@ public sealed class ModernChemMasterBui(EntityUid owner, Enum uiKey) : BoundUser
         // Set-up the window layout/elements
         _window = this.CreateWindow<ModernChemMasterWindow>();
         _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
+        _window.SetChemMasterEntity(EntMan.GetNetEntity(Owner));
 
         // Set-up the static button actions.
         _window.InputEjectButton.OnPressed += _ => SendMessage(
@@ -95,6 +96,7 @@ public sealed class ModernChemMasterBui(EntityUid owner, Enum uiKey) : BoundUser
         }
 
         _window.OnReagentButtonPressed += (_, button) => SendMessage(new ChemMasterReagentAmountButtonMessage(button.Id, button.Amount, button.IsBuffer));
+        _window.OnCustomReagentButtonPressed += (_, id, amount, isBuffer) => SendMessage(new ChemMasterReagentCustomAmountButtonMessage(id, amount, isBuffer));
 
         _window.OnAmountSelected += amount => SendMessage(new ChemMasterSetTransferAmountMessage(amount));
 
@@ -117,5 +119,12 @@ public sealed class ModernChemMasterBui(EntityUid owner, Enum uiKey) : BoundUser
 
         _window?.SetSelectedAmount(castState.TransferAmount);
         _window?.UpdateState(castState); // Update window state
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && _window != null && EntMan.GetNetEntity(Owner) is {} id)
+            ModernChemMasterWindow.ClearCustomForEntity(id);
+        base.Dispose(disposing);
     }
 }

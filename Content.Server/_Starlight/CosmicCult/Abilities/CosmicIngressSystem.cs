@@ -88,15 +88,50 @@ public sealed partial class CosmicIngressSystem : EntitySystem
 
         args.Handled = true;
         var comp = ent.Comp;
+
+        // Empower a malign rift instead of prying open a door.
+        if (TryComp<CosmicMalignRiftComponent>(target, out _))
+        {
+            var riftCoordinates = Transform(target).Coordinates;
+            _audio.PlayPvs(comp.IngressSfx, ent);
+            Spawn(comp.CultVfx, riftCoordinates);
+
+            QueueDel(target);
+            Spawn("CosmicMalignEmpoweredRift", riftCoordinates);
+
+            return;
+        }
+
+        /// Revalidate the target after the DoAfter.
+        if (!TryComp<DoorComponent>(target, out _))
+            return;
+
         var coordinates = Transform(target).Coordinates;
 
         _audio.PlayPvs(comp.IngressSfx, ent);
         Spawn(comp.CultVfx, coordinates);
-        foreach (var entity in _turf.GetEntitiesInTile(coordinates, LookupFlags.All))
+
+        // Delete doors on the target tile to avoid removing overlapping adjacent doors.
+        if (_turf.TryGetTileRef(coordinates, out var targetTile))
         {
-            if (HasComp<DoorComponent>(entity))
+            foreach (var entity in _turf.GetEntitiesInTile(coordinates, LookupFlags.All))
+            {
+                if (!HasComp<DoorComponent>(entity))
+                    continue;
+
+                // Get the tile the door's origin belongs to.
+                if (!_turf.TryGetTileRef(Transform(entity).Coordinates, out var entityTile))
+                    continue;
+
+                // Ignore doors from adjacent tiles that merely overlap this tile.
+                if (entityTile.Value.GridUid != targetTile.Value.GridUid ||
+                    entityTile.Value.GridIndices != targetTile.Value.GridIndices)
+                    continue;
+
                 QueueDel(entity);
+            }
         }
+
         // Spawn corrupted replacement
         var malignDoor = Spawn("DoorCosmicCult", coordinates);
         _door.StartOpening(malignDoor);

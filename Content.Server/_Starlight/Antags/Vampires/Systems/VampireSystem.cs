@@ -782,7 +782,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         var reg = _componentFactory.GetRegistration(classProto.ClassComponent, ignoreCase: true);
         var classComp = _componentFactory.GetComponent(reg.Type);
-        EntityManager.AddComponent(uid, classComp);
+        AddComp(uid, classComp);
 
         EnsureComp<NightVisionComponent>(uid);
 

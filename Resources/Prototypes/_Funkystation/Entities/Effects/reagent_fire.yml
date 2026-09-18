@@ -12,6 +12,9 @@
     drawdepth: Overlays
   - type: Appearance
   - type: ReagentPuddleFireEffect
+  - type: Tag # Persistence: Firebots can target reagent fires
+    tags:
+    - ReagentFire
 
 - type: particleEffect
   id: ReagentFireContinuous

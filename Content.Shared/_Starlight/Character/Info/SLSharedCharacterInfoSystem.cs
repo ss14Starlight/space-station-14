@@ -51,7 +51,6 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
 
     private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)
     {
-        #region Starlight
         ApplyCharacterInfo(ev.Mob, ev.Profile);
     }
 
@@ -59,12 +58,12 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
     {
         var character = Profile;
         var newMind = _mindSystem.GetMind(Mob);
-        #endregion Starlight
+        var applyFlavorText = !HasComp<RemoveFlavorTextComponent>(Mob);
         if (newMind != null && TryComp(newMind, out MindComponent? mindComp))
         {
             mindComp.Voice = character.Voice;
             mindComp.SiliconVoice = character.SiliconVoice;
-            if (_configManager.GetCVar(CCVars.FlavorText))
+            if (applyFlavorText && _configManager.GetCVar(CCVars.FlavorText))
             {
                 var personalityDescription = new CharacterDescriptionComponent
                 {
@@ -78,11 +77,17 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
                 var roleplayInfo = new RoleplayInfoComponent { OOCNotes = character.OOCNotes };
                 AddComp(newMind.Value, roleplayInfo);
 
-                //Setup mindInfo
-                var mindSecrets = new MindSecretsComponent { PersonalNotes = character.PersonalNotes, };
-                AddComp(newMind.Value, mindSecrets);
+                if (applyFlavorText)
+                {
+                    //Setup mindInfo
+                    var mindSecrets = new MindSecretsComponent { PersonalNotes = character.PersonalNotes, };
+                    AddComp(newMind.Value, mindSecrets);
+                }
             }
         }
+
+        if (!applyFlavorText)
+            return;
 
         if (_configManager.GetCVar(CCVars.FlavorText))
         {
@@ -227,8 +232,8 @@ public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
     public bool CanAccessExploitableData(EntityUid target, Entity<MindContainerComponent?> requester)
     {
         return target == requester.Owner
-               || HasComp<GhostComponent>(requester)
-               || (Resolve(requester.Owner,ref requester.Comp, false) && _roleSystem.MindIsAntagonist(requester.Comp.Mind));
+                || HasComp<GhostComponent>(requester)
+                || (Resolve(requester.Owner,ref requester.Comp, false) && _roleSystem.MindIsAntagonist(requester.Comp.Mind));
     }
 
     protected virtual void OpenCharacterWindow(EntityUid target, EntityUid requester)

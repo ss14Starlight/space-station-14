@@ -34,10 +34,6 @@
     damageContainer: Biological
     damageModifierSet: Doll
   - type: Vocal
-    sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: FemaleHuman
   - type: Inventory
     speciesId: Doll
     femaleDisplacements:
@@ -46,6 +42,11 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: DollBlood
+        Quantity: 600
   - type: Shell
     generateShellPieceAction: ActionGenerateShellPiece
 
@@ -148,10 +149,6 @@
     damageContainer: Biological
     damageModifierSet: Doll
   - type: Vocal
-    sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: FemaleHuman
   - type: Inventory
     speciesId: Doll
     femaleDisplacements:
@@ -160,6 +157,11 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: DollBlood
+        Quantity: 600
   - type: Shell
     generateShellPieceAction: ActionGenerateShellPiece
 
