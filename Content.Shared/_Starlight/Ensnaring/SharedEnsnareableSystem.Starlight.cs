@@ -5,14 +5,7 @@ namespace Content.Shared.Ensnaring;
 
 public abstract partial class SharedEnsnareableSystem
 {
-    [SubscribeLocalEvent<EnsnaringComponent>]
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<EnsnaringComponent, StartCollideEvent>(OnStartCollide);
-    }
-
+    [SubscribeLocalEvent]
     private void OnStartCollide(EntityUid uid, EnsnaringComponent component, ref StartCollideEvent args)
     {
         if (!component.CanImpactTrigger)
