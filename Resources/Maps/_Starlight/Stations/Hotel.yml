@@ -4,7 +4,7 @@ meta:
   engineVersion: 289.0.3
   forkId: ""
   forkVersion: ""
-  time: 09/18/2026 18:13:48
+  time: 09/18/2026 18:43:16
   entityCount: 22543
 maps:
 - 1
@@ -1515,6 +1515,11 @@ entities:
             4019: 3,10
         - node:
             id: BrickTileWhiteCornerNe
+            color: '#3A3E77FF'
+          decals:
+            4295: -23,-58
+        - node:
+            id: BrickTileWhiteCornerNe
             color: '#52B4E9DB'
           decals:
             4154: -23,-4
@@ -1547,6 +1552,11 @@ entities:
             104: -39,3
         - node:
             id: BrickTileWhiteCornerNw
+            color: '#3A3E77FF'
+          decals:
+            4294: -28,-58
+        - node:
+            id: BrickTileWhiteCornerNw
             color: '#52B4E9DB'
           decals:
             4137: -29,-4
@@ -1576,6 +1586,11 @@ entities:
             color: '#FF7100FF'
           decals:
             110: -41,6
+        - node:
+            id: BrickTileWhiteCornerSe
+            color: '#3A3E77FF'
+          decals:
+            4293: -23,-62
         - node:
             id: BrickTileWhiteCornerSe
             color: '#52B4E9DB'
@@ -1613,6 +1628,11 @@ entities:
             color: '#FF7100FF'
           decals:
             103: -39,1
+        - node:
+            id: BrickTileWhiteCornerSw
+            color: '#3A3E77FF'
+          decals:
+            4292: -28,-62
         - node:
             id: BrickTileWhiteCornerSw
             color: '#52B4E9DB'
@@ -1756,6 +1776,13 @@ entities:
             85: -41,-1
         - node:
             id: BrickTileWhiteLineE
+            color: '#3A3E77FF'
+          decals:
+            4285: -23,-61
+            4286: -23,-60
+            4287: -23,-59
+        - node:
+            id: BrickTileWhiteLineE
             color: '#52B4E9DB'
           decals:
             4153: -23,-5
@@ -1819,6 +1846,14 @@ entities:
             105: -39,2
         - node:
             id: BrickTileWhiteLineN
+            color: '#3A3E77FF'
+          decals:
+            4288: -24,-58
+            4289: -25,-58
+            4290: -26,-58
+            4291: -27,-58
+        - node:
+            id: BrickTileWhiteLineN
             color: '#52B4E9DB'
           decals:
             4138: -28,-4
@@ -1874,6 +1909,14 @@ entities:
             107: -40,3
             111: -40,6
             112: -39,6
+        - node:
+            id: BrickTileWhiteLineS
+            color: '#3A3E77FF'
+          decals:
+            4281: -27,-62
+            4282: -26,-62
+            4283: -24,-62
+            4284: -25,-62
         - node:
             id: BrickTileWhiteLineS
             color: '#52B4E9DB'
@@ -1938,6 +1981,13 @@ entities:
             106: -40,1
             108: -40,6
             109: -39,6
+        - node:
+            id: BrickTileWhiteLineW
+            color: '#3A3E77FF'
+          decals:
+            4278: -28,-59
+            4279: -28,-60
+            4280: -28,-61
         - node:
             id: BrickTileWhiteLineW
             color: '#52B4E9DB'
@@ -2026,6 +2076,23 @@ entities:
             color: '#FFFFFFFF'
           decals:
             18: 35,-20
+        - node:
+            id: CheckerNWSE
+            color: '#3A3E77FF'
+          decals:
+            4296: -28,-58
+            4297: -27,-59
+            4298: -27,-60
+            4299: -27,-61
+            4300: -26,-61
+            4301: -25,-61
+            4302: -24,-61
+            4303: -24,-60
+            4304: -25,-60
+            4305: -26,-60
+            4306: -26,-59
+            4307: -25,-59
+            4308: -24,-59
         - node:
             id: CheckerNWSE
             color: '#79150096'
@@ -3001,6 +3068,18 @@ entities:
             4066: 30,-7
             4067: 30,-8
             4068: 30,-9
+        - node:
+            id: QuarterTileOverlayGreyscale
+            color: '#3A3E77FF'
+          decals:
+            4316: -27,-62
+            4317: -26,-62
+            4318: -25,-62
+            4319: -24,-62
+            4320: -23,-62
+            4321: -23,-61
+            4322: -23,-60
+            4323: -23,-59
         - node:
             id: QuarterTileOverlayGreyscale
             color: '#52B4E9CD'
@@ -4423,6 +4502,17 @@ entities:
             4249: -25,-59
             4250: -24,-59
             4251: -23,-59
+        - node:
+            id: quartersewhite
+            color: '#3A3E77FF'
+          decals:
+            4309: -27,-58
+            4310: -26,-58
+            4311: -25,-58
+            4312: -24,-58
+            4313: -28,-61
+            4314: -28,-60
+            4315: -28,-59
         - node:
             id: quartersewhite
             color: '#A82771CD'
@@ -8108,7 +8198,7 @@ entities:
       pos: 8.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -273732.28
+      secondsUntilStateChange: -274390.06
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -9857,7 +9947,7 @@ entities:
       pos: 2.5,-7.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -235856.36
+      secondsUntilStateChange: -236514.12
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10020,7 +10110,7 @@ entities:
       pos: -38.5,10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -287907.75
+      secondsUntilStateChange: -288565.53
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10036,7 +10126,7 @@ entities:
       pos: -36.5,-10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -287806.8
+      secondsUntilStateChange: -288464.6
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -119651,6 +119741,13 @@ entities:
       pos: -28.5,-56.5
     - type: Fixtures
       fixtures: {}
+  - uid: 18167
+    components:
+    - type: Transform
+      parent: 2
+      pos: -25.5,-51.5
+    - type: Fixtures
+      fixtures: {}
 - proto: SignMorgue
   entities:
   - uid: 18156
@@ -119748,15 +119845,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 51.5,-43.5
-    - type: Fixtures
-      fixtures: {}
-- proto: SignSalvage
-  entities:
-  - uid: 18167
-    components:
-    - type: Transform
-      parent: 2
-      pos: -25.5,-51.5
     - type: Fixtures
       fixtures: {}
 - proto: SignSecureAreaSmall
