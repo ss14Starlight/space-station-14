@@ -1,4 +1,4 @@
-﻿// ReSharper
+﻿// ReSharper disable CheckNamespace
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Ensnaring.Components;
