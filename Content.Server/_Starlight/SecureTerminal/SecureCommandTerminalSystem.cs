@@ -725,7 +725,6 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                 var escapePodConsole = AllEntityQuery<PodConsoleComponent, TransformComponent>();
                 while (escapePodConsole.MoveNext(out var ent,out var podConsole, out var xform))
                 {
-                    if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != stationUid) continue;
                     podConsole.Locked = false;
                     Dirty(ent, podConsole);
                 }
