@@ -10,43 +10,43 @@
       canReact: false
       reagents:
       - ReagentId: Dylovene
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Hyronalin
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Diphenhydramine
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Arithrazine
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Bicaridine
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Lacerinol
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Puncturase
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Bruizine
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Dermaline
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Pyrazine
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Insuzine
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Leporazine
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Sigynate
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Amoxla
-        Quantity: 200
+        Quantity: 240
       - ReagentId: DexalinPlus
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Saline
-        Quantity: 200
+        Quantity: 240
       - ReagentId: TranexamicAcid
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Inaprovaline
-        Quantity: 200
+        Quantity: 240
       - ReagentId: Epinephrine
-        Quantity: 200
+        Quantity: 240
 
 - type: entity
   parent: Solution
@@ -60,43 +60,43 @@
       canReact: false
       reagents:
       - ReagentId: Dylovene
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Hyronalin
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Diphenhydramine
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Arithrazine
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Bicaridine
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Lacerinol
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Puncturase
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Bruizine
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Dermaline
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Pyrazine
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Insuzine
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Leporazine
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Sigynate
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Amoxla
-        Quantity: 100
+        Quantity: 120
       - ReagentId: DexalinPlus
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Saline
-        Quantity: 100
+        Quantity: 120
       - ReagentId: TranexamicAcid
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Inaprovaline
-        Quantity: 100
+        Quantity: 120
       - ReagentId: Epinephrine
-        Quantity: 100
+        Quantity: 120
 
 - type: entity
   parent: PlumbingSmartDispenser
@@ -151,7 +151,7 @@
     canCollide: false
   - type: PlumbingSmartDispenser
     solutionName: fridge
-    maxPerReagent: 100
+    maxPerReagent: 120
   - type: SolutionManager
     solutions:
     - SolutionPlumbingSmartDispenserMedTakWallmountFilledFridge
