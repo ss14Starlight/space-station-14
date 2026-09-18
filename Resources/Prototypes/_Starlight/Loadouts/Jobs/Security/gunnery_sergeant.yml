@@ -10,12 +10,12 @@
     head: ClothingHeadHatBeretGunnerySergeant
 
 # Jumpsuit
-- type: loadout
-  id: GunnerySergeantJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitGunnerySergeant
+#- type: loadout
+#  id: GunnerySergeantJumpsuit
+#  equipment:
+#    jumpsuit: ClothingUniformJumpsuitGunnerySergeant
 
-# Outer Clothing
+# Jumpsuit
 - type: loadout
   id: SecurityJumpsuitBlue
   equipment:

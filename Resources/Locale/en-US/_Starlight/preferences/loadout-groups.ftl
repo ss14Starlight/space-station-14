@@ -71,6 +71,11 @@ loadout-group-k9-suitstorage = K9 oxygen tank
 
 loadout-group-detective-lethal = Detective lethal sidearm
 
+loadout-group-gunnery-sergeant-Head = Sergeant head
+loadout-group-gunnery-sergeant-jumpsuit = Sergeant jumpsuit
+loadout-group-gunnery-sergeant-outerclothing = Sergeant Outer Clothing
+loadout-group-gunnery-sergeant-neck = Sergeant Neck
+
 # Law
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit
 loadout-group-magistrate-eyewear = Magistrate eyewear
