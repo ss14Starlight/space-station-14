@@ -1,7 +1,8 @@
-﻿using Content.Shared.Ensnaring.Components;
+﻿// ReSharper
+using Content.Shared.Ensnaring.Components;
 using Robust.Shared.Physics.Events;
 
-namespace Content.Shared._Starlight.Ensnaring;
+namespace Content.Shared.Ensnaring;
 
 public abstract partial class SharedEnsnareableSystem
 {

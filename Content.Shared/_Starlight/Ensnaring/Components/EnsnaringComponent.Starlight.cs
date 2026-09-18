@@ -1,7 +1,7 @@
-﻿using Robust.Shared.GameStates;
+﻿// ReSharper
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Ensnaring.Components;
+namespace Content.Shared.Ensnaring.Components;
 
 public sealed partial class EnsnaringComponent
 {
