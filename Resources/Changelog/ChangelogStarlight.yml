@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Cork) Radio Host.
-    type: Add
-  id: 408316
-  time: '2026-09-06T10:42:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5906
-- author: Caws
-  changes:
   - message: (Cork) Moved funding allocation computer out of QM's office and into the Bridge.
     type: Tweak
   id: 408317
@@ -2799,4 +2792,11 @@ Entries:
   id: 408715
   time: '2026-09-18T12:00:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6198
+- author: Dragometh
+  changes:
+  - message: The industrial reagent grinder's pipes had their ambrosia clog cleaned and now can move reagents via plumbing again.
+    type: Fix
+  id: 408716
+  time: '2026-09-18T12:33:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6219
 Order: -1
