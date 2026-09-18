@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Destroying or deconstructing a washing machine will now dump its contents.
-    type: Fix
-  id: 408313
-  time: '2026-09-06T10:11:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5976
-- author: wonderfulnewworld
-  changes:
   - message: Fixed a missing loc when trying to pour water on the wall.
     type: Fix
   id: 408314
@@ -2799,4 +2792,11 @@ Entries:
   id: 408712
   time: '2026-09-18T11:32:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6020
+- author: Caws
+  changes:
+  - message: A reversion to the maximum number of nuclear operatives has been fixed. Alpha can still get a 6-man nukeops team above 84 players, while Beta will, at most, see a 4-man nukeops team at 56 players and Epsilon will, at most, see a 3-man nukeops team.
+    type: Fix
+  id: 408713
+  time: '2026-09-18T11:32:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6195
 Order: -1
