@@ -741,6 +741,8 @@
     sprite: Objects/Fun/Plushies/ratvar.rsi
     slots:
     - neck
+  - type: ActivateOnWearerHugged # Starlight: worn on neck, not head
+    slot: neck
   - type: FoodSequenceElement
     entries:
       CottonBurger: RatvarPlushie
@@ -763,6 +765,8 @@
     sprite: Objects/Fun/Plushies/narsie.rsi
     slots:
     - neck
+  - type: ActivateOnWearerHugged # Starlight: worn on neck, not head
+    slot: neck
   - type: FoodSequenceElement
     entries:
       CottonBurger: NarPlushie
@@ -940,6 +944,8 @@
     quickEquip: false
     slots:
     - NECK
+  - type: ActivateOnWearerHugged # Starlight: worn on neck, not head
+    slot: neck
   - type: Speech
     speechVerb: Reptilian # for pais (In the secret stash)
   - type: FoodSequenceElement
