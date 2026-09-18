@@ -74,7 +74,7 @@
     - VimPilot
     - AnomalyHost
   - type: Loadout
-    prototypes: [ MobKoboldGear ]
+    prototypes: [ MobKikiGear ]
   - type: Vocal
     sounds:
       Male: MaleReptilian
