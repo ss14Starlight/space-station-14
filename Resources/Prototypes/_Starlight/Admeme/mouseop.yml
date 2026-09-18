@@ -221,7 +221,7 @@
   equipment:
     outerClothingpin: ClothingOuterHardsuitSyndieMouseOps
     earspin: ClothingHeadsetAltSyndicateUnremovable
-    idmouse: AgentIDCard
+    idmouse: SyndiOperativeIDCard
     glovespin: ClothingHandsGlovesCombatmous
     backpin: ClothingBackpackDuffelSyndicateAmmoMouse
 
