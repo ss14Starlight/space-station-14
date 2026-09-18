@@ -1,13 +1,6 @@
 Entries:
 - author: OJG
   changes:
-  - message: Added a new alternate recipe for oppo that uses ZXA instead of cogni and plasma.
-    type: Add
-  id: 408303
-  time: '2026-09-06T06:09:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5969
-- author: OJG
-  changes:
   - message: Reduced the chances of finding ZXA cans on salvage magnet pulls.
     type: Tweak
   id: 408304
@@ -2799,4 +2792,11 @@ Entries:
   id: 408702
   time: '2026-09-18T10:34:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6179
+- author: Maitake & Citrea
+  changes:
+  - message: Some of the doll chest shells now have masculine variants.
+    type: Add
+  id: 408703
+  time: '2026-09-18T10:34:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6185
 Order: -1
