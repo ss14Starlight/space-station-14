@@ -26,3 +26,15 @@
   license: "Custom"
   copyright: "Read LICENSE-sawians for terms, Created by Orsoniks."
   source: "https://store.steampowered.com/app/4576490/Casualties_Unknown/"
+- files: ["exp_speak.ogg"]
+  license: "Custom"
+  copyright: "Read LICENSE-sawians for terms, Created by Orsoniks."
+  source: "https://store.steampowered.com/app/4576490/Casualties_Unknown/"
+- files: ["exp_ask.ogg"]
+  license: "Custom"
+  copyright: "Read LICENSE-sawians for terms, Created by Orsoniks."
+  source: "https://store.steampowered.com/app/4576490/Casualties_Unknown/"
+- files: ["exp_exclaim.ogg"]
+  license: "Custom"
+  copyright: "Read LICENSE-sawians for terms, Created by Orsoniks."
+  source: "https://store.steampowered.com/app/4576490/Casualties_Unknown/"

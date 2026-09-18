@@ -6,6 +6,7 @@
   - type: Absorbable
   - type: Speech
     speechVerb: Experiment
+    speechSounds: AllExpi
     allowedEmotes: ['Arf']
   - type: Vocal
     sounds:
