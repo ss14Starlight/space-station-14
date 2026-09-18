@@ -4,8 +4,8 @@ meta:
   engineVersion: 289.0.3
   forkId: ""
   forkVersion: ""
-  time: 09/18/2026 17:37:10
-  entityCount: 22542
+  time: 09/18/2026 18:13:48
+  entityCount: 22543
 maps:
 - 1
 grids:
@@ -8108,7 +8108,7 @@ entities:
       pos: 8.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -273399.06
+      secondsUntilStateChange: -273732.28
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -9857,7 +9857,7 @@ entities:
       pos: 2.5,-7.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -235523.14
+      secondsUntilStateChange: -235856.36
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10020,7 +10020,7 @@ entities:
       pos: -38.5,10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -287574.53
+      secondsUntilStateChange: -287907.75
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10036,7 +10036,7 @@ entities:
       pos: -36.5,-10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -287473.6
+      secondsUntilStateChange: -287806.8
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -104632,6 +104632,11 @@ entities:
     - type: Transform
       parent: 2
       pos: 16.5,27.5
+  - uid: 18563
+    components:
+    - type: Transform
+      parent: 2
+      pos: 0.5,-37.5
   - uid: 19807
     components:
     - type: Transform
@@ -117843,6 +117848,11 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -25.5,-62.5
+  - uid: 19340
+    components:
+    - type: Transform
+      parent: 2
+      pos: 0.5,-37.5
   - uid: 19805
     components:
     - type: Transform
@@ -121328,11 +121338,11 @@ entities:
       pos: 38.5,-37.5
 - proto: SpawnPointAssistantManager
   entities:
-  - uid: 22560
+  - uid: 11448
     components:
     - type: Transform
       parent: 2
-      pos: -3.5,17.5
+      pos: 44.5,-34.5
 - proto: SpawnPointAtmos
   entities:
   - uid: 18404
@@ -127537,11 +127547,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 19.5,19.5
-  - uid: 11448
-    components:
-    - type: Transform
-      parent: 2
-      pos: 0.5,-37.5
   - uid: 14042
     components:
     - type: Transform
