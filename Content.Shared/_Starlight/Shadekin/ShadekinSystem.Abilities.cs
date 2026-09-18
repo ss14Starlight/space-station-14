@@ -95,7 +95,7 @@ public sealed partial class ShadekinSystem
         if (args.User is null)
             return;
 
-        var darknet = EntityManager.PredictedSpawn(ent.Comp.DarkNet);
+        var darknet = PredictedSpawn(ent.Comp.DarkNet);
         if (TryComp<EnsnaringComponent>(darknet, out var ensnaringComp) && _ensnareable.TryEnsnare(args.User.Value, darknet, ensnaringComp))
         {
             _popup.PopupPredicted(Loc.GetString("shadekinTrap-trigger", ("user", args.User.Value)), args.User.Value, args.User.Value, PopupType.LargeCaution);

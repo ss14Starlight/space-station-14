@@ -151,7 +151,7 @@ public sealed partial class IngestionSystem
 
         foreach (var trash in trashes)
         {
-            var spawnedTrash = EntityManager.PredictedSpawn(trash, position);
+            var spawnedTrash = PredictedSpawn(trash, position); // Starlight
 
             // If the user is holding the item
             if (!pickup)
