@@ -1,67 +1,53 @@
 - type: !PartialOnly entity
-  id: SprayBottleBase
-  components:
-  - type: Solution
-    solution:
-      maxVol: 120
-
-- type: !PartialOnly entity
-  id: MegaSprayBottle
-  components:
-  - type: Solution
-    solution:
-      maxVol: 240
-
-- type: !PartialOnly entity
-  id: SprayBottleWater
+  id: PlantBGoneSpray
   components:
   - type: Solution
     solution:
       reagents: !Remove
-      - ReagentId: Water
+      - ReagentId: PlantBGone
         Quantity: 60
 
 - type: !PartialOnly entity
-  id: SprayBottleWater
+  id: PlantBGoneSpray
   components:
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Water
+      - ReagentId: PlantBGone
         Quantity: 120
 
 - type: !PartialOnly entity
-  id: SprayBottleSpaceCleaner
+  id: WeedSpray
   components:
   - type: Solution
     solution:
       reagents: !Remove
-      - ReagentId: SpaceCleaner
+      - ReagentId: WeedKiller
         Quantity: 60
 
 - type: !PartialOnly entity
-  id: SprayBottleSpaceCleaner
+  id: WeedSpray
   components:
   - type: Solution
     solution:
       reagents:
-      - ReagentId: SpaceCleaner
+      - ReagentId: WeedKiller
         Quantity: 120
 
 - type: !PartialOnly entity
-  id: MegaSprayBottleSpaceCleaner
+  id: PestSpray
   components:
   - type: Solution
     solution:
       reagents: !Remove
-      - ReagentId: SpaceCleaner
-        Quantity: 120
+      - ReagentId: PestKiller
+        Quantity: 60
 
 - type: !PartialOnly entity
-  id: MegaSprayBottleSpaceCleaner
+  id: PestSpray
   components:
   - type: Solution
     solution:
       reagents:
-      - ReagentId: SpaceCleaner
-        Quantity: 240
+      - ReagentId: PestKiller
+        Quantity: 120

@@ -1,67 +1,4 @@
 Entries:
-- author: RedSpeeds
-  changes:
-  - message: Fixed ATS nearly spawning into stations.
-    type: Fix
-  id: 408263
-  time: '2026-09-06T00:44:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5917
-- author: Johnny
-  changes:
-  - message: Ore box has bigger magnet now, pull from further away.
-    type: Tweak
-  id: 408264
-  time: '2026-09-06T00:44:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5924
-- author: Johnny
-  changes:
-  - message: Ore box can now pick up artifact fragment.
-    type: Tweak
-  id: 408265
-  time: '2026-09-06T00:44:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5924
-- author: xxhotgirl69, Doner & RedSpeeds
-  changes:
-  - message: Added new lobby art.
-    type: Add
-  id: 408266
-  time: '2026-09-06T01:11:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5928
-- author: Floximo
-  changes:
-  - message: AI Ability to reconnect to the last shunt.
-    type: Add
-  id: 408267
-  time: '2026-09-06T01:11:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5933
-- author: Conflee
-  changes:
-  - message: Added Particles to several anomalies for more visual polish. Pyro, Ice, Bluespace, Tech, Flesh, Liquid, Dark, and Shadow.
-    type: Add
-  id: 408268
-  time: '2026-09-06T01:36:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5905
-- author: Sparlight
-  changes:
-  - message: Shadekins can no longer use the olfactory (smell) implant.  They can't breathe to begin with.
-    type: Remove
-  id: 408269
-  time: '2026-09-06T01:36:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5935
-- author: stinkiestdog, Conflee
-  changes:
-  - message: Firebots will now correctly target and attempt to extinguish Reagent Fires (but not Wall Stain fires as they get stuck and bug out if you have them target those).
-    type: Tweak
-  id: 408270
-  time: '2026-09-06T01:36:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5980
-- author: wonderfulnewworld, roryflowers
-  changes:
-  - message: Added a redspace beaker that Nukie Corpsmen now spawn with.
-    type: Add
-  id: 408271
-  time: '2026-09-06T02:05:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5978
 - author: Trosling
   changes:
   - message: Changed wording in Corporate Law to be more species-ambivalent, as opposed to the prior fixation on humanoids specifically.
@@ -2799,4 +2736,67 @@ Entries:
   id: 408662
   time: '2026-09-16T22:23:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6205
+- author: Caws
+  changes:
+  - message: Revenants can no longer socially interact with stuff. The dead aren't very sociable, after all.
+    type: Fix
+  id: 408663
+  time: '2026-09-17T01:51:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6183
+- author: Caws
+  changes:
+  - message: Social interactions now have a one (1) second cooldown to mitigate spamming.
+    type: Fix
+  id: 408664
+  time: '2026-09-17T01:51:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6183
+- author: OJG
+  changes:
+  - message: (Novo Lobster) A supermatter array north of the containment engine and east of the AI core.
+    type: Add
+  id: 408665
+  time: '2026-09-17T04:56:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6148
+- author: OJG
+  changes:
+  - message: (Novo Lobster) A pipe from the new supermatter to transport products directly to atmos for either fueling the TEG or economic uses.
+    type: Add
+  id: 408666
+  time: '2026-09-17T04:56:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6148
+- author: Caws
+  changes:
+  - message: "Added a new setting: Automatically punctuate in-character messages, which is on by default. This adds a period to the end of your IC messages if you didn't put any punctuation at the end. Can be turned off under Escape -> Options -> General."
+    type: Add
+  id: 408667
+  time: '2026-09-17T16:16:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6215
+- author: Citrea
+  changes:
+  - message: Returned many reagent storage containers to more reasonable inventory sizes.
+    type: Tweak
+  id: 408668
+  time: '2026-09-17T19:18:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6109
+- author: Citrea
+  changes:
+  - message: Plumbing machines now follow the 240 unit jug standard.
+    type: Tweak
+  id: 408669
+  time: '2026-09-17T19:18:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6109
+- author: Citrea
+  changes:
+  - message: Water bottles, flasks and drink cans hold exactly one drink again.
+    type: Tweak
+  id: 408670
+  time: '2026-09-17T19:18:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6109
+- author: Trosling
+  changes:
+  - message: Cyborgification Form which releases non-essential personnel from a recent addendum to paragraph 6 of their employment contract.
+    type: Add
+  id: 408671
+  time: '2026-09-18T00:19:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6206
 Order: -1
