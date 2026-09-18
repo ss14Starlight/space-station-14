@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Cork) Removed ice crust that was on top of ice, which would get people stuck.
-    type: Fix
-  id: 408321
-  time: '2026-09-06T10:42:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5906
-- author: Caws
-  changes:
-  - message: (Cork) Removed a camera that was floating off-grid.
-    type: Fix
-  id: 408322
-  time: '2026-09-06T10:42:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5906
-- author: Caws
-  changes:
   - message: (Cork) NCT Office.
     type: Remove
   id: 408323
@@ -2799,4 +2785,18 @@ Entries:
   id: 408720
   time: '2026-09-18T12:33:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6217
+- author: ItsCharles
+  changes:
+  - message: Enable Hamster vocal emotes.
+    type: Tweak
+  id: 408721
+  time: '2026-09-18T13:02:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6196
+- author: ItsCharles
+  changes:
+  - message: Add Hamlet vocal emotes.
+    type: Add
+  id: 408722
+  time: '2026-09-18T13:02:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6196
 Order: -1
