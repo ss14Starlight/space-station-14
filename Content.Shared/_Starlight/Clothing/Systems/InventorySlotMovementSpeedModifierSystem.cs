@@ -44,9 +44,9 @@ public sealed partial class InventorySlotMovementSpeedModifierSystem : EntitySys
             var slotEnt = slot.ContainedEntity.Value;
 
             foreach (var data in from data in comp.SlotData
-                     let query = _inventory.InSlotWithAnyFlags(slotEnt, data.AffectedFlags)
-                     where query != data.Inverted
-                     select data)
+                    let query = _inventory.InSlotWithAnyFlags(slotEnt, data.AffectedFlags)
+                    where query != data.Inverted
+                    select data)
                 args.ModifySpeed(data.SpeedMod);
         }
     }

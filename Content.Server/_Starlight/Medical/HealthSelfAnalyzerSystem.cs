@@ -17,7 +17,6 @@ public sealed partial class HealthSelfAnalyzerSystem : EntitySystem
 
     private const string HealthAnalyzerBoundUserInterface = "HealthAnalyzerBoundUserInterface";
 
-
     [SubscribeLocalEvent]
     private void OnHealthSelfAnalyze(Entity<HealthSelfAnalyzerComponent> entity, ref HealthSelfAnalyzeActionEvent args)
     {
