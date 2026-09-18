@@ -368,7 +368,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatFedoraBrown
   id: ClothingHeadHatFedoraGrey
   name: grey fedora
   description: A grey fedora.
@@ -377,10 +377,21 @@
     sprite: Clothing/Head/Hats/greyfedora.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/greyfedora.rsi
-  - type: Tag
+  - type: Tag # Starlight start
     tags:
     - PetWearable
-    - CorgiWearable
+    - CorgiWearable # Starlight end
+
+- type: entity
+  parent: ClothingHeadHatFedoraBrown
+  id: ClothingHeadHatFedoraPress
+  name: press fedora
+  description: It has a little note stuck in the band saying "PRESS". Practically an all-access pass!
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/presshat.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/presshat.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -773,7 +784,7 @@
   - type: Tag
     tags:
     - PetWearable
-    - CorgiWearable
+    - CorgiWearable # Starlight
     - WhitelistChameleon
     - ClothMade
     - Recyclable
@@ -847,7 +858,7 @@
     sprite: Clothing/Head/Hats/truckershat.rsi
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseMinorContraband ] #SL EDIT, Syndie to Minor
+  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicateBlack
   name: syndicate black pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -863,7 +874,7 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseMinorContraband ] #SL EDIT, Syndie to Minor
+  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicatePink
   name: syndicate pink pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -879,7 +890,7 @@
       HeadSide : HEAD
 
 - type: entity
-  parent: [ ClothingHeadBase, BaseMinorContraband ] #SL EDIT, Syndie to Minor
+  parent: [ ClothingHeadBaseWinter, BaseMinorContraband ] # Starlight, winter protection + major contra -> minor contra
   id: ClothingHeadPyjamaSyndicateRed
   name: syndicate red pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -1084,7 +1095,7 @@
         Caustic: 0.95
 
 - type: entity
-  parent: [ClothingHeadBase, BaseMinorContraband] #SL EDIT, Syndie to Minor
+  parent: [ClothingHeadBase, BaseMinorContraband] # Starlight, major contra -> minor contra
   id: ClothingHeadHatSyndie
   name: syndicate hat
   description: A souvenir hat from "Syndieland", their production has already been closed.
@@ -1330,9 +1341,6 @@
       sprite: Clothing/Head/Hats/cowboyhatbrown.rsi
     - type: Clothing
       sprite: Clothing/Head/Hats/cowboyhatbrown.rsi
-    - type: AddAccentClothing
-      accent: ReplacementAccent
-      replacement: cowboy
     - type: Tag
       tags:
       - PetWearable

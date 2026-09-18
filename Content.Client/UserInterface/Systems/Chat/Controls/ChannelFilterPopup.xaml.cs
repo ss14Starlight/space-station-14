@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Content.Shared.Chat;
 using Content.Shared.CCVar;
@@ -11,7 +10,7 @@ using static Robust.Client.UserInterface.Controls.BaseButton;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
 #region Starlight
-using Content.Client._Starlight.TextToSpeech;
+
 #endregion
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
@@ -20,8 +19,8 @@ namespace Content.Client.UserInterface.Systems.Chat.Controls;
 public sealed partial class ChannelFilterPopup : Popup
 {
     // Starlight begin
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
     // Starlight end
     // order in which the available channel filters show up when available
     private static readonly ChatChannel[] ChannelFilterOrder =

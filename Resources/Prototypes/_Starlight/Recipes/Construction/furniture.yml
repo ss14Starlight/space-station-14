@@ -24,6 +24,32 @@
   conditions:
     - !type:TileNotBlocked
 
+- type: construction
+  id: ChairEvacSeat
+  name: construction-recipe-evac-seat
+  graph: ChairEvacSeat
+  startNode: start
+  targetNode: ChairEvacSeat
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ChairBridgeSeat
+  name: construction-recipe-bridge-seat
+  graph: ChairBridgeSeat
+  startNode: start
+  targetNode: ChairBridgeSeat
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 #comfy chairs
 - type: construction
   id: ChairComfyWhite
@@ -553,6 +579,85 @@
   conditions:
     - !type:TileNotBlocked
 
+# Round Tabels
+- type: construction
+  id: RoundTableSteel
+  name: construction-recipe-round-steel
+  graph: RoundTableSteel
+  startNode: start
+  targetNode: RoundTableSteel
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: RoundTableWood
+  name: construction-recipe-round-wood
+  graph: RoundTableWood
+  startNode: start
+  targetNode: RoundTableWood
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: RoundTableCarpet
+  name: construction-recipe-round-carpet
+  graph: RoundTableCarpet
+  startNode: start
+  targetNode: RoundTableCarpet
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: RoundTablePlastic
+  name: construction-recipe-round-plastic
+  graph: RoundTablePlastic
+  startNode: start
+  targetNode: RoundTablePlastic
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: RoundTableGlass
+  name: construction-recipe-round-glass
+  graph: RoundTableGlass
+  startNode: start
+  targetNode: RoundTableGlass
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: RoundTablePlasma
+  name: construction-recipe-round-plasma
+  graph: RoundTablePlasma
+  startNode: start
+  targetNode: RoundTablePlasma
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 # Froggy Chair
 - type: construction
   id: ChairFroggy
@@ -579,3 +684,15 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# Blinds
+- type: construction
+  id: WindowBlinds
+  name: construction-recipe-window-blinds
+  graph: WindowBlinds
+  startNode: start
+  targetNode: WindowBlinds
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true

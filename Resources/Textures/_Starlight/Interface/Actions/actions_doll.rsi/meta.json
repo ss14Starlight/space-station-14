@@ -1,0 +1,18 @@
+{
+	"version": 1,
+	"license": "CC-BY-SA-3.0",
+	"copyright": "Proto (discord @pedrohampel)",
+	"size": {
+		"x": 32,
+		"y": 32
+	},
+	"states": [
+		{
+			"name": "break_shard"
+		},
+		{
+			"name": "break_shell"
+		}
+	]
+}
+

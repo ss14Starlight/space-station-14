@@ -42,6 +42,7 @@
     - id: FullMoonHowl
     # Starlight End
     - id: MalignRiftSpawn # Funky
+    - id: UtilityLineRupture # Funky
 
 - type: entityTable
   id: BasicAntagEventsTable

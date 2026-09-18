@@ -4,7 +4,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Random;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Botany;
@@ -193,7 +192,7 @@ public partial class SeedData
     [DataField] public bool Viable = true;
 
     /// <summary>
-    ///     If true, a sharp tool is required to harvest this plant.
+    ///     If true, a tool with sliceable quality is required to harvest this plant.
     /// </summary>
     [DataField] public bool Ligneous;
 

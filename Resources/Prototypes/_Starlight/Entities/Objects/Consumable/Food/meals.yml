@@ -17,17 +17,16 @@
       layers:
         - state: plate
         - state: LizardCooked
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 30
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 10
-            - ReagentId: Protein
-              Quantity: 10
-            - ReagentId: Vitamin
-              Quantity: 10
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 10
+          - ReagentId: Protein
+            Quantity: 10
+          - ReagentId: Vitamin
+            Quantity: 10
     - type: Tag
       tags:
         - Meat
@@ -48,19 +47,18 @@
       sprite: _Starlight/Objects/Consumable/Food/friedNoid.rsi
       layers:
         - state: FriedNoidCooked
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 5
-            - ReagentId: Protein
-              Quantity: 10
-            - ReagentId: Vitamin
-              Quantity: 2
-            - ReagentId: Ephedrine
-              Quantity: 3
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 5
+          - ReagentId: Protein
+            Quantity: 10
+          - ReagentId: Vitamin
+            Quantity: 2
+          - ReagentId: Ephedrine
+            Quantity: 3
     - type: Tag
       tags:
         - Meat
@@ -81,17 +79,16 @@
       sprite: _Starlight/Objects/Consumable/Food/friedRodentia.rsi
       layers:
         - state: fried-rodentia
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 5
-            - ReagentId: Protein
-              Quantity: 5
-            - ReagentId: Vitamin
-              Quantity: 10
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 5
+          - ReagentId: Protein
+            Quantity: 5
+          - ReagentId: Vitamin
+            Quantity: 10
     - type: Tag
       tags:
         - Meat
@@ -112,13 +109,12 @@
       sprite: _Starlight/Objects/Consumable/Food/thaslop.rsi
       layers:
         - state: thaslop
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 30
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 20
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 20
     - type: Tag
       tags:
         - Meat
@@ -142,15 +138,14 @@
       sprite: _Starlight/Objects/Consumable/Food/plate.rsi
       layers:
         - state: charcuterie
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 38.25
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 29.25
-            - ReagentId: Protein
-              Quantity: 6
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 29.25
+          - ReagentId: Protein
+            Quantity: 6
     - type: Tag
       tags:
         - Meat
@@ -174,15 +169,14 @@
       sprite: _Starlight/Objects/Consumable/Food/khlavkalash.rsi
       layers:
         - state: khlavkalash
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 15
-            - ReagentId: TableSalt
-              Quantity: 2
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 15
+          - ReagentId: TableSalt
+            Quantity: 2
     - type: Tag
       tags:
       - Meat
@@ -205,13 +199,12 @@
       layers:
         - state: bowl
         - state: blindingstew
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 48
-          reagents:
-            - ReagentId: BlindingStew
-              Quantity: 48
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: BlindingStew
+            Quantity: 48
 
 - type: entity
   parent: [FoodNoodlesBase, BaseMajorContraband]
@@ -233,17 +226,16 @@
       - state: veins
       - state: glow
         shader: unshaded
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 30
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 15
-        - ReagentId: Protein
-          Quantity: 10
-        - ReagentId: Vitamin
-          Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 15
+      - ReagentId: Protein
+        Quantity: 10
+      - ReagentId: Vitamin
+        Quantity: 10
   - type: Tag
     tags:
     - Meat
@@ -266,15 +258,14 @@
       sprite: _Starlight/Objects/Consumable/Food/pelmeni.rsi
       layers:
         - state: pelmeni
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 24
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 16
-            - ReagentId: Protein
-              Quantity: 8
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 16
+          - ReagentId: Protein
+            Quantity: 8
     - type: Tag
       tags:
         - Meat
@@ -297,15 +288,14 @@
       sprite: _Starlight/Objects/Consumable/Food/empanadas.rsi
       layers:
         - state: empanadas
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 24
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 16
-            - ReagentId: Protein
-              Quantity: 8
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 16
+          - ReagentId: Protein
+            Quantity: 8
     - type: Tag
       tags:
         - Meat
@@ -329,15 +319,14 @@
       sprite: _Starlight/Objects/Consumable/Food/crab_rangoons.rsi
       layers:
         - state: crab_rangoons
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 24
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 16
-            - ReagentId: Protein
-              Quantity: 8
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 16
+          - ReagentId: Protein
+            Quantity: 8
     - type: Tag
       tags:
         - Meat
@@ -360,15 +349,14 @@
       sprite: _Starlight/Objects/Consumable/Food/karelian_Pastries.rsi
       layers:
         - state: karelian_pastries
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 24
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 16
-            - ReagentId: Protein
-              Quantity: 8
+    - type: Solution
+      id: food
+      solution:
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 16
+          - ReagentId: Protein
+            Quantity: 8
     - type: Tag
       tags:
         - Meat

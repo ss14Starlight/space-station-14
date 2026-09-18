@@ -6,6 +6,21 @@ construction-recipe-comfy-chair-green = comfy chair (green)
 construction-recipe-comfy-chair-red = comfy chair (red)
 construction-recipe-comfy-chair-brown = comfy chair (brown)
 
+# Chairs
+construction-recipe-evac-seat = evac seat
+construction-recipe-bridge-seat = bridge seat
+
+# Tables
+construction-recipe-round-steel = round steel table
+construction-recipe-round-wood = round wood table
+construction-recipe-round-carpet = round carpeted table
+construction-recipe-round-plastic = round plastic table
+construction-recipe-round-glass = round glass table
+construction-recipe-round-plasma = round plasma table
+
+# Misc
+construction-recipe-window-blinds = window blinds
+
 ## Benches
 construction-recipe-white-comf-bench = comfortable bench (white)
 construction-recipe-comfy-bench-white-corner = comfortable bench (white, corner)

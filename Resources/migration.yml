@@ -811,3 +811,7 @@ OrganSkeletonPersonArmRight: RightArmSkeleton
 #TowelColorSilver: null
 #TowelColorMime: null
 # Starlight end
+
+# 2026-03-28
+# The great solutions YAML nuke
+FoodMeatSnail: MobSnail

@@ -2,7 +2,7 @@
 
 # Raw Pita
 - type: entity
-  parent: FoodBakingBase
+  parent: [SolutionNormal, FoodBakingBase]
   id: FoodDoughPita
   name: pita dough
   description: A twice-flattened piece of wheat dough.
@@ -21,13 +21,12 @@
   - type: Construction # made by rolling a dough rope a second time
     graph: DoughRope
     node: flattened
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 3
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 2
 
 # Pita
 - type: entity
@@ -44,13 +43,12 @@
     sprite: _Starlight/Objects/Consumable/Food/pita.rsi
     layers:
     - state: pita
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 8
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 2
 
 # Falafel
 - type: entity
@@ -68,17 +66,16 @@
     sprite: _Starlight/Objects/Consumable/Food/falafel.rsi
     layers:
     - state: icon
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 16
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 7
-        - ReagentId: Hummus
-          Quantity: 5
-        - ReagentId: Protein
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 7
+      - ReagentId: Hummus
+        Quantity: 5
+      - ReagentId: Protein
+        Quantity: 2
 
 # Hummus
 - type: entity
@@ -98,19 +95,18 @@
     layers:
       - state: bowl
       - state: hummus
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Hummus
-          Quantity: 10
-        - ReagentId: TableSalt
-          Quantity: 1
-        - ReagentId: OilOlive
-          Quantity: 1
-        - ReagentId: Nutriment
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Hummus
+        Quantity: 10
+      - ReagentId: TableSalt
+        Quantity: 1
+      - ReagentId: OilOlive
+        Quantity: 1
+      - ReagentId: Nutriment
+        Quantity: 2
 
 # (Chicken) Shawarma
 - type: entity
@@ -134,21 +130,20 @@
     sprite: _Starlight/Objects/Consumable/Food/pita.rsi
     layers:
     - state: shawarma
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 40
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 20
-        - ReagentId: Hummus
-          Quantity: 5
-        - ReagentId: Protein
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 4
-        - ReagentId: Allicin
-          Quantity: 1
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 20
+      - ReagentId: Hummus
+        Quantity: 5
+      - ReagentId: Protein
+        Quantity: 2
+      - ReagentId: Vitamin
+        Quantity: 4
+      - ReagentId: Allicin
+        Quantity: 1
   - type: Tag
     tags:
     - Meat
@@ -176,21 +171,20 @@
     sprite: _Starlight/Objects/Consumable/Food/pita.rsi
     layers:
     - state: falafel
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 40
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 21.75
-        - ReagentId: Hummus
-          Quantity: 5
-        - ReagentId: Allicin
-          Quantity: 1
-        - ReagentId: Vitamin
-          Quantity: 4
-        - ReagentId: Protein
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 21.75
+      - ReagentId: Hummus
+        Quantity: 5
+      - ReagentId: Allicin
+        Quantity: 1
+      - ReagentId: Vitamin
+        Quantity: 4
+      - ReagentId: Protein
+        Quantity: 2
 
 # Souvlaki
 - type: entity
@@ -214,19 +208,18 @@
     sprite: _Starlight/Objects/Consumable/Food/pita.rsi
     layers:
     - state: souvlaki
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 40
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 23
-        - ReagentId: Allicin
-          Quantity: 5
-        - ReagentId: Vitamin
-          Quantity: 8
-        - ReagentId: Protein
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 23
+      - ReagentId: Allicin
+        Quantity: 5
+      - ReagentId: Vitamin
+        Quantity: 8
+      - ReagentId: Protein
+        Quantity: 2
   - type: Tag
     tags:
     - Meat
@@ -252,26 +245,25 @@
     sprite: _Starlight/Objects/Consumable/Food/pita.rsi
     layers:
     - state: doner
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 41
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 21
-        - ReagentId: Vitamin
-          Quantity: 7
-        - ReagentId: Protein
-          Quantity: 2
-        - ReagentId: Hummus
-          Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 21
+      - ReagentId: Vitamin
+        Quantity: 7
+      - ReagentId: Protein
+        Quantity: 2
+      - ReagentId: Hummus
+        Quantity: 10
   - type: Tag
     tags:
     - Meat
 
 # Turkish Delight
 - type: entity
-  parent: FoodInjectableBase
+  parent: [SolutionNormal, FoodInjectableBase, BaseSlicingRefinableFood]
   id: FoodTurkishDelight
   name: uncut turkish delight
   description: A massive, wobbling gelatin dessert. May contains nuts.
@@ -287,25 +279,25 @@
     - state: uncut
   - type: Edible
     transferAmount: 3
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 48
-        reagents:
-        - ReagentId: Sugar
-          Quantity: 35
-        - ReagentId: Nutriment
-          Quantity: 5
-  - type: SliceableFood
-    count: 8
-    slice: FoodTurkishDelightCube
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 35
+      - ReagentId: Nutriment
+        Quantity: 5
+  - type: ToolRefinable
+    refineResult:
+    - id: FoodTurkishDelightCube
+      amount: 8
   - type: Item
     size: Normal
     shape:
     - 0,0,2,1
 
 - type: entity
-  parent: FoodInjectableBase
+  parent: [SolutionTiny, FoodInjectableBase]
   id: FoodTurkishDelightCube
   name: turkish delight
   description: A tiny, wobbling gelatin dessert. May contains nuts.
@@ -321,14 +313,13 @@
     - state: cube
   - type: Edible
     transferAmount: 3
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 6
-        reagents:
-        - ReagentId: Sugar
-          Quantity: 4.375
-        - ReagentId: Nutriment
-          Quantity: 0.625
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 4.375
+      - ReagentId: Nutriment
+        Quantity: 0.625
   - type: Item
     size: Tiny

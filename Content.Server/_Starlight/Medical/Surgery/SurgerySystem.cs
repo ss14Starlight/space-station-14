@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Shared.Body.Part;
@@ -12,6 +12,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Damage.Systems;
+using Content.Shared.StatusEffectNew;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 
@@ -28,6 +29,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private ContainerSystem _containers = default!;
     [Dependency] private SleepingSystem _sleeping = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()

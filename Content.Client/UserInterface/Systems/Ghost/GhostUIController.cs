@@ -1,4 +1,3 @@
-using Content.Client.Gameplay;
 using Content.Client.Ghost;
 using Content.Client.Lobby; //🌟Starlight🌟
 using Content.Client.UserInterface.Systems.Gameplay;

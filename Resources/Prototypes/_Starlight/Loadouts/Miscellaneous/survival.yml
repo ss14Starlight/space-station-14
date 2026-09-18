@@ -15,6 +15,13 @@
     - NeoDwarf
 
 - type: loadoutEffectGroup
+  id: OxygenBreatherHaemovore
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Doll
+
+- type: loadoutEffectGroup
   id: EffectsSpeciesRodentia
   effects:
   - !type:SpeciesLoadoutEffect
@@ -44,7 +51,7 @@
     proto: ElfOxygenBreather
   storage:
     back:
-    - BoxSurvival
+    - BoxSurvivalNonBreather
     - BookOfCantrips
 
 - type: loadout
@@ -55,6 +62,15 @@
   storage:
     back:
     - BoxSurvivalDwarf
+
+- type: loadout
+  id: EmergencyOxygenBlood
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreatherHaemovore
+  storage:
+    back:
+    - BoxSurvivalBlood
 
 - type: loadout
   id: EmergencyNonBreather
@@ -81,7 +97,7 @@
     proto: ElfOxygenBreather
   storage:
     back:
-    - BoxHugNonBreather
+    - BoxSurvival
     - BookOfCantrips
 
 
@@ -93,6 +109,15 @@
   storage:
     back:
     - BoxHugDwarf
+
+- type: loadout
+  id: EmergencyOxygenClownBlood
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreatherHaemovore
+  storage:
+    back:
+    - BoxHugBlood
 
 - type: loadout
   id: EmergencyElfOxygenMime
@@ -112,6 +137,15 @@
   storage:
     back:
     - BoxMimeDwarf
+
+- type: loadout
+  id: EmergencyOxygenMimeBlood
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreatherHaemovore
+  storage:
+    back:
+    - BoxHugBlood
 
 - type: loadout
   id: EmergencyNonBreatherMime
@@ -151,6 +185,15 @@
     - BoxSurvivalEngineeringDwarf
 
 - type: loadout
+  id: EmergencyOxygenExtendedBlood
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreatherHaemovore
+  storage:
+    back:
+    - BoxSurvivalEngineeringBlood
+
+- type: loadout
   id: EmergencyNonBreatherMedical
   effects:
   - !type:GroupLoadoutEffect
@@ -177,6 +220,15 @@
   storage:
     back:
     - BoxSurvivalMedicalDwarf
+
+- type: loadout
+  id: EmergencyOxygenMedicalBlood
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreatherHaemovore
+  storage:
+    back:
+    - BoxSurvivalMedicalBlood
 
 - type: loadoutEffectGroup
   id: ElfOxygenBreather
@@ -215,6 +267,15 @@
     - BoxSurvivalSecurityDwarf
 
 - type: loadout
+  id: EmergencyOxygenSecurityBlood
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreatherHaemovore
+  storage:
+    back:
+    - BoxSurvivalSecurityBlood
+
+- type: loadout
   id: EmergencyNonBreatherSyndicate
   effects:
   - !type:GroupLoadoutEffect
@@ -243,6 +304,15 @@
     - BoxSurvivalSyndicate # no dwarf version; doesn't include a drink
 
 - type: loadout
+  id: EmergencyOxygenSyndicateBlood
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreatherHaemovore
+  storage:
+    back:
+    - BoxSurvivalSyndicateBlood
+
+- type: loadout
   id: EmergencyElfOxygenMilitaryDouble
   effects:
   - !type:GroupLoadoutEffect
@@ -260,6 +330,15 @@
   storage:
     back:
     - BoxSurvivalMilitaryDouble # no dwarf version; doesn't include a drink
+
+- type: loadout
+  id: EmergencyOxygenMilitaryDoubleBlood
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreatherHaemovore
+  storage:
+    back:
+    - BoxSurvivalMilitaryDoubleBlood
 
 # Rodentia Cheese Loadouts
 - type: loadout

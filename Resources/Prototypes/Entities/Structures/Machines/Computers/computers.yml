@@ -722,6 +722,7 @@
     - Engineering
     - Law
     - NanoTrasen
+    - ITG
   # Starlight-edit: End
     privilegedIdSlot:
       name: id-card-console-privileged-id
@@ -1348,7 +1349,7 @@
     key: enum.FundingAllocationConsoleUiKey.Key
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
-    access: [["HeadOfPersonnel"], ["Quartermaster"]] #Starlight edit: added Quatermaster
+    access: [["HeadOfPersonnel"]]
   - type: UserInterface
     interfaces:
       enum.FundingAllocationConsoleUiKey.Key:

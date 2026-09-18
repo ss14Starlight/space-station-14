@@ -1,9 +1,8 @@
-using Content.Server._NullLink;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.EventBus;
 using Content.Server._NullLink.PlayerData;
 using Content.Server._Starlight;
-using Content.Server._Starlight.BugReports; // Staright
+using Content.Server._Starlight.BugReports;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Server.Acz;
 using Content.Server.Administration;
@@ -34,7 +33,6 @@ using Content.Server.Voting.Managers;
 using Content.Shared._NullLink;
 using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.CCVar;
-using Content.Shared.FeedbackSystem;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
 using Robust.Server;
@@ -246,8 +244,9 @@ namespace Content.Server.Entry
             }
 
             _serverApi.Shutdown();
-            // TODO Should this be awaited?
-            _discordLink.Shutdown();
+
+            // We don't care when or how this finishes, just spin the task off into the void.
+            _ = _discordLink.Shutdown();
             _discordChatLink.Shutdown();
             // Nullink start
             _nullLinkPlayerManager.Shutdown();

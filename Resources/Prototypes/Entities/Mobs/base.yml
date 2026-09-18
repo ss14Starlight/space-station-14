@@ -3,6 +3,7 @@
   abstract: true
   save: false
   id: BaseControllable
+  parent: [SocialInteractionGiver, SocialInteractionReceiverComplex] # Starlight
   components:
   # Starlight-start
   - type: LanguageSpeaker
@@ -172,6 +173,7 @@
       - ActionCritSuccumb
       - ActionCritFakeDeath
       - ActionCritLastWords
+  - type: StoreDamageTakenOnMind
   - type: Deathgasp
   - type: HealthExaminable
     examinableTypes:
@@ -194,6 +196,8 @@
   - type: LightningTarget
     priority: 2
     lightningExplode: false
+  - type: GhostOnMove
+    mustBeDead: true
 
 # Used for mobs that can enter combat mode and can attack.
 - type: entity
@@ -307,7 +311,7 @@
   id: MobBloodstream
   abstract: true
   components:
-  - type: SolutionContainerManager
+  - type: SolutionManager
   - type: InjectableSolution
     solution: bloodstream
   - type: Bloodstream
