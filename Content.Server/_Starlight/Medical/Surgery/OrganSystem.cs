@@ -180,8 +180,14 @@ public sealed partial class OrganSystem : EntitySystem
                 ent.Comp.Markings.Remove(key);
         }
         else
-            foreach(var markingProto in ent.Comp.AppliedMarkings)
-                UpdateMarking(ent, args.Body, args.Part, markingProto, true);
+        {
+            if(TryComp(args.Body, out ShellComponent? shell))
+                foreach (var marking in shell.OriginalMarkings)
+                    UpdateMarking(args.Body, args.Part, marking.MarkingId, marking.MarkingColors, isGlowing: marking.IsGlowing, add: true);
+            else
+                foreach (var markingProto in ent.Comp.AppliedMarkings)
+                    UpdateMarking(args.Body, args.Part, markingProto, new List<Color>(), isGlowing: ent.Comp.IsGlowing, add: true);
+        }
 
         UpdateEntity(args.Body, ent.Comp);
     }
@@ -216,7 +222,7 @@ public sealed partial class OrganSystem : EntitySystem
         }
         else
             foreach(var markingProto in ent.Comp.AppliedMarkings)
-                UpdateMarking(ent, args.Body, args.Part, markingProto, false);
+                UpdateMarking(args.Body, args.Part, markingProto, new List<Color>(), isGlowing: ent.Comp.IsGlowing, add: false);
 
         UpdateEntity(args.Body, ent.Comp);
     }
@@ -253,7 +259,7 @@ public sealed partial class OrganSystem : EntitySystem
         }
     }
 
-    private void UpdateMarking(Entity<MarkingOrganComponent> ent, EntityUid targetBody, EntityUid targetPart, string marking, bool add = true)
+    private void UpdateMarking(EntityUid targetBody, EntityUid targetPart, string marking, IReadOnlyList<Color> colors, bool isGlowing = false, bool add = true)
     {
         if (!_markingManager.Markings.TryGetValue(marking, out var prototype))
             return;
@@ -265,7 +271,7 @@ public sealed partial class OrganSystem : EntitySystem
             return;
 
         if(add)
-            _humanoidAppearanceSystem.AddMarking(targetBody, marking, ent.Comp.IsGlowing, forced: true);
+            _humanoidAppearanceSystem.AddMarking(targetBody, marking, colors, isGlowing, forced: true);
         else
             _humanoidAppearanceSystem.RemoveMarking(targetBody, marking);
 
@@ -394,17 +400,22 @@ public sealed partial class OrganSystem : EntitySystem
     {
         if (TryComp<SpeechComponent>(args.Body, out var speech))
         {
-            speech.AllowedEmotes = ent.Comp.AllowedEmotes;
+            var emotes = speech.AllowedEmotes.Union(ent.Comp.AllowedEmotes);
+            speech.AllowedEmotes = emotes.ToList();
             if (ent.Comp.AllowAllVocalEmotes)
-                speech.AllowedEmotes =
-                [
-                    .. ProtoMan.EnumeratePrototypes<EmotePrototype>().Where(emote => emote.Category.HasFlag(EmoteCategory.Vocal))
-                        .Select(emote => (ProtoId<EmotePrototype>)emote.ID)
-                ];
+            {
+                var allVocalEmotes =
+                    ProtoMan.EnumeratePrototypes<EmotePrototype>()
+                        .Where(emote => emote.Category.HasFlag(EmoteCategory.Vocal))
+                        .Select(emote => (ProtoId<EmotePrototype>)emote.ID).Except(speech.AllowedEmotes);
+                speech.AllowedEmotes = allVocalEmotes.ToList();
+            }
+
+            ;
             Dirty(args.Body, speech);
         }
 
-        if (TryComp<VocalComponent>(args.Body, out var vocal))
+        if (TryComp<VocalComponent>(args.Body, out var vocal) && vocal.EmoteSounds == null)
             _vocal.SetSounds((args.Body, vocal), ent.Comp.Sounds);
         if (HasComp<AbductorComponent>(args.Body) || !ent.Comp.IsMuted) return;
         RemComp<MutedComponent>(args.Body);
@@ -414,11 +425,20 @@ public sealed partial class OrganSystem : EntitySystem
     {
         if (TryComp<SpeechComponent>(args.Body, out var speech))
         {
-            speech.AllowedEmotes = new();
+            var emotes = speech.AllowedEmotes.Except(ent.Comp.AllowedEmotes);
+            speech.AllowedEmotes = emotes.ToList();
+            if (ent.Comp.AllowAllVocalEmotes)
+            {
+                var allVocalEmotes =
+                    ProtoMan.EnumeratePrototypes<EmotePrototype>()
+                        .Where(emote => emote.Category.HasFlag(EmoteCategory.Vocal))
+                        .Select(emote => (ProtoId<EmotePrototype>)emote.ID).Except(speech.AllowedEmotes);
+                speech.AllowedEmotes = speech.AllowedEmotes.Except(allVocalEmotes).ToList();
+            }
             Dirty(args.Body, speech);
         }
 
-        if (TryComp<VocalComponent>(args.Body, out var vocal))
+        if (TryComp<VocalComponent>(args.Body, out var vocal) && ent.Comp.Sounds != null)
             _vocal.SetSounds((args.Body, vocal), null);
 
         ent.Comp.IsMuted = HasComp<MutedComponent>(args.Body);

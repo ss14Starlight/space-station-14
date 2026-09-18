@@ -75,7 +75,8 @@
       SheetPrinter: 100
   - type: Tag
     tags:
-    - Paper # SL End
+    - Paper
+  - type: HeldIdentityBlocker # SL End
 
 # Newspapers
 
