@@ -1,7 +1,7 @@
 ﻿using Content.Shared.Ensnaring.Components;
 using Robust.Shared.Physics.Events;
 
-namespace Content.Shared.Ensnaring;
+namespace Content.Shared._Starlight.Ensnaring;
 
 public abstract partial class SharedEnsnareableSystem
 {
