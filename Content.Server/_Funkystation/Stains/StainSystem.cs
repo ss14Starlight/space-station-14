@@ -9,7 +9,6 @@ namespace Content.Server._Funkystation.Stains;
 public sealed partial class StainSystem : SharedStainSystem
 {
     [Dependency] private TagSystem _tag = null!;
-    [Dependency] private FlammableStainsSystem _flammableStains = null!; // Starlight
 
     private static readonly ProtoId<TagPrototype> Tag = "DNASolutionScannable";
 
@@ -18,6 +17,5 @@ public sealed partial class StainSystem : SharedStainSystem
         base.OnStained(ent, solution);
 
         _tag.AddTag(ent.Owner, Tag);
-        _flammableStains.OnStained(ent.Owner, solution.Comp.Solution); // Starlight
     }
 }

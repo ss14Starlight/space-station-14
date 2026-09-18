@@ -34,7 +34,6 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
 using Content.Server._Starlight.NPC.Queries.Considerations;
 using Content.Shared.Projectiles;
-using Content.Shared.Tag; // Persistence: Firebots can target reagent fires
 
 namespace Content.Server.NPC.Systems;
 
@@ -63,7 +62,6 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
     private EntityQuery<PuddleComponent> _puddleQuery;
     private EntityQuery<TransformComponent> _xformQuery;
-    private static readonly ProtoId<TagPrototype> _reagentFireTag = "ReagentFire";
 
     private ObjectPool<HashSet<EntityUid>> _entPool =
         new DefaultObjectPool<HashSet<EntityUid>>(new SetPolicy<EntityUid>(), 256);
@@ -370,11 +368,6 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 {
                     if (TryComp(targetUid, out FlammableComponent? fire) && fire.OnFire)
                         return 1f;
-
-                    // Persistence Start: Firebots can target reagent fires
-                    if (TryComp(targetUid, out TagComponent? tags) && tags.Tags.AsReadOnly().Contains(_reagentFireTag))
-                        return 1f;
-                    // Persistence End
 
                     return 0f;
                 }

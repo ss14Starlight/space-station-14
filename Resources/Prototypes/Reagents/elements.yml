@@ -131,7 +131,6 @@
   physicalDesc: reagent-physical-desc-gaseous
   flavor: bitter
   color: "#cccccc"
-  flammability: 3 # Funky change
   boilingPoint: -253.0
   meltingPoint: -259.2
 
