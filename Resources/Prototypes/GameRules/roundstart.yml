@@ -195,6 +195,7 @@
       proto: NukeopsMedic
     - !type:LinearAntagCount
       proto: NukeopsOperative
+      playerRatio: 14 # Starlight - 3-man team on Epsilon, 4-man team on Beta max, 6-man team on ALpha max.
       range:
         min: 1
         max: 4 # Starlight
