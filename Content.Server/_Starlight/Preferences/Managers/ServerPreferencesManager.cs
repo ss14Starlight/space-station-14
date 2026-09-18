@@ -20,7 +20,6 @@ public sealed partial class ServerPreferencesManager
     [Dependency] private IChatManager _chat = null!;
     [Dependency] private IAdminManager _admin = null!;
     [Dependency] private IAdminLogManager _aLog = null!;
-    [Dependency] private AutoDiscordLogSystem _discord = null!;
 
     public async Task<PlayerPreferences?> GetProfileDataForPlayerAsync(NetUserId targetPlayer,
         CancellationToken cancel)
@@ -179,7 +178,7 @@ public sealed partial class ServerPreferencesManager
         var message = $"{session} has updated character preferences for {target.UserId}.";
         _aLog.Add(LogType.AdminCommands, LogImpact.High, $"{message}");
         _chat.SendAdminAnnouncement($"{message}");
-        _discord.LogToDiscord(message);
+        IoCManager.Resolve<AutoDiscordLogSystem>().LogToDiscord(message); // Yes this needs to be resolved here, IDK why.
         return true;
     }
 }
