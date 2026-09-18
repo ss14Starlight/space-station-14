@@ -221,3 +221,19 @@
   - type: Vinyl
     song:
       path: /Audio/_Starlight/RadioStation/Vinyls/music/damper_ii.ogg
+
+- type: entity
+  parent: BaseVinylDisc
+  id: VinylCathode
+  name: "vinyl: Cathode"
+  description: "A retro-inspired electronic track with an energetic rhythm. By: Beptol Corporation Acoustics" #SL  Addition
+  components:
+  - type: Sprite
+    state: default
+    layers:
+    - state: default
+    - state: label
+      color: "#d1382f"
+  - type: Vinyl
+    song:
+      path: /Audio/_Starlight/RadioStation/Vinyls/music/Cathode.ogg

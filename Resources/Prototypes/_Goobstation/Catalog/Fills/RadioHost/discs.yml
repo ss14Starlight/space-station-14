@@ -177,6 +177,7 @@
     - id: VinylVadeRetro
     - id: VinylConcreteFlavoured
     - id: VinylDamperII
+    - id: VinylCathode
     #Starlight-end
 
 - type: entityTable
