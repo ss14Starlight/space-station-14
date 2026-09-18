@@ -124,6 +124,13 @@
         /// </summary>
         NameColor = 1 << 21,
 
+        #region Starlight
+
+        /// Permits the editing of player preferences.
+        Prefs = 1 << 22,
+
+        #endregion
+
         /// <summary>
         ///     Dangerous permissions like loading prototypes.
         /// </summary>

@@ -476,7 +476,7 @@ namespace Content.Server.Administration.Systems
                 {
                     if (_prefsManager is ServerPreferencesManager prefs)
                     {
-                        if (_adminManager.HasAdminFlag(player, AdminFlags.Mapping)) // EC+ or equivalent
+                        if (_adminManager.HasAdminFlag(player, AdminFlags.Prefs))
                         {
                             args.Verbs.Add(new Verb
                             {
