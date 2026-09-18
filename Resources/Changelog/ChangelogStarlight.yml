@@ -1,13 +1,6 @@
 Entries:
 - author: OJG
   changes:
-  - message: Reduced the chances of finding ZXA cans on salvage magnet pulls.
-    type: Tweak
-  id: 408304
-  time: '2026-09-06T06:09:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5969
-- author: OJG
-  changes:
   - message: Removed cargo ZXA purchase options.
     type: Tweak
   id: 408305
@@ -2799,4 +2792,11 @@ Entries:
   id: 408703
   time: '2026-09-18T10:34:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6185
+- author: RedSpeeds
+  changes:
+  - message: Fixed being muted at the time of cloning or transforming.
+    type: Fix
+  id: 408704
+  time: '2026-09-18T11:06:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6189
 Order: -1
