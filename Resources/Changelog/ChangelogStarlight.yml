@@ -1,60 +1,4 @@
 Entries:
-- author: OJG
-  changes:
-  - message: Removed cargo ZXA purchase options.
-    type: Tweak
-  id: 408305
-  time: '2026-09-06T06:09:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5969
-- author: STARLIGHT TEAM
-  changes:
-  - message: Clarified wording for some SOPs and added structure on permits for department-restricted items.
-    type: Tweak
-  id: 408306
-  time: '2026-09-06T08:27:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6002
-- author: OJG
-  changes:
-  - message: Diona nymph vent migrations.
-    type: Add
-  id: 408307
-  time: '2026-09-06T10:11:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5971
-- author: OJG
-  changes:
-  - message: Generic diona nymph ghostroles.
-    type: Add
-  id: 408308
-  time: '2026-09-06T10:11:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5971
-- author: OJG
-  changes:
-  - message: Crab vent migrations.
-    type: Add
-  id: 408309
-  time: '2026-09-06T10:11:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5971
-- author: wonderfulnewworld
-  changes:
-  - message: Most alcohols are no longer flammable.
-    type: Tweak
-  id: 408310
-  time: '2026-09-06T10:11:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5976
-- author: wonderfulnewworld
-  changes:
-  - message: Neocyte frames are no longer stainable.
-    type: Tweak
-  id: 408311
-  time: '2026-09-06T10:11:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5976
-- author: wonderfulnewworld
-  changes:
-  - message: Washing machines can now be access locked. One for each department has been added, with flatpacks being added to Cap and HoS's lockers respectively, and CMO's generic one being replaced with a medical one.
-    type: Tweak
-  id: 408312
-  time: '2026-09-06T10:11:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5976
 - author: wonderfulnewworld
   changes:
   - message: Destroying or deconstructing a washing machine will now dump its contents.
@@ -2799,4 +2743,60 @@ Entries:
   id: 408704
   time: '2026-09-18T11:06:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6189
+- author: SirLutz
+  changes:
+  - message: Holydamage now affects Malign Minions, Colossus and malign secret doors, buff to regular and ERT chaplains.
+    type: Add
+  id: 408705
+  time: '2026-09-18T11:32:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6020
+- author: SirLutz
+  changes:
+  - message: MalignStructure damagemodifierset and container so holy damage interacts.
+    type: Add
+  id: 408706
+  time: '2026-09-18T11:32:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6020
+- author: SirLutz
+  changes:
+  - message: New icons for Metaphysical and Holy for medhud.
+    type: Add
+  id: 408707
+  time: '2026-09-18T11:32:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6020
+- author: SirLutz
+  changes:
+  - message: Malign Parasitic anomaly, now adds the CosmicCult faction to the player, and removes it on loss.
+    type: Add
+  id: 408708
+  time: '2026-09-18T11:32:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6020
+- author: SirLutz
+  changes:
+  - message: Colossus Mindsink now transfers on gibbing.
+    type: Add
+  id: 408709
+  time: '2026-09-18T11:32:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6020
+- author: SirLutz
+  changes:
+  - message: Plague doctor reduces zombie infection chance, Hat 5%, Mask 10%, Suit 20%, wearing all gives ~36% infection protection.
+    type: Tweak
+  id: 408710
+  time: '2026-09-18T11:32:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6020
+- author: SirLutz
+  changes:
+  - message: Cerberus now uses the correct sounds for emotes, and not just the bark for everything.
+    type: Add
+  id: 408711
+  time: '2026-09-18T11:32:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6020
+- author: SirLutz
+  changes:
+  - message: Chaplain can now cleanse empowered rifts aswell.
+    type: Add
+  id: 408712
+  time: '2026-09-18T11:32:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6020
 Order: -1
