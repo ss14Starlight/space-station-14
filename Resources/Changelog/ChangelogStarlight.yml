@@ -1,11 +1,4 @@
 Entries:
-- author: qbrx
-  changes:
-  - message: Abductor victims are now correctly parented to the appropriate grid when returned from the Experimentator.
-    type: Fix
-  id: 408302
-  time: '2026-09-06T06:09:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6001
 - author: OJG
   changes:
   - message: Added a new alternate recipe for oppo that uses ZXA instead of cogni and plasma.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408701
   time: '2026-09-18T09:54:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6178
+- author: Pickra
+  changes:
+  - message: Pun Pun and Kiki now start with a satchel and a survival kit.
+    type: Tweak
+  id: 408702
+  time: '2026-09-18T10:34:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6179
 Order: -1
