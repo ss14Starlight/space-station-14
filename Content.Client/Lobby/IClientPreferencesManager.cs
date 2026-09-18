@@ -22,7 +22,9 @@ namespace Content.Client.Lobby
         void DeleteCharacter(int slot);
         void UpdateConstructionFavorites(List<ProtoId<ConstructionPrototype>> favorites);
         void UpdateJobPriorities(Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities);
-        // Starlight begin
+
+        #region Starlight
+
         void SetCharacterEnableForPrefs(int slot, MsgOpenPlayerCharacterSetup playerData, bool enable = true);
         void UpdateCharacterForPrefs(HumanoidCharacterProfile profile, MsgOpenPlayerCharacterSetup playerData, int slot);
         void CreateCharacterForPrefs(HumanoidCharacterProfile profile, MsgOpenPlayerCharacterSetup playerData);
@@ -30,6 +32,7 @@ namespace Content.Client.Lobby
         void DeleteCharacterForPrefs(int slot, MsgOpenPlayerCharacterSetup playerData);
         void UpdateJobPrioritiesForPrefs(Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities,
             MsgOpenPlayerCharacterSetup playerData);
-        // Starlight end
+
+        #endregion
     }
 }
