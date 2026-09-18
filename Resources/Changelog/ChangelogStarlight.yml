@@ -1,11 +1,4 @@
 Entries:
-- author: RedSpeeds
-  changes:
-  - message: Added an alert for unread nanochat messages. Open your damned mail!.
-    type: Add
-  id: 408285
-  time: '2026-09-06T04:14:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5887
 - author: Demented
   changes:
   - message: Added printable psychological report papers.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408684
   time: '2026-09-18T08:55:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6174
+- author: RedSpeeds
+  changes:
+  - message: Changed syndie baked weapons to inject poison on hit.
+    type: Tweak
+  id: 408685
+  time: '2026-09-18T08:55:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6172
 Order: -1
