@@ -1,53 +1,4 @@
 Entries:
-- author: DrNonnoob
-  changes:
-  - message: Minimum and maximum plasma ore vein size increased from 4 and 8 to 8 and 12, respectively.
-    type: Tweak
-  id: 408277
-  time: '2026-09-06T02:39:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5988
-- author: Teddiousbear, Hanz5579(discord).
-  changes:
-  - message: Captain's Beret.
-    type: Add
-  id: 408278
-  time: '2026-09-06T02:39:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5987
-- author: idkAnAlliasYetTbh
-  changes:
-  - message: Added a Victor Jr plushie.
-    type: Add
-  id: 408279
-  time: '2026-09-06T02:39:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5984
-- author: Kirb
-  changes:
-  - message: Fixed hotbar order at roundstart.
-    type: Fix
-  id: 408280
-  time: '2026-09-06T03:14:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5990
-- author: Starlight Administration
-  changes:
-  - message: Added an exception to rule 6 for stage names for musicians and the like.
-    type: Tweak
-  id: 408281
-  time: '2026-09-06T03:40:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5993
-- author: wonderfulnewworld
-  changes:
-  - message: Departmental techfabs now actually count towards their steal objectives.
-    type: Fix
-  id: 408282
-  time: '2026-09-06T03:40:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5991
-- author: STARLIGHT TEAM
-  changes:
-  - message: Medical HUDs no longer display the alive icon.
-    type: Tweak
-  id: 408283
-  time: '2026-09-06T03:40:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5949
 - author: Conflee
   changes:
   - message: Re-added Anti-Anomaly Zone Markers for Mapping. These markers prevent Anomalies from generating within a radius of them. Primary use case would be the large asteroid areas of Kiloton and Sepulturum where an Anomaly would literally never be found by players.
@@ -2799,4 +2750,53 @@ Entries:
   id: 408676
   time: '2026-09-18T08:06:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6166
+- author: Cvlancer
+  changes:
+  - message: (Elkridge) Added a few intercoms around station.
+    type: Add
+  id: 408677
+  time: '2026-09-18T08:32:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6168
+- author: Cvlancer
+  changes:
+  - message: (Elkridge) Added all departmental mailboxes.
+    type: Add
+  id: 408678
+  time: '2026-09-18T08:32:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6168
+- author: Cvlancer
+  changes:
+  - message: (Elkridge) Added an assistant manager to hop line.
+    type: Add
+  id: 408679
+  time: '2026-09-18T08:32:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6168
+- author: Cvlancer
+  changes:
+  - message: (Elkridge) Added a k9 to security locker room.
+    type: Add
+  id: 408680
+  time: '2026-09-18T08:32:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6168
+- author: Cvlancer
+  changes:
+  - message: (Elkridge) Added a washroom near janitor's closet.
+    type: Add
+  id: 408681
+  time: '2026-09-18T08:32:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6168
+- author: Cvlancer
+  changes:
+  - message: (Elkridge) Changed mail windoor to mail access.
+    type: Tweak
+  id: 408682
+  time: '2026-09-18T08:32:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6168
+- author: Cvlancer
+  changes:
+  - message: (Elkridge) Changed salv room to be a miner break room.
+    type: Tweak
+  id: 408683
+  time: '2026-09-18T08:32:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6168
 Order: -1
