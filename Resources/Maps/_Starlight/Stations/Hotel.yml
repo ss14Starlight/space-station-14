@@ -4,8 +4,8 @@ meta:
   engineVersion: 289.0.3
   forkId: ""
   forkVersion: ""
-  time: 09/18/2026 18:43:16
-  entityCount: 22543
+  time: 09/18/2026 19:14:24
+  entityCount: 22541
 maps:
 - 1
 grids:
@@ -4647,6 +4647,11 @@ entities:
         - volume: 2500
           moles: {}
           immutable: True
+        - temperature: 293.14975
+          volume: 2500
+          moles:
+            Oxygen: 20.078888
+            Nitrogen: 75.53487
         - temperature: 235
           volume: 2500
           moles:
@@ -4790,13 +4795,14 @@ entities:
           -5,0:
             0: 53503
           -4,1:
-            0: 254
-            2: 57344
+            0: 190
+            2: 64
+            3: 57344
           -5,1:
             0: 61695
           -4,2:
             0: 16
-            2: 3822
+            3: 3822
           -5,2:
             0: 65535
           -4,3:
@@ -4807,9 +4813,9 @@ entities:
             0: 3549
           -3,1:
             0: 52369
-            2: 4096
+            3: 4096
           -3,2:
-            2: 273
+            3: 273
             0: 36076
           -3,3:
             0: 12287
@@ -4991,7 +4997,7 @@ entities:
             0: 61695
           8,3:
             0: 13107
-            3: 34944
+            4: 34944
           -8,0:
             0: 57582
           -9,0:
@@ -5094,10 +5100,10 @@ entities:
             1: 61154
           7,5:
             1: 8928
-            3: 32768
+            4: 32768
           7,6:
             1: 8738
-            3: 34952
+            4: 34952
           7,8:
             0: 39185
             1: 26350
@@ -5105,9 +5111,9 @@ entities:
             0: 65521
           8,5:
             1: 35056
-            3: 12288
+            4: 12288
           8,6:
-            3: 13107
+            4: 13107
             1: 34952
           8,7:
             1: 65528
@@ -5300,20 +5306,20 @@ entities:
           9,1:
             0: 26342
           9,3:
-            3: 43680
+            4: 43680
           10,1:
             0: 61439
           10,2:
             0: 65535
           10,3:
-            4: 8736
-            5: 34944
+            5: 8736
+            6: 34944
           11,1:
             0: 3583
           11,2:
             0: 49083
           11,3:
-            6: 8736
+            7: 8736
             0: 136
           12,0:
             0: 28791
@@ -5566,11 +5572,11 @@ entities:
             1: 4095
           15,5:
             1: 240
-            3: 57344
+            4: 57344
           15,7:
             1: 65520
           15,6:
-            3: 61166
+            4: 61166
           15,8:
             1: 4095
           16,5:
@@ -8198,7 +8204,7 @@ entities:
       pos: 8.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -274390.06
+      secondsUntilStateChange: -274807.4
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -9324,6 +9330,12 @@ entities:
     - type: Transform
       parent: 2
       pos: -13.5,-1.5
+    - type: Door
+      state: Opening
+      secondsUntilStateChange: -272.60052
+    - type: DeviceLinkSource
+      lastSignals:
+        DoorStatus: True
   - uid: 309
     components:
     - type: Transform
@@ -9947,7 +9959,7 @@ entities:
       pos: 2.5,-7.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -236514.12
+      secondsUntilStateChange: -236931.47
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10110,7 +10122,7 @@ entities:
       pos: -38.5,10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -288565.53
+      secondsUntilStateChange: -288982.88
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10126,7 +10138,7 @@ entities:
       pos: -36.5,-10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -288464.6
+      secondsUntilStateChange: -288881.94
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -58174,6 +58186,13 @@ entities:
     - type: Transform
       parent: 2
       pos: -12.5,3.5
+- proto: DecalSpawnerDirtNear
+  entities:
+  - uid: 14280
+    components:
+    - type: Transform
+      parent: 2
+      pos: -23.5,-57.5
 - proto: DecalSpawnerDirtWide
   entities:
   - uid: 22454
@@ -58516,17 +58535,7 @@ entities:
     components:
     - type: Transform
       parent: 2
-      pos: -11.5,4.5
-  - uid: 18558
-    components:
-    - type: Transform
-      parent: 2
-      pos: -13.5,6.5
-  - uid: 22552
-    components:
-    - type: Transform
-      parent: 2
-      pos: -12.5,1.5
+      pos: -12.5,4.5
 - proto: DefaultStationBeaconLawOffice
   entities:
   - uid: 9401
@@ -113749,6 +113758,10 @@ entities:
     - type: Transform
       parent: 2
       pos: -21.5,-64.5
+    - type: PoweredLight
+      lastGhostBlink: 794.8992051
+    - type: BlinkingPoweredLight
+      stopBlinkingTime: 0
   - uid: 17214
     components:
     - type: Transform
@@ -115246,13 +115259,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 13.5,22.5
-- proto: RandomSlip100
-  entities:
-  - uid: 14280
-    components:
-    - type: Transform
-      parent: 2
-      pos: -23.5,-57.5
 - proto: RandomSmokables
   entities:
   - uid: 17184
@@ -141184,6 +141190,14 @@ entities:
     - type: Transform
       parent: 2
       pos: -13.5,5.5
+    - type: EntityStorage
+      air:
+        temperature: 293.14673
+        volume: 200
+        moles:
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
+        immutable: False
 - proto: WaterCooler
   entities:
   - uid: 19808
