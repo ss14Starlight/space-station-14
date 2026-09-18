@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -19,6 +20,7 @@ public sealed partial class ServerPreferencesManager
     [Dependency] private IChatManager _chat = null!;
     [Dependency] private IAdminManager _admin = null!;
     [Dependency] private IAdminLogManager _aLog = null!;
+    [Dependency] private AutoDiscordLogSystem _discord = null!;
 
     public async Task<PlayerPreferences?> GetProfileDataForPlayerAsync(NetUserId targetPlayer,
         CancellationToken cancel)
@@ -177,6 +179,7 @@ public sealed partial class ServerPreferencesManager
         var message = $"{session} has updated character preferences for {target.UserId}.";
         _aLog.Add(LogType.AdminCommands, LogImpact.High, $"{message}");
         _chat.SendAdminAnnouncement($"{message}");
+        _discord.LogToDiscord(message);
         return true;
     }
 }

@@ -476,36 +476,39 @@ namespace Content.Server.Administration.Systems
                 {
                     if (_prefsManager is ServerPreferencesManager prefs)
                     {
-                        args.Verbs.Add(new Verb
+                        if (_adminManager.HasAdminFlag(player, AdminFlags.Fun)) // EC+ or equivalent
                         {
-                            Priority = 8,
-                            Text = Loc.GetString("admin-verbs-edit-character"),
-                            Message = Loc.GetString("admin-verbs-edit-character-description"),
-                            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/character.svg.192dpi.png")),
-                            Category = VerbCategory.Admin,
-                            Act = async void () =>
+                            args.Verbs.Add(new Verb
                             {
-                                try
+                                Priority = 8,
+                                Text = Loc.GetString("admin-verbs-edit-character"),
+                                Message = Loc.GetString("admin-verbs-edit-character-description"),
+                                Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/character.svg.192dpi.png")),
+                                Category = VerbCategory.Admin,
+                                Act = async void () =>
                                 {
-                                    var cts = new CancellationTokenSource();
-                                    var playerPrefs = await prefs.GetProfileDataForPlayerAsync(targetPlayer.UserId,
-                                        cts.Token);
-                                    cts.Token.ThrowIfCancellationRequested();
-                                    if (playerPrefs is null) throw new Exception("Could not get prefs.");
-                                    var msg = new MsgOpenPlayerCharacterSetup
+                                    try
                                     {
-                                        Preferences = playerPrefs,
-                                        PlayerInfo = new MinimalPlayerInfo(targetPlayer.Name, targetPlayer.UserId)
-                                    };
-                                    _net.ServerSendMessage(msg, player.Channel);
+                                        var cts = new CancellationTokenSource();
+                                        var playerPrefs = await prefs.GetProfileDataForPlayerAsync(targetPlayer.UserId,
+                                            cts.Token);
+                                        cts.Token.ThrowIfCancellationRequested();
+                                        if (playerPrefs is null) throw new Exception("Could not get prefs.");
+                                        var msg = new MsgOpenPlayerCharacterSetup
+                                        {
+                                            Preferences = playerPrefs,
+                                            PlayerInfo = new MinimalPlayerInfo(targetPlayer.Name, targetPlayer.UserId)
+                                        };
+                                        _net.ServerSendMessage(msg, player.Channel);
+                                    }
+                                    catch(Exception err)
+                                    {
+                                        IoCManager.Resolve<ILogManager>().GetSawmill("verbsystem").Log(LogLevel.Error, err,
+                                            "Failed to open character editor.");
+                                    }
                                 }
-                                catch(Exception err)
-                                {
-                                    IoCManager.Resolve<ILogManager>().GetSawmill("verbsystem").Log(LogLevel.Error, err,
-                                        "Failed to open character editor.");
-                                }
-                            }
-                        });
+                            });
+                        }
                     }
                 }
 
