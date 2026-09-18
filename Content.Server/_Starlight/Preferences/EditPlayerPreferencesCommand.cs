@@ -18,7 +18,7 @@ namespace Content.Server._Starlight.Preferences;
 /// The difference is it loads the preference data for another player instead of the ones cached on client.
 /// </summary>
 [ToolshedCommand]
-[AdminCommand(AdminFlags.Fun)] // EC+ or equivalent
+[AdminCommand(AdminFlags.Mapping)] // EC+ or equivalent
 public sealed partial class EditPlayerPreferencesCommand : ToolshedCommand
 {
     [Dependency] private INetManager _net = null!;
