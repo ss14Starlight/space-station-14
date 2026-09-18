@@ -48,7 +48,7 @@
   job: GunnerySergeant
   hasMindShield: true
   equipment:
-    head: ClothingHeadHatGunnerySergeant
+    head: ClothingHeadHatBeretGunnerySergeant
     mask: ClothingMaskGasSecurity
     outerClothing: ClothingOuterCoatGunnerySergeant
     jumpsuit: ClothingUniformJumpsuitGunnerySergeant

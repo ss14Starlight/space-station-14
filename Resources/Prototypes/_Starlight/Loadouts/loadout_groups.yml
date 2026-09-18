@@ -1052,7 +1052,7 @@
 #GunnerySergeant
 - type: loadoutGroup
   id: GunnerySergeantHead
-  name: loadout-group-gunnery-sergeant-Head
+  name: loadout-group-gunnery-sergeant-head
   loadouts:
     - GunnerySergeantBeret
     - GunnerySergeantDrillHat

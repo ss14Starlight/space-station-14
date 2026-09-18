@@ -650,8 +650,8 @@
 - type: entity
   parent: [ ClothingNeckBase ]
   id: ClothingNeckMantleGunnerySergeant
-  name: gunnery sergeant's Mantle
-  description: A mantle for those whos job it is to get the cadets out of the walls.
+  name: gunnery sergeant's mantle
+  description: A mantle for those whose job it is to get the cadets out of the walls.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/Cloaks/gunnery_sergeant_mantle.rsi
