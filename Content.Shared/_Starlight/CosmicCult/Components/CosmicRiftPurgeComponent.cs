@@ -2,6 +2,8 @@ using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
+namespace Content.Shared._Starlight.CosmicCult.Components;
+
 [RegisterComponent]
 public sealed partial class CosmicRiftPurgeComponent : Component
 {
