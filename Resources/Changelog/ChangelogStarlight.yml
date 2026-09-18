@@ -1,13 +1,6 @@
 Entries:
 - author: DrNonnoob
   changes:
-  - message: The number of plasma ore veins increased from 35 to 40.
-    type: Tweak
-  id: 408276
-  time: '2026-09-06T02:39:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5988
-- author: DrNonnoob
-  changes:
   - message: Minimum and maximum plasma ore vein size increased from 4 and 8 to 8 and 12, respectively.
     type: Tweak
   id: 408277
@@ -2799,4 +2792,11 @@ Entries:
   id: 408675
   time: '2026-09-18T07:36:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5682
+- author: Xale
+  changes:
+  - message: Eggs that hatch while in a container will now try placing the newborn in the same container.
+    type: Fix
+  id: 408676
+  time: '2026-09-18T08:06:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6166
 Order: -1
