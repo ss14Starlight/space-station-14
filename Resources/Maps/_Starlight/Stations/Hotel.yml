@@ -11956,8 +11956,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 113
-      configurators:
-      - invalid
   - uid: 19814
     components:
     - type: Transform
@@ -97615,8 +97613,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 113
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 22368
@@ -99443,8 +99439,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 113
-      configurators:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 22383
