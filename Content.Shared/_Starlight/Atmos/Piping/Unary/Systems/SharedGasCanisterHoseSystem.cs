@@ -18,9 +18,6 @@ public abstract partial class SharedGasCanisterHoseSystem : EntitySystem
     [Dependency] private SharedToolSystem _tool = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
 
-    public override void Initialize()
-        => base.Initialize();
-
     [SubscribeLocalEvent]
     private void OnHoseSlotStartup(Entity<GasCanisterHoseSlotComponent> ent, ref ComponentStartup args)
     {
