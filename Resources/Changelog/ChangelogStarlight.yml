@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Fixed a missing loc when trying to pour water on the wall.
-    type: Fix
-  id: 408314
-  time: '2026-09-06T10:11:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5976
 - author: Caws
   changes:
   - message: Disposal pipes no longer damage entities travelling through them. This means that chemistry jugs will no longer randomly break when being mailed to departments, glass shards will no longer appear randomly on the floor, and there should be less random blood/slime/oil patches along disposals tubes from people bleeding while inside the tubes.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408713
   time: '2026-09-18T11:32:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6195
+- author: OJG
+  changes:
+  - message: Cecil command lizard.
+    type: Add
+  id: 408714
+  time: '2026-09-18T11:32:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6188
 Order: -1
