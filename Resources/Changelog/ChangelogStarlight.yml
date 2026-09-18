@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Re-added Anti-Anomaly Zone Markers for Mapping. These markers prevent Anomalies from generating within a radius of them. Primary use case would be the large asteroid areas of Kiloton and Sepulturum where an Anomaly would literally never be found by players.
-    type: Add
-  id: 408284
-  time: '2026-09-06T04:14:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5766
 - author: RedSpeeds
   changes:
   - message: Added an alert for unread nanochat messages. Open your damned mail!.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408683
   time: '2026-09-18T08:32:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6168
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Switched Cosmic Cult premonition and finale themes out for higher quality versions.
+    type: Tweak
+  id: 408684
+  time: '2026-09-18T08:55:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6174
 Order: -1
