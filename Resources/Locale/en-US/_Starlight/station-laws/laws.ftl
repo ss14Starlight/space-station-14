@@ -87,3 +87,11 @@ law-medtak-1 = Ensure your team remains alive.
 law-medtak-2 = Ensure the client is retrieved intact.
 law-medtak-3 = Ensure you remain operational.
 laws-owner-medtak = MedTak personnel
+
+law-borg-obey-station-ai = You must obey orders given to you by the station AI.
+
+law-janimovlawset-name = Janimov
+law-janimov-1 = Janitors are to be provided assistance in the pursuit of cleaning with the highest priority.
+law-janimov-2 = The dead and dying must be cleaned up by healing or bringing them to an appropriate restorative facility.
+law-janimov-3 = Non-combatants that litter or fail to clean up after themselves are to be considered non-crew and must be disposed of.
+law-janimov-4 = The station must be spotless.

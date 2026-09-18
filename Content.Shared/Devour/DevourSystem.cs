@@ -1,7 +1,4 @@
 using Content.Shared._Starlight.Medical.Body.Systems;
-using Content.Shared._Starlight.Medical.Body.Components;
-using Content.Shared.Body.Systems;
-using Content.Shared.Body.Components;
 using Content.Shared.Actions;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Devour.Components;
@@ -29,15 +26,12 @@ public sealed partial class DevourSystem : EntitySystem
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;
-    #region "Starlight"
-    [Dependency] private DamageableSystem _damageSystem = default!;
-    [Dependency] private MobThresholdSystem _thresholdSystem = default!;
-    [Dependency] private StomachSystem _stomach = default!;
-    [Dependency] private SharedBodySystem _body = default!;
-    #endregion
+    [Dependency] private DamageableSystem _damageSystem = default!; //Starlight
+    [Dependency] private MobThresholdSystem _thresholdSystem = default!; //Starlight
 
     public override void Initialize()
     {
@@ -147,30 +141,21 @@ public sealed partial class DevourSystem : EntitySystem
         var ichorInjection = new Solution(ent.Comp.Chemical, ent.Comp.HealRate);
 
         // Grant ichor if the devoured thing meets the dragon's food preference
-        if (target != null && _whitelistSystem.IsWhitelistPassOrNull(ent.Comp.FoodPreferenceWhitelist, (EntityUid)target)) //Starlight, args.Args.Target replaced with target
+        if (_whitelistSystem.IsWhitelistPassOrNull(ent.Comp.FoodPreferenceWhitelist, (EntityUid)target)) //Starlight, args.Args.Target replaced with target
         {
-            // Starlight-start
-            var stomachs = _body.GetBodyOrganEntityComps<StomachComponent>(ent.Owner);
-            
-            if (stomachs.Count > 0) 
-            { 
-                var stomach = stomachs[0]; 
-                _stomach.TryTransferSolution(stomach.Owner, ichorInjection); 
-            }
-            // Starlight-end
-
+            _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjection);
             ent.Comp.Devoured++; //Starlight devour counter.
         }
 
         // If the devoured thing meets the stomach whitelist criteria, add it to the stomach
-        if (target != null && _whitelistSystem.IsWhitelistPass(ent.Comp.StomachStorageWhitelist, (EntityUid)target)) //Starlight, args.Args.Target replaced with target
+        if (_whitelistSystem.IsWhitelistPass(ent.Comp.StomachStorageWhitelist, (EntityUid)target)) //Starlight, args.Args.Target replaced with target
         {
             _containerSystem.Insert(target, ent.Comp.Stomach); //starlight target.value replaced with target
         }
         //TODO: Figure out a better way of removing structures via devour that still entails standing still and waiting for a DoAfter. Somehow.
         //If it's not alive, it must be a structure.
         // Delete if the thing isn't in the stomach storage whitelist (or the stomach whitelist is null/empty)
-        else if (target != null) //Starlight, args.Args.Target replaced with target
+        else //Starlight, args.Args.Target replaced with target
         {
             PredictedQueueDel(target); //starlight target.value replaced with target
         }

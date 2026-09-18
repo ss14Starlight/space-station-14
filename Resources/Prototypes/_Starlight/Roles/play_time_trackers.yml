@@ -47,6 +47,9 @@
   id: JobSalvageLead
 
 - type: playTimeTracker
+  id: JobSalvageMedic
+
+- type: playTimeTracker
   id: JobNTSF
 
 - type: playTimeTracker

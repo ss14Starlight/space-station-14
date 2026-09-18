@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
@@ -15,12 +15,12 @@ namespace Content.Server._Starlight.Kitchen.EntitySystems;
 /// Supplies server-side BUI state while shared predicted grinder behavior lives in the upstream system.
 /// </summary>
 [UsedImplicitly]
-internal sealed class ReagentGrinderSystem : SharedReagentGrinderSystem
+internal sealed partial class ReagentGrinderSystem : SharedReagentGrinderSystem
 {
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutions = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     public override void UpdateUi(EntityUid uid)
     {

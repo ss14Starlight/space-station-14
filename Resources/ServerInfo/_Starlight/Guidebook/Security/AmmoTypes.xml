@@ -1,0 +1,65 @@
+<Document>
+# Ammunition Types
+
+Different ammunition types are designed for different targets. Their construction affects how well they perform against armor and may provide additional effects.
+
+## Soft Point
+
+Soft Point is a general-purpose ammunition type. It is a reliable choice when no specialized ammunition is available, but is less effective against armored targets.
+
+<Box>
+  <GuideEntityEmbed Entity="MagazineBoxPistolSP" Caption="Soft Point Ammunition" />
+</Box>
+
+## Hollow Point
+
+Hollow Point ammunition is designed to maximize damage against unarmored threats. It performs poorly against armor and should generally be avoided when engaging protected targets.
+
+<Box>
+  <GuideEntityEmbed Entity="MagazineBoxPistolHP" Caption="Hollow-point Ammunition" />
+  <GuideEntityEmbed Entity="ReagentSlimeNocturine" Caption="Unarmored Threat" />
+  <GuideEntityEmbed Entity="MobAdultSlimesYellow" Caption="Unarmored Threat" />
+</Box>
+
+## Full Metal Jacket
+
+Full Metal Jacket is a versatile ammunition type suited for both armored and crowded threats. Its improved armor performance makes it a dependable choice when dealing with protected targets.
+
+FMJ ammunition also has the property of piercing through targets, allowing a single shot to potentially strike multiple enemies.
+
+<Box>
+  <GuideEntityEmbed Entity="MagazineBoxPistolFMJ" Caption="Full Metal Jacket Ammunition" />
+  <GuideEntityEmbed Entity="MobCarp" Caption=" " />
+  <GuideEntityEmbed Entity="MobCarp" Caption="Swarm Enemy" />
+  <GuideEntityEmbed Entity="MobCarp" Caption=" " />
+</Box>
+
+## Armor Piercing
+
+Armor Piercing ammunition is intended for heavily armored threats. It is particularly effective against heavily protected personnel and armored machines where conventional ammunition may struggle.
+
+<Box>
+  <GuideEntityEmbed Entity="MagazineBoxPistolAP" Caption="Armor Piercing Ammunition" />
+  <GuideEntityEmbed Entity="ShowcaseRobotMarauder" Caption="Armored Threat" />
+</Box>
+
+## Shotgun Ammunition
+
+### Buckshot
+
+Buckshot fires multiple projectiles at once, making it effective against unarmored targets. Its individual pellets are less effective against armor.
+
+### Slug
+
+Slug ammunition fires a single large projectile. Unlike buckshot, it is highly effective against armored targets and is a strong choice when concentrated damage and armor penetration are required.
+
+## Specialty Ammunition
+
+Some ammunition types do not have a special interaction with armor but instead provide unique effects.
+
+- [color=cyan]Incendiary:[/color] Produces additional heat and can ignite targets.
+- [color=cyan]Rubber:[/color] Designed for non-lethal applications.
+- [color=cyan]Practice:[/color] Low-damage training ammunition.
+- [color=cyan]Uranium:[/color] Inflicts additional radiation damage.
+
+</Document>

@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urist McHandster The Neo-Dwarf
+  name: Urist McHandster the Neo-Dwarf
   parent: [BaseSpeciesPickupable, BaseMobNeocyte]
   id: BaseMobNeoDwarf
   abstract: true
@@ -32,6 +32,7 @@
   - type: Damageable
     damageContainer: Hybrid
     damageModifierSet: NeoDwarf
+    displacement: Dwarfism
   - type: Body
     prototype: NeoDwarf
     requiredLegs: 2
@@ -55,14 +56,92 @@
     hideLayersOnEquip:
     - Hair
     - Snout
+  - type: CreamPied
+    displacement: Dwarfism
+  - type: Flammable
+    displacement: Dwarfism
+  - type: InnerBodyAnomalyVisuals
+    displacement: Dwarfism
   - type: Inventory
     templateId: neocyte
-    femaleDisplacements:
+    femaleDisplacements: { }
+    displacements:
       jumpsuit:
         sizeMaps:
           32:
             sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
+            state: dwarfism
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      id:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      belt:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      eyes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      gloves:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      neck:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      back:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      ears:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      shoes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: Mobs/Species/Human/displacement.rsi
+          state: dwarfism_hand_left
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: Mobs/Species/Human/displacement.rsi
+          state: dwarfism_hand_right
   - type: Tag
     tags:
     - CanPilot
@@ -84,9 +163,70 @@
     species: NeoDwarf
   - type: Inventory
     templateId: neocyte
-    femaleDisplacements:
+    femaleDisplacements: { }
+    displacements:
       jumpsuit:
         sizeMaps:
           32:
             sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
+            state: dwarfism
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      id:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      belt:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      eyes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      gloves:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      neck:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      back:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      ears:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism
+      shoes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: dwarfism

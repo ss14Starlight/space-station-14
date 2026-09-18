@@ -4,7 +4,6 @@ using Content.Shared._Starlight.Access.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.StatusIcon;
 using JetBrains.Annotations;

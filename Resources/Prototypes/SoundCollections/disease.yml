@@ -69,6 +69,12 @@
   - /Audio/Effects/Fluids/splat.ogg
 
 - type: soundCollection
+  id: VulpkaninYawns
+  files:
+  - /Audio/Voice/Vulpkanin/vulp_yawn1.ogg
+  - /Audio/Voice/Vulpkanin/vulp_yawn2.ogg
+
+- type: soundCollection
   id: VulpkaninSneeze
   files:
   - /Audio/Voice/Vulpkanin/vulp_sneeze.ogg

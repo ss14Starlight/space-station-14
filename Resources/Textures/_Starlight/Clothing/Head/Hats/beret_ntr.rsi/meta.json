@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "Fahreyy(Github)"
+    },
+    {
+      "name": "equipped-HELMET",
+      "directions": 4,
+	  "copyright": "Fahreyy(Github)"
+    },
+    {
+      "name": "equipped-HELMET-dog",
+      "directions": 4,
+	  "copyright": "Fahreyy(Github)"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "Fahreyy(Github)"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "Fahreyy(Github)"
+    }
+  ]
+}

@@ -806,7 +806,8 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - IPC
-    - Vulpkanin
+    - Vulpkanin # they can already smell
+    - Shadekin # they don't breathe; bypasses certain checks in smellsystem
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -837,6 +838,7 @@
     speciesBlacklist:
     - IPC
     - Vulpkanin
+    - Shadekin
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:

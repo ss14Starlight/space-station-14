@@ -159,7 +159,7 @@
 
 - type: entity
   name: welding tool
-  parent: BaseItem
+  parent: [ SolutionToolWelder, BaseItem ]
   id: WelderCyber
   description: "Melts anything as long as it's fueled, don't forget your eye protection!"
   components:
@@ -233,14 +233,7 @@
     soundHit:
       collection: MetalThud
   - type: RefillableSolution
-    solution: Welder
-  - type: Solution
-    id: Welder
-    solution:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 100
-      maxVol: 100
+    solution: welder
   - type: Tool
     speedModifier: 1.75
     useSound:

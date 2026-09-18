@@ -71,6 +71,9 @@
     sprite: Objects/Consumable/Drinks/glass_coupe_shape.rsi
   - type: SolutionContainerVisuals
     inHandsMaxFillLevels: 1
+  - type: Tag
+    tags:
+    - CoupeGlass # Starlight
 
 - type: entity
   parent: [DrinkBaseMaterialCardboard, DrinkBaseCup, DrinkBaseEmptyTrash, DrinkVisualsFill]

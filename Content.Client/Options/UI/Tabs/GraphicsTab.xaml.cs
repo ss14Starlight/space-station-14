@@ -27,6 +27,8 @@ public sealed partial class GraphicsTab : Control
         Control.AddOption(new OptionLightingQuality(Control, _cfg, DropDownLightingQuality));
         Control.AddOption(new OptionParticleQuality(Control, _cfg, DropDownParticleQuality)); // _Starfall: Particle quality.
         #region Starlight
+        Control.AddOption(new OptionSpriteQuality(Control, _cfg, DropDownSpriteQuality));
+
         Control.AddOptionDropDown(
             StarlightCCVars.InteractionParticlesMode,
             DropDownInteractionParticles,
@@ -213,6 +215,37 @@ public sealed partial class GraphicsTab : Control
             return QualityHigh;
         }
     }
+
+    #region Starlight
+    private sealed class OptionSpriteQuality : BaseOptionCVar<int>
+    {
+        private readonly OptionDropDown _dropDown;
+
+        protected override int Value
+        {
+            get => _dropDown.Button.SelectedId;
+            set => _dropDown.Button.SelectId(value);
+        }
+
+        public OptionSpriteQuality(
+            OptionsTabControlRow controller,
+            IConfigurationManager cfg,
+            OptionDropDown dropDown)
+            : base(controller, cfg, StarlightCCVars.SpriteQuality)
+        {
+            _dropDown = dropDown;
+            var button = dropDown.Button;
+            button.AddItem(Loc.GetString("ui-options-sprite-quality-low"), (int) SpriteQualityLevel.Low);
+            button.AddItem(Loc.GetString("ui-options-sprite-quality-medium"), (int) SpriteQualityLevel.Medium);
+            button.AddItem(Loc.GetString("ui-options-sprite-quality-high"), (int) SpriteQualityLevel.High);
+            button.OnItemSelected += args =>
+            {
+                button.SelectId(args.Id);
+                ValueChanged();
+            };
+        }
+    }
+    #endregion
 
     private sealed class OptionFullscreen : BaseOptionCVar<int>
     {

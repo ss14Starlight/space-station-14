@@ -47,6 +47,9 @@ public sealed partial class PowerMonitoringConsoleComponent : Component
 public struct PowerMonitoringDeviceMetaData
 {
     public string EntityName;
+    #region Starlight
+    public bool EntityNameIsLocalized;
+    #endregion
     public NetCoordinates Coordinates;
     public PowerMonitoringConsoleGroup Group;
     public string SpritePath;
@@ -56,6 +59,7 @@ public struct PowerMonitoringDeviceMetaData
     public PowerMonitoringDeviceMetaData(string name, NetCoordinates coordinates, PowerMonitoringConsoleGroup group, string spritePath, string spriteState)
     {
         EntityName = name;
+        EntityNameIsLocalized = false; // Starlight
         Coordinates = coordinates;
         Group = group;
         SpritePath = spritePath;

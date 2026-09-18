@@ -1,4 +1,3 @@
-using System.Collections.Immutable;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -26,10 +25,7 @@ using Content.Shared.Players.RateLimiting;
 using Content.Shared.Popups;
 using Content.Shared.Radio;
 // Starlight Start
-using Content.Shared.Speech;
 using Content.Shared.Station.Components;
-using Content.Shared.Whitelist;
-using Npgsql.Replication.PgOutput.Messages;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -42,15 +38,11 @@ using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 // Starlight Start
-using Content.Shared.Speech;
-using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Chat;
-using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Systems;
-using Content.Shared.Popups;
 using Content.Shared._Starlight.Radio;
-using Content.Server.Radio.EntitySystems;
 using Content.Server._Starlight.TextToSpeech;
+using Content.Shared._Starlight.CCVar;
 // Starlight End
 
 namespace Content.Server.Chat.Systems;
@@ -77,8 +69,11 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private ExamineSystemShared _examineSystem = default!;
-    [Dependency] private LanguageSystem _language = default!; // Starlight
-    [Dependency] private SharedPopupSystem _popups = default!; // Starlight
+    #region Starlight
+    [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private SharedPopupSystem _popups = default!;
+    [Dependency] private INetConfigurationManager _netConfigurationManager = default!;
+    #endregion Starlight
 
     public const float DefaultObfuscationFactor = 0.2f; // Percentage of symbols in a whispered message that can be seen even by "far" listeners - Starlight
     public readonly Color DefaultSpeakColor = Color.LightGray; // Starlight
@@ -228,7 +223,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Starlight end
 
         bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
-        bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation);
+        bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation) || (player != null && _netConfigurationManager.GetClientCVar(player.Channel, StarlightCCVars.AutoPunctuate)); // Starlight - Auto-punctuate support
         // Capitalizing the word I only happens in English, so we check language here
         bool shouldCapitalizeTheWordI = (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
             || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
@@ -481,7 +476,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
         }
 
-        if (!EntityManager.TryGetComponent<StationDataComponent>(station, out var stationDataComp)) return;
+        if (!TryComp<StationDataComponent>(station, out var stationDataComp)) return;
 
         var filter = _stationSystem.GetInStation(stationDataComp);
 

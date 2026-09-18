@@ -6,8 +6,6 @@ using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-using static Content.Server.Antag.Components.AntagSelectionTime;
-
 namespace Content.Server.Antag;
 
 public sealed partial class AntagSelectionSystem

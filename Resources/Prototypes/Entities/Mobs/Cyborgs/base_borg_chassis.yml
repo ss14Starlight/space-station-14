@@ -360,6 +360,7 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasenSilicon # starlight
+  - type: BorgObeysStationAi # Starlight
   - type: Access
     groups:
     - CyborgAllAccess # Starlight
