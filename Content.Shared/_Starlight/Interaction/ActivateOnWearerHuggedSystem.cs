@@ -24,13 +24,7 @@ public sealed partial class ActivateOnWearerHuggedSystem : EntitySystem
     [Dependency] private UseDelaySystem _useDelay = default!;
     [Dependency] private IGameTiming _timing = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<InteractionPopupComponent, InteractionSuccessEvent>(OnWearerHugged);
-    }
-
+    [SubscribeLocalEvent]
     private void OnWearerHugged(Entity<InteractionPopupComponent> ent, ref InteractionSuccessEvent args)
     {
         if (!_timing.IsFirstTimePredicted)
