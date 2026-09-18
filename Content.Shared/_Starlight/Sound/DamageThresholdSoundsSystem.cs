@@ -1,11 +1,9 @@
 using System.Collections.Immutable;
-using System.Linq;
 using Content.Shared.Audio;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
 using Content.Shared.FixedPoint;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 
@@ -65,7 +63,7 @@ public sealed partial class DamageThresholdSoundsSystem : EntitySystem
             if(ent.Comp.IsEmped && selectedSound.EmpEffected)
                 return;
             if(_net.IsServer) //TODO Remove once RT bug fixed
-                ent.Comp.AudioStream ??= _audio.PlayPredicted(selectedSound.Sound, uid, uid, selectedSound.Sound.Params);
+                ent.Comp.AudioStream ??= _audio.PlayPvs(selectedSound.Sound, uid, selectedSound.Sound.Params);
         }
     }
 
@@ -111,7 +109,7 @@ public sealed partial class DamageThresholdSoundsSystem : EntitySystem
         //else
         //{
         if(_net.IsServer) //TODO Remove once RT bug fixed
-            comp.AudioStream ??= _audio.PlayPredicted(selectedThreshold.Sound, uid, uid, selectedThreshold.Sound.Params);
+            comp.AudioStream ??= _audio.PlayPvs(selectedThreshold.Sound, uid, selectedThreshold.Sound.Params);
         //}
     }
 }

@@ -1,11 +1,11 @@
 ﻿using Content.Server.Medical;
 using Content.Server.Medical.Components;
 using Content.Shared._Starlight.Actions.Events;
-using Content.Shared.DoAfter;
 using Content.Shared.Emp;
 using Content.Shared.MedicalScanner;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Medical;
 
@@ -51,7 +51,9 @@ public sealed partial class HealthSelfAnalyzerSystem : EntitySystem
 
     private void ToggleUi(EntityUid uid, bool toggled)
     {
-        if (!TryComp<HealthAnalyzerComponent>(uid, out var analyzerComponent) || !TryComp<UserInterfaceComponent>(uid, out var interfaceComp))
+        if (!TryComp<HealthAnalyzerComponent>(uid, out var analyzerComp) ||
+            !TryComp<UserInterfaceComponent>(uid, out var interfaceComp) ||
+            !TryComp<ActorComponent>(uid, out var actorComp))
             return;
 
         if (toggled)
@@ -59,8 +61,8 @@ public sealed partial class HealthSelfAnalyzerSystem : EntitySystem
             if (!_uiSystem.HasUi(uid, HealthAnalyzerUiKey.Key))
                 _uiSystem.SetUi(uid, HealthAnalyzerUiKey.Key, new InterfaceData(HealthAnalyzerBoundUserInterface));
 
-            _audio.PlayPredicted(analyzerComponent.ScanningBeginSound, uid, uid);
-            _healthAnalyzerSystem.BeginAnalyzingEntity((uid, analyzerComponent), uid);
+            _audio.PlayEntity(analyzerComp.ScanningBeginSound, actorComp.PlayerSession, uid);
+            _healthAnalyzerSystem.BeginAnalyzingEntity((uid, analyzerComp), uid);
             _uiSystem.OpenUi((uid, interfaceComp), HealthAnalyzerUiKey.Key, uid);
         }
         else
@@ -68,8 +70,8 @@ public sealed partial class HealthSelfAnalyzerSystem : EntitySystem
             if(!_uiSystem.IsUiOpen(uid, HealthAnalyzerUiKey.Key))
                 return;
 
-            _audio.PlayPredicted(analyzerComponent.ScanningEndSound, uid, uid);
-            _healthAnalyzerSystem.StopAnalyzingEntity((uid, analyzerComponent), uid);
+            _audio.PlayEntity(analyzerComp.ScanningEndSound, actorComp.PlayerSession, uid);
+            _healthAnalyzerSystem.StopAnalyzingEntity((uid, analyzerComp), uid);
             _uiSystem.CloseUi((uid, interfaceComp), HealthAnalyzerUiKey.Key);
         }
     }
