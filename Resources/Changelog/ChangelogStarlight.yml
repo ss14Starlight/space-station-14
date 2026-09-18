@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Cork) Moved funding allocation computer out of QM's office and into the Bridge.
-    type: Tweak
-  id: 408317
-  time: '2026-09-06T10:42:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5906
-- author: Caws
-  changes:
-  - message: (Cork) Improved the sauna with the new platforms and stairs.
-    type: Tweak
-  id: 408318
-  time: '2026-09-06T10:42:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5906
-- author: Caws
-  changes:
   - message: (Cork) Fixed a bunch of tiles-under-windows where there should have been plating instead.
     type: Tweak
   id: 408319
@@ -2799,4 +2785,18 @@ Entries:
   id: 408716
   time: '2026-09-18T12:33:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6219
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added Half Masks.
+    type: Add
+  id: 408717
+  time: '2026-09-18T12:33:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6212
+- author: STARLIGHT TEAM
+  changes:
+  - message: Changed default vox survival mask to half mask.
+    type: Tweak
+  id: 408718
+  time: '2026-09-18T12:33:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6212
 Order: -1
