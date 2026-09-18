@@ -6,7 +6,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen.rsi
   - type: Wires
-    layoutId: AirlockNanotrasen
+    layoutId: AirlockNT
   - type: Paintable
     group: AirlockStandard
 
@@ -18,6 +18,6 @@
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Glass/nanotrasen.rsi
   - type: Wires
-    layoutId: AirlockNanotrasen
+    layoutId: AirlockNT
   - type: Paintable
     group: AirlockGlass
