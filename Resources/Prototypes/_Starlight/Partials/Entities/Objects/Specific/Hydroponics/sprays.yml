@@ -1,0 +1,53 @@
+- type: !PartialOnly entity
+  id: PlantBGoneSpray
+  components:
+  - type: Solution
+    solution:
+      reagents: !Remove
+      - ReagentId: PlantBGone
+        Quantity: 60
+
+- type: !PartialOnly entity
+  id: PlantBGoneSpray
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: PlantBGone
+        Quantity: 120
+
+- type: !PartialOnly entity
+  id: WeedSpray
+  components:
+  - type: Solution
+    solution:
+      reagents: !Remove
+      - ReagentId: WeedKiller
+        Quantity: 60
+
+- type: !PartialOnly entity
+  id: WeedSpray
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: WeedKiller
+        Quantity: 120
+
+- type: !PartialOnly entity
+  id: PestSpray
+  components:
+  - type: Solution
+    solution:
+      reagents: !Remove
+      - ReagentId: PestKiller
+        Quantity: 60
+
+- type: !PartialOnly entity
+  id: PestSpray
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: PestKiller
+        Quantity: 120
