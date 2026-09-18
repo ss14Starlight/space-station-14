@@ -108,12 +108,10 @@ public sealed partial class SharedMailBoxesSystem : EntitySystem
         }
 
         var delivery = Comp<DeliveryComponent>(args.EntityUid);
-        DepartmentPrototype? department;
-        if (_jobSystem.TryGetPrimaryDepartment(delivery.RecipientJobId, out department) && delivery.RecipientName != null)
-        {
-            // Empty... Like my soul
-        }
-        else if (!_jobSystem.TryGetDepartment(delivery.RecipientJobId, out department) || delivery.RecipientName == null)
+        if (!_jobSystem.TryGetPrimaryDepartment(delivery.RecipientJobId, out var department))
+            _jobSystem.TryGetDepartment(delivery.RecipientJobId, out department);
+
+        if (delivery.RecipientName == null || department == null)
         {
             _popup.PopupEntity(Loc.GetString("mailbox-no-department"), ent);
             args.Cancel();
