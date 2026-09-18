@@ -10,6 +10,7 @@ public sealed partial class IVDripSystem : SharedIVDripSystem
 {
     [Dependency] private IOverlayManager _overlay = default!;
     [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -54,7 +55,7 @@ public sealed partial class IVDripSystem : SharedIVDripSystem
                 : iv.Comp.AttachedState;
         }
 
-        sprite.LayerSetState(IVDripVisualLayers.Base, baseState);
+        _sprite.LayerSetRsiState((iv, sprite), IVDripVisualLayers.Base, baseState);
 
         string? reagentState = null;
         for (var i = iv.Comp.ReagentStates.Count - 1; i >= 0; i--)
@@ -70,13 +71,13 @@ public sealed partial class IVDripSystem : SharedIVDripSystem
         // if there is no bag, we force the reagent layer to hide
         if (reagentState == null || !hasBag)
         {
-            sprite.LayerSetVisible(IVDripVisualLayers.Reagent, false);
+            _sprite.LayerSetVisible((iv, sprite), IVDripVisualLayers.Reagent, false);
             return;
         }
 
-        sprite.LayerSetVisible(IVDripVisualLayers.Reagent, true);
-        sprite.LayerSetState(IVDripVisualLayers.Reagent, reagentState);
-        sprite.LayerSetColor(IVDripVisualLayers.Reagent, iv.Comp.FillColor);
+        _sprite.LayerSetVisible((iv, sprite), IVDripVisualLayers.Reagent, true);
+        _sprite.LayerSetRsiState((iv, sprite), IVDripVisualLayers.Reagent, reagentState);
+        _sprite.LayerSetColor((iv, sprite), IVDripVisualLayers.Reagent, iv.Comp.FillColor);
     }
 
     protected override void UpdatePackAppearance(Entity<BloodPackComponent> pack)
@@ -85,16 +86,16 @@ public sealed partial class IVDripSystem : SharedIVDripSystem
         if (!TryComp(pack, out SpriteComponent? sprite))
             return;
 
-        sprite.LayerSetVisible(BloodPackVisuals.Label, false);
+        _sprite.LayerSetVisible((pack, sprite), BloodPackVisuals.Label, false);
 
-        if (sprite.LayerMapTryGet(BloodPackVisuals.Fill, out var fillLayer))
+        if (_sprite.LayerMapTryGet((pack, sprite), BloodPackVisuals.Fill, out var fillLayer, false))
         {
             var fill = pack.Comp.FillPercentage.Float();
             var level = ContentHelpers.RoundToLevels(fill, 1, pack.Comp.MaxFillLevels + 1);
             var state = level > 0 ? $"{pack.Comp.FillBaseName}{level}" : pack.Comp.FillBaseName;
-            sprite.LayerSetState(fillLayer, state);
-            sprite.LayerSetColor(fillLayer, pack.Comp.FillColor);
-            sprite.LayerSetVisible(fillLayer, true);
+            _sprite.LayerSetRsiState((pack, sprite), fillLayer, state);
+            _sprite.LayerSetColor((pack, sprite), fillLayer, pack.Comp.FillColor);
+            _sprite.LayerSetVisible((pack, sprite), fillLayer, true);
         }
     }
 }
