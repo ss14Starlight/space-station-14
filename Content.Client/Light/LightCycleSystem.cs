@@ -1,5 +1,4 @@
 using Content.Client.GameTicking.Managers;
-using Content.Shared;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Robust.Shared.Map.Components;

@@ -200,6 +200,7 @@
   loadouts:
   - RoboticistLabCoat
   - RoboticistWintercoat
+  - RoboticistWintercoatAlt
 
 - type: loadoutGroup
   id: RoboticistHead
@@ -236,6 +237,14 @@
   - RoboticistDuffel
   - LeatherSatchel
 
+- type: loadoutGroup
+  id: RoboticistNeck
+  name: loadout-group-roboticist-neck
+  minLimit: 0
+  loadouts:
+  - RoboticistScarf
+  - ScientistTie
+
 # IAA
 - type: loadoutGroup
   id: IAAJumpsuit
@@ -266,6 +275,7 @@
   - NanoTrasenRepresentativeTophat
   - NanoTrasenRepresentativeEliteTophat
   - NanoTrasenRepresentativeCap
+  - NanoTrasenRepresentativeBeret
 
 - type: loadoutGroup
   id: NanoTrasenRepresentativeNeck
@@ -318,6 +328,7 @@
   minLimit: 0
   loadouts:
   - MagistrateHeadPwig
+  - MagistrateHeadBeret
 
 - type: loadoutGroup
   id: MagistrateEyewear
@@ -448,6 +459,7 @@
   defaultSelected: 1
   loadouts:
   - BlackShoes
+  - RoboticistWinterBoots
   - ScienceWinterBoots
   - Heels
   - LeatherShoes

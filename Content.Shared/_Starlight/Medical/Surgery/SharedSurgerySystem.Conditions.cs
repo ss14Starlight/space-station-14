@@ -34,7 +34,7 @@ public abstract partial class SharedSurgerySystem
             return; // nothing to check
 
         foreach (var comp in (ent.Comp.Component ?? []).Values)
-            if (!EntityManager.HasComponent(args.Body, comp.Component.GetType()))
+            if (!HasComp(args.Body, comp.Component.GetType()))
             {
                 args.Cancelled = true;
                 return;
@@ -131,7 +131,7 @@ public abstract partial class SharedSurgerySystem
     }
     private void OnSpeciesConditionValid(Entity<SurgerySpeciesConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        if (!EntityManager.TryGetComponent<HumanoidAppearanceComponent>(args.Body, out var humanoidAppearanceComponent))
+        if (!TryComp<HumanoidAppearanceComponent>(args.Body, out var humanoidAppearanceComponent))
         {
             args.Cancelled = true;
             return;

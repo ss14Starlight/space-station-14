@@ -110,7 +110,7 @@ public abstract partial class SharedJumpSystem : EntitySystem
 
     public bool TryJump(EntityUid performer, EntityCoordinates targetCoords, JumpActionEvent args, EntityUid? target = null, float speed = 15f, bool toPointer = false, SoundSpecifier? sound = null, float? distance = null, bool decreaseCharges = false)
     {
-        if (args.Action == null || _action.IsCooldownActive(args.Action))
+        if (_action.IsCooldownActive(args.Action))
             return false;
 
         if (target == null)
@@ -136,13 +136,10 @@ public abstract partial class SharedJumpSystem : EntitySystem
 
     public void Jump(EntityUid performer, EntityUid target, EntityCoordinates targetCoords,  JumpActionEvent args, float speed = 15f, bool toPointer = false, SoundSpecifier? sound = null, float? distance = null, bool decreaseCharges = false)
     {
-        if (args.Action == null)
-            return;
-
         if (TryComp<LimitedChargesComponent>(args.Action.Owner, out var limitedCharges)
             && !_chargesSystem.HasCharges((args.Action.Owner, limitedCharges), 1))
             return;
-        else if (args.Action.Owner != null && decreaseCharges)
+        else if (decreaseCharges)
             _chargesSystem.TryUseCharge(args.Action.Owner);
 
         var userTransform = Transform(target);

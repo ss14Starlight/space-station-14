@@ -15,10 +15,6 @@
       - Machine
       - Scratch
     - type: Vocal
-      sounds:
-        Male: NeoAvaliMSounds
-        Female: NeoAvaliFSounds
-        Unsexed: NeoAvaliMSounds
     - type: Tag
       tags:
         - CanPilot

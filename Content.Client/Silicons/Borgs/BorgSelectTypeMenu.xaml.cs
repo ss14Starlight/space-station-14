@@ -1,11 +1,10 @@
 ﻿using System.Linq;
-using Content.Client._Afterlight.Silicons.Borgs.UI; // Afterlight
+// Afterlight
 using Content.Client.UserInterface.Controls;
-using Content.Client.UserInterface.Systems.Guidebook;
-using Content.Shared._Afterlight.Prototypes; // Afterlight
+// Afterlight
 using Content.Shared._Starlight.Silicons.Borgs; // Starlight
-using Content.Shared._Afterlight.Silicons; // Afterlight
-using Content.Shared._Afterlight.Silicons.Borgs; // Afterlight
+// Afterlight
+// Afterlight
 using Content.Shared.Guidebook;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;

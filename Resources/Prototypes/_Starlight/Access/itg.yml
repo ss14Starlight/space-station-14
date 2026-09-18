@@ -1,5 +1,6 @@
 ﻿- type: accessGroup
   id: ITG
+  name: id-card-access-level-itg
   tags:
   - Salvage
   - SalvageLead

@@ -21,3 +21,9 @@ reagent-desc-mortucussus = Would not advise eating. Can be used to synthesize am
 
 reagent-name-putrid-blood = putrid blood
 reagent-desc-putrid-blood = Would not advise eating. Smells like it contains trace amounts of mortucussus.
+
+reagent-name-pseudoceramic-platelets = pseudoceramic platelets
+reagent-desc-pseudoceramic-platelets = Coarse, crunchy and slimy...
+
+reagent-name-doll-blood = anomalous blood
+reagent-desc-doll-blood = It's like a thick meat soup...

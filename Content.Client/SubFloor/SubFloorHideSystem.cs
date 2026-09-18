@@ -1,6 +1,5 @@
 using Content.Client.UserInterface.Systems.Sandbox;
 using Content.Shared.Atmos.Components;
-using Content.Shared.DrawDepth;
 using Content.Shared.SubFloor;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;

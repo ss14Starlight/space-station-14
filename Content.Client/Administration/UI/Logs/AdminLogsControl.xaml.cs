@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Runtime.InteropServices;
+using Content.Client._Starlight.Administration.Logs;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
@@ -469,7 +470,7 @@ public sealed partial class AdminLogsControl : Control
         {
             ref var log = ref span[i];
             var separator = new HSeparator();
-            var label = new AdminLogLabel(ref log, separator);
+            var label = new AdminLogEntityLabel(ref log, separator); // Starlight
             label.Visible = ShouldShowLog(label);
 
             TotalLogs++;

@@ -2,7 +2,8 @@ using Robust.Shared.Audio;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Prototypes; //FarHorizons
-using Content.Shared.Actions;//FarHorizons
+
+//FarHorizons
 
 namespace Content.Server.Medical.Components;
 

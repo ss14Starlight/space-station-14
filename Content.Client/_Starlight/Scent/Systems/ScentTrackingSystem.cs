@@ -14,13 +14,13 @@ namespace Content.Client._Starlight.Scent.Systems;
 
 // Filters visible ScentMarker sprites to the local player's tracked scent, and plays each
 // marker's fade animation.
-public sealed class ScentTrackingSystem : EntitySystem
+public sealed partial class ScentTrackingSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedInternalsSystem _internals = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedInternalsSystem _internals = default!;
 
     private const string FadeAnimationKey = "scent-marker-fade";
 
@@ -144,16 +144,14 @@ public sealed class ScentTrackingSystem : EntitySystem
     private bool TryGetOwnEnclosure(out EntityUid enclosure)
     {
         enclosure = default;
-
         if (_player.LocalSession?.AttachedEntity is not { } local ||
-            !TryComp<TransformComponent>(local, out var localXform) ||
-            !TryComp<EntityStorageComponent>(localXform.ParentUid, out var storage) ||
+            !TryComp<EntityStorageComponent>(Transform(local).ParentUid, out var storage) ||
             !storage.Airtight)
         {
             return false;
         }
 
-        enclosure = localXform.ParentUid;
+        enclosure = Transform(local).ParentUid;
         return true;
     }
 
