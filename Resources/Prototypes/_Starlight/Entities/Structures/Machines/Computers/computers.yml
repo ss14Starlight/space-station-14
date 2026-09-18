@@ -364,6 +364,7 @@
     - Syndicate
     - Silicon
     - Xenoborg
+    - ITG
     privilegedIdSlot:
       name: UniversalIdConsole-privilegedId
       ejectSound: /Audio/Machines/id_swipe.ogg

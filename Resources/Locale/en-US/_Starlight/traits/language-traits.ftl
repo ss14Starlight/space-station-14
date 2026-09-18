@@ -6,6 +6,9 @@ trait-language-foreigner-light-desc = You understand the common language, but yo
 trait-language-foreigner-name = Foreigner
 trait-language-foreigner-desc = You can't understand the common language, and you require a translator at all times to talk. You have a translator to help you with your understanding and speaking. Make sure to keep it charged.
 
+trait-language-xenosocialized-name = Xenosocialized
+trait-language-xenosocialized-desc = You were raised without being taught the language your species normally uses.
+
 trait-language-signlanguage-name = Sign Language
 trait-language-signlanguage-desc = A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments.
 
