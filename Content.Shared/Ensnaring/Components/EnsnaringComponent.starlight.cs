@@ -2,6 +2,7 @@
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Ensnaring.Components;
+
 public sealed partial class EnsnaringComponent
 {
     /// <summary>
