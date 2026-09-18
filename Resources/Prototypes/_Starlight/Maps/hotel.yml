@@ -20,7 +20,7 @@
             #service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
-            AssistantManager: [ 1, 1 ]
+            #AssistantManager: [ 1, 1 ]
             Bartender: [ 2, 2 ]
             Botanist: [ 2, 2 ]
             Chef: [ 2, 2 ]
