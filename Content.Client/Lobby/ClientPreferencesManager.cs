@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Starlight.Preferences;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -29,6 +30,10 @@ namespace Content.Client.Lobby
         public void Initialize()
         {
             _netManager.RegisterNetMessage<MsgPreferencesAndSettings>(HandlePreferencesAndSettings);
+            _netManager.RegisterNetMessage<MsgForceUpdatePlayerCharacter>(); // Starlight
+            _netManager.RegisterNetMessage<MsgForceDeletePlayerCharacter>(); // Starlight
+            _netManager.RegisterNetMessage<MsgForcePlayerCharacterEnable>(); // Starlight
+            _netManager.RegisterNetMessage<MsgForceUpdatePlayerJobPriorities>(); // Starlight
             _netManager.RegisterNetMessage<MsgUpdateCharacter>();
             _netManager.RegisterNetMessage<MsgDeleteCharacter>();
             _netManager.RegisterNetMessage<MsgSetCharacterEnable>();

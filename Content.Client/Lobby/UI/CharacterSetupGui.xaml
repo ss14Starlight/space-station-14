@@ -12,7 +12,7 @@
             <BoxContainer Orientation="Horizontal" MinSize="0 40">
                 <Label Text="{Loc 'character-setup-gui-character-setup-label'}"
                        Margin="8 0 0 0" VAlign="Center"
-                       StyleClasses="LabelHeadingBigger" />
+                       StyleClasses="LabelHeadingBigger" Name = "WindowHeader" /> <!--Starlight edit-->
 
                 <Button Name="StatsButton" HorizontalExpand="True"
                         Text="{Loc 'character-setup-gui-character-setup-stats-button'}"

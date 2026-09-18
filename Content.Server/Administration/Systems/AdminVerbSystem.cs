@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.UI;
@@ -10,6 +11,8 @@ using Content.Server.Prayer;
 using Content.Server.Preferences.Managers;
 using Content.Server.Silicons.Laws;
 using Content.Server.Station.Systems;
+using Content.Shared._Starlight.Player;
+using Content.Shared._Starlight.Preferences;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -39,6 +42,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Utility;
 using Content.Shared.Chemistry.Components;
+using Robust.Shared.Network;
 using static Content.Shared.Configurable.ConfigurationComponent;
 #region Starlight
 using Content.Server._Starlight.Thaven;
@@ -84,6 +88,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private TraitSystem _traitSystem = default!; //Starlight
         [Dependency] private SLSharedCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //Starlight
         [Dependency] private TagSystem _tag = default!; //Starlight
+        [Dependency] private INetManager _net = null!; // Starlight
 
         private readonly Dictionary<ICommonSession, List<EditSolutionsEui>> _openSolutionUis = new();
 
@@ -464,6 +469,48 @@ namespace Content.Server.Administration.Systems
                     });
                 }
                 #endregion
+
+                #region Starlight CharacterEdit
+
+                if (_playerManager.TryGetSessionByEntity(args.Target, out var targetPlayer))
+                {
+                    if (_prefsManager is ServerPreferencesManager prefs)
+                    {
+                        args.Verbs.Add(new Verb
+                        {
+                            Priority = 8,
+                            Text = Loc.GetString("admin-verbs-edit-character"),
+                            Message = Loc.GetString("admin-verbs-edit-character-description"),
+                            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/character.svg.192dpi.png")),
+                            Category = VerbCategory.Admin,
+                            Act = async void () =>
+                            {
+                                try
+                                {
+                                    var cts = new CancellationTokenSource();
+                                    var playerPrefs = await prefs.GetProfileDataForPlayerAsync(targetPlayer.UserId,
+                                        cts.Token);
+                                    cts.Token.ThrowIfCancellationRequested();
+                                    if (playerPrefs is null) throw new Exception("Could not get prefs.");
+                                    var msg = new MsgOpenPlayerCharacterSetup
+                                    {
+                                        Preferences = playerPrefs,
+                                        PlayerInfo = new MinimalPlayerInfo(targetPlayer.Name, targetPlayer.UserId)
+                                    };
+                                    _net.ServerSendMessage(msg, player.Channel);
+                                }
+                                catch(Exception err)
+                                {
+                                    IoCManager.Resolve<ILogManager>().GetSawmill("verbsystem").Log(LogLevel.Error, err,
+                                        "Failed to open character editor.");
+                                }
+                            }
+                        });
+                    }
+                }
+
+                #endregion
+
                 // End Impstation Additions
             }
         }
