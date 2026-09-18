@@ -1,53 +1,4 @@
 Entries:
-- author: Xale
-  changes:
-  - message: Documentation for Vulpkanin hunger rate, which is 1.1x rather than the previously stated 1.5x.
-    type: Fix
-  id: 408295
-  time: '2026-09-06T05:42:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5992
-- author: Xale
-  changes:
-  - message: Documentation for Vulpkanin thirst rate, which is 1.25x rather than the previously stated 1.5x.
-    type: Fix
-  id: 408296
-  time: '2026-09-06T05:42:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5992
-- author: Mack
-  changes:
-  - message: Borgs can now have their chassis reset.
-    type: Add
-  id: 408297
-  time: '2026-09-06T05:42:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5728
-- author: Mack
-  changes:
-  - message: Borgs now have a tracker on a 30 second delay when crit/locked down/out of charge.
-    type: Add
-  id: 408298
-  time: '2026-09-06T05:42:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5728
-- author: Mack
-  changes:
-  - message: Borg brain eject replaced with new "Lock Down" function.
-    type: Tweak
-  id: 408299
-  time: '2026-09-06T05:42:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5728
-- author: Mack
-  changes:
-  - message: Law 0 is no longer attached to the lawboard.
-    type: Tweak
-  id: 408300
-  time: '2026-09-06T05:42:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5728
-- author: Dogiememe
-  changes:
-  - message: (Reach) Service Mailbox.
-    type: Add
-  id: 408301
-  time: '2026-09-06T05:42:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5995
 - author: qbrx
   changes:
   - message: Abductor victims are now correctly parented to the appropriate grid when returned from the Experimentator.
@@ -2799,4 +2750,53 @@ Entries:
   id: 408694
   time: '2026-09-18T09:54:38.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6182
+- author: OJG
+  changes:
+  - message: (Refinery) More specialist armor in the armory.
+    type: Tweak
+  id: 408695
+  time: '2026-09-18T09:54:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6178
+- author: OJG
+  changes:
+  - message: (Refinery) More camera coverage for 1984.
+    type: Tweak
+  id: 408696
+  time: '2026-09-18T09:54:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6178
+- author: OJG
+  changes:
+  - message: (Refinery) AI core is a little more spacious so hopefully the turrets do their job.
+    type: Tweak
+  id: 408697
+  time: '2026-09-18T09:54:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6178
+- author: OJG
+  changes:
+  - message: (Refinery) Removed a few firelocks and replaced a lot of them with transparent glass versions.
+    type: Tweak
+  id: 408698
+  time: '2026-09-18T09:54:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6178
+- author: OJG
+  changes:
+  - message: (Refinery) Doubled the gas miners to make spacing less chronic.
+    type: Tweak
+  id: 408699
+  time: '2026-09-18T09:54:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6178
+- author: OJG
+  changes:
+  - message: (Refinery) Moved all non-public mailboxes to public areas.
+    type: Tweak
+  id: 408700
+  time: '2026-09-18T09:54:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6178
+- author: OJG
+  changes:
+  - message: (Refinery) Added salv medic slot.
+    type: Fix
+  id: 408701
+  time: '2026-09-18T09:54:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6178
 Order: -1
