@@ -4,8 +4,8 @@ meta:
   engineVersion: 289.0.3
   forkId: ""
   forkVersion: ""
-  time: 09/18/2026 01:04:06
-  entityCount: 22559
+  time: 09/18/2026 16:16:44
+  entityCount: 22560
 maps:
 - 1
 grids:
@@ -8140,7 +8140,7 @@ entities:
       pos: 8.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -269222.88
+      secondsUntilStateChange: -269550.72
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -9894,7 +9894,7 @@ entities:
       pos: 2.5,-7.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -231346.92
+      secondsUntilStateChange: -231674.78
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10057,7 +10057,7 @@ entities:
       pos: -38.5,10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -283398.34
+      secondsUntilStateChange: -283726.2
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -10073,7 +10073,7 @@ entities:
       pos: -36.5,-10.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -283297.4
+      secondsUntilStateChange: -283625.25
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -121449,6 +121449,13 @@ entities:
     - type: Transform
       parent: 2
       pos: 38.5,-37.5
+- proto: SpawnPointAssistantManager
+  entities:
+  - uid: 22560
+    components:
+    - type: Transform
+      parent: 2
+      pos: -3.5,17.5
 - proto: SpawnPointAtmos
   entities:
   - uid: 18404
