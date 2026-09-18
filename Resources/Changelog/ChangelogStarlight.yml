@@ -1,60 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Soviet crates now despawn after 15 minutes dropping their content as they do.
-    type: Add
-  id: 408287
-  time: '2026-09-06T04:49:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5921
-- author: STARLIGHT TEAM
-  changes:
-  - message: Fixed Soviet crates wont collide with each other anymore in an attempt to fix lag.
-    type: Fix
-  id: 408288
-  time: '2026-09-06T04:49:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5921
-- author: DogeyOT
-  changes:
-  - message: Vox markings for coloring legs, arms and beaks.
-    type: Add
-  id: 408289
-  time: '2026-09-06T05:12:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5918
-- author: DogeyOT
-  changes:
-  - message: Two new vox tails.
-    type: Add
-  id: 408290
-  time: '2026-09-06T05:12:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5918
-- author: DogeyOT
-  changes:
-  - message: Markings for feathered vox legs.
-    type: Add
-  id: 408291
-  time: '2026-09-06T05:12:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5918
-- author: Conflee
-  changes:
-  - message: Added Firefighter Smocks. Smocks can be found in Fire-Safety Cargo orders, and Fire-Safety Closets. They are much worse than a Fire Suit, but do provide some protection from direct fire damage, heating/cooling temperatures, and heat/cold damage types. Resistances don't stack additively, so the benefit of wearing both is very small- spread the PPE! In prep for Reagent Fires.
-    type: Add
-  id: 408292
-  time: '2026-09-06T05:12:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5956
-- author: Xale
-  changes:
-  - message: Avali and Vulpkanin no longer require more food or water to get out of near-dying levels of hunger or thirst.
-    type: Tweak
-  id: 408293
-  time: '2026-09-06T05:42:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5992
-- author: Xale
-  changes:
-  - message: Documentation for Avali hunger rate, which is 1.8x rather than the previously stated 2.0x.
-    type: Fix
-  id: 408294
-  time: '2026-09-06T05:42:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5992
 - author: Xale
   changes:
   - message: Documentation for Vulpkanin hunger rate, which is 1.1x rather than the previously stated 1.5x.
@@ -2799,4 +2743,60 @@ Entries:
   id: 408686
   time: '2026-09-18T09:28:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6177
+- author: Caws
+  changes:
+  - message: Serpentcrest's population range has been adjusted so that it's a "regular" Alpha map. It had a very narrow pop range before (60 min ~ 150 max), making it rarely show up on both Alpha and Beta.
+    type: Tweak
+  id: 408687
+  time: '2026-09-18T09:54:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6182
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Second Detective + Locker.
+    type: Add
+  id: 408688
+  time: '2026-09-18T09:54:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6182
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Second Brigmedic + Large locker.
+    type: Add
+  id: 408689
+  time: '2026-09-18T09:54:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6182
+- author: Caws
+  changes:
+  - message: (Serpentcrest) +1 Mining Specialist (for a total of 4).
+    type: Add
+  id: 408690
+  time: '2026-09-18T09:54:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6182
+- author: Caws
+  changes:
+  - message: (Serpentcrest) +1 Salvage Specialist (for a total of 4).
+    type: Add
+  id: 408691
+  time: '2026-09-18T09:54:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6182
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Folded the late-join slots into round start slots like other high-pop maps.
+    type: Tweak
+  id: 408692
+  time: '2026-09-18T09:54:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6182
+- author: Caws
+  changes:
+  - message: Serpentcrest's minPlayers set to 50 (down from 60).
+    type: Tweak
+  id: 408693
+  time: '2026-09-18T09:54:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6182
+- author: Caws
+  changes:
+  - message: Serpentcrest's maxPlayers set to 350 (up from 150).
+    type: Tweak
+  id: 408694
+  time: '2026-09-18T09:54:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6182
 Order: -1
