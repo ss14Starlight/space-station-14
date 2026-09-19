@@ -16,9 +16,9 @@
   ## Objectives
 
   Your main objective is to kill and harvest all sentient brains in the station and bring them to the mothership core. These can be both real brains, and positronic brains.
-  
+
   Steal power from the station using xenoborg extractors to produce xenoborg crystals to create more xenoborg bodies.
-  
+
   Protect the Mothership at all costs.
 
   ## The Mothership Core
@@ -166,7 +166,7 @@
   The Mothership and Xenoborgs have unique laws that define their purpose to self replicate and protect the Mothership.
 
   <Box>
-    <GuideEntityEmbed Entity="XenoborgLawsetCircuitBoard" Caption=""/>
+    <GuideEntityEmbed Entity="XenoborgCircuitBoard" Caption=""/>
   </Box>
 
   The Mothership Core's laws are as follows::
