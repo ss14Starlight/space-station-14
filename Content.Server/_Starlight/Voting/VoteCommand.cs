@@ -20,7 +20,7 @@ using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Maps;
 using Content.Shared.Random.Helpers;
-using Prometheus;
+using Content.Server._Starlight.Statistics;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -46,20 +46,9 @@ public sealed partial class VoteCommand : ToolshedCommand
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     private GameTicker? _ticker;
+    private RoundStatisticsSystem? _roundStatistics;
 
     private const string SecretPrototype = "Secret";
-
-    private static readonly Counter _gamemodeVote = Metrics.CreateCounter(
-        "sl_gamemode_vote",
-        "Gamemode vote results",
-        [ "option" ]
-    );
-
-    private static readonly Counter _mapVote = Metrics.CreateCounter(
-        "sl_map_vote",
-        "Map/Station vote results",
-        [ "option" ]
-    );
 
     private List<ICommonSession>? GetSessionsFromEntities(IInvocationContext ctx, IEnumerable<EntityUid> voters)
     {
@@ -274,9 +263,16 @@ public sealed partial class VoteCommand : ToolshedCommand
             if (_ticker.CanUpdateMap())
             {
                 for (var i = 0; i < maps.Count; i++)
-                    _mapVote.WithLabels(
-                        maps[i].Item1
-                    ).Inc(args.Votes[i]);
+                {
+                    var isSecret = includeSecret && i == 0;
+                    var option = (GameMapPrototype) maps[i].Item2;
+                    _roundStatistics ??= EntityManager.System<RoundStatisticsSystem>();
+                    _roundStatistics.RecordVoteResult(
+                        "map",
+                        isSecret ? "Secret" : option.ID,
+                        args.Votes[i],
+                        !isSecret && option.ID == picked.ID);
+                }
 
                 if (_map.CheckMapExists(picked.ID))
                 {
@@ -371,7 +367,7 @@ public sealed partial class VoteCommand : ToolshedCommand
         }
         else
         {
-            if (includeSecret) presets.Add((Loc.GetString("ui-vote-secret-map"), secretPreset!));
+            if (secret) presets.Add((Loc.GetString("ui-vote-secret-map"), secretPreset!));
             presets.AddRange(presetPrototypes.Select(map => (Loc.GetString(map.ModeTitle), map))
                 .Select(dummy => ((string, object))dummy));
         }
@@ -414,9 +410,11 @@ public sealed partial class VoteCommand : ToolshedCommand
             _ticker ??= EntityManager.System<GameTicker>();
 
             for (var i = 0; i < presets.Count; i++)
-                _gamemodeVote.WithLabels(
-                    presets[i].Item1
-                ).Inc(args.Votes[i]);
+            {
+                var option = (GamePresetPrototype) presets[i].Item2;
+                _roundStatistics ??= EntityManager.System<RoundStatisticsSystem>();
+                _roundStatistics.RecordVoteResult("gamemode", option.ID, args.Votes[i], option.ID == pickedPreset.ID);
+            }
 
             mgr.DecrementPresetCooldown(pickedPreset);
             mgr.AddPresetToCooldown(pickedPreset);
