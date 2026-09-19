@@ -1,47 +1,27 @@
 - type: entity
-  parent: AirlockCommandGlass
-  id: AirlockNtrepGlassLocked
-  suffix: Ntrep, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [DoorElectronicsNtrep]
-
-- type: entity
-  parent: AirlockGlass
-  id: AirlockNTGlassLocked
-  suffix: Nanotrasen, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [DoorElectronicsNT]
-
-- type: entity
-  parent: AirlockMaint
-  id: AirlockMaintNtrepLocked
-  suffix: Ntrep, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [DoorElectronicsNtrep]
-
-- type: entity
-  parent: AirlockCommand
-  id: AirlockNrepLocked
-  suffix: Ntrep, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [DoorElectronicsNtrep]
-
-- type: entity
-  parent: Airlock
+  parent: AirlockNT
   id: AirlockNTLocked
-  suffix: Nanotrasen, Locked
+  suffix: NanoTrasen, Locked
   components:
     - type: ContainerFill
       containers:
         board: [DoorElectronicsNT]
+
+- type: entity
+  parent: AirlockNTGlass
+  id: AirlockNTGlassLocked
+  suffix: NanoTrasen, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [DoorElectronicsNT]
+
+- type: entity
+  parent: AirlockNTLocked
+  id: AirlockMaintNTLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
   parent: AirlockGlassShuttleSyndicate
