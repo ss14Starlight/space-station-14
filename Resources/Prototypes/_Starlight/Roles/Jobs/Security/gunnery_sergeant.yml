@@ -50,8 +50,6 @@
   equipment:
     head: ClothingHeadHatBeretGunnerySergeant
     mask: ClothingMaskGasSecurity
-    outerClothing: ClothingOuterCoatGunnerySergeant
-    jumpsuit: ClothingUniformJumpsuitGunnerySergeant
     belt: ClothingBeltSecurity
     # gloves: ClothingHandsGlovesCombat # Starlight
     shoes: ClothingShoesBootsJack
