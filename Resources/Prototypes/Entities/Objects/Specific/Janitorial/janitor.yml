@@ -38,6 +38,8 @@
     size: Large
     sprite: Objects/Specific/Janitorial/mop.rsi
   - type: Absorbent
+    footprintCleaningRange: 0.45 # Funky change
+    maxCleanedFootprints: 25 # Funky change
     useAbsorberSolution: true
   - type: UseDelay
     delay: 1
@@ -88,6 +90,8 @@
       sprite: Objects/Specific/Janitorial/advmop.rsi
     - type: Absorbent
       pickupAmount: 100
+      footprintCleaningRange: 0.75 # Funky change
+      maxCleanedFootprints: 25 # Funky change
     - type: SolutionRegeneration
       generated:
         reagents:
