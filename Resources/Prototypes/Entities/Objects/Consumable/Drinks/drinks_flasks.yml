@@ -15,7 +15,7 @@
       collection: flaskCloseSounds
   # Starlight-start: Drink bottles are shakeable
   - type: ShakeSpillable
-    solution: drink
+    solutionName: drink
   - type: ReactionMixer
     mixerType: None
     reactionTypes:
