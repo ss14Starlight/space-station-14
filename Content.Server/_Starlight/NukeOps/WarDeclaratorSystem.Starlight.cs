@@ -5,6 +5,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.NukeOps;
 
 public sealed partial class WarDeclaratorSystem
