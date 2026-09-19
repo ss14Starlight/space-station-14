@@ -33,12 +33,12 @@ public abstract partial class SharedPuddleSystem
         SubscribeLocalEvent<SpillableComponent, GetVerbsEvent<Verb>>(AddSpillVerb);
         SubscribeLocalEvent<SpillableComponent, MeleeHitEvent>(SplashOnMeleeHit, after: [typeof(OpenableSystem)]);
         SubscribeLocalEvent<SpillableComponent, AttemptPacifiedThrowEvent>(OnAttemptPacifiedThrow);
-        // Starlight-start: Bottles spill without cap when shaken
+        #region Starlight
         SubscribeLocalEvent<ShakeSpillableComponent, ShakeEvent>(OnShakeSpill);
-        // Starlight-end
+        #regionend
     }
 
-    // Starlight-start: Spill solution when shaken uncapped
+    #region Starlight
     private void OnShakeSpill(Entity<ShakeSpillableComponent> entity, ref ShakeEvent args)
     {
         if (Openable.IsClosed(entity.Owner)
@@ -49,7 +49,7 @@ public abstract partial class SharedPuddleSystem
         var spilled = _solutionContainerSystem.SplitSolution(solutionEntity.Value, solution.Volume);
         TrySplashSpillAt(entity.Owner, Transform(entity.Owner).Coordinates, spilled, out _);
     }
-    // Starlight-end
+    #regionend
 
     private void OnExamined(Entity<SpillableComponent> entity, ref ExaminedEvent args)
     {
