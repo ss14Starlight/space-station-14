@@ -95,7 +95,9 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
         _deletionQueue.Clear();
 
-        TickEvaporation();
+        // Starlight - avoid enumerating every evaporation component between scheduled ticks.
+        if (_timing.CurTime >= _nextEvaporationUpdate)
+            TickEvaporation();
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
@@ -325,9 +327,12 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     private void UpdateSlow(EntityUid uid, Solution solution)
     {
         var maxViscosity = 0f;
-        foreach (var (reagent, _) in solution.Contents)
+        foreach (var (reagent, quantity) in solution.Contents) // Starlight
         {
             var reagentProto = _prototypeManager.Index<ReagentPrototype>(reagent.Prototype);
+            if (quantity < reagentProto.ViscosityMin) // Starlight
+                continue; // Starlight
+
             maxViscosity = Math.Max(maxViscosity, reagentProto.Viscosity);
         }
 

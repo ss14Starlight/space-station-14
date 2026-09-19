@@ -98,10 +98,6 @@
     - id: CommunicationTablet
     - id: CommandTechFabFlatpack
     - id: BookSecureTerminalManual
-    - id: SpyglassCaptain #Starlight
-    - id: CommunicationTablet #Starlight
-    - id: CommandTechFabFlatpack # Starlight
-    - id: BookSecureTerminalManual # Starlight
     - id: HeadSkeleton # A skull to accompany your skeleton crew # Starlight Edit: OrganSkeletonPersonHead -> HeadSkeleton
       conditions:
       - !type:PlayerCountCondition

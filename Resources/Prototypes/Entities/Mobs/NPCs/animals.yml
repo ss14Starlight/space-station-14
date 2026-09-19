@@ -3907,10 +3907,17 @@
     description: ghost-role-information-hamster-description
     rules: ghost-role-information-nonantagonist-rules
   - type: GhostTakeoverAvailable
+  # Starlight-start: Audio Emotes
   - type: Speech
     speechVerb: SmallMob
     speechSounds: Squeak
-    allowedEmotes: ['Squeak']
+    allowedEmotes: ['Squeak'] # love ya Hammy - Charles
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
+  # Starlight-end
   - type: Sprite
     drawdepth: SmallMobs
     sprite: Mobs/Animals/hamster.rsi

@@ -18,6 +18,9 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio;
+using Robust.Shared.Physics.Dynamics;
+using Content.Shared.Gibbing;
+using Content.Shared.Mind;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
@@ -38,6 +41,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
     [Dependency] private PointLightSystem _pointLight = default!;
     [Dependency] private CosmicMalignEmpoweredRiftSystem _riftSystem = default!;
     [Dependency] private CosmicCorruptingSystem _corrupting = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -45,6 +49,7 @@ public sealed partial class CosmicColossusSystem : EntitySystem
         SubscribeLocalEvent<CosmicColossusComponent, ComponentInit>(OnSpawn);
         SubscribeLocalEvent<CosmicColossusComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<CosmicColossusComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<CosmicColossusComponent, GibbedBeforeDeletionEvent>(OnGibbed);
     }
 
     public override void Update(float frameTime)
@@ -199,5 +204,13 @@ public sealed partial class CosmicColossusSystem : EntitySystem
         };
 
         _appearance.SetData(ent, ColossusVisuals.Health, health);
+    private void OnGibbed(Entity<CosmicColossusComponent> ent, ref GibbedBeforeDeletionEvent args)
+    {
+        var mindSink = Spawn("CosmicCultMindSink", Transform(ent).Coordinates);
+
+        if (!_mind.TryGetMind(ent, out var mindId, out var mind))
+            return;
+
+        _mind.TransferTo(mindId, mindSink, mind: mind);
     }
 }
