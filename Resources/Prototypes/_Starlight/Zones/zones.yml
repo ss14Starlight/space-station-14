@@ -26,6 +26,15 @@
   - AirlockCentralCommandGlass
 
 - type: zone
+  id: Nanotrasen
+  name: zone-nanotrasen
+  color: "#dfe4ed"
+  priority: 20
+  doors:
+  - AirlockNT
+  - AirlockNTGlass
+
+- type: zone
   id: Security
   name: zone-security
   color: "#A33030"
