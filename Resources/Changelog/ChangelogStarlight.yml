@@ -1,27 +1,6 @@
 Entries:
 - author: Citrea
   changes:
-  - message: Soviet crates do *not* collide anymore, until collision issues are fixed.
-    type: Remove
-  id: 408324
-  time: '2026-09-06T14:06:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6015
-- author: Citrea
-  changes:
-  - message: Secure crates can be deconstructed again.
-    type: Fix
-  id: 408325
-  time: '2026-09-06T14:06:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6015
-- author: Citrea
-  changes:
-  - message: Crates are once again passable when open.
-    type: Fix
-  id: 408326
-  time: '2026-09-06T14:06:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6015
-- author: Citrea
-  changes:
   - message: Cybernetic Welding Tools have a fuel tank again.
     type: Fix
   id: 408327
@@ -2799,4 +2778,25 @@ Entries:
   id: 408723
   time: '2026-09-19T16:25:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6209
+- author: Pickra
+  changes:
+  - message: Added NT Personnel access role.
+    type: Add
+  id: 408724
+  time: '2026-09-19T16:43:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6161
+- author: Pickra
+  changes:
+  - message: Added NT branded airlocks.
+    type: Add
+  id: 408725
+  time: '2026-09-19T16:43:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6161
+- author: Pickra
+  changes:
+  - message: Applied the new NT Personnel access role to any spaces general NT should be able to access.
+    type: Tweak
+  id: 408726
+  time: '2026-09-19T16:43:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6161
 Order: -1
