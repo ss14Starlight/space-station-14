@@ -69,7 +69,7 @@ public sealed partial class WreckSwarmSystem : StationEventSystem<WreckSwarmComp
         _mapSystem.DeleteMap(wreckMapXform.MapID);
 
         if (component.Announcement is { } locId)
-            Announce(stationEvent, Loc.GetString(locId), false, null, component.AnnouncementSound);
+            Announce(stationEvent, Loc.GetString(locId), false, null, component.AnnouncementSound, stationEvent.SuppressTTS);
 
         ForceEndSelf(uid, gameRule);
     }

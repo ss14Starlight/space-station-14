@@ -349,7 +349,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null,
-        EntityUid? speaker = null // Starlight
+        EntityUid? speaker = null, // Starlight
+        bool SuppressTTS = false // Starlight
         )
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
@@ -367,6 +368,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             Receivers = Filter.Broadcast(),
             SpeakerUid = speaker.HasValue ? GetNetEntity(speaker.Value) : null,
             AnnouncementSound = announcementSound,
+            SuppressTTS = SuppressTTS
         });
         // Starlight end
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message.Text}");// Starlight
@@ -381,7 +383,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null,
-        bool recordToReplay = true) // Starlight
+        bool recordToReplay = true,
+        bool SuppressTTS = false) // Starlight
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
 
@@ -396,7 +399,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             AnnouncementSound = announcementSound,
             Message = message,
-            Receivers = filter
+            Receivers = filter,
+            SuppressTTS = SuppressTTS
         });
         // Starlight end
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message.Text}");
@@ -409,7 +413,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         string? sender = null,
         bool playDefaultSound = true,
         SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null)
+        Color? colorOverride = null,
+        bool SuppressTTS = false) // Starlight
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
 
@@ -438,7 +443,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             AnnouncementSound = announcementSound,
             Message = message,
-            Receivers = filter
+            Receivers = filter,
+            SuppressTTS = SuppressTTS
         });
         // Starlight end
 
