@@ -437,6 +437,19 @@
     stockLimit: 1
 
 - type: listing
+  id: USSPVodkizineMedipen
+  name: vodkizine-medipen-name
+  description: vodkizine-medipen-desc
+  productEntity: VodkizineMedipen
+  cost:
+    Telebond: 2
+  categories:
+  - RevUplinkPointless
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 5
+
+- type: listing
   id: USSPVodkizine
   name: vodkizine-name
   description: vodkizine-desc

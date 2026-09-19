@@ -33,3 +33,18 @@
         Quantity: 30
   - type: StaticPrice
     price: 1000
+- type: entity
+  parent: ChemicalMedipen
+  id: VodkizineMedipen
+  name: vodkizine medipen
+  description: A single-dose, non-refillable medipen containing vodkizine.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
+        reagents:
+        - ReagentId: Vodkizine
+          Quantity: 30
+  - type: StaticPrice
+    price: 1000
