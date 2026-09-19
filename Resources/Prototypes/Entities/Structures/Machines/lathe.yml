@@ -716,7 +716,7 @@
       staticPacks:
       - OreSmelting
       - RGlassSmelting
-    # starlight edit start - add magnet pickup to ore processors
+    # starlight edit start - add magnet pickup to ore processors & deviceNet
     - type: ItemToggle
       onUse: false
       onActivate: false
@@ -743,6 +743,15 @@
           enum.ToggleableVisuals.Layer:
             True: { visible: true }
             False: { visible: false }
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: BasicDevice
+    - type: DeviceList
+    - type: DeviceLinkSource
+      range: 4
+      ports:
+        - LatheSender
+    - type: LatheLinking
     # starlight edit end
 
 - type: entity
