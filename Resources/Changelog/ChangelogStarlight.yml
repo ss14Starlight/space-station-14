@@ -1,25 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: Cybernetic Welding Tools have a fuel tank again.
-    type: Fix
-  id: 408327
-  time: '2026-09-06T14:34:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6011
-- author: wonderfulnewworld
-  changes:
-  - message: Match sticks and torches can ignite fires now.
-    type: Tweak
-  id: 408328
-  time: '2026-09-06T14:55:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6012
-- author: wonderfulnewworld
-  changes:
-  - message: Salvage medic can no longer be antag.
-    type: Fix
-  id: 408329
-  time: '2026-09-06T15:16:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6013
 - author: Caws
   changes:
   - message: All high-pop maps (>150 maxPlayers) have had their 'latejoin' slots folded into their 'roundstart' slots in order to prevent people getting job slots based on whoever clicks the fastest on Observe -> New Life.
@@ -2799,4 +2778,25 @@ Entries:
   id: 408726
   time: '2026-09-19T16:43:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6161
+- author: Pickra
+  changes:
+  - message: Added Peacekeeper Bola Grenade to compliment the bola adjustments.
+    type: Add
+  id: 408727
+  time: '2026-09-19T16:43:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6157
+- author: Pickra
+  changes:
+  - message: Bolas are now small and fit in pockets and security belts.
+    type: Tweak
+  id: 408728
+  time: '2026-09-19T16:43:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6157
+- author: Pickra
+  changes:
+  - message: Fixed the Bola audio snap spam on hit. Potentially also solving some lag issues with it too.
+    type: Fix
+  id: 408729
+  time: '2026-09-19T16:43:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6157
 Order: -1
