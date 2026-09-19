@@ -30,7 +30,8 @@ public sealed partial class ActivateOnWearerHuggedSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        if (!_inventory.TryGetContainerSlotEnumerator(ent.Owner, out var enumerator))
+        // Exclude pockets from slots that hugs can activate
+        if (!_inventory.TryGetContainerSlotEnumerator(ent.Owner, out var enumerator, SlotFlags.WITHOUT_POCKET))
             return;
 
         // Mirror InteractionPopupSystem's prediction gate. Failed hugs don't trigger effects.
@@ -43,10 +44,7 @@ public sealed partial class ActivateOnWearerHuggedSystem : EntitySystem
             if (container.ContainedEntity is not { } item)
                 continue;
 
-            if (!TryComp<ActivateOnWearerHuggedComponent>(item, out var hugActivate))
-                continue;
-
-            if (hugActivate.Slot != container.ID)
+            if (!HasComp<ActivateOnWearerHuggedComponent>(item))
                 continue;
 
             ActivateWornItem(item, args.User, predicted);
