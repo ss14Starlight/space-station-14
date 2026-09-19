@@ -1,3 +1,4 @@
+# NT Personnel
 - type: entity
   parent: AirlockNT
   id: AirlockNTLocked
@@ -23,6 +24,7 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
+# Syndicate
 - type: entity
   parent: AirlockGlassShuttleSyndicate
   id: AirlockExternalGlassShuttleGamma
