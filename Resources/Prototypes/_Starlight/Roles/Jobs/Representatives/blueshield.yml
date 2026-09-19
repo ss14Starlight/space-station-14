@@ -57,6 +57,7 @@
     - Journalism
     - Clown
     - Mime
+    - NTPersonnel
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

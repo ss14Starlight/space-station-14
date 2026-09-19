@@ -65,6 +65,23 @@
     sprite: _Starlight/Clothing/Mask/gasroboticist.rsi
 
 - type: entity
+  parent: [ClothingMaskPullableBase]
+  id: ClothingMaskGasHalf
+  name: half mask
+  description: A half mask that covers the mouth and nose, but not the eyes.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/gashalf.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/gashalf.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: HideLayerClothing
+    layers:
+      Snout: Mask
+    hideOnToggle: true
+
+- type: entity
   parent: [ClothingMaskGas, BaseSovietContraband]
   id: ClothingSovietGasMask
   name: GP-32 gas mask
