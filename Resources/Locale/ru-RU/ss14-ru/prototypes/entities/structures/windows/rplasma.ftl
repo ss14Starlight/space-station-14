@@ -1,0 +1,10 @@
+ent-ReinforcedPlasmaWindow = плазменное бронеокно
+    .desc = { ent-BaseWindowStructure.desc }
+ent-PlasmaReinforcedWindowDirectional = направленное плазменное бронеокно
+    .desc = { ent-BaseWindowStructureDirectional.desc }
+ent-PlasmaReinforcedWindowDirectionalCorner = { ent-PlasmaReinforcedWindowDirectional }
+    .desc = { ent-PlasmaReinforcedWindowDirectional.desc }
+    .suffix = Угол
+ent-ReinforcedPlasmaWindowDiagonal = { ent-ReinforcedPlasmaWindow }
+    .desc = { ent-ReinforcedPlasmaWindow.desc }
+    .suffix = Диагональ

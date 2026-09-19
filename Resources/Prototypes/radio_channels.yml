@@ -4,102 +4,72 @@
   keycode: ";"
   frequency: 1459
   color: "#2cdb2c"
-  icon: # Starlight
-    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: common
+  encrypted: false
 
 - type: radioChannel
   id: CentCom
   name: chat-radio-centcom
-  keycode: 'y'
+  keycode: 'ц' # art-edit
   frequency: 1337
-  color: "#86d420" # Starlight
+  color: "#2681a5"
   longRange: true
-  icon: # Starlight
-    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: cc
 
 - type: radioChannel
   id: Command
   name: chat-radio-command
-  keycode: 'c'
+  keycode: 'к' # art-edit
   frequency: 1353
   color: "#fcdf03"
-  icon: # Starlight
-    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: command
 
 - type: radioChannel
   id: Engineering
   name: chat-radio-engineering
-  keycode: 'e'
+  keycode: 'и' # art-edit
   frequency: 1357
   color: "#ff733c"
-  icon: # Starlight
-    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: engineering
 
 - type: radioChannel
   id: Medical
   name: chat-radio-medical
-  keycode: 'm'
+  keycode: 'м' # art-edit
   frequency: 1355
   color: "#57b8f0"
-  icon: # Starlight
-    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: medical
 
 - type: radioChannel
   id: Science
   name: chat-radio-science
-  keycode: 'n'
+  keycode: 'н' # art-edit
   frequency: 1351
   color: "#cd7ccd"
-  icon: # Starlight
-    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: science
 
 - type: radioChannel
   id: Security
   name: chat-radio-security
-  keycode: 's'
+  keycode: 'о' # art-edit
   frequency: 1359
   color: "#ff4242"
-  icon: # Starlight
-    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: security
 
 - type: radioChannel
   id: Service
   name: chat-radio-service
-  keycode: 'v'
+  keycode: 'с' # art-edit
   frequency: 1349
   color: "#539c00"
-  icon: # Starlight
-    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: service
 
 - type: radioChannel
   id: Supply
   name: chat-radio-supply
-  keycode: 'u'
+  keycode: 'п' # art-edit
   frequency: 1347
   color: "#b48b57"
-  icon: # Starlight
-    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: cargo
 
 - type: radioChannel
   id: Syndicate
   name: chat-radio-syndicate
-  keycode: 't'
+  keycode: 'т' # art-edit
   frequency: 1213
-  color: "#b52424"
+  color: "#8f4a4b"
   longRange: true
-  anonymousAlias: "Agent {0}"
-  icon: # Starlight
-    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: syndicate
 
 - type: radioChannel
   id: Handheld
@@ -112,16 +82,16 @@
 - type: radioChannel
   id: Binary
   name: chat-radio-binary
-  keycode: 'b'
+  keycode: 'б' # art-edit
   frequency: 1001
-  color: "#00a2ff"
+  color: "#5ed7aa"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
   longRange: true
 
 - type: radioChannel
   id: Freelance
   name: chat-radio-freelance
-  keycode: 'f'
+  keycode: 'ф' # art-edit
   frequency: 1984
   color: "#f6ce64"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
@@ -130,7 +100,7 @@
 - type: radioChannel
   id: Xenoborg
   name: chat-radio-xenoborg
-  keycode: 'x'
+  keycode: 'х' # art-edit
   frequency: 2002
   color: "#2288ff"
   # long range since I don't wanna make a special xenoborg telecomm server
@@ -139,8 +109,8 @@
 - type: radioChannel
   id: Mothership
   name: chat-radio-mothership
-  keycode: 'z'
+  keycode: 'з' # art-edit
   frequency: 2003
   color: "#ff2222"
   # long range since I don't wanna make a special xenoborg telecomm server
-  longRange: true #Starlight. they forgot to make it longrange!
+  longRange: true
