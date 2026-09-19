@@ -1,9 +1,13 @@
-<DefaultWindow xmlns="https://spacestation14.io"
-            xmlns:tabs="clr-namespace:Content.Client.Options.UI.Tabs"
-            Title="{Loc 'ui-options-title'}"
-            MinSize="800 450">
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:stabs="clr-namespace:Content.Client._Starlight.Options.UI.Tabs"
+    xmlns:tabs="clr-namespace:Content.Client.Options.UI.Tabs"
+    Title="{Loc 'ui-options-title'}"
+    MinSize="800 450">
     <TabContainer Name="Tabs" Access="Public">
         <tabs:MiscTab Name="MiscTab" />
+        <!--  Starlight-edit: UI Tab  -->
+        <stabs:UITab Name="UITab" />
         <tabs:GraphicsTab Name="GraphicsTab" />
         <tabs:KeyRebindTab Name="KeyRebindTab" />
         <tabs:AudioTab Name="AudioTab" />

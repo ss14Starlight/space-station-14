@@ -79,8 +79,8 @@ public sealed partial class GunSystem : SharedGunSystem
         var fromMap = TransformSystem.ToMapCoordinates(fromCoordinates);
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var mapDirection = toMap - fromMap.Position;
-        var mapAngle = mapDirection.ToAngle();
-        var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle());
+        var angle = GetRecoilAngle(gun, mapDirection.ToAngle()); // Starlight-edit
+        gun.Comp.LastFire = gun.Comp.NextFire; // Stalright-edit
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out _)
@@ -205,8 +205,11 @@ public sealed partial class GunSystem : SharedGunSystem
                 var spreadEvent = new GunGetAmmoSpreadEvent(ammoSpreadComp.Spread);
                 RaiseLocalEvent(gun, ref spreadEvent);
 
-                var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
-                    mapAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count);
+                // Starlight-edit: the pattern follows recoil/movement spread and every pellet deviates randomly
+                var shotAngle = mapDirection.ToAngle();
+                var angles = LinearSpreadWithRandom(shotAngle - spreadEvent.Spread / 2,
+                    shotAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count,
+                    ammoSpreadComp.MinDeviation, ammoSpreadComp.MaxDeviation);
                 // Startlight-edit: start
                 if (isMechShooter)
                 {
@@ -306,40 +309,28 @@ public sealed partial class GunSystem : SharedGunSystem
     }
 
     // 🌟Starlight🌟
-    private Angle[] LinearSpreadWithRandom(Angle start, Angle end, int intervals, float randomSpread)
+    /// <summary>
+    /// Same as <see cref="LinearSpread"/>, but every angle is offset to a random side
+    /// by a random amount between <paramref name="minDeviation"/> and <paramref name="maxDeviation"/>.
+    /// </summary>
+    private Angle[] LinearSpreadWithRandom(Angle start, Angle end, int intervals, Angle minDeviation, Angle maxDeviation)
     {
-        var angles = new Angle[intervals];
-        DebugTools.Assert(intervals > 1);
+        if (intervals <= 1)
+            return [new Angle((start + end) / 2)];
 
+        var angles = LinearSpread(start, end, intervals);
         for (var i = 0; i < intervals; i++)
         {
-            var t = (float)i / (intervals - 1);
-            var baseAngle = start + (end - start) * t;
-
-            var randomFactor = _rand.NextFloat() - 0.5f;
-
-            var randomOffset = Angle.FromDegrees(randomFactor * randomSpread);
-
-            angles[i] = baseAngle + randomOffset;
+            var deviation = _rand.NextFloat((float) minDeviation.Theta, (float) maxDeviation.Theta);
+            angles[i] += new Angle(_rand.Prob(0.5f) ? deviation : -deviation);
         }
 
         return angles;
     }
 
-    private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction)
-    {
-        var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
-        var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
-        component.CurrentAngle = new Angle(newTheta);
-        component.LastFire = component.NextFire;
-
-        // Convert it so angle can go either side.
-        var random = Random.NextFloat(-0.5f, 0.5f);
-        var spread = component.CurrentAngle.Theta * random;
-        var angle = new Angle(direction.Theta + component.CurrentAngle.Theta * random);
-        DebugTools.Assert(spread <= component.MaxAngleModified.Theta);
-        return angle;
-    }
+    // Starlight-start: Fully rework recoil
+    //private Angle GetRecoilAngle(TimeSpan curTime, Entity<GunComponent> gun, Angle direction)
+    // Starlight-end
 
     protected override void Popup(string message, EntityUid? uid, EntityUid? user) { }
 

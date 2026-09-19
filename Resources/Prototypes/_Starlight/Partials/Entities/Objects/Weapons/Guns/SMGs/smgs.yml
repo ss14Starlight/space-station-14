@@ -1,0 +1,81 @@
+- type: !PartialOnly entity
+  id: BaseWeaponSubMachineGun
+  components:
+  - type: Gun
+    minAngle: 10
+    maxAngle: 28
+    angleIncrease: 2
+    angleDecay: 14
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunAtreides
+  components:
+  - type: Gun
+    minAngle: 8
+    maxAngle: 26
+    angleIncrease: 2.5
+    angleDecay: 14
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2
+    maxAngleDivider: 2
+    angleIncreaseDivider: 2
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunC20r
+  components:
+  - type: Gun
+    minAngle: 10 # Starlight: back to the SMG baseline
+    maxAngle: 28
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2
+    maxAngleDivider: 2
+    angleIncreaseDivider: 2
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunC20rROW
+  components:
+  - type: Gun
+    minAngle: 5
+    angleIncrease: 1.5
+    angleDecay: 12
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunDrozd
+  components:
+  - type: Gun
+    minAngle: 10 # Starlight: back to the SMG baseline
+    maxAngle: 28
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2
+    maxAngleDivider: 2
+    angleIncreaseDivider: 2
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunWt550
+  components:
+  - type: Gun
+    minAngle: 5
+    maxAngle: 16
+    angleIncrease: 1.2
+    angleDecay: 12
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 1.25
+    maxAngleDivider: 1.25
+    angleIncreaseDivider: 1.5
+
+- type: !PartialOnly entity
+  id: WeaponSubMachineGunBriefcase
+  components:
+  - type: Gun
+    minAngle: 12
+    maxAngle: 30
+    angleIncrease: 2
+    angleDecay: 14

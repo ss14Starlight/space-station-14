@@ -1,0 +1,55 @@
+- type: entity
+  id: ImpactEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.6
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - map: ["unshaded"]
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: AnimationPlayer
+  
+- type: displacementEffect
+  id: ImpactDisplacement
+  displacement:
+    sizeMaps:
+      32:
+        sprite: _Starlight/Effects/impact.rsi
+        state: impact
+  
+- type: entity
+  id: BulletHoleEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Sprite
+    drawdepth: Effects
+    sprite: _Starlight/Effects/bullet_hole.rsi
+    state: bullet_hole
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: AnimationPlayer
+  
+- type: entity
+  id: ImpactSparksEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.4
+  - type: Sprite
+    drawdepth: Effects
+    sprite: _Starlight/Effects/impact_sparks.rsi
+    state: effect
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: AnimationPlayer

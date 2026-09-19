@@ -17,8 +17,11 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
   - type: GunWieldBonus
-    minAngle: -10
-    maxAngle: -10
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 1.5
+    maxAngleDivider: 1.5
+    angleIncreaseDivider: 1.5
   - type: GunJamDefect
     prob: 0.30
     jamChance: 0.10
@@ -28,10 +31,10 @@
     maxShots: 7
   - type: GunSpreadDefect
     prob: 0.30
-    minAngleMin: 20
-    minAngleMax: 38
-    maxAngleMin: 38
-    maxAngleMax: 56
+    minAngleMin: 12
+    minAngleMax: 18
+    maxAngleMin: 30
+    maxAngleMax: 40
   - type: BackfireDefect
     prob: 0.10
     backfireChance: 0.025

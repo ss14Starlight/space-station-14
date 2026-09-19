@@ -2,6 +2,7 @@ using Content.Shared._Starlight.Defects.Components;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Wieldable;
 using Robust.Shared.Random;
 
 namespace Content.Shared._Starlight.Defects.Systems;
@@ -23,7 +24,9 @@ public sealed partial class GunSpreadDefectSystem : EntitySystem
 
         SubscribeLocalEvent<GunSpreadDefectComponent, MapInitEvent>(OnMapInit,
             after: new[] { typeof(DefectSystem) });
-        SubscribeLocalEvent<GunSpreadDefectComponent, GunRefreshModifiersEvent>(OnRefreshModifiers);
+        // The sampled angles replace the unwielded spread, so they must be applied before the wield dividers.
+        SubscribeLocalEvent<GunSpreadDefectComponent, GunRefreshModifiersEvent>(OnRefreshModifiers,
+            before: new[] { typeof(SharedWieldableSystem) });
     }
 
     private void OnMapInit(Entity<GunSpreadDefectComponent> ent, ref MapInitEvent args)

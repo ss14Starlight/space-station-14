@@ -29,4 +29,18 @@ public sealed partial class ProjectileSpreadComponent : Component
     /// </summary>
     [DataField]
     public int Count = 1;
+
+    #region Starlight
+    /// <summary>
+    /// Minimum random deviation applied to every projectile of the spread, so the pattern is never the same.
+    /// </summary>
+    [DataField]
+    public Angle MinDeviation = Angle.FromDegrees(1);
+
+    /// <summary>
+    /// Maximum random deviation applied to every projectile of the spread.
+    /// </summary>
+    [DataField]
+    public Angle MaxDeviation = Angle.FromDegrees(3);
+    #endregion
 }

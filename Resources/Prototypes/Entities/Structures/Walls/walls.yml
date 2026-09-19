@@ -246,6 +246,10 @@
   - type: IconSmooth
     key: walls
     base: meat
+  # Starlight-start
+  - type: Pierceable
+    level: Flesh
+  # Starlight-end
 
 - type: entity
   parent: BaseWall
@@ -1368,6 +1372,10 @@
   - type: IconSmooth
     key: woods
     base: wood
+  # Starlight-start
+  - type: Pierceable
+    level: Wood
+  # Starlight-end
 
 - type: entity
   parent: BaseWall
