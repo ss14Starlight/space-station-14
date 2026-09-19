@@ -539,9 +539,6 @@
   name: chat-emote-name-blink
   category: Hands # Not really hands, but definitely not vocal.
   icon: Interface/Emotes/squish.png
-  whitelist:
-    components:
-    - Vocal
   blacklist:
     components:
     - BorgChassis

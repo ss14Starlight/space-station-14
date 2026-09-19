@@ -665,6 +665,13 @@
         volume: -6
     Salute:
       collection: Salutes
+    # Starlight start
+    Blink:
+      collection: Blinks
+      params:
+        variation: 0.125
+    # Starlight end
+
 
 - type: emoteSounds
   id: DionaBodyEmotes
