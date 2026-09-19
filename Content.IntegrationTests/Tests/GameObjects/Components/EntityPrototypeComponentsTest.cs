@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Content.IntegrationTests.Utility;
 using Content.IntegrationTests.Fixtures;
 using Robust.Shared.ContentPack;
 using Robust.Shared.GameObjects;
@@ -41,6 +42,9 @@ namespace Content.IntegrationTests.Tests.GameObjects.Components
 
             foreach (var path in paths)
             {
+                if (GameDataScrounger.IsPartialVfsPath(path.ToString())) // Starlight
+                    continue;
+
                 var file = sResourceManager.ContentFileRead(path);
                 var reader = new StreamReader(file, Encoding.UTF8);
 
