@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Starlight.Medical;
 using Content.Server.Chat.Systems;
 using Content.Server.Medical.Components;
 using Content.Shared.Body.Components;
@@ -33,7 +34,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server._Starlight.Medical.Body.Systems;
-using Content.Shared._Starlight.Medical;
+using Content.Shared._Starlight.Medical.HealthAnalyzer;
 using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Medical;
@@ -387,6 +388,18 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             foreach (var (reagentId, amounts) in chemicalsDict)
                 chemicals.Add((reagentId, amounts.Blood, amounts.Stomach));
         }
+
+        // Analyzer extensions
+        var vitalsEv = new CollectHealthAnalyzerVitalsEvent();
+        var abnormEv = new CollectHealthAnalyzerAbnormalitiesEvent();
+        RaiseLocalEvent(entity, ref vitalsEv);
+        RaiseLocalEvent(entity, ref abnormEv);
+
+        var extensions = new HealthAnalyzerExtensions
+        {
+            Vitals = vitalsEv.Vitals, Abnormalities = abnormEv.Abnormalities
+        };
+
         // Starlight end
 
         return new HealthAnalyzerUiState(
@@ -397,7 +410,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             null,
             bleeding,
             unrevivable,
-            chemicals // Starlight - merged bloodstream and stomach chemicals
+            chemicals, // Starlight - merged bloodstream and stomach chemicals
+            extensions // Starlight-edit - health analyzer extensions
         );
     }
 
@@ -550,7 +564,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                 ("amount", amountText));
             message.AddMarkupOrThrow(HealthAnalyzerFormatting.WrapMarkupWithColor(
                 groupLine,
-                HealthAnalyzerFormatting.GetDamageSeverityColor((float) group.Amount)));
+                HealthAnalyzerFormatting.GetDamageSeverityColorPrint((float) group.Amount)));
             message.PushNewline();
 
             foreach (var damageType in group.DamageTypes)
