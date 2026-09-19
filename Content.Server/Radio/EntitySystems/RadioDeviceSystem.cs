@@ -3,7 +3,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
-using Content.Shared._Goobstation.StationRadio.Components;
+using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -217,7 +217,7 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
         if (TryComp<StationRadioReceiverComponent>(uid, out var receiverComp))
         {
             transmitRange = ChatTransmitRange.HideChat; // Message hidden from chat if from a Station Radio.
-            chatType = receiverComp.LowVolume ? InGameICChatType.Whisper : InGameICChatType.Speak; // Radios will talk loudly if at full volume.
+            chatType = !receiverComp.BoostVolume ? InGameICChatType.Whisper : InGameICChatType.Speak; // Radios will talk loudly if at full volume.
         }
         // Starlight - End
 
