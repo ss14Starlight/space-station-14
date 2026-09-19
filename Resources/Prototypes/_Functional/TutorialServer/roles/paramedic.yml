@@ -1,0 +1,115 @@
+- type: tutorialRole
+  id: TutorialParamedic
+  mentorName: Urist McAmbulance
+  job: Paramedic
+  stub: false
+  simplifiedEnvironment: true
+  category: Medical
+  map: /Maps/_Functional/TutorialServer/Roles/Paramedic.yml
+  roomTemplate: TutorialSectionMedbay
+  guidebook: Medical
+  practiceSpawns:
+  - id: LockerParamedicFilled
+    room: 0
+    offset: -2, 1
+  - id: RollerBedSpawnFolded
+    room: 0
+    offset: 0.5, 0
+  - id: ChemistryBottleEpinephrine
+    room: 0
+    offset: 0.8, 0
+  - id: Syringe
+    room: 0
+    offset: -0.5, 0
+  - id: BodyBagFolded
+    room: 0
+    offset: 0.2, -0.5
+  - id: TutorialPracticeMobCasualty
+    room: 0
+    offset: 0, 0
+  - id: TutorialRollerBed
+    room: 0
+    offset: 1, 0
+  - id: Brutepack
+    room: 0
+    offset: 0.5, -1
+  - id: Ointment
+    room: 0
+    offset: 0.8, -1
+  - id: HandheldHealthAnalyzer
+    room: 0
+    offset: -0.5, -1
+  - id: ClothingEyesHudMedical
+    room: 0
+    offset: -0.8, -1
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: para-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-paramedic-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-paramedic-sg-intro
+      complete: Acknowledge
+  - id: gear
+    title: tutorial-job-paramedic-goal-gear
+    subGoals:
+    - id: hold-bed
+      text: tutorial-job-paramedic-sg-bed
+      complete: HoldItem
+      entity: RollerBedSpawnFolded
+    - id: rollerbed-tip
+      text: tutorial-job-paramedic-sg-rollerbed-tip
+      hint: tutorial-job-paramedic-sg-rollerbed-hint
+      stuckHint: tutorial-job-paramedic-sg-rollerbed-stuck
+      complete: Acknowledge
+    - id: hold-medhud
+      text: tutorial-job-paramedic-sg-medhud
+      complete: HoldItem
+      entity: ClothingEyesHudMedical
+    - id: medhud-tip
+      text: tutorial-job-paramedic-sg-medhud-tip
+      complete: Acknowledge
+    - id: hold-epi
+      text: tutorial-job-paramedic-sg-epi
+      complete: HoldItem
+      entity: ChemistryBottleEpinephrine
+  - id: rescue
+    title: tutorial-job-paramedic-goal-rescue
+    subGoals:
+    - id: hold-analyzer
+      text: tutorial-job-paramedic-sg-analyzer
+      complete: HoldItem
+      entity: HandheldHealthAnalyzer
+    - id: scan-patient
+      text: tutorial-job-paramedic-sg-scan
+      complete: InteractTargetHolding
+      entity: HandheldHealthAnalyzer
+      tag: TutorialPracticePatient
+    - id: heal-dummy
+      text: tutorial-job-paramedic-sg-heal
+      hint: tutorial-job-paramedic-sg-heal-hint
+      stuckHint: tutorial-job-paramedic-sg-heal-stuck
+      complete: PracticeMobDamageBelow
+      maxDamage: 25
+    - id: buckle-patient
+      text: tutorial-job-paramedic-sg-buckle
+      complete: PracticeMobBuckled
+    - id: walk
+      text: tutorial-job-paramedic-sg-walk
+      complete: ReachMarker
+      marker: para-pass
+    - id: bodybag-tip
+      text: tutorial-job-paramedic-sg-bodybag-tip
+      complete: Acknowledge
+    - id: externals-tip
+      text: tutorial-job-paramedic-sg-externals-tip
+      complete: Acknowledge
+  - id: finish
+    title: tutorial-job-paramedic-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-paramedic-sg-done
+      complete: Acknowledge

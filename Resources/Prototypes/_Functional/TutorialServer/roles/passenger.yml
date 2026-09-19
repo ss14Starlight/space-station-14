@@ -1,0 +1,113 @@
+# Combined Passenger / Assistant general-mechanics tutorial.
+# Two chambers: room 0 teaches walk + interact/storage; unpowered maint airlock
+# between rooms is crowbarred to exit into room 1 (finish).
+- type: tutorialRole
+  id: TutorialPassenger
+  mentorName: Urist McGreentide
+  job: Passenger
+  stub: false
+  simplifiedEnvironment: true
+  category: Civilian
+  name: tutorial-job-passenger-name
+  map: /Maps/_Functional/TutorialServer/Roles/Passenger.yml
+  autoOpenGuide: false
+
+  roomTemplate: TutorialSectionArrivals
+  guidebook: Jobs
+  # One tile south of the purple X trainer-spot marker at (4, -1).
+  mentorSpawnOffset: 4, -2
+  practiceSpawns:
+  # Room 0 - walk end-to-end, then pickup / drop / use / stow / drink (no room change).
+  # Marker offset > ReachMarker range (1.5) so spawn at chamber center does not auto-complete.
+  # Mentor is session-spawned (soft follow); only the walk marker stays authored here.
+  - id: TutorialStepMarker
+    room: 0
+    offset: 4, -1
+    marker: trainer-spot
+  - id: Crowbar
+    room: 0
+    offset: 2.5, -1
+  - id: FlashlightLantern
+    room: 0
+    offset: 1.5, -1
+  - id: DrinkWaterBottleFull
+    room: 0
+    offset: 0.5, -1
+  # Chamber 1 - pry-exit destination (Arrivals maint gate). Keeps the second stamp.
+  - id: TutorialStepMarker
+    room: 1
+    offset: 0, -1.5
+    marker: passenger-exit
+  goals:
+  - id: welcome
+    title: tutorial-job-passenger-goal-welcome
+    subGoals:
+    - id: meet-trainer
+      text: tutorial-job-passenger-sg-meet-trainer
+      hint: tutorial-job-passenger-hint-meet-trainer
+      stuckHint: tutorial-job-passenger-stuck-meet-trainer
+      complete: ReachMarker
+      marker: trainer-spot
+    - id: pick-crowbar
+      text: tutorial-job-passenger-sg-crowbar
+      hint: tutorial-job-passenger-hint-crowbar
+      stuckHint: tutorial-job-passenger-stuck-crowbar
+      complete: HoldItem
+      entity: Crowbar
+    - id: drop-crowbar
+      text: tutorial-job-passenger-sg-drop-crowbar
+      hint: tutorial-job-passenger-hint-drop-crowbar
+      stuckHint: tutorial-job-passenger-stuck-drop-crowbar
+      complete: DropItem
+      entity: Crowbar
+    - id: hold-light
+      text: tutorial-job-passenger-sg-flashlight
+      hint: tutorial-job-passenger-hint-flashlight
+      stuckHint: tutorial-job-passenger-stuck-flashlight
+      complete: HoldItem
+      entity: FlashlightLantern
+    - id: use-light
+      text: tutorial-job-passenger-sg-use-flashlight
+      hint: tutorial-job-passenger-hint-use-flashlight
+      stuckHint: tutorial-job-passenger-stuck-use-flashlight
+      complete: UseInHand
+      entity: FlashlightLantern
+    - id: stow-light
+      text: tutorial-job-passenger-sg-stow
+      hint: tutorial-job-passenger-hint-stow
+      stuckHint: tutorial-job-passenger-stuck-stow
+      complete: StowItem
+      entity: FlashlightLantern
+    - id: hold-water
+      text: tutorial-job-passenger-sg-hold-water
+      hint: tutorial-job-passenger-hint-hold-water
+      stuckHint: tutorial-job-passenger-stuck-hold-water
+      complete: HoldItem
+      entity: DrinkWaterBottleFull
+    - id: drink-water
+      text: tutorial-job-passenger-sg-drink-water
+      hint: tutorial-job-passenger-hint-drink-water
+      stuckHint: tutorial-job-passenger-stuck-drink-water
+      complete: UseInHand
+      entity: DrinkWaterBottleFull
+  - id: crowbar-door
+    title: tutorial-job-passenger-goal-crowbar
+    subGoals:
+    - id: hold-crowbar-door
+      text: tutorial-job-passenger-sg-crowbar-ready
+      hint: tutorial-job-passenger-hint-crowbar-ready
+      stuckHint: tutorial-job-passenger-stuck-crowbar-ready
+      complete: HoldTag
+      tag: Crowbar
+    - id: pry-door
+      text: tutorial-job-passenger-sg-pry
+      hint: tutorial-job-passenger-hint-pry
+      stuckHint: tutorial-job-passenger-stuck-pry
+      complete: InteractTargetTag
+      tag: TutorialAirlock
+  - id: finish
+    title: tutorial-job-passenger-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-passenger-sg-done
+      complete: Acknowledge

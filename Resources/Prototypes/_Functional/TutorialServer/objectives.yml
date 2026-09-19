@@ -1,0 +1,68 @@
+# - type: objectiveIssuer
+#   id: TutorialSyndicate
+#   name: tutorial-server-objective-issuer
+
+# - type: objectiveIssuer
+#   id: TutorialCurriculum
+#   name: tutorial-server-objective-issuer-curriculum
+
+- type: entity
+  parent: BaseObjective
+  id: TutorialTraitorKillPlaceholder
+  name: Assassinate John Doe
+  description: Placeholder traitor kill objective for practice. No real target exists.
+  components:
+  - type: Objective
+    difficulty: 1
+    issuer: TutorialSyndicate
+    unique: false
+    icon:
+      sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+      state: icon
+  - type: TutorialPlaceholderCondition
+
+- type: entity
+  parent: BaseObjective
+  id: TutorialTraitorStealPlaceholder
+  name: Steal the captain's antique laser gun
+  description: Placeholder steal objective for practice. No real item is required.
+  components:
+  - type: Objective
+    difficulty: 1
+    issuer: TutorialSyndicate
+    unique: false
+    icon:
+      sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi
+      state: base
+  - type: TutorialPlaceholderCondition
+
+- type: entity
+  parent: BaseObjective
+  id: TutorialTraitorEscapePlaceholder
+  name: Escape to CentComm alive and unrestrained
+  description: Placeholder escape objective for practice.
+  components:
+  - type: Objective
+    difficulty: 1
+    issuer: TutorialSyndicate
+    unique: false
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: TutorialPlaceholderCondition
+
+# Live curriculum goals — one instance per goal, indexed via TutorialGoalCondition.GoalIndex
+- type: entity
+  parent: BaseObjective
+  id: TutorialCurriculumGoal
+  name: Tutorial objective
+  description: Complete this tutorial goal.
+  components:
+  - type: Objective
+    difficulty: 1
+    issuer: TutorialCurriculum
+    unique: false
+    icon:
+      sprite: Objects/Misc/books.rsi
+      state: book_icon
+  - type: TutorialGoalCondition

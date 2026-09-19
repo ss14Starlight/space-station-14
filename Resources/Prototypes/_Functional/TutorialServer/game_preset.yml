@@ -1,0 +1,82 @@
+- type: gameMapPool
+  id: TutorialServerMapPool
+  maps:
+  - TutorialLobby
+
+- type: gameMap
+  id: TutorialLobby
+  mapName: Tutorial Lobby
+  mapPath: /Maps/Test/empty.yml
+  minPlayers: 0
+  stations:
+    Empty:
+      stationProto: TutorialLobbyStation
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: "Tutorial Lobby"
+      - type: StationJobs
+        availableJobs:
+          # Passenger first so late-join / station job maps surface the basics tutorial first.
+          Passenger: [ -1, -1 ]
+          AtmosphericTechnician: [ -1, -1 ]
+          Bartender: [ -1, -1 ]
+          Borg: [ -1, -1 ]
+          Botanist: [ -1, -1 ]
+          Captain: [ -1, -1 ]
+          CargoTechnician: [ -1, -1 ]
+          Chaplain: [ -1, -1 ]
+          Chef: [ -1, -1 ]
+          Chemist: [ -1, -1 ]
+          ChiefEngineer: [ -1, -1 ]
+          ChiefMedicalOfficer: [ -1, -1 ]
+          Clown: [ -1, -1 ]
+          Detective: [ -1, -1 ]
+          HeadOfPersonnel: [ -1, -1 ]
+          HeadOfSecurity: [ -1, -1 ]
+          Janitor: [ -1, -1 ]
+          MedicalDoctor: [ -1, -1 ]
+          Mime: [ -1, -1 ]
+          Paramedic: [ -1, -1 ]
+          Quartermaster: [ -1, -1 ]
+          ResearchAssistant: [ -1, -1 ]
+          ResearchDirector: [ -1, -1 ]
+          SalvageSpecialist: [ -1, -1 ]
+          Scientist: [ -1, -1 ]
+          SecurityCadet: [ -1, -1 ]
+          SecurityOfficer: [ -1, -1 ]
+          ServiceWorker: [ -1, -1 ]
+          StationEngineer: [ -1, -1 ]
+          TechnicalAssistant: [ -1, -1 ]
+          Warden: [ -1, -1 ]
+
+- type: gamePreset
+  id: TutorialServer
+  alias:
+  - tutorial
+  - functional-tutorial
+  name: tutorial-server-preset-title
+  description: tutorial-server-preset-description
+  showInVote: false
+  supportedMaps: TutorialServerMapPool
+  rules:
+  - TutorialServer
+  - MaxTimeRestartTutorial
+
+- type: entity
+  parent: BaseGameRule
+  id: TutorialServer
+  components:
+  - type: TutorialServerRule
+  - type: RespawnDeadRule
+    alwaysRespawnDead: true
+  - type: RespawnTracker
+    respawnDelay: 3
+    deleteBody: true
+
+- type: entity
+  parent: MaxTimeRestart
+  id: MaxTimeRestartTutorial
+  components:
+  - type: MaxTimeRestartRule
+    roundMaxTime: 86400
+    roundEndDelay: 10

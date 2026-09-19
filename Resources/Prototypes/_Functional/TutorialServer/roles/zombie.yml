@@ -1,0 +1,61 @@
+- type: tutorialRole
+  id: TutorialAntagZombie
+  mentorName: Urist McBrains
+  job: Passenger
+  antag: InitialInfected
+  stub: false
+  simplifiedEnvironment: true
+  category: Wizden antagonists
+  name: tutorial-antag-zombie-name
+  roomTemplate: TutorialSectionMaintAntag
+  guidebook: Zombies
+  practiceSpawns:
+  - id: TutorialPracticeMobVictim
+    room: 0
+    offset: -1, -0.5
+  - id: TutorialPracticeMobVictim
+    room: 0
+    offset: 1, -0.5
+  - id: TutorialPracticeMobVictim
+    room: 0
+    offset: 0, -1.2
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: zombie-pass
+  goals:
+  - id: welcome
+    title: tutorial-antag-zombie-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-zombie-sg-intro
+      complete: Acknowledge
+    - id: patient-zero
+      text: tutorial-antag-zombie-sg-patient-zero
+      complete: Acknowledge
+  - id: turn
+    title: tutorial-antag-zombie-goal-turn
+    subGoals:
+    - id: turn-undead
+      text: tutorial-antag-zombie-sg-turn-undead
+      complete: PlayerIsZombie
+  - id: infect
+    title: tutorial-antag-zombie-goal-infect
+    subGoals:
+    - id: bite
+      text: tutorial-antag-zombie-sg-bite
+      complete: PracticeMobInfected
+      minCount: 1
+    - id: horde-tip
+      text: tutorial-antag-zombie-sg-horde-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-antag-zombie-sg-walk
+      complete: ReachMarker
+      marker: zombie-pass
+  - id: finish
+    title: tutorial-antag-zombie-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-zombie-sg-done
+      complete: Acknowledge

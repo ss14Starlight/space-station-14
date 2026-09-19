@@ -1,0 +1,127 @@
+- type: tutorialRole
+  id: TutorialChef
+  mentorName: Urist McBurnt
+  job: Chef
+  stub: false
+  simplifiedEnvironment: true
+  category: Service
+  map: /Maps/_Functional/TutorialServer/Roles/Chef.yml
+
+  roomTemplate: TutorialSectionKitchen
+  guidebook: Chef
+  practiceSpawns:
+  - id: ClosetChefFilled
+    room: 0
+    offset: -2, 1
+  - id: KitchenKnife
+    room: 0
+    offset: 1, 0
+  - id: TutorialVendingMachineDinnerware
+    room: 0
+    offset: 2, 1
+  - id: TutorialVendingMachineChefvend
+    room: 0
+    offset: 2, -1
+  - id: TutorialVendingMachineCondiments
+    room: 0
+    offset: 0, -1.5
+  - id: TutorialKitchenMicrowave
+    room: 0
+    offset: 1.5, 1
+  - id: TutorialKitchenElectricGrill
+    room: 0
+    offset: -1.5, -1.5
+  - id: FoodMeat
+    room: 0
+    offset: 0.5, -0.5
+  - id: FoodMeat
+    room: 0
+    offset: 0.7, -0.5
+  - id: FoodBreadBun
+    room: 0
+    offset: -0.5, -0.5
+  - id: FoodBreadBun
+    room: 0
+    offset: -0.3, -0.5
+  - id: CrateFreezer
+    room: 0
+    offset: -2, 0
+  - id: FoodCakeBatter
+    room: 0
+    offset: 0.5, -0.5
+  - id: FoodCakeBatter
+    room: 0
+    offset: 0.7, -0.5
+  - id: FoodContainerEgg
+    room: 0
+    offset: -0.5, -0.5
+  - id: TutorialStepMarker
+    room: 0
+    offset: 2, 0
+    marker: chef-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-chef-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-chef-sg-intro
+      complete: Acknowledge
+    - id: look-around
+      text: tutorial-job-chef-sg-look
+      complete: ReachMarker
+      marker: chef-pass
+  - id: tools
+    title: tutorial-job-chef-goal-tools
+    subGoals:
+    - id: knife
+      text: tutorial-job-chef-sg-knife
+      complete: HoldItem
+      entity: KitchenKnife
+    - id: eggs
+      text: tutorial-job-chef-sg-eggs
+      complete: HoldItem
+      entity: FoodEgg
+    - id: dinnerware
+      text: tutorial-job-chef-sg-dinnerware
+      complete: InteractTargetTag
+      tag: TutorialVending
+  - id: burger
+    title: tutorial-job-chef-goal-burger
+    subGoals:
+    - id: meat
+      text: tutorial-job-chef-sg-meat
+      complete: HoldItem
+      entity: FoodMeat
+    - id: bun
+      text: tutorial-job-chef-sg-bun
+      complete: HoldItem
+      entity: FoodBreadBun
+    - id: microwave
+      text: tutorial-job-chef-sg-microwave
+      complete: InteractTargetTag
+      tag: TutorialMicrowave
+    - id: burger-done
+      text: tutorial-job-chef-sg-burger
+      complete: HoldItem
+      entity: FoodBurgerPlain
+  - id: cake
+    title: tutorial-job-chef-goal-cake
+    subGoals:
+    - id: batter
+      text: tutorial-job-chef-sg-batter
+      complete: HoldItem
+      entity: FoodCakeBatter
+    - id: bake
+      text: tutorial-job-chef-sg-bake
+      complete: InteractTargetTag
+      tag: TutorialMicrowave
+    - id: cake-done
+      text: tutorial-job-chef-sg-cake
+      complete: HoldItem
+      entity: FoodCakePlain
+  - id: finish
+    title: tutorial-job-chef-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-chef-sg-done
+      complete: Acknowledge

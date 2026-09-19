@@ -1,0 +1,154 @@
+# Station-section room templates for TutorialServer.
+# Source priority: Saltern/Packed crop → other station/salvage crop → fallbackRoom procedural.
+# At runtime each template is stamped into N identical copies (one per curriculum goal).
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionMedbay
+  map: /Maps/_Functional/TutorialServer/Sections/Medbay.yml
+  fallbackRoom: TutorialRoomMedical
+  sourceNote: "Saltern medbay AABB crop"
+  gateDoor: AirlockMedical
+  # Natural public exit is south; east mid-edge lands through CMO / eng locks.
+  stampDirection: South
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionChem
+  map: /Maps/_Functional/TutorialServer/Sections/Chem.yml
+  fallbackRoom: TutorialRoomChem
+  sourceNote: "Saltern chemistry AABB crop"
+  gateDoor: AirlockChemistry
+  # Lab entrance is south; east mid-edge hits maint airlock.
+  stampDirection: South
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionSurgery
+  map: /Maps/_Functional/TutorialServer/Sections/Surgery.yml
+  fallbackRoom: TutorialRoomMedical
+  sourceNote: "Packed surgery AABB crop"
+  gateDoor: AirlockMedical
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionEngineering
+  map: /Maps/_Functional/TutorialServer/Sections/Engineering.yml
+  fallbackRoom: TutorialRoomEngineering
+  sourceNote: "Saltern engineering AABB crop"
+  gateDoor: AirlockEngineering
+  # East mid is open deck toward the rest of eng.
+  stampDirection: East
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionAtmos
+  map: /Maps/_Functional/TutorialServer/Sections/Atmos.yml
+  fallbackRoom: TutorialRoomAtmos
+  sourceNote: "Packed atmospherics AABB crop"
+  gateDoor: AirlockAtmospherics
+  # Zone sits on the N–S airlock corridor (x≈8). East mid is plasma glass + tank
+  # walls; east-edge ResolveGateLateral snaps to the SE external airlock — unpathable
+  # / non-obvious after vaulting. Stamp south through the center doors instead.
+  stampDirection: South
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionSecurity
+  map: /Maps/_Functional/TutorialServer/Sections/Security.yml
+  fallbackRoom: TutorialRoomSecurity
+  sourceNote: "Salvage security-chunk"
+  gateDoor: AirlockSecurity
+  # East mid is clearer than west armory/high-sec cluster once zone is set.
+  stampDirection: East
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionBrig
+  map: /Maps/_Functional/TutorialServer/Sections/Brig.yml
+  fallbackRoom: TutorialRoomBrig
+  sourceNote: "Salvage security-chunk (brig furniture via practiceSpawns)"
+  gateDoor: AirlockSecurity
+  # Same salvage layout as Security — east away from armory/high-sec.
+  stampDirection: East
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionScience
+  map: /Maps/_Functional/TutorialServer/Sections/Science.yml
+  fallbackRoom: TutorialRoomScience
+  sourceNote: "Saltern science AABB crop"
+  gateDoor: AirlockScience
+  # Natural science exit is south; east mid-edge lands through the RD office airlock.
+  stampDirection: South
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionCommand
+  map: /Maps/_Functional/TutorialServer/Sections/Command.yml
+  fallbackRoom: TutorialRoomCommand
+  sourceNote: "Saltern bridge + Cap + HoP AABB crop"
+  gateDoor: AirlockCommand
+  # Bridge hall is west; east mid-edge lands through Captain quarters.
+  stampDirection: West
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionKitchen
+  map: /Maps/_Functional/TutorialServer/Sections/Kitchen.yml
+  fallbackRoom: TutorialRoomKitchen
+  sourceNote: "Saltern kitchen AABB crop"
+  gateDoor: AirlockServiceLocked
+  stampDirection: South
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionBar
+  map: /Maps/_Functional/TutorialServer/Sections/Bar.yml
+  fallbackRoom: TutorialRoomBar
+  sourceNote: "Saltern bar AABB crop"
+  gateDoor: AirlockServiceLocked
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionHydroponics
+  map: /Maps/_Functional/TutorialServer/Sections/Hydroponics.yml
+  fallbackRoom: TutorialRoomBotany
+  sourceNote: "Saltern hydroponics AABB crop"
+  gateDoor: AirlockServiceLocked
+  # Hall glass exit is west; east strip has freezer airlocks.
+  stampDirection: West
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionChapel
+  map: /Maps/_Functional/TutorialServer/Sections/Chapel.yml
+  fallbackRoom: TutorialRoomChapel
+  sourceNote: "Salvage small-chapel"
+  gateDoor: AirlockServiceLocked
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionJanitor
+  map: /Maps/_Functional/TutorialServer/Sections/Janitor.yml
+  fallbackRoom: TutorialRoomJanitor
+  sourceNote: "Packed janitor closet AABB crop"
+  gateDoor: AirlockMaint
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionTheatre
+  map: /Maps/_Functional/TutorialServer/Sections/Theatre.yml
+  fallbackRoom: TutorialRoomClown
+  sourceNote: "Packed theatre AABB crop"
+  gateDoor: Airlock
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionCargoOffice
+  map: /Maps/_Functional/TutorialServer/Sections/CargoOffice.yml
+  fallbackRoom: TutorialRoomCargo
+  sourceNote: "Saltern cargo reception + QM office AABB crop"
+  gateDoor: AirlockCargo
+  stampDirection: West
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionArrivals
+  map: /Maps/_Functional/TutorialServer/Sections/Arrivals.yml
+  fallbackRoom: TutorialRoomCivilian
+  sourceNote: "Saltern arrivals AABB crop"
+  # Unpowered pry target between stamped chambers (LV/APCs still light the rooms).
+  gateDoor: TutorialAirlockMaint
+  # Crop wallmount sprites face the opposite way from procedural lights.
+  lightFacingOffsetDegrees: 180
+
+- type: tutorialRoomTemplate
+  id: TutorialSectionMaintAntag
+  map: /Maps/_Functional/TutorialServer/Sections/MaintAntag.yml
+  fallbackRoom: TutorialRoomAntag
+  sourceNote: "Salvage small-syndicate / tech-maint fragment"
+  gateDoor: AirlockMaint

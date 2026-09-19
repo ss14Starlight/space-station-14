@@ -1,0 +1,97 @@
+- type: tutorialRole
+  id: TutorialAntagNukeopsCommander
+  job: Passenger
+  antag: NukeopsCommander
+  stub: false
+  simplifiedEnvironment: true
+  category: Wizden antagonists
+  shuttleArena: TutorialArenaNukeopsInfiltrator
+  map: /Maps/_Functional/TutorialServer/Antag_NukeopsCommander.yml
+  guidebook: NuclearOperatives
+  startingGear: SyndicateCommanderGearFull
+  roleLoadout: RoleSurvivalNukie
+  practiceSpawns: []
+  goals:
+  - id: welcome
+    title: tutorial-antag-nukeops-commander-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-nukeops-commander-sg-intro
+      complete: Acknowledge
+  - id: armor
+    title: tutorial-antag-nukeops-commander-goal-armor
+    subGoals:
+    - id: armor-tip
+      text: tutorial-antag-nukeops-commander-sg-armor
+      complete: Acknowledge
+  - id: war
+    title: tutorial-antag-nukeops-commander-goal-war
+    subGoals:
+    - id: hold-declarator
+      text: tutorial-antag-nukeops-commander-sg-hold-war
+      complete: ObtainItem
+      entity: NukeOpsDeclarationOfWar
+    - id: war-tip
+      text: tutorial-antag-nukeops-commander-sg-war-tip
+      complete: Acknowledge
+    - id: declare
+      text: tutorial-antag-nukeops-commander-sg-declare
+      complete: WarDeclared
+  - id: pilot
+    title: tutorial-antag-nukeops-commander-goal-pilot
+    subGoals:
+    - id: open-console
+      text: tutorial-antag-nukeops-commander-sg-open-console
+      complete: PilotShuttle
+    - id: controls
+      text: tutorial-antag-nukeops-commander-sg-controls
+      complete: Acknowledge
+  - id: undock-home
+    title: tutorial-antag-nukeops-commander-goal-undock-home
+    subGoals:
+    - id: undock-explain
+      text: tutorial-antag-nukeops-commander-sg-undock-explain
+      complete: Acknowledge
+    - id: undock-home
+      text: tutorial-antag-nukeops-commander-sg-undock-home
+      complete: UndockShuttle
+      marker: nukie-dock
+  - id: fly-rally
+    title: tutorial-antag-nukeops-commander-goal-fly-rally
+    subGoals:
+    - id: throttle
+      text: tutorial-antag-nukeops-commander-sg-throttle
+      complete: ShuttleThrottle
+    - id: fly-tips
+      text: tutorial-antag-nukeops-commander-sg-fly-rally
+      complete: Acknowledge
+  - id: dock-rally
+    title: tutorial-antag-nukeops-commander-goal-dock-rally
+    subGoals:
+    - id: dock-rally-explain
+      text: tutorial-antag-nukeops-commander-sg-dock-rally-explain
+      complete: Acknowledge
+    - id: dock-rally
+      text: tutorial-antag-nukeops-commander-sg-dock-rally
+      complete: DockShuttle
+      marker: nukie-rally
+  - id: return-home
+    title: tutorial-antag-nukeops-commander-goal-return-home
+    subGoals:
+    - id: undock-rally
+      text: tutorial-antag-nukeops-commander-sg-undock-rally
+      complete: UndockShuttle
+      marker: nukie-rally
+    - id: fly-home
+      text: tutorial-antag-nukeops-commander-sg-fly-home
+      complete: Acknowledge
+    - id: dock-home
+      text: tutorial-antag-nukeops-commander-sg-dock-home
+      complete: DockShuttle
+      marker: nukie-dock
+  - id: finish
+    title: tutorial-antag-nukeops-commander-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-nukeops-commander-sg-done
+      complete: Acknowledge

@@ -1,9 +1,11 @@
+using Content.Server._Functional.TutorialServer;
 using Content.Server.Popups;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Robust.Shared.Console;
 using Content.Server.GameTicking;
+using Content.Shared._Functional.TutorialServer;
 
 namespace Content.Server.Ghost
 {
@@ -42,6 +44,17 @@ namespace Content.Server.Ghost
                     .PopupEntity(deniedMessage, frozen, frozen);
                 return;
             }
+
+            // Starlight begin
+            var tutorial = _entities.System<TutorialServerRuleSystem>();
+            if (tutorial.TryGetSession(player.AttachedEntity!.Value, out var tSession))
+                if (tSession.State == TutorialSessionState.InTutorial)
+                {
+                    var deniedMessage = Loc.GetString("ghost-command-denied");
+                    shell.WriteLine(deniedMessage);
+                    return;
+                }
+            // Starlight end
 
             var minds = _entities.System<SharedMindSystem>();
             if (!minds.TryGetMind(player, out var mindId, out var mind))

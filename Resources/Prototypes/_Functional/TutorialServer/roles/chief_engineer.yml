@@ -1,0 +1,127 @@
+# Engineering progression step 4/4 � lead eng + atmos; oversee power and priorities.
+- type: tutorialRole
+  id: TutorialChiefEngineer
+  mentorName: Urist McSingulo
+  job: ChiefEngineer
+  stub: false
+  category: Engineering
+  map: /Maps/_Functional/TutorialServer/Roles/ChiefEngineer.yml
+  roomTemplate: TutorialSectionEngineering
+  guidebook: Engineering
+  practiceSpawns:
+  - id: LockerChiefEngineerFilled
+    room: 0
+    offset: -2, 1
+  - id: BoxFolderClipboard
+    room: 0
+    offset: 0.8, 0
+  - id: ClothingShoesBootsMagAdv
+    room: 0
+    offset: -0.5, 0
+  - id: Multitool
+    room: 0
+    offset: -0.2, 0
+  - id: TutorialComputerPowerMonitoring
+    room: 1
+    offset: 0, 1.5
+  - id: TutorialAmeShielding
+    room: 1
+    offset: -1, -1
+  - id: TutorialAmeShielding
+    room: 1
+    offset: 0, -1
+  - id: TutorialAmeShielding
+    room: 1
+    offset: 1, -1
+  - id: TutorialAmeShielding
+    room: 1
+    offset: -1, 0
+  - id: TutorialAmeShielding
+    room: 1
+    offset: 0, 0
+  - id: TutorialAmeShielding
+    room: 1
+    offset: 1, 0
+  - id: TutorialAmeShielding
+    room: 1
+    offset: -1, 1
+  - id: TutorialAmeShielding
+    room: 1
+    offset: 0, 1
+  - id: TutorialAmeShielding
+    room: 1
+    offset: 1, 1
+  - id: TutorialAmeController
+    room: 1
+    offset: 0, -2
+  - id: AmeJar
+    room: 1
+    offset: 1.5, -2
+  - id: TutorialComputerComms
+    room: 1
+    offset: 0, 1
+  - id: TutorialStepMarker
+    room: 1
+    offset: 0, -1.5
+    marker: ce-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-chief-engineer-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-chief-engineer-sg-intro
+      complete: Acknowledge
+  - id: command
+    title: tutorial-job-chief-engineer-goal-command
+    subGoals:
+    - id: hold-clipboard
+      text: tutorial-job-chief-engineer-sg-clipboard
+      complete: HoldItem
+      entity: BoxFolderClipboard
+    - id: hold-magboots
+      text: tutorial-job-chief-engineer-sg-magboots
+      complete: HoldItem
+      entity: ClothingShoesBootsMagAdv
+    - id: use-magboots
+      text: tutorial-job-chief-engineer-sg-use-magboots
+      # Z/Use quick-equips clothing (boot swap); toggle is the item action.
+      complete: ActionUsed
+      entity: ActionToggleMagboots
+  - id: oversee
+    enterRoom: 1
+    title: tutorial-job-chief-engineer-goal-oversee
+    subGoals:
+    - id: power-monitor
+      text: tutorial-job-chief-engineer-sg-power-monitor
+      complete: InteractTargetTag
+      tag: TutorialPowerMonitor
+    - id: hold-fuel
+      text: tutorial-job-chief-engineer-sg-ame-fuel
+      complete: HoldItem
+      entity: AmeJar
+    - id: ame-inject
+      text: tutorial-job-chief-engineer-sg-ame-inject
+      complete: AmeInjecting
+    - id: ame-tip
+      text: tutorial-job-chief-engineer-sg-ame-tip
+      complete: Acknowledge
+  - id: lead
+    title: tutorial-job-chief-engineer-goal-lead
+    subGoals:
+    - id: open-comms
+      text: tutorial-job-chief-engineer-sg-comms
+      complete: InteractTargetTag
+      tag: TutorialCommsConsole
+    - id: lead-tip
+      text: tutorial-job-chief-engineer-sg-lead-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-job-chief-engineer-sg-walk
+      complete: ReachMarker
+      marker: ce-pass
+  - id: finish
+    title: tutorial-job-chief-engineer-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-chief-engineer-sg-done
+      complete: Acknowledge

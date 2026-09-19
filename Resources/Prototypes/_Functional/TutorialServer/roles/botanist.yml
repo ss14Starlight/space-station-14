@@ -1,0 +1,72 @@
+- type: tutorialRole
+  id: TutorialBotanist
+  mentorName: Urist McWeed
+  job: Botanist
+  stub: false
+  simplifiedEnvironment: true
+  category: Service
+  map: /Maps/_Functional/TutorialServer/Roles/Botanist.yml
+  roomTemplate: TutorialSectionHydroponics
+  guidebook: Botany
+  practiceSpawns:
+  - id: LockerBotanistFilled
+    room: 0
+    offset: -2, 1
+  - id: TutorialVendingMachineSeeds
+    room: 0
+    offset: 1.5, 1
+  - id: WheatBushel
+    room: 0
+    offset: 0.5, 0
+  - id: WheatBushel
+    room: 0
+    offset: 0.7, 0
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: hydro-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-botanist-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-botanist-sg-intro
+      complete: Acknowledge
+  - id: seeds
+    title: tutorial-job-botanist-goal-seeds
+    subGoals:
+    - id: megaseed-vend
+      text: tutorial-job-botanist-sg-megaseed
+      hint: tutorial-job-botanist-hint-megaseed
+      stuckHint: tutorial-job-botanist-stuck-megaseed
+      complete: InteractTargetTag
+      tag: TutorialVending
+    - id: hold-seeds
+      text: tutorial-job-botanist-sg-seeds
+      hint: tutorial-job-botanist-hint-seeds
+      stuckHint: tutorial-job-botanist-stuck-seeds
+      complete: HoldItem
+      entity: WheatSeeds
+  - id: harvest
+    title: tutorial-job-botanist-goal-harvest
+    subGoals:
+    - id: get-wheat
+      text: tutorial-job-botanist-sg-get-wheat
+      complete: ObtainItem
+      entity: WheatBushel
+    - id: handoff-tip
+      text: tutorial-job-botanist-sg-handoff-tip
+      complete: Acknowledge
+  - id: floor
+    title: tutorial-job-botanist-goal-floor
+    subGoals:
+    - id: walk
+      text: tutorial-job-botanist-sg-walk
+      complete: ReachMarker
+      marker: hydro-pass
+  - id: finish
+    title: tutorial-job-botanist-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-botanist-sg-done
+      complete: Acknowledge

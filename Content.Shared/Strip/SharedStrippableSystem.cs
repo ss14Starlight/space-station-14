@@ -489,7 +489,7 @@ public abstract partial class SharedStrippableSystem : EntitySystem
         if (!_inventorySystem.TryUnequip(user, target, slot, triggerHandContact: true))
             return;
 
-        RaiseLocalEvent(item, new DroppedEvent(user), true); // Gas tank internals etc.
+        RaiseLocalEvent(item, new DroppedEvent(user, item), true); // Gas tank internals etc. // Starlight edit
 
         _handsSystem.PickupOrDrop(user, item, animateUser: stealth, animate: !stealth);
         _adminLogger.Add(LogType.Stripping, LogImpact.High, $"{ToPrettyString(user):actor} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s {slot} slot");

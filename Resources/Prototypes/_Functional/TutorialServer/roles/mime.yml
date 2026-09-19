@@ -1,0 +1,76 @@
+- type: tutorialRole
+  id: TutorialMime
+  mentorName: Urist McSilent
+  job: Mime
+  stub: false
+  simplifiedEnvironment: true
+  category: Service
+  map: /Maps/_Functional/TutorialServer/Roles/Mime.yml
+  roomTemplate: TutorialSectionTheatre
+  guidebook: Service
+  practiceSpawns:
+  - id: Pen
+    room: 0
+    offset: 0.5, 0
+  - id: CrayonMime
+    room: 0
+    offset: 0.5, 0
+  - id: CrayonRed
+    room: 0
+    offset: 0.8, 0
+  - id: Paper
+    room: 0
+    offset: -0.5, 0
+  - id: Paper
+    room: 0
+    offset: -0.2, 0
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: mime-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-mime-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-mime-sg-intro
+      complete: Acknowledge
+  - id: vows
+    title: tutorial-job-mime-goal-vows
+    subGoals:
+    - id: silence
+      text: tutorial-job-mime-sg-silence
+      complete: Acknowledge
+    - id: hold-pen
+      text: tutorial-job-mime-sg-pen
+      complete: HoldItem
+      entity: Pen
+    - id: place-wall
+      text: tutorial-job-mime-sg-wall
+      complete: MapHasEntity
+      entity: WallInvisible
+  - id: art
+    title: tutorial-job-mime-goal-art
+    subGoals:
+    - id: hold-crayon
+      text: tutorial-job-mime-sg-crayon
+      complete: HoldItem
+      entity: CrayonMime
+    - id: use-crayon
+      text: tutorial-job-mime-sg-use-crayon
+      complete: UseInHand
+      entity: CrayonMime
+    - id: hold-paper
+      text: tutorial-job-mime-sg-paper
+      complete: HoldTag
+      tag: Paper
+    - id: walk
+      text: tutorial-job-mime-sg-walk
+      complete: ReachMarker
+      marker: mime-pass
+  - id: finish
+    title: tutorial-job-mime-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-mime-sg-done
+      complete: Acknowledge

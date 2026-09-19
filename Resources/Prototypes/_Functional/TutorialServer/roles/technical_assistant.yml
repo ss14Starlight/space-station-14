@@ -1,0 +1,157 @@
+# Engineering progression step 1/4 — doors, hull, LV/APC.
+- type: tutorialRole
+  id: TutorialTechnicalAssistant
+  mentorName: Urist McWrench
+  job: TechnicalAssistant
+  stub: true # temporarily greyed — incomplete
+  category: Station Jobs
+  pickerOrder: 4
+  map: /Maps/_Functional/TutorialServer/Roles/TechnicalAssistant.yml
+  roomTemplate: TutorialSectionEngineering
+  guidebook: Engineering
+  # Chair at crop (6.5, 3.5) — two west, three south of chamber origin.
+  mentorSpawnOffset: -2, -3
+  practiceSpawns:
+  - id: ClosetToolFilled
+    room: 0
+    offset: -2, 1
+  - id: ClothingHandsGlovesColorYellow
+    room: 0
+    offset: -1, 0
+  - id: Screwdriver
+    room: 0
+    offset: 0.5, 0
+  - id: Multitool
+    room: 0
+    offset: 0.8, 0
+  - id: Crowbar
+    room: 0
+    offset: -0.5, 0
+  - id: Wirecutter
+    room: 0
+    offset: -0.2, 0
+  # Northern hallway eng door tile (replaces vaulted crop door after seal).
+  - id: TutorialHackAirlock
+    room: 0
+    offset: 0, 1
+  - id: SheetSteel10
+    room: 1
+    offset: 0.5, 0
+  - id: SheetSteel10
+    room: 1
+    offset: 0.8, 0
+  - id: TutorialSpacingBreach
+    room: 1
+    offset: 0, -0.5
+  - id: CableApcStack10
+    room: 2
+    offset: 0.5, 0
+  - id: CableApcStack10
+    room: 2
+    offset: 0.8, 0
+  - id: TutorialApc
+    room: 2
+    offset: -1.5, 1
+  - id: TutorialVendingMachineYouTool
+    room: 2
+    offset: 1.5, 1
+  - id: TutorialStepMarker
+    room: 2
+    offset: 0, -1.5
+    marker: ta-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-technical-assistant-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-technical-assistant-sg-intro
+      complete: Acknowledge
+  - id: hack
+    # Stay in spawn chamber (room 0). Explicit so legacy goalIndex==room does not steal this stage.
+    enterRoom: 0
+    title: tutorial-job-technical-assistant-goal-hack
+    subGoals:
+    - id: wear-gloves
+      text: tutorial-job-technical-assistant-sg-gloves
+      complete: WearItem
+      entity: ClothingHandsGlovesColorYellow
+    - id: hold-screwdriver
+      text: tutorial-job-technical-assistant-sg-screwdriver
+      # HoldTag so belt / floor / closet screwdrivers all count (same tag).
+      complete: HoldTag
+      tag: Screwdriver
+    - id: open-panel
+      text: tutorial-job-technical-assistant-sg-open-panel
+      complete: WiresPanelOpen
+      tag: TutorialHackDoor
+    - id: hold-multitool
+      text: tutorial-job-technical-assistant-sg-multitool
+      complete: HoldTag
+      tag: Multitool
+    - id: pulse-power
+      text: tutorial-job-technical-assistant-sg-pulse-power
+      complete: TargetPowerDisabled
+      tag: TutorialHackDoor
+    - id: hold-crowbar-hack
+      text: tutorial-job-technical-assistant-sg-crowbar-hack
+      complete: HoldTag
+      tag: Crowbar
+    - id: crowbar-door
+      text: tutorial-job-technical-assistant-sg-crowbar-door
+      complete: TargetDoorOpen
+      tag: TutorialHackDoor
+    - id: hold-wirecutter
+      text: tutorial-job-technical-assistant-sg-wirecutter
+      complete: HoldTag
+      tag: Wirecutter
+    - id: cut-power
+      text: tutorial-job-technical-assistant-sg-cut-power
+      complete: PowerWiresCut
+      tag: TutorialHackDoor
+    - id: wires-tip
+      text: tutorial-job-technical-assistant-sg-wires-tip
+      complete: Acknowledge
+  - id: spacing
+    enterRoom: 1
+    title: tutorial-job-technical-assistant-goal-spacing
+    subGoals:
+    - id: hold-steel
+      text: tutorial-job-technical-assistant-sg-steel
+      complete: HoldItem
+      entity: SheetSteel10
+    - id: patch
+      text: tutorial-job-technical-assistant-sg-patch
+      complete: InteractTargetTag
+      tag: TutorialSpacingBreach
+    - id: spacing-tip
+      text: tutorial-job-technical-assistant-sg-spacing-tip
+      complete: Acknowledge
+  - id: lv
+    enterRoom: 2
+    title: tutorial-job-technical-assistant-goal-lv
+    subGoals:
+    - id: hold-lv
+      text: tutorial-job-technical-assistant-sg-lv
+      complete: HoldItem
+      entity: CableApcStack10
+    - id: place-lv
+      text: tutorial-job-technical-assistant-sg-place-lv
+      complete: MapHasEntity
+      entity: CableApcExtension
+    - id: apc
+      text: tutorial-job-technical-assistant-sg-apc
+      complete: InteractTargetTag
+      tag: TutorialApc
+    - id: next-tip
+      text: tutorial-job-technical-assistant-sg-next-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-job-technical-assistant-sg-walk
+      complete: ReachMarker
+      marker: ta-pass
+  - id: finish
+    title: tutorial-job-technical-assistant-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-technical-assistant-sg-done
+      complete: Acknowledge

@@ -1,0 +1,561 @@
+- type: entity
+  parent: BaseStructure
+  id: TutorialHolopad
+  name: training holopad
+  description: A floor-mounted projector. The facility's training intelligence uses it to be in two places at once.
+  suffix: Tutorial
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        mask:
+        - Impassable
+  - type: TutorialHoloPoint
+  - type: Sprite
+    sprite: Structures/Machines/holopad.rsi
+    drawdepth: HighFloorObjects
+    snapCardinals: true
+    layers:
+    - state: base
+    - map: [ "lights" ]
+      state: blank
+      shader: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TutorialHoloPointVisuals.Active:
+        lights:
+          True: { state: lights_in_call }
+          False: { state: blank }
+  - type: PointLight
+    radius: 2.0
+    energy: 2.0
+    color: "#afe1fe"
+    enabled: false
+  - type: AmbientSound
+    enabled: false
+    volume: -8
+    range: 4
+    sound:
+      path: /Audio/Ambience/Objects/buzzing.ogg
+
+- type: entity
+  id: TutorialHoloMentor
+  name: N.A.N.C.I.
+  description: A holographic training intelligence. She is projected from the nearest holopad, and is very pleased you asked.
+  suffix: Tutorial, Mentor
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite # Layers are applied by Client.HolopadSystem from HolopadHologram below.
+  - type: Appearance
+  # No Clickable: holograms upstream are not clickable either, and there is nothing left to click
+  # her for. Narration beats advance on a timer, the control overlay carries the keybind, and every
+  # line she has already said is still sitting in the chat window.
+  - type: HolopadHologram
+    rsiPath: Mobs/Silicon/holograms.rsi
+    rsiState: ai_face
+    shaderName: Hologram
+    color1: "#65b8e2"
+    color2: "#3a6981"
+    alpha: 0.9
+    intensity: 2
+    scrollRate: 0.125
+    offset: 0, 0.45
+  - type: TutorialMentor
+  - type: TutorialTrainer
+    speakRange: 3
+    startDelay: 0
+    sessionStartDelay: 4
+    minLineDelay: 3
+    maxLineDelay: 5
+    secondsPerCharacter: 0.075
+    lines:
+    - subGoalId: welcome
+      dialogue: tutorial-basics-nanci-welcome-1
+    - subGoalId: welcome
+      dialogue: tutorial-basics-nanci-welcome-2
+    - subGoalId: welcome
+      dialogue: tutorial-basics-nanci-welcome-3
+    - subGoalId: welcome
+      dialogue: tutorial-basics-nanci-welcome-4
+    - subGoalId: move-any
+      dialogue: tutorial-basics-nanci-move-any-1
+    - subGoalId: move-any
+      dialogue: tutorial-basics-nanci-move-any-2
+      # "Please attempt to move."
+      showControlHint: true
+    - subGoalId: move-any
+      dialogue: tutorial-basics-nanci-move-any-3
+    - subGoalId: move-any
+      dialogue: tutorial-basics-nanci-move-any-4
+    - subGoalId: reach-pad-1
+      dialogue: tutorial-basics-nanci-reach-pad-1-1
+    - subGoalId: reach-pad-1
+      dialogue: tutorial-basics-nanci-reach-pad-1-2
+    - subGoalId: reach-pad-1
+      dialogue: tutorial-basics-nanci-reach-pad-1-3
+    - subGoalId: reach-pad-1
+      dialogue: tutorial-basics-nanci-reach-pad-1-4
+    - subGoalId: reach-pad-1
+      dialogue: tutorial-basics-nanci-reach-pad-1-5
+    - subGoalId: gait-intro
+      dialogue: tutorial-basics-nanci-gait-intro-1
+    - subGoalId: gait-intro
+      dialogue: tutorial-basics-nanci-gait-intro-2
+    - subGoalId: gait-intro
+      dialogue: tutorial-basics-nanci-gait-intro-3
+    - subGoalId: gait-intro
+      dialogue: tutorial-basics-nanci-gait-intro-4
+    - subGoalId: gait-intro
+      dialogue: tutorial-basics-nanci-gait-intro-5
+    - subGoalId: walk-toggle
+      dialogue: tutorial-basics-nanci-walk-toggle-1
+    - subGoalId: walk-toggle
+      dialogue: tutorial-basics-nanci-walk-toggle-2
+    - subGoalId: walk-toggle
+      dialogue: tutorial-basics-nanci-walk-toggle-3
+    - subGoalId: walk-lane
+      dialogue: tutorial-basics-nanci-walk-lane-1
+    - subGoalId: walk-lane
+      dialogue: tutorial-basics-nanci-walk-lane-2
+    - subGoalId: walk-lane
+      dialogue: tutorial-basics-nanci-walk-lane-3
+    - subGoalId: walk-lane
+      dialogue: tutorial-basics-nanci-walk-lane-4
+    - subGoalId: walk-lane
+      dialogue: tutorial-basics-nanci-walk-lane-5
+    - subGoalId: walk-done
+      dialogue: tutorial-basics-nanci-walk-done-1
+    - subGoalId: walk-done
+      dialogue: tutorial-basics-nanci-walk-done-2
+    - subGoalId: walk-done
+      dialogue: tutorial-basics-nanci-walk-done-3
+    - subGoalId: walk-done
+      dialogue: tutorial-basics-nanci-walk-done-4
+    - subGoalId: lie-down
+      dialogue: tutorial-basics-nanci-lie-down-1
+    - subGoalId: lie-down
+      dialogue: tutorial-basics-nanci-lie-down-2
+    - subGoalId: lie-down
+      dialogue: tutorial-basics-nanci-lie-down-3
+    - subGoalId: lie-down
+      dialogue: tutorial-basics-nanci-lie-down-4
+    - subGoalId: lie-down
+      dialogue: tutorial-basics-nanci-lie-down-5
+    - subGoalId: lie-down
+      dialogue: tutorial-basics-nanci-lie-down-6
+    - subGoalId: lie-down
+      dialogue: tutorial-basics-nanci-lie-down-7
+    - subGoalId: crawl-lane
+      dialogue: tutorial-basics-nanci-crawl-lane-1
+    - subGoalId: crawl-lane
+      dialogue: tutorial-basics-nanci-crawl-lane-2
+    - subGoalId: crawl-lane
+      dialogue: tutorial-basics-nanci-crawl-lane-3
+    - subGoalId: crawl-lane
+      dialogue: tutorial-basics-nanci-crawl-lane-4
+    - subGoalId: crawl-lane
+      dialogue: tutorial-basics-nanci-crawl-lane-5
+    - subGoalId: stand-up
+      dialogue: tutorial-basics-nanci-stand-up-1
+    - subGoalId: stand-up
+      dialogue: tutorial-basics-nanci-stand-up-2
+    - subGoalId: stand-up
+      dialogue: tutorial-basics-nanci-stand-up-3
+    - subGoalId: stand-up
+      dialogue: tutorial-basics-nanci-stand-up-4
+    - subGoalId: stand-up
+      dialogue: tutorial-basics-nanci-stand-up-5
+    - subGoalId: stand-done
+      dialogue: tutorial-basics-nanci-stand-done-1
+    - subGoalId: stand-done
+      dialogue: tutorial-basics-nanci-stand-done-2
+    - subGoalId: stand-done
+      dialogue: tutorial-basics-nanci-stand-done-3
+    - subGoalId: climb-table
+      dialogue: tutorial-basics-nanci-climb-table-1
+    - subGoalId: climb-table
+      dialogue: tutorial-basics-nanci-climb-table-2
+    - subGoalId: climb-table
+      dialogue: tutorial-basics-nanci-climb-table-3
+    - subGoalId: climb-table
+      dialogue: tutorial-basics-nanci-climb-table-4
+    - subGoalId: climb-table
+      dialogue: tutorial-basics-nanci-climb-table-5
+    - subGoalId: climb-table
+      dialogue: tutorial-basics-nanci-climb-table-6
+    - subGoalId: climb-table
+      dialogue: tutorial-basics-nanci-climb-table-7
+    - subGoalId: reach-pad-4
+      dialogue: tutorial-basics-nanci-reach-pad-4-1
+    - subGoalId: reach-pad-4
+      dialogue: tutorial-basics-nanci-reach-pad-4-2
+    - subGoalId: reach-pad-4
+      dialogue: tutorial-basics-nanci-reach-pad-4-3
+    - subGoalId: sit-down
+      dialogue: tutorial-basics-nanci-sit-down-1
+    - subGoalId: sit-down
+      dialogue: tutorial-basics-nanci-sit-down-2
+    - subGoalId: sit-down
+      dialogue: tutorial-basics-nanci-sit-down-3
+    - subGoalId: sit-down
+      dialogue: tutorial-basics-nanci-sit-down-4
+    - subGoalId: stand-from-chair
+      dialogue: tutorial-basics-nanci-stand-from-chair-1
+    - subGoalId: stand-from-chair
+      dialogue: tutorial-basics-nanci-stand-from-chair-2
+    - subGoalId: stand-from-chair
+      dialogue: tutorial-basics-nanci-stand-from-chair-3
+    - subGoalId: rotate-camera
+      dialogue: tutorial-basics-nanci-rotate-camera-1
+    - subGoalId: rotate-camera
+      dialogue: tutorial-basics-nanci-rotate-camera-2
+    - subGoalId: rotate-camera
+      dialogue: tutorial-basics-nanci-rotate-camera-3
+    - subGoalId: rotate-camera
+      dialogue: tutorial-basics-nanci-rotate-camera-4
+    - subGoalId: rotate-camera
+      dialogue: tutorial-basics-nanci-rotate-camera-5
+    - subGoalId: reset-camera
+      dialogue: tutorial-basics-nanci-reset-camera-1
+    - subGoalId: reset-camera
+      dialogue: tutorial-basics-nanci-reset-camera-2
+    - subGoalId: reset-camera
+      dialogue: tutorial-basics-nanci-reset-camera-3
+    - subGoalId: point-at
+      dialogue: tutorial-basics-nanci-point-at-1
+    - subGoalId: point-at
+      dialogue: tutorial-basics-nanci-point-at-2
+    - subGoalId: point-at
+      dialogue: tutorial-basics-nanci-point-at-3
+    - subGoalId: point-at
+      dialogue: tutorial-basics-nanci-point-at-4
+    - subGoalId: point-at
+      dialogue: tutorial-basics-nanci-point-at-5
+    - subGoalId: open-door
+      dialogue: tutorial-basics-nanci-open-door-1
+    - subGoalId: open-door
+      dialogue: tutorial-basics-nanci-open-door-2
+    - subGoalId: open-door
+      dialogue: tutorial-basics-nanci-open-door-3
+    - subGoalId: open-door
+      dialogue: tutorial-basics-nanci-open-door-4
+    - subGoalId: open-door
+      dialogue: tutorial-basics-nanci-open-door-5
+    - subGoalId: take-crowbar
+      dialogue: tutorial-basics-nanci-take-crowbar-1
+    - subGoalId: take-crowbar
+      dialogue: tutorial-basics-nanci-take-crowbar-2
+    - subGoalId: take-crowbar
+      dialogue: tutorial-basics-nanci-take-crowbar-3
+    - subGoalId: take-crowbar
+      dialogue: tutorial-basics-nanci-take-crowbar-4
+    - subGoalId: pry-door
+      dialogue: tutorial-basics-nanci-pry-door-1
+    - subGoalId: pry-door
+      dialogue: tutorial-basics-nanci-pry-door-2
+    - subGoalId: pry-door
+      dialogue: tutorial-basics-nanci-pry-door-3
+    - subGoalId: pry-door
+      dialogue: tutorial-basics-nanci-pry-door-4
+    - subGoalId: graduation
+      dialogue: tutorial-basics-nanci-graduation-1
+    - subGoalId: graduation
+      dialogue: tutorial-basics-nanci-graduation-2
+    - subGoalId: graduation
+      dialogue: tutorial-basics-nanci-graduation-3
+    - subGoalId: graduation
+      dialogue: tutorial-basics-nanci-graduation-4
+    - subGoalId: farewell
+      dialogue: tutorial-basics-nanci-farewell-1
+    - subGoalId: farewell
+      dialogue: tutorial-basics-nanci-farewell-2
+    - subGoalId: farewell
+      dialogue: tutorial-basics-nanci-farewell-3
+    - subGoalId: farewell
+      dialogue: tutorial-basics-nanci-farewell-4
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+    speechBubbleOffset: 0.45
+  - type: TypingIndicator
+    proto: robot
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: Airlock
+  id: TutorialChamberGate
+  suffix: Tutorial, Gate
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: TutorialGateDoor
+  - type: DoorBolt
+    boltsDown: true
+  - type: Tag
+    tags:
+    - Airlock
+    - DoorRemoteWhitelist
+
+# Goal 7.1 target: a basic door that does open and can trigger.
+- type: entity
+  parent: Airlock
+  id: TutorialBasicsDoor
+  suffix: Tutorial, Basics
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - Airlock
+    - DoorRemoteWhitelist
+    - TutorialDoorPowered
+
+# Goal 4: a table you are meant to climb rather than walk around.
+- type: entity
+  parent: Table
+  id: TutorialClimbTable
+  suffix: Tutorial, Basics
+  components:
+  - type: Tag
+    tags:
+    - TutorialClimbTable
+
+# Goal 5: buckle / unbuckle practice chair.
+- type: entity
+  parent: Chair
+  id: TutorialTrainingChair
+  suffix: Tutorial, Basics
+  components:
+  - type: Tag
+    tags:
+    - TutorialChair
+
+# Goal 6.3: pointing practice.
+- type: entity
+  parent: CrateGenericSteel
+  id: TutorialPointCrate
+  name: demonstration crate
+  description: A crate placed here purely so that you have something to point at.
+  suffix: Tutorial, Basics
+  components:
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - TutorialPointTarget
+
+# ---------------------------------------------------------------------------------------------
+# Placeable variants to make mapping easier.
+# ---------------------------------------------------------------------------------------------
+
+- type: entity
+  parent: TutorialHolopad
+  id: TutorialHolopad0
+  name: training holopad (room 0)
+  suffix: Tutorial, Room 0
+  components:
+  - type: TutorialHoloPoint
+    room: 0
+
+- type: entity
+  parent: TutorialHolopad
+  id: TutorialHolopad1
+  name: training holopad (room 1)
+  suffix: Tutorial, Room 1
+  components:
+  - type: TutorialHoloPoint
+    room: 1
+
+- type: entity
+  parent: TutorialHolopad
+  id: TutorialHolopad2
+  name: training holopad (room 2)
+  suffix: Tutorial, Room 2
+  components:
+  - type: TutorialHoloPoint
+    room: 2
+
+- type: entity
+  parent: TutorialHolopad
+  id: TutorialHolopad3
+  name: training holopad (room 3)
+  suffix: Tutorial, Room 3
+  components:
+  - type: TutorialHoloPoint
+    room: 3
+
+- type: entity
+  parent: TutorialHolopad
+  id: TutorialHolopad4
+  name: training holopad (room 4)
+  suffix: Tutorial, Room 4
+  components:
+  - type: TutorialHoloPoint
+    room: 4
+
+- type: entity
+  parent: TutorialHolopad
+  id: TutorialHolopad5
+  name: training holopad (room 5)
+  suffix: Tutorial, Room 5
+  components:
+  - type: TutorialHoloPoint
+    room: 5
+
+- type: entity
+  parent: TutorialHolopad
+  id: TutorialHolopad6
+  name: training holopad (room 6)
+  suffix: Tutorial, Room 6
+  components:
+  - type: TutorialHoloPoint
+    room: 6
+
+- type: entity
+  parent: TutorialHolopad
+  id: TutorialHolopad7
+  name: training holopad (room 7)
+  suffix: Tutorial, Room 7
+  components:
+  - type: TutorialHoloPoint
+    room: 7
+
+# Gate into room N
+- type: entity
+  parent: TutorialChamberGate
+  id: TutorialChamberGate1
+  name: chamber gate (into room 1)
+  suffix: Tutorial, Gate 1
+  components:
+  - type: TutorialGateDoor
+    unlockAtGoalIndex: 1
+
+- type: entity
+  parent: TutorialChamberGate
+  id: TutorialChamberGate2
+  name: chamber gate (into room 2)
+  suffix: Tutorial, Gate 2
+  components:
+  - type: TutorialGateDoor
+    unlockAtGoalIndex: 2
+
+- type: entity
+  parent: TutorialChamberGate
+  id: TutorialChamberGate3
+  name: chamber gate (into room 3)
+  suffix: Tutorial, Gate 3
+  components:
+  - type: TutorialGateDoor
+    unlockAtGoalIndex: 3
+
+- type: entity
+  parent: TutorialChamberGate
+  id: TutorialChamberGate4
+  name: chamber gate (into room 4)
+  suffix: Tutorial, Gate 4
+  components:
+  - type: TutorialGateDoor
+    unlockAtGoalIndex: 4
+
+- type: entity
+  parent: TutorialChamberGate
+  id: TutorialChamberGate5
+  name: chamber gate (into room 5)
+  suffix: Tutorial, Gate 5
+  components:
+  - type: TutorialGateDoor
+    unlockAtGoalIndex: 5
+
+- type: entity
+  parent: TutorialChamberGate
+  id: TutorialChamberGate6
+  name: chamber gate (into room 6)
+  suffix: Tutorial, Gate 6
+  components:
+  - type: TutorialGateDoor
+    unlockAtGoalIndex: 6
+
+# ReachMarker targets.
+#
+# Deliberately not parented to TutorialStepMarker: that one is a glowing pink cross meant to be
+# seen, which suits the practice-room tutorials that stamp it down as a "stand here" pad. This
+# curriculum tells the player where to go in N.A.N.C.I.'s own words and marks the destinations with
+# floor decals, so the markers are pure geometry. MarkerBase gets that for free — Content.Client's
+# MarkerSystem hides every Marker sprite unless `showmarkers` is on, which `mapping` turns on, so
+# they stay visible in the editor and invisible in game. No PointLight, since the marker system only
+# hides the sprite and a disembodied purple glow is worse than the cross was.
+- type: entity
+  abstract: true
+  parent: MarkerBase
+  id: TutorialBasicsMarker
+  suffix: Tutorial, Basics
+  components:
+  - type: TutorialStepMarker
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: pink
+      shader: unshaded
+
+- type: entity
+  parent: TutorialBasicsMarker
+  id: TutorialMarkerBasicsPad1
+  name: tutorial marker (basics-pad-1)
+  description: Walk here to complete a tutorial objective. This one is the room 0 exit pad.
+  suffix: Tutorial, Basics
+  components:
+  - type: TutorialStepMarker
+    markerId: basics-pad-1
+
+- type: entity
+  parent: TutorialBasicsMarker
+  id: TutorialMarkerBasicsPad2Entry
+  name: tutorial marker (basics-pad-2-entry)
+  description: Walk here to complete a tutorial objective. This one is the room 1 entry pad.
+  suffix: Tutorial, Basics
+  components:
+  - type: TutorialStepMarker
+    markerId: basics-pad-2-entry
+
+- type: entity
+  parent: TutorialBasicsMarker
+  id: TutorialMarkerBasicsPad2
+  name: tutorial marker (basics-pad-2)
+  description: Walk here to complete a tutorial objective. This one is the room 1 exit pad, reached at a walk.
+  suffix: Tutorial, Basics
+  components:
+  - type: TutorialStepMarker
+    markerId: basics-pad-2
+
+- type: entity
+  parent: TutorialBasicsMarker
+  id: TutorialMarkerBasicsPad3
+  name: tutorial marker (basics-pad-3)
+  description: Walk here to complete a tutorial objective. This one is the room 2 exit pad, reached crawling.
+  suffix: Tutorial, Basics
+  components:
+  - type: TutorialStepMarker
+    markerId: basics-pad-3
+
+- type: entity
+  parent: TutorialBasicsMarker
+  id: TutorialMarkerBasicsPad4
+  name: tutorial marker (basics-pad-4)
+  description: Walk here to complete a tutorial objective. This one is the room 3 exit pad, past the tables.
+  suffix: Tutorial, Basics
+  components:
+  - type: TutorialStepMarker
+    markerId: basics-pad-4

@@ -1,0 +1,1114 @@
+# Always-powerable / marker helpers for isolated tutorial practice maps.
+
+- type: entity
+  parent: KitchenMicrowave
+  id: TutorialKitchenMicrowave
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialMicrowave
+
+- type: entity
+  parent: KitchenElectricGrill
+  id: TutorialKitchenElectricGrill
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialGrill
+
+- type: entity
+  parent: KitchenReagentGrinder
+  id: TutorialKitchenReagentGrinder
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialGrinder
+
+- type: entity
+  parent: VendingMachineChefvend
+  id: TutorialVendingMachineChefvend
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialVending
+
+- type: entity
+  parent: VendingMachineDinnerware
+  id: TutorialVendingMachineDinnerware
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialVending
+
+- type: entity
+  parent: VendingMachineCondiments
+  id: TutorialVendingMachineCondiments
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialVending
+
+- type: entity
+  parent: VendingMachineBooze
+  id: TutorialVendingMachineBooze
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialVending
+
+- type: entity
+  parent: VendingMachineMedical
+  id: TutorialVendingMachineMedical
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialVending
+
+- type: entity
+  parent: VendingMachineEngivend
+  id: TutorialVendingMachineEngivend
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialVending
+
+- type: entity
+  parent: VendingMachineSec
+  id: TutorialVendingMachineSec
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialVending
+
+- type: entity
+  parent: VendingMachineCart
+  id: TutorialVendingMachineCart
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialVending
+
+- type: entity
+  parent: VendingMachineYouTool
+  id: TutorialVendingMachineYouTool
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialVending
+
+# Unlocked MegaSeed Servitor for botanist seed-dispensing practice.
+- type: entity
+  parent: VendingMachineSeedsUnlocked
+  id: TutorialVendingMachineSeeds
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialVending
+
+- type: entity
+  parent: HydroponicsTrayEmpty
+  id: TutorialHydroponicsTray
+  suffix: Tutorial
+  components:
+  - type: TutorialHydroTray
+  - type: Tag
+    tags:
+    - TutorialHydroTray
+
+- type: entity
+  parent: ChemDispenser
+  id: TutorialChemDispenser
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialChemDispenser
+
+- type: entity
+  parent: ChemMaster
+  id: TutorialChemMaster
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialChemMaster
+
+- type: entity
+  parent: PuddleBlood
+  id: TutorialPracticePuddleBlood
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialPracticePuddle
+
+- type: entity
+  parent: FloorDrain
+  id: TutorialFloorDrain
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialDrain
+
+- type: entity
+  parent: MobHuman
+  id: TutorialPracticeMob
+  name: practice dummy
+  description: A mindless training dummy for tutorial drills.
+  suffix: Tutorial
+  components:
+  - type: TutorialPracticeMob
+  # DoorBumpOpener comes from species_base and a child's Tag list replaces the parent's, so every
+  # tutorial mob silently lost the ability to open a door by walking into it. Nothing complains:
+  # the door simply never opens, and a walking coach paces in front of it until a player opens it
+  # for him. Re-add it in any child that redeclares Tag, too.
+  - type: Tag
+    tags:
+    - TutorialPracticeMob
+    - DoorBumpOpener
+  - type: NpcFactionMember
+    factions: []
+  # Mindless NPCs must not show the SSD ZZZ icon or fall asleep mid-tutorial.
+  - type: SSDIndicator
+    isSSD: false
+
+- type: entity
+  parent: TutorialPracticeMob
+  id: TutorialPracticeMobDamaged
+  suffix: Tutorial, Damaged
+  components:
+  - type: TutorialPracticeMob
+    spawnDamage:
+      types:
+        Blunt: 30
+        Slash: 10
+        Heat: 20
+  # Tag replaces parent list — keep TutorialPracticeMob.
+  - type: Tag
+    tags:
+    - TutorialPracticeMob
+    - TutorialPracticePatient
+
+- type: entity
+  parent: TutorialPracticeMob
+  id: TutorialPracticeMobCrit
+  suffix: Tutorial, Crit
+  components:
+  - type: TutorialPracticeMob
+    spawnDamage:
+      types:
+        Blunt: 60
+        Slash: 20
+        Heat: 40
+  - type: Tag
+    tags:
+    - TutorialPracticeMob
+    - TutorialPracticePatient
+
+# Light damage so one bible heal clears PracticeMobDamageBelow maxDamage 5.
+- type: entity
+  parent: TutorialPracticeMob
+  id: TutorialPracticeMobLightDamage
+  suffix: Tutorial, LightDamage
+  components:
+  - type: TutorialPracticeMob
+    spawnDamage:
+      types:
+        Blunt: 10
+
+# Role-flavored speaking practice mobs (Vocalizer + DatasetVocalizer, like medibot ads).
+- type: entity
+  abstract: true
+  id: TutorialPracticeMobSpeakingBase
+  components:
+  - type: Vocalizer
+    minVocalizeInterval: 12
+    maxVocalizeInterval: 28
+
+- type: entity
+  parent: [TutorialPracticeMob, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobCriminal
+  name: Urist McCriminal
+  description: A cooperative practice suspect who absolutely did it. Probably.
+  suffix: Tutorial, Criminal
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobCriminalAds
+
+# Pickpocket victim — jumpsuit + pocket loot filled by TutorialAntagBootstrapSystem.
+- type: entity
+  parent: [TutorialPracticeMob, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobPickpocket
+  name: Urist McMark
+  description: A distracted practice patron with something worth lifting.
+  suffix: Tutorial, Pickpocket
+  components:
+  - type: TutorialPracticeMobPickpocket
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobSuspectAds
+
+- type: entity
+  parent: [TutorialPracticeMob, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobSuspect
+  name: Urist McSuspect
+  description: A shifty practice witness with suspiciously clean hands.
+  suffix: Tutorial, Suspect
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobSuspectAds
+
+- type: entity
+  parent: [TutorialPracticeMobDamaged, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobPatient
+  name: Urist McPatient
+  description: A volunteer practice patient who hurts on purpose.
+  suffix: Tutorial, Patient
+  components:
+  - type: TutorialPracticeMob
+    spawnDamage:
+      types:
+        Blunt: 30
+        Slash: 10
+        Heat: 20
+    postHealCritDamage:
+      types:
+        Blunt: 101
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobPatientAds
+
+- type: entity
+  parent: [TutorialPracticeMobCrit, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobCasualty
+  name: Urist McCasualty
+  description: A critical practice casualty. Chatty again once stabilized.
+  suffix: Tutorial, Casualty
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobCasualtyAds
+
+# Dead at spawn (210 total). One defib zap clears 40 asphyx → 170 < 200 → Critical.
+- type: entity
+  parent: [TutorialPracticeMob, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobCorpse
+  name: Urist McCorpse
+  description: A practice corpse for defibrillator drills. Just dead enough to teach thresholds.
+  suffix: Tutorial, Corpse
+  components:
+  - type: TutorialPracticeMob
+    spawnDamage:
+      types:
+        Blunt: 160
+        Asphyxiation: 50
+  - type: Tag
+    tags:
+    - TutorialPracticeMob
+    - TutorialPracticeCorpse
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobPatientAds
+
+- type: entity
+  parent: [TutorialPracticeMobLightDamage, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobParishioner
+  name: Urist McParishioner
+  description: A faithful practice parishioner awaiting a miracle (or ointment).
+  suffix: Tutorial, Parishioner
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobParishionerAds
+
+- type: entity
+  parent: [TutorialPracticeMob, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobAudience
+  name: Urist McAudience
+  description: A brave volunteer for pie-related science.
+  suffix: Tutorial, Audience
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobAudienceAds
+
+- type: entity
+  parent: [TutorialPracticeMob, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobVictim
+  name: Urist McVictim
+  description: A suspiciously cooperative practice target who loves breathing.
+  suffix: Tutorial, Victim
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobVictimAds
+
+# Idle pacified prey for Space Dragon (wander only — never fight back).
+# NanoTrasen so Dragon-faction carp from rifts treat them as hostile; Pacified blocks retaliation.
+- type: entity
+  abstract: true
+  parent: [TutorialPracticeMob, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobIdlePrey
+  suffix: Tutorial, IdlePrey
+  components:
+  - type: Pacified
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: IdleCompound
+    blackboard:
+      IdleRange: !type:Single
+        6.0
+      MinimumIdleTime: !type:Single
+        2.0
+      MaximumIdleTime: !type:Single
+        6.0
+
+- type: entity
+  parent: TutorialPracticeMobIdlePrey
+  id: TutorialPracticeMobIdleVictim
+  name: Urist McVictim
+  description: An idle practice crewmember who will not fight back.
+  suffix: Tutorial, IdlePrey
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobVictimAds
+
+- type: entity
+  parent: TutorialPracticeMobIdlePrey
+  id: TutorialPracticeMobIdleAudience
+  name: Urist McAudience
+  description: An idle practice spectator. Pacified even under fire.
+  suffix: Tutorial, IdlePrey
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobAudienceAds
+
+- type: entity
+  parent: TutorialPracticeMobIdlePrey
+  id: TutorialPracticeMobIdleParishioner
+  name: Urist McFaithful
+  description: An idle practice parishioner. Will not retaliate.
+  suffix: Tutorial, IdlePrey
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobParishionerAds
+
+- type: entity
+  parent: TutorialPracticeMobIdlePrey
+  id: TutorialPracticeMobIdleCrew
+  name: Urist McCrew
+  description: An idle practice crewmember. Pacified for dragon drills.
+  suffix: Tutorial, IdlePrey
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobConvertibleAds
+
+- type: entity
+  parent: TutorialPracticeMobIdlePrey
+  id: TutorialPracticeMobIdlePassenger
+  name: Urist McTourist
+  description: An idle practice passenger. Does not fight dragons.
+  suffix: Tutorial, IdlePrey
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobVictimAds
+
+- type: entity
+  parent: TutorialPracticeMobIdlePrey
+  id: TutorialPracticeMobIdleEngineer
+  name: Urist McWrench
+  description: An idle practice engineer. Pacified for dragon drills.
+  suffix: Tutorial, IdlePrey
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobVictimAds
+
+- type: entity
+  parent: [ PinpointerStation ]
+  id: TutorialPinpointerDragonStation
+  name: station pinpointer
+  description: Points toward the practice station. Activate it on the ground — dragons have no pockets.
+  suffix: Tutorial, Dragon
+  components:
+  - type: Pinpointer
+    component: TutorialDragonPreyBeacon
+    targetName: the station
+    canRetarget: false
+
+- type: entity
+  parent: [TutorialPracticeMob, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobConvertible
+  name: Urist McCrew
+  description: A cooperative practice crewmember ready to join the revolution.
+  suffix: Tutorial, Convertible
+  components:
+  - type: AlwaysRevolutionaryConvertible
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobConvertibleAds
+
+- type: entity
+  parent: MobHuman
+  id: TutorialPracticeAccessBreaker
+  name: Urist McAccessBreaker
+  description: A scripted saboteur who opens cyborg panels and emags them for tutorial practice.
+  suffix: Tutorial
+  components:
+  - type: TutorialPracticeAccessBreaker
+  - type: NpcFactionMember
+    factions: []
+
+- type: entity
+  parent: AmeController
+  id: TutorialAmeController
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+
+- type: entity
+  parent: AmeShielding
+  id: TutorialAmeShielding
+  suffix: Tutorial
+
+- type: entity
+  parent: Paper
+  id: TutorialForensicsEvidence
+  name: suspicious napkin
+  description: A practice evidence item for forensics training.
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialForensicsEvidence
+
+- type: entity
+  parent: OxygenCanister
+  id: TutorialGasCanisterOxygen
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialGasCanister
+
+- type: entity
+  parent: ComputerCargoOrders
+  id: TutorialComputerCargoOrders
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialCargoOrders
+
+- type: entity
+  parent: ComputerId
+  id: TutorialComputerId
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialIdConsole
+
+- type: entity
+  parent: BrigTimer
+  id: TutorialBrigTimer
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialBrigTimer
+
+- type: entity
+  parent: GunSafe
+  id: TutorialGunSafe
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialSecLocker
+
+- type: entity
+  id: TutorialStepMarker
+  name: tutorial marker
+  description: Walk here to complete a tutorial objective.
+  suffix: Tutorial
+  components:
+  - type: Transform
+  - type: TutorialStepMarker
+  - type: Sprite
+    noRot: true
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: pink
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 2.5
+    color: "#C050FF"
+    netsync: false
+  - type: Clickable
+  - type: InteractionOutline
+
+# Sealed high-sec door replacing crop airlocks that are not the intended chamber gate.
+# Bolted HighSec (full tile collision) — AirlockVaultLocked looked sealed but did not block movement.
+- type: entity
+  parent: HighSecDoor
+  id: TutorialVaultDoor
+  name: high security door
+  description: A bolted high security door. Not part of the tutorial path — use the marked chamber door instead.
+  suffix: Tutorial, Sealed
+  components:
+  - type: Door
+    canPry: false
+  - type: DoorBolt
+    boltsDown: true
+    boltWireCut: true
+  - type: ApcPowerReceiver
+    needsPower: false
+
+# Unpowered maintenance airlock for pry practice on isolated grids.
+- type: entity
+  parent: AirlockMaint
+  id: TutorialAirlockMaint
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerDisabled: true
+  # Airlocks inherit PryUnpowered, so without this the crowbar drill can be skipped bare-handed.
+  - type: TutorialToolOnlyPry
+  - type: Tag
+    tags:
+    - Airlock
+    - DoorRemoteWhitelist
+    - TutorialAirlock
+
+# Powered engineering airlock for wire-hacking practice (pulse POWR → crowbar → cut).
+- type: entity
+  parent: AirlockEngineering
+  id: TutorialHackAirlock
+  suffix: Tutorial, Hack
+  components:
+  - type: Tag
+    tags:
+    - Airlock
+    - DoorRemoteWhitelist
+    - TutorialHackDoor
+
+# Visual "space breach" pad — use steel sheets on it to practice hull repair.
+- type: entity
+  id: TutorialSpacingBreach
+  name: hull breach
+  description: A practice lattice breach. Use steel sheets on it to patch plating.
+  suffix: Tutorial
+  components:
+  - type: Transform
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Tag
+    tags:
+    - TutorialSpacingBreach
+
+- type: entity
+  parent: APCBasic
+  id: TutorialApc
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialApc
+
+# Always-charged APC for powering practice-room doors without a station power grid.
+- type: entity
+  parent: TutorialApc
+  id: TutorialApcAlwaysOn
+  suffix: Tutorial, Always On
+  components:
+  - type: Battery
+    maxCharge: 50000
+    startingCharge: 50000
+  - type: BatterySelfRecharger
+    autoRechargeRate: 50000
+
+# Invisible station anchor + gravity generator spawned on every tutorial grid.
+- type: entity
+  id: TutorialInvisibleGridSupport
+  name: tutorial grid support
+  description: Invisible station anchor and gravity generator for tutorial maps.
+  suffix: Tutorial, Invisible
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: StationAnchor
+    switchedOn: true
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: ExtensionCableReceiver
+  - type: PowerCharge
+    windowTitle: gravity-generator-window-title
+    idlePower: 1
+    activePower: 1
+    charge: 1
+    switchedOn: true
+  - type: GravityGenerator
+    lightRadiusMin: 0
+    lightRadiusMax: 0
+
+- type: entity
+  parent: SubstationBasic
+  id: TutorialSubstation
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialSubstation
+
+- type: entity
+  parent: SMESBasicEmpty
+  id: TutorialSmesEmpty
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialSmes
+
+- type: entity
+  parent: ComputerPowerMonitoring
+  id: TutorialComputerPowerMonitoring
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialPowerMonitor
+
+- type: entity
+  parent: SingularityGenerator
+  id: TutorialSingularityGenerator
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialSinguloGen
+
+- type: entity
+  parent: TeslaGenerator
+  id: TutorialTeslaGenerator
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialTeslaGen
+
+- type: entity
+  parent: TegCenter
+  id: TutorialTegCenter
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialTeg
+
+- type: entity
+  parent: TegCirculator
+  id: TutorialTegCirculator
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialTegCirculator
+
+- type: entity
+  parent: GasFilter
+  id: TutorialGasFilter
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialGasFilter
+
+- type: entity
+  parent: GasVentPump
+  id: TutorialGasVentPump
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialDistroVent
+
+- type: entity
+  parent: GasVentScrubber
+  id: TutorialGasVentScrubber
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialWasteScrubber
+
+# Reliable bible heal for Chaplain tutorial (no helmet fail chance).
+- type: entity
+  parent: Bible
+  id: TutorialBible
+  suffix: Tutorial
+  components:
+  - type: Bible
+    failChance: 0
+    damage:
+      types:
+        Blunt: -5
+        Piercing: -5
+        Slash: -5
+        Heat: -5
+        Cold: -5
+        Shock: -5
+    damageOnFail:
+      types:
+        Blunt: 5
+        Piercing: 5
+        Slash: 5
+        Asphyxiation: 15
+    damageOnUntrainedUse:
+      types:
+        Heat: 10
+
+- type: entity
+  parent: FaxMachineCentcom
+  id: TutorialFaxCentcom
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialFax
+
+- type: entity
+  parent: ComputerComms
+  id: TutorialComputerComms
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialCommsConsole
+
+- type: entity
+  parent: ComputerCriminalRecords
+  id: TutorialComputerCriminalRecords
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialCriminalRecords
+
+- type: entity
+  parent: MachineArtifactCrusherXenoborg
+  id: TutorialMachineArtifactCrusherXenoborg
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialXenoborgCrusher
+
+# Unfolded rollerbed for Paramedic buckle transport drills.
+- type: entity
+  parent: RollerBed
+  id: TutorialRollerBed
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialRollerBed
+
+# Soft-following coach for single-grid tutorials (spawned by TutorialServerRuleSystem).
+- type: entity
+  parent: TutorialPracticeMob
+  id: TutorialMentor
+  name: Urist McMentor
+  description: A friendly practice mentor who follows you and talks you through each step. Empty-hand click them to hurry them along.
+  suffix: Tutorial, Mentor
+  components:
+  - type: Loadout
+    prototypes: [VisitorLibrarian]
+  - type: TutorialMentor
+  - type: TutorialTrainer
+  # No TypingIndicator here: the component reserves a sprite layer the moment it appears, and in a
+  # prototype that is before the humanoid sprite has been built, which leaves the indicator sitting
+  # at the wrong offset. Added after the body is dressed instead, in GiveTutorialMentor, which is
+  # what the engine does for players (OnPlayerAttached).
+  - type: InputMover
+  - type: MobMover
+  # No NavDoors here on purpose. A following coach works chamber maps, where a sealed gate really
+  # does mean the player is unreachable and the follow system is right to give up and teleport.
+  # Telling the pathfinder to route through it would leave him walking at a door that cannot open
+  # instead. NavDoors belongs on coaches that lead, which work open station maps: see
+  # TutorialTideMentor.
+  - type: HTN
+    rootTask:
+      task: TutorialFollowCompound
+    blackboard:
+      FollowCloseRange: !type:Single
+        2.0
+      FollowRange: !type:Single
+        3.0
+      NavInteract: !type:Bool
+        true
+      MinimumIdleTime: !type:Single
+        0.5
+      MaximumIdleTime: !type:Single
+        1.5
+
+# CMO outfit for the medical doctor tutorial mentor (Urist McMalpractice).
+- type: entity
+  parent: TutorialMentor
+  id: TutorialMedicalMentor
+  suffix: Tutorial, Mentor, Medical
+  components:
+  - type: Loadout
+    prototypes: [VisitorCMO]
+
+# Stationary cargo-bay QM for Cargo Tech (no HTN follow). Speaks tips; click to repeat / Acknowledge.
+- type: entity
+  parent: TutorialPracticeMob
+  id: TutorialCargoQmMentor
+  name: Urist McQuartermaster
+  description: Your cargo bay quartermaster. They stay put and tell you what to do next. Empty-hand click them to hurry them along.
+  suffix: Tutorial, Mentor, Cargo
+  components:
+  # VisitorQM is a full outfit (jumpsuit/cloak/hat). Job QuartermasterGear is accessories only.
+  - type: Loadout
+    prototypes: [VisitorQM]
+  - type: TutorialMentor
+  - type: TutorialTrainer
+  - type: InputMover
+  - type: MobMover
+
+# Passenger opening-block coach with flavored lines (falls back to sub-goal text otherwise).
+- type: entity
+  parent: TutorialMentor
+  id: TutorialPassengerMentor
+  suffix: Tutorial, Mentor, Passenger
+  components:
+  - type: TutorialTrainer
+    lines:
+    - subGoalId: meet-trainer
+      dialogue: tutorial-passenger-trainer-meet
+    - subGoalId: pick-crowbar
+      dialogue: tutorial-passenger-trainer-pick
+    - subGoalId: drop-crowbar
+      dialogue: tutorial-passenger-trainer-drop
+    - subGoalId: hold-light
+      dialogue: tutorial-passenger-trainer-hold-light
+    - subGoalId: use-light
+      dialogue: tutorial-passenger-trainer-use-light
+    - subGoalId: stow-light
+      dialogue: tutorial-passenger-trainer-stow-light
+    - subGoalId: hold-water
+      dialogue: tutorial-passenger-trainer-hold-water
+    - subGoalId: drink-water
+      dialogue: tutorial-passenger-trainer-drink-water
+    - subGoalId: hold-crowbar-door
+      dialogue: tutorial-passenger-trainer-crowbar-ready
+    - subGoalId: pry-door
+      dialogue: tutorial-passenger-trainer-pry
+
+# Legacy id kept as alias so old maps/refs do not break.
+- type: entity
+  parent: TutorialPassengerMentor
+  id: TutorialPassengerTrainer
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: TutorialPracticeMob
+  id: TutorialHoPVisitorBotany
+  name: Urist McApplicant
+  description: Waiting in line for a Botanist ID.
+  suffix: Tutorial, HoP, Botanist
+  components:
+  - type: TutorialHoPVisitor
+    activateOnSubGoal: hold-id-botany
+    requestedJob: Botanist
+    dialogue: tutorial-hop-visitor-botany
+    # Land on HoP desk/windoor tile so the player can grab from inside the office.
+    deskDropOffset: 3, 0
+
+- type: entity
+  parent: TutorialPracticeMob
+  id: TutorialHoPVisitorChef
+  name: Urist McCookhopeful
+  description: Waiting in line for a Chef ID.
+  suffix: Tutorial, HoP, Chef
+  components:
+  - type: TutorialHoPVisitor
+    activateOnSubGoal: write-chef
+    requestedJob: Chef
+    dialogue: tutorial-hop-visitor-chef
+    deskDropOffset: 3, 0.5
+
+- type: entity
+  parent: TutorialPracticeMob
+  id: TutorialHoPVisitorJanitor
+  name: Urist McMopseeker
+  description: Waiting in line for a Janitor ID.
+  suffix: Tutorial, HoP, Janitor
+  components:
+  - type: TutorialHoPVisitor
+    activateOnSubGoal: write-janitor
+    requestedJob: Janitor
+    dialogue: tutorial-hop-visitor-janitor
+    deskDropOffset: 3, 1
+
+# Salvage practice arena machines.
+- type: entity
+  parent: BaseStructure
+  id: TutorialSalvageMagnet
+  name: practice salvage magnet
+  description: A tutorial console that stands in for the station salvage magnet.
+  suffix: Tutorial
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Structures/Machines/server.rsi
+    state: server
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Tag
+    tags:
+    - TutorialSalvageMagnet
+
+- type: entity
+  parent: Recycler
+  id: TutorialRecycler
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialRecycler
+
+- type: entity
+  parent: OreProcessor
+  id: TutorialOreProcessor
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+
+- type: entity
+  parent: ClosetSteelBase
+  id: TutorialDebrisLocker
+  name: debris locker
+  description: Stuff scrap and ore in here during salvage practice.
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialDebrisLocker
+
+- type: entity
+  parent: CargoPalletSell
+  id: TutorialCargoPalletSell
+  suffix: Tutorial
+  components:
+  - type: Tag
+    tags:
+    - TutorialCargoSell
+
+- type: entity
+  parent: ResearchAndDevelopmentServer
+  id: TutorialResearchServer
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialResearchServer
+
+- type: entity
+  parent: ComputerResearchAndDevelopment
+  id: TutorialResearchConsole
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialResearchConsole
+
+# Robotics fabricator prints ProximitySensor after BasicRobotics unlock.
+- type: entity
+  parent: ExosuitFabricator
+  id: TutorialExosuitFabricator
+  suffix: Tutorial
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - TutorialLathe

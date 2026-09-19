@@ -1,0 +1,173 @@
+# Mapper markers: the entities a hand-authored tutorial map is wired together with.
+#
+# Everything here is meant to be placed by hand in the editor, so nothing here carries
+# HideSpawnMenu. A prototype the mapper cannot find in the spawn list is a prototype the mapper
+# cannot use, and the per-instance fields these carry (room index, marker id) have no other way in
+# short of editing map YAML by hand.
+
+- type: entity
+  parent: MarkerBase
+  id: TutorialZoneOrigin
+  name: tutorial zone origin
+  description: Marks the practice-spawn chamber center on a tutorial room template.
+  suffix: Tutorial, Marker
+  components:
+  - type: TutorialZoneOrigin
+  - type: Sprite
+    state: green
+
+- type: entity
+  parent: SpawnPointLatejoin
+  id: TutorialRoomSpawnPoint
+  name: tutorial room spawn
+  suffix: Tutorial, Marker
+  components:
+  - type: TutorialSpawnPoint
+
+# --- Walking coaches ----------------------------------------------------------
+#
+# Where a mentor with mentorMode: Lead walks to and waits in each section, and, because he is the
+# thing the player is following, that section's reach marker as well: "go there" and "go to him"
+# are one place, so one entity serves both.
+#
+# Deliberately not tied to any one curriculum. The numbered children below bake in the two fields
+# that would otherwise have to be typed into every copy by hand, and their marker ids are generic
+# for the same reason: a beat that says "catch up with the coach in section 3" is the same beat in
+# every tutorial that has a coach who walks.
+#
+# Marker ids only have to be unique within one curriculum's map, so walk-0 .. walk-11 never collide.
+- type: entity
+  parent: MarkerBase
+  id: TutorialWalkPoint
+  name: tutorial walk point
+  description: Where a leading mentor walks to. Set the room index and marker id, or place one of the numbered variants.
+  suffix: Tutorial, Marker
+  components:
+  - type: TutorialWalkPoint
+  - type: TutorialStepMarker
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: pink
+      shader: unshaded
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint0
+  suffix: Tutorial, Marker, Section 0
+  components:
+  - type: TutorialWalkPoint
+    room: 0
+  - type: TutorialStepMarker
+    markerId: walk-0
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint1
+  suffix: Tutorial, Marker, Section 1
+  components:
+  - type: TutorialWalkPoint
+    room: 1
+  - type: TutorialStepMarker
+    markerId: walk-1
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint2
+  suffix: Tutorial, Marker, Section 2
+  components:
+  - type: TutorialWalkPoint
+    room: 2
+  - type: TutorialStepMarker
+    markerId: walk-2
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint3
+  suffix: Tutorial, Marker, Section 3
+  components:
+  - type: TutorialWalkPoint
+    room: 3
+  - type: TutorialStepMarker
+    markerId: walk-3
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint4
+  suffix: Tutorial, Marker, Section 4
+  components:
+  - type: TutorialWalkPoint
+    room: 4
+  - type: TutorialStepMarker
+    markerId: walk-4
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint5
+  suffix: Tutorial, Marker, Section 5
+  components:
+  - type: TutorialWalkPoint
+    room: 5
+  - type: TutorialStepMarker
+    markerId: walk-5
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint6
+  suffix: Tutorial, Marker, Section 6
+  components:
+  - type: TutorialWalkPoint
+    room: 6
+  - type: TutorialStepMarker
+    markerId: walk-6
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint7
+  suffix: Tutorial, Marker, Section 7
+  components:
+  - type: TutorialWalkPoint
+    room: 7
+  - type: TutorialStepMarker
+    markerId: walk-7
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint8
+  suffix: Tutorial, Marker, Section 8
+  components:
+  - type: TutorialWalkPoint
+    room: 8
+  - type: TutorialStepMarker
+    markerId: walk-8
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint9
+  suffix: Tutorial, Marker, Section 9
+  components:
+  - type: TutorialWalkPoint
+    room: 9
+  - type: TutorialStepMarker
+    markerId: walk-9
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint10
+  suffix: Tutorial, Marker, Section 10
+  components:
+  - type: TutorialWalkPoint
+    room: 10
+  - type: TutorialStepMarker
+    markerId: walk-10
+
+- type: entity
+  parent: TutorialWalkPoint
+  id: TutorialWalkPoint11
+  suffix: Tutorial, Marker, Section 11
+  components:
+  - type: TutorialWalkPoint
+    room: 11
+  - type: TutorialStepMarker
+    markerId: walk-11

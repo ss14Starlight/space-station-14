@@ -1,0 +1,76 @@
+- type: tutorialRole
+  id: TutorialSecurityOfficer
+  mentorName: Urist McBatong
+  job: SecurityOfficer
+  stub: false
+  simplifiedEnvironment: true
+  category: Security
+  map: /Maps/_Functional/TutorialServer/Roles/SecurityOfficer.yml
+  roomTemplate: TutorialSectionSecurity
+  guidebook: Security
+  practiceSpawns:
+  - id: LockerSecurityFilled
+    room: 0
+    offset: -2, 1
+  - id: Handcuffs
+    room: 0
+    offset: 0.5, 0
+  - id: Handcuffs
+    room: 0
+    offset: 0.8, 0
+  - id: TutorialPracticeMobCriminal
+    room: 0
+    offset: 0, -1
+  - id: Stunbaton
+    room: 0
+    offset: -0.5, 0
+  - id: WeaponDisabler
+    room: 0
+    offset: -0.8, 0
+  - id: Flash
+    room: 0
+    offset: -1.1, 0
+  - id: TutorialVendingMachineSec
+    room: 0
+    offset: 1.5, 1
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: sec-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-security-officer-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-security-officer-sg-intro
+      complete: Acknowledge
+  - id: arrest
+    title: tutorial-job-security-officer-goal-arrest
+    subGoals:
+    - id: stun-dummy
+      text: tutorial-job-security-officer-sg-stun
+      complete: PracticeMobStunned
+    - id: hold-cuffs
+      text: tutorial-job-security-officer-sg-cuffs
+      complete: HoldItem
+      entity: Handcuffs
+    - id: cuff-dummy
+      text: tutorial-job-security-officer-sg-cuff
+      complete: PracticeMobCuffed
+    - id: sec-vend
+      text: tutorial-job-security-officer-sg-vend
+      complete: InteractTargetTag
+      tag: TutorialVending
+    - id: law-tip
+      text: tutorial-job-security-officer-sg-law-tip
+      complete: Acknowledge
+    - id: walk
+      text: tutorial-job-security-officer-sg-walk
+      complete: ReachMarker
+      marker: sec-pass
+  - id: finish
+    title: tutorial-job-security-officer-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-security-officer-sg-done
+      complete: Acknowledge

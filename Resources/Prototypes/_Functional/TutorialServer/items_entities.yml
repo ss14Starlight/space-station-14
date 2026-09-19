@@ -1,0 +1,244 @@
+# --- Chamber 1: a girder and the two tools it takes to remove it -----------------------------
+
+- type: entity
+  parent: Wrench
+  id: TutorialWrench
+  suffix: Tutorial, Items
+  components:
+  - type: Tag
+    tags:
+    - Wrench
+    - TutorialGirderTool
+
+- type: entity
+  parent: Screwdriver
+  id: TutorialScrewdriver
+  suffix: Tutorial, Items
+  components:
+  - type: Tag
+    tags:
+    - Screwdriver
+    - TutorialGirderTool
+
+- type: entity
+  parent: Girder
+  id: TutorialGirder
+  suffix: Tutorial, Items
+  components:
+  - type: Tag
+    tags:
+    - TutorialGirder
+
+# --- Chamber 2: the plaque nobody reads, and the lantern that gets a reason to exist ---------
+
+- type: entity
+  parent: SignPlaque
+  id: TutorialCommemorativePlaque
+  name: commemorative plaque
+  description: >-
+    Dedicated to the applicants of Wing Five, whose contributions to Nanotrasen safety procedure
+    were both significant and involuntary. Their names are recorded elsewhere.
+  suffix: Tutorial, Items
+  components:
+  - type: TutorialSensorTarget
+  - type: Tag
+    tags:
+    - TutorialExamineTarget
+
+- type: entity
+  parent: MarkerBase
+  id: TutorialLightCue
+  name: tutorial light cue (chamber 1 blackout)
+  description: Kills the lights around it when the lantern beat begins.
+  suffix: Tutorial, Items
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: red
+      shader: unshaded
+  - type: TutorialCue
+    subGoalId: light-lantern
+    effect: LightsOff
+    radius: 5
+    sound:
+      path: /Audio/Machines/lightswitch.ogg
+      params:
+        volume: -1 
+- type: entity
+  parent: Lantern
+  id: TutorialTrainingLantern
+  suffix: Tutorial, Items
+  components:
+  - type: TutorialSensorTarget
+
+# --- Chamber 3: the locker, the can, and the bin ---------------------------------------------
+
+- type: entity
+  parent: ClosetMaintenance
+  id: TutorialGearLocker
+  name: supply locker
+  description: A locker. It is not locked. Nanotrasen ran out of locks before it ran out of lockers.
+  suffix: Tutorial, Items
+  components:
+  - type: TutorialSensorTarget
+  - type: ContainerFill
+    containers:
+      entity_storage:
+      - TutorialTrainingDrink
+  - type: Tag
+    tags:
+    - TutorialGearLocker
+
+- type: entity
+  parent: DrinkColaCan
+  id: TutorialTrainingDrink
+  name: training can
+  description: A can of Nanotrasen Brand Refreshment, designated for training use only.
+  suffix: Tutorial, Items
+  components:
+  - type: TutorialSensorTarget
+  - type: TutorialQuip
+    quips:
+    - trigger: Ingested
+      line: tutorial-items-nanci-quip-drank
+
+- type: entity
+  parent: DisposalUnit
+  id: TutorialDisposalUnit
+  name: disposal unit
+  suffix: Tutorial, Items
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: DisposalUnit
+    # No timed auto-flush.
+    automaticEngage: false
+    container:
+      occludes: true
+      showEnts: false
+      ents: []
+    whitelist:
+      components:
+      - Item
+      - Body
+  - type: ThrowInsertContainer
+    containerId: DisposalUnitComponent
+    # Upstream is 0.67.
+    probability: 1
+  - type: TutorialQuip
+    quips:
+    - trigger: PlayerInserted
+      line: tutorial-items-nanci-quip-binned
+  - type: Tag
+    tags:
+    - TutorialDisposal
+
+# --- Chamber 4: the crate that does not fit in a bag, and the plushie that does ---------------
+
+- type: entity
+  parent: CrateGenericSteel
+  id: TutorialPullCrate
+  name: supply crate
+  description: Too big for any bag you will ever be issued. Drag it.
+  suffix: Tutorial, Items
+  components:
+  - type: Tag
+    tags:
+    - TutorialPullCrate
+
+- type: entity
+  parent: PlushieLizard
+  id: TutorialWehPlushie
+  suffix: Tutorial, Items
+
+# --- Chamber 7: the charge that opens the hull, and the firelock that answers it --------------
+
+- type: entity
+  parent: MarkerBase
+  id: TutorialBreachCue
+  name: tutorial breach cue
+  description: Sets off a charge against the hull when the breach beat begins.
+  suffix: Tutorial, Items
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: blue
+      shader: unshaded
+  - type: TutorialCue
+    subGoalId: breach-brief
+    afterLine: 5
+    lineDelay: 2
+    delay: 16
+    effect: Breach
+
+- type: entity
+  parent: FirelockGlass
+  id: TutorialFirelock
+  name: firelock
+  suffix: Tutorial, Items
+  components:
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: Tag
+    tags:
+    - ForceFixRotations
+    - TutorialFirelock
+
+# open, and unnamed because to the player it is an ordinary bolted airlock.
+- type: entity
+  parent: AirlockGlass
+  id: TutorialBreachGate
+  suffix: Tutorial, Items
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+  - type: ApcPowerReceiver
+    needsPower: false
+  - type: TutorialGateDoor
+    unlockAtSubGoalId: pry-firelock
+  - type: DoorBolt
+    boltsDown: true
+  - type: Tag
+    tags:
+    - Airlock
+    - DoorRemoteWhitelist
+
+# --- ReachMarker targets ---------------------------------------------------------------------
+
+- type: entity
+  abstract: true
+  parent: MarkerBase
+  id: TutorialItemsMarker
+  suffix: Tutorial, Items
+  components:
+  - type: TutorialStepMarker
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Markers/cross.rsi
+    layers:
+    - state: green
+      shader: unshaded
+
+- type: entity
+  parent: TutorialItemsMarker
+  id: TutorialMarkerItemsPad3
+  name: tutorial marker (items-pad-3)
+  description: Walk here to complete a tutorial objective. This one is where the crate is parked.
+  suffix: Tutorial, Items
+  components:
+  - type: TutorialStepMarker
+    markerId: items-pad-3
+
+- type: entity
+  parent: TutorialItemsMarker
+  id: TutorialMarkerItemsPadVacuum
+  name: tutorial marker (items-pad-vacuum)
+  description: Walk here to complete a tutorial objective. This one is past the breach.
+  suffix: Tutorial, Items
+  components:
+  - type: TutorialStepMarker
+    markerId: items-pad-vacuum

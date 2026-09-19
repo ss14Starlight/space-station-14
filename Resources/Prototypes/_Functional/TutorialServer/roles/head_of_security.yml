@@ -1,0 +1,81 @@
+- type: tutorialRole
+  id: TutorialHeadOfSecurity
+  mentorName: Urist McRobust
+  job: HeadOfSecurity
+  stub: false
+  simplifiedEnvironment: true
+  category: Security
+  map: /Maps/_Functional/TutorialServer/Roles/HeadOfSecurity.yml
+  roomTemplate: TutorialSectionSecurity
+  guidebook: Security
+  practiceSpawns:
+  - id: LockerHeadOfSecurityFilled
+    room: 0
+    offset: -2, 1
+  - id: RubberStampHos
+    room: 0
+    offset: 0.8, 0
+  - id: TutorialComputerComms
+    room: 0
+    offset: 1.5, 1
+  - id: Handcuffs
+    room: 0
+    offset: 0.5, 0
+  - id: TutorialPracticeMobCriminal
+    room: 0
+    offset: 0, -0.5
+  - id: WeaponDisabler
+    room: 0
+    offset: -0.5, 0
+  - id: TutorialVendingMachineSec
+    room: 0
+    offset: 1.5, 1
+  - id: TutorialStepMarker
+    room: 0
+    offset: 0, -1.5
+    marker: hos-pass
+  goals:
+  - id: welcome
+    title: tutorial-job-head-of-security-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-job-head-of-security-sg-intro
+      complete: Acknowledge
+  - id: command
+    title: tutorial-job-head-of-security-goal-command
+    subGoals:
+    - id: hold-stamp
+      text: tutorial-job-head-of-security-sg-stamp
+      complete: HoldItem
+      entity: RubberStampHos
+    - id: open-comms
+      text: tutorial-job-head-of-security-sg-comms
+      complete: InteractTargetTag
+      tag: TutorialCommsConsole
+    - id: law-tip
+      text: tutorial-job-head-of-security-sg-law-tip
+      complete: Acknowledge
+  - id: gear
+    title: tutorial-job-head-of-security-goal-gear
+    subGoals:
+    - id: hold-cuffs
+      text: tutorial-job-head-of-security-sg-cuffs
+      complete: HoldItem
+      entity: Handcuffs
+    - id: cuff-dummy
+      text: tutorial-job-head-of-security-sg-cuff
+      complete: PracticeMobCuffed
+    - id: sec-vend
+      text: tutorial-job-head-of-security-sg-vend
+      complete: InteractTargetTag
+      tag: TutorialVending
+    - id: walk
+      text: tutorial-job-head-of-security-sg-walk
+      complete: ReachMarker
+      marker: hos-pass
+  - id: finish
+    title: tutorial-job-head-of-security-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-head-of-security-sg-done
+      complete: Acknowledge

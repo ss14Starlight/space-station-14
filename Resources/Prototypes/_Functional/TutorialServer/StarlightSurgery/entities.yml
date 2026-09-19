@@ -1,0 +1,83 @@
+# Tutorial-only Starlight surgery props (tools + patient + implant).
+
+- type: entity
+  parent: Scalpel
+  id: TutorialStarlightScalpel
+  suffix: Tutorial Starlight
+  components:
+  - type: TutorialStarlightSurgeryTool
+    toolType: Scalpel
+
+- type: entity
+  parent: Hemostat
+  id: TutorialStarlightHemostat
+  suffix: Tutorial Starlight
+  components:
+  - type: TutorialStarlightSurgeryTool
+    toolType: Hemostat
+
+- type: entity
+  parent: Retractor
+  id: TutorialStarlightRetractor
+  suffix: Tutorial Starlight
+  components:
+  - type: TutorialStarlightSurgeryTool
+    toolType: Retractor
+
+- type: entity
+  parent: Cautery
+  id: TutorialStarlightCautery
+  suffix: Tutorial Starlight
+  components:
+  - type: TutorialStarlightSurgeryTool
+    toolType: Cautery
+
+- type: entity
+  parent: BaseItem
+  id: TutorialStarlightBoneGel
+  name: bone gel
+  description: Surgical bone gel used while closing Starlight-style surgeries.
+  suffix: Tutorial Starlight
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medical.rsi
+    state: ointment
+  - type: Item
+    size: Small
+  - type: TutorialStarlightSurgeryTool
+    toolType: BoneGel
+
+- type: entity
+  parent: BaseItem
+  id: TutorialStarlightEyeImplantWelding
+  name: welding implant
+  description: A Starlight cybernetic eye implant that protects against welding flashes.
+  suffix: Tutorial Starlight
+  components:
+  - type: Sprite
+    sprite: _Functional/TutorialServer/StarlightSurgery/implants.rsi
+    state: eye_implant_welding
+  - type: Item
+    size: Small
+  - type: TutorialStarlightSurgeryTool
+    toolType: EyeImplant
+  - type: TutorialStarlightEyeImplant
+
+- type: entity
+  parent: [TutorialPracticeMob, TutorialPracticeMobSpeakingBase]
+  id: TutorialPracticeMobStarlightSurgery
+  name: Urist McPatient
+  description: A cooperative practice patient for Starlight-style cybernetic surgery.
+  suffix: Tutorial, Starlight Surgery
+  components:
+  - type: DatasetVocalizer
+    dataset: TutorialPracticeMobPatientAds
+  - type: TutorialStarlightSurgeryTarget
+  - type: UserInterface
+    interfaces:
+      enum.TutorialStarlightSurgeryUiKey.Key:
+        type: TutorialStarlightSurgeryBoundUserInterface
+  - type: Tag
+    tags:
+    - TutorialPracticeMob
+    - TutorialStarlightSurgeryPatient

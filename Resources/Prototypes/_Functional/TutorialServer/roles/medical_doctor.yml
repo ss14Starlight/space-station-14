@@ -1,0 +1,127 @@
+- type: tutorialRole
+  id: TutorialMedicalDoctor
+  mentorName: Urist McMalpractice
+  mentorEntity: TutorialMedicalMentor
+  job: MedicalDoctor
+  stub: false
+  liveTutorial: true
+  simplifiedEnvironment: true
+  category: Station Jobs
+  pickerOrder: 2
+  map: /Maps/_Functional/TutorialServer/Roles/MedicalDoctor.yml
+  roomTemplate: TutorialSectionMedbay
+  guidebook: Medical
+  practiceSpawns:
+  - id: LockerMedicalFilled
+    room: 0
+    offset: -2, 3
+  - id: HandheldHealthAnalyzer
+    room: 0
+    offset: 0.5, 0
+  - id: ClothingEyesHudMedical
+    room: 0
+    offset: 0.8, 0.5
+  - id: TutorialVendingMachineMedical
+    room: 0
+    offset: 1.5, 1
+  - id: TutorialPracticeMobPatient
+    room: 0
+    offset: 0, 0
+  - id: TutorialPracticeMobCorpse
+    room: 0
+    offset: -1, 0
+  - id: DefibrillatorOneHandedUnpowered
+    room: 0
+    offset: -1, -1
+  - id: Brutepack
+    room: 0
+    offset: 0.5, -1
+  - id: Ointment
+    room: 0
+    offset: 0.8, -1
+  - id: EmergencyMedipen
+    room: 0
+    offset: 0.5, 0
+  - id: MedkitCombat
+    room: 0
+    offset: -0.8, -0.5
+  goals:
+  - id: welcome
+    title: tutorial-job-medical-doctor-goal-welcome
+    subGoals:
+    - id: hug-mentor
+      text: tutorial-job-medical-doctor-sg-hug-mentor
+      hint: tutorial-job-medical-doctor-hint-hug-mentor
+      stuckHint: tutorial-job-medical-doctor-stuck-hug-mentor
+      complete: InteractMentor
+  - id: diagnose
+    title: tutorial-job-medical-doctor-goal-diagnose
+    subGoals:
+    - id: hold-medhud
+      text: tutorial-job-medical-doctor-sg-medhud
+      complete: HoldItem
+      entity: ClothingEyesHudMedical
+    - id: medhud-tip
+      text: tutorial-job-medical-doctor-sg-medhud-tip
+      complete: Acknowledge
+    - id: hold-analyzer
+      text: tutorial-job-medical-doctor-sg-analyzer
+      complete: HoldItem
+      entity: HandheldHealthAnalyzer
+    - id: scan-patient
+      text: tutorial-job-medical-doctor-sg-scan
+      complete: InteractTargetHolding
+      entity: HandheldHealthAnalyzer
+      tag: TutorialPracticePatient
+    - id: med-vend
+      text: tutorial-job-medical-doctor-sg-vend
+      complete: InteractTargetTag
+      tag: TutorialVending
+  - id: treat
+    title: tutorial-job-medical-doctor-goal-treat
+    subGoals:
+    - id: get-brute
+      text: tutorial-job-medical-doctor-sg-brutepack
+      complete: ObtainItem
+      entity: Brutepack
+    - id: get-burn
+      text: tutorial-job-medical-doctor-sg-ointment
+      complete: ObtainItem
+      entity: Ointment
+    - id: heal-dummy
+      text: tutorial-job-medical-doctor-sg-heal
+      complete: PracticeMobDamageBelow
+      maxDamage: 5
+    - id: hold-epi
+      text: tutorial-job-medical-doctor-sg-hold-epi
+      complete: HoldItem
+      entity: EmergencyMedipen
+    - id: use-epi
+      text: tutorial-job-medical-doctor-sg-use-epi
+      complete: InteractTargetHolding
+      entity: EmergencyMedipen
+      tag: TutorialPracticePatient
+    - id: crit-tip
+      text: tutorial-job-medical-doctor-sg-crit-tip
+      complete: Acknowledge
+  - id: revive
+    title: tutorial-job-medical-doctor-goal-revive
+    subGoals:
+    - id: defib-tip
+      text: tutorial-job-medical-doctor-sg-defib-tip
+      complete: Acknowledge
+    - id: hold-defib
+      text: tutorial-job-medical-doctor-sg-hold-defib
+      complete: HoldItem
+      entity: DefibrillatorOneHandedUnpowered
+    - id: revive-corpse
+      text: tutorial-job-medical-doctor-sg-revive
+      hint: tutorial-job-medical-doctor-sg-revive-hint
+      stuckHint: tutorial-job-medical-doctor-sg-revive-stuck
+      complete: PracticeMobRevived
+  - id: finish
+    title: tutorial-job-medical-doctor-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-job-medical-doctor-sg-done
+      complete: Acknowledge

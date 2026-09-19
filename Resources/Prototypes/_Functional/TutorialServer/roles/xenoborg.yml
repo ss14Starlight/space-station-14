@@ -1,0 +1,68 @@
+- type: tutorialRole
+  id: TutorialAntagXenoborg
+  antag: Xenoborg
+  stub: false
+  simplifiedEnvironment: true
+  category: Wizden antagonists
+  name: tutorial-antag-xenoborg-name
+  spawnEntity: XenoborgEngi
+  shuttleArena: TutorialArenaMothership
+  guidebook: Xenoborgs
+  practiceSpawns:
+  - id: XenoborgEngiPrinted
+    offset: -1.5, 0
+  - id: XenoborgHeavyPrinted
+    offset: 1.5, 0
+  - id: XenoborgScoutPrinted
+    offset: -1.5, -1
+  - id: XenoborgStealthPrinted
+    offset: 1.5, -1
+  - id: TutorialPracticeMobVictim
+    offset: 0, -0.5
+  - id: TutorialMachineArtifactCrusherXenoborg
+    offset: 1.5, 1
+  - id: OrganHumanBrain
+    offset: 0.5, 0
+  - id: TutorialStepMarker
+    offset: 0, -1.5
+    marker: xenoborg-core
+  goals:
+  - id: welcome
+    title: tutorial-antag-xenoborg-goal-welcome
+    subGoals:
+    - id: intro
+      text: tutorial-antag-xenoborg-sg-intro
+      complete: Acknowledge
+    - id: laws-tip
+      text: tutorial-antag-xenoborg-sg-laws
+      complete: Acknowledge
+  - id: frames
+    title: tutorial-antag-xenoborg-goal-frames
+    subGoals:
+    - id: frames-tip
+      text: tutorial-antag-xenoborg-sg-frames-tip
+      complete: Acknowledge
+  - id: harvest
+    title: tutorial-antag-xenoborg-goal-harvest
+    subGoals:
+    - id: kill-tip
+      text: tutorial-antag-xenoborg-sg-kill-tip
+      complete: Acknowledge
+    - id: crusher
+      text: tutorial-antag-xenoborg-sg-crusher
+      complete: InteractTargetTag
+      tag: TutorialXenoborgCrusher
+    - id: hold-brain
+      text: tutorial-antag-xenoborg-sg-hold-brain
+      complete: HoldItem
+      entity: OrganHumanBrain
+    - id: deliver
+      text: tutorial-antag-xenoborg-sg-deliver
+      complete: ReachMarker
+      marker: xenoborg-core
+  - id: finish
+    title: tutorial-antag-xenoborg-goal-finish
+    subGoals:
+    - id: done
+      text: tutorial-antag-xenoborg-sg-done
+      complete: Acknowledge
