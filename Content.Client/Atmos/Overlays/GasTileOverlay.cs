@@ -218,9 +218,6 @@ public sealed class GasTileOverlay : Overlay
 
                     while (enumerator.MoveNext(out var gas))
                     {
-                        if (gas.Opacity == null!)
-                            continue;
-
                         var tilePosition = chunk.Origin + (enumerator.X, enumerator.Y);
                         if (!localBounds.Contains(tilePosition))
                             continue;
@@ -287,7 +284,7 @@ public sealed class GasTileOverlay : Overlay
             {
                 var tilePosition = new Vector2(x, y);
 
-                for (var i = 0; i < atmos.OverlayData.Opacity.Length; i++)
+                for (var i = 0; i < _gasCount; i++) // Starlight-edit
                 {
                     var opacity = atmos.OverlayData.Opacity[i];
 

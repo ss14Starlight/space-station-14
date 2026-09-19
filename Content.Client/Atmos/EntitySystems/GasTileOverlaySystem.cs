@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Client.Atmos.Overlays;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -102,5 +103,41 @@ public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
                 comp.Chunks[chunkData.Index] = chunkData;
             }
         }
+
+        // Starlight-start: chunks we already have only get the tiles that changed.
+        foreach (var (nent, deltas) in ev.DeltaChunks)
+        {
+            var grid = GetEntity(nent);
+
+            if (!TryComp(grid, out GasTileOverlayComponent? comp))
+                continue;
+
+            foreach (var delta in deltas)
+            {
+                if (comp.Chunks.TryGetValue(delta.Index, out var chunk))
+                    ApplyChunkDelta(chunk, delta);
+            }
+        }
+        // Starlight-end
     }
+
+
+    #region Starlight
+    private static void ApplyChunkDelta(GasOverlayChunk chunk, GasOverlayChunkDelta delta)
+    {
+        var tiles = delta.Tiles;
+        var i = 0;
+
+        while (tiles != 0 && i < delta.Data.Length)
+        {
+            var dataIndex = BitOperations.TrailingZeroCount(tiles);
+            tiles &= tiles - 1;
+
+            if (dataIndex >= chunk.TileData.Length)
+                break;
+
+            chunk.TileData[dataIndex] = delta.Data[i++];
+        }
+    }
+    #endregion
 }
