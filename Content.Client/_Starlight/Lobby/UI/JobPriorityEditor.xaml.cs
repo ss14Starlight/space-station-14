@@ -13,6 +13,7 @@ using Robust.Client.Utility;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Client.Lobby;
+using Content.Shared._Starlight.Preferences;
 
 namespace Content.Client._Starlight.Lobby.UI;
 
@@ -44,7 +45,9 @@ public sealed partial class JobPriorityEditor : BoxContainer
     /// <summary>
     /// Event that is invoked when the player clicks "Save"
     /// </summary>
-    public event Action<Dictionary<ProtoId<JobPrototype>, JobPriority>>? Save;
+    public event Action<Dictionary<ProtoId<JobPrototype>, JobPriority>, MsgOpenPlayerCharacterSetup?>? Save; // Starlight edit
+
+    public readonly MsgOpenPlayerCharacterSetup? PlayerDataOverride; // Starlight
 
     /// <summary>
     /// Create a new job priority editor
@@ -52,24 +55,28 @@ public sealed partial class JobPriorityEditor : BoxContainer
     public JobPriorityEditor(
         IClientPreferencesManager preferencesManager,
         IPrototypeManager prototypeManager,
-        JobRequirementsManager requirements
+        JobRequirementsManager requirements, MsgOpenPlayerCharacterSetup? playerDataOverride = null // Starlight edit
         )
     {
         _prototypeManager = prototypeManager;
         _requirements = requirements;
         _preferencesManager = preferencesManager;
+        PlayerDataOverride = playerDataOverride; // Starlight
         RobustXamlLoader.Load(this);
 
         ResetButton.OnPressed += args =>
         {
-            SelectedJobPriorities = _preferencesManager.Preferences?.JobPriorities.ShallowClone() ??  new Dictionary<ProtoId<JobPrototype>, JobPriority>();
+            // Starlight begin
+            if (PlayerDataOverride is not null) SelectedJobPriorities = PlayerDataOverride.Preferences.JobPriorities.ShallowClone();
+            else SelectedJobPriorities = _preferencesManager.Preferences?.JobPriorities.ShallowClone() ?? new Dictionary<ProtoId<JobPrototype>, JobPriority>();
+            // Starlight end
             UpdateJobPriorities();
             CheckDirty();
         };
 
         SaveButton.OnPressed += args =>
         {
-            Save?.Invoke(SelectedJobPriorities);
+            Save?.Invoke(SelectedJobPriorities, PlayerDataOverride); // Starlight edit
             UpdateJobPriorities();
             CheckDirty();
         };
@@ -243,7 +250,11 @@ public sealed partial class JobPriorityEditor : BoxContainer
     private void CheckDirty()
     {
         // If it equals default then reset the button.
-        var savedJobPriorities = _preferencesManager.Preferences?.JobPriorities ?? new Dictionary<ProtoId<JobPrototype>, JobPriority>();
+        // Starlight begin
+        Dictionary<ProtoId<JobPrototype>, JobPriority> savedJobPriorities;
+        if (PlayerDataOverride is not null) savedJobPriorities = PlayerDataOverride.Preferences.JobPriorities;
+        else savedJobPriorities = _preferencesManager.Preferences?.JobPriorities ?? new Dictionary<ProtoId<JobPrototype>, JobPriority>();
+        // Starlight end
         if (!SelectedJobPriorities.Keys.ToHashSet().SetEquals(savedJobPriorities.Keys.ToHashSet()))
         {
             SetDirty(true);
@@ -306,7 +317,10 @@ public sealed partial class JobPriorityEditor : BoxContainer
     /// </summary>
     public void LoadJobPriorities()
     {
-        SelectedJobPriorities = _preferencesManager.Preferences?.JobPriorities.ShallowClone() ??  new Dictionary<ProtoId<JobPrototype>, JobPriority>();
+        // Starlight begin
+        if (PlayerDataOverride is not null) SelectedJobPriorities = PlayerDataOverride.Preferences.JobPriorities.ShallowClone();
+        else SelectedJobPriorities = _preferencesManager.Preferences?.JobPriorities.ShallowClone() ??  new Dictionary<ProtoId<JobPrototype>, JobPriority>();
+        // Starlight end
         UpdateJobPriorities();
         CheckDirty();
     }
