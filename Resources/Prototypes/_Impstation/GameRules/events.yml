@@ -9,6 +9,7 @@
     reoccurrenceDelay: 40
     minimumPlayers: 30
     duration: null
+    occursDuringRoundEnd: false
   - type: BriefingRule
     briefing: eeep-role-briefing
   - type: SpaceSpawnRule

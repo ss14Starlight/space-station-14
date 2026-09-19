@@ -220,6 +220,7 @@
   - type: StationEvent
     weight: 2
     duration: null
+    occursDuringRoundEnd: false
     earliestStart: 35
     reoccurrenceDelay: 20
     minimumPlayers: 15
