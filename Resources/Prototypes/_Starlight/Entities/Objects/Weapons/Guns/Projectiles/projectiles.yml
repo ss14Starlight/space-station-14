@@ -350,6 +350,7 @@
   - type: TimedDespawn
     lifetime: .5
 
+- type: entity
   id: BulletGrenadeBola
   name: bola grenade
   parent: BaseBulletTrigger
