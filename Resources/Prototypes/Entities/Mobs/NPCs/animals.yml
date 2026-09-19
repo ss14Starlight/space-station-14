@@ -2705,8 +2705,8 @@
     angle: 0
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 5
+      types:
+        Piercing: 5
   - type: Item
     size: Normal
     sprite: Mobs/Animals/grenadepenguin.rsi
@@ -2884,9 +2884,12 @@
     damage:
       types:
         Poison: -0.07
-      groups:
-        Brute: -0.07
-        Burn: -0.07
+        Blunt: -0.03
+        Slash: -0.03
+        Piercing: -0.03
+        Heat: -0.03
+        Cold: -0.03
+        Shock: -0.03
   - type: NightVision # Starlight
 
 - type: entity
@@ -2894,11 +2897,11 @@
   id: SolutionVenomSpider
   categories: [ HideSpawnMenu ]
   components:
-  - type: SolutionRegeneration
-    generated:
-      reagents:
-      - ReagentId: Mechanotoxin
-        Quantity: 1
+    - type: SolutionRegeneration
+      generated:
+        reagents:
+          - ReagentId: Mechanotoxin
+            Quantity: 1
 
 - type: entity
   parent: MobSpiderBase

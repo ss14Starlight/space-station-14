@@ -1,27 +1,4 @@
 ﻿Entries:
-- author: Princess-Cheeseballs
-  changes:
-  - message: Incendiary rounds now deal a mix of pierce damage and heat damage instead
-      of primarily heat damage.
-    type: Tweak
-  id: 9035
-  time: '2025-10-05T08:38:36.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/39204
-- author: Centronias
-  changes:
-  - message: Stirring is once again prioritized over drinking. No longer will your
-      bartender be very tempted to taste test your drink as they stir it.
-    type: Fix
-  id: 9036
-  time: '2025-10-05T22:12:24.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/40704
-- author: jessicamaybe
-  changes:
-  - message: Skeletons are now playable instruments!
-    type: Add
-  id: 9037
-  time: '2025-10-07T00:59:20.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/40009
 - author: Huaqas, Davyei
   changes:
   - message: 3 new Holy Books have been added to the Chaplain's loadout.
@@ -3073,18 +3050,16 @@
   id: 9427
   time: '2026-01-20T05:15:24.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/42536
-# Starlight edit Start: Merged around
-# - author: sowelipililimute
-#   changes:
-#   - message: The markings editor has been redesigned to have a better UI.
-#     type: Tweak
-#   - message: The character export format has changed and characters from newer servers
-#       may not work when exported to older servers.
-#     type: Tweak
-#   id: 9428
-#   time: '2026-01-20T07:23:51.0000000+00:00'
-#   url: https://github.com/space-wizards/space-station-14/pull/42476
-# Starlight edit End
+- author: sowelipililimute
+  changes:
+  - message: The markings editor has been redesigned to have a better UI.
+    type: Tweak
+  - message: The character export format has changed and characters from newer servers
+      may not work when exported to older servers.
+    type: Tweak
+  id: 9428
+  time: '2026-01-20T07:23:51.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/42476
 - author: sowelipililimute
   changes:
   - message: Inflatables can now be sourced from emergency lockers.
@@ -3092,19 +3067,17 @@
   id: 9429
   time: '2026-01-20T08:03:06.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/42539
-# Starlight edit Start: Merged around
-#- author: B_Kirill
-#  changes:
-#  - message: Hair styling tools, such as mirrors and scissors, now use their own names
-#      as UI window titles.
-#    type: Tweak
-#  - message: Hair styling tools, such as mirrors and scissors, no longer attempt to
-#      open UI on non-humanoids.
-#    type: Fix
-#  id: 9430
-#  time: '2026-01-20T12:15:37.0000000+00:00'
-#  url: https://github.com/space-wizards/space-station-14/pull/42544
-# Starlight edit End
+- author: B_Kirill
+  changes:
+  - message: Hair styling tools, such as mirrors and scissors, now use their own names
+      as UI window titles.
+    type: Tweak
+  - message: Hair styling tools, such as mirrors and scissors, no longer attempt to
+      open UI on non-humanoids.
+    type: Fix
+  id: 9430
+  time: '2026-01-20T12:15:37.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/42544
 - author: insoPL
   changes:
   - message: Added icon indicating if the gloves are insulated or not.
@@ -3134,15 +3107,13 @@
   id: 9434
   time: '2026-01-20T21:07:38.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/32932
-# Starlight edit Start: Merged around
-#- author: sowelipililimute
-#  changes:
-#  - message: Species now properly render their sex-specific sprites
-#    type: Fix
-#  id: 9435
-#  time: '2026-01-20T21:24:06.0000000+00:00'
-#  url: https://github.com/space-wizards/space-station-14/pull/42554
-# Starlight edit End
+- author: sowelipililimute
+  changes:
+  - message: Species now properly render their sex-specific sprites
+    type: Fix
+  id: 9435
+  time: '2026-01-20T21:24:06.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/42554
 - author: ScarKy0
   changes:
   - message: Audio for mortars, juicers and the paperfuge can no longer be stacked
@@ -3816,13 +3787,6 @@
   id: 9518
   time: '2026-02-11T22:31:43.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/42868
-- author: PJB3005
-  changes:
-  - message: Nerfed and removed many boring word replacement accents.
-    type: Remove
-  id: 9519
-  time: '2026-02-12T14:42:35.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/42880
 - author: bnuuy
   changes:
   - message: The fake mindshield action button now correctly shows your mindshield
@@ -3985,3 +3949,43 @@
   id: 9543
   time: '2026-02-25T01:34:33.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/42696
+- author: ScarKy0
+  changes:
+  - message: Cyborgs can now pry unpowered doors without the need for a crowbar.
+    type: Add
+  - message: Entities that can pry things innately (zombies, spiders, etc) now have
+      an alert telling them so.
+    type: Add
+  id: 9544
+  time: '2026-02-25T23:33:16.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/41812
+- author: SlamBamActionman
+  changes:
+  - message: Tweaked German, Scottish (previously Dwarfish) and Southern accents to
+      not outright replace words.
+    type: Tweak
+  id: 9545
+  time: '2026-02-26T17:45:58.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/43030
+- author: OrbitSystem07
+  changes:
+  - message: The uplink now properly states the capacity of the hypodart.
+    type: Fix
+  id: 9546
+  time: '2026-02-26T19:00:11.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/43035
+- author: DinnerCalzone
+  changes:
+  - message: Techfabs now play an animation while building something.
+    type: Add
+  id: 9547
+  time: '2026-02-26T20:58:33.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/42962
+- author: TriviaSolari
+  changes:
+  - message: Holosign projectors and dragon rifts no longer place signs at strange
+      angles.
+    type: Fix
+  id: 9548
+  time: '2026-02-27T00:08:28.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/42909

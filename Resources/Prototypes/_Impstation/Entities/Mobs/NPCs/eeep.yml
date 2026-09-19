@@ -86,11 +86,18 @@
     - Alive
     - Critical
     damage:
-      groups:
-        Airloss: -1
-        Brute: -1
-        Burn: -1
-        Toxin: -1
+      types:
+        Asphyxiation: -0.5
+        Bloodloss: -0.5
+        Blunt: -0.34
+        Slash: -0.33
+        Piercing: -0.33
+        Heat: -0.25
+        Shock: -0.25
+        Cold: -0.25
+        Caustic: -0.25
+        Poison: -0.5
+        Radiation: -0.5
 
 - type: entity
   parent: [ MobEeepBase ]
@@ -144,7 +151,7 @@
     damage:
       types:
         Shock: 5
-        Brute: 2
+        Blunt: 2
   - type: StaminaDamageOnHit
     damage: 20
   - type: Solution

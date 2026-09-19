@@ -385,8 +385,7 @@
     damage:
       types:
         Structural: 10 # you will rarely actually see this number, because most structures have damage reduction
-      groups:
-        Brute: 0
+        Blunt: 0
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg

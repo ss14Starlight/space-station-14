@@ -20,8 +20,10 @@
       - Hybrid
     delay: 1.6
     damage:
-      groups:
-        Brute: -12 # 4 for each type in the group
+      types:
+        Blunt: -4
+        Slash: -4
+        Piercing: -4 # 4 for each type in the group
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
     healingEndSound:

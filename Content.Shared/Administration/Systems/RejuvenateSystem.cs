@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
@@ -8,6 +9,7 @@ using Content.Shared.Rejuvenate;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Administration.Systems;
 
@@ -30,7 +32,7 @@ public sealed partial class RejuvenateSystem : EntitySystem
     private void OnRejuvenateInstantEvent(Entity<ActionsComponent> ent, ref RejuvenateInstantActionEvent args)
     {
         if (TryComp<DamageableComponent>(args.Performer, out var damageable)) {
-            Dictionary<string, FixedPoint2> preservedDamage = new();
+            Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> preservedDamage = new();
             foreach (var damageType in args.PreserveDamageTypes)
             {
                 if (damageable.Damage.DamageDict.TryGetValue(damageType, out var damage))

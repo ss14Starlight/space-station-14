@@ -19,7 +19,7 @@
     Bloodstream: # Starlight
       metabolismRate: 0.2
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:TotalDamageCondition
           min: 5
@@ -27,11 +27,9 @@
           reagent: Phenylpiperidine
           max: 5
         damage: # I think it's balanced as a sort of 'cure all' because you have to administer it slowly or it starts killing extremely quickly
-          groups:
-            Burn: -1.5 # 12.5 heat, shock, and caustic per 5u
-            Brute: -3 # 25 blunt, slash, and pierce per 5u, its a painkiller
-          types:
-            Poison: -0.5 # 12.5 poison per 5u
+          Burn: -1.5 # 12.5 heat, shock, and caustic per 5u
+          Brute: -3 # 25 blunt, slash, and pierce per 5u, its a painkiller
+          Toxin: -0.5 # 12.5 poison per 5u
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:

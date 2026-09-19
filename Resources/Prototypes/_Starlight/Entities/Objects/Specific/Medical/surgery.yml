@@ -236,8 +236,8 @@
     sprintModifier: 0.9
   - type: MeleeWeapon
     damage:
-      groups:
-        Brute: 0
+      types:
+        Slash: 0
   - type: Tag
     tags:
       - CyberHandItem
@@ -405,8 +405,8 @@
   components:
   - type: MeleeWeapon
     damage:
-      groups:
-        Brute: 15
+      types:
+        Slash: 15
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
     state: advanced-setter

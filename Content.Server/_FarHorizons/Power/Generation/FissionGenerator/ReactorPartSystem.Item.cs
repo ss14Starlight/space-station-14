@@ -149,7 +149,8 @@ public sealed partial class ReactorPartSystem
             gasMix.Temperature += component.SpaceHeatTransferRate * DeltaT * component.ThermalMass / _atmosphereSystem.GetHeatCapacity(gasMix, false);
 
         var burncomp = EnsureComp<DamageOnInteractComponent>(uid);
-
+        if (burncomp.Damage == null)
+            burncomp.Damage = new() { DamageDict = new() { { "Heat", 0 } } }; // Starlight: This can never be null due to failing serializer
         burncomp.IsDamageActive = component.Temperature > Atmospherics.T0C + component.HotTemp;
 
         if (burncomp.IsDamageActive)
@@ -157,9 +158,9 @@ public sealed partial class ReactorPartSystem
             var damage = Math.Min(Math.Max((component.Temperature - Atmospherics.T0C - component.HotTemp) / BurnDiv(component), 0),component.MaxBurnDamage);
 
             // Giant string of if/else that makes sure it will interfere only as much as it needs to
-            if (burncomp.Damage == null)
-                burncomp.Damage = new() { DamageDict = new() { { "Heat", damage } } };
-            else if (burncomp.Damage.DamageDict == null)
+            // if (burncomp.Damage == null)
+            //     burncomp.Damage = new() { DamageDict = new() { { "Heat", damage } } }; Starlight: Moved this upstairs
+            if (burncomp.Damage.DamageDict == null)
                 burncomp.Damage.DamageDict = new() { { "Heat", damage } };
             else if (!burncomp.Damage.DamageDict.ContainsKey("Heat"))
                 burncomp.Damage.DamageDict.Add("Heat", damage);

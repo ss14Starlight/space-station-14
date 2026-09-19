@@ -671,15 +671,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         - !type:MobStateCondition
           mobstate: Critical
         damage:
-          groups:
-            Burn: -1
+          Burn: -1
   # Starlight edit end
 
 - type: reagent
@@ -727,8 +726,9 @@
         damage:
           types:
             Radiation: -3
-          groups:
-            Brute: 1.5
+            Blunt: 0.5
+            Slash: 0.5
+            Piercing: 0.5
   # Starlight edit end
 
 - type: reagent
@@ -951,14 +951,13 @@
           type: [ Doll ]
         reagent: PseudoceramicPlatelets
         amount: 0.5
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         damage:
-          groups:
-            Brute: -0.75
-            Burn: -0.375
+          Brute: -0.75
+          Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1174,14 +1173,13 @@
   metabolisms: # SL vampires
     Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          Brute: -3
+          Burn: -1.25
       #Starlight Start
       - !type:AdjustReagent
         conditions:
@@ -1195,14 +1193,13 @@
           type: [ Doll ]
         reagent: UncookedAnimalProteins
         amount: 0.5
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         damage:
-          groups:
-            Brute: -0.75
-            Burn: -0.375
+          Brute: -0.75
+          Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1222,14 +1219,13 @@
   metabolisms: # SL vampires
     Digestion:
       effects:
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          Brute: -3
+          Burn: -1.25
       #Starlight Start
       - !type:AdjustReagent
         conditions:
@@ -1243,14 +1239,13 @@
           type: [ Doll ]
         reagent: UncookedAnimalProteins
         amount: 0.5
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         damage:
-          groups:
-            Brute: -0.75
-            Burn: -0.375
+          Brute: -0.75
+          Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1276,13 +1271,12 @@
         factor: 2
       - !type:SatiateHunger
         factor: -2
-      - !type:HealthChange
+      - !type:EvenHealthChange
         damage:
-          groups:
-            Burn: -1
-            Brute: -1
-            Airloss: -1
-            Toxin: -1
+          Burn: -1
+          Brute: -1
+          Airloss: -1
+          Toxin: -1
 
 - type: reagent
   id: DriestMartini
@@ -1897,20 +1891,16 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:TotalDamageCondition
           max: 50
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         damage:
-          groups:
-            Brute: -1
-          types:
-            Poison: -0.5
-            Heat: -0.33
-            Shock: -0.33
-            Cold: -0.33
+          Brute: -1
+          Burn: -1
+          Toxin: -0.5
   # Starlight edit end
 
 - type: reagent
@@ -2080,14 +2070,13 @@
           types:
             Asphyxiation: -1
             Bloodloss: -0.5
-      - !type:HealthChange # SL vampires
+      - !type:EvenHealthChange # SL vampires
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          Brute: -3
+          Burn: -1.25
       #Dolls
       - !type:AdjustReagent
         conditions:
@@ -2101,14 +2090,13 @@
           type: [ Doll ]
         reagent: UncookedAnimalProteins
         amount: 0.5
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         damage:
-          groups:
-            Brute: -0.75
-            Burn: -0.375
+          Brute: -0.75
+          Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -2153,15 +2141,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.06
-      - !type:HealthChange
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         - !type:MobStateCondition
           mobstate: Critical
         damage:
-          groups:
-            Brute: -1
+          Brute: -1
   # Starlight edit end
 
 - type: reagent

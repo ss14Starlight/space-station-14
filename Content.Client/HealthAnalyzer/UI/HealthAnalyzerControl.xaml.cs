@@ -148,8 +148,13 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         var damageSortedGroups =
             damageable.DamagePerGroup.OrderByDescending(damage => damage.Value)
                 .ToDictionary(x => x.Key, x => x.Value);
+
+        var damagePerType = damageable.Damage.DamageDict;
+
+        DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+    }
          Starlight end */
-        IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
         //Starlight begin - Sort damage groups in a fixed order and add metabolizing section
         var sortedGroups = damageable.DamagePerGroup
             .OrderBy(g => HealthAnalyzerFormatting.GetDamageGroupSortKey(g.Key))
@@ -163,7 +168,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
     // Starlight-start: Draw Damage Groups in a two column grid in their own boxes.
     private void DrawDiagnosticGroups(
         Dictionary<string, FixedPoint2> groups,
-        IReadOnlyDictionary<string, FixedPoint2> damageDict)
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damageDict)
     {
         GroupsContainer.RemoveAllChildren();
 

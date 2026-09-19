@@ -152,10 +152,15 @@
     damage:
       types:
         Bloodloss: -0.1
-      groups:
-        Brute: -0.1
-        Burn: -0.1
-        Toxin: -0.1
+        Blunt: -0.04
+        Slash: -0.03
+        Piercing: -0.03
+        Heat: -0.03
+        Shock: -0.03
+        Cold: -0.02
+        Caustic: -0.02
+        Poison: -0.05
+        Radiation: -0.05
 
 - type: entity
   id: AmmoniaEggGenerator

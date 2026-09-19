@@ -61,8 +61,10 @@
       - Biological
       - Hybrid
     damage:
-      groups:
-        Brute: -2
+      types:
+        Blunt: -0.67
+        Slash: -0.67
+        Piercing: -0.66
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:

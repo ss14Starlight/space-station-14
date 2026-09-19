@@ -16,13 +16,12 @@
       params:
         volume: -3
     damage:
-      groups:
-        Brute: 6
+      types:
+        Piercing: 6
   - type: IncreaseDamageOnWield
     damage:
-      groups:
-        Brute: 12
       types:
+        Piercing: 12
         Structural: 50
   - type: Item
     size: Normal
