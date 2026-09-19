@@ -64,4 +64,15 @@ public sealed partial class IdCardComponent : Component
 
     [DataField]
     public bool CanMicrowave = true;
+
+    //Starlight-edit: Start
+
+    /// <summary>
+    /// A list that keeps track of which id accesses are only temporary.
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    [Access(typeof(SharedIdCardSystem), typeof(SharedPdaSystem), typeof(SharedAgentIdCardSystem), Other = AccessPermissions.ReadWriteExecute)]
+    public HashSet<ProtoId<AccessLevelPrototype>> TemporaryAlertAccess = new();
+    //Starlight-edit: End
 }

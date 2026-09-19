@@ -46,6 +46,10 @@ namespace Content.Server.PDA
         [Dependency] private EmergencyShuttleSystem _emergencyShuttleSystem = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
 
+        #region Starlight
+        [Dependency] private AlertLevelSystem _alertLevelSystem = default!;
+        #endregion
+
         public override void Initialize()
         {
             base.Initialize();
@@ -115,6 +119,10 @@ namespace Content.Server.PDA
             if (id != null)
                 pda.OwnerName = id.FullName;
             UpdatePdaUi(uid, pda);
+            // Starlight-edit: Start
+            if (args.Container.ID == PdaComponent.PdaIdSlotId)
+                _alertLevelSystem.UpdateTempIdAccessOnPdaInsert(uid, pda);
+            // Starlight-edit: End
         }
 
         protected override void OnItemRemoved(EntityUid uid, PdaComponent pda, EntRemovedFromContainerMessage args)

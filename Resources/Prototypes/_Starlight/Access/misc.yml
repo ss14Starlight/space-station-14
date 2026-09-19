@@ -38,6 +38,7 @@
     - Clown
     - Mime
     - NTPersonnel
+    - EVA
 
 - type: accessLevel
   id: Debug1

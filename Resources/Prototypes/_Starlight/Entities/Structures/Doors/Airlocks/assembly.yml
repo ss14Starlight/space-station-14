@@ -176,7 +176,7 @@
 - type: entity
   parent: AirlockAssembly
   id: AirlockAssemblyEVA
-  suffix: Command (EVA)
+  suffix: EVA
   components:
     - type: Sprite
       sprite: _Starlight/Structures/Doors/Airlocks/Standard/eva.rsi
@@ -185,7 +185,7 @@
 - type: entity
   parent: AirlockAssembly
   id: AirlockAssemblyEVAGlass
-  suffix: Command (EVA), Glass
+  suffix: EVA, Glass
   components:
     - type: Sprite
       sprite: _Starlight/Structures/Doors/Airlocks/Glass/eva.rsi

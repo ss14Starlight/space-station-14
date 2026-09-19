@@ -1,0 +1,35 @@
+- type: alertAccessPolicy
+  id: StationAlertAccessPolicy
+  levels:
+    orange:
+      tempAccess:
+      - External
+      - EVA
+      jobSpecific:
+      - job: StationEngineer
+        tempAccess:
+        - Atmospherics
+      - job: TechnicalAssistant
+        tempAccess:
+        - Atmospherics
+    delta:
+      tempAccess:
+      - External
+      - EVA
+      departmentSpecific:
+      - department: Security
+        tempAccess:
+        - Command
+      jobSpecific:
+      - job: IAA
+        tempAccess:
+        - Command
+    omega:
+      tempAccess:
+      - External
+      - EVA
+    epsilon:
+      departmentSpecific:
+      - department: Representatives
+        tempAccessGroups:
+        - AllAccess

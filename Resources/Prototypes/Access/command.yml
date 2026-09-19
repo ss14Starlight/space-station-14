@@ -26,6 +26,7 @@
   - Ntrep
   - BlueShield
   - Debrief # Starlight
+  - EVA # Starlight
 
 - type: accessLevel
   id: EmergencyShuttleRepealAll
@@ -35,3 +36,9 @@
 - type: accessLevel
   id: Cryogenics
   name: id-card-access-level-cryogenics
+
+# Starlight-edit: Start
+- type: accessLevel
+  id: EVA
+  name: id-card-access-level-eva
+# Starlight-edit: End

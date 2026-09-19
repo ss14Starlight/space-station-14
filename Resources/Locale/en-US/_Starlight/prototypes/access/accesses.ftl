@@ -1,5 +1,6 @@
 # Command
 id-card-access-level-debrief = Debrief
+id-card-access-level-eva = EVA
 
 # NT
 id-card-access-level-ntpersonnel = NT Personnel
