@@ -35,7 +35,7 @@ public abstract partial class SharedPuddleSystem
         SubscribeLocalEvent<SpillableComponent, AttemptPacifiedThrowEvent>(OnAttemptPacifiedThrow);
         #region Starlight
         SubscribeLocalEvent<ShakeSpillableComponent, ShakeEvent>(OnShakeSpill);
-        #regionend
+        #endregion
     }
 
     #region Starlight
@@ -49,7 +49,7 @@ public abstract partial class SharedPuddleSystem
         var spilled = _solutionContainerSystem.SplitSolution(solutionEntity.Value, solution.Volume);
         TrySplashSpillAt(entity.Owner, Transform(entity.Owner).Coordinates, spilled, out _);
     }
-    #regionend
+    #endregion
 
     private void OnExamined(Entity<SpillableComponent> entity, ref ExaminedEvent args)
     {
