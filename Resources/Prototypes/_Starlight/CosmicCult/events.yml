@@ -8,7 +8,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 40
     duration: null
-    occursDuringRoundEnd: false
+    occursDuringRoundEnd: false # Starlight
   - type: SpaceSpawnRule
   - type: AntagSpawner
     prototype: MobCosmicColossusLone
