@@ -110,14 +110,14 @@ public sealed partial class RevenantSystem
         if (args.Handled)
             return;
 
+        var xform = Transform(ent);
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
+            return;
+
         if (!TryUseAbility(ent, ent.Comp, ent.Comp.chillCost, ent.Comp.ChillDebuffs))
             return;
 
         args.Handled = true;
-
-        var xform = Transform(ent);
-        if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
-            return;
 
         //The tiles that always spawn
         var coreTiles = _mapSystem.GetTilesIntersecting(
