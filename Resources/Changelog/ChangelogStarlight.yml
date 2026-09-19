@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Cork) NCT Office.
-    type: Remove
-  id: 408323
-  time: '2026-09-06T10:42:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5906
 - author: Citrea
   changes:
   - message: Soviet crates do *not* collide anymore, until collision issues are fixed.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408722
   time: '2026-09-18T13:02:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6196
+- author: Pickra
+  changes:
+  - message: Adjusted Bloodpacks to 5% and Amoxla/Saline to 15%.
+    type: Tweak
+  id: 408723
+  time: '2026-09-19T16:25:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6209
 Order: -1
