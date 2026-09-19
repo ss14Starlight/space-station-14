@@ -1,0 +1,31 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "MIT",
+    "copyright": "https://github.com/InferusSS14/Inferus/blob/main/LICENSE.TXT",
+    "states": [
+      {
+          "name": "dewlap",
+          "directions": 4
+      },
+      {
+        "name": "eyescar",
+        "directions": 4
+      },
+      {
+        "name": "forehead",
+        "directions": 4
+      },
+      {
+        "name": "sealpoint",
+        "directions": 4
+      },
+      {
+        "name": "whiskers",
+        "directions": 4
+      }
+    ]
+}
