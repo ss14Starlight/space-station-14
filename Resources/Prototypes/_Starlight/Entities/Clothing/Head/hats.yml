@@ -1141,7 +1141,7 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
-    
+
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatBeretCaptain
