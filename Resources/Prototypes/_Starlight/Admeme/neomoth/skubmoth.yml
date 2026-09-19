@@ -7,12 +7,16 @@
   components:
     - type: PassiveDamage
       damage:
-        groups:
-          Brute: -1.8
-          Burn: -1.8
-          Toxin: -1.8
-          Genetic: -1.8
-          Airloss: -1.8
+        types:
+          Blunt: -0.6
+          Piercing: -0.6
+          Slashing: -0.6
+          Burn: -0.6
+          Cold: -0.6
+          Shock: -0.6
+          Poison: -1.8
+          Cellular: -1.8
+          Asphyxiation: -1.8
       interval: 0.2
       allowedStates: [Alive, Critical, Dead]
     - type: Loadout

@@ -72,15 +72,9 @@ internal sealed partial class AtmosDebugOverlaySystem : SharedAtmosDebugOverlayS
         RemoveOverlay();
     }
 
-    public void Reset(RoundRestartCleanupEvent ev)
-    {
-        TileData.Clear();
-    }
+    public void Reset(RoundRestartCleanupEvent ev) => TileData.Clear();
 
-    public bool HasData(EntityUid gridId)
-    {
-        return TileData.ContainsKey(gridId);
-    }
+    public bool HasData(EntityUid gridId) => TileData.ContainsKey(gridId);
 
     private void RemoveOverlay()
     {
