@@ -14,7 +14,7 @@ public class CommandButton : Button, IDocumentTag
     public CommandButton() => OnPressed += Execute;
 
     protected virtual bool CanPress() => string.IsNullOrEmpty(Command) ||
-               IoCManager.Resolve<IClientConGroupController>().CanCommand(Command.Split(' ')[0]);
+            IoCManager.Resolve<IClientConGroupController>().CanCommand(Command.Split(' ')[0]);
 
     protected override void EnteredTree()
     {
