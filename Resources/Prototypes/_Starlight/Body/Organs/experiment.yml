@@ -16,6 +16,8 @@
     - SolutionOrganNutriment
     - SolutionOrganFoodMeat
     - SolutionOrganStomach50
+  - type: Metabolizer
+    updateInterval: 1.5
 
 - type: entity
   id: OrganExperimentEyes
