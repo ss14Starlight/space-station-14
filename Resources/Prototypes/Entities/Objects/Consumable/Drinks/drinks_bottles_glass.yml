@@ -11,6 +11,14 @@
     closeable: true
     closeSound:
       collection: bottleCloseSounds
+  # Starlight-start: Drink bottles are shakeable
+  - type: ShakeSpillable
+    solution: drink
+  - type: ReactionMixer
+    mixerType: None
+    reactionTypes:
+    - Shake
+  # Starlight-end
   - type: Sprite
     sprite: Objects/Consumable/Drinks/alco-bottle.rsi # fallback
   - type: Tool

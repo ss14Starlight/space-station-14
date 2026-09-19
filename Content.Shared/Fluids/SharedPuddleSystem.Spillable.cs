@@ -17,6 +17,7 @@ using Content.Shared.Verbs;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared._Funkystation.Fluids;
+using Content.Shared._Starlight.Chemistry.Components;
 using Robust.Shared.Player;
 
 namespace Content.Shared.Fluids;
@@ -32,7 +33,23 @@ public abstract partial class SharedPuddleSystem
         SubscribeLocalEvent<SpillableComponent, GetVerbsEvent<Verb>>(AddSpillVerb);
         SubscribeLocalEvent<SpillableComponent, MeleeHitEvent>(SplashOnMeleeHit, after: [typeof(OpenableSystem)]);
         SubscribeLocalEvent<SpillableComponent, AttemptPacifiedThrowEvent>(OnAttemptPacifiedThrow);
+        // Starlight-start: Bottles spill without cap when shaken
+        SubscribeLocalEvent<ShakeSpillableComponent, ShakeEvent>(OnShakeSpill);
+        // Starlight-end
     }
+
+    // Starlight-start: Spill solution when shaken uncapped
+    private void OnShakeSpill(Entity<ShakeSpillableComponent> entity, ref ShakeEvent args)
+    {
+        if (Openable.IsClosed(entity.Owner)
+            || !_solutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.SolutionName, out var solutionEntity, out var solution)
+            || solution.Volume <= 0)
+            return;
+
+        var spilled = _solutionContainerSystem.SplitSolution(solutionEntity.Value, solution.Volume);
+        TrySplashSpillAt(entity.Owner, Transform(entity.Owner).Coordinates, spilled, out _);
+    }
+    // Starlight-end
 
     private void OnExamined(Entity<SpillableComponent> entity, ref ExaminedEvent args)
     {
