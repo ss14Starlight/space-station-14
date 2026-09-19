@@ -537,8 +537,7 @@
 - type: emote
   id: Blink
   name: chat-emote-name-blink
-  category: Hands # Not really hands, but definitely not vocal.
-  icon: Interface/Emotes/squish.png
+  icon: _Starlight/Interface/Emotes/emote-blink.png
   blacklist:
     components:
     - BorgChassis
