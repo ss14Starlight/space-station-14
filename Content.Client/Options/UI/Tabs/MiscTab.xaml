@@ -1,10 +1,16 @@
 ﻿<tabs:MiscTab xmlns="https://spacestation14.io"
               xmlns:tabs="clr-namespace:Content.Client.Options.UI.Tabs"
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-              xmlns:ui="clr-namespace:Content.Client.Options.UI">
+              xmlns:ui="clr-namespace:Content.Client.Options.UI"
+              xmlns:s="clr-namespace:Content.Client.Stylesheets"> <!-- Starlight -->
     <BoxContainer Orientation="Vertical">
         <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
             <BoxContainer Orientation="Vertical" Margin="8 8 8 8" VerticalExpand="True">
+                <!-- Starlight Start -->
+                <Label Text="{Loc 'ui-starlight'}"
+                       StyleClasses="LabelKeyText"/>
+                <CheckBox Name="AutoPunctuate" Text="{Loc 'ui-options-auto-punctuate'}" Margin="0 0 0 5" />
+                <!-- Starlight End -->
                 <Label Text="{Loc 'ui-options-general-ui-style'}"
                        StyleClasses="LabelKeyText"/>
                 <ui:OptionDropDown Name="DropDownHudTheme" Title="{Loc 'ui-options-hud-theme'}" />
