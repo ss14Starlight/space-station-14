@@ -20,7 +20,6 @@ public sealed partial class GasLeakRuleComponent : Component
         Gas.WaterVapor, // the fog
         // Funkystation Start: Funky atmos - /tg/ gases
         Gas.BZ,
-        Gas.Healium,
         Gas.Nitrium,
         Gas.Pluoxium,
         Gas.HyperNoblium,

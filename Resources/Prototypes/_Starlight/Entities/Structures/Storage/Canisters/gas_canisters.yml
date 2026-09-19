@@ -208,15 +208,6 @@
       volume: 1500
 
 - type: entity
-  parent: HealiumCanister
-  id: HealiumCanisterEmpty
-  suffix: Empty
-  components:
-  - type: GasCanister
-    gasMixture:
-      volume: 1500
-
-- type: entity
   parent: NitriumCanister
   id: NitriumCanisterEmpty
   suffix: Empty
