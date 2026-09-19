@@ -527,6 +527,28 @@
     - "Captain / HoS (1)"
   cooldownSecs: 0
 
+# Escape pods
+- type: secureTerminalRequest
+  id: UnlockEscapePods
+  name: secure-terminal-unlock-escape-pods-name
+  description: secure-terminal-unlock-escape-pods-desc
+  announcement: secure-terminal-unlock-escape-pods-announcement
+  announcementColor: Red
+  activationDelaySecs: 0
+  fee: 5000
+  salaryPenalty: 0.05
+  actionType: EscapePods
+  oneTimeUse: true
+  requireReason: true
+  authGroups:
+    - [Command]
+    - [Command]
+    - [Command]
+  authGroupLabels:
+    - "Command Member (1)"
+    - "Command Member (2)"
+    - "Command Member (3)"
+
 # ── Self Destruct Code ─────────────────────────────────────────────────────
 - type: secureTerminalRequest
   id: NukeRequest

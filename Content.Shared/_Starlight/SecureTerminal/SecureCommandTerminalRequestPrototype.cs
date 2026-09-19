@@ -179,4 +179,5 @@ public enum SecureTerminalActionType
     AirlockAccess,
     /// <summary>Performs no mechanical change — the request exists purely for its announcement.</summary>
     Announcement,
+    EscapePods
 }
