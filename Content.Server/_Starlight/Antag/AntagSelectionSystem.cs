@@ -458,5 +458,4 @@ public partial class AntagSelectionSystem
 
         return null;
     }
-
 }
