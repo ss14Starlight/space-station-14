@@ -1,7 +1,6 @@
-using Prometheus;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
+using Content.Server._Starlight.Statistics;
 using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
 using Content.Shared.Antag;
@@ -16,26 +15,14 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Content.Server.Antag.Components.AntagSelectionTime;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Antag;
 
 public partial class AntagSelectionSystem
 {
 
     #region Data collection
-    // Metrics for antag selection and spawning. These are used to track how many antags are spawned, how many are selected, and how many are actually assigned to players.
-    private static readonly Counter _antagsSpawned = Metrics.CreateCounter(
-        "sl_antags_spawned",
-        "Number of antagonists spawned by type",
-        ["type"]
-    );
-
-    private static readonly Gauge _antagSelectionCounts = Metrics.CreateGauge(
-        "sl_antag_selection_count",
-        "Antagonist selection counts by round, game rule, antagonist type, and state",
-        ["round", "rule", "type", "state"]
-    );
-
-    private readonly HashSet<Gauge.Child> _antagSelectionMetricChildren = [];
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;
 
     /// <summary>
     /// Stores the initial stats of a game rule's antag selection, used for logging and debugging.
@@ -46,7 +33,6 @@ public partial class AntagSelectionSystem
             int Target,
             int Eligible);
     #endregion
-
 
     // This is a safety check to ensure that all antags have been assigned to players, and if not, we will try to assign them again.
     protected override void ActiveTick(EntityUid uid,
@@ -274,37 +260,21 @@ public partial class AntagSelectionSystem
                 $"preselected={preselected}, assigned={assigned}, ghostRoles={ghostRoles}, unfilled={unfilled}. " +
                 $"Gamerule: {ToPrettyString(stat.GameRule)}";
 
-            UpdateAntagSelectionMetrics(stat.GameRule, stat.Definition, stat.Target, assigned, ghostRoles);
+            UpdateAntagSelectionMetrics(
+                stat.GameRule,
+                stat.Definition,
+                stat.Target,
+                assigned,
+                ghostRoles,
+                eligible: stat.Eligible,
+                preselected: preselected);
             Log.Info(message);
             _adminLogger.Add(LogType.AntagSelection, $"{message}");
         }
     }
 
     /// <summary>
-    /// Gets an antag-selection metric child and tracks it for removal after the round.
-    /// </summary>
-    private Gauge.Child GetAntagSelectionMetric(string round, string rule, string type, string state)
-    {
-        var metric = _antagSelectionCounts.WithLabels(round, rule, type, state);
-        _antagSelectionMetricChildren.Add(metric);
-        return metric;
-    }
-
-    /// <summary>
-    /// Removes the completed round's metric children so they are not retained for the server's lifetime.
-    /// </summary>
-    private void OnRoundRestartCleanup(RoundRestartCleanupEvent _)
-    {
-        foreach (var metric in _antagSelectionMetricChildren)
-        {
-            metric.Remove();
-        }
-
-        _antagSelectionMetricChildren.Clear();
-    }
-
-    /// <summary>
-    /// Updates the antag selection metrics for a given game rule and antag definition.
+    /// Updates the antag selection statistics for a given game rule and antag definition.
     /// Just for logging, pretty much.
     /// </summary>
     private void UpdateAntagSelectionMetrics(
@@ -314,20 +284,23 @@ public partial class AntagSelectionSystem
         int assigned,
         int ghostRoles,
         int forcedAssignments = 0,
-        int ghostRolesCreated = 0)
+        int ghostRolesCreated = 0,
+        int? eligible = null,
+        int? preselected = null)
     {
-        var round = GameTicker.RoundId.ToString(CultureInfo.InvariantCulture);
         var rule = MetaData(gameRule).EntityPrototype?.ID ?? "unknown";
         var type = definition.ID;
 
-        GetAntagSelectionMetric(round, rule, type, "expected").Set(expected);
-        GetAntagSelectionMetric(round, rule, type, "assigned").Set(assigned);
-        GetAntagSelectionMetric(round, rule, type, "ghost_roles").Set(ghostRoles);
-        GetAntagSelectionMetric(round, rule, type, "unassigned").Set(Math.Max(0, expected - assigned));
-        GetAntagSelectionMetric(round, rule, type, "uncovered").Set(Math.Max(0, expected - assigned - ghostRoles));
-        GetAntagSelectionMetric(round, rule, type, "forced_assignments").Set(forcedAssignments);
-        GetAntagSelectionMetric(round, rule, type, "ghost_roles_created").Set(ghostRolesCreated);
-        GetAntagSelectionMetric(round, rule, type, "latejoin_assignments").Inc(0);
+        _roundStatistics.RecordAntagSelection(
+            rule,
+            type,
+            expected,
+            assigned,
+            ghostRoles,
+            forcedAssignments,
+            ghostRolesCreated,
+            eligible,
+            preselected);
     }
 
     /// <summary>
@@ -338,10 +311,9 @@ public partial class AntagSelectionSystem
         Entity<AntagSelectionComponent> gameRule,
         AntagSpecifierPrototype definition)
     {
-        var round = GameTicker.RoundId.ToString(CultureInfo.InvariantCulture);
         var rule = MetaData(gameRule).EntityPrototype?.ID ?? "unknown";
 
-        GetAntagSelectionMetric(round, rule, definition.ID, "latejoin_assignments").Inc();
+        _roundStatistics.RecordLateJoinAntagAssignment(rule, definition.ID);
     }
 
     /// <summary>
