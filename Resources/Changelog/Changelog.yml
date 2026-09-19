@@ -1,32 +1,4 @@
 ﻿Entries:
-- author: Huaqas, Davyei
-  changes:
-  - message: 3 new Holy Books have been added to the Chaplain's loadout.
-    type: Add
-  id: 9038
-  time: '2025-10-07T07:39:37.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/39181
-- author: Huaqas
-  changes:
-  - message: The Tanakh and Satanic bibles have been removed.
-    type: Remove
-  id: 9039
-  time: '2025-10-07T09:14:49.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/39698
-- author: jessicamaybe
-  changes:
-  - message: Gorillas can now pull objects.
-    type: Tweak
-  id: 9040
-  time: '2025-10-07T09:31:46.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/40700
-- author: SurrealShibe
-  changes:
-  - message: Added the nutri-batard to mime survival boxes in place of the nutri-brick.
-    type: Add
-  id: 9041
-  time: '2025-10-07T10:18:50.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/40601
 - author: Lordbrandon12
   changes:
   - message: Fixed issue allowing space heater temperature to be set above the allowed
@@ -3989,3 +3961,38 @@
   id: 9548
   time: '2026-02-27T00:08:28.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/42909
+- author: sowelipililimute
+  changes:
+  - message: Internal code changes to damage handling may result in slightly different
+      numbers for some medicines and/or some attacks.
+    type: Tweak
+  id: 9549
+  time: '2026-02-27T06:33:44.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/43049
+- author: pcaessayrs
+  changes:
+  - message: Fixed bar sign UI not closing correctly
+    type: Fix
+  id: 9550
+  time: '2026-02-27T16:02:04.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/42960
+- author: Samuka
+  changes:
+  - message: 'EXPERIMENTAL: Added the xenoborg crystal!'
+    type: Add
+  - message: 'EXPERIMENTAL: Added the xenoborg extractor which can produce the xenoborg
+      crystal.'
+    type: Add
+  - message: 'EXPERIMENTAL: The recipes to make xenoborg chassis and xenoborg modules
+      now uses xenoborg crystals instead of normal materials.'
+    type: Tweak
+  id: 9551
+  time: '2026-02-28T01:08:13.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/42796
+- author: kontakt
+  changes:
+  - message: Throwing croissants no longer have a throwing knife in-hand sprite.
+    type: Fix
+  id: 9552
+  time: '2026-02-28T14:37:26.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/43066

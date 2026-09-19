@@ -18,7 +18,7 @@ namespace Content.Shared.Damage.Components;
 ///     may also have resistances to certain damage types, defined via a <see cref="DamageModifierSetPrototype"/>.
 /// </remarks>
 [RegisterComponent]
-[NetworkedComponent, AutoGenerateComponentState(true)]
+[NetworkedComponent]
 [Access(typeof(DamageableSystem), Other = AccessPermissions.ReadExecute)]
 public sealed partial class DamageableComponent : Component
 {
@@ -26,7 +26,7 @@ public sealed partial class DamageableComponent : Component
     ///     This <see cref="DamageContainerPrototype"/> specifies what damage types are supported by this component.
     ///     If null, all damage types will be supported.
     /// </summary>
-    [DataField("damageContainer"), AutoNetworkedField]
+    [DataField("damageContainer")]
     // ReSharper disable once InconsistentNaming - This is wrong but fixing it is potentially annoying for downstreams.
     public ProtoId<DamageContainerPrototype>? DamageContainerID;
 
@@ -38,7 +38,7 @@ public sealed partial class DamageableComponent : Component
     ///     Though DamageModifierSets can be deserialized directly, we only want to use the prototype version here
     ///     to reduce duplication.
     /// </remarks>
-    [DataField("damageModifierSet"), AutoNetworkedField]
+    [DataField("damageModifierSet")]
     public ProtoId<DamageModifierSetPrototype>? DamageModifierSetId;
 
     /// <summary>
@@ -47,7 +47,7 @@ public sealed partial class DamageableComponent : Component
     /// <remarks>
     ///     If this data-field is specified, this allows damageable components to be initialized with non-zero damage.
     /// </remarks>
-    [DataField, AutoNetworkedField]
+    [DataField]
     public DamageSpecifier Damage = new();
 
     /// <summary>
@@ -95,7 +95,7 @@ public sealed partial class DamageableComponent : Component
     [DataField]
     public ProtoId<HealthIconPrototype> RottingIcon = "HealthIconRotting";
 
-    [DataField, AutoNetworkedField]
+    [DataField]
     public FixedPoint2? HealthBarThreshold;
 
     #region Starlight
@@ -113,4 +113,18 @@ public sealed partial class DamageableComponent : Component
     [DataField]
     public Dictionary<(EntityUid Source, string ModifierKey), float> AdditiveModifiers = [];
     #endregion Starlight
+}
+
+[Serializable, NetSerializable]
+public sealed class DamageableComponentState(
+    DamageSpecifier damage,
+    ProtoId<DamageContainerPrototype>? damageContainerId,
+    ProtoId<DamageModifierSetPrototype>? modifierSetId,
+    FixedPoint2? healthBarThreshold)
+    : ComponentState
+{
+    public readonly DamageSpecifier Damage = damage;
+    public readonly ProtoId<DamageContainerPrototype>? DamageContainerId = damageContainerId;
+    public readonly ProtoId<DamageModifierSetPrototype>? ModifierSetId = modifierSetId;
+    public readonly FixedPoint2? HealthBarThreshold = healthBarThreshold;
 }
