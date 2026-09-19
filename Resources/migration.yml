@@ -815,3 +815,9 @@ OrganSkeletonPersonArmRight: RightArmSkeleton
 # 2026-03-28
 # The great solutions YAML nuke
 FoodMeatSnail: MobSnail
+
+# 2026-09-14
+# Starlight start, NT Personnel doors now!
+AirlockNtrepGlassLocked: AirlockNTGlassLocked
+AirlockNrepLocked: AirlockNTLocked
+# Starlight end
