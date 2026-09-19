@@ -50,6 +50,7 @@ using Content.Server._NullLink.PlayerData;
 using Content.Shared._NullLink;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Server._Starlight.Economy;
+using Content.Server._Starlight.RedundantMovement;
 #endregion Nulllink
 
 namespace Content.Server.IoC;
@@ -115,6 +116,7 @@ internal static class ServerContentIoC
         deps.Register<IBugReportManager, BugReportManager>();
         deps.Register<IAchievementRewardManager, NullLinkPlayerManager>();
         deps.Register<PreWrittenDocumentManager>();
+        deps.Register<IServerRedundantMovementManager, ServerRedundantMovementManager>();
         // 🌟Starlight🌟 end
         // nulllink start
         deps.Register<IActorRouter, ActorRouter>();
