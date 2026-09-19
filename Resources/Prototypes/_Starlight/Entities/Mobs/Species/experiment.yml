@@ -7,7 +7,7 @@
   - type: Speech
     speechVerb: Experiment
     speechSounds: AllExpi
-    allowedEmotes: ['Arf']
+    allowedEmotes: ['Arf', 'Whine']
   - type: Vocal
     sounds:
       Unsexed: Experiment

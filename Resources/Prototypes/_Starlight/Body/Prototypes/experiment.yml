@@ -10,7 +10,7 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganExperimentEyes
-        tongue: OrganHumanTongue
+        tongue: OrganExperimentTongue
         eye_implant: null
         brain_implant: BrainImplantExpiScan
     torso:

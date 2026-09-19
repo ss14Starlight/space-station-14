@@ -38,3 +38,11 @@
   license: "Custom"
   copyright: "Read LICENSE-sawians for terms, Created by Orsoniks."
   source: "https://store.steampowered.com/app/4576490/Casualties_Unknown/"
+- files: ["exp_whine1.ogg"]
+  license: "Custom"
+  copyright: "Read LICENSE-sawians for terms, Created by Orsoniks."
+  source: "https://store.steampowered.com/app/4576490/Casualties_Unknown/"
+- files: ["exp_whine2.ogg"]
+  license: "Custom"
+  copyright: "Read LICENSE-sawians for terms, Created by Orsoniks."
+  source: "https://store.steampowered.com/app/4576490/Casualties_Unknown/"

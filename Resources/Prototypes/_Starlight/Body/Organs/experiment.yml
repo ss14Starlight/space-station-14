@@ -17,7 +17,7 @@
     - SolutionOrganFoodMeat
     - SolutionOrganStomach50
   - type: Metabolizer
-    updateInterval: 1.5
+    updateInterval: 0.75
 
 - type: entity
   id: OrganExperimentEyes
@@ -26,6 +26,29 @@
   suffix: Experiment
   description: "Couldn't have seen that one coming."
   components:
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobExperimentEyes
+  - type: FunctionalOrgan
+    comps:
+      - type: PointLight
+        color: orange
+      - type: FlashImmunityTogglePointLight
+        invert: true
+
+- type: entity
+  id: OrganExperimentTongue
+  parent: OrganHumanTongue
+  name: tongue
+  suffix: Experiment
+  description: "A fleshy muscle mostly used for lying."
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: Experiment
+      Female: Experiment
+      Unsexed: Experiment
   - type: OrganVisualization
     layer: Eyes
     prototypes:

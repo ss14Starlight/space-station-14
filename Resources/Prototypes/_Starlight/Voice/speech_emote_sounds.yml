@@ -412,8 +412,6 @@
 
 - type: emoteSounds
   id: Experiment
-  params:
-    variation: 0.125
   sounds:
     Scream:
       collection: ExperimentScreams
@@ -445,6 +443,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    Whine:
+      collection: ExperimentWhines
+  params:
+    variation: 0.125
 
 - type: emoteSounds
   id: FemaleThaven

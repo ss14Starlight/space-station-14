@@ -29,3 +29,9 @@
   files:
   - /Audio/_Starlight/Voice/Experiment/canine_yawn1.ogg
   - /Audio/_Starlight/Voice/Experiment/canine_yawn2.ogg
+
+- type: soundCollection
+  id: ExperimentWhines
+  files:
+  - /Audio/_Starlight/Voice/Experiment/exp_whine1.ogg
+  - /Audio/_Starlight/Voice/Experiment/exp_whine2.ogg
