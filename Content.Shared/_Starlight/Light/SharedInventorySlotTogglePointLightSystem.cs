@@ -47,7 +47,8 @@ public sealed partial class SharedInventorySlotTogglePointLightSystem : EntitySy
 
     private void ToggleLight(EntityUid uid, InventorySlotTogglePointLightComponent comp, InventoryComponent? inventory = null, SharedPointLightComponent? light = null)
     {
-        if (!Resolve(uid, ref inventory))
+        if (!HasComp<InventoryComponent>(uid) //Seems this can be run on entities with no inventory..?
+        || !Resolve(uid, ref inventory))
             return;
 
         // Doing it like this because any direct checks with SharedPointLightComponent seem to break.
