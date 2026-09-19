@@ -63,6 +63,8 @@ public sealed partial class RoundStatisticsSystem : EntitySystem
         InitializeObjectiveStatistics();
         InitializeDynamicStatistics();
         InitializeStoreStatistics();
+        InitializeSecureTerminalStatistics();
+        InitializeGhostRoleStatistics();
     }
 
     private void OnRoundStarting(RoundStartingEvent args)
