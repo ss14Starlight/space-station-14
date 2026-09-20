@@ -80,21 +80,21 @@ public sealed class SightRender : Control
         var bracketSize1 = _bracket1.Size * _scale;
         var bracketSize2 = _bracket2.Size * _scale;
 
-        var leftPos = centerPos + new Vector2(-_offset - bracketSize1.X * 0.5f, 0f);
-        var rightPos = centerPos + new Vector2(_offset + bracketSize2.X * 0.5f, 0f);
+        var leftPos = centerPos + new Vector2(-_offset - (bracketSize1.X * 0.5f), 0f);
+        var rightPos = centerPos + new Vector2(_offset + (bracketSize2.X * 0.5f), 0f);
 
         DrawPart(handle, _bracket1, leftPos, _scale, _main, _second);
         DrawPart(handle, _bracket2, rightPos, _scale, _main, _second);
 
         if (_bracket3 != null)
         {
-            var downPos = centerPos + new Vector2(0f, _offset + bracketSize1.Y * 0.5f);
+            var downPos = centerPos + new Vector2(0f, _offset + (bracketSize1.Y * 0.5f));
             DrawPart(handle, _bracket3, downPos, _scale, _main, _second);
         }
 
         if (_bracket4 != null)
         {
-            var upPos = centerPos + new Vector2(0f, -_offset - bracketSize2.Y * 0.5f);
+            var upPos = centerPos + new Vector2(0f, -_offset - (bracketSize2.Y * 0.5f));
             DrawPart(handle, _bracket4, upPos, _scale, _main, _second);
         }
     }
@@ -104,10 +104,10 @@ public sealed class SightRender : Control
         var size = texture.Size * scale;
 
         screen.DrawTextureRect(texture,
-            UIBox2.FromDimensions(pos - size * 0.5f, size), stroke);
+            UIBox2.FromDimensions(pos - (size * 0.5f), size), stroke);
 
         screen.DrawTextureRect(texture,
-            UIBox2.FromDimensions(pos - size * 0.5f - new Vector2(3f, 3f),
+            UIBox2.FromDimensions(pos - (size * 0.5f) - new Vector2(3f, 3f),
             size + new Vector2(7f, 7f)), main);
     }
 }

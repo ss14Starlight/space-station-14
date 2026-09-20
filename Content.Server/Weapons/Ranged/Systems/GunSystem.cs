@@ -207,8 +207,8 @@ public sealed partial class GunSystem : SharedGunSystem
 
                 // Starlight-edit: the pattern follows recoil/movement spread and every pellet deviates randomly
                 var shotAngle = mapDirection.ToAngle();
-                var angles = LinearSpreadWithRandom(shotAngle - spreadEvent.Spread / 2,
-                    shotAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count,
+                var angles = LinearSpreadWithRandom(shotAngle - (spreadEvent.Spread / 2),
+                    shotAngle + (spreadEvent.Spread / 2), ammoSpreadComp.Count,
                     ammoSpreadComp.MinDeviation, ammoSpreadComp.MaxDeviation);
                 // Startlight-edit: start
                 if (isMechShooter)

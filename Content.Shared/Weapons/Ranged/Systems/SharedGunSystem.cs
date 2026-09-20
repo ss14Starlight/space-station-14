@@ -606,7 +606,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Recoil only starts decaying once the gun could fire again.
         var timeSinceLastFire = Math.Max(0, (curTime - comp.LastFire).TotalSeconds);
         return MathHelper.Clamp(
-            comp.CurrentAngle.Theta + comp.AngleIncreaseModified.Theta - comp.AngleDecayModified.Theta * timeSinceLastFire,
+            comp.CurrentAngle.Theta + comp.AngleIncreaseModified.Theta - (comp.AngleDecayModified.Theta * timeSinceLastFire),
             comp.MinAngleModified.Theta,
             comp.MaxAngleModified.Theta);
     }
@@ -630,7 +630,7 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         // Convert it so angle can go either side.
         var random = Random.NextFloat(-0.5f, 0.5f);
-        return new Angle(direction.Theta + spread * random);
+        return new Angle(direction.Theta + (spread * random));
     }
 
     public bool IsChamberClosed(EntityUid gunEntity)
