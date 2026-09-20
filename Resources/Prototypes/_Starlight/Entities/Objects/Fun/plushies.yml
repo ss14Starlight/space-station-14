@@ -768,6 +768,47 @@
       CottonBurger: PlushieGnome
 
 - type: entity
+  parent: BaseLizardPlushie
+  id: PlushieKiki
+  name: Kiki plushie
+  description: An honorable member of the kob... wait a minute, this is just a cute marketable plushie of Kiki!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/kiki_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/kiki_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Items/Toys/Kiki/OnUse.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Items/Toys/Kiki/OnLand.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Items/Toys/Kiki/OnActivate.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Items/Toys/Kiki/OnTrigger.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/_Starlight/Items/Toys/Kiki/OnTrigger.ogg
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Items/Toys/Kiki/Nomf.ogg
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Objects/Fun/Plushies/kiki_plushie.rsi
+    slots:
+      - HEAD
+    clothingVisuals:
+      head:
+        - state: equipped-HELMET
+
+- type: entity
   parent: BasePlushie
   id: PlushieKitten
   name: kitten plushie

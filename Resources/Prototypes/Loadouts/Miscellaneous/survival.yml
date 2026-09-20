@@ -293,7 +293,7 @@
   - !type:GroupLoadoutEffect
     proto: EffectSpeciesVox
   equipment:
-    mask: ClothingMaskBreath
+    mask: ClothingMaskGasHalf #Starlight
 
 - type: loadout
   id: LoadoutSpeciesBreathToolMedical
