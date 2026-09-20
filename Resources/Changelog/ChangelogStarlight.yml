@@ -1,27 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Emitter toggle logs now show if the emitter was toggled on or off.
-    type: Tweak
-  id: 408333
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: The Syndi Law Circuit is now a kit containing the lawboard and and a Syndicate ID.
-    type: Tweak
-  id: 408334
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: The Syndicate ID now uses the Syndicate icon instead of the blank icon.
-    type: Tweak
-  id: 408335
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
   - message: Mime PDAs no longer have the NanoTask and Notekeeper applications installed by default.
     type: Remove
   id: 408336
@@ -2799,4 +2778,25 @@ Entries:
   id: 408732
   time: '2026-09-20T15:16:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6204
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed announcement chimes playing twice.
+    type: Fix
+  id: 408733
+  time: '2026-09-20T15:16:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6199
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed meteor swarm announcement chimes possibly being extremely delayed depending on the TTS queue.
+    type: Fix
+  id: 408734
+  time: '2026-09-20T15:16:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6199
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed war declaration announcements sometimes being sent twice and playing overlapping music tracks.
+    type: Fix
+  id: 408735
+  time: '2026-09-20T15:16:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6199
 Order: -1
