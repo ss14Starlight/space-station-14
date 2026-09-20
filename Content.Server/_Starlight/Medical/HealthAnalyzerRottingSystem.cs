@@ -38,7 +38,7 @@ public sealed partial class RotHealthAnalyzerSystem : EntitySystem
                 BarRatio = 1f,
 
                 ValueColor = Color.Red,
-                BarColor = Color.FromHex("#E56F79"),
+                BarColor = HealthAnalyzerFormatting.GetDamageSeverityColorUi(1f),
             });
         }
         else
@@ -58,7 +58,7 @@ public sealed partial class RotHealthAnalyzerSystem : EntitySystem
                 BarRatio = rotRatio,
 
                 ValueColor = Color.White,
-                BarColor = Color.FromHex("#D8C560"),
+                BarColor = HealthAnalyzerFormatting.GetDamageSeverityColorUi(rotRatio),
             });
         }
     }
@@ -66,21 +66,21 @@ public sealed partial class RotHealthAnalyzerSystem : EntitySystem
     private string FormatApproximateTime(TimeSpan time, bool countingDown)
     {
         var totalSeconds = Math.Max(0, time.TotalSeconds);
+        var totalMinutes = (int)Math.Round(totalSeconds / 60);
 
         if (countingDown)
         {
-            if (totalSeconds < 60)
-                return Loc.GetString("starlight-health-analyzer-window-time-imminent");
+            if (totalMinutes <= 1)
+                return Loc.GetString("starlight-health-analyzer-window-time-under-minute");
 
-            var totalMinutes = (int)Math.Floor(totalSeconds / 60);
+
             return Loc.GetString("starlight-health-analyzer-window-time-in-minutes", ("minutes", totalMinutes));
         }
         else
         {
-            if (totalSeconds < 60)
+            if (totalMinutes <= 1)
                 Loc.GetString("starlight-health-analyzer-window-time-justnow");
 
-            var totalMinutes = (int)Math.Ceiling(totalSeconds / 60);
             return Loc.GetString("starlight-health-analyzer-window-time-since-minutes", ("minutes", totalMinutes));
         }
 
