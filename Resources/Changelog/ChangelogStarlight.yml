@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Fixed filters not transferring heat energy from the inlet to the filter outlet while still transferring physical gas.
-    type: Fix
-  id: 408369
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
   - message: Cleaning evidence off a person no longer reveals their true identity.
     type: Fix
   id: 408370
@@ -2799,4 +2792,11 @@ Entries:
   id: 408768
   time: '2026-09-20T20:52:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6241
+- author: Johnny
+  changes:
+  - message: Changed Ninja call threat values.
+    type: Tweak
+  id: 408769
+  time: '2026-09-20T20:52:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6253
 Order: -1
