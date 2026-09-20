@@ -1,4 +1,6 @@
 using Content.Server._Funkystation.ReagentFires.Components;
+using Content.Shared._Funkystation.Footprints;
+using Content.Shared.Chemistry.Components;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server._Funkystation.ReagentFires.Systems;
@@ -42,5 +44,20 @@ public sealed partial class ReagentFireSystem : EntitySystem
 
         foreach (var adjPuddle in _spreadPuddles)
             Ignite(adjPuddle, adjPuddle.Comp);
+    }
+
+    /// <summary>
+    /// Refreshes reagent-fire state for a lightweight footprint.
+    /// </summary>
+    public void UpdateFire(Entity<FootprintComponent> ent, Solution solution)
+    {
+        if (!_footprintsFlammable)
+        {
+            if (_fireQuery.HasComp(ent.Owner))
+                Extinguish(ent.Owner);
+            return;
+        }
+
+        UpdateFire(ent.Owner, solution);
     }
 }

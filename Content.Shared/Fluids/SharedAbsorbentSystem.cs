@@ -275,12 +275,36 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         EntityUid user,
         EntityUid target)
     {
-        if (!TryComp<PuddleComponent>(target, out var puddle))
-            return false;
+        #region Starlight
+        Entity<SolutionComponent> targetSoln;
+        Solution? puddleSolution;
+        var isFootprint = HasComp<FootprintComponent>(target);
 
-        if (!SolutionContainer.ResolveSolution(target, puddle.SolutionName, ref puddle.Solution, out var puddleSolution)
-            || puddleSolution.Volume <= 0)
+        if (isFootprint)
+        {
+            if (!SolutionContainer.TryGetSolution(target, FootprintComponent.SolutionName, out var footprintSoln))
+                return false;
+
+            targetSoln = footprintSoln.Value;
+            puddleSolution = targetSoln.Comp.Solution;
+        }
+        else
+        {
+            if (!TryComp<PuddleComponent>(target, out var puddle)
+                || !SolutionContainer.ResolveSolution(target,
+                    puddle.SolutionName,
+                    ref puddle.Solution,
+                    out puddleSolution))
+            {
+                return false;
+            }
+
+            targetSoln = puddle.Solution.Value;
+        }
+
+        if (puddleSolution is null || puddleSolution.Volume <= 0)
             return false;
+        #endregion
 
         var (_, absorber, useDelay) = absorbEnt;
 
@@ -328,7 +352,7 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
                 var tileRef = _mapSystem.GetTileRef(gridUid.Value, mapGrid, targetXform.Coordinates);
                 Puddle.DoTileReactions(tileRef, absorberSplit);
             }
-            SolutionContainer.AddSolution(puddle.Solution.Value, absorberSplit);
+            SolutionContainer.AddSolution(targetSoln, absorberSplit); // Starlight
         }
         else
         {
@@ -358,7 +382,8 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
 
         _melee.DoLunge(user, absorbEnt, Angle.Zero, localPos, null);
 
-        RaiseLocalEvent(target, new FootprintCleanEvent());
+        if (isFootprint) // Starlight
+            RaiseLocalEvent(target, new FootprintCleanEvent()); // Starlight
 
         return true;
     }

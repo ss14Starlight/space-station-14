@@ -5,6 +5,11 @@ namespace Content.Shared._Funkystation.Footprints;
 
 public sealed partial class FootprintComponent : Component
 {
+    /// <summary>
+    /// The solution stored directly on every footprint entity.
+    /// </summary>
+    public const string SolutionName = "print";
+
     [DataField]
     public ResPath Sprites = new("/Textures/_Funkystation/Effects/footprints.rsi");
     /// <summary>

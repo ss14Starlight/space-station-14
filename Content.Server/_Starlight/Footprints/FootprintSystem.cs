@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server._Funkystation.ReagentFires.Systems;
 using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -7,6 +8,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Maps;
 using Content.Shared.Standing;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -23,10 +25,12 @@ public sealed partial class FootprintSystem : EntitySystem
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedPuddleSystem _puddle = default!;
+    [Dependency] private ReagentFireSystem _reagentFire = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private TurfSystem _turf = default!;
     [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!;
     [Dependency] private EntityQuery<FootprintComponent> _footprintQuery = default!;
     [Dependency] private EntityQuery<NoFootprintsComponent> _noFootprintsQuery = default!;
@@ -35,11 +39,10 @@ public sealed partial class FootprintSystem : EntitySystem
 
     // A footprint sprite layer is relatively expensive. Chemical volume may continue accumulating after this cap,
     // but no more visual/network state is added until the footprint reaches capacity and becomes a puddle.
-    private const int MaxPrintsPerTile = 64;
+    private const int MaxPrintsPerTile = 16;
 
     private static readonly EntProtoId _footprintEntityId = "Footprint";
     private static readonly EntProtoId _printSolutionEntityId = "SolutionPrint";
-    private const string PrintSolutionName = "print";
 
     private static readonly FootprintVisualState[] _dragStates =
     [
@@ -50,27 +53,67 @@ public sealed partial class FootprintSystem : EntitySystem
         FootprintVisualState.Dragging5,
     ];
 
+    private readonly HashSet<EntityUid> _pendingConversions = [];
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<FootprintComponent, FootprintCleanEvent>(OnFootprintCleaned);
+        SubscribeLocalEvent<FootprintComponent, AnchorStateChangedEvent>(OnFootprintAnchorChanged);
+        SubscribeLocalEvent<FootprintComponent, ComponentShutdown>(OnFootprintShutdown);
         SubscribeLocalEvent<FootprintOwnerComponent, MoveEvent>(OnEntityMoved);
         SubscribeLocalEvent<FootprintOwnerComponent, MapInitEvent>(OnOwnerMapInit);
         SubscribeLocalEvent<FootprintOwnerComponent, EntRemovedFromContainerMessage>(OnOwnerSolutionRemoved);
         SubscribeLocalEvent<PuddleComponent, MapInitEvent>(OnPuddleInit);
 
-        // Space cleaner and other chemical changes need to recolor existing visual layers.
-        SubscribeLocalEvent<FootprintComponent, SolutionChangedEvent>(OnSolutionChanged,
-            after: [typeof(SharedPuddleSystem)]);
+        SubscribeLocalEvent<FootprintComponent, SolutionChangedEvent>(OnSolutionChanged);
+    }
+
+    private void OnFootprintAnchorChanged(Entity<FootprintComponent> entity, ref AnchorStateChangedEvent args)
+    {
+        if (!args.Anchored && !args.Detaching)
+            QueueDel(entity.Owner);
+    }
+
+    private void OnFootprintShutdown(Entity<FootprintComponent> entity, ref ComponentShutdown args)
+        => _pendingConversions.Remove(entity.Owner);
+
+    [SubscribeLocalEvent]
+    private void OnTileChanged(ref TileChangedEvent args)
+    {
+        foreach (var change in args.Changes)
+        {
+            if (!_turf.IsSpace(change.NewTile))
+                continue;
+
+            var anchored = _map.GetAnchoredEntities(args.Entity, args.Entity.Comp, change.GridIndices);
+            while (anchored.MoveNext(out var entity))
+            {
+                if (_footprintQuery.HasComponent(entity.Value))
+                    QueueDel(entity.Value);
+            }
+        }
     }
 
     private void OnSolutionChanged(Entity<FootprintComponent> entity, ref SolutionChangedEvent args)
     {
-        if (args.Solution.Comp.Id != PrintSolutionName)
+        if (args.Solution.Comp.Id != FootprintComponent.SolutionName)
             return;
 
-        UpdatePrintColor(entity, args.Solution.Comp.Solution);
+        var solution = args.Solution.Comp.Solution;
+        _puddle.UpdateEvaporation(entity.Owner, solution);
+        _reagentFire.UpdateFire(entity, solution);
+
+        if (solution.Volume <= FixedPoint2.Zero)
+        {
+            if (entity.Comp.Prints.Count > 0)
+                QueueDel(entity.Owner);
+
+            return;
+        }
+
+        UpdatePrintColor(entity, solution);
     }
 
     private void UpdatePrintColor(Entity<FootprintComponent> entity, Solution solution)
@@ -85,7 +128,7 @@ public sealed partial class FootprintSystem : EntitySystem
 
     private void OnOwnerMapInit(Entity<FootprintOwnerComponent> entity, ref MapInitEvent args)
     {
-        if (_solutionContainer.TryGetSolution(entity.Owner, PrintSolutionName, out var solution))
+        if (_solutionContainer.TryGetSolution(entity.Owner, FootprintComponent.SolutionName, out var solution))
             entity.Comp.Solution = solution;
     }
 
@@ -124,10 +167,11 @@ public sealed partial class FootprintSystem : EntitySystem
             hasMapPositions = true;
         }
 
-        var distance = moveVector.Length();
-        if (distance < 0.0001f)
+        var distanceSquared = moveVector.LengthSquared();
+        if (distanceSquared < 0.00000001f)
             return;
 
+        var distance = MathF.Sqrt(distanceSquared);
         entity.Comp.DistanceWalked += distance;
         if (entity.Comp.DistanceWalked < MathF.Min(entity.Comp.FootstepDistance, entity.Comp.DragDistance))
             return;
@@ -139,7 +183,11 @@ public sealed partial class FootprintSystem : EntitySystem
         if (entity.Comp.DistanceWalked < requiredDistance)
             return;
 
-        entity.Comp.DistanceWalked -= requiredDistance;
+        // One movement event can cover many step intervals (teleports, shuttles, lag spikes). Keep only the
+        // fractional remainder so a large move cannot create a backlog of prints on later physics moves.
+        entity.Comp.DistanceWalked = requiredDistance > 0f
+            ? entity.Comp.DistanceWalked % requiredDistance
+            : 0f;
 
         // Equipment only changes occasionally, so do this lookup at print cadence rather than physics cadence.
         if (_noFootprintsQuery.HasComponent(entity.Owner) ||
@@ -185,6 +233,8 @@ public sealed partial class FootprintSystem : EntitySystem
 
         var coords = new EntityCoordinates(gridUid, offsetPos);
         var tileIndices = _map.CoordinatesToTile(gridUid, grid, coords);
+        if (_turf.IsSpace(_map.GetTileRef(gridUid, grid, tileIndices)))
+            return;
 
         FindTileFluids(gridUid, grid, tileIndices, out var puddle, out var footprint);
 
@@ -283,7 +333,7 @@ public sealed partial class FootprintSystem : EntitySystem
         }
 
         // This fallback covers owners/components restored in an order where MapInit could not populate the cache.
-        if (_solutionContainer.TryGetSolution(entity.Owner, PrintSolutionName, out var existing))
+        if (_solutionContainer.TryGetSolution(entity.Owner, FootprintComponent.SolutionName, out var existing))
         {
             ownerSolution = existing.Value;
             entity.Comp.Solution = ownerSolution;
@@ -297,7 +347,7 @@ public sealed partial class FootprintSystem : EntitySystem
     private void CreateFootprint(
         Entity<FootprintOwnerComponent> entity,
         MapGridComponent grid,
-        Entity<FootprintComponent, PuddleComponent>? existingFootprint,
+        Entity<FootprintComponent, SolutionComponent>? existingFootprint,
         EntityCoordinates coords,
         Angle rotation,
         bool isStanding)
@@ -311,11 +361,11 @@ public sealed partial class FootprintSystem : EntitySystem
             return;
 
         var spawned = false;
-        Entity<FootprintComponent, PuddleComponent> footprint;
+        Entity<FootprintComponent, SolutionComponent> footprint;
         if (existingFootprint is not { } existing)
         {
             var printUid = Spawn(_footprintEntityId, coords);
-            footprint = (printUid, Comp<FootprintComponent>(printUid), Comp<PuddleComponent>(printUid));
+            footprint = (printUid, Comp<FootprintComponent>(printUid), Comp<SolutionComponent>(printUid));
             spawned = true;
         }
         else
@@ -323,20 +373,10 @@ public sealed partial class FootprintSystem : EntitySystem
             footprint = existing;
         }
 
-        if (!_solutionContainer.ResolveSolution(
-                footprint.Owner,
-                footprint.Comp2.SolutionName,
-                ref footprint.Comp2.Solution,
-                out var printSolution))
-        {
-            if (spawned)
-                QueueDel(footprint.Owner);
-
-            return;
-        }
+        var printSolution = footprint.Comp2.Solution;
 
         if (!_solutionContainer.TryTransferSolution(
-                footprint.Comp2.Solution.Value,
+                (footprint.Owner, footprint.Comp2),
                 ownerSolution.Comp.Solution,
                 transferAmount))
         {
@@ -382,9 +422,6 @@ public sealed partial class FootprintSystem : EntitySystem
 
     private void OnPuddleInit(Entity<PuddleComponent> entity, ref MapInitEvent args)
     {
-        if (_footprintQuery.HasComponent(entity.Owner))
-            return;
-
         var xform = Transform(entity.Owner);
         if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
             return;
@@ -398,14 +435,18 @@ public sealed partial class FootprintSystem : EntitySystem
     private void TurnIntoPuddle(
         EntityUid printUid,
         EntityCoordinates? coords = null,
-        PuddleComponent? puddle = null)
+        SolutionComponent? solution = null)
     {
+        // Spawning the replacement puddle raises MapInit synchronously while the queued footprint is still anchored.
+        // Suppress that re-entrant conversion so the footprint solution is not spilled twice.
+        if (!_pendingConversions.Add(printUid))
+            return;
+
         var targetCoords = coords ?? Transform(printUid).Coordinates;
 
-        if (_puddleQuery.Resolve(printUid, ref puddle, false) &&
-            _solutionContainer.ResolveSolution(printUid, puddle.SolutionName, ref puddle.Solution, out var printSolution))
+        if (_solutionQuery.Resolve(printUid, ref solution, false))
         {
-            var clone = printSolution.Clone();
+            var clone = solution.Solution.Clone();
             QueueDel(printUid);
             _puddle.TrySpillAt(targetCoords, clone, out _, false);
             return;
@@ -439,7 +480,7 @@ public sealed partial class FootprintSystem : EntitySystem
         MapGridComponent grid,
         Vector2i tile,
         out Entity<PuddleComponent>? puddle,
-        out Entity<FootprintComponent, PuddleComponent>? footprint)
+        out Entity<FootprintComponent, SolutionComponent>? footprint)
     {
         puddle = null;
         footprint = null;
@@ -447,18 +488,18 @@ public sealed partial class FootprintSystem : EntitySystem
         var anchored = _map.GetAnchoredEntities(gridUid, grid, tile);
         while (anchored.MoveNext(out var uid))
         {
-            if (!_puddleQuery.TryGetComponent(uid.Value, out var puddleComponent))
-                continue;
-
-            // A footprint carries PuddleComponent for cleaning, but is not a puddle to wash feet in.
-            if (_footprintQuery.TryGetComponent(uid.Value, out var footprintComponent))
+            if (_footprintQuery.TryGetComponent(uid.Value, out var footprintComponent)
+                && _solutionQuery.TryGetComponent(uid.Value, out var footprintSolution))
             {
-                footprint = (uid.Value, footprintComponent, puddleComponent);
+                footprint = (uid.Value, footprintComponent, footprintSolution);
                 if (puddle != null)
                     return;
 
                 continue;
             }
+
+            if (!_puddleQuery.TryGetComponent(uid.Value, out var puddleComponent))
+                continue;
 
             puddle = (uid.Value, puddleComponent);
             if (footprint != null)

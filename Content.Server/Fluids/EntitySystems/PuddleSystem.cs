@@ -14,7 +14,6 @@ using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
 using Content.Shared._Funkystation.Fluids;
-using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Funkystation.WallStains;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
@@ -43,7 +42,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private TurfSystem _turf = default!;
     #region Starlight
     [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!;
-    [Dependency] private EntityQuery<FootprintComponent> _footprintQuery = default!;
     [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!;
     #endregion
 
@@ -558,9 +556,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
             if (!_puddleQuery.TryGetComponent(ent, out var puddle))
                 continue;
-
-            if (_footprintQuery.HasComponent(ent.Value))
-                continue;
             // Starlight-end
 
             if (TryAddSolution(ent.Value, solution, sound, puddleComponent: puddle))
@@ -601,9 +596,6 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         while (anc.MoveNext(out var ent))
         {
             if (!_puddleQuery.HasComponent(ent.Value))
-                continue;
-
-            if (_footprintQuery.HasComponent(ent.Value))
                 continue;
             // Starlight-end
 

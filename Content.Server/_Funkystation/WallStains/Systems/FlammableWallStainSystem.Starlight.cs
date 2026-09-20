@@ -186,12 +186,12 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
         GasMixture? tileMix,
         int flammability)
     {
-        // Puddles are anchored, no spatial lookup is needed.
+        // Flammable puddles and lightweight footprints are anchored, no spatial lookup is needed.
         var fireEvent = new TileFireEvent(tileMix?.Temperature ?? 600f, 50f * flammability);
         var puddles = _map.GetAnchoredEntities(gridUid, grid, atmosTilePos);
         while (puddles.MoveNext(out var ent))
         {
-            if (_puddleQuery.HasComp(ent))
+            if (_puddleFireQuery.HasComp(ent))
                 RaiseLocalEvent(ent.Value, ref fireEvent);
         }
 

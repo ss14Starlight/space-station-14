@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Shared.Administration.Logs;
-using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -50,7 +49,6 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     private EntityQuery<ReactiveComponent> _reactiveQuery;
     private EntityQuery<EvaporationComponent> _evaporationQuery;
     [Dependency] private EntityQuery<PuddleComponent> _puddleQuery;
-    [Dependency] private EntityQuery<FootprintComponent> _sharedFootprintQuery;
 
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
@@ -136,14 +134,6 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         }
 
         _deletionQueue.Remove(entity);
-
-        // Footprints reuse PuddleComponent for cleaning, chemistry, and evaporation, but should not gain any of a
-        // normal puddle's movement, slipping, or appearance behavior.
-        if (_sharedFootprintQuery.HasComponent(entity.Owner))
-        {
-            UpdateEvaporation(entity, args.Solution.Comp.Solution);
-            return;
-        }
 
         UpdateSlip((entity, entity.Comp), args.Solution.Comp.Solution);
         UpdateSlow(entity, args.Solution.Comp.Solution, entity.Comp);
