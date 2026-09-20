@@ -640,7 +640,7 @@
   parent: [ClothingNeckMantleCMO, BaseCentcommContraband]
   id: ClothingNeckCloakCMDShawl
   name: central medical division shawl
-  description:  A shawl with a should epaulette fitting of a member of central command following complaints from a CID Minister of Intelligence that wanted the medical symbol removed from it as an excuse to wear it without being apart of CMD.
+  description:  A shawl with a shoulder epaulette fitting of a member of the central medical division who wants to stay warm yet professional.
   components:
     - type: Sprite
       sprite:  _Starlight/Clothing/Neck/Cloaks/CMD_shawl.rsi
