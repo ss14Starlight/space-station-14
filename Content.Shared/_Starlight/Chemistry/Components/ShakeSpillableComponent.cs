@@ -11,4 +11,3 @@ public sealed partial class ShakeSpillableComponent : Component
     [DataField]
     public string SolutionName = "drink";
 }
-// Starlight-end
