@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Using the "fuckrules" command will now create an admin log and alert the admins via chat.
-    type: Add
-  id: 408376
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
   - message: Added more xenoborg names!
     type: Add
   id: 408377
@@ -2799,4 +2792,11 @@ Entries:
   id: 408775
   time: '2026-09-20T21:22:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6171
+- author: Doner & RedSpeeds
+  changes:
+  - message: Added more lobby art.
+    type: Add
+  id: 408776
+  time: '2026-09-20T21:22:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6173
 Order: -1
