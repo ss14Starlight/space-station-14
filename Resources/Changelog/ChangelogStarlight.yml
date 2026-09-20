@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Anomalies will no longer spawn multiple things on the same tile (asteroid wall, etc).
-    type: Fix
-  id: 408338
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
   - message: Security bio suit now hides tails again.
     type: Fix
   id: 408339
@@ -2799,4 +2792,11 @@ Entries:
   id: 408737
   time: '2026-09-20T15:53:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6149
+- author: Citrea
+  changes:
+  - message: Dolls now drop their shell when zombified, making them normally vulnerable to bullets. As all zombies, they are still resistant to bullets, just not invincible.
+    type: Tweak
+  id: 408738
+  time: '2026-09-20T16:42:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6208
 Order: -1
