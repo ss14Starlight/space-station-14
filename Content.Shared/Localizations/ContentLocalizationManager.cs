@@ -5,9 +5,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Localizations
 {
-    public sealed class ContentLocalizationManager
+    public sealed partial class ContentLocalizationManager
     {
-        [Dependency] private readonly ILocalizationManager _loc = default!;
+        [Dependency] private ILocalizationManager _loc = default!;
 
         // If you want to change your codebase's language, do it here.
         private const string Culture = "ru-RU"; // Localization
@@ -31,7 +31,7 @@ namespace Content.Shared.Localizations
 
             _loc.LoadCulture(culture);
             _loc.LoadCulture(fallbackCulture); // Localization
-            _loc.SetFallbackCluture(fallbackCulture); // Localization
+            _loc.SetFallbackCulture(fallbackCulture); // Localization
             _loc.AddFunction(culture, "MANY", FormatMany); // Localization: To prevent problems in auto-generated locale files
             _loc.AddFunction(culture, "PRESSURE", FormatPressure);
             _loc.AddFunction(culture, "POWERWATTS", FormatPowerWatts);
@@ -44,6 +44,20 @@ namespace Content.Shared.Localizations
             _loc.AddFunction(culture, "NATURALFIXED", FormatNaturalFixed);
             _loc.AddFunction(culture, "NATURALPERCENT", FormatNaturalPercent);
             _loc.AddFunction(culture, "PLAYTIME", FormatPlaytime);
+
+            // Localization: same functions for the fallback culture,
+            // so en-US strings keep working when ru-RU keys are missing.
+            _loc.AddFunction(fallbackCulture, "MANY", FormatMany);
+            _loc.AddFunction(fallbackCulture, "PRESSURE", FormatPressure);
+            _loc.AddFunction(fallbackCulture, "POWERWATTS", FormatPowerWatts);
+            _loc.AddFunction(fallbackCulture, "POWERJOULES", FormatPowerJoules);
+            _loc.AddFunction(fallbackCulture, "ENERGYWATTHOURS", FormatEnergyWattHours);
+            _loc.AddFunction(fallbackCulture, "UNITS", FormatUnits);
+            _loc.AddFunction(fallbackCulture, "TOSTRING", args => FormatToString(fallbackCulture, args));
+            _loc.AddFunction(fallbackCulture, "LOC", FormatLoc);
+            _loc.AddFunction(fallbackCulture, "NATURALFIXED", FormatNaturalFixed);
+            _loc.AddFunction(fallbackCulture, "NATURALPERCENT", FormatNaturalPercent);
+            _loc.AddFunction(fallbackCulture, "PLAYTIME", FormatPlaytime);
 
 
             /*
@@ -89,6 +103,24 @@ namespace Content.Shared.Localizations
             return new LocValueString(string.Format(formatter, "{0:N}", number).TrimEnd('0').TrimEnd(char.Parse(formatter.NumberDecimalSeparator)));
         }
 
+        // Starlight start
+        private static readonly Dictionary<string, string> NonStandardPlurals = new() {
+            { "thief", "thieves" },
+            { "knife", "knives" },
+            { "life", "lives" },
+            { "leaf", "leaves" },
+            { "deer", "deer" },
+            { "fish", "fish" },
+            { "carp", "carp" },
+            { "half", "halves" },
+            { "die", "dice" },
+            { "foot", "feet" },
+            { "scarf", "scarves" },
+            { "shelf", "shelves" },
+            { "person", "people" },
+        };
+        // Starlight end
+
         private static readonly Regex PluralEsRule = new("^.*(s|sh|ch|x|z)$");
 
         private ILocValue FormatMakePlural(LocArgs args)
@@ -96,6 +128,15 @@ namespace Content.Shared.Localizations
             var text = ((LocValueString)args.Args[0]).Value;
             var split = text.Split(" ", 1);
             var firstWord = split[0];
+            // Starlight start
+            if (NonStandardPlurals.TryGetValue(firstWord, out var replacement))
+            {
+                if (split.Length == 1)
+                    return new LocValueString($"{replacement}");
+                else
+                    return new LocValueString($"{replacement} {split[1]}");
+            }
+            // Starlight end
             if (PluralEsRule.IsMatch(firstWord))
             {
                 if (split.Length == 1)

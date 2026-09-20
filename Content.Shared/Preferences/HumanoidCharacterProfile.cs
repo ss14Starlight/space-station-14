@@ -1,8 +1,8 @@
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
+using Content.Shared._CD.Records; // Cosmatic Drift Record System
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
@@ -14,12 +14,13 @@ using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Serialization.Manager;
-using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
-using Robust.Shared;
-using YamlDotNet.RepresentationModel;
+#region Starlight
+using Content.Shared._Starlight.Traits;
+using Content.Shared._Starlight.Humanoid;
+using Content.Shared._Starlight.CCVar;
+#endregion
 
 namespace Content.Shared.Preferences
 {
@@ -30,20 +31,14 @@ namespace Content.Shared.Preferences
     [Serializable, NetSerializable]
     public sealed partial class HumanoidCharacterProfile
     {
-        public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
-        private static readonly Regex RestrictedNameRegex = new("[^А-Яа-яёЁ0-9' -]"); // RU-Localization
+        private static readonly Regex RestrictedNameRegex = new(@"[^A-Za-zА-Яа-яЁё0-9 '\-,]"); //Starlight edit, allow commas. Localization: allow Cyrillic
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
         /// <summary>
         /// Job preferences for initial spawn.
         /// </summary>
         [DataField]
-        private Dictionary<ProtoId<JobPrototype>, JobPriority> _jobPriorities = new()
-        {
-            {
-                SharedGameTicker.FallbackOverflowJob, JobPriority.High
-            }
-        };
+        private HashSet<ProtoId<JobPrototype>> _jobPreferences = new() { SharedGameTicker.FallbackOverflowJob };
 
         /// <summary>
         /// Antags we have opted in to.
@@ -58,6 +53,12 @@ namespace Content.Shared.Preferences
         private HashSet<ProtoId<TraitPrototype>> _traitPreferences = new();
 
         /// <summary>
+        /// Is this character enabled? (Should it be considered for round start selection?)
+        /// </summary>
+        [DataField]
+        public bool Enabled;
+
+        /// <summary>
         /// <see cref="_loadouts"/>
         /// </summary>
         public IReadOnlyDictionary<string, RoleLoadout> Loadouts => _loadouts;
@@ -68,17 +69,13 @@ namespace Content.Shared.Preferences
         [DataField]
         public string Name { get; set; } = "John Doe";
 
-        /// <summary>
-        /// Detailed text that can appear for the character if <see cref="CCVars.FlavorText"/> is enabled.
-        /// </summary>
         [DataField]
-        public string FlavorText { get; set; } = string.Empty;
-
+        public string Voice { get; set; } = "";
         /// <summary>
         /// Associated <see cref="SpeciesPrototype"/> for this profile.
         /// </summary>
         [DataField]
-        public ProtoId<SpeciesPrototype> Species { get; set; } = DefaultSpecies;
+        public ProtoId<SpeciesPrototype> Species { get; set; } = SharedHumanoidAppearanceSystem.DefaultSpecies;
 
         [DataField]
         public int Age { get; set; } = 18;
@@ -95,6 +92,10 @@ namespace Content.Shared.Preferences
         [DataField]
         public HumanoidCharacterAppearance Appearance { get; set; } = new();
 
+        // Cosmatic Drift – stores the player's custom record data on the profile itself.
+        [DataField("cosmaticDriftCharacterRecords")]
+        public PlayerProvidedCharacterRecords? CDCharacterRecords { get; private set; } = PlayerProvidedCharacterRecords.DefaultRecords();
+
         /// <summary>
         /// When spawning into a round what's the preferred spot to spawn.
         /// </summary>
@@ -102,9 +103,9 @@ namespace Content.Shared.Preferences
         public SpawnPriorityPreference SpawnPriority { get; private set; } = SpawnPriorityPreference.None;
 
         /// <summary>
-        /// <see cref="_jobPriorities"/>
+        /// <see cref="_jobPreferences"/>
         /// </summary>
-        public IReadOnlyDictionary<ProtoId<JobPrototype>, JobPriority> JobPriorities => _jobPriorities;
+        public IReadOnlySet<ProtoId<JobPrototype>> JobPreferences => _jobPreferences;
 
         /// <summary>
         /// <see cref="_antagPreferences"/>
@@ -116,78 +117,96 @@ namespace Content.Shared.Preferences
         /// </summary>
         public IReadOnlySet<ProtoId<TraitPrototype>> TraitPreferences => _traitPreferences;
 
-        /// <summary>
-        /// If we're unable to get one of our preferred jobs do we spawn as a fallback job or do we stay in lobby.
-        /// </summary>
-        [DataField]
-        public PreferenceUnavailableMode PreferenceUnavailable { get; private set; } =
-            PreferenceUnavailableMode.SpawnAsOverflow;
-
         public HumanoidCharacterProfile(
             string name,
-            string flavortext,
+            string voice,
+            string siliconVoice, // 🌟Starlight🌟
+            string physicalDesc,// Starlight
+            string personalityDesc,// Starlight
+            string personalNotes,// Starlight
+            string oocNotes,// Starlight
+            string secrets, //Starlight
+            string exploitableInfo, //Starlight
             string species,
+            string customspeciename, // Starlight
+            string forcedPrototype, // Starlight
             int age,
             Sex sex,
             Gender gender,
             HumanoidCharacterAppearance appearance,
             SpawnPriorityPreference spawnPriority,
-            Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities,
-            PreferenceUnavailableMode preferenceUnavailable,
+            HashSet<ProtoId<JobPrototype>> jobPreferences,
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
-            Dictionary<string, RoleLoadout> loadouts)
+            Dictionary<string, RoleLoadout> loadouts,
+            List<string> cybernetics, // Starlight
+            bool enabled,
+            RoleLoadout? speciesLoadout) // Far Horizons
         {
             Name = name;
-            FlavorText = flavortext;
-            Species = species;
+            Voice = voice;
+            SiliconVoice = siliconVoice; // 🌟Starlight🌟
+            PhysicalDescription = physicalDesc;//Starlight
+            PersonalityDescription = personalityDesc;//Starlight
+            PersonalNotes = personalNotes;//Starlight
+            OOCNotes = oocNotes;//Starlight
+            Secrets = secrets; //Starlight
+            ExploitableInfo = exploitableInfo; //Starlight
+            Species = species;//Starlight
+            CustomSpecieName = customspeciename; // Starlight
+            ForcedPrototype = forcedPrototype; // Starlight
             Age = age;
             Sex = sex;
             Gender = gender;
             Appearance = appearance;
             SpawnPriority = spawnPriority;
-            _jobPriorities = jobPriorities;
-            PreferenceUnavailable = preferenceUnavailable;
+            _jobPreferences = jobPreferences;
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
-
-            var hasHighPrority = false;
-            foreach (var (key, value) in _jobPriorities)
-            {
-                if (value == JobPriority.Never)
-                    _jobPriorities.Remove(key);
-                else if (value != JobPriority.High)
-                    continue;
-
-                if (hasHighPrority)
-                    _jobPriorities[key] = JobPriority.Medium;
-
-                hasHighPrority = true;
-            }
+            Cybernetics = cybernetics; // Starlight
+            Enabled = enabled;
+            SpeciesLoadout = speciesLoadout;
         }
 
         /// <summary>Copy constructor</summary>
         public HumanoidCharacterProfile(HumanoidCharacterProfile other)
             : this(other.Name,
-                other.FlavorText,
+                other.Voice,
+                other.SiliconVoice, // 🌟Starlight🌟
+                other.PhysicalDescription,//Starlight
+                other.PersonalityDescription, //Starlight
+                other.PersonalNotes,//Starlight
+                other.OOCNotes,//Starlight
+                other.Secrets,
+                other.ExploitableInfo,
                 other.Species,
+                other.CustomSpecieName, // Starlight
+                other.ForcedPrototype,
                 other.Age,
                 other.Sex,
                 other.Gender,
                 other.Appearance.Clone(),
                 other.SpawnPriority,
-                new Dictionary<ProtoId<JobPrototype>, JobPriority>(other.JobPriorities),
-                other.PreferenceUnavailable,
+                new HashSet<ProtoId<JobPrototype>>(other.JobPreferences),
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
-                new Dictionary<string, RoleLoadout>(other.Loadouts))
+                new Dictionary<string, RoleLoadout>(other.Loadouts),
+                other.Cybernetics, // Starlight
+                other.Enabled,
+                other.SpeciesLoadout) // Far Horizons
         {
+            // Cosmatic Drift Record System-start
+            CDCharacterRecords = other.CDCharacterRecords != null
+                ? new PlayerProvidedCharacterRecords(other.CDCharacterRecords)
+                : PlayerProvidedCharacterRecords.DefaultRecords();
+            CDCharacterRecords.EnsureValid();
+            // Cosmatic Drift Record System-end
         }
 
         /// <summary>
         ///     Get the default humanoid character profile, using internal constant values.
-        ///     Defaults to <see cref="DefaultSpecies"/> for the species.
+        ///     Defaults to <see cref="SharedHumanoidAppearanceSystem.DefaultSpecies"/> for the species.
         /// </summary>
         /// <returns></returns>
         public HumanoidCharacterProfile()
@@ -197,20 +216,31 @@ namespace Content.Shared.Preferences
         /// <summary>
         ///     Return a default character profile, based on species.
         /// </summary>
-        /// <param name="species">The species to use in this default profile. The default species is <see cref="DefaultSpecies"/>.</param>
-        /// <param name="sex">Self explanatory.</param>
+        /// <param name="species">The species to use in this default profile. The default species is <see cref="SharedHumanoidAppearanceSystem.DefaultSpecies"/>.</param>
         /// <returns>Humanoid character profile with default settings.</returns>
-        public static HumanoidCharacterProfile DefaultWithSpecies(ProtoId<SpeciesPrototype>? species = null, Sex? sex = null)
+        public static HumanoidCharacterProfile DefaultWithSpecies(string? species = null)
         {
-            species ??= HumanoidCharacterProfile.DefaultSpecies;
-            sex ??= Sex.Male;
+            species ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
 
-            return new()
+            var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
+            var speciesProto = prototypeManager.Index<SpeciesPrototype>(species);
+
+            var profile = new HumanoidCharacterProfile()
             {
-                Species = species.Value,
-                Sex = sex.Value,
-                Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species.Value, sex.Value),
+                Species = species,
+                Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species),
             };
+
+            // Far Horizons start
+            RoleLoadout? loadout = null;
+            if (speciesProto.Loadout != null)
+            {
+                loadout = new(speciesProto.Loadout.Value);
+                loadout.SetDefault(profile, null, prototypeManager);
+            }
+
+            return profile.WithSpeciesLoadout(loadout);
+            // Far Horizons end
         }
 
         // TODO: This should eventually not be a visual change only.
@@ -219,24 +249,32 @@ namespace Content.Shared.Preferences
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             var random = IoCManager.Resolve<IRobustRandom>();
 
-            var species = "Human";
+            var species = random.Pick(prototypeManager
+                .EnumeratePrototypes<SpeciesPrototype>()
+                .Where(x => ignoredSpecies == null ? x.RoundStart : x.RoundStart && !ignoredSpecies.Contains(x.ID))
+                .ToArray()
+            ).ID;
 
             return RandomWithSpecies(species);
         }
 
         public static HumanoidCharacterProfile RandomWithSpecies(string? species = null)
         {
-            species ??= HumanoidCharacterProfile.DefaultSpecies;
+            species ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
 
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             var random = IoCManager.Resolve<IRobustRandom>();
 
             var sex = Sex.Unsexed;
             var age = 18;
+            var width = 1f; //starlight
+            var height = 1f; //starlight
             if (prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
             {
                 sex = random.Pick(speciesPrototype.Sexes);
                 age = random.Next(speciesPrototype.MinAge, speciesPrototype.OldAge); // people don't look and keep making 119 year old characters with zero rp, cap it at middle aged
+                width = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth); //starlight
+                height = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight); //starlight
             }
 
             var gender = Gender.Epicene;
@@ -253,15 +291,29 @@ namespace Content.Shared.Preferences
 
             var name = GetName(species, gender);
 
-            return new HumanoidCharacterProfile()
+            var customspeciename = ""; // Starlight
+
+            var profile = new HumanoidCharacterProfile()
             {
                 Name = name,
                 Sex = sex,
                 Age = age,
                 Gender = gender,
                 Species = species,
-                Appearance = HumanoidCharacterAppearance.Random(species, sex),
+                CustomSpecieName = customspeciename, // Starlight
+                Appearance = HumanoidCharacterAppearance.Random(species, sex)
             };
+
+            // Far Horizons start
+            RoleLoadout? speciesLoadout = null;
+            if (speciesPrototype != null && speciesPrototype.Loadout != null)
+            {
+                speciesLoadout = new(speciesPrototype.Loadout.Value);
+                speciesLoadout.SetDefault(profile, null, prototypeManager);
+            }
+
+            return profile.WithSpeciesLoadout(speciesLoadout);
+            // Far Horizons end
         }
 
         public HumanoidCharacterProfile WithName(string name)
@@ -289,78 +341,65 @@ namespace Content.Shared.Preferences
             return new(this) { Gender = gender };
         }
 
+        public HumanoidCharacterProfile WithVoice(string id)
+        {
+            return new(this) { Voice = id };
+        }
+
         public HumanoidCharacterProfile WithSpecies(string species)
         {
             return new(this) { Species = species };
         }
 
-
+        // Starlight - End
         public HumanoidCharacterProfile WithCharacterAppearance(HumanoidCharacterAppearance appearance)
         {
             return new(this) { Appearance = appearance };
         }
+
+        // Cosmatic Drift Record System-start
+        public HumanoidCharacterProfile WithCDCharacterRecords(PlayerProvidedCharacterRecords records)
+        {
+            var copy = new PlayerProvidedCharacterRecords(records);
+            copy.EnsureValid();
+            return new HumanoidCharacterProfile(this) { CDCharacterRecords = copy };
+        }
+        // Cosmatic Drift Record System-end
 
         public HumanoidCharacterProfile WithSpawnPriorityPreference(SpawnPriorityPreference spawnPriority)
         {
             return new(this) { SpawnPriority = spawnPriority };
         }
 
-        public HumanoidCharacterProfile WithJobPriorities(IEnumerable<KeyValuePair<ProtoId<JobPrototype>, JobPriority>> jobPriorities)
+        public HumanoidCharacterProfile WithJobPreferences(IEnumerable<ProtoId<JobPrototype>> jobPreferences)
         {
-            var dictionary = new Dictionary<ProtoId<JobPrototype>, JobPriority>(jobPriorities);
-            var hasHighPrority = false;
-
-            foreach (var (key, value) in dictionary)
-            {
-                if (value == JobPriority.Never)
-                    dictionary.Remove(key);
-                else if (value != JobPriority.High)
-                    continue;
-
-                if (hasHighPrority)
-                    dictionary[key] = JobPriority.Medium;
-
-                hasHighPrority = true;
-            }
-
             return new(this)
             {
-                _jobPriorities = dictionary
+                _jobPreferences = new HashSet<ProtoId<JobPrototype>>(jobPreferences),
             };
         }
 
-        public HumanoidCharacterProfile WithJobPriority(ProtoId<JobPrototype> jobId, JobPriority priority)
+        public HumanoidCharacterProfile WithJob(ProtoId<JobPrototype> jobId, bool include = true)
         {
-            var dictionary = new Dictionary<ProtoId<JobPrototype>, JobPriority>(_jobPriorities);
-            if (priority == JobPriority.Never)
+            var jobPreferences = new HashSet<ProtoId<JobPrototype>>(_jobPreferences);
+            if (include)
             {
-                dictionary.Remove(jobId);
-            }
-            else if (priority == JobPriority.High)
-            {
-                // There can only ever be one high priority job.
-                foreach (var (job, value) in dictionary)
-                {
-                    if (value == JobPriority.High)
-                        dictionary[job] = JobPriority.Medium;
-                }
-
-                dictionary[jobId] = priority;
+                jobPreferences.Add(jobId);
             }
             else
             {
-                dictionary[jobId] = priority;
+                jobPreferences.Remove(jobId);
             }
 
             return new(this)
             {
-                _jobPriorities = dictionary,
+                _jobPreferences = jobPreferences,
             };
         }
 
-        public HumanoidCharacterProfile WithPreferenceUnavailable(PreferenceUnavailableMode mode)
+        public HumanoidCharacterProfile WithoutJob(ProtoId<JobPrototype> jobId)
         {
-            return new(this) { PreferenceUnavailable = mode };
+            return WithJob(jobId, false);
         }
 
         public HumanoidCharacterProfile WithAntagPreferences(IEnumerable<ProtoId<AntagPrototype>> antagPreferences)
@@ -388,7 +427,6 @@ namespace Content.Shared.Preferences
                 _antagPreferences = list,
             };
         }
-
         public HumanoidCharacterProfile WithTraitPreference(ProtoId<TraitPrototype> traitId, IPrototypeManager protoManager)
         {
             // null category is assumed to be default.
@@ -400,12 +438,12 @@ namespace Content.Shared.Preferences
             // Category not found so dump it.
             TraitCategoryPrototype? traitCategory = null;
 
-            if (category != null && !protoManager.Resolve(category, out traitCategory))
+            if (!protoManager.Resolve(category, out traitCategory)) // Starlight
                 return new(this);
 
             var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences) { traitId };
 
-            if (traitCategory == null || traitCategory.MaxTraitPoints < 0)
+            if (traitCategory.MaxPoints < 0) // Starlight
             {
                 return new(this)
                 {
@@ -426,7 +464,7 @@ namespace Content.Shared.Preferences
                 count += otherProto.Cost;
             }
 
-            if (count > traitCategory.MaxTraitPoints && traitProto.Cost != 0)
+            if (count > traitCategory.MaxPoints && traitProto.Cost != 0) // Starlight
             {
                 return new(this);
             }
@@ -448,6 +486,11 @@ namespace Content.Shared.Preferences
             };
         }
 
+        public HumanoidCharacterProfile AsEnabled(bool enabled = true)
+        {
+            return new(this) { Enabled = enabled };
+        }
+
         public string Summary =>
             Loc.GetString(
                 "humanoid-character-profile-summary",
@@ -463,24 +506,74 @@ namespace Content.Shared.Preferences
             if (Sex != other.Sex) return false;
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
-            if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
+            if (CustomSpecieName != other.CustomSpecieName) return false; // Starlight
+            if (!Cybernetics.SequenceEqual(other.Cybernetics)) return false; // Starlight
             if (SpawnPriority != other.SpawnPriority) return false;
-            if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
+            if (!_jobPreferences.SequenceEqual(other._jobPreferences)) return false;
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
+            if (Enabled != other.Enabled) return false;
+            if (!SpeciesLoadoutEquals(SpeciesLoadout, other.SpeciesLoadout)) return false; // Far Horizons
+            // Cosmatic Drift Record System-start
+            if (CDCharacterRecords != null)
+            {
+                if (other.CDCharacterRecords == null || !CDCharacterRecords.MemberwiseEquals(other.CDCharacterRecords))
+                    return false;
+            }
+            else if (other.CDCharacterRecords != null)
+            {
+                return false;
+            }
+            // Cosmatic Drift Record System-end
             return Appearance.Equals(other.Appearance);
         }
 
+        #region Starlight, walksanator fucking loses it and makes a throwing version of MemberwiseEquals
+        public void AssertEquals(HumanoidCharacterProfile maybeOther)
+        {
+            if (maybeOther is not HumanoidCharacterProfile other) throw new DebugAssertException($"other is not HumanoidCharacterProfile it is {maybeOther.GetType()}");
+            if (Name != other.Name) throw new DebugAssertException($"Name doesn't match expected '{Name}' got '{other.Name}'");
+            if (Age != other.Age) throw new DebugAssertException($"Age doesn't match expected '{Age}' got '{other.Age}'");
+            if (Sex != other.Sex) throw new DebugAssertException($"Sex doesn't match expected '{Sex}' got '{other.Sex}'");
+            if (Gender != other.Gender) throw new DebugAssertException($"Gender doesn't match expected '{Gender}' got '{other.Gender}'");;
+            if (Species != other.Species) throw new DebugAssertException($"Species doesn't match expected '{Species.Id}' got '{other.Species.Id}'");;
+            if (CustomSpecieName != other.CustomSpecieName) throw new DebugAssertException($"CustomSpecieName doesn't match expected '{CustomSpecieName}' got '{other.CustomSpecieName}'");
+            if (!Cybernetics.SequenceEqual(other.Cybernetics)) throw new DebugAssertException($"Cybernetics doesn't match expected '{Cybernetics}' got '{other.Cybernetics}'");
+            if (SpawnPriority != other.SpawnPriority) throw new DebugAssertException($"SpawnPriority doesn't match expected '{SpawnPriority}' got '{other.SpawnPriority}'");
+            if (!_jobPreferences.SequenceEqual(other._jobPreferences)) throw new DebugAssertException($"_jobPreferences doesn't match expected '{_jobPreferences}' got '{other._jobPreferences}'");;
+            if (!_antagPreferences.SequenceEqual(other._antagPreferences)) throw new DebugAssertException($"_antagPreferences doesn't match expected '{_antagPreferences}' got '{other._antagPreferences}'");
+            if (!_traitPreferences.SequenceEqual(other._traitPreferences)) throw new DebugAssertException($"_traitPreferences doesn't match expected '{_traitPreferences}' got '{other._traitPreferences}'");
+            if (!Loadouts.SequenceEqual(other.Loadouts))  throw new DebugAssertException($"Loadouts doesn't match expected '{Loadouts}' got '{other.Loadouts}'");
+            if (FlavorText != other.FlavorText) throw new DebugAssertException($"FlavorText doesn't match expected '{FlavorText}' got '{other.FlavorText}'");
+            if (Enabled != other.Enabled) throw new DebugAssertException($"Enabled doesn't match expected '{Enabled}' got '{other.Enabled}'");
+            if (!SpeciesLoadoutEquals(SpeciesLoadout, other.SpeciesLoadout)) throw new DebugAssertException($"SpeciesLoadout doesn't match"); // Far Horizons
+            // Cosmatic Drift Record System-start
+            if (CDCharacterRecords != null)
+            {
+                if (other.CDCharacterRecords == null)
+                    throw new DebugAssertException($"CDCharacterRecords doesn't match expected '{CDCharacterRecords}' got null");
+                CDCharacterRecords.AssertEquals(other.CDCharacterRecords);
+            }
+            else if (other.CDCharacterRecords != null)
+            {
+                throw new DebugAssertException($"CDCharacterRecords doesn't match expected null got '{other.CDCharacterRecords}'");
+            }
+            // Cosmatic Drift Record System-end
+            Appearance.MemberwiseEquals(other.Appearance);
+        }
+        #endregion
         public void EnsureValid(ICommonSession session, IDependencyCollection collection)
         {
             var configManager = collection.Resolve<IConfigurationManager>();
             var prototypeManager = collection.Resolve<IPrototypeManager>();
 
-            if (!prototypeManager.TryIndex(Species, out var speciesPrototype) || speciesPrototype.RoundStart == false)
+            var speciesPrototype = ResolveSpecies(prototypeManager); // Starlight, species migrations
+
+            if (speciesPrototype is null || !speciesPrototype.RoundStart) // Starlight, species migrations
             {
-                Species = HumanoidCharacterProfile.DefaultSpecies;
+                Species = SharedHumanoidAppearanceSystem.DefaultSpecies;
                 speciesPrototype = prototypeManager.Index(Species);
             }
 
@@ -540,6 +633,44 @@ namespace Content.Shared.Preferences
                 name = GetName(Species, gender);
             }
 
+            // Starlight - Start
+            var customspeciename =
+            !speciesPrototype.CustomName
+            || string.IsNullOrWhiteSpace(CustomSpecieName)
+                ? ""
+                : CustomSpecieName.Length > maxNameLength
+                    ? CustomSpecieName[..maxNameLength]
+                    : CustomSpecieName;
+
+            if (!string.IsNullOrWhiteSpace(CustomSpecieName) && configManager.GetCVar(StarlightCCVars.RestrictedCustomSpecieNames))
+            {
+                customspeciename = RestrictedCustomSpecieNameRegex.Replace(customspeciename, string.Empty);
+
+                var speciesPrototypes = prototypeManager.EnumeratePrototypes<SpeciesPrototype>();
+                foreach (var specieNames in speciesPrototypes)
+                {
+                    if (Loc.GetString(specieNames.Name).ToLower() == customspeciename.ToLower())
+                    {
+                        customspeciename = "";
+                        break;
+                    }
+                }
+            }
+
+            var allCybernetics = CyberneticImplant.GetAllCybernetics(prototypeManager);
+            var installedCybernetics = allCybernetics.Where(p => Cybernetics.Contains(p.ID))
+                                       .Where(p => p.Type == CyberneticImplantType.Limb)
+                                       .ToList();
+            if (installedCybernetics.Select(p => p.Cost).Sum() <= speciesPrototype.RoundstartCyberwareCapacity)
+            {
+                Cybernetics = installedCybernetics.Select(p => p.ID).ToList();
+            }
+            else
+            {
+                Cybernetics = [];
+            }
+            // Starlight - End
+
             string flavortext;
             var maxFlavorTextLength = configManager.GetCVar(CCVars.MaxFlavorTextLength);
             if (FlavorText.Length > maxFlavorTextLength)
@@ -553,13 +684,6 @@ namespace Content.Shared.Preferences
 
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex);
 
-            var prefsUnavailableMode = PreferenceUnavailable switch
-            {
-                PreferenceUnavailableMode.StayInLobby => PreferenceUnavailableMode.StayInLobby,
-                PreferenceUnavailableMode.SpawnAsOverflow => PreferenceUnavailableMode.SpawnAsOverflow,
-                _ => PreferenceUnavailableMode.StayInLobby // Invalid enum values.
-            };
-
             var spawnPriority = SpawnPriority switch
             {
                 SpawnPriorityPreference.None => SpawnPriorityPreference.None,
@@ -568,26 +692,9 @@ namespace Content.Shared.Preferences
                 _ => SpawnPriorityPreference.None // Invalid enum values.
             };
 
-            var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>(JobPriorities
-                .Where(p => prototypeManager.TryIndex<JobPrototype>(p.Key, out var job) && job.SetPreference && p.Value switch
-                {
-                    JobPriority.Never => false, // Drop never since that's assumed default.
-                    JobPriority.Low => true,
-                    JobPriority.Medium => true,
-                    JobPriority.High => true,
-                    _ => false
-                }));
-
-            var hasHighPrio = false;
-            foreach (var (key, value) in priorities)
-            {
-                if (value != JobPriority.High)
-                    continue;
-
-                if (hasHighPrio)
-                    priorities[key] = JobPriority.Medium;
-                hasHighPrio = true;
-            }
+            var jobs = new HashSet<ProtoId<JobPrototype>>(JobPreferences
+                .Where(p => prototypeManager.TryIndex(p, out var job)
+                            && job is { SetPreference: true, Hidden: false }));
 
             var antags = AntagPreferences
                 .Where(id => prototypeManager.TryIndex(id, out var antag) && antag.SetPreference)
@@ -598,6 +705,7 @@ namespace Content.Shared.Preferences
                          .ToList();
 
             Name = name;
+            CustomSpecieName = customspeciename; // Starlight
             FlavorText = flavortext;
             Age = age;
             Sex = sex;
@@ -605,14 +713,7 @@ namespace Content.Shared.Preferences
             Appearance = appearance;
             SpawnPriority = spawnPriority;
 
-            _jobPriorities.Clear();
-
-            foreach (var (job, priority) in priorities)
-            {
-                _jobPriorities.Add(job, priority);
-            }
-
-            PreferenceUnavailable = prefsUnavailableMode;
+            _jobPreferences = new HashSet<ProtoId<JobPrototype>>(jobs);
 
             _antagPreferences.Clear();
             _antagPreferences.UnionWith(antags);
@@ -641,6 +742,26 @@ namespace Content.Shared.Preferences
             {
                 _loadouts.Remove(value);
             }
+            // Cosmatic Drift Record System-start
+            CDCharacterRecords ??= PlayerProvidedCharacterRecords.DefaultRecords();
+            CDCharacterRecords.EnsureValid();
+            // Cosmatic Drift Record System-end
+            // Far Horizons start
+            if (speciesPrototype.Loadout == null)
+                SpeciesLoadout = null;
+            else
+            {
+                SpeciesLoadout ??= new RoleLoadout(speciesPrototype.Loadout.Value);
+                SpeciesLoadout.Role = speciesPrototype.Loadout.Value;
+
+                var loadout = prototypeManager.Index(SpeciesLoadout.Role);
+                foreach (var (group, _) in SpeciesLoadout.SelectedLoadouts.ShallowClone())
+                    if (!loadout.Groups.Contains(group))
+                        SpeciesLoadout.SelectedLoadouts.Remove(group);
+
+                SpeciesLoadout.SetDefault(this, session, prototypeManager);
+            }
+            // Far Horizons end
         }
 
         /// <summary>
@@ -657,12 +778,12 @@ namespace Content.Shared.Preferences
                 if (!protoManager.TryIndex(trait, out var traitProto))
                     continue;
 
-                // Always valid.
-                if (traitProto.Category == null)
-                {
-                    result.Add(trait);
-                    continue;
-                }
+                // Starlight
+                // if (traitProto.Category == null)
+                // {
+                //     result.Add(trait);
+                //     continue;
+                // }
 
                 // No category so dump it.
                 if (!protoManager.Resolve(traitProto.Category, out var category))
@@ -672,7 +793,7 @@ namespace Content.Shared.Preferences
                 existing += traitProto.Cost;
 
                 // Too expensive.
-                if (existing > category.MaxTraitPoints)
+                if (existing > category.MaxPoints) // Starlight
                     continue;
 
                 groups[category.ID] = existing;
@@ -712,19 +833,21 @@ namespace Content.Shared.Preferences
         public override int GetHashCode()
         {
             var hashCode = new HashCode();
-            hashCode.Add(_jobPriorities);
+            hashCode.Add(_jobPreferences);
             hashCode.Add(_antagPreferences);
             hashCode.Add(_traitPreferences);
             hashCode.Add(_loadouts);
             hashCode.Add(Name);
             hashCode.Add(FlavorText);
             hashCode.Add(Species);
+            hashCode.Add(CustomSpecieName); // Starlight
             hashCode.Add(Age);
             hashCode.Add((int)Sex);
             hashCode.Add((int)Gender);
             hashCode.Add(Appearance);
             hashCode.Add((int)SpawnPriority);
-            hashCode.Add((int)PreferenceUnavailable);
+            hashCode.Add(Enabled);
+            hashCode.Add(Cybernetics); // Starlight
             return hashCode.ToHashCode();
         }
 
@@ -767,52 +890,6 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile Clone()
         {
             return new HumanoidCharacterProfile(this);
-        }
-
-        public DataNode ToDataNode(ISerializationManager? serialization = null, IConfigurationManager? configuration = null)
-        {
-            IoCManager.Resolve(ref serialization);
-            IoCManager.Resolve(ref configuration);
-
-            var export = new HumanoidProfileExportV2()
-            {
-                ForkId = configuration.GetCVar(CVars.BuildForkId),
-                Profile = this,
-            };
-
-            var dataNode = serialization.WriteValue(export, alwaysWrite: true, notNullableOverride: true);
-            return dataNode;
-        }
-
-        public static HumanoidCharacterProfile FromStream(Stream stream, ICommonSession session, ISerializationManager? serialization = null, IConfigurationManager? configuration = null)
-        {
-            IoCManager.Resolve(ref serialization);
-            IoCManager.Resolve(ref configuration);
-
-            using var reader = new StreamReader(stream, EncodingHelpers.UTF8);
-            var yamlStream = new YamlStream();
-            yamlStream.Load(reader);
-
-            var root = yamlStream.Documents[0].RootNode;
-            HumanoidCharacterProfile profile;
-            if (root["version"].Equals(new YamlScalarNode("1")))
-            {
-                var export = serialization.Read<HumanoidProfileExportV1>(root.ToDataNode(), notNullableOverride: true);
-                profile = export.ToV2().Profile;
-            }
-            else if (root["version"].Equals(new YamlScalarNode("2")))
-            {
-                var export = serialization.Read<HumanoidProfileExportV2>(root.ToDataNode(), notNullableOverride: true);
-                profile = export.Profile;
-            }
-            else
-            {
-                throw new InvalidOperationException($"Unknown version {root["version"]}");
-            }
-
-            var collection = IoCManager.Instance;
-            profile.EnsureValid(session, collection!);
-            return profile;
         }
     }
 }
