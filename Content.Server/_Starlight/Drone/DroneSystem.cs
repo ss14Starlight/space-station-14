@@ -21,9 +21,6 @@ public sealed partial class DroneSystem : SharedDroneSystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedContainerSystem _container = default!;
 
-    public override void Initialize()
-        => base.Initialize();
-
     [SubscribeLocalEvent]
     private void OnExamined(EntityUid uid, DroneComponent component, ExaminedEvent args)
         => args.PushMarkup(Loc.GetString("drone-active"));
