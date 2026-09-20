@@ -13,6 +13,7 @@ public sealed partial class ShuttleConsoleSystem
     [Dependency] private SharedGridAccessSystem _gridAccess = default!;
     private readonly Dictionary<EntityUid, (EntityUid SourceGrid, EntityUid TargetGrid)> _remoteGridAccess = new();
 
+    [SubscribeLocalEvent]
     private void OnDroneConsoleStartup(EntityUid uid, DroneConsoleComponent component, ComponentStartup args) => UpdateRemoteGridAccess(uid, component);
     #endregion Starlight
 
