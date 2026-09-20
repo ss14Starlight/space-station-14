@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from cmss13 at commit 9f07112c4bdfa013419907ff68f177c393a7e5bb, modified by Conflee for Starlight and then modified by Rinary for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "building_1",
+      "directions": 4
+    },
+    {
+      "name": "building_2",
+      "directions": 4
+    },
+    {
+      "name": "building_3",
+      "directions": 4
+    },
+    {
+      "name": "building_4",
+      "directions": 4
+    },
+    {
+      "name": "building_5",
+      "directions": 4
+    },
+    {
+      "name": "full_0",
+      "directions": 4
+    },
+    {
+      "name": "full_0_1",
+      "directions": 4
+    },
+    {
+      "name": "full_0_2",
+      "directions": 4
+    },
+    {
+      "name": "full_0_3",
+      "directions": 4
+    },
+    {
+      "name": "full_1",
+      "directions": 4
+    },
+    {
+      "name": "full_1_1",
+      "directions": 4
+    },
+    {
+      "name": "full_1_2",
+      "directions": 4
+    },
+    {
+      "name": "full_1_3",
+      "directions": 4
+    },
+    {
+      "name": "full_2",
+      "directions": 4
+    },
+    {
+      "name": "full_2_1",
+      "directions": 4
+    },
+    {
+      "name": "full_2_2",
+      "directions": 4
+    },
+    {
+      "name": "full_2_3",
+      "directions": 4
+    },
+    {
+      "name": "full_3",
+      "directions": 4
+    },
+    {
+      "name": "full_3_1",
+      "directions": 4
+    },
+    {
+      "name": "full_3_2",
+      "directions": 4
+    },
+    {
+      "name": "full_3_3",
+      "directions": 4
+    }
+  ]
+}

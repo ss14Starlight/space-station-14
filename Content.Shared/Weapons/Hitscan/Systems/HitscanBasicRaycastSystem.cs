@@ -11,8 +11,6 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-
-#region Starlight
 using System.Linq;
 using Content.Shared.Body.Components;
 using Content.Shared.Mech.Components;
@@ -26,7 +24,9 @@ using Content.Shared.Movement.Components;
 using Robust.Shared.Random;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
 using Content.Shared._Starlight.NullSpace.Components;
-#endregion Starlight
+using Content.Shared._Starlight.Weapons.Cover.Components;
+using Content.Shared._Starlight.Weapons.Cover.Systems;
+using Content.Shared.Physics;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
@@ -36,8 +36,9 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private ISharedAdminLogManager _log = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private TagSystem _tag = default!; //Starlight -- arming distance
+    [Dependency] private TagSystem _tag = default!; //Starlight-edit arming distance
     [Dependency] private IRobustRandom _rand = default!; // Starlight-edit
+    [Dependency] private SharedProjectileCoverSystem _cover = default!; // Starlight-edit
 
     private EntityQuery<HitscanBasicVisualsComponent> _visualsQuery;
 
@@ -88,6 +89,9 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
                     continue;
                 if(!(collide.Distance >= ent.Comp.MinDistance || _tag.HasAnyTag(collide.HitEntity, ent.Comp.NotArmedCollideWith)))
                     continue;
+                // Low cover (flipped tables, sandbags) only catches a share of the shots crossing it.
+                if (_cover.PassesOverCover(collide.HitEntity, ent.Owner, shooter, collide.Distance))
+                    continue;
                 if (collide.Distance < pointer - 2f && HasComp<MobMoverComponent>(collide.HitEntity))
                 {
                     if (pointer - collide.Distance > 4f) continue;
@@ -100,6 +104,11 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
                 break;
             }
         }
+
+        // Starlight-start
+        if (TryFindCover(ent, mapCords, args.ShotDirection, shooter, result?.Distance ?? ent.Comp.MaxDistance) is { } cover)
+            result = cover;
+        // Starlight-end
 
         var distanceTried = result?.Distance ?? ent.Comp.MaxDistance;
 
@@ -154,6 +163,36 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
             FireEffects(ent, args.OutputTrace);
         // Starlight end
     }
+
+    #region Starlight
+    private RayCastResults? TryFindCover(
+        Entity<HitscanBasicRaycastComponent> hitscan,
+        MapCoordinates from,
+        Vector2 direction,
+        EntityUid shooter,
+        float maxDistance)
+    {
+        if (maxDistance <= 0f)
+            return null;
+
+        var ray = new CollisionRay(from.Position, direction, (int)CollisionGroup.BulletImpassable);
+
+        foreach (var hit in _physics.IntersectRay(from.MapId, ray, maxDistance, shooter, false))
+        {
+            if (hit.Distance <= 0)
+                continue;
+
+            if (!HasComp<ProjectileCoverComponent>(hit.HitEntity))
+                continue;
+
+            if (_cover.IsShotStopped(hit.HitEntity, hitscan.Owner, shooter, hit.Distance))
+                return hit;
+        }
+
+        return null;
+    }
+
+    #endregion
 
     private HitscanTrace GenerateTraceStep(EntityCoordinates fromCoordinates, float distance, Angle shotAngle, EntityUid? entity = null)// Starlight-edit
     {
