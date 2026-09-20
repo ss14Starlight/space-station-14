@@ -390,14 +390,12 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         }
 
         // Analyzer extensions
-        var vitalsEv = new CollectHealthAnalyzerVitalsEvent();
-        var abnormEv = new CollectHealthAnalyzerAbnormalitiesEvent();
-        RaiseLocalEvent(entity, ref vitalsEv);
-        RaiseLocalEvent(entity, ref abnormEv);
+        var extensionsEv = new CollectHealthAnalyzerExtensionsEvent();
+        RaiseLocalEvent(entity, ref extensionsEv);
 
         var extensions = new HealthAnalyzerExtensions
         {
-            Vitals = vitalsEv.Vitals, Abnormalities = abnormEv.Abnormalities
+            Vitals = extensionsEv.Vitals, Abnormalities = extensionsEv.Abnormalities
         };
 
         // Starlight end

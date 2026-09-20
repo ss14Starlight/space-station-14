@@ -1,22 +1,14 @@
 using Content.Shared._Starlight.Medical.HealthAnalyzer;
-using Content.Shared.MedicalScanner;
 
 namespace Content.Server._Starlight.Medical;
 
-/// <summary>
-/// Raised when the health analyzer collects additional blocks to display in the Vitals Overview section
-/// </summary>
-[ByRefEvent]
-public readonly record struct CollectHealthAnalyzerVitalsEvent()
-{
-    public readonly List<HealthAnalyzerVitalsBlockData> Vitals = new();
-}
 
 /// <summary>
-/// Raised when the health analyzer collects additional information to display in the abnormalities section
+/// Raised when the health analyzer collects additional information to display.
 /// </summary>
 [ByRefEvent]
-public readonly record struct CollectHealthAnalyzerAbnormalitiesEvent()
+public readonly record struct CollectHealthAnalyzerExtensionsEvent()
 {
+    public readonly List<HealthAnalyzerVitalsBlockData> Vitals = new();
     public readonly List<HealthAnalyzerAbnormalityData> Abnormalities = new();
 }

@@ -12,10 +12,10 @@ public sealed partial class RotHealthAnalyzerSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PerishableComponent, CollectHealthAnalyzerVitalsEvent>(OnCollectVitals);
+        SubscribeLocalEvent<PerishableComponent, CollectHealthAnalyzerExtensionsEvent>(OnCollectVitals);
     }
 
-    private void OnCollectVitals(Entity<PerishableComponent> entity, ref CollectHealthAnalyzerVitalsEvent args)
+    private void OnCollectVitals(Entity<PerishableComponent> entity, ref CollectHealthAnalyzerExtensionsEvent args)
     {
         if (!_mobState.IsDead(entity.Owner))
         {
