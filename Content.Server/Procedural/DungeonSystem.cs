@@ -52,9 +52,12 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
 
     private readonly JobQueue _dungeonJobQueue = new(DungeonJobTime);
     private readonly Dictionary<DungeonJob.DungeonJob, CancellationTokenSource> _dungeonJobs = new();
-    private readonly List<DungeonJob.DungeonJob> _finishedDungeonJobs = new(); // Starlight
 
-    internal int TrackedDungeonJobCount => _dungeonJobs.Count; // Starlight
+    #region Starlight
+    private readonly List<DungeonJob.DungeonJob> _finishedDungeonJobs = new();
+
+    internal int TrackedDungeonJobCount => _dungeonJobs.Count;
+    #endregion
 
     public static readonly ProtoId<ContentTileDefinition> FallbackTileId = "FloorSteel";
 
@@ -79,7 +82,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         CleanupFinishedDungeonJobs(); // Starlight: Remove completed jobs instead of retaining them until round restart.
     }
 
-    // Starlight - Begin
+    #region Starlight
     /// <summary>
     /// Removes finished jobs from tracking and disposes their cancellation token sources.
     /// Jobs are buffered first because <see cref="_dungeonJobs"/> cannot be modified while it is enumerated.
@@ -113,13 +116,12 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
 
         _dungeonJobs.Clear();
     }
+    #endregion
 
     private void OnRoundCleanup(RoundRestartCleanupEvent ev)
     {
-        CancelAndDisposeDungeonJobs();
+        CancelAndDisposeDungeonJobs(); // Starlight
     }
-	
-	// Starlight - End
 
     private void OnRoundStart(RoundStartingEvent ev)
     {

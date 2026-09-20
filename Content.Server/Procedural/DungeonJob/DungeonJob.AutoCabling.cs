@@ -47,7 +47,6 @@ public sealed partial class DungeonJob
         if (!ValidateResume())
             return;
 
-        
         if (cableTiles.Count < 2) // Starlight: Zero nodes can run an unbounded planet search, one node doesn't perform routing anyway
             return;
 

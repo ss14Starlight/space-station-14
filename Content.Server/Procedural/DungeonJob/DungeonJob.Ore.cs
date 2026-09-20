@@ -174,7 +174,7 @@ public sealed partial class DungeonJob
                     }
                 }
 
-            // Starlight edit Start: Stop warning when we run out of valid tiles
+                // Starlight edit Start: Stop warning when we run out of valid tiles
                 if (groupSize > 0)
                 {
                     partiallyFilledGroups++;

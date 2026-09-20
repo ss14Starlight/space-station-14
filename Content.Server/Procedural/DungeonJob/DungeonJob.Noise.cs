@@ -147,7 +147,7 @@ public sealed partial class DungeonJob
 
                 await SuspendIfOutOfTime();
                 // Starlight - Begin
-				// This function should only fail if the grid that it was working on is gone (such as exploding before it finishes generating for some reason)
+                // This function should only fail if the grid that it was working on is gone (such as exploding before it finishes generating for some reason)
                 if (!ValidateResume())
                     return Dungeon.Empty;
                 // Starlight - End
