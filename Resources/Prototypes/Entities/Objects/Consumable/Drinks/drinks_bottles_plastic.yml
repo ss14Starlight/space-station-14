@@ -12,14 +12,6 @@
     closeable: true
     closeSound:
       collection: bottleCloseSounds
-  # Starlight-start: Drink bottles are shakeable
-  - type: ShakeSpillable
-    solutionName: drink
-  - type: ReactionMixer
-    mixerType: None
-    reactionTypes:
-    - Shake
-  # Starlight-end
   - type: Sprite
     sprite: Objects/Consumable/Drinks/generic_jug.rsi # fallback to generic plastic jug
   - type: TrashOnSolutionEmpty

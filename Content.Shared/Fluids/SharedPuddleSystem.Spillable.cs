@@ -37,7 +37,7 @@ public abstract partial class SharedPuddleSystem
 
     #region Starlight
 
-    [SubscribeLocalEvent<ShakeSpillableComponent, ShakeEvent>]
+    [SubscribeLocalEvent]
     private void OnShakeSpill(Entity<ShakeSpillableComponent> entity, ref ShakeEvent args)
     {
         if (Openable.IsClosed(entity.Owner)
