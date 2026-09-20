@@ -1,20 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Mime PDAs no longer have the NanoTask and Notekeeper applications installed by default.
-    type: Remove
-  id: 408336
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Central Command fax always tells admins where the fax came from instead of saying "unknown" until it was refreshed.
-    type: Fix
-  id: 408337
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
   - message: Anomalies will no longer spawn multiple things on the same tile (asteroid wall, etc).
     type: Fix
   id: 408338
@@ -2799,4 +2785,18 @@ Entries:
   id: 408735
   time: '2026-09-20T15:16:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6199
+- author: Drakobird, Conf
+  changes:
+  - message: Revenants can now shoot you.
+    type: Add
+  id: 408736
+  time: '2026-09-20T15:53:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6149
+- author: Drakobird, Conf
+  changes:
+  - message: Moved stuff over to partials.
+    type: Fix
+  id: 408737
+  time: '2026-09-20T15:53:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6149
 Order: -1
