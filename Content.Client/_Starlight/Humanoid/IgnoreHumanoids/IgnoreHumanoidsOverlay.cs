@@ -71,7 +71,7 @@ public sealed class IgnoreHumanoidsOverlay : Robust.Client.Graphics.Overlay
                 continue;
 
             if (!spriteQuery.TryGetComponent(effect.Effect, out var effectSprite))
-                 continue;
+                continue;
 
             if (_container.IsEntityInContainer(underlying))
             {
