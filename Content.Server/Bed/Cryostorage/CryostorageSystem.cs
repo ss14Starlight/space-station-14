@@ -28,8 +28,8 @@ using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Content.Server._Starlight.Bed.Cryostorage; # Starlight
-using Content.Shared.Anomaly.Components; # Starlight
+using Content.Server._Starlight.Bed.Cryostorage; // Starlight
+using Content.Shared.Anomaly.Components; // Starlight
 
 namespace Content.Server.Bed.Cryostorage;
 
