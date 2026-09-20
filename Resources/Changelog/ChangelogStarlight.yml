@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: The basic operative bundle now contains an esword, instead of a viper magazine and agent ID card.
-    type: Tweak
-  id: 408379
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
   - message: Changed the EMP Implanter's uplink icon so it is less easily confused with the Scram Implanter's.
     type: Tweak
   id: 408380
@@ -2799,4 +2792,11 @@ Entries:
   id: 408778
   time: '2026-09-20T21:50:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6150
+- author: Light
+  changes:
+  - message: Added Classical Sign Language, a distinct sign language that needs 2 language points.
+    type: Add
+  id: 408779
+  time: '2026-09-20T22:27:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6254
 Order: -1
