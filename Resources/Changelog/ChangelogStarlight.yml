@@ -1,118 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Adjusted the Mute Toxin chemical reaction recipe to no longer require uranium.
-    type: Tweak
-  id: 408347
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Rat King and Rat Servants now have partial shock resistance, preventing electrified doors from stunning them while still dealing reduced damage.
-    type: Tweak
-  id: 408348
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Volumetric devices now respect their pressure limits more.
-    type: Fix
-  id: 408349
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Firelocks now automatically re-close if they have a danger signal and they're powered.
-    type: Fix
-  id: 408350
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Ammonia and Nitrous Oxide now do more damage according to the concentration of gas in the atmosphere.
-    type: Tweak
-  id: 408351
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Fixed containment fields dying even when one side still had power.
-    type: Fix
-  id: 408352
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Closed the legal loophole which technically allowed engineers to open-carry the syndicate fire axe.
-    type: Fix
-  id: 408353
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Vox can now wag their tails.
-    type: Add
-  id: 408354
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Added the ability for Vulps to wag their tails.
-    type: Add
-  id: 408355
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Vulpkanin now have a yawn sound.
-    type: Add
-  id: 408356
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Vulpkanins now have sulfur-based blood and unique organ sprites.
-    type: Add
-  id: 408357
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: The sneeze emote has been readded.
-    type: Add
-  id: 408358
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Added sprites for holding practice disabler in both hands.
-    type: Add
-  id: 408359
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Horizonal and vertical steel slat floor tiles, as well as their dark and white variants, can now be created with a Cutter lathe.
-    type: Add
-  id: 408360
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Names for the diona, reptilian, and vox Urists have been tweaked to be more consistent with other Urists.
-    type: Tweak
-  id: 408361
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: The skeleton Urist is now named "Urist McBones".
-    type: Tweak
-  id: 408362
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
   - message: Regular bots are now repaired gradually (short incremental doafters) instead of via one long doafter, for parity with borgs.
     type: Tweak
   id: 408363
@@ -2799,4 +2687,116 @@ Entries:
   id: 408746
   time: '2026-09-20T17:28:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6240
+- author: Conflee
+  changes:
+  - message: Dragon health thresholds lowered slightly to compensate for their added armor. They should die slower than pre-armor still if you use the wrong bullet types, but at the same speed as before if you do use the right bullet types.
+    type: Tweak
+  id: 408747
+  time: '2026-09-20T18:04:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6225
+- author: Conflee
+  changes:
+  - message: Xenoborg Heavy now died/breaks at 400 instead of 450- still a lot more than other Xenoborgs, but it should make securing a full kill and removing them from combat more possible if you do manage to down one.
+    type: Tweak
+  id: 408748
+  time: '2026-09-20T18:04:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6225
+- author: Conflee
+  changes:
+  - message: Removed Holo Carps from Dragon Rift pools. Having 5-10 Carps attacking you, with 1-2 of them randomly being literally immune to bullets and thus always able to get free hits on you while you are shooting the rest, felt bad to fight and was just kind of lame. Cool idea, but didn't work.
+    type: Tweak
+  id: 408749
+  time: '2026-09-20T18:04:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6225
+- author: Musiklie
+  changes:
+  - message: Reduced the amount of chems that artifacts produced to a more reasonable level.
+    type: Tweak
+  id: 408750
+  time: '2026-09-20T18:04:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6218
+- author: Musiklie
+  changes:
+  - message: Reduced the rate certain chems are produced from artifacts to more reasonable levels.
+    type: Tweak
+  id: 408751
+  time: '2026-09-20T18:04:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6218
+- author: Musiklie
+  changes:
+  - message: 'Chem foam is now guaranteed to lose a durability (Min: 0 -> 1) but the max loss was reduced by 1 to compromise (Max: 5 ->4).'
+    type: Tweak
+  id: 408752
+  time: '2026-09-20T18:04:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6218
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added nct classrooms.
+    type: Add
+  id: 408753
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added nct teaching vault.
+    type: Add
+  id: 408754
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added assistant manager near hop.
+    type: Add
+  id: 408755
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added a laundry room near courtroom.
+    type: Add
+  id: 408756
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added a washing machine to security, science storage room (xenobiology), sauna, bathroom near engie, morgue.
+    type: Add
+  id: 408757
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Removed three zookeeper rooms to make way for a massive classroom.
+    type: Remove
+  id: 408758
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Removed one of the two sec techs from security breakroom.
+    type: Remove
+  id: 408759
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: SlightlyToastedCheesecake
+  changes:
+  - message: (Hotel) Added all departamental mailboxes.
+    type: Add
+  id: 408760
+  time: '2026-09-20T19:05:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6227
+- author: SlightlyToastedCheesecake
+  changes:
+  - message: (Hotel) Added a laundry room to the east of the main hallway.
+    type: Add
+  id: 408761
+  time: '2026-09-20T19:05:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6227
+- author: SlightlyToastedCheesecake
+  changes:
+  - message: (Hotel) Reworked the mining break room to include the old salvage room.
+    type: Add
+  id: 408762
+  time: '2026-09-20T19:05:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6227
 Order: -1

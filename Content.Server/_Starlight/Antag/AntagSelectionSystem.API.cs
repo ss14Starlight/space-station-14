@@ -7,6 +7,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Preferences;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Antag;
 
 public sealed partial class AntagSelectionSystem
