@@ -91,6 +91,22 @@
       sprite: _Starlight/Objects/Misc/stamps.rsi
       state: stamp-assistantmanager
 
+# Assistant stamp
+- type: entity
+  name: assistant's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampAssistant
+  description: A rubber stamp for stamping important documents. The greenest of the green. The assistant's assistant. The assistant to the assistant. When you see this stamp, things are about to get real. You are about to get stamped.
+  suffix: DO NOT MAP
+  components:
+    - type: Stamp
+      stampedName: "Assistant"
+      stampedColor: "#61c732"
+      stampState: "paper_stamp-assistant"
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/stamps.rsi
+      state: stamp-assistant
+
 # CC Division Stamps
 - type: entity
   name: central administration division rubber stamp
@@ -507,3 +523,18 @@
     - type: Sprite
       state: stamp-hop
 
+# ITG stamp
+- type: entity
+  name: ITG stamp
+  parent: RubberStampBase
+  id: RubberStampITG
+  description: A rubber stamp for stamping important documents.
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: Interstellar Trade Guild
+    stampedColor: "#b3844b"
+    stampState: "paper_stamp-qm"
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi
+    state: stamp-senttoATS
