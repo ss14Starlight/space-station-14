@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Security bio suit now hides tails again.
-    type: Fix
-  id: 408339
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
   - message: DNA scrambling properly.
     type: Fix
   id: 408340
@@ -2799,4 +2792,11 @@ Entries:
   id: 408738
   time: '2026-09-20T16:42:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6208
+- author: Citrea
+  changes:
+  - message: Pilebunker legs now get disabled when cybernetics are disrupted.
+    type: Fix
+  id: 408739
+  time: '2026-09-20T17:03:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6165
 Order: -1
