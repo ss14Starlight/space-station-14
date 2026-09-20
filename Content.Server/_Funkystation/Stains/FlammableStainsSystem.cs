@@ -5,17 +5,19 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared._Funkystation.Stains.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
+using Content.Shared.Inventory.Events;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Content.Server.Administration.Logs;
 using Content.Shared._Funkystation.CCVar;
+
+// Starlight, we've heavily rewritten this to try and make it update less often...
 
 namespace Content.Server._Funkystation.Stains;
 
@@ -30,22 +32,6 @@ public sealed partial class FlammableStainsSystem : EntitySystem
     [Dependency] private IConfigurationManager _cfg = null!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
 
-    // Fraction of a stain's flammable reagents consumed per second while on fire
-    private const float StainBurnRatePerSecond = 0.2f;
-
-    #region Starlight
-    private const float UpdateInterval = 0.5f;
-    private float _updateAccumulator;
-    #endregion
-
-    private float _stainStackMultiplier = 1.0f;
-
-    private readonly HashSet<EntityUid> _flammableStains = [];
-
-    private readonly List<EntityUid> _stainBuffer = [];
-    private readonly List<EntityUid> _toPrune = [];
-    private readonly HashSet<EntityUid> _checkedWearers = [];
-
     [Dependency] private EntityQuery<FlammableComponent> _flammableQuery;
     [Dependency] private EntityQuery<InventoryComponent> _inventoryQuery;
     [Dependency] private EntityQuery<StainableComponent> _stainableQuery;
@@ -56,25 +42,26 @@ public sealed partial class FlammableStainsSystem : EntitySystem
         base.Initialize();
 
         Subs.CVar(_cfg, ReagentFireCVars.StainFireStackMultiplier, value => _stainStackMultiplier = value, true);
+
+        SubscribeLocalEvent<StainableComponent, MapInitEvent>(OnStainMapInit);
+        SubscribeLocalEvent<StainableComponent, ComponentShutdown>(OnStainShutdown);
+        SubscribeLocalEvent<StainableComponent, GotEquippedEvent>(OnStainEquipped);
+        SubscribeLocalEvent<InventoryComponent, IgnitedEvent>(OnWearerIgnited);
+        SubscribeLocalEvent<InventoryComponent, ExtinguishedEvent>(OnWearerExtinguished);
+        SubscribeLocalEvent<InventoryComponent, ComponentShutdown>(OnInventoryShutdown);
     }
 
     [SubscribeLocalEvent]
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
-        => _flammableStains.Clear();
-
-    /// <summary>
-    /// Called when a stainable item gets stained, starts tracking it if the stain can burn.
-    /// </summary>
-    public void OnStained(EntityUid item, Solution stain)
     {
-        if (stain.GetSolutionFlammability(_prototypeManager) > 0)
-            _flammableStains.Add(item);
+        _stainFlammability.Clear();
+        _burningWearers.Clear();
     }
 
     [SubscribeLocalEvent(before: [typeof(FlammableSystem)])]
     private void OnTileFire(Entity<InventoryComponent> ent, ref TileFireEvent args)
     {
-        if (_flammableStains.Count == 0)
+        if (_stainFlammability.Count == 0)
             return;
 
         // Don't keep adding fire stacks every tick if they're already burning...
@@ -93,27 +80,21 @@ public sealed partial class FlammableStainsSystem : EntitySystem
     [SubscribeLocalEvent]
     private void OnTileExposed(Entity<GridAtmosphereComponent> ent, ref TileExposedEvent args)
     {
-        if (_flammableStains.Count == 0)
+        if (_stainFlammability.Count == 0)
             return;
 
-        _checkedWearers.Clear();
-        _stainBuffer.Clear();
-        _stainBuffer.AddRange(_flammableStains);
+        _tileEntities.Clear();
+        _lookup.GetLocalEntitiesIntersecting(ent.Owner, args.Tile, _tileEntities, 0f);
 
-        // Instead of looking up everything on the tile, check where the few flammable stains are.
-        foreach (var item in _stainBuffer)
+        // A hotspot is local. Inspect this tile instead of every stained item in the round.
+        foreach (var wearer in _tileEntities)
         {
-            if (!IsStillFlammable(item))
+            if (!_inventoryQuery.TryComp(wearer, out var inv)
+                || !_flammableQuery.TryComp(wearer, out var flammable)
+                || flammable.OnFire)
             {
-                _toPrune.Add(item);
                 continue;
             }
-
-            if (!TryGetWearer(item, out var wearer, out var inv, out _) || !_checkedWearers.Add(wearer))
-                continue;
-
-            if (!_flammableQuery.TryComp(wearer, out var flammable) || flammable.OnFire)
-                continue;
 
             // Must be standing on the exposed tile, not stuffed in a locker on it.
             var wearerXform = Transform(wearer);
@@ -141,15 +122,13 @@ public sealed partial class FlammableStainsSystem : EntitySystem
             _adminLogger.Add(LogType.Flammable, LogImpact.High,
                 $"{ToPrettyString(wearer):entity} was ignited by their flammable stains ({reagents}) reacting to a hotspot (Igniter: {ToPrettyString(igniter):entity}).");
         }
-
-        PruneStains();
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        if (_flammableStains.Count == 0)
+        if (_burningWearers.Count == 0)
             return;
 
         // Starlight-start: burning is rate-based, so avoid walking the tracked set every tick.
@@ -161,53 +140,47 @@ public sealed partial class FlammableStainsSystem : EntitySystem
         _updateAccumulator = 0f;
         // Starlight-end
 
-        _stainBuffer.Clear();
-        _stainBuffer.AddRange(_flammableStains);
+        _wearerBuffer.Clear();
+        _wearerBuffer.AddRange(_burningWearers);
 
-        // Actively burn off stains while the wearer is on fire, same as puddles.
-        foreach (var item in _stainBuffer)
+        // Scan each burning inventory once. Blocked slots are also calculated only once per wearer.
+        foreach (var wearer in _wearerBuffer)
         {
-            // Starlight-start: prune stale entries even while they are not being worn, and reuse the solution below.
-            if (TerminatingOrDeleted(item)
-                || !_stainableQuery.TryComp(item, out var stain)
-                || !_solution.TryGetSolution(item, stain.SolutionName, out var soln, out var solution)
-                || solution.GetSolutionFlammability(_prototypeManager) <= 0)
+            if (!_inventoryQuery.TryComp(wearer, out var inv)
+                || !_flammableQuery.TryComp(wearer, out var flammable)
+                || !flammable.OnFire)
             {
-                _toPrune.Add(item);
+                _burningWearers.Remove(wearer);
                 continue;
             }
-            // Starlight-end
 
-            if (!TryGetWearer(item, out var wearer, out var inv, out var slot))
-                continue;
+            var blocked = GetBlockedSlots(wearer, inv);
+            var hasFlammableStain = false;
 
-            if (!_flammableQuery.TryComp(wearer, out var flammable) || !flammable.OnFire)
-                continue;
+            foreach (var slot in inv.Slots)
+            {
+                if (!_inventory.TryGetSlotEntity(wearer, slot.Name, out var item, inv)
+                    || !_stainFlammability.ContainsKey(item.Value))
+                {
+                    continue;
+                }
 
-            if ((GetBlockedSlots(wearer, inv) & slot.SlotFlags) != 0)
-                continue;
+                hasFlammableStain = true;
 
-            _solution.BurnFlammableReagents(soln.Value, StainBurnRatePerSecond * burnTime); // Starlight
+                if ((blocked & slot.SlotFlags) != 0
+                    || !_stainableQuery.TryComp(item, out var stain)
+                    || !_solution.TryGetSolution(item.Value, stain.SolutionName, out var soln))
+                {
+                    continue;
+                }
+
+                _solution.BurnFlammableReagents(soln.Value, StainBurnRatePerSecond * burnTime);
+            }
+
+            if (!hasFlammableStain)
+                _burningWearers.Remove(wearer);
         }
-
-        PruneStains();
     }
-
-    private void PruneStains()
-    {
-        foreach (var item in _toPrune)
-        {
-            _flammableStains.Remove(item);
-        }
-
-        _toPrune.Clear();
-    }
-
-    private bool IsStillFlammable(EntityUid item)
-        => !TerminatingOrDeleted(item)
-            && _stainableQuery.TryComp(item, out var stain)
-            && _solution.TryGetSolution(item, stain.SolutionName, out _, out var solution)
-            && solution.GetSolutionFlammability(_prototypeManager) > 0;
 
     /// <summary>
     /// Gets the entity wearing this item in one of its inventory slots.
@@ -259,11 +232,8 @@ public sealed partial class FlammableStainsSystem : EntitySystem
             if (!_inventory.TryGetSlotEntity(uid, slot.Name, out var slotEnt, inv))
                 continue;
 
-            if (_stainableQuery.TryComp(slotEnt, out var stain) &&
-                _solution.TryGetSolution(slotEnt.Value, stain.SolutionName, out _, out var solution))
-            {
-                total += solution.GetSolutionFlammability(_prototypeManager);
-            }
+            if (_stainFlammability.TryGetValue(slotEnt.Value, out var flammability))
+                total += flammability;
         }
         return total;
     }

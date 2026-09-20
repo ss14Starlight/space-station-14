@@ -135,3 +135,13 @@
   - type: Battery
     maxCharge: 200000
     startingCharge: 200000
+
+- type: entity
+  parent: BaseAPC
+  categories: [ HideSpawnMenu ]
+  id: APCITG
+  name: ITG APC
+  description: A control terminal for local electronics, this one is branded with the guild insignia.
+  components:
+  - type: AccessReader
+    access: [["Salvage"]]
