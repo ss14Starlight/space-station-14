@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Ghosts appearances will now change depending on their cause of death.
-    type: Add
-  id: 408331
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
   - message: Mobs that don't need internals no longer have the internals indicator.
     type: Tweak
   id: 408332
@@ -2799,4 +2792,11 @@ Entries:
   id: 408730
   time: '2026-09-20T12:55:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6230
+- author: Light
+  changes:
+  - message: Reworked the health analyzer UI.
+    type: Tweak
+  id: 408731
+  time: '2026-09-20T15:16:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6066
 Order: -1
