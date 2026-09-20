@@ -690,6 +690,10 @@
         volume: -6
     Salute:
       collection: Salutes
+    Blink:
+      collection: Blinks
+      params:
+        variation: 0.125
 
 - type: emoteSounds
   id: MaleRodentia
@@ -761,6 +765,10 @@
       path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
       params:
         pitch: 1.45
+    Blink:
+      collection: Blinks
+      params:
+        variation: 0.125
 
 - type: emoteSounds
   id: LagomorphBodyEmotes
@@ -777,6 +785,10 @@
         volume: -6
     Salute:
       collection: Salutes
+    Blink:
+      collection: Blinks
+      params:
+        variation: 0.125
 
 - type: emoteSounds
   id: Monkey

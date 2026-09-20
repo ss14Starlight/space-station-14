@@ -41,6 +41,7 @@
     - MobSpiderlingTerrorGray
     intervalSeconds: 90
     despawnWhenDone: true
+    allowContainerPlacement: true
 
 - type: entity
   parent: EggSpider
@@ -54,6 +55,7 @@
     - MobSpiderlingTerrorGreen
     intervalSeconds: 90
     despawnWhenDone: true
+    allowContainerPlacement: true
 
 - type: entity
   parent: EggSpider
@@ -67,6 +69,7 @@
     - MobSpiderlingTerrorRed
     intervalSeconds: 90
     despawnWhenDone: true
+    allowContainerPlacement: true
 
 - type: entity
   parent: EggSpider
@@ -77,3 +80,4 @@
     - MobGiantSpider
     intervalSeconds: 60
     despawnWhenDone: true
+    allowContainerPlacement: true
