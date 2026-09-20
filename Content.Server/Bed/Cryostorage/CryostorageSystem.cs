@@ -222,7 +222,7 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
             }
         }
 
-        RemComp<AnomalyComponent>(ent.Owner); # Starlight - kill anomaly infection when host cryosleep
+        RemComp<AnomalyComponent>(ent.Owner); // Starlight - kill anomaly infection when host cryosleep
         comp.AllowReEnteringBody = false;
         _transform.SetParent(ent, PausedMap.Value);
         cryostorageComponent.StoredPlayers.Add(ent);
