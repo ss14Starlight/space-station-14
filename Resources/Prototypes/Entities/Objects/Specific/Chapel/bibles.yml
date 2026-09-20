@@ -96,7 +96,7 @@
         Caustic: 50
     damageUnholy: ## What damage is dealt when a chaplain hits an unholy creature
       types:
-        types: 20
+        Cellular: 20 # Starlight
     failChance: 0
     locPrefix: "necro"
     healSound: "/Audio/Effects/lightburn.ogg"

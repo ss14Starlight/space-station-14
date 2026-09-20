@@ -148,7 +148,9 @@
     damage:
       types:
         Shock: 5
-        Brute: 2
+        Blunt: 0.66
+        Piercing: 0.66
+        Slash: 0.66
   - type: StaminaDamageOnHit
     damage: 20
   - type: Solution
