@@ -39,19 +39,6 @@
 
 # Starlight-start
 - type: loadout
-  id: PlushieLizardJobAssistant
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobAssistant
-      time: 36000 # 10hr
-  storage:
-    back:
-    - PlushieLizardJobAssistant
-  groupBy: "wehzards"
-
-- type: loadout
   id: RubberStampAssistant
   effects:
   - !type:JobRequirementLoadoutEffect
