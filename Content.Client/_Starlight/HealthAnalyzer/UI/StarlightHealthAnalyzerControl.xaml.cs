@@ -86,7 +86,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             deathValue = threshold.GetValueOrDefault(200);
         }
 
-        IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
         var sortedGroups = damageable.DamagePerGroup
             .OrderBy(g => HealthAnalyzerFormatting.GetDamageGroupSortKey(g.Key))
             .ThenBy(g => g.Key)
@@ -212,7 +212,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
     }
 
     private void DrawDamageBreakdown(Dictionary<string, FixedPoint2> groups,
-        IReadOnlyDictionary<string, FixedPoint2> damageDict, FixedPoint2 deathValue)
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damageDict, FixedPoint2 deathValue)
     {
         GroupsContainer.RemoveAllChildren();
 
@@ -230,7 +230,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
     }
 
     private BoxContainer GenerateDamageCategoryBlock(string categoryId, FixedPoint2 damageValue,
-        IReadOnlyDictionary<string, FixedPoint2> damageDict, FixedPoint2 deathValue)
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damageDict, FixedPoint2 deathValue)
     {
         var block = new BoxContainer
         {
