@@ -66,6 +66,11 @@ public sealed partial class BlockingSystem
     {
         if (!args.Activated && component.IsBlocking && TryComp<BlockingUserComponent>(component.User, out var blockingUserComponent))
             UserStopBlocking(Transform(uid).ParentUid, blockingUserComponent);
+
+        // Starlight-start
+        if (component.User is { } user)
+            _shieldBrace.RefreshHeldGuns(user);
+        // Starlight-end
     }
     #endregion
 
