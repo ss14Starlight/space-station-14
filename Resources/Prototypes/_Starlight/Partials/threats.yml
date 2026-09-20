@@ -3,7 +3,7 @@
   id: NinjaThreats
   weights:
     Dragon: 1
-    !Remove Revenant: 1 # Currently uninteresting as a callable "threat" for ninjas
+    Revenant: 0.25
     DisasterSyndies: 0.75
     LoneOp: 0.5
     StrikeTeam: 0.25
