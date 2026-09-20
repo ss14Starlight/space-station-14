@@ -45,6 +45,10 @@ public sealed partial class DungeonJob
                 }
 
                 await SuspendDungeon();
+                // Starlight - Begin
+                if (!ValidateResume())
+                    return;
+                // Starlight - End
             }
 
             _maps.SetTiles(_gridUid, _grid, replacements);

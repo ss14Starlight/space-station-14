@@ -174,6 +174,11 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         var dungeons = await GetDungeons(position, _gen, _gen.Layers, reservedTiles, _seed, random);
         // To make it slightly more deterministic treat this RNG as separate ig.
 
+        // Starlight - Begin
+        if (!ValidateResume())
+            return dungeons;
+        // Starlight - End
+
         // Post-processing after finishing loading.
         if (_targetCoordinates != null)
         {

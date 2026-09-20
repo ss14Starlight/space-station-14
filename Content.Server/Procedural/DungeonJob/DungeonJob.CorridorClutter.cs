@@ -17,6 +17,13 @@ public sealed partial class DungeonJob
         var count = (int) Math.Ceiling(dungeon.CorridorTiles.Count * gen.Chance);
         var contents = _prototype.Index(gen.Contents);
 
+        // Starlight - Begin
+        // Blocked tiles used to `continue` without decrementing or yielding, which can busy-loop
+        // forever when every corridor tile is occupied. Cap consecutive rejects from the initial size.
+        var consecutiveBlocked = 0;
+        var maxConsecutiveBlocked = Math.Max(100, dungeon.CorridorTiles.Count * 10);
+        // Starlight - End
+
         while (count > 0)
         {
             var tile = random.Pick(dungeon.CorridorTiles);
@@ -38,12 +45,35 @@ public sealed partial class DungeonJob
             }
 
             if (blocked)
+            {
+                // Starlight - Begin
+                consecutiveBlocked++;
+                await SuspendIfOutOfTime();
+                if (!ValidateResume())
+                    return;
+
+                if (consecutiveBlocked >= maxConsecutiveBlocked)
+                {
+                    _sawmill.Warning(
+                        $"CorridorClutterDunGen aborted after {consecutiveBlocked} consecutive blocked tiles on {_entManager.ToPrettyString(_gridUid)}");
+                    return;
+                }
+                // Starlight - End
                 continue;
+            }
 
             count--;
+            consecutiveBlocked = 0; // Starlight
 
             if (reservedTiles.Contains(tile))
+            {
+                // Starlight - Begin
+                await SuspendIfOutOfTime();
+                if (!ValidateResume())
+                    return;
+                // Starlight - End
                 continue;
+            }
 
             var protos = _entTable.GetSpawns(contents, random);
             var coords = _maps.ToCenterCoordinates(_gridUid, tile, _grid);
