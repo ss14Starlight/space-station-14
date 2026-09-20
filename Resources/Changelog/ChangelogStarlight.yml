@@ -1,20 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Regular bots are now repaired gradually (short incremental doafters) instead of via one long doafter, for parity with borgs.
-    type: Tweak
-  id: 408363
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Changing your name with the Identity Mask implant now automatically updates your Agent ID!
-    type: Tweak
-  id: 408364
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
   - message: Station AI is now able to read loose papers and envelopes.
     type: Tweak
   id: 408365
@@ -2799,4 +2785,18 @@ Entries:
   id: 408762
   time: '2026-09-20T19:05:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6227
+- author: Caws
+  changes:
+  - message: "New emote: \"blinks\". Available for all species via the emote wheel under the 'General' category, or by manually typing `@blinks` / `@blinked`."
+    type: Add
+  id: 408763
+  time: '2026-09-20T19:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6235
+- author: Caws
+  changes:
+  - message: Fixed missing attributions for Lagomorph emote icons.
+    type: Fix
+  id: 408764
+  time: '2026-09-20T19:46:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6235
 Order: -1
