@@ -309,7 +309,7 @@
       - id: Flare
       - id: Beaker
       - id: ClothingMaskGas
-      - id: ClothingMaskBreath
+      - id: ClothingMaskGasHalf #Starlight
       - id: DoorElectronics
       - id: APCElectronics
       - id: InflatableWallStack5

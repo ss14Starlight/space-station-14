@@ -57,6 +57,10 @@
       prob: 1
   - type: DynamicRuleCost
     cost: 150 # It can have less since it's not *as* bad as the other two
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    presets:
+    - Survival
 
 # Dynamic Kessler Syndrome
 - type: entity
@@ -73,6 +77,12 @@
       prob: 1
   - type: DynamicRuleCost
     cost: 200
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    presets:
+    - KesslerSyndrome
+    - Zombieteors
+    - Survival
 
 # It's literally just ShitStation.
 - type: entity
@@ -101,6 +111,10 @@
       prob: 1
   - type: DynamicRuleCost
     cost: 150 # Lowering this, since BasicRoundstartVariation doesn't do much in Dynamic due to how Dynamic functions.
+  - type: DynamicRuleCooldown
+    cooldown: 2
+    presets:
+    - ShitStation
 
 - type: entity
   parent: BaseGameRule
