@@ -277,7 +277,7 @@
   - type: ContentEye
     maxZoom: 1.2, 1.2
   - type: Item
-    AllowDirectHandPickup: false
+    allowDirectHandPickup: false
   - type: RestrictNestingItem
     doAfter: 2.5
   - type: InteractionPopup
