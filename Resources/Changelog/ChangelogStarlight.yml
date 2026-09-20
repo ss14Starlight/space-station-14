@@ -1,123 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: All high-pop maps (>150 maxPlayers) have had their 'latejoin' slots folded into their 'roundstart' slots in order to prevent people getting job slots based on whoever clicks the fastest on Observe -> New Life.
-    type: Tweak
-  id: 408330
-  time: '2026-09-06T19:51:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6021
-- author: Wizden Team
-  changes:
-  - message: Ghosts appearances will now change depending on their cause of death.
-    type: Add
-  id: 408331
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Mobs that don't need internals no longer have the internals indicator.
-    type: Tweak
-  id: 408332
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Emitter toggle logs now show if the emitter was toggled on or off.
-    type: Tweak
-  id: 408333
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: The Syndi Law Circuit is now a kit containing the lawboard and and a Syndicate ID.
-    type: Tweak
-  id: 408334
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: The Syndicate ID now uses the Syndicate icon instead of the blank icon.
-    type: Tweak
-  id: 408335
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Mime PDAs no longer have the NanoTask and Notekeeper applications installed by default.
-    type: Remove
-  id: 408336
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Central Command fax always tells admins where the fax came from instead of saying "unknown" until it was refreshed.
-    type: Fix
-  id: 408337
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Anomalies will no longer spawn multiple things on the same tile (asteroid wall, etc).
-    type: Fix
-  id: 408338
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Security bio suit now hides tails again.
-    type: Fix
-  id: 408339
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: DNA scrambling properly.
-    type: Fix
-  id: 408340
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Dragons now heal when eating people again.
-    type: Fix
-  id: 408341
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Logging immovablerodsystem collisions for admin panel.
-    type: Add
-  id: 408342
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Added functionality to the Optical Thermal Scanner. The eyewear will now overlay tiles with a solid color corresponding to its temperature if it's not room temperature, as well as if a tile is pure vacuum.
-    type: Add
-  id: 408343
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Chaplains can now choose a custom name.
-    type: Add
-  id: 408344
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Emitters now alert the Engineering radio channel if they are destroyed, deconstructed, lose power or are unlocked, when powered.
-    type: Add
-  id: 408345
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Stackables items now merge when stopping on/after a conveyor belt.
-    type: Add
-  id: 408346
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
 - author: Wizden Team
   changes:
   - message: Adjusted the Mute Toxin chemical reaction recipe to no longer require uranium.
@@ -2799,4 +2680,123 @@ Entries:
   id: 408729
   time: '2026-09-19T16:43:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6157
+- author: Johnny
+  changes:
+  - message: Added a soviet mech (admeme only currently).
+    type: Add
+  id: 408730
+  time: '2026-09-20T12:55:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6230
+- author: Light
+  changes:
+  - message: Reworked the health analyzer UI.
+    type: Tweak
+  id: 408731
+  time: '2026-09-20T15:16:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6066
+- author: STARLIGHT TEAM
+  changes:
+  - message: Plushies now squish when you hug someone wearing one as clothing.
+    type: Add
+  id: 408732
+  time: '2026-09-20T15:16:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6204
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed announcement chimes playing twice.
+    type: Fix
+  id: 408733
+  time: '2026-09-20T15:16:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6199
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed meteor swarm announcement chimes possibly being extremely delayed depending on the TTS queue.
+    type: Fix
+  id: 408734
+  time: '2026-09-20T15:16:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6199
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed war declaration announcements sometimes being sent twice and playing overlapping music tracks.
+    type: Fix
+  id: 408735
+  time: '2026-09-20T15:16:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6199
+- author: Drakobird, Conf
+  changes:
+  - message: Revenants can now shoot you.
+    type: Add
+  id: 408736
+  time: '2026-09-20T15:53:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6149
+- author: Drakobird, Conf
+  changes:
+  - message: Moved stuff over to partials.
+    type: Fix
+  id: 408737
+  time: '2026-09-20T15:53:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6149
+- author: Citrea
+  changes:
+  - message: Dolls now drop their shell when zombified, making them normally vulnerable to bullets. As all zombies, they are still resistant to bullets, just not invincible.
+    type: Tweak
+  id: 408738
+  time: '2026-09-20T16:42:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6208
+- author: Citrea
+  changes:
+  - message: Pilebunker legs now get disabled when cybernetics are disrupted.
+    type: Fix
+  id: 408739
+  time: '2026-09-20T17:03:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6165
+- author: Swonki, Hanz
+  changes:
+  - message: SPKA, Chain Accelerator, Regulator PKA's.
+    type: Add
+  id: 408740
+  time: '2026-09-20T17:28:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6064
+- author: Swonki, Hanz
+  changes:
+  - message: ITG Admin content.
+    type: Add
+  id: 408741
+  time: '2026-09-20T17:28:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6064
+- author: Swonki, Hanz
+  changes:
+  - message: ITG Surplus Crates in Salv Ticket Vendor.
+    type: Add
+  id: 408742
+  time: '2026-09-20T17:28:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6064
+- author: Swonki, Hanz
+  changes:
+  - message: Salvage APC for mapping.
+    type: Add
+  id: 408743
+  time: '2026-09-20T17:28:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6064
+- author: Swonki, Hanz
+  changes:
+  - message: Salvage bounties give more tickets, very little cash. Tickets can be converted into spesos.
+    type: Tweak
+  id: 408744
+  time: '2026-09-20T17:28:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6064
+- author: Swonki, Hanz
+  changes:
+  - message: light SOP changes, salvage are no longer required to be on the ats during red alert.
+    type: Tweak
+  id: 408745
+  time: '2026-09-20T17:28:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6064
+- author: wonderfulnewworld
+  changes:
+  - message: Reagent fires and flammable stains should cause a lot less lag now.
+    type: Tweak
+  id: 408746
+  time: '2026-09-20T17:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6240
 Order: -1

@@ -79,7 +79,11 @@ public struct ZoneRegion
 
     public short MarkerPriority;
 
-    public bool MarkerConflict;
+    public bool MarkerStrong;
+
+    public int MarkerTiles;
+
+    public bool MarkerStale;
 
     public int TileCount;
 
