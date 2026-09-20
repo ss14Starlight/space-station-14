@@ -494,7 +494,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
             progressBar.Value = data.BarRatio;
 
-            container.SeparationOverride = 8;
+            container.SeparationOverride = 4;
             container.AddChild(progressBar);
         }
 
