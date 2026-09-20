@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Station AI is now able to read loose papers and envelopes.
-    type: Tweak
-  id: 408365
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
   - message: Warfarin is now named heparin.
     type: Fix
   id: 408366
@@ -2799,4 +2792,11 @@ Entries:
   id: 408764
   time: '2026-09-20T19:46:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6235
+- author: Caws
+  changes:
+  - message: The new NT Airlock sprites will now display properly.
+    type: Fix
+  id: 408765
+  time: '2026-09-20T19:46:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6236
 Order: -1
