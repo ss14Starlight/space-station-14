@@ -75,7 +75,7 @@
     requireSpeech: false
     requireSound: false
     requireHands: true
-    color: "#dddddd"
+    color: "#e2cbb8"
     messageWrapOverrides:
       Speak: chat-sign-language-message-wrap
       Whisper: chat-sign-language-whisper-wrap
