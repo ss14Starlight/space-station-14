@@ -39,6 +39,12 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<string> MeleeSight =
         CVarDef.Create("ui.melee_sight", "MeleeSight", CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Using a gun in hand wields it first and racks the bolt on the second press, instead of the other way around.
+    /// </summary>
+    public static readonly CVarDef<bool> WieldBeforeRack =
+        CVarDef.Create("ui.wield_before_rack", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<bool> RangedSightRotation =
         CVarDef.Create("ui.ranged_sight_rotation", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 

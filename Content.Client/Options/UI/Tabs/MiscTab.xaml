@@ -12,6 +12,11 @@
                 <!-- Starlight Start -->
                 <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-starlight'}" />
                 <CheckBox Name="AutoPunctuate" Text="{Loc 'ui-options-auto-punctuate'}" Margin="0 0 0 5" />
+                <CheckBox
+                    Name="WieldBeforeRack"
+                    Text="{Loc 'ui-options-wield-before-rack'}"
+                    ToolTip="{Loc 'ui-options-wield-before-rack-tooltip'}"
+                    Margin="0 0 0 5" />
                 <!-- Starlight End -->
                 <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-general-discord'}" />
                 <CheckBox Name="DiscordRich" Text="{Loc 'ui-options-discordrich'}" />
