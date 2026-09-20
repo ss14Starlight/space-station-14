@@ -22,6 +22,7 @@ using Content.Shared.StationRecords;
 using Content.Shared.UserInterface;
 // Starlight start
 using Content.Server._Starlight.Bed.Cryostorage;
+using Content.Shared.Anomaly.Components;
 // Starlight end
 using Robust.Server.Audio;
 using Robust.Server.Containers;
@@ -31,8 +32,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Content.Shared.Anomaly.Components;
-using Content.Shared.Anomaly;
 
 namespace Content.Server.Bed.Cryostorage;
 
