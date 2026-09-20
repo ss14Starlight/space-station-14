@@ -386,3 +386,6 @@ WashingMachineService: WashingMachine
 WashingMachineSecurityFlatpack: WashingMachineFlatpack
 WashingMachineCommandFlatpack: WashingMachineFlatpack
 WashingMachineMedicalFlatpack: WashingMachineFlatpack
+
+#2026-09-19 - Upstream merge
+MothershipCircuitBoard: null
