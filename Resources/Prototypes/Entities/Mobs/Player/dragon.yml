@@ -110,13 +110,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      350: Critical
-      400: Dead
+      300: Critical #Starlight - Compensating for their armor values. 350 -> 300
+      350: Dead #Starlight - Compensating for their armor values. 400 -> 350
   - type: SlowOnDamage
     speedModifierThresholds:
-      200: 0.9
-      250: 0.7
-      300: 0.5
+      195: 0.9 #Starlight 200 -> 195
+      230: 0.7 #Starlight 250 -> 230
+      265: 0.5 #Starlight 300 -> 265
   # disable taking damage from fire, since its a fire breathing dragon
   - type: Flammable
     damage:
