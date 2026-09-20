@@ -42,7 +42,7 @@
     [color=#999999][italic]Buffering reagents in the network[/italic][/color]
   </Box>
 
-  The [color=#a4885c]Plumbing Tank[/color] stores up to [color=#a4885c]2000u[/color] of reagents. Has one inlet and three outlets. Use tanks to buffer reagents between production stages or store large amounts of reagents.
+  The [color=#a4885c]Plumbing Tank[/color] stores up to [color=#a4885c]2400u[/color] of reagents. Has one inlet and three outlets. Use tanks to buffer reagents between production stages or store large amounts of reagents.
 
   <Box>
     <GuideEntityEmbed Entity="PlumbingBuffer" Caption=""/>
@@ -54,7 +54,7 @@
     [color=#999999][italic]Aww cute![/italic][/color]
   </Box>
 
-  The [color=#a4885c]Plumbing Buffer[/color] stores up to [color=#a4885c]200u[/color] in a low-profile tank that can be walked over. It has one inlet and three outlets, with unconnected outlets for supplying seperate networks.
+  The [color=#a4885c]Plumbing Buffer[/color] stores up to [color=#a4885c]240u[/color] in a low-profile tank that can be walked over. It has one inlet and three outlets, with unconnected outlets for supplying seperate networks.
 
   <Box>
     <GuideEntityEmbed Entity="PlumbingFilter" Caption=""/>
@@ -134,7 +134,7 @@
     [color=#999999][italic]Storing and dispensing reagents via labeled jugs[/italic][/color]
   </Box>
 
-  The [color=#a4885c]Plumbing Smart Dispenser[/color] pulls all reagents from the network and stores up to [color=#a4885c]200u[/color] of each type. It pulls [bold]40u per update[/bold], which is [bold]2x[/bold] the standard [bold]20u[/bold] pull rate used by most plumbing machines. Use a [color=#a4885c]labeled jug[/color] on the dispenser to fill it with the matching reagent. Connects in all directions. Requires power.
+  The [color=#a4885c]Plumbing Smart Dispenser[/color] pulls all reagents from the network and stores up to [color=#a4885c]240u[/color] of each type. It pulls [bold]40u per update[/bold], which is [bold]2x[/bold] the standard [bold]20u[/bold] pull rate used by most plumbing machines. Use a [color=#a4885c]labeled jug[/color] on the dispenser to fill it with the matching reagent. Connects in all directions. Requires power.
 
   <Box>
     <GuideEntityEmbed Entity="PlumbingDisposal" Caption=""/>

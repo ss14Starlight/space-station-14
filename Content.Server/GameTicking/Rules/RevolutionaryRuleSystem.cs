@@ -374,6 +374,11 @@ public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<Revolutiona
         if (!_mind.TryGetMind(ev.Target, out var mindId, out var mind) && !alwaysConvertible)
             return;
 
+        // Starlight Begin
+        if (IsAlreadyRevolutionary(ev.Target))
+            return;
+        // Starlight End
+
         if (!_whitelistSystem.CheckBoth(ev.Target, comp.Blacklist, comp.Whitelist) && // Starlight-edit: rework all has comp to whitelist & blacklist.
             !alwaysConvertible ||
             !_mobState.IsAlive(ev.Target))

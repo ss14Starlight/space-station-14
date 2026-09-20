@@ -941,18 +941,24 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
-  metabolisms: # SL Dolls
+  metabolisms: # SL Dolls - Easter Egg, since it contains *no* blood
     Digestion:
       effects:
       #Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1181,6 +1187,12 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
         reagent: UncookedAnimalProteins
         amount: 0.5
       - !type:HealthChange
@@ -1189,8 +1201,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1223,6 +1235,12 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
         reagent: UncookedAnimalProteins
         amount: 0.5
       - !type:HealthChange
@@ -1231,8 +1249,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -2075,6 +2093,12 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Doll ]
+        reagent: PseudoceramicPlatelets
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
         reagent: UncookedAnimalProteins
         amount: 0.5
       - !type:HealthChange
@@ -2083,8 +2107,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent
