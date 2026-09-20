@@ -41,21 +41,34 @@
   id: BotBattery
   category: Battery
   icons:
+  # Yes this is duplicated states, battery comes in at a severity of 0-10 so I cant just have 6 states
+  - sprite: _Starlight/Interface/Alerts/silicons/drones.rsi
+    state: battery0
+  - sprite: _Starlight/Interface/Alerts/silicons/drones.rsi
+    state: battery0
   - sprite: _Starlight/Interface/Alerts/silicons/drones.rsi
     state: battery0
   - sprite: _Starlight/Interface/Alerts/silicons/drones.rsi
     state: battery1
   - sprite: _Starlight/Interface/Alerts/silicons/drones.rsi
+    state: battery1
+  - sprite: _Starlight/Interface/Alerts/silicons/drones.rsi
+    state: battery2
+  - sprite: _Starlight/Interface/Alerts/silicons/drones.rsi
     state: battery2
   - sprite: _Starlight/Interface/Alerts/silicons/drones.rsi
     state: battery3
+  - sprite: _Starlight/Interface/Alerts/silicons/drones.rsi
+    state: battery3
+  - sprite: _Starlight/Interface/Alerts/silicons/drones.rsi
+    state: battery4
   - sprite: _Starlight/Interface/Alerts/silicons/drones.rsi
     state: battery4
   name: alerts-battery-name
   description: alerts-battery-desc
   minSeverity: 0
-  maxSeverity: 4
-  clientHandled: true # the power cell is read on the client so that we don't have to periodically network the charge
+  maxSeverity: 10
+  clientHandled: true # the power cell battery is read on the client so that we don't have to periodically network the charge
 
 - type: alert
   id: BotBatteryNone

@@ -22,18 +22,13 @@ public sealed partial class DroneSystem : SharedDroneSystem
     [Dependency] private SharedContainerSystem _container = default!;
 
     public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<DroneComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<DroneComponent, ExaminedEvent>(OnExamined);
-        // SubscribeLocalEvent<DroneComponent, EmoteAttemptEvent>(OnEmoteAttempt);
-        // SubscribeLocalEvent<DroneComponent, ThrowAttemptEvent>(OnThrowAttempt);
-        SubscribeLocalEvent<DroneComponent, MindAddedMessage>(OnMindAdded);
-    }
+        => base.Initialize();
 
+    [SubscribeLocalEvent]
     private void OnExamined(EntityUid uid, DroneComponent component, ExaminedEvent args)
         => args.PushMarkup(Loc.GetString("drone-active"));
 
+    [SubscribeLocalEvent]
     private void OnMobStateChanged(EntityUid uid, DroneComponent drone, MobStateChangedEvent args)
     {
         if (args.NewMobState == MobState.Dead)
@@ -69,16 +64,7 @@ public sealed partial class DroneSystem : SharedDroneSystem
         }
     }
 
-    // private void OnEmoteAttempt(EntityUid uid, DroneComponent component, EmoteAttemptEvent args)
-    // {
-    //     // Allow screaming with borg sounds, block other emotes
-    //     if (args.Emote.ID != "Scream")
-    //         args.Cancel();
-    // }
-
-    // private void OnThrowAttempt(EntityUid uid, DroneComponent drone, ThrowAttemptEvent args)
-    //     => args.Cancel();
-
+    [SubscribeLocalEvent]
     private void OnMindAdded(EntityUid uid, DroneComponent component, MindAddedMessage args)
     {
         UpdateDroneAppearance(uid, DroneStatus.On);

@@ -260,9 +260,6 @@
     whitelist:
       components:
       - BorgChassis
-      tags:
-      - IPC
-      - Drone # Starlight: Drones
   - type: Construction
     containers:
     - machine_parts
@@ -306,9 +303,6 @@
     whitelist:
       components:
       - BorgChassis
-      tags:
-      - IPC
-      - Drone # Starlight: Drones
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container

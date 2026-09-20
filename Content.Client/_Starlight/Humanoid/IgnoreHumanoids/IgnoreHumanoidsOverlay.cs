@@ -2,6 +2,7 @@ using Content.Shared.Humanoid;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
+using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using System.Linq;
 
@@ -15,6 +16,7 @@ public sealed class IgnoreHumanoidsOverlay : Robust.Client.Graphics.Overlay
     private readonly IEntityManager _entManager;
     private readonly SharedTransformSystem _transform;
     private readonly SpriteSystem _spriteSystem;
+    private readonly SharedContainerSystem _container;
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
     private readonly Dictionary<EntityUid, (EntityUid Effect, bool WasVisible)> _effectList = [];
@@ -25,6 +27,7 @@ public sealed class IgnoreHumanoidsOverlay : Robust.Client.Graphics.Overlay
         _entManager = entManager;
         _transform = _entManager.EntitySysManager.GetEntitySystem<SharedTransformSystem>();
         _spriteSystem = _entManager.EntitySysManager.GetEntitySystem<SpriteSystem>();
+        _container = _entManager.EntitySysManager.GetEntitySystem<SharedContainerSystem>();
     }
 
     /// <summary>
@@ -67,8 +70,18 @@ public sealed class IgnoreHumanoidsOverlay : Robust.Client.Graphics.Overlay
             if (!xformQuery.TryGetComponent(underlying, out var underlyingxform))
                 continue;
 
-            if (!xformQuery.TryGetComponent(effect.Effect, out _))
+            if (!spriteQuery.TryGetComponent(effect.Effect, out var effectSprite))
+                 continue;
+
+            if (_container.IsEntityInContainer(underlying))
+            {
+                if (effectSprite.Visible)
+                    _spriteSystem.SetVisible(effect.Effect, false);
                 continue;
+            }
+
+            if (!effectSprite.Visible)
+                _spriteSystem.SetVisible(effect.Effect, true);
 
             var (worldPosition, worldRotation) = _transform.GetWorldPositionRotation(underlyingxform);
             _transform.SetWorldPositionRotation(effect.Effect, worldPosition, worldRotation);

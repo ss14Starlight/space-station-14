@@ -13,8 +13,9 @@ public abstract partial class SharedDroneSystem : EntitySystem
     [Dependency] private TagSystem _tagSystem = default!;
 
     public override void Initialize()
-        => SubscribeLocalEvent<DroneComponent, InteractionAttemptEvent>(OnInteractionAttempt);
+        => base.Initialize();
 
+    [SubscribeLocalEvent]
     private void OnInteractionAttempt(EntityUid uid, DroneComponent component, ref InteractionAttemptEvent args)
     {
         if (args.Target == null)

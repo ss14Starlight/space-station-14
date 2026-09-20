@@ -668,6 +668,11 @@ public sealed partial class ChatSystem : SharedChatSystem
                 result = ObfuscateMessageReadability(perceivedMessage);
                 wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-unknown-wrap-message", string.Empty, result, language, obfuscated);
             }
+            if (HasComp<IgnoreHumanoidsComponent>(listener) && HasComp<HumanoidAppearanceComponent>(source))
+            {
+                var unknownName = Loc.GetString("ignore-humanoids-unknown-name");
+                wrappedMessage = WrapAnonymizedMessage(ChatChannel.Whisper, source, result, unknownName, language, wrappedMessage, obfuscated);
+            }
 
             _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedMessage, source, rangeCheck == MessageRangeCheckResult.HideChat, session.Channel); // Moffstation - Radio Host, hide chat messages from station radio
             // Starlight - End
@@ -810,7 +815,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             ChatChannel.Local => WrapPublicMessage(source, unknownName, content, language: language, obfuscated: isObfuscated),
             ChatChannel.Whisper => WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", unknownName, content, language),
-            ChatChannel.Emotes => WrapMessage("chat-manager-entity-emote-wrap-message", InGameICChatType.Emote, source, unknownName, content, language),
+            ChatChannel.Emotes => Loc.GetString("chat-manager-entity-me-wrap-message", ("entityName", unknownName), ("entity", source), ("message", content)),
             ChatChannel.LOOC => Loc.GetString("chat-manager-entity-looc-wrap-message", ("entityName", unknownName), ("message", FormattedMessage.EscapeText(content))),
             _ => fallback
         };
