@@ -21,14 +21,14 @@ public sealed partial class OptionsSightPreview : Control
         SightPanel.Children.Add(_render);
     }
 
-    public void UpdateTexture(Texture sight, float scale, float offset, Color main, Color second) 
+    public void UpdateTexture(Texture sight, float scale, float offset, Color main, Color second)
         => _render.UpdateTexture(sight, scale, offset, main, second);
 
-    public void SetBrackets(Texture? left = null, Texture? right = null, Texture? down = null, Texture? up = null) 
+    public void SetBrackets(Texture? left = null, Texture? right = null, Texture? down = null, Texture? up = null)
         => _render.SetBrackets(left, right, down, up);
 
-    protected override Vector2 MeasureOverride(Vector2 availableSize) 
-        => new Vector2(140, 140);
+    protected override Vector2 MeasureOverride(Vector2 availableSize)
+        => new(140, 140);
 }
 
 public sealed class SightRender : Control

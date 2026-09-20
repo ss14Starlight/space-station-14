@@ -26,7 +26,7 @@
     maxAngle: 35
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 6  
+    fireRate: 6
   - type: Appearance
   - type: ItemSlots
     slots:

@@ -81,7 +81,7 @@ public sealed partial class GunSystem : SharedGunSystem
     private void OnTracesEnabledChanged(bool tracesEnabled)
         => _tracesEnabled = tracesEnabled;
 
-    private void OnHolesEnabledChanged(bool holesEnabled) 
+    private void OnHolesEnabledChanged(bool holesEnabled)
         => _holesEnabled = holesEnabled;
 
     private void OnSparksEnabledChanged(bool sparksEnabled)
@@ -176,7 +176,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private void RenderDisplacements(EntityCoordinates coords, Angle angle, EntityUid target)
     {
-        if (!TryComp<SpriteComponent>(target, out var sprite) 
+        if (!TryComp<SpriteComponent>(target, out var sprite)
             || !TryComp(coords.EntityId, out TransformComponent? relativeXform))
             return;
 
@@ -206,8 +206,8 @@ public sealed partial class GunSystem : SharedGunSystem
             Spawn(BulletHoleProto, holeCoords);
         }
 
-        if (_sparksEnabled 
-            && TryComp<PierceableComponent>(target, out var pierceable) 
+        if (_sparksEnabled
+            && TryComp<PierceableComponent>(target, out var pierceable)
             && pierceable.Level >= PierceLevel.Metal)
             Spawn(SparksProto, coords);
     }

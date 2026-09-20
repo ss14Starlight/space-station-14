@@ -13,7 +13,7 @@
     tags:
       - HideContextMenu
   - type: AnimationPlayer
-  
+
 - type: displacementEffect
   id: ImpactDisplacement
   displacement:
@@ -21,7 +21,7 @@
       32:
         sprite: _Starlight/Effects/impact.rsi
         state: impact
-  
+
 - type: entity
   id: BulletHoleEffect
   categories: [ HideSpawnMenu ]
@@ -37,7 +37,7 @@
     tags:
       - HideContextMenu
   - type: AnimationPlayer
-  
+
 - type: entity
   id: ImpactSparksEffect
   categories: [ HideSpawnMenu ]

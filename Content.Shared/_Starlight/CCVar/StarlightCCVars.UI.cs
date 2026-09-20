@@ -44,7 +44,7 @@ public sealed partial class StarlightCCVars
 
     public static readonly CVarDef<bool> MeleeSightRotation =
         CVarDef.Create("ui.melee_sight_rotation", true, CVar.CLIENTONLY | CVar.ARCHIVE);
-        
+
     /// <summary>
     /// Whether to see job icons as admin ghost.
     /// </summary>
