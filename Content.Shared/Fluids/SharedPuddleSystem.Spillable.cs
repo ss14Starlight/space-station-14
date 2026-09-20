@@ -33,12 +33,11 @@ public abstract partial class SharedPuddleSystem
         SubscribeLocalEvent<SpillableComponent, GetVerbsEvent<Verb>>(AddSpillVerb);
         SubscribeLocalEvent<SpillableComponent, MeleeHitEvent>(SplashOnMeleeHit, after: [typeof(OpenableSystem)]);
         SubscribeLocalEvent<SpillableComponent, AttemptPacifiedThrowEvent>(OnAttemptPacifiedThrow);
-        #region Starlight
-        SubscribeLocalEvent<ShakeSpillableComponent, ShakeEvent>(OnShakeSpill);
-        #endregion
     }
 
     #region Starlight
+
+    [SubscribeLocalEvent<ShakeSpillableComponent, ShakeEvent>]
     private void OnShakeSpill(Entity<ShakeSpillableComponent> entity, ref ShakeEvent args)
     {
         if (Openable.IsClosed(entity.Owner)
