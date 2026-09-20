@@ -64,7 +64,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Radio.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared._Starlight.Shadekin.Components;
-using Prometheus;
+using Content.Server._Starlight.Statistics;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -107,6 +107,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     [Dependency] private LanguageSystem _languageSystem = default!;
     [Dependency] private WeatherSystem _weather = default!;
     [Dependency] private NpcFactionSystem _faction = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;
 
     private ISawmill _sawmill = default!;
     private TimeSpan _t3RevealDelay = default!;
@@ -132,12 +133,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
     /// Mind role to add to cultists.
     /// </summary>
     public static readonly EntProtoId MindRole = "MindRoleCosmicCult";
-
-    private static readonly Counter _cultistCounter = Metrics.CreateCounter("cultist_counter",
-        "Keeps a track of the amount of times cultist win or loose", ["results"]);
-
-    private static readonly Gauge _convertsGauage = Metrics.CreateGauge("cultist_converts",
-        "Keeps track of the amount of players converted this round");
 
     public override void Initialize()
     {
@@ -570,8 +565,12 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         args.AddLine(Loc.GetString("cosmiccult-roundend-entropy-count", ("count", component.EntropySiphoned)));
         args.AddLine(Loc.GetString("cosmiccult-roundend-monument-stage", ("stage", component.CurrentTier)));
 
-        _cultistCounter.WithLabels(component.WinType.ToString()).Inc();
-        _convertsGauage.Set(0);
+        _roundStatistics.RecordCosmicCultOutcome(
+            component.WinType.ToString(),
+            component.TotalCult,
+            component.PercentConverted,
+            component.EntropySiphoned,
+            component.CurrentTier);
     }
 
     public void IncrementCultObjectiveEntropy(Entity<CosmicCultComponent> ent)
@@ -589,7 +588,6 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     public void AdjustCultObjectiveConversion(int value)
     {
-        _convertsGauage.Inc(value); // I know, I know using an Inc function with potential negative values is bad. Blame Prometheus for not having an .Adjust function...
         var query = EntityQueryEnumerator<CosmicConversionConditionComponent>();
         while (query.MoveNext(out _, out var conversionComp))
         {

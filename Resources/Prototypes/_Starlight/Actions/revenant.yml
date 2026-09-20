@@ -9,3 +9,22 @@
     icon: _Starlight/Interface/Actions/snowgrave.png
   - type: InstantAction
     event: !type:RevenantChillActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionRevenantMisfire
+  name: Misfire
+  description: Costs 10 Essence.
+  components:
+  - type: Action
+    useDelay: 5
+    icon: _Starlight/Interface/Actions/misfire.png
+    itemIconStyle: NoItem
+  - type: TargetAction
+    range: 5
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - Gun
+    event: !type:RevenantMisfireActionEvent
