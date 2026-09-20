@@ -37,6 +37,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Random;
 using Content.Shared._Starlight.Combat.Ranged.Pierce;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
+using Content.Shared.Mobs.Components;
 
 namespace Content.Client.Weapons.Ranged.Systems;
 
@@ -199,7 +200,7 @@ public sealed partial class GunSystem : SharedGunSystem
         spriteComp["unshaded"].Visible = true;
         _displacement.TryAddDisplacement(_displacementEffect.Displacement, (ent, spriteComp), 0, "unshaded", out _);
 
-        if (_holesEnabled)
+        if (_holesEnabled && !HasComp<MobStateComponent>(target))
         {
             var radians = MathF.PI / 180f * (float)angle.Degrees;
             var holeCoords = coords.Offset(new Vector2(MathF.Cos(radians), MathF.Sin(radians)) * _random.NextFloat(0f, 0.5f));
