@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Stackables items now merge when stopping on/after a conveyor belt.
-    type: Add
-  id: 408346
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
   - message: Adjusted the Mute Toxin chemical reaction recipe to no longer require uranium.
     type: Tweak
   id: 408347
@@ -2799,4 +2792,11 @@ Entries:
   id: 408745
   time: '2026-09-20T17:28:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6064
+- author: wonderfulnewworld
+  changes:
+  - message: Reagent fires and flammable stains should cause a lot less lag now.
+    type: Tweak
+  id: 408746
+  time: '2026-09-20T17:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6240
 Order: -1
