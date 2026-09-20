@@ -1,27 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Paradox clones now correctly copy the voice and pronouns of the original.
-    type: Fix
-  id: 408372
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Injecting someone else's blood is now slightly poisonous.
-    type: Add
-  id: 408373
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
-  - message: Added new emote for moths. They can flaps their wings!
-    type: Add
-  id: 408374
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
   - message: Added Emp interaction with bar sign.
     type: Add
   id: 408375
@@ -2799,4 +2778,25 @@ Entries:
   id: 408771
   time: '2026-09-20T20:52:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6246
+- author: ItsCharles
+  changes:
+  - message: Added assistant's rubber stamp.
+    type: Add
+  id: 408772
+  time: '2026-09-20T21:22:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6242
+- author: ItsCharles
+  changes:
+  - message: Turned on job trinkets for assistants (was previously commented out).
+    type: Tweak
+  id: 408773
+  time: '2026-09-20T21:22:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6242
+- author: ItsCharles
+  changes:
+  - message: Add job trinket items to trinket list for assistants.
+    type: Add
+  id: 408774
+  time: '2026-09-20T21:22:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6242
 Order: -1
