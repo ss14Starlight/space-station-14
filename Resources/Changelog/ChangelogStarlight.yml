@@ -1,27 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Firelocks now automatically re-close if they have a danger signal and they're powered.
-    type: Fix
-  id: 408350
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Ammonia and Nitrous Oxide now do more damage according to the concentration of gas in the atmosphere.
-    type: Tweak
-  id: 408351
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Fixed containment fields dying even when one side still had power.
-    type: Fix
-  id: 408352
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
   - message: Closed the legal loophole which technically allowed engineers to open-carry the syndicate fire axe.
     type: Fix
   id: 408353
@@ -2799,4 +2778,25 @@ Entries:
   id: 408749
   time: '2026-09-20T18:04:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6225
+- author: Musiklie
+  changes:
+  - message: Reduced the amount of chems that artifacts produced to a more reasonable level.
+    type: Tweak
+  id: 408750
+  time: '2026-09-20T18:04:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6218
+- author: Musiklie
+  changes:
+  - message: Reduced the rate certain chems are produced from artifacts to more reasonable levels.
+    type: Tweak
+  id: 408751
+  time: '2026-09-20T18:04:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6218
+- author: Musiklie
+  changes:
+  - message: 'Chem foam is now guaranteed to lose a durability (Min: 0 -> 1) but the max loss was reduced by 1 to compromise (Max: 5 ->4).'
+    type: Tweak
+  id: 408752
+  time: '2026-09-20T18:04:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6218
 Order: -1
