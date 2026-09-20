@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Changed the EMP Implanter's uplink icon so it is less easily confused with the Scram Implanter's.
-    type: Tweak
-  id: 408380
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
   - message: Made glasses actually correct short-sighted vision!
     type: Tweak
   id: 408381
@@ -2799,4 +2792,11 @@ Entries:
   id: 408779
   time: '2026-09-20T22:27:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6254
+- author: Floximo & AegisShield (Zale)
+  changes:
+  - message: '"Hose" that when connected to canisters, makes them filling stations for handheld gas tanks.'
+    type: Add
+  id: 408780
+  time: '2026-09-20T22:27:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6037
 Order: -1
