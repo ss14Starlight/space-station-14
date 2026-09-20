@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Mobs that don't need internals no longer have the internals indicator.
-    type: Tweak
-  id: 408332
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
   - message: Emitter toggle logs now show if the emitter was toggled on or off.
     type: Tweak
   id: 408333
@@ -2799,4 +2792,11 @@ Entries:
   id: 408731
   time: '2026-09-20T15:16:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6066
+- author: STARLIGHT TEAM
+  changes:
+  - message: Plushies now squish when you hug someone wearing one as clothing.
+    type: Add
+  id: 408732
+  time: '2026-09-20T15:16:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6204
 Order: -1
