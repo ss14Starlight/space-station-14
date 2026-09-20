@@ -550,7 +550,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                 ("amount", amountText));
             message.AddMarkupOrThrow(HealthAnalyzerFormatting.WrapMarkupWithColor(
                 groupLine,
-                HealthAnalyzerFormatting.GetDamageSeverityColor((float) group.Amount)));
+                HealthAnalyzerFormatting.GetDamageSeverityColorPrint((float) group.Amount)));
             message.PushNewline();
 
             foreach (var damageType in group.DamageTypes)
