@@ -197,6 +197,10 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         foreach (var vital in vitals.OrderBy(x => x.Name))
             AddToVitals(GenerateVitalsInformationBlock(vital));
+
+        // prevent not even hooks counts causing the last item to fill two columns
+        if (VitalsContainer.ChildCount > 0 && VitalsContainer.Children[VitalsContainer.ChildCount - 1] is BoxContainer { ChildCount: 1 } lastRow)
+            lastRow.AddChild(new BoxContainer { HorizontalExpand = true });
     }
 
     private void DrawDamageBreakdown(Dictionary<string, FixedPoint2> groups,
