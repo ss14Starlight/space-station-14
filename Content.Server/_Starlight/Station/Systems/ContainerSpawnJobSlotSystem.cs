@@ -1,3 +1,4 @@
+using Content.Server.GameTicking.Events;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -24,11 +25,30 @@ public sealed partial class ContainerSpawnJobSlotSystem : EntitySystem
 
     private TimeSpan _nextTick;
 
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<GetDisallowedJobsEvent>(OnGetDisallowedJobs);
+    }
+
     public override void Update(float frameTime)
     {
         if (_timing.CurTime < _nextTick)
             return;
 
+        _nextTick = _timing.CurTime + _refreshCooldown;
+
+        RefreshJobSlots();
+    }
+
+    private void OnGetDisallowedJobs(ref GetDisallowedJobsEvent ev) => RefreshJobSlots();
+
+    /// <summary>
+    /// Clamps every container bound job slot to the number of unoccupied spawn containers it has left.
+    /// </summary>
+    public void RefreshJobSlots()
+    {
         _nextTick = _timing.CurTime + _refreshCooldown;
 
         _freeContainers.Clear();
