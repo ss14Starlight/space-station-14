@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: All high-pop maps (>150 maxPlayers) have had their 'latejoin' slots folded into their 'roundstart' slots in order to prevent people getting job slots based on whoever clicks the fastest on Observe -> New Life.
-    type: Tweak
-  id: 408330
-  time: '2026-09-06T19:51:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6021
 - author: Wizden Team
   changes:
   - message: Ghosts appearances will now change depending on their cause of death.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408729
   time: '2026-09-19T16:43:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6157
+- author: Johnny
+  changes:
+  - message: Added a soviet mech (admeme only currently).
+    type: Add
+  id: 408730
+  time: '2026-09-20T12:55:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6230
 Order: -1
