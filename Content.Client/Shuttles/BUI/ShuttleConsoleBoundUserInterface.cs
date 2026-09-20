@@ -1,4 +1,3 @@
-// ReSharper disable CheckNamespace
 using Content.Client.Shuttles.UI;
 using Content.Client._Starlight.UserInterface;
 using Content.Shared.Shuttles.BUIStates;
