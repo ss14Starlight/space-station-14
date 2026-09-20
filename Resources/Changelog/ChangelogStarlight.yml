@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Warfarin is now named heparin.
-    type: Fix
-  id: 408366
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
   - message: RCDs can once again be used to construct hull tiles in space without requiring lattices first.
     type: Fix
   id: 408367
@@ -2799,4 +2792,11 @@ Entries:
   id: 408765
   time: '2026-09-20T19:46:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6236
+- author: LowFatBananaMilk
+  changes:
+  - message: Fixed raw eggs in recipes not working.
+    type: Fix
+  id: 408766
+  time: '2026-09-20T20:17:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6244
 Order: -1
