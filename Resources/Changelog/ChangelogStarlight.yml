@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: RCDs can once again be used to construct hull tiles in space without requiring lattices first.
-    type: Fix
-  id: 408367
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
   - message: APC sprites now shows the correct state on round start.
     type: Fix
   id: 408368
@@ -2799,4 +2792,11 @@ Entries:
   id: 408766
   time: '2026-09-20T20:17:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6244
+- author: Caws
+  changes:
+  - message: The NanoMed Security is now "Brigmedic" & "Medical" access, changed from "Security" & "Medical" access.
+    type: Tweak
+  id: 408767
+  time: '2026-09-20T20:17:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6243
 Order: -1
