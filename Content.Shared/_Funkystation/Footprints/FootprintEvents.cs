@@ -1,6 +1,6 @@
 namespace Content.Shared._Funkystation.Footprints;
 
-public sealed class FootprintCleanEvent : EntityEventArgs
+public sealed partial class FootprintCleanEvent : EntityEventArgs
 {
 /*
     // Starlight

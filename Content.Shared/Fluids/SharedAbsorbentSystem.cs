@@ -383,7 +383,7 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         _melee.DoLunge(user, absorbEnt, Angle.Zero, localPos, null);
 
         if (isFootprint) // Starlight
-            RaiseLocalEvent(target, new FootprintCleanEvent()); // Starlight
+            RaiseLocalEvent(target, new FootprintCleanEvent(absorber.FootprintCleaning)); // Starlight
 
         return true;
     }

@@ -1,13 +1,11 @@
+using Content.Shared._Funkystation.Footprints;
+
 namespace Content.Shared.Fluids;
 public sealed partial class AbsorbentComponent : Component
 {
-
-    [DataField]
-    public float FootprintCleaningRange = 0.2f;
-
     /// <summary>
-    /// How many footprints within FootprintCleaningRange can be cleaned at once.
+    /// Which footprint tiles are cleaned when this absorbent is used on a footprint.
     /// </summary>
     [DataField]
-    public int MaxCleanedFootprints = 9;
+    public FootprintCleaningPattern FootprintCleaning = FootprintCleaningPattern.Target;
 }

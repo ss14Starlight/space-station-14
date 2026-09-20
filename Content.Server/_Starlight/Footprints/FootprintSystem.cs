@@ -53,7 +53,24 @@ public sealed partial class FootprintSystem : EntitySystem
         FootprintVisualState.Dragging5,
     ];
 
+    private static readonly Vector2i[] _cardinalCleaningOffsets =
+    [
+        Vector2i.Up,
+        Vector2i.Down,
+        Vector2i.Left,
+        Vector2i.Right,
+    ];
+
+    private static readonly Vector2i[] _ordinalCleaningOffsets =
+    [
+        Vector2i.UpLeft,
+        Vector2i.UpRight,
+        Vector2i.DownLeft,
+        Vector2i.DownRight,
+    ];
+
     private readonly HashSet<EntityUid> _pendingConversions = [];
+    private readonly List<EntityUid> _footprintsToClean = [];
 
     public override void Initialize()
     {
@@ -138,7 +155,47 @@ public sealed partial class FootprintSystem : EntitySystem
             entity.Comp.Solution = null;
     }
 
-    private void OnFootprintCleaned(Entity<FootprintComponent> entity, ref FootprintCleanEvent args) => TurnIntoPuddle(entity.Owner);
+    private void OnFootprintCleaned(Entity<FootprintComponent> entity, ref FootprintCleanEvent args)
+    {
+        _footprintsToClean.Clear();
+        _footprintsToClean.Add(entity.Owner);
+
+        if (args.CleaningPattern != FootprintCleaningPattern.Target)
+        {
+            var xform = Transform(entity.Owner);
+            if (xform.GridUid is { } gridUid && TryComp<MapGridComponent>(gridUid, out var grid))
+            {
+                var tile = _map.CoordinatesToTile(gridUid, grid, xform.Coordinates);
+                CollectFootprints(gridUid, grid, tile, _cardinalCleaningOffsets);
+
+                if (args.CleaningPattern == FootprintCleaningPattern.Square)
+                    CollectFootprints(gridUid, grid, tile, _ordinalCleaningOffsets);
+            }
+        }
+
+        // Collect first: converting a footprint spawns an anchored puddle and would mutate the tile enumerator.
+        foreach (var footprint in _footprintsToClean)
+            TurnIntoPuddle(footprint);
+
+        _footprintsToClean.Clear();
+    }
+
+    private void CollectFootprints(
+        EntityUid gridUid,
+        MapGridComponent grid,
+        Vector2i origin,
+        Vector2i[] offsets)
+    {
+        foreach (var offset in offsets)
+        {
+            var anchored = _map.GetAnchoredEntities(gridUid, grid, origin + offset);
+            while (anchored.MoveNext(out var entity))
+            {
+                if (_footprintQuery.HasComponent(entity.Value))
+                    _footprintsToClean.Add(entity.Value);
+            }
+        }
+    }
 
     private void OnEntityMoved(Entity<FootprintOwnerComponent> entity, ref MoveEvent args)
     {
