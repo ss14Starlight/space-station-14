@@ -163,6 +163,10 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             color = HealthAnalyzerFormatting.GetBloodLevelAccentColorUi(bloodRatio);
         }
 
+        SpriteSpecifier? bleeding = state.Bleeding == true
+            ? new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Alerts/bleed.rsi"), "bleed10")
+            : null;
+
         AddToVitals(GenerateVitalsInformationBlock(new HealthAnalyzerVitalsBlockData
         {
             Name = Loc.GetString("starlight-health-analyzer-window-entity-blood-level-text"),
@@ -171,7 +175,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             BarRatio = bloodRatio,
             ValueColor = color,
             BarColor = color,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Alerts/bleed.rsi"), "bleed10"),
+            Icon = bleeding,
         }));
 
         // Total Damage
@@ -365,10 +369,9 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         foreach (var abnormality in abnormalities.OrderBy(x => x.Description))
         {
-            AbnormalitiesContainer.AddChild(new Label
+            AbnormalitiesContainer.AddChild(new RichTextLabel
             {
                 Text = abnormality.Description,
-                FontColorOverride = abnormality.Color,
             });
         }
 
