@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: APC sprites now shows the correct state on round start.
-    type: Fix
-  id: 408368
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
   - message: Fixed filters not transferring heat energy from the inlet to the filter outlet while still transferring physical gas.
     type: Fix
   id: 408369
@@ -2799,4 +2792,11 @@ Entries:
   id: 408767
   time: '2026-09-20T20:17:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6243
+- author: Teddiousbear, TherealStarVerse.
+  changes:
+  - message: In-Hand Sprites for Enforcer.
+    type: Add
+  id: 408768
+  time: '2026-09-20T20:52:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6241
 Order: -1
