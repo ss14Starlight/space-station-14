@@ -362,17 +362,28 @@ namespace Content.Server.Voting.Managers
 
             vote.OnFinished += (_, args) =>
             {
+                // Starlight Start
+                var topVotes = args.Votes.Max();
+                int pickedIndex;
                 GameMapPrototype picked;
                 if (args.Winner == null)
                 {
-                    picked = (GameMapPrototype) _random.Pick(args.Winners);
+                    List<int> tied = [];
+                    for (var i = 0; i < args.Votes.Count; i++)
+                        if (args.Votes[i] == topVotes)
+                            tied.Add(i);
+
+                    pickedIndex = _random.Pick(tied);
+                    picked = (GameMapPrototype) options.Options[pickedIndex].data;
                     _chatManager.DispatchServerAnnouncement(
                         Loc.GetString("ui-vote-map-tie"));
                 }
                 else
                 {
+                    pickedIndex = args.Votes.IndexOf(topVotes);
                     picked = (GameMapPrototype) args.Winner;
                 }
+                // Starlight End
                 _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-win"));
 
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Map vote finished: {picked.MapName}");
@@ -390,7 +401,7 @@ namespace Content.Server.Voting.Managers
                             "map",
                             isSecret ? "Secret" : option.ID,
                             args.Votes[i],
-                            !isSecret && option.ID == picked.ID);
+                            i == pickedIndex);
                     }
                     // Starlight End
                     if (_gameMapManager.CheckMapExists(picked.ID))
