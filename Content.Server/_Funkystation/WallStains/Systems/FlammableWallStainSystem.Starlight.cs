@@ -89,7 +89,7 @@ public sealed partial class FlammableWallStainSystem : EntitySystem
         WallStainComponent? stain = null,
         Solution? solution = null)
     {
-        if (!Resolve(ent.Owner, ref stain))
+        if (stain == null && !_stainQuery.TryComp(ent.Owner, out stain))
         {
             ent.Comp.Flammability = 0;
             ent.Comp.SelfOxidizing = false;
