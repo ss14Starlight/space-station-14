@@ -211,7 +211,6 @@
   - type: Paintable
     group: AirlockGlass
 
-
 #EVA
 - type: entity
   parent: Airlock
@@ -294,3 +293,28 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Glass/brigmedic.rsi
+
+# NT
+- type: entity
+  parent: Airlock
+  id: AirlockNT
+  suffix: NanoTrasen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen.rsi
+  - type: Wires
+    layoutId: AirlockNT
+  - type: Paintable
+    group: AirlockStandard
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockNTGlass
+  suffix: NanoTrasen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/nanotrasen.rsi
+  - type: Wires
+    layoutId: AirlockNT
+  - type: Paintable
+    group: AirlockGlass
