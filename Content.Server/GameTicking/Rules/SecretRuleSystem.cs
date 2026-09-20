@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._Starlight.GameTicking.Rules;
+using Content.Server._Starlight.Statistics;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Presets;
@@ -22,11 +23,10 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
-    // Starlight begin
-    [Dependency] private IChatManager _chatManager = default!;
-    [Dependency] private GameTicker _ticker = default!;
-    [Dependency] private DynamicRuleCooldownSystem _dynamicRuleCooldown = default!;
-    // Starlight end
+    [Dependency] private IChatManager _chatManager = default!; // Starlight
+    [Dependency] private GameTicker _ticker = default!;  // Starlight
+    [Dependency] private DynamicRuleCooldownSystem _dynamicRuleCooldown = default!;  // Starlight
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;  // Starlight
 
     private readonly Dictionary<string, int> _secretPresetCooldown = new();
     private string _ruleCompName = default!;
@@ -50,6 +50,7 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
         }
 
         Log.Info($"Selected {preset.ID} as the secret preset.");
+        _roundStatistics.RecordResolvedPreset(preset.ID); // Starlight
         if (_ticker.RunLevel == GameRunLevel.PreRoundLobby) _chatManager.SendAdminAnnouncement($"Round preset selected: Secret ({preset.ID})."); // Starlight
         _adminLogger.Add(LogType.EventStarted, $"Selected {preset.ID} as the secret preset.");
 
