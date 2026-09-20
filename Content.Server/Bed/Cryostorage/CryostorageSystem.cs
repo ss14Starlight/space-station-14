@@ -31,6 +31,8 @@ using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Shared.Anomaly.Components;
+using Content.Shared.Anomaly;
 
 namespace Content.Server.Bed.Cryostorage;
 
@@ -247,6 +249,7 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
         //starlight start
         RemComp<HeadRevolutionaryComponent>(ent.Owner);
         RemComp<CommandStaffComponent>(ent.Owner);
+        RemComp<AnomalyComponent>(ent.Owner);
         //starlight end
 
         _chatSystem.DispatchStationAnnouncement(station.Value,
