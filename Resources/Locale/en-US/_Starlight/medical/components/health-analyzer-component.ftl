@@ -36,12 +36,16 @@ starlight-health-analyzer-window-entity-damage-total-text = Total Damage
 
 starlight-health-analyzer-window-section-vitals = Vitals Overview
 starlight-health-analyzer-window-section-damage = Damage Breakdown
+starlight-health-analyzer-window-section-abnormalities = Abnormalities
+starlight-health-analyzer-window-section-chemicals = Chemical Analysis
 
 starlight-health-analyzer-window-damage-none = No damage
 
-starlight-health-analyzer-window-entity-rot-timer-text = Decay in
-starlight-health-analyzer-window-entity-rotted-timer-text = Rotting for
+starlight-health-analyzer-window-entity-rot-timer-text = Rot
 starlight-health-analyzer-window-time-imminent = IMMINENT
 starlight-health-analyzer-window-time-justnow = Just now
-starlight-health-analyzer-window-time-under-minute = under 1 min
-starlight-health-analyzer-window-time-minutes = ~{ $minutes } min
+starlight-health-analyzer-window-time-under-minute = in <1 min
+starlight-health-analyzer-window-time-in-minutes = in ~{ $minutes } min
+starlight-health-analyzer-window-time-since-minutes = since ~{ $minutes } min
+
+starlight-health-analyzer-window-entity-unrevivable-text = [bold]Defib Ineligible[/bold]

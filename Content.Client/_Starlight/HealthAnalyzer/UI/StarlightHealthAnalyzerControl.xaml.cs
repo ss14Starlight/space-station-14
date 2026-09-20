@@ -71,7 +71,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             // for invalid targets. TODO will be fixed.
 
             NoPatientDataText.Visible = true;
-            ChemicalsDivider.Visible = false;
+            ChemicalsHeader.Visible = false;
             ChemicalsContainer.Visible = false;
             return;
         }
@@ -352,14 +352,14 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         {
             abnormalities.Add(new HealthAnalyzerAbnormalityData
             {
-                Description = Loc.GetString("health-analyzer-window-entity-unrevivable-text"),
+                Description = Loc.GetString("starlight-health-analyzer-window-entity-unrevivable-text"),
                 Color = Color.FromHex("#EDE609")
             });
         }
 
         var showAlerts = abnormalities.Any();
 
-        AbnormalitiesDivider.Visible = showAlerts;
+        AbnormalitiesHeader.Visible = showAlerts;
         AbnormalitiesContainer.Visible = showAlerts;
 
         if (!showAlerts)
@@ -369,10 +369,33 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         foreach (var abnormality in abnormalities.OrderBy(x => x.Description))
         {
-            AbnormalitiesContainer.AddChild(new RichTextLabel
+            var row = new BoxContainer
             {
+                Orientation = LayoutOrientation.Horizontal,
+                HorizontalExpand = true,
+                SeparationOverride = 6,
+                Margin = new Thickness(0, 2),
+            };
+
+            var accent = new PanelContainer
+            {
+                MinWidth = 10,
+                MaxWidth = 10,
+                MinHeight = 16,
+                VerticalAlignment = VAlignment.Stretch,
+                PanelOverride = new StyleBoxFlat(abnormality.Color),
+            };
+
+            var description = new RichTextLabel
+            {
+                HorizontalExpand = true,
+                HorizontalAlignment = HAlignment.Left,
                 Text = abnormality.Description,
-            });
+            };
+
+            row.AddChild(accent);
+            row.AddChild(description);
+            AbnormalitiesContainer.AddChild(row);
         }
 
     }
@@ -385,12 +408,12 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         if (!hasChemicals || chemicals == null)
         {
-            ChemicalsDivider.Visible = false;
+            ChemicalsHeader.Visible = false;
             ChemicalsContainer.Visible = false;
             return;
         }
 
-        ChemicalsDivider.Visible = true;
+        ChemicalsHeader.Visible = true;
         ChemicalsContainer.Visible = true;
 
         var sortedReagents = chemicals.OrderByDescending(r => r.Quantity + r.StomachQuantity).ToList();
@@ -408,7 +431,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
             var rowContainer = new BoxContainer
             {
-                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                Orientation = LayoutOrientation.Horizontal,
                 Margin = new Thickness(0, 2),
             };
 

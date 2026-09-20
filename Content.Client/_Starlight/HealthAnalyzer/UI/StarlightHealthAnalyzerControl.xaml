@@ -61,14 +61,16 @@
         Orientation="Vertical">
     </BoxContainer>
 
-    <PanelContainer Name="AbnormalitiesDivider" Visible="False" StyleClasses="LowDivider" />
-    <BoxContainer Name="AbnormalitiesContainer" Visible="False" Margin="0 5" Orientation="Vertical" HorizontalAlignment="Center">
-
+    <Label Name="AbnormalitiesHeader" Text="{Loc 'starlight-health-analyzer-window-section-abnormalities'}" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
+    <BoxContainer
+        Name="AbnormalitiesContainer"
+        Visible="False"
+        Margin="8"
+        Orientation="Vertical"
+        HorizontalExpand="True">
     </BoxContainer>
 
-    <!-- Chems -->
-    <PanelContainer Name="ChemicalsDivider" Visible="False" StyleClasses="LowDivider" />
-
+    <Label Name="ChemicalsHeader" Text="{Loc 'starlight-health-analyzer-window-section-chemicals'}" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
     <BoxContainer
         Name="ChemicalsContainer"
         Visible="False"

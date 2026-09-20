@@ -31,7 +31,7 @@ public sealed partial class RotHealthAnalyzerSystem : EntitySystem
         {
             args.Vitals.Add(new HealthAnalyzerVitalsBlockData
             {
-                Name = Loc.GetString("starlight-health-analyzer-window-entity-rotted-timer-text"),
+                Name = Loc.GetString("starlight-health-analyzer-window-entity-rot-timer-text"),
                 Value = FormatApproximateTime(rotting.TotalRotTime, false),
 
                 HasBar = true,
@@ -67,17 +67,24 @@ public sealed partial class RotHealthAnalyzerSystem : EntitySystem
     {
         var totalSeconds = Math.Max(0, time.TotalSeconds);
 
-        if (totalSeconds < 60)
-            return countingDown
-                ? Loc.GetString("starlight-health-analyzer-window-time-imminent")
-                : Loc.GetString("starlight-health-analyzer-window-time-justnow");
+        if (countingDown)
+        {
+            if (totalSeconds < 60)
+                return Loc.GetString("starlight-health-analyzer-window-time-imminent");
 
-        var totalMinutes = countingDown
-            ? (int)Math.Ceiling(totalSeconds / 60)
-            : (int)Math.Floor(totalSeconds / 60);
+            var totalMinutes = (int)Math.Floor(totalSeconds / 60);
+            return Loc.GetString("starlight-health-analyzer-window-time-in-minutes", ("minutes", totalMinutes));
+        }
+        else
+        {
+            if (totalSeconds < 60)
+                Loc.GetString("starlight-health-analyzer-window-time-justnow");
 
-        return Loc.GetString(
-            "starlight-health-analyzer-window-time-minutes",
-            ("minutes", totalMinutes));
+            var totalMinutes = (int)Math.Ceiling(totalSeconds / 60);
+            return Loc.GetString("starlight-health-analyzer-window-time-since-minutes", ("minutes", totalMinutes));
+        }
+
+
+
     }
 }
