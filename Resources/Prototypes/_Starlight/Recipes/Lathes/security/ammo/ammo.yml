@@ -32,6 +32,16 @@
 
 # PEACEKEEPER AMMO BOXES
 - type: latheRecipe
+  id: BoxPeacekeeperBola
+  result: BoxPeacekeeperBola
+  categories:
+  - Ammo
+  completetime: 3
+  materials:
+    Steel: 300
+    Plastic: 250
+
+- type: latheRecipe
   id: BoxPeacekeeperBaton
   result: BoxPeacekeeperBaton
   categories:
