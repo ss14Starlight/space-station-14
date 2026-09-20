@@ -1,55 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Closed the legal loophole which technically allowed engineers to open-carry the syndicate fire axe.
-    type: Fix
-  id: 408353
-  time: '2026-09-06T21:54:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6023
-- author: Wizden Team
-  changes:
-  - message: Vox can now wag their tails.
-    type: Add
-  id: 408354
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Added the ability for Vulps to wag their tails.
-    type: Add
-  id: 408355
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Vulpkanin now have a yawn sound.
-    type: Add
-  id: 408356
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Vulpkanins now have sulfur-based blood and unique organ sprites.
-    type: Add
-  id: 408357
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: The sneeze emote has been readded.
-    type: Add
-  id: 408358
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
-  - message: Added sprites for holding practice disabler in both hands.
-    type: Add
-  id: 408359
-  time: '2026-09-07T03:52:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6026
-- author: Wizden Team
-  changes:
   - message: Horizonal and vertical steel slat floor tiles, as well as their dark and white variants, can now be created with a Cutter lathe.
     type: Add
   id: 408360
@@ -2799,4 +2750,53 @@ Entries:
   id: 408752
   time: '2026-09-20T18:04:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6218
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added nct classrooms.
+    type: Add
+  id: 408753
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added nct teaching vault.
+    type: Add
+  id: 408754
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added assistant manager near hop.
+    type: Add
+  id: 408755
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added a laundry room near courtroom.
+    type: Add
+  id: 408756
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Added a washing machine to security, science storage room (xenobiology), sauna, bathroom near engie, morgue.
+    type: Add
+  id: 408757
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Removed three zookeeper rooms to make way for a massive classroom.
+    type: Remove
+  id: 408758
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
+- author: Cvlancer
+  changes:
+  - message: (Ming) Removed one of the two sec techs from security breakroom.
+    type: Remove
+  id: 408759
+  time: '2026-09-20T18:32:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6223
 Order: -1
