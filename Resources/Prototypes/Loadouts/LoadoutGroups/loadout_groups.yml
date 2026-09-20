@@ -409,6 +409,17 @@
   - WinterBoots
   - Heels # 🌟Starlight🌟
 
+# Starlight-start
+- type: loadoutGroup
+  id: AssistantJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - Soap
+  - PlushieLizardJobAssistant
+  - RubberStampAssistant
+# Starlight-end
+
 - type: loadoutGroup
   id: BartenderHead
   name: loadout-group-bartender-head
