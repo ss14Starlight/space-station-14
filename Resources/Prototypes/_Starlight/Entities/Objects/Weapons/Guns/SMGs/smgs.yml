@@ -125,9 +125,9 @@
   - type: GunWieldBonus
     minAngle: 0
     maxAngle: 0
-    minAngleDivider: 2
-    maxAngleDivider: 2
-    angleIncreaseDivider: 2
+    minAngleDivider: 2.7
+    maxAngleDivider: 2.6
+    angleIncreaseDivider: 3
 - type: entity
   name: PPSH 59 SMG
   parent: [BaseWeaponSubMachineGun, BaseSovietContraband]
@@ -152,9 +152,9 @@
   - type: GunWieldBonus
     minAngle: 0
     maxAngle: 0
-    minAngleDivider: 2
-    maxAngleDivider: 2
-    angleIncreaseDivider: 2
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
   - type: Gun
     fireRate: 15
     selectedMode: FullAuto

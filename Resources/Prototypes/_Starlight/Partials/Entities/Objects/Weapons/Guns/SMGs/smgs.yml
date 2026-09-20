@@ -6,6 +6,12 @@
     maxAngle: 28
     angleIncrease: 2
     angleDecay: 14
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
 
 - type: !PartialOnly entity
   id: WeaponSubMachineGunAtreides
@@ -18,9 +24,9 @@
   - type: GunWieldBonus
     minAngle: 0
     maxAngle: 0
-    minAngleDivider: 2
-    maxAngleDivider: 2
-    angleIncreaseDivider: 2
+    minAngleDivider: 2.7
+    maxAngleDivider: 2.6
+    angleIncreaseDivider: 3
 
 - type: !PartialOnly entity
   id: WeaponSubMachineGunC20r
@@ -31,17 +37,18 @@
   - type: GunWieldBonus
     minAngle: 0
     maxAngle: 0
-    minAngleDivider: 2
-    maxAngleDivider: 2
-    angleIncreaseDivider: 2
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
 
 - type: !PartialOnly entity
   id: WeaponSubMachineGunC20rROW
   components:
   - type: Gun
-    minAngle: 5
-    angleIncrease: 1.5
+    minAngle: 3
+    angleIncrease: 1
     angleDecay: 12
+    maxAngle: 12
 
 - type: !PartialOnly entity
   id: WeaponSubMachineGunDrozd
@@ -52,9 +59,9 @@
   - type: GunWieldBonus
     minAngle: 0
     maxAngle: 0
-    minAngleDivider: 2
-    maxAngleDivider: 2
-    angleIncreaseDivider: 2
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
 
 - type: !PartialOnly entity
   id: WeaponSubMachineGunWt550
@@ -76,6 +83,6 @@
   components:
   - type: Gun
     minAngle: 12
-    maxAngle: 30
+    maxAngle: 26
     angleIncrease: 2
     angleDecay: 14

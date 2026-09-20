@@ -19,9 +19,9 @@
   - type: GunWieldBonus
     minAngle: 0
     maxAngle: 0
-    minAngleDivider: 1.5
-    maxAngleDivider: 1.5
-    angleIncreaseDivider: 1.5
+    minAngleDivider: 2.5
+    maxAngleDivider: 2.2
+    angleIncreaseDivider: 2.5
   - type: GunJamDefect
     prob: 0.30
     jamChance: 0.10

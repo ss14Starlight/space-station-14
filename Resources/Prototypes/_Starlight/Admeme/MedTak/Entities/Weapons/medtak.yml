@@ -214,9 +214,9 @@
   - type: GunWieldBonus
     minAngle: 0
     maxAngle: 0
-    minAngleDivider: 2
-    maxAngleDivider: 2
-    angleIncreaseDivider: 2
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
   - type: Gun
     fireRate: 7
     availableModes:

@@ -3,7 +3,7 @@
   components:
   - type: GunWieldBonus
     minAngleDivider: 4
-    maxAngleDivider: 2.5
+    maxAngleDivider: 3
   - type: Gun
     minAngle: 12
     maxAngle: 30
