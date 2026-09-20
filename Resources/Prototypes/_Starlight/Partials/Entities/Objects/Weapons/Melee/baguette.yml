@@ -1,0 +1,7 @@
+﻿- type: !PartialOnly entity
+  id: WeaponBaguette
+  components:
+    - type: MeleeChemicalInjector
+      transferAmount: 5
+      solution: food
+

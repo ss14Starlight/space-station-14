@@ -1,0 +1,4 @@
+- type: !PartialOnly accessGroup
+  id: AllAccess
+  tags:
+  - NTPersonnel
