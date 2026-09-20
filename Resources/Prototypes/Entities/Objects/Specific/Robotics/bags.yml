@@ -18,10 +18,6 @@
   - type: PrivateStorage
     accessDelay: 3.0
     accessPopup: drone-bag-accessing
-  - type: ContainerContainer
-    containers:
-      drone_bag: !type:Container
-        ents: []
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
