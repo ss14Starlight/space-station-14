@@ -1,20 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Added more xenoborg names!
-    type: Add
-  id: 408377
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
-  - message: Added unlockable press hat and press vest for the Reporter job.
-    type: Add
-  id: 408378
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
   - message: The basic operative bundle now contains an esword, instead of a viper magazine and agent ID card.
     type: Tweak
   id: 408379
@@ -2799,4 +2785,18 @@ Entries:
   id: 408776
   time: '2026-09-20T21:22:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6173
+- author: baltdev
+  changes:
+  - message: Added a vinyl for Space Asshole.
+    type: Add
+  id: 408777
+  time: '2026-09-20T21:50:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6150
+- author: baltdev
+  changes:
+  - message: Fixed Vinyls/CDs not breaking because that apparently never worked
+    type: Tweak
+  id: 408778
+  time: '2026-09-20T21:50:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6150
 Order: -1
