@@ -233,11 +233,9 @@
   - type: Healing
     damageContainers:
     - Biological
-    - Hybrid   # Starlight
     damage:
       types:
         Bloodloss: -0.5 #lowers bloodloss damage
-    delay: 1.6 # STARLIGHT
     modifyBloodLevel: 15 #restores about 5% blood per use on standard humanoids.
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"

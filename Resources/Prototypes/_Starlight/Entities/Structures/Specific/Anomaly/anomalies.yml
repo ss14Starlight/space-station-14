@@ -496,6 +496,7 @@
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-forthecult
   - type: CosmicMalignRift
+  - type: CosmicRiftPurge
   - type: CosmicCorrupting
     corruptionMaxTicks: 6
     corruptionSpeed: 8
@@ -609,6 +610,7 @@
     color: "#6A4CFF"
   - type: CosmicCultExamine
     cultistText: cosmic-examine-text-forthecult
+  - type: CosmicRiftPurge
   - type: CosmicMalignEmpoweredRift
     coolingCoefficient: 0.2
   - type: CosmicCorrupting
