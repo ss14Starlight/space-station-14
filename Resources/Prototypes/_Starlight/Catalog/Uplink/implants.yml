@@ -46,16 +46,3 @@
       whitelist:
         tags:
           - NukeOpsUplink
-
-- type: listing
-  id: UplinkSyndicateMindShieldImplant
-  name: uplink-syndicate-mindshield-name
-  description: uplink-syndicate-mindshield-desc
-  productEntity: SyndicateMindShieldImplanter
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 4
-  cost:
-    Telecrystal: 6
-  categories:
-    - UplinkImplants

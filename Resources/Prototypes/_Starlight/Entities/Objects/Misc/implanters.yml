@@ -143,14 +143,6 @@
     - type: Implanter
       implant: RedspaceImplant
 
-- type: entity
-  id: SyndicateMindShieldImplanter
-  name: syndicate mindshield implanter
-  parent: BaseImplantOnlyImplanterSyndi
-  components:
-    - type: Implanter
-      implant: SyndicateMindShieldImplant
-
 # Gear Acidifier
 - type: entity
   id: GearAcidifierImplanter

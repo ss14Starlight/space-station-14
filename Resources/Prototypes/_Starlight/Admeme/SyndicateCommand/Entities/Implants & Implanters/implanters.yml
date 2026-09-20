@@ -1,0 +1,8 @@
+- type: entity
+  id: SyndicateMindShieldImplanter
+  name: syndicate mindshield implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: SyndicateMindShieldImplant
+      
