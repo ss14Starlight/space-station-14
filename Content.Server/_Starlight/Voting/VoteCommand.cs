@@ -239,17 +239,25 @@ public sealed partial class VoteCommand : ToolshedCommand
         // plucked from original implementation
         handle.OnFinished += (_, args) =>
         {
-            GameMapPrototype picked;
+            var topVotes = args.Votes.Max();
+            int pickedIndex;
             if (args.Winner == null)
             {
-                picked = (GameMapPrototype)_random.Pick(args.Winners);
+                List<int> tied = [];
+                for (var i = 0; i < args.Votes.Count; i++)
+                    if (args.Votes[i] == topVotes)
+                        tied.Add(i);
+
+                pickedIndex = _random.Pick(tied);
                 var message = Loc.GetString("ui-vote-map-tie");
                 SendWinnerMessage(message,
                     Loc.GetString("chat-manager-server-wrap-message",
                         ("message", FormattedMessage.EscapeText(message))), chatFilter);
             }
             else
-                picked = (GameMapPrototype)args.Winner;
+                pickedIndex = args.Votes.IndexOf(topVotes);
+
+            var picked = (GameMapPrototype)maps[pickedIndex].Item2;
 
             {
                 var message = Loc.GetString("ui-vote-map-win");
@@ -271,7 +279,7 @@ public sealed partial class VoteCommand : ToolshedCommand
                         "map",
                         isSecret ? "Secret" : option.ID,
                         args.Votes[i],
-                        !isSecret && option.ID == picked.ID);
+                        i == pickedIndex);
                 }
 
                 if (_map.CheckMapExists(picked.ID))
