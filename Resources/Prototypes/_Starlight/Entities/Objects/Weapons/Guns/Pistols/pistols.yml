@@ -203,9 +203,9 @@
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/dp.rsi
     - type: Gun
       fireRate: 4
-      minAngle: 7
-      maxAngle: 24
-      angleIncrease: 5
+      minAngle: 6
+      maxAngle: 22
+      angleIncrease: 4
       angleDecay: 16
       availableModes:
         - SemiAuto
