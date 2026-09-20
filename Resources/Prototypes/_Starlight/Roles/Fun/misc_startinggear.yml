@@ -1,11 +1,15 @@
 - type: startingGear
-  id: MobKoboldGear
+  id: MobKikiGear
   equipment:
     head: ClothingHeadBandBotany
     ears: ClothingHeadsetService
     jumpsuit: ClothingUniformJumpskirtHydroponics
     belt: ClothingBeltPlantFilled
     id: KikiPDA
+    back: ClothingBackpackSatchelHydroponics
+  storage:
+    back:
+    - BoxSurvival
 
 - type: startingGear
   id: MobStirStirGear
