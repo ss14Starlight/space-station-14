@@ -20,10 +20,6 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Revolutionary.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.UserInterface;
-// Starlight start
-using Content.Server._Starlight.Bed.Cryostorage;
-using Content.Shared.Anomaly.Components;
-// Starlight end
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -32,6 +28,8 @@ using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Server._Starlight.Bed.Cryostorage; # Starlight
+using Content.Shared.Anomaly.Components; # Starlight
 
 namespace Content.Server.Bed.Cryostorage;
 
@@ -224,6 +222,7 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
             }
         }
 
+        RemComp<AnomalyComponent>(ent.Owner); # Starlight - kill anomaly infection when host cryosleep
         comp.AllowReEnteringBody = false;
         _transform.SetParent(ent, PausedMap.Value);
         cryostorageComponent.StoredPlayers.Add(ent);
@@ -248,7 +247,6 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
         //starlight start
         RemComp<HeadRevolutionaryComponent>(ent.Owner);
         RemComp<CommandStaffComponent>(ent.Owner);
-        RemComp<AnomalyComponent>(ent.Owner);
         //starlight end
 
         _chatSystem.DispatchStationAnnouncement(station.Value,
