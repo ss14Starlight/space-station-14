@@ -1,62 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Ghosts appearances will now change depending on their cause of death.
-    type: Add
-  id: 408331
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Mobs that don't need internals no longer have the internals indicator.
-    type: Tweak
-  id: 408332
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Emitter toggle logs now show if the emitter was toggled on or off.
-    type: Tweak
-  id: 408333
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: The Syndi Law Circuit is now a kit containing the lawboard and and a Syndicate ID.
-    type: Tweak
-  id: 408334
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: The Syndicate ID now uses the Syndicate icon instead of the blank icon.
-    type: Tweak
-  id: 408335
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Mime PDAs no longer have the NanoTask and Notekeeper applications installed by default.
-    type: Remove
-  id: 408336
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Central Command fax always tells admins where the fax came from instead of saying "unknown" until it was refreshed.
-    type: Fix
-  id: 408337
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
-  - message: Anomalies will no longer spawn multiple things on the same tile (asteroid wall, etc).
-    type: Fix
-  id: 408338
-  time: '2026-09-06T21:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6006
-- author: Wizden Team
-  changes:
   - message: Security bio suit now hides tails again.
     type: Fix
   id: 408339
@@ -2799,4 +2743,60 @@ Entries:
   id: 408730
   time: '2026-09-20T12:55:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6230
+- author: Light
+  changes:
+  - message: Reworked the health analyzer UI.
+    type: Tweak
+  id: 408731
+  time: '2026-09-20T15:16:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6066
+- author: STARLIGHT TEAM
+  changes:
+  - message: Plushies now squish when you hug someone wearing one as clothing.
+    type: Add
+  id: 408732
+  time: '2026-09-20T15:16:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6204
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed announcement chimes playing twice.
+    type: Fix
+  id: 408733
+  time: '2026-09-20T15:16:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6199
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed meteor swarm announcement chimes possibly being extremely delayed depending on the TTS queue.
+    type: Fix
+  id: 408734
+  time: '2026-09-20T15:16:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6199
+- author: Rhapsody (Pepta Vismahl)
+  changes:
+  - message: Fixed war declaration announcements sometimes being sent twice and playing overlapping music tracks.
+    type: Fix
+  id: 408735
+  time: '2026-09-20T15:16:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6199
+- author: Drakobird, Conf
+  changes:
+  - message: Revenants can now shoot you.
+    type: Add
+  id: 408736
+  time: '2026-09-20T15:53:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6149
+- author: Drakobird, Conf
+  changes:
+  - message: Moved stuff over to partials.
+    type: Fix
+  id: 408737
+  time: '2026-09-20T15:53:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6149
+- author: Citrea
+  changes:
+  - message: Dolls now drop their shell when zombified, making them normally vulnerable to bullets. As all zombies, they are still resistant to bullets, just not invincible.
+    type: Tweak
+  id: 408738
+  time: '2026-09-20T16:42:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6208
 Order: -1
