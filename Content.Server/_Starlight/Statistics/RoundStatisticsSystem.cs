@@ -178,7 +178,14 @@ public sealed partial class RoundStatisticsSystem : EntitySystem
         if (text.Length > 0 && !text.AsSpan().ContainsAny(_quoteRequired))
             return text;
 
-        return string.Concat("\"", text.Replace("\\", "\\\\").Replace("\"", "\\\""), "\"");
+        var escaped = text
+            .Replace("\\", "\\\\")
+            .Replace("\"", "\\\"")
+            .Replace("\n", "\\n")
+            .Replace("\r", "\\r")
+            .Replace("\t", "\\t");
+
+        return string.Concat("\"", escaped, "\"");
     }
 
     private void EmitCurrentRoundRecord(string message, params object?[] args)
