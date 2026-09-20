@@ -329,6 +329,16 @@
         {
             "name": "MakeshiftID",
             "copyright": "rhithebirdthing"
+        },
+        {
+            "name": "SyndicateMindShield",
+            "copyright": "tgstation, modified by StygianEagle"
+            "delays": [
+                [
+                    1.0,
+                    1.0
+                ]
+            ]
         }
     ]
 }

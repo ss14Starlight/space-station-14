@@ -33,3 +33,6 @@ uplink-fake-stamps-desc = Fool the station with Syndicate replicas of REAL stamp
 
 uplink-joke-stamps-name = Box of Joke Stamps
 uplink-joke-stamps-desc = For if you really, REALLY, want to make fun of someone.
+
+uplink-syndicate-mindshield-name = Syndicate Mindshield
+uplink-syndicate-mindshield-desc = For when you need to protect yourself from mind tampering, be aware the implant is bright red and will tell every security member about your affliation. Possibly good for framing.
