@@ -37,6 +37,8 @@ public abstract partial class SharedZoneSystem : EntitySystem
 
     private int[] _priorityById = [NoZonePriority];
 
+    protected ushort CorridorZone { get; private set; }
+
     private readonly Dictionary<string, ushort> _zoneByDoor = [];
     private readonly Dictionary<string, ushort> _doorCache = [];
 
@@ -269,20 +271,21 @@ public abstract partial class SharedZoneSystem : EntitySystem
             winner.HintTileCount = loser.HintTileCount;
         }
 
-        if (loser.MarkerZone != NoZone)
+        if (loser.MarkerTiles > 0)
         {
-            if (winner.MarkerZone == NoZone || loser.MarkerPriority > winner.MarkerPriority)
+            if (winner.MarkerTiles == 0)
             {
                 winner.MarkerZone = loser.MarkerZone;
                 winner.MarkerPriority = loser.MarkerPriority;
-                winner.MarkerConflict = loser.MarkerConflict;
+                winner.MarkerStrong = loser.MarkerStrong;
             }
-            else if (loser.MarkerPriority == winner.MarkerPriority)
-            {
-                winner.MarkerConflict |= loser.MarkerConflict || loser.MarkerZone != winner.MarkerZone;
-            }
+            else
+                winner.MarkerStale = true;
+
+            winner.MarkerTiles += loser.MarkerTiles;
         }
 
+        winner.MarkerStale |= loser.MarkerStale;
         winner.TileCount += loser.TileCount;
         winner.AliasCount += loser.AliasCount + 1;
 
@@ -291,6 +294,7 @@ public abstract partial class SharedZoneSystem : EntitySystem
         loser.Alias = a;
         loser.TileCount = 0;
         loser.HintTileCount = 0;
+        loser.MarkerTiles = 0;
         loser.AliasCount = 0;
 
         return a;
@@ -384,11 +388,9 @@ public abstract partial class SharedZoneSystem : EntitySystem
         => EnsureChunk(comp, tile).Hints[TileIndex(tile)] = id;
 
     protected static void ResolveZone(ref ZoneRegion region)
-    {
-        var marker = region.MarkerConflict ? NoZone : region.MarkerZone;
-
-        region.Zone = marker != NoZone ? marker : region.HintZone;
-    }
+        => region.Zone = region.MarkerZone != NoZone && (region.MarkerStrong || region.HintZone == NoZone)
+            ? region.MarkerZone
+            : region.HintZone;
 
     #endregion
 
@@ -454,6 +456,7 @@ public abstract partial class SharedZoneSystem : EntitySystem
 
         _zoneByDoor.Clear();
         _doorCache.Clear();
+        CorridorZone = NoZone;
 
         for (var i = 0; i < protos.Count; i++)
         {
@@ -461,6 +464,14 @@ public abstract partial class SharedZoneSystem : EntitySystem
             _protoById[id] = protos[i];
             _priorityById[id] = protos[i].Priority;
             _idByProto[protos[i].ID] = id;
+
+            if (protos[i].Corridor)
+            {
+                if (CorridorZone != NoZone)
+                    Log.Error($"Both {_protoById[CorridorZone]!.ID} and {protos[i].ID} are marked as the corridor zone.");
+                else
+                    CorridorZone = id;
+            }
 
             foreach (var door in protos[i].Doors)
             {
