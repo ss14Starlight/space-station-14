@@ -6,9 +6,12 @@
   playTimeTracker: JobSalvageLead
   supervisors: job-supervisors-guild
   requirements:
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 18000 # 5 hours
     - !type:RoleTimeRequirement
       role: JobSalvageSpecialist
-      time: 36000 # 10 hours
+      time: 18000 # 5 hours
   icon: "JobIconSalvageLead"
   startingGear: SalvageLeadGear
   displayWeight: 5
