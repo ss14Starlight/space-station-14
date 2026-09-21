@@ -417,7 +417,7 @@ public sealed partial class ScentSystem : SharedScentSystem
         var query = EntityQueryEnumerator<ScentComponent>();
         while (query.MoveNext(out var uid, out var scent))
         {
-            if (scent.ScentId is not { } scentId)
+            if (scent.ScentId == null && scent.AdditionalScents.Count == 0)
                 continue;
 
             if (scent.NextEmitTime == TimeSpan.Zero)
@@ -427,10 +427,34 @@ public sealed partial class ScentSystem : SharedScentSystem
                 continue;
 
             scent.NextEmitTime = now + RollEmitDelay(scent);
+            
+            var scentId = PickScent(scent);
+            if (scentId == null)
+                continue;
 
             if (TryComp(uid, out TransformComponent? xform))
                 EmitScent((uid, scent, xform), scentId);
         }
+    }
+
+    private string? PickScent(ScentComponent scent)
+    {
+        var total = (scent.ScentId != null ? 1 : 0) + scent.AdditionalScents.Count;
+
+        if (total == 0)
+            return null;
+
+        var index = _random.Next(total);
+
+        if (scent.ScentId != null)
+        {
+            if (index == 0)
+                return scent.ScentId;
+
+            return scent.AdditionalScents[index - 1];
+        }
+
+        return scent.AdditionalScents[index];
     }
 
     private TimeSpan RollEmitDelay(ScentComponent scent)
@@ -560,5 +584,32 @@ public sealed partial class ScentSystem : SharedScentSystem
             despawn.Lifetime = (float)decayTime.TotalSeconds;
 
         return true;
+    }
+
+    public bool TryMergePollen(string pollenId, TransformComponent xform, TimeSpan lifetime)
+    {
+        var query = EntityQueryEnumerator<ScentMarkerComponent, TransformComponent>();
+
+        while (query.MoveNext(out var markerUid, out var marker, out var markerXform))
+        {
+            if (!marker.IsPollen || marker.ScentId != pollenId)
+                continue;
+
+            if (!_transform.InRange(xform.Coordinates, markerXform.Coordinates, 0.25f))
+                continue;
+
+            marker.ExpiresAt = _timing.CurTime + lifetime;
+            marker.TotalDuration = lifetime;
+            marker.Strength = 1f;
+
+            Dirty(markerUid, marker);
+
+            if (TryComp<TimedDespawnComponent>(markerUid, out var despawn))
+                despawn.Lifetime = (float)lifetime.TotalSeconds;
+
+            return true;
+        }
+
+        return false;
     }
 }

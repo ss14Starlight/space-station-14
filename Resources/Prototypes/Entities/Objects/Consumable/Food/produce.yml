@@ -1578,6 +1578,7 @@
     entries:
       Taco: Poppy
       Burger: Poppy
+  - type: EmitPollen
 
 - type: entity
   name: lily
