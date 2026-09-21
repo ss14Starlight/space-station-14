@@ -82,7 +82,6 @@
       60: 0.5
       100: 0.1
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatHuman
       amount: 3
