@@ -54,7 +54,7 @@ public sealed class SecureTerminalAuthorizeMessage : BoundUserInterfaceMessage
     public SecureTerminalAuthorizeMessage(string requestId) => RequestId = requestId;
 }
 
-/// <summary>Cancel / deny the currently pending proposal for a given request.</summary>
+/// <summary>Cancel / deny (veto) the currently pending proposal for a given request.</summary>
 [Serializable, NetSerializable]
 public sealed class SecureTerminalDenyMessage : BoundUserInterfaceMessage
 {
@@ -80,14 +80,10 @@ public sealed class SecureTerminalProposalState
 {
     public string RequestId = string.Empty;
 
-    /// <summary>Display name + job-title of each person who has signed.</summary>
+    /// <summary>Authorization progress for each alternative scheme.</summary>
+    public List<SecureTerminalAuthSchemeState> AuthSchemes = new();
+    public List<SecureTerminalAuthSchemeState> VetoSchemes = new();
     public List<(string Name, string Job)> AuthorizedBy = new();
-
-    /// <summary>True if the corresponding auth-group has been satisfied.</summary>
-    public List<bool> GroupsSatisfied = new();
-
-    /// <summary>Human-readable label per auth-group, e.g. "Captain / HoS".</summary>
-    public List<string> GroupLabels = new();
 
     /// <summary>
     /// When the action will fire (CurTime, server-side).
@@ -95,9 +91,24 @@ public sealed class SecureTerminalProposalState
     /// </summary>
     public TimeSpan? ActivateAt;
 
-    public TimeSpan? AuthTimer;
-
     public SecureTerminalProposalStatus Status;
+}
+
+[Serializable, NetSerializable]
+public sealed class SecureTerminalAuthSchemeState
+{
+    public string Id = string.Empty;
+    public string? Name;
+    public string? Description;
+
+    /// <summary>Display name and job title of each person who signed a group in this scheme.</summary>
+    public List<(string Name, string Job)> AuthorizedBy = new();
+
+    /// <summary>Whether each group in this scheme has been satisfied.</summary>
+    public List<bool> GroupsSatisfied = new();
+
+    /// <summary>Human-readable label for each group in this scheme.</summary>
+    public List<string> GroupLabels = new();
 }
 
 [Serializable, NetSerializable]
