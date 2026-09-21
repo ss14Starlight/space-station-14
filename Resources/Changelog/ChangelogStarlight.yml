@@ -1,20 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Made glasses actually correct short-sighted vision!
-    type: Tweak
-  id: 408381
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
-  - message: Entirely remade the Vegan Meatball magnet wreck to better work as a wreck for salvage.
-    type: Tweak
-  id: 408382
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
   - message: The Vegan Meatball magnet wreck should no longer pollute space with dozens of enemies after despawning.
     type: Fix
   id: 408383
@@ -2799,4 +2785,18 @@ Entries:
   id: 408780
   time: '2026-09-20T22:27:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6037
+- author: Johnny
+  changes:
+  - message: Removed the rod threats from ninja callins.
+    type: Remove
+  id: 408781
+  time: '2026-09-21T02:26:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6262
+- author: Citrea, DocMoth, IJK, Kirb, Neomoth, Orsoniks
+  changes:
+  - message: Added Experiment species, yes! the ones from Casualties Unknown.
+    type: Add
+  id: 408782
+  time: '2026-09-21T03:50:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4996
 Order: -1
