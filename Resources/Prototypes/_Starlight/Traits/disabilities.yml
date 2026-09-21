@@ -207,3 +207,19 @@
         - NeoResomi
         - Shadekin
         - NeoKin
+
+- type: trait
+  id: PollenAllergy
+  name: trait-pollen-allergic-name
+  description: trait-pollen-allergic-desc
+  category: Disabilities
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: PollenAllergy
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Diona
+      inverted: true

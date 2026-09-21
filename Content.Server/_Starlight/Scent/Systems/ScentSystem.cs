@@ -37,6 +37,9 @@ using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Pollen.Components;
+using Content.Server.Botany.Components;
+using Content.Shared.Botany;
 
 namespace Content.Server._Starlight.Scent.Systems;
 
@@ -108,8 +111,9 @@ public sealed partial class ScentSystem : SharedScentSystem
             PruneExpiredTraces(trace);
 
         var hasOwnScent = TryComp<ScentComponent>(args.Target, out var targetScent) && targetScent.ScentId != null;
+        var isPollen = HasComp<EmitPollenComponent>(args.Target);
 
-        if ((trace == null || trace.Scents.Count == 0) && !hasOwnScent)
+        if ((trace == null || trace.Scents.Count == 0) && !hasOwnScent && !isPollen)
         {
             _popup.PopupEntity(Loc.GetString("scent-sniff-no-scents", ("target", Name(args.Target))), args.Target, ent.Owner);
             args.Handled = true;
@@ -155,6 +159,12 @@ public sealed partial class ScentSystem : SharedScentSystem
 
         var ownScentId = TryComp<ScentComponent>(target, out var targetScent) ? targetScent.ScentId : null;
 
+        if (HasComp<EmitPollenComponent>(target) &&
+            TryComp<ProduceComponent>(target, out var produce) && produce.SeedId is { } seedId)
+        {
+            entries.Add(new ScentTraceEntry(seedId, ScentFreshness.VeryFresh, Loc.GetString("scent-species-non-humanoid")));
+        }
+
         if (!_ui.TryOpenUi(uid, ScentSniffUiKey.Key, uid))
         {
             Log.Warning($"{ToPrettyString(uid)} has SmellerComponent but couldn't open ScentSniffUiKey - " +
@@ -190,6 +200,15 @@ public sealed partial class ScentSystem : SharedScentSystem
     private void OnSmellerZombified(Entity<SmellerComponent> ent, ref EntityZombifiedEvent args) =>
         RemComp<SmellerComponent>(ent.Owner);
 
+    // Helper
+    private string? GetPollenId(EntityUid uid)
+    {
+        if (!TryComp<ProduceComponent>(uid, out var produce) || produce.SeedId is not { } seedId)
+            return null;
+
+        return seedId;
+    }
+
     private void OnTrackMessage(EntityUid uid, SmellerComponent component, ScentSniffTrackMessage args)
     {
         if (component.SniffTarget is not { } target || !Exists(target))
@@ -203,8 +222,9 @@ public sealed partial class ScentSystem : SharedScentSystem
 
         var isOwnScent = TryComp<ScentComponent>(target, out var targetScent) && targetScent.ScentId == args.ScentId;
         var isTracedScent = TryComp<ScentTraceComponent>(target, out var trace) && trace.Scents.ContainsKey(args.ScentId);
+        var isPollen = HasComp<EmitPollenComponent>(target) && args.ScentId == GetPollenId(target);
 
-        if (!isOwnScent && !isTracedScent)
+        if (!isOwnScent && !isTracedScent && !isPollen)
             return;
 
         SetTrackedScent((uid, component), args.ScentId, target);

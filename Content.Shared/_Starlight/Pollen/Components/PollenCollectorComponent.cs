@@ -1,9 +1,10 @@
-[RegisterComponent]
+using Robust.Shared.GameStates;
+
+namespace Content.Shared._Starlight.Pollen.Components;
+
+[RegisterComponent, NetworkedComponent]
 public sealed partial class PollenCollectorComponent : Component
 {
-    [DataField]
-    public float AbsorptionChance = 0.2f;
-
     [DataField]
     public List<string> CollectedPollen = new();
 }
