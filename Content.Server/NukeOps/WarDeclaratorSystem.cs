@@ -67,6 +67,7 @@ public sealed partial class WarDeclaratorSystem : EntitySystem
 
     private void OnActivated(Entity<WarDeclaratorComponent> ent, ref WarDeclaratorActivateMessage args)
     {
+        var alreadyDeclared = HasWarBeenDeclared(ent); // Starlight: ignore repeat activations, refer to WarDeclaratorSystem.Starlight.cs
         var ev = new WarDeclaredEvent(ent.Comp.CurrentStatus, ent);
         RaiseLocalEvent(ref ev);
 
@@ -80,18 +81,13 @@ public sealed partial class WarDeclaratorSystem : EntitySystem
         if (ent.Comp.AllowEditingMessage && message != string.Empty)
             ent.Comp.Message = message;
 
-        if (ev.Status == WarConditionStatus.WarReady)
+        //if (ev.Status == WarConditionStatus.WarReady)
+        if (ev.Status == WarConditionStatus.WarReady && !alreadyDeclared) // Starlight: ignore repeat activations, refer to WarDeclaratorSystem.Starlight.cs
         {
             var title = Loc.GetString(ent.Comp.SenderTitle);
             _chat.DispatchGlobalAnnouncement(ent.Comp.Message, title, true, ent.Comp.Sound, ent.Comp.Color);
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(args.Actor):player} has declared war with this text: {ent.Comp.Message}");
-
-            // Starlight - Start
-            _audio.PlayGlobal(_audio.ResolveSound(ent.Comp.WarMusic), Filter.Broadcast(), true, AudioParams.Default.WithVolume(-5f));
-            if (ent.Comp.GammaAlert)
-                if (_station.GetStations().FirstOrNull() is { } station)
-                    _alertLevel.SetLevel(station, "gamma", false, true, true, true);
-            // Starligh - End
+            PlayWarDeclarationEffects(ent); // Starlight: war declaration effects, refer to WarDeclaratorSystem.Starlight.cs
         }
 
         UpdateUI(ent, ev.Status);

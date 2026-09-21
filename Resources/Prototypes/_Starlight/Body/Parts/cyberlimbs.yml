@@ -24,6 +24,7 @@
         Default: CyberLArm
         Rodentia: RodentiaCyberLArm
         Resomi: ResomiCyberLArm
+        Experiment: ExperimentCyberLArm
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_arm"
@@ -54,6 +55,7 @@
         Default: CyberRArm
         Rodentia: RodentiaCyberRArm
         Resomi: ResomiCyberRArm
+        Experiment: ExperimentCyberRArm
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_arm"
@@ -84,6 +86,7 @@
         Default: CyberLHand
         Rodentia: RodentiaCyberLHand
         Resomi: ResomiCyberLHand
+        Experiment: ExperimentCyberLHand
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_hand"
@@ -111,6 +114,7 @@
         Default: CyberRHand
         Rodentia: RodentiaCyberRHand
         Resomi: ResomiCyberRHand
+        Experiment: ExperimentCyberRHand
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_hand"
@@ -139,6 +143,7 @@
         Default: CyberLLeg
         Rodentia: RodentiaCyberLLeg
         Resomi: ResomiCyberLLeg
+        Experiment: ExperimentCyberLLeg
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg"
@@ -199,6 +204,7 @@
         Default: CyberRLeg
         Rodentia: RodentiaCyberRLeg
         Resomi: ResomiCyberRLeg
+        Experiment: ExperimentCyberRLeg
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg"
@@ -258,6 +264,7 @@
         Default: CyberLFoot
         Rodentia: RodentiaCyberLFoot
         Resomi: ResomiCyberLFoot
+        Experiment: ExperimentCyberLFoot
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_foot"
@@ -287,6 +294,7 @@
         Default: CyberRFoot
         Rodentia: RodentiaCyberRFoot
         Resomi: ResomiCyberRFoot
+        Experiment: ExperimentCyberRFoot
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_foot"
@@ -318,6 +326,7 @@
         Default: CyberLLegSpeed
         Rodentia: RodentiaCyberLLegSpeed
         Resomi: ResomiCyberLLegSpeed
+        Experiment: ExperimentCyberLLegSpeed
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
       state: "l_leg"
@@ -342,6 +351,7 @@
         Default: CyberRLegSpeed
         Rodentia: RodentiaCyberRLegSpeed
         Resomi: ResomiCyberRLegSpeed
+        Experiment: ExperimentCyberRLegSpeed
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
       state: "r_leg"
@@ -367,6 +377,7 @@
         Default: CyberLArmSilver
         Rodentia: RodentiaCyberLArmSilver
         Resomi: ResomiCyberLArmSilver
+        Experiment: ExperimentCyberLArmSilver
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_silver_arm"
@@ -388,11 +399,13 @@
         Default: CyberLHandSilver
         Rodentia: RodentiaCyberLHandSilver
         Resomi: ResomiCyberLHandSilver
+        Experiment: ExperimentCyberLHandSilver
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandSilverReaper
         Rodentia: RodentiaCyberLHandSilverReaper
         Resomi: ResomiCyberLHandSilverReaper
+        Experiment: ExperimentCyberLHandSilverReaper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_silver_hand"
@@ -436,6 +449,7 @@
         Default: CyberRArmSilver
         Rodentia: RodentiaCyberRArmSilver
         Resomi: ResomiCyberRArmSilver
+        Experiment: ExperimentCyberRArmSilver
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_silver_arm"
@@ -465,11 +479,13 @@
         Default: CyberRHandSilver
         Rodentia: RodentiaCyberRHandSilver
         Resomi: ResomiCyberRHandSilver
+        Experiment: ExperimentCyberRHandSilver
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandSilverReaper
         Rodentia: RodentiaCyberRHandSilverReaper
         Resomi: ResomiCyberRHandSilverReaper
+        Experiment: ExperimentCyberRHandSilverReaper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_silver_hand"
@@ -506,6 +522,7 @@
         Default: CyberLArmSteel
         Rodentia: RodentiaCyberLArmSteel
         Resomi: ResomiCyberLArmSteel
+        Experiment: ExperimentCyberLArmSteel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_steel_arm"
@@ -535,11 +552,13 @@
         Default: CyberLHandSteel
         Rodentia: RodentiaCyberLHandSteel
         Resomi: ResomiCyberLHandSteel
+        Experiment: ExperimentCyberLHandSteel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandSteelMechwright
         Rodentia: RodentiaCyberLHandSteelMechwright
         Resomi: ResomiCyberLHandSteelMechwright
+        Experiment: ExperimentCyberLHandSteelMechwright
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_steel_hand"
@@ -572,6 +591,7 @@
         Default: CyberRArmSteel
         Rodentia: RodentiaCyberRArmSteel
         Resomi: ResomiCyberRArmSteel
+        Experiment: ExperimentCyberRArmSteel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_steel_arm"
@@ -601,11 +621,13 @@
         Default: CyberRHandSteel
         Rodentia: RodentiaCyberRHandSteel
         Resomi: ResomiCyberRHandSteel
+        Experiment: ExperimentCyberRHandSteel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandSteelMechwright
         Rodentia: RodentiaCyberRHandSteelMechwright
         Resomi: ResomiCyberRHandSteelMechwright
+        Experiment: ExperimentCyberRHandSteelMechwright
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_steel_hand"
@@ -639,6 +661,7 @@
         Default: CyberLArmEngineer
         Rodentia: RodentiaCyberLArmEngineer
         Resomi: ResomiCyberLArmEngineer
+        Experiment: ExperimentCyberLArmEngineer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_engineer_arm"
@@ -660,11 +683,13 @@
         Default: CyberLHandEngineer
         Rodentia: RodentiaCyberLHandEngineer
         Resomi: ResomiCyberLHandEngineer
+        Experiment: ExperimentCyberLHandEngineer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandEngineerTools
         Rodentia: RodentiaCyberLHandEngineerTools
         Resomi: ResomiCyberLHandEngineerTools
+        Experiment: ExperimentCyberLHandEngineerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_engineer_hand"
@@ -696,6 +721,7 @@
         Default: CyberRArmEngineer
         Rodentia: RodentiaCyberRArmEngineer
         Resomi: ResomiCyberRArmEngineer
+        Experiment: ExperimentCyberRArmEngineer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_engineer_arm"
@@ -717,11 +743,13 @@
         Default: CyberRHandEngineer
         Rodentia: RodentiaCyberRHandEngineer
         Resomi: ResomiCyberRHandEngineer
+        Experiment: ExperimentCyberRHandEngineer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandEngineerTools
         Rodentia: RodentiaCyberRHandEngineerTools
         Resomi: ResomiCyberRHandEngineerTools
+        Experiment: ExperimentCyberRHandEngineerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_engineer_hand"
@@ -753,6 +781,7 @@
         Default: CyberLArmBulwark
         Rodentia: RodentiaCyberLArmBulwark
         Resomi: ResomiCyberLArmBulwark
+        Experiment: ExperimentCyberLArmBulwark
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_arm"
@@ -781,11 +810,13 @@
         Default: CyberLHandBulwark
         Rodentia: RodentiaCyberLHandBulwark
         Resomi: ResomiCyberLHandBulwark
+        Experiment: ExperimentCyberLHandBulwark
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandBulwarkToggled
         Rodentia: RodentiaCyberLHandBulwarkToggled
         Resomi: ResomiCyberLHandBulwarkToggled
+        Experiment: ExperimentCyberLHandBulwarkToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_hand"
@@ -814,6 +845,7 @@
         Default: CyberRArmBulwark
         Rodentia: RodentiaCyberRArmBulwark
         Resomi: ResomiCyberRArmBulwark
+        Experiment: ExperimentCyberRArmBulwark
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_arm"
@@ -842,11 +874,13 @@
         Default: CyberRHandBulwark
         Rodentia: RodentiaCyberRHandBulwark
         Resomi: ResomiCyberRHandBulwark
+        Experiment: ExperimentCyberRHandBulwark
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandBulwarkToggled
         Rodentia: RodentiaCyberRHandBulwarkToggled
         Resomi: ResomiCyberRHandBulwarkToggled
+        Experiment: ExperimentCyberRHandBulwarkToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_hand"
@@ -876,6 +910,7 @@
         Default: CyberLArmMantisBlade
         Rodentia: RodentiaCyberLArmMantisBlade
         Resomi: ResomiCyberLArmMantisBlade
+        Experiment: ExperimentCyberLArmMantisBlade
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_mantis_blade_arm"
@@ -904,11 +939,13 @@
         Default: CyberLHandMantisBlade
         Rodentia: RodentiaCyberLHandMantisBlade
         Resomi: ResomiCyberLHandMantisBlade
+        Experiment: ExperimentCyberLHandMantisBlade
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandMantisBladeToggled
         Rodentia: RodentiaCyberLHandMantisBladeToggled
         Resomi: ResomiCyberLHandMantisBladeToggled
+        Experiment: ExperimentCyberLHandMantisBladeToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_mantis_blade_hand"
@@ -936,6 +973,7 @@
         Default: CyberRArmMantisBlade
         Rodentia: RodentiaCyberRArmMantisBlade
         Resomi: ResomiCyberRArmMantisBlade
+        Experiment: ExperimentCyberRArmMantisBlade
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_mantis_blade_arm"
@@ -964,11 +1002,13 @@
         Default: CyberRHandMantisBlade
         Rodentia: RodentiaCyberRHandMantisBlade
         Resomi: ResomiCyberRHandMantisBlade
+        Experiment: ExperimentCyberRHandMantisBlade
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandMantisBladeToggled
         Rodentia: RodentiaCyberRHandMantisBladeToggled
         Resomi: ResomiCyberRHandMantisBladeToggled
+        Experiment: ExperimentCyberRHandMantisBladeToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_mantis_blade_hand"
@@ -998,6 +1038,7 @@
         Default: CyberLArmRipper
         Rodentia: RodentiaCyberLArmRipper
         Resomi: ResomiCyberLArmRipper
+        Experiment: ExperimentCyberLArmRipper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_ripper_arm"
@@ -1031,11 +1072,13 @@
         Default: CyberLHandRipper
         Rodentia: RodentiaCyberLHandRipper
         Resomi: ResomiCyberLHandRipper
+        Experiment: ExperimentCyberLHandRipper
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandRipperRipping
         Rodentia: RodentiaCyberLHandRipperRipping
         Resomi: ResomiCyberLHandRipperRipping
+        Experiment: ExperimentCyberLHandRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_ripper_hand"
@@ -1071,6 +1114,7 @@
         Default: CyberRArmRipper
         Rodentia: RodentiaCyberRArmRipper
         Resomi: ResomiCyberRArmRipper
+        Experiment: ExperimentCyberRArmRipper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_ripper_arm"
@@ -1103,11 +1147,13 @@
         Default: CyberRHandRipper
         Rodentia: RodentiaCyberRHandRipper
         Resomi: ResomiCyberRHandRipper
+        Experiment: ExperimentCyberRHandRipper
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandRipperRipping
         Rodentia: RodentiaCyberRHandRipperRipping
         Resomi: ResomiCyberRHandRipperRipping
+        Experiment: ExperimentCyberRHandRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_ripper_hand"
@@ -1145,6 +1191,7 @@
         Default: CyberLArmSpacer
         Rodentia: RodentiaCyberLArmSpacer
         Resomi: ResomiCyberLArmSpacer
+        Experiment: ExperimentCyberLArmSpacer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_spacer_arm"
@@ -1166,11 +1213,13 @@
         Default: CyberLHandSpacer
         Rodentia: RodentiaCyberLHandSpacer
         Resomi: ResomiCyberLHandSpacer
+        Experiment: ExperimentCyberLHandSpacer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandSpacerTools
         Rodentia: RodentiaCyberLHandSpacerTools
         Resomi: ResomiCyberLHandSpacerTools
+        Experiment: ExperimentCyberLHandSpacerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_spacer_hand"
@@ -1201,6 +1250,7 @@
         Default: CyberRArmSpacer
         Rodentia: RodentiaCyberRArmSpacer
         Resomi: ResomiCyberRArmSpacer
+        Experiment: ExperimentCyberRArmSpacer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_spacer_arm"
@@ -1222,11 +1272,13 @@
         Default: CyberRHandSpacer
         Rodentia: RodentiaCyberRHandSpacer
         Resomi: ResomiCyberRHandSpacer
+        Experiment: ExperimentCyberRHandSpacer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandSpacerTools
         Rodentia: RodentiaCyberRHandSpacerTools
         Resomi: ResomiCyberRHandSpacerTools
+        Experiment: ExperimentCyberRHandSpacerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_spacer_hand"
@@ -1258,6 +1310,7 @@
         Default: CyberLArmGorilla
         Rodentia: RodentiaCyberLArmGorilla
         Resomi: ResomiCyberLArmGorilla
+        Experiment: ExperimentCyberLArmGorilla
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_gorilla_arm"
@@ -1279,11 +1332,13 @@
         Default: CyberLHandGorilla
         Rodentia: RodentiaCyberLHandGorilla
         Resomi: ResomiCyberLHandGorilla
+        Experiment: ExperimentCyberLHandGorilla
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandGorillaTools
         Rodentia: RodentiaCyberLHandGorillaTools
         Resomi: ResomiCyberLHandGorillaTools
+        Experiment: ExperimentCyberLHandGorillaTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_gorilla_hand"
@@ -1314,6 +1369,7 @@
         Default: CyberRArmGorilla
         Rodentia: RodentiaCyberRArmGorilla
         Resomi: ResomiCyberRArmGorilla
+        Experiment: ExperimentCyberRArmGorilla
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_gorilla_arm"
@@ -1335,11 +1391,13 @@
         Default: CyberRHandGorilla
         Rodentia: RodentiaCyberRHandGorilla
         Resomi: ResomiCyberRHandGorilla
+        Experiment: ExperimentCyberRHandGorilla
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandGorillaTools
         Rodentia: RodentiaCyberRHandGorillaTools
         Resomi: ResomiCyberRHandGorillaTools
+        Experiment: ExperimentCyberRHandGorillaTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_gorilla_hand"
@@ -1371,6 +1429,7 @@
         Default: CyberLArmAngel
         Rodentia: RodentiaCyberLArmAngel
         Resomi: ResomiCyberLArmAngel
+        Experiment: ExperimentCyberLArmAngel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_angel_arm"
@@ -1392,11 +1451,13 @@
         Default: CyberLHandAngel
         Rodentia: RodentiaCyberLHandAngel
         Resomi: ResomiCyberLHandAngel
+        Experiment: ExperimentCyberLHandAngel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandAngelTools
         Rodentia: RodentiaCyberLHandAngelTools
         Resomi: ResomiCyberLHandAngelTools
+        Experiment: ExperimentCyberLHandAngelTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_angel_hand"
@@ -1428,6 +1489,7 @@
         Default: CyberRArmAngel
         Rodentia: RodentiaCyberRArmAngel
         Resomi: ResomiCyberRArmAngel
+        Experiment: ExperimentCyberRArmAngel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_angel_arm"
@@ -1449,11 +1511,13 @@
         Default: CyberRHandAngel
         Rodentia: RodentiaCyberRHandAngel
         Resomi: ResomiCyberRHandAngel
+        Experiment: ExperimentCyberRHandAngel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandAngelTools
         Rodentia: RodentiaCyberRHandAngelTools
         Resomi: ResomiCyberRHandAngelTools
+        Experiment: ExperimentCyberRHandAngelTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_angel_hand"
@@ -1485,6 +1549,7 @@
         Default: CyberLArmZeus
         Rodentia: RodentiaCyberLArmZeus
         Resomi: ResomiCyberLArmZeus
+        Experiment: ExperimentCyberLArmZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_zeus_arm"
@@ -1505,11 +1570,13 @@
         Default: CyberLHandZeus
         Rodentia: RodentiaCyberLHandZeus
         Resomi: ResomiCyberLHandZeus
+        Experiment: ExperimentCyberLHandZeus
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandZeus
         Rodentia: RodentiaCyberLHandZeus
         Resomi: ResomiCyberLHandZeus
+        Experiment: ExperimentCyberLHandZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_zeus_hand"
@@ -1538,6 +1605,7 @@
         Default: CyberRArmZeus
         Rodentia: RodentiaCyberRArmZeus
         Resomi: ResomiCyberRArmZeus
+        Experiment: ExperimentCyberRArmZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_zeus_arm"
@@ -1558,11 +1626,13 @@
         Default: CyberRHandZeus
         Rodentia: RodentiaCyberRHandZeus
         Resomi: ResomiCyberRHandZeus
+        Experiment: ExperimentCyberRHandZeus
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandZeus
         Rodentia: RodentiaCyberRHandZeus
         Resomi: ResomiCyberRHandZeus
+        Experiment: ExperimentCyberRHandZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_zeus_hand"
@@ -1593,6 +1663,7 @@
         Default: CyberLArmRiplet
         Rodentia: RodentiaCyberLArmRiplet
         Resomi: ResomiCyberLArmRiplet
+        Experiment: ExperimentCyberLArmRiplet
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_riplet_arm"
@@ -1614,11 +1685,13 @@
         Default: CyberLHandRiplet
         Rodentia: RodentiaCyberLHandRiplet
         Resomi: ResomiCyberLHandRiplet
+        Experiment: ExperimentCyberLHandRiplet
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandRipletTools
         Rodentia: RodentiaCyberLHandRipletTools
         Resomi: ResomiCyberLHandRipletTools
+        Experiment: ExperimentCyberLHandRipletTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_riplet_hand"
@@ -1647,6 +1720,7 @@
         Default: CyberRArmRiplet
         Rodentia: RodentiaCyberRArmRiplet
         Resomi: ResomiCyberRArmRiplet
+        Experiment: ExperimentCyberRArmRiplet
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_riplet_arm"
@@ -1668,11 +1742,13 @@
         Default: CyberRHandRiplet
         Rodentia: RodentiaCyberRHandRiplet
         Resomi: ResomiCyberRHandRiplet
+        Experiment: ExperimentCyberRHandRiplet
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandRipletTools
         Rodentia: RodentiaCyberRHandRipletTools
         Resomi: ResomiCyberRHandRipletTools
+        Experiment: ExperimentCyberRHandRipletTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_riplet_hand"
@@ -1701,6 +1777,7 @@
         Default: CyberLArmPersephone
         Rodentia: RodentiaCyberLArmPersephone
         Resomi: ResomiCyberLArmPersephone
+        Experiment: ExperimentCyberLArmPersephone
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_persephone_arm"
@@ -1721,11 +1798,13 @@
         Default: CyberLHandPersephone
         Rodentia: RodentiaCyberLHandPersephone
         Resomi: ResomiCyberLHandPersephone
+        Experiment: ExperimentCyberLHandPersephone
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandPersephoneTools
         Rodentia: RodentiaCyberLHandPersephoneTools
         Resomi: ResomiCyberLHandPersephoneTools
+        Experiment: ExperimentCyberLHandPersephoneTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_persephone_hand"
@@ -1759,6 +1838,7 @@
         Default: CyberRArmPersephone
         Rodentia: RodentiaCyberRArmPersephone
         Resomi: ResomiCyberRArmPersephone
+        Experiment: ExperimentCyberRArmPersephone
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_persephone_arm"
@@ -1779,11 +1859,13 @@
         Default: CyberRHandPersephone
         Rodentia: RodentiaCyberRHandPersephone
         Resomi: ResomiCyberRHandPersephone
+        Experiment: ExperimentCyberRHandPersephone
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandPersephoneTools
         Rodentia: RodentiaCyberRHandPersephoneTools
         Resomi: ResomiCyberRHandPersephoneTools
+        Experiment: ExperimentCyberRHandPersephoneTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_persephone_hand"
@@ -1819,6 +1901,7 @@
         Default: CyberLArmScribe
         Rodentia: RodentiaCyberLArmScribe
         Resomi: ResomiCyberLArmScribe
+        Experiment: ExperimentCyberLArmScribe
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_scribe_arm"
@@ -1840,11 +1923,13 @@
         Default: CyberLHandScribe
         Rodentia: RodentiaCyberLHandScribe
         Resomi: ResomiCyberLHandScribe
+        Experiment: ExperimentCyberLHandScribe
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandScribeTools
         Rodentia: RodentiaCyberLHandScribeTools
         Resomi: ResomiCyberLHandScribeTools
+        Experiment: ExperimentCyberLHandScribeTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_scribe_hand"
@@ -1876,6 +1961,7 @@
         Default: CyberRArmScribe
         Rodentia: RodentiaCyberRArmScribe
         Resomi: ResomiCyberRArmScribe
+        Experiment: ExperimentCyberRArmScribe
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_scribe_arm"
@@ -1897,11 +1983,13 @@
         Default: CyberRHandScribe
         Rodentia: RodentiaCyberRHandScribe
         Resomi: ResomiCyberRHandScribe
+        Experiment: ExperimentCyberRHandScribe
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandScribeTools
         Rodentia: RodentiaCyberRHandScribeTools
         Resomi: ResomiCyberRHandScribeTools
+        Experiment: ExperimentCyberRHandScribeTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_scribe_hand"
@@ -1933,6 +2021,7 @@
         Default: CyberLArmHerakles
         Rodentia: RodentiaCyberLArmHerakles
         Resomi: ResomiCyberLArmHerakles
+        Experiment: ExperimentCyberLArmHerakles
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_arm"
@@ -1953,11 +2042,13 @@
         Default: CyberLHandHerakles
         Rodentia: RodentiaCyberLHandHerakles
         Resomi: ResomiCyberLHandHerakles
+        Experiment: ExperimentCyberLHandHerakles
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandHeraklesTools
         Rodentia: RodentiaCyberLHandHeraklesTools
         Resomi: ResomiCyberLHandHeraklesTools
+        Experiment: ExperimentCyberLHandHeraklesTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_bulwark_hand"
@@ -1986,6 +2077,7 @@
         Default: CyberRArmHerakles
         Rodentia: RodentiaCyberRArmHerakles
         Resomi: ResomiCyberRArmHerakles
+        Experiment: ExperimentCyberRArmHerakles
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_arm"
@@ -2006,11 +2098,13 @@
         Default: CyberRHandHerakles
         Rodentia: RodentiaCyberRHandHerakles
         Resomi: ResomiCyberRHandHerakles
+        Experiment: ExperimentCyberRHandHerakles
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandHeraklesTools
         Rodentia: RodentiaCyberRHandHeraklesTools
         Resomi: ResomiCyberRHandHeraklesTools
+        Experiment: ExperimentCyberRHandHeraklesTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_bulwark_hand"
@@ -2040,6 +2134,7 @@
         Default: CyberLArmInvestigator
         Rodentia: RodentiaCyberLArmInvestigator
         Resomi: ResomiCyberLArmInvestigator
+        Experiment: ExperimentCyberLArmInvestigator
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_investigator_arm"
@@ -2060,11 +2155,13 @@
         Default: CyberLHandInvestigator
         Rodentia: RodentiaCyberLHandInvestigator
         Resomi: ResomiCyberLHandInvestigator
+        Experiment: ExperimentCyberLHandInvestigator
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandInvestigatorTools
         Rodentia: RodentiaCyberLHandInvestigatorTools
         Resomi: ResomiCyberLHandInvestigatorTools
+        Experiment: ExperimentCyberLHandInvestigatorTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_investigator_hand"
@@ -2097,6 +2194,7 @@
         Default: CyberRArmInvestigator
         Rodentia: RodentiaCyberRArmInvestigator
         Resomi: ResomiCyberRArmInvestigator
+        Experiment: ExperimentCyberRArmInvestigator
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_investigator_arm"
@@ -2117,11 +2215,13 @@
         Default: CyberRHandInvestigator
         Rodentia: RodentiaCyberRHandInvestigator
         Resomi: ResomiCyberRHandInvestigator
+        Experiment: ExperimentCyberRHandInvestigator
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandInvestigatorTools
         Rodentia: RodentiaCyberRHandInvestigatorTools
         Resomi: ResomiCyberRHandInvestigatorTools
+        Experiment: ExperimentCyberRHandInvestigatorTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_investigator_hand"
@@ -2155,6 +2255,7 @@
         Default: CyberLLegHydraulic
         Rodentia: RodentiaCyberLLegHydraulic
         Resomi: ResomiCyberLLegHydraulic
+        Experiment: ExperimentCyberLLegHydraulic
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg_hydraulic"
@@ -2180,6 +2281,7 @@
         Default: CyberRLegHydraulic
         Rodentia: RodentiaCyberRLegHydraulic
         Resomi: ResomiCyberRLegHydraulic
+        Experiment: ExperimentCyberRLegHydraulic
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg_hydraulic"
@@ -2206,6 +2308,7 @@
         Default: CyberLLegPilebunker
         Rodentia: RodentiaCyberLLegPilebunker
         Resomi: ResomiCyberLLegPilebunker
+        Experiment: ExperimentCyberLLegPilebunker
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg_pilebunker"
@@ -2228,6 +2331,7 @@
         Default: CyberRLegPilebunker
         Rodentia: RodentiaCyberRLegPilebunker
         Resomi: ResomiCyberRLegPilebunker
+        Experiment: ExperimentCyberRLegPilebunker
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg_pilebunker"
@@ -2252,6 +2356,7 @@
         Default: CyberLLegCargo
         Rodentia: RodentiaCyberLLegCargo
         Resomi: ResomiCyberLLegCargo
+        Experiment: ExperimentCyberLLegCargo
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg_cargo"
@@ -2305,6 +2410,7 @@
         Default: CyberRLegCargo
         Rodentia: RodentiaCyberRLegCargo
         Resomi: ResomiCyberRLegCargo
+        Experiment: ExperimentCyberRLegCargo
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg_cargo"

@@ -14,6 +14,8 @@ public sealed partial class ZoneSystem : SharedZoneSystem
 
     private int _maxSeeds = 5;
 
+    private int _corridorDoorCount = 3;
+
     [Dependency] private IConfigurationManager _cfg = default!;
 
     public override void Initialize()
@@ -23,6 +25,7 @@ public sealed partial class ZoneSystem : SharedZoneSystem
         _cfg.OnValueChanged(StarlightCCVars.MaxZoneTilesPerTick, x => _maxTilesPerTick = x, true);
         _cfg.OnValueChanged(StarlightCCVars.MaxZoneRenamesPerTick, x => _maxRenamesPerTick = x, true);
         _cfg.OnValueChanged(StarlightCCVars.MaxZoneSearchVisits, x => _maxSearchVisits = x, true);
+        _cfg.OnValueChanged(StarlightCCVars.ZoneCorridorDoorCount, x => _corridorDoorCount = Math.Max(2, x), true);
         _cfg.OnValueChanged(
             StarlightCCVars.MaxZoneSeeds,
             x =>
