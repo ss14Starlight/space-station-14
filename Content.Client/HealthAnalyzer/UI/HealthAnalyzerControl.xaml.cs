@@ -35,10 +35,6 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
     // Starlight-start: Printable health reports.
     public event Action? PrintReportPressed;
 
-    public void SetPrintReportVisible(bool visible)
-    {
-        PrintReportButton.Visible = visible;
-    }
     // Starlight-end
 
     public HealthAnalyzerControl()
@@ -72,6 +68,8 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         }
 
         NoPatientDataText.Visible = false;
+
+        PrintReportButton.Visible = (state.EnablePrint ?? true); // Starlight-edit: Printable health reports.
         PrintReportButton.Disabled = !PrintReportButton.Visible || !(state.ScanMode ?? false) || !(state.CanPrint ?? false); // Starlight-edit: Printable health reports.
         // Scan Mode
 
