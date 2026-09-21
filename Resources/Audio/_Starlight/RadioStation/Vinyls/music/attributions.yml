@@ -37,3 +37,33 @@
   license: "CC-BY-4.0"
   copyright: "theprofessorix"
   source: "https://gist.github.com/yMicrowave/8f2a79e228b7b7a297d38eb8b88f98ac"
+
+- files: ["DriverUpdate.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "randomcuts"
+  source: "https://realrandomcuts.bandcamp.com/track/driver-update"
+
+- files: ["ResonantInfinite.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "randomcuts"
+  source: "https://realrandomcuts.bandcamp.com/track/resonant-infinite"
+
+- files: ["ConcreteFlavoured.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "randomcuts"
+  source: "https://realrandomcuts.bandcamp.com/track/concrete-flavoured"
+
+- files: ["VadeRetro.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "randomcuts"
+  source: "https://realrandomcuts.bandcamp.com/track/vade-retro"
+
+- files: ["damper_ii.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "Beptol Corporation Acoustics"
+  source: "https://pastebin.com/5wk5SNM0"
+
+- files: ["Cathode.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "Beptol Corporation Acoustics"
+  source: "https://pastebin.com/tMv0U86J"

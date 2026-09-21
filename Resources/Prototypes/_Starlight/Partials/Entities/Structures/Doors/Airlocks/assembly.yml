@@ -1,0 +1,17 @@
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyNT
+  suffix: NanoTrasen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyNTGlass
+  suffix: NanoTrasen, Glass
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/nanotrasen.rsi
+    state: "assembly"

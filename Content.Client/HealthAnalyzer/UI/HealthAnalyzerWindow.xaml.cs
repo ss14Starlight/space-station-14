@@ -20,10 +20,6 @@ public sealed partial class HealthAnalyzerWindow : FancyWindow
         remove => HealthAnalyzer.PrintReportPressed -= value;
     }
 
-    public void SetPrintReportVisible(bool visible)
-    {
-        HealthAnalyzer.SetPrintReportVisible(visible);
-    }
     // Starlight-end
 
     public void Populate(HealthAnalyzerScannedUserMessage msg)
