@@ -707,7 +707,7 @@
 - type: entity
   parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
   id: ClothingOuterCoatLeatherEldritch
-  name: eldtritch leather jacket # Alternative Clothing Catalog
+  name: eldritch leather jacket # Alternative Clothing Catalog
   description: You get the feeling it's watching you.
   components:
     - type: Sprite
