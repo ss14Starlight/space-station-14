@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Fland) Added double hop window.
-    type: Add
-  id: 408392
-  time: '2026-09-07T19:12:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6033
-- author: Cvlancer
-  changes:
   - message: (Leth) Changed mail room to be mail access.
     type: Tweak
   id: 408393
@@ -2799,4 +2792,11 @@ Entries:
   id: 408791
   time: '2026-09-21T13:50:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6207
+- author: ItsCharles
+  changes:
+  - message: Added ability to shake bottles and flasks, and this action is the same effect as shaking in a shaker.
+    type: Add
+  id: 408792
+  time: '2026-09-21T14:28:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6229
 Order: -1
