@@ -35,6 +35,7 @@ using Robust.Shared.Utility;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Medical;
 
@@ -50,6 +51,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
     // Starlight-start: Printable health reports.
     [Dependency] private BodySystem _bodySystem = default!;
     [Dependency] private SharedTimeSystem _timeSystem = default!;
@@ -283,14 +285,13 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         if (TryComp<HealthAnalyzerComponent>(healthAnalyzer, out var healthComp)
             && healthComp.Talk
             && healthComp.NextTalk < _timing.CurTime
-            && TryComp<DamageableComponent>(target, out var damageable)
             && scanMode
             )
         {
             healthComp.NextTalk = _timing.CurTime + healthComp.TalkInterval;
 
             var bloodLevel = !float.IsNaN(uiState.BloodLevel) ? $"{uiState.BloodLevel * 100:F1} %" : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
-            _chat.TrySendInGameICMessage(healthAnalyzer, Loc.GetString(healthComp.TalkMessage, ("damage", damageable.TotalDamage.ToString()), ("blood", bloodLevel)), InGameICChatType.Speak, hideChat: true);
+            _chat.TrySendInGameICMessage(healthAnalyzer, Loc.GetString(healthComp.TalkMessage, ("damage", _damageableSystem.GetTotalDamage(target).ToString()), ("blood", bloodLevel)), InGameICChatType.Speak, hideChat: true);
         }
         // Starlight-end
 
@@ -440,9 +441,9 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         if (TryComp<MobStateComponent>(patient, out var mobStateComponent))
             status = HealthAnalyzerFormatting.GetStatusText(mobStateComponent.CurrentState);
 
-        var damageable = Comp<DamageableComponent>(patient);
-        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
-        var groupedInjuries = damageable.DamagePerGroup
+        var damageable = _damageableSystem.GetAllDamage(patient);
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damagePerType = damageable.DamageDict;
+        var groupedInjuries = damageable.GetDamagePerGroup(ProtoMan)
             .OrderBy(group => HealthAnalyzerFormatting.GetDamageGroupSortKey(group.Key))
             .ThenBy(group => group.Key)
             .Select(group => BuildDamageGroupSnapshot(group.Key, group.Value, damagePerType))
@@ -471,7 +472,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             FormattedMessage.EscapeText(status),
             uiState.Temperature,
             uiState.BloodLevel,
-            damageable.TotalDamage,
+            damageable.GetTotal(),
             groupedInjuries,
             reagents);
     }

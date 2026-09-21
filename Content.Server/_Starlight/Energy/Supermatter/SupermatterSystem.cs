@@ -295,9 +295,10 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
     private void HandleDamage(Entity<SupermatterComponent> supermatter)
     {
         EnsureComp<DamageableComponent>(supermatter.Owner, out var damageable);
-        var trueDamage = damageable.TotalDamage * Const.DamageMultiplier;
+        var damageSpec = _damageable.GetAllDamage(supermatter.Owner);
+        var trueDamage = damageSpec.GetTotal() * Const.DamageMultiplier;
         trueDamage += supermatter.Comp.GasDoesDamage;//DamageGases
-        _damageable.TryChangeDamage(supermatter.Owner, damageable.Damage.Invert(), true);
+        _damageable.TryChangeDamage(supermatter.Owner, damageSpec.Invert(), true);
         var modifiedDamage = trueDamage * supermatter.Comp.ReactionModifier;
         // Added supermatter.Comp.ReactionModifier so nitrium and supressing gases can "calm" or agitate the SM
         supermatter.Comp.AccBreak = MathHelper.Clamp(supermatter.Comp.AccBreak + (modifiedDamage * Const.BreakPercent * supermatter.Comp.DestabilizationModifier), 0, 9999);

@@ -26,7 +26,7 @@ public sealed partial class MedibotSystem : EntitySystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {

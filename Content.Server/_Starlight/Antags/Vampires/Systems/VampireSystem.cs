@@ -256,10 +256,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         var spec = new DamageSpecifier(damageGroup, sunlight.GeneticDamagePerInterval);
         _damageableSystem.TryChangeDamage(uid, spec, true);
-
-        if (!TryComp(uid, out DamageableComponent? damageable) ||
-            damageable == null ||
-            !damageable.DamagePerGroup.TryGetValue(_geneticGroupId, out var geneticDamage))
+        if (!_damageableSystem.GetDamagePerGroup(uid).TryGetValue(_geneticGroupId, out var geneticDamage))
         {
             return true;
         }
@@ -313,7 +310,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (max <= 0f)
             return true;
 
-        var current = damageable.TotalDamage.Float();
+        var current = _damageableSystem.GetTotalDamage(uid).Float();
         return current <= max * 0.5f;
     }
 
@@ -737,10 +734,10 @@ public sealed partial class VampireSystem : EntitySystem
             || deadThreshold == null
             || deadThreshold.Value == FixedPoint2.Zero)
         {
-            return 100f - damageable.TotalDamage.Float();
+            return 100f - _damageableSystem.GetTotalDamage(uid).Float();
         }
 
-        return deadThreshold.Value.Float() - damageable.TotalDamage.Float();
+        return deadThreshold.Value.Float() - _damageableSystem.GetTotalDamage(uid).Float();
     }
 
     private void ApplyGroupDamage(EntityUid uid, ProtoId<DamageGroupPrototype> groupId, float amount)

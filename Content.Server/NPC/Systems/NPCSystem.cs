@@ -6,6 +6,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
+using Content.Shared.NPC.Systems;
 using Prometheus;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;

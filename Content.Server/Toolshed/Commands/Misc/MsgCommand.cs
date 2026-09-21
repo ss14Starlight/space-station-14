@@ -109,17 +109,4 @@ public sealed partial class MsgCommand : ToolshedCommand
         }
         _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype))); //Starlight
     }
-
-    [CommandImplementation("tippy")]
-    public IEnumerable<ICommonSession> Tippy([PipedArgument] IEnumerable<ICommonSession> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval)
-    {
-        _tips ??= GetSys<TipsSystem>();
-
-        foreach (var session in targets)
-        {
-            _tips.SendTippy(session, message, prototype, speakTime, slideTime, waddleInterval);
-
-            yield return session;
-        }
-    }
 }

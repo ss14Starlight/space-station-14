@@ -21,8 +21,6 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
-          min: 5
         - !type:ReagentCondition
           reagent: Phenylpiperidine
           max: 5

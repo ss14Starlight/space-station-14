@@ -270,27 +270,24 @@ public sealed partial class ShadekinSystem : EntitySystem
         if (!TryComp<PassiveDamageComponent>(uid, out var passive))
             return;
 
-        if (shadekinState is ShadekinState.Annoying or
-            ShadekinState.High or
-            ShadekinState.Extreme)
+        switch (shadekinState)
         {
-            passive.DamageCap = 1;
-        }
-        else if (shadekinState == ShadekinState.Low)
-        {
-            passive.DamageCap = 20;
-            passive.AllowedStates.Clear();
-            passive.AllowedStates.Add(MobState.Alive);
-            passive.Interval = 1f;
-        }
-        else if (shadekinState == ShadekinState.Dark)
-        {
-            passive.DamageCap = 0;
-            passive.AllowedStates.Clear();
-            passive.AllowedStates.Add(MobState.Alive);
-            passive.AllowedStates.Add(MobState.Critical);
-            passive.AllowedStates.Add(MobState.Dead);
-            passive.Interval = 0.5f;
+            case ShadekinState.Annoying or
+                ShadekinState.High or
+                ShadekinState.Extreme:
+                break;
+            case ShadekinState.Low:
+                passive.AllowedStates.Clear();
+                passive.AllowedStates.Add(MobState.Alive);
+                passive.Interval = 1f;
+                break;
+            case ShadekinState.Dark:
+                passive.AllowedStates.Clear();
+                passive.AllowedStates.Add(MobState.Alive);
+                passive.AllowedStates.Add(MobState.Critical);
+                passive.AllowedStates.Add(MobState.Dead);
+                passive.Interval = 0.5f;
+                break;
         }
     }
 
