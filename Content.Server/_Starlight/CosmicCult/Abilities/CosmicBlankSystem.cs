@@ -1,6 +1,7 @@
 using System.Collections.Immutable;
 using Content.Server._Starlight.CosmicCult.Components;
 using Content.Server._Starlight.Bluespace;
+using Content.Server.NPC.Systems;
 using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
@@ -36,6 +37,7 @@ public sealed partial class CosmicBlankSystem : EntitySystem
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
+	[Dependency] private NPCSystem _npc = default!;
 
     public override void Initialize()
     {
@@ -144,6 +146,7 @@ public sealed partial class CosmicBlankSystem : EntitySystem
         inVoid.OriginalBody = target;
         inVoid.ExitVoidTime = _timing.CurTime + comp.CosmicBlankDuration;
         _mind.TransferTo(mindEnt, mobUid);
+        _npc.SleepNPC(target); // AI tries to take over when shunted, so we make sure it doesn't
         _stun.TryKnockdown(target, comp.CosmicBlankDuration + TimeSpan.FromSeconds(2), true);
         _popup.PopupEntity(Loc.GetString("cosmicability-blank-transfer"), mobUid, mobUid);
         _audio.PlayPvs(comp.BlankSFX, spawnTgt, AudioParams.Default.WithVolume(6f));
