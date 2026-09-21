@@ -22,6 +22,7 @@ using Content.Shared.NukeOps;
 using Content.Shared.Pinpointer;
 using Content.Shared.Roles.Components;
 using Content.Shared._Starlight.CCVar;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
@@ -63,6 +64,7 @@ public sealed class NukeOpsTest : GameTest
         var invSys = server.System<InventorySystem>();
         var factionSys = server.System<NpcFactionSystem>();
         var roundEndSys = server.System<RoundEndSystem>();
+        var damageSys = server.System<DamageableSystem>();
 
         server.CfgMan.SetCVar(CCVars.GridFill, true);
         server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
@@ -232,27 +234,18 @@ public sealed class NukeOpsTest : GameTest
         Assert.That(total, Is.GreaterThan(3));
 
         // Check the nukie commander passed basic training and figured out how to breathe.
-        // Starlight edit Start: Who needs to breathe anyway?
-        // Starlight, just disable this entirely. NO clue why its failing
-        // Yes, disable failing test bad. However, this isnt a critical thing to check for, and we cant replicate the issue in client
-        // genuinely no issue whats wrong with it at and this point id rather just not have it
-        // if (entMan.TryGetComponent<RespiratorComponent>(player, out var resp))
-        // {
-        //     var totalSeconds = 30;
-        //     var totalTicks = (int) Math.Ceiling(totalSeconds / server.Timing.TickPeriod.TotalSeconds);
-        //     var increment = 5;
-        //     // var resp = entMan.GetComponent<RespiratorComponent>(player);
-        //     var damage = entMan.GetComponent<DamageableComponent>(player);
-        //     for (var tick = 0; tick < totalTicks; tick += increment)
-        //     {
-        //         await pair.RunTicksSync(increment);
-        //         Assert.That(resp.SuffocationCycles, Is.LessThanOrEqualTo(resp.SuffocationCycleThreshold));
-        //         //get damage as a string dict
-        //         string damageStr = damage.Damage.ToString();
-        //         Assert.That(damage.TotalDamage, Is.EqualTo(FixedPoint2.Zero), damageStr);
-        //     }
-        // }
-        // Starlight edit End
+        if (entMan.TryGetComponent<RespiratorComponent>(player, out var resp))
+        {
+            var totalSeconds = 30;
+            var totalTicks = (int)Math.Ceiling(totalSeconds / server.Timing.TickPeriod.TotalSeconds);
+            var increment = 5;
+            for (var tick = 0; tick < totalTicks; tick += increment)
+            {
+                await pair.RunTicksSync(increment);
+                Assert.That(resp.SuffocationCycles, Is.LessThanOrEqualTo(resp.SuffocationCycleThreshold));
+                Assert.That(damageSys.GetTotalDamage(player), Is.EqualTo(FixedPoint2.Zero));
+            }
+        }
 
         // Check that the round does not end prematurely when agents are deleted in the outpost
         var nukies = dummyEnts.Where(entMan.HasComponent<NukeOperativeComponent>).Append(player).ToArray();
