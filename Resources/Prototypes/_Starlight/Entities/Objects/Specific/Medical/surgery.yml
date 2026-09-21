@@ -15,10 +15,10 @@
   - type: Tag
     tags:
     - BoneGel
-  - type: SolutionContainerManager
-    solutions:
-      container:
-        maxVol: 30
+  - type: Solution
+    id: container
+    solution:
+      maxVol: 30
   - type: MixableSolution
     solution: container
   - type: SolutionTransfer
@@ -46,7 +46,6 @@
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: abductor
   - type: SolutionRegeneration
-    solution: container
     generated:
       reagents:
       - ReagentId: BoneGel
@@ -94,7 +93,6 @@
   - type: BoneSaw
   - type: BoneSetter
   - type: SolutionRegeneration
-    solution: container
     generated:
       reagents:
       - ReagentId: BoneGel
@@ -255,13 +253,13 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: bone-gel
-  - type: SolutionContainerManager
-    solutions:
-      container:
-        maxVol: 30
-        reagents:
-        - ReagentId: BoneGel
-          Quantity: 30
+  - type: Solution
+    id: container
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: BoneGel
+        Quantity: 30
 
 - type: entity
   name: bone gel

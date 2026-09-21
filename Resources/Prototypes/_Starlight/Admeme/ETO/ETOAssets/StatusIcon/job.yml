@@ -1,0 +1,54 @@
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconETOLead
+  icon:
+    sprite: &etoJobIconRsi /Textures/_Starlight/Admeme/ETO/etojobicons.rsi
+    state: ETO_Leader
+  jobName: job-name-eto-lead
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconETOCorpsman
+  icon:
+    sprite: *etoJobIconRsi
+    state: ETO_Corpsman
+  jobName: job-name-eto-corpsman
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconETOCombatTech
+  icon:
+    sprite: *etoJobIconRsi
+    state: ETO_CombatTech
+  jobName: job-name-eto-combattech
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconETOFootman
+  icon:
+    sprite: *etoJobIconRsi
+    state: ETO
+  jobName: job-name-eto-operative
+  allowSelection: false
+
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconETODemo
+  icon:
+    sprite: *etoJobIconRsi
+    state: ETO_Demo
+  jobName: job-name-eto-demo
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconETOMartyr
+  icon:
+    sprite: *etoJobIconRsi
+    state: ETO_Martyr
+  jobName: job-name-eto-martyr
+  allowSelection: false

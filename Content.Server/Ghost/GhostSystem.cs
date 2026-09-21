@@ -4,8 +4,6 @@ using Content.Server._Starlight.NewLife;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
-using Content.Server.Ghost.Components;
-using Content.Server.Ghost.Roles;
 using Content.Server.Mind;
 using Content.Server.Mobs;
 using Content.Server.Roles.Jobs;
@@ -22,6 +20,7 @@ using Content.Shared.Eye;
 using Content.Shared.FixedPoint;
 using Content.Shared.Follower;
 using Content.Shared.Ghost;
+using Content.Shared.GhostTypes;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -73,7 +72,7 @@ namespace Content.Server.Ghost
         [Dependency] private IRobustRandom _random = default!;
         [Dependency] private TagSystem _tag = default!;
         [Dependency] private NameModifierSystem _nameMod = default!;
-
+        [Dependency] private GhostSpriteStateSystem _ghostState = default!;
         [Dependency] private NewLifeSystem _newLifeSystem = default!;
 
         private EntityQuery<GhostComponent> _ghostQuery;
@@ -191,7 +190,7 @@ namespace Content.Server.Ghost
             if (!_minds.TryGetMind(uid, out var mindId, out var mind) || mind.IsVisitingEntity)
                 return;
 
-            if (component.MustBeDead && (_mobState.IsAlive(uid) || _mobState.IsCritical(uid)))
+            if (component.MustBeDead && (!_mobState.IsDead(uid))) // Starlight edit.... it was IsAlive || IsCritical... the IsDead function is right there!! >_>
                 return;
 
             OnGhostAttempt(mindId, component.CanReturn, mind: mind);
@@ -482,6 +481,11 @@ namespace Content.Server.Ghost
             var ghost = SpawnAtPosition(GameTicker.ObserverPrototypeName, spawnPosition.Value);
             var ghostComponent = Comp<GhostComponent>(ghost);
 
+            if (TryComp<GhostSpriteStateComponent>(ghost, out var state))  // If more TryComps are added this should be turned into an event
+            {
+                _ghostState.SetGhostSprite((ghost, state), mind);
+            }
+
             // Try setting the ghost entity name to either the character name or the player name.
             // If all else fails, it'll default to the default entity prototype name, "observer".
             // However, that should rarely happen.
@@ -571,7 +575,7 @@ namespace Content.Server.Ghost
                 canReturnGlobal &&
                 TryComp(playerEntity, out MobStateComponent? mobState))
             {
-                if (_mobState.IsCritical(playerEntity.Value, mobState))
+                if (_mobState.IsCritical(playerEntity.Value, mobState) || _mobState.IsSoftCritical(playerEntity.Value, mobState)) // Starlight edit softcrit
                 {
                     canReturn = true;
 

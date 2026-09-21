@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ SimpleSpaceMobBase, FlyingMobBase ]
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, BaseSlicingRefinable ] # Starlight
   id: MobEeepBase
   abstract: true
   categories: [ HideSpawnMenu ]
@@ -30,8 +30,8 @@
         - FlyingMobMask
         layer:
         - FlyingMobLayer
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable # Starlight
+    refineResult: # Starlight
       - id: EeepSpark
         amount: 1
   - type: StatusEffects
@@ -112,7 +112,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ChloralHydrate
-        Quantity: 200
+        Quantity: 400 # Starlight
     bleedReductionAmount: 1
     bloodRefreshAmount: 2
   - type: Sprite
@@ -147,12 +147,13 @@
         Brute: 2
   - type: StaminaDamageOnHit
     damage: 20
-  - type: SolutionContainerManager
-    solutions:
-      chloralhydrate:
-        reagents:
-        - ReagentId: ChloralHydrate
-          Quantity: 500
+  - type: Solution
+    id: chloralhydrate
+    solution:
+      maxVol: 500 # Starlight - preserve the melee injector reservoir after the solution refactor
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 500
   - type: MeleeChemicalInjector
     solution: chloralhydrate
     transferAmount: 5
@@ -196,7 +197,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: ChloralHydrate
-        Quantity: 400
+        Quantity: 400 # Starlight
     bleedReductionAmount: 1
     bloodRefreshAmount: 4
   - type: Electrified
@@ -248,14 +249,17 @@
   - type: Battery
     maxCharge: 3000 #Starlight 1000 -> 3000
     startingCharge: 1000
-#Starlight Removed, let the eep use their attacks to blow stuff up instead
-#  - type: LightningArcShooter
-#    arcDepth: 2
-#    maxLightningArc: 3
-#    shootMinInterval: 10
-#    shootMaxInterval: 15
-#    shootRange: 5
-#    lightningPrototype: Lightning
+    # Starlight-start - Resistance so Eeeps don't kill themselves when their lightning arcs blow up electronics
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+    # Starlight-end
+  - type: LightningArcShooter
+    arcDepth: 2
+    maxLightningArc: 3
+    shootMinInterval: 10
+    shootMaxInterval: 15
+    shootRange: 5
+    lightningPrototype: Lightning
   - type: AnnounceOnSpawn
     message: eeep-spawn
     sender: eeep-spawn-sender
@@ -270,7 +274,7 @@
     disableDuration: 20
   - type: Perishable
     rotAfter: 2000
-#region Starlight
+  # Starlight-start - Balance pass, PR #5171
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
     baseSprintSpeed: 7
@@ -295,4 +299,4 @@
     speedModifier: 8
     useSound:
       path: /Audio/Effects/tesla_consume.ogg
-#regionend Starlight
+  # Starlight-end

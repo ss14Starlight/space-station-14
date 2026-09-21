@@ -136,7 +136,7 @@
         id: SyndieHandyFlag
 
 - type: entity
-  parent: [ClothingOuterStorageBase, ClothingOuterBaseWinter] # Starlight
+  parent: [ClothingOuterStorageEdible, ClothingOuterBaseWinter] # Starlight
   id: ClothingOuterCoatTrench
   name: trench coat
   description: A comfy trench coat.
@@ -157,15 +157,6 @@
       coefficients:
         Slash: 0.95
         Cold: 0.85 # Starlight, I mean, it's a coat
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 20
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBase, ClothingOuterBaseWarm] # Starlight

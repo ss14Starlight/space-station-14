@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: OrganLagomorphEyes
   parent: OrganHumanEyes
   name: lagomorph eyes
@@ -23,17 +23,13 @@
   - type: Item
     size: Small
     heldPrefix: stomach
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
   - type: Metabolizer
     updateInterval: 0.75
+
 
 - type: entity
   id: OrganLagomorphHeart
@@ -50,3 +46,15 @@
     heldPrefix: heart
   - type: Metabolizer
     updateInterval: 0.75
+
+- type: entity
+  id: OrganLagomorphTongue
+  parent: OrganHumanTongue
+  suffix: Lagomorph
+  components:
+  - type: OrganTongue
+    allowedEmotes: ['Squee', 'Snort', 'Sneeze', 'LagomorphSnore', 'LagomorphStomp']
+    sounds:
+      Male: MaleLagomorph
+      Female: FemaleLagomorph
+      Unsexed: FemaleLagomorph

@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Server.Actions;
-using Content.Server.Atmos.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.Store.Systems;
 using Content.Shared.Alert;
@@ -29,7 +28,6 @@ public sealed partial class RevenantSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private AlertsSystem _alerts = default!;
-    [Dependency] private AtmosphereSystem _atmosphere = default!; // Starlight-edit
     [Dependency] private DamageableSystem _damage = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private GameTicker _ticker = default!;

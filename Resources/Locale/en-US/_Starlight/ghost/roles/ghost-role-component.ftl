@@ -129,10 +129,16 @@ ghost-role-information-kiki-name = Kiki
 ghost-role-information-kiki-description = An honorable member of the kobold society in charge of botany and helping the botanists in any way she can.
 
 ghost-role-information-stirstir-name = Stir Stir
-ghost-role-information-stirstir-description = A disreputable monkey who should not be trusted. A real cell stuffer.
+ghost-role-information-stirstir-description = A disreputable monkey who should not be trusted. A real cell stuffer. Check the Guidebook for more information.
 
 ghost-role-information-syndicate-mothroach-reinforcement-name = Syndicate Mobroach
 ghost-role-information-syndicate-mothroach-reinforcement-description = Someone needs reinforcements. You, a trained mobroach, will help them.
 ghost-role-information-icesculpture-name = Ice sculpture
 ghost-role-information-icesculpture-description = A sculpture of ice given sentience by magic, obey your master!
 ghost-role-information-icesculpture-rules = Ensure your summoner survives, defend them at all cost. You were made for this.
+
+ghost-role-information-sentient-sharkminnow-name = Sentient Sharkminnow
+ghost-role-information-sentient-sharkminnow-description = Guard the dragon's rift and obey the Space Dragon. Protect the rift from anyone who would seek to destroy it!
+
+ghost-role-information-sentient-holocarp-name = Sentient Holocarp
+ghost-role-information-sentient-holocarp-description = Aid the Space Dragon and obey its commands. Help the dragon flood the station with carps and overwhelm its enemies!

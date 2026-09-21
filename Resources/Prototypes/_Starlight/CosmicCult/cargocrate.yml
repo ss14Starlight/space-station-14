@@ -5,12 +5,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-holywater
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Holywater
-          Quantity: 200
+  - type: Solution
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Holywater
+        Quantity: 240
 
 - type: entity
   parent: CratePlastic

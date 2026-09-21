@@ -35,7 +35,6 @@ using Robust.Shared.Utility;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.EntityConditions.Conditions;
 
 namespace Content.Server.Medical;
 
@@ -97,11 +96,12 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             var patientCoordinates = Transform(patient).Coordinates;
             if (component.MaxScanRange != null && !_transformSystem.InRange(patientCoordinates, transform.Coordinates, component.MaxScanRange.Value))
             {
-                //Range too far, disable updates
-                StopAnalyzingEntity((uid, component), patient);
+                //Range too far, disable updates until they are back in range
+                PauseAnalyzingEntity((uid, component), patient);
                 continue;
             }
 
+            component.IsAnalyzerActive = true;
             UpdateScannedUser(uid, patient, true);
         }
     }
@@ -244,6 +244,21 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         UpdateScannedUser(healthAnalyzer, target, false);
     }
 
+
+    /// <summary>
+    /// If the scanner is active, sends one last update and sets it to inactive.
+    /// </summary>
+    /// <param name="healthAnalyzer">The health analyzer that's receiving the updates</param>
+    /// <param name="target">The entity to analyze</param>
+    private void PauseAnalyzingEntity(Entity<HealthAnalyzerComponent> healthAnalyzer, EntityUid target)
+    {
+        if (!healthAnalyzer.Comp.IsAnalyzerActive)
+            return;
+
+        UpdateScannedUser(healthAnalyzer, target, false);
+        healthAnalyzer.Comp.IsAnalyzerActive = false;
+    }
+
     /// <summary>
     /// Send an update for the target to the healthAnalyzer
     /// </summary>
@@ -261,6 +276,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         uiState.CanPrint = TryComp<HealthAnalyzerComponent>(healthAnalyzer, out var analyzerComp)
             && analyzerComp.ScannedEntity == target
             && _timing.CurTime >= analyzerComp.PrintReadyAt;
+        uiState.EnablePrint = analyzerComp?.EnablePrint;
         // Starlight-end
         uiState.ScanMode = scanMode;
 
@@ -378,6 +394,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             GetNetEntity(entity),
             bodyTemperature,
             bloodAmount,
+            null, // Starlight-edit: Printable health reports.
             null, // Starlight-edit: Printable health reports.
             null,
             bleeding,
@@ -535,7 +552,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                 ("amount", amountText));
             message.AddMarkupOrThrow(HealthAnalyzerFormatting.WrapMarkupWithColor(
                 groupLine,
-                HealthAnalyzerFormatting.GetDamageSeverityColor((float) group.Amount)));
+                HealthAnalyzerFormatting.GetDamageSeverityColorPrint((float) group.Amount)));
             message.PushNewline();
 
             foreach (var damageType in group.DamageTypes)

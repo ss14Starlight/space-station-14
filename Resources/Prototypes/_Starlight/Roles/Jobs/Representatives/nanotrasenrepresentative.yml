@@ -37,9 +37,7 @@
     - Research
     - Robotics
     - Detective
-    - Salvage
     - Mining
-    - SalvageLead
     - Security
     - Brig
     - Cargo
@@ -55,6 +53,7 @@
     - Journalism
     - Clown
     - Mime
+    - NTPersonnel
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

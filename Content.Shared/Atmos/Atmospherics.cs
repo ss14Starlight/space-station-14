@@ -159,7 +159,9 @@ namespace Content.Shared.Atmos
         public const float MinimumHeatCapacity = 0.0003f;
 
         /// <summary>
-        ///     For the purposes of making space "colder"
+        /// Allows Atmospherics to cool down rooms during spacing
+        /// by assigning a fake heat capacity to space,
+        /// making space "actually cold" for gameplay reasons.
         /// </summary>
         public const float SpaceHeatCapacity = 7000f;
 
@@ -231,6 +233,12 @@ namespace Content.Shared.Atmos
         ///     Set to the closest multiple of 4 relative to <see cref="TotalNumberOfGases"/> for SIMD reasons.
         /// </summary>
         public const int AdjustedNumberOfGases = ((TotalNumberOfGases + 3) / 4) * 4;
+
+        #region Starlight
+        public const float AmmoniaProductionEnergyReleased = 67e3f;
+        public const float AmmoniaNegativeDeltaEnthalpyOverR = 11089.4f;
+        public const float AmmoniaDeltaEntropyOverR = -20.838f;
+        #endregion
 
         /// <summary>
         ///     Amount of heat released per mole of burnt hydrogen or tritium (hydrogen isotope)

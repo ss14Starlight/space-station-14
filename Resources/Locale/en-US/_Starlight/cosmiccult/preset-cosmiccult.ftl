@@ -195,6 +195,15 @@ cosmiccult-announce-finale-warning = All station crew. The nullspace anomaly is 
 
 cosmiccult-announce-victory-summon = A FRACTION OF COSMIC POWER IS CALLED FORTH.
 
+cosmiccult-effigy-critical = A significant spike in nullspace energy has been detected in the vicinity of {$location}. Scientific personnel with adequate protective equipment are advised to investigate the anomaly. Exercise extreme caution.
+
+cosmiccult-rift-corpse1-warning = Station authorities are advised to increase focus on the detected nullspace energy source. Energy levels are continuing to rise.
+
+cosmiccult-rift-corpse2-warning = Extremely dangerous nullspace energy levels detected. Immediate evacuation or emergency security assistance is advised.
+
+cosmiccult-rift-corpse3-warning = Station authorities are advised to take drastic measures to neutralize the nullspace energy source. Failure to do so will result in the station being deemed condemned.
+
+cosmiccult-rift-corpse-dewarning = Nullspace energy output from the detected source has significantly subsided. Station authorities may resume normal operations. Have a productive day.
 
 ## MISC
 

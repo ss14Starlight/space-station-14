@@ -3,7 +3,6 @@ using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Robust.Shared.Player;
 using Robust.Shared.Toolshed;
-using Robust.Shared.Toolshed.Syntax;
 
 namespace Content.Server.Toolshed.Commands.AdminDebug;
 

@@ -447,13 +447,13 @@
     useSound:
       collection: Welder
     qualities: [ Welding ]
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 50
-        maxVol: 50
+  - type: Solution
+    id: Welder
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 50
+      maxVol: 50
   - type: Welder
   - type: GenericVisualizer
     visuals:
@@ -702,13 +702,13 @@
     useSound:
       collection: Welder
     qualities: [ Welding ]
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 50
-        maxVol: 100
+  - type: Solution
+    id: Welder
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 50
+      maxVol: 100
   - type: Welder
   - type: GenericVisualizer
     visuals:

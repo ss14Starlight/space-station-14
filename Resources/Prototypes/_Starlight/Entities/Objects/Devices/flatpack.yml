@@ -171,3 +171,4 @@
       entity: EndymionStatueLarge1
       randomEntities: #Structured to be able to add more options once we have sprites for more
         - EndymionStatueLarge1
+

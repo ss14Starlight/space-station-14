@@ -69,7 +69,7 @@
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
   - type: StaticPrice
-    price: 250
+    price: 260
   - type: RadiationBlocker
     resistance: 5
   - type: Sprite

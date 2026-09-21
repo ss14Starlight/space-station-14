@@ -22,10 +22,10 @@ using Content.Shared.Medical;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Throwing;
+using Content.Shared.Tools.Components;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
@@ -217,9 +217,13 @@ namespace Content.Server.Medical.BiomassReclaimer
                     component.BloodReagents.ScaleTo(50f);
                 // Starlight-end
             }
-            if (TryComp<ButcherableComponent>(toProcess, out var butcherableComponent))
+            if (TryComp<ToolRefinableComponent>(toProcess, out var refinable))
             {
-                component.SpawnedEntities = butcherableComponent.SpawnedEntities;
+                component.SpawnedEntities = refinable.RefineResult;
+            }
+            else
+            {
+                component.SpawnedEntities = new();
             }
 
             var expectedYield = physics.FixturesMass * component.YieldPerUnitMass;

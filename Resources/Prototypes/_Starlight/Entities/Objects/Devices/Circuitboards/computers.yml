@@ -23,9 +23,7 @@
   - type: Sprite
     state: cpu_supply
   - type: ComputerBoard
-    prototype: CompuerShuttleSalvage
-  - type: StealTarget
-    stealGroup: SalvageShuttleConsoleCircuitboard
+    prototype: CompuerShuttleSalvageITG
 
 - type: entity
   parent: BaseComputerCircuitboard
