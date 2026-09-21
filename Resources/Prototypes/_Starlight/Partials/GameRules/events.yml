@@ -45,11 +45,3 @@
   components:
   - type: StationEvent
     occursDuringRoundEnd: false
-
-# Resources/Prototypes/_Impstation/GameRules/events.yml
-
-- type: !PartialOnly entity
-  id: EeepEvent
-  components:
-  - type: StationEvent
-    occursDuringRoundEnd: false
