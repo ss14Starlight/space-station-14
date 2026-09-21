@@ -1,27 +1,6 @@
 ﻿Entries:
 - author: SlamBamActionman
   changes:
-  - message: Disablers, temperature guns and tasers can now hit holo mobs.
-    type: Fix
-  id: 9057
-  time: '2025-10-08T21:59:39.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/40782
-- author: Centronias
-  changes:
-  - message: You can now attach paper labels to wrapped parcels.
-    type: Add
-  id: 9058
-  time: '2025-10-08T22:27:58.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/40783
-- author: ToastEnjoyer
-  changes:
-  - message: On fland, the wardens enforcer has been removed.
-    type: Remove
-  id: 9059
-  time: '2025-10-08T23:45:56.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/40786
-- author: SlamBamActionman
-  changes:
   - message: EXPERIMENTAL Nocturine now slows the target down, with a longer duration
       and shorter delay before activating.
     type: Tweak
@@ -3844,8 +3823,31 @@
   url: https://github.com/space-wizards/space-station-14/pull/42909
 - author: sowelipililimute
   changes:
-  - message: Internal code changes to damage handling may result in slightly different
-      numbers for some medicines and/or some attacks.
+  - message: Underlying technical work for future medical improvements have resulted
+      in the following changes to better accomodate future development. Please note
+      that these changes are not representative of the final product and that the
+      medical balance will receive a major overhaul once limb and organ damage are
+      fully implemented.
+    type: Tweak
+  - message: Species now regenerate -0.05 of brute types individually (from -0.02).
+    type: Tweak
+  - message: Several mobs and weapons previously dealing split brute damage now deal singular damage types.
+    type: Tweak
+  - message: Several reagents previously dealing split brute damage now deals singular damage types.
+    type: Tweak
+  - message: Several reagents previously healing split brute damage now evenly heals instead.
+    type: Tweak
+  - message: Spiders now regenerate -0.03 of brute and burn types individually (from -0.02).
+    type: Tweak
+  - message: Skeletons now evenly heal when using milk.
+    type: Tweak
+  - message: Tomato killers now heal evenly when splashed with water, blood, or robust harvest.
+    type: Tweak
+  - message: Tricordrazine now evenly heals both brute, burn and toxin.
+    type: Tweak
+  - message: Desoxyephedrine now deals slighlty more blunt damage (to offset tricordazine changes).
+    type: Tweak
+  - message: Crusher mark leech hits now heal 5 of each brute category on hit (was 7).
     type: Tweak
   id: 9549
   time: '2026-02-27T06:33:44.0000000+00:00'
@@ -3857,19 +3859,6 @@
   id: 9550
   time: '2026-02-27T16:02:04.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/42960
-- author: Samuka
-  changes:
-  - message: 'EXPERIMENTAL: Added the xenoborg crystal!'
-    type: Add
-  - message: 'EXPERIMENTAL: Added the xenoborg extractor which can produce the xenoborg
-      crystal.'
-    type: Add
-  - message: 'EXPERIMENTAL: The recipes to make xenoborg chassis and xenoborg modules
-      now uses xenoborg crystals instead of normal materials.'
-    type: Tweak
-  id: 9551
-  time: '2026-02-28T01:08:13.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/42796
 - author: kontakt
   changes:
   - message: Throwing croissants no longer have a throwing knife in-hand sprite.
@@ -4009,3 +3998,29 @@
   id: 9567
   time: '2026-03-07T04:26:52.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/43103
+- author: Minemoder
+  changes:
+  - message: Vulpkanins can now use Gauze markings.
+    type: Add
+  id: 9568
+  time: '2026-03-07T21:39:13.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/43096
+- author: 11BelowStudio
+  changes:
+  - message: Spent air grenades cannot be re-triggered.
+    type: Fix
+  id: 9569
+  time: '2026-03-08T01:05:24.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/42866
+- author: ScarKy0
+  changes:
+  - message: Hostile vent critters now crawl out of a single vent, alerting the station
+      about the location in advance.
+    type: Add
+  - message: Friendly critters no longer have an announcement when spawning.
+    type: Remove
+  - message: Vent critters can no longer spawn on unachored vents.
+    type: Fix
+  id: 9570
+  time: '2026-03-11T23:42:35.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/43047

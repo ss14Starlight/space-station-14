@@ -3,26 +3,17 @@ using Robust.Server.GameStates;
 
 namespace Content.Server.Weather;
 
-public sealed partial class WeatherSystem : SharedWeatherSystem
+public sealed class WeatherSystem : SharedWeatherSystem
 {
     //I dont really like to PVS override weather entities, but map status effect containers dont PVS-ing out of the box
-    [Dependency] private PvsOverrideSystem _pvs = default!;
+    [Dependency] private readonly PvsOverrideSystem _pvs = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        InitEffects();
-
         SubscribeLocalEvent<WeatherStatusEffectComponent, ComponentInit>(OnCompInit);
         SubscribeLocalEvent<WeatherStatusEffectComponent, ComponentShutdown>(OnCompShutdown);
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        UpdateEffects(frameTime);
     }
 
     private void OnCompInit(Entity<WeatherStatusEffectComponent> ent, ref ComponentInit args)

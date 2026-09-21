@@ -24,6 +24,10 @@ public sealed partial class WeatherSystem : SharedWeatherSystem
     private EntityQuery<MapGridComponent> _gridQuery;
     private EntityQuery<RoofComponent> _roofQuery;
 
+    private EntityQuery<AudioComponent> _audioQuery;
+    private EntityQuery<MapGridComponent> _gridQuery;
+    private EntityQuery<RoofComponent> _roofQuery;
+
     public override void Initialize()
     {
         base.Initialize();
