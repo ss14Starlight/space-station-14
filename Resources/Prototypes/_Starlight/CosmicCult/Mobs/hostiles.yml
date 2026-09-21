@@ -48,8 +48,8 @@
     factions:
     - CosmicCult
   - type: CosmicMalignantHealing
-    healInterval: 1s
-    healAmount: 0.1
+    healInterval: 10s
+    healAmount: 0.5
   - type: GhostRole
     allowMovement: true
     allowSpeech: true
@@ -73,10 +73,10 @@
   - type: GhostOnMove
     mustBeDead: true
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: MalignStructure
     damageModifierSet: Malignstone
   - type: CosmicRiftHealth
-    healthPerCorpse: 5
+    healthPerCorpse: 2
   - type: Destructible
     thresholds:
       - trigger:
@@ -98,6 +98,7 @@
       reagents:
       - ReagentId: Entropy
         Quantity: 200
+    examineLocPrefix: cosmic-bloodstream
     maxBleedAmount: 10.75
     bleedReductionAmount: 0.1
     bloodlossDamage:
@@ -129,6 +130,8 @@
        enabled: true
        isLooped: true
        reverseWhenFinished: true
+  - type: HealthExaminable
+    locPrefix: cosmic
 
 - type: entity
   parent: [ BaseMobCosmicHostile, MobCosmicCustodian ]

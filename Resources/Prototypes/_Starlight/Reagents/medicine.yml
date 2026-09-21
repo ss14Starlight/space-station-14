@@ -84,7 +84,7 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Avali, Resomi, Vox ]
-        amount: 3
+        amount: 9
         # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent # Amoxla for Cyclorites is a toxin not medicine
         conditions:

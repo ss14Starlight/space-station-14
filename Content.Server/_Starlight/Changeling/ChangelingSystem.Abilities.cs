@@ -30,13 +30,16 @@ using Content.Shared.Humanoid;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Changeling;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Flash;
+using Content.Shared.Atmos.Rotting;
 using Content.Shared.Store;
-using Content.Shared._Starlight.Medical.Body.Components;
-using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Server.Ensnaring;
+using Content.Shared.Ensnaring.Components;
+using Content.Shared.Tag;
 // Starlight edit end
 
 namespace Content.Server._Starlight.Changeling;
@@ -47,11 +50,15 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
     [Dependency] private LanguageSystem _language = default!;
     [Dependency] private SharedFlashSystem _flashSystem = default!;
+    [Dependency] private SharedRottingSystem _rotting = default!;
     [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private StomachSystem _stomach = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private EnsnareableSystem _ensnareable = default!;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
+    private static readonly ProtoId<TagPrototype> BolaTag = "Bola";
 
     public void SubscribeAbilities()
     {
@@ -138,6 +145,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         };
         _doAfter.TryStartDoAfter(dargs);
     }
+
     public ProtoId<DamageGroupPrototype> AbsorbedDamageGroup = "Genetic";
     private void OnDevouredPerson(EntityUid uid, ChangelingComponent comp, ref OnLingDevour args)
     {
@@ -165,6 +173,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         // Starlight edit end
 
         EnsureComp<AbsorbedComponent>(target);
+        if (TryComp<PerishableComponent>(target, out var perishable))
+            _rotting.SetRotAfter(target, TimeSpan.FromMinutes(20), perishable);
 
         var popup = Loc.GetString("changeling-absorb-end-self-ling");
         var bonusChemicals = 0f;
@@ -310,16 +320,16 @@ public sealed partial class ChangelingSystem : EntitySystem
         DoScreech(uid, comp);
 
         var power = comp.ShriekPower;
-        _flash.FlashArea(uid, uid, power, TimeSpan.FromMilliseconds(power * 2f * 1000f));
+        List<EntityUid> ignoreList = new() { uid };
+        _flash.FlashArea(uid, uid, power, TimeSpan.FromMilliseconds(power * 2f * 1000f), 0.8f, false, 1f, null, ignoreList);
 
         var lookup = _lookup.GetEntitiesInRange(uid, power);
         var lights = GetEntityQuery<PoweredLightComponent>();
-
         foreach (var ent in lookup)
+            // breaks lights
             if (lights.HasComponent(ent))
                 _light.TryDestroyBulb(ent);
     }
-
     private void OnToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp, ref ToggleStrainedMusclesEvent args) => ToggleStrainedMuscles(uid, comp);
 
     private void ToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp)
@@ -381,7 +391,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
 
         var target = args.Target;
-        var fakeArmblade = EntityManager.SpawnEntity(FakeArmbladePrototype, Transform(target).Coordinates);
+        var fakeArmblade = Spawn(FakeArmbladePrototype, Transform(target).Coordinates);
         if (!_hands.TryPickupAnyHand(target, fakeArmblade))
         {
             QueueDel(fakeArmblade);
@@ -464,6 +474,20 @@ public sealed partial class ChangelingSystem : EntitySystem
             }
 
             QueueDel(cuff);
+        }
+
+        // Remove bolas
+        if (TryComp<EnsnareableComponent>(uid, out var ensnareable))
+        {
+            foreach (var ensnaring in ensnareable.Container.ContainedEntities)
+            {
+                if (!TryComp<EnsnaringComponent>(ensnaring, out var ensnaringComponent) || !_tag.HasTag(ensnaring, BolaTag))
+                    continue;
+
+                _ensnareable.ForceFree(ensnaring, ensnaringComponent);
+                QueueDel(ensnaring);
+                break;
+            }
         }
 
         var soln = new Solution();
@@ -566,18 +590,14 @@ public sealed partial class ChangelingSystem : EntitySystem
     // john space made me do this
     private void OnHealUltraSwag(EntityUid uid, ChangelingComponent comp, ref ActionFleshmendEvent args)
     {
-        var stomachs = _body.GetBodyOrganEntityComps<StomachComponent>(uid);
-        if (stomachs.Count == 0)
-            return;
-        var stomach = stomachs[0];
-        var ichorInjection = new Solution("Ichor", 10f);
         var reagents = new Dictionary<string, FixedPoint2>
         {
+            { "Ichor", 10f },
             { "TranexamicAcid", 5f }
         };
-        _stomach.TryTransferSolution(stomach.Owner, ichorInjection);
-        TryInjectReagents(uid, reagents);
-        _popup.PopupEntity(Loc.GetString("changeling-fleshmend"), uid, uid);
+        if (TryInjectReagents(uid, reagents))
+            _popup.PopupEntity(Loc.GetString("changeling-fleshmend"), uid, uid);
+        else return;
         PlayMeatySound(uid, comp);
     }
     public void OnLastResort(EntityUid uid, ChangelingComponent comp, ref ActionLastResortEvent args)
@@ -681,17 +701,6 @@ public sealed partial class ChangelingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("changeling-action-fail-absorbed", ("number", delta)), uid, uid);
             ev.Cancelled = true;
             return;
-        }
-
-        if (lingAction.RequireStomach)
-        {
-            var stomachs = _body.GetBodyOrganEntityComps<StomachComponent>(uid);
-            if (stomachs.Count == 0)
-            {
-                _popup.PopupEntity(Loc.GetString("changeling-action-fail-nostomach"), uid, uid);
-                ev.Cancelled = true;
-                return;
-            }
         }
 
         UpdateChemicals(uid, comp, -lingAction.ChemicalCost);

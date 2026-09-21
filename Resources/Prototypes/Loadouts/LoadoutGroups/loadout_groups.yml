@@ -409,6 +409,16 @@
   - WinterBoots
   - Heels # 🌟Starlight🌟
 
+# Starlight-start
+- type: loadoutGroup
+  id: AssistantJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - Soap
+  - RubberStampAssistant
+# Starlight-end
+
 - type: loadoutGroup
   id: BartenderHead
   name: loadout-group-bartender-head
@@ -1247,6 +1257,7 @@
   minLimit: 0
   loadouts:
   - ResearchDirectorBeret
+  - ResearchDirectorBeretRD # Starlight
 
 - type: loadoutGroup
   id: ResearchDirectorNeck
@@ -1648,6 +1659,24 @@
   - ReporterJumpsuit
   - ReporterJumpskirt
   - JournalistJumpsuit
+  - JournalistJumpskirt # Starlight
+
+- type: loadoutGroup
+  id: ReporterHead
+  name: loadout-group-reporter-head
+  minLimit: 0
+  loadouts:
+  - ReporterPressFedora
+  - ReporterHeadphonesJob # Starlight
+  - ReporterHeadphonesGeneric # Starlight
+  - ReporterHeadphonesHighEnd # Starlight
+
+- type: loadoutGroup
+  id: ReporterOuterClothing
+  name: loadout-group-reporter-outerclothing
+  minLimit: 0
+  loadouts:
+  - ReporterPressVest
 
 #- type: loadoutGroup
 #  id: ReporterJobTrinkets

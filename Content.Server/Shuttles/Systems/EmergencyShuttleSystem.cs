@@ -43,10 +43,8 @@ using Content.Shared._Starlight.CustomObjectiveSummary;
 using Content.Shared.Station.Components;
 using Robust.Shared.Audio;
 using Content.Server.Parallax;
-using Content.Shared.Parallax.Biomes;
 using Content.Server.Procedural;
-using Robust.Shared.Map;
-using Content.Shared._Starlight.Shuttles.Components;
+
 // Starlight End
 
 namespace Content.Server.Shuttles.Systems;

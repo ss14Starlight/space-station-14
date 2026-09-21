@@ -65,6 +65,7 @@
   flavor: lemonlimecranberrysoda # 'like Christmas'
   color: "#700620" # dark red, erring on pinkish
   viscosity: 0.55 #Start using syrup to attach your remote recievers to your microwaves!
+  viscosityMin: 1
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:

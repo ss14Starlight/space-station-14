@@ -7,7 +7,6 @@ using Content.Shared.Decals;
 using Content.Shared.Doors.Components;
 using Content.Shared.Maps;
 using JetBrains.Annotations;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;

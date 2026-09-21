@@ -74,7 +74,7 @@
     - VimPilot
     - AnomalyHost
   - type: Loadout
-    prototypes: [ MobKoboldGear ]
+    prototypes: [ MobKikiGear ]
   - type: Vocal
     sounds:
       Male: MaleReptilian
@@ -353,6 +353,29 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/penguin_squawk.ogg
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - VimPilot
+
+- type: entity
+  name: Cecil
+  parent: MobLizard
+  id: MobLizardCecil
+  description: A lounge lizard kept by Central Command to add ambiance to their conference rooms. Do not confuse for sea salt, his name is Cecil. Cecil. Cecil. Cecil command. Cecil. Sea salt command.
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Draconic
+    understands:
+    - Ancestor
+    - GalacticCommon
+    - Draconic
+    - Sign
   - type: Grammar
     attributes:
       proper: true

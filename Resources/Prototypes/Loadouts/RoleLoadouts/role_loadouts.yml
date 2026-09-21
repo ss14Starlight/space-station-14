@@ -71,7 +71,7 @@
   - Scarves # Starlight
   - Pins # Starlight
   - Pens # Starlight
-  #- PassengerJobTrinkets
+  - AssistantJobTrinkets # Starlight
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
@@ -579,8 +579,9 @@
   id: JobReporter
   groups:
   - GroupTankHarness
-  - ReporterHead # Starlight
   - ReporterJumpsuit
+  - ReporterHead
+  - ReporterOuterClothing
   - CommonBackpack
   - CivilianShoes # Starlight
   - Glasses

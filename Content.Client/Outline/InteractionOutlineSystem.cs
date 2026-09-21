@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Content.Client.ContextMenu.UI;
 using Content.Client.Gameplay;
 using Content.Client.Graphics;

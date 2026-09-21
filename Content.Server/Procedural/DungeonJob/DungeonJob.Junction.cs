@@ -2,8 +2,6 @@ using System.Threading.Tasks;
 using Content.Shared.Maps;
 using Content.Shared.Procedural;
 using Content.Shared.Procedural.PostGeneration;
-using Content.Shared.Storage;
-using Robust.Shared.Map.Components;
 
 namespace Content.Server.Procedural.DungeonJob;
 

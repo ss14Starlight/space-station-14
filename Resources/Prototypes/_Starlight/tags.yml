@@ -198,6 +198,15 @@
   id: ConstructionComment
 
 - type: Tag
+  id: CottonBread # BountyCottonBread
+
+- type: Tag
+  id: CottonCake # BountyCottonCake
+
+- type: Tag
+  id: CoupeGlass # BountyCoupeGlass
+
+- type: Tag
   id: CrispyRiceBar
 
 - type: Tag
@@ -277,6 +286,9 @@
 
 - type: Tag
   id: Felionoid
+
+- type: Tag
+  id: Experiment
 
 - type: Tag
   id: FreeMag
@@ -660,10 +672,16 @@
   id: RollerBed
 
 - type: Tag
+  id: Salad # BountySalad
+
+- type: Tag
   id: SalvageTicket
 
 - type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
+
+- type: Tag
+  id: SausageBun # BountySausageBun
 
 - type: Tag
   id: ScanGateMachineBoard

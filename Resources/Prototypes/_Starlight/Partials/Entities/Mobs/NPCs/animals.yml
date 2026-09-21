@@ -1,0 +1,11 @@
+- type: !PartialOnly entity
+  id: FoodEggChickenFertilized
+  components:
+  - type: TimedSpawner
+    allowContainerPlacement: true
+
+- type: !PartialOnly entity
+  id: FoodEggDuckFertilized
+  components:
+  - type: TimedSpawner
+    allowContainerPlacement: true

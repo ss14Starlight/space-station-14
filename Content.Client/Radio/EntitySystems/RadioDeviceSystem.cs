@@ -13,6 +13,7 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        base.Initialize();
         SubscribeLocalEvent<IntercomComponent, AfterAutoHandleStateEvent>(OnAfterHandleState);
     }
 

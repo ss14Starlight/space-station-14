@@ -37,6 +37,7 @@
     - Journalism
     - Clown
     - Mime
+    - NTPersonnel
 
 - type: accessLevel
   id: Debug1
@@ -86,6 +87,7 @@
   - MedTak
   - Casino
   - Visitor
+  - ETO
   - Salvage
   - SalvageLead
 
