@@ -47,7 +47,7 @@ public sealed partial class CosmicBlankSystem : EntitySystem
 
     private void OnCosmicBlank(Entity<CosmicCultComponent> uid, ref EventCosmicBlank args)
     {
-        if (_cosmicCult.EntityIsCultist(args.Target) || HasComp<CosmicBlankComponent>(args.Target) || HasComp<ActiveNPCComponent>(args.Target) || !_mobState.IsAlive(args.Target))
+        if (_cosmicCult.EntityIsCultist(args.Target) || HasComp<CosmicBlankComponent>(args.Target) || (HasComp<ActiveNPCComponent>(args.Target) && !HasComp<CosmicCultConvertibleComponent>(args.Target)) || !_mobState.IsAlive(args.Target))
         {
             _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
             return;
