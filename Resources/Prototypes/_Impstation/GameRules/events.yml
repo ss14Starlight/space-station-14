@@ -9,7 +9,6 @@
     reoccurrenceDelay: 40
     minimumPlayers: 30
     duration: null
-    occursDuringRoundEnd: false # Starlight
   - type: BriefingRule
     briefing: eeep-role-briefing
   - type: SpaceSpawnRule
