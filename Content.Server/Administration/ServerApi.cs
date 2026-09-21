@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -66,6 +67,8 @@ public sealed partial class ServerApi : IPostInjectInit
 
     private string _token = string.Empty;
     private ISawmill _sawmill = default!;
+    private const int Ipv4_CIDR = 32;
+    private const int Ipv6_CIDR = 64;
 
     void IPostInjectInit.PostInject()
     {
@@ -336,7 +339,7 @@ public sealed partial class ServerApi : IPostInjectInit
                 return;
             }
 
-            var bans = await _db.GetBansAsync(userId: located.UserId,
+            var bans = await _db.GetServerBansAsync(userId: located.UserId,
                 address: null,
                 hwId: null,
                 modernHWIds: located.LastModernHWIds,
@@ -352,25 +355,41 @@ public sealed partial class ServerApi : IPostInjectInit
             }
 
             var reason = body.Reason ?? "No reason supplied";
-            var info = new CreateServerBanInfo(reason);
-
-            info.AddHWId(located.LastHWId);
-            info.AddUser(located.UserId, located.Username);
-            info.WithSeverity(body.Severity);
-            if (body.Minutes != null && body.Minutes != 0)
-            {
-                info.WithMinutes(body.Minutes.Value);
-            }
-
-            info.WithBanningAdmin(new NetUserId(actor.Guid));
-
-            // Add the ip if the user is currently connected.
+            // STARLIGHT: We dont have this
+            // var info = new CreateServerBanInfo(reason);
+            //
+            // info.AddHWId(located.LastHWId);
+            // info.AddUser(located.UserId, located.Username);
+            // info.WithSeverity(body.Severity);
+            // if (body.Minutes != null && body.Minutes != 0)
+            // {
+            //     info.WithMinutes(body.Minutes.Value);
+            // }
+            //
+            // info.WithBanningAdmin(new NetUserId(actor.Guid));
+            //
+            // // Add the ip if the user is currently connected.
+            // if (_playerManager.TryGetSessionById(new NetUserId(body.Guid), out var player))
+            // {
+            //     info.AddAddress(player.Channel.RemoteEndPoint.Address);
+            // }
+            //Starlight start - Work around
+            (IPAddress, int)? ip = null;
             if (_playerManager.TryGetSessionById(new NetUserId(body.Guid), out var player))
             {
-                info.AddAddress(player.Channel.RemoteEndPoint.Address);
+                var ipadd = player.Channel.RemoteEndPoint.Address;
+                var hidInt = ipadd.AddressFamily == AddressFamily.InterNetworkV6 ? Ipv6_CIDR : Ipv4_CIDR;
+                ip = (ipadd, hidInt);
+
             }
 
-            _bans.CreateServerBan(info);
+            uint minutes = 0;
+            if (body.Minutes != null)
+            {
+                minutes = body.Minutes.Value;
+            }
+            await _bans.CreateServerBan(located.UserId, located.Username, new NetUserId(actor.Guid), ip, located.LastHWId, minutes, body.Severity, reason);
+            //Starlight end
             await RespondOk(context);
 
             _sawmill.Info($"Banned player {located.Username} ({located.UserId}) for {reason} lasting {body.Minutes ?? 0} minutes by {FormatLogActor(actor)}");
