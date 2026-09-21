@@ -29,10 +29,8 @@ using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Ghost;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Clothing;
-#region  Starlight
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-#endregion
 
 namespace Content.Server.Radio.EntitySystems;
 

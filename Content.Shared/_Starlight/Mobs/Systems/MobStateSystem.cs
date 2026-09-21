@@ -1,4 +1,5 @@
-﻿using Content.Shared.Interaction.Events;
+﻿using Content.Shared.Alert;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
@@ -6,6 +7,7 @@ using Content.Shared.Pulling.Events;
 using Content.Shared.Speech;
 using Content.Shared.Standing;
 using Content.Shared.Strip.Components;
+using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 
 // ReSharper disable  CheckNamespace
@@ -13,6 +15,7 @@ namespace Content.Shared.Mobs.Systems;
 
 public partial class MobStateSystem : EntitySystem
 {
+    [Dependency] private AlertsSystem _alerts = default!;
     /// <summary>
     ///  Check if a Mob is in Soft Critical
     /// </summary>
@@ -32,7 +35,17 @@ public partial class MobStateSystem : EntitySystem
     {
         if(ent.Comp.CurrentState !=  MobState.SoftCritical)
             return;
-        args.ModifySpeed(0.3f, 0.3f);
+        args.ModifySpeed(0.5f, 0.5f);
+    }
+
+    [SubscribeLocalEvent] // Why do we need two stand attempt events ;-;
+    private void StandUpAttemptEvent(Entity<MobStateComponent> ent, ref StandUpAttemptEvent args)
+    {
+        if (args.Cancelled || !IsSoftCritical(ent))
+            return;
+
+        args.Cancelled = true;
+        args.Autostand = false;
     }
 
     private bool SLOnStateExitSubscribers(EntityUid target, MobStateComponent component, MobState state)
@@ -45,7 +58,9 @@ public partial class MobStateSystem : EntitySystem
     private bool SLStateEnteredSubscribers(EntityUid target, MobStateComponent component, MobState state)
     {
         if (state != MobState.SoftCritical) return false;
-        Down(target);
+        _standing.Down(target);
+        EnsureComp<KnockedDownComponent>(target);
+        _alerts.ShowAlert(target, SharedStunSystem.KnockdownAlert);
         _appearance.SetData(target, MobStateVisuals.State, MobState.Critical);
         return true;
     }
