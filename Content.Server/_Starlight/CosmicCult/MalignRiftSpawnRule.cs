@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Server._Starlight.CosmicCult.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
@@ -59,7 +60,7 @@ public sealed partial class MalignRiftSpawnRule : StationEventSystem<MalignRiftS
         }
         else
         {
-            var totalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && HasComp<HumanoidAppearanceComponent>(session.AttachedEntity));
+            var totalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && (HasComp<HumanoidAppearanceComponent>(session.AttachedEntity) || HasComp<CosmicCultConvertibleComponent>(session.AttachedEntity)));
             var sender = Loc.GetString("cosmiccult-announcement-sender");
 
             _chatSystem.DispatchStationAnnouncement(chosenStation.Value, Loc.GetString("cosmiccult-announce-tier2-progress"), sender, false, null, Color.FromHex("#4cabb3"));

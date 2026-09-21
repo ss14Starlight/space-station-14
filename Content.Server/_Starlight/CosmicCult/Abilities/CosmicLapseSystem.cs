@@ -47,13 +47,15 @@ public sealed partial class CosmicLapseSystem : EntitySystem
         var tgtpos = Transform(action.Target).Coordinates;
         Spawn(uid.Comp.LapseVFX, tgtpos);
         _popup.PopupEntity(Loc.GetString("cosmicability-lapse-success", ("target", Identity.Entity(action.Target, EntityManager))), uid, uid);
-        var species = Comp<HumanoidAppearanceComponent>(action.Target).Species;
-        var polymorphId = "CosmicLapseMob" + species;
+        ProtoId<PolymorphPrototype> polymorphId = _humanLapse;
+        if (TryComp<HumanoidAppearanceComponent>(action.Target, out var appearance))
+        {
+            ProtoId<PolymorphPrototype> speciesPolymorphId = "CosmicLapseMob" + appearance.Species;
+            if (_prototype.HasIndex(speciesPolymorphId))
+                polymorphId = speciesPolymorphId;
+        }
 
-        if (_prototype.HasIndex<PolymorphPrototype>(polymorphId))
-            _polymorph.PolymorphEntity(action.Target, polymorphId);
-        else
-            _polymorph.PolymorphEntity(action.Target, _humanLapse);
+        _polymorph.PolymorphEntity(action.Target, polymorphId);
         _cult.MalignEcho(uid);
     }
 }

@@ -107,7 +107,7 @@ public abstract partial class SharedDeconversionJailSystem : EntitySystem
     {
         if (_netManager.IsClient) // don't predict this function.
             return;
-        if (ent.Comp.OublietteState == OublietteStates.Cooldown || !_power.IsPowered(ent.Owner) || !HasComp<HumanoidAppearanceComponent>(args.Entity))
+        if (ent.Comp.OublietteState == OublietteStates.Cooldown || !_power.IsPowered(ent.Owner) || (!HasComp<HumanoidAppearanceComponent>(args.Entity) && !HasComp<CosmicCultConvertibleComponent>(args.Entity)))
             return;
 
         ent.Comp.CanInteract = false;

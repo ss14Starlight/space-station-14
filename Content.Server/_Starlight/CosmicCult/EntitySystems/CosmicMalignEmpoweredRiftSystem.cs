@@ -110,8 +110,8 @@ public sealed partial class CosmicMalignEmpoweredRiftSystem : EntitySystem
                 if (target == uid)
                     continue;
 
-                // Only humanoids can be absorbed.
-                if (!HasComp<HumanoidAppearanceComponent>(target))
+                // Only humanoids and convertible (has mind) non-humanoids can be absorbed.
+                if (!HasComp<HumanoidAppearanceComponent>(target) && !HasComp<CosmicCultConvertibleComponent>(target))
                     continue;
 
                 // The humanoid must be critical or dead.

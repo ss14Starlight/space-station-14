@@ -398,9 +398,11 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             if (spawnPoints.IsEmpty)
                 return;
 
-            var endQuery = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent>();
-            while (endQuery.MoveNext(out var player, out _, out _))
+            var endQuery = EntityQueryEnumerator<MobStateComponent>();
+            while (endQuery.MoveNext(out var player, out _))
             {
+                if (!HasComp<HumanoidAppearanceComponent>(player) && !HasComp<CosmicCultConvertibleComponent>(player))
+                    continue;
                 var newSpawn = _rand.Pick(spawnPoints);
                 var spawnTgt = Transform(newSpawn.Uid).Coordinates;
 
@@ -628,7 +630,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         if (AssociatedGamerule(uid) is not { } cult)
             return;
 
-        cult.Comp.TotalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && HasComp<HumanoidAppearanceComponent>(session.AttachedEntity));
+        cult.Comp.TotalCrew = _playerMan.Sessions.Count(session => session.Status == SessionStatus.InGame && (HasComp<HumanoidAppearanceComponent>(session.AttachedEntity) || HasComp<CosmicCultConvertibleComponent>(session.AttachedEntity)));
 
 #if DEBUG
         if (cult.Comp.TotalCrew < 25)

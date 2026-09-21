@@ -99,9 +99,9 @@ public sealed partial class CosmicConversionSystem : EntitySystem
             }
             else
             {
-                _stun.TryAddStunDuration(target.Owner, TimeSpan.FromSeconds(4f));
-                _damageable.TryChangeDamage(target.Owner, uid.Comp.ConversionHeal * -1);
-                _cultRule.CosmicConversion(uid, target.Owner);
+                _stun.TryAddStunDuration(target, TimeSpan.FromSeconds(4f));
+                _damageable.TryChangeDamage(target, uid.Comp.ConversionHeal * -1);
+                _cultRule.CosmicConversion(uid, target);
             }
         }
     }
