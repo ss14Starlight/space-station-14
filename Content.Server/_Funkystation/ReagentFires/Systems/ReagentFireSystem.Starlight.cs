@@ -47,7 +47,7 @@ public sealed partial class ReagentFireSystem : EntitySystem
     }
 
     /// <summary>
-    /// Refreshes reagent-fire state for a lightweight footprint.
+    /// Refreshes reagent-fire state for a footprint.
     /// </summary>
     public void UpdateFire(Entity<FootprintComponent> ent, Solution solution)
     {

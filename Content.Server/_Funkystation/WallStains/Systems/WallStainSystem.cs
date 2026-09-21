@@ -25,14 +25,14 @@ namespace Content.Server._Funkystation.WallStains.Systems;
 
 public sealed partial class WallStainSystem : EntitySystem
 {
-    private static readonly ProtoId<TagPrototype> WallTag = "Wall";
-    private static readonly ProtoId<TagPrototype> WindowTag = "Window";
-    private static readonly ProtoId<TagPrototype> SoapTag = "Soap";
+    private static readonly ProtoId<TagPrototype> _wallTag = "Wall";
+    private static readonly ProtoId<TagPrototype> _windowTag = "Window";
+    private static readonly ProtoId<TagPrototype> _soapTag = "Soap";
 
-    private static readonly ProtoId<ReagentPrototype> WaterReagent = "Water";
-    private static readonly ProtoId<ReagentPrototype> SpaceCleanerReagent = "SpaceCleaner";
+    private static readonly ProtoId<ReagentPrototype> _waterReagent = "Water";
+    private static readonly ProtoId<ReagentPrototype> _spaceCleanerReagent = "SpaceCleaner";
 
-    private static readonly Vector2i[] AdjacentTileOffsets =
+    private static readonly Vector2i[] _adjacentTileOffsets =
     {
         new(0, 0),
         new(0, 1),
@@ -82,10 +82,7 @@ public sealed partial class WallStainSystem : EntitySystem
         SubscribeLocalEvent<SplashOnWallEvent>(OnSplashOnWall);
     }
 
-    private void OnSplashOnWall(ref SplashOnWallEvent args)
-    {
-        TrySplashOnWalls(args.Coordinates, args.Solution);
-    }
+    private void OnSplashOnWall(ref SplashOnWallEvent args) => TrySplashOnWalls(args.Coordinates, args.Solution);
 
     private void TrySplashOnWalls(EntityCoordinates coords, Solution solution)
     {
@@ -99,7 +96,7 @@ public sealed partial class WallStainSystem : EntitySystem
         var tilePos = _map.TileIndicesFor(gridUid.Value, grid, coords);
         _wallHits.Clear();
 
-        foreach (var offset in AdjacentTileOffsets)
+        foreach (var offset in _adjacentTileOffsets)
         {
             var targetTile = tilePos + offset;
             var anchored = _map.GetAnchoredEntities(gridUid.Value, grid, targetTile); // Starlight
@@ -118,10 +115,7 @@ public sealed partial class WallStainSystem : EntitySystem
         }
     }
 
-    private bool IsWall(EntityUid uid)
-    {
-        return HasComp<AirtightComponent>(uid) || _tag.HasTag(uid, WallTag) || _tag.HasTag(uid, WindowTag);
-    }
+    private bool IsWall(EntityUid uid) => HasComp<AirtightComponent>(uid) || _tag.HasTag(uid, _wallTag) || _tag.HasTag(uid, _windowTag);
 
     private FixedPoint2 ApplyStainToWall(EntityUid wallUid, Solution solution, Vector2i direction, float fraction = 1.0f)
     {
@@ -200,7 +194,7 @@ public sealed partial class WallStainSystem : EntitySystem
             return;
 
         var solution = solComp.Value.Comp.Solution;
-        if (solution.GetTotalPrototypeQuantity(WaterReagent) == solution.Volume)
+        if (solution.GetTotalPrototypeQuantity(_waterReagent) == solution.Volume)
         {
             _popup.PopupEntity(Loc.GetString("wall-stain-pour-water-blocked"), args.Target.Value, args.User);
             return;
@@ -302,7 +296,9 @@ public sealed partial class WallStainSystem : EntitySystem
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("wall-stain-cleaning-success"), uid, args.User);
 
-        RaiseLocalEvent(uid, new CleanWallStainsEvent(transformToWater: false));
+        var cleanAdjacent = args.Used is { } tool && TryComp<AbsorbentComponent>(tool, out var absorbent) && absorbent.CleanAdjacentWallStains; // Starlight
+
+        CleanWallStains(uid, cleanAdjacent); // Starlight
     }
 
     private void OnCleanEvent(EntityUid uid, StainedWallComponent component, CleanWallStainsEvent args)
@@ -320,7 +316,7 @@ public sealed partial class WallStainSystem : EntitySystem
                     continue;
                 // Starlight-start: mutate once and issue one solution update.
                 solComp.Value.Comp.Solution.RemoveAllSolution();
-                solComp.Value.Comp.Solution.AddReagent(WaterReagent, totalVolume);
+                solComp.Value.Comp.Solution.AddReagent(_waterReagent, totalVolume);
                 _solution.UpdateChemicals(solComp.Value);
                 // Starlight-end
             }
@@ -348,10 +344,7 @@ public sealed partial class WallStainSystem : EntitySystem
         }
     }
 
-    private bool IsCleaningTool(EntityUid uid)
-    {
-        return HasComp<AbsorbentComponent>(uid) || _tag.HasTag(uid, SoapTag);
-    }
+    private bool IsCleaningTool(EntityUid uid) => HasComp<AbsorbentComponent>(uid) || _tag.HasTag(uid, _soapTag);
 
     private void UpdateVisuals(EntityUid uid, WallStainComponent? comp = null, Solution? solution = null) // Starlight
     {
@@ -364,7 +357,7 @@ public sealed partial class WallStainSystem : EntitySystem
         var color = solution.GetColor(_prototype);
         // Starlight-start: avoid networking an unchanged visual state.
         var stainColor = color.WithAlpha(color.A * 0.6f);
-        var stainState = solution.ContainsPrototype(WaterReagent) || solution.ContainsPrototype(SpaceCleanerReagent) ? "drip" : "splatter";
+        var stainState = solution.ContainsPrototype(_waterReagent) || solution.ContainsPrototype(_spaceCleanerReagent) ? "drip" : "splatter";
         var fillLevel = comp.MaxStainVolume > 0 ? (float) (solution.Volume / comp.MaxStainVolume) : 0f;
         if (comp.Color == stainColor && comp.StainState == stainState && comp.FillLevel == fillLevel)
             return;
@@ -412,8 +405,8 @@ public sealed partial class WallStainSystem : EntitySystem
                 continue;
             }
 
-            var waterQty = solution.GetTotalPrototypeQuantity(WaterReagent);
-            var cleanerQty = solution.GetTotalPrototypeQuantity(SpaceCleanerReagent);
+            var waterQty = solution.GetTotalPrototypeQuantity(_waterReagent);
+            var cleanerQty = solution.GetTotalPrototypeQuantity(_spaceCleanerReagent);
 
             if (waterQty <= 0 && cleanerQty <= 0)
             {
@@ -426,14 +419,14 @@ public sealed partial class WallStainSystem : EntitySystem
             if (waterQty > 0)
             {
                 var toRemove = FixedPoint2.Min(evaporationAmount, waterQty);
-                solution.RemoveReagent(WaterReagent, toRemove);
+                solution.RemoveReagent(_waterReagent, toRemove);
                 evaporationAmount -= toRemove;
             }
 
             if (evaporationAmount > 0 && cleanerQty > 0)
             {
                 var toRemove = FixedPoint2.Min(evaporationAmount, cleanerQty);
-                solution.RemoveReagent(SpaceCleanerReagent, toRemove);
+                solution.RemoveReagent(_spaceCleanerReagent, toRemove);
             }
 
             _solution.UpdateChemicals(solComp.Value);

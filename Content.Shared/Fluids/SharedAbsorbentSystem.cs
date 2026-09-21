@@ -273,7 +273,8 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
     private bool TryPuddleInteract(Entity<AbsorbentComponent, UseDelayComponent?> absorbEnt,
         Entity<SolutionComponent> absorberSoln,
         EntityUid user,
-        EntityUid target)
+        EntityUid target,
+        bool primaryInteraction = true) // Starlight
     {
         #region Starlight
         Entity<SolutionComponent> targetSoln;
@@ -318,9 +319,15 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
                 puddleSolution.GetTotalPrototypeQuantity(Puddle.GetAbsorbentReagents(puddleSolution));
             if (puddleAbsorberVolume == puddleSolution.Volume)
             {
-                _popups.PopupClient(Loc.GetString("mopping-system-puddle-already-mopped", ("target", target)),
-                    target,
-                    user);
+                #region Starlight
+                if (primaryInteraction)
+                {
+                    _popups.PopupClient(Loc.GetString("mopping-system-puddle-already-mopped", ("target", target)),
+                        target,
+                        user);
+                }
+                #endregion
+
                 return true;
             }
 
@@ -331,7 +338,9 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
             // No material
             if (available == FixedPoint2.Zero)
             {
-                _popups.PopupClient(Loc.GetString("mopping-system-no-water", ("used", absorbEnt)), absorbEnt, user);
+                if (primaryInteraction) // Starlight
+                    _popups.PopupClient(Loc.GetString("mopping-system-no-water", ("used", absorbEnt)), absorbEnt, user); // Starlight
+
                 return true;
             }
 
@@ -370,20 +379,30 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
 
         SolutionContainer.AddSolution(absorberSoln, puddleSplit);
 
-        _audio.PlayPredicted(absorber.PickupSound, isRemoved ? absorbEnt : target, user);
+        #region Starlight
+        if (primaryInteraction)
+        {
+            _audio.PlayPredicted(absorber.PickupSound, isRemoved ? absorbEnt : target, user);
 
-        if (useDelay != null)
-            _useDelay.TryResetDelay((absorbEnt, useDelay));
+            if (useDelay != null)
+                _useDelay.TryResetDelay((absorbEnt, useDelay));
 
-        var userXform = Transform(user);
-        var targetPos = _transform.GetWorldPosition(target);
-        var localPos = Vector2.Transform(targetPos, _transform.GetInvWorldMatrix(userXform));
-        localPos = userXform.LocalRotation.RotateVec(localPos);
+            var userXform = Transform(user);
+            var targetPos = _transform.GetWorldPosition(target);
+            var localPos = Vector2.Transform(targetPos, _transform.GetInvWorldMatrix(userXform));
+            localPos = userXform.LocalRotation.RotateVec(localPos);
 
-        _melee.DoLunge(user, absorbEnt, Angle.Zero, localPos, null);
+            _melee.DoLunge(user, absorbEnt, Angle.Zero, localPos, null);
+        }
 
-        if (isFootprint) // Starlight
-            RaiseLocalEvent(target, new FootprintCleanEvent(absorber.FootprintCleaning)); // Starlight
+        if (isFootprint)
+        {
+            if (primaryInteraction)
+                CleanAdjacentFootprints(absorbEnt, absorberSoln, user, target);
+
+            RaiseLocalEvent(target, new FootprintCleanEvent());
+        }
+        #endregion
 
         return true;
     }

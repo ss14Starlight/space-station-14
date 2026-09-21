@@ -8,4 +8,10 @@ public sealed partial class AbsorbentComponent : Component
     /// </summary>
     [DataField]
     public FootprintCleaningPattern FootprintCleaning = FootprintCleaningPattern.Target;
+
+    /// <summary>
+    /// Whether cleaning a wall also cleans stained walls on the eight surrounding tiles.
+    /// </summary>
+    [DataField]
+    public bool CleanAdjacentWallStains;
 }

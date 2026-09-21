@@ -90,6 +90,7 @@
     - type: Absorbent
       pickupAmount: 100
       footprintCleaning: Square # Starlight
+      cleanAdjacentWallStains: true # Starlight
     - type: SolutionRegeneration
       generated:
         reagents:
