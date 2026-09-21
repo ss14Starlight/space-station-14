@@ -1,4 +1,9 @@
-﻿# THE FOLLOWING IS A CUSTOM LICENSE GRANT (informally referred to as the "CARGO LICENSE".):
+# START Assets the below license applies to:
+Resources/Audio/_Starlight/Effects/Experiment/*.ogg
+Resources/Audio/_Starlight/Voice/Experiment/*.ogg
+# END Assets the below license applies to:
+
+﻿﻿# THE FOLLOWING IS A CUSTOM LICENSE GRANT (informally referred to as the "CARGO LICENSE".):
 
 ## DEFINITIONS
 The assets (**hereafter "The Cargo".**) under this license are for use exclusively within the game Space Station 14 (SS14) and its official or community-recognized derivative forks.
