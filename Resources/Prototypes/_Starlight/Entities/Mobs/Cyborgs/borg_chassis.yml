@@ -283,5 +283,5 @@
     - Binary
     - Common
     - Expedition
-    - type: IonStormTarget
-      chance: 0.05
+  - type: IonStormTarget
+    chance: 0.05
