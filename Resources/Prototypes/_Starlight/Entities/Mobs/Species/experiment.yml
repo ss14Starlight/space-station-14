@@ -115,7 +115,6 @@
       collection: AlienClaw
     angle: 30
     animation: WeaponArcClaw
-    attackRate: 2
     damage:
       types:
         Slash: 4
