@@ -9,6 +9,8 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Mind;
+using Content.Shared.SSDIndicator;
+using Robust.Server.Player;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.Changeling;
@@ -27,6 +29,7 @@ public sealed partial class CosmicConversionSystem : EntitySystem
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private SharedRoleSystem _role = default!;
     [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IPlayerManager _playerMan = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
 
     public override void Initialize()
@@ -67,6 +70,11 @@ public sealed partial class CosmicConversionSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-dead"), uid, args.User);
                 args.Cancel();
             }
+            else if (!IsMindActive(target))
+            {
+                _popup.PopupEntity(Loc.GetString("cult-glyph-target-nomind"), uid, args.User);
+                args.Cancel();
+            }
             else if (uid.Comp.NegateProtection == false && HasComp<BibleUserComponent>(target))
             {
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-chaplain"), uid, args.User);
@@ -104,5 +112,22 @@ public sealed partial class CosmicConversionSystem : EntitySystem
                 _cultRule.CosmicConversion(uid, target);
             }
         }
+    }
+
+    /// <summary>
+    /// The victim needs a live player mind. Mindless entities and SSD or departed bodies can't be converted.
+    /// </summary>
+    private bool IsMindActive(EntityUid target)
+    {
+        if (!_mind.TryGetMind(target, out _, out var mind) || mind is null)
+            return false;
+
+        if (!_playerMan.TryGetSessionById(mind.UserId, out _))
+            return false;
+
+        if (TryComp<SSDIndicatorComponent>(target, out var ssd) && ssd.IsSSD)
+            return false;
+
+        return true;
     }
 }
