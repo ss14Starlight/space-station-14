@@ -500,7 +500,7 @@
       laws: itgLawset
     - type: Access
       tags:
-      - SalvageSpecialist
+      - Salvage
     - type: AccessReader
       access: [["Salvage"]]
     - type: IntrinsicRadioTransmitter
