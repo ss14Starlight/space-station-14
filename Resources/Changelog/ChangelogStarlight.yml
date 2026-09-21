@@ -1,67 +1,4 @@
 Entries:
-- author: Wizden Team
-  changes:
-  - message: The Vegan Meatball magnet wreck should no longer pollute space with dozens of enemies after despawning.
-    type: Fix
-  id: 408383
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
-  - message: Changed viper magazine to high capacity in the basic operative bundle.
-    type: Fix
-  id: 408384
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
-  - message: Drinking blood as non-animal species makes you sick again.
-    type: Fix
-  id: 408385
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
-  - message: Jetpacks now turn off when another jetpack is activated.
-    type: Fix
-  id: 408386
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
-  - message: Barber Scissors no longer misgender the target when blocked by a hat.
-    type: Fix
-  id: 408387
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: STARLIGHT TEAM
-  changes:
-  - message: Automenders no longer take the incorrect chemical from smart dispensers and plumbing sinks.
-    type: Fix
-  id: 408388
-  time: '2026-09-07T13:50:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5940
-- author: Cvlancer
-  changes:
-  - message: (Oasis,Manor,Orwell,Lagan,Ming,Kiloton,Sepultum,Starboard,Fland,Leth) Added a ton of intercoms all over station.
-    type: Add
-  id: 408389
-  time: '2026-09-07T19:12:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6033
-- author: Cvlancer
-  changes:
-  - message: (Manor,Orwell,Lagan,Ming,Kiloton,Sepultum,Starboard,Fland,Leth) Added the departmental mailboxes.
-    type: Add
-  id: 408390
-  time: '2026-09-07T19:12:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6033
-- author: Cvlancer
-  changes:
-  - message: (Manor,Orwell,Ming,Kiloton,Starboard,Fland,Leth) Added two k9s to security except for Leth which just has one.
-    type: Add
-  id: 408391
-  time: '2026-09-07T19:12:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6033
 - author: Cvlancer
   changes:
   - message: (Fland) Added double hop window.
@@ -2799,4 +2736,67 @@ Entries:
   id: 408782
   time: '2026-09-21T03:50:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4996
+- author: Floximo
+  changes:
+  - message: Veto for secure terminals.
+    type: Add
+  id: 408783
+  time: '2026-09-21T13:50:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6207
+- author: Floximo
+  changes:
+  - message: Alternate auth schemes, for example captain and HoS or any 3 of command.
+    type: Add
+  id: 408784
+  time: '2026-09-21T13:50:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6207
+- author: Floximo
+  changes:
+  - message: Administrative functions for testing salary.
+    type: Add
+  id: 408785
+  time: '2026-09-21T13:50:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6207
+- author: Floximo
+  changes:
+  - message: In addition to penalties, bonuses to salaries are now possible.
+    type: Add
+  id: 408786
+  time: '2026-09-21T13:50:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6207
+- author: Floximo
+  changes:
+  - message: Admin-Popup for secure terminal request confirmation.
+    type: Add
+  id: 408787
+  time: '2026-09-21T13:50:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6207
+- author: Floximo
+  changes:
+  - message: Timer for secure terminals.
+    type: Remove
+  id: 408788
+  time: '2026-09-21T13:50:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6207
+- author: Floximo
+  changes:
+  - message: Activation delays and fees as well as salary modifiers for requests.
+    type: Tweak
+  id: 408789
+  time: '2026-09-21T13:50:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6207
+- author: Floximo
+  changes:
+  - message: NTR can now (co)authorize many request, with a similar power to the captain.
+    type: Tweak
+  id: 408790
+  time: '2026-09-21T13:50:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6207
+- author: Floximo
+  changes:
+  - message: Interface bugs related to secure terminal.
+    type: Fix
+  id: 408791
+  time: '2026-09-21T13:50:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6207
 Order: -1
