@@ -63,6 +63,9 @@ public sealed class SecureTerminalProposalData
     public readonly List<EntityUid> UsedTerminals = new();
     public readonly List<EntityUid> UsedVetoTerminals = new();
 
+    /// <summary>CurTime when the proposal was created.</summary>
+    public TimeSpan CreatedAt;
+
     /// <summary>CurTime when the action fires. Null while still collecting signatures.</summary>
     public TimeSpan? ActivateAt;
 

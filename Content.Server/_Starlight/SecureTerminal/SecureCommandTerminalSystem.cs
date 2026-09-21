@@ -7,6 +7,7 @@ using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Server._Starlight.AlertArmory;
+using Content.Server._Starlight.Statistics;
 using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Content.Shared.Popups;
@@ -63,6 +64,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     [Dependency] private SharedAirlockSystem _airlock = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private AutoDiscordLogSystem _autolog = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;
     [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!;
     [Dependency] private EuiManager _euiManager = default!;
 
@@ -171,6 +173,18 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     authToLightUp is not null && authToLightUp.Contains(consoleUid));
             }
 
+            if (toExpire != null)
+                foreach (var requestId in toExpire)
+                {
+                    // Expired proposals are always still Pending, so refund the held fee.
+                    if (stationComp.ActiveProposals.TryGetValue(requestId, out var expiredProposal))
+                        RefundFee(expiredProposal);
+                    stationComp.ActiveProposals.Remove(requestId);
+
+                    if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var expiredProto))
+                        _roundStatistics.RecordSecureTerminalOutcome(requestId, expiredProto.ActionType, SecureTerminalResult.Expired);
+                }
+
             if (toFire != null)
                 foreach (var requestId in toFire)
                 {
@@ -186,6 +200,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                             stationComp.SalaryModifiers[modifier.Source] = stationComp.SalaryModifiers.GetValueOrDefault(modifier.Source) + modifier.Change;
 
                         ExecuteAction(stationUid, proto);
+                        _roundStatistics.RecordSecureTerminalOutcome(requestId, proto.ActionType, SecureTerminalResult.Executed);
                         stationComp.ActiveProposals.Remove(requestId);
                         if (proto.ActionType == SecureTerminalActionType.Armory)
                         {
@@ -365,8 +380,11 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             RequestId = msg.RequestId,
             Requester = actor,
             RequesterTerminal = uid,
+            CreatedAt = _timing.CurTime
         };
         stationComp.ActiveProposals[msg.RequestId] = proposal;
+
+        _roundStatistics.RecordSecureTerminalProposal(msg.RequestId, proto.ActionType, reason is not null, proto.Fee);
 
         if (reason is not null)
             proposal.Reason = reason;
@@ -425,6 +443,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         if (comp.Admin)
         {
             proposal.AdminApproved = true;
+            _roundStatistics.RecordSecureTerminalAuthorization(msg.RequestId, proto.ActionType, true);
             _autolog.LogToDiscord($"authorized secure terminal proposal: {msg.RequestId}", ToPrettyString(actor));
         }
         if (!comp.Admin && proposal.UsedTerminals.Contains(uid))
@@ -470,6 +489,13 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         if (deniedProposal.Status == SecureTerminalProposalStatus.Activating)
         {
             if (deniedProposal.UsedVetoTerminals.Contains(uid))
+                return;
+            _roundStatistics.RecordSecureTerminalOutcome(msg.RequestId, proto.ActionType, SecureTerminalResult.Denied);
+
+            _chatManager.SendAdminAnnouncement(
+                $"Secure Terminal — {MetaData(actor).EntityName} ({GetJobName(actor)}) DENIED / cancelled: {Loc.GetString(proto.Name)}.");
+
+            if (proto.ProposalAnnouncement)
             {
                 _popup.PopupCursor(Loc.GetString("secure-terminal-already-activated"), actor, PopupType.Medium);
                 return;
@@ -562,6 +588,8 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         stationComp.DeployedArmories.Remove(msg.RequestId);
         stationComp.DeployedArmoryRequesters.Remove(msg.RequestId);
         stationComp.UsedOnce.Add(msg.RequestId);
+
+        _roundStatistics.RecordSecureTerminalOutcome(msg.RequestId, proto.ActionType, SecureTerminalResult.Recalled);
 
         RefundFee(refundTarget, proto, 0f);
 
@@ -710,8 +738,8 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                 }
                 proposal.UsedTerminals.Add(terminalUid);
                 proposal.Authorizers.Add((actor, name, job, terminalUid, schemeIndex, groupIndex));
-                authorized = true;
-                break;
+                _roundStatistics.RecordSecureTerminalAuthorization(proposal.RequestId, proto.ActionType, false);
+                return true;;
             }
         }
         return authorized;
@@ -756,6 +784,8 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
 
         proposal.Status = SecureTerminalProposalStatus.Activating;
         proposal.ActivateAt = _timing.CurTime + TimeSpan.FromSeconds(proto.ActivationDelaySecs);
+
+        _roundStatistics.RecordSecureTerminalActivation(requestId, proto.ActionType, _timing.CurTime - proposal.CreatedAt, proto.SalaryPenalty);
 
         if (proto.ProposalAnnouncement)
         {
@@ -878,7 +908,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
 
         var amount = (int)(proto.Fee * fraction);
         if (amount > 0)
+        {
             _playerResources.TryUpdateResource(requester, "credits", amount);
+            _roundStatistics.RecordSecureTerminalRefund(proto.ID, proto.ActionType, amount);
+        }
     }
 
     /// <summary>Execute the prototype's configured action against the station.</summary>
