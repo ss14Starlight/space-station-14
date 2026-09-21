@@ -283,4 +283,4 @@
     - Binary
     - Common
     - Expedition
-  -  !Remove type: IonStormTarget
+    - !Remove type: IonStormTarget
