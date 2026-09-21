@@ -80,7 +80,6 @@
     speedModifierThresholds:
       45: 0.7
       60: 0.5
-      100: 0.1
   - type: Butcherable
     spawned:
     - id: FoodMeatHuman

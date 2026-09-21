@@ -1,9 +1,12 @@
 ﻿using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Pulling.Events;
+using Content.Shared.Speech;
 using Content.Shared.Standing;
 using Content.Shared.Strip.Components;
+using Content.Shared.Throwing;
 
 // ReSharper disable  CheckNamespace
 namespace Content.Shared.Mobs.Systems;
@@ -23,27 +26,28 @@ public partial class MobStateSystem : EntitySystem
         return component.CurrentState == MobState.SoftCritical;
     }
 
+    [SubscribeLocalEvent]
+    private void OnRefreshMovementSpeed(Entity<MobStateComponent> ent,
+        ref RefreshMovementSpeedModifiersEvent args)
+    {
+        if(ent.Comp.CurrentState !=  MobState.SoftCritical)
+            return;
+        args.ModifySpeed(0.3f, 0.3f);
+    }
+
     private bool SLOnStateExitSubscribers(EntityUid target, MobStateComponent component, MobState state)
     {
-        if (state == MobState.SoftCritical)
-        {
-            _standing.Stand(target);
-            return true;
-        }
-
-        return false;
+        if (state != MobState.SoftCritical) return false;
+        _standing.Stand(target);
+        return true;
     }
 
     private bool SLStateEnteredSubscribers(EntityUid target, MobStateComponent component, MobState state)
     {
-        if (state == MobState.SoftCritical)
-        {
-            Down(target);
-            _appearance.SetData(target, MobStateVisuals.State, MobState.Critical);
-            return true;
-        }
-
-        return false;
+        if (state != MobState.SoftCritical) return false;
+        Down(target);
+        _appearance.SetData(target, MobStateVisuals.State, MobState.Critical);
+        return true;
     }
 
     private void SLOnGettingStripped(EntityUid target, MobStateComponent component, BeforeGettingStrippedEvent args)
@@ -60,6 +64,7 @@ public partial class MobStateSystem : EntitySystem
         switch (args)
         {
             case AttackAttemptEvent:
+            case ThrowAttemptEvent:
             case StandAttemptEvent:
             case StartPullAttemptEvent:
                 args.Cancel();

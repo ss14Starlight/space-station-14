@@ -29,6 +29,10 @@ using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Ghost;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Clothing;
+#region  Starlight
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Popups;
+#endregion
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -46,6 +50,9 @@ public sealed partial class RadioSystem : EntitySystem
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private AccessReaderSystem _accessReader = default!;
     [Dependency] private RadioChimeSystem _chime = default!; //🌟Starlight🌟
+    [Dependency] private MobStateSystem _mobState = default!; //🌟Starlight🌟
+    [Dependency] private SharedPopupSystem _popup = default!; //🌟Starlight🌟
+    [Dependency] private ISharedPlayerManager _playerManager = default!; //🌟Starlight🌟
     [Dependency] private LanguageSystem _language = default!; // Starlight
 
     // set used to prevent radio feedback loops.
@@ -139,6 +146,13 @@ public sealed partial class RadioSystem : EntitySystem
         if ((!language.Speech.AllowRadio && language.Speech.RadioChannel is not null && language.Speech.RadioChannel != channel)
             || (!language.Speech.AllowRadio && language.Speech.RadioChannel is null))
             return;
+
+        if (_mobState.IsSoftCritical(messageSource))
+        {
+            if (_playerManager.TryGetSessionByEntity(messageSource, out var session))
+                _popup.PopupEntity(Loc.GetString("radio-failed-to-send-soft-critical"), messageSource, session, PopupType.Medium);
+            return;
+        }
         // Starlight - End
 
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
