@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseItem
+  id: GasCanisterHose
+  name: hose
+  description: A flexible hose for connecting gas canisters and tanks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/hose.rsi
+    state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Tools/hose.rsi
+    size: Small
+  - type: GasCanisterHose
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+      Steel: 25
+  - type: StaticPrice
+    price: 15

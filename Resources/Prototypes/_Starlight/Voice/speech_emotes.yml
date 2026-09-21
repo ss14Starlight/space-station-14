@@ -533,3 +533,25 @@
     - hums.
     - hums!
     - hums?
+
+- type: emote
+  id: Blink
+  name: chat-emote-name-blink
+  icon: _Starlight/Interface/Emotes/emote-blink.png
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-blink"]
+  chatTriggers:
+  - blinks
+  - blinks.
+  - blinks!
+  - blinks?
+  - blink
+  - blink.
+  - blink?
+  - blink!
+  - blinked
+  - blinked.
+  - blinked!
+  - blinked?
