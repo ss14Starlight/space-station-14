@@ -3,6 +3,7 @@
   name: zone-hallway
   color: "#7A7A7A"
   priority: 0
+  corridor: true
 
 - type: zone
   id: Maintenance
@@ -24,6 +25,9 @@
   - AirlockCommandGlass
   - AirlockCentralCommand
   - AirlockCentralCommandGlass
+  - HighSecCommandLocked
+  - HighSecCaptainLocked
+  - HighSecCentralCommandLocked
 
 - type: zone
   id: Nanotrasen
@@ -44,6 +48,7 @@
   - AirlockSecurityGlass
   - AirlockBrigmed
   - AirlockBrigmedGlass
+  - HighSecArmoryLocked
 
 - type: zone
   id: Medical
@@ -96,6 +101,7 @@
   - AirlockMiningGlass
   - AirlockMail
   - AirlockMailGlass
+  - HighSecSalvageLocked
 
 - type: zone
   id: Service
