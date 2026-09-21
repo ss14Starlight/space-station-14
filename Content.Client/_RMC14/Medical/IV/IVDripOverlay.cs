@@ -12,10 +12,7 @@ public sealed partial class IVDripOverlay : Overlay
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowEntities;
 
-    public IVDripOverlay()
-    {
-        IoCManager.InjectDependencies(this);
-    }
+    public IVDripOverlay() => IoCManager.InjectDependencies(this);
 
     protected override void Draw(in OverlayDrawArgs args)
     {

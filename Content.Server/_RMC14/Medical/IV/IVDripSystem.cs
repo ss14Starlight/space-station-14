@@ -1,10 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Shared._RMC14.Medical.IV;
 using Content.Shared.Body.Components;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
@@ -87,7 +89,8 @@ public sealed partial class IVDripSystem : SharedIVDripSystem
 
                     // 2. Separate Chems from Blood based on whitelist
                     // 'chems' gets the non-matching reagents. 'taken' keeps the Blood.
-                    var chems = taken.SplitSolutionWithout(taken.Volume, packComponent.TransferableReagents);
+                    var chems = taken.SplitSolutionWithout(taken.Volume,
+                        packComponent.TransferableReagents.Select(reagent => new ProtoId<ReagentPrototype>(reagent)).ToArray());
 
                     // 3. Inject Blood -> Blood Stream
                     if (taken.Volume > 0)
@@ -167,7 +170,8 @@ public sealed partial class IVDripSystem : SharedIVDripSystem
                     var taken = _solutionContainer.SplitSolution(packSolEnt.Value, packComp.TransferAmount);
 
                     // 2. Separate Chems (Drugs) from Blood based on whitelist
-                    var chems = taken.SplitSolutionWithout(taken.Volume, packComp.TransferableReagents);
+                    var chems = taken.SplitSolutionWithout(taken.Volume,
+                        packComp.TransferableReagents.Select(reagent => new ProtoId<ReagentPrototype>(reagent)).ToArray());
 
                     // 3. Inject Blood -> Blood Stream
                     if (taken.Volume > 0)
