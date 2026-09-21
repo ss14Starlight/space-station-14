@@ -294,8 +294,6 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/services.rsi
-  - type: Paintable
-    group: AirlockStandard
 
 - type: entity
   parent: AirlockGlass
@@ -306,6 +304,19 @@
     sprite: _Starlight/Structures/Doors/Airlocks/Glass/services.rsi
   - type: Paintable
     group: AirlockGlass
+
+# NT
+- type: entity
+  parent: Airlock
+  id: AirlockNT
+  suffix: NanoTrasen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/nanotrasen.rsi
+  - type: Wires
+    layoutId: AirlockNT
+  - type: Paintable
+    group: AirlockStandard
 
 # Maints
 - type: entity
@@ -468,3 +479,12 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/virology_maints.rsi
+  id: AirlockNTGlass
+  suffix: NanoTrasen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/nanotrasen.rsi
+  - type: Wires
+    layoutId: AirlockNT
+  - type: Paintable
+    group: AirlockGlass
