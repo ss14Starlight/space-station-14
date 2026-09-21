@@ -217,7 +217,7 @@
   effects:
     - !type:AddCompsEffect
       components:
-        - type: PollenAllergy
+        - type: PollenSensitive
   requirements:
     - !type:SpeciesRequirement
       species:

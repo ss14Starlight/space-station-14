@@ -19,6 +19,9 @@ scent-sniff-no-scents = There are no scents on { $target }!
 
 scent-sneeze-popup = You clear your nose of your tracked scent.
 
+scent-sneeze-allergic = Your allergy forces you to sneeze!
+pollen-allergy-nose-itch = Your allergy makes your nose itch.
+
 scent-cleaning-self = You start washing the { $evidence } off yourself...
 scent-cleaning-other = You start washing the { $evidence } off { $target }...
 scent-cleaning-cannot-clean-self = You have no evidence to wash away.

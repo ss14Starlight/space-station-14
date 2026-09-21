@@ -14,20 +14,24 @@ public float AllergyBuildup = 1f;
 public float AllergyDecay = 0.10f;
 
 [DataField]
-public float SneezeAmount = 0.25f;
+public float SneezeAmount = 0.20f;
 
 [DataField]
 public float HistamineAmount = 0.5f;
 
 [DataField]
-public float HistamineBuildupReduction = 1f;
+public TimeSpan NextHistamine;
+
+[DataField]
+public float HistamineBuildupReduction = 0.5f;
 
 [DataField]
 public float AllergyStack;
-
-public int AllergyStage;
-
 public TimeSpan NextInteraction;
 public TimeSpan NextAllergyUpdate;
 public TimeSpan NextSneeze;
+public bool NoseItchActive;
+public bool SneezingActive;
+public bool HistamineActive;
+public bool SevereAllergyActive;
 }
