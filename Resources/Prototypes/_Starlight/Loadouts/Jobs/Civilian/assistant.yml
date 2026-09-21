@@ -557,6 +557,28 @@
   equipment:
     back: ClothingBackpackSatchelLeather
 
+- type: loadout
+  id: StarBackpack # Alternative Clothing Catalog
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 1800000 # 500hr - cause you're a star <3
+  equipment:
+    back: ClothingBackpackStar
+  groupBy: "star bags"
+
+- type: loadout
+  id: StarSatchel # Alternative Clothing Catalog
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 1800000 # 500hr - cause you're a star <3
+  equipment:
+    back: ClothingBackpackSatchelStar
+  groupBy: "star bags"
+
 # Gloves
 - type: loadout
   id: GreyGloves

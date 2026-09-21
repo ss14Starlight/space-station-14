@@ -87,3 +87,30 @@
     damageCoefficient: 0.1
   - type: StaticPrice
     price: 1000
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelStar
+  name: star satchel # Alternative Clothing Catalog
+  description: A star-shaped ita satchel, for the cutie patooties among us.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/star.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelKitty
+  name: kitty satchel # Alternative Clothing Catalog
+  description: A cat-shaped ita satchel, for the cutie patooties among us.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/kitty.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelIta
+  name: ita bag # Alternative Clothing Catalog
+  description: A standard, pink ita bag. 
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/ita.rsi

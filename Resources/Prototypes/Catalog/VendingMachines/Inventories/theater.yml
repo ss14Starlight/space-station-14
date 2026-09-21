@@ -75,6 +75,11 @@
     CandyClownUniformSuit: 1
     StripedClownUniformSuit: 1
     SpottedClownUniformSuit: 1
+    GothicFrillDressUniformSuit: 1 # Alternative Clothing Catalog
+    ClothingHeadHatGothicFrill: 1 # Alternative Clothing Catalog
+    PastelFrillDressUniformSuit: 1 # Alternative Clothing Catalog
+    ClothingHeadHatPastelFrill: 1 # Alternative Clothing Catalog
+    PunkOffShoulderUniformSuit: 1 # Alternative Clothing Catalog
     ClothingShoesSpecificMoffers: 1 # DeltaV
     DruidRobesUniformSuit: 1
     FlamboyantUniformSuit: 3
@@ -93,8 +98,14 @@
     ClothingHeadHatTVHead: 1
     ClothingHeadHatFeatheredHat: 1
     ClothingHeadHatBrimHat: 1
+    ClothingHeadHatFroggyHat: 2 # Alternative Clothing Catalog
+    ClothingHeadHatKittyHat: 2 # Alternative Clothing Catalog
     ClothingHeadSafari: 2 # Zookeeper removal
     ClothingUniformJumpsuitSafari: 2 # Zookeeper removal
+    LittleAngelUniformSuit: 1 # Alternative Clothing Catalog
+    ClothingHeadLittleAngelEars: 1 # Alternative Clothing Catalog
+    ClothingUnderSocksLittleAngel: 1 # Alternative Clothing Catalog
+    ClothingNeckLittleAngelWings: 1 # Alternative Clothing Catalog
   contrabandInventory:
     ClothingHeadHatRichard: 1
     ToyFigurineBoxer: 1
@@ -112,3 +123,8 @@
     ClothingMaskBlushingMime: 1
     ClothingMaskSusMime: 1 #Starlight
     ClothingHeadHatCowboyBountyHunter: 1
+    LittleDevilUniformSuit: 1 # Alternative Clothing Catalog
+    ClothingHeadLittleDevilHorns: 1 # Alternative Clothing Catalog
+    ClothingUnderSocksLittleDevil: 1 # Alternative Clothing Catalog
+    ClothingNeckLittleDevilWings: 1 # Alternative Clothing Catalog
+    ClothingBackpackSatchelIta: 1 # Alternative Clothing Catlog

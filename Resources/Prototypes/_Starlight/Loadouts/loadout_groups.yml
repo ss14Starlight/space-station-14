@@ -185,6 +185,8 @@
   - CommonSatchel
   - CommonDuffel
   - LeatherSatchel
+  - StarBackpack 
+  - StarSatchel
 
 - type: loadoutGroup
   id: RoboticistJumpsuit
@@ -236,6 +238,8 @@
   - RoboticistSatchel
   - RoboticistDuffel
   - LeatherSatchel
+  - StarBackpack 
+  - StarSatchel
 
 - type: loadoutGroup
   id: RoboticistNeck
@@ -369,6 +373,8 @@
   - BlueShieldSatchel
   - BlueShieldDuffel
   - LeatherSatchel
+  - StarBackpack 
+  - StarSatchel
 
 - type: loadoutGroup
   id: BlueShieldJumpsuit
@@ -625,6 +631,8 @@
   - SeniorCourierDuffel
   - MailTechnicianTrunkSenior
   - LeatherSatchel
+  - StarBackpack 
+  - StarSatchel
 
 - type: loadoutGroup
   id: MailTechnicianOuterClothing
@@ -1217,6 +1225,8 @@
   - CorpsmanSatchel
   - CorpsmanDuffel
   - LeatherSatchel
+  - StarBackpack 
+  - StarSatchel
 
 - type: loadoutGroup
   id: BrigmedicOuterClothing

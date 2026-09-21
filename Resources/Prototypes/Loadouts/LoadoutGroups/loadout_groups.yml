@@ -229,7 +229,9 @@
   - CaptainBackpack
   - CaptainSatchel
   - CaptainDuffel
-  - LeatherSatchel # starlight
+  - LeatherSatchel # starlight start
+  - StarBackpack 
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: CaptainOuterClothing
@@ -282,7 +284,9 @@
   - HoPSatchel # Starlight
   - HoPDuffel # Starlight
   - HoPBackpackIan
-  - LeatherSatchel # starlight
+  - LeatherSatchel # starlight start
+  - StarBackpack 
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: HoPOuterClothing
@@ -367,7 +371,7 @@
   loadouts:
   - AssistantGloves
   - AssistantMittens # Starlight
-  - GreyGloves #starlight
+  - GreyGloves # starlight
 
 - type: loadoutGroup
   id: CommonBackpack
@@ -376,7 +380,9 @@
   - CommonBackpack
   - CommonSatchel
   - CommonDuffel
-  - LeatherSatchel # starlight
+  - LeatherSatchel # starlight start
+  - StarBackpack 
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: AssistantNeck
@@ -679,7 +685,9 @@
   - BotanistBackpack
   - BotanistSatchel
   - BotanistDuffel
-  - LeatherSatchel # starlight
+  - LeatherSatchel # starlight start
+  - StarBackpack 
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: BotanistOuterClothing
@@ -727,7 +735,9 @@
   - ClownBackpack
   - ClownSatchel
   - ClownDuffel
-  - LeatherSatchel # starlight
+  - LeatherSatchel # starlight start
+  - StarBackpack 
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: ClownOuterClothing
@@ -802,7 +812,9 @@
   - MimeBackpack
   - MimeSatchel
   - MimeDuffel
-  - LeatherSatchel # starlight
+  - LeatherSatchel # starlight start
+  - StarBackpack 
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: MimeOuterClothing
@@ -984,7 +996,9 @@
   - SeniorCourierBackpack # Starlight start
   - SeniorCourierSatchel
   - SeniorCourierDuffel
-  - LeatherSatchel # starlight end
+  - LeatherSatchel
+  - StarBackpack
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: CargoTechnicianOuterClothing
@@ -1029,7 +1043,9 @@
   - SalvageSpecialistBackpack
   - SalvageSpecialistSatchel
   - SalvageSpecialistDuffel
-  - LeatherSatchel # starlight
+  - LeatherSatchel # starlight start
+  - StarBackpack 
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: SalvageSpecialistOuterClothing
@@ -1147,7 +1163,9 @@
   - StationEngineerBackpack
   - StationEngineerSatchel
   - StationEngineerDuffel
-  - LeatherSatchel # starlight
+  - LeatherSatchel # starlight start
+  - StarBackpack 
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: StationEngineerOuterClothing
@@ -1205,7 +1223,9 @@
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianSatchel
   - AtmosphericTechnicianDuffel
-  - LeatherSatchel # starlight
+  - LeatherSatchel # starlight start
+  - StarBackpack 
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: AtmosphericTechnicianShoes
@@ -1329,7 +1349,9 @@
   - ScientistBackpack
   - ScientistSatchel
   - ScientistDuffel
-  - LeatherSatchel # starlight
+  - LeatherSatchel # starlight start
+  - StarBackpack 
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: ScientistOuterClothing
@@ -1521,7 +1543,9 @@
   - SecurityBackpack
   - SecuritySatchel
   - SecurityDuffel
-  - LeatherSatchel # starlight
+  - LeatherSatchel # starlight start
+  - StarBackpack 
+  - StarSatchel # starlight end
 
 - type: loadoutGroup
   id: SecurityBelt
