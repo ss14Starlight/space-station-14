@@ -549,7 +549,7 @@
 
 - type: siliconLawset
   id: itgLawset
-  name: law-salvagelawset-name
+  name: law-itg-name
   startAtZero: true
   laws:
   - itg0
