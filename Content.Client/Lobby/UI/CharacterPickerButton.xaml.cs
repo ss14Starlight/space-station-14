@@ -48,19 +48,17 @@ public sealed partial class CharacterPickerButton : ContainerButton
         ButtonGroup group,
         HumanoidCharacterProfile profile,
         bool isSelected,
-        bool simple = false, PlayerPreferences? playerPrefsOverride = null) // Starlight edit
+        bool simple = false)
     {
         RobustXamlLoader.Load(this);
         AddStyleClass(StyleClassButton);
         ToggleMode = true;
         Group = group;
         Profile = profile;
-        // Starlight begin
 
         if (profile is HumanoidCharacterProfile humanoid)
         {
-            View.Initialize(prefMan, protoMan, playerMan, playerPrefsOverride);
-        // Starlight end
+            View.Initialize(prefMan, protoMan, playerMan);
             View.LoadPreview(profile);
 
             EnabledCheck.Pressed = profile.Enabled;

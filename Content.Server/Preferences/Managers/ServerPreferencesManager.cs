@@ -83,9 +83,8 @@ namespace Content.Server.Preferences.Managers
                 return;
 
             var curPrefs = prefsData.Prefs!;
-            var session = _playerManager.GetSessionById(userId);
 
-            profile.EnsureValid(session, _dependencies);
+            // Starlight begin
 
             var profiles = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters)
             {
@@ -94,8 +93,15 @@ namespace Content.Server.Preferences.Managers
 
             prefsData.Prefs = new PlayerPreferences(profiles, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
 
-            if (ShouldStorePrefs(session.Channel.AuthType))
+            if (!_playerManager.TryGetSessionById(userId, out var session))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
+            else
+            {
+                profile.EnsureValid(session, _dependencies);
+                if (ShouldStorePrefs(session.Channel.AuthType))
+                    await _db.SaveCharacterSlotAsync(userId, profile, slot);
+            }
+            // Starlight end
         }
 
         public async Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites)
@@ -117,7 +123,7 @@ namespace Content.Server.Preferences.Managers
         /// <summary>
         /// Update the job priorities dictionary for a given player
         /// </summary>
-        public async Task SetJobPriorities(NetUserId userId, Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
+        public async Task SetJobPriorities(NetUserId userId, Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities, MsgForceUpdatePlayerJobPriorities? forceMsg = null) // Starlight edit
         {
             if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
             {
@@ -126,12 +132,20 @@ namespace Content.Server.Preferences.Managers
             }
 
             var curPrefs = prefsData.Prefs!;
-            var session = _playerManager.GetSessionById(userId);
 
+            // Starlight begin
             prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, jobPriorities);
 
-            if (ShouldStorePrefs(session.Channel.AuthType))
-                await _db.SaveJobPrioritiesAsync(userId, jobPriorities);
+            if (!_playerManager.TryGetSessionById(userId, out var session) ||
+                ShouldStorePrefs(session.Channel.AuthType))
+            {
+                if (forceMsg is not null)
+                {
+
+                }
+                else await _db.SaveJobPrioritiesAsync(userId, jobPriorities);
+            }
+            // Starlight end
         }
 
         private async void HandleDeleteCharacterMessage(MsgDeleteCharacter message)

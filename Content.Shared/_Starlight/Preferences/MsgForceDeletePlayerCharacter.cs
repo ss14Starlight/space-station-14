@@ -22,12 +22,8 @@ public sealed class MsgForceDeletePlayerCharacter : NetMessage
             serializer.DeserializeDirect(stream, out UserId);
         }
 
-        using (var stream = new MemoryStream())
-        {
-            var length = buffer.ReadVariableInt32();
-            buffer.ReadAlignedMemory(stream, length);
-            serializer.DeserializeDirect(stream, out NotifyPlayer);
-        }
+        NotifyPlayer = buffer.ReadBoolean();
+        buffer.ReadPadBits();
     }
 
     public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
@@ -42,12 +38,7 @@ public sealed class MsgForceDeletePlayerCharacter : NetMessage
             buffer.Write(segment);
         }
 
-        using (var stream = new MemoryStream())
-        {
-            serializer.SerializeDirect(stream, NotifyPlayer);
-            buffer.WriteVariableInt32((int)stream.Length);
-            stream.TryGetBuffer(out var segment);
-            buffer.Write(segment);
-        }
+        buffer.Write(NotifyPlayer);
+        buffer.WritePadBits();
     }
 }

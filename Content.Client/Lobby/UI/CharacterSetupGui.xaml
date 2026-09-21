@@ -63,7 +63,7 @@
 
                 <!-- The "right" side of the window, where the character and priority editors are instantiated -->
                 <BoxContainer Name="CharEditor" HorizontalExpand="True" />
-                <BoxContainer Name="JobPriorityEditor" HorizontalExpand="True" Visible="False"/>
+                <BoxContainer Name="JobPriorityEditor" HorizontalExpand="True" Visible="False" Access="Public" /> <!-- Starlight edit -->
             </BoxContainer>
         </BoxContainer>
     </Control>

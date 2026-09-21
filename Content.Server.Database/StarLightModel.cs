@@ -25,6 +25,7 @@ public abstract partial class ServerDbContext
 {
     public DbSet<StarLightModel.PlayerDataDTO> PlayerData { get; set; } = null!;
     public DbSet<StarLightModel.CharacterInfo> CharacterInfo { get; set; } = null!;
+    public DbSet<StarLightModel.PendingPreference> PendingPreference { get; set; } = null!;
 }
 
 public sealed class StarLightModel : DataModelBase
@@ -99,5 +100,15 @@ public sealed class StarLightModel : DataModelBase
 
         [MaxLength(4096)]
         public string OOCNotes { get; set; } = string.Empty;
+    }
+
+    public class PendingPreference
+    {
+        public int Id { get; set; }
+        public Guid UserId { get; set; }
+        public string AdminOOCColor { get; set; } = null!;
+        public List<string> ConstructionFavorites { get; set; } = new();
+        public List<Profile> Profiles { get; } = new();
+        public List<JobPriorityEntry> JobPriorities { get; set; } = new();
     }
 }

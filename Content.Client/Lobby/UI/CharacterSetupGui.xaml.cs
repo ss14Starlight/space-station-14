@@ -55,14 +55,11 @@ namespace Content.Client.Lobby.UI
         /// </summary>
         public event Action<(int, bool)>? SetCharacterEnable;
 
-        public readonly MsgOpenPlayerCharacterSetup? PlayerDataOverride; // Starlight
-
         /// <summary>
         /// UI Class for the character customization window that pops up when you click "Customize" on the lobby screen
         /// </summary>
-        public CharacterSetupGui(HumanoidProfileEditor profileEditor, JobPriorityEditor jobPriorityEditor, MsgOpenPlayerCharacterSetup? playerData = null) // Starlight edit
+        public CharacterSetupGui(HumanoidProfileEditor profileEditor, JobPriorityEditor jobPriorityEditor)
         {
-            PlayerDataOverride = playerData; // Starlight
             _humanoidProfileEditor = profileEditor;
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
@@ -84,12 +81,7 @@ namespace Content.Client.Lobby.UI
 
             _createNewCharacterButton.OnPressed += args =>
             {
-                // Starlight begin
-                if (PlayerDataOverride is not null)
-                    _preferencesManager.CreateCharacterForPrefs(HumanoidCharacterProfile.Random(),
-                        PlayerDataOverride);
-                else _preferencesManager.CreateCharacter(HumanoidCharacterProfile.Random());
-                // Starlight end
+                _preferencesManager.CreateCharacter(HumanoidCharacterProfile.Random());
                 ReloadCharacterPickers();
                 args.Event.Handle();
             };
@@ -112,9 +104,9 @@ namespace Content.Client.Lobby.UI
             };
 
             // Starlight begin
-            if (playerData is not null)
+            if (_preferencesManager.TargetPreferences is not null && !_preferencesManager.ViewingChanges)
                 WindowHeader.Text =
-                    $"{Loc.GetString("character-setup-gui-character-setup-label")} for {playerData.PlayerInfo.Username} ({playerData.PlayerInfo.UserId})";
+                    $"{Loc.GetString("character-setup-gui-character-setup-label")} for {_preferencesManager.TargetPlayerInfo!.Username}";
             // Starlight end
         }
 
@@ -148,11 +140,8 @@ namespace Content.Client.Lobby.UI
 
             // If there is no slot selected and no profile loaded, we will select the first one
             var first = !SelectedCharacterSlot.HasValue;
-            // Starlight begin
-            var targetPreferences = PlayerDataOverride?.Preferences ?? _preferencesManager.Preferences!;
-            foreach (var (slot, character) in targetPreferences.Characters)
+            foreach (var (slot, character) in _preferencesManager.Preferences!.Characters)
             {
-            // Starlight end
                 if (character is not HumanoidCharacterProfile humanoid)
                     continue;
                 var isSelected = !selectJobPriorities &&  (SelectedCharacterSlot.HasValue ? slot == SelectedCharacterSlot : first);
@@ -163,7 +152,7 @@ namespace Content.Client.Lobby.UI
                     _playerManager,
                     characterButtonsGroup,
                     humanoid,
-                    isSelected, playerPrefsOverride: PlayerDataOverride?.Preferences); // Starlight edit
+                    isSelected);
 
                 // If this button is selected we need to initialize the editor with this profile
                 if (isSelected && _humanoidProfileEditor.Profile == null)

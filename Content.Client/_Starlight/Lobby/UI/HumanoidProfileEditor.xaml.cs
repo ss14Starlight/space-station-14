@@ -75,8 +75,6 @@ namespace Content.Client._Starlight.Lobby.UI
 
         private readonly ISawmill _sawmill;
 
-        private readonly PlayerPreferences? _playerPrefsOverride; // Starlight
-
         public HumanoidProfileEditor(
             IClientPreferencesManager preferencesManager,
             IConfigurationManager configurationManager,
@@ -87,7 +85,7 @@ namespace Content.Client._Starlight.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings, PlayerPreferences? playerPrefsOverride = null) // Starlight edit
+            MarkingManager markings)
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -100,7 +98,6 @@ namespace Content.Client._Starlight.Lobby.UI
             _preferencesManager = preferencesManager;
             _requirements = requirements;
             _sprite = _entManager.System<SpriteSystem>();
-            _playerPrefsOverride = playerPrefsOverride; // Starlight
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
@@ -372,7 +369,7 @@ namespace Content.Client._Starlight.Lobby.UI
 
             Cybernetics.OnCyberneticsUpdated += OnCyberneticsUpdated;
 
-            SpriteView.Initialize(_preferencesManager, _prototypeManager, _playerManager, _playerPrefsOverride); // Starlight edit
+            SpriteView.Initialize(_preferencesManager, _prototypeManager, _playerManager);
 
             SpriteRotateLeft.OnPressed += _ =>
             {
@@ -425,7 +422,7 @@ namespace Content.Client._Starlight.Lobby.UI
 
         public void SetProfile(HumanoidCharacterProfile? profile, int? slot)
         {
-            SpriteView.Initialize(_preferencesManager, _prototypeManager, _playerManager, _playerPrefsOverride); // Starlight edit
+            SpriteView.Initialize(_preferencesManager, _prototypeManager, _playerManager);
             Profile = profile?.Clone();
             CharacterSlot = slot;
             IsDirty = false;
@@ -464,22 +461,8 @@ namespace Content.Client._Starlight.Lobby.UI
 
         public void SetProfile(int slot)
         {
-            // Starlight begin
-            HumanoidCharacterProfile? humanoid;
-            if (_playerPrefsOverride is not null)
-            {
-                if (!_playerPrefsOverride.TryGetHumanoidInSlot(slot, out humanoid))
-                    return;
-            }
-            else
-            {
-                if (_preferencesManager.Preferences == null)
-                    return;
-
-                if (!_preferencesManager.Preferences.TryGetHumanoidInSlot(slot, out humanoid))
-                    return;
-            }
-            // Starlight end
+            if (!_preferencesManager.Preferences.TryGetHumanoidInSlot(slot, out var humanoid))
+                return;
 
             _savedProfile = humanoid.Clone();
             SetProfile(humanoid, slot);

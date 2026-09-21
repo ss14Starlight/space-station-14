@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Player;
 using Content.Shared._Starlight.Preferences;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
@@ -13,7 +14,7 @@ namespace Content.Client.Lobby
         bool ServerDataLoaded => Settings != null;
 
         GameSettings? Settings { get; }
-        PlayerPreferences? Preferences { get; }
+        PlayerPreferences Preferences { get; set; } // Starlight edit
         void Initialize();
         void SetCharacterEnable(int slot, bool enable);
         void UpdateCharacter(HumanoidCharacterProfile profile, int slot);
@@ -25,13 +26,13 @@ namespace Content.Client.Lobby
 
         #region Starlight
 
-        void SetCharacterEnableForPrefs(int slot, MsgOpenPlayerCharacterSetup playerData, bool enable = true);
-        void UpdateCharacterForPrefs(HumanoidCharacterProfile profile, MsgOpenPlayerCharacterSetup playerData, int slot);
-        void CreateCharacterForPrefs(HumanoidCharacterProfile profile, MsgOpenPlayerCharacterSetup playerData);
-        void DeleteCharacterForPrefs(HumanoidCharacterProfile profile, MsgOpenPlayerCharacterSetup playerData);
-        void DeleteCharacterForPrefs(int slot, MsgOpenPlayerCharacterSetup playerData);
-        void UpdateJobPrioritiesForPrefs(Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities,
-            MsgOpenPlayerCharacterSetup playerData);
+        /// Intended for editing another player's preferences.
+        PlayerPreferences? TargetPreferences { get; set; }
+        /// Pending preferences edited by an admin for viewing before saving.
+        PlayerPreferences? PendingPreferences { get; set; }
+        /// The target player for whom's preferences are being edited.
+        MinimalPlayerInfo? TargetPlayerInfo { get; set; }
+        bool ViewingChanges { get; }
 
         #endregion
     }

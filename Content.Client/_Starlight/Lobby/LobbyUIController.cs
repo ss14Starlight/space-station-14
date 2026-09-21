@@ -12,22 +12,27 @@ public sealed partial class LobbyUIController
 {
     [Dependency] private ILogManager _log = null!;
 
-    private void HandleOpenPlayerCharacterSetup(MsgOpenPlayerCharacterSetup message) => OpenCharacterSetupWindow(message);
+    private void HandleOpenPlayerCharacterSetup(MsgOpenPlayerCharacterSetup message)
+    {
+        _preferencesManager.TargetPreferences = message.Preferences;
+        _preferencesManager.TargetPlayerInfo = message.PlayerInfo;
+        OpenCharacterSetupWindow();
+    }
 
     /// Set the character setup and profile editor to null to completely reload the UI
-    private void ReloadGui(MsgOpenPlayerCharacterSetup? playerData = null)
+    private void ReloadGui()
     {
         _characterSetup?.Orphan();
         _characterSetup = null;
         _profileEditor?.Orphan();
         _profileEditor = null;
-        ReloadCharacterSetup(playerData);
+        ReloadCharacterSetup();
     }
 
     /// <summary>
     /// Opens the character editor in its own window, we reuse the one from the lobby for the sake of simplicity.
     /// </summary>
-    public void OpenCharacterSetupWindow(MsgOpenPlayerCharacterSetup? playerData = null)
+    public void OpenCharacterSetupWindow()
     {
         if (_stateManager.CurrentState is LobbyState { Lobby.CharacterSetupState: { } control } &&
             _characterSetup?.Parent == control)
@@ -49,8 +54,8 @@ public sealed partial class LobbyUIController
             _characterSetup = null;
         }
 
-        if (playerData is not null)
-            ReloadGui(playerData);
+        if (_preferencesManager.TargetPreferences is not null)
+            ReloadGui(); // Reload if now editing target
 
         var (characterGui, _) = EnsureGui();
 
@@ -82,8 +87,14 @@ public sealed partial class LobbyUIController
             _characterSetupPoppedOut = false;
         };
 
-        if (playerData is not null)
-            window.OnFinalClose += () => ReloadGui();
+        if (_preferencesManager.TargetPreferences is not null)
+            // Closing UI, remove references to target player so next usage of the window is back to editing yourself
+            window.OnFinalClose += () =>
+            {
+                _preferencesManager.TargetPreferences = null;
+                _preferencesManager.TargetPlayerInfo = null;
+                ReloadGui();
+            };
 
         // Starlight: once popped out the in-game window is gone, but keep the window ref so
         // we can still teardown the window.

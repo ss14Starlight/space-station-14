@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Starlight.Player;
 using Content.Shared._Starlight.Preferences;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
@@ -25,11 +26,22 @@ namespace Content.Client.Lobby
         public event Action? OnServerDataLoaded;
 
         public GameSettings Settings { get; private set; } = default!;
-        public PlayerPreferences Preferences { get; private set; } = default!;
+        // Starlight begin
+        public PlayerPreferences Preferences
+        {
+            get => TargetPreferences ?? field;
+            set
+            {
+                if (TargetPreferences is not null) TargetPreferences = value;
+                else field = value;
+            }
+        } = null!;
+        // Starlight end
 
         public void Initialize()
         {
             _netManager.RegisterNetMessage<MsgPreferencesAndSettings>(HandlePreferencesAndSettings);
+            _netManager.RegisterNetMessage<MsgHasPendingPreferenceUpdates>(HandlePendingPreferencesUpdate); // Starlight
             _netManager.RegisterNetMessage<MsgForceUpdatePlayerCharacter>(); // Starlight
             _netManager.RegisterNetMessage<MsgForceDeletePlayerCharacter>(); // Starlight
             _netManager.RegisterNetMessage<MsgForcePlayerCharacterEnable>(); // Starlight
@@ -68,11 +80,17 @@ namespace Content.Client.Lobby
             };
             Preferences = new PlayerPreferences(characters, Preferences.AdminOOCColor, Preferences.ConstructionFavorites, Preferences.JobPriorities);
 
-            var msg = new MsgSetCharacterEnable
-            {
-                CharacterIndex = slot,
-                EnabledValue = enable,
-            };
+            // Starlight begin
+            NetMessage msg = TargetPreferences is null
+                ? new MsgSetCharacterEnable { CharacterIndex = slot, EnabledValue = enable, }
+                : new MsgForcePlayerCharacterEnable
+                {
+                    CharacterIndex = slot,
+                    EnabledValue = enable,
+                    UserId = TargetPlayerInfo!.UserId,
+                    NotifyPlayer = true
+                };
+            // Starlight end
             _netManager.ClientSendMessage(msg);
         }
 
@@ -82,11 +100,14 @@ namespace Content.Client.Lobby
             profile.EnsureValid(_playerManager.LocalSession!, collection);
             var characters = new Dictionary<int, HumanoidCharacterProfile>(Preferences.Characters) {[slot] = profile};
             Preferences = new PlayerPreferences(characters, Preferences.AdminOOCColor, Preferences.ConstructionFavorites, Preferences.JobPriorities);
-            var msg = new MsgUpdateCharacter
-            {
-                Profile = profile,
-                Slot = slot
-            };
+            // Starlight begin
+            NetMessage msg = TargetPreferences is null
+                ? new MsgUpdateCharacter { Profile = profile, Slot = slot }
+                : new MsgForceUpdatePlayerCharacter
+                {
+                    Profile = profile, Slot = slot, UserId = TargetPlayerInfo!.UserId, NotifyPlayer = true
+                };
+            // Starlight end
             _netManager.ClientSendMessage(msg);
         }
 
@@ -118,11 +139,15 @@ namespace Content.Client.Lobby
         {
             var characters = Preferences.Characters.Where(p => p.Key != slot);
             Preferences = new PlayerPreferences(characters, Preferences.AdminOOCColor, Preferences.ConstructionFavorites, Preferences.JobPriorities);
-            var msg = new MsgDeleteCharacter
-            {
-                Slot = slot
-            };
+            // Starlight begin
+            NetMessage msg = TargetPreferences is null
+                ? new MsgDeleteCharacter { Slot = slot }
+                : new MsgForceDeletePlayerCharacter
+                {
+                    Slot = slot, UserId = TargetPlayerInfo!.UserId, NotifyPlayer = true,
+                };
             _netManager.ClientSendMessage(msg);
+            // Starlight end
         }
 
         /// <summary>
@@ -135,10 +160,14 @@ namespace Content.Client.Lobby
                 Preferences.AdminOOCColor,
                 Preferences.ConstructionFavorites,
                 jobPriorities);
-            var msg = new MsgUpdateJobPriorities
-            {
-                JobPriorities = jobPriorities,
-            };
+            // Starlight begin
+            NetMessage msg = TargetPreferences is null
+                ? new MsgUpdateJobPriorities { JobPriorities = jobPriorities, }
+                : new MsgForceUpdatePlayerJobPriorities
+                {
+                    JobPriorities = jobPriorities, UserId = TargetPlayerInfo!.UserId, NotifyPlayer = true
+                };
+            // Starlight end
             _netManager.ClientSendMessage(msg);
         }
 

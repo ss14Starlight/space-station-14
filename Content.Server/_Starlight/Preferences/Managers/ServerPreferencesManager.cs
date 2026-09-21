@@ -20,6 +20,7 @@ public sealed partial class ServerPreferencesManager
     [Dependency] private IChatManager _chat = null!;
     [Dependency] private IAdminManager _admin = null!;
     [Dependency] private IAdminLogManager _aLog = null!;
+    [Dependency] private IEntitySystemManager _entSys = null!;
 
     public async Task<PlayerPreferences?> GetProfileDataForPlayerAsync(NetUserId targetPlayer,
         CancellationToken cancel)
@@ -131,7 +132,7 @@ public sealed partial class ServerPreferencesManager
             if (!_playerManager.TryGetSessionByChannel(message.MsgChannel, out var session)) return;
             if (!TryEnsureAdminForPrefsUpdate(session, message.UserId)) return;
 
-            await SetJobPriorities(message.UserId, message.JobPriorities);
+            await SetJobPriorities(message.UserId, message.JobPriorities, message);
 
             // Return if not online
             if (!_playerManager.TryGetSessionById(message.UserId, out var target))
@@ -178,7 +179,7 @@ public sealed partial class ServerPreferencesManager
         var message = $"{session} has updated character preferences for {target.UserId}.";
         _aLog.Add(LogType.AdminCommands, LogImpact.High, $"{message}");
         _chat.SendAdminAnnouncement($"{message}");
-        IoCManager.Resolve<AutoDiscordLogSystem>().LogToDiscord(message); // Yes this needs to be resolved here, IDK why.
+        _entSys.GetEntitySystem<AutoDiscordLogSystem>().LogToDiscord(message);
         return true;
     }
 }

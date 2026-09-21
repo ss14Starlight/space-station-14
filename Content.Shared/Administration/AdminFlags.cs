@@ -126,7 +126,10 @@
 
         #region Starlight
 
-        /// Permits the editing of player preferences.
+        /// <summary>
+        /// Permits the editing of player preferences. Is also intended
+        /// to be used as a middle-ground between +Mapping and +Pii
+        /// </summary>
         Prefs = 1 << 22,
 
         #endregion
