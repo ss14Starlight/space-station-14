@@ -244,7 +244,6 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
             SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat(0f, 100f)),
             SkinColorationStrategyInput.Color => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
             _ => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
-            //TODO - Experiment: Do we need to do anything here for Sawnian colours?
         };
 
         #region Starlight
