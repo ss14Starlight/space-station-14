@@ -318,9 +318,21 @@
   - type: Paintable
     group: AirlockStandard
 
+- type: entity
+  parent: AirlockGlass
+  id: AirlockNTGlass
+  suffix: NanoTrasen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/nanotrasen.rsi
+  - type: Wires
+    layoutId: AirlockNT
+  - type: Paintable
+    group: AirlockGlass
+
 # Maints
 - type: entity
-  parent: Airlock
+  parent: AirlockRobotics
   id: AirlockRoboticsMaints
   suffix: Robotics Maints
   components:
@@ -328,7 +340,7 @@
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/robotics_maints.rsi
 
 - type: entity
-  parent: Airlock
+  parent: AirlockParamedic
   id: AirlockParamedicMaints
   suffix: Paramedic Maints
   components:
@@ -336,7 +348,7 @@
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/paramedic_maints.rsi
 
 - type: entity
-  parent: Airlock
+  parent: AirlockSurgery
   id: AirlockSurgeryMaints
   suffix: Surgery Maints
   components:
@@ -344,7 +356,7 @@
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/surgery_maints.rsi
 
 - type: entity
-  parent: Airlock
+  parent: AirlockMail
   id: AirlockMail Maints
   suffix: Mail Maints
   components:
@@ -352,7 +364,7 @@
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/mail_maints.rsi
 
 - type: entity
-  parent: Airlock
+  parent: AirlockBrigmed
   id: AirlockBrigmedMaints
   suffix: Brigmed Maints
   components:
@@ -360,7 +372,7 @@
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/brigmedic_maints.rsi
 
 - type: entity
-  parent: Airlock
+  parent: AirlockService
   id: AirlockServiceMaints
   suffix: Service Maints
   components:
@@ -479,12 +491,4 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/virology_maints.rsi
-  id: AirlockNTGlass
-  suffix: NanoTrasen
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Doors/Airlocks/Glass/nanotrasen.rsi
-  - type: Wires
-    layoutId: AirlockNT
-  - type: Paintable
-    group: AirlockGlass
+
