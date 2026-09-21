@@ -7,8 +7,8 @@
   supervisors: job-supervisors-guild
   requirements:
     - !type:RoleTimeRequirement
-      role: JobQuartermaster
-      time: 18000 # 5 hours
+      role: JobSalvageSpecialist
+      time: 36000 # 10 hours
   icon: "JobIconSalvageLead"
   startingGear: SalvageLeadGear
   displayWeight: 5
