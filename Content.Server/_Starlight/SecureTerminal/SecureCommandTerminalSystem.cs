@@ -173,18 +173,6 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     authToLightUp is not null && authToLightUp.Contains(consoleUid));
             }
 
-            if (toExpire != null)
-                foreach (var requestId in toExpire)
-                {
-                    // Expired proposals are always still Pending, so refund the held fee.
-                    if (stationComp.ActiveProposals.TryGetValue(requestId, out var expiredProposal))
-                        RefundFee(expiredProposal);
-                    stationComp.ActiveProposals.Remove(requestId);
-
-                    if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var expiredProto))
-                        _roundStatistics.RecordSecureTerminalOutcome(requestId, expiredProto.ActionType, SecureTerminalResult.Expired);
-                }
-
             if (toFire != null)
                 foreach (var requestId in toFire)
                 {
@@ -739,7 +727,8 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                 proposal.UsedTerminals.Add(terminalUid);
                 proposal.Authorizers.Add((actor, name, job, terminalUid, schemeIndex, groupIndex));
                 _roundStatistics.RecordSecureTerminalAuthorization(proposal.RequestId, proto.ActionType, false);
-                return true;;
+                authorized = true;
+                break;
             }
         }
         return authorized;
@@ -785,7 +774,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         proposal.Status = SecureTerminalProposalStatus.Activating;
         proposal.ActivateAt = _timing.CurTime + TimeSpan.FromSeconds(proto.ActivationDelaySecs);
 
-        _roundStatistics.RecordSecureTerminalActivation(requestId, proto.ActionType, _timing.CurTime - proposal.CreatedAt, proto.SalaryPenalty);
+        var salaryPenalty = proto.SalaryModifiers
+            .Where(modifier => modifier.Change < 0)
+            .Sum(modifier => -modifier.Change);
+        _roundStatistics.RecordSecureTerminalActivation(requestId, proto.ActionType, _timing.CurTime - proposal.CreatedAt, salaryPenalty);
 
         if (proto.ProposalAnnouncement)
         {
