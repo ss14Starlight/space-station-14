@@ -357,8 +357,8 @@
 
 - type: entity
   parent: AirlockMail
-  id: AirlockMail Maints
-  suffix: Mail Maints
+  id: AirlockMailMaints
+  suffix: AirlockMail Maints
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/mail_maints.rsi
@@ -379,7 +379,6 @@
   - type: Sprite
     sprite: _Starlight/Structures/Doors/Airlocks/Standard/services_maints.rsi
 
-###
 - type: entity
   parent: AirlockAtmospherics
   id: AirlockAtmosphericsMaints
