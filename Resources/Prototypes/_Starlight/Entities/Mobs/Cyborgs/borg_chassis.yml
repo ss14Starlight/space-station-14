@@ -284,4 +284,4 @@
     - Common
     - Expedition
     - type: IonStormTarget
-      chance: .05
+      chance: 0.05
