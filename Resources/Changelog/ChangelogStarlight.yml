@@ -1,13 +1,6 @@
 Entries:
 - author: Wizden Team
   changes:
-  - message: Made glasses actually correct short-sighted vision!
-    type: Tweak
-  id: 408381
-  time: '2026-09-07T07:58:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6029
-- author: Wizden Team
-  changes:
   - message: Entirely remade the Vegan Meatball magnet wreck to better work as a wreck for salvage.
     type: Tweak
   id: 408382
@@ -2799,4 +2792,11 @@ Entries:
   id: 408780
   time: '2026-09-20T22:27:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6037
+- author: Johnny
+  changes:
+  - message: Removed the rod threats from ninja callins.
+    type: Remove
+  id: 408781
+  time: '2026-09-21T02:26:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6262
 Order: -1
