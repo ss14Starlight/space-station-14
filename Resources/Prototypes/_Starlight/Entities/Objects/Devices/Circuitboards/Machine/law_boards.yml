@@ -70,3 +70,17 @@
     - type: Revolutionary # behold. you can now see revs.
   - type: StaticPrice
     price: 1000
+
+- type: entity
+  id: JanimovCircuitBoard
+  parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  name: law board (Janimov)
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: JanimovLawset
+    IsLawboard: true
+  - type: StaticPrice
+    price: 1000

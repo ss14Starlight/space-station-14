@@ -22,7 +22,7 @@
   - NightVisionBlocker # Starlight
   # - LegsParalyzed (you get healed)
   - LightweightDrunk
-  - Muted
+  #- Muted # Starlight - Something made this work earlier but it doesnt work anymore.
   - Narcolepsy
   - Pacified
   - Paracusia
@@ -60,6 +60,7 @@
     # Languages - Starlight
   - LanguageSpeaker
   - ForeignerTrait
+  - XenosocializedTrait
     # TTS - Starlight
   - TextToSpeech
   eventComponents:

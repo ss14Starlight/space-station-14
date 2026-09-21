@@ -12,9 +12,6 @@ public sealed partial class FlammableWallStainComponent : Component
     public int Flammability { get; set; }
 
     [ViewVariables]
-    public float Accumulator { get; set; }
-
-    [ViewVariables]
     public EntityUid? PlayingStream { get; set; }
 
     [ViewVariables]

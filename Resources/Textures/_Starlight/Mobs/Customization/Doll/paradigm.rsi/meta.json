@@ -86,6 +86,11 @@
             "name": "paradigm_torso",
             "directions": 4,
     		"copyright": "SevenShades"
+        },
+        {
+            "name": "paradigm_m",
+            "directions": 4,
+    		"copyright": "Maitake"
         }
     ]
 }

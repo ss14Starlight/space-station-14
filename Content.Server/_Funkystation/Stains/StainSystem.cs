@@ -11,13 +11,12 @@ public sealed partial class StainSystem : SharedStainSystem
     [Dependency] private TagSystem _tag = null!;
     [Dependency] private FlammableStainsSystem _flammableStains = null!; // Starlight
 
-    private static readonly ProtoId<TagPrototype> Tag = "DNASolutionScannable";
+    private static readonly ProtoId<TagPrototype> _dnaTag = "DNASolutionScannable";
 
     protected override void OnStained(Entity<StainableComponent> ent, Entity<SolutionComponent> solution)
     {
         base.OnStained(ent, solution);
 
-        _tag.AddTag(ent.Owner, Tag);
-        _flammableStains.OnStained(ent.Owner, solution.Comp.Solution); // Starlight
+        _tag.AddTag(ent.Owner, _dnaTag);
     }
 }

@@ -14,8 +14,8 @@
     factions:
     - CosmicCult
   - type: CosmicMalignantHealing
-    healInterval: 1s
-    healAmount: 0.2
+    healInterval: 10s
+    healAmount: 1
   - type: StaminaResistance
     damageCoefficient: 0 # No more stunning colossi
   - type: Sprite
@@ -123,7 +123,7 @@
     - DoorBumpOpener
     - Unimplantable
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: MalignStructure
     damageModifierSet: Malignstone
   - type: Destructible
     thresholds:
@@ -149,7 +149,7 @@
         sound:
           collection: MeatLaserImpact
   - type: CosmicRiftHealth
-    healthPerCorpse: 25
+    healthPerCorpse: 20
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -170,12 +170,10 @@
     - Dead
   - type: AntagMonsterScaling
     minimumHealthScaling: -0.25
-    maximumHealthScaling: 0.50
+    maximumHealthScaling: 0.25
   - type: ToolRefinable
     refineTime: 16
-    refineResult:
-    - id: CosmicCultMindSink
-      amount: 1
+    refineResult: []
   - type: PointLight
     color: "#42a4ae"
     radius: 4
