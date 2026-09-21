@@ -8,9 +8,9 @@ namespace Content.Server.Radio.EntitySystems;
 
 public sealed partial class RadioSystem
 {
-    [Dependency] private MobStateSystem _mobState = default!; //🌟Starlight🌟
-    [Dependency] private SharedPopupSystem _popup = default!; //🌟Starlight🌟
-    [Dependency] private ISharedPlayerManager _playerManager = default!; //🌟Starlight🌟
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
 
 
     private bool SendRadioMessageSL(EntityUid messageSource, RadioChannelPrototype channel, ref LanguagePrototype? language)
