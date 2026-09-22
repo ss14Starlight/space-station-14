@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Packed) Added a Psychologist Office.
-    type: Add
-  id: 408413
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
   - message: (Packed) Added a Reporter Office.
     type: Add
   id: 408414
@@ -2799,4 +2792,11 @@ Entries:
   id: 408812
   time: '2026-09-22T16:19:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6283
+- author: neomoth
+  changes:
+  - message: The MalignRiftSpawn event is now less obvious that it isn't actually from coscult.
+    type: Tweak
+  id: 408813
+  time: '2026-09-22T17:30:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6192
 Order: -1
