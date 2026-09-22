@@ -91,7 +91,4 @@ public sealed partial class StationSystem
         EntityManager.InitializeAndStartEntity(ent, coords!.Value.MapId);
         return ent;
     }
-
-    public void MarkMidRoundStationForInitialization(EntityUid uid, BecomesStationMidRoundComponent comp) =>
-        comp.Initialize = true;
 }
