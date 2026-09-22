@@ -1,53 +1,4 @@
 Entries:
-- author: wonderfulnewworld, Cvlancer
-  changes:
-  - message: Added Roboticist Scarf and Roboticist Figurine to RoboDrobe.
-    type: Add
-  id: 408406
-  time: '2026-09-08T10:54:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6007
-- author: wonderfulnewworld, Cvlancer
-  changes:
-  - message: Added 2 science wanted posters.
-    type: Add
-  id: 408407
-  time: '2026-09-08T10:54:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6007
-- author: Swonki
-  changes:
-  - message: ITG Salv ATS mapping issues.
-    type: Fix
-  id: 408408
-  time: '2026-09-08T10:54:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6016
-- author: qbrx
-  changes:
-  - message: Reverted Dragon's Devour and Changeling's Fleshmend to inject Ichor into the bloodstream following the upstream change restoring Ichor's bloodstream functionality.
-    type: Tweak
-  id: 408409
-  time: '2026-09-08T10:54:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6010
-- author: wonderfulnewworld, AraiMaia, B_Kirill
-  changes:
-  - message: Puddles should cause less lag now.
-    type: Fix
-  id: 408410
-  time: '2026-09-08T11:19:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6043
-- author: wonderfulnewworld, AraiMaia, B_Kirill
-  changes:
-  - message: Fixed puddles not being removed when tile changes to lattice.
-    type: Fix
-  id: 408411
-  time: '2026-09-08T11:19:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6043
-- author: wonderfulnewworld, AraiMaia, B_Kirill
-  changes:
-  - message: Fix slippery puddles mispredicting when going out of range.
-    type: Fix
-  id: 408412
-  time: '2026-09-08T11:19:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6043
 - author: Makeshift
   changes:
   - message: (Packed) Added a Psychologist Office.
@@ -2799,4 +2750,53 @@ Entries:
   id: 408805
   time: '2026-09-22T07:27:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6285
+- author: R3v3l4t1on
+  changes:
+  - message: Silicon language packs have been updated to include the understanding of Classical Sign Language.
+    type: Add
+  id: 408806
+  time: '2026-09-22T15:35:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6286
+- author: DocMoth
+  changes:
+  - message: Expi hunger has been lowered from 7x! to 3x.
+    type: Tweak
+  id: 408807
+  time: '2026-09-22T15:36:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6280
+- author: DocMoth
+  changes:
+  - message: Expi speed now drops from 125% while free of clothes to 95% when fully clothed.
+    type: Tweak
+  id: 408808
+  time: '2026-09-22T15:36:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6280
+- author: DocMoth
+  changes:
+  - message: Expi head and inhand displacements improved.
+    type: Tweak
+  id: 408809
+  time: '2026-09-22T15:36:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6280
+- author: DocMoth
+  changes:
+  - message: Expi metabolism.
+    type: Fix
+  id: 408810
+  time: '2026-09-22T15:36:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6280
+- author: STARLIGHT TEAM
+  changes:
+  - message: added more precise information of sawians stats in the guidebook.
+    type: Add
+  id: 408811
+  time: '2026-09-22T15:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6282
+- author: Rinary
+  changes:
+  - message: Fixed issues with playtime items on characters when using NullLink's playtime.
+    type: Fix
+  id: 408812
+  time: '2026-09-22T16:19:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6283
 Order: -1
