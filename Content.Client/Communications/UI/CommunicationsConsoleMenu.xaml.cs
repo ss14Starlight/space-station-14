@@ -108,13 +108,15 @@ namespace Content.Client.Communications.UI
             // Starlight Start
             if (AlertLevelCooldownEnd.HasValue)
                 return;
-            // Starlight End
+            
 
             var alertState = $"{(alerts is { Count: > 0 } ? string.Join("\0", alerts) : currentAlert)}\0{currentAlert}";
             if (_lastAlertState == alertState)
                 return;
 
             _lastAlertState = alertState;
+            // Starlight End
+            
             AlertLevelButton.Clear();
 
             // Starlight Start
@@ -168,11 +170,11 @@ namespace Content.Client.Communications.UI
         {
             if (currentAlertDelay > 0)
             {
-                if (!AlertLevelCooldownEnd.HasValue && _finishedAlertLevelCooldown != CurrentLevel)
+                if (!AlertLevelCooldownEnd.HasValue && _finishedAlertLevelCooldown != CurrentLevel) // Starlight
                 {
                     AlertLevelCooldownEnd = _timing.CurTime + TimeSpan.FromSeconds(currentAlertDelay);
                     LastAlertLevelDelay = currentAlertDelay;
-                    _finishedAlertLevelCooldown = CurrentLevel;
+                    _finishedAlertLevelCooldown = CurrentLevel; // Starlight
                 }
             }
             else
@@ -226,11 +228,13 @@ namespace Content.Client.Communications.UI
                 if (diff <= TimeSpan.Zero)
                 {
                     AlertLevelCooldownEnd = null;
+                    // Starlight - start
                     _finishedAlertLevelCooldown = CurrentLevel;
                     var levelText = _loc.TryGetString($"alert-level-{CurrentLevel}", out var locName)
                         ? locName
                         : CurrentLevel;
                     AlertLevelButton.SetItemText(AlertLevelButton.GetIdx(AlertLevelButton.SelectedId), levelText);
+                    // Starlight - end
                     AlertLevelButton.Disabled = !AlertLevelSelectable;
                     AlertLevelButton.ToolTip = _loc.GetString("comms-console-menu-alert-level-button-tooltip");
                 }
