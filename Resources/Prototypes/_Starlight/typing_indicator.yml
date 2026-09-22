@@ -16,3 +16,9 @@
   spritePath: /Textures/_Starlight/Effects/speech.rsi
   typingState: rodentia0
   idleState: rodentia0
+
+- type: typingIndicator
+  id: sawian
+  spritePath: /Textures/_Starlight/Effects/speech.rsi
+  typingState: sawian0
+  idleState: sawian3

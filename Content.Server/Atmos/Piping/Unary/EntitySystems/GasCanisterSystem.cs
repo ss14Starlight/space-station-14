@@ -103,7 +103,16 @@ public sealed partial class GasCanisterSystem : SharedGasCanisterSystem
         if (MathHelper.CloseToPercent(canister.Air.Pressure, canister.LastPressure))
             return;
 
-        DirtyUI(uid, canister, nodeContainer);
+        RefreshCanister(uid, canister); // Starlight
+    }
+    #region Starlight
+    // I kept it in here, because much of that function i took out of OnCanisterUpdated
+    public void RefreshCanister(EntityUid uid, GasCanisterComponent canister)
+    {
+        if (!TryComp<AppearanceComponent>(uid, out var appearance)) // Starlight: safeguard
+            return;
+
+        DirtyUI(uid, canister); // Starlight: make sure that the UI is also updated when the canister is refreshed.
 
         canister.LastPressure = canister.Air.Pressure;
 
@@ -124,6 +133,7 @@ public sealed partial class GasCanisterSystem : SharedGasCanisterSystem
             _appearance.SetData(uid, GasCanisterVisuals.PressureState, 3, appearance);
         }
     }
+    #endregion
 
     /// <summary>
     /// Mix air from a gas container into a pipe net.

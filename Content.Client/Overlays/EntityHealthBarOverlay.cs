@@ -151,13 +151,15 @@ public sealed class EntityHealthBarOverlay : Overlay
             return (ratio, false);
         }
 
-        if (_mobStateSystem.IsCritical(uid, component))
+        if (_mobStateSystem.IsCritical(uid, component) || _mobStateSystem.IsSoftCritical(uid, component)) // Starlight edit: soft crit
         {
             if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, thresholds) ||
                 !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out var deadThreshold, thresholds))
             {
                 return (1, true);
             }
+            if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.SoftCritical, out var softCritThreshold, thresholds)) // Starlight edit: soft crit
+                critThreshold = softCritThreshold; // Starlight edit: soft crit
 
             var ratio = 1 - ((totalDamage - critThreshold) / (deadThreshold - critThreshold)).Value.Float();
 
