@@ -121,9 +121,11 @@ public sealed partial class TurretControllerWindow : BaseWindow
 
         var canInteract = IsLocalPlayerAllowedToInteract();
 
-        SafeButton.Disabled = !SafeButton.Pressed && !canInteract;
-        StunButton.Disabled = !StunButton.Pressed && !canInteract;
-        LethalButton.Disabled = !LethalButton.Pressed && !canInteract;
+        var readOnly = IsReadOnly(); // Starlight
+
+        SafeButton.Disabled = readOnly || !SafeButton.Pressed && !canInteract; // Starlight-edit
+        StunButton.Disabled = readOnly || !StunButton.Pressed && !canInteract; // Starlight-edit
+        LethalButton.Disabled = readOnly || !LethalButton.Pressed && !canInteract; // Starlight-edit
 
         ContentsContainer.Modulate = ThemeColors[setting];
     }
@@ -188,6 +190,9 @@ public sealed partial class TurretControllerWindow : BaseWindow
     private bool IsLocalPlayerAllowedToInteract()
     {
         if (_owner == null || _playerManager.LocalSession?.AttachedEntity == null)
+            return false;
+
+        if (IsReadOnly()) // Starlight
             return false;
 
         return _accessReaderSystem.IsAllowed(_playerManager.LocalSession.AttachedEntity.Value, _owner.Value);
