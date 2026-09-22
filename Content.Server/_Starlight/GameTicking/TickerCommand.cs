@@ -135,7 +135,7 @@ public sealed class TickerCommand : ToolshedCommand
 
     /// Get a reference to an added gamerule entity.
     [CommandImplementation("getrule")]
-    public EntityUid GetRule(IInvocationContext ctx,
+    public EntityUid GetRule(
         [CommandArgument(typeof(EntityWithCompCompletionParser<GameRuleComponent>))] EntityUid entity) => entity;
 
     /// Get all gamerules that are currently added.
