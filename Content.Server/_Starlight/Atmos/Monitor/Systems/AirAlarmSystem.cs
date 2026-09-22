@@ -111,23 +111,33 @@ public sealed partial class AirAlarmSystem
                     var tref = _turf.GetTileRef(test);
                     if (tref == null)
                         continue; //in space. so we dont continue propogation
-                    var stop = _turf.GetEntitiesInTile(test, LookupFlags.StaticSundries)
+
+                    var entities = _turf.GetEntitiesInTile(test, LookupFlags.StaticSundries)
                         .Where(x => //Filter for entities on the tile we are checking (stupid walls are just slightly too fat)
                         {
                             var tile = _xform.GetGridTilePositionOrDefault(x);
                             return tile != Vector2i.Zero && tref.Value.GridIndices == tile;
                         })
-                        .Select(x =>
+                        .ToList();
+
+                    // link devices before checking a stopping condition
+                    // this prevents e.g. firelocks on top of airlocks from being skipped (as both are stopping conditions)
+                    foreach (var x in entities)
+                    {
+                        if (_whitelist.IsWhitelistPass(_linkableWhitelist, x) && TryComp<DeviceNetworkComponent>(x, out var devNetwork))
                         {
-                            if (_whitelist.IsWhitelistPass(_linkableWhitelist, x) && TryComp<DeviceNetworkComponent>(x, out var devNetwork))
-                                _deviceList.TryAddDeviceToList(
+                            _deviceList.TryAddDeviceToList(
                                 new(ent, devList),
                                 new(x, devNetwork)
                             );
-                            Log.Info($"euid: {x} WLPass: {_whitelist.IsWhitelistPass(_linkableWhitelist, x)} DNComp: {HasComp<DeviceNetworkComponent>(x)}");
-                            return _whitelist.IsWhitelistPass(_stoppingWhitelist, x);
-                        })
-                        .Any(x => x);
+                        }
+
+                        // debug
+                        //Log.Info($"euid: {x} WLPass: {_whitelist.IsWhitelistPass(_linkableWhitelist, x)} DNComp: {HasComp<DeviceNetworkComponent>(x)}");
+                    }
+
+                    // check if we should stop on this tile
+                    var stop = entities.Any(x => _whitelist.IsWhitelistPass(_stoppingWhitelist, x));
 
                     if (stop || part.Item2 > _maxDepth)
                         continue;
