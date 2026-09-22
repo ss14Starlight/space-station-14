@@ -128,7 +128,7 @@ public sealed partial class TTSSystem : EntitySystem
                 ? GetOrAssignVoice(GetEntity(args.SpeakerUid.Value), fallbackVoice: DefaultAnnounceVoice)
                 : DefaultAnnounceVoice;
 
-            await GenerateAndStream(TTSType.Announcement, voice, text, filter, TTSEffect.Megaphone, args.AnnouncementSound);
+            await GenerateAndStream(TTSType.Announcement, voice, text, filter, TTSEffect.Megaphone);
         }
         catch (TaskCanceledException ex)
         {

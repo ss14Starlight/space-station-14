@@ -276,6 +276,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         uiState.CanPrint = TryComp<HealthAnalyzerComponent>(healthAnalyzer, out var analyzerComp)
             && analyzerComp.ScannedEntity == target
             && _timing.CurTime >= analyzerComp.PrintReadyAt;
+        uiState.EnablePrint = analyzerComp?.EnablePrint;
         // Starlight-end
         uiState.ScanMode = scanMode;
 
@@ -393,6 +394,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             GetNetEntity(entity),
             bodyTemperature,
             bloodAmount,
+            null, // Starlight-edit: Printable health reports.
             null, // Starlight-edit: Printable health reports.
             null,
             bleeding,
@@ -550,7 +552,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
                 ("amount", amountText));
             message.AddMarkupOrThrow(HealthAnalyzerFormatting.WrapMarkupWithColor(
                 groupLine,
-                HealthAnalyzerFormatting.GetDamageSeverityColor((float) group.Amount)));
+                HealthAnalyzerFormatting.GetDamageSeverityColorPrint((float) group.Amount)));
             message.PushNewline();
 
             foreach (var damageType in group.DamageTypes)

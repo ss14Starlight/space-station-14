@@ -78,6 +78,9 @@ public sealed partial class ZonePlacementSystem : EntitySystem
     {
         base.FrameUpdate(frameTime);
 
+        if (Active && !EditorContextActive())
+            _input.Contexts.SetActiveContext(EditorContext);
+
         if (ShowRooms)
             RequestRooms();
 
@@ -93,6 +96,11 @@ public sealed partial class ZonePlacementSystem : EntitySystem
 
     #region Activation
 
+    private const string EditorContext = "editor";
+
+    private bool EditorContextActive()
+        => _input.Contexts.ActiveContext == _input.Contexts.GetContext(EditorContext);
+
     /// <summary>
     /// Activates or deactivates the zone placement system, enabling or disabling the editor context and clearing any ongoing drag operations.
     /// </summary>
@@ -102,8 +110,8 @@ public sealed partial class ZonePlacementSystem : EntitySystem
         _drag = null;
 
         if (active)
-            _input.Contexts.SetActiveContext("editor");
-        else
+            _input.Contexts.SetActiveContext(EditorContext);
+        else if (EditorContextActive())
             _inputSystem.SetEntityContextActive();
     }
 

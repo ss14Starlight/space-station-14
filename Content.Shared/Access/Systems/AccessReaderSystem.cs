@@ -859,6 +859,8 @@ public sealed partial class AccessReaderSystem : EntitySystem
         {
             items.Add(idUid.Value);
         }
+        if (_inventorySystem.TryGetSlotEntity(uid, "belt", out var beltUid)) // Starlight edit: PDAs can be in belt slots
+            items.Add(beltUid.Value);
 
         return items.Any();
     }
