@@ -1,0 +1,21 @@
+# Only allow "True Neocyte" random spawn to prevent a 50% Neocyte spawn rate
+- type: !PartialOnly randomHumanoidSettings
+  id: EventHumanoid
+  speciesBlacklist:
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDwarf
+    - NeoDiona
+    - NeoFelionoid
+    - NeoHuman
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoVox
+    - NeoVulpkanin
+    - NeoKin
+    - NeoElf
+    - NeoLagomorph
