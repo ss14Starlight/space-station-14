@@ -1,13 +1,6 @@
 Entries:
 - author: RedSpeeds
   changes:
-  - message: Added Vocal cyber tongue to use all emotes.
-    type: Add
-  id: 408401
-  time: '2026-09-08T10:29:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5999
-- author: RedSpeeds
-  changes:
   - message: Changed vocal and emote to be changeable thru surgery.
     type: Tweak
   id: 408402
@@ -2799,4 +2792,11 @@ Entries:
   id: 408800
   time: '2026-09-22T00:25:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6275
+- author: RedSpeeds
+  changes:
+  - message: Nerfed Syndie baked goods a bit.
+    type: Tweak
+  id: 408801
+  time: '2026-09-22T03:25:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6269
 Order: -1
