@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Alert;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
@@ -178,6 +179,16 @@ public sealed partial class HungerSystem : EntitySystem
         {
             _damageable.TryChangeDamage(uid, damage, true, false);
         }
+
+        // Starlight begin - Better passive damage system than the one above, I just don't want to refactor everything rn.
+        if (!TryComp<DamageableComponent>(uid, out var dmgComp))
+            return;
+
+        if (component.CurrentThreshold >= component.PassiveDamageThreshold &&
+            _damageable.GetDamage((uid, dmgComp)).GetTotal() < component.PassiveDamageCap &&
+            component.PassiveDamageSpecifier is { } passiveDamage && !_mobState.IsDead(uid))
+            _damageable.TryChangeDamage(uid, passiveDamage, true, false);
+        // Starlight end
     }
 
     /// <summary>

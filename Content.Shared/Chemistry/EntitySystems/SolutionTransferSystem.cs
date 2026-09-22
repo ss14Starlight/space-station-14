@@ -42,6 +42,8 @@ public sealed partial class SolutionTransferSystem : EntitySystem
         SubscribeLocalEvent<SolutionTransferComponent, SolutionDrainTransferDoAfterEvent>(OnSolutionDrainTransferDoAfter);
         SubscribeLocalEvent<SolutionTransferComponent, SolutionRefillTransferDoAfterEvent>(OnSolutionFillTransferDoAfter);
 
+        SubscribeLocalEvent<RefillableSolutionComponent, SolutionTransferAttemptEvent>(OnRefillTransferAttempt); // Starlight
+
         _refillableQuery = GetEntityQuery<RefillableSolutionComponent>();
         _drainableQuery = GetEntityQuery<DrainableSolutionComponent>();
     }

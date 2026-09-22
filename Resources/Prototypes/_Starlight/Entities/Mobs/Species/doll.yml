@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge]
   id: BaseMobDoll
   abstract: true
   components:
@@ -34,10 +34,6 @@
     damageContainer: Biological
     damageModifierSet: Doll
   - type: Vocal
-    sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: FemaleHuman
   - type: Inventory
     speciesId: Doll
     femaleDisplacements:
@@ -46,11 +42,16 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: DollBlood
+        Quantity: 600
   - type: Shell
     generateShellPieceAction: ActionGenerateShellPiece
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge]
   id: BaseMobDollFresh
   description: Where did that shell come from? It is all soft and spongy...
   abstract: true
@@ -148,10 +149,6 @@
     damageContainer: Biological
     damageModifierSet: Doll
   - type: Vocal
-    sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: FemaleHuman
   - type: Inventory
     speciesId: Doll
     femaleDisplacements:
@@ -160,6 +157,13 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: DollBlood
+        Quantity: 600
+  - type: Shell
+    generateShellPieceAction: ActionGenerateShellPiece
 
 - type: entity
   parent: BaseSpeciesDummy

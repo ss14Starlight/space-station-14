@@ -70,7 +70,7 @@ public abstract partial class SharedWiresSystem : EntitySystem
 
         AdminLogger.Add(LogType.Action, LogImpact.Low,
             $"{ToPrettyString(args.User):user} is screwing {ToPrettyString(ent):target}'s {(ent.Comp.Open ? "open" : "closed")} maintenance panel at {Transform(ent).Coordinates:targetlocation}");
-        args.Handled = true;
+        //args.Handled = true; #Starlight not cancelling it here is required to make constructions with wire panels work.
     }
 
     private void OnExamine(EntityUid uid, WiresPanelComponent component, ExaminedEvent args)

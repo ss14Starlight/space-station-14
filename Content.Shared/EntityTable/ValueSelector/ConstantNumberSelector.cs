@@ -19,4 +19,15 @@ public sealed partial class ConstantNumberSelector : NumberSelector
     {
         return Value;
     }
+
+    public override float Odds()
+    {
+        // You really shouldn't have a constant value of 0 ever.
+        return 1;
+    }
+
+    public override float Average()
+    {
+        return Value;
+    }
 }

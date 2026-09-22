@@ -139,5 +139,11 @@
   suffix: Arachnid
   description: "A fleshy muscle mostly used for lying."
   components:
+  - type: OrganTongue
+    allowedEmotes: ['Click', 'Chitter']
+    sounds:
+      Male: UnisexArachnid
+      Female: UnisexArachnid
+      Unsexed: UnisexArachnid
   - type: Sprite
     state: tongue

@@ -42,6 +42,10 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [Dependency] private StepTriggerSystem _stepTrigger = default!;
     [Dependency] private TileFrictionController _tile = default!;
 
+    private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
+    private EntityQuery<ReactiveComponent> _reactiveQuery;
+    private EntityQuery<EvaporationComponent> _evaporationQuery;
+
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
     /// <summary>
@@ -54,10 +58,6 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     // Using local deletion queue instead of the standard queue so that we can easily "undelete" if a puddle
     // loses & then gains reagents in a single tick.
     private HashSet<EntityUid> _deletionQueue = [];
-
-    private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
-    private EntityQuery<ReactiveComponent> _reactiveQuery;
-    private EntityQuery<EvaporationComponent> _evaporationQuery;
 
     public override void Initialize()
     {
@@ -95,7 +95,9 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
         _deletionQueue.Clear();
 
-        TickEvaporation();
+        // Starlight - avoid enumerating every evaporation component between scheduled ticks.
+        if (_timing.CurTime >= _nextEvaporationUpdate)
+            TickEvaporation();
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
@@ -112,7 +114,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         _standoutReagents = [.. _prototypeManager.EnumeratePrototypes<ReagentPrototype>().Where(x => x.Standsout).Select(x => x.ID)];
     }
 
-    private void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args)
+    protected virtual void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args) // Starlight
     {
         // The changes are already networked as part of the same game state.
         if (_timing.ApplyingState)
@@ -325,9 +327,12 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     private void UpdateSlow(EntityUid uid, Solution solution)
     {
         var maxViscosity = 0f;
-        foreach (var (reagent, _) in solution.Contents)
+        foreach (var (reagent, quantity) in solution.Contents) // Starlight
         {
             var reagentProto = _prototypeManager.Index<ReagentPrototype>(reagent.Prototype);
+            if (quantity < reagentProto.ViscosityMin) // Starlight
+                continue; // Starlight
+
             maxViscosity = Math.Max(maxViscosity, reagentProto.Viscosity);
         }
 

@@ -1,7 +1,5 @@
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Administration;
-using System;
-using System.Collections.Generic;
 using Content.Shared.Security;
 using Content.Shared.StationRecords;
 using Content.Shared.CriminalRecords;

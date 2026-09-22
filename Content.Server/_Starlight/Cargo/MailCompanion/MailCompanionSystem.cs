@@ -177,8 +177,8 @@ public sealed partial class MailCompanionSystem : EntitySystem
             if (!string.Equals(sensorStatus.Name, delivery.Comp.RecipientName, StringComparison.Ordinal))
                 continue;
 
-            if (!EntityManager.TryGetEntity(sensorStatus.OwnerUid, out var wearer) ||
-                !EntityManager.TryGetEntity(sensorStatus.SuitSensorUid, out var resolvedSensorUid))
+            if (!TryGetEntity(sensorStatus.OwnerUid, out var wearer) ||
+                !TryGetEntity(sensorStatus.SuitSensorUid, out var resolvedSensorUid))
                 continue;
 
             foundMatchingRecipient = true;
@@ -251,7 +251,7 @@ public sealed partial class MailCompanionSystem : EntitySystem
         component.RecipientName = null;
         SetStatus(uid, component, status);
 
-        if (popupUser != null && EntityManager.EntityExists(popupUser.Value))
+        if (popupUser != null && Exists(popupUser.Value))
             _popup.PopupClient(GetPopupForStatus(status), uid, popupUser.Value);
 
         UpdateUi(uid, component);
@@ -293,7 +293,7 @@ public sealed partial class MailCompanionSystem : EntitySystem
         component.CooldownEndsAt = _timing.CurTime + component.CooldownDuration;
         SetStatus(uid, component, MailCompanionStatus.Cooldown);
 
-        if (popupUser != null && EntityManager.EntityExists(popupUser.Value))
+        if (popupUser != null && Exists(popupUser.Value))
             _popup.PopupClient(Loc.GetString("mail-companion-popup-cooldown"), uid, popupUser.Value);
 
         UpdateUi(uid, component);
@@ -323,7 +323,7 @@ public sealed partial class MailCompanionSystem : EntitySystem
 
         foreach (var status in component.ConnectedSensors.Values)
         {
-            if (!EntityManager.TryGetEntity(status.SuitSensorUid, out var sensorUid) || sensorUid != trackedSensor)
+            if (!TryGetEntity(status.SuitSensorUid, out var sensorUid) || sensorUid != trackedSensor)
                 continue;
 
             sensorStatus = status;

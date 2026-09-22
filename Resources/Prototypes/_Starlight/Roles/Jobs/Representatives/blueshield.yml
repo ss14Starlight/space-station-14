@@ -40,7 +40,6 @@
     - Research
     - Robotics
     - Detective
-    - Salvage
     - Security
     - Brigmedic
     - Brig
@@ -54,11 +53,11 @@
     - Surgery
     - Paramedic
     - Mining
-    - SalvageLead
     - Debrief
     - Journalism
     - Clown
     - Mime
+    - NTPersonnel
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

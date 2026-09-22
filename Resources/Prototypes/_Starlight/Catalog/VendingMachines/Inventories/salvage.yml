@@ -1,5 +1,35 @@
 #equipment
 - type: listing
+  id: VendorSalvageSurplusMedical
+  productEntity: CrateITGMedicalSurplus
+  cost:
+    SalvageTicket: 400
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSurplusShotgun
+  productEntity: CrateITGShotgunSurplus
+  cost:
+    SalvageTicket: 600
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSurplus
+  productEntity: CrateITGSurplus
+  cost:
+    SalvageTicket: 400
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageBinoculars
   productEntity: Binoculars
   cost:
@@ -112,6 +142,42 @@
   - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorSalvagePKAUpgradeDamage
+  productEntity: PKAUpgradeDamage
+  cost:
+    SalvageTicket: 300
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvagePKAUpgradeRange
+  productEntity: PKAUpgradeRange
+  cost:
+    SalvageTicket: 300
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvagePKAUpgradeFireRate
+  productEntity: PKAUpgradeFireRate
+  cost:
+    SalvageTicket: 300
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
+    - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorSalvageMineralScanner
   productEntity: MineralScanner
   cost:
@@ -132,6 +198,18 @@
   - !type:ListingLimitedStockCondition
     stock: 1
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingShoesBootsMagSalvage
+  productEntity: ClothingShoesBootsMagSalvage
+  cost:
+    SalvageTicket: 500
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+    - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageWeaponMechMelleDrillDiamond
@@ -163,6 +241,18 @@
   categories:
     - SalvageEquipment
   conditions:
+    - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSalvageEncryptionKey
+  productEntity: EncryptionKeySalvage
+  cost:
+    SalvageTicket: 100
+  categories:
+    - SalvageEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 5
     - !type:BuyerAccessCondition
 
 #- type: listing
@@ -236,7 +326,57 @@
   conditions:
   - !type:BuyerAccessCondition
 
+- type: listing
+  id: VendorSalvageWeaponSPKA
+  productEntity: WeaponSPKA
+  cost:
+    SalvageTicket: 200
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageWeaponRegulator
+  productEntity: WeaponRegulator
+  cost:
+    SalvageTicket: 100
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageWeaponCA
+  productEntity: WeaponChainAccelerator
+  cost:
+    SalvageTicket: 250
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
+
 #consumables
+- type: listing
+  id: VendorSalvageSpeedLoaderSpesoConversion
+  productEntity: SpaceCash100
+  cost:
+    SalvageTicket: 50
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageOil
+  productEntity: OilPack
+  cost:
+    SalvageTicket: 50
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
 - type: listing
   id: VendorSalvageSpeedLoaderShotgunEmpty
   productEntity: SpeedLoaderShotgunEmpty
@@ -272,6 +412,16 @@
   productEntity: MagazinePistolSP
   cost:
     SalvageTicket: 75
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageMagazineMiniSyringe
+  productEntity: MiniSyringe
+  cost:
+    SalvageTicket: 25
   categories:
   - SalvageConsumeables
   conditions:
@@ -458,7 +608,6 @@
   conditions:
   - !type:BuyerAccessCondition
 
-
 #Cybernetics
 - type: listing
   id: VendorSalvageBrainImplantCommsExpedition
@@ -489,3 +638,13 @@
   - SalvageCybernetics
   conditions:
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageDeathRattleImplanterSalvage
+  productEntity: DeathRattleImplanterSalvage
+  cost:
+    SalvageTicket: 200
+  categories:
+    - SalvageCybernetics
+  conditions:
+    - !type:BuyerAccessCondition

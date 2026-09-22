@@ -5,3 +5,11 @@
   parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
   id: ElectrolyzerMachineCircuitboard
   result: ElectrolyzerMachineCircuitboard
+
+## Service
+
+# Washing machine
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: WashingMachineCircuitboard
+  result: WashingMachineCircuitboard

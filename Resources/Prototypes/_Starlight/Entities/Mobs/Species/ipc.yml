@@ -147,7 +147,7 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: Oil
+      - ReagentId: RefinedOil
         Quantity: 600
     bleedReductionAmount: 0 # No natural wound closing whatsoever
     bloodlossThreshold: 0.75 # Everyone else start taking bloodloss damage at 90%, but with no natural bleeding stop - IPC can last for a bit longer
@@ -166,12 +166,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
-    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
   - type: Vocal
-    sounds:
-      Male: MaleIPC
-      Female: FemaleIPC
-      Unsexed: MaleIPC
     wilhelmProbability: 0
   # IPC slots
   - type: ContainerContainer

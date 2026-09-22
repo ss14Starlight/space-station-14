@@ -153,21 +153,20 @@
     - id: ClothingMaskGasAtmos
     - id: ClothingOuterSuitAtmosFire
     - id: ClothingHeadHelmetAtmosFire
-    - id: GasAnalyzer
+    #- id: GasAnalyzer # Starlight Swap to Box
     - id: MedkitOxygenFilled
-    - id: HolofanProjector
+    #- id: HolofanProjector # Starlight Swap to Box
     - id: MatBag #FH
-    - id: WeaponGrapplingGun #FH
     - id: BoxFlare #FH
     - id: SheetSteel #FH
     - id: SheetSteel #FH
     - id: RCD
     - id: RPD # Starlight: RPD
     - id: RCDAmmo
-    - id: AirGrenade
-    - id: trayScanner # Starlight: Add t-ray scanner to atmos lockers
+    #- id: AirGrenade # Starlight Swap to Box
     - id: ClothingHandsGlovesColorYellow # Starlight: Add insulated gloves to atmos lockers
-    - id: HoloprojectorEngineering # Starlight
+    - id: FireExtinguisherAtmos # Starlight
+    - id: CardboardBoxLargeAtmosLocker # Starlight - move junk to a box
     - id: PlushieLizardJobAtmospherictechnician
       prob: 0.02
 
@@ -211,16 +210,16 @@
     children:
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingMaskGas
-    - id: trayScanner
+    #- id: trayScanner # Starlight - move junk to box
     - id: MatBag #FH
-    - id: WeaponGrapplingGun #FH
+    #- id: WeaponGrapplingGun #FH / Starlight - move junk to box
     - id: BoxFlare #FH
     - id: SheetSteel #FH
     - id: SheetGlass #FH
     - id: RCD
     - id: RCDAmmo
-    - id: MetalFoamGrenade
-    - id: HoloprojectorEngineering # Starlight
+    #- id: MetalFoamGrenade # Starlight - move junk to box
+    - id: CardboardBoxLargeEngiLocker # Starlight - move junk to box
     - id: PlushieLizardJobTechnicalassistant
       prob: 0.02
     - id: PlushieLizardJobStationengineer
@@ -289,3 +288,4 @@
       amount: 3
     - id: AirGrenade
       amount: 3
+    - id: HalonGasGrenade # Starlight - Fire Fighting

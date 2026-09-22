@@ -2,3 +2,8 @@
   id: StirStir
   name: guide-entry-stirstir
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/StirStir.xml"
+
+- type: guideEntry
+  id: AmmoTypes
+  name: guide-entry-sl-security-ammo-types
+  text: "/ServerInfo/_Starlight/Guidebook/Security/AmmoTypes.xml"

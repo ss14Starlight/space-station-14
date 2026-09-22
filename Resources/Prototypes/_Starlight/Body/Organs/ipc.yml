@@ -21,7 +21,7 @@
     id: organ
     solution:
       reagents:
-      - ReagentId: Oil
+      - ReagentId: RefinedOil
         Quantity: 10
 
 - type: entity
@@ -58,6 +58,12 @@
   suffix: IPC
   description: "A vocal modulator, typically used for lying."
   components:
+  - type: OrganTongue
+    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
+    sounds:
+      Male: MaleIPC
+      Female: FemaleIPC
+      Unsexed: MaleIPC
   - type: Sprite
     state: tongue
 

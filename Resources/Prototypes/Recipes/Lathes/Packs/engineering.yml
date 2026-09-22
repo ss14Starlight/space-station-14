@@ -28,6 +28,7 @@
   recipes:
   - AirTank
   - GasAnalyzer
+  - GasCanisterHose # Starlight
 
 - type: latheRecipePack
   id: ElectronicsStatic
@@ -70,6 +71,7 @@
   id: AtmosTools
   recipes:
   - HolofanProjector
+  - BluespaceFireExtinguisher # Starlight
 
 - type: latheRecipePack
   id: EngineeringWeapons

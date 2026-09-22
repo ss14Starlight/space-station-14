@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urist McSkelly
+  name: Urist McBones
   parent:
   - MobFlammable
   - BaseMobSpecies

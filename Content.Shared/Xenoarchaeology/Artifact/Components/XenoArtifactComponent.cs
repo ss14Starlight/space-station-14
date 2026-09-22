@@ -119,7 +119,7 @@ public sealed partial class XenoArtifactComponent : Component
     /// A segment is an interconnected series of nodes.
     /// </summary>
     [DataField]
-    public MinMax SegmentSize = new(5, 8);
+    public MinMax SegmentSize = new(4, 8);
 
     /// <summary>
     /// For each "layer" in a segment (set of nodes with equal depth), how many will we generate?
@@ -139,14 +139,14 @@ public sealed partial class XenoArtifactComponent : Component
     [DataField]
     public EntityTableSelector EffectsTable = new NestedSelector
     {
-        TableId = "XenoArtifactEffectsDefaultTable"
+        TableId = "SLXenoArtifactEffectsDefaultTable" // Starlight, new table with Funky's effects + ours
     };
 
     /// <summary>
     /// Triggers that can be used during this artefact generation.
     /// </summary>
     [DataField]
-    public ProtoId<WeightedRandomXenoArchTriggerPrototype> TriggerWeights = "DefaultTriggers";
+    public ProtoId<WeightedRandomXenoArchTriggerPrototype> TriggerWeights = "SLDefaultTriggers"; // Starlight
     #endregion
 
     /// <summary>
