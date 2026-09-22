@@ -59,11 +59,13 @@
             K9: [ 2, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 4, 4 ]
             MiningSpecialist: [ 4, 4 ]
             CargoTechnician: [ 6, 6 ]
             MailTech: [ 3, 3 ]
+            #salvage
+            SalvageSpecialist: [ 4, 4 ]
             SalvageLead: [ 1, 1 ]
+            SalvageMedic: [ 1, 1 ]
             #civilian
             Assistant: [ -1, -1 ]
             AssistantManager: [ 2, 2 ]
