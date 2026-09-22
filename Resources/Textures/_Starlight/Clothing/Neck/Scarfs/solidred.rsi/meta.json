@@ -10,21 +10,21 @@
     {
       "name": "equipped-NECK",
       "directions": 4,
-	  "copyright": "Sprited by MrGreen06#0618 (discord), resprited by SeamLesss (GitHub), recolored into Robo by Cvlancer"
+	  "copyright": "Sprited by MrGreen06#0618 (discord), resprited by SeamLesss (GitHub), recolored into Robo by Cvlancer, recolored into Solid Red by Navolite (github: FateUnix29)"
     },
     {
       "name": "icon",
-	  "copyright": "MrGreen06, SeamLesss, Cvlancer"
+	  "copyright": "MrGreen06, SeamLesss, Cvlancer, Navolite"
     },
     {
       "name": "inhand-left",
       "directions": 4,
-	  "copyright": "MrGreen06, SeamLesss, Cvlancer"
+	  "copyright": "MrGreen06, SeamLesss, Cvlancer, Navolite"
     },
     {
       "name": "inhand-right",
       "directions": 4,
-	  "copyright": "MrGreen06, SeamLesss, Cvlancer"
+	  "copyright": "MrGreen06, SeamLesss, Cvlancer, Navolite"
     }
   ]
 }
