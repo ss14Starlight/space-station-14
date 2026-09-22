@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Cvlancer
   changes:
-  - message: Added Roboticist Scarf and Roboticist Figurine to RoboDrobe.
-    type: Add
-  id: 408406
-  time: '2026-09-08T10:54:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6007
-- author: wonderfulnewworld, Cvlancer
-  changes:
   - message: Added 2 science wanted posters.
     type: Add
   id: 408407
@@ -2799,4 +2792,11 @@ Entries:
   id: 408805
   time: '2026-09-22T07:27:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6285
+- author: R3v3l4t1on
+  changes:
+  - message: Silicon language packs have been updated to include the understanding of Classical Sign Language.
+    type: Add
+  id: 408806
+  time: '2026-09-22T15:35:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6286
 Order: -1
