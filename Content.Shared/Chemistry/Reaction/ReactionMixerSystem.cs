@@ -2,6 +2,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Interaction.Events;
@@ -98,6 +99,11 @@ public sealed partial class ReactionMixerSystem : EntitySystem
 
     private void OnShake(Entity<ReactionMixerComponent> ent, ref ShakeEvent args)
     {
+        // Starlight-start: Open drink bottles spill instead of mixing when shaken.
+        if (TryComp<OpenableComponent>(ent.Owner, out var openable) && openable.Opened)
+            return;
+        // Starlight-end
+
         TryMix(ent.AsNullable(), ent);
     }
 

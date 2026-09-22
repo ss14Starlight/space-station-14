@@ -6,7 +6,7 @@
   - type: GhostRole
     name: ghost-role-information-skeleton-pirate-name
     description: ghost-role-information-skeleton-pirate-description
-    rules: ghost-role-information-nonantagonist-rules # Starlight-edit freeagent -> nonantagonist
+    rules: ghost-role-information-rules-team-antagonist # Starlight-edit freeagent -> teamantagonist
     mindRoles:
     - MindRoleGhostRoleNeutralSkeleton # Starlight-edit - FreeAgent -> NeutralSkeleton
     raffle:

@@ -560,7 +560,6 @@
   secretRecipe: true
   time: 15
   group: Secret
-  deviceType: Oven # Starlight-edit: Cooking Devices
   reagents:
     TableSalt: 1
     Blackpepper: 1
