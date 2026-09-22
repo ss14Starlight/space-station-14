@@ -50,7 +50,7 @@ public sealed partial class StationSystem
             registry.Add("StationEmergencyShuttle", new EntityPrototype.ComponentRegistryEntry(shuttle));
         }
 
-        var station = CreateCustomStation(stationProtoIds, MapCoordinates.Nullspace, registry, comp);
+        var station = CreateCustomStation(stationProtoIds, MapCoordinates.Nullspace, registry);
         var data = EnsureComp<StationDataComponent>(station);
         RenameStation(station, MetaData(gridId).EntityName, false);
         var name = MetaData(station).EntityName;
@@ -62,7 +62,7 @@ public sealed partial class StationSystem
         return station;
     }
 
-    private EntityUid CreateCustomStation(List<EntProtoId> protoIds, MapCoordinates? coords, ComponentRegistry? registry, BecomesStationMidRoundComponent? data = null)
+    private EntityUid CreateCustomStation(List<EntProtoId> protoIds, MapCoordinates? coords, ComponentRegistry? registry)
     {
         var ent = EntityManager.CreateEntityUninitialized(null); // dummy entity
 
