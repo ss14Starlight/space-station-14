@@ -495,6 +495,7 @@
 - type: marking
   id: GauzeVulpStomach
   bodyPart: Chest
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -508,6 +509,7 @@
 - type: marking
   id: GauzeVulpBlindfold
   bodyPart: Eyes
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -521,6 +523,7 @@
 - type: marking
   id: GauzeVulpBoxerwrapLeft
   bodyPart: LHand
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -534,6 +537,7 @@
 - type: marking
   id: GauzeVulpBoxerwrapRight
   bodyPart: RHand
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -547,6 +551,7 @@
 - type: marking
   id: GauzeVulpHead
   bodyPart: Head
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -560,6 +565,7 @@
 - type: marking
   id: GauzeVulpLeftArm
   bodyPart: LArm
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -573,6 +579,7 @@
 - type: marking
   id: GauzeVulpLefteyePatch
   bodyPart: Eyes
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -586,6 +593,7 @@
 - type: marking
   id: GauzeVulpLowerArmRight
   bodyPart: RHand
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -599,6 +607,7 @@
 - type: marking
   id: GauzeVulpLowerLegLeft
   bodyPart: LFoot
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -612,6 +621,7 @@
 - type: marking
   id: GauzeVulpLowerLegRight
   bodyPart: RFoot
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -625,6 +635,7 @@
 - type: marking
   id: GauzeVulpRighteyePatch
   bodyPart: Eyes
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -638,6 +649,7 @@
 - type: marking
   id: GauzeVulpShoulder
   bodyPart: Chest
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -651,6 +663,7 @@
 - type: marking
   id: GauzeVulpUpperLegLeft
   bodyPart: LLeg
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:
@@ -664,6 +677,7 @@
 - type: marking
   id: GauzeVulpUpperLegRight
   bodyPart: RLeg
+  markingCategory: Overlay
   groupWhitelist: [Vulpkanin]
   coloring:
     default:

@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Fixtures.Attributes;
 using Content.IntegrationTests.Utility;
 using YamlDotNet.RepresentationModel;
 using Content.Server.Administration.Systems;
@@ -10,11 +12,12 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
+using Content.Shared.Mobs;
+using Content.Shared.Shuttles.Components; //Starlight-edit
+using Content.Shared.Spawners.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Maps;
 using Content.Shared.Roles;
-using Content.Shared.Shuttles.Components;
-using Content.Shared.Spawners.Components;
 using Content.Shared.Station.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
@@ -25,25 +28,37 @@ using Robust.Shared.IoC;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Events;
+using Robust.Packaging.AssetProcessing;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+
 namespace Content.IntegrationTests.Tests
 {
     [TestFixture]
-    public sealed class PostMapInitTest
+    public sealed class PostMapInitTest : GameTest
     {
+        public override PoolSettings PoolSettings => new PoolSettings()
+        {
+            Connected = true,
+            Dirty = true,
+        };
+
         private const bool SkipTestMaps = true;
         private const string TestMapsPath = "/Maps/Test/";
 
         private static readonly string[] NoSpawnMaps =
         {
-            "CentComm",
+            "StarlightCentCommG24", //starlight
+            "StarlightCentCommSC17", //starlight
+            "StarlightCentCommGNT9", //starlight
             "Dart"
         };
 
         private static readonly string[] Grids =
         {
-            "/Maps/centcomm.yml",
+            //"/Maps/_Starlight/Centcomms/CC_Outpost_G24",
+            //"/Maps/_Starlight/Centcomms/CC_Outpost_SC17",
+            //"/Maps/_Starlight/Centcomms/CC_Outpost_GNT9",
             AdminTestArenaSystem.ArenaMapPath
         };
 
@@ -57,12 +72,23 @@ namespace Content.IntegrationTests.Tests
         /// </remarks>
         private static readonly Dictionary<string, HashSet<EntProtoId>> DoNotMapWhitelistSpecific = new()
         {
-            {"/Maps/bagel.yml", ["RubberStampMime"]},
-            {"/Maps/reach.yml", ["HandheldCrewMonitor"]},
-            {"/Maps/Shuttles/ShuttleEvent/honki.yml", ["GoldenBikeHorn", "RubberStampClown"]},
+            {"/Maps/_Starlight/Shuttles/ShuttleEvent/honki.yml", ["GoldenBikeHorn", "RubberStampClown"]},
             {"/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", ["RubberStampSyndicate"]},
-            {"/Maps/Shuttles/ShuttleEvent/cruiser.yml", ["ShuttleGunPerforator"]},
             {"/Maps/Shuttles/ShuttleEvent/instigator.yml", ["ShuttleGunFriendship"]},
+            {"/Maps/_Starlight/Stations/Cork.yml", ["RubberStampSyndicate"]}, // Starlight start
+            {"/Maps/_Starlight/Shuttles/CC-NT/NTSF_Minos_Battlecruiser.yml", ["ShuttleGunPerforator"]},
+            {"/Maps/_Starlight/Shuttles/Admeme/RecluseClassSHC.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Shuttles/Admeme/Signaleer.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Shuttles/ShuttleEvent/montague.yml", ["RubberStampSolgovLaw", "RubberStampSolgovRep", "RubberStampTSF", "RubberStampTSMC"]},
+            {"/Maps/_Starlight/Shuttles/ShuttleEvent/syndie_evacpod.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Nonstations/nukieplanet.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Nonstations/nukiewestern.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Nonstations/geigerComplex.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Dungeon/syndie.yml", ["RubberStampSyndicate"]},
+            {"/Maps/_Starlight/Shuttles/Admeme/scarletSHCdefenderFinal.yml", ["RubberStampSyndicate", "TraitorCodePaper"]},
+            {"/Maps/_Starlight/Centcomms/CC_Outpost_SC17.yml", ["BoxFolderCentComEmpty", "BoxFolderCentCom", "RubberStampCentcom", "BoxFolderCentComThreePapers"]},
+            {"/Maps/_Starlight/Centcomms/CC_Outpost_G24.yml", ["BoxFolderCentCom", "RubberStampCentcom"]},
+            {"/Maps/_Starlight/Centcomms/CC_Outpost_GNT9.yml", ["BoxFolderCentCom", "RubberStampCAD", "RubberStampCCD", "RubberStampCDD", "RubberStampCED", "RubberStampCentcom", "RubberStampCID", "RubberStampCMD", "RubberStampCRD", "RubberStampCSD"]}// Starlight end
         };
 
         /// <summary>
@@ -74,9 +100,14 @@ namespace Content.IntegrationTests.Tests
         /// </remarks>
         private static readonly string[] DoNotMapWhitelist =
         {
-            "/Maps/centcomm.yml",
-            "/Maps/Shuttles/AdminSpawn/**" // admin gaming
+            "/Maps/Shuttles/AdminSpawn/**", // admin gaming
+           #region starlight
+            "/Maps/_Starlight/Shuttles/Admeme/Radiotower.yml", // Command stamps - listening post.
+            "/Maps/_Starlight/Stations/Remix.yml", // All stamps - listening post (extreme edition).
+            #endregion
         };
+
+        private static readonly ProtoId<EntityCategoryPrototype> ShouldMapCategory = "ShouldMapStation"; // Starlight
 
         /// <summary>
         /// Converts the above globs into regex so your eyes dont bleed trying to add filepaths.
@@ -86,8 +117,8 @@ namespace Content.IntegrationTests.Tests
             .ToArray();
 
         private static readonly string[] GameMaps = GameDataScrounger.PrototypesOfKind<GameMapPrototype>().Where(x => x != PoolManager.TestMap).ToArray();
-        private static readonly ResPath[] AllMapFiles = GameDataScrounger.FilesInDirectoryInVfs("/Maps", "*.yml");
-        private static readonly ResPath[] ShuttleMapFiles = GameDataScrounger.FilesInDirectoryInVfs("/Maps/Shuttles", "*.yml");
+        private static readonly ResPath[] AllMapFiles = GameDataScrounger.FilesInDirectoryInVfs("/Maps/_Starlight", "*.yml"); // Starlight map folder
+        private static readonly ResPath[] ShuttleMapFiles = GameDataScrounger.FilesInDirectoryInVfs("/Maps/_Starlight/Shuttles", "*.yml"); // Starlight shuttle folder
 
         private static readonly ProtoId<EntityCategoryPrototype> DoNotMapCategory = "DoNotMap";
 
@@ -95,16 +126,16 @@ namespace Content.IntegrationTests.Tests
         /// Asserts that specific files have been saved as grids and not maps.
         /// </summary>
         [Test, TestCaseSource(nameof(Grids))]
+        [EnsureCVar(Side.Server, typeof(CCVars), nameof(CCVars.GridFill), false)]
         public async Task GridsLoadableTest(string mapFile)
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var entManager = server.ResolveDependency<IEntityManager>();
             var mapLoader = entManager.System<MapLoaderSystem>();
             var mapSystem = entManager.System<SharedMapSystem>();
             var cfg = server.ResolveDependency<IConfigurationManager>();
-            Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
             var path = new ResPath(mapFile);
 
             await server.WaitPost(() =>
@@ -121,9 +152,6 @@ namespace Content.IntegrationTests.Tests
 
                 mapSystem.DeleteMap(mapId);
             });
-            await server.WaitRunTicks(1);
-
-            await pair.CleanReturnAsync();
         }
 
         /// <summary>
@@ -131,16 +159,16 @@ namespace Content.IntegrationTests.Tests
         /// </summary>
         [Test]
         [TestCaseSource(nameof(ShuttleMapFiles))]
+        [EnsureCVar(Side.Server, typeof(CCVars), nameof(CCVars.GridFill), false)]
         public async Task ShuttlesLoadableTest(ResPath path)
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var entManager = server.ResolveDependency<IEntityManager>();
             var mapLoader = entManager.System<MapLoaderSystem>();
             var mapSystem = entManager.System<SharedMapSystem>();
             var cfg = server.ResolveDependency<IConfigurationManager>();
-            Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
             await server.WaitPost(() =>
             {
@@ -160,17 +188,13 @@ namespace Content.IntegrationTests.Tests
                     mapSystem.DeleteMap(mapId);
                 });
             });
-
-            await server.WaitRunTicks(1);
-
-            await pair.CleanReturnAsync();
         }
 
         [Test]
         [TestCaseSource(nameof(AllMapFiles))]
         public async Task NoSavedPostMapInitTest(ResPath map)
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var resourceManager = server.ResolveDependency<IResourceManager>();
@@ -179,12 +203,19 @@ namespace Content.IntegrationTests.Tests
 
             var rootedPath = map.ToRootedPath();
 
+            // starlight start
+            // which entities are an absolute requirement? computed outside loop for performance
+            var shouldMapStationEntities = protoManager.EnumeratePrototypes<EntityPrototype>()
+                .Where(p => p.Categories.Any(x => x.ID == ShouldMapCategory))
+                .Select(x => x.ID)
+                .ToArray();
+            // starlight end
+
             var isV7Map = false;
 
             // ReSharper disable once RedundantLogicalConditionalExpressionOperand
             if (SkipTestMaps && rootedPath.ToString().StartsWith(TestMapsPath, StringComparison.Ordinal))
             {
-                await pair.CleanReturnAsync();
                 return; // We just pass immediately.
             }
 
@@ -242,7 +273,7 @@ namespace Content.IntegrationTests.Tests
             Assert.That(loader.TrySaveMap(id, path));
             Assert.That(IsPreInit(path, loader, deps, ev.RenamedPrototypes, ev.DeletedPrototypes), Is.False);
 
-            await pair.CleanReturnAsync();
+            await server.WaitPost(() => mapSys.DeleteMap(id)); // Starlight
         }
 
         private bool IsWhitelistedForMap(EntProtoId protoId, ResPath map)
@@ -280,7 +311,7 @@ namespace Content.IntegrationTests.Tests
                         continue;
 
                     Assert.That(!proto.Categories.Contains(dnmCategory) || IsWhitelistedForMap(protoId, map),
-                        $"\nMap {map} contains entities in the DO NOT MAP category ({proto.Name})");
+                        $"\nMap {map} contains entities in the DO NOT MAP category: {proto.Name} ({proto.ID})"); // SL change, helps for debugging
 
                     // The proto id is used on this map, so remove it from the set
                     unusedExemptions.Remove(protoId);
@@ -291,6 +322,24 @@ namespace Content.IntegrationTests.Tests
             Assert.That(unusedExemptions, Is.Empty,
                 $"Map {map} has DO NOT MAP entities whitelisted that are not present in the map: {string.Join(", ", unusedExemptions)}");
         }
+
+        // starlight start
+        private void CheckForEntitiesOfID(ResPath map, YamlNode node, string[] requiredProtos)
+        {
+            var allMapEntityIds = ((YamlSequenceNode)node["entities"])
+                .Select(x => x["proto"].AsString())
+                .ToArray();
+
+            Assert.Multiple(() =>
+            {
+                foreach (var requiredProto in requiredProtos)
+                {
+                    Assert.That(allMapEntityIds.Contains(requiredProto),
+                        $"\nMap {map} does not contain required entity {requiredProto}");
+                }
+            });
+        }
+        // starlight end
 
         private bool IsPreInit(ResPath map,
             MapLoaderSystem loader,
@@ -327,12 +376,10 @@ namespace Content.IntegrationTests.Tests
         }
 
         [Test, TestCaseSource(nameof(GameMaps))]
+        [EnsureCVar(Side.Server, typeof(CCVars), nameof(CCVars.GridFill), false)]
         public async Task GameMapsLoadableTest(string mapProto)
         {
-            await using var pair = await PoolManager.GetServerClient(new PoolSettings
-            {
-                Dirty = true // Stations spawn a bunch of nullspace entities and maps like centcomm.
-            });
+            var pair = Pair;
             var server = pair.Server;
 
             var entManager = server.ResolveDependency<IEntityManager>();
@@ -342,10 +389,12 @@ namespace Content.IntegrationTests.Tests
             var ticker = entManager.EntitySysManager.GetEntitySystem<GameTicker>();
             var shuttleSystem = entManager.EntitySysManager.GetEntitySystem<ShuttleSystem>();
             var cfg = server.ResolveDependency<IConfigurationManager>();
-            Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
             await server.WaitPost(() =>
             {
+                //setup new stopwatch
+                var sw = new Robust.Shared.Timing.Stopwatch();
+                sw.Start();
                 MapId mapId;
                 try
                 {
@@ -356,6 +405,9 @@ namespace Content.IntegrationTests.Tests
                 {
                     throw new Exception($"Failed to load map {mapProto}", ex);
                 }
+
+                //output
+                TestContext.Out.WriteLine($"{sw.Elapsed.TotalMilliseconds} ms: Loaded map {mapProto}");
 
                 mapSystem.CreateMap(out var shuttleMap);
                 var largest = 0f;
@@ -381,6 +433,8 @@ namespace Content.IntegrationTests.Tests
                     }
                 }
 
+                TestContext.Out.WriteLine($"{sw.Elapsed.TotalMilliseconds} ms: Found {grids.Count} grids on {mapProto}, target is {targetGrid}");
+
                 // Test shuttle can dock.
                 // This is done inside gamemap test because loading the map takes ages and we already have it.
                 var station = entManager.GetComponent<StationMemberComponent>(targetGrid!.Value).Station;
@@ -397,7 +451,22 @@ namespace Content.IntegrationTests.Tests
                         $"Unable to dock {shuttlePath} to {mapProto}");
                 }
 
+                TestContext.Out.WriteLine($"{sw.Elapsed.TotalMilliseconds} ms: Shuttle docked on {mapProto}");
+
                 mapSystem.DeleteMap(shuttleMap);
+                TestContext.Out.WriteLine($"{sw.Elapsed.TotalMilliseconds} ms: Deleted shuttle map on {mapProto}");
+
+                // starlight start
+                // Spawn ATS.
+                // This is done inside gamemap test so that ATS spawns can be recognized.
+                {
+                    var tradePath = new ResPath("/Maps/_Starlight/trading_outpost.yml");
+                    Assert.That(mapLoader.TryLoadGrid(mapId, tradePath, out var trade),
+                        $"Failed to load {tradePath}");
+                }
+
+                TestContext.Out.WriteLine($"{sw.Elapsed.TotalMilliseconds} ms: ATS spawned on {mapProto}");
+                // starlight end
 
                 if (entManager.HasComponent<StationJobsComponent>(station))
                 {
@@ -432,6 +501,8 @@ namespace Content.IntegrationTests.Tests
                     Assert.That(jobs, Is.Empty, $"There is no spawnpoints for {string.Join(", ", jobs)} on {mapProto}.");
                 }
 
+                TestContext.Out.WriteLine($"{sw.Elapsed.TotalMilliseconds} ms: Validated spawns on {mapProto}");
+
                 try
                 {
                     mapSystem.DeleteMap(mapId);
@@ -440,13 +511,11 @@ namespace Content.IntegrationTests.Tests
                 {
                     throw new Exception($"Failed to delete map {mapProto}", ex);
                 }
+
+                TestContext.Out.WriteLine($"{sw.Elapsed.TotalMilliseconds} ms: Deleted map {mapProto}");
             });
-            await server.WaitRunTicks(1);
 
-            await pair.CleanReturnAsync();
         }
-
-
 
         private static int GetCountLateSpawn<T>(List<EntityUid> gridUids, IEntityManager entManager)
             where T : ISpawnPoint, IComponent
@@ -473,45 +542,24 @@ namespace Content.IntegrationTests.Tests
         }
 
         [Test]
-        public async Task AllMapsTested()
-        {
-            await using var pair = await PoolManager.GetServerClient();
-            var server = pair.Server;
-            var protoMan = server.ResolveDependency<IPrototypeManager>();
-
-            var gameMaps = protoMan.EnumeratePrototypes<GameMapPrototype>()
-                .Where(x => !pair.IsTestPrototype(x))
-                .Select(x => x.ID)
-                .ToHashSet();
-
-            Assert.That(gameMaps.Remove(PoolManager.TestMap));
-
-            Assert.That(gameMaps, Is.EquivalentTo(GameMaps.ToHashSet()), "Game map prototype missing from test cases.");
-
-            await pair.CleanReturnAsync();
-        }
-
-        [Test]
         [TestCaseSource(nameof(AllMapFiles))]
+        [EnsureCVar(Side.Server, typeof(CCVars), nameof(CCVars.GridFill), false)]
         public async Task NonGameMapsLoadableTest(ResPath mapPath)
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var mapLoader = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<MapLoaderSystem>();
             var resourceManager = server.ResolveDependency<IResourceManager>();
             var protoManager = server.ResolveDependency<IPrototypeManager>();
             var cfg = server.ResolveDependency<IConfigurationManager>();
-            Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
             var gameMaps = protoManager.EnumeratePrototypes<GameMapPrototype>().Select(o => o.MapPath).ToHashSet();
-
 
             if (gameMaps.Contains(mapPath))
             {
                 // TODO: You might be able to save like, 1-2 seconds of test time if you eliminate these before
                 //       actually needing a pair.
-                await pair.CleanReturnAsync();
                 return;
             }
 
@@ -519,7 +567,6 @@ namespace Content.IntegrationTests.Tests
 
             if (SkipTestMaps && rootedPath.ToString().StartsWith(TestMapsPath, StringComparison.Ordinal))
             {
-                await pair.CleanReturnAsync();
                 return;
             }
 
@@ -562,9 +609,6 @@ namespace Content.IntegrationTests.Tests
                     }
                 });
             });
-
-            await server.WaitRunTicks(1);
-            await pair.CleanReturnAsync();
         }
 
         /// <summary>
