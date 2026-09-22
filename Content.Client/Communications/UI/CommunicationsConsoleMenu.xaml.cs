@@ -39,6 +39,8 @@ namespace Content.Client.Communications.UI
         private TimeSpan? AlertLevelCooldownEnd;
         private float LastAlertLevelDelay = 0;
         private TimeSpan? LastCountdownStart = null;
+        private string? _lastAlertState;
+        private string? _finishedAlertLevelCooldown;
         // Starlight End
 
         public CommunicationsConsoleMenu()
@@ -107,6 +109,12 @@ namespace Content.Client.Communications.UI
             if (AlertLevelCooldownEnd.HasValue)
                 return;
             // Starlight End
+
+            var alertState = $"{(alerts is { Count: > 0 } ? string.Join("\0", alerts) : currentAlert)}\0{currentAlert}";
+            if (_lastAlertState == alertState)
+                return;
+
+            _lastAlertState = alertState;
             AlertLevelButton.Clear();
 
             // Starlight Start
@@ -160,8 +168,12 @@ namespace Content.Client.Communications.UI
         {
             if (currentAlertDelay > 0)
             {
-                AlertLevelCooldownEnd = _timing.CurTime + TimeSpan.FromSeconds(currentAlertDelay);
-                LastAlertLevelDelay = currentAlertDelay;
+                if (!AlertLevelCooldownEnd.HasValue && _finishedAlertLevelCooldown != CurrentLevel)
+                {
+                    AlertLevelCooldownEnd = _timing.CurTime + TimeSpan.FromSeconds(currentAlertDelay);
+                    LastAlertLevelDelay = currentAlertDelay;
+                    _finishedAlertLevelCooldown = CurrentLevel;
+                }
             }
             else
             {
@@ -214,7 +226,11 @@ namespace Content.Client.Communications.UI
                 if (diff <= TimeSpan.Zero)
                 {
                     AlertLevelCooldownEnd = null;
-                    UpdateAlertLevels(null, CurrentLevel);
+                    _finishedAlertLevelCooldown = CurrentLevel;
+                    var levelText = _loc.TryGetString($"alert-level-{CurrentLevel}", out var locName)
+                        ? locName
+                        : CurrentLevel;
+                    AlertLevelButton.SetItemText(AlertLevelButton.GetIdx(AlertLevelButton.SelectedId), levelText);
                     AlertLevelButton.Disabled = !AlertLevelSelectable;
                     AlertLevelButton.ToolTip = _loc.GetString("comms-console-menu-alert-level-button-tooltip");
                 }
