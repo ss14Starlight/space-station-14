@@ -230,7 +230,7 @@
   - CaptainSatchel
   - CaptainDuffel
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 - type: loadoutGroup
