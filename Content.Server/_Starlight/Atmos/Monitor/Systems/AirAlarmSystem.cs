@@ -20,31 +20,33 @@ namespace Content.Server.Atmos.Monitor.Systems;
 public sealed partial class AirAlarmSystem
 {
     /// <summary>
-    /// when encountering a entity on a tile add it to the links for a air alarm
+    /// When encountering a entity on a tile: add it to the links for a air alarm.
     /// </summary>
     private readonly EntityWhitelist _linkableWhitelist = new()
     {
         Components = [
             "AtmosMonitor",
-            "AtmosAlarmable"
+            "AtmosAlarmable",
         ]
     };
+
     /// <summary>
-    /// when a tile has a entity tagged with this on it. do not queue adjacent tiles.
+    /// When a tile has a entity tagged with this on it: do not queue adjacent tiles.
     /// </summary>
     private readonly EntityWhitelist _stoppingWhitelist = new()
     {
         Components = [
             "Firelock",
-            "Airtight"
+            "Airtight",
         ]
     };
+
     private readonly Dictionary<int, Vector2i> _offset = new()
     {
-        [0] = Vector2i.Down, //South
-        [1] = Vector2i.Right, //East
-        [2] = Vector2i.Up, //North
-        [3] = Vector2i.Left, //West
+        [0] = Vector2i.Down,  // South
+        [1] = Vector2i.Right, // East
+        [2] = Vector2i.Up,    // North
+        [3] = Vector2i.Left,  // West
     };
 
     [Dependency] private TurfSystem _turf = default!;
@@ -53,10 +55,14 @@ public sealed partial class AirAlarmSystem
     [Dependency] private IAdminManager _adminManager = default!;
     [Dependency] private IConfigurationManager _configuration = default!;
 
-    //for testing reasons
+    // for debugging
     // private EntProtoId _lizardPlush = "PlushieLizard";
 
-    private int _maxDepth = 10;
+    /// <summary>
+    /// Max number of tiles we'll walk away from the air alarm in search of stuff to link.
+    /// </summary>
+    private int _maxDepth = 16;
+
     private void SLInitialize()
     {
         SubscribeLocalEvent<AirAlarmComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
@@ -73,9 +79,10 @@ public sealed partial class AirAlarmSystem
 
         if (!_adminManager.HasAdminFlag(player, AdminFlags.Mapping))
             return;
+
         ev.Verbs.Add(new Verb()
         {
-            Text = Loc.GetString("admin-verb-autolink"),
+            Text = Loc.GetString("admin-trick-autolink-air-alarms"),
             Icon = new SpriteSpecifier.Rsi(new("/Textures/Structures/Wallmounts/air_monitors.rsi"), "alarmp"),
             Category = VerbCategory.Tricks,
             Act = () =>
@@ -96,19 +103,24 @@ public sealed partial class AirAlarmSystem
                 var start = coords.Value.Offset(offset);
                 var work = new HashSet<(EntityCoordinates, int)>
                 {
-                (start,0)
+                    (start,0)
                 };
-                Log.Info($"starting at {start}");
+
+                // debug
+                //Log.Info($"starting at {start}");
+
                 while (work.Count > 0)
                 {
                     var part = work.First();
                     var test = part.Item1;
                     work.Remove(part);
                     seen.Add(test);
-                    //and we do checking here
+
+                    // debug visualizer (all important plushie)
                     // SpawnAtPosition(_lizardPlush, test);
 
                     var tref = _turf.GetTileRef(test);
+
                     if (tref == null)
                         continue; //in space. so we dont continue propogation
 
@@ -146,11 +158,9 @@ public sealed partial class AirAlarmSystem
                     {
                         var newWork = test.Offset(direction);
                         if (!seen.Contains(newWork))
-                            work.Add((newWork, part.Item2 + 2));
+                            work.Add((newWork, part.Item2 + 1));
                     }
                 }
-                //xform.LocalRotation
-                //xform.GridUid
             }
         });
     }
