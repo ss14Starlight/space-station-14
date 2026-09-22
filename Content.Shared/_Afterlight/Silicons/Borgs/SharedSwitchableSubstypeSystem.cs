@@ -1,4 +1,4 @@
-using Content.Shared.Interaction;
+﻿using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs;
@@ -83,6 +83,9 @@ public abstract partial class SharedBorgSwitchableSubtypeSystem : EntitySystem
     #region Starlight
     private void SelectSubtypeMessageHandler(Entity<BorgSwitchableTypeComponent> ent, ref BorgSelectSubtypeMessage args)
     {
+        if (args.Subtype is { } requested && !Prototypes.HasIndex(requested))
+            return;
+
         if (!TryComp<BorgSwitchableSubtypeComponent>(ent, out var subtypeComp))
         {
             _switchableType.TrySelectBorgType(ent, args.BorgType);

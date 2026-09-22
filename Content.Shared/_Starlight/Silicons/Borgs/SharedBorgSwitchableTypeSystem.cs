@@ -1,4 +1,4 @@
-using Content.Shared._Afterlight.Silicons.Borgs;
+﻿using Content.Shared._Afterlight.Silicons.Borgs;
 using Content.Shared._NullLink;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
@@ -23,14 +23,19 @@ public abstract partial class SharedBorgSwitchableTypeSystem
         if (!Prototypes.HasIndex(borgType) || borgType == BorgChassisResetSystem.UnselectedType)
             return false;
 
-        if (TryComp<BorgSwitchableSubtypeComponent>(ent, out var subtypeComp) && subtypeComp.BorgSubtype != null
-            && Prototypes.Index(subtypeComp.BorgSubtype.Value).TryComp<BorgSubtypeDefinitionComponent>(out var subtype, _componentFactory)
-            && subtype.Price is not null and > 0)
+        if (TryComp<BorgSwitchableSubtypeComponent>(ent, out var subtypeComp) && subtypeComp.BorgSubtype is { } borgSubtype)
         {
-            if (!_playerResources.TryGetResource(ent.Owner, "credits", out var balance) || balance < subtype.Price)
+            if (!Prototypes.TryIndex(borgSubtype, out var subtypePrototype))
                 return false;
 
-            _playerResources.TryUpdateResource(ent.Owner, "credits", -subtype.Price.Value);
+            if (subtypePrototype.TryComp<BorgSubtypeDefinitionComponent>(out var subtype, _componentFactory)
+                && subtype.Price is not null and > 0)
+            {
+                if (!_playerResources.TryGetResource(ent.Owner, "credits", out var balance) || balance < subtype.Price)
+                    return false;
+
+                _playerResources.TryUpdateResource(ent.Owner, "credits", -subtype.Price.Value);
+            }
         }
 
         SelectBorgModule(ent, borgType);
