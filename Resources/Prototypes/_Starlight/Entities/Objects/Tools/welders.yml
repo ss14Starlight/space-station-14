@@ -15,7 +15,7 @@
   - type: Welder
     fuelReagent: Plasma
   - type: RequiresEyeProtection
-    statusEffectTime: 5
+    statusEffectTime: 5s
   - type: WelderSurgery
     startSound:
       /Audio/Items/welder.ogg
