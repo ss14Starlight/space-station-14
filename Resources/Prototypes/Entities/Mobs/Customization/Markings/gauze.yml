@@ -496,7 +496,7 @@
   id: GauzeVulpStomach
   bodyPart: Chest
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -510,7 +510,7 @@
   id: GauzeVulpBlindfold
   bodyPart: Eyes
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -524,7 +524,7 @@
   id: GauzeVulpBoxerwrapLeft
   bodyPart: LHand
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -538,7 +538,7 @@
   id: GauzeVulpBoxerwrapRight
   bodyPart: RHand
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -552,7 +552,7 @@
   id: GauzeVulpHead
   bodyPart: Head
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -566,7 +566,7 @@
   id: GauzeVulpLeftArm
   bodyPart: LArm
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -580,7 +580,7 @@
   id: GauzeVulpLefteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -594,7 +594,7 @@
   id: GauzeVulpLowerArmRight
   bodyPart: RHand
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -608,7 +608,7 @@
   id: GauzeVulpLowerLegLeft
   bodyPart: LFoot
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -622,7 +622,7 @@
   id: GauzeVulpLowerLegRight
   bodyPart: RFoot
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -636,7 +636,7 @@
   id: GauzeVulpRighteyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -650,7 +650,7 @@
   id: GauzeVulpShoulder
   bodyPart: Chest
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -664,7 +664,7 @@
   id: GauzeVulpUpperLegLeft
   bodyPart: LLeg
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:
@@ -678,7 +678,7 @@
   id: GauzeVulpUpperLegRight
   bodyPart: RLeg
   markingCategory: Overlay
-  groupWhitelist: [Vulpkanin]
+  speciesRestrictions: [Vulpkanin]
   coloring:
     default:
       type:

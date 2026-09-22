@@ -590,8 +590,7 @@ namespace Content.Server.Ghost
                         && TryComp<MobThresholdsComponent>(playerEntity, out var thresholds))
                     {
                         var playerDeadThreshold = _mobThresholdSystem.GetThresholdForState(playerEntity.Value, MobState.Dead, thresholds);
-                        dealtDamage = playerDeadThreshold -
-                                      _damageable.GetTotalDamage((playerEntity.Value, damageable));
+                        dealtDamage = playerDeadThreshold - _damageable.GetTotalDamage((playerEntity.Value, damageable));
                     }
 
                     // Starlight - Start
