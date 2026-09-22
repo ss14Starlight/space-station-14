@@ -1,10 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq; // NullLink
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server._NullLink.Core; // NullLink
-using Content.Server._NullLink.Helpers; // NullLink
+using Content.Server._NullLink.Core;
+using Content.Server._NullLink.Helpers;
 using Content.Server.Database;
 using Content.Shared.CCVar;
 using Content.Shared.Players.PlayTimeTracking;
@@ -17,8 +17,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Starlight.NullLink; // NullLink
-using PlayTime = Starlight.NullLink.PlayTime; // NullLink
+using Starlight.NullLink;
+using PlayTime = Starlight.NullLink.PlayTime;
 
 namespace Content.Server.Players.PlayTimeTracking;
 
@@ -377,9 +377,15 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
         QueueSendTimers(session);
     }
 
-    // NullLink start
-    public void EnrichWithNullLink(Dictionary<string, TimeSpan> playtime, Guid userId)
+    #region NullLink
+    public void EnrichWithNullLink(Dictionary<string, TimeSpan> playtime, Guid userId, Action? onApplied = null)
         => _task.RunOnMainThread(() =>
+        {
+            ApplyNullLinkPlayTime(playtime, userId);
+            onApplied?.Invoke();
+        });
+
+    private void ApplyNullLinkPlayTime(Dictionary<string, TimeSpan> playtime, Guid userId)
     {
         if (!_player.TryGetSessionById(new NetUserId(userId), out var session))
             return;
@@ -396,8 +402,8 @@ public sealed partial class PlayTimeTrackingManager : ISharedPlaytimeManager, IP
                 merged[tracker] = time;
         }
         data.MergedTrackerTimes = merged;
-    });
-    // NullLink end
+    }
+    #endregion
 
     public void ClientDisconnected(ICommonSession session)
     {
