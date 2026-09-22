@@ -1,60 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (Leth) Changed mail room to be mail access.
-    type: Tweak
-  id: 408393
-  time: '2026-09-07T19:12:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6033
-- author: Cvlancer
-  changes:
-  - message: (Starboard) Fixed some grass tiles.
-    type: Fix
-  id: 408394
-  time: '2026-09-07T19:12:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6033
-- author: DBosley
-  changes:
-  - message: space cleaner spray bottles are back to 10 sprays (15 for the mega bottle).
-    type: Tweak
-  id: 408395
-  time: '2026-09-08T09:44:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5973
-- author: DBosley
-  changes:
-  - message: wall cleaner dispensers hold 3840u instead of 960u.
-    type: Tweak
-  id: 408396
-  time: '2026-09-08T09:44:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5973
-- author: DBosley
-  changes:
-  - message: janitor closets now have a small bucket (3x2, 180u).
-    type: Add
-  id: 408397
-  time: '2026-09-08T09:44:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5973
-- author: wonderfulnewworld
-  changes:
-  - message: Added graphics options for Weather Quality, for Novo Lobster; High (default), Medium, and Low.
-    type: Add
-  id: 408398
-  time: '2026-09-08T09:45:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5769
-- author: Funky station & RedSpeeds
-  changes:
-  - message: Added Group nanochat.
-    type: Add
-  id: 408399
-  time: '2026-09-08T10:04:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5959
-- author: Funky station & RedSpeeds
-  changes:
-  - message: Changed emotes in nanochat.
-    type: Tweak
-  id: 408400
-  time: '2026-09-08T10:04:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5959
 - author: RedSpeeds
   changes:
   - message: Added Vocal cyber tongue to use all emotes.
@@ -2799,4 +2743,60 @@ Entries:
   id: 408792
   time: '2026-09-21T14:28:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6229
+- author: Kirb
+  changes:
+  - message: Expie zoomies in soft crit (various speed related bugs fixed).
+    type: Remove
+  id: 408793
+  time: '2026-09-22T00:25:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6275
+- author: Kirb
+  changes:
+  - message: Expies can no longer speak or use radio while in soft crit, they can still whisper and emote.
+    type: Tweak
+  id: 408794
+  time: '2026-09-22T00:25:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6275
+- author: Kirb
+  changes:
+  - message: Expie crit and death sounds range is now shorter.
+    type: Tweak
+  id: 408795
+  time: '2026-09-22T00:25:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6275
+- author: Kirb
+  changes:
+  - message: Expies melee attack rate halved.
+    type: Tweak
+  id: 408796
+  time: '2026-09-22T00:25:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6275
+- author: Kirb
+  changes:
+  - message: Fixed health huds not working with soft crit.
+    type: Fix
+  id: 408797
+  time: '2026-09-22T00:25:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6275
+- author: Kirb
+  changes:
+  - message: Expies eyes actually glow at round start.
+    type: Fix
+  id: 408798
+  time: '2026-09-22T00:25:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6275
+- author: Kirb
+  changes:
+  - message: soft crit no longer drops your items.
+    type: Tweak
+  id: 408799
+  time: '2026-09-22T00:25:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6275
+- author: Kirb
+  changes:
+  - message: you can no longer fall down twice in soft crit.
+    type: Fix
+  id: 408800
+  time: '2026-09-22T00:25:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6275
 Order: -1
