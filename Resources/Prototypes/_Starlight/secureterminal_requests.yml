@@ -767,6 +767,48 @@
         - [Command, Ntrep]
   cooldownSecs: 0
 
+# Escape pods
+- type: secureTerminalRequest
+  id: UnlockEscapePods
+  name: secure-terminal-unlock-escape-pods-name
+  description: secure-terminal-unlock-escape-pods-desc
+  announcement: secure-terminal-unlock-escape-pods-announcement
+  announcementColor: Red
+  activationDelaySecs: 90
+  fee: 2500
+  salaryModifiers:
+    - source: Everyone
+      change: -0.05
+  actionType: EscapePods
+  oneTimeUse: true
+  requireReason: true
+  authSchemes:
+    - id: SecurityLeadership
+      name: secure-terminal-security-leadership-name
+      groups:
+        - [Captain, HeadOfSecurity, Ntrep]
+        - [Captain, HeadOfSecurity, Ntrep]
+    - id: Command
+      name: secure-terminal-command-name
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+  vetoSchemes:
+    - id: Captain
+      name: secure-terminal-captain-name
+      groups:
+        - [Captain]
+    - id: HoS
+      name: secure-terminal-head-of-security-name
+      groups:
+        - [HeadOfSecurity]
+    - id: Command
+      name: secure-terminal-command-name
+      groups:
+        - [Command, Ntrep]
+        - [Command, Ntrep]
+
 # ── Self Destruct Code ─────────────────────────────────────────────────────
 - type: secureTerminalRequest
   id: NukeRequest

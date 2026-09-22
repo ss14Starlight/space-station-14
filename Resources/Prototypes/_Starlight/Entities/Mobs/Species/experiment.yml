@@ -80,7 +80,6 @@
     speedModifierThresholds:
       45: 0.7
       60: 0.5
-      100: 0.1
   - type: Butcherable
     spawned:
     - id: FoodMeatHuman
@@ -116,7 +115,6 @@
       collection: AlienClaw
     angle: 30
     animation: WeaponArcClaw
-    attackRate: 2
     damage:
       types:
         Slash: 4
