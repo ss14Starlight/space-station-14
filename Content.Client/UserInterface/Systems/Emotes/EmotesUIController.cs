@@ -37,6 +37,49 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
             [EmoteCategory.Cloud] = ("emote-menu-category-cloud", new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Effects/cloud_emotes.rsi"), "emote_mark")), // Starlight
         };
 
+    // Starlight: Emote sorting changes when new emotes are added. This is resolved by sorting them alphabetically.
+	// However, this still messes with people's muscle memory of how they were laid out before, so this is a known-good sort.
+	// New emotes are appended at the end of this list reverse alphabetically.
+    private static readonly Dictionary<EmoteCategory, string[]> EmoteSnapshotOrder = new()
+    {
+        [EmoteCategory.Hands] =
+        [
+            "Salute", "LagomorphStomp", "ClapSingle", "Snap", "Flap", "Clap", "Thump",
+        ],
+        [EmoteCategory.Vocal] =
+        [
+            "Squee", "Beep", "Squish", "Scream", "Crying", "Trill", "Hisses", "ThavenGlub",
+            "Chime", "Marr", "LagomorphSnore", "Snarl", "Wurble", "Honk", "CatMeow", "Growl",
+            "RobotBeep", "Rattle", "Snort", "ThavenHum", "Weh", "Liss", "Buzz-Two", "Mew",
+            "Howl", "Squeak", "Meow", "Whistle", "MonkeyScreeches", "Yawn", "Scree", "Squawk",
+            "Laugh", "Sneeze", "Bubble", "Hew", "Sigh", "Snore", "Chitter", "Buzz", "CatHisses",
+            "Cough", "Ping", "Lurr", "Pop", "Purr", "Call", "Click", "Yip", "Bark", "Chirp", "Whine",
+        ],
+        [EmoteCategory.General] =
+        [
+            "MonkeyDeathgasp", "DeathgaspIPC", "Gasp", "ScurretDeathgasp", "DefaultDeathgasp",
+        ],
+    };
+
+    private static int SnapshotRank(EmoteCategory category, string id)
+    {
+        if (EmoteSnapshotOrder.TryGetValue(category, out var order))
+        {
+            var index = Array.IndexOf(order, id);
+            if (index >= 0)
+                return index;
+        }
+        return int.MaxValue;
+    }
+
+    private static int CompareEmotes(EmoteCategory category, EmotePrototype a, EmotePrototype b)
+    {
+        var rank = SnapshotRank(category, a.ID).CompareTo(SnapshotRank(category, b.ID));
+        if (rank != 0)
+            return rank;
+        return string.Compare(Loc.GetString(b.Name), Loc.GetString(a.Name), StringComparison.OrdinalIgnoreCase);
+    }
+
     public void OnStateEntered(GameplayState state)
     {
         CommandBinds.Builder
@@ -139,7 +182,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
         var whitelistSystem = EntitySystemManager.GetEntitySystem<EntityWhitelistSystem>();
         var player = _playerManager.LocalSession?.AttachedEntity;
 
-        Dictionary<EmoteCategory, List<RadialMenuOptionBase>> emotesByCategory = new();
+        Dictionary<EmoteCategory, List<EmotePrototype>> protosByCategory = new();
         foreach (var emote in emotePrototypes)
         {
             if (emote.Category == EmoteCategory.Invalid)
@@ -157,51 +200,63 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
                 && !speech.AllowedEmotes.Contains(emote.ID))
                 continue;
 
-            if (!emotesByCategory.TryGetValue(emote.Category, out var list))
+            if (!protosByCategory.TryGetValue(emote.Category, out var list))
             {
-                list = new List<RadialMenuOptionBase>();
-                emotesByCategory.Add(emote.Category, list);
+                list = new List<EmotePrototype>();
+                protosByCategory.Add(emote.Category, list);
             }
 
-            var actionOption = new RadialMenuActionOption<EmotePrototype>(HandleRadialButtonClick, emote, HandleAlternativeRadialButtonClick) //Starlight-edit
-            {
-                IconSpecifier = RadialMenuIconSpecifier.With(emote.Icon),
-                ToolTip = Loc.GetString(emote.Name)
-            };
-            list.Add(actionOption);
+            list.Add(emote);
         }
 
-        // Starlight - Start
+        var cloudOptions = new List<RadialMenuOptionBase>();
         var cloudprototypes = _prototypeManager.EnumeratePrototypes<CloudEmotePrototype>();
         foreach (var emote in cloudprototypes)
         {
-            if (!emotesByCategory.TryGetValue(EmoteCategory.Cloud, out var list))
-            {
-                list = new List<RadialMenuOptionBase>();
-                emotesByCategory.Add(EmoteCategory.Cloud, list);
-            }
-
             var actionOption = new RadialMenuActionOption<CloudEmotePrototype>(HandleCloudRadialButtonClick, emote)
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(emote.Icon),
                 ToolTip = Loc.GetString(emote.Name)
             };
-            list.Add(actionOption);
+            cloudOptions.Add(actionOption);
         }
-        // Starlight - End
 
-        var models = new RadialMenuOptionBase[emotesByCategory.Count];
-        var i = 0;
-        foreach (var (key, list) in emotesByCategory)
+        var models = new List<RadialMenuOptionBase>();
+        foreach (var key in new[] { EmoteCategory.Hands, EmoteCategory.Vocal, EmoteCategory.General }) // Fixed wheel order
         {
+            if (!protosByCategory.TryGetValue(key, out var protos))
+                continue;
+
+            protos.Sort((a, b) => CompareEmotes(key, a, b));
+
+            var list = new List<RadialMenuOptionBase>();
+            foreach (var emote in protos)
+            {
+                list.Add(new RadialMenuActionOption<EmotePrototype>(HandleRadialButtonClick, emote, HandleAlternativeRadialButtonClick)
+                {
+                    IconSpecifier = RadialMenuIconSpecifier.With(emote.Icon),
+                    ToolTip = Loc.GetString(emote.Name)
+                });
+            }
+
             var tuple = EmoteGroupingInfo[key];
 
-            models[i] = new RadialMenuNestedLayerOption(list)
+            models.Add(new RadialMenuNestedLayerOption(list)
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(tuple.Sprite),
                 ToolTip = Loc.GetString(tuple.Tooltip)
-            };
-            i++;
+            });
+        }
+
+        if (cloudOptions.Count > 0)
+        {
+            var tuple = EmoteGroupingInfo[EmoteCategory.Cloud];
+
+            models.Add(new RadialMenuNestedLayerOption(cloudOptions)
+            {
+                IconSpecifier = RadialMenuIconSpecifier.With(tuple.Sprite),
+                ToolTip = Loc.GetString(tuple.Tooltip)
+            });
         }
 
         return models;
