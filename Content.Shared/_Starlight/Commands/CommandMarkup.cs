@@ -19,10 +19,6 @@ public static class CommandMarkup
         ctx.WriteMarkup($"[color=gold]{message}[/color]");
 
     /// Highlight section of text
-    public static string Highlight(IInvocationContext ctx, string text, Color? color = null, bool spaced = false) =>
-        $"{(spaced ? " " : "")}[color={color?.ToHex() ?? Color.Magenta.ToHex()}]{text}[/color]{(spaced ? " " : "")}";
-
-    /// Highlight section of text
-    public static string Highlight(IConsoleShell ctx, string text, Color? color = null, bool spaced = false) =>
+    public static string Highlight(string text, Color? color = null, bool spaced = false) =>
         $"{(spaced ? " " : "")}[color={color?.ToHex() ?? Color.Magenta.ToHex()}]{text}[/color]{(spaced ? " " : "")}";
 }

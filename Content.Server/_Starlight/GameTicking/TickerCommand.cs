@@ -140,7 +140,7 @@ public sealed class TickerCommand : ToolshedCommand
 
     /// Get all gamerules that are currently added.
     [CommandImplementation("getrules")]
-    public IEnumerable<EntityUid> GetRules(IInvocationContext ctx)
+    public IEnumerable<EntityUid> GetRules()
     {
         _ticker ??= GetSys<GameTicker>();
         return _ticker.GetAddedGameRules();
@@ -148,7 +148,7 @@ public sealed class TickerCommand : ToolshedCommand
 
     /// Get all added gamerule entities of a given rule prototype.
     [CommandImplementation("getrulesoftype")]
-    public IEnumerable<EntityUid> GetRulesOfType(IInvocationContext ctx,
+    public IEnumerable<EntityUid> GetRulesOfType(
         [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<GameRuleComponent>))] EntProtoId ruleId)
     {
         _ticker ??= GetSys<GameTicker>();
@@ -157,7 +157,7 @@ public sealed class TickerCommand : ToolshedCommand
 
     /// Get all ACTIVE gamerules that are currently added.
     [CommandImplementation("getactiverules")]
-    public IEnumerable<EntityUid> GetActiveRules(IInvocationContext ctx)
+    public IEnumerable<EntityUid> GetActiveRules()
     {
         _ticker ??= GetSys<GameTicker>();
         return _ticker.GetActiveGameRules();
@@ -165,7 +165,7 @@ public sealed class TickerCommand : ToolshedCommand
 
     /// Get all ACTIVE gamerule entities thar are currently added of a given rule prototype.
     [CommandImplementation("getactiverulesoftype")]
-    public IEnumerable<EntityUid> GetActiveRulesOfType(IInvocationContext ctx,
+    public IEnumerable<EntityUid> GetActiveRulesOfType(
         [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<GameRuleComponent>))] EntProtoId ruleId)
     {
         _ticker ??= GetSys<GameTicker>();

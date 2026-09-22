@@ -124,7 +124,7 @@ public sealed partial class RoleCommand : ToolshedCommand
         if (proto.ID == "MindRoleJob")
         {
             CommandMarkup.Error(ctx,
-                $"Prototype ID {proto.ID} is for job roles and does nothing. Don't use this, use {CommandMarkup.Highlight(ctx, "role:setjob")} to set job role.");
+                $"Prototype ID {proto.ID} is for job roles and does nothing. Don't use this, use {CommandMarkup.Highlight("role:setjob")} to set job role.");
             return uid;
         }
 
