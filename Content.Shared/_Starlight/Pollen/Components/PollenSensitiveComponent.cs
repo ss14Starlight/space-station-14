@@ -8,7 +8,7 @@ public float InteractionChance = 0.2f;
 public float PollenRange = 1f;
 
 [DataField]
-public float AllergyBuildup = 1f;
+public float AllergyBuildup = 1.5f;
 
 [DataField]
 public float AllergyDecay = 0.10f;
@@ -17,13 +17,25 @@ public float AllergyDecay = 0.10f;
 public float SneezeAmount = 0.20f;
 
 [DataField]
-public float HistamineAmount = 0.5f;
+public float HistamineAmount = 2f;
 
 [DataField]
 public TimeSpan NextHistamine;
 
 [DataField]
 public float HistamineBuildupReduction = 0.5f;
+
+[DataField]
+public float HistamineWalkSpeedModifier = 0.9f;
+
+[DataField]
+public float HistamineSprintSpeedModifier = 0.9f;
+
+[DataField]
+public float SevereWalkSpeedModifier = 0.75f;
+
+[DataField]
+public float SevereSprintSpeedModifier = 0.75f;
 
 [DataField]
 public float AllergyStack;

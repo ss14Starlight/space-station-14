@@ -1,0 +1,12 @@
+- type: listing
+  id: PollenPerkSerumDrip
+  name: pollen-perk-serum-drip-name
+  description: pollen-perk-serum-drip-desc
+  icon: { sprite: Interface/Actions/actions.rsi, state: fill } # TODO: swap for a real icon
+  cost:
+    PollenPoints: 2
+  categories:
+  - PollenPerks
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

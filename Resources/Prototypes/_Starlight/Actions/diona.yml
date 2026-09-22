@@ -1,0 +1,15 @@
+- type: entity
+  id: ActionOpenPollenShop
+  name: Open pollen shop
+  description: Spend collected pollen points on bodily perks.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: open_shop
+    checkCanInteract: false
+    checkConsciousness: false
+  - type: InstantAction
+    event: !type:IntrinsicStoreActionEvent {}

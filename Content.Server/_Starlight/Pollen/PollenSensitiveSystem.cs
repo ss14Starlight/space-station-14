@@ -15,6 +15,9 @@ using Content.Server._CD.Records;
 using Content.Shared._CD.Records;
 using System;
 using System.Linq;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs;
 
 namespace Content.Server._Starlight.Pollen.Systems;
 
@@ -27,12 +30,13 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private BloodstreamSystem _bloodstream = default!;
     [Dependency] private CharacterRecordsSystem _characterRecords = default!;
+    [Dependency] private SharedDarkenedVisionSystem _darkenedVision = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
 
     private static TimeSpan s_checkInterval = TimeSpan.FromSeconds(1);
     private static TimeSpan s_sneezeInterval = TimeSpan.FromSeconds(10);
-
-    private static TimeSpan s_histamineInterval = TimeSpan.FromSeconds(0.25);
-
+    private static TimeSpan s_histamineInterval = TimeSpan.FromSeconds(0.75);
+    private const string PollenAllergySlowdown = "PollenAllergySlowdown";
     private static ProtoId<ReagentPrototype> s_histamine = "Histamine";
 
     public override void Update(float frameTime)
@@ -41,9 +45,12 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
 
         var now = _timing.CurTime;
 
-        var sensitiveQuery = EntityQueryEnumerator<PollenSensitiveComponent, TransformComponent>();
-        while (sensitiveQuery.MoveNext(out var uid, out var sensitive, out var sensitiveTransform))
+        var sensitiveQuery = EntityQueryEnumerator<PollenSensitiveComponent, TransformComponent, MobStateComponent>();
+        while (sensitiveQuery.MoveNext(out var uid, out var sensitive, out var sensitiveTransform, out var mobState))
         {
+            if (mobState.CurrentState == MobState.Dead)
+                continue;
+
             if (now >= sensitive.NextAllergyUpdate)
             {
                 sensitive.NextAllergyUpdate = now + s_checkInterval;
@@ -81,8 +88,15 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
 
     private void OnGetVisionDarkening(Entity<PollenSensitiveComponent> ent, ref GetVisionDarkeningEvent args)
     {
-        if (ent.Comp.SevereAllergyActive)
-            args.Strength += 0.2f;
+        var stack = ent.Comp.AllergyStack;
+
+        if (stack < 2f)
+            return;
+
+        var progress = MathF.Min((stack - 2f) / 8f, 1f);
+        var strength = 0.05f + 0.25f * MathF.Pow(progress, 1.7f);
+
+        args.Strength += strength;
     }
 
     private bool IsAllergicToPollen(EntityUid uid, string pollenId)
@@ -105,26 +119,13 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
 
     private void InteractWithPollen(Entity<PollenSensitiveComponent> ent, string pollenId)
     {
+        // Collectors (Dionas) absorb pollen via PollenCollectorSystem instead of reacting here.
+        // Which shoudnt happen as they cant have the alergic trait, but eh.
         if (HasComp<PollenCollectorComponent>(ent))
-        {
-            CollectPollen(ent, pollenId);
             return;
-        }
 
         if (IsAllergicToPollen(ent.Owner, pollenId))
             AddAllergyStack(ent);
-    }
-
-    private void CollectPollen(Entity<PollenSensitiveComponent> ent, string pollenId)
-    {
-        if (!TryComp<PollenCollectorComponent>(ent, out var collector))
-            return;
-
-        if (collector.CollectedPollen.Contains(pollenId))
-            return;
-
-        collector.CollectedPollen.Add(pollenId);
-        Dirty(ent, collector);
     }
 
     private void AddAllergyStack(Entity<PollenSensitiveComponent> ent)
@@ -132,12 +133,6 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
         ent.Comp.AllergyStack += ent.Comp.AllergyBuildup;
         ent.Comp.AllergyStack = MathF.Round(ent.Comp.AllergyStack, 2);
         UpdateAllergyEffects(ent);
-
-        if (ent.Comp.HistamineActive && _timing.CurTime >= ent.Comp.NextHistamine)
-        {
-            AddHistamine(ent);
-            ent.Comp.NextHistamine = _timing.CurTime + s_histamineInterval;
-        }
     }
 
     private void UpdateAllergy(Entity<PollenSensitiveComponent> ent, TimeSpan now)
@@ -145,6 +140,16 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
         ent.Comp.AllergyStack = MathF.Max(0f, ent.Comp.AllergyStack - ent.Comp.AllergyDecay);
         ent.Comp.AllergyStack = MathF.Round(ent.Comp.AllergyStack, 2);
         UpdateAllergyEffects(ent);
+
+        if (ent.Comp.HistamineActive && now >= ent.Comp.NextHistamine)
+        {
+            AddHistamine(ent);
+            ent.Comp.NextHistamine = now + s_histamineInterval;
+        }
+        else if (!ent.Comp.HistamineActive)
+        {
+            ent.Comp.NextHistamine = TimeSpan.Zero;
+        }
 
         if (!ent.Comp.SneezingActive)
         {
@@ -211,11 +216,34 @@ public sealed partial class PollenSensitiveSystem : EntitySystem
         if (!ent.Comp.SneezingActive && oldSneezing)
             ent.Comp.NextSneeze = TimeSpan.Zero;
 
-        if (ent.Comp.SevereAllergyActive && !oldSevere)
-            EnsureComp<DarkenedVisionComponent>(ent.Owner);
-
-        if (!ent.Comp.SevereAllergyActive && oldSevere)
+        if (stack >= 2f)
+        {
+            var darkenedVision = EnsureComp<DarkenedVisionComponent>(ent.Owner);
+            _darkenedVision.UpdateVisionDarkening((ent.Owner, darkenedVision));
+        }
+        else if (stack < 2f && HasComp<DarkenedVisionComponent>(ent.Owner))
+        {
             RemComp<DarkenedVisionComponent>(ent.Owner);
+        }
+
+        if (ent.Comp.SevereAllergyActive)
+        {
+            _movementMod.TryUpdateMovementSpeedModDuration(
+                ent.Owner,
+                PollenAllergySlowdown,
+                TimeSpan.FromSeconds(1),
+                ent.Comp.SevereWalkSpeedModifier,
+                ent.Comp.SevereSprintSpeedModifier);
+        }
+        else if (ent.Comp.HistamineActive)
+        {
+            _movementMod.TryUpdateMovementSpeedModDuration(
+                ent.Owner,
+                PollenAllergySlowdown,
+                TimeSpan.FromSeconds(1),
+                ent.Comp.HistamineWalkSpeedModifier,
+                ent.Comp.HistamineSprintSpeedModifier);
+        }
     }
 
     private void AddHistamine(Entity<PollenSensitiveComponent> ent)
