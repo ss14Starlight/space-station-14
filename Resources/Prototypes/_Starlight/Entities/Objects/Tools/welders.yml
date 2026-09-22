@@ -14,9 +14,9 @@
     color: lightblue
   - type: Welder
     fuelReagent: Plasma
+  - type: RequiresEyeProtection
+    statusEffectTime: 5
   - type: WelderSurgery
     startSound:
       /Audio/Items/welder.ogg
     speed: 0.6
-  - type: RequiresEyeProtection
-    statusEffectTime: 0
