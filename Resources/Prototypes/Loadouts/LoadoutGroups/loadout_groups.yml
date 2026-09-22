@@ -284,10 +284,9 @@
   - HoPSatchel # Starlight
   - HoPDuffel # Starlight
   - HoPBackpackIan
-  - LeatherSatchel # starlight start
-  - StarBackpack 
-  - StarSatchel # starlight end
-
+  - LeatherSatchel # Starlight
+  - StarBackpack
+  - StarSatchel # Starlight
 - type: loadoutGroup
   id: HoPOuterClothing
   name: loadout-group-hop-outerclothing
@@ -381,7 +380,7 @@
   - CommonSatchel
   - CommonDuffel
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 - type: loadoutGroup
@@ -696,7 +695,7 @@
   - BotanistSatchel
   - BotanistDuffel
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 - type: loadoutGroup
@@ -746,7 +745,7 @@
   - ClownSatchel
   - ClownDuffel
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 - type: loadoutGroup
@@ -823,7 +822,7 @@
   - MimeSatchel
   - MimeDuffel
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 - type: loadoutGroup
@@ -1054,7 +1053,7 @@
   - SalvageSpecialistSatchel
   - SalvageSpecialistDuffel
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 - type: loadoutGroup
@@ -1174,7 +1173,7 @@
   - StationEngineerSatchel
   - StationEngineerDuffel
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 - type: loadoutGroup
@@ -1234,7 +1233,7 @@
   - AtmosphericTechnicianSatchel
   - AtmosphericTechnicianDuffel
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 - type: loadoutGroup
@@ -1361,7 +1360,7 @@
   - ScientistSatchel
   - ScientistDuffel
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 - type: loadoutGroup
@@ -1555,7 +1554,7 @@
   - SecuritySatchel
   - SecurityDuffel
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 - type: loadoutGroup

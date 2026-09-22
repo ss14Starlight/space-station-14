@@ -110,7 +110,7 @@
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelIta
   name: ita bag # Alternative Clothing Catalog
-  description: A standard, pink ita bag. 
+  description: A standard, pink ita bag.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Satchels/ita.rsi

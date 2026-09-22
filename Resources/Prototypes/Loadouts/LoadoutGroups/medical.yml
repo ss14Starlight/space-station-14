@@ -15,7 +15,7 @@
   - MedicalDoctorSatchel
   - MedicalDoctorDuffel
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 - type: loadoutGroup
@@ -226,7 +226,7 @@
   - SeniorChemistSatchel # Starlight
   - SeniorChemistDuffel # Starlight
   - LeatherSatchel # starlight start
-  - StarBackpack 
+  - StarBackpack
   - StarSatchel # starlight end
 
 #- type: loadoutGroup

@@ -1208,7 +1208,7 @@
       sprite: _Starlight/Clothing/Head/Hats/little_devil_horns.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Head/Hats/little_devil_horns.rsi
-      
+
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatBeretRD
