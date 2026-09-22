@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Cvlancer
   changes:
-  - message: White Roboticist Winter Coat, Roboticist Winter Boots (15 Hours Roboticist).
-    type: Add
-  id: 408404
-  time: '2026-09-08T10:54:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6007
-- author: wonderfulnewworld, Cvlancer
-  changes:
   - message: Roboticist Scarf, Roboticist Lizard Plushie, and Roboticist Figurine.
     type: Add
   id: 408405
@@ -2799,4 +2792,11 @@ Entries:
   id: 408803
   time: '2026-09-22T03:48:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6202
+- author: Kirb
+  changes:
+  - message: anomaly infections bugged on expies.
+    type: Fix
+  id: 408804
+  time: '2026-09-22T04:49:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6278
 Order: -1
