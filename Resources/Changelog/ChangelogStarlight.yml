@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, AraiMaia, B_Kirill
   changes:
-  - message: Fixed puddles not being removed when tile changes to lattice.
-    type: Fix
-  id: 408411
-  time: '2026-09-08T11:19:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6043
-- author: wonderfulnewworld, AraiMaia, B_Kirill
-  changes:
   - message: Fix slippery puddles mispredicting when going out of range.
     type: Fix
   id: 408412
@@ -2799,4 +2792,11 @@ Entries:
   id: 408810
   time: '2026-09-22T15:36:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6280
+- author: STARLIGHT TEAM
+  changes:
+  - message: added more precise information of sawians stats in the guidebook.
+    type: Add
+  id: 408811
+  time: '2026-09-22T15:57:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6282
 Order: -1
