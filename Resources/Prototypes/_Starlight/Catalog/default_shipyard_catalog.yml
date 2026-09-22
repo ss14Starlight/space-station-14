@@ -17,6 +17,15 @@
   shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/barge.yml
 
 - type: vessel
+  id: Bellows
+  name: GT-S40B "Bellows"
+  description: A popular model in the Gas Transfer series, the S40B boasts a respectable footprint and can transfer up to 100,000L of gases of choice.
+  price: 21500
+  category: Small
+  group: Engineering
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/Bellows.yml
+
+- type: vessel
   id: Prospector
   name: NT-7 Prospector
   description: A small mining vessel designed to assist salvage operations.
