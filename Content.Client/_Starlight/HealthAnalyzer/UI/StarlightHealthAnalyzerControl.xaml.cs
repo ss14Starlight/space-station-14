@@ -78,6 +78,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         }
 
         NoPatientDataText.Visible = false;
+        PrintReportButton.Visible = (state.EnablePrint ?? true);
         PrintReportButton.Disabled = !PrintReportButton.Visible || !(state.ScanMode ?? false) || !(state.CanPrint ?? false);
 
         FixedPoint2 deathValue = 200;
