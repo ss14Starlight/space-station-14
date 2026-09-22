@@ -265,6 +265,9 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (language.Speech.BlockSpeech)
             return;
+
+        if (desiredType == InGameICChatType.Speak && _mobStateSystem.IsSoftCritical(source))
+            desiredType = InGameICChatType.Whisper;
         // Starlight end
 
         // Otherwise, send whatever type.

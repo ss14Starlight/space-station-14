@@ -53,9 +53,3 @@
     layer: Eyes
     prototypes:
       Default: MobExperimentEyes
-  - type: FunctionalOrgan
-    comps:
-      - type: PointLight
-        color: orange
-      - type: FlashImmunityTogglePointLight
-        invert: true
