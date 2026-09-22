@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Packed) Added a Reporter Office.
-    type: Add
-  id: 408414
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
   - message: (Packed) Added a K9 Unit!
     type: Add
   id: 408415
@@ -2799,4 +2792,11 @@ Entries:
   id: 408813
   time: '2026-09-22T17:30:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6192
+- author: Floximo
+  changes:
+  - message: Flickering at alert level changes was fixed.
+    type: Fix
+  id: 408814
+  time: '2026-09-22T20:39:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6297
 Order: -1
