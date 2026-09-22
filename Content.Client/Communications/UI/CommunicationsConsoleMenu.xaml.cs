@@ -108,7 +108,7 @@ namespace Content.Client.Communications.UI
             // Starlight Start
             if (AlertLevelCooldownEnd.HasValue)
                 return;
-            
+
 
             var alertState = $"{(alerts is { Count: > 0 } ? string.Join("\0", alerts) : currentAlert)}\0{currentAlert}";
             if (_lastAlertState == alertState)
@@ -116,7 +116,7 @@ namespace Content.Client.Communications.UI
 
             _lastAlertState = alertState;
             // Starlight End
-            
+
             AlertLevelButton.Clear();
 
             // Starlight Start
