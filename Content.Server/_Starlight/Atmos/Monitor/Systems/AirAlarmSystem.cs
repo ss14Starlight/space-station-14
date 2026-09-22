@@ -103,7 +103,7 @@ public sealed partial class AirAlarmSystem
                 var start = coords.Value.Offset(offset);
                 var work = new HashSet<(EntityCoordinates, int)>
                 {
-                    (start,0)
+                    (start,1)
                 };
 
                 // debug
@@ -151,7 +151,7 @@ public sealed partial class AirAlarmSystem
                     // check if we should stop on this tile
                     var stop = entities.Any(x => _whitelist.IsWhitelistPass(_stoppingWhitelist, x));
 
-                    if (stop || part.Item2 > _maxDepth)
+                    if (stop || part.Item2 >= _maxDepth)
                         continue;
 
                     foreach (var direction in _offset.Values)
