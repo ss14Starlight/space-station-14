@@ -25,7 +25,7 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private ITTSClient _client = default!;
     [Dependency] private IRobustRandom _rng = default!;
     [Dependency] private LanguageSystem _language = default!;
-	[Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private readonly List<string> _sampleText =
     [
