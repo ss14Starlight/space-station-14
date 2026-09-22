@@ -81,7 +81,7 @@ public sealed partial class PlantChangeTraits : EntityEffectBase<PlantChangeTrai
         Toggle
     }
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
     {
         var component = IoCManager.Resolve<IComponentFactory>().GetComponent(Trait);
         if (component is not PlantTraitsComponent plantTrait || plantTrait.TraitName is not { } traitName)
