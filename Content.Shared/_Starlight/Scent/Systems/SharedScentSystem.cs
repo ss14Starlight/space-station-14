@@ -7,7 +7,9 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Scent.Systems;
 
@@ -22,6 +24,7 @@ public abstract partial class SharedScentSystem : EntitySystem
     [Dependency] protected MobStateSystem MobState = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -158,15 +161,18 @@ public abstract partial class SharedScentSystem : EntitySystem
         Dirty(ent);
     }
 
-    // TrackedScentId is nulled before ClearTrackedScent removes the status effect, so if it's
-    // still set here the timer ran out naturally rather than being cleared some other way.
     private void OnTrackingStatusEffectEnded(Entity<TrackingScentStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
     {
         if (!TryComp<SmellerComponent>(args.Target, out var smellerComp) || smellerComp.TrackedScentId == null)
             return;
 
+        var timedOut = TryComp<StatusEffectComponent>(ent.Owner, out var effect) &&
+            effect.EndEffectTime is { } endTime && _timing.CurTime >= endTime;
+
         ClearTrackedScent((args.Target, smellerComp));
-        Popup.PopupEntity(Loc.GetString("scent-track-fades-popup"), args.Target, args.Target);
+
+        if (timedOut)
+            Popup.PopupEntity(Loc.GetString("scent-track-fades-popup"), args.Target, args.Target);
     }
 
     private void LogTrackedScent(EntityUid smeller, string scentId, bool began, EntityUid? source = null)
