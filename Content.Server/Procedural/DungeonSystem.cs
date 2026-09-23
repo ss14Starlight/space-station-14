@@ -118,10 +118,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     }
     #endregion
 
-    private void OnRoundCleanup(RoundRestartCleanupEvent ev)
-    {
-        CancelAndDisposeDungeonJobs(); // Starlight
-    }
+    private void OnRoundCleanup(RoundRestartCleanupEvent ev) => CancelAndDisposeDungeonJobs(); // Starlight
 
     private void OnRoundStart(RoundStartingEvent ev)
     {
