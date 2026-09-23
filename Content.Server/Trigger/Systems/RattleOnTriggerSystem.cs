@@ -8,7 +8,10 @@ using Content.Server.Chat.Systems;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.StationRecords;
 using Content.Shared.Database;
+using Content.Shared.PDA;
 using Content.Server.Station.Systems;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -23,6 +26,7 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private StationRecordsSystem _recordsSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
     #endregion
     [Dependency] private StationSystem _station = default!;
 
@@ -60,8 +64,9 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
 
         // Starlight-start
         // Gets the job title of the user in the manifest
-        var station = _station.GetOwningStation(ent); // This has the perhaps unintuitive behavior of not showing the job of anyone off station
+        var station = _station.GetOwningStation(ent);
         var jobName = Loc.GetString("rattle-on-trigger-job-unknown");
+
         if (TryComp<StationRecordsComponent>(station, out var stationRecords))
         {
             var recordId = _recordsSystem.GetRecordByName(station.Value, MetaData(target.Value).EntityName);
@@ -70,6 +75,32 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
                 var key = new StationRecordKey(recordId.Value, station.Value);
                 if (_recordsSystem.TryGetRecord<GeneralStationRecord>(key, out var entry, stationRecords))
                     jobName = !string.IsNullOrWhiteSpace(entry.JobTitle) ? entry.JobTitle : jobName;
+            }
+        }
+
+        // If the manifest check didn't find a job, try to get one from their id card instead
+        if (jobName.Equals(Loc.GetString("rattle-on-trigger-job-unknown")))
+        {
+            if (_accessReader.FindAccessItemsInventory(target.Value, out var items))
+            {
+                foreach (var item in items)
+                {
+                    // ID Card
+                    if (TryComp<IdCardComponent>(item, out var id))
+                    {
+                        jobName = !string.IsNullOrWhiteSpace(id.LocalizedJobTitle) ? id.LocalizedJobTitle : jobName;
+                        break;
+                    }
+
+                    // PDA
+                    if (TryComp<PdaComponent>(item, out var pda)
+                        && pda.ContainedId != null
+                        && TryComp(pda.ContainedId, out id))
+                    {
+                        jobName = !string.IsNullOrWhiteSpace(id.LocalizedJobTitle) ? id.LocalizedJobTitle : jobName;
+                        break;
+                    }
+                }
             }
         }
         // Starlight-end
