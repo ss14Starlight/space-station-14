@@ -120,7 +120,7 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnActivateSpeaker(EntityUid uid, RadioSpeakerComponent component, ActivateInWorldEvent args)
     {
-        if (HasComp<ItemToggleComponent>(uid)) return;
+        if (HasComp<ItemToggleComponent>(uid)) return; // Starlight-edit
 
         if (!args.Complex)
             return;
