@@ -485,7 +485,6 @@
 - type: entity
   parent: [ SolutionTank, SolutionHuge, BaseMachinePowered, SmallConstructibleMachine ]
   id: BaseGasCondenser
-  categories: [ ShouldMapStation ] # Starlight
   name: condenser
   description: Condenses gases into liquids. Now we just need some plumbing.
   placement:
@@ -493,7 +492,7 @@
   components:
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/condenser.rsi
-    # snapCardinals: true # Starlight - Plumbing integration (plumbing ducts are 4 directional, so this causes a debug assert to fail)
+    snapCardinals: true
     granularLayersRendering: true
     layers:
     - state: off
@@ -508,17 +507,6 @@
       visible: false
     - state: trans
   - type: Appearance
-  # Starlight start: Plumbing integration
-  - type: PlumbingConnectorAppearance
-    offset: 0.09375
-  - type: PlumbingOutlet
-    solutionName: tank
-    connectedOutlets: true
-    outletNames:
-    - outletNorth
-    - outletEast
-    - outletWest
-  # Starlight end
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -575,20 +563,6 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: South
-  # Starlight start: Plumbing integration
-      outletNorth:
-        !type:PlumbingNode
-        nodeGroupID: Plumbing
-        pipeDirection: North
-      outletEast:
-        !type:PlumbingNode
-        nodeGroupID: Plumbing
-        pipeDirection: East
-      outletWest:
-        !type:PlumbingNode
-        nodeGroupID: Plumbing
-        pipeDirection: West
-  # Starlight end
   - type: Transform
     noRot: false
   - type: MixableSolution
@@ -603,9 +577,3 @@
   - type: GuideHelp
     guides:
     - GasCondensing
-  # Starlight start
-  - type: VentCrawlTube
-  - type: VentCrawlJunction
-    degrees:
-      - 0
-  # Starlight end
