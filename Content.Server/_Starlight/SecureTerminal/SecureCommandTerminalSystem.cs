@@ -69,6 +69,8 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!;
     [Dependency] private EuiManager _euiManager = default!;
 
+    private static readonly TimeSpan UIUpdateInterval = TimeSpan.FromSeconds(5.0);
+
     private readonly Dictionary<(EntityUid StationUid, string RequestId), HashSet<SecureTerminalAdminApprovalEui>> _adminApprovalEuis = new();
 
     public override void Initialize()
@@ -90,6 +92,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             return;
 
         stationComp.AlertLevelSetAt = _timing.CurTime;
+        stationComp.NextUIUpdate = _timing.CurTime + UIUpdateInterval;
         UpdateAllConsolesForStation(ev.Station);
     }
 
@@ -107,13 +110,16 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     (expiredKeys ??= new()).Add(key);
             }
             if (expiredKeys != null)
+            {
                 foreach (var k in expiredKeys)
                     stationComp.Cooldowns.Remove(k);
+            }
 
             // Fire activating proposals whose timer has elapsed.
             List<string>? toFire = null;
             List<string>? toCancel = null;
             List<EntityUid>? authToLightUp = null;
+            var presenceChanged = false;
             foreach (var (requestId, proposal) in stationComp.ActiveProposals)
             {
                 if (!_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var activeProto))
@@ -121,7 +127,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
 
                 if (proposal.Status == SecureTerminalProposalStatus.Activating &&
                     activeProto.RescindSchemes.Count > 0 && HasLostRescindPresence(proposal))
+                {
                     RemoveAbsentRescinders(proposal);
+                    presenceChanged = true;
+                }
 
                 if (proposal.Status == SecureTerminalProposalStatus.Activating &&
                     proposal.ActivateAt > now && activeProto.RescindSchemes.Count > 0 &&
@@ -143,7 +152,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     }
 
                     if (HasLostAuthorizationPresence(proposal))
+                    {
                         RemoveAbsentAuthorizers(proposal);
+                        presenceChanged = true;
+                    }
 
                     if (proposal.Authorizers.Count == 0)
                     {
@@ -178,6 +190,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             }
 
             if (toFire != null)
+            {
                 foreach (var requestId in toFire)
                 {
                     if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
@@ -213,17 +226,39 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     }
                 }
 
+                UpdateAllConsolesForStation(stationUid);
+                stationComp.NextUIUpdate = now + UIUpdateInterval;
+            }
+
             if (toCancel != null)
+            {
                 foreach (var requestId in toCancel)
                 {
                     if (!stationComp.ActiveProposals.TryGetValue(requestId, out var cancelledProposal))
                         continue;
 
+                    var isRescind = cancelledProposal.Status == SecureTerminalProposalStatus.Activating &&
+                        _protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var cancelProto) &&
+                        HasRescinded(cancelledProposal, cancelProto);
+
                     CancelProposal(stationUid, stationComp, requestId, cancelledProposal,
-                        cancelledProposal.RequesterTerminal, EntityUid.Invalid, false);
+                        cancelledProposal.RequesterTerminal, EntityUid.Invalid, false, isRescind: isRescind);
                 }
 
-            UpdateAllConsolesForStation(stationUid);
+                stationComp.NextUIUpdate = now + UIUpdateInterval;
+            }
+            else if (presenceChanged)
+            {
+                UpdateAllConsolesForStation(stationUid);
+                stationComp.NextUIUpdate = now + UIUpdateInterval;
+            }
+
+            // Rate-limited UI refresh
+            if (now >= stationComp.NextUIUpdate)
+            {
+                stationComp.NextUIUpdate = now + UIUpdateInterval;
+                UpdateAllConsolesForStation(stationUid);
+            }
         }
     }
 
@@ -1215,7 +1250,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     {
         var query = EntityQueryEnumerator<SecureCommandTerminalConsoleComponent>();
         while (query.MoveNext(out var consoleUid, out var comp))
-            if (_stations.GetOwningStation(consoleUid) == stationUid)
+            if (_stations.GetOwningStation(consoleUid) == stationUid && _ui.IsUiOpen(consoleUid, SecureCommandTerminalUiKey.Key))
                 UpdateConsoleInterface(consoleUid);
     }
 }

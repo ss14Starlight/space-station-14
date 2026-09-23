@@ -692,6 +692,7 @@
 # ── Dismiss ITG Salvage Team ──────────────────────────────────────────────────
 - type: secureTerminalRequest
   id: DismissITGSalvageTeam
+  parentId: ITGSalvageTeam
   name: secure-terminal-dismiss-itg-salvage-team-name
   description: secure-terminal-dismiss-itg-salvage-team-desc
   announcement: secure-terminal-dismiss-itg-salvage-team-announcement

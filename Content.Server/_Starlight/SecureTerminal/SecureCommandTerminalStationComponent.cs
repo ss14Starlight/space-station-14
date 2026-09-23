@@ -36,6 +36,10 @@ public sealed partial class SecureCommandTerminalStationComponent : Component
     /// <summary>When the current alert level was last set (CurTime). Used for RequiresAlertActiveMinutes checks.</summary>
     [ViewVariables]
     public TimeSpan AlertLevelSetAt;
+
+    /// <summary>Next time consoles on this station will be automatically refreshed.</summary>
+    [ViewVariables]
+    public TimeSpan NextUIUpdate;
 }
 
 /// <summary>Server-only live data for one pending/activating proposal.</summary>
