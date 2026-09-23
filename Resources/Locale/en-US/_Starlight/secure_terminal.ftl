@@ -22,6 +22,7 @@ secure-terminal-already-used = This resource has already been used this round an
 
 secure-terminal-auth-waiting = No active proposal for this request. Required authorization:
 secure-terminal-auth-desc = Current proposal — no response = [color=red]red[/color], agreed = [color=green]green[/color]:
+secure-terminal-awaiting-admin-desc = Fully authorized by local Command. Awaiting Central Command response…
 secure-terminal-awaiting-member = Awaiting {$label}
 secure-terminal-authorized-by-label = Signed by:
 secure-terminal-rescind-label = Rescind

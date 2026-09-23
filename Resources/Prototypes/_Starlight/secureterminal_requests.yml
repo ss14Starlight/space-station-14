@@ -329,7 +329,7 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  cooldownSecs: 900
+  cooldownSecs: 600
 
 # ── Code PSI ──────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -358,7 +358,7 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  cooldownSecs: 900
+  cooldownSecs: 600
 
 # ── Code Violet ──────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest

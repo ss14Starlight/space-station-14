@@ -189,7 +189,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         if (proposal == null) return "";
         return proposal.Status switch
         {
-            SecureTerminalProposalStatus.Pending => " [Pending]",
+            SecureTerminalProposalStatus.Pending => proposal.AwaitingAdminApproval ? " [Awaiting CC]" : " [Pending]",
             SecureTerminalProposalStatus.Activating => " [Activating]",
             _ => "",
         };
@@ -380,21 +380,33 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         }
         else
         {
-            AuthDescLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
-                Loc.GetString("secure-terminal-auth-desc")));
-            if (proposal.Status == SecureTerminalProposalStatus.Activating)
-                RebuildAuthorizedList(proposal);
-            else
+            if (proposal.AwaitingAdminApproval)
+            {
+                AuthDescLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
+                    $"[color=yellow]{Loc.GetString("secure-terminal-awaiting-admin-desc")}[/color]"));
                 RebuildAuthorizerList(proposal);
+                AuthorizeButton.Disabled = true;
+                DenyButton.Disabled = false;
+                DenyButton.Text = Loc.GetString("secure-terminal-deny-button");
+            }
+            else
+            {
+                AuthDescLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
+                    Loc.GetString("secure-terminal-auth-desc")));
+                if (proposal.Status == SecureTerminalProposalStatus.Activating)
+                    RebuildAuthorizedList(proposal);
+                else
+                    RebuildAuthorizerList(proposal);
 
-            AuthorizeButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending;
-            var rescindAvailable = proposal.Status == SecureTerminalProposalStatus.Activating
-                && proto.RescindSchemes.Count > 0
-                && proposal.ActivateAt > _timing.CurTime;
-            DenyButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending && !rescindAvailable;
-            DenyButton.Text = (proposal.Status == SecureTerminalProposalStatus.Activating && rescindAvailable)
-                ? Loc.GetString("secure-terminal-rescind-button")
-                : Loc.GetString("secure-terminal-deny-button");
+                AuthorizeButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending;
+                var rescindAvailable = proposal.Status == SecureTerminalProposalStatus.Activating
+                    && proto.RescindSchemes.Count > 0
+                    && proposal.ActivateAt > _timing.CurTime;
+                DenyButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending && !rescindAvailable;
+                DenyButton.Text = (proposal.Status == SecureTerminalProposalStatus.Activating && rescindAvailable)
+                    ? Loc.GetString("secure-terminal-rescind-button")
+                    : Loc.GetString("secure-terminal-deny-button");
+            }
         }
     }
 

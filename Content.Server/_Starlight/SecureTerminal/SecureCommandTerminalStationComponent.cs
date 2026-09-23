@@ -53,6 +53,7 @@ public sealed class SecureTerminalProposalData
     public string Reason = string.Empty;
 
     public bool AdminApproved = false;
+    public bool AwaitingAdminApproval = false;
 
     /// <summary>
     /// Each entry: PlayerUid, display name, job name, terminal, scheme index, and auth-group index.

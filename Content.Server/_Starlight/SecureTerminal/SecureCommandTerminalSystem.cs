@@ -133,6 +133,9 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
 
                 if (proposal.Status == SecureTerminalProposalStatus.Pending)
                 {
+                    if (proposal.AwaitingAdminApproval)
+                        continue;
+
                     if (!IsRequesterPresent(proposal))
                     {
                         (toCancel ??= new()).Add(requestId);
@@ -681,6 +684,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         if (approved)
         {
             proposal.AdminApproved = true;
+            proposal.AwaitingAdminApproval = false;
             _adminLog.Add(LogType.Action, LogImpact.Medium,
                 $"{admin.Name} approved secure terminal proposal: {requestId}");
             CheckAndStartCountdown(stationUid, stationComp, requestId, proto);
@@ -767,18 +771,25 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         {
             if (_adminManager.ActiveAdmins.Count() > 0 || !proto.BypassIfNoAdmin)
             {
-                OpenAdminApprovalEuis(stationUid, requestId, proto, proposal);
-                _chat.DispatchGlobalAnnouncement(Loc.GetString("secure-terminal-awaiting-admin", ("request", Loc.GetString(proto.Name))), colorOverride: proto.AnnouncementColor);
-                _chatManager.SendAdminAlert(Loc.GetString("secure-terminal-admin", ("request", Loc.GetString(proto.Name)), ("reason", proposal.Reason)));
-                _audio.PlayGlobal("/Audio/Misc/adminlarm.ogg",
-                    Filter.Empty().AddPlayers(_adminManager.ActiveAdmins),
-                    false,
-                    AudioParams.Default.WithVolume(-8f));
+                if (!proposal.AwaitingAdminApproval)
+                {
+                    proposal.AwaitingAdminApproval = true;
+                    OpenAdminApprovalEuis(stationUid, requestId, proto, proposal);
+                    _chat.DispatchGlobalAnnouncement(Loc.GetString("secure-terminal-awaiting-admin", ("request", Loc.GetString(proto.Name))), colorOverride: proto.AnnouncementColor);
+                    _chatManager.SendAdminAlert(Loc.GetString("secure-terminal-admin", ("request", Loc.GetString(proto.Name)), ("reason", proposal.Reason)));
+                    _audio.PlayGlobal("/Audio/Misc/adminlarm.ogg",
+                        Filter.Empty().AddPlayers(_adminManager.ActiveAdmins),
+                        false,
+                        AudioParams.Default.WithVolume(-8f));
+                    UpdateAllConsolesForStation(stationUid);
+                }
                 return;
             }
 
             adminApprovalBypassed = true;
         }
+
+        proposal.AwaitingAdminApproval = false;
 
         _autolog.LogToDiscord($"activating secure terminal proposal: {requestId}");
 
@@ -1190,6 +1201,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                         .ToList(),
                     ActivateAt = data.ActivateAt,
                     Status = data.Status,
+                    AwaitingAdminApproval = data.AwaitingAdminApproval,
                 });
             }
         }

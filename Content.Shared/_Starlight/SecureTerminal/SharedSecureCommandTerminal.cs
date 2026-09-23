@@ -92,6 +92,7 @@ public sealed class SecureTerminalProposalState
     public TimeSpan? ActivateAt;
 
     public SecureTerminalProposalStatus Status;
+    public bool AwaitingAdminApproval;
 }
 
 [Serializable, NetSerializable]
