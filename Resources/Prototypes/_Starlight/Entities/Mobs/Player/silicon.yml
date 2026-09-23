@@ -1,3 +1,298 @@
+- type: entity
+  name: drone
+  id: Drone
+  parent: BaseMob
+  components:
+  - type: TextToSpeech
+  - type: MovementAlwaysTouching
+  - type: NoSlip
+  - type: Pacified
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+    minimumFrictionSpeed: 0
+    weightlessAcceleration: 1.2
+    weightlessFriction: 1
+    weightlessFrictionNoInput: 2
+    offGridFriction: 1.5
+    weightlessModifier: 1
+  - type: SyncSprite
+  - type: ComplexInteraction
+  - type: Hands
+    showInHands: false
+  - type: Inventory
+    templateId: drone
+    displacements:
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Silicon/Bots/drone_displacement.rsi
+            state: head
+  - type: InventorySlots
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: ContainerContainer
+    containers:
+      part-container: !type:Container
+      cell_slot: !type:ContainerSlot {}
+      head: !type:ContainerSlot {}
+      back: !type:ContainerSlot {}
+      pocket1: !type:ContainerSlot {}
+      pocket2: !type:ContainerSlot {}
+      pocket3: !type:ContainerSlot {}
+      body_root_part: !type:ContainerSlot {}
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+  - type: VentCrawler
+  - type: Construction
+    graph: Drone
+    node: drone_complete
+    containers:
+    - part-container
+    - cell_slot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: true
+  - type: ItemSlotsLock
+    slots:
+    - cell_slot
+  - type: PowerCellDraw
+    drawRate: 0.6
+  - type: BatteryDrainer
+    drainEfficiency: 0.005
+    drainTime: 0.8
+    disableHandInteraction: true
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: CivilianSilicon
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+    stateAlertDict:
+      Alive: BotHealth
+      Dead: BotDead
+    showOverlays: false
+  - type: ArmorSparkEffect
+    alwaysSparks: true
+  - type: CyborgSparkEffect
+  - type: StationAIShunt # If you somehow get a shunt into one, sure.
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: silicon
+  - type: StatusEffects
+    allowed:
+      - Stun
+      - KnockedDown
+      - SlowedDown
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      50: 0.5
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+  - type: ZombieImmune
+  - type: Repairable
+    doAfterDelay: 1
+    fuelCost: 0.5
+  - type: ProtectedFromStepTriggers
+  - type: Sprite
+    noRot: true
+    drawdepth: SmallMobs
+    layers:
+      - state: shell
+        sprite: _Starlight/Mobs/Silicon/Bots/drone.rsi
+        map: ["base"]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSilicon
+    wilhelmProbability: 0
+  - type: DamagedSiliconAccent
+  - type: UnblockableSpeech
+  - type: TypingIndicator
+    proto: robot
+  - type: Emoting
+  - type: CombatMode
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10
+  - type: GuideHelp
+    guides:
+    - Cyborgs
+    - Robotics
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - SiliconEmotes
+    - Unimplantable
+    - Drone
+  - type: GenericVisualizer
+    visuals:
+      enum.DroneVisuals.Status:
+        base:
+          Off: { state: shell }
+          On: { state: drone }
+  # - type: HandheldLight
+  #   toggleOnInteract: false
+  #   wattage: 0.2
+  #   blinkingBehaviourId: blinking
+  #   radiatingBehaviourId: radiating
+  - type: ToggleableVisuals
+    spriteLayer: light
+  - type: LightBehaviour
+    behaviours:
+    - !type:FadeBehaviour
+      id: radiating
+      maxDuration: 2.0
+      startValue: 3.0
+      endValue: 2.0
+      isLooped: true
+      reverseWhenFinished: true
+    - !type:PulseBehaviour
+      id: blinking
+      interpolate: Nearest
+      maxDuration: 1.0
+      startValue: 0.1
+      endValue: 2.0
+      isLooped: true
+  - type: PointLight
+    enabled: false
+    lightMask: ConeSingle
+    autoRot: true
+    radius: 3.5
+    softness: 1
+    netsync: false
+  - type: Body
+    prototype: Drone
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: LanguageKnowledge
+    speaks:
+      - Machine
+    understands:
+      - Machine
+  - type: Drone
+  - type: IgnoreHumanoids
+  - type: NameIdentifier
+    group: Drone
+  - type: Access
+    enabled: false
+    tags:
+      - Maintenance
+      - Engineering
+      - Research
+      - Robotics
+  - type: AccessReader
+    access: [["Command"], ["Robotics"]]
+  - type: LockingWhitelist
+    blacklist:
+      components:
+      - BorgChassis
+      - RoboticsConsole
+  - type: SiliconLawBound
+  - type: SiliconLawProvider
+    laws: Drone
+  - type: GhostRole
+    makeSentient: true
+    name: Maintenance Drone
+    description: ghost-role-information-maintenance-drone-description
+    rules: ghost-role-information-maintenance-drone-rules
+    job: Borg # 10 Hour overall requirement
+  - type: GhostTakeoverAvailable
+  - type: ActionGrant
+    actions:
+      - ActionViewLaws
+      - ActionDroneOpenMap
+      - ActionDronePlayMidi
+  - type: StationMap
+  - type: Instrument
+    allowPercussion: false
+    handheld: false
+    bank: 1
+    program: 2
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+      enum.StationMapUiKey.Key:
+        type: StationMapBoundUserInterface
+  - type: Strippable
+  - type: Pullable
+  - type: Puller
+  - type: StandingState
+  - type: Blindable
+  - type: EyeProtection
+  - type: BatteryAlert
+    batteryAlert: BotBattery
+    noBatteryAlert: BotBatteryNone
+  - type: ContentEye
+    maxZoom: 1.2, 1.2
+  - type: Item
+    allowDirectHandPickup: false
+  - type: RestrictNestingItem
+    doAfter: 2.5
+  - type: InteractionPopup
+    interactSuccessString: petting-success-generic-cyborg
+    interactFailureString: petting-failure-generic-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: CanEscapeInventory
+  - type: UnpoweredFlashlight
+  - type: Loadout
+    prototypes:
+      - StartingGearDrone
+  - type: PAI
+  - type: GlitchOnEMP
+
 # Borgs
 
 # region syndicate

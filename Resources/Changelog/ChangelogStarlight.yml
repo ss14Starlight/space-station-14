@@ -1,20 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Packed) Added a K9 Unit!
-    type: Add
-  id: 408415
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
-  - message: (Packed) Added a Service Mailbox in bar.
-    type: Add
-  id: 408416
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
   - message: (Packed) Added a couple Washing Machines around.
     type: Add
   id: 408417
@@ -2799,4 +2785,18 @@ Entries:
   id: 408814
   time: '2026-09-22T20:39:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6297
+- author: CrazyPhantom
+  changes:
+  - message: DRONES!! We are so back.
+    type: Add
+  id: 408815
+  time: '2026-09-23T02:39:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6046
+- author: Hot Mic
+  changes:
+  - message: Added new APC Prototype. A variant that is off by default; mappers rejoice!
+    type: Add
+  id: 408816
+  time: '2026-09-23T02:58:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6299
 Order: -1
