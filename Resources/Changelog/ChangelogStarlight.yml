@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Packed) The empty space in Mining is filled out.
-    type: Tweak
-  id: 408421
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
   - message: (Packed) Mining Dock tweaked to be a bit better.
     type: Tweak
   id: 408422
@@ -2799,4 +2792,11 @@ Entries:
   id: 408820
   time: '2026-09-23T05:09:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6263
+- author: Demented
+  changes:
+  - message: Improvised Grappling Hook.
+    type: Add
+  id: 408821
+  time: '2026-09-23T09:21:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6184
 Order: -1
