@@ -1,27 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Packed) Added a couple Shelves around.
-    type: Add
-  id: 408418
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
-  - message: (Packed) Removed NCT Office.
-    type: Remove
-  id: 408419
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
-  - message: The washroom has been converted into a Dorm.
-    type: Tweak
-  id: 408420
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
   - message: (Packed) The empty space in Mining is filled out.
     type: Tweak
   id: 408421
@@ -2799,4 +2778,25 @@ Entries:
   id: 408817
   time: '2026-09-23T03:18:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6305
+- author: Pickra
+  changes:
+  - message: Added generic Service airlock.
+    type: Add
+  id: 408818
+  time: '2026-09-23T05:09:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6263
+- author: Pickra
+  changes:
+  - message: Added a series of departmental maintenance airlocks to make navigation easier.
+    type: Add
+  id: 408819
+  time: '2026-09-23T05:09:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6263
+- author: Pickra
+  changes:
+  - message: Starlight-specific airlocks now use their appropriate parent airlocks.
+    type: Tweak
+  id: 408820
+  time: '2026-09-23T05:09:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6263
 Order: -1
