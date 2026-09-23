@@ -40,24 +40,6 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
-    #region Starlight
-    Mew:
-      collection: FelionoidMews
-    Meow:
-      collection: FelionoidMeows
-    Trill:
-      collection: FelionoidTrills
-    Bark:
-      collection: Bark
-    Yip:
-      path: /Audio/_Starlight/Effects/yip.ogg
-    Whine:
-      collection: Whine
-    Growl:
-      collection: Growl
-    Howl:
-      path: /Audio/_Starlight/Effects/howl.ogg
-    #endregion Starlight
 
 - type: emoteSounds
   id: FemaleHuman
@@ -100,24 +82,6 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
-    #region Starlight
-    Mew:
-      collection: FelionoidMews
-    Meow:
-      collection: FelionoidMeows
-    Trill:
-      collection: FelionoidTrills
-    Bark:
-      collection: Bark
-    Yip:
-      path: /Audio/_Starlight/Effects/yip.ogg
-    Whine:
-      collection: Whine
-    Growl:
-      collection: Growl
-    Howl:
-      path: /Audio/_Starlight/Effects/howl.ogg
-    #endregion Starlight
 
 - type: emoteSounds
   id: MaleReptilian
@@ -701,6 +665,13 @@
         volume: -6
     Salute:
       collection: Salutes
+    # Starlight start
+    Blink:
+      collection: Blinks
+      params:
+        variation: 0.125
+    # Starlight end
+
 
 - type: emoteSounds
   id: DionaBodyEmotes
@@ -718,6 +689,12 @@
       path: /Audio/Voice/Diona/diona_salute.ogg
       params:
         volume: -5
+    # Starlight start
+    Blink:
+      collection: Blinks
+      params:
+        variation: 0.125
+    # Starlight end
 
 - type: emoteSounds
   id: ReptilianBodyEmotes
@@ -736,6 +713,12 @@
         volume: -6
     Salute:
       collection: Salutes
+    # Starlight start
+    Blink:
+      collection: Blinks
+      params:
+        variation: 0.125
+    # Starlight end
 
 - type: emoteSounds
   id: MothBodyEmotes
@@ -752,6 +735,12 @@
         volume: -6
     Salute:
       collection: Salutes
+    # Starlight start
+    Blink:
+      collection: Blinks
+      params:
+        variation: 0.125
+    # Starlight end
 
 # mobs
 - type: emoteSounds

@@ -1,0 +1,80 @@
+﻿- type: entity
+  id: OrganExperimentStomach
+  parent: [OrganAnimalStomach]
+  name: stomach
+  description: "Gross. This is hard to stomach."
+  components:
+  - type: Stomach
+  - type: SolutionManager
+    solutions:
+    - SolutionOrganNutriment
+    - SolutionOrganFoodMeat
+    - SolutionOrganStomach50
+  - type: Metabolizer
+    updateInterval: 0.75
+
+- type: entity
+  id: OrganExperimentHeart
+  parent: [BaseAnimalOrgan, BaseOrganHeart]
+  name: heart
+  description: "Skips a beat at the sight of landmines."
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Organ
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Experiment ]
+    stages: [ Bloodstream ]
+    updateInterval: 0.75
+  - type: Item
+    size: Small
+    heldPrefix: heart
+
+- type: entity
+  id: OrganExperimentLiver
+  parent: [ BaseAnimalOrgan, BaseOrganLiver]
+  name: liver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: liver
+  - type: Organ
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [ Experiment ]
+    stages: [ Metabolites ]
+  - type: Item
+    size: Small
+    heldPrefix: liver
+
+- type: entity
+  id: OrganExperimentEyes
+  parent: OrganHumanEyes
+  name: eyes
+  suffix: Experiment
+  description: "Couldn't have seen that one coming."
+  components:
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobExperimentEyes
+  - type: FunctionalOrgan
+    comps:
+      - type: PointLight
+        color: orange
+      - type: FlashImmunityTogglePointLight
+        invert: true
+
+- type: entity
+  id: OrganExperimentTongue
+  parent: OrganHumanTongue
+  name: tongue
+  suffix: Experiment
+  description: "A fleshy muscle mostly used for lying."
+  components:
+  - type: OrganTongue
+    sounds:
+      Male: Experiment
+      Female: Experiment
+      Unsexed: Experiment

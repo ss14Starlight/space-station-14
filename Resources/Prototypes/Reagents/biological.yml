@@ -38,8 +38,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       - !type:SatiateThirst
         factor: 1.0
         conditions:
@@ -75,8 +75,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       - !type:HealthChange # Don't inject someone else's blood into yourself! Your own blood won't actually metabolise. #Starlight: Unless you are a doll. Also, ever heard of blood transfusions??
         conditions:
         - !type:MetabolizerTypeCondition
@@ -116,6 +116,7 @@
   standsout: true
   physicalDesc: reagent-physical-desc-viscous
   viscosity: 0.25
+  viscosityMin: 1 # Starlight
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:
@@ -148,6 +149,7 @@
   recognizable: true
   physicalDesc: reagent-physical-desc-sticky
   viscosity: 0.10
+  viscosityMin: 1 # Starlight
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:

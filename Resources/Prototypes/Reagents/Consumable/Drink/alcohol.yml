@@ -260,6 +260,14 @@
       #     groups:
       #       Brute: -0.1
       - !type:Vomit
+        probability: 0.5
+        conditions:
+        - !type:ReagentCondition
+          reagent: Ethanol
+          min: 0.01
+        - !type:MetabolizerTypeCondition
+          type: [ Experiment ]
+      - !type:Vomit
         probability: 0.04
         conditions:
         - !type:ReagentCondition
@@ -957,8 +965,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1201,8 +1209,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -1249,8 +1257,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent
@@ -2107,8 +2115,8 @@
           type: [ Doll ]
         damage:
           groups:
-            Brute: -1.5
-            Burn: -0.75
+            Brute: -0.75
+            Burn: -0.375
       #Starlight End
 
 - type: reagent

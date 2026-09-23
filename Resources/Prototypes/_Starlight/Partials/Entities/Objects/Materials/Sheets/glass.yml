@@ -1,0 +1,57 @@
+# DEN quick construction + floor tile support for glass variants
+- type: !PartialOnly entity
+  id: SheetGlass
+  components:
+  - type: QuickConstructable
+    category: Glass
+
+- type: !PartialOnly entity
+  id: SheetRGlass
+  components:
+  - type: QuickConstructable
+    category: ReinforcedGlass
+
+- type: !PartialOnly entity
+  id: SheetPGlass
+  components:
+  - type: FloorTile
+    outputs:
+    - FloorGlassPlasma
+  - type: QuickConstructable
+    category: PlasmaGlass
+
+- type: !PartialOnly entity
+  id: SheetRPGlass
+  components:
+  - type: FloorTile
+    outputs:
+    - FloorGlassPlasmaReinforced
+  - type: QuickConstructable
+    category: ReinforcedPlasmaGlass
+
+- type: !PartialOnly entity
+  id: SheetUGlass
+  components:
+  - type: FloorTile
+    outputs:
+    - FloorGlassUranium
+  - type: QuickConstructable
+    category: UraniumGlass
+
+- type: !PartialOnly entity
+  id: SheetRUGlass
+  components:
+  - type: FloorTile
+    outputs:
+    - FloorGlassUraniumReinforced
+  - type: QuickConstructable
+    category: ReinforcedUraniumGlass
+
+- type: !PartialOnly entity
+  id: SheetClockworkGlass
+  components:
+  - type: FloorTile
+    outputs:
+    - FloorGlassBronze
+  - type: QuickConstructable
+    category: ClockworkGlass
