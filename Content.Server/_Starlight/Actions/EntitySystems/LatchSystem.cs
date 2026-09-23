@@ -320,7 +320,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         if (!comp.Active)
             return;
 
-        if (ev.NewMobState is MobState.Critical or MobState.Dead)
+        if (ev.NewMobState is not MobState.Alive)
             EndLatch(uid, comp);
     }
 

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
@@ -293,7 +294,7 @@ public sealed partial class ZombieSystem
             // Capture all values before any writes; SetMobStateThreshold mutates the
             // dictionary in-place and could clobber the next state's key mid-loop.
             var boosts = new List<(FixedPoint2 NewValue, MobState State)>();
-            foreach (var state in new[] { MobState.Critical, MobState.Dead })
+            foreach (var state in Enum.GetValues<MobState>().Except([MobState.Alive, MobState.Invalid])) // Starlight edit: should work with AND without soft crit
             {
                 if (_mobThreshold.TryGetThresholdForState(target, state, out var cur, threshComp))
                     boosts.Add((cur.Value + zombiecomp.ThresholdBoost, state));
