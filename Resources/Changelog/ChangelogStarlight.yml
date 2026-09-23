@@ -1,11 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Moved many loose items in the Engineer's Locker and Atmospheric Technician's Locker into Locker Supply Boxes for each, to reduce locker clutter. 5-8 items packed into 1 box so there are less loose items.
-    type: Tweak
-  id: 408427
-  time: '2026-09-08T11:58:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6027
 - author: STARLIGHT TEAM
   changes:
   - message: Fixed the health examine texts for Cosmic Cult entities.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408826
   time: '2026-09-23T10:29:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6249
+- author: Caws
+  changes:
+  - message: The Detective's forensic gloves are now immune to being stained.
+    type: Tweak
+  id: 408827
+  time: '2026-09-23T10:29:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6261
 Order: -1
