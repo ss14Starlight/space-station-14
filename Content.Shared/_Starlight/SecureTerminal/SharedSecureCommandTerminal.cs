@@ -54,7 +54,7 @@ public sealed class SecureTerminalAuthorizeMessage : BoundUserInterfaceMessage
     public SecureTerminalAuthorizeMessage(string requestId) => RequestId = requestId;
 }
 
-/// <summary>Cancel / deny (veto) the currently pending proposal for a given request.</summary>
+/// <summary>Cancel / deny / rescind the proposal for a given request.</summary>
 [Serializable, NetSerializable]
 public sealed class SecureTerminalDenyMessage : BoundUserInterfaceMessage
 {
@@ -82,7 +82,7 @@ public sealed class SecureTerminalProposalState
 
     /// <summary>Authorization progress for each alternative scheme.</summary>
     public List<SecureTerminalAuthSchemeState> AuthSchemes = new();
-    public List<SecureTerminalAuthSchemeState> VetoSchemes = new();
+    public List<SecureTerminalAuthSchemeState> RescindSchemes = new();
     public List<(string Name, string Job)> AuthorizedBy = new();
 
     /// <summary>

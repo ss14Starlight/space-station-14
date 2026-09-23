@@ -58,10 +58,10 @@ public sealed class SecureTerminalProposalData
     /// Each entry: PlayerUid, display name, job name, terminal, scheme index, and auth-group index.
     /// </summary>
     public readonly List<(EntityUid PlayerUid, string Name, string Job, EntityUid TerminalUid, int SchemeIndex, int GroupIndex)> Authorizers = new();
-    public readonly List<(EntityUid PlayerUid, string Name, string Job, EntityUid TerminalUid, int SchemeIndex, int GroupIndex)> Vetoers = new();
+    public readonly List<(EntityUid PlayerUid, string Name, string Job, EntityUid TerminalUid, int SchemeIndex, int GroupIndex)> Rescinders = new();
 
     public readonly List<EntityUid> UsedTerminals = new();
-    public readonly List<EntityUid> UsedVetoTerminals = new();
+    public readonly List<EntityUid> UsedRescindTerminals = new();
 
     /// <summary>CurTime when the proposal was created.</summary>
     public TimeSpan CreatedAt;

@@ -24,7 +24,7 @@ secure-terminal-auth-waiting = No active proposal for this request. Required aut
 secure-terminal-auth-desc = Current proposal — no response = [color=red]red[/color], agreed = [color=green]green[/color]:
 secure-terminal-awaiting-member = Awaiting {$label}
 secure-terminal-authorized-by-label = Signed by:
-secure-terminal-veto-label = Rescind
+secure-terminal-rescind-label = Rescind
 
 secure-terminal-pending-countdown-label = Expires in {$minutes}m {$seconds}s…
 secure-terminal-countdown-label = Activating in {$minutes}m {$seconds}s…
@@ -60,7 +60,7 @@ secure-terminal-proposal-created-reason = {$request} has been requested and is a
 secure-terminal-proposal-denied = {$request} request has been cancelled.
 secure-terminal-proposal-denied-cc = {$request} request has been denied by Central Command.
 secure-terminal-proposal-cancelled-by = Secure Terminal — {$actor} cancelled the {$request} request.
-secure-terminal-proposal-vetoed-by = Secure Terminal — {$request} request was rescinded by: {$vetoers}.
+secure-terminal-proposal-rescinded-by = Secure Terminal — {$request} request was rescinded by: {$rescinders}.
 secure-terminal-radio-proposal = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny.
 secure-terminal-radio-proposal-reason = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny. Reason: {$reason}
 secure-terminal-radio-denied = {$request} request has been cancelled.

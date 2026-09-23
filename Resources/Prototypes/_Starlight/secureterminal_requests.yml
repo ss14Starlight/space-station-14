@@ -34,7 +34,7 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  vetoSchemes:
+  rescindSchemes:
     - id: SecurityLeadership
       name: secure-terminal-security-leadership-name
       groups:
@@ -77,7 +77,7 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  vetoSchemes:
+  rescindSchemes:
     - id: SecurityLeadership
       name: secure-terminal-security-leadership-name
       groups:
@@ -118,7 +118,7 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  vetoSchemes:
+  rescindSchemes:
     - id: EngineeringLeadership
       name: secure-terminal-engineering-leadership-name
       groups:
@@ -159,7 +159,7 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  vetoSchemes:
+  rescindSchemes:
     - id: MedicalLeadership
       name: secure-terminal-medical-leadership-name
       groups:
@@ -200,7 +200,7 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  vetoSchemes:
+  rescindSchemes:
     - id: CivilianLeadership
       name: secure-terminal-civilian-leadership-name
       groups:
@@ -241,7 +241,7 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  vetoSchemes:
+  rescindSchemes:
     - id: CaptainOrNtrep
       name: secure-terminal-captain-or-ntrep-name
       groups:
@@ -279,7 +279,7 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  vetoSchemes:
+  rescindSchemes:
     - id: SecurityLeadership
       name: secure-terminal-security-leadership-name
       groups:

@@ -388,11 +388,11 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
                 RebuildAuthorizerList(proposal);
 
             AuthorizeButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending;
-            var vetoAvailable = proposal.Status == SecureTerminalProposalStatus.Activating
-                && proto.VetoSchemes.Count > 0
+            var rescindAvailable = proposal.Status == SecureTerminalProposalStatus.Activating
+                && proto.RescindSchemes.Count > 0
                 && proposal.ActivateAt > _timing.CurTime;
-            DenyButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending && !vetoAvailable;
-            DenyButton.Text = (proposal.Status == SecureTerminalProposalStatus.Activating && vetoAvailable)
+            DenyButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending && !rescindAvailable;
+            DenyButton.Text = (proposal.Status == SecureTerminalProposalStatus.Activating && rescindAvailable)
                 ? Loc.GetString("secure-terminal-rescind-button")
                 : Loc.GetString("secure-terminal-deny-button");
         }
@@ -414,13 +414,13 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
             $"{Loc.GetString("secure-terminal-authorized-by-label")} {authorizedBy}"));
         AuthorizerListContainer.AddChild(authorizedByLabel);
 
-        if (proposal.VetoSchemes.Count > 0)
+        if (proposal.RescindSchemes.Count > 0)
         {
-            var vetoHeader = new RichTextLabel();
-            vetoHeader.SetMessage(FormattedMessage.FromMarkupOrThrow(
-                $"[bold]{Loc.GetString("secure-terminal-veto-label")}[/bold]"));
-            AuthorizerListContainer.AddChild(vetoHeader);
-            AddSchemeStates(proposal.VetoSchemes);
+            var rescindHeader = new RichTextLabel();
+            rescindHeader.SetMessage(FormattedMessage.FromMarkupOrThrow(
+                $"[bold]{Loc.GetString("secure-terminal-rescind-label")}[/bold]"));
+            AuthorizerListContainer.AddChild(rescindHeader);
+            AddSchemeStates(proposal.RescindSchemes);
         }
     }
 
@@ -463,12 +463,13 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         AuthorizerListContainer.RemoveAllChildren();
 
         AddSchemeStates(proposal.AuthSchemes);
-        if (proposal.VetoSchemes.Count > 0)
+        if (proposal.RescindSchemes.Count > 0)
         {
-            var vetoHeader = new RichTextLabel();
-            vetoHeader.SetMessage(FormattedMessage.FromMarkupOrThrow("[bold]Veto[/bold]"));
-            AuthorizerListContainer.AddChild(vetoHeader);
-            AddSchemeStates(proposal.VetoSchemes);
+            var rescindHeader = new RichTextLabel();
+            rescindHeader.SetMessage(FormattedMessage.FromMarkupOrThrow(
+                $"[bold]{Loc.GetString("secure-terminal-rescind-label")}[/bold]"));
+            AuthorizerListContainer.AddChild(rescindHeader);
+            AddSchemeStates(proposal.RescindSchemes);
         }
     }
 
