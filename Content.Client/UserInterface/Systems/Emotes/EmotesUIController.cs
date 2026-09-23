@@ -40,8 +40,8 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
     #region Starlight
 
     // Emote sorting changes when new emotes are added. This is resolved by sorting them alphabetically.
-	// However, this still messes with people's muscle memory of how they were laid out before, so this is a known-good sort.
-	// New emotes are appended at the end of this list reverse alphabetically.
+    // However, this still messes with people's muscle memory of how they were laid out before, so this is a known-good sort.
+    // New emotes are appended at the end of this list reverse alphabetically.
     private static readonly Dictionary<EmoteCategory, ProtoId<EmotePrototype>[]> EmoteSnapshotOrder = new()
     {
         [EmoteCategory.Hands] =
