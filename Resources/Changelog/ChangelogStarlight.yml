@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Packed) Added a couple Washing Machines around.
-    type: Add
-  id: 408417
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
   - message: (Packed) Added a couple Shelves around.
     type: Add
   id: 408418
@@ -2799,4 +2792,11 @@ Entries:
   id: 408816
   time: '2026-09-23T02:58:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6299
+- author: ItsCharles
+  changes:
+  - message: Fix assistant job trinkets not working with assistant playtime.
+    type: Fix
+  id: 408817
+  time: '2026-09-23T03:18:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6305
 Order: -1
