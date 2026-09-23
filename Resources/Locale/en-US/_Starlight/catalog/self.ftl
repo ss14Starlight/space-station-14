@@ -12,8 +12,8 @@ self-backpack-category-press-description =
     reporter clothing, and a box of fake stamps.
 
 self-backpack-category-spy-description =
-    Don't like showing yourself out in the open? Well, aslong
-    as you achieve you're goal of liberation, these tools will work.
+    Don't like showing yourself out in the open? Well, as long
+    as you achieve your goals of liberation, these tools will work.
     Includes: A wornout energy crossbow, camera bug,
     storage implant, radio jammer, and a chameleon projector.
 
