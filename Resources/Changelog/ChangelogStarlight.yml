@@ -1,11 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Eeeps now have 80% explosive resistance so that they don't die from exploding machines with their random lightning strikes.
-    type: Tweak
-  id: 408433
-  time: '2026-09-08T13:21:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6025
 - author: FishtopherDoe, The Purple Screen
   changes:
   - message: Added E.T.O Gear, clothes, armour, a door, two bombs, contraband, 5 new weapons, all relevant magazines for the SMG, an ETO combat medkit variant, 5 ghost roles, seven ETO jobs and PDAs.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408832
   time: '2026-09-23T10:59:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6268
+- author: Swonki
+  changes:
+  - message: hour requirements for QM and Salv lead, QM now needs miner hours instead of salvage hours.
+    type: Tweak
+  id: 408833
+  time: '2026-09-23T10:59:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6267
 Order: -1
