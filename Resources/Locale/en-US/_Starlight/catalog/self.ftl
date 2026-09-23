@@ -1,5 +1,5 @@
 self-backpack-category-saboteur-description =
-    A man of passion, honour, and glory! Minus the glory and honour.
+    A man of passion, honor, and glory! Minus the glory and honor.
     These tools here should help with what you're doing.
     Includes: Jaws of death, omnitool, 2 C4, welder, multitool,
     high caliber handgun, emp implanter, and a freedom implanter.
