@@ -56,7 +56,7 @@
       groups:
         trade: !type:GridSpawnGroup
           addComponents:
-            - type: ProtectedGrid
+            #- type: ProtectedGrid # Starlight, protected grid made repairs difficult
             - type: TradeStation
           paths:
             - /Maps/_Starlight/trading_outpost.yml # Starlight Edit, new ATS
