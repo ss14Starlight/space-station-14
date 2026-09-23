@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.TwistyCube;
+using Content.Shared.UserInterface;
 
 namespace Content.Server._Starlight.TwistyCube;
 
@@ -8,7 +9,7 @@ public sealed partial class TwistyCubeSystem: SharedTwistyCubeSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<TwistyCubeComponent, TwistyCubeActionMessage>(OnCubeAction); // Starlight-edit
+        SubscribeLocalEvent<TwistyCubeComponent, TwistyCubeActionMessage>(OnCubeAction);
     }
 
     private void OnCubeAction(Entity<TwistyCubeComponent> ent, ref TwistyCubeActionMessage msg)

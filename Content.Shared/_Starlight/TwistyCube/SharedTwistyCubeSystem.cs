@@ -20,7 +20,7 @@ public enum TwistyCubeAction
     BottomCounterClockwise,
     BackClockwise,
     BackCounterClockwise,
-    RequestData,
+    RequestData
 }
 
 // The cube is laid out with:
@@ -40,6 +40,20 @@ public enum TwistyCubeColor
     Right,
     Top,
     Bottom
+}
+
+public static class Extensions
+{
+    public static Color AsColor(this TwistyCubeColor color) => (color) switch
+    {
+        TwistyCubeColor.Front => new Color(0xFF, 0x20, 0x20),
+        TwistyCubeColor.Back => new Color(0xFF, 0x90, 0x20),
+        TwistyCubeColor.Left => new Color(0x20, 0xFF, 0x20),
+        TwistyCubeColor.Right => new Color(0x20, 0x20, 0xFF),
+        TwistyCubeColor.Top => new Color(0xFF, 0xFF, 0xFF),
+        TwistyCubeColor.Bottom => new Color(0xFF, 0xFF, 0x20),
+        _ => Color.Magenta
+    };
 }
 
 [Serializable, NetSerializable]
@@ -68,37 +82,65 @@ public record struct TwistyCubeEdge(
 
 [Serializable, NetSerializable]
 public record struct TwistyCubeState(
-    TwistyCubeCorner TopLeftFront,
-    TwistyCubeCorner TopRightFront,
-    TwistyCubeCorner BottomRightFront,
-    TwistyCubeCorner BottomLeftFront,
-    TwistyCubeCorner BottomLeftBack,
-    TwistyCubeCorner BottomRightBack,
-    TwistyCubeCorner TopRightBack,
-    TwistyCubeCorner TopLeftBack,
+    TwistyCubeCorner FrontTopLeft,
+    TwistyCubeCorner FrontTopRight,
+    TwistyCubeCorner FrontBottomRight,
+    TwistyCubeCorner FrontBottomLeft,
+    TwistyCubeCorner BackBottomLeft,
+    TwistyCubeCorner BackBottomRight,
+    TwistyCubeCorner BackTopRight,
+    TwistyCubeCorner BackTopLeft,
     TwistyCubeEdge FrontTop,
     TwistyCubeEdge FrontRight,
     TwistyCubeEdge FrontBottom,
     TwistyCubeEdge FrontLeft,
+    TwistyCubeEdge TopLeft,
+    TwistyCubeEdge TopRight,
+    TwistyCubeEdge BottomRight,
+    TwistyCubeEdge BottomLeft,
     TwistyCubeEdge BackLeft,
     TwistyCubeEdge BackBottom,
     TwistyCubeEdge BackRight,
     TwistyCubeEdge BackTop
 )
 {
+    public TwistyCubeState() : this(
+        new(TwistyCubeColor.Front, TwistyCubeColor.Top, TwistyCubeColor.Left),
+        new(TwistyCubeColor.Front, TwistyCubeColor.Top, TwistyCubeColor.Right),
+        new(TwistyCubeColor.Front, TwistyCubeColor.Bottom, TwistyCubeColor.Right),
+        new(TwistyCubeColor.Front, TwistyCubeColor.Bottom, TwistyCubeColor.Left),
+        new(TwistyCubeColor.Back, TwistyCubeColor.Bottom, TwistyCubeColor.Left),
+        new(TwistyCubeColor.Back, TwistyCubeColor.Bottom, TwistyCubeColor.Right),
+        new(TwistyCubeColor.Back, TwistyCubeColor.Top, TwistyCubeColor.Right),
+        new(TwistyCubeColor.Back, TwistyCubeColor.Top, TwistyCubeColor.Left),
+        new(TwistyCubeColor.Front, TwistyCubeColor.Top),
+        new(TwistyCubeColor.Front, TwistyCubeColor.Right),
+        new(TwistyCubeColor.Front, TwistyCubeColor.Bottom),
+        new(TwistyCubeColor.Front, TwistyCubeColor.Left),
+        new(TwistyCubeColor.Top, TwistyCubeColor.Left),
+        new(TwistyCubeColor.Top, TwistyCubeColor.Right),
+        new(TwistyCubeColor.Bottom, TwistyCubeColor.Right),
+        new(TwistyCubeColor.Bottom, TwistyCubeColor.Left),
+        new(TwistyCubeColor.Back, TwistyCubeColor.Left),
+        new(TwistyCubeColor.Back, TwistyCubeColor.Bottom),
+        new(TwistyCubeColor.Back, TwistyCubeColor.Right),
+        new(TwistyCubeColor.Back, TwistyCubeColor.Top)
+    )
+    { }
+
     public void ApplyAction(TwistyCubeAction action)
     {
         switch (action)
         {
             case TwistyCubeAction.FrontClockwise:
                 (FrontTop, FrontRight, FrontBottom, FrontLeft) = (FrontLeft, FrontTop, FrontRight, FrontBottom);
-                (TopLeftFront, TopRightFront, BottomRightFront, BottomLeftFront)
-                    = (BottomLeftFront.YXZ, TopLeftFront.YXZ, TopRightFront.YXZ, BottomRightFront.YXZ);
+                (FrontTopLeft, FrontTopRight, FrontBottomRight, FrontBottomLeft)
+                    = (FrontBottomLeft.XZY, FrontTopLeft.XZY, FrontTopRight.XZY, FrontBottomRight.XZY);
                 break;
             case TwistyCubeAction.FrontCounterClockwise:
                 (FrontTop, FrontRight, FrontBottom, FrontLeft) = (FrontRight, FrontBottom, FrontLeft, FrontTop);
-                (TopLeftFront, TopRightFront, BottomRightFront, BottomLeftFront)
-                    = (TopRightFront.YXZ, BottomRightFront.YXZ, BottomLeftFront.YXZ, TopLeftFront.YXZ);
+                (FrontTopLeft, FrontTopRight, FrontBottomRight, FrontBottomLeft)
+                    = (FrontTopRight.XZY, FrontBottomRight.XZY, FrontBottomLeft.XZY, FrontTopLeft.XZY);
                 break;
             case TwistyCubeAction.LeftClockwise:
                 break;

@@ -9,11 +9,11 @@ using Robust.Client.UserInterface.CustomControls;
 public sealed class TwistyCubeMenu : DefaultWindow
 {
     public event Action<TwistyCubeAction>? OnAction;
-    public TwistyCubeState State;
+    private TwistyCubeControl? _control;
 
     public TwistyCubeMenu()
     {
-        MinSize = SetSize = new Vector2(300, 225);
+        MinSize = SetSize = new Vector2(600, 300);
         Title = Loc.GetString("twistycube-menu-title");
 
         var grid = new GridContainer { Columns = 1 };
@@ -31,7 +31,14 @@ public sealed class TwistyCubeMenu : DefaultWindow
         fccwButton.Text = Loc.GetString("twistycube-action-front-ccw");
         fccwButton.OnPressed +=_ => OnAction?.Invoke(TwistyCubeAction.FrontCounterClockwise);
         buttonGrid.AddChild(fccwButton);
+        
+        grid.AddChild(_control = new TwistyCubeControl());
 
         ContentsContainer.AddChild(grid);
+    }
+
+    public void UpdateState(TwistyCubeState state)
+    {
+        _control?.CubeState = state;
     }
 }

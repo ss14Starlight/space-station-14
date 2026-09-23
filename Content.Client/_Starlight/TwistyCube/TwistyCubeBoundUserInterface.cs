@@ -27,6 +27,6 @@ public sealed class TwistyCubeBoundUserInterface : BoundUserInterface
     protected override void ReceiveMessage(BoundUserInterfaceMessage message)
     {
         if (message is TwistyCubeStateMessage msg)
-            _menu?.State = msg.State;
+            _menu?.UpdateState(msg.State);
     }
 }
