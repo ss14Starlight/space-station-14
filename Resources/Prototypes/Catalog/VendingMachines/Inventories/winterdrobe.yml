@@ -9,6 +9,16 @@
     ClothingNeckScarfStripedLightBlue: 3
     ClothingNeckScarfStripedOrange: 3
     ClothingNeckScarfStripedPurple: 3
+    # Starlight Start
+    ClothingNeckScarfSolidRed: 3
+    ClothingNeckScarfSolidGreen: 3
+    ClothingNeckScarfSolidBlue: 3
+    ClothingNeckScarfSolidBlack: 3
+    ClothingNeckScarfSolidBrown: 3
+    ClothingNeckScarfSolidLightBlue: 3
+    ClothingNeckScarfSolidOrange: 3
+    ClothingNeckScarfSolidPurple: 3
+    # Starlight end
     ClothingOuterCoatTrench: 6
     ClothingOuterWinterColorWhite: 3 #Starlight start, adding the colored coats
     ClothingOuterWinterColorGray: 3
