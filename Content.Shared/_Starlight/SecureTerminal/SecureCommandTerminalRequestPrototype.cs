@@ -55,18 +55,11 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     public int Fee = 5000;
 
     /// <summary>
-    /// Fractional salary penalty applied to the entire station when this request activates
-    /// (stacks, capped at 80%).  0.05 = 5 % reduction.
+    /// Additional salary changes for salary sources after this request activates.
+    /// Positive values increase the affected source's salary; negative values reduce it.
     /// </summary>
     [DataField]
-    public float SalaryPenalty = 0.05f;
-
-    /// <summary>
-    /// Seconds timer to collect all authorizations before getting auto-cancelled.
-    /// If 0, no Timer will be applied.
-    /// </summary>
-    [DataField]
-    public int AuthTimer = 0;
+    public List<SecureTerminalSalaryModifier> SalaryModifiers = new();
 
     // ── Action ───────────────────────────────────────────────────────────────
 
@@ -97,24 +90,15 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     // ── Authorization ─────────────────────────────────────────────────────────
 
     /// <summary>
-    /// List of authorization groups.  Each inner list is a set of access-level prototype IDs;
-    /// ANY single tag in the list satisfies that group.
-    /// ALL groups must be satisfied by DISTINCT individuals before the countdown begins.
-    ///
-    /// Example – "Captain or HoS" PLUS "NTR":
-    ///   authGroups:
-    ///     - [ Captain, HeadOfSecurity ]
-    ///     - [ Ntrep ]
+    /// Alternative authorization schemes. All groups within one scheme must be satisfied;
+    /// satisfying any one scheme is sufficient.
     /// </summary>
     [DataField(required: true)]
-    public List<List<string>> AuthGroups = new();
+    public List<SecureTerminalAuthScheme> AuthSchemes = new();
 
-    /// <summary>
-    /// Human-readable label for each group shown in the Authorization panel.
-    /// Must match the length of AuthGroups; falling back to the raw tag names if missing.
-    /// </summary>
+    /// <summary>Alternative veto schemes that can cancel the request during its activation delay.</summary>
     [DataField]
-    public List<string> AuthGroupLabels = new();
+    public List<SecureTerminalAuthScheme> VetoSchemes = new();
 
     // ── Conditions ────────────────────────────────────────────────────────────
     /// <summary>If true, the request will require a reason, this reason will be logged and if RequiresAdminApproval, will be fully showed to admins.</summary>
@@ -170,6 +154,40 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     public bool OneTimeUse;
 }
 
+[DataDefinition]
+public sealed partial class SecureTerminalAuthScheme
+{
+    /// <summary>Technical identifier used to distinguish this scheme from other alternatives.</summary>
+    [DataField(required: true)]
+    public string Id = string.Empty;
+
+    /// <summary>Optional localization key or display name for this scheme.</summary>
+    [DataField]
+    public string? Name;
+
+    /// <summary>Optional localization key or description for this scheme.</summary>
+    [DataField]
+    public string? Description;
+
+    /// <summary>
+    /// Authorization groups within this scheme. Any one access tag satisfies a group;
+    /// all groups must be satisfied by distinct individuals.
+    /// </summary>
+    [DataField(required: true)]
+    public List<List<ProtoId<AccessLevelPrototype>>> Groups = new();
+}
+
+[DataDefinition]
+public sealed partial class SecureTerminalSalaryModifier
+{
+    /// <summary>Salary source to modify. Use `Everyone` to affect every salary payout.</summary>
+    [DataField(required: true)]
+    public string Source = string.Empty;
+
+    [DataField(required: true)]
+    public float Change;
+}
+
 public enum SecureTerminalActionType
 {
     GameRule,
@@ -179,4 +197,5 @@ public enum SecureTerminalActionType
     AirlockAccess,
     /// <summary>Performs no mechanical change — the request exists purely for its announcement.</summary>
     Announcement,
+    EscapePods
 }
