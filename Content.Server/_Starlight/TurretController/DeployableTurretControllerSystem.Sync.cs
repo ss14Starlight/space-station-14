@@ -6,6 +6,7 @@ using Content.Shared.TurretController;
 using Content.Shared.Turrets;
 using Robust.Shared.Prototypes;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.TurretController;
 
 /// <summary>
@@ -23,9 +24,7 @@ public sealed partial class DeployableTurretControllerSystem
     private readonly HashSet<EntityUid> _controllersBeingSynchronized = new();
 
     private void InitializeSync()
-    {
-        SubscribeLocalEvent<DeployableTurretControllerComponent, NewLinkEvent>(OnNewSyncLink);
-    }
+        => SubscribeLocalEvent<DeployableTurretControllerComponent, NewLinkEvent>(OnNewSyncLink);
 
     private void OnNewSyncLink(Entity<DeployableTurretControllerComponent> ent, ref NewLinkEvent args)
     {

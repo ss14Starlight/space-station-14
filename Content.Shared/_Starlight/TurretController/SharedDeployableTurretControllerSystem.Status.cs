@@ -1,3 +1,4 @@
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.TurretController;
 
 public abstract partial class SharedDeployableTurretControllerSystem

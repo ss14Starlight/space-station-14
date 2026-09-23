@@ -1,5 +1,6 @@
 using Content.Shared.TurretController;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Client.TurretController;
 
 public sealed partial class TurretControllerWindow
@@ -8,8 +9,6 @@ public sealed partial class TurretControllerWindow
     /// Returns whether this window belongs to a read-only status panel.
     /// </summary>
     private bool IsReadOnly()
-    {
-        return _entManager.TryGetComponent<DeployableTurretControllerComponent>(_owner, out var controller) &&
+        => _entManager.TryGetComponent<DeployableTurretControllerComponent>(_owner, out var controller) &&
             controller.ReadOnly;
-    }
 }

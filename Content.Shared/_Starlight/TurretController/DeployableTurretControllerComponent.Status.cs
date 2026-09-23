@@ -1,3 +1,4 @@
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.TurretController;
 
 public sealed partial class DeployableTurretControllerComponent
