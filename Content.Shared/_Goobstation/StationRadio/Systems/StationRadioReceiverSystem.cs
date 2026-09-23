@@ -261,8 +261,10 @@ public sealed partial class StationRadioReceiverSystem : EntitySystem
             : "station-radio-receiver-examine-full-volume"));
     }
 
-    // Keeps a portable radio's volume in sync with its ItemToggle state, so it mutes when switched off/when the power cell dies
-    // (Uses ToggleCellDrawSystem to force-deactivate ItemToggle on an empty cell)
+    /// <summary>
+    /// Keeps a portable radio's volume in sync with its ItemToggle state, so it mutes when switched off/when the power cell dies
+    /// (Uses ToggleCellDrawSystem to force-deactivate ItemToggle on an empty cell)
+    /// </summary>
     private void OnItemToggled(EntityUid uid, StationRadioReceiverComponent comp, ref ItemToggledEvent args)
     {
         comp.Active = args.Activated;
