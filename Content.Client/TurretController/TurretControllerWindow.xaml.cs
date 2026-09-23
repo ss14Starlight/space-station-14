@@ -123,9 +123,9 @@ public sealed partial class TurretControllerWindow : BaseWindow
 
         var readOnly = IsReadOnly(); // Starlight
 
-        SafeButton.Disabled = readOnly || !SafeButton.Pressed && !canInteract; // Starlight-edit
-        StunButton.Disabled = readOnly || !StunButton.Pressed && !canInteract; // Starlight-edit
-        LethalButton.Disabled = readOnly || !LethalButton.Pressed && !canInteract; // Starlight-edit
+        SafeButton.Disabled = readOnly || (!SafeButton.Pressed && !canInteract); // Starlight-edit
+        StunButton.Disabled = readOnly || (!StunButton.Pressed && !canInteract); // Starlight-edit
+        LethalButton.Disabled = readOnly || (!LethalButton.Pressed && !canInteract); // Starlight-edit
 
         ContentsContainer.Modulate = ThemeColors[setting];
     }
