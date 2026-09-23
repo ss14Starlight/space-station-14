@@ -6,7 +6,7 @@ using Content.Shared.Database;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Starlight.Scent.Systems;
@@ -32,7 +32,7 @@ public abstract partial class SharedScentSystem : EntitySystem
         SubscribeLocalEvent<SmellerComponent, ToggleSniffActionEvent>(OnToggleSniff);
         SubscribeLocalEvent<SmellerComponent, SneezeActionEvent>(OnSneeze);
         SubscribeLocalEvent<SmellerComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<SmellerComponent, StatusEffectEndedEvent>(OnTrackingStatusEffectEnded);
+        SubscribeLocalEvent<TrackingScentStatusEffectComponent, StatusEffectRemovedEvent>(OnTrackingStatusEffectEnded);
     }
 
     private void OnMobStateChanged(Entity<SmellerComponent> ent, ref MobStateChangedEvent args)
@@ -138,7 +138,7 @@ public abstract partial class SharedScentSystem : EntitySystem
 
         LogTrackedScent(ent.Owner, scentId, began: true, source);
 
-        _statusEffects.TryAddStatusEffect(ent.Owner, ent.Comp.TrackStatusEffect, ent.Comp.TrackDuration, refresh: true);
+        _statusEffects.TrySetStatusEffectDuration(ent.Owner, ent.Comp.TrackStatusEffect, ent.Comp.TrackDuration);
 
         Dirty(ent);
     }
@@ -160,13 +160,13 @@ public abstract partial class SharedScentSystem : EntitySystem
 
     // TrackedScentId is nulled before ClearTrackedScent removes the status effect, so if it's
     // still set here the timer ran out naturally rather than being cleared some other way.
-    private void OnTrackingStatusEffectEnded(EntityUid uid, SmellerComponent component, StatusEffectEndedEvent args)
+    private void OnTrackingStatusEffectEnded(Entity<TrackingScentStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
     {
-        if (args.Key != component.TrackStatusEffect || component.TrackedScentId == null)
+        if (!TryComp<SmellerComponent>(args.Target, out var smellerComp) || smellerComp.TrackedScentId == null)
             return;
 
-        ClearTrackedScent((uid, component));
-        Popup.PopupEntity(Loc.GetString("scent-track-fades-popup"), uid, uid);
+        ClearTrackedScent((args.Target, smellerComp));
+        Popup.PopupEntity(Loc.GetString("scent-track-fades-popup"), args.Target, args.Target);
     }
 
     private void LogTrackedScent(EntityUid smeller, string scentId, bool began, EntityUid? source = null)

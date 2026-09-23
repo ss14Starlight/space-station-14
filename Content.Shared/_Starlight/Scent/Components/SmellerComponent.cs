@@ -1,5 +1,4 @@
 using Content.Shared._Starlight.Scent.Systems;
-using Content.Shared.StatusEffect;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -22,7 +21,7 @@ public sealed partial class SmellerComponent : Component
     public string? TrackedScentId;
 
     [DataField]
-    public ProtoId<StatusEffectPrototype> TrackStatusEffect = "TrackingScent";
+    public EntProtoId TrackStatusEffect = "StatusEffectTrackingScent";
 
     [DataField]
     public TimeSpan TrackDuration = TimeSpan.FromMinutes(5);
