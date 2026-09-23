@@ -1,0 +1,91 @@
+- type: !PartialOnly entity
+  name: energy katana
+  parent: Katana
+  id: EnergyKatana
+  description: A katana infused with strong energy that is able to switch between types of matter, allowing it to adapt to different situations.
+  components:
+  - type: Contraband
+    severity: HighlyIllegal
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/energykatana.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    damage:
+      types:
+        Slash: 30
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: Objects/Weapons/Melee/energykatana_storage_64x.rsi
+    shape:
+    - 0,0,0,3
+  - type: EnergyKatana
+  - type: DashAbility
+  - type: LimitedCharges
+    maxCharges: 3
+  - type: AutoRecharge
+    rechargeDuration: 20
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/energykatana.rsi
+    slots:
+    - Back
+    - Belt
+  - type: Reflect
+    slotFlags:
+    - NONE
+  - type: UseDelay
+    delay: 15
+  - type: ItemSwitch
+    state: normal
+    states:
+      sheathed: !type:ItemSwitchState
+        verb: normal
+        sprite:
+          sprite: Objects/Weapons/Melee/energykatana.rsi
+          state: icon
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: -60
+          attackRate: 1
+          soundHit:
+            path: /Audio/Weapons/bladeslice.ogg
+          damage:
+            types:
+              Slash: 30
+        - type: DamageOtherOnHit
+          damage:
+            types:
+              Piercing: 10
+        - type: EmbeddableProjectile
+          sound: /Audio/Weapons/star_hit.ogg
+          offset: -0.15,0.0
+        - type: Clothing
+          sprite: _Starlight/Objects/Weapons/Melee/energykatana.rsi
+          slots:
+          - Back
+          - Belt
+
+      unsheathed: !type:ItemSwitchState
+        verb: heated
+        sprite:
+          sprite: _Starlight/Objects/Weapons/Melee/energykatana.rsi
+          state: icon
+        components:
+        - type: MeleeWeapon
+          wideAnimationRotation: -60
+          attackRate: 1
+          soundHit:
+            path: /Audio/_Starlight/Weapons/marriage_swing.ogg
+          damage:
+            types:
+              Slash: 10
+              Heat: 15
+              Caustic: 5
+              Structural: 100
+        - type: IgniteOnMeleeHit
+          fireStacks: 0.25
+        - type: Clothing
+          sprite: _Starlight/Objects/Weapons/Melee/energykatana.rsi
+          slots:
+          - Back
+          - Belt
