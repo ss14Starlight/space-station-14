@@ -3,14 +3,9 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._Starlight.TwistyCube;
 
-public sealed class TwistyCubeBoundUserInterface : BoundUserInterface
+public sealed class TwistyCubeBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [ViewVariables] private TwistyCubeMenu? _menu;
-
-    public TwistyCubeBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-        SendMessage(new TwistyCubeActionMessage(TwistyCubeAction.RequestData));
-    }
 
     public void SendAction(TwistyCubeAction action)
     {
@@ -24,9 +19,10 @@ public sealed class TwistyCubeBoundUserInterface : BoundUserInterface
         _menu.OnAction += SendAction;
     }
 
-    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    protected override void UpdateState(BoundUserInterfaceState state)
     {
-        if (message is TwistyCubeStateMessage msg)
-            _menu?.UpdateState(msg.State);
+        base.UpdateState(state);
+        if (state is TwistyCubeBoundUserInterfaceState twistState)
+            _menu?.UpdateState(twistState.State);
     }
 }

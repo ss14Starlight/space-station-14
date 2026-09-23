@@ -7,9 +7,3 @@ public sealed class TwistyCubeActionMessage(TwistyCubeAction action) : BoundUser
 {
     public readonly TwistyCubeAction Action = action;
 }
-
-[Serializable, NetSerializable]
-public sealed class TwistyCubeStateMessage(TwistyCubeState state) : BoundUserInterfaceMessage
-{
-    public readonly TwistyCubeState State = state;
-}

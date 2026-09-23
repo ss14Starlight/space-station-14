@@ -18,7 +18,8 @@ public sealed partial class TwistyCubeSystem: SharedTwistyCubeSystem
         TwistyCubeComponent comp = ent.Comp;
         comp.State.ApplyAction(action);
         Dirty(ent, comp);
-        var state = new TwistyCubeStateMessage(comp.State);
         // send the new state to the BUI that sent the TwistyCubeActionMessage
+        if (CompOrNull<UserInterfaceComponent>(ent) is {} uiComp)
+            _uiSystem.SetUiState(new Entity<UserInterfaceComponent?>(ent.Owner, uiComp), msg.UiKey, new TwistyCubeBoundUserInterfaceState(comp.State));
     }
 }

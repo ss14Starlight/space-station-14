@@ -1,6 +1,4 @@
-using Content.Shared._Starlight.TwistyCube;
-
-namespace Content.Server._Starlight.TwistyCube;
+namespace Content.Shared._Starlight.TwistyCube;
 
 [RegisterComponent]
 public sealed partial class TwistyCubeComponent : Component
