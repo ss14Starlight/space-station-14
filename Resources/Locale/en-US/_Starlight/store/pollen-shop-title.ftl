@@ -7,7 +7,6 @@ pollen-tree-bark-name = Bark
 pollen-tree-mushroom-name = Mushroom
 
 
-
 pollen-bark-t1-name = Make Wood
 pollen-bark-t1-desc = Cut off some of your body for fresh wood.
 pollen-bark-t2-name = Harden
@@ -16,3 +15,13 @@ pollen-bark-t3-name = Sap Serum
 pollen-bark-t3-desc = Cultivate an internal reservoir that slowly drips fertilizer into your bloodstream.
 
 pollen-bark-make-wood-confirm = Cut off a piece of yourself for wood? This will hurt.
+
+pollen-mushroom-t1-name = Phytovitalin
+pollen-mushroom-t1-desc = Cultivate an advanced fungal fertilizer that nourishes plants and accelerates their growth.
+
+pollen-mushroom-t2-name = Spore Hivemind
+pollen-mushroom-t2-desc = Connect your mind to the spores, allowing you to communicate with other Dionas over great distances.
+
+pollen-mushroom-t3-name = Spore Cloud
+pollen-mushroom-t3-desc = Release a dense cloud of spores that sends non-Dionas into an intense hallucinogenic stupor.
+

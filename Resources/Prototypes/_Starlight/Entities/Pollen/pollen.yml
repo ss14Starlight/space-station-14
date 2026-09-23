@@ -1,0 +1,25 @@
+- type: entity
+  parent: TearGasSmokeWhite
+  id: PollenSporeCloud
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Occluder
+
+- type: entity
+  id: PollenSporeCloudEmitter
+  name: spore cloud
+  description: An invisible pollen spore emitter.
+  noSpawn: true
+  components:
+  - type: SmokeOnTrigger
+    duration: 30
+    spreadAmount: 10
+    smokePrototype: PollenSporeCloud
+    solution:
+      reagents:
+      - ReagentId: Mycophylin
+        Quantity: 15
+  - type: EmitSoundOnTrigger
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
+    positional: true
+  - type: DeleteOnTrigger

@@ -18,6 +18,8 @@ using System.Linq;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Trigger.Systems;
+using Content.Shared._Starlight.Language.Components;
 
 namespace Content.Server._Starlight.Pollen.System;
 
@@ -38,12 +40,14 @@ public sealed partial class PollenShopSystem : EntitySystem
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
     [Dependency] private MobStateSystem _mobState = default!;
 
+    [Dependency] private TriggerSystem _trigger = default!;
+
+    private static readonly EntProtoId _sporeCloudEmitter = "PollenSporeCloudEmitter";
     private static readonly EntProtoId _hardenStatusEffect = "PollenTreeBarkT2PassiveHardenEffect";
-
     private static readonly EntProtoId _pollenShopAction = "ActionOpenPollenShop";
-
     private static readonly EntProtoId _woodPlankStack10 = "MaterialWoodPlank10";
     private const string HardenListingId = "PollenTreeBarkT2Harden";
+    private const string SporeHivemindListingId = "PollenTreeMushroomT2hivemind";
 
     /// <summary>
     /// Listings that grant a periodic reagent drip when bought, keyed by
@@ -52,7 +56,7 @@ public sealed partial class PollenShopSystem : EntitySystem
     /// </summary>
     private static readonly Dictionary<string, (ProtoId<ReagentPrototype> Reagent, float Amount, TimeSpan Interval)> _periodicReagentPerks = new()
     {
-        ["PollenTreeBarkT3SapSerum"] = ("RobustHarvest", 1f, TimeSpan.FromSeconds(30)),
+        ["PollenTreeBarkT3SapSerum"] = ("phytovitalin", 1f, TimeSpan.FromSeconds(30)),
     };
 
     public override void Initialize()
@@ -62,6 +66,7 @@ public sealed partial class PollenShopSystem : EntitySystem
         SubscribeLocalEvent<PollenCollectorComponent, PollenCollectorInitializedEvent>(OnCollectorInitialized);
         SubscribeLocalEvent<StorePurchaseCompletedEvent>(OnPurchaseCompleted);
         SubscribeLocalEvent<PollenCollectorComponent, MakeWoodEvent>(OnMakeWood);
+        SubscribeLocalEvent<PollenCollectorComponent, PollenSporeCloudEvent>(OnSporeCloud);
     }
 
     private void OnCollectorInitialized(Entity<PollenCollectorComponent> ent, ref PollenCollectorInitializedEvent args)
@@ -83,6 +88,10 @@ public sealed partial class PollenShopSystem : EntitySystem
         {
             GrantHardenArmor(args.Buyer);
         }
+        
+        
+        if (args.ListingId == SporeHivemindListingId)
+            GrantSporeHivemind(args.Buyer);
     }
 
     public override void Update(float frameTime)
@@ -130,5 +139,36 @@ public sealed partial class PollenShopSystem : EntitySystem
         var solution = new Solution();
         solution.AddReagent(reagent, amount);
         _bloodstream.TryAddToBloodstream((uid, bloodstream), solution);
+    }
+
+    // Mushroom
+
+    // T1
+
+    // T2
+
+    private void GrantSporeHivemind(EntityUid buyer)
+    {
+        var knowledge = EnsureComp<LanguageKnowledgeComponent>(buyer);
+
+        if (!knowledge.Speaks.Contains("Spore"))
+            knowledge.Speaks.Add("Spore");
+
+        if (!knowledge.Understands.Contains("Spore"))
+            knowledge.Understands.Add("Spore");
+
+        Dirty(buyer, knowledge);
+    }
+
+    // T3
+    private void OnSporeCloud(Entity<PollenCollectorComponent> ent, ref PollenSporeCloudEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        var emitter = Spawn(_sporeCloudEmitter, Transform(ent.Owner).Coordinates);
+        _trigger.Trigger(emitter, ent.Owner);
+
+        args.Handled = true;
     }
 }

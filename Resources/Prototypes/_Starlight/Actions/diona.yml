@@ -41,3 +41,18 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.95
+
+- type: entity
+  id: ActionSporeCloud
+  name: Spore Cloud
+  description: Release a cloud of mycophylin-laced spores around yourself.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: mush_spore_cloud
+    useDelay: 60
+  - type: InstantAction
+    event: !type:SporeCloudEvent {}

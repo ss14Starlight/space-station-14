@@ -12,6 +12,15 @@
         },
         {
             "name": "make_wood"
+        },
+        {
+            "name": "mush_spore_hivemind"
+        },
+        {
+            "name": "mush_injection_phytovitalin"
+        },
+        {
+            "name": "mush_spore_cloud"
         }
     ]
 }
