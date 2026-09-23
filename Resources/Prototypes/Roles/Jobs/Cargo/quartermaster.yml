@@ -8,7 +8,7 @@
       role: JobCargoTechnician
       time: 5h
     - !type:RoleTimeRequirement
-      role: JobSalvageSpecialist
+      role: JobMiningSpecialist
       time: 5h # Starlight
     - !type:DepartmentTimeRequirement
       department: Cargo
