@@ -1,0 +1,20 @@
+- type: !PartialOnly entity
+  id: BorgCharger
+  components:
+  - type: Charger
+    chargeRate: 30
+    slotId: entity_storage
+    whitelist:
+      components:
+      - BorgChassis
+      tags:
+      - IPC
+      - Drone
+  - type: EntityStorage
+    capacity: 1
+    whitelist:
+      components:
+      - BorgChassis
+      tags:
+      - IPC
+      - Drone
