@@ -9,6 +9,7 @@ using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Scent.Systems;
@@ -25,6 +26,7 @@ public abstract partial class SharedScentSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {
@@ -92,7 +94,7 @@ public abstract partial class SharedScentSystem : EntitySystem
     /// <param name="predicted">Whether this is a predicted, player-initiated sneeze.</param>
     public void Sneeze(Entity<SmellerComponent> ent, bool predicted = false)
     {
-        ClearTrackedScent(ent);
+        ClearTrackedScent(ent, predicted ? ScentTrackingStoppedReason.Sneeze : ScentTrackingStoppedReason.ForceSneeze);
         Audio.PlayPredicted(ent.Comp.SneezeSound, ent.Owner, predicted ? ent.Owner : null);
 
         var message = Loc.GetString("scent-sneeze-popup");
@@ -146,7 +148,7 @@ public abstract partial class SharedScentSystem : EntitySystem
         Dirty(ent);
     }
 
-    public void ClearTrackedScent(Entity<SmellerComponent> ent)
+    public void ClearTrackedScent(Entity<SmellerComponent> ent, ScentTrackingStoppedReason? reason = null)
     {
         if (ent.Comp.TrackedScentId is not { } scentId)
             return;
@@ -156,47 +158,57 @@ public abstract partial class SharedScentSystem : EntitySystem
 
         _statusEffects.TryRemoveStatusEffect(ent.Owner, ent.Comp.TrackStatusEffect);
 
-        LogTrackedScent(ent.Owner, scentId, began: false);
+        LogTrackedScent(ent.Owner, scentId, began: false, reason: reason);
 
         Dirty(ent);
     }
 
     private void OnTrackingStatusEffectEnded(Entity<TrackingScentStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
     {
+        if (!_net.IsServer)
+            return;
+
         if (!TryComp<SmellerComponent>(args.Target, out var smellerComp) || smellerComp.TrackedScentId == null)
             return;
 
         var timedOut = TryComp<StatusEffectComponent>(ent.Owner, out var effect) &&
             effect.EndEffectTime is { } endTime && _timing.CurTime >= endTime;
 
-        ClearTrackedScent((args.Target, smellerComp));
+        ClearTrackedScent((args.Target, smellerComp), timedOut ? ScentTrackingStoppedReason.Timeout : null);
 
         if (timedOut)
             Popup.PopupEntity(Loc.GetString("scent-track-fades-popup"), args.Target, args.Target);
     }
 
-    private void LogTrackedScent(EntityUid smeller, string scentId, bool began, EntityUid? source = null)
+    private void LogTrackedScent(EntityUid smeller, string scentId, bool began, EntityUid? source = null, ScentTrackingStoppedReason? reason = null)
     {
         var verb = began ? "began" : "stopped";
         var hasOwner = TryResolveScentOwner(scentId, out var owner);
+        var suffix = reason switch
+        {
+            ScentTrackingStoppedReason.Timeout => " (timed out)",
+            ScentTrackingStoppedReason.Sneeze => " (sneezed)",
+            ScentTrackingStoppedReason.ForceSneeze => " (forced sneeze)",
+            _ => "",
+        };
 
         if (source is { } src)
         {
             if (hasOwner)
                 _adminLogger.Add(LogType.Scent,
-                    $"{ToPrettyString(smeller):user} sniffed {ToPrettyString(src):source} and {verb} following scent trace belonging to {ToPrettyString(owner):target}.");
+                    $"{ToPrettyString(smeller):user} sniffed {ToPrettyString(src):source} and {verb} following scent trace belonging to {ToPrettyString(owner):target}{suffix}.");
             else
                 _adminLogger.Add(LogType.Scent,
-                    $"{ToPrettyString(smeller):user} sniffed {ToPrettyString(src):source} and {verb} following an untraceable scent trace.");
+                    $"{ToPrettyString(smeller):user} sniffed {ToPrettyString(src):source} and {verb} following an untraceable scent trace{suffix}.");
         }
         else if (hasOwner)
         {
             _adminLogger.Add(LogType.Scent,
-                $"{ToPrettyString(smeller):user} {verb} following scent trace belonging to {ToPrettyString(owner):target}.");
+                $"{ToPrettyString(smeller):user} {verb} following scent trace belonging to {ToPrettyString(owner):target}{suffix}.");
         }
         else
         {
-            _adminLogger.Add(LogType.Scent, $"{ToPrettyString(smeller):user} {verb} following an untraceable scent trace.");
+            _adminLogger.Add(LogType.Scent, $"{ToPrettyString(smeller):user} {verb} following an untraceable scent trace{suffix}.");
         }
     }
 
@@ -242,4 +254,11 @@ public abstract partial class SharedScentSystem : EntitySystem
     }
 
     public virtual void RandomizeScent(Entity<ScentComponent?> ent) { }
+}
+
+public enum ScentTrackingStoppedReason
+{
+    Timeout,
+    Sneeze,
+    ForceSneeze,
 }
