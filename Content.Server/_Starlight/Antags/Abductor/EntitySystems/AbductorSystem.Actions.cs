@@ -77,13 +77,8 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnReturn(AbductorReturnToShipEvent ev)
     {
-        // Check if abductor is stunned, cuffed, or dead - if so, cancel the return
+        // Check if abductor is stunned or cuffed- if so, cancel the return
 
-         if (_mobState.IsDead(ev.Performer))
-        {
-            _popup.PopupEntity(Loc.GetString("abductor-return-dead"), ev.Performer, ev.Performer);
-            return;
-        }
         if (HasComp<StunnedComponent>(ev.Performer))
         {
             _popup.PopupEntity(Loc.GetString("abductor-return-stunned"), ev.Performer, ev.Performer);
@@ -95,8 +90,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             _popup.PopupEntity(Loc.GetString("abductor-return-cuffed"), ev.Performer, ev.Performer);
             return;
         }
-
-
 
         AbductorAgentComponent? agentComp = null;
         if (!TryComp<AbductorScientistComponent>(ev.Performer, out var scientistComp) && !TryComp<AbductorAgentComponent>(ev.Performer, out agentComp))
