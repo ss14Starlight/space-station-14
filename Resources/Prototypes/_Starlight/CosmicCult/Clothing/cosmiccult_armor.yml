@@ -104,6 +104,7 @@
     sprite: _Starlight/CosmicCult/Clothing/cosmiccult_armor.rsi
   # - type: Tag
   #   tags:
+  #   - MonkeyWearable # WIP: Need sprites/displacements
   #   - ScurretWearable # WIP: Need sprites/displacements
   - type: PressureProtection
     highPressureMultiplier: 0.3
