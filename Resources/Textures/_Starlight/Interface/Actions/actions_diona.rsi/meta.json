@@ -9,6 +9,9 @@
     "states": [
         {
             "name": "open_shop"
+        },
+        {
+            "name": "make_wood"
         }
     ]
 }

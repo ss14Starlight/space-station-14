@@ -13,3 +13,31 @@
     checkConsciousness: false
   - type: InstantAction
     event: !type:IntrinsicStoreActionEvent {}
+
+- type: entity
+  id: PollenTreeBarkT1ActionMakeWood
+  name: Make Wood
+  description: Cut off some of your body for fresh wood. Deals damage to yourself.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: make_wood
+    useDelay: 30
+  - type: ConfirmableAction
+    popup: pollen-bark-make-wood-confirm
+  - type: InstantAction
+    event: !type:MakeWoodEvent {}
+
+- type: entity
+  id: PollenTreeBarkT2PassiveHardenEffect
+  components:
+  - type: StatusEffect
+  - type: BonusArmorStatusEffect
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95

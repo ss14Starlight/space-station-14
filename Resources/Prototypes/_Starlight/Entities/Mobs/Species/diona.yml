@@ -144,6 +144,8 @@
   - type: Store
     name: pollen-shop-title
     categories:
-    - PollenPerks
+    - PollenTreeFloral
+    - PollenTreeBark
+    - PollenTreeMushroom
     currencyWhitelist:
     - PollenPoints
