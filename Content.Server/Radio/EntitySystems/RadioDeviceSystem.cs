@@ -86,12 +86,12 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnSpeakerInit(EntityUid uid, RadioSpeakerComponent component, ComponentInit args)
     {
-        if (TryComp<ItemToggleComponent>(uid, out var toggle)) { // Starlight - support item toggle component
+        //Starlight begin
+        if (TryComp<ItemToggleComponent>(uid, out var toggle)) {
             component.Enabled = toggle.Activated;
             Dirty(uid, component);
         }
 
-        //Starlight begin
         if (component.Enabled)
         {
             var radio = EnsureComp<ActiveRadioComponent>(uid);
