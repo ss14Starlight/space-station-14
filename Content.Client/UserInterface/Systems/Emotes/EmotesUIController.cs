@@ -221,8 +221,9 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
             cloudOptions.Add(actionOption);
         }
 
+        // Starlight: Fixed wheel order
         var models = new List<RadialMenuOptionBase>();
-        foreach (var key in new[] { EmoteCategory.Hands, EmoteCategory.Vocal, EmoteCategory.General }) // Fixed wheel order
+        foreach (var key in new[] { EmoteCategory.Hands, EmoteCategory.Vocal, EmoteCategory.General })
         {
             if (!protosByCategory.TryGetValue(key, out var protos))
                 continue;
