@@ -1,5 +1,5 @@
 using Content.Shared._Goobstation.StationRadio.Components;
-using Content.Shared._Goobstation.StationRadio.Events; // Starlight - _Goob -> _Goobstation
+using Content.Shared._Goobstation.StationRadio.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Power;
