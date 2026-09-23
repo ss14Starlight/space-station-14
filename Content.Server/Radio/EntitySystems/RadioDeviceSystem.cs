@@ -263,7 +263,7 @@ public sealed partial class RadioDeviceSystem : SharedRadioDeviceSystem
 
     private void OnToggleIntercomMic(Entity<IntercomComponent> ent, ref ToggleIntercomMicMessage args)
     {
-        if (HasComp<ItemToggleComponent>(ent)) return;
+        if (HasComp<ItemToggleComponent>(ent)) return; // Starlight-edit
 
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
