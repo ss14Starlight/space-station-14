@@ -1,20 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Added Halon Gas Grenades. Works like Air Grenades but with a small amount of Halon. One is enough to put out a welder bombing fire in medium sized rooms, and does 95% of the job even in very large rooms. Also works decently on small trit/plasma fires. 1 is in each atmos locker and evac repair locker.
-    type: Add
-  id: 408425
-  time: '2026-09-08T11:58:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6027
-- author: Conflee
-  changes:
-  - message: Added a Cargo order for 'Atmos Gas Grenades Box', a box with 2 Halon Grenades, 4 Air Grenades, and 4 Metal Foam Grenades for $4200.
-    type: Add
-  id: 408426
-  time: '2026-09-08T11:58:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6027
-- author: Conflee
-  changes:
   - message: Moved many loose items in the Engineer's Locker and Atmospheric Technician's Locker into Locker Supply Boxes for each, to reduce locker clutter. 5-8 items packed into 1 box so there are less loose items.
     type: Tweak
   id: 408427
@@ -2799,4 +2785,18 @@ Entries:
   id: 408824
   time: '2026-09-23T10:29:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6256
+- author: Mack
+  changes:
+  - message: Fix borgs sometimes not getting the cosmetic chassis they want.
+    type: Fix
+  id: 408825
+  time: '2026-09-23T10:29:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6249
+- author: Mack
+  changes:
+  - message: Fix issue with Station AI slot being available, with no station AI container to enter.
+    type: Fix
+  id: 408826
+  time: '2026-09-23T10:29:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6249
 Order: -1
