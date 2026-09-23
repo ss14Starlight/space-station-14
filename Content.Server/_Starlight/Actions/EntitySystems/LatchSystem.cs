@@ -343,7 +343,7 @@ public sealed partial class LatchSystem : SharedLatchSystem
         }
 
         // Incapacitated (crit): pause damage, keep the pin active.
-        latchComp.TickPaused = ev.NewMobState == MobState.Critical;
+        latchComp.TickPaused = ev.NewMobState is MobState.Critical or MobState.SoftCritical;
     }
 
     /// <summary>
