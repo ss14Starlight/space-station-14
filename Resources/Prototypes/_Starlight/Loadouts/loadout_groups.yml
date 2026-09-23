@@ -54,6 +54,14 @@
   - ScarfPrideRainbow
   - ScarfPrideTrans
   - ScarfPrideLongBacon
+  - ScarfSolidRed
+  - ScarfSolidBlue
+  - ScarfSolidGreen
+  - ScarfSolidBlack
+  - ScarfSolidBrown
+  - ScarfSolidLightBlue
+  - ScarfSolidOrange
+  - ScarfSolidPurple
 
 - type: loadoutGroup
   id: Pins
