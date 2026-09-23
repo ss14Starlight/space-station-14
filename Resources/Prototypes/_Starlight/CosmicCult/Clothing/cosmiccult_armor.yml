@@ -39,6 +39,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    #- MonkeyWearable # WIP: Need sprites/displacements
     #- ScurretWearable # WIP: Need sprites/displacements
 #Shoulder mounted flashlight
   - type: ToggleableVisuals # Starlight Edit
