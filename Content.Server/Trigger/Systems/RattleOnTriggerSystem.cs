@@ -12,6 +12,7 @@ using Content.Shared.PDA;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Destructible;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -89,7 +90,6 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
                     if (TryComp<IdCardComponent>(item, out var id))
                     {
                         jobName = !string.IsNullOrWhiteSpace(id.LocalizedJobTitle) ? id.LocalizedJobTitle : jobName;
-                        break;
                     }
 
                     // PDA
@@ -98,8 +98,9 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
                         && TryComp(pda.ContainedId, out id))
                     {
                         jobName = !string.IsNullOrWhiteSpace(id.LocalizedJobTitle) ? id.LocalizedJobTitle : jobName;
-                        break;
                     }
+
+                    if (!jobName.Equals(Loc.GetString("rattle-on-trigger-job-unknown"))) break;
                 }
             }
         }
