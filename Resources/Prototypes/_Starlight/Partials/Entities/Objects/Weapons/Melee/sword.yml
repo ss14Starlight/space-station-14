@@ -38,7 +38,7 @@
   - type: ItemSwitch
     state: normal
     states:
-      sheathed: !type:ItemSwitchState
+      normal: !type:ItemSwitchState
         verb: normal
         sprite:
           sprite: Objects/Weapons/Melee/energykatana.rsi
@@ -60,12 +60,12 @@
           sound: /Audio/Weapons/star_hit.ogg
           offset: -0.15,0.0
         - type: Clothing
-          sprite: _Starlight/Objects/Weapons/Melee/energykatana.rsi
+          sprite: Objects/Weapons/Melee/energykatana.rsi
           slots:
           - Back
           - Belt
 
-      unsheathed: !type:ItemSwitchState
+      heated: !type:ItemSwitchState
         verb: heated
         sprite:
           sprite: _Starlight/Objects/Weapons/Melee/energykatana.rsi
