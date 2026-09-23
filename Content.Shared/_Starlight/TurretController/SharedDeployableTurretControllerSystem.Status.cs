@@ -6,7 +6,5 @@ public abstract partial class SharedDeployableTurretControllerSystem
     /// Returns whether the controller is restricted to displaying turret state.
     /// </summary>
     private static bool IsReadOnly(Entity<DeployableTurretControllerComponent> ent)
-    {
-        return ent.Comp.ReadOnly;
-    }
+        => ent.Comp.ReadOnly;
 }
