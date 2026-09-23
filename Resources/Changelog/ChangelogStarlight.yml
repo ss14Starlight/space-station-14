@@ -1,11 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Fixed the health examine texts for Cosmic Cult entities.
-    type: Fix
-  id: 408428
-  time: '2026-09-08T12:19:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6042
 - author: wonderfulnewworld, SlamBamActionman
   changes:
   - message: Dwarves are now shortened via sprite displacement, rather than being scaled.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408827
   time: '2026-09-23T10:29:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6261
+- author: DreadfulTaco
+  changes:
+  - message: Tweaked .40SP armor pen to match other SP ammo types.
+    type: Tweak
+  id: 408828
+  time: '2026-09-23T10:59:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6265
 Order: -1
