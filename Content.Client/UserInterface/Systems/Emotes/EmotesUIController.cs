@@ -37,10 +37,12 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
             [EmoteCategory.Cloud] = ("emote-menu-category-cloud", new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Effects/cloud_emotes.rsi"), "emote_mark")), // Starlight
         };
 
-    // Starlight: Emote sorting changes when new emotes are added. This is resolved by sorting them alphabetically.
+    #region Starlight
+
+    // Emote sorting changes when new emotes are added. This is resolved by sorting them alphabetically.
 	// However, this still messes with people's muscle memory of how they were laid out before, so this is a known-good sort.
 	// New emotes are appended at the end of this list reverse alphabetically.
-    private static readonly Dictionary<EmoteCategory, string[]> EmoteSnapshotOrder = new()
+    private static readonly Dictionary<EmoteCategory, ProtoId<EmotePrototype>[]> EmoteSnapshotOrder = new()
     {
         [EmoteCategory.Hands] =
         [
@@ -65,7 +67,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
     {
         if (EmoteSnapshotOrder.TryGetValue(category, out var order))
         {
-            var index = Array.IndexOf(order, id);
+            var index = Array.IndexOf(order, (ProtoId<EmotePrototype>) id);
             if (index >= 0)
                 return index;
         }
@@ -79,6 +81,8 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
             return rank;
         return string.Compare(Loc.GetString(b.Name), Loc.GetString(a.Name), StringComparison.OrdinalIgnoreCase);
     }
+
+    #endregion
 
     public void OnStateEntered(GameplayState state)
     {
@@ -182,6 +186,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
         var whitelistSystem = EntitySystemManager.GetEntitySystem<EntityWhitelistSystem>();
         var player = _playerManager.LocalSession?.AttachedEntity;
 
+        // Starlight-start
         Dictionary<EmoteCategory, List<EmotePrototype>> protosByCategory = new();
         foreach (var emote in emotePrototypes)
         {
@@ -239,6 +244,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
                     ToolTip = Loc.GetString(emote.Name)
                 });
             }
+            // Starlight-end
 
             var tuple = EmoteGroupingInfo[key];
 
