@@ -164,36 +164,6 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
         // Starlight end
     }
 
-    #region Starlight
-    private RayCastResults? TryFindCover(
-        Entity<HitscanBasicRaycastComponent> hitscan,
-        MapCoordinates from,
-        Vector2 direction,
-        EntityUid shooter,
-        float maxDistance)
-    {
-        if (maxDistance <= 0f)
-            return null;
-
-        var ray = new CollisionRay(from.Position, direction, (int)CollisionGroup.BulletImpassable);
-
-        foreach (var hit in _physics.IntersectRay(from.MapId, ray, maxDistance, shooter, false))
-        {
-            if (hit.Distance <= 0)
-                continue;
-
-            if (!HasComp<ProjectileCoverComponent>(hit.HitEntity))
-                continue;
-
-            if (_cover.IsShotStopped(hit.HitEntity, hitscan.Owner, shooter, hit.Distance))
-                return hit;
-        }
-
-        return null;
-    }
-
-    #endregion
-
     private HitscanTrace GenerateTraceStep(EntityCoordinates fromCoordinates, float distance, Angle shotAngle, EntityUid? entity = null)// Starlight-edit
     {
         var fromXform = Transform(fromCoordinates.EntityId);
