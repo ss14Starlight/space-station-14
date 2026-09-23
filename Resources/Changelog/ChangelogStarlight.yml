@@ -1,13 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Packed) Mining Dock tweaked to be a bit better.
-    type: Tweak
-  id: 408422
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
   - message: (Packed) All grass now blocks weather. Chickens rejoice!
     type: Fix
   id: 408423
@@ -2799,4 +2792,11 @@ Entries:
   id: 408821
   time: '2026-09-23T09:21:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6184
+- author: Hitlinemoss, Xale
+  changes:
+  - message: Unknown shuttles and most antagonist ghostroles no longer spawn while the evac shuttle is inbound, docked, or in transit.
+    type: Tweak
+  id: 408822
+  time: '2026-09-23T09:47:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6232
 Order: -1
