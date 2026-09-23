@@ -12,6 +12,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Components;
 using Content.Shared.NPC;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
@@ -98,6 +99,7 @@ public sealed partial class CosmicBlankSystem : EntitySystem
                     continue;
                 mind.PreventGhosting = false;
                 _mind.TransferTo(mindEnt, comp.OriginalBody);
+                EnsureComp<InputMoverComponent>(comp.OriginalBody);
                 RemComp<CosmicBlankComponent>(comp.OriginalBody);
                 RemComp<CosmicCultExamineComponent>(comp.OriginalBody);
                 _popup.PopupEntity(Loc.GetString("cosmicability-blank-return"), comp.OriginalBody, comp.OriginalBody);
