@@ -21,13 +21,13 @@ Keep in mind:
 - Only [bold]one proposal[/bold] can be active at a time.
 - Most requests have a [bold]fee[/bold] drawn from your account when submitted; this is held until the proposal resolves.
 - Certain requests are [bold]one-time-use[/bold] per shift and cannot be re-submitted once used.
-- You and all co-authorizers must [bold]stay and keep your terminal windows open[/bold] until the request is fully authorized and approved. Closing the window cancels the request (for the requester) or revokes your authorization.
+- You and all co-authorizers must [bold]stay and keep your terminal windows open[/bold] until all required co-authorizations are gathered. Closing the window cancels the request (for the requester) or revokes your authorization.
 
 ## Co-Authorization
 
 Most requests require more than one person to approve them before anything happens. This is where the [color=#ffd700]Keycard Authentication Devices[/color] come in.
 
-The Captain and Every head of staff has one of these devices installed in their office. When a proposal is active, the authentication device will light up [color=blue]blue[/color]. A co-authorizer can walk up to it, and add their authorization to the pending request.
+The Captain and every head of staff has one of these devices installed in their office. When a proposal is active, the authentication device will light up [color=blue]blue[/color]. A co-authorizer can walk up to it, and add their authorization to the pending request.
 
 All Keycard Authentication Devices on the station are identical; they are not tied to a specific head of staff. Any command member with the right access can walk up to [italic]any[/italic] device, regardless of whose office it is in, and use it to co-authorize a pending proposal.
 
@@ -39,7 +39,7 @@ There is [bold]no time limit[/bold] for gathering co-authorizations. However, ac
 - If the [bold]requester closes their window[/bold], the pending proposal is immediately cancelled and any held fee is refunded.
 - If a [bold]co-authorizer closes their window[/bold] before all authorizations are collected, their authorization is revoked. If all authorizations are lost, the proposal cancels.
 
-Once all required co-authorizations are collected, the proposal enters its [bold]activation phase[/bold] and begins its countdown. At this point, the requester and authorizers can safely close their terminal windows. The request will then activate automatically when the timer runs out, unless it requires approval from Central Command.
+Once all required co-authorizations are collected, the requester and authorizers can safely close their terminal windows. The proposal will then begin its countdown (or await Central Command approval if required), activating automatically when the timer runs out.
 
 ## A Few Things Worth Knowing
 

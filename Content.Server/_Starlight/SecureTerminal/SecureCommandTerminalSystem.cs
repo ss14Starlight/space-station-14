@@ -70,6 +70,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
     [Dependency] private EuiManager _euiManager = default!;
 
     private static readonly TimeSpan UIUpdateInterval = TimeSpan.FromSeconds(5.0);
+    private static readonly SoundPathSpecifier AdminAlarmSound = new("/Audio/Misc/adminlarm.ogg");
 
     private readonly Dictionary<(EntityUid StationUid, string RequestId), HashSet<SecureTerminalAdminApprovalEui>> _adminApprovalEuis = new();
 
@@ -812,7 +813,7 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                     OpenAdminApprovalEuis(stationUid, requestId, proto, proposal);
                     _chat.DispatchGlobalAnnouncement(Loc.GetString("secure-terminal-awaiting-admin", ("request", Loc.GetString(proto.Name))), colorOverride: proto.AnnouncementColor);
                     _chatManager.SendAdminAlert(Loc.GetString("secure-terminal-admin", ("request", Loc.GetString(proto.Name)), ("reason", proposal.Reason)));
-                    _audio.PlayGlobal("/Audio/Misc/adminlarm.ogg",
+                    _audio.PlayGlobal(AdminAlarmSound,
                         Filter.Empty().AddPlayers(_adminManager.ActiveAdmins),
                         false,
                         AudioParams.Default.WithVolume(-8f));

@@ -359,7 +359,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
             {
                 var backBtn = new Button
                 {
-                    Text = $"Back to {Loc.GetString(parentProto.Name)}",
+                    Text = Loc.GetString(parentProto.Name),
                     HorizontalExpand = true,
                     Margin = new Thickness(0, 2, 0, 0),
                 };
