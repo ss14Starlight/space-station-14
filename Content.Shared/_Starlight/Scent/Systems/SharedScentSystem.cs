@@ -6,6 +6,7 @@ using Content.Shared.Database;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.StatusEffect;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Starlight.Scent.Systems;
@@ -20,6 +21,7 @@ public abstract partial class SharedScentSystem : EntitySystem
     [Dependency] protected SharedPopupSystem Popup = default!;
     [Dependency] protected MobStateSystem MobState = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {
@@ -30,6 +32,7 @@ public abstract partial class SharedScentSystem : EntitySystem
         SubscribeLocalEvent<SmellerComponent, ToggleSniffActionEvent>(OnToggleSniff);
         SubscribeLocalEvent<SmellerComponent, SneezeActionEvent>(OnSneeze);
         SubscribeLocalEvent<SmellerComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<SmellerComponent, StatusEffectEndedEvent>(OnTrackingStatusEffectEnded);
     }
 
     private void OnMobStateChanged(Entity<SmellerComponent> ent, ref MobStateChangedEvent args)
@@ -58,6 +61,7 @@ public abstract partial class SharedScentSystem : EntitySystem
         Actions.RemoveAction(ent.Owner, ent.Comp.ToggleActionEntity);
         Actions.RemoveAction(ent.Owner, ent.Comp.SneezeActionEntity);
         Actions.RemoveAction(ent.Owner, ent.Comp.SniffObjectActionEntity);
+        _statusEffects.TryRemoveStatusEffect(ent.Owner, ent.Comp.TrackStatusEffect);
     }
 
     private void OnToggleSniff(Entity<SmellerComponent> ent, ref ToggleSniffActionEvent args)
@@ -134,6 +138,8 @@ public abstract partial class SharedScentSystem : EntitySystem
 
         LogTrackedScent(ent.Owner, scentId, began: true, source);
 
+        _statusEffects.TryAddStatusEffect(ent.Owner, ent.Comp.TrackStatusEffect, ent.Comp.TrackDuration, refresh: true);
+
         Dirty(ent);
     }
 
@@ -145,9 +151,22 @@ public abstract partial class SharedScentSystem : EntitySystem
         ent.Comp.TrackedScentId = null;
         Actions.RemoveAction(ent.Owner, ent.Comp.SneezeActionEntity);
 
+        _statusEffects.TryRemoveStatusEffect(ent.Owner, ent.Comp.TrackStatusEffect);
+
         LogTrackedScent(ent.Owner, scentId, began: false);
 
         Dirty(ent);
+    }
+
+    // TrackedScentId is nulled before ClearTrackedScent removes the status effect, so if it's
+    // still set here the timer ran out naturally rather than being cleared some other way.
+    private void OnTrackingStatusEffectEnded(EntityUid uid, SmellerComponent component, StatusEffectEndedEvent args)
+    {
+        if (args.Key != component.TrackStatusEffect || component.TrackedScentId == null)
+            return;
+
+        ClearTrackedScent((uid, component));
+        Popup.PopupEntity(Loc.GetString("scent-track-fades-popup"), uid, uid);
     }
 
     private void LogTrackedScent(EntityUid smeller, string scentId, bool began, EntityUid? source = null)

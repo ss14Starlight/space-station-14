@@ -4,3 +4,7 @@
 - type: statusEffect
   id: Doomed
   alert: Doomed
+
+- type: statusEffect
+  id: TrackingScent
+  alert: TrackingScent

@@ -142,14 +142,24 @@ public sealed partial class ScentSystem : SharedScentSystem
         var entries = new List<ScentTraceEntry>(trace?.Scents.Count ?? 0);
         if (trace != null)
         {
+            // Partial perceivers judge freshness against a shorter window than the real one.
+            var effectiveLifetime = component.Perception == ScentPerception.Partial
+                ? trace.TraceLifetime * trace.PartialFreshnessFraction
+                : trace.TraceLifetime;
+
             foreach (var (scentId, info) in trace.Scents)
             {
-                var speciesName = Loc.GetString("scent-species-non-humanoid");
-                if (info.Species != null && _prototype.TryIndex<SpeciesPrototype>(info.Species, out var species))
-                    speciesName = Loc.GetString(species.Name);
+                // Partial perceivers can't make out species from a trace at all.
+                var speciesName = string.Empty;
+                if (component.Perception != ScentPerception.Partial)
+                {
+                    speciesName = Loc.GetString("scent-species-non-humanoid");
+                    if (info.Species != null && _prototype.TryIndex<SpeciesPrototype>(info.Species, out var species))
+                        speciesName = Loc.GetString(species.Name);
+                }
 
                 var age = (float)(now - info.LastTouched).TotalSeconds;
-                entries.Add(new ScentTraceEntry(scentId, GetFreshness(age, trace.TraceLifetime), speciesName));
+                entries.Add(new ScentTraceEntry(scentId, GetFreshness(age, effectiveLifetime), speciesName));
             }
         }
 
