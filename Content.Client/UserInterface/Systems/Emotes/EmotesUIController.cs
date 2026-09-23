@@ -244,7 +244,6 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
                     ToolTip = Loc.GetString(emote.Name)
                 });
             }
-            // Starlight-end
 
             var tuple = EmoteGroupingInfo[key];
 
@@ -265,6 +264,7 @@ public sealed partial class EmotesUIController : UIController, IOnStateChanged<G
                 ToolTip = Loc.GetString(tuple.Tooltip)
             });
         }
+        // Starlight-end
 
         return models;
     }
