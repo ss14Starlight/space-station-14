@@ -133,6 +133,7 @@
     tags:
     - Sidearm
     - ToySidearm
+  - type: CanDualWield # starlight
   - type: AmmoCounter
     # starlight start
   - type: MeleeWeapon
@@ -175,6 +176,8 @@
   id: RevolverCapGunFake
   suffix: Lethal # Starlight - Fake -> Lethal to make it obvious to mappers which one shoots actual bullets
   components:
+  - type: CanDualWield # starlight
+    enabled: false # starlight, genuinely does crazy damage, destroys a whole wall
   - type: RevolverAmmoProvider
     whitelist:
       tags:
