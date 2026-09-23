@@ -399,7 +399,7 @@
   actionType: AlertLevel
   alertLevel: green
   requiresAlertLevel: gamma
-  requiresAlertActiveMinutes: 15
+  requiresAlertActiveMinutes: 10
   sortOrder: 12
   authSchemes:
     - id: SecurityLeadership
@@ -456,7 +456,7 @@
   actionType: AlertLevel
   alertLevel: green
   requiresAlertLevel: psi
-  requiresAlertActiveMinutes: 15
+  requiresAlertActiveMinutes: 10
   sortOrder: 22
   authSchemes:
     - id: AiLeadership
@@ -504,20 +504,6 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  vetoSchemes:
-    - id: Captain
-      name: secure-terminal-captain-name
-      groups:
-        - [Captain]
-    - id: RD
-      name: secure-terminal-research-director-name
-      groups:
-        - [ResearchDirector]
-    - id: Command
-      name: secure-terminal-command-name
-      groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
   cooldownSecs: 3600
 
 # ── Psi Armory ────────────────────────────────────────────────────────────────
@@ -551,20 +537,6 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  vetoSchemes:
-    - id: Captain
-      name: secure-terminal-captain-name
-      groups:
-        - [Captain]
-    - id: RD
-      name: secure-terminal-research-director-name
-      groups:
-        - [ResearchDirector]
-    - id: Command
-      name: secure-terminal-command-name
-      groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
   cooldownSecs: 3600
 
 # ── Emergency Medical Pod ─────────────────────────────────────────────────────
@@ -581,6 +553,7 @@
       change: -0.05
   actionType: Armory
   armoryKey: medical
+  recallMinDelaySecs: 120
   sortOrder: 30
   authSchemes:
     - id: MedicalLeadership
@@ -592,20 +565,6 @@
       name: secure-terminal-command-name
       groups:
         - [Command, Ntrep]
-        - [Command, Ntrep]
-        - [Command, Ntrep]
-  vetoSchemes:
-    - id: Captain
-      name: secure-terminal-captain-name
-      groups:
-        - [Captain]
-    - id: CMO
-      name: secure-terminal-chief-medical-officer-name
-      groups:
-        - [ChiefMedicalOfficer]
-    - id: Command
-      name: secure-terminal-command-name
-      groups:
         - [Command, Ntrep]
         - [Command, Ntrep]
   cooldownSecs: 3600
@@ -728,20 +687,6 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  vetoSchemes:
-    - id: Captain
-      name: secure-terminal-captain-name
-      groups:
-        - [Captain]
-    - id: HoS
-      name: secure-terminal-head-of-security-name
-      groups:
-        - [HeadOfSecurity]
-    - id: Command
-      name: secure-terminal-command-name
-      groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
   cooldownSecs: 600
 
 # ── Dismiss ITG Salvage Team ──────────────────────────────────────────────────
@@ -794,20 +739,6 @@
         - [Command, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]
-  vetoSchemes:
-    - id: Captain
-      name: secure-terminal-captain-name
-      groups:
-        - [Captain]
-    - id: HoS
-      name: secure-terminal-head-of-security-name
-      groups:
-        - [HeadOfSecurity]
-    - id: Command
-      name: secure-terminal-command-name
-      groups:
-        - [Command, Ntrep]
-        - [Command, Ntrep]
 
 # ── Self Destruct Code ─────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -838,17 +769,5 @@
       groups:
         - [Captain, Ntrep]
         - [Command, Ntrep]
-        - [Command, Ntrep]
-        - [Command, Ntrep]
-  vetoSchemes:
-    - id: CaptainAndCommand
-      name: secure-terminal-command-name
-      groups:
-        - [Captain]
-        - [Command, Ntrep]
-    - id: SecurityAndCommand
-      name: secure-terminal-security-and-command-name
-      groups:
-        - [HeadOfSecurity, Ntrep]
         - [Command, Ntrep]
         - [Command, Ntrep]

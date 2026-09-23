@@ -203,6 +203,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
             RequestButton.Disabled = true;
             AuthorizeButton.Disabled = true;
             DenyButton.Disabled = true;
+            DenyButton.Text = Loc.GetString("secure-terminal-deny-button");
             RecallButton.Visible = false;
             RecallButton.Disabled = true;
             ChildActionsContainer.RemoveAllChildren();
@@ -391,6 +392,9 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
                 && proto.VetoSchemes.Count > 0
                 && proposal.ActivateAt > _timing.CurTime;
             DenyButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending && !vetoAvailable;
+            DenyButton.Text = (proposal.Status == SecureTerminalProposalStatus.Activating && vetoAvailable)
+                ? Loc.GetString("secure-terminal-rescind-button")
+                : Loc.GetString("secure-terminal-deny-button");
         }
     }
 

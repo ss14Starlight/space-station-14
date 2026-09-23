@@ -478,13 +478,6 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
         if (deniedProposal.Status == SecureTerminalProposalStatus.Activating)
         {
             if (deniedProposal.UsedVetoTerminals.Contains(uid))
-                return;
-            _roundStatistics.RecordSecureTerminalOutcome(msg.RequestId, proto.ActionType, SecureTerminalResult.Denied);
-
-            _chatManager.SendAdminAnnouncement(
-                $"Secure Terminal — {MetaData(actor).EntityName} ({GetJobName(actor)}) DENIED / cancelled: {Loc.GetString(proto.Name)}.");
-
-            if (proto.ProposalAnnouncement)
             {
                 _popup.PopupCursor(Loc.GetString("secure-terminal-already-activated"), actor, PopupType.Medium);
                 return;
@@ -492,9 +485,26 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
 
             if (!deniedProposal.ActivateAt.HasValue || deniedProposal.ActivateAt.Value <= _timing.CurTime || proto.VetoSchemes.Count == 0 ||
                 !TryVeto(actor, deniedProposal, proto, uid))
+            {
                 _popup.PopupCursor(Loc.GetString("secure-terminal-request-denied"), actor, PopupType.Medium);
-            else if (HasVeto(deniedProposal, proto))
+                return;
+            }
+
+            _adminLog.Add(LogType.Action, LogImpact.Medium,
+                $"{ToPrettyString(actor):player} signed rescind order for secure terminal proposal: {msg.RequestId}");
+
+            _chatManager.SendAdminAnnouncement(
+                $"Secure Terminal — {MetaData(actor).EntityName} ({GetJobName(actor)}) signed RESCIND for: {Loc.GetString(proto.Name)}.");
+
+            if (HasVeto(deniedProposal, proto))
+            {
+                _roundStatistics.RecordSecureTerminalOutcome(msg.RequestId, proto.ActionType, SecureTerminalResult.Denied);
                 CancelProposal(stationUid.Value, stationComp, msg.RequestId, deniedProposal, uid, actor, comp.Admin, true);
+            }
+            else
+            {
+                UpdateAllConsolesForStation(stationUid.Value);
+            }
             return;
         }
 
