@@ -23,6 +23,8 @@ public sealed partial class TwistyCubeControl : Control
         MinSize = new(512, 256);
     }
 
+    public TwistyCubeState CubeState = new();
+
     protected override void Draw(DrawingHandleScreen handle)
     {
         void DrawPart(string name, TwistyCubeColor side)

@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseItem
+  id: Twisty Cube
+  name: twisty cube
+  description: 4.325*10^19 different combinations!
+  components:
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Fun/bottleship.rsi
+    - type: Sprite
+      sprite: _Starlight/Objects/Fun/bottleship.rsi
+      state: icon
+    - type: UserInterface
+      interfaces:
+        enum.TwistyCubeUiKey.Key:
+          type: TwistyCubeBoundUserInterface
+    - type: ActivatableUI
+      inHandsOnly: true
+      key: enum.TwistyCubeUiKey.Key
+    - type: TwistyCube

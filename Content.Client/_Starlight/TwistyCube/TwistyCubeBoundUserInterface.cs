@@ -12,7 +12,7 @@ public sealed class TwistyCubeBoundUserInterface : BoundUserInterface
         SendMessage(new TwistyCubeActionMessage(TwistyCubeAction.RequestData));
     }
 
-    public void SendAction(TwistyCubeAction action) // Starlight-edit
+    public void SendAction(TwistyCubeAction action)
     {
         SendMessage(new TwistyCubeActionMessage(action));
     }
