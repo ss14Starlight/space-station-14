@@ -58,7 +58,7 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
 
         #region Starlight
         // Gets the job title of the user in the manifest
-        var station = _station.GetOwningStation(ent);
+        var station = _station.GetOwningStation(ent); // This has the perhaps unintuitive behavior of not showing the job of anyone off station
         var jobName = Loc.GetString("rattle-on-trigger-job-unknown");
         if (TryComp<StationRecordsComponent>(station, out var stationRecords))
         {
