@@ -23,6 +23,8 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
     public event Action<string>? OnRecall;
 
     private string? _selectedRequestId;
+    private Button? _selectedRequestButton;
+    private readonly Dictionary<string, Button> _requestButtons = new();
     private SecureCommandTerminalInterfaceState? _lastState;
 
     // Double-click tracking for the Request button
@@ -55,17 +57,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         if (_lastState == null || _selectedRequestId == null) return;
 
         var proposal = _lastState.Proposals.Find(p => p.RequestId == _selectedRequestId);
-        if (proposal is { Status: SecureTerminalProposalStatus.Pending, AuthTimer: not null })
-        {
-            var remaining = proposal.AuthTimer.Value - _timing.CurTime;
-            if (remaining <= TimeSpan.Zero)
-                remaining = TimeSpan.Zero;
-            CountdownLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("secure-terminal-pending-countdown-label",
-                ("minutes", (int)remaining.TotalMinutes),
-                ("seconds", remaining.Seconds))));
-            CountdownLabel.Visible = true;
-        }
-        else if (proposal is { Status: SecureTerminalProposalStatus.Activating, ActivateAt: not null })
+        if (proposal is { Status: SecureTerminalProposalStatus.Activating, ActivateAt: not null })
         {
             var remaining = proposal.ActivateAt.Value - _timing.CurTime;
             if (remaining <= TimeSpan.Zero)
@@ -84,12 +76,17 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
     public void UpdateState(SecureCommandTerminalInterfaceState state)
     {
         _lastState = state;
-        RebuildRequestList(state);
+        if (_requestButtons.Count == 0)
+            RebuildRequestList(state);
+        else
+            UpdateRequestButtons(state);
         RefreshRightPanel(state);
     }
 
     private void RebuildRequestList(SecureCommandTerminalInterfaceState state)
     {
+        _selectedRequestButton = null;
+        _requestButtons.Clear();
         RequestListContainer.RemoveAllChildren();
 
         var allProtos = _protos.EnumeratePrototypes<SecureCommandTerminalRequestPrototype>()
@@ -129,7 +126,6 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         {
             Text = $"{prefix}{Loc.GetString(proto.Name)}{statusSuffix}",
             Disabled = false, // still clickable to read info
-            ToggleMode = true,
             Pressed = _selectedRequestId == proto.ID,
             Margin = indent ? new Thickness(12, 1, 0, 1) : new Thickness(0, 2),
             MinHeight = 28,
@@ -140,16 +136,47 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
             btn.ModulateSelfOverride = Color.FromHex("#cc3333");
 
         var protoId = proto.ID; // capture
-        btn.OnToggled += args =>
+        // Changed to pressed because toggle did horrible things
+        btn.OnPressed += _ =>
         {
-            if (!args.Pressed) return;
+            if (_selectedRequestButton is { } previousButton)
+                previousButton.Pressed = false;
+
             _selectedRequestId = protoId;
+            _selectedRequestButton = btn;
+            btn.Pressed = true;
             _pendingConfirmId = null;
-            RebuildRequestList(_lastState!);
             RefreshRightPanel(_lastState!);
         };
 
         RequestListContainer.AddChild(btn);
+        _requestButtons[proto.ID] = btn;
+    }
+
+    private void UpdateRequestButtons(SecureCommandTerminalInterfaceState state)
+    {
+        foreach (var proto in _protos.EnumeratePrototypes<SecureCommandTerminalRequestPrototype>())
+        {
+            if (!_requestButtons.TryGetValue(proto.ID, out var button))
+                continue;
+
+            var isUsed = state.UsedOnce.Contains(proto.ID);
+            var onCooldown = state.CoolingDown.ContainsKey(proto.ID);
+            var wrongAlert = proto.RequiresAlertLevel != null && state.CurrentAlertLevel != proto.RequiresAlertLevel;
+            var needsWar = proto.RequiresWarDeclared && !state.IsWarDeclared;
+            var needsNoWar = proto.RequiresWarNotDeclared && state.IsWarDeclared;
+            var alertMinutesElapsed = (_timing.CurTime - state.AlertLevelSetAt).TotalMinutes;
+            var alertNotLongEnough = proto.RequiresAlertActiveMinutes > 0 && alertMinutesElapsed < proto.RequiresAlertActiveMinutes;
+            var isDeployed = state.DeployedArmories.ContainsKey(proto.ID);
+            var proposal = state.Proposals.Find(p => p.RequestId == proto.ID);
+
+            button.Text = $"- {Loc.GetString(proto.Name)}{GetStatusSuffix(proposal, onCooldown, isUsed, wrongAlert, needsWar, proto.RequiresAlertLevel, isDeployed)}";
+            button.ModulateSelfOverride = isDeployed
+                ? Color.FromHex("#33aa55")
+                : isUsed || needsWar || needsNoWar || onCooldown || wrongAlert || alertNotLongEnough
+                    ? Color.FromHex("#cc3333")
+                    : null;
+        }
     }
 
     private string GetStatusSuffix(SecureTerminalProposalState? proposal, bool onCooldown, bool usedOnce,
@@ -236,7 +263,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
 
         InfoLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
             $"{Loc.GetString(proto.Description)}" +
-            (proto.SalaryPenalty > 0 ? $"\n{Loc.GetString("secure-terminal-salary-note", ("penalty", (int)(proto.SalaryPenalty * 100)))}" : string.Empty) +
+            GetSalaryModifierNote(proto) +
             (proto.Fee > 0 ? $"\n{Loc.GetString("secure-terminal-fee-note", ("fee", proto.Fee))}" : string.Empty) +
             (proto.ActivationDelaySecs <= 0
                 ? $"\n{Loc.GetString("secure-terminal-delay-note-immediate")}"
@@ -281,6 +308,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
                 RecallButton.Disabled = true;
                 RecallButton.Text = Loc.GetString("secure-terminal-recall-locked", ("minutes", minsLeft));
             }
+
             else
             {
                 RecallButton.Disabled = false;
@@ -294,10 +322,17 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         }
 
         RequestButton.Disabled = !canRequest;
-        // Reset confirm state whenever the right panel refreshes
-        RequestButton.Text = Loc.GetString("secure-terminal-request-button");
-        RequestButton.StyleClasses.Remove(StyleClass.Negative);
-        _pendingConfirmId = null;
+        if (_pendingConfirmId == proto.ID && canRequest)
+        {
+            RequestButton.Text = Loc.GetString("secure-terminal-request-button-confirm");
+            RequestButton.StyleClasses.Add(StyleClass.Negative);
+        }
+        else
+        {
+            RequestButton.Text = Loc.GetString("secure-terminal-request-button");
+            RequestButton.StyleClasses.Remove(StyleClass.Negative);
+            _pendingConfirmId = null;
+        }
 
         // Child action buttons (e.g. End GAMMA Alert nested under Code GAMMA)
         ChildActionsContainer.RemoveAllChildren();
@@ -338,52 +373,139 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         if (proposal == null)
         {
             AuthDescLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("secure-terminal-auth-waiting")));
-            AuthorizerListContainer.RemoveAllChildren();
+            RebuildAuthorizationPreview(proto);
             AuthorizeButton.Disabled = true;
             DenyButton.Disabled = true;
         }
         else
         {
-            var approvals = proposal.GroupsSatisfied.Count(s => s);
-            var total = proposal.GroupLabels.Count;
             AuthDescLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
-                $"[bold]{approvals} / {total}[/bold] Authorized  —  " +
-                $"[color=red]\u25cf[/color] pending  [color=green]\u25cf[/color] approved:"));
-            RebuildAuthorizerList(proposal);
+                Loc.GetString("secure-terminal-auth-desc")));
+            if (proposal.Status == SecureTerminalProposalStatus.Activating)
+                RebuildAuthorizedList(proposal);
+            else
+                RebuildAuthorizerList(proposal);
 
             AuthorizeButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending;
-            DenyButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending;
+            var vetoAvailable = proposal.Status == SecureTerminalProposalStatus.Activating
+                && proto.VetoSchemes.Count > 0
+                && proposal.ActivateAt > _timing.CurTime;
+            DenyButton.Disabled = proposal.Status != SecureTerminalProposalStatus.Pending && !vetoAvailable;
         }
+    }
+
+    private void RebuildAuthorizedList(SecureTerminalProposalState proposal)
+    {
+        AuthorizerListContainer.RemoveAllChildren();
+
+        var authorizedBy = string.Join(", ", proposal.AuthorizedBy.Select(authorizer =>
+            string.IsNullOrEmpty(authorizer.Job)
+                ? authorizer.Name
+                : $"{authorizer.Name} ({authorizer.Job})"));
+        var authorizedByLabel = new RichTextLabel
+        {
+            HorizontalExpand = true
+        };
+        authorizedByLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
+            $"{Loc.GetString("secure-terminal-authorized-by-label")} {authorizedBy}"));
+        AuthorizerListContainer.AddChild(authorizedByLabel);
+
+        if (proposal.VetoSchemes.Count > 0)
+        {
+            var vetoHeader = new RichTextLabel();
+            vetoHeader.SetMessage(FormattedMessage.FromMarkupOrThrow(
+                $"[bold]{Loc.GetString("secure-terminal-veto-label")}[/bold]"));
+            AuthorizerListContainer.AddChild(vetoHeader);
+            AddSchemeStates(proposal.VetoSchemes);
+        }
+    }
+
+    private void RebuildAuthorizationPreview(SecureCommandTerminalRequestPrototype proto)
+    {
+        AuthorizerListContainer.RemoveAllChildren();
+
+        foreach (var scheme in proto.AuthSchemes)
+        {
+            var schemeName = string.IsNullOrWhiteSpace(scheme.Name)
+                ? scheme.Id
+                : Loc.GetString(scheme.Name);
+            var schemeHeader = new RichTextLabel();
+            schemeHeader.SetMessage(FormattedMessage.FromMarkupOrThrow(
+                $"[bold]{schemeName} — {scheme.Groups.Count}[/bold]"));
+            AuthorizerListContainer.AddChild(schemeHeader);
+
+            foreach (var group in scheme.Groups)
+            {
+                var label = new RichTextLabel();
+                label.SetMessage(FormattedMessage.FromMarkupOrThrow(string.Join(" / ", group)));
+                AuthorizerListContainer.AddChild(label);
+            }
+        }
+    }
+
+    private static string GetSalaryModifierNote(SecureCommandTerminalRequestPrototype proto)
+    {
+        var changes = proto.SalaryModifiers
+            .Where(modifier => modifier.Change != 0)
+            .Select(modifier => $"- {modifier.Source}: {modifier.Change * 100:+0.#;-0.#;0}%");
+        var changeText = string.Join("\n", changes);
+        return string.IsNullOrEmpty(changeText)
+            ? string.Empty
+            : $"\n{Loc.GetString("secure-terminal-salary-note")}\n{changeText}";
     }
 
     private void RebuildAuthorizerList(SecureTerminalProposalState proposal)
     {
         AuthorizerListContainer.RemoveAllChildren();
 
-        for (var i = 0; i < proposal.GroupLabels.Count; i++)
+        AddSchemeStates(proposal.AuthSchemes);
+        if (proposal.VetoSchemes.Count > 0)
         {
-            var satisfied = i < proposal.GroupsSatisfied.Count && proposal.GroupsSatisfied[i];
-            var auth = satisfied && i < proposal.AuthorizedBy.Count ? proposal.AuthorizedBy[i] : default;
+            var vetoHeader = new RichTextLabel();
+            vetoHeader.SetMessage(FormattedMessage.FromMarkupOrThrow("[bold]Veto[/bold]"));
+            AuthorizerListContainer.AddChild(vetoHeader);
+            AddSchemeStates(proposal.VetoSchemes);
+        }
+    }
 
-            string text;
-            string color;
-            if (satisfied && !string.IsNullOrEmpty(auth.Name))
-            {
-                color = "green";
-                var jobPart = !string.IsNullOrEmpty(auth.Job)
-                    ? $" ({auth.Job})"
-                    : string.Empty;
-                text = $"\u25cf {auth.Name}{jobPart}";
-            }
-            else
-            {
-                color = "red";
-                text = $"\u25cb {Loc.GetString("secure-terminal-awaiting-member", ("label", proposal.GroupLabels[i]))}";
-            }
+    private void AddSchemeStates(List<SecureTerminalAuthSchemeState> schemes)
+    {
+        foreach (var scheme in schemes)
+        {
+            var approvals = scheme.GroupsSatisfied.Count(satisfied => satisfied);
+            var schemeName = string.IsNullOrWhiteSpace(scheme.Name)
+                ? scheme.Id
+                : Loc.GetString(scheme.Name);
+            var schemeHeader = new RichTextLabel();
+            schemeHeader.SetMessage(FormattedMessage.FromMarkupOrThrow(
+                $"[bold]{schemeName} — {approvals} / {scheme.GroupLabels.Count}[/bold]"));
+            AuthorizerListContainer.AddChild(schemeHeader);
 
-            var label = new RichTextLabel();
-            label.SetMessage(FormattedMessage.FromMarkupOrThrow($"[color={color}]{text}[/color]"));
-            AuthorizerListContainer.AddChild(label);
+            for (var i = 0; i < scheme.GroupLabels.Count; i++)
+            {
+                var satisfied = i < scheme.GroupsSatisfied.Count && scheme.GroupsSatisfied[i];
+                var auth = satisfied && i < scheme.AuthorizedBy.Count ? scheme.AuthorizedBy[i] : default;
+
+                string text;
+                string color;
+                if (satisfied && !string.IsNullOrEmpty(auth.Name))
+                {
+                    color = "green";
+                    var jobPart = !string.IsNullOrEmpty(auth.Job)
+                        ? $" ({auth.Job})"
+                        : string.Empty;
+                    text = $"\u25cf {auth.Name}{jobPart}";
+                }
+                else
+                {
+                    color = "red";
+                    text = $"\u25cb {Loc.GetString("secure-terminal-awaiting-member", ("label", scheme.GroupLabels[i]))}";
+                }
+
+                var label = new RichTextLabel();
+                label.SetMessage(FormattedMessage.FromMarkupOrThrow($"[color={color}]{text}[/color]"));
+                AuthorizerListContainer.AddChild(label);
+            }
         }
     }
 

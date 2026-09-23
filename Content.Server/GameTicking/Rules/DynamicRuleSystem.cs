@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Content.Server._Starlight.GameTicking.Rules;
+using Content.Server._Starlight.Statistics;
 using Content.Server.Administration.Logs;
 using Content.Server.RoundEnd;
 using Content.Shared._Starlight.EntityTable;
@@ -27,6 +28,7 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private IChatManager _chat = default!;
     [Dependency] private DynamicRuleCooldownSystem _cooldowns = default!;
+    [Dependency] private RoundStatisticsSystem _roundStatistics = default!;
     #endregion
 
     protected override void Added(EntityUid uid, DynamicRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
@@ -169,8 +171,11 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
             Timing.CurTime + _random.Next(entity.Comp.MinRuleInterval, entity.Comp.MaxRuleInterval);
 
         var executedRules = new List<EntityUid>();
+        var roundStart = _ticker.RunLevel == GameRunLevel.PreRoundLobby; // Starlight
+        var ruleSpawns = GetRuleSpawns(entity);  // Starlight
+        _roundStatistics.RecordDynamicBudget(entity.Comp.Budget);  // Starlight
 
-        foreach (var rule in GetRuleSpawns(entity))
+        foreach (var rule in ruleSpawns) // Starlight
         {
             // Starlight start
             // We add the rule passing along the list of child rules, so that
@@ -192,12 +197,16 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
                 entity.Comp.Budget -= cost.Cost;
 
                 _adminLog.Add(LogType.EventRan, LogImpact.High, $"{ToPrettyString(entity)} ran rule {ToPrettyString(ruleUid)} with cost {cost.Cost} on budget {entity.Comp.Budget}.");
+                _roundStatistics.RecordDynamicRule(rule.Id, cost.Cost, true, roundStart); // Starlight
             }
             else
             {
                 _adminLog.Add(LogType.EventRan, LogImpact.High, $"{ToPrettyString(entity)} ran rule {ToPrettyString(ruleUid)} which had no cost.");
+                _roundStatistics.RecordDynamicRule(rule.Id, 0f, false, roundStart); // Starlight
             }
         }
+
+        _roundStatistics.RecordDynamicBudget(entity.Comp.Budget); // Starlight
 
         //entity.Comp.Rules.AddRange(executedRules); // Starlight - comment
 
