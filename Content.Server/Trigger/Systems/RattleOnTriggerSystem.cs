@@ -67,7 +67,7 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
             {
                 var key = new StationRecordKey(recordId.Value, station.Value);
                 if (_recordsSystem.TryGetRecord<GeneralStationRecord>(key, out var entry, stationRecords))
-                    jobName = entry.JobTitle;
+                    jobName = !string.IsNullOrWhiteSpace(entry.JobTitle) ? entry.JobTitle : jobName;
             }
         }
         #endregion
