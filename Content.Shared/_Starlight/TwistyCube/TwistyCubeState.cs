@@ -59,30 +59,38 @@ public record struct TwistyCubeState(
                 (FrontTopLeft, FrontTopRight, FrontBottomRight, FrontBottomLeft)
                     = (FrontBottomLeft.XZY, FrontTopLeft.XZY, FrontTopRight.XZY, FrontBottomRight.XZY);
                 break;
-            case TwistyCubeAction.FrontCounterClockwise:
-                (FrontTop, FrontRight, FrontBottom, FrontLeft) = (FrontRight, FrontBottom, FrontLeft, FrontTop);
-                (FrontTopLeft, FrontTopRight, FrontBottomRight, FrontBottomLeft)
-                    = (FrontTopRight.XZY, FrontBottomRight.XZY, FrontBottomLeft.XZY, FrontTopLeft.XZY);
-                break;
             case TwistyCubeAction.LeftClockwise:
-                break;
-            case TwistyCubeAction.LeftCounterClockwise:
+                (FrontLeft, TopLeft, BackLeft, BottomLeft) = (TopLeft, BackLeft, BottomLeft, FrontLeft);
+                (FrontBottomLeft, BackBottomLeft, BackTopLeft, FrontTopLeft)
+                    = (FrontTopLeft.YXZ, FrontBottomLeft.YXZ, BackBottomLeft.YXZ, BackTopLeft.YXZ);
                 break;
             case TwistyCubeAction.TopClockwise:
-                break;
-            case TwistyCubeAction.TopCounterClockwise:
+                (BackTop, TopRight, FrontTop, TopLeft) = (TopLeft.YX, BackTop.YX, TopRight.YX, FrontTop.YX);
+                (BackTopLeft, BackTopRight, FrontTopRight, FrontTopLeft)
+                    = (FrontTopLeft.ZYX, BackTopLeft.ZYX, BackTopRight.ZYX, FrontTopRight.ZYX);
                 break;
             case TwistyCubeAction.RightClockwise:
-                break;
-            case TwistyCubeAction.RightCounterClockwise:
+                (FrontRight, TopRight, BackRight, BottomRight) = (BottomRight, FrontRight, TopRight, BackRight);
+                (FrontBottomRight, BackBottomRight, BackTopRight, FrontTopRight)
+                    = (BackBottomRight.YXZ, BackTopRight.YXZ, FrontTopRight.YXZ, FrontBottomRight.YXZ);
                 break;
             case TwistyCubeAction.BottomClockwise:
-                break;
-            case TwistyCubeAction.BottomCounterClockwise:
+                (FrontBottom, BottomLeft, BackBottom, BottomRight) = (BottomLeft.YX, BackBottom.YX, BottomRight.YX, FrontBottom.YX);
+                (FrontBottomRight, FrontBottomLeft, BackBottomLeft, BackBottomRight)
+                    = (FrontBottomLeft.ZYX, BackBottomLeft.ZYX, BackBottomRight.ZYX, FrontBottomRight.ZYX);
                 break;
             case TwistyCubeAction.BackClockwise:
+                (BackBottom, BackLeft, BackTop, BackRight) = (BackLeft, BackTop, BackRight, BackBottom);
+                (BackTopLeft, BackTopRight, BackBottomRight, BackBottomLeft)
+                    = (BackTopRight.XZY, BackBottomRight.XZY, BackBottomLeft.XZY, BackTopLeft.XZY);
                 break;
+            case TwistyCubeAction.FrontCounterClockwise:
+            case TwistyCubeAction.LeftCounterClockwise:
+            case TwistyCubeAction.TopCounterClockwise:
+            case TwistyCubeAction.RightCounterClockwise:
+            case TwistyCubeAction.BottomCounterClockwise:
             case TwistyCubeAction.BackCounterClockwise:
+                for (int i = 0; i < 3; i++) ApplyAction(action - 1);
                 break;
             default:  return;
         }

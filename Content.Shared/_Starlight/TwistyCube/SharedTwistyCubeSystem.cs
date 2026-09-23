@@ -12,7 +12,7 @@ public abstract partial class SharedTwistyCubeSystem : EntitySystem
 
     private void OnUIOpened(Entity<TwistyCubeComponent> ent, ref BoundUIOpenedEvent args)
     {
-        if (_uiSystem.IsUiOpen(ent.Owner, TwistyCubeComponent.TwistyCubeUiKey.Key))
-            _uiSystem.SetUiState(ent.Owner, TwistyCubeComponent.TwistyCubeUiKey.Key, new TwistyCubeBoundUserInterfaceState(ent.Comp.State));
+        if (_uiSystem.IsUiOpen(ent.Owner, TwistyCubeUiKey.Key))
+            _uiSystem.SetUiState(ent.Owner, TwistyCubeUiKey.Key, new TwistyCubeBoundUserInterfaceState(ent.Comp.State));
     }
 }

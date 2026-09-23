@@ -5,6 +5,7 @@ namespace Content.Shared._Starlight.TwistyCube;
 [Serializable, NetSerializable]
 public enum TwistyCubeAction
 {
+    // The ordering of these enum variants is important! Do not change!
     FrontClockwise,
     FrontCounterClockwise,
     LeftClockwise,

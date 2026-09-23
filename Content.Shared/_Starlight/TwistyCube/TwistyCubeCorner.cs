@@ -1,3 +1,4 @@
+using System.Text;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.TwistyCube;
@@ -9,6 +10,11 @@ public record struct TwistyCubeCorner(
     TwistyCubeColor Side3
 )
 {
+    private bool PrintMembers(StringBuilder builder)
+    {
+        builder.Append($"{Side1}, {Side2}, {Side3}");
+        return true;
+    }
     // Swizzling
     public TwistyCubeCorner XZY => new(Side1, Side3, Side2);
     public TwistyCubeCorner ZXY => new(Side3, Side1, Side2);

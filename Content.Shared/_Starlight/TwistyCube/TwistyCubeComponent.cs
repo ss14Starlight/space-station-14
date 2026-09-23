@@ -1,14 +1,13 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared._Starlight.TwistyCube;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class TwistyCubeComponent : Component
 {
-    public enum TwistyCubeUiKey
-    {
-        Key
-    }
-    
     /// The current state of the twisty cube.
-    [ViewVariables]
-    public TwistyCubeState State { get; private set; } = new();
+    [DataField]
+    [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadOnly)]
+    public TwistyCubeState State = new();
 }

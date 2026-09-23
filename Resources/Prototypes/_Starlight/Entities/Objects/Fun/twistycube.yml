@@ -6,9 +6,9 @@
   components:
     - type: Item
       size: Small
-      sprite: _Starlight/Objects/Fun/bottleship.rsi
+      sprite: _Starlight/Objects/Fun/TwistyCube/item.rsi
     - type: Sprite
-      sprite: _Starlight/Objects/Fun/bottleship.rsi
+      sprite: _Starlight/Objects/Fun/TwistyCube/item.rsi
       state: icon
     - type: UserInterface
       interfaces:
