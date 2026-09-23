@@ -1,55 +1,6 @@
 Entries:
 - author: Makeshift
   changes:
-  - message: (Packed) Added a Reporter Office.
-    type: Add
-  id: 408414
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
-  - message: (Packed) Added a K9 Unit!
-    type: Add
-  id: 408415
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
-  - message: (Packed) Added a Service Mailbox in bar.
-    type: Add
-  id: 408416
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
-  - message: (Packed) Added a couple Washing Machines around.
-    type: Add
-  id: 408417
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
-  - message: (Packed) Added a couple Shelves around.
-    type: Add
-  id: 408418
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
-  - message: (Packed) Removed NCT Office.
-    type: Remove
-  id: 408419
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
-  - message: The washroom has been converted into a Dorm.
-    type: Tweak
-  id: 408420
-  time: '2026-09-08T11:39:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6031
-- author: Makeshift
-  changes:
   - message: (Packed) The empty space in Mining is filled out.
     type: Tweak
   id: 408421
@@ -2799,4 +2750,53 @@ Entries:
   id: 408813
   time: '2026-09-22T17:30:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6192
+- author: Floximo
+  changes:
+  - message: Flickering at alert level changes was fixed.
+    type: Fix
+  id: 408814
+  time: '2026-09-22T20:39:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6297
+- author: CrazyPhantom
+  changes:
+  - message: DRONES!! We are so back.
+    type: Add
+  id: 408815
+  time: '2026-09-23T02:39:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6046
+- author: Hot Mic
+  changes:
+  - message: Added new APC Prototype. A variant that is off by default; mappers rejoice!
+    type: Add
+  id: 408816
+  time: '2026-09-23T02:58:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6299
+- author: ItsCharles
+  changes:
+  - message: Fix assistant job trinkets not working with assistant playtime.
+    type: Fix
+  id: 408817
+  time: '2026-09-23T03:18:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6305
+- author: Pickra
+  changes:
+  - message: Added generic Service airlock.
+    type: Add
+  id: 408818
+  time: '2026-09-23T05:09:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6263
+- author: Pickra
+  changes:
+  - message: Added a series of departmental maintenance airlocks to make navigation easier.
+    type: Add
+  id: 408819
+  time: '2026-09-23T05:09:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6263
+- author: Pickra
+  changes:
+  - message: Starlight-specific airlocks now use their appropriate parent airlocks.
+    type: Tweak
+  id: 408820
+  time: '2026-09-23T05:09:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6263
 Order: -1
