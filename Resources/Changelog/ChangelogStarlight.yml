@@ -1,32 +1,4 @@
 Entries:
-- author: wonderfulnewworld, SlamBamActionman
-  changes:
-  - message: Dwarves are now shortened via sprite displacement, rather than being scaled.
-    type: Tweak
-  id: 408429
-  time: '2026-09-08T12:39:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6032
-- author: Caws
-  changes:
-  - message: 'Brigmedic doors are now "Brig, Brigmedic" access instead of "Security, Cadet, Command" access. This allows IAAs to walk into Brigmedic on their own (note: Command, all Security roles, Magistrate/NTR/BSO already have Brig access).'
-    type: Tweak
-  id: 408430
-  time: '2026-09-08T12:59:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6045
-- author: Caws
-  changes:
-  - message: Brigmedic/Para doors are now "Brig, Brigmedic, Paramedic" access instead of "Security, Cadet, Command, and Paramedic" access.
-    type: Tweak
-  id: 408431
-  time: '2026-09-08T12:59:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6045
-- author: Caws
-  changes:
-  - message: Eeeps now randomly lightning strike machines and mobs again. This is to clarify their status an antagonist and as dangerous, destructive fauna. Eeeps are not your friend.
-    type: Tweak
-  id: 408432
-  time: '2026-09-08T13:21:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6025
 - author: Caws
   changes:
   - message: Eeeps now have 80% explosive resistance so that they don't die from exploding machines with their random lightning strikes.
@@ -2799,4 +2771,32 @@ Entries:
   id: 408828
   time: '2026-09-23T10:59:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6265
+- author: Swonki
+  changes:
+  - message: New Salvager Spawns on ATS so team size can be raised for highpop.
+    type: Add
+  id: 408829
+  time: '2026-09-23T10:59:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6268
+- author: Swonki
+  changes:
+  - message: ATS is no longer a protected grid, repairs and aesthetic changes should now be easier.
+    type: Tweak
+  id: 408830
+  time: '2026-09-23T10:59:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6268
+- author: Swonki
+  changes:
+  - message: ATS Medvend no longer needs credits.
+    type: Tweak
+  id: 408831
+  time: '2026-09-23T10:59:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6268
+- author: Swonki
+  changes:
+  - message: ATS windoor now salvager only.
+    type: Fix
+  id: 408832
+  time: '2026-09-23T10:59:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6268
 Order: -1
