@@ -1105,3 +1105,23 @@
     - type: AntagImmune
     - type: NoObjectiveTarget
 
+- type: randomHumanoidSettings
+  id: NeocyteVariantBlacklist
+  speciesBlacklist:
+    - NeoArachnid
+    - NeoAvali
+    - NeoCyclorite
+    - NeoDwarf
+    - NeoDiona
+    - NeoFelionoid
+    - NeoHuman
+    - NeoMoth
+    - NeoReptilian
+    - NeoResomi
+    - NeoSlimePerson
+    - NeoThaven
+    - NeoVox
+    - NeoVulpkanin
+    - NeoKin
+    - NeoElf
+    - NeoLagomorph
