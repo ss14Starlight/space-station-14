@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: starlight
   forkVersion: ae6aeadff84f9baceddf673ab3d8b08eedf963a1
-  time: 09/24/2026 07:06:36
+  time: 09/24/2026 07:09:00
   entityCount: 268
 maps: []
 grids:
@@ -30,7 +30,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: ELM S40B "Bellows"
+      name: GT-S40B "Bellows"
     - type: Transform
       parent: invalid
       pos: 58.5,15.625
