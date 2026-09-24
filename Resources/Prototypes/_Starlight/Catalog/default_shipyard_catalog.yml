@@ -123,3 +123,12 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/SpaceTruck.yml
+
+- type: vessel
+  id: Gasum
+  name: ISM Gasum
+  description: A small sized gas transport shuttle designed to carry large quantities of pressurized gas. Manufactured by ISM, its 34-tile storage chamber that provides a total capacity of approximately 81,600 liters.
+  price: 24000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/Gasum.yml
