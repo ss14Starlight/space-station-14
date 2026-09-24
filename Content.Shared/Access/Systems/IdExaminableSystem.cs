@@ -85,7 +85,7 @@ public sealed partial class IdExaminableSystem : EntitySystem
         return null;
     }
 
-    
+    #region Starlight
     private bool TryGetIdFromSlot(EntityUid uid, string slot, [NotNullWhen(true)] out IdCardComponent? idComp)
     {
         if (_inventorySystem.TryGetSlotEntity(uid, slot, out var idUid))
@@ -108,6 +108,7 @@ public sealed partial class IdExaminableSystem : EntitySystem
         idComp = null;
         return false;
     }
+    #endregion Starlight
 
     private string GetNameAndJob(IdCardComponent id)
     {
