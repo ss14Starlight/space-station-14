@@ -1,18 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Fixes a misaligned sprite on the Assistant Manager's hud on base human-derived species.
-    type: Fix
-  id: 408439
-  time: '2026-09-09T20:56:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6040
-- author: wonderfulnewworld, ThatGuyUSA
-  changes:
-  - message: a sealed fizzy soda's contents will no longer disappear when bursting.
-    type: Fix
-  id: 408440
-  time: '2026-09-09T21:26:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6069
 - author: wonderfulnewworld, ThatGuyUSA
   changes:
   - message: You will no longer see every footprint and fire with a right click.
@@ -2799,4 +2785,18 @@ Entries:
   id: 408838
   time: '2026-09-24T09:55:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6252
+- author: Xale
+  changes:
+  - message: Neocytes will no longer make up 50% of humanoid ghostrole spawns.
+    type: Fix
+  id: 408839
+  time: '2026-09-24T10:30:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6295
+- author: Xale
+  changes:
+  - message: Neocyte variants such as Neo-Human will no longer be included in randomisation for humanoid ghostrole spawns.
+    type: Remove
+  id: 408840
+  time: '2026-09-24T10:30:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6295
 Order: -1
