@@ -151,6 +151,17 @@ guide-entry-sl-salvage-sop-intro = Salvage
 guide-entry-sl-salvage-sop-salvagers = Salvage Crew
 
 guide-entry-sl-science-sop-intro = Science
+guide-entry-sl-sceince-sop-genproc-intro = General Procedures
+guide-entry-sl-researchguidelines = Research Guidelines
+guide-entry-sl-anomalyresearch = Anomaly Research
+guide-entry-sl-artifactresearch = Artifact Research
+guide-entry-sl-itemdistribution = Item Distribution
+guide-entry-sl-sceince-sop-staff-intro = Staff Procedures
+guide-entry-sl-researchdirector = Research Director
+guide-entry-sl-scientist = Scientist
+guide-entry-sl-researchassistant = Research Assistant
+guide-entry-sl-roboticist = Roboticist
+guide-entry-sl-science-sop-appendix = Appendix
 
 guide-entry-sl-nano-trasen-employee-sop-intro = NanoTrasen Employee
 guide-entry-sl-nano-trasen-employee-sop-genproc-intro = General Procedures
