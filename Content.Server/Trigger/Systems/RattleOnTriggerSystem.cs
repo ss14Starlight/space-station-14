@@ -104,6 +104,7 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
                 }
             }
         }
+        jobName = FormattedMessage.RemoveMarkupOrThrow(jobName);
         // Starlight-end
 
         var message = Loc.GetString(messageId, ("user", nameText), ("job", jobName), ("position", posText)); // Starlight: Sanitized name, added job name to parameters
