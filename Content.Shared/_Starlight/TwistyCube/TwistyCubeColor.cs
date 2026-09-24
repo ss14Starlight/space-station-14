@@ -15,6 +15,12 @@ public enum TwistyCubeColor: byte
 
 public static class Extensions
 {
+    /// <summary>
+    /// Maps each TwistyCubeColor to some sensible color to represent it.
+    /// </summary>
+    /// <param name="color">The color of some twisty cube face</param>
+    /// <returns>The respective RGB color</returns>
+    /// <remarks>This uses a warmer version of the Rubik's Cube color palette.</remarks>
     public static Color AsColor(this TwistyCubeColor color) => (color) switch
     {
         TwistyCubeColor.Right => new Color(0xb1, 0x48, 0x48),

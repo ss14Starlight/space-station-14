@@ -85,7 +85,11 @@ public sealed class TwistyCubeMenu : DefaultWindow
 
         ContentsContainer.AddChild(grid);
     }
-
+    
+    /// <summary>
+    /// Updates the state of the menu to the given state.
+    /// </summary>
+    /// <param name="state">The state to update the menu with</param>
     public void UpdateState(TwistyCubeState state)
     {
         _control?.CubeState = state;

@@ -2,28 +2,28 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.TwistyCube;
 
-[Serializable, NetSerializable]
-public record struct TwistyCubeState(
-    TwistyCubeCorner FrontTopLeft,
-    TwistyCubeCorner FrontTopRight,
-    TwistyCubeCorner FrontBottomRight,
-    TwistyCubeCorner FrontBottomLeft,
-    TwistyCubeCorner BackBottomLeft,
-    TwistyCubeCorner BackBottomRight,
-    TwistyCubeCorner BackTopRight,
-    TwistyCubeCorner BackTopLeft,
-    TwistyCubeEdge FrontTop,
-    TwistyCubeEdge FrontRight,
-    TwistyCubeEdge FrontBottom,
-    TwistyCubeEdge FrontLeft,
-    TwistyCubeEdge TopLeft,
-    TwistyCubeEdge TopRight,
-    TwistyCubeEdge BottomRight,
-    TwistyCubeEdge BottomLeft,
-    TwistyCubeEdge BackLeft,
-    TwistyCubeEdge BackBottom,
-    TwistyCubeEdge BackRight,
-    TwistyCubeEdge BackTop
+[Serializable, NetSerializable, DataRecord]
+public partial record struct TwistyCubeState(
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner FrontTopLeft,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner FrontTopRight,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner FrontBottomRight,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner FrontBottomLeft,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner BackBottomLeft,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner BackBottomRight,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner BackTopRight,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner BackTopLeft,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge FrontTop,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge FrontRight,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge FrontBottom,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge FrontLeft,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge TopLeft,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge TopRight,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BottomRight,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BottomLeft,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BackLeft,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BackBottom,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BackRight,
+    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BackTop
 )
 {
     public TwistyCubeState() : this(
@@ -49,7 +49,11 @@ public record struct TwistyCubeState(
         new(TwistyCubeColor.Back, TwistyCubeColor.Top)
     )
     { }
-
+    
+    /// <summary>
+    /// Performs a given face turn on the state of the cube.
+    /// </summary>
+    /// <param name="action">The face turn to perform</param>
     public void ApplyAction(TwistyCubeAction action)
     {
         switch (action)
