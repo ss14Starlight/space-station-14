@@ -18,8 +18,8 @@
 
 - type: vessel
   id: Bellows
-  name: GT-S40B "Bellows"
-  description: A popular model in the Gas Transfer series, the S40B boasts a respectable footprint and can transfer up to 100,000L of gases of choice.
+  name: GTS-A1-100KL "Bellows"
+  description: The "Bellows" single-gas hauler by GTS, capable of transferring 100kL. Very affordable and standard shape for easy universal deployment.
   price: 21500
   category: Small
   group: Engineering
