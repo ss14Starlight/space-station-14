@@ -7,6 +7,7 @@
   components:
   - type: Sprite
     noRot: false
+    drawdepth: Mobs
     layers:
     - state: full_0
   - type: Icon
@@ -25,7 +26,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
+          bounds: "-0.45,-0.45,0.45,-0.25"
         density: 60
         mask:
         - TableMask
