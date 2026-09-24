@@ -24953,7 +24953,7 @@ entities:
     - type: Transform
       pos: 0.5,-21.5
       parent: 2
-- proto: WarpPoint
+- proto: GhostWarpPoint
   entities:
   - uid: 4116
     components:
