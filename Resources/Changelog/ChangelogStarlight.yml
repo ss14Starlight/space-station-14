@@ -2655,7 +2655,7 @@ Entries:
 - author: Caws
   changes:
   - message: (Novo Lobster) K9s.
-    type: Add
+    type: Unknown
   id: 408848
   time: '2026-09-24T11:27:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6284
