@@ -819,7 +819,7 @@
       - itemdistribution
 
 - type: guideEntry
-  id: researchguidelines
+  id: science-sop-researchguidelines
   name: guide-entry-sl-researchguidelines
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/researchguidelines.xml"
   priority: 2
@@ -829,19 +829,19 @@
 
 
 - type: guideEntry
-  id: anomalyresearch
+  id: science-sop-anomalyresearch
   name: guide-entry-sl-anomalyresearch
-  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-anomalyresearch.xml"
+  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/anomalyresearch.xml"
   priority: 1
 
 - type: guideEntry
-  id: artifactresearch
+  id: science-sop-artifactresearch
   name: guide-entry-sl-artifactresearch
-  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-artifactresearch.xml"
+  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/artifactresearch.xml"
   priority: 2
 
 - type: guideEntry
-  id: itemdistribution
+  id: science-sop-itemdistribution
   name: guide-entry-sl-itemdistribution
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/itemdistribution.xml"
   priority: 1
@@ -861,25 +861,25 @@
 
 
 - type: guideEntry
-  id: researchdirector
+  id: science-sop-researchdirector
   name: guide-entry-sl-researchdirector
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/researchdirector.xml"
   priority: 1
 
 - type: guideEntry
-  id: scientist
+  id: science-sop-scientist
   name: guide-entry-sl-scientist
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/scientist.xml"
   priority: 2
 
 - type: guideEntry
-  id: researchassistant
+  id: science-sop-researchassistant
   name: guide-entry-sl-researchassistant
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/researchassistant.xml"
   priority: 3
 
 - type: guideEntry
-  id: roboticist
+  id: science-sop-roboticist
   name: guide-entry-sl-roboticist
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/roboticist.xml"
   priority: 4
