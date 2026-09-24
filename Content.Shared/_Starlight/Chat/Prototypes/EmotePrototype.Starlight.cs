@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Chat.Prototypes;

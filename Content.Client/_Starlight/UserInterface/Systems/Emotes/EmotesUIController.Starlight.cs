@@ -1,3 +1,4 @@
+// ReSharper disable CheckNamespace
 using System.Linq;
 using Content.Shared._Starlight.CloudEmotes;
 using Content.Shared.Chat;
