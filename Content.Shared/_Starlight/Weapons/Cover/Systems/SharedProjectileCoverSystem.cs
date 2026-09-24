@@ -103,12 +103,12 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
     public bool IsShotStopped(EntityUid cover, EntityUid shot, EntityUid? shooter, float? distance = null,
         EntityUid? aimedAt = null, Vector2? shotDirection = null)
         => TryComp<ProjectileCoverComponent>(cover, out var comp)
-           && IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection);
+        && IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection);
 
     public bool PassesOverCover(EntityUid cover, EntityUid shot, EntityUid? shooter, float? distance = null,
         EntityUid? aimedAt = null, Vector2? shotDirection = null)
         => TryComp<ProjectileCoverComponent>(cover, out var comp)
-           && !IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection);
+        && !IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection);
 
     public bool IsShelteredFromShot(EntityUid target, Vector2 shotDirection)
     {
