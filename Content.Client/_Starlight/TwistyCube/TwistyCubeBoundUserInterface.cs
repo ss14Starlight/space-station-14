@@ -6,7 +6,7 @@ namespace Content.Client._Starlight.TwistyCube;
 public sealed class TwistyCubeBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [ViewVariables] private TwistyCubeMenu? _menu;
-    
+
     /// <summary>
     /// Sends a TwistyCubeAction to the server, wrapped as a message.
     /// </summary>

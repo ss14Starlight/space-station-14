@@ -49,7 +49,7 @@ public partial record struct TwistyCubeState(
         new(TwistyCubeColor.Back, TwistyCubeColor.Top)
     )
     { }
-    
+
     /// <summary>
     /// Performs a given face turn on the state of the cube.
     /// </summary>
