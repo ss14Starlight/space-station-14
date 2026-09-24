@@ -80,7 +80,7 @@ public sealed class TwistyCubeMenu : DefaultWindow
         buttonGrid.AddChild(bccwButton);
 
         grid.AddChild(buttonGrid);
-        
+
         grid.AddChild(_control = new TwistyCubeControl());
 
         ContentsContainer.AddChild(grid);
