@@ -514,7 +514,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.5
+    armorPenetration: -0.13
     damage:
       types:
         Piercing: 20
