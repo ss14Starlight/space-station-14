@@ -26,7 +26,7 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
 
     // Fractions of the viewport's shorter dimension.
     private const float HalfWidthFraction = 0.04f;
-    private const float DepthFraction = 0.16f;
+    private const float ReachFraction = 0.5f;
     private const float PeakAlpha = 0.55f;
     private const int Segments = 12;
 
@@ -84,16 +84,18 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
 
     private void DrawFlash(DrawingHandleScreen screen, UIBox2 bounds, Vector2 dir, Color color, float timeEnvelope)
     {
-        var center = new Vector2(bounds.Width / 2f, bounds.Height / 2f);
+        var center = bounds.Center;
 
-        if (!TryGetEdgeHit(center, dir, bounds, out var edgePoint, out var tangent, out var inward))
+        if (!TryGetEdgeHit(center, dir, bounds, out var edgePoint, out var tangent))
             return;
 
         var shorterDim = MathF.Min(bounds.Width, bounds.Height);
         var halfWidth = shorterDim * HalfWidthFraction;
-        var depth = shorterDim * DepthFraction;
 
         _verts.Clear();
+
+        var baseColor = color.WithAlpha(PeakAlpha * timeEnvelope);
+        var crestColor = color.WithAlpha(0f);
 
         for (var i = 0; i < Segments; i++)
         {
@@ -105,20 +107,17 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
 
             var base0 = edgePoint + (tangent * x0);
             var base1 = edgePoint + (tangent * x1);
-            var crest0 = base0 + (inward * (depth * h0));
-            var crest1 = base1 + (inward * (depth * h1));
-
-            var baseColor = color.WithAlpha(0f);
-            var crest0Color = color.WithAlpha(PeakAlpha * h0 * timeEnvelope);
-            var crest1Color = color.WithAlpha(PeakAlpha * h1 * timeEnvelope);
+            
+            var crest0 = base0 + ((center - base0) * (ReachFraction * h0));
+            var crest1 = base1 + ((center - base1) * (ReachFraction * h1));
 
             _verts.Add(new DrawVertexUV2DColor(base0, Vector2.Zero, baseColor));
             _verts.Add(new DrawVertexUV2DColor(base1, Vector2.Zero, baseColor));
-            _verts.Add(new DrawVertexUV2DColor(crest1, Vector2.Zero, crest1Color));
+            _verts.Add(new DrawVertexUV2DColor(crest1, Vector2.Zero, crestColor));
 
             _verts.Add(new DrawVertexUV2DColor(base0, Vector2.Zero, baseColor));
-            _verts.Add(new DrawVertexUV2DColor(crest1, Vector2.Zero, crest1Color));
-            _verts.Add(new DrawVertexUV2DColor(crest0, Vector2.Zero, crest0Color));
+            _verts.Add(new DrawVertexUV2DColor(crest1, Vector2.Zero, crestColor));
+            _verts.Add(new DrawVertexUV2DColor(crest0, Vector2.Zero, crestColor));
         }
 
         screen.DrawPrimitives(DrawPrimitiveTopology.TriangleList, Texture.White, CollectionsMarshal.AsSpan(_verts));
@@ -128,23 +127,23 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
     private static float ParabolaHeight(float x, float halfWidth)
         => MathF.Max(0f, 1f - (x / halfWidth * (x / halfWidth)));
 
-    // Ray-AABB exit test from the screen center.
-    private static bool TryGetEdgeHit(Vector2 center, Vector2 dir, UIBox2 bounds, out Vector2 edgePoint, out Vector2 tangent, out Vector2 inward)
+    // Ray-AABB exit test from the screen center. Also returns the tangent along whichever edge
+    // was hit, for spreading the base points along it.
+    private static bool TryGetEdgeHit(Vector2 center, Vector2 dir, UIBox2 bounds, out Vector2 edgePoint, out Vector2 tangent)
     {
         edgePoint = default;
         tangent = default;
-        inward = default;
 
         var tx = dir.X switch
         {
-            > 0f => (bounds.Width - center.X) / dir.X,
-            < 0f => (0f - center.X) / dir.X,
+            > 0f => (bounds.Right - center.X) / dir.X,
+            < 0f => (bounds.Left - center.X) / dir.X,
             _ => float.PositiveInfinity,
         };
         var ty = dir.Y switch
         {
-            > 0f => (bounds.Height - center.Y) / dir.Y,
-            < 0f => (0f - center.Y) / dir.Y,
+            > 0f => (bounds.Bottom - center.Y) / dir.Y,
+            < 0f => (bounds.Top - center.Y) / dir.Y,
             _ => float.PositiveInfinity,
         };
 
@@ -156,7 +155,6 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
         edgePoint = center + (dir * t);
 
         tangent = hitVertical ? new Vector2(0f, 1f) : new Vector2(1f, 0f);
-        inward = hitVertical ? new Vector2(-MathF.Sign(dir.X), 0f) : new Vector2(0f, -MathF.Sign(dir.Y));
         return true;
     }
 }
