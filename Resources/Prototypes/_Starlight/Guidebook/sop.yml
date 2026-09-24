@@ -821,7 +821,7 @@
 - type: guideEntry
   id: researchguidelines
   name: guide-entry-sl-researchguidelines
-  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-researchguidelines.xml"
+  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/researchguidelines.xml"
   priority: 2
   children:
       - anomalyresearch
@@ -869,19 +869,19 @@
 - type: guideEntry
   id: scientist
   name: guide-entry-sl-scientist
-  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/Scientist.xml"
+  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/scientist.xml"
   priority: 2
 
 - type: guideEntry
   id: researchassistant
   name: guide-entry-sl-researchassistant
-  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/ResearchAssistant.xml"
+  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/researchassistant.xml"
   priority: 3
 
 - type: guideEntry
   id: roboticist
   name: guide-entry-sl-roboticist
-  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/Roboticist.xml"
+  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/roboticist.xml"
   priority: 4
 
 - type: guideEntry
