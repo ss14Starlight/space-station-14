@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: starlight
   forkVersion: ae6aeadff84f9baceddf673ab3d8b08eedf963a1
-  time: 09/24/2026 07:01:56
+  time: 09/24/2026 07:06:36
   entityCount: 268
 maps: []
 grids:
@@ -1812,7 +1812,7 @@ entities:
       currentLabel: VENT TO SPACE
     - type: NameModifier
       baseName: signal switch
-- proto: SMESBasicEmpty
+- proto: SMESBasic
   entities:
   - uid: 232
     components:
