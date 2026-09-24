@@ -1,4 +1,6 @@
 twistycube-menu-title = Twisty Cube
+twistycube-solved = It is currently [color=#26a269]solved[/color].
+twistycube-unsolved = It is currently [color=#a51d2d]unsolved[/color].
 twistycube-action-front-cw = F
 twistycube-action-left-cw = L
 twistycube-action-top-cw = U

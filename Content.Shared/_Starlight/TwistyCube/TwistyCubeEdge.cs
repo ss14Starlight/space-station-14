@@ -14,5 +14,5 @@ public record struct TwistyCubeEdge(
         builder.Append($"{Side1}, {Side2}");
         return true;
     }
-    public TwistyCubeEdge YX => new(Side2, Side1);
+    public TwistyCubeEdge YX() => new(Side2, Side1);
 }

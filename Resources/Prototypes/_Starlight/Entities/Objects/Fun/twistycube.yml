@@ -1,15 +1,99 @@
 - type: entity
   parent: BaseItem
-  id: Twisty Cube
+  id: TwistyCube
   name: twisty cube
-  description: 4.325*10^19 different combinations!
+  description: 4.325×10¹⁹ different combinations!
   components:
+    - type: Appearance
     - type: Item
       size: Small
       sprite: _Starlight/Objects/Fun/TwistyCube/item.rsi
     - type: Sprite
       sprite: _Starlight/Objects/Fun/TwistyCube/item.rsi
-      state: icon
+      layers:
+      - state: base
+        map: ["base"]
+      - state: ftl-1
+        map: ["ftl-1"]
+        color: "#ff00ff"
+      - state: ftl-2
+        map: ["ftl-2"]
+        color: "#ff00ff"
+      - state: ftl-3
+        map: ["ftl-3"]
+        color: "#ff00ff"
+      - state: ft-1
+        map: ["ft-1"]
+        color: "#101010"
+      - state: ft-2
+        map: ["ft-2"]
+        color: "#101010"
+      - state: ftr-1
+        map: ["ftr-1"]
+        color: "#ff00ff"
+      - state: ftr-2
+        map: ["ftr-2"]
+        color: "#ff00ff"
+      - state: fl-1
+        map: ["fl-1"]
+        color: "#101010"
+      - state: fl-2
+        map: ["fl-2"]
+        color: "#101010"
+      - state: f
+        map: ["f"]
+        color: "#ff00ff"
+      - state: fr-1
+        map: ["fr-1"]
+        color: "#101010"
+      - state: fbl-1
+        map: ["fbl-1"]
+        color: "#ff00ff"
+      - state: fbl-3
+        map: ["fbl-3"]
+        color: "#ff00ff"
+      - state: fb-1
+        map: ["fb-1"]
+        color: "#101010"
+      - state: fbr-1
+        map: ["fbr-1"]
+        color: "#ff00ff"
+      - state: bl-2
+        map: ["bl-2"]
+        color: "#101010"
+      - state: l
+        map: ["l"]
+        color: "#ff00ff"
+      - state: tl-2
+        map: ["tl-2"]
+        color: "#101010"
+      - state: tl-1
+        map: ["tl-1"]
+        color: "#101010"
+      - state: t
+        map: ["t"]
+        color: "#ff00ff"
+      - state: tr-1
+        map: ["tr-1"]
+        color: "#101010"
+      - state: kbl-3
+        map: ["kbl-3"]
+        color: "#ff00ff"
+      - state: kl-2
+        map: ["kl-2"]
+        color: "#101010"
+      - state: ktl-3
+        map: ["ktl-3"]
+        color: "#ff00ff"
+      - state: ktl-2
+        map: ["ktl-2"]
+        color: "#ff00ff"
+      - state: kt-2
+        map: ["kt-2"]
+        color: "#101010"
+      - state: ktr-2
+        map: ["ktr-2"]
+        color: "#ff00ff"
     - type: UserInterface
       interfaces:
         enum.TwistyCubeUiKey.Key:
