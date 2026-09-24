@@ -1,8 +1,6 @@
 <Document>
 # Research Assistant
 
-<GuideEntityEmbed Entity="ToyFigurineResearchAssistant" Caption="Research Assistant"/>
-
 1. Research Assistants report directly to the Research Director.
 
 2. Research Assistants report to the nearest scientist, after the Research Director.
