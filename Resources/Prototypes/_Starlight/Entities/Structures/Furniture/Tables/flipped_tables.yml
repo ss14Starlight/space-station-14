@@ -8,11 +8,9 @@
     pointBlankRange: 1.5
   - type: Sprite
     noRot: false
-    sprite: Structures/Furniture/Tables/generic.rsi
     layers:
     - state: flipped_0
   - type: Icon
-    sprite: Structures/Furniture/Tables/generic.rsi
     state: flipped_0
   - type: IconSmooth
     mode: Linear
