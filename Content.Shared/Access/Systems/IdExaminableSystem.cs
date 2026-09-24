@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Starlight.IdentityManagement.Components;
 using Content.Shared._Starlight.StatusIcon;
 using Content.Shared.Access.Components;
@@ -61,20 +62,16 @@ public sealed partial class IdExaminableSystem : EntitySystem
 
     public string? GetInfo(EntityUid uid)
     {
-        if (_inventorySystem.TryGetSlotEntity(uid, "id", out var idUid))
+        // Starlight Begin - check ID in id slot and belt slot
+        if (TryGetIdFromSlot(uid, "id", out var id))
         {
-            // PDA
-            if (TryComp(idUid, out PdaComponent? pda) &&
-                TryComp<IdCardComponent>(pda.ContainedId, out var id))
-            {
-                return GetNameAndJob(id);
-            }
-            // ID Card
-            if (TryComp(idUid, out id))
-            {
-                return GetNameAndJob(id);
-            }
+            return GetNameAndJob(id);
         }
+        if (TryGetIdFromSlot(uid, "belt", out id))
+        {
+            return GetNameAndJob(id);
+        }
+        // Starlight End
 
         // Starlight Begin - no ID card slot (K9, Borg, etc); fall back to their fixed job
         if (TryComp<FixedJobIconComponent>(uid, out var fixedJob) && _proto.Resolve(fixedJob.Job, out var job))
@@ -86,6 +83,30 @@ public sealed partial class IdExaminableSystem : EntitySystem
         // Starlight End
 
         return null;
+    }
+
+    
+    private bool TryGetIdFromSlot(EntityUid uid, string slot, [NotNullWhen(true)] out IdCardComponent? idComp)
+    {
+        if (_inventorySystem.TryGetSlotEntity(uid, slot, out var idUid))
+        {
+            // PDA
+            if (TryComp(idUid, out PdaComponent? pda) &&
+                TryComp<IdCardComponent>(pda.ContainedId, out var id))
+            {
+                idComp = id;
+                return true;
+            }
+            // ID Card
+            if (TryComp(idUid, out id))
+            {
+                idComp = id;
+                return true;
+            }
+        }
+
+        idComp = null;
+        return false;
     }
 
     private string GetNameAndJob(IdCardComponent id)
