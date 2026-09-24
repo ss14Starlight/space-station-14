@@ -1,20 +1,6 @@
 Entries:
 - author: Citrea
   changes:
-  - message: Dolls can also heal off injected blood now (again).
-    type: Tweak
-  id: 408446
-  time: '2026-09-09T21:26:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6000
-- author: Citrea
-  changes:
-  - message: Doll organs no longer take ambient radiation damage, so your metabolism doesn't randomly stop if you have been near a reactor for too long, even in a rad suit.
-    type: Tweak
-  id: 408447
-  time: '2026-09-09T21:26:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6000
-- author: Citrea
-  changes:
   - message: Dolls get hydrated by blood, as they should.
     type: Fix
   id: 408448
@@ -2799,4 +2785,18 @@ Entries:
   id: 408845
   time: '2026-09-24T11:01:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6301
+- author: qbrx
+  changes:
+  - message: Fixed abductor's welding tool.
+    type: Unknown
+  id: 408846
+  time: '2026-09-24T11:27:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6287
+- author: qbrx
+  changes:
+  - message: Added inhand sprites for abductor's welding tool.
+    type: Add
+  id: 408847
+  time: '2026-09-24T11:27:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6287
 Order: -1
