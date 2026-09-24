@@ -24960,8 +24960,8 @@ entities:
     - type: Transform
       pos: 1.5,2.5
       parent: 2
-    - type: WarpPoint
-      location: Nuclear Operative Outpost
+    - type: MetaData
+      name: Nuclear Operative Outpost
 - proto: WaterCooler
   entities:
   - uid: 4117
