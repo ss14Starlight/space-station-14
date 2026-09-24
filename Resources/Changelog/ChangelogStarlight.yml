@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: (Cluster, Cork, Lagan, Novo Lobster, Oasis, Orwell, Prism, Reach, Sepultum) Enables Assistant Managers.
-    type: Add
-  id: 408437
-  time: '2026-09-09T20:56:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6040
-- author: wonderfulnewworld
-  changes:
   - message: Removed unused Legal SoP page.
     type: Remove
   id: 408438
@@ -2799,4 +2792,11 @@ Entries:
   id: 408836
   time: '2026-09-24T09:55:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6323
+- author: R3v3l4t1on
+  changes:
+  - message: Thanks to increased funding, Refinery's small reactor has been replaced with the larger variant.
+    type: Tweak
+  id: 408837
+  time: '2026-09-24T09:55:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6290
 Order: -1
