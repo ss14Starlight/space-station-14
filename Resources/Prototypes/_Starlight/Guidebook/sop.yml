@@ -807,6 +807,7 @@
   children:
       - science-sop-genproc-intro
       - science-sop-staff-intro
+      - science-sop-appendix
 
 
 - type: guideEntry
@@ -883,6 +884,14 @@
   name: guide-entry-sl-roboticist
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/roboticist.xml"
   priority: 4
+
+
+- type: guideEntry
+  id: science-sop-appendix
+  name: guide-entry-sl-science-sop-appendix
+  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-appendix.xml"
+  priority: 3
+
 
 - type: guideEntry
   id: service-sop-intro
