@@ -224,6 +224,7 @@ namespace Content.Client.Changelog
             Remove,
             Fix,
             Tweak,
+            Unknown,
         }
     }
 }

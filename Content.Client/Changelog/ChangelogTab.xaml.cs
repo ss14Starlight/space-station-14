@@ -160,6 +160,7 @@ public sealed partial class ChangelogTab : Control
             ChangelogLineType.Remove => ("minus.svg.192dpi.png", "#D16E6E"),
             ChangelogLineType.Fix => ("bug.svg.192dpi.png", "#D1BA6E"),
             ChangelogLineType.Tweak => ("wrench.svg.192dpi.png", "#6E96D1"),
+            ChangelogLineType.Unknown => ("unknown.svg.192dpi.png", "#ED0E0E"),
             _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
         };
 
