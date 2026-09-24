@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Added SoP for Assistant Managers and Assistants.
-    type: Add
-  id: 408436
-  time: '2026-09-09T20:56:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6040
-- author: wonderfulnewworld
-  changes:
   - message: (Cluster, Cork, Lagan, Novo Lobster, Oasis, Orwell, Prism, Reach, Sepultum) Enables Assistant Managers.
     type: Add
   id: 408437
@@ -2799,4 +2792,11 @@ Entries:
   id: 408835
   time: '2026-09-24T09:30:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6237
+- author: qbrx
+  changes:
+  - message: Health analyzers now show patient data instantly instead of sometimes opening blank.
+    type: Tweak
+  id: 408836
+  time: '2026-09-24T09:55:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6323
 Order: -1
