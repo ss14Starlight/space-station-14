@@ -19,9 +19,16 @@ public sealed partial class SmellerComponent : Component
     [DataField, AutoNetworkedField]
     public string? TrackedScentId;
 
+    /// <summary>
+    /// Status effect granted while a tracked scent is active; drives the tracking alert and
+    /// clears itself after <see cref="TrackDuration"/>.
+    /// </summary>
     [DataField]
     public EntProtoId TrackStatusEffect = "StatusEffectTrackingScent";
 
+    /// <summary>
+    /// How long SetTrackedScent lasts before ClearTrackedScent fires automatically.
+    /// </summary>
     [DataField]
     public TimeSpan TrackDuration = TimeSpan.FromMinutes(5);
 

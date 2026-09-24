@@ -126,6 +126,13 @@ public abstract partial class SharedScentSystem : EntitySystem
         Actions.SetCooldown(ent.Comp.ToggleActionEntity, lockout);
     }
 
+    /// <summary>
+    /// Starts (or switches) tracking a scent. Grants the sneeze action if not already tracking,
+    /// and (re)starts the TrackStatusEffect timer.
+    /// </summary>
+    /// <param name="ent">Entity with a Smeller component.</param>
+    /// <param name="scentId">The ScentId to track.</param>
+    /// <param name="source">The entity that was sniffed to identify this scentId, if any - used only for admin logging.</param>
     public void SetTrackedScent(Entity<SmellerComponent> ent, string scentId, EntityUid? source = null)
     {
         if (ent.Comp.TrackedScentId == scentId)
@@ -148,6 +155,13 @@ public abstract partial class SharedScentSystem : EntitySystem
         Dirty(ent);
     }
 
+    /// <summary>
+    /// Stops tracking the current scent, if any. Removes the sneeze action, removes the
+    /// TrackStatusEffect, and logs the stop with <paramref name="reason"/> if given.
+    /// </summary>
+    /// <param name="ent">Entity with a Smeller component.</param>
+    /// <param name="reason">Why tracking stopped - timeout, sneeze, or forced sneeze. Left null
+    /// for other cases (death, re-track, component removal), which log with no reason suffix.</param>
     public void ClearTrackedScent(Entity<SmellerComponent> ent, ScentTrackingStoppedReason? reason = null)
     {
         if (ent.Comp.TrackedScentId is not { } scentId)

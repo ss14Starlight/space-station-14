@@ -142,13 +142,18 @@ public sealed partial class ScentSystem : SharedScentSystem
         var entries = new List<ScentTraceEntry>(trace?.Scents.Count ?? 0);
         if (trace != null)
         {
-            // Partial perceivers judge freshness against a shorter window than the real one.
+            // Partial perceivers judge freshness against a shorter window than the real one,
+            // and can't perceive anything past it at all.
             var effectiveLifetime = component.Perception == ScentPerception.Partial
                 ? trace.TraceLifetime * trace.PartialFreshnessFraction
                 : trace.TraceLifetime;
 
             foreach (var (scentId, info) in trace.Scents)
             {
+                var age = (float)(now - info.LastTouched).TotalSeconds;
+                if (age > effectiveLifetime)
+                    continue;
+
                 // Partial perceivers can't make out species from a trace at all.
                 var speciesName = string.Empty;
                 if (component.Perception != ScentPerception.Partial)
@@ -158,7 +163,6 @@ public sealed partial class ScentSystem : SharedScentSystem
                         speciesName = Loc.GetString(species.Name);
                 }
 
-                var age = (float)(now - info.LastTouched).TotalSeconds;
                 entries.Add(new ScentTraceEntry(scentId, GetFreshness(age, effectiveLifetime), speciesName));
             }
         }
@@ -212,7 +216,9 @@ public sealed partial class ScentSystem : SharedScentSystem
             return;
 
         var isOwnScent = TryComp<ScentComponent>(target, out var targetScent) && targetScent.ScentId == args.ScentId;
-        var isTracedScent = TryComp<ScentTraceComponent>(target, out var trace) && trace.Scents.ContainsKey(args.ScentId);
+        var isTracedScent = TryComp<ScentTraceComponent>(target, out var trace) &&
+            trace.Scents.TryGetValue(args.ScentId, out var traceInfo) &&
+            IsWithinPerceivedLifetime(component, trace, traceInfo.LastTouched);
 
         if (!isOwnScent && !isTracedScent)
             return;
@@ -403,6 +409,16 @@ public sealed partial class ScentSystem : SharedScentSystem
 
         foreach (var scentId in expired)
             trace.Scents.Remove(scentId);
+    }
+
+    // Whether a Partial perceiver can perceive a trace this old at all. Full perceivers always can.
+    private bool IsWithinPerceivedLifetime(SmellerComponent component, ScentTraceComponent trace, TimeSpan lastTouched)
+    {
+        if (component.Perception != ScentPerception.Partial)
+            return true;
+
+        var age = (float)(_timing.CurTime - lastTouched).TotalSeconds;
+        return age <= trace.TraceLifetime * trace.PartialFreshnessFraction;
     }
 
     private static ScentFreshness GetFreshness(float age, float lifetime)
