@@ -4,6 +4,7 @@ using Content.Shared._Starlight.Scent.Events;
 using Content.Shared._Starlight.Scent.Systems;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
@@ -19,7 +20,6 @@ public sealed partial class ClientScentSystem : SharedScentSystem
     [Dependency] private IOverlayManager _overlayMan = default!;
     [Dependency] private IEyeManager _eye = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
 
     private ScentPerceptionOverlay _overlay = default!;
     private ScentSourcePingOverlay _pingOverlay = default!;
@@ -51,10 +51,7 @@ public sealed partial class ClientScentSystem : SharedScentSystem
     }
 
     private void OnScentSourcePing(ScentSourcePingEvent ev)
-    {
-        var coords = GetCoordinates(ev.Coordinates);
-        _pingOverlay.AddFlash(ScentTrackingSystem.GetScentColor(ev.ScentId), _transform.ToMapCoordinates(coords));
-    }
+        => _pingOverlay.AddFlash(ScentTrackingSystem.GetScentColor(ev.ScentId), new MapCoordinates(ev.Position, ev.MapId));
 
     protected override void OnSmellerInit(EntityUid uid, SmellerComponent component, ComponentInit args)
     {
@@ -85,6 +82,7 @@ public sealed partial class ClientScentSystem : SharedScentSystem
 
         _overlayMan.RemoveOverlay(_overlay);
         _overlayMan.RemoveOverlay(_pingOverlay);
+        _pingOverlay.ClearFlashes();
     }
 
     private void OnPlayerAttached(EntityUid uid, SmellerComponent component, LocalPlayerAttachedEvent args)
@@ -99,5 +97,6 @@ public sealed partial class ClientScentSystem : SharedScentSystem
     {
         _overlayMan.RemoveOverlay(_overlay);
         _overlayMan.RemoveOverlay(_pingOverlay);
+        _pingOverlay.ClearFlashes();
     }
 }

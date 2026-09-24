@@ -45,6 +45,8 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
     public void AddFlash(Color color, MapCoordinates target)
         => _flashes.Add(new ActiveFlash(color, target.MapId, target.Position, _timing.CurTime));
 
+    public void ClearFlashes() => _flashes.Clear();
+
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         _flashes.RemoveAll(f => _timing.CurTime - f.StartTime > _duration);
@@ -104,7 +106,7 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
 
             var base0 = edgePoint + (tangent * x0);
             var base1 = edgePoint + (tangent * x1);
-            
+
             var crest0 = base0 + ((center - base0) * (ReachFraction * h0));
             var crest1 = base1 + ((center - base1) * (ReachFraction * h1));
 
