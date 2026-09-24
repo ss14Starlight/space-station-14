@@ -31,6 +31,7 @@
       - Felyaic
       - Lagomorphian
       - Squeakish
+      - ClassicalSign
 
 - type: entity
   id: BaseBorgiLanguages
@@ -69,6 +70,7 @@
       - Felyaic
       - Lagomorphian
       - Squeakish
+      - ClassicalSign
 
 - type: entity
   id: BaseSiliconBrainLanguages
@@ -118,6 +120,7 @@
       - Squeakish
       - Xeno
       - Xenomind
+      - ClassicalSign
 
 - type: entity
   id: BaseXenoBorgiLanguages
@@ -157,3 +160,4 @@
       - Lagomorphian
       - Squeakish
       - Xeno
+      - ClassicalSign
