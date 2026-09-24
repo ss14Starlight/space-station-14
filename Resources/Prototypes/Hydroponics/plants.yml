@@ -906,7 +906,7 @@
     name: seeds-apple-name
     packetPrototype: AppleSeeds
     productPrototypes: [ FoodApple ]
-    mutationPrototypes: [ GoldenApplePlants ]
+    mutationPrototypes: [ GoldenApplePlants, EvilApplePlants ] #Stalight
   - type: Plant
     lifespan: 55
     maturation: 6
