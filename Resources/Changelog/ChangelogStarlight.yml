@@ -1,13 +1,6 @@
 Entries:
 - author: Citrea
   changes:
-  - message: Pieces of your shell may now break in combat.
-    type: Tweak
-  id: 408445
-  time: '2026-09-09T21:26:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6000
-- author: Citrea
-  changes:
   - message: Dolls can also heal off injected blood now (again).
     type: Tweak
   id: 408446
@@ -2799,4 +2792,11 @@ Entries:
   id: 408844
   time: '2026-09-24T10:30:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6307
+- author: XeroTec/Meepmerp
+  changes:
+  - message: Security gas masks, glasses/huds, emergency tanks, and crisis buttons fit in belt/carrier.
+    type: Add
+  id: 408845
+  time: '2026-09-24T11:01:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6301
 Order: -1
