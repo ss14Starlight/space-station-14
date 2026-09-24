@@ -821,26 +821,26 @@
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-researchguidelines.xml"
   priority: 2
   children:
-      - science-sop-researchguidelines-anomalyresearch
-      - science-sop-researchguidelines-artifactresearch
+      - science-sop-anomalyresearch
+      - science-sop-artifactresearch
 
 
 - type: guideEntry
   id: science-sop-researchguidelines-anomalyresearch
   name: guide-entry-sl-science-sop-researchguidelines-anomalyresearch
-  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-researchguidelines-anomalyresearch.xml"
+  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-anomalyresearch.xml"
   priority: 1
 
 - type: guideEntry
   id: science-sop-researchguidelines-artifactresearch
   name: guide-entry-sl-science-sop-researchguidelines-artifactresearch
-  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-researchguidelines-artifactresearch.xml"
+  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-artifactresearch.xml"
   priority: 2
 
 - type: guideEntry
   id: science-sop-itemdistribution
   name: guide-entry-sl-science-sop-itemdistribution
-  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/ItemDistribution.xml"
+  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/itemdistribution.xml"
   priority: 1
 
 
@@ -860,7 +860,7 @@
 - type: guideEntry
   id: science-sop-researchdirector
   name: guide-entry-sl-science-sop-researchdirector
-  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/ResearchDirector.xml"
+  text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/researchdirector.xml"
   priority: 1
 
 - type: guideEntry
