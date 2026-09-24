@@ -105,10 +105,8 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
             }
         }
         jobName = FormattedMessage.RemoveMarkupOrThrow(jobName);
-        // Starlight-end
 
-        var message = Loc.GetString(messageId, ("user", nameText), ("job", jobName), ("position", posText)); // Starlight: Sanitized name, added job name to parameters
-        // Starlight-start
+        var message = Loc.GetString(messageId, ("user", nameText), ("job", jobName), ("position", posText));
         //For global announcements, ie, DAGD nuke codes, so they can't just sabotage comms. Could also use this to announce when someone important is dead.
         if (ent.Comp.Global)
         {
