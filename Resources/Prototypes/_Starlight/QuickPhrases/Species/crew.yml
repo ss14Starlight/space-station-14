@@ -33,6 +33,11 @@
   parent: BaseCrewSpeciesPhrase
   text: species-name-ipc
 
+- type: quickPhrase
+  id: SpeciesDollPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-doll
+
 # Neocytes and neocyte subspecies
 
 - type: quickPhrase
