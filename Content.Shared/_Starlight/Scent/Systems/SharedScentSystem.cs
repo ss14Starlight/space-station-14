@@ -175,7 +175,7 @@ public abstract partial class SharedScentSystem : EntitySystem
         }
     }
 
-    private bool TryResolveScentOwner(string scentId, out EntityUid owner)
+    protected bool TryResolveScentOwner(string scentId, out EntityUid owner)
     {
         var query = EntityQueryEnumerator<ScentComponent>();
         while (query.MoveNext(out var uid, out var scent))

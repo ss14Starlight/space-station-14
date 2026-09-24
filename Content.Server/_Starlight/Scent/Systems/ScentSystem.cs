@@ -207,8 +207,13 @@ public sealed partial class ScentSystem : SharedScentSystem
         if (!isOwnScent && !isTracedScent)
             return;
 
+        var isNewTrack = component.TrackedScentId != args.ScentId;
+
         SetTrackedScent((uid, component), args.ScentId, target);
         _popup.PopupEntity(Loc.GetString("scent-sniff-window-tracking-popup"), uid, uid);
+
+        if (isNewTrack)
+            SendScentSourcePing((uid, component), args.ScentId);
     }
 
     private void OnCleanAfterInteract(Entity<CleansScentComponent> ent, ref AfterInteractEvent args)
