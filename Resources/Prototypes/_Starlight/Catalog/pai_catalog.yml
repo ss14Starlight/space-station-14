@@ -302,3 +302,19 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: Vespic
+  name: language-Vespic-name
+  description: language-Vespic-description
+  productLanguage: Vespic
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: vespic
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1

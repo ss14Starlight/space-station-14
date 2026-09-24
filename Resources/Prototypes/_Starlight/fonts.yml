@@ -50,6 +50,10 @@
   id: Squeakish
   path: /Fonts/_Starlight/Squeakish.otf
 
+- type: font
+  id: Vespic
+  path: /Fonts/_Starlight/Vespic.ttf
+
 # DotMatrix
 - type: font
   id: DotMatrix

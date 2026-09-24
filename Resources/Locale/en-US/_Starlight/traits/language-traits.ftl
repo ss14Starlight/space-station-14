@@ -74,3 +74,6 @@ trait-language-squeakish-desc = You can speak Squeakish, the language of the Rod
 
 trait-language-nexusintegrated-name = Nexus Integrated
 trait-language-nexusintegrated-desc = You have a Nexus uplink implant despite not being an Avali or Resomi. You were likely raised among their culture, or perhaps managed to get your hands on one after a prolonged period of fascination and cultural immersion. You must not be an Experiment, and know Scratch to take this trait.
+
+trait-language-vespic-name = Vespic
+trait-language-vespic-description = The language of the Vespuli, consisting of erratic vibrations.

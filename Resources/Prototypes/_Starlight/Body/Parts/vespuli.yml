@@ -1,0 +1,120 @@
+# TODO: Add descriptions (many)
+# TODO BODY: Part damage
+- type: entity
+  id: PartVespuli
+  parent: [BaseItem, BasePart]
+  name: "vespuli body part"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: TorsoVespuli
+  name: "vespuli torso"
+  parent: [PartVespuli, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: "torso"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+
+- type: entity
+  id: HeadVespuli
+  name: "vespuli head"
+  parent: [PartVespuli, BaseHead]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: "head"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmVespuli
+  name: "left vespuli arm"
+  parent: [PartVespuli, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmVespuli
+  name: "right vespuli arm"
+  parent: [PartVespuli, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandVespuli
+  name: "left vespuli hand"
+  parent: [PartVespuli, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandVespuli
+  name: "right vespuli hand"
+  parent: [PartVespuli, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegVespuli
+  name: "left vespuli leg"
+  parent: [PartVespuli, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegVespuli
+  name: "right vespuli leg"
+  parent: [PartVespuli, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootVespuli
+  name: "left vespuli foot"
+  parent: [PartVespuli, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootVespuli
+  name: "right vespuli foot"
+  parent: [PartVespuli, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: "r_foot"

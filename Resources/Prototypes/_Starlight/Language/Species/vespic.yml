@@ -1,0 +1,44 @@
+- type: language
+  id: Vespic
+  icon: LanguageIconVespic
+  chatPrefix: ves
+  speech:
+    color: "#E9AB17"
+    fontId: Vespic
+    obfuscationFont: true
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 5
+    replacement:
+      - bzz
+      - vmm
+      - buzz
+      - vhrr
+      - vrrr
+      - brrr
+      - bzzt
+      - vrrt
+      - zzz
+      - zzt
+      - zzm
+      - brzz
+      - be
+      - ve
+      - ze
+      - hum
+      - zum
+      - bmm
+      - vmm
+      - mrr
+      - brr
+      - br
+      - vr
+      - zr
+      - mr
+      - lu
+      - hu
+      - mu
+      - bu
+      - ru
+      - vu

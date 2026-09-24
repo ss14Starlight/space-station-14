@@ -1,17 +1,17 @@
 - type: entity
-  id: OrganAculiiEyes
+  id: OrganVespuliEyes
   parent: OrganHumanEyes
   name: eyes
-  suffix: Aculii
-  description: "Aculii eyes are very big, to catch the light"
+  suffix: Vespuli
+  description: "Vespuli eyes are very big, to catch the light"
   components:
   - type: OrganVisualization
     layer: Eyes
     prototypes:
-      Default: MobAculiiEyes
+      Default: MobVespuliEyes
 
 - type: entity
-  id: OrganAculiiStomach
+  id: OrganVespuliStomach
   parent: [OrganAnimalStomach, OrganHumanStomach]
   categories: [ HideSpawnMenu ]
   components:
@@ -32,7 +32,7 @@
           Quantity: 5
   - type: Metabolizer
     maxReagents: 3
-    metabolizerTypes: [ Aculii ]
+    metabolizerTypes: [ Vespuli ]
     removeEmpty: true
     groups:
       - id: Food

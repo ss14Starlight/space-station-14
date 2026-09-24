@@ -557,4 +557,25 @@
         - NeoAvali
         - NeoResomi
         - Experiment
+
+- type: trait       
+  id: Vespic
+  name: trait-language-vespic-name
+  description: trait-language-vespic-desc
+  category: LanguageTraits
+  cost: 2
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - Vespic
+      languagesUnderstood:
+        - Vespic
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Vespuli
+      inverted: true
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
       inverted: true

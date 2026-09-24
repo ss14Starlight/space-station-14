@@ -1,12 +1,12 @@
 - type: species
-  id: Aculii
-  name: species-name-Aculii
+  id: Vespuli
+  name: species-name-Vespuli
   roundStart: true
-  prototype: MobAculii
-  sprites: MobAculiiSprites
+  prototype: MobVespuli
+  sprites: MobVespuliSprites
   defaultSkinTone: "#DBC18A"
-  markingLimits: MobAculiiMarkingLimits
-  dollPrototype: AppearanceAculii
+  markingLimits: MobVespuliMarkingLimits
+  dollPrototype: AppearanceVespuli
   skinColoration: Hues
   maleFirstNames: names_resomi_first
   femaleFirstNames: names_resomi_first
@@ -23,30 +23,30 @@
   minHeight: 0.85
 
 - type: speciesBaseSprites
-  id: MobAculiiSprites
+  id: MobVespuliSprites
   sprites:
-    Head: MobAculiiHead
+    Head: MobVespuliHead
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
-    Chest: MobAculiiTorso
+    Chest: MobVespuliTorso
     UndergarmentBottom: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
-    Eyes: MobAculiiEyes
-    LArm: MobAculiiLArm
-    RArm: MobAculiiRArm
-    LHand: MobAculiiLHand
-    RHand: MobAculiiRHand
-    LLeg: MobAculiiLLeg
-    RLeg: MobAculiiRLeg
-    LFoot: MobAculiiLFoot
-    RFoot: MobAculiiRFoot
+    Eyes: MobVespuliEyes
+    LArm: MobVespuliLArm
+    RArm: MobVespuliRArm
+    LHand: MobVespuliLHand
+    RHand: MobVespuliRHand
+    LLeg: MobVespuliLLeg
+    RLeg: MobVespuliRLeg
+    LFoot: MobVespuliLFoot
+    RFoot: MobVespuliRFoot
 
 - type: markingPoints
-  id: MobAculiiMarkingLimits
+  id: MobVespuliMarkingLimits
   #onlyWhitelisted: true // Starlight removal
   points:
     Hair:
@@ -81,91 +81,91 @@
       required: false
 
 - type: humanoidBaseSprite
-  id: MobAculiiEyes
+  id: MobVespuliEyes
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
     state: eyes
 
 - type: humanoidBaseSprite
-  id: MobAculiiHead
+  id: MobVespuliHead
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
-    state: head_m
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: head
 
 - type: humanoidBaseSprite
-  id: MobAculiiHeadMale
+  id: MobVespuliHeadMale
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
-    state: head_m
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: head
 
 - type: humanoidBaseSprite
-  id: MobAculiiHeadFemale
+  id: MobVespuliHeadFemale
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
-    state: head_f
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: head
 
 - type: humanoidBaseSprite
-  id: MobAculiiTorso
+  id: MobVespuliTorso
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
-    state: torso_m
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: torso
 
 - type: humanoidBaseSprite
-  id: MobAculiiTorsoMale
+  id: MobVespuliTorsoMale
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
-    state: torso_m
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: torso
 
 - type: humanoidBaseSprite
-  id: MobAculiiTorsoFemale
+  id: MobVespuliTorsoFemale
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
-    state: torso_f
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
+    state: torso
 
 - type: humanoidBaseSprite
-  id: MobAculiiLLeg
+  id: MobVespuliLLeg
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
     state: l_leg
 
 - type: humanoidBaseSprite
-  id: MobAculiiLHand
+  id: MobVespuliLHand
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
     state: l_hand
 
 - type: humanoidBaseSprite
-  id: MobAculiiLArm
+  id: MobVespuliLArm
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
     state: l_arm
 
 - type: humanoidBaseSprite
-  id: MobAculiiLFoot
+  id: MobVespuliLFoot
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
     state: l_foot
 
 - type: humanoidBaseSprite
-  id: MobAculiiRLeg
+  id: MobVespuliRLeg
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
     state: r_leg
 
 - type: humanoidBaseSprite
-  id: MobAculiiRHand
+  id: MobVespuliRHand
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
     state: r_hand
 
 - type: humanoidBaseSprite
-  id: MobAculiiRArm
+  id: MobVespuliRArm
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
     state: r_arm
 
 - type: humanoidBaseSprite
-  id: MobAculiiRFoot
+  id: MobVespuliRFoot
   baseSprite:
-    sprite: _Starlight/Mobs/Species/Aculii/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vespuli/parts.rsi
     state: r_foot

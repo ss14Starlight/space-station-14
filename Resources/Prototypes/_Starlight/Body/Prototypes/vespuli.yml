@@ -1,20 +1,20 @@
 ﻿- type: body
-  id: Aculii
-  name: "aculii"
+  id: Vespuli
+  name: "vespuli"
   root: torso
   slots:
     head:
-      part: HeadAculii
+      part: HeadVespuli
       connections:
       - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganAculiiEyes # Starlight
+        eyes: OrganVespuliEyes # Starlight
         tongue: OrganHumanTongue
         eye_implant: null
         brain_implant: null # 🌟Starlight🌟
     torso:
-      part: TorsoAculii
+      part: TorsoVespuli
       connections:
       - right arm
       - left arm
@@ -23,35 +23,35 @@
       organs:
         heart: OrganAnimalHeart
         lungs: OrganHumanLungs
-        stomach: OrganAculiiStomach
+        stomach: OrganVespuliStomach
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
         cavity: null
     right arm:
-      part: RightArmAculii
+      part: RightArmVespuli
       connections:
       - right hand
     left arm:
-      part: LeftArmAculii
+      part: LeftArmVespuli
       connections:
       - left hand
     right hand:
-      part: RightHandAculii
+      part: RightHandVespuli
       organs: # 🌟Starlight🌟
         hand_implant: null # 🌟Starlight🌟
     left hand:
-      part: LeftHandAculii
+      part: LeftHandVespuli
       organs: # 🌟Starlight🌟
         hand_implant: null # 🌟Starlight🌟
     right leg:
-      part: RightLegAculii
+      part: RightLegVespuli
       connections:
       - right foot
     left leg:
-      part: LeftLegAculii
+      part: LeftLegVespuli
       connections:
       - left foot
     right foot:
-      part: RightFootAculii
+      part: RightFootVespuli
     left foot:
-      part: LeftFootAculii
+      part: LeftFootVespuli

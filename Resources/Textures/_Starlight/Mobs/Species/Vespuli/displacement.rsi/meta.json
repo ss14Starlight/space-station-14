@@ -13,77 +13,77 @@
     {
       "name": "jumpsuit",
       "directions": 4,
-      "copyright": "by Huaqas (GitHub)"
+      "copyright": "by Mintly"
     },
     {
       "name": "back",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by Mintly"
     },
     {
       "name": "head",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by Mintly"
     },
     {
       "name": "hands",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by Mintly"
     },
     {
       "name": "outerclothing",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by Mintly"
     },
     {
       "name": "inHand",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by Mintly"
     },
     {
       "name": "ears",
       "directions": 4,
-      "copyright": "by DocMoth"
+      "copyright": "by Mintly"
     },
     {
       "name": "eyes",
       "directions": 4,
-      "copyright": "by Zeyria, bleeding fixed by @redmushie (github)"
+      "copyright": "by Mintly"
     },
     {
       "name": "mask",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by Mintly"
     },
     {
       "name": "belt",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by Mintly"
     },
     {
       "name": "shoes",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by Mintly"
     },
     {
       "name": "neck",
       "directions": 4,
-      "copyright": "by DocMoth"
+      "copyright": "by Mintly"
     },
     {
       "name": "hair",
       "directions": 4,
-      "copyright": "by Huaqas (GitHub)"
+      "copyright": "by Mintly"
     },
     {
       "name": "facialhair",
       "directions": 4,
-      "copyright": "by Huaqas (GitHub)"
+      "copyright": "by Mintly"
     },
     {
       "name": "misc",
       "directions": 4,
-      "copyright": "by DocMoth"
+      "copyright": "by Mintly"
     }
   ]
 }

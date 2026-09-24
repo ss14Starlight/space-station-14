@@ -162,3 +162,6 @@ language-Penguin-description = Squawk!
 
 language-Spore-name = Spores
 language-Spore-description = Communication over fungal spores.
+
+language-Vespic-name = Vespic
+language-Vespic-description = The language of the Vespuli, consisting of erratic vibrations.

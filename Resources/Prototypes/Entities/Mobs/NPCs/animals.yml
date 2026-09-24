@@ -95,6 +95,13 @@
   id: MobBee
   description: Nice to have, but you can't build a civilization on a foundation of honey alone.
   components:
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Vespic
+    understands:
+    - Vespic
+    - GalacticCommon
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
@@ -180,6 +187,13 @@
   id: MobAngryBee
   description: How nice a bee. Oh no, it looks angry and wants my pizza.
   components:
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Vespic
+    understands:
+    - Vespic
+    - GalacticCommon
   - type: CombatMode
   - type: MeleeWeapon
     angle: 0
