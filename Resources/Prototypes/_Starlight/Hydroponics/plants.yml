@@ -149,7 +149,7 @@
     name: seeds-cinnamon-name
     packetPrototype: CinnamonSeeds
     productPrototypes: [ FoodCinnamonStick ]
-    mutationPrototypes: [ Cinnaflare ]
+    mutationPrototypes: [ CinnaflareStick ]
   - type: Plant
     lifespan: 25
     growthStages: 5
