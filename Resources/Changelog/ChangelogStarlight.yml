@@ -1,11 +1,4 @@
 Entries:
-- author: Hot Mic
-  changes:
-  - message: Department Techfabs are now included in the Shard Tests (now fails if the mapper forgot to map them in).
-    type: Tweak
-  id: 408435
-  time: '2026-09-09T05:43:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6061
 - author: wonderfulnewworld
   changes:
   - message: Added SoP for Assistant Managers and Assistants.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408834
   time: '2026-09-23T11:21:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6272
+- author: Caws
+  changes:
+  - message: IAA doors now use the new NT door sprite.
+    type: Tweak
+  id: 408835
+  time: '2026-09-24T09:30:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6237
 Order: -1
