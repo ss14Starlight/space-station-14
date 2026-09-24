@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Box) Added all departmental mailboxes.
-    type: Add
-  id: 408469
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
   - message: (Box) Added a k9 to security.
     type: Add
   id: 408470
@@ -2799,4 +2792,11 @@ Entries:
   id: 408868
   time: '2026-09-24T11:27:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6274
+- author: Pickra
+  changes:
+  - message: Changelogs now know what "unknown" type means.
+    type: Tweak
+  id: 408869
+  time: '2026-09-24T18:47:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6336
 Order: -1
