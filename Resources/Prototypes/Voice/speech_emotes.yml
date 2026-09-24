@@ -2,6 +2,7 @@
 - type: emote
   id: Scream
   name: chat-emote-name-scream
+  priority: 3 # Starlight
   category: Vocal
   icon: Interface/Emotes/scream.png
   whitelist:
@@ -34,6 +35,7 @@
 - type: emote
   id: Laugh
   name: chat-emote-name-laugh
+  priority: 32 # Starlight
   category: Vocal
   icon: Interface/Emotes/laugh.png
   whitelist:
@@ -64,6 +66,7 @@
 - type: emote
   id: Honk
   name: chat-emote-name-honk
+  priority: 13 # Starlight
   category: Vocal
   icon: Interface/Emotes/honk.png
   whitelist:
@@ -82,6 +85,7 @@
 - type: emote
   id: Sigh
   name: chat-emote-name-sigh
+  priority: 36 # Starlight
   category: Vocal
   icon: Interface/Emotes/sigh.png
   whitelist:
@@ -100,6 +104,7 @@
 - type: emote
   id: Whistle
   name: chat-emote-name-whistle
+  priority: 27 # Starlight
   category: Vocal
   icon: Interface/Emotes/whistle.png
   whitelist:
@@ -118,6 +123,7 @@
 - type: emote
   id: Crying
   name: chat-emote-name-crying
+  priority: 4 # Starlight
   category: Vocal
   icon: Interface/Emotes/cry.png
   whitelist:
@@ -138,6 +144,7 @@
 - type: emote
   id: Squish
   name: chat-emote-name-squish
+  priority: 2 # Starlight
   category: Vocal
   available: false
   icon: Interface/Emotes/squish.png
@@ -157,6 +164,7 @@
 - type: emote
   id: Chitter
   name: chat-emote-name-chitter
+  priority: 38 # Starlight
   category: Vocal
   available: false
   icon: Interface/Emotes/chitter.png
@@ -176,6 +184,7 @@
 - type: emote
   id: Squeak
   name: chat-emote-name-squeak
+  priority: 25 # Starlight
   category: Vocal
   available: false
   icon: Interface/Emotes/squeak.png
@@ -195,6 +204,7 @@
 - type: emote
   id: Click
   name: chat-emote-name-click
+  priority: 47 # Starlight
   category: Vocal
   available: false
   icon: Interface/Emotes/click.png
@@ -214,6 +224,7 @@
 - type: emote
   id: Bark
   name: chat-emote-name-bark
+  priority: 49 # Starlight
   category: Vocal
   available: false
   whitelist:
@@ -232,6 +243,7 @@
 - type: emote
   id: Snarl
   name: chat-emote-name-snarl
+  priority: 11 # Starlight
   category: Vocal
   available: false
   whitelist:
@@ -250,6 +262,7 @@
 - type: emote
   id: Whine
   name: chat-emote-name-whine
+  priority: 51 # Starlight
   category: Vocal
   available: false
   whitelist:
@@ -268,6 +281,7 @@
 - type: emote
   id: Howl
   name: chat-emote-name-howl
+  priority: 24 # Starlight
   category: Vocal
   available: false
   whitelist:
@@ -286,6 +300,7 @@
 - type: emote
   id: Growl
   name: chat-emote-name-growl
+  priority: 15 # Starlight
   category: Vocal
   available: false
   whitelist:
@@ -305,6 +320,7 @@
 - type: emote
   id: Clap
   name: chat-emote-name-clap
+  priority: 5 # Starlight
   category: Hands
   icon: Interface/Emotes/clap.png
   whitelist:
@@ -323,6 +339,7 @@
 - type: emote
   id: ClapSingle
   name: chat-emote-name-clap-single
+  priority: 2 # Starlight
   category: Hands
   icon: Interface/Emotes/clap.png #TODO: Needs a sprite that distinguishes it better from clap
   whitelist:
@@ -343,6 +360,7 @@
 - type: emote
   id: Snap
   name: chat-emote-name-snap
+  priority: 3 # Starlight
   category: Hands
   icon: Interface/Emotes/snap.png
   whitelist:
@@ -370,6 +388,7 @@
 - type: emote
   id: Thump
   name: chat-emote-name-thump
+  priority: 6 # Starlight
   category: Hands
   available: false
   icon: Interface/Emotes/tailslap.png
@@ -396,6 +415,7 @@
 - type: emote
   id: Salute
   name: chat-emote-name-salute
+  priority: 0 # Starlight
   category: Hands
   icon: Interface/Emotes/salute.png
   whitelist:
@@ -412,6 +432,7 @@
 - type: emote
   id: Gasp
   name: chat-emote-name-gasp
+  priority: 2 # Starlight
   whitelist:
     components:
     - Respirator
@@ -424,6 +445,7 @@
 - type: emote
   id: DefaultDeathgasp
   name: chat-emote-name-deathgasp
+  priority: 4 # Starlight
   icon: Interface/Emotes/deathgasp.png
   whitelist:
     components:
@@ -435,18 +457,21 @@
 - type: emote
   id: MonkeyDeathgasp
   name: chat-emote-name-deathgasp
+  priority: 0 # Starlight
   icon: Interface/Emotes/deathgasp.png
   chatMessages: ["chat-emote-msg-deathgasp-monkey"]
 
 - type: emote
   id: ScurretDeathgasp
   name: chat-emote-name-deathgasp
+  priority: 3 # Starlight
   icon: Interface/Emotes/deathgasp.png
   chatMessages: ["chat-emote-msg-deathgasp-scurret"]
 
 - type: emote
   id: Buzz
   name: chat-emote-name-buzz
+  priority: 39 # Starlight
   category: Vocal
   icon: Interface/Emotes/buzz.png
   whitelist:
@@ -465,6 +490,7 @@
 - type: emote
   id: Weh
   name: chat-emote-name-weh
+  priority: 20 # Starlight
   category: Vocal
   icon: Interface/Emotes/weh.png
   chatMessages: ["chat-emote-msg-weh"]
@@ -472,6 +498,7 @@
 - type: emote
   id: Hew
   name: chat-emote-name-hew
+  priority: 35 # Starlight
   category: Vocal
   icon: Interface/Emotes/hew.png
   chatMessages: ["chat-emote-msg-hew"]
@@ -479,6 +506,7 @@
 - type: emote
   id: Chirp
   name: chat-emote-name-chirp
+  priority: 50 # Starlight
   category: Vocal
   available: false
   icon: Interface/Emotes/chirp.png
@@ -500,6 +528,7 @@
 - type: emote
   id: Flap
   name: chat-emote-name-flap
+  priority: 4 # Starlight
   category: Hands # Not really "hands", but how far it to vocal? (moth mimes want to flap too!)
   available: false
   icon: Interface/Emotes/flap.png
@@ -536,6 +565,7 @@
 - type: emote
   id: Beep
   name: chat-emote-name-beep
+  priority: 1 # Starlight
   category: Vocal
   icon: Interface/Emotes/beep.png
   whitelist:
@@ -554,6 +584,7 @@
 - type: emote
   id: Chime
   name: chat-emote-name-chime
+  priority: 8 # Starlight
   category: Vocal
   icon: Interface/Emotes/chime.png
   whitelist:
@@ -572,6 +603,7 @@
 - type: emote
   id: Buzz-Two
   name: chat-emote-name-buzztwo
+  priority: 22 # Starlight
   category: Vocal
   icon: Interface/Emotes/buzztwo.png
   whitelist:
@@ -596,6 +628,7 @@
 - type: emote
   id: Ping
   name: chat-emote-name-ping
+  priority: 42 # Starlight
   category: Vocal
   icon: Interface/Emotes/ping.png
   whitelist:

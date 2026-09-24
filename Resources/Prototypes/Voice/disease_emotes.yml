@@ -1,6 +1,7 @@
 - type: emote
   id: Sneeze
   name: chat-emote-name-sneeze
+  priority: 33 # Starlight
   category: Vocal
   whitelist:
     components:
@@ -25,6 +26,7 @@
 - type: emote
   id: Cough
   name: chat-emote-name-cough
+  priority: 41 # Starlight
   icon: Interface/Emotes/cough.png
   category: Vocal
   whitelist:
@@ -49,30 +51,35 @@
 - type: emote
   id: CatMeow
   name: chat-emote-name-catmeow
+  priority: 14 # Starlight
   category: Vocal
   chatMessages: ["chat-emote-msg-catmeow"]
 
 - type: emote
   id: CatHisses
   name: chat-emote-name-cathisses
+  priority: 40 # Starlight
   category: Vocal
   chatMessages: ["chat-emote-msg-cathisses"]
 
 - type: emote
   id: MonkeyScreeches
   name: chat-emote-name-monkeyscreeches
+  priority: 28 # Starlight
   category: Vocal
   chatMessages: ["chat-emote-msg-monkeyscreeches"]
 
 - type: emote
   id: RobotBeep
   name: chat-emote-name-robotbeep
+  priority: 16 # Starlight
   category: Vocal
   chatMessages: ["chat-emote-msg-beep"]
 
 - type: emote
   id: Yawn
   name: chat-emote-name-yawn
+  priority: 29 # Starlight
   icon: Interface/Emotes/yawn.png
   category: Vocal
   whitelist:
@@ -90,5 +97,6 @@
 - type: emote
   id: Snore
   name: chat-emote-name-snore
+  priority: 37 # Starlight
   category: Vocal
   chatMessages: ["chat-emote-msg-snore"]
