@@ -103,7 +103,7 @@ public sealed partial class PlantSystem : EntitySystem
             }
 
             foreach (var trait in AllComps<PlantTraitsComponent>(ent.Owner)
-                         .OrderBy(trait => trait.GetType().FullName))
+                        .OrderBy(trait => trait.GetType().FullName))
             {
                 if (trait.TraitState is { } traitState)
                     args.PushMarkup(Loc.GetString(traitState));
