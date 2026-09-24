@@ -1,144 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: Dolls get hydrated by blood, as they should.
-    type: Fix
-  id: 408448
-  time: '2026-09-09T21:26:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6000
-- author: Swonki
-  changes:
-  - message: Fixes Faxxing.
-    type: Fix
-  id: 408449
-  time: '2026-09-09T21:26:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6068
-- author: Caws
-  changes:
-  - message: Laundromat station beacon, to help you find laundromats on the map.
-    type: Add
-  id: 408450
-  time: '2026-09-10T11:54:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6053
-- author: Caws
-  changes:
-  - message: Access-locked variants of washing machines have been removed. All washing machines are all-access once again.
-    type: Tweak
-  id: 408451
-  time: '2026-09-10T11:54:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6053
-- author: Caws
-  changes:
-  - message: (CC Outpost SC17) Prisoners can no longer walk into Security via the Genpop turnstiles.
-    type: Fix
-  id: 408452
-  time: '2026-09-10T12:13:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6024
-- author: Whatstone
-  changes:
-  - message: Fixed Stealth items having a showing outline on hover.
-    type: Fix
-  id: 408453
-  time: '2026-09-10T15:20:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5856
-- author: Sparlight
-  changes:
-  - message: Fixed a bug where borgis could be repeatedly flashed for telebonds as a revolutionary.
-    type: Fix
-  id: 408454
-  time: '2026-09-10T16:00:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6019
-- author: Huaqas
-  changes:
-  - message: Chemmi plushie added to the plushie vendor.
-    type: Add
-  id: 408455
-  time: '2026-09-10T16:37:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6050
-- author: SirLutz
-  changes:
-  - message: Section in Security Guidebook explaining ammotypes.
-    type: Add
-  id: 408456
-  time: '2026-09-10T16:37:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6049
-- author: SirLutz
-  changes:
-  - message: Shotgun buckshots are increasing effectivness of Armor by 13%.
-    type: Add
-  id: 408457
-  time: '2026-09-10T16:37:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6049
-- author: SirLutz
-  changes:
-  - message: Shotgun Slugshots are ignoring 60% of armor.
-    type: Add
-  id: 408458
-  time: '2026-09-10T16:37:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6049
-- author: OJG
-  changes:
-  - message: (Refinery) Assistant manger slots and spawns.
-    type: Add
-  id: 408459
-  time: '2026-09-10T17:03:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6073
-- author: OJG
-  changes:
-  - message: (Refinery) Washing machines.
-    type: Add
-  id: 408460
-  time: '2026-09-10T17:03:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6073
-- author: OJG
-  changes:
-  - message: (Refinery) Station status screens in public areas.
-    type: Add
-  id: 408461
-  time: '2026-09-10T17:03:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6073
-- author: OJG
-  changes:
-  - message: (Refinery) boarded up the old salv locker room.
-    type: Tweak
-  id: 408462
-  time: '2026-09-10T17:03:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6073
-- author: STARLIGHT TEAM
-  changes:
-  - message: Neocytes now correctly display health icons in various medical HUDs.
-    type: Fix
-  id: 408463
-  time: '2026-09-10T17:03:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5948
-- author: idkAnAlliasYetTbh & FlameyTheRandom
-  changes:
-  - message: Adds a base plushie for Vox, meaning it is hopefully easier for others to make a Vox Plushe in the future!
-    type: Add
-  id: 408464
-  time: '2026-09-10T17:33:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6054
-- author: idkAnAlliasYetTbh & FlameyTheRandom
-  changes:
-  - message: Added a Hrekrativi plushie.
-    type: Add
-  id: 408465
-  time: '2026-09-10T17:33:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6054
-- author: Rinary
-  changes:
-  - message: Removed footprints and skid marks due to performence issues on both(server and client) sides.
-    type: Remove
-  id: 408466
-  time: '2026-09-10T19:25:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6084
-- author: Cvlancer
-  changes:
-  - message: (Box) Add a bit of intercoms all over station.
-    type: Add
-  id: 408467
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
 - author: Cvlancer
   changes:
   - message: (Box) Added assistant manager near hop.
@@ -2799,4 +2659,144 @@ Entries:
   id: 408847
   time: '2026-09-24T11:27:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6287
+- author: Caws
+  changes:
+  - message: (Novo Lobster) K9s.
+    type: Add
+  id: 408848
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Laundromat.
+    type: Add
+  id: 408849
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Mailboxes.
+    type: Add
+  id: 408850
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Buckets have been added to the Janitor Closet and two Cleaning Closets.
+    type: Add
+  id: 408851
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added Surgeon lockers to Surgery.
+    type: Add
+  id: 408852
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added a security records computer to Genpop porcessing.
+    type: Add
+  id: 408853
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added a scrubber to the intermediate room between Botany and Botany's 'Gas Room'.
+    type: Add
+  id: 408854
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Added a non-IPC surgery area to Robotics.
+    type: Add
+  id: 408855
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Washing machines in SEC locker room.
+    type: Add
+  id: 408856
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Washing machine in MED locker room.
+    type: Add
+  id: 408857
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) The air alarm for Botany's 'Gas Room' is now unlocked at roundstart.
+    type: Tweak
+  id: 408858
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) The NanoMed in Medbay is now a randomized medical vending machine spawner again.
+    type: Tweak
+  id: 408859
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) The air alarms at Science's artifact testing now start unlocked.
+    type: Tweak
+  id: 408860
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Updated the Mining Bay to be more comfy.
+    type: Tweak
+  id: 408861
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Fixed missing tile under the Detective's west door.
+    type: Fix
+  id: 408862
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Cargo's front intercom is no longer unpowered.
+    type: Fix
+  id: 408863
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Removed some firelocks I put on the east side of Engineering for some reason that would always go off at the start of a round.
+    type: Fix
+  id: 408864
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) Science's left-most artifact chamber is now linked with its analysis pad at roundstart.
+    type: Fix
+  id: 408865
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) The conveyors on the Cargo Shuttle now actually work.
+    type: Fix
+  id: 408866
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Caws
+  changes:
+  - message: (Novo Lobster) NCT Office.
+    type: Remove
+  id: 408867
+  time: '2026-09-24T11:27:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6284
 Order: -1
