@@ -815,8 +815,8 @@
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-genproc-intro.xml"
   priority: 1
   children:
-      - researchguidelines
-      - itemdistribution
+      - science-sop-researchguidelines
+      - science-sop-itemdistribution
 
 - type: guideEntry
   id: science-sop-researchguidelines
@@ -824,8 +824,8 @@
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/researchguidelines.xml"
   priority: 2
   children:
-      - anomalyresearch
-      - artifactresearch
+      - science-sop-anomalyresearch
+      - science-sop-artifactresearch
 
 
 - type: guideEntry
@@ -854,10 +854,10 @@
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-staff-intro.xml"
   priority: 2
   children:
-      - researchdirector
-      - scientist
-      - researchassistant
-      - roboticist
+      - science-sop-researchdirector
+      - science-sop-scientist
+      - science-sop-researchassistant
+      - science-sop-roboticist
 
 
 - type: guideEntry
