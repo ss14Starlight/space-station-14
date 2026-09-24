@@ -49,6 +49,16 @@ public sealed class TwistyCubeMenu : DefaultWindow
         tccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.TopCounterClockwise);
         buttonGrid.AddChild(tccwButton);
 
+        var kcwButton = new Button { HorizontalExpand = true };
+        kcwButton.Text = Loc.GetString("twistycube-action-back-cw");
+        kcwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.BackClockwise);
+        buttonGrid.AddChild(kcwButton);
+
+        var kccwButton = new Button { HorizontalExpand = true };
+        kccwButton.Text = Loc.GetString("twistycube-action-back-ccw");
+        kccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.BackCounterClockwise);
+        buttonGrid.AddChild(kccwButton);
+
         var rcwButton = new Button { HorizontalExpand = true };
         rcwButton.Text = Loc.GetString("twistycube-action-right-cw");
         rcwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.RightClockwise);
@@ -68,16 +78,6 @@ public sealed class TwistyCubeMenu : DefaultWindow
         bccwButton.Text = Loc.GetString("twistycube-action-bottom-ccw");
         bccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.BottomCounterClockwise);
         buttonGrid.AddChild(bccwButton);
-
-        var kcwButton = new Button { HorizontalExpand = true };
-        kcwButton.Text = Loc.GetString("twistycube-action-back-cw");
-        kcwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.BackClockwise);
-        buttonGrid.AddChild(kcwButton);
-
-        var kccwButton = new Button { HorizontalExpand = true };
-        kccwButton.Text = Loc.GetString("twistycube-action-back-ccw");
-        kccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.BackCounterClockwise);
-        buttonGrid.AddChild(kccwButton);
 
         grid.AddChild(buttonGrid);
         
