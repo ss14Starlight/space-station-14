@@ -4,26 +4,26 @@ namespace Content.Shared._Starlight.TwistyCube;
 
 [Serializable, NetSerializable, DataRecord]
 public partial record struct TwistyCubeState(
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner FrontTopLeft,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner FrontTopRight,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner FrontBottomRight,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner FrontBottomLeft,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner BackBottomLeft,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner BackBottomRight,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner BackTopRight,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeCorner BackTopLeft,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge FrontTop,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge FrontRight,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge FrontBottom,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge FrontLeft,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge TopLeft,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge TopRight,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BottomRight,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BottomLeft,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BackLeft,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BackBottom,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BackRight,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeEdge BackTop
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeCorner FrontTopLeft,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeCorner FrontTopRight,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeCorner FrontBottomRight,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeCorner FrontBottomLeft,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeCorner BackBottomLeft,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeCorner BackBottomRight,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeCorner BackTopRight,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeCorner BackTopLeft,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge FrontTop,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge FrontRight,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge FrontBottom,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge FrontLeft,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge TopLeft,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge TopRight,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge BottomRight,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge BottomLeft,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge BackLeft,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge BackBottom,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge BackRight,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeEdge BackTop
 )
 {
     public TwistyCubeState() : this(

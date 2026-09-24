@@ -5,9 +5,9 @@ namespace Content.Shared._Starlight.TwistyCube;
 
 [Serializable, NetSerializable, DataRecord]
 public partial record struct TwistyCubeCorner(
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeColor Side1,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeColor Side2,
-    [field: ViewVariables(VVAccess.ReadOnly)] TwistyCubeColor Side3
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeColor Side1,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeColor Side2,
+    [property: ViewVariables(VVAccess.ReadWrite)] TwistyCubeColor Side3
 )
 {
     private bool PrintMembers(StringBuilder builder)
