@@ -928,25 +928,9 @@
 
 - type: randomHumanoidSettings
   id: CCGreenshieldBasic
+  parent: NeocyteVariantBlacklist
   speciesBlacklist:
     - Vox
-    - NeoArachnid
-    - NeoAvali
-    - NeoCyclorite
-    - NeoDwarf
-    - NeoDiona
-    - NeoFelionoid
-    - NeoHuman
-    - NeoMoth
-    - NeoReptilian
-    - NeoResomi
-    - NeoSlimePerson
-    - NeoThaven
-    - NeoVox
-    - NeoVulpkanin
-    - NeoKin
-    - NeoElf
-    - NeoLagomorph
   parent: EventHumanoidCentcomm
   randomizeName: false
   components:
@@ -1105,6 +1089,7 @@
     - type: AntagImmune
     - type: NoObjectiveTarget
 
+# Blacklist for Neocyte variants, as they otherwise overwhelm the randomizer due to technically counting as separate species
 - type: randomHumanoidSettings
   id: NeocyteVariantBlacklist
   speciesBlacklist:
