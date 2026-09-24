@@ -40,7 +40,7 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
     /// </summary>
     protected override void OnServerPowerChanged(EntityUid uid, StationRadioServerComponent comp, PowerChangedEvent args)
     {
-        if (!args.Powered)
+        if (!args.Powered && Transform(uid).Anchored)
         {
             StopAllReceivers(uid);
             return;

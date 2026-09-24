@@ -57,6 +57,8 @@ public sealed partial class StationRadioReceiverComponent : Component
     /// </summary>
     public bool BoostVolumePrev;
 
+    public SoundSpecifier? PervSound;
+
     /// <summary>
     /// Boosted AudioParams
     /// </summary>

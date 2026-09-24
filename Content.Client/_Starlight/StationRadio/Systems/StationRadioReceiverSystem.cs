@@ -52,6 +52,7 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
     [SubscribeLocalEvent]
     private void AfterHandleReceiverState(Entity<StationRadioReceiverComponent> ent, ref AfterAutoHandleStateEvent args)
     {
+
         var playerSession = _playerManager.LocalSession;
         if (playerSession == null)
             return;
@@ -63,6 +64,9 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
             comp.SoundEntity = EndStream(comp.SoundEntity);
             return;
         }
+
+        if (comp.CurrentSound != comp.PervSound)
+            comp.SoundEntity = EndStream(comp.SoundEntity);
 
         if (comp.BoostVolume != comp.BoostVolumePrev)
             comp.SoundEntity = EndStream(comp.SoundEntity);
@@ -79,6 +83,7 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
         if (playOffset is not null)
             _audio.SetPlaybackPosition((comp.SoundEntity.Value, audio), (float)playOffset.Value.TotalSeconds);
 
+        comp.PervSound = comp.CurrentSound;
         comp.ClientVolume ??= _cfg.GetCVar(StarlightCCVars.StationRadioVolume);
         _audio.SetVolume(comp.SoundEntity, currentParam.Volume, audio);
         _audio.SetGain(comp.SoundEntity, GetGain(comp, _power.IsPowered(uid)) * (comp.ClientVolume ?? 0), audio);
