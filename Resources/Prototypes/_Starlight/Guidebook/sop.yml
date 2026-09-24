@@ -815,34 +815,34 @@
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-genproc-intro.xml"
   priority: 1
   children:
-      - science-sop-researchguidelines
-      - science-sop-itemdistribution
+      - researchguidelines
+      - itemdistribution
 
 - type: guideEntry
-  id: science-sop-researchguidelines
-  name: guide-entry-sl-science-sop-researchguidelines
+  id: researchguidelines
+  name: guide-entry-sl-researchguidelines
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-researchguidelines.xml"
   priority: 2
   children:
-      - science-sop-anomalyresearch
-      - science-sop-artifactresearch
+      - anomalyresearch
+      - artifactresearch
 
 
 - type: guideEntry
-  id: science-sop-anomalyresearch
-  name: guide-entry-sl-science-sop-anomalyresearch
+  id: anomalyresearch
+  name: guide-entry-sl-anomalyresearch
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-anomalyresearch.xml"
   priority: 1
 
 - type: guideEntry
-  id: science-sop-artifactresearch
-  name: guide-entry-sl-science-sop-artifactresearch
+  id: artifactresearch
+  name: guide-entry-sl-artifactresearch
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-artifactresearch.xml"
   priority: 2
 
 - type: guideEntry
-  id: science-sop-itemdistribution
-  name: guide-entry-sl-science-sop-itemdistribution
+  id: itemdistribution
+  name: guide-entry-sl-itemdistribution
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/itemdistribution.xml"
   priority: 1
 
@@ -854,33 +854,33 @@
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-staff-intro.xml"
   priority: 2
   children:
-      - science-sop-researchdirector
-      - science-sop-scientist
-      - science-sop-researchassistant
-      - science-sop-roboticist
+      - researchdirector
+      - scientist
+      - researchassistant
+      - roboticist
 
 
 - type: guideEntry
-  id: science-sop-researchdirector
-  name: guide-entry-sl-science-sop-researchdirector
+  id: researchdirector
+  name: guide-entry-sl-researchdirector
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/researchdirector.xml"
   priority: 1
 
 - type: guideEntry
-  id: science-sop-scientist
-  name: guide-entry-sl-science-sop-scientist
+  id: scientist
+  name: guide-entry-sl-scientist
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/Scientist.xml"
   priority: 2
 
 - type: guideEntry
-  id: science-sop-researchassistant
-  name: guide-entry-sl-science-sop-researchassistant
+  id: researchassistant
+  name: guide-entry-sl-researchassistant
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/ResearchAssistant.xml"
   priority: 3
 
 - type: guideEntry
-  id: science-sop-roboticist
-  name: guide-entry-sl-science-sop-roboticist
+  id: roboticist
+  name: guide-entry-sl-roboticist
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/Roboticist.xml"
   priority: 4
 
