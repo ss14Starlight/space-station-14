@@ -4,7 +4,7 @@ meta:
   engineVersion: 290.0.0
   forkId: starlight
   forkVersion: ae6aeadff84f9baceddf673ab3d8b08eedf963a1
-  time: 09/24/2026 07:54:50
+  time: 09/24/2026 08:09:16
   entityCount: 270
 maps: []
 grids:
@@ -169,20 +169,12 @@ entities:
       parent: 1
       rot: 3.141592653589793 rad
       pos: 4.5,15.5
-    - type: AccessReader
-      accessListsOriginal: []
-      access:
-      - - Atmospherics
   - uid: 5
     components:
     - type: Transform
       parent: 1
       rot: 3.141592653589793 rad
       pos: 2.5,15.5
-    - type: AccessReader
-      accessListsOriginal: []
-      access:
-      - - Atmospherics
 - proto: AirSensor
   entities:
   - uid: 6
@@ -830,10 +822,6 @@ entities:
     - type: Transform
       parent: 1
       pos: 3.5,14.5
-    - type: AccessReader
-      accessListsOriginal: []
-      access:
-      - - Atmospherics
 - proto: GasOutletInjectorAlt2
   entities:
   - uid: 121
