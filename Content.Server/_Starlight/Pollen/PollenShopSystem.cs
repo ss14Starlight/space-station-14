@@ -19,7 +19,9 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Trigger.Systems;
-using Content.Shared._Starlight.Language.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.DoAfter;
+using Content.Shared.Popups;
 
 namespace Content.Server._Starlight.Pollen.System;
 
@@ -39,15 +41,17 @@ public sealed partial class PollenShopSystem : EntitySystem
     [Dependency] private StackSystem _stack = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
     [Dependency] private MobStateSystem _mobState = default!;
-
     [Dependency] private TriggerSystem _trigger = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     private static readonly EntProtoId _sporeCloudEmitter = "PollenSporeCloudEmitter";
     private static readonly EntProtoId _hardenStatusEffect = "PollenTreeBarkT2PassiveHardenEffect";
     private static readonly EntProtoId _pollenShopAction = "ActionOpenPollenShop";
     private static readonly EntProtoId _woodPlankStack10 = "MaterialWoodPlank10";
     private const string HardenListingId = "PollenTreeBarkT2Harden";
-    private const string SporeHivemindListingId = "PollenTreeMushroomT2hivemind";
+    private static readonly ProtoId<ReagentPrototype> _phytovitalin = "Phytovitalin";
 
     /// <summary>
     /// Listings that grant a periodic reagent drip when bought, keyed by
@@ -56,7 +60,7 @@ public sealed partial class PollenShopSystem : EntitySystem
     /// </summary>
     private static readonly Dictionary<string, (ProtoId<ReagentPrototype> Reagent, float Amount, TimeSpan Interval)> _periodicReagentPerks = new()
     {
-        ["PollenTreeBarkT3SapSerum"] = ("phytovitalin", 1f, TimeSpan.FromSeconds(30)),
+        ["PollenTreeBarkT3SapSerum"] = (_phytovitalin, 1f, TimeSpan.FromSeconds(30)),
     };
 
     public override void Initialize()
@@ -67,6 +71,8 @@ public sealed partial class PollenShopSystem : EntitySystem
         SubscribeLocalEvent<StorePurchaseCompletedEvent>(OnPurchaseCompleted);
         SubscribeLocalEvent<PollenCollectorComponent, MakeWoodEvent>(OnMakeWood);
         SubscribeLocalEvent<PollenCollectorComponent, PollenSporeCloudEvent>(OnSporeCloud);
+        SubscribeLocalEvent<PollenCollectorComponent, PollenInjectPhytovitalinEvent>(OnInjectPhytovitalin);
+        SubscribeLocalEvent<PollenCollectorComponent, PollenInjectPhytovitalinDoAfterEvent>(OnInjectPhytovitalinDoAfter);
     }
 
     private void OnCollectorInitialized(Entity<PollenCollectorComponent> ent, ref PollenCollectorInitializedEvent args)
@@ -88,10 +94,6 @@ public sealed partial class PollenShopSystem : EntitySystem
         {
             GrantHardenArmor(args.Buyer);
         }
-        
-        
-        if (args.ListingId == SporeHivemindListingId)
-            GrantSporeHivemind(args.Buyer);
     }
 
     public override void Update(float frameTime)
@@ -110,7 +112,7 @@ public sealed partial class PollenShopSystem : EntitySystem
         }
     }
 
-    // Bark
+#region Bark
 
     private void OnMakeWood(Entity<PollenCollectorComponent> ent, ref MakeWoodEvent args)
     {
@@ -140,25 +142,76 @@ public sealed partial class PollenShopSystem : EntitySystem
         solution.AddReagent(reagent, amount);
         _bloodstream.TryAddToBloodstream((uid, bloodstream), solution);
     }
+#endregion Bark
 
-    // Mushroom
-
+#region Mushroom
     // T1
-
-    // T2
-
-    private void GrantSporeHivemind(EntityUid buyer)
+    private void OnInjectPhytovitalin(Entity<PollenCollectorComponent> ent, ref PollenInjectPhytovitalinEvent args)
     {
-        var knowledge = EnsureComp<LanguageKnowledgeComponent>(buyer);
+        if (args.Handled)
+            return;
 
-        if (!knowledge.Speaks.Contains("Spore"))
-            knowledge.Speaks.Add("Spore");
+        var netAction = GetNetEntity(args.Action);
 
-        if (!knowledge.Understands.Contains("Spore"))
-            knowledge.Understands.Add("Spore");
+        var doAfterArgs = new DoAfterArgs(EntityManager, ent.Owner, TimeSpan.FromSeconds(10),
+            new PollenInjectPhytovitalinDoAfterEvent(netAction), ent.Owner, target: args.Target)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = false,
+        };
 
-        Dirty(buyer, knowledge);
+        _doAfter.TryStartDoAfter(doAfterArgs);
+        args.Handled = true;
     }
+
+    private void OnInjectPhytovitalinDoAfter(Entity<PollenCollectorComponent> ent, ref PollenInjectPhytovitalinDoAfterEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.Handled = true;
+        var actionUid = GetEntity(args.Action);
+
+        if (args.Cancelled || args.Args.Target is not { } target)
+        {
+            _actions.ClearCooldown(actionUid);
+            return;
+        }
+
+        var solution = new Solution();
+        solution.AddReagent(_phytovitalin, 5f);
+
+        var injected = false;
+
+        if (TryComp<BloodstreamComponent>(target, out var bloodstream))
+        {
+            injected = _bloodstream.TryAddToBloodstream((target, bloodstream), solution);
+        }
+        else if (_solutionContainer.TryGetInjectableSolution(target, out var injectable, out _))
+        {
+            _solutionContainer.Inject(target, injectable.Value, solution);
+            injected = true;
+        }
+        else if (_solutionContainer.TryGetRefillableSolution(target, out var refillable, out _))
+        {
+            _solutionContainer.Refill(target, refillable.Value, solution);
+            injected = true;
+        }
+
+        if (!injected)
+        {
+            _popup.PopupEntity(Loc.GetString("pollen-inject-invalid-target"), ent.Owner, ent.Owner);
+            _actions.ClearCooldown(actionUid);
+            return;
+        }
+
+        var selfDamage = new DamageSpecifier();
+        selfDamage.DamageDict.Add("Cellular", 5);
+        selfDamage.DamageDict.Add("Bloodloss", 20);
+        _damageable.TryChangeDamage(ent.Owner, selfDamage, ignoreResistances: true);
+    }
+    // T2
 
     // T3
     private void OnSporeCloud(Entity<PollenCollectorComponent> ent, ref PollenSporeCloudEvent args)
@@ -171,4 +224,5 @@ public sealed partial class PollenShopSystem : EntitySystem
 
         args.Handled = true;
     }
+#endregion Mushroom
 }

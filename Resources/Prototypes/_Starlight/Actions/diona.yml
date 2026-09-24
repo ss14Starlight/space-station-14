@@ -56,3 +56,22 @@
     useDelay: 60
   - type: InstantAction
     event: !type:SporeCloudEvent {}
+
+- type: entity
+  id: ActionInjectPhytovitalin
+  name: Inject Phytovitalin
+  description: Channel for a moment, then inject 5u of Phytovitalin into a target creature or container.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi
+      state: mush_injection_phytovitalin
+    useDelay: 300 # 5 minutes
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: true
+    event: !type:PollenInjectPhytovitalinEvent {}
+

@@ -458,33 +458,35 @@
       effects:
       # Diona metabolism
       - !type:AdjustReagent
+        probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
         reagent: Kelotane
-        amount: 0.25
+        amount: 0.5
       - !type:AdjustReagent
+        probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
         reagent: Bicaridine
-        amount: 0.25
+        amount: 0.5
       - !type:AdjustReagent
         probability: 0.5
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
         reagent: Epinephrine
-        amount: 0.5
+        amount: 0.75
       # Non-Diona metabolism
       - !type:AdjustReagent
-        probability: 0.5
+        probability: 0.25
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
           inverted: true
         reagent: Mold
-        amount: 0.75
+        amount: 1
       - !type:AdjustReagent
         probability: 0.75
         conditions:
@@ -502,13 +504,13 @@
         reagent: THC
         amount: 1
       - !type:AdjustReagent
-        probability: 0.5
+        probability: 0.25
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
           inverted: true
         reagent: Lipozine
-        amount: 0.25
+        amount: 0.5
       - !type:AdjustReagent
         probability: 0.5
         conditions:
@@ -518,13 +520,13 @@
         reagent: Impedrezene
         amount: 1
       - !type:AdjustReagent
-        probability: 0.1
+        probability: 0.2
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
           inverted: true
         reagent: Stellibinin
-        amount: 2
+        amount: 1
       - !type:AdjustReagent
         probability: 0.25
         conditions:
@@ -532,6 +534,14 @@
           type: [Plant]
           inverted: true
         reagent: Pax
+        amount: 1
+      - !type:AdjustReagent
+        probability: 0.25
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+          inverted: true
+        reagent: Histamine
         amount: 1
       # Cyclorite Metabolism
       - !type:AdjustReagent

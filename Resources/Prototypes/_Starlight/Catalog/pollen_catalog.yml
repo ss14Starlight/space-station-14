@@ -64,7 +64,7 @@
   name: pollen-mushroom-t1-name
   description: pollen-mushroom-t1-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: mush_injection_phytovitalin }
-  productAction: ActionSporeCloud
+  productAction: ActionInjectPhytovitalin
   cost:
     PollenPoints: 2
   categories:
@@ -78,6 +78,7 @@
   name: pollen-mushroom-t2-name
   description: pollen-mushroom-t2-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: mush_spore_hivemind }
+  productLanguage: Spore
   cost:
     PollenPoints: 3
   categories:

@@ -149,6 +149,6 @@
   id: SporeRadio
   name: language-Spore-name
   frequency: 77785
-  color: "#8f6742"
+  color: "#b2c21f"
   longRange: true
-  autoTranslate: Spores
+  autoTranslate: Spore

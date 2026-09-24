@@ -18,6 +18,7 @@ pollen-bark-make-wood-confirm = Cut off a piece of yourself for wood? This will 
 
 pollen-mushroom-t1-name = Phytovitalin
 pollen-mushroom-t1-desc = Cultivate an advanced fungal fertilizer that nourishes plants and accelerates their growth.
+pollen-inject-invalid-target = You can't inject that with Phytovitalin.
 
 pollen-mushroom-t2-name = Spore Hivemind
 pollen-mushroom-t2-desc = Connect your mind to the spores, allowing you to communicate with other Dionas over great distances.
