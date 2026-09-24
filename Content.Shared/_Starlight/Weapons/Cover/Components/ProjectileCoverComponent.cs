@@ -15,6 +15,9 @@ public sealed partial class ProjectileCoverComponent : Component
     [DataField, AutoNetworkedField]
     public float PointBlankRange = 1.5f;
 
+    [DataField, AutoNetworkedField]
+    public float ShelterRange = 1.5f;
+
     [DataField]
     public EntityWhitelist? Whitelist;
 
