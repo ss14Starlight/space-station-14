@@ -32,6 +32,7 @@ using Content.Shared.Doors.Systems;
 using Content.Shared.Toggleable;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Shared._NullLink;
+using Content.Shared._Starlight.Computers.PodConsole;
 
 namespace Content.Server._Starlight.SecureTerminal;
 
@@ -946,6 +947,16 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
                         if (_access.GetMainAccessReader(ent, out var accessEnt) && _access.AreAccessTagsAllowed(proto.AllowedAccesses, accessEnt.Value.Comp))
                             _airlock.SetEmergencyAccess((ent, airlockcomp), proto.AccessEnabled);
                 }
+                break;
+
+            case SecureTerminalActionType.EscapePods:
+                var escapePodConsole = AllEntityQuery<PodConsoleComponent, TransformComponent>();
+                while (escapePodConsole.MoveNext(out var ent,out var podConsole, out var xform))
+                {
+                    podConsole.Locked = false;
+                    Dirty(ent, podConsole);
+                }
+
                 break;
 
             case SecureTerminalActionType.Announcement:

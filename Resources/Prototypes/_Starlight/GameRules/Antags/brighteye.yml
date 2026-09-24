@@ -51,6 +51,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 20
     duration: null
+    occursDuringRoundEnd: false
   - type: AntagSelection
     lateJoinAdditional: true
     antags:
