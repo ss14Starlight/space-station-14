@@ -5,3 +5,12 @@
   targetNode: knuckleDusters
   category: construction-category-weapons
   objectType: Item
+
+- type: construction
+  id: GrappleGunImprovised
+  name: construction-recipe-improvised-grapple-gun
+  graph: GrappleGunImprovised
+  startNode: start
+  targetNode: ImprovisedGrappleGun
+  category: construction-category-weapons
+  objectType: Item

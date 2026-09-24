@@ -52,8 +52,11 @@ public abstract partial class SharedStainSystem : EntitySystem
 
     private void OnSolutionChanged(Entity<StainableComponent> ent, ref SolutionChangedEvent args)
     {
-        if (args.Solution.Comp.Id == ent.Comp.SolutionName)
-            UpdateVisuals(ent);
+        if (args.Solution.Comp.Id != ent.Comp.SolutionName)
+            return;
+
+        UpdateVisuals(ent);
+        OnStainSolutionChanged(ent, args.Solution);
     }
 
     // Moff start - we basically rewrote this whole function

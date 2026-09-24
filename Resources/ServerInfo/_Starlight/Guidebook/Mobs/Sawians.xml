@@ -1,0 +1,36 @@
+<Document>
+    # Sawians
+
+    <Box>
+	    <GuideEntityEmbed Entity="GuideExpie" Caption=""/>
+    </Box>
+
+    Sawians are a group of artificially created species based off of various earth genomes, often manning Nanotrasen stations.
+    Sawians are biologically genderless, though some still sport masculine/feminine features visually.
+    They are not accustomed to wearing clothes. [color=yellow]The less they're wearing the faster they move[/color],
+    gradually going from [color=yellow]125% of base speed[/color] while wearing no clothes [color=lightgreen](Head, Outer clothing, Mask, Feet, Inner clothing, Gloves)[/color] to [color=yellow]95% speed with every slot filled[/color].
+
+    #Health
+    Sawians are remarkably durable, made to live in conditions deadly to most species
+    - Most are given brain implants allowing them an advanced readout of their bodies condition.
+    - Their durability allows them to endure the effects of being in [color=red]critical condition[/color] for some time.
+    At [color=red]100 damage[/color] they enter "soft critical" state, where they can [color=yellow]crawl, talk, and use items. [/color]
+    They will however take [color=red]Asphyxiation[/color] Damage,
+    eventually passing out at [color=red]150 damage[/color] before ultimately dying at [color=red]200 damage[/color].
+    - Their extremely fast metabolism makes them great at healing most wounds, though it comes at the cost of highly increased hunger, which can kill them in extreme scenarios.
+    - They get hungry [color=red]3 times faster[/color] than humans, but they [color=green]regenerate health naturally[/color] while [color=orange]below 100 damage[/color],
+    and [color=green]have an additional healing[/color] while they are [color=red]not starving[/color],
+    effectively making them [color=green]heal three times faster[/color] while [color=red]not critical.[/color]
+    - While they are starving they gradually take [color=orange]0.2 Caustic[/color] damage every second until death.
+
+
+    #Conformity
+    - Any deviation in personality or genetic composition within a species is a rarity - differences are likely from personal trinkets, scars, or accessories.
+    - For management purposes all Sawians are given a unique Identification number and are allowed one nickname. (e.g., [color=yellow]#4466 John[/color], [color=yellow]#7201 Jimmy[/color], [color=yellow]#1793 Jane[/color])
+    All Sawians employed under Nanotrasen are expected to use their provided number in place of a name while filling paperwork.
+
+
+
+</Document>
+
+
