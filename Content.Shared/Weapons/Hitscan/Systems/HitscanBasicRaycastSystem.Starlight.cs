@@ -14,7 +14,8 @@ public sealed partial class HitscanBasicRaycastSystem
         MapCoordinates from,
         Vector2 direction,
         EntityUid shooter,
-        float maxDistance)
+        float maxDistance,
+        EntityUid? aimedAt)
     {
         if (maxDistance <= 0f)
             return null;
@@ -29,7 +30,7 @@ public sealed partial class HitscanBasicRaycastSystem
             if (!HasComp<ProjectileCoverComponent>(hit.HitEntity))
                 continue;
 
-            if (_cover.IsShotStopped(hit.HitEntity, hitscan.Owner, shooter, hit.Distance))
+            if (_cover.IsShotStopped(hit.HitEntity, hitscan.Owner, shooter, hit.Distance, aimedAt, direction))
                 return hit;
         }
 
