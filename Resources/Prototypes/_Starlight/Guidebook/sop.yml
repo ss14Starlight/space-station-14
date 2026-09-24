@@ -814,6 +814,9 @@
   name: guide-entry-sl-science-sop-genproc-intro
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-genproc-intro.xml"
   priority: 1
+  children:
+      - science-sop-researchguidelines
+      - science-sop-itemdistribution
 
 - type: guideEntry
   id: science-sop-researchguidelines
