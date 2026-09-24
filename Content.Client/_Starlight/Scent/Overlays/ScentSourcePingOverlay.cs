@@ -18,7 +18,6 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
     private readonly IPlayerManager _player;
     private readonly IEyeManager _eye;
     private readonly IGameTiming _timing;
-    private readonly SharedTransformSystem _xform;
 
     public override OverlaySpace Space => OverlaySpace.ScreenSpace;
 
@@ -41,7 +40,6 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
         _player = player;
         _eye = eye;
         _timing = timing;
-        _xform = entMan.EntitySysManager.GetEntitySystem<SharedTransformSystem>();
     }
 
     public void AddFlash(Color color, MapCoordinates target)
@@ -59,10 +57,9 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
         if (uid == null || !_entMan.TryGetComponent(uid.Value, out TransformComponent? xform))
             return;
 
-        var playerPos = _xform.GetWorldPosition(xform);
         var playerMap = xform.MapID;
         var bounds = args.ViewportBounds;
-        var playerScreenPos = _eye.WorldToScreen(playerPos);
+        var center = bounds.Center;
 
         foreach (var flash in _flashes)
         {
@@ -74,7 +71,7 @@ public sealed partial class ScentSourcePingOverlay : Robust.Client.Graphics.Over
             if (timeEnvelope <= 0f)
                 continue;
 
-            var screenDir = _eye.WorldToScreen(flash.WorldPos) - playerScreenPos;
+            var screenDir = _eye.WorldToScreen(flash.WorldPos) - center;
             if (screenDir.LengthSquared() < 0.01f)
                 continue;
 
