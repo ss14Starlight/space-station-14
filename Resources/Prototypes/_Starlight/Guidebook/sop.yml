@@ -829,13 +829,13 @@
 
 
 - type: guideEntry
-  id: science-sop-researchguidelines-anomalyresearch
+  id: science-sop-anomalyresearch
   name: guide-entry-sl-science-sop-anomalyresearch
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-anomalyresearch.xml"
   priority: 1
 
 - type: guideEntry
-  id: science-sop-researchguidelines-artifactresearch
+  id: science-sop-artifactresearch
   name: guide-entry-sl-science-sop-artifactresearch
   text: "/ServerInfo/Guidebook/StarlightSOP/ScienceSOP/science-sop-artifactresearch.xml"
   priority: 2
