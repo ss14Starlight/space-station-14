@@ -51,7 +51,12 @@ public sealed partial class ClientScentSystem : SharedScentSystem
     }
 
     private void OnScentSourcePing(ScentSourcePingEvent ev)
-        => _pingOverlay.AddFlash(ScentTrackingSystem.GetScentColor(ev.ScentId), new MapCoordinates(ev.Position, ev.MapId));
+    {
+        if (!_overlayMan.HasOverlay<ScentSourcePingOverlay>())
+            return;
+
+        _pingOverlay.AddFlash(ScentTrackingSystem.GetScentColor(ev.ScentId), new MapCoordinates(ev.Position, ev.MapId));
+    }
 
     protected override void OnSmellerInit(EntityUid uid, SmellerComponent component, ComponentInit args)
     {
