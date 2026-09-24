@@ -28,8 +28,8 @@ public sealed partial class RattleOnTriggerSystem : EntitySystem
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private StationRecordsSystem _recordsSystem = default!;
     [Dependency] private AccessReaderSystem _accessReader = default!;
-    #endregion
     [Dependency] private StationSystem _station = default!;
+    #endregion
 
     public override void Initialize()
     {
