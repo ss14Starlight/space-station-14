@@ -19,8 +19,8 @@
 - type: vessel
   id: Bellows
   name: GTS-A1-100KL "Bellows"
-  description: The "Bellows" single-gas hauler by GTS, capable of transferring 100kL. Very affordable and standard shape for easy universal deployment.
-  price: 21500
+  description: The "Bellows" single-gas hauler by GTS in default livery, capable of transferring 100kL. Very affordable and has a standard shape for easy universal deployment.
+  price: 27500
   category: Small
   group: Engineering
   shuttlePath: /Maps/_Starlight/Shuttles/Shipyard/Bellows.yml
