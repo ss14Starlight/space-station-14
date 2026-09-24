@@ -34,10 +34,10 @@ public sealed partial class TwistyCubeControl : Control
     protected override void Draw(DrawingHandleScreen handle)
     {
         base.Draw(handle);
-        
+
         if (TryGetRsiFrame(ViewRsi, "background") is {} t)
             handle.DrawTextureRect(t, UIBox2.FromDimensions(Vector2.Zero, new Vector2(512, 256) * UIScale), Color.Black);
-        
+
         DrawPart(handle, "ftl-1", CubeState.FrontTopLeft.Side1);
         DrawPart(handle, "ftl-2", CubeState.FrontTopLeft.Side2);
         DrawPart(handle, "ftl-3", CubeState.FrontTopLeft.Side3);
