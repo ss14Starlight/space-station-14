@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server.Station.Systems;
 using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared._Starlight.StationRadio.Events;
 using Content.Shared._Starlight.StationRadio.Systems;
@@ -78,14 +77,17 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
     }
 
     protected override void OnServerTerminating(EntityUid uid, StationRadioServerComponent comp,
-        ref EntityTerminatingEvent args) => StopAllReceivers(uid);
+        ref EntityTerminatingEvent args)
+    {
+        if (Transform(uid).Anchored)
+            StopAllReceivers(uid);
+    }
 
     protected override void OnRigTerminating(EntityUid uid, RadioRigComponent comp, ref EntityTerminatingEvent args)
     {
         if (TryGetLinkedPoweredServer(uid, out var linkedServer))
             StopAllReceivers(linkedServer);
     }
-
 
     public void StopAllReceivers(EntityUid uid)
     {
@@ -106,7 +108,6 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
     /// </summary>
     public bool TryGetPoweredGridServer(EntityUid uid, [NotNullWhen(true)]out EntityUid? server) =>
         TryGetGridServer(uid, out server) && _power.IsPowered(server.Value);
-
 
     /// <summary>
     /// Resolves the current radio server on the entities grid
@@ -211,5 +212,4 @@ public sealed partial class StationRadioReceiverSystem: SharedStationRadioReceiv
             }
         }
     }
-
 }

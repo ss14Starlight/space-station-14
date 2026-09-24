@@ -18,30 +18,25 @@ public abstract partial class SharedVinylPlayerSystem : EntitySystem
         SubscribeLocalEvent<VinylPlayerComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<VinylPlayerComponent, PowerChangedEvent>(OnPowerChanged);
 
-        SubscribeLocalEvent<VinylPlayerComponent, ExaminedEvent>(OnExamined); // Starlight - Shift Click to view what Vinyl is inserted.
+        SubscribeLocalEvent<VinylPlayerComponent, ExaminedEvent>(OnExamined); // Shift Click to view what Vinyl is inserted.
     }
 
     protected virtual void OnPowerChanged(EntityUid uid, VinylPlayerComponent comp, PowerChangedEvent args)
     {
-        // Starlight -> Moved to Content.Server/_Starlight/StationRadio/Systems/VinylPlayerSystem.cs
     }
 
     protected virtual void OnDestruction(EntityUid uid, VinylPlayerComponent comp, DestructionEventArgs args)
     {
-        // Starlight -> Moved to Content.Server/_Starlight/StationRadio/Systems/VinylPlayerSystem.cs
 
     }
 
     protected virtual void OnVinylInserted(EntityUid uid, VinylPlayerComponent comp, EntInsertedIntoContainerMessage args)
     {
-        // Starlight -> Moved to Content.Server/_Starlight/StationRadio/Systems/VinylPlayerSystem.cs
     }
 
     protected virtual void OnVinylRemove(EntityUid uid, VinylPlayerComponent comp, EntRemovedFromContainerMessage args)
     {
-        // Starlight -> Moved to Content.Server/_Starlight/StationRadio/Systems/VinylPlayerSystem.cs
     }
-
 
     /// <summary>
     /// Show what vinyl is currently inserted when examined.

@@ -1,20 +1,14 @@
-using Content.Shared._Starlight.StationRadio.Components; // Starlight - _Goob -> _Starlight
+using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared._Starlight.StationRadio.Events;
-using Content.Shared.Construction.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
-using Robust.Shared.Audio.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Verbs;
 
-
 namespace Content.Shared._Starlight.StationRadio.Systems;
 
-public abstract partial class SharedStationRadioReceiverSystem : EntitySystem // Starlight - made abstract
+public abstract partial class SharedStationRadioReceiverSystem : EntitySystem
 {
-    [Dependency] private SharedAudioSystem _audio = default!;
-    // Starlight - Add Station Radio Resume Play
-    // Starlight - End
     public override void Initialize()
     {
         base.Initialize();
@@ -22,15 +16,14 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem //
         SubscribeLocalEvent<StationRadioReceiverComponent, StationRadioMediaStoppedEvent>(OnMediaStopped);
         SubscribeLocalEvent<StationRadioReceiverComponent, ActivateInWorldEvent>(OnRadioToggle);
         SubscribeLocalEvent<StationRadioReceiverComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<StationRadioReceiverComponent, MapInitEvent>(OnReceiverMapInit); // Add Radio Resume Play
+        SubscribeLocalEvent<StationRadioReceiverComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs); // Alt click to lower volume.
+        SubscribeLocalEvent<StationRadioReceiverComponent, ExaminedEvent>(OnExamined); // Shift Click to view what volume the radio is at.
 
-        SubscribeLocalEvent<StationRadioReceiverComponent, MapInitEvent>(OnReceiverMapInit); // Starlight - Add Radio Resume Play
+        SubscribeLocalEvent<StationRadioServerComponent, PowerChangedEvent>(OnServerPowerChanged); // Fix Server Broadcasting Music with no power.
+        SubscribeLocalEvent<StationRadioServerComponent, EntityTerminatingEvent>(OnServerTerminating); // When Server is destroyed, it should stop broadcasting.
+        SubscribeLocalEvent<RadioRigComponent, EntityTerminatingEvent>(OnRigTerminating); // When Rig is destroyed, it should stop broadcasting.
 
-        SubscribeLocalEvent<StationRadioServerComponent, PowerChangedEvent>(OnServerPowerChanged); // Starlight - Fix Server Broadcasting Music with no power.
-        SubscribeLocalEvent<StationRadioServerComponent, EntityTerminatingEvent>(OnServerTerminating); // Starlight - When Server is destroyed, it should stop broadcasting.
-        SubscribeLocalEvent<RadioRigComponent, EntityTerminatingEvent>(OnRigTerminating); // Starlight - When Rig is destroyed, it should stop broadcasting.
-
-        SubscribeLocalEvent<StationRadioReceiverComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs); // Starlight - Alt click to lower volume.
-        SubscribeLocalEvent<StationRadioReceiverComponent, ExaminedEvent>(OnExamined); // Starlight - Shift Click to view what volume the radio is at.
     }
 
     private void OnRadioToggle(EntityUid uid, StationRadioReceiverComponent comp, ActivateInWorldEvent args)
@@ -41,12 +34,10 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem //
 
     protected virtual void OnMediaPlayed(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaPlayedEvent args)
     {
-        // Starlight - Moved to Content.Server/_Starlight/StationRadio/Systems
     }
 
     protected virtual void OnMediaStopped(EntityUid uid, StationRadioReceiverComponent comp, StationRadioMediaStoppedEvent args)
     {
-        // Starlight - Moved to Content.Server/_Starlight/StationRadio/Systems
     }
 
     /// <summary>
@@ -55,7 +46,6 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem //
     /// </summary>
     protected virtual void OnReceiverMapInit(EntityUid uid, StationRadioReceiverComponent comp, MapInitEvent args)
     {
-        // Starlight - Moved to Content.Server/_Starlight/StationRadio/Systems
     }
 
     /// <summary>
@@ -64,11 +54,8 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem //
     /// </summary>
     protected virtual void OnServerPowerChanged(EntityUid uid, StationRadioServerComponent comp, PowerChangedEvent args)
     {
-        // Starlight - Moved to Content.Server/_Starlight/StationRadio/Systems
     }
 
-    // Starlight - Start
-    #region Starlight
     /// <summary>
     /// Method for getting the current volume of the station radio.
     /// </summary>
@@ -99,7 +86,6 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem //
     /// </summary>
     protected virtual void OnPowerChanged(EntityUid uid, StationRadioReceiverComponent comp, PowerChangedEvent args)
     {
-        // Starlight - Moved to Content.Client/_Starlight/StationRadio/Systems
     }
 
     /// <summary>
@@ -107,7 +93,6 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem //
     /// </summary>
     protected virtual void OnServerTerminating(EntityUid uid, StationRadioServerComponent comp, ref EntityTerminatingEvent args)
     {
-        // Starlight - Moved to Content.Server/_Starlight/StationRadio/Systems
     }
 
     /// <summary>
@@ -115,7 +100,6 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem //
     /// </summary>
     protected virtual void OnRigTerminating(EntityUid uid, RadioRigComponent comp, ref EntityTerminatingEvent args)
     {
-        // Starlight - Moved to Content.Server/_Starlight/StationRadio/Systems
     }
 
     [SubscribeLocalEvent]
@@ -131,8 +115,4 @@ public abstract partial class SharedStationRadioReceiverSystem : EntitySystem //
             ? "station-radio-receiver-examine-low-volume"
             : "station-radio-receiver-examine-full-volume"));
 
-
-
-    #endregion
-    // Starlight - End
 }

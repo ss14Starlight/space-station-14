@@ -1,7 +1,6 @@
 ﻿using Content.Shared._Starlight.StationRadio.Components;
 using Content.Shared._Starlight.StationRadio.Systems;
 using Content.Shared._Starlight.CCVar;
-using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Robust.Client.Audio;
@@ -68,8 +67,6 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
         if (comp.BoostVolume != comp.BoostVolumePrev)
             comp.SoundEntity = EndStream(comp.SoundEntity);
 
-
-
         var currentParam = comp.BoostVolume ? comp.BoostedParams : comp.DefaultParams;
         var muteParam = currentParam.WithVolume(0f);
         comp.SoundEntity ??= _audio.PlayEntity(comp.CurrentSound, playerSession, uid, muteParam)?.Entity;
@@ -81,7 +78,6 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
         var playOffset = _timing.CurTime - comp.StartTime;
         if (playOffset is not null)
             _audio.SetPlaybackPosition((comp.SoundEntity.Value, audio), (float)playOffset.Value.TotalSeconds);
-
 
         comp.ClientVolume ??= _cfg.GetCVar(StarlightCCVars.StationRadioVolume);
         _audio.SetVolume(comp.SoundEntity, currentParam.Volume, audio);
@@ -95,7 +91,6 @@ public sealed partial class StationRadioReceiverSystem : SharedStationRadioRecei
             audioComponent.StopPlaying();  // <- I'm pretty sure robust is supposed to do this.
         return _audio.Stop(uid, audioComponent);
     }
-
 
     private void OnVolumeCfgChanged(float volume)
     {
