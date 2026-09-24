@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Box) Added assistant manager near hop.
-    type: Add
-  id: 408468
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
   - message: (Box) Added all departmental mailboxes.
     type: Add
   id: 408469
@@ -2799,4 +2792,11 @@ Entries:
   id: 408867
   time: '2026-09-24T11:27:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6284
+- author: Swonki
+  changes:
+  - message: SPKA and Regulator recharge rates and accuracy.
+    type: Tweak
+  id: 408868
+  time: '2026-09-24T11:27:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6274
 Order: -1
