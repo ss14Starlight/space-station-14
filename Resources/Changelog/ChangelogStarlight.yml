@@ -1,27 +1,6 @@
 Entries:
 - author: Citrea
   changes:
-  - message: Shell fragments are no longer better combat knives.
-    type: Tweak
-  id: 408442
-  time: '2026-09-09T21:26:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6000
-- author: Citrea
-  changes:
-  - message: Snapping off a shell fragment now removes a piece of your shell.
-    type: Tweak
-  id: 408443
-  time: '2026-09-09T21:26:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6000
-- author: Citrea
-  changes:
-  - message: Drinking enough blood in one sitting now regenerates a piece of your shell.
-    type: Tweak
-  id: 408444
-  time: '2026-09-09T21:26:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6000
-- author: Citrea
-  changes:
   - message: Pieces of your shell may now break in combat.
     type: Tweak
   id: 408445
@@ -2799,4 +2778,25 @@ Entries:
   id: 408841
   time: '2026-09-24T10:30:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6296
+- author: Johnny
+  changes:
+  - message: (Reach) Added a confirmed roundstart cigarette machine.
+    type: Add
+  id: 408842
+  time: '2026-09-24T10:30:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6307
+- author: Johnny
+  changes:
+  - message: (Reach) Added some more mailboxes.
+    type: Add
+  id: 408843
+  time: '2026-09-24T10:30:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6307
+- author: Johnny
+  changes:
+  - message: (Reach) Some point defense turrets not being powered.
+    type: Fix
+  id: 408844
+  time: '2026-09-24T10:30:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6307
 Order: -1
