@@ -42,3 +42,5 @@ cryo-pod-window-eject-beaker = Eject
 cryo-pod-window-eject-patient = Eject patient
 
 cryo-pod-window-health-no-damage = No damage detected
+
+
