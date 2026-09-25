@@ -130,7 +130,7 @@
     solution: solution
   # Starlight - Plumbing integration
   - type: PlumbingOutlet
-    solutionName: output
+    solutionName: solution
     connectedOutlets: true
     outletNames:
     - outletNorth

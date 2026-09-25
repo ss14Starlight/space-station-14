@@ -21,6 +21,8 @@ chat-emote-name-snort = Snort
 chat-emote-name-stomp = Stomp
 chat-emote-name-hum = Hum
 chat-emote-name-glub = Glub
+chat-emote-name-arf = Arf
+chat-emote-name-blink = Blink
 
 # Emote Messages
 chat-emote-msg-mew = mews
@@ -44,6 +46,8 @@ chat-emote-msg-snort = snorts
 chat-emote-msg-stomp = stomps
 chat-emote-msg-hum = hums
 chat-emote-msg-glub = glubs
+chat-emote-msg-arf = arfs
+chat-emote-msg-blink = blinks
 
 # Emote binding
 

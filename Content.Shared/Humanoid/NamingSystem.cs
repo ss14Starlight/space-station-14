@@ -49,6 +49,9 @@ namespace Content.Shared.Humanoid
                 case SpeciesNaming.PrefixSuffix:
                     return Loc.GetString("namepreset-prefixsuffix",
                         ("prefix", GetFirstName(speciesProto, gender)), ("suffix", GetLastName(speciesProto)));
+                case SpeciesNaming.IdFirst:
+                    return Loc.GetString("namepreset-idfirst",
+                        ("id", GetRandomId(4)), ("first", GetFirstName(speciesProto, gender)));
                 // Starlight end
             }
         }
@@ -68,6 +71,14 @@ namespace Content.Shared.Humanoid
                         return _random.Pick(_prototypeManager.Index(speciesProto.FemaleFirstNames));
             }
         }
+
+        // Starlight begin
+        public string GetRandomId(int length)
+        {
+            var id = _random.Next(0, (int)(Math.Pow(10, length))-1);
+            return id.ToString().PadLeft(length, '0');
+        }
+        // Starlight end
 
         public string GetLastName(SpeciesPrototype speciesProto)
         {

@@ -1,0 +1,80 @@
+﻿<BoxContainer
+    xmlns="https://spacestation14.io"
+    Margin="5 5 5 5"
+    VerticalExpand="True"
+    Orientation="Vertical">
+    <Label
+        Name="NoPatientDataText"
+        Text="{Loc health-analyzer-window-no-patient-data-text}" />
+
+    <BoxContainer
+        Name="PatientDataContainer"
+        Margin="0 0 0 5"
+        Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
+            <SpriteView OverrideDirection="South" Scale="2 2" Name="SpriteView" Access="Public" SetSize="64 64" />
+            <TextureRect Name="NoDataTex" Access="Public" SetSize="64 64" Visible="false" Stretch="KeepAspectCentered" TexturePath="/Textures/Interface/Misc/health_analyzer_out_of_range.png"/>
+
+
+            <BoxContainer Margin="5 0 0 0" Orientation="Vertical" VerticalAlignment="Top" SetWidth="155">
+                <BoxContainer Orientation="Vertical" Margin="0 0 0 4">
+                    <RichTextLabel Name="NameLabel" SetWidth="150" />
+                </BoxContainer>
+                <BoxContainer Orientation="Vertical">
+                    <Label Name="SpeciesLabel" StyleClasses="LabelSubText" />
+                </BoxContainer>
+            </BoxContainer>
+
+            <!-- Printable health reports -->
+            <BoxContainer
+                Margin="0 0 5 0"
+                HorizontalExpand="True"
+                Orientation="Vertical"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top">
+                <Button
+                    Name="PrintReportButton"
+                    Text="{Loc 'health-analyzer-window-print-report'}"
+                    Disabled="True"
+                    Visible="False"
+                    HorizontalAlignment="Right"
+                    Margin="0 0 0 4" />
+                <Label HorizontalAlignment="Right"
+                       Name="ScanModeLabel"
+                       Text="{Loc 'health-analyzer-window-entity-unknown-text'}" />
+            </BoxContainer>
+        </BoxContainer>
+
+        <PanelContainer StyleClasses="LowDivider" />
+
+        <Label Name="VitalsHeader" Text="{Loc 'starlight-health-analyzer-window-section-vitals'}" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
+        <BoxContainer Name="VitalsContainer" Orientation="Vertical" Margin="8"
+                      HorizontalExpand="True" SeparationOverride="8">
+            <!-- populated by code -->
+        </BoxContainer>
+    </BoxContainer>
+
+    <PanelContainer Name="AlertsDivider" Visible="False" StyleClasses="LowDivider" />
+
+    <BoxContainer Name="AlertsContainer" Visible="False" Margin="0 5" Orientation="Vertical" HorizontalAlignment="Center">
+
+    </BoxContainer>
+
+    <Label Name="DamageGroupsHeader" Text="{Loc 'starlight-health-analyzer-window-section-damage'}" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
+    <BoxContainer
+        Name="GroupsContainer"
+        Margin="8"
+        Orientation="Vertical">
+    </BoxContainer>
+
+    <!-- Chems -->
+    <PanelContainer Name="ChemicalsDivider" Visible="False" StyleClasses="LowDivider" />
+
+    <BoxContainer
+        Name="ChemicalsContainer"
+        Visible="False"
+        Margin="8"
+        Orientation="Vertical">
+    </BoxContainer>
+
+</BoxContainer>

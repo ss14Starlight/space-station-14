@@ -431,6 +431,44 @@
     pitch: 1.25
 
 - type: emoteSounds
+  id: Experiment
+  sounds:
+    Scream:
+      collection: ExperimentScreams
+    Laugh:
+      collection: ExperimentLaughs
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    Crying:
+      collection: ExperimentCries
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: ExperimentSighs
+    Yawn:
+      collection: ExperimentYawns
+    Snore:
+      collection: Snores
+    Honk:
+      collection: BikeHorn
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Arf:
+      collection: ExperimentArfs
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
+    Whine:
+      collection: ExperimentWhines
+  params:
+    variation: 0.125
+
+- type: emoteSounds
   id: FemaleThaven
   sounds:
     Scream:
@@ -692,6 +730,10 @@
         volume: -6
     Salute:
       collection: Salutes
+    Blink:
+      collection: Blinks
+      params:
+        variation: 0.125
 
 - type: emoteSounds
   id: MaleRodentia
@@ -775,6 +817,10 @@
       path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
       params:
         pitch: 1.45
+    Blink:
+      collection: Blinks
+      params:
+        variation: 0.125
 
 - type: emoteSounds
   id: LagomorphBodyEmotes
@@ -791,6 +837,10 @@
         volume: -6
     Salute:
       collection: Salutes
+    Blink:
+      collection: Blinks
+      params:
+        variation: 0.125
 
 - type: emoteSounds
   id: Monkey
