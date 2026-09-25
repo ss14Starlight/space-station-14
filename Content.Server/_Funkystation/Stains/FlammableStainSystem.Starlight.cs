@@ -18,6 +18,8 @@ public sealed partial class FlammableStainsSystem : EntitySystem
 
     private float _stainStackMultiplier = 1.0f;
 
+    private readonly float _stainTotalFlamabilityMultiplier = 0.25f;
+
     // Updated by solution events. Hotspot exposure can read this cache instead of walking reagent prototypes.
     private readonly Dictionary<EntityUid, int> _stainFlammability = [];
     // Only burning wearers need periodic stain consumption.
