@@ -40,26 +40,6 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
-    #region Starlight
-    Mew:
-      collection: FelionoidMews
-    Meow:
-      collection: FelionoidMeows
-    Trill:
-      collection: FelionoidTrills
-    Bark:
-      collection: Bark
-    Yip:
-      path: /Audio/_Starlight/Effects/yip.ogg
-    Whine:
-      collection: Whine
-    Growl:
-      collection: Growl
-    Howl:
-      path: /Audio/_Starlight/Effects/howl.ogg
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
-    #endregion Starlight
 
 - type: emoteSounds
   id: FemaleHuman
@@ -102,26 +82,6 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
-    #region Starlight
-    Mew:
-      collection: FelionoidMews
-    Meow:
-      collection: FelionoidMeows
-    Trill:
-      collection: FelionoidTrills
-    Bark:
-      collection: Bark
-    Yip:
-      path: /Audio/_Starlight/Effects/yip.ogg
-    Whine:
-      collection: Whine
-    Growl:
-      collection: Growl
-    Howl:
-      path: /Audio/_Starlight/Effects/howl.ogg
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
-    #endregion Starlight
 
 - type: emoteSounds
   id: MaleReptilian
@@ -154,10 +114,6 @@
       path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
     Rattle:
       path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
-    #region Starlight
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
-    #endregion Starlight
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -191,8 +147,6 @@
       path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
     Rattle:
       path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     # Starlight-End
 
 - type: emoteSounds
@@ -223,8 +177,6 @@
       path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
     Rattle:
       path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     # Starlight-End
 
 - type: emoteSounds
@@ -287,8 +239,6 @@
       collection: Bubbles
     Pop:
       collection: Pops
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
   params:
     variation: 0.125
@@ -353,8 +303,6 @@
       collection: Bubbles
     Pop:
       collection: Pops
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
   params:
     variation: 0.125
@@ -388,10 +336,6 @@
       path: /Audio/Effects/Gasp/vox_gasp.ogg
     DefaultDeathgasp:
       path: /Audio/Effects/Gasp/vox_DeathGasp.ogg
-    #region Starlight
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
-    #endregion Starlight
   params:
     variation: 0.125
     # TODO: We need vox sounds for the other emotes
@@ -417,10 +361,6 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
-    #region Starlight
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
-    #endregion Starlight
   params:
     variation: 0.125
 
@@ -454,8 +394,6 @@
       path: /Audio/_Starlight/Voice/Arachnid/arachnid_sigh.ogg
     Gasp:
       path: /Audio/_Starlight/Voice/Arachnid/arachnid_gasp.ogg
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
     DefaultDeathgasp:
       collection: DeathGasp
@@ -499,10 +437,6 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
-    #region Starlight
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
-    #endregion Starlight
   params:
     variation: 0.125
     pitch: 0.75
@@ -546,10 +480,6 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
-    #region Starlight
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
-    #endregion Starlight
   params:
     variation: 0.125
     pitch: 0.75
@@ -586,8 +516,6 @@
       path: /Audio/_Starlight/Voice/Moth/moth_sigh.ogg
     Gasp:
       path: /Audio/_Starlight/Voice/Moth/moth_gasp.ogg
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     #endregion Starlight
     DefaultDeathgasp:
       collection: MothDeathGasp
@@ -697,8 +625,6 @@
       collection: Weh
     Hew:
       collection: Hew
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     Honk:
       collection: BikeHorn
     Gasp:
@@ -747,8 +673,6 @@
       collection: Weh
     Hew:
       collection: Hew
-    ThavenGlub:
-      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
     Honk:
       collection: BikeHorn
     Gasp:

@@ -413,9 +413,7 @@
       - id: ReagentSlimeNorepinephricAcid
       - id: ReagentSlimeEphedrine
       - id: ReagentSlimeRobustHarvest
-      - id: ReagentSlimePhenylpiperidine # Starlight Start
-      - id: ReagentSlimeGlubotoxin
-      - id: ReagentSlimeWehJuice # Starlight End
+      - id: ReagentSlimePhenylpiperidine # Starlight
 
 - type: entity
   id: ReagentSlimeBeer
