@@ -817,6 +817,7 @@
     - type: Tag
       tags:
         - CyberHandItem
+    - type: BotanyHoe
 
 - type: entity
   name: plant clippers cybernetic arm attachment
