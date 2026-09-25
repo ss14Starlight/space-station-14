@@ -1018,6 +1018,27 @@ doc-text-printer-art-permit =
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
+doc-text-printer-mech-authorization-form =
+                             [head=3]NT-CC Consortium Services[/head]
+
+                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+   ⠀⠀                           [bold]MECH AUTHORIZATION FORM[/bold]
+    ────────────────────────────────────────
+    Date And Time:[color=#0000ff] [form] [/color]
+    Document Compiler:[color=#0000ff] [form] [/color]
+
+    I, [bolditalic][color=#0000ff] [signature] [/color][/bolditalic], hereby approve the creation of the following mech.
+
+    Class of the Mech:[color=#0000ff] [form] [/color]
+    Authorized person:[color=#0000ff] [signature] [/color] [italic][color=#a9a9a9]
+
+    Mech authorization forms require a stamp from the RD, or the Captain.
+
+    If the mech chasis is a combat class it is required that this document be stamped by RD, HoS, and Captain.[/color][/italic]
+
+    ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 # OrdersAndInstructions
 
