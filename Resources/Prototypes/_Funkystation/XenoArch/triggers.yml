@@ -189,7 +189,8 @@
   tip: artifact-trigger-hint-tech-disc
   components:
   - type: XATCompNearby
-    requireComponentWithName: TechnologyDisk
+    #requireComponentWithName: TechnologyDisk
+    requireComponentWithName: FloppyDisk # Starlight: more broad match than just technology disks
     radius: 2
 
 - type: xenoArchTrigger

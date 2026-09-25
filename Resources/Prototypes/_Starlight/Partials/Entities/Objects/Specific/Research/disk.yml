@@ -1,0 +1,29 @@
+- type: !PartialOnly entity
+  id: TechnologyDisk
+  components:
+  - type: FloppyDisk
+
+- type: !PartialOnly entity
+  id: TechnologyDiskRare
+  components:
+  - type: FloppyDisk
+
+- type: !PartialOnly entity
+  id: ResearchDisk
+  components:
+  - type: FloppyDisk
+
+- type: !PartialOnly entity
+  id: ResearchDisk5000
+  components:
+  - type: FloppyDisk
+
+- type: !PartialOnly entity
+  id: ResearchDisk10000
+  components:
+  - type: FloppyDisk
+
+- type: !PartialOnly entity
+  id: ResearchDiskDebug
+  components:
+  - type: FloppyDisk

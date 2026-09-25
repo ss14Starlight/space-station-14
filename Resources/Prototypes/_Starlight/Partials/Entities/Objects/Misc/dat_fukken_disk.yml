@@ -1,0 +1,9 @@
+- type: !PartialOnly entity
+  id: NukeDisk
+  components:
+  - type: FloppyDisk
+
+- type: !PartialOnly entity
+  id: NukeDiskFake
+  components:
+  - type: FloppyDisk
