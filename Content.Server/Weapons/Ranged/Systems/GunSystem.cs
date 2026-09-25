@@ -207,9 +207,9 @@ public sealed partial class GunSystem : SharedGunSystem
 
                 // Starlight-edit: the pattern follows recoil/movement spread and every pellet deviates randomly
                 var shotAngle = mapDirection.ToAngle();
-                var angles = LinearSpreadWithRandom(shotAngle - (spreadEvent.Spread / 2),
+                var angles = JitteredSpread(shotAngle - (spreadEvent.Spread / 2),
                     shotAngle + (spreadEvent.Spread / 2), ammoSpreadComp.Count,
-                    ammoSpreadComp.MinDeviation, ammoSpreadComp.MaxDeviation);
+                    ammoSpreadComp.Deviation);
                 // Startlight-edit: start
                 if (isMechShooter)
                 {
@@ -310,19 +310,20 @@ public sealed partial class GunSystem : SharedGunSystem
 
     // 🌟Starlight🌟
     /// <summary>
-    /// Same as <see cref="LinearSpread"/>, but every angle is offset to a random side
-    /// by a random amount between <paramref name="minDeviation"/> and <paramref name="maxDeviation"/>.
+    /// Same as <see cref="LinearSpread"/>, but every angle is shifted by up to <paramref name="deviation"/> either way
+    /// so the pattern never repeats. Angles are kept within the cone between <paramref name="start"/> and <paramref name="end"/>.
     /// </summary>
-    private Angle[] LinearSpreadWithRandom(Angle start, Angle end, int intervals, Angle minDeviation, Angle maxDeviation)
+    private Angle[] JitteredSpread(Angle start, Angle end, int intervals, Angle deviation)
     {
         if (intervals <= 1)
             return [new Angle((start + end) / 2)];
 
         var angles = LinearSpread(start, end, intervals);
+        var max = (float) deviation.Theta;
         for (var i = 0; i < intervals; i++)
         {
-            var deviation = _rand.NextFloat((float) minDeviation.Theta, (float) maxDeviation.Theta);
-            angles[i] += new Angle(_rand.Prob(0.5f) ? deviation : -deviation);
+            var theta = angles[i].Theta + _rand.NextFloat(-max, max);
+            angles[i] = new Angle(Math.Clamp(theta, start.Theta, end.Theta));
         }
 
         return angles;

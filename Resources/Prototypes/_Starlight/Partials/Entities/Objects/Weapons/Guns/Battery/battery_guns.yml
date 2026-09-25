@@ -2,19 +2,19 @@
   id: BaseWeaponBattery
   components:
   - type: GunHeat
-    heatPerShot: 8
+    heatPerShot: 2000
 
 - type: !PartialOnly entity
   id: BaseLaserRifle
   components:
   - type: GunHeat
-    heatPerShot: 10
+    heatPerShot: 2500
 
 - type: !PartialOnly entity
   id: BaseWeaponPowerCell
   components:
   - type: GunHeat
-    heatPerShot: 8
+    heatPerShot: 2000
 
 - type: !PartialOnly entity
   id: BaseWeaponBatterySmall
@@ -70,4 +70,4 @@
     maxAngleDivider: 2
     angleIncreaseDivider: 2
   - type: GunHeat
-    heatPerShot: 4
+    heatPerShot: 1000

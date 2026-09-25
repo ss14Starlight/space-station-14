@@ -2,7 +2,7 @@
   id: BaseWeaponRifle
   components:
   - type: GunHeat
-    heatPerShot: 3
+    heatPerShot: 750
 
 - type: !PartialOnly entity
   id: WeaponRifleEstoc

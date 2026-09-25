@@ -20,9 +20,13 @@ public sealed partial class MiscTab : Control
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
+        // Starlight-edit: themes/layout moved to UI tab.
+
         // Channel can be null in replays so.
         // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
         ShowOocPatronColor.Visible = _playerManager.LocalSession?.Channel?.UserData.PatronTier is { };
+
+        // Starlight-edit: themes/layout moved to UI tab.
 
         Control.AddOptionCheckBox(CVars.DiscordEnabled, DiscordRich);
         Control.AddOptionCheckBox(CCVars.ShowOocPatronColor, ShowOocPatronColor);

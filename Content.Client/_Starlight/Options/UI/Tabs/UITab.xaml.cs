@@ -128,60 +128,40 @@ public sealed partial class UITab : Control
         SightsOptionsHash.UpdateDraw();
         if (!_entSysMan.TryGetEntitySystem(out SpriteSystem? _sprite))
             return;
+        var mainColor = Color.FromHex(main);
+        var secondColor = Color.FromHex(second);
+
         if (_prototypeManager.TryIndex(ranged, out SightPrototype? rangedProto) && rangedProto.SightType is (SightType.Ranged or SightType.Universal))
-        {
-            var rsi = _sprite.RsiStateLike(rangedProto.Sprite);
-            if (rsi.IsAnimated && rsi.AnimationFrameCount >= 3)
-            {
-                var bracket1 = rsi.GetFrame(RsiDirection.South, 0); // Left
-                var sight = rsi.GetFrame(RsiDirection.South, 1); // Center
-                var bracket2 = rsi.GetFrame(RsiDirection.South, 2); // Right
-                Texture? bracket3 = null; // Down
-                Texture? bracket4 = null; // Up
-                if (rsi.AnimationFrameCount >= 4)
-                    bracket3 = rsi.GetFrame(RsiDirection.South, 3);
-                if (rsi.AnimationFrameCount >= 5)
-                    bracket4 = rsi.GetFrame(RsiDirection.South, 4);
-                RangedSightPreview.UpdateTexture(sight, scale / 100f, offset / 100f, Color.FromHex(main), Color.FromHex(second));
-                RangedSightPreview.SetBrackets(bracket1, bracket2, bracket3, bracket4);
-            }
-            else
-            {
-                RangedSightPreview.UpdateTexture(_sprite.Frame0(rangedProto.Sprite), scale / 100f, offset / 100f, Color.FromHex(main), Color.FromHex(second));
-                RangedSightPreview.SetBrackets();
-            }
-        }
+            UpdateSightPreview(_sprite, RangedSightPreview, rangedProto, scale, offset, mainColor, secondColor);
 
         if (_prototypeManager.TryIndex(melee, out SightPrototype? meleeProto) && meleeProto.SightType is (SightType.Melee or SightType.Universal))
+            UpdateSightPreview(_sprite, MeleeSightPreview, meleeProto, scale, offset, mainColor, secondColor);
+    }
+
+    private static void UpdateSightPreview(SpriteSystem sprite, OptionsSightPreview preview, SightPrototype proto, int scale, int offset, Color main, Color second)
+    {
+        var rsi = sprite.RsiStateLike(proto.Sprite);
+        if (!rsi.IsAnimated || rsi.AnimationFrameCount < 3)
         {
-            var rsi = _sprite.RsiStateLike(meleeProto.Sprite);
-            if (rsi.IsAnimated && rsi.AnimationFrameCount >= 3)
-            {
-                var bracket1 = rsi.GetFrame(RsiDirection.South, 0); // Left
-                var sight = rsi.GetFrame(RsiDirection.South, 1); // Center
-                var bracket2 = rsi.GetFrame(RsiDirection.South, 2); // Right
-                Texture? bracket3 = null; // Down
-                Texture? bracket4 = null; // Up
-                if (rsi.AnimationFrameCount >= 4)
-                    bracket3 = rsi.GetFrame(RsiDirection.South, 3);
-                if (rsi.AnimationFrameCount >= 5)
-                    bracket4 = rsi.GetFrame(RsiDirection.South, 4);
-                MeleeSightPreview.UpdateTexture(sight, scale / 100f, offset / 100f, Color.FromHex(main), Color.FromHex(second));
-                MeleeSightPreview.SetBrackets(bracket1, bracket2, bracket3, bracket4);
-            }
-            else
-            {
-                MeleeSightPreview.UpdateTexture(_sprite.Frame0(meleeProto.Sprite), scale / 100f, offset / 100f, Color.FromHex(main), Color.FromHex(second));
-                MeleeSightPreview.SetBrackets();
-            }
+            preview.UpdateTexture(sprite.Frame0(proto.Sprite), scale / 100f, offset / 100f, main, second);
+            preview.SetBrackets();
+            return;
         }
+
+        var bracket1 = rsi.GetFrame(RsiDirection.South, 0); // Left
+        var sight = rsi.GetFrame(RsiDirection.South, 1); // Center
+        var bracket2 = rsi.GetFrame(RsiDirection.South, 2); // Right
+        var bracket3 = rsi.AnimationFrameCount >= 4 ? rsi.GetFrame(RsiDirection.South, 3) : null; // Down
+        var bracket4 = rsi.AnimationFrameCount >= 5 ? rsi.GetFrame(RsiDirection.South, 4) : null; // Up
+        preview.UpdateTexture(sight, scale / 100f, offset / 100f, main, second);
+        preview.SetBrackets(bracket1, bracket2, bracket3, bracket4);
     }
 
     private void OnTextChanged(LineEdit.LineEditEventArgs args)
     {
-        if (args.Text.ToString() is not string packed)
+        if (args.Text is not { } packed)
             return;
-        byte[] bytes = [];
+        byte[] bytes;
         try
         {
             bytes = Convert.FromBase64String(packed);

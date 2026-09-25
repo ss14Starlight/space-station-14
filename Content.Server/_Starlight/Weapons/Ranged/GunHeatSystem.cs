@@ -38,8 +38,7 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
         if (args.Ammo.Count == 0 || !TryComp<TemperatureComponent>(ent, out var temperature))
             return;
 
-        var kelvin = ent.Comp.HeatPerShot * args.Ammo.Count;
-        _temperature.ChangeHeat(ent, kelvin * _temperature.GetHeatCapacity(ent, temperature), ignoreHeatResistance: true, temperature);
+        _temperature.ChangeHeat(ent, ent.Comp.HeatPerShot * args.Ammo.Count, ignoreHeatResistance: true, temperature);
 
         if (ent.Comp.Jammed || !_random.Prob(GetJamChance(ent.Comp, temperature.CurrentTemperature)))
             return;
@@ -104,7 +103,8 @@ public sealed partial class GunHeatSystem : SharedGunHeatSystem
                 continue;
 
             var seconds = (float) _passiveCoolingInterval.TotalSeconds;
-            _temperature.ForceChangeTemperature(uid, temperature.CurrentTemperature - (excess * heat.PassiveCooling * seconds), temperature);
+            var heatLoss = MathF.Min(excess * heat.PassiveCooling * seconds, excess * _temperature.GetHeatCapacity(uid, temperature));
+            _temperature.ChangeHeat(uid, -heatLoss, ignoreHeatResistance: true, temperature);
         }
     }
 }

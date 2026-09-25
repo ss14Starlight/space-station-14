@@ -13,10 +13,10 @@ namespace Content.Shared._Starlight.Weapons.Ranged.Components;
 public sealed partial class GunHeatComponent : Component
 {
     /// <summary>
-    /// How much a single shot heats the gun up.
+    /// Heat in joules a single shot adds to the gun. The temperature rise depends on the gun's heat capacity.
     /// </summary>
     [DataField]
-    public float HeatPerShot = 3f;
+    public float HeatPerShot = 750f;
 
     /// <summary>
     /// How well the surrounding air cools the gun.
@@ -24,8 +24,11 @@ public sealed partial class GunHeatComponent : Component
     [DataField]
     public float CoolingEfficiency = 0.05f;
 
+    /// <summary>
+    /// Heat in watts per kelvin above room temperature that the gun loses on its own, even in vacuum.
+    /// </summary>
     [DataField]
-    public float PassiveCooling = 0.01f;
+    public float PassiveCooling = 2.5f;
 
     /// <summary>
     /// Minimum temperature at which the gun starts to glow red-hot.

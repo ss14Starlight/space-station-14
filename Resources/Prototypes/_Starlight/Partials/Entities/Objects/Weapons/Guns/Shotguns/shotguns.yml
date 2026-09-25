@@ -13,7 +13,7 @@
     maxAngleDivider: 2
     angleIncreaseDivider: 2
   - type: GunHeat
-    heatPerShot: 12
+    heatPerShot: 3000
 
 - type: !PartialOnly entity
   id: WeaponShotgunSawn

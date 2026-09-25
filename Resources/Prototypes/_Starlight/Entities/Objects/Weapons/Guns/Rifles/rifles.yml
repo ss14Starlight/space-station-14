@@ -75,7 +75,7 @@
     zeroVisible: true
   - type: Appearance
   - type: GunHeat
-    heatPerShot: 4
+    heatPerShot: 1000
 
 - type: entity
   name: IK-60 laser carbine
@@ -131,7 +131,7 @@
     zeroVisible: true
   - type: Appearance
   - type: GunHeat
-    heatPerShot: 4
+    heatPerShot: 1000
 
 - type: entity
   name: Aussec Armory M-52

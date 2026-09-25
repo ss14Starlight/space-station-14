@@ -32,15 +32,10 @@ public sealed partial class ProjectileSpreadComponent : Component
 
     #region Starlight
     /// <summary>
-    /// Minimum random deviation applied to every projectile of the spread, so the pattern is never the same.
+    /// How far each projectile may randomly stray either way from its place in the spread, so the pattern is never the same.
+    /// Projectiles never leave the <see cref="Spread"/> cone.
     /// </summary>
     [DataField]
-    public Angle MinDeviation = Angle.FromDegrees(1);
-
-    /// <summary>
-    /// Maximum random deviation applied to every projectile of the spread.
-    /// </summary>
-    [DataField]
-    public Angle MaxDeviation = Angle.FromDegrees(3);
+    public Angle Deviation = Angle.FromDegrees(2);
     #endregion
 }

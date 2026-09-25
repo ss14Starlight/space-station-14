@@ -971,7 +971,7 @@
     maxAngleDivider: 2
     angleIncreaseDivider: 2
   - type: GunHeat
-    heatPerShot: 4
+    heatPerShot: 1000
 
 - type: entity
   name: pulse cannon

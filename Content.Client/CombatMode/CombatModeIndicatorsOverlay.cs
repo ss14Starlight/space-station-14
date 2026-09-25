@@ -91,48 +91,48 @@ public sealed class CombatModeIndicatorsOverlay : Overlay
         var spriteSys = _entMan.EntitySysManager.GetEntitySystem<SpriteSystem>();
 
         var sight = isHandGunItem ? (isGunBolted || _gunBoltSight == null ? _gunSight : _gunBoltSight) : _meleeSight;
-        if (sight != null)
+        if (sight == null)
+            return;
+
+        UpdateCursor(args.ViewportControl as Control, !sight.ShowCursor);
+
+        var scale = limitedScale * Math.Clamp(_scale ?? 0.6f, 0f, 1f);
+
+        // Spread originates from the shooter, not from the (possibly offset) eye.
+        var originMap = handEntity != null
+            ? _entMan.System<SharedTransformSystem>().GetMapCoordinates(handEntity.Value)
+            : _eye.CurrentEye.Position;
+        var originScreen = _eye.MapToScreen(originMap).Position;
+        var rot = MathF.Atan2(originScreen.Y - mousePos.Y, originScreen.X - mousePos.X);
+        rot -= MathF.PI / 2f;
+        var rsiState = spriteSys.RsiStateLike(sight.Sprite);
+        if (rsiState.IsAnimated && rsiState.AnimationFrameCount >= 3)
         {
-            UpdateCursor(args.ViewportControl as Control, !sight.ShowCursor);
 
-            var scale = limitedScale * Math.Clamp(_scale ?? 0.6f, 0f, 1f);
+            var currentAngle = 0f;
+            if (isHandGunItem && handEntity != null)
+                currentAngle = (float)_entMan.System<GunSystem>().PeekSpread(handEntity.Value).Degrees;
 
-            // Spread originates from the shooter, not from the (possibly offset) eye.
-            var originMap = handEntity != null
-                ? _entMan.System<SharedTransformSystem>().GetMapCoordinates(handEntity.Value)
-                : _eye.CurrentEye.Position;
-            var originScreen = _eye.MapToScreen(originMap).Position;
-            var rot = MathF.Atan2(originScreen.Y - mousePos.Y, originScreen.X - mousePos.X);
-            rot -= MathF.PI / 2f;
-            var rsiState = spriteSys.RsiStateLike(sight.Sprite);
-            if (rsiState.IsAnimated && rsiState.AnimationFrameCount >= 3)
-            {
+            var bracket1 = rsiState.GetFrame(RsiDirection.South, 0); // Left
+            var sightTexture = rsiState.GetFrame(RsiDirection.South, 1); // Center
+            var bracket2 = rsiState.GetFrame(RsiDirection.South, 2); // Right
 
-                var currentAngle = 0f;
-                if (isHandGunItem && handEntity != null)
-                    currentAngle = (float)_entMan.System<GunSystem>().PeekSpread(handEntity.Value).Degrees;
+            Texture? bracket3 = null; // Down
+            Texture? bracket4 = null; // Up
 
-                var bracket1 = rsiState.GetFrame(RsiDirection.South, 0); // Left
-                var sightTexture = rsiState.GetFrame(RsiDirection.South, 1); // Center
-                var bracket2 = rsiState.GetFrame(RsiDirection.South, 2); // Right
+            if (rsiState.AnimationFrameCount >= 4)
+                bracket3 = rsiState.GetFrame(RsiDirection.South, 3);
 
-                Texture? bracket3 = null; // Down
-                Texture? bracket4 = null; // Up
+            if (rsiState.AnimationFrameCount >= 5)
+                bracket4 = rsiState.GetFrame(RsiDirection.South, 4);
 
-                if (rsiState.AnimationFrameCount >= 4)
-                    bracket3 = rsiState.GetFrame(RsiDirection.South, 3);
-
-                if (rsiState.AnimationFrameCount >= 5)
-                    bracket4 = rsiState.GetFrame(RsiDirection.South, 4);
-
-                var offset = CalculateOffset(currentAngle, (originScreen - mousePos).Length());
-                DrawSightPartial(sightTexture, bracket1, bracket2, args.ScreenHandle, rot, mousePos, scale,_main ?? sight.MainColor,_second ?? sight.StrokeColor, offset, isHandGunItem ? _rangedRotation : _meleeRotation, bracket3, bracket4);
-            }
-            else
-            {
-                var sightTexture = spriteSys.Frame0(sight.Sprite);
-                DrawOverlayPart(sightTexture, args.ScreenHandle, mousePos, scale, _main ?? sight.MainColor, _second ?? sight.StrokeColor);
-            }
+            var offset = CalculateOffset(currentAngle, (originScreen - mousePos).Length());
+            DrawSightPartial(sightTexture, bracket1, bracket2, args.ScreenHandle, rot, mousePos, scale,_main ?? sight.MainColor,_second ?? sight.StrokeColor, offset, isHandGunItem ? _rangedRotation : _meleeRotation, bracket3, bracket4);
+        }
+        else
+        {
+            var sightTexture = spriteSys.Frame0(sight.Sprite);
+            DrawOverlayPart(sightTexture, args.ScreenHandle, mousePos, scale, _main ?? sight.MainColor, _second ?? sight.StrokeColor);
         }
 
         // Starlight-end

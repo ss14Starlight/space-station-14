@@ -2,4 +2,4 @@
   id: BaseWeaponHeavyMachineGun
   components:
   - type: GunHeat
-    heatPerShot: 1.5
+    heatPerShot: 375

@@ -2,7 +2,7 @@
   id: BaseWeaponLightMachineGun
   components:
   - type: GunHeat
-    heatPerShot: 2
+    heatPerShot: 500
     maxJamChance: 0.25
   - type: GunWieldBonus
     minAngle: 0
