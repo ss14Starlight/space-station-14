@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Box) Added solitary confinement to gen pop.
-    type: Add
-  id: 408471
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
   - message: (Box) Added some more station radios and televisions.
     type: Add
   id: 408472
@@ -2799,4 +2792,11 @@ Entries:
   id: 408870
   time: '2026-09-25T05:34:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6324
+- author: neomoth
+  changes:
+  - message: "Removed my own shitcode \U0001F5E3️\U0001F525\U0001F525\U0001F525."
+    type: Remove
+  id: 408871
+  time: '2026-09-25T06:48:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6191
 Order: -1
