@@ -351,7 +351,9 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
     private void DrawAbnormalities(HealthAnalyzerUiState state, EntityUid target)
     {
-        var abnormalities = state.Extensions.GetValueOrDefault().Abnormalities;
+        var abnormalities = state.Extensions?.Abnormalities is { } supplied
+            ? new List<HealthAnalyzerAbnormalityData>(supplied)
+            : new List<HealthAnalyzerAbnormalityData>();
 
         if (state.Unrevivable == true)
         {
