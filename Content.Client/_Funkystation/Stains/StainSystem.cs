@@ -25,10 +25,12 @@ public sealed partial class StainSystem : SharedStainSystem
         SubscribeLocalEvent<StainableComponent, AppearanceChangeEvent>(OnAppearanceChanged);
         SubscribeLocalEvent<StainableComponent, GetEquipmentVisualsEvent>(OnEquipmentVisuals, after: [typeof(ClientClothingSystem)]);
         SubscribeLocalEvent<StainableComponent, GetInhandVisualsEvent>(OnInhandVisuals, after: [typeof(ItemSystem)]);
+        #region Starlight
         SubscribeLocalEvent<MaskComponent, AfterAutoHandleStateEvent>(OnMaskStateChanged);
 
         _showClothingStains = _cfg.GetCVar(StarlightCCVars.ShowClothingStains);
         _cfg.OnValueChanged(StarlightCCVars.ShowClothingStains, OnShowClothingStainsChanged);
+        #endregion
     }
 
     private void OnAppearanceChanged(Entity<StainableComponent> ent, ref AppearanceChangeEvent args)
