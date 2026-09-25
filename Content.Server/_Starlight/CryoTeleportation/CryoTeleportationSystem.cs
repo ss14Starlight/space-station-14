@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Bed.Cryostorage;
 using Content.Server.Bed.Cryostorage;
 using Content.Shared._Starlight.Polymorph.Components;
 using Content.Server.Station.Systems;
@@ -29,6 +30,7 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
     [Dependency] private IEntityManager _entity = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private StationJobsSystem _stationJobs = default!;
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private IPlayerManager _playerMan = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
@@ -42,6 +44,7 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnCompleteSpawn);
         SubscribeLocalEvent<TargetCryoTeleportationComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<TargetCryoTeleportationComponent, PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<TargetCryoTeleportationComponent, MobStateChangedEvent>(OnMobStateChanged);
         _playerMan.PlayerStatusChanged += OnSessionStatus;
     }
 
@@ -83,13 +86,18 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
             containedComp.Cryostorage = cryoStorage;
             containedComp.GracePeriodEndTime = _timing.CurTime;
 
+            // Cryostorage finds the job via the body's mind, which is gone or orphaned here.
+            var abandoned = !_mind.TryGetMind(uid, out _, out var bodyMind) || bodyMind.UserId == null;
+            if (abandoned)
+                ReturnJobSlot(uid, comp);
+
             var portalCoordinates = _transformSystem.GetMapCoordinates(Transform(uid));
 
             var portalUid = _entity.SpawnEntity(stationComp.PortalPrototype, portalCoordinates);
             _audio.PlayPvs(stationComp.TransferSound, portalUid);
 
             if (!_container.Insert(uid, container))
-                _cryostorage.HandleEnterCryostorage((uid, containedComp), comp.UserId);
+                _cryostorage.HandleEnterCryostorage((uid, containedComp), abandoned ? null : comp.UserId);
         }
     }
 
@@ -104,6 +112,32 @@ public sealed partial class CryoTeleportationSystem : EntitySystem
         var targetComponent = EnsureComp<TargetCryoTeleportationComponent>(ev.Player.AttachedEntity.Value);
         targetComponent.Station = ev.Station;
         targetComponent.UserId = ev.Player.UserId;
+        targetComponent.Job = ev.JobId;
+    }
+
+    private void OnMobStateChanged(EntityUid uid, TargetCryoTeleportationComponent comp, ref MobStateChangedEvent args)
+    {
+        // Player left while dead or crit, so the detach never started the timer.
+        if (args.NewMobState != MobState.Alive || HasComp<ActorComponent>(uid))
+            return;
+
+        comp.ExitTime = _timing.CurTime;
+    }
+
+    private void ReturnJobSlot(EntityUid body, TargetCryoTeleportationComponent comp)
+    {
+        if (comp.Station is not { } station
+            || comp.UserId is not { } userId
+            || comp.Job is not { } job)
+            return;
+
+        if (!_stationJobs.TryRemovePlayerJob(station, userId, job))
+            return;
+
+        _stationJobs.TryAdjustJobSlot(station, job, 1, clamp: true);
+
+        var slotReturned = new CryoSlotReturnedEvent(body, job);
+        RaiseLocalEvent(ref slotReturned);
     }
 
     private void OnPlayerDetached(EntityUid uid, TargetCryoTeleportationComponent comp, PlayerDetachedEvent ev)
