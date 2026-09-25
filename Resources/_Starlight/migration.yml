@@ -23,7 +23,6 @@ PosterContrabandGreyTide: null
 
 # 2025-06-28
 SyndicateWhistle: CommanderWhistle
-WeaponPistolAPS: WeaponPistolStechkin
 
 #2025-08-02
 ClothingHeadHelmetHardsuitNTCCConsortium: ClothingHeadHelmetHardsuitNTNCConsortium
@@ -61,6 +60,13 @@ TurbineSmall: GasTurbineSmall
 #2026-02-15
 ClothingOuterArmorSovietFlak: ClothingOuterArmorSovietPlate
 
+#2026-02-28
+WeaponLr30: WeaponRifleLr30
+WeaponEnergySMG: WeaponSubMachineGunEnergy
+WeaponIK60: WeaponRifleIK60
+WeaponPDW9: WeaponPistolPDW9
+WeaponEnergySniper: WeaponSniperEnergy
+
 #2026-03-06
 LockerBSOFilled: LockerBlueshieldFilled
 
@@ -71,7 +77,7 @@ ShuttleGunNTSFCyerxa120mm: ShuttleGunCyerxa120mm
 WeaponRevolverSnubRevolver: null
 
 #2026-03-21
-#WeaponRifleLionhunter: WeaponSniperLionhunter Re-enable when Shooting 3.0 is back
+WeaponRifleLionhunter: null
 
 #2026-04-15 - Lawyer | Internal Affairs split
 DoorElectronicsLawyer: DoorElectronicsInternalAffairs
@@ -386,6 +392,21 @@ WashingMachineService: WashingMachine
 WashingMachineSecurityFlatpack: WashingMachineFlatpack
 WashingMachineCommandFlatpack: WashingMachineFlatpack
 WashingMachineMedicalFlatpack: WashingMachineFlatpack
+
+#2026-09-19 - Shooting 3.0: merged/removed duplicate & reskin weapons
+WeaponPistolStechkin: WeaponPistolStechkinAPS
+WeaponPistolAPS: WeaponPistolStechkinAPS
+WeaponSniperMakeshift: null
+WeaponPistolMakeshiftCrafted: null
+WeaponSniperImprovised: null
+WeaponPistolImprovised: null
+WeaponPistolM1911: WeaponPistolN1984
+WeaponPistolTSFModel17: WeaponPistolMk58
+WeaponRifleLeikha: WeaponRifleLecter
+WeaponRifleM18: WeaponRifleLecter
+WeaponRifleLecterXL8: WeaponRifleLecter
+WeaponRifleARG: WeaponRifleAk
+WeaponPDW9TaserBorg: WeaponPistolPDW9TaserBorg
 
 #2026-09-19 - Replace NTR airlocks with more the general NT ones
 AirlockNrepLocked: AirlockNTLocked

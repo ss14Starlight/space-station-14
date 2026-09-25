@@ -11,8 +11,6 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-
-#region Starlight
 using System.Linq;
 using Content.Shared.Body.Components;
 using Content.Shared.Mech.Components;
@@ -26,7 +24,9 @@ using Content.Shared.Movement.Components;
 using Robust.Shared.Random;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
 using Content.Shared._Starlight.NullSpace.Components;
-#endregion Starlight
+using Content.Shared._Starlight.Weapons.Cover.Components;
+using Content.Shared._Starlight.Weapons.Cover.Systems;
+using Content.Shared.Physics;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
@@ -36,8 +36,9 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private ISharedAdminLogManager _log = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private TagSystem _tag = default!; //Starlight -- arming distance
+    [Dependency] private TagSystem _tag = default!; //Starlight-edit arming distance
     [Dependency] private IRobustRandom _rand = default!; // Starlight-edit
+    [Dependency] private SharedProjectileCoverSystem _cover = default!; // Starlight-edit
 
     private EntityQuery<HitscanBasicVisualsComponent> _visualsQuery;
 
@@ -71,35 +72,11 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
         var ray = new CollisionRay(mapCords.Position, args.ShotDirection, (int)ent.Comp.CollisionMask);
         var rayCastResults = _physics.IntersectRay(mapCords.MapId, ray, ent.Comp.MaxDistance, shooter, false).ToList();
 
-        RayCastResults? result = null;
+        var lagEv = new HitscanLagCompensationEvent(args.Shooter, shooter, mapCords.MapId, mapCords.Position,
+            args.ShotDirection, ent.Comp.MaxDistance, (int) ent.Comp.CollisionMask, rayCastResults);
+        RaiseLocalEvent(ref lagEv);
 
-        if (_container.IsEntityOrParentInContainer(shooter)) // if we are inside a container hit the container
-            result = rayCastResults.Count == 0 ? null : rayCastResults[0];
-        else
-        {
-            foreach (var collide in rayCastResults)
-            {
-                if (collide.Distance == 0) // prevent self-referential loop that results in rounds getting "trapped", awful 3x damage self-crits with guns against 0 distance walls, etc
-                    continue;
-                // FOR ANYONE TOUCHING HITSCAN ONCE MORE, DO NOT FORGET THE CHECK NullSpaceComponent, This is the Third time i have to FIX IT!
-                if (HasComp<NullSpaceComponent>(collide.HitEntity))
-                    continue;
-                if (collide.HitEntity != args.Target && (CompOrNull<RequireProjectileTargetComponent>(collide.HitEntity)?.Active == true))
-                    continue;
-                if(!(collide.Distance >= ent.Comp.MinDistance || _tag.HasAnyTag(collide.HitEntity, ent.Comp.NotArmedCollideWith)))
-                    continue;
-                if (collide.Distance < pointer - 2f && HasComp<MobMoverComponent>(collide.HitEntity))
-                {
-                    if (pointer - collide.Distance > 4f) continue;
-
-                    var chance = Math.Clamp(1f - ((collide.Distance - 2f) / 2), 0f, 1f);
-                    if (!_rand.Prob(chance)) continue;
-                }
-
-                result = collide;
-                break;
-            }
-        }
+        var result = SelectHit(ent, shooter, mapCords, args.ShotDirection, pointer, args.Target, rayCastResults, args.PredictionSeed);
 
         var distanceTried = result?.Distance ?? ent.Comp.MaxDistance;
 
@@ -141,7 +118,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
         if (attemptEvent.Cancelled)
         { // Starlight start - added block with additional command before return
             if (isRoot)
-                FireEffects(ent, args.OutputTrace);
+                FireEffects(ent, args.OutputTrace, args.Shooter, args.Gun);
             // Starlight end
             return;
         } // Starlight
@@ -151,7 +128,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
 
         // Starlight start
         if (isRoot)
-            FireEffects(ent, args.OutputTrace);
+            FireEffects(ent, args.OutputTrace, args.Shooter, args.Gun);
         // Starlight end
     }
 
@@ -185,7 +162,7 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
         };
     }
 
-    private void FireEffects(EntityUid hitscan, List<HitscanTrace> traces)
+    private void FireEffects(EntityUid hitscan, List<HitscanTrace> traces, EntityUid? shooter, EntityUid gun)
     {
         if (!_visualsQuery.TryComp(hitscan, out var visuals))
         {
@@ -202,6 +179,10 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
             Bullet = visuals.Bullet,
             Speed = visuals.Speed,
             Traces = traces,
+            // Starlight-start
+            Shooter = GetNetEntity(shooter),
+            Gun = GetNetEntity(gun),
+            // Starlight-end
         };
 
         // Figure out who might see the event on any of the bounces

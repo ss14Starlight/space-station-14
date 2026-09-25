@@ -35,16 +35,14 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
-#region Starlight
 using Content.Shared._Starlight.Weapons.DualWield;
 using Content.Shared.Mech.Components;
 using Content.Shared._Starlight.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared.Movement.Components;
 using Content.Shared._Starlight.Camera;
 using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
-#endregion Starlight
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -352,7 +350,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         // First shot
         // Previously we checked shotcounter but in some cases all the bullets got dumped at once
         // curTime - fireRate is insufficient because if you time it just right you can get a 3rd shot out slightly quicker.
-        if (gun.Comp.NextFire < curTime - fireRate || gun.Comp.ShotCounter == 0 && gun.Comp.NextFire < curTime)
+        if (gun.Comp.NextFire < curTime - fireRate || (gun.Comp.ShotCounter == 0 && gun.Comp.NextFire < curTime))
             gun.Comp.NextFire = curTime;
 
         var shots = 0;
@@ -527,7 +525,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var physics = EnsureComp<PhysicsComponent>(uid);
         Physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
 
-        var targetMapVelocity = gunVelocity + direction.Normalized() * speed;
+        var targetMapVelocity = gunVelocity + (direction.Normalized() * speed);
         var currentMapVelocity = Physics.GetMapLinearVelocity(uid, physics);
         var finalLinear = physics.LinearVelocity + targetMapVelocity - currentMapVelocity;
         Physics.SetLinearVelocity(uid, finalLinear, body: physics);
@@ -578,6 +576,66 @@ public abstract partial class SharedGunSystem : EntitySystem
     }
 
     #region Starlight
+
+    /// <summary>
+    /// Spread cone the next shot would have if fired at <paramref name="curTime"/>, including the movement penalty.
+    /// Does not modify the gun, so it is safe to call every frame (e.g. for the crosshair).
+    /// </summary>
+    public Angle PeekSpread(Entity<GunComponent?> gun, TimeSpan? curTime = null)
+    {
+        if (!Resolve(gun, ref gun.Comp, false))
+            return Angle.Zero;
+
+        var theta = GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime);
+        return new Angle(theta * GetMovementSpreadModifier((gun, gun.Comp)));
+    }
+
+    /// <summary>
+    /// Advances <see cref="GunComponent.CurrentAngle"/> for a shot fired now and returns it.
+    /// Must only be called when the gun actually fires.
+    /// </summary>
+    public Angle UpdateCurrentAngle(Entity<GunComponent> gun, TimeSpan? curTime = null)
+    {
+        gun.Comp.CurrentAngle = new Angle(GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime));
+        DirtyField(gun.AsNullable(), nameof(GunComponent.CurrentAngle));
+        return gun.Comp.CurrentAngle;
+    }
+
+    private static double GetNextShotTheta(GunComponent comp, TimeSpan curTime)
+    {
+        // LastFire is set to NextFire, so it is in the future while the gun is cycling.
+        // Recoil only starts decaying once the gun could fire again.
+        var timeSinceLastFire = Math.Max(0, (curTime - comp.LastFire).TotalSeconds);
+        return MathHelper.Clamp(
+            comp.CurrentAngle.Theta + comp.AngleIncreaseModified.Theta - (comp.AngleDecayModified.Theta * timeSinceLastFire),
+            comp.MinAngleModified.Theta,
+            comp.MaxAngleModified.Theta);
+    }
+
+    /// <summary>
+    /// Multiplier applied to the spread while the holder is moving.
+    /// </summary>
+    public float GetMovementSpreadModifier(Entity<GunComponent> gun)
+    {
+        var holder = Transform(gun).ParentUid;
+        if (!TryComp<InputMoverComponent>(holder, out var mover) || !mover.CanMove || !mover.HasDirectionalMovement)
+            return 1f;
+
+        // Sprinting is the default (running) movement, walking is the slow one.
+        return 1f + (mover.Sprinting ? gun.Comp.SprintSpreadModifier : gun.Comp.WalkSpreadModifier);
+    }
+
+    public Angle GetRecoilAngle(Entity<GunComponent> gun, Angle direction, TimeSpan? curTime = null)
+    {
+        var spread = UpdateCurrentAngle(gun, curTime).Theta * GetMovementSpreadModifier(gun);
+
+        // Convert it so angle can go either side.
+#pragma warning disable CS0618
+        var random = GetShotRandom(gun, RecoilSalt).NextFloat(-0.5f, 0.5f);
+#pragma warning restore CS0618
+        return new Angle(direction.Theta + (spread * random));
+    }
+
     public bool IsChamberClosed(EntityUid gunEntity)
         => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
     #endregion
@@ -653,8 +711,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var shotDirection = (toMap - fromMap).Normalized();
 
-        const float impulseStrength = 25.0f;
-        var impulseVector = shotDirection * impulseStrength;
+        const float ImpulseStrength = 25.0f;
+        var impulseVector = shotDirection * ImpulseStrength;
         Physics.ApplyLinearImpulse(user, -impulseVector, body: user.Comp);
     }
 
@@ -767,6 +825,10 @@ public abstract partial class SharedGunSystem : EntitySystem
         public SpriteSpecifier? ImpactFlash;
         public ExtendedSpriteSpecifier? Bullet;
         public required float Speed;
+        // Starlight-start
+        public NetEntity? Shooter;
+        public NetEntity? Gun;
+        // Starlight-end
     }
 
     /// <summary>

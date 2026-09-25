@@ -15,17 +15,20 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: GunWieldBonus
-    minAngle: -4
-    maxAngle: -8
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 1.5
+    maxAngleDivider: 1.5
+    angleIncreaseDivider: 1.5
   - type: GunJamDefect
     prob: 0.40
     jamChance: 0.15
   - type: GunSpreadDefect
     prob: 0.40
-    minAngleMin: 6
-    minAngleMax: 16
-    maxAngleMin: 16
-    maxAngleMax: 26
+    minAngleMin: 9
+    minAngleMax: 14
+    maxAngleMin: 22
+    maxAngleMax: 28
   - type: BackfireDefect
     prob: 0.10
     backfireChance: 0.05

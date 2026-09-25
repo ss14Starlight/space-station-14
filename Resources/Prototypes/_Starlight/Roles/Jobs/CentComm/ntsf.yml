@@ -63,7 +63,7 @@
     shoes: ClothingShoesBootsMagERT
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited
-    pocket2: WeaponPDW9
+    pocket2: WeaponPistolPDW9
     belt: PrototypeVibrobladeSheathFilled
     neck: ClothingNeckCapeNTSF1
     suitstorage: WeaponPulseCarbine
@@ -372,5 +372,5 @@
     - PowerCellAntiqueProto
     - MagazinePistol40AP
     - MagazinePistol40AP
-    - WeaponPistolStechkin
+    - WeaponPistolStechkinAPS
     - WeaponShotgunHushpup

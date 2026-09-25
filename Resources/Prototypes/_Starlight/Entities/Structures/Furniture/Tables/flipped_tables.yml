@@ -1,0 +1,296 @@
+- type: entity
+  id: BaseTableFlipped
+  abstract: true
+  description: Shoved onto its side and pressed into service as cover. Shots crossing it sometimes don't make it.
+  components:
+  - type: ProjectileCover
+    blockChance: 0.45
+    pointBlankRange: 1.5
+  - type: Sprite
+    noRot: false
+    layers:
+    - state: flipped_0
+  - type: Icon
+    state: flipped_0
+  - type: IconSmooth
+    mode: Linear
+    base: flipped_
+  - type: PlaceableSurface
+    isPlaceable: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+        - BulletImpassable
+  - type: Tag
+    tags:
+    - ForceNoFixRotations
+
+- type: entity
+  id: TableFlipped
+  parent: [BaseTableFlipped, Table]
+  suffix: Flipped
+  name: flipped table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: Table
+  - type: IconSmooth
+    key: TableFlipped
+
+- type: entity
+  id: TableReinforcedFlipped
+  parent: [BaseTableFlipped, TableReinforced]
+  suffix: Flipped
+  name: flipped reinforced table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableReinforced
+  - type: IconSmooth
+    key: TableReinforcedFlipped
+  - type: ProjectileCover
+    blockChance: 0.6
+
+- type: entity
+  id: TableGlassFlipped
+  parent: [BaseTableFlipped, TableGlass]
+  suffix: Flipped
+  name: flipped glass table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableGlass
+  - type: IconSmooth
+    key: TableGlassFlipped
+  - type: ProjectileCover
+    blockChance: 0.3
+
+- type: entity
+  id: TableCardFlipped
+  parent: [BaseTableFlipped, TableCard]
+  suffix: Flipped
+  name: flipped cardboard table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableCard
+  - type: IconSmooth
+    key: TableCardFlipped
+  - type: ProjectileCover
+    blockChance: 0.15
+
+- type: entity
+  id: TableReinforcedGlassFlipped
+  parent: [BaseTableFlipped, TableReinforcedGlass]
+  suffix: Flipped
+  name: flipped reinforced glass table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableReinforcedGlass
+  - type: IconSmooth
+    key: TableReinforcedGlassFlipped
+  - type: ProjectileCover
+    blockChance: 0.5
+
+- type: entity
+  id: TablePlasmaGlassFlipped
+  parent: [BaseTableFlipped, TablePlasmaGlass]
+  suffix: Flipped
+  name: flipped plasma glass table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TablePlasmaGlass
+  - type: IconSmooth
+    key: TablePlasmaGlassFlipped
+  - type: ProjectileCover
+    blockChance: 0.5
+
+- type: entity
+  id: TableBrassFlipped
+  parent: [BaseTableFlipped, TableBrass]
+  suffix: Flipped
+  name: flipped brass table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableBrass
+  - type: IconSmooth
+    key: TableBrassFlipped
+
+- type: entity
+  id: TableWoodFlipped
+  parent: [BaseTableFlipped, TableWood]
+  suffix: Flipped
+  name: flipped wood table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableWood
+  - type: IconSmooth
+    key: TableWoodFlipped
+  - type: ProjectileCover
+    blockChance: 0.4
+
+- type: entity
+  id: TableCarpetFlipped
+  parent: [BaseTableFlipped, TableCarpet]
+  suffix: Flipped
+  name: flipped gambling table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableCarpet
+  - type: IconSmooth
+    key: TableCarpetFlipped
+  - type: ProjectileCover
+    blockChance: 0.4
+
+- type: entity
+  id: TableStoneFlipped
+  parent: [BaseTableFlipped, TableStone]
+  suffix: Flipped
+  name: flipped stone table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableStone
+  - type: IconSmooth
+    key: TableStoneFlipped
+  - type: ProjectileCover
+    blockChance: 0.55
+
+- type: entity
+  id: TableWebFlipped
+  parent: [BaseTableFlipped, TableWeb]
+  suffix: Flipped
+  name: flipped web table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableWeb
+  - type: IconSmooth
+    key: TableWebFlipped
+  - type: ProjectileCover
+    blockChance: 0.2
+
+- type: entity
+  id: TableXenoFlipped
+  parent: [BaseTableFlipped, TableXeno]
+  suffix: Flipped
+  name: flipped xeno table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableXeno
+  - type: IconSmooth
+    key: TableXenoFlipped
+  - type: ProjectileCover
+    blockChance: 0.5
+
+- type: entity
+  id: TableFancyBlueFlipped
+  parent: [BaseTableFlipped, TableFancyBlue]
+  suffix: Flipped
+  name: flipped blue fancy table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableFancyBlue
+  - type: IconSmooth
+    key: TableFancyBlueFlipped
+
+- type: entity
+  id: TableFancySkyBlueFlipped
+  parent: [BaseTableFlipped, TableFancySkyBlue]
+  suffix: Flipped
+  name: flipped sky blue fancy table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableFancySkyBlue
+  - type: IconSmooth
+    key: TableFancySkyBlueFlipped
+
+- type: entity
+  id: TableFancyCyanFlipped
+  parent: [BaseTableFlipped, TableFancyCyan]
+  suffix: Flipped
+  name: flipped cyan fancy table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableFancyCyan
+  - type: IconSmooth
+    key: TableFancyCyanFlipped
+
+- type: entity
+  id: TableFancyBlackFlipped
+  parent: [BaseTableFlipped, TableFancyBlack]
+  suffix: Flipped
+  name: flipped black fancy table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableFancyBlack
+  - type: IconSmooth
+    key: TableFancyBlackFlipped
+
+- type: entity
+  id: TableFancyRedFlipped
+  parent: [BaseTableFlipped, TableFancyRed]
+  suffix: Flipped
+  name: flipped red fancy table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableFancyRed
+  - type: IconSmooth
+    key: TableFancyRedFlipped
+
+- type: entity
+  id: TableFancyPurpleFlipped
+  parent: [BaseTableFlipped, TableFancyPurple]
+  suffix: Flipped
+  name: flipped purple fancy table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableFancyPurple
+  - type: IconSmooth
+    key: TableFancyPurpleFlipped
+
+- type: entity
+  id: TableFancyPinkFlipped
+  parent: [BaseTableFlipped, TableFancyPink]
+  suffix: Flipped
+  name: flipped pink fancy table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableFancyPink
+  - type: IconSmooth
+    key: TableFancyPinkFlipped
+
+- type: entity
+  id: TableFancyGreenFlipped
+  parent: [BaseTableFlipped, TableFancyGreen]
+  suffix: Flipped
+  name: flipped green fancy table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableFancyGreen
+  - type: IconSmooth
+    key: TableFancyGreenFlipped
+
+- type: entity
+  id: TableFancyOrangeFlipped
+  parent: [BaseTableFlipped, TableFancyOrange]
+  suffix: Flipped
+  name: flipped orange fancy table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableFancyOrange
+  - type: IconSmooth
+    key: TableFancyOrangeFlipped
+
+- type: entity
+  id: TableFancyWhiteFlipped
+  parent: [BaseTableFlipped, TableFancyWhite]
+  suffix: Flipped
+  name: flipped white fancy table
+  components:
+  - type: FlippedStructure
+    uprightPrototype: TableFancyWhite
+  - type: IconSmooth
+    key: TableFancyWhiteFlipped

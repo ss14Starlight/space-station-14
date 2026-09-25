@@ -1,0 +1,19 @@
+- type: !PartialOnly entity
+  id: BaseWeaponRifle
+  components:
+  - type: GunHeat
+    heatPerShot: 3
+
+- type: !PartialOnly entity
+  id: WeaponRifleEstoc
+  components:
+  - type: Gun
+    minAngle: 12
+    maxAngle: 30
+    angleIncrease: 3
+    angleDecay: 10
+  - type: GunWieldBonus
+    minAngleDivider: 8
+    maxAngleDivider: 3.75
+    minAngle: 0
+    maxAngle: 0

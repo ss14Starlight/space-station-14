@@ -71,3 +71,14 @@
               Piercing: 4
             groups:
               Burn: 3
+
+- type: trait
+  id: Unlucky
+  name: trait-unlucky-name
+  description: trait-unlucky-desc
+  category: Quirks
+  cost: 0
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: Unlucky

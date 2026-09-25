@@ -1,0 +1,21 @@
+- type: !PartialOnly entity
+  id: BaseWeaponLightMachineGun
+  components:
+  - type: GunHeat
+    heatPerShot: 2
+    maxJamChance: 0.25
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 8
+    maxAngleDivider: 3.2
+    angleIncreaseDivider: 4
+
+- type: !PartialOnly entity
+  id: WeaponLightMachineGunL6C
+  components:
+  - type: Gun
+    minAngle: 3
+    maxAngle: 14
+    angleIncrease: 1
+    angleDecay: 14

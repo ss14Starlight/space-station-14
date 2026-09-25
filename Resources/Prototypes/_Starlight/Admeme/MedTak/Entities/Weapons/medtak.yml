@@ -4,6 +4,7 @@
   id: WeaponMedTakLightMachineGun
   parent: [ BaseWeaponLightMachineGun, BaseMedTakContraband ]
   description: "An ultralight assault LMG developed for MedTak security.\nAccepts .30 box magazines."
+  suffix: Admeme
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/MedTak/Weapons/LMG.rsi
@@ -52,8 +53,8 @@
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/code-6.ogg
       params:
         volume: -5
-    minAngle: 15
-    maxAngle: 30
+    minAngle: 24
+    maxAngle: 40
     angleIncrease: 2
     angleDecay: 10
     fireRate: 6
@@ -64,6 +65,7 @@
   parent: [ BaseWeaponRifle, BaseMedTakContraband ]
   id: WeaponMedTakRifle
   description: "A bullpuped heavy rifle designed for MedTak operators.\nAccepts heavy .20 rifle magazines."
+  suffix: Admeme
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/MedTak/Weapons/Rifle.rsi
@@ -115,6 +117,7 @@
   parent: BaseItem
   id: WeaponMedTakRifleROW
   description: "A cut-down CODE-9 designed for cyborgs, feeding from a slowly recharging internal ammo fabricator"
+  suffix: Admeme
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/MedTak/Weapons/CyborgRifle.rsi
@@ -209,12 +212,13 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -4
-    maxAngle: -6
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
   - type: Gun
     fireRate: 7
-    minAngle: 5
-    maxAngle: 10
     availableModes:
     - FullAuto
     - SemiAuto

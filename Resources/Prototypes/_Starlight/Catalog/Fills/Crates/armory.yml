@@ -10,7 +10,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponLr30
+        - id: WeaponRifleLr30
           amount: 2
         - id: MagazineBatteryLr30
           amount: 2

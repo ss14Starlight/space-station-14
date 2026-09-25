@@ -26,7 +26,7 @@
 
 - type: entity
   name: SP-91-RC
-  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponSubMachineGunSP91RC
   description: Compact submachine gun designed for riot control.
   components:
@@ -37,11 +37,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunWieldBonus
-    minAngle: -19
-    maxAngle: -16
   - type: Gun
     fireRate: 13
     selectedMode: Burst
@@ -50,6 +45,10 @@
       - Burst
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/1sp_91.ogg
+    minAngle: 6
+    maxAngle: 20
+    angleIncrease: 1.5
+    angleDecay: 12
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -57,10 +56,16 @@
   - type: Appearance
   - type: ChamberMagazineAmmoProvider
     autoEject: true
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2
+    maxAngleDivider: 2
+    angleIncreaseDivider: 2
 
 - type: entity
   name: Type U3 Uzi
-  parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseMajorContraband]
   id: WeaponSubMachineGunUzi
   description: Lightweight submachine gun with a 32-round magazine that has single or 4 round firing modes.
   components:
@@ -77,10 +82,10 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
     fireRate: 10
-    minAngle: 1
-    maxAngle: 25
-    angleIncrease: 8
-    angleDecay: 5
+    minAngle: 8
+    maxAngle: 26
+    angleIncrease: 2.5
+    angleDecay: 14
     selectedMode: FullAuto
     shotsPerBurst: 4
     availableModes:
@@ -117,6 +122,12 @@
             - CartridgePistol
 
 #PPSH
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2.7
+    maxAngleDivider: 2.6
+    angleIncreaseDivider: 3
 - type: entity
   name: PPSH 59 SMG
   parent: [BaseWeaponSubMachineGun, BaseSovietContraband]
@@ -139,11 +150,12 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -9
-    maxAngle: -9
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 3.3
+    maxAngleDivider: 2.8
+    angleIncreaseDivider: 3.3
   - type: Gun
-    minAngle: 21
-    maxAngle: 32
     fireRate: 15
     selectedMode: FullAuto
     availableModes:
@@ -151,6 +163,7 @@
     - FullAuto
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/ppsh.ogg
+    angleIncrease: 1.5
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -197,14 +210,15 @@
     size: Normal
   - type: Gun
     fireRate: 9
-    minAngle: 32
+    minAngle: 16
     angleIncrease: 3
-    maxAngle: 64
+    maxAngle: 40
     selectedMode: FullAuto
     availableModes:
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+    angleDecay: 12
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -278,13 +292,17 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -5
-    maxAngle: -10
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 1.5
+    maxAngleDivider: 1.5
+    angleIncreaseDivider: 1.5
   - type: Gun
     fireRate: 7
-    minAngle: 16
+    minAngle: 12
     angleIncrease: 3
     maxAngle: 32
+    angleDecay: 12
   - type: Appearance
   - type: Construction
     graph: ImprovisedSMGGraph
@@ -329,13 +347,17 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -10
-    maxAngle: -15
+    minAngle: 0
+    maxAngle: 0
+    minAngleDivider: 2
+    maxAngleDivider: 2
+    angleIncreaseDivider: 2
   - type: Gun
     fireRate: 5
-    minAngle: 16
-    angleIncrease: 3
-    maxAngle: 32
+    minAngle: 10
+    angleIncrease: 2.5
+    maxAngle: 28
+    angleDecay: 14
   - type: Appearance
   - type: WeaponDismantleOnShoot
     dismantleChance: 0
