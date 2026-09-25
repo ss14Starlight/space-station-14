@@ -350,7 +350,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         // First shot
         // Previously we checked shotcounter but in some cases all the bullets got dumped at once
         // curTime - fireRate is insufficient because if you time it just right you can get a 3rd shot out slightly quicker.
-        if (gun.Comp.NextFire < curTime - fireRate || gun.Comp.ShotCounter == 0 && gun.Comp.NextFire < curTime)
+        if (gun.Comp.NextFire < curTime - fireRate || (gun.Comp.ShotCounter == 0 && gun.Comp.NextFire < curTime))
             gun.Comp.NextFire = curTime;
 
         var shots = 0;
@@ -525,7 +525,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var physics = EnsureComp<PhysicsComponent>(uid);
         Physics.SetBodyStatus(uid, physics, BodyStatus.InAir);
 
-        var targetMapVelocity = gunVelocity + direction.Normalized() * speed;
+        var targetMapVelocity = gunVelocity + (direction.Normalized() * speed);
         var currentMapVelocity = Physics.GetMapLinearVelocity(uid, physics);
         var finalLinear = physics.LinearVelocity + targetMapVelocity - currentMapVelocity;
         Physics.SetLinearVelocity(uid, finalLinear, body: physics);
@@ -597,6 +597,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     public Angle UpdateCurrentAngle(Entity<GunComponent> gun, TimeSpan? curTime = null)
     {
         gun.Comp.CurrentAngle = new Angle(GetNextShotTheta(gun.Comp, curTime ?? Timing.CurTime));
+        DirtyField(gun.AsNullable(), nameof(GunComponent.CurrentAngle));
         return gun.Comp.CurrentAngle;
     }
 
@@ -629,7 +630,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         var spread = UpdateCurrentAngle(gun, curTime).Theta * GetMovementSpreadModifier(gun);
 
         // Convert it so angle can go either side.
-        var random = Random.NextFloat(-0.5f, 0.5f);
+#pragma warning disable CS0618
+        var random = GetShotRandom(gun, RecoilSalt).NextFloat(-0.5f, 0.5f);
+#pragma warning restore CS0618
         return new Angle(direction.Theta + (spread * random));
     }
 
@@ -708,8 +711,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var shotDirection = (toMap - fromMap).Normalized();
 
-        const float impulseStrength = 25.0f;
-        var impulseVector = shotDirection * impulseStrength;
+        const float ImpulseStrength = 25.0f;
+        var impulseVector = shotDirection * ImpulseStrength;
         Physics.ApplyLinearImpulse(user, -impulseVector, body: user.Comp);
     }
 
@@ -822,6 +825,10 @@ public abstract partial class SharedGunSystem : EntitySystem
         public SpriteSpecifier? ImpactFlash;
         public ExtendedSpriteSpecifier? Bullet;
         public required float Speed;
+        // Starlight-start
+        public NetEntity? Shooter;
+        public NetEntity? Gun;
+        // Starlight-end
     }
 
     /// <summary>

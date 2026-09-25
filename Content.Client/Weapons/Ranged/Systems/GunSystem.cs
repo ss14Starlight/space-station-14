@@ -58,7 +58,6 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private SpriteSystem _sprite = default!;
 
     #region Starlight
-    [Dependency] private IComponentFactory _factory = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private DisplacementMapSystem _displacement = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -125,6 +124,7 @@ public sealed partial class GunSystem : SharedGunSystem
         _cfg.OnValueChanged(StarlightCCVars.TracesEnabled, OnTracesEnabledChanged, true);
         _cfg.OnValueChanged(StarlightCCVars.HolesEnabled, OnHolesEnabledChanged, true);
         _cfg.OnValueChanged(StarlightCCVars.SparksEnabled, OnSparksEnabledChanged, true);
+        InitializePrediction();
         // Starlight-end
 
         UpdatesOutsidePrediction = true;
@@ -143,8 +143,9 @@ public sealed partial class GunSystem : SharedGunSystem
     private void OnHitscan(HitscanEvent ev)
     {
         var delay = 0f;
-        foreach (var trace in ev.Traces)
-            delay = FireEffect(ev, delay, trace);
+        var first = TryConsumePredictedHitscan(ev) ? 1 : 0;
+        for (var i = first; i < ev.Traces.Count; i++)
+            delay = FireEffect(ev, delay, ev.Traces[i]);
     }
 
     private float FireEffect(HitscanEvent visuals, float delay, HitscanTrace trace)
@@ -294,15 +295,15 @@ public sealed partial class GunSystem : SharedGunSystem
             return;
 
         var ent = Spawn(HitscanProto, coords);
-        var spriteComp = Comp<SpriteComponent>(ent);
-        var spriteEnt = (ent, spriteComp);
+        var spriteEnt = (ent, Comp<SpriteComponent>(ent));
 
         var xform = Transform(ent);
         var targetWorldRot = angle + _xform.GetWorldRotation(relativeXform);
         var delta = targetWorldRot - _xform.GetWorldRotation(xform);
         _xform.SetLocalRotationNoLerp(ent, xform.LocalRotation + delta, xform);
 
-        spriteComp[EffectLayers.Unshaded].AutoAnimated = false;
+        if (_sprite.TryGetLayer(spriteEnt, EffectLayers.Unshaded, out var unshaded, false))
+            _sprite.LayerSetAutoAnimated(unshaded, false);
         _sprite.LayerSetSprite(spriteEnt, EffectLayers.Unshaded, rsi);
         _sprite.LayerSetRsiState(spriteEnt, EffectLayers.Unshaded, rsi.RsiState);
         if (travel)
@@ -313,13 +314,13 @@ public sealed partial class GunSystem : SharedGunSystem
         else
             _sprite.SetScale(spriteEnt, new Vector2(1f, 0.5f));
 
-        spriteComp[EffectLayers.Unshaded].Visible = true;
+        _sprite.LayerSetVisible(spriteEnt, EffectLayers.Unshaded, true);
 
         var despawn = Comp<TimedDespawnComponent>(ent);
         despawn.Lifetime = (time / 1000) + 1000;
 
         if (delay != 0)
-            Timer.Spawn((int)delay, () => spriteComp.Visible = true);
+            Timer.Spawn((int)delay, () => _sprite.SetVisible(spriteEnt, true)); // Starlight-edit
 
         Timer.Spawn((int)time, () =>
         {
@@ -422,8 +423,8 @@ public sealed partial class GunSystem : SharedGunSystem
             return;
         }
 
-        // Define target coordinates relative to gun entity, so that network latency on moving grids doesn't fuck up the target location.
-        var coordinates = TransformSystem.ToCoordinates(entity, mousePos);
+        // Starlight-edit: relative to the grid, not the shooter.
+        var coordinates = TransformSystem.ToCoordinates(mousePos);
 
         NetEntity? target = null;
         if (_state.CurrentState is GameplayStateBase screen)
@@ -452,13 +453,16 @@ public sealed partial class GunSystem : SharedGunSystem
         var direction = TransformSystem.ToMapCoordinates(fromCoordinates).Position - TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var worldAngle = direction.ToAngle().Opposite();
 
-        // Starlight-start: Update angle on client
-        UpdateCurrentAngle(gun);
-        gun.Comp.LastFire = gun.Comp.NextFire;
+        // Starlight-start
+        var fromMap = TransformSystem.ToMapCoordinates(fromCoordinates);
+        var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
+        var mapDirection = GetShotMapDirection(gun, fromMap.Position, toMap);
+        var ammoIndex = -1;
         // Starlight-end
 
         foreach (var (ent, shootable) in ammo)
         {
+            ammoIndex++; // Starlight
             if (throwItems)
             {
                 Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user); // Starlight-edit: fix pneumatic cannon sounds
@@ -482,6 +486,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                         Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
                         fired = true; // Starlight
+                        PredictCartridge(gun, cartridge.Prototype, ammoIndex, fromMap, mapDirection, user); // Starlight
                         // TODO: Can't predict entity deletions.
                         //if (cartridge.DeleteOnSpawn)
                         //    Del(cartridge.Owner);
@@ -510,6 +515,10 @@ public sealed partial class GunSystem : SharedGunSystem
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                     Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
                     fired = true; // Starlight
+                    // Starlight-start
+                    if (ent != null)
+                        PredictHitscan(gun, ent.Value, GetHitscanSeed(gun, ammoIndex, 0), fromMap, mapDirection.Normalized(), (toMap - fromMap.Position).Length(), user);
+                    // Starlight-end
                     break;
             }
         }

@@ -75,7 +75,8 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
         EntityUid? shooter,
         float? distance = null,
         EntityUid? aimedAt = null,
-        Vector2? shotDirection = null)
+        Vector2? shotDirection = null,
+        int? seed = null)
     {
         var comp = cover.Comp;
 
@@ -97,18 +98,18 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
         if (comp.BlockChance >= 1f)
             return true;
 
-        return Roll(shot, cover.Owner) < comp.BlockChance;
+        return Roll(shot, cover.Owner, seed) < comp.BlockChance;
     }
 
     public bool IsShotStopped(EntityUid cover, EntityUid shot, EntityUid? shooter, float? distance = null,
-        EntityUid? aimedAt = null, Vector2? shotDirection = null)
+        EntityUid? aimedAt = null, Vector2? shotDirection = null, int? seed = null)
         => TryComp<ProjectileCoverComponent>(cover, out var comp)
-        && IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection);
+        && IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection, seed);
 
     public bool PassesOverCover(EntityUid cover, EntityUid shot, EntityUid? shooter, float? distance = null,
-        EntityUid? aimedAt = null, Vector2? shotDirection = null)
+        EntityUid? aimedAt = null, Vector2? shotDirection = null, int? seed = null)
         => TryComp<ProjectileCoverComponent>(cover, out var comp)
-        && !IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection);
+        && !IsShotStopped((cover, comp), shot, shooter, distance, aimedAt, shotDirection, seed);
 
     public bool IsShelteredFromShot(EntityUid target, Vector2 shotDirection)
     {
@@ -169,11 +170,9 @@ public sealed partial class SharedProjectileCoverSystem : EntitySystem
         return (coverPos.Position - shooterPos.Position).Length() <= comp.PointBlankRange;
     }
 
-    private float Roll(EntityUid shot, EntityUid cover)
+    private float Roll(EntityUid shot, EntityUid cover, int? seed = null)
     {
-        var seed = HashCode.Combine(GetNetEntity(shot).Id, GetNetEntity(cover).Id);
-
-        var hash = (uint)seed;
+        var hash = (uint) HashCode.Combine(seed ?? GetNetEntity(shot).Id, GetNetEntity(cover).Id);
         hash ^= hash >> 16;
         hash *= 0x7feb352d;
         hash ^= hash >> 15;

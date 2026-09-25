@@ -1,3 +1,5 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared._Starlight.Defects.Components;
 
 /// <summary>
@@ -5,7 +7,7 @@ namespace Content.Shared._Starlight.Defects.Components;
 /// Sampled angle deltas are added on top of the gun's base angles so they
 /// compose correctly with other modifiers (e.g. GunWieldBonus).
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class GunSpreadDefectComponent : DefectComponent
 {
     public GunSpreadDefectComponent()
@@ -22,8 +24,8 @@ public sealed partial class GunSpreadDefectComponent : DefectComponent
 
     // Deltas computed at MapInit (sampled target - base angle)
     // Added to args.MinAngle/MaxAngle in GunRefreshModifiersEvent.
-    [DataField] public Angle MinAngleDelta;
-    [DataField] public Angle MaxAngleDelta;
+    [DataField, AutoNetworkedField] public Angle MinAngleDelta;
+    [DataField, AutoNetworkedField] public Angle MaxAngleDelta;
 
     // Multiplier-based spread (for ammo-spread weapons like the Hushpup)
     [DataField] public float? SpreadMultiplierMin;
