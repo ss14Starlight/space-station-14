@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Box) Added mail access and mail lockers to the mailroom.
-    type: Add
-  id: 408474
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
   - message: (Box) Added extra meteor protection around science substation.
     type: Add
   id: 408475
@@ -2799,4 +2792,11 @@ Entries:
   id: 408873
   time: '2026-09-25T10:29:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6106
+- author: Pickra
+  changes:
+  - message: Added ToolshedMarker component for scripting use.
+    type: Add
+  id: 408874
+  time: '2026-09-25T21:41:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6315
 Order: -1
