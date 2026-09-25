@@ -88,7 +88,9 @@ public sealed class TickerCommand : ToolshedCommand
         ctx.WriteLine("Round timer has been cancelled.");
     }
 
+    /// <summary>
     /// Cancels the post-round state, making the game act as though the round has not yet ended.
+    /// </summary>
     [CommandImplementation("cancelpostround")]
     public void CancelPostRound(IInvocationContext ctx)
     {
