@@ -680,8 +680,8 @@
 
 - type: entity
   parent: [ClothingOuterStorageBase, ClothingOuterBaseWarm]
-  id: ClothingOuterCoatLeatherJacketFirey
-  name: firey leather jacket # Alternative Clothing Catalog
+  id: ClothingOuterCoatLeatherJacketFiery
+  name: fiery leather jacket # Alternative Clothing Catalog
   description: The cooler leather jacket, for the more fiery personalities.
   components:
     - type: Sprite

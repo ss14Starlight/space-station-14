@@ -421,7 +421,7 @@
   parent: ClothingUniformBase
   id: LittleDevilUniformSuit
   name: little devil dress # Alternative Clothing Catalog
-  description: A devillishly cute costume dress, matches with the rest of the set!
+  description: A devilishly cute costume dress, matches with the rest of the set!
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Uniforms/little_devil.rsi
