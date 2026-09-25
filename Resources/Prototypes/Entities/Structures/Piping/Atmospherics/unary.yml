@@ -485,7 +485,6 @@
 - type: entity
   parent: [ SolutionTank, SolutionHuge, BaseMachinePowered, SmallConstructibleMachine ]
   id: BaseGasCondenser
-  categories: [ ShouldMapStation ] # Starlight
   name: condenser
   description: Condenses gases into liquids. Now we just need some plumbing.
   placement:
@@ -578,9 +577,3 @@
   - type: GuideHelp
     guides:
     - GasCondensing
-  # Starlight start
-  - type: VentCrawlTube
-  - type: VentCrawlJunction
-    degrees:
-      - 0
-  # Starlight end
