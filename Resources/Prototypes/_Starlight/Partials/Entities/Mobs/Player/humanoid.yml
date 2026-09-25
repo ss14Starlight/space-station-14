@@ -1,0 +1,11 @@
+- type: !PartialOnly randomHumanoidSettings
+  id: EventHumanoid
+  parent: NeocyteVariantBlacklist
+
+- type: !PartialOnly randomHumanoidSettings
+  id: SyndicateAgent
+  parent: NeocyteVariantBlacklist
+
+- type: !PartialOnly randomHumanoidSettings
+  id: NukeOp
+  parent: NeocyteVariantBlacklist

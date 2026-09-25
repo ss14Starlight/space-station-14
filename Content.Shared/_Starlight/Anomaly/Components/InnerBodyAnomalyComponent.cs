@@ -20,4 +20,7 @@ public sealed partial class InnerBodyAnomalyComponent : Component
     /// </summary>
     [DataField]
     public bool AddedCosmicCultFaction;
+
+    [DataField]
+    public ComponentRegistry AddedComps = new ();
 }

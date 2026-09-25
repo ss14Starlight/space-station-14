@@ -79,6 +79,7 @@ namespace Content.Server.Preferences.Managers
             var curPrefs = prefsData.Prefs!;
             var session = _playerManager.GetSessionById(userId);
 
+            var selectionsBefore = GetSelections(profile); // Starlight
             profile.EnsureValid(session, _dependencies);
 
             var profiles = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters)
@@ -87,6 +88,14 @@ namespace Content.Server.Preferences.Managers
             };
 
             prefsData.Prefs = new PlayerPreferences(profiles, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
+
+            // Starlight start
+            if (!selectionsBefore.SetEquals(GetSelections(profile)))
+            {
+                _sawmill.Info($"Profile in slot {slot} of {session} was changed by server validation, resending preferences.");
+                SendPreferences(session, prefsData.Prefs);
+            }
+            // Starlight end
 
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
@@ -295,13 +304,7 @@ namespace Content.Server.Preferences.Managers
 
             prefsData.PrefsLoaded = true;
 
-            var msg = new MsgPreferencesAndSettings();
-            msg.Preferences = prefsData.Prefs;
-            msg.Settings = new GameSettings
-            {
-                MaxCharacterSlots = MaxCharacterSlots
-            };
-            _netManager.ServerSendMessage(msg, session.Channel);
+            SendPreferences(session, prefsData.Prefs); // Starlight
         }
 
         public void OnClientDisconnected(ICommonSession session)

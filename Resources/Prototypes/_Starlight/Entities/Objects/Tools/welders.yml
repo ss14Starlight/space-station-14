@@ -1,6 +1,6 @@
 - type: entity
   name: abductor's welding tool
-  parent: [ Welder, BaseMajorContraband ]
+  parent: [ SolutionToolWelderExperimental, BaseWelder, BaseMajorContraband ]
   id: WelderAbductor
   description: "An experimental welder capable of self-fuel generation and less harmful to the eyes."
   components:
@@ -8,24 +8,15 @@
     sprite: _Starlight/Objects/Tools/welder_abductor.rsi
   - type: Item
     sprite: _Starlight/Objects/Tools/welder_abductor.rsi
-  - type: Solution
-    id: Welder
-    solution:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 1000
-      maxVol: 1000
   - type: PointLight
     enabled: false
     radius: 1.5
     color: lightblue
-  - type: SolutionRegeneration
-    generated:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 1
-  - type: Tool
-    speedModifier: 2.0
-    useSound:
-      collection: Welder
-    qualities: [ Welding ]
+  - type: Welder
+    fuelReagent: Plasma
+  - type: RequiresEyeProtection
+    statusEffectTime: 5s
+  - type: WelderSurgery
+    startSound:
+      /Audio/Items/welder.ogg
+    speed: 0.6

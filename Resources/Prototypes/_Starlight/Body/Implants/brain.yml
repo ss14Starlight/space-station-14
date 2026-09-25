@@ -120,9 +120,12 @@
             path: /Audio/_FarHorizons/Effects/Alerts/healthpanel-alert.ogg
             params:
               loop: true
+              maxDistance: 6
           #ambient: true
           empEffected: true
         200:
           sound: !type:SoundPathSpecifier
             path: /Audio/_Starlight/Effects/Experiment/flatline.ogg
+            params:
+              maxDistance: 7
           empEffected: true

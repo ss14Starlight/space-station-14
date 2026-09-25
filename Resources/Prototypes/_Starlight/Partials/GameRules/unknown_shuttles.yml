@@ -1,0 +1,5 @@
+- type: !PartialOnly entity
+  id: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false
