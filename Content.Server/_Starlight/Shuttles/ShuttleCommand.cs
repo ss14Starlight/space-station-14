@@ -25,7 +25,9 @@ public sealed partial class ShuttleCommand : ToolshedCommand
     private RoundEndSystem? _round;
     private EmergencyShuttleSystem? _eShuttle;
 
+    /// <summary>
     /// Delay the departure of emergency shuttles by a specified number of seconds.
+    /// </summary>
     [CommandImplementation("delayemergencyshuttledeparture")]
     public void DelayEmergencyShuttleDeparture(IInvocationContext ctx, float seconds,
         [Optional] [DefaultParameterValue(false)] bool sendAnnouncement,
