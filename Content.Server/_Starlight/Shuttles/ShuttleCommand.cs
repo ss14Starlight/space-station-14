@@ -109,7 +109,9 @@ public sealed partial class ShuttleCommand : ToolshedCommand
     }
 
     // TODO: Improve this once nullable type parsers exist
+    /// <summary>
     /// Allow or disallow calling the emergency shuttle. Note that this persists between rounds.
+    /// </summary>
     [CommandImplementation("allowemergencyshuttlecalls")]
     public void AllowEmergencyShuttleCalls(IInvocationContext ctx, bool state,
         [Optional] [DefaultParameterValue(false)] bool announce, [Optional] [DefaultParameterValue("")] string message,
