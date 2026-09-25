@@ -91,7 +91,9 @@ public sealed partial class ShuttleCommand : ToolshedCommand
             $"{CommandHelpers.PlayerNameOrServer(ctx)} has caused the emergency shuttle to dock prematurely.");
     }
 
+    /// <summary>
     /// Call the emergency shuttle with an optional arrival time.
+    /// </summary>
     [CommandImplementation("callemergencyshuttle")]
     public void CallEmergencyShuttle(IInvocationContext ctx, [Optional] [DefaultParameterValue(0f)] float seconds)
     {
