@@ -133,12 +133,16 @@ public sealed class TickerCommand : ToolshedCommand
 
     #region GameRules
 
+    /// <summary>
     /// Get a reference to an added gamerule entity.
+    /// </summary>
     [CommandImplementation("getrule")]
     public EntityUid GetRule(
         [CommandArgument(typeof(EntityWithCompCompletionParser<GameRuleComponent>))] EntityUid entity) => entity;
 
+    /// <summary>
     /// Get all gamerules that are currently added.
+    /// </summary>
     [CommandImplementation("getrules")]
     public IEnumerable<EntityUid> GetRules()
     {
@@ -146,7 +150,9 @@ public sealed class TickerCommand : ToolshedCommand
         return _ticker.GetAddedGameRules();
     }
 
+    /// <summary>
     /// Get all added gamerule entities of a given rule prototype.
+    /// </summary>
     [CommandImplementation("getrulesoftype")]
     public IEnumerable<EntityUid> GetRulesOfType(
         [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<GameRuleComponent>))] EntProtoId ruleId)
@@ -155,7 +161,9 @@ public sealed class TickerCommand : ToolshedCommand
         return _ticker.GetAddedGameRules().Where(x => MetaData(x).EntityPrototype!.ID == ruleId);
     }
 
+    /// <summary>
     /// Get all ACTIVE gamerules that are currently added.
+    /// </summary>
     [CommandImplementation("getactiverules")]
     public IEnumerable<EntityUid> GetActiveRules()
     {
@@ -163,7 +171,9 @@ public sealed class TickerCommand : ToolshedCommand
         return _ticker.GetActiveGameRules();
     }
 
+    /// <summary>
     /// Get all ACTIVE gamerule entities thar are currently added of a given rule prototype.
+    /// </summary>
     [CommandImplementation("getactiverulesoftype")]
     public IEnumerable<EntityUid> GetActiveRulesOfType(
         [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<GameRuleComponent>))] EntProtoId ruleId)
@@ -172,7 +182,9 @@ public sealed class TickerCommand : ToolshedCommand
         return _ticker.GetActiveGameRules().Where(x => MetaData(x).EntityPrototype!.ID == ruleId);
     }
 
+    /// <summary>
     /// Add a gamerule entity prototype to the round.
+    /// </summary>
     [CommandImplementation("addrule")]
     public EntityUid AddRule(IInvocationContext ctx,
         [CommandArgument(typeof(EntProtoIdWithCompCompletionParser<GameRuleComponent>))] EntProtoId ruleId)
@@ -196,17 +208,23 @@ public sealed class TickerCommand : ToolshedCommand
         return uid;
     }
 
+    /// <summary>
     /// End a gamerule entity's gamerule.
+    /// </summary>
     [CommandImplementation("endrule")]
     public EntityUid EndRuleFiltered(IInvocationContext ctx,
         [CommandArgument(typeof(EntityWithCompCompletionParser<ActiveGameRuleComponent>))] EntityUid uid) =>
         EndRuleDo(ctx, uid);
 
+    /// <summary>
     /// End a gamerule entity's gamerule. This one lets you pipe in an entity instead.
+    /// </summary>
     [CommandImplementation("endrule")]
     public EntityUid EndRulePiped(IInvocationContext ctx, [PipedArgument] EntityUid uid) => EndRuleDo(ctx, uid);
 
+    /// <summary>
     /// End a gamerule entity's gamerule. This one lets you pipe in a set of entities instead.
+    /// </summary>
     [CommandImplementation("endrule")]
     public IEnumerable<EntityUid> EndRulePiped(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid) =>
         uid.Select(x => EndRulePiped(ctx, x));
