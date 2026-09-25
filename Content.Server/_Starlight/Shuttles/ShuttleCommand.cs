@@ -49,7 +49,9 @@ public sealed partial class ShuttleCommand : ToolshedCommand
         ctx.WriteLine($"Delayed shuttle departure by {seconds} seconds.");
     }
 
-    /// Delay the arrival of the emergency shuttle to station by a specified number of seconds.
+     /// <summary>
+     /// Delay the arrival of the emergency shuttle to station by a specified number of seconds.
+     /// </summary>
     [CommandImplementation("delayemergencyshuttlearrival")]
     public void DelayEmergencyShuttleArrival(IInvocationContext ctx, float seconds,
         [Optional] [DefaultParameterValue(false)] bool sendAnnouncement,
