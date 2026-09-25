@@ -178,6 +178,8 @@ public sealed partial class ZombieSystem
         RemComp<EggLayerComponent>(target); //Prevent infinite egg production
         RemComp<UdderComponent>(target); //Prevent infinite milk production
         RemComp<WoolyComponent>(target); //Prevent infinite wool production
+
+        DiscardShell(target);
         // Starlight-end
 
         //This is needed for stupid entities that fuck up combat mode component

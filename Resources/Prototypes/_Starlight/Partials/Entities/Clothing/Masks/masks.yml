@@ -5,3 +5,17 @@
     modifiers: { }
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.9
+
+- type: !PartialOnly entity
+  id: ClothingMaskGasSecurity
+  components:
+  - type: Tag
+    tags:
+    - SecBeltEquip
+
+- type: !PartialOnly entity
+  id: ClothingMaskBreathMedicalSecurity
+  components:
+  - type: Tag
+    tags:
+    - SecBeltEquip

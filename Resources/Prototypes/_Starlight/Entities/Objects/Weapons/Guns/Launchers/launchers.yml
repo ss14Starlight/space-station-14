@@ -145,3 +145,50 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
 
+- type: entity
+  name: improvised grappling gun
+  parent: BaseItem
+  id: WeaponGrapplingHook
+  description: A grappling gun made from parts around station.
+  components:
+    - type: Item
+      size: Small
+      shape:
+      - 0,0,1,0
+      - 0,1,0,1
+      storedOffset: 0,-6
+    - type: AmmoCounter
+    - type: GrapplingGun
+      ropeSprite:
+        sprite: _Starlight/Objects/Weapons/Guns/Launchers/improvised_grappling_gun.rsi
+        state: rope
+    - type: Gun
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
+      fireRate: 0.5
+      clumsyProof: true
+    - type: BasicEntityAmmoProvider
+      proto: GrapplingHook
+      capacity: 1
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Guns/Launchers/improvised_grappling_gun.rsi
+      layers:
+        - state: base
+        - state: base-unshaded
+          map: [ "unshaded" ]
+          visible: true
+    - type: UseDelay
+      delay: 1.5
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.TetherVisualsStatus.Key:
+          unshaded:
+            True: { state: base-unshaded }
+            False: { state: base-unshaded-off }
+    - type: PacifismAllowedGun
+    - type: Tag #FH
+      tags:
+      - GrappleGun
+    - type: Construction
+      graph: GrappleGunImprovised
+      node: ImprovisedGrappleGun
