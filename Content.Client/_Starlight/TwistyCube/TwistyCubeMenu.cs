@@ -8,7 +8,7 @@ namespace Content.Client._Starlight.TwistyCube;
 public sealed class TwistyCubeMenu : DefaultWindow
 {
     public event Action<TwistyCubeAction>? OnAction;
-    private TwistyCubeControl? _control;
+    private readonly TwistyCubeControl? _control;
 
     public TwistyCubeMenu()
     {
