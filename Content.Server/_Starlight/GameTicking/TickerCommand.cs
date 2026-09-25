@@ -23,7 +23,9 @@ public sealed class TickerCommand : ToolshedCommand
 
     #region RoundTiming
 
+    /// <summary>
     /// End round without starting the restart timer.
+    /// </summary>
     [CommandImplementation("endround")]
     public void EndRound(IInvocationContext ctx)
     {
