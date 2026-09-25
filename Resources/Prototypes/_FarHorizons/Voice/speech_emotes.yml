@@ -1,7 +1,8 @@
+# Starlight: Emote order priority is at Resources\Prototypes\_Starlight\Partials\Voice\speech_emotes.yml
+
 - type: emote
   id: DeathgaspIPC
   name: chat-emote-name-deathgasp
-  priority: 1 # Starlight
   icon: Interface/Emotes/deathgasp.png
   whitelist:
     components:
