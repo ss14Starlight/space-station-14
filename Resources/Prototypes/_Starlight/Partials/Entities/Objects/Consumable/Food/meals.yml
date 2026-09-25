@@ -1,0 +1,4 @@
+- type: !PartialOnly entity
+  id: FoodSaladWatermelonFruitBowl
+  components:
+  - type: Citrus
