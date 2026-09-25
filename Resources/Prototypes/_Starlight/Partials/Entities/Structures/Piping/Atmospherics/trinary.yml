@@ -1,0 +1,13 @@
+- type: !PartialOnly entity
+  id: !type:CreateVariants
+    values: &protos
+    - GasFilter
+    - GasFilterFlipped
+    - GasMixer
+    - GasMixerFlipped
+    - PressureControlledValve
+  components:
+    - type: SandboxCopyOverride
+      override: !type:CreateVariants
+        values: *protos
+

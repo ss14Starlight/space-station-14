@@ -1,4 +1,3 @@
-using Content.Shared.GameTicking.Components;
 using Robust.Shared.Console;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Syntax;

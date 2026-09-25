@@ -7,8 +7,7 @@
     name: ghost-role-information-derelict-borgi-name
     description: ghost-role-information-derelict-borgi-desc
     rules: ghost-role-information-silicon-rules
-    mindRoles:
-    - MindRoleSubvertedSilicon
+    mindRoles: [MindRoleSubvertedSilicon]
     raffle:
       settings: default
   - type: Sprite
@@ -29,8 +28,7 @@
     important: true
     name: roles-antag-brighteye-name
     description: roles-antag-brighteye-description
-    mindRoles:
-    - MindRoleBrighteye
+    mindRoles: [MindRoleBrighteye]
     raffle:
       settings: default
   - type: Sprite
@@ -51,8 +49,7 @@
     name: ghost-role-information-terminator-name
     description: ghost-role-information-terminator-description
     rules: ghost-role-information-terminator-rules
-    mindRoles:
-    - MindRoleTerminator
+    mindRoles: [MindRoleTerminator]
     raffle:
       settings: default
   - type: Sprite
@@ -143,8 +140,7 @@
     description: ghost-role-information-terror-princess-description
     rules: ghost-role-information-rules-team-antagonist
     important: true
-    mindRoles:
-    - MindRoleTerrorPrincess
+    mindRoles: [MindRoleTerrorPrincess]
   - type: Sprite
     layers:
     - state: green
@@ -161,8 +157,7 @@
     name: ghost-role-information-xenoroach-name
     description: ghost-role-information-xenoroach-description
     rules: ghost-role-information-silicon-rules
-    mindRoles:
-    - MindRoleXenoborg
+    mindRoles: [MindRoleXenoborg]
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
@@ -184,6 +179,7 @@
     name: Cluwne Beast
     description: Spread laughter and chaos by hitting and turning the crew into cluwnes.
     rules: You are an antagonist, transform as many of the crew as you can into cluwnes.
+    mindRoles: [MindRoleGhostRoleSoloAntagonist]
   - type: GhostRoleMobSpawner
     prototype: MobCluwneBeast
   - type: Sprite

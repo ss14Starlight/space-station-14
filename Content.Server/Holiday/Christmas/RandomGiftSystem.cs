@@ -11,7 +11,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Verbs;
-using Content.Shared.Interaction;
 using Robust.Shared.Map;
 
 namespace Content.Server.Holiday.Christmas;
@@ -71,8 +70,7 @@ public sealed partial class RandomGiftSystem : EntitySystem
 
         var handsEnt = Spawn(component.SelectedEntity, coordinates);
         _adminLogger.Add(LogType.EntitySpawn, LogImpact.Low, $"{ToPrettyString(user)} used {ToPrettyString(uid)} which spawned {ToPrettyString(handsEnt)}");
-        if (component.Wrapper is not null)
-            Spawn(component.Wrapper, coordinates);
+        Spawn(component.Wrapper, coordinates);
 
         _audio.PlayPvs(component.Sound, user);
 

@@ -110,3 +110,13 @@
   path: "/Textures/_Starlight/Shaders/displacement_unshaded.swsl"
   params:
     displacementSize: 127
+
+- type: shader
+  id: LatchTargetOutline
+  kind: source
+  path: "/Textures/Shaders/outline.swsl"
+  params:
+    outline_color: "#FF0000AA"
+    light_boost: 2
+    light_gamma: 1.5
+    light_whitepoint: 48

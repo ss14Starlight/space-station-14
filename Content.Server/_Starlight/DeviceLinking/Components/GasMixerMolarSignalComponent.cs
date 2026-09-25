@@ -1,17 +1,17 @@
 using Content.Shared.DeviceLinking;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.DeviceLinking.Components;
 
 [RegisterComponent]
 public sealed partial class GasMixerMolarSignalComponent : Component
 {
-    [DataField("onPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string OnPort = "On";
+    [DataField]
+    public ProtoId<SinkPortPrototype> OnPort = "On";
 
-    [DataField("offPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string OffPort = "Off";
+    [DataField]
+    public ProtoId<SinkPortPrototype> OffPort = "Off";
 
-    [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string TogglePort = "Toggle";
+    [DataField]
+    public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
 }

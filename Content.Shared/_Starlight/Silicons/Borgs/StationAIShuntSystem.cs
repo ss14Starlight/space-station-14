@@ -8,8 +8,6 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
-using Content.Shared.Silicons.Laws;
-using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
@@ -24,7 +22,6 @@ public sealed partial class StationAIShuntSystem : EntitySystem
     [Dependency] private SharedMindSystem _mindSystem = default!;
     [Dependency] private SharedActionsSystem _actionSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedSiliconLawSystem _siliconLaw = default!;
     [Dependency] private FollowerSystem _follower = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private INetManager _net = default!;
@@ -42,6 +39,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 
         SubscribeLocalEvent<StationAIShuntThroughComponent, GetVerbsEvent<AlternativeVerb>>(GetAltVerbs);
         SubscribeLocalEvent<StationAIShuntThroughComponent, FindShuntTargetEvent>(OnFindShuntTarget);
+        InitializeReconnect();
     }
 
     #region Actions
@@ -50,7 +48,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         if (ev.Handled)
             return;
         var target = ev.Target;
-        if (_vision.IsOutsideCameraViewCached(target))
+        if (!ev.IgnoreCameraView && _vision.IsOutsideCameraViewCached(target))
             return;
 
         // If target has ShuntThrough component, search for a valid target in containers
@@ -67,6 +65,15 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 
         if (!TryComp<StationAIShuntComponent>(target, out var shunt))
             return;
+
+        // We check first if this is already "posessed" for one or another reason. This is a remote, not a ghost maker.
+        if (_mindSystem.TryGetMind(target, out _, out _))
+        {
+            if (_net.IsServer)
+                _popup.PopupEntity(Loc.GetString("shunt-target-occupied"), target, uid, PopupType.Large);
+            return;
+        }
+
         if (!_mindSystem.TryGetMind(uid, out var mindId, out var _))
             return;
         if (!TryComp<MobStateComponent>(uid, out var state) || state.CurrentState != MobState.Alive)
@@ -87,6 +94,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             }
             brainShunt.Return = uid;
             brainShunt.ReturnAction = _actionSystem.AddAction(brain.Value, shuntable.UnshuntAction.Id);
+            Dirty(brain.Value, brainShunt);
         }
         if (shunt.Return != null)
         {
@@ -98,15 +106,8 @@ public sealed partial class StationAIShuntSystem : EntitySystem
         _mindSystem.TransferTo(mindId, target);
         shunt.ReturnAction = _actionSystem.AddAction(target, shuntable.UnshuntAction.Id);
         shuntable.Inhabited = target;
-
-        if (TryComp<SiliconLawProviderComponent>(uid, out var coreLaws))
-        {
-            var getLaws = new GetSiliconLawsEvent(target);
-            RaiseLocalEvent(target, ref getLaws);
-            shunt.OldLawset = getLaws.Laws;
-
-            _siliconLaw.SetLawset(target, coreLaws.Lawset);
-        }
+        shuntable.LastShunt = target;
+        Dirty(uid, shuntable);
 
         EnsureComp<UncryoableComponent>(uid);
 
@@ -157,6 +158,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             _actionSystem.RemoveAction(new Entity<ActionComponent?>(brainActionUid.Value, brainAct));
             brainShunt.Return = null; //cause we are returning now
             brainShunt.ReturnAction = null;
+            Dirty(brain.Value, brainShunt);
         }
 
         _actionSystem.RemoveAction(new Entity<ActionComponent?>(shuntActionUid.Value, act));
@@ -182,10 +184,9 @@ public sealed partial class StationAIShuntSystem : EntitySystem
             }
         }
 
-        _siliconLaw.SetLawset(uid, shunt.OldLawset);
-
         shunt.ReturnAction = null;
         shunt.Return = null;
+        Dirty(uid, shunt);
         shuntable.Inhabited = null;
     }
     #endregion
@@ -308,6 +309,7 @@ public sealed partial class StationAIShuntSystem : EntitySystem
 
 public sealed partial class AIShuntActionEvent : EntityTargetActionEvent
 {
+    public bool IgnoreCameraView;
 }
 
 public sealed partial class AIUnShuntActionEvent : InstantActionEvent

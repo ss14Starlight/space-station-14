@@ -57,6 +57,10 @@
       prob: 1
   - type: DynamicRuleCost
     cost: 150 # It can have less since it's not *as* bad as the other two
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    presets:
+    - Survival
 
 # Dynamic Kessler Syndrome
 - type: entity
@@ -73,6 +77,12 @@
       prob: 1
   - type: DynamicRuleCost
     cost: 200
+  - type: DynamicRuleCooldown
+    cooldown: 1
+    presets:
+    - KesslerSyndrome
+    - Zombieteors
+    - Survival
 
 # It's literally just ShitStation.
 - type: entity
@@ -101,6 +111,10 @@
       prob: 1
   - type: DynamicRuleCost
     cost: 150 # Lowering this, since BasicRoundstartVariation doesn't do much in Dynamic due to how Dynamic functions.
+  - type: DynamicRuleCooldown
+    cooldown: 2
+    presets:
+    - ShitStation
 
 - type: entity
   parent: BaseGameRule
@@ -109,13 +123,13 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.48 # Starlight. Adds up to 1.
+      prob: 0.43 # Starlight. Adds up to 1.
     - id: VampireLess # Starlight. The rework is here.
       prob: 0.25
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: Devil
-      prob: 0.05 # rare
+      prob: 0.10 # rare Starlight: More devils
     #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
     #  prob: 0.05
     #- id: SubBrighteye # Brighteye is disabled until more work is put in.
@@ -151,13 +165,13 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.55
+      prob: 0.50 # Starlight had to lower to account for increase in devils
     - id: SLChangeling #Starlight lings
       prob: 0.20 # Can be a little higher now, since lings don't have their standalone anymore.
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: Devil
-      prob: 0.05 # rare
+      prob: 0.10 # rare Starlight: More devils
     #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
     #  prob: 0.05
     #- id: SubBrighteye
@@ -172,11 +186,11 @@
   - type: SubGamemodes
     rules:
     - id: ThiefLess # So that only 3 thieves max spawn in rev games.
-      prob: 0.28 # Starlight, to account for Wizard and Xenoborgs
+      prob: 0.23 # Starlight, to account for Wizard and Xenoborgs
     - id: SubWizard
       prob: 0.05
     - id: Devil
-      prob: 0.05
+      prob: 0.10 #Starlight, More devils
     #- id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
     #      prob: 0.05
     #- id: SubBrighteye

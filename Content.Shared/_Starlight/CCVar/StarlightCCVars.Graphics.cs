@@ -17,6 +17,22 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> DrunkRenderFix =
         CVarDef.Create("opt.drunk_render_fix", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Selects which client-side sprite variant is used by sprites that provide quality variants.
+    /// </summary>
+    public static readonly CVarDef<int> SpriteQuality =
+        CVarDef.Create("opt.sprite_quality", (int) SpriteQualityLevel.High, CVar.CLIENTONLY | CVar.ARCHIVE);
+}
+
+/// <summary>
+/// Quality levels supported by <c>SpriteQualityComponent</c> on the client.
+/// </summary>
+public enum SpriteQualityLevel
+{
+    Low = 0,
+    Medium = 1,
+    High = 2,
 }
 
 /// <summary>

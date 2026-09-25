@@ -9,7 +9,8 @@ using Content.Shared.Ghost;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Players;
-using Content.Shared.Preferences;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Xenoborgs.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -71,53 +72,6 @@ public sealed partial class AntagSelectionSystem
 
         return true;
     }
-
-    #region Starlight
-    /// <summary>
-    /// Checks if a player has already been pre-selected for a different antag within the same game rule.
-    /// </summary>
-    private bool HasConflictingPreSelection(
-        Entity<AntagSelectionComponent> gameRule,
-        ProtoId<AntagSpecifierPrototype> definition,
-        ICommonSession player)
-    {
-        foreach (var (proto, sessions) in gameRule.Comp.PreSelectedSessions)
-        {
-            if (proto != definition && sessions.Contains(player))
-                return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// Checks if a given player is valid for a given antag definition, checking the player's selected profile if it exists.
-    /// </summary>
-    /// <param name="player">The player session to check.</param>
-    /// <param name="antagEntity">The entity representing the antag.</param>
-    /// <param name="selectedProfile">The player's selected character profile, if any.</param>
-    /// <param name="definition">The antag definition to check against.</param>
-    /// <returns>True if the player is valid for the antag, false otherwise.</returns>
-    private bool IsSelectedProfileValidForAntag(
-        ICommonSession player,
-        EntityUid antagEntity,
-        HumanoidCharacterProfile? selectedProfile,
-        AntagSpecifierPrototype definition)
-    {
-        if (selectedProfile != null)
-            return IsProfileValidForAntag(player, selectedProfile, definition);
-
-        // Bodies without HumanoidAppearanceComponent have no character profile to
-        // validate and are allowed through here. Humanoid bodies must have a recoverable
-        // profile so profile-specific antag requirements, including species restrictions
-        // and preferences, cannot be bypassed.
-        if (!TryComp<HumanoidAppearanceComponent>(antagEntity, out var humanoid))
-            return true;
-
-        var profile = _humanoidAppearance.GetBaseProfile((antagEntity, humanoid));
-        return profile != null && IsProfileValidForAntag(player, profile, definition);
-    }
-    #endregion
 
     /// <inhereitdoc cref="IsSessionValid(ICommonSession,Entity{AntagSelectionComponent},ProtoId{AntagSpecifierPrototype})"/>
     public bool IsSessionValid(ICommonSession player,
@@ -210,7 +164,7 @@ public sealed partial class AntagSelectionSystem
     }
 
     /// <inhereitdoc cref="IsEntityValid(EntityUid?,AntagSpecifierPrototype)"/>
-    public bool IsEntityValid([NotNullWhen(true)] EntityUid? uid, ProtoId<AntagSpecifierPrototype> def)
+    public bool IsEntityValid(EntityUid? uid, ProtoId<AntagSpecifierPrototype> def) // Starlight
     {
         if (!Proto.Resolve(def, out var antag))
             return false;
@@ -225,7 +179,7 @@ public sealed partial class AntagSelectionSystem
     /// <param name="uid">Entity whose validity we're checking.</param>
     /// <param name="def">Antag definition we want to give them.</param>
     /// <returns>True if there is nothing stopping this entity from being this antag. Or if there is no entity.</returns>
-    public bool IsEntityValid([NotNullWhen(true)] EntityUid? uid, AntagSpecifierPrototype def)
+    public bool IsEntityValid(EntityUid? uid, AntagSpecifierPrototype def) // Starlight
     {
         // If the player has not spawned in as any entity (e.g., in the lobby), they can be given an antag role/entity.
         if (!_whitelist.CheckBoth(uid, def.Blacklist, def.Whitelist))
@@ -239,7 +193,10 @@ public sealed partial class AntagSelectionSystem
         if (HasComp<GhostComponent>(uid))
             return false;
 
-        if (!def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(uid) && !HasComp<HandsComponent>(uid)) // Starlight, no visual nubody
+        if (HasComp<BorgChassisComponent>(uid) && !HasComp<XenoborgComponent>(uid)) // Starlight, we should really make this look better in the future if we add more borg antags
+            return false; // Starlight
+
+        if (!HasComp<HumanoidAppearanceComponent>(uid) && (!def.AllowNonHumans || !HasComp<HandsComponent>(uid))) // Starlight, Cheese, you have sent me down the path of the hell trying to get this working reliably
             return false;
 
         return true;
@@ -267,27 +224,6 @@ public sealed partial class AntagSelectionSystem
 
         return false;
     }
-
-    #region Starlight
-    /// <summary>
-    /// Returns whether a player may claim an antagonist ghost role.
-    /// This intentionally does not require the antag preference to be enabled.
-    /// </summary>
-    [PublicAPI]
-    public bool CanTakeAntagGhostRole(ICommonSession session, ProtoId<AntagSpecifierPrototype> definition)
-    {
-        return Proto.Resolve(definition, out var antag) && CanTakeAntagGhostRole(session, antag);
-    }
-
-    /// <summary>
-    /// Returns whether a player may claim an antagonist ghost role.
-    /// </summary>
-    [PublicAPI]
-    public bool CanTakeAntagGhostRole(ICommonSession session, AntagSpecifierPrototype definition)
-    {
-        return !IsAntagBanned(session, definition) && _playTime.IsAllowedNonSpawning(session, definition.PrefRoles);
-    }
-    #endregion
 
     /// <inheritdoc cref="TryMakeAntag(Entity{AntagSelectionComponent},AntagSpecifierPrototype,ICommonSession,bool)"/>
     [PublicAPI]
@@ -338,6 +274,18 @@ public sealed partial class AntagSelectionSystem
         ICommonSession session,
         int players)
     {
+        #region Starlight
+        return TryAssignNextAvailableAntag(gameRule, session, players, out _);
+    }
+
+    /// <summary>
+    /// Tries to find an open antag slot for a given player and returns the definition that was assigned.
+    /// </summary>
+    private bool TryAssignNextAvailableAntag(Entity<AntagSelectionComponent> gameRule, ICommonSession session, int players, [NotNullWhen(true)] out AntagSpecifierPrototype? assignedAntag)
+    {
+        assignedAntag = null;
+        #endregion
+
         foreach (var selector in gameRule.Comp.Antags)
         {
             if (!Proto.Resolve(selector.Proto, out var antag))
@@ -348,8 +296,13 @@ public sealed partial class AntagSelectionSystem
                 continue;
 
             // Try and assign this antag, if we fail, then try the next definition!
-            if (TryMakeAntag(gameRule, antag, session))
-                return true;
+            #region Starlight
+            if (!TryMakeAntag(gameRule, antag, session))
+                continue;
+
+            assignedAntag = antag;
+            return true;
+            #endregion
         }
 
         return false;
@@ -385,8 +338,13 @@ public sealed partial class AntagSelectionSystem
 
         foreach (var (uid, antag) in rules)
         {
-            if (TryAssignNextAvailableAntag((uid, antag), session, players))
-                return true;
+            #region Starlight
+            if (!TryAssignNextAvailableAntag((uid, antag), session, players, out var assignedAntag))
+                continue;
+
+            RecordLateJoinAntagAssignment((uid, antag), assignedAntag); // logging
+            return true;
+            #endregion
         }
 
         return false;

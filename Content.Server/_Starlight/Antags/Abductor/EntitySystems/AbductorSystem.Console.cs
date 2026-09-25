@@ -26,6 +26,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private SharedItemSwitchSystem _itemSwitch = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private VendingMachineSystem _vending = default!;
+    [Dependency] private SharedGridTraversalSystem _gridTraversal = default!;
 
     private readonly SoundSpecifier _sendSound = new SoundPathSpecifier("/Audio/Voice/Human/wilhelm_scream.ogg");
     private readonly SoundSpecifier _alienTeleport = new SoundPathSpecifier("/Audio/_Starlight/Misc/alien_teleport.ogg");
@@ -125,7 +126,14 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         _audioSystem.PlayPvs(_sendSound, experimentatorId.Value);
 
         if (victimComp.Position is { } position)
+        {
             _xformSys.SetCoordinates(victim, position);
+
+            var xform = Transform(victim);
+
+            if (xform.MapUid is { } map)
+                _gridTraversal.CheckTraversal(victim, xform, map);
+        }
     }
 
     private void TryUpdateObjectiveProgress(EntityUid actor, EntityUid victim, AbductorVictimComponent victimComp, AbductorConsoleComponent component)

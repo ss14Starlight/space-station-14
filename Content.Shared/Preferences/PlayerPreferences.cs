@@ -17,11 +17,11 @@ namespace Content.Shared.Preferences
     [NetSerializable]
     public sealed class PlayerPreferences
     {
-        private Dictionary<int, ICharacterProfile> _characters;
+        private Dictionary<int, HumanoidCharacterProfile> _characters;
 
-        public PlayerPreferences(IEnumerable<KeyValuePair<int, ICharacterProfile>> characters, Color adminOOCColor, List<ProtoId<ConstructionPrototype>> constructionFavorites,  Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
+        public PlayerPreferences(IEnumerable<KeyValuePair<int, HumanoidCharacterProfile>> characters, Color adminOOCColor, List<ProtoId<ConstructionPrototype>> constructionFavorites,  Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
         {
-            _characters = new Dictionary<int, ICharacterProfile>(characters);
+            _characters = new Dictionary<int, HumanoidCharacterProfile>(characters);
             AdminOOCColor = adminOOCColor;
             ConstructionFavorites = constructionFavorites;
             JobPriorities = SanitizeJobPriorities(jobPriorities);
@@ -35,9 +35,9 @@ namespace Content.Shared.Preferences
         /// <summary>
         ///     All player characters.
         /// </summary>
-        public IReadOnlyDictionary<int, ICharacterProfile> Characters => _characters;
+        public IReadOnlyDictionary<int, HumanoidCharacterProfile> Characters => _characters;
 
-        public ICharacterProfile GetProfile(int index)
+        public HumanoidCharacterProfile GetProfile(int index)
         {
             return _characters[index];
         }
@@ -51,12 +51,12 @@ namespace Content.Shared.Preferences
         /// </summary>
         public List<ProtoId<ConstructionPrototype>> ConstructionFavorites { get; set; } = [];
 
-        public int IndexOfCharacter(ICharacterProfile profile)
+        public int IndexOfCharacter(HumanoidCharacterProfile profile)
         {
             return _characters.FirstOrNull(p => p.Value == profile)?.Key ?? -1;
         }
 
-        public bool TryIndexOfCharacter(ICharacterProfile profile, out int index)
+        public bool TryIndexOfCharacter(HumanoidCharacterProfile profile, out int index)
         {
             return (index = IndexOfCharacter(profile)) != -1;
         }

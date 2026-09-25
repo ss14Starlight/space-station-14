@@ -32,6 +32,12 @@ public sealed partial class ItemSwitchComponent : Component
     public bool OnUse = true;
 
     /// <summary>
+    /// Whether alt-using the item in hand cycles to the next state.
+    /// </summary>
+    [DataField]
+    public bool OnAltUse = false;
+
+    /// <summary>
     ///     Whether the item's toggle can be predicted by the client.
     /// </summary>
     /// /// <remarks>

@@ -21,3 +21,6 @@ reagent-desc-acrileni = A weak natural medicine able to treat light peircing dam
 
 reagent-name-iceialin = iceialin
 reagent-desc-iceialin = Cool to the touch, a chem that can restore the temperature of a corpse back to normal.
+
+reagent-name-respirazone = respirazone
+reagent-desc-respirazone = Used in the treatment of severe respiratory distress and blood loss. Unlike conventional oxygenation medicines, it is compatible with a wide variety of species.

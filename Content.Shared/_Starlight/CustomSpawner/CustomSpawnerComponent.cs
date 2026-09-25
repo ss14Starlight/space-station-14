@@ -54,26 +54,26 @@ public sealed partial class CustomSpawnerComponent : Component
     [DataField] public float GlobalSpawnRotation;
 
     /// Port for triggering a spawn.
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string TriggerSpawnPort = "TriggerSpawn";
+    [DataField]
+    public ProtoId<SinkPortPrototype> TriggerSpawnPort = "TriggerSpawn";
     /// Port for turning the device on.
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string OnPort = "On";
+    [DataField]
+    public ProtoId<SinkPortPrototype> OnPort = "On";
     /// Port for turning the device off.
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string OffPort = "Off";
+    [DataField]
+    public ProtoId<SinkPortPrototype> OffPort = "Off";
     /// Port for toggling the device.
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string TogglePort = "Toggle";
+    [DataField]
+    public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
     /// Port for when a spawn is triggered.
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
-    public string SpawnTriggeredPort = "SpawnTriggered";
+    [DataField]
+    public ProtoId<SourcePortPrototype> SpawnTriggeredPort = "SpawnTriggered";
     /// Port for when the device is turned on.
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
-    public string EnabledPort = "Enabled";
+    [DataField]
+    public ProtoId<SourcePortPrototype> EnabledPort = "Enabled";
     /// Port for when the device is turned off.
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
-    public string DisabledPort = "Disabled";
+    [DataField]
+    public ProtoId<SourcePortPrototype> DisabledPort = "Disabled";
 
     /// Sprite specifier for the hologram to display at the spawner's position. Does nothing if <see langword="null"/>.
     [DataField, AutoNetworkedField] public SpriteSpecifier.Rsi? HologramSprite;

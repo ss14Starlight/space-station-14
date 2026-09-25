@@ -10,7 +10,7 @@ namespace Content.Shared._Starlight.Weapons.Ranged.Components;
 /// Works in combination with <see cref="BatteryComponent"/>.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState(raiseAfterAutoHandleState: true), AutoGenerateComponentPause]
+[AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class MechAmmoProviderComponent : AmmoProviderComponent
 {
     /// <summary>

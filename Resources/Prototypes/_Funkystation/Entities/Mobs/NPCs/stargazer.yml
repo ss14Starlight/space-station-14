@@ -1,0 +1,160 @@
+- type: entity
+  id: MobStargazer
+  parent: [ BaseMobAsteroid, MobBloodstream ]
+  name: stargazer
+  description: A mysterious creature from another dimension, its burning gaze melts away those that it finds irritating. It's outer shell is made with caramelan polymers mixed with ethyl butyrate, giving it a sticky but resistant protective layer. It is said that it makes a good watermelon lollipop.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Mobs/XenoArch/stargazer.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: eyething
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: eyething
+      Dead:
+        Base: eyething
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/gib1.ogg
+          params:
+            volume: -4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          StargazerShell1:
+            min: 1
+            max: 1
+          StargazerShell2:
+            min: 1
+            max: 1
+          StargazerShell3:
+            min: 1
+            max: 1
+  - type: FireProtection
+    reduction: 1 # Gotta keep it from killing itself lol
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Gun
+    fireRate: 0.5
+    projectileSpeed: 8.5
+    selectedMode: SemiAuto
+    showExamineText: false
+    availableModes: [ SemiAuto ]
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
+  - type: RechargeBasicEntityAmmo
+    showExamineText: false
+    rechargeCooldown: 0
+    rechargeSound: null
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileWeakFireball
+    capacity: 1
+    count: 1
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 200
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: BasiliskCompound
+    blackboard:
+      VisionRadius: !type:Single
+        7
+      AggroVisionRadius: !type:Single
+        12
+      NavSmash: !type:Bool
+        true
+
+- type: entity
+  parent: BaseItem
+  id: StargazerShell1
+  name: shard
+  description: A strange shell shard. The remains of the stargazer.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Objects/XenoArch/stargazer_shell.rsi
+    state: shell1
+  - type: Item
+    size: Tiny
+  - type: EmbeddableProjectile
+    offset: 0.0,0.0
+    removalTime: 1.5
+  - type: ThrowingAngle
+    angle: 0
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 10
+  - type: Tag
+    tags:
+    - StargazerShellTag
+
+- type: entity
+  parent: BaseItem
+  id: StargazerShell2
+  name: shard
+  description: A strange shell shard. The remains of the stargazer.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Objects/XenoArch/stargazer_shell.rsi
+    state: shell2
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - StargazerShellTag
+
+- type: entity
+  parent: BaseItem
+  id: StargazerShell3
+  name: shard
+  description: A strange shell shard. The remains of the stargazer.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Objects/XenoArch/stargazer_shell.rsi
+    state: shell3
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - StargazerShellTag
+
+- type: entity
+  parent: FoodSnackSwirlLollipop
+  id: FoodSnackStargazerLollipop
+  name: stargazer lollipop
+  description: A sweet fleshy lollipop made from the carcass of a stargazer. It tastes vaguely of watermelon.
+  suffix: DO NOT MAP
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Objects/XenoArch/stargazer_lollipop.rsi
+    state: icon
+  - type: Item
+    sprite: _Funkystation/Objects/XenoArch/stargazer_lollipop.rsi
+    size: Small
+    heldPrefix: icon
+    storedRotation: 0
+    storedOffset: 1,0
+  - type: Construction
+    graph: StargazerLollipop
+    node: icon

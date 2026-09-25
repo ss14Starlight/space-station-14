@@ -5,7 +5,7 @@ namespace Content.Shared._Starlight.Economy;
 /// <summary>
 /// Prototype that defines a price category range for price generation
 /// </summary>
-[Prototype("priceCategory")]
+[Prototype]
 public sealed partial class PriceCategoryPrototype : IPrototype
 {
     [IdDataField]

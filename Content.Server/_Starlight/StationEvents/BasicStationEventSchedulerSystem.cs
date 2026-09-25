@@ -311,9 +311,7 @@ public sealed partial class BasicStationEventSchedulerSystem
             out string eventId)
         {
             var projectedRoundTime = GameTicker.RoundDuration() + (triggerTime - _timing.CurTime);
-            var available = _event.AvailableEvents(currentTimeOverride: projectedRoundTime);
-
-            if (!_event.TryBuildLimitedEvents(component.ScheduledGameRules, available, out var limited))
+            if (!_event.TryBuildLimitedEvents(component.ScheduledGameRules, out var limited, projectedRoundTime))
             {
                 eventId = string.Empty;
                 return false;

@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Server.Chat.Systems;
-using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
@@ -9,7 +8,6 @@ using Robust.Server.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
@@ -30,7 +28,7 @@ public sealed partial class MeteorSwarmSystem : StationEventSystem<MeteorSwarmCo
         //Starlight begin
         if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
         if (component.Announcement is { } locId)
-            Announce(stationEvent, locId, false, colorOverride: Color.Gold);
+            Announce(stationEvent, locId, false, colorOverride: Color.Gold, soundOverride: component.AnnouncementSound);
         //Starlight end
     }
 

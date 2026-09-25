@@ -128,7 +128,7 @@
   id: TattooEyeLeft
   bodyPart: Eyes
   markingCategory: Head
-  speciesRestriction: [Human, NeoHuman, SlimePerson, NeoSlimePerson, Reptilian, NeoReptilian, Dwarf, NeoDwarf, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf
+  speciesRestriction: [Human, NeoHuman, SlimePerson, NeoSlimePerson, Reptilian, NeoReptilian, Dwarf, NeoDwarf, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Doll
   coloring:
     default:
       type:
@@ -203,7 +203,7 @@
   # some of these limitations could possibly be removed with better control over how the marking can be customized - possibly removing stacking, allowing recoloring & clamping higher-end colors for the eyeshadow, etc.
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Human, NeoHuman, SlimePerson, NeoSlimePerson, Reptilian, NeoReptilian, Dwarf, NeoDwarf, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf
+  speciesRestriction: [Human, Doll, NeoHuman, SlimePerson, NeoSlimePerson, Reptilian, NeoReptilian, Dwarf, NeoDwarf, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Doll
   forcedColoring: true
   sprites:
   - sprite: Mobs/Customization/tattoos.rsi
@@ -213,7 +213,7 @@
   id: TattooEyeshadowLower
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [Human, NeoHuman, SlimePerson, NeoSlimePerson, Reptilian, NeoReptilian, Dwarf, NeoDwarf, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf
+  speciesRestriction: [Human, Doll, NeoHuman, SlimePerson, NeoSlimePerson, Reptilian, NeoReptilian, Dwarf, NeoDwarf, Elf, NeoElf, Neocyte] # Starlight Edit: Add Elf and Doll
   forcedColoring: true
   sprites:
   - sprite: Mobs/Customization/tattoos.rsi

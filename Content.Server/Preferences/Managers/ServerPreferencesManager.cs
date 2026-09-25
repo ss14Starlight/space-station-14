@@ -4,17 +4,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared.CCVar;
-using Content.Shared.GameTicking; // Starlight
+using Content.Shared.GameTicking;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
-using Content.Shared.Roles; // Starlight
+using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Preferences;
 
 namespace Content.Server.Preferences.Managers
 {
@@ -53,6 +52,8 @@ namespace Content.Server.Preferences.Managers
             _sawmill = _log.GetSawmill("prefs");
         }
 
+        // Starlight, we do profiles entirely differently than Wizden so we should honestly just move this file to our directory some day.
+
         private async void HandleUpdateCharacterMessage(MsgUpdateCharacter message)
         {
             var userId = message.MsgChannel.UserId;
@@ -64,7 +65,7 @@ namespace Content.Server.Preferences.Managers
                 await SetProfile(userId, message.Slot, message.Profile);
         }
 
-        public async Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile)
+        public async Task SetProfile(NetUserId userId, int slot, HumanoidCharacterProfile profile)
         {
             if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
             {
@@ -78,14 +79,23 @@ namespace Content.Server.Preferences.Managers
             var curPrefs = prefsData.Prefs!;
             var session = _playerManager.GetSessionById(userId);
 
+            var selectionsBefore = GetSelections(profile); // Starlight
             profile.EnsureValid(session, _dependencies);
 
-            var profiles = new Dictionary<int, ICharacterProfile>(curPrefs.Characters)
+            var profiles = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters)
             {
                 [slot] = profile
             };
 
             prefsData.Prefs = new PlayerPreferences(profiles, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
+
+            // Starlight start
+            if (!selectionsBefore.SetEquals(GetSelections(profile)))
+            {
+                _sawmill.Info($"Profile in slot {slot} of {session} was changed by server validation, resending preferences.");
+                SendPreferences(session, prefsData.Prefs);
+            }
+            // Starlight end
 
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
@@ -154,7 +164,7 @@ namespace Content.Server.Preferences.Managers
             var curPrefs = prefsData.Prefs!;
             var session = _playerManager.GetSessionById(userId);
 
-            var arr = new Dictionary<int, ICharacterProfile>(curPrefs.Characters);
+            var arr = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters);
             arr.Remove(slot);
 
             prefsData.Prefs = new PlayerPreferences(arr, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
@@ -194,7 +204,7 @@ namespace Content.Server.Preferences.Managers
                 return;
 
             profile.Enabled = val;
-            var profiles = new Dictionary<int, ICharacterProfile>(curPrefs.Characters)
+            var profiles = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters)
             {
                 [slot] = new HumanoidCharacterProfile(profile),
             };
@@ -259,7 +269,7 @@ namespace Content.Server.Preferences.Managers
                 {
                     PrefsLoaded = true,
                     Prefs = new PlayerPreferences(
-                        new[] {new KeyValuePair<int, ICharacterProfile>(0, HumanoidCharacterProfile.Random())},
+                        new[] {new KeyValuePair<int, HumanoidCharacterProfile>(0, HumanoidCharacterProfile.Random())},
                         Color.Transparent,
                         [],
                         new Dictionary<ProtoId<JobPrototype>, JobPriority>{{ SharedGameTicker.FallbackOverflowJob, JobPriority.High }}),
@@ -278,7 +288,7 @@ namespace Content.Server.Preferences.Managers
                 async Task LoadPrefs()
                 {
                     var prefs = await GetOrCreatePreferencesAsync(session.UserId, cancel);
-                    prefsData.Prefs = prefs;
+                    prefsData.Prefs = prefs; // Starlight
                 }
             }
         }
@@ -290,17 +300,11 @@ namespace Content.Server.Preferences.Managers
             // And play time info is loaded concurrently from the DB with preferences.
             var prefsData = _cachedPlayerPrefs[session.UserId];
             DebugTools.Assert(prefsData.Prefs != null);
-            prefsData.Prefs = SanitizePreferences(session, prefsData.Prefs, _dependencies);
+            prefsData.Prefs = SanitizePreferences(session, prefsData.Prefs, _dependencies); // Starlight
 
             prefsData.PrefsLoaded = true;
 
-            var msg = new MsgPreferencesAndSettings();
-            msg.Preferences = prefsData.Prefs;
-            msg.Settings = new GameSettings
-            {
-                MaxCharacterSlots = MaxCharacterSlots
-            };
-            _netManager.ServerSendMessage(msg, session.Channel);
+            SendPreferences(session, prefsData.Prefs); // Starlight
         }
 
         public void OnClientDisconnected(ICommonSession session)
@@ -372,7 +376,7 @@ namespace Content.Server.Preferences.Managers
             return null;
         }
 
-        private async Task<PlayerPreferences> GetOrCreatePreferencesAsync(NetUserId userId, CancellationToken cancel)
+        private async Task<PlayerPreferences> GetOrCreatePreferencesAsync(NetUserId userId, CancellationToken cancel) // Starligght
         {
             var prefs = await _db.GetPlayerPreferencesAsync(userId, cancel);
             if (prefs is null)
@@ -416,7 +420,7 @@ namespace Content.Server.Preferences.Managers
 
             return new PlayerPreferences(prefs.Characters.Select(p =>
             {
-                return new KeyValuePair<int, ICharacterProfile>(p.Key, p.Value.Validated(session, collection));
+                return new KeyValuePair<int, HumanoidCharacterProfile>(p.Key, p.Value.Validated(session, collection));
             }), prefs.AdminOOCColor, prefs.ConstructionFavorites, priorities);
         }
 

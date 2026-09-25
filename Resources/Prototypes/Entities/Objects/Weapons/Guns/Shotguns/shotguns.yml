@@ -143,7 +143,7 @@
 
 - type: entity
   name: double-barreled shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityBartenderZookeeperContraband] # Starlight-edit - SecurityBartender -> SecurityBartenderZookeeper
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityBartenderContraband]
   id: WeaponShotgunDoubleBarreled
   description: An immortal classic. Takes 12 gauge shells. # Starlight: .50 -> 12 gauge
   components:
@@ -234,7 +234,7 @@
 
 - type: entity
   name: sawn-off shotgun
-  parent: [ BaseWeaponShotgun, BaseSecurityBartenderZookeeperContraband ] # Starlight-edit - SecurityBartender -> SecurityBartenderZookeeper
+  parent: [ BaseWeaponShotgun, BaseSecurityBartenderContraband ]
   id: WeaponShotgunSawn
   description: Groovy! Takes 12 gauge shells. # Starlight: .50 -> 12 gauge
   components: # needs to be super inaccurate because you don't need to wield it

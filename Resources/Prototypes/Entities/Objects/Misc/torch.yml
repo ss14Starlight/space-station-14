@@ -44,7 +44,7 @@
       energy: 5.0
       netsync: false
     - type: IgnitionSource
-      temperature: 400
+      temperature: 500 # Starlight
       ignited: false
     - type: LightBehaviour
       behaviours:

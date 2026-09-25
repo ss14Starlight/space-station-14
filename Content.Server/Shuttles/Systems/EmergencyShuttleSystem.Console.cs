@@ -14,7 +14,6 @@ using Content.Shared.Shuttles.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Timer = Robust.Shared.Timing.Timer;
 // Starlght Start
 using Robust.Shared.Random;
 using Content.Shared.Screen.Components;
@@ -22,8 +21,6 @@ using Content.Shared.Parallax.Biomes;
 using System.Numerics;
 using Content.Shared.Procedural;
 using Robust.Shared.Map.Components;
-using Content.Shared._Starlight.Shuttles.Components;
-using Content.Shared.Tag;
 using Content.Shared.Whitelist;
 
 // Starlight End
@@ -220,45 +217,47 @@ public sealed partial class EmergencyShuttleSystem
             {
                 continue;
             }
-
             // Starlight edit Start: Commented out for evacuation pod planet landing
             // // Don't dock them. If you do end up doing this then stagger launch.
             // _shuttle.FTLToDock(uid, shuttle, centcomm.Entity.Value, hyperspaceTime: TransitTime + 1 + timeDelay++); //starlight edit, add seconds onto the transit time to ENSURE the emergency shuttle tries to find a dock first
             // Starlight edit End: Commented out for evacuation pod planet landing
 
             // Starlight Start: Evacuation pod planet landing
-            if (_evacuationPlanetMap == null || _evacuationLandingZone == null)
-                SetupEvacuationPlanet();
+            // if (_evacuationPlanetMap == null || _evacuationLandingZone == null)
+            //     SetupEvacuationPlanet();
+            //
+            // if (_evacuationPlanetMap == null || _evacuationLandingZone is not { } evacuationLandingZone)
+            // {
+            //     Log.Error($"Evacuation pod {ToPrettyString(uid)} failed to setup evacuation planet destination.");
+            //     continue;
+            // }
+            //
+            // var angle = _random.NextAngle();
+            // var distance = _random.NextFloat(0, PodSpreadRadius);
+            // var offset = angle.ToVec() * distance;
+            // var landingCoords = evacuationLandingZone.Offset(offset);
+            //
+            // var rotations = new[]
+            // {
+            //     Angle.Zero,
+            //     Angle.FromDegrees(90),
+            //     Angle.FromDegrees(180),
+            //     Angle.FromDegrees(270)
+            // };
+            // var podRotation = _random.Pick(rotations);
+            //
+            // _shuttle.FTLToCoordinates(
+            //     uid,
+            //     shuttle,
+            //     landingCoords,
+            //     podRotation,
+            //     startupTime: 0f,
+            //     hyperspaceTime: TransitTime + 1 + timeDelay++);
 
-            if (_evacuationPlanetMap == null || _evacuationLandingZone is not { } evacuationLandingZone)
-            {
-                Log.Error($"Evacuation pod {ToPrettyString(uid)} failed to setup evacuation planet destination.");
-                continue;
-            }
-
-            var angle = _random.NextAngle();
-            var distance = _random.NextFloat(0, PodSpreadRadius);
-            var offset = angle.ToVec() * distance;
-            var landingCoords = evacuationLandingZone.Offset(offset);
-
-            var rotations = new[]
-            {
-                Angle.Zero,
-                Angle.FromDegrees(90),
-                Angle.FromDegrees(180),
-                Angle.FromDegrees(270)
-            };
-            var podRotation = _random.Pick(rotations);
-
-            _shuttle.FTLToCoordinates(
-                uid,
-                shuttle,
-                landingCoords,
-                podRotation,
-                startupTime: 0f,
-                hyperspaceTime: TransitTime + 1 + timeDelay++);
+            // RemCompDeferred<EscapePodComponent>(uid);
+            LaunchEscapePod(uid, shuttle, TransitTime + 1 + timeDelay); //Starlight edit: Had to move this to an outside function
+            timeDelay++;
             // Starlight End: Evacuation pod planet landing
-            RemCompDeferred<EscapePodComponent>(uid);
         }
 
         // Departed
@@ -296,6 +295,60 @@ public sealed partial class EmergencyShuttleSystem
             //Starlight-edit end
     }
 
+    #region Starlight
+
+    public void LaunchEscapePod(EntityUid uid, ShuttleComponent shuttle, float traveltime)
+    {
+        // Starlight edit Start: Commented out for evacuation pod planet landing
+        // var stationUid = _station.GetOwningStation(uid);
+
+        // if (!TryComp<StationCentcommComponent>(stationUid, out var centcomm) ||
+        //     Deleted(centcomm.Entity) ||
+        //     pod.LaunchTime == null ||
+        // Starlight edit End: Commented out for evacuation pod planet landing
+
+
+        // Starlight edit Start: Commented out for evacuation pod planet landing
+        // // Don't dock them. If you do end up doing this then stagger launch.
+        // _shuttle.FTLToDock(uid, shuttle, centcomm.Entity.Value, hyperspaceTime: TransitTime + 1 + timeDelay++); //starlight edit, add seconds onto the transit time to ENSURE the emergency shuttle tries to find a dock first
+        // Starlight edit End: Commented out for evacuation pod planet landing
+
+        // Starlight Start: Evacuation pod planet landing
+        if (_evacuationPlanetMap == null || _evacuationLandingZone == null)
+            SetupEvacuationPlanet();
+
+        if (_evacuationPlanetMap == null || _evacuationLandingZone is not { } evacuationLandingZone)
+        {
+            Log.Error($"Evacuation pod {ToPrettyString(uid)} failed to setup evacuation planet destination.");
+            return;
+        }
+
+        var angle = _random.NextAngle();
+        var distance = _random.NextFloat(0, PodSpreadRadius);
+        var offset = angle.ToVec() * distance;
+        var landingCoords = evacuationLandingZone.Offset(offset);
+
+        var rotations = new[]
+        {
+            Angle.Zero,
+            Angle.FromDegrees(90),
+            Angle.FromDegrees(180),
+            Angle.FromDegrees(270)
+        };
+        var podRotation = _random.Pick(rotations);
+
+        _shuttle.FTLToCoordinates(
+            uid,
+            shuttle,
+            landingCoords,
+            podRotation,
+            startupTime: 0f,
+            hyperspaceTime: traveltime);
+        // Starlight End: Evacuation pod planet landing
+        RemCompDeferred<EscapePodComponent>(uid);
+    }
+    #endregion
+
     private void OnEmergencyRepealAll(EntityUid uid, EmergencyShuttleConsoleComponent component, EmergencyShuttleRepealAllMessage args)
     {
         var player = args.Actor;
@@ -325,8 +378,7 @@ public sealed partial class EmergencyShuttleSystem
             return;
         }
 
-        // TODO: This is fucking bad
-        if (!component.AuthorizedEntities.Remove(MetaData(idCard).EntityName))
+        if (!component.AuthorizedEntities.Remove(idCard.Owner))
             return;
 
         _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle early launch REPEAL by {args.Actor:user}");
@@ -346,9 +398,12 @@ public sealed partial class EmergencyShuttleSystem
             return;
         }
 
-        // TODO: This is fucking bad
-        if (!component.AuthorizedEntities.Add(MetaData(idCard).EntityName))
+        var idCardUid = idCard.Owner;
+
+        if (component.AuthorizedEntities.ContainsKey(idCardUid))
             return;
+
+        component.AuthorizedEntities[idCardUid] = MetaData(idCard).EntityName;
 
         _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle early launch AUTH by {args.Actor:user}");
         var remaining = component.AuthorizationsRequired - component.AuthorizedEntities.Count;
@@ -398,7 +453,7 @@ public sealed partial class EmergencyShuttleSystem
     {
         var auths = new List<string>();
 
-        foreach (var auth in component.AuthorizedEntities)
+        foreach (var auth in component.AuthorizedEntities.Values)
         {
             auths.Add(auth);
         }

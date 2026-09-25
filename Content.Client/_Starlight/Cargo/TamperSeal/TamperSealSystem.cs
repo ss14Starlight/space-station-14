@@ -1,6 +1,5 @@
 using Content.Shared._Starlight.Cargo.TamperSeal;
 using Content.Shared._Starlight.Cargo.TamperSeal.Components;
-using Robust.Shared.GameObjects;
 
 namespace Content.Client._Starlight.Cargo.TamperSeal;
 

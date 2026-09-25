@@ -483,9 +483,8 @@
     board: HellfireHeaterMachineCircuitBoard
 
 - type: entity
-  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  parent: [ SolutionTank, SolutionHuge, BaseMachinePowered, SmallConstructibleMachine ]
   id: BaseGasCondenser
-  categories: [ ShouldMapStation ] # Starlight
   name: condenser
   description: Condenses gases into liquids. Now we just need some plumbing.
   placement:
@@ -566,10 +565,6 @@
         pipeDirection: South
   - type: Transform
     noRot: false
-  - type: SolutionContainerManager
-    solutions:
-      tank:
-        maxVol: 400
   - type: MixableSolution
     solution: tank
   - type: DrainableSolution
@@ -582,9 +577,3 @@
   - type: GuideHelp
     guides:
     - GasCondensing
-  # Starlight start
-  - type: VentCrawlTube
-  - type: VentCrawlJunction
-    degrees:
-      - 0
-  # Starlight end

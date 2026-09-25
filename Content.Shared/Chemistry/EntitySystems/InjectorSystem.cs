@@ -22,6 +22,7 @@ using Content.Shared.Weapons.Melee.Events;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
+using Content.Shared.Disposal.Components;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
@@ -76,6 +77,10 @@ public sealed partial class InjectorSystem : EntitySystem
         args.SpawnInteractionParticles &= injector.Comp.ShowInteractionParticles; // Starlight
 
         if (args.Handled || !args.CanReach || args.Target is not { Valid: true } target)
+            return;
+
+        // Starlight: Don't process disposal units, fixes not being able to trash medipens
+        if (HasComp<DisposalUnitComponent>(target))
             return;
 
         // Is the target a mob? If yes, use a do-after to give them time to respond.
@@ -683,7 +688,7 @@ public sealed partial class InjectorSystem : EntitySystem
                 || !proto.Behavior.HasFlag(InjectorBehavior.Draw))
                 continue;
 
-            ToggleMode(injector, user, proto);
+            ToggleMode(injector, user, proto, false);
             return;
         }
     }
@@ -714,22 +719,24 @@ public sealed partial class InjectorSystem : EntitySystem
                 || !proto.Behavior.HasFlag(InjectorBehavior.Inject))
                 continue;
 
-            ToggleMode(injector, user, proto);
+            ToggleMode(injector, user, proto, false);
             return;
         }
     }
     #endregion Injecting/Drawing
 
     #region Mode Toggling
+
     /// <summary>
     /// Toggle modes of the injector if possible.
     /// </summary>
     /// <param name="injector">The injector whose mode is to be toggled.</param>
     /// <param name="user">The user toggling the mode.</param>
     /// <param name="mode">The desired mode.</param>
+    /// <param name="popup">Whether we should show popup text for the mode being changed.</param>
     /// <remarks>This will still check if the injector can use that mode.</remarks>
     [PublicAPI]
-    public void ToggleMode(Entity<InjectorComponent> injector, EntityUid user, InjectorModePrototype mode)
+    public void ToggleMode(Entity<InjectorComponent> injector, EntityUid user, InjectorModePrototype mode, bool popup = true)
     {
         var index = injector.Comp.AllowedModes.FindIndex(nextMode => mode == nextMode);
 
@@ -738,10 +745,14 @@ public sealed partial class InjectorSystem : EntitySystem
         if (!_prototypeManager.Resolve(injector.Comp.ActiveModeProtoId, out var newMode))
             return;
 
+        Dirty(injector);
+
+        if (!popup)
+            return;
+
         var modeName = Loc.GetString(newMode.Name);
         var message = Loc.GetString("injector-component-mode-changed-text", ("mode", modeName));
         _popup.PopupClient(message, user, user);
-        Dirty(injector);
     }
 
     /// <summary>

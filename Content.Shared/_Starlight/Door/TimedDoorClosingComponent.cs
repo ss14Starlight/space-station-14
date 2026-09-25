@@ -10,4 +10,9 @@ public sealed partial class TimedDoorClosingComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan AutoCloseDelay = TimeSpan.FromSeconds(5);
+
+    /// <summary>
+    /// Time when the door should next attempt to close.
+    /// </summary>
+    public TimeSpan? NextClose;
 }

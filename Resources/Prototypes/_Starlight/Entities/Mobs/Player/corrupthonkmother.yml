@@ -117,12 +117,12 @@
           Piercing: 10
           Slash: 10
           Structural: 250
-    - type: SolutionContainerManager
-      solutions:
-        melee:
-          reagents:
-            - ReagentId: Laughter
-              Quantity: 10
+    - type: Solution
+      id: melee
+      solution:
+        reagents:
+          - ReagentId: Laughter
+            Quantity: 10
     - type: MeleeChemicalInjector
       solution: melee
 

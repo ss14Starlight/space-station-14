@@ -18,10 +18,10 @@ namespace Content.Server._Starfall.Particles;
 /// If gibbing ever becomes predicted/shared, DELETE THIS IMMEDIATELY and move it to the client.
 /// </summary>
 /// TODO: KILL WHEN GIBBING IS PREDICTED/SHARED I BEG
-public sealed class GibMistParticleSystem : EntitySystem
+public sealed partial class GibMistParticleSystem : EntitySystem
 {
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!; // Starlight-edit
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstream = default!; // Starlight-edit
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {

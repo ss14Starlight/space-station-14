@@ -1,6 +1,7 @@
 ﻿species-name-abductor = Abductor
 species-name-avali = Avali
 species-name-cyclorite = Cyclorite
+species-name-doll = Doll
 species-name-elf = Aielith
 species-name-felionoid = Felionoid
 species-name-lagomorph = Lagomorph
@@ -8,3 +9,6 @@ species-name-resomi = Resomi
 species-name-shadekin = Shadekin
 species-name-thaven = Thaven
 species-name-rodentia = Rodentia
+species-name-experiment = Experiment
+
+species-name-sawian = Sawian

@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "delays": [
+        [
+          8.0,
+          0.2,
+          0.1,
+          0.1,
+          0.2,
+          1.0
+        ]
+      ],
+      "copyright": "Based on tgstation at https://github.com/tgstation/tgstation/commit/f4017da82ae4de7bfaf8ebdbba33d0de81c15587. Modified sprites by Conflee"
+    }
+  ]
+}

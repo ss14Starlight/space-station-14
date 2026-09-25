@@ -91,7 +91,7 @@ public sealed partial class AdminSystem
     private void SendStationEvents(ICommonSession session)
     {
         var available = _eventManager.AvailableEvents();
-        
+
         var runtimeStates = new Dictionary<string, EventRuntimeState>();
         var activeEvents = new List<ActiveStationEventData>();
 

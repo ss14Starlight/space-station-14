@@ -15,10 +15,12 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 using System.Numerics;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Prototypes;
+#if DEBUG
+using Robust.Shared.Utility;
+#endif
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 
 namespace Content.Server.Explosion.EntitySystems;
@@ -536,6 +538,9 @@ public sealed partial class ExplosionSystem
                 break;
 
             tileDef = newDef;
+
+            if (newDef.Indestructible)
+                break;
         }
 
         if (tileDef.TileId == tileRef.Tile.TypeId)

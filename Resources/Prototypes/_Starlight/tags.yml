@@ -48,6 +48,9 @@
   id: BladeSteel
 
 - type: Tag
+  id: Blood
+
+- type: Tag
   id: BloodSplatter
 
 - type: Tag
@@ -195,6 +198,15 @@
   id: ConstructionComment
 
 - type: Tag
+  id: CottonBread # BountyCottonBread
+
+- type: Tag
+  id: CottonCake # BountyCottonCake
+
+- type: Tag
+  id: CoupeGlass # BountyCoupeGlass
+
+- type: Tag
   id: CrispyRiceBar
 
 - type: Tag
@@ -226,6 +238,12 @@
 
 - type: Tag
   id: DogEmotes
+
+- type: Tag
+  id: Drone
+
+- type: Tag
+  id: DroneUsable
 
 - type: Tag
   id: DrinkCarton
@@ -274,6 +292,9 @@
 
 - type: Tag
   id: Felionoid
+
+- type: Tag
+  id: Experiment
 
 - type: Tag
   id: FreeMag
@@ -354,6 +375,9 @@
   id: HiltWood
 
 - type: Tag
+  id: HoloprojectorCrafting # Defines which projectors can be used to craft a False Shutters Projector
+
+- type: Tag
   id: HuntedTraitBackground
 
 - type: Tag
@@ -411,6 +435,10 @@
 
 - type: Tag
   id: JobIconSyndicate
+
+# Used to define clothing that the security K9 can wear.
+- type: Tag
+  id: K9Wearable
 
 - type: Tag
   id: L6Saw
@@ -621,6 +649,9 @@
   id: PrototypeVibroblade
 
 - type: Tag
+  id: RemoteSignallerAdvanced # Crafting whitelist: Advanced Deadman remote trigger
+
+- type: Tag
   id: RequiredForLmgTag
 
 - type: Tag
@@ -647,10 +678,16 @@
   id: RollerBed
 
 - type: Tag
+  id: Salad # BountySalad
+
+- type: Tag
   id: SalvageTicket
 
 - type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
+
+- type: Tag
+  id: SausageBun # BountySausageBun
 
 - type: Tag
   id: ScanGateMachineBoard
@@ -747,6 +784,9 @@
 
 - type: Tag
   id: TiderAnvilParts
+
+- type: Tag
+  id: TrashBagBlue
 
 - type: Tag
   id: UnDissolvable

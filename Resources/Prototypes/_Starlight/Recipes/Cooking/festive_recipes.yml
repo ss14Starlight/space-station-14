@@ -18,7 +18,7 @@
   time: 15
   deviceType: Oven
   reagents:
-    TableSalt: 5
+    TableSalt: 1
   solids:
     FoodBreadPlainSlice: 3
     FoodOnionSlice: 1
@@ -30,7 +30,7 @@
   time: 15
   deviceType: Oven
   reagents:
-    TableSalt: 5
+    TableSalt: 1
   solids:
     FoodBreadCottonSlice: 3
     FoodOnionSlice: 1
@@ -52,8 +52,8 @@
   result: FoodFeastTurkey
   time: 30
   reagents:
-    TableSalt: 10
-    Blackpepper: 10
+    TableSalt: 1
+    Blackpepper: 1
   solids:
     FoodStuffing: 1
     FoodMeatChicken: 4
@@ -101,4 +101,3 @@
     Gravy: 10
   solids:
     FoodPotatoMashed: 1
-

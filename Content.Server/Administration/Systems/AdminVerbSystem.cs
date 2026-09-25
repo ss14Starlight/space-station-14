@@ -38,10 +38,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Utility;
+using Content.Shared.Chemistry.Components;
 using static Content.Shared.Configurable.ConfigurationComponent;
 #region Starlight
 using Content.Server._Starlight.Thaven;
-using Content.Server.Traits;
 using Content.Shared._Starlight.Character.Info;
 using Content.Server._Starlight.Traits;
 using Content.Server._Starlight.GameTicking;
@@ -91,7 +91,10 @@ namespace Content.Server.Administration.Systems
         {
             SubscribeLocalEvent<GetVerbsEvent<Verb>>(GetVerbs);
             SubscribeLocalEvent<RoundRestartCleanupEvent>(Reset);
-            SubscribeLocalEvent<SolutionContainerManagerComponent, SolutionContainerChangedEvent>(OnSolutionChanged);
+
+            // TODO: This is genuinely terrible, solutions are already networked and we shouldn't need to update the BUI like this.
+            SubscribeLocalEvent<SolutionComponent, SolutionChangedEvent>((x, ref _) => OnSolutionChanged(x.Owner));
+            SubscribeLocalEvent<SolutionManagerComponent, SolutionChangedEvent>((x, ref _) => OnSolutionChanged(x.Owner));
         }
 
         private void GetVerbs(GetVerbsEvent<Verb> ev)
@@ -502,7 +505,7 @@ namespace Content.Server.Administration.Systems
             }
 
             // Control mob verb
-            if (_toolshed.ActivePermissionController?.CheckInvokable(new CommandSpec(_toolshed.DefaultEnvironment.GetCommand("mind"), "control"), player, out _) ?? false &&
+            if ((_toolshed.ActivePermissionController?.CheckInvokable(new CommandSpec(_toolshed.DefaultEnvironment.GetCommand("mind"), "control"), player, out _) ?? false) &&
                 args.User != args.Target)
             {
                 Verb verb = new()
@@ -630,7 +633,7 @@ namespace Content.Server.Administration.Systems
 
             // Add verb to open Solution Editor
             if (_groupController.CanCommand(player, "addreagent") &&
-                HasComp<SolutionContainerManagerComponent>(args.Target))
+                (HasComp<SolutionManagerComponent>(args.Target) || HasComp<SolutionComponent>(args.Target)))
             {
                 Verb verb = new()
                 {
@@ -645,13 +648,13 @@ namespace Content.Server.Administration.Systems
         }
 
         #region SolutionsEui
-        private void OnSolutionChanged(Entity<SolutionContainerManagerComponent> entity, ref SolutionContainerChangedEvent args)
+        private void OnSolutionChanged(EntityUid uid)
         {
             foreach (var list in _openSolutionUis.Values)
             {
                 foreach (var eui in list)
                 {
-                    if (eui.Target == entity.Owner)
+                    if (eui.Target == uid)
                         eui.StateDirty();
                 }
             }

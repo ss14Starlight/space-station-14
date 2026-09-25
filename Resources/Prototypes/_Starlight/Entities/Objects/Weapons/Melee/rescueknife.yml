@@ -64,10 +64,10 @@
   - type: MultipleTool
     statusShowBehavior: true
     entries:
-      - behavior: Slicing
+      - behavior: [ Slicing ]
         useSound: /Audio/Items/Culinary/chop.ogg
         SpeedModifier: 1
-      - behavior: Screwing
+      - behavior: [ Screwing ]
         useSound: /Audio/Items/screwdriver.ogg
         SpeedModifier: 0.95
   - type: Tag
