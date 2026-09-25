@@ -238,9 +238,6 @@
     equippedPrefix: 1
     slots:
     - HEAD
-  - type: NpcFactionMember
-    factions:
-      - Mouse
   - type: Physics
   - type: Fixtures
     fixtures:
