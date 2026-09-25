@@ -17,23 +17,15 @@ public sealed partial class EmotesUIController
         [EmoteCategory.Cloud] = 3,
     };
 
-    private static int GetCategoryPriority(EmoteCategory category)
-    {
-        return CategoryPriority.TryGetValue(category, out var priority) ? priority : int.MaxValue;
-    }
+    private static int GetCategoryPriority(EmoteCategory category) =>
+        CategoryPriority.TryGetValue(category, out var priority) ? priority : int.MaxValue;
 
-    private static IEnumerable<EmotePrototype> SortEmotePrototypes(IEnumerable<EmotePrototype> prototypes)
-    {
-        return prototypes
-            .OrderBy(proto => GetCategoryPriority(proto.Category))
-            .ThenBy(proto => proto.Priority)
-            .ThenBy(proto => Loc.GetString(proto.Name), StringComparer.OrdinalIgnoreCase);
-    }
+    private static IEnumerable<EmotePrototype> SortEmotePrototypes(IEnumerable<EmotePrototype> prototypes) => prototypes
+        .OrderBy(proto => GetCategoryPriority(proto.Category))
+        .ThenBy(proto => proto.Priority)
+        .ThenBy(proto => Loc.GetString(proto.Name), StringComparer.OrdinalIgnoreCase);
 
-    private static IEnumerable<CloudEmotePrototype> SortCloudEmotePrototypes(IEnumerable<CloudEmotePrototype> prototypes)
-    {
-        return prototypes
-            .OrderBy(proto => proto.Priority)
-            .ThenBy(proto => Loc.GetString(proto.Name), StringComparer.OrdinalIgnoreCase);
-    }
+    private static IEnumerable<CloudEmotePrototype> SortCloudEmotePrototypes(IEnumerable<CloudEmotePrototype> prototypes) => prototypes
+        .OrderBy(proto => proto.Priority)
+        .ThenBy(proto => Loc.GetString(proto.Name), StringComparer.OrdinalIgnoreCase);
 }
