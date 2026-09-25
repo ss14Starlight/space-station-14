@@ -74,7 +74,9 @@ public sealed class TickerCommand : ToolshedCommand
         ctx.WriteLine("Restarted round.");
     }
 
+    /// <summary>
     /// Cancels the restart timer.
+    /// </summary>
     [CommandImplementation("cancelrestart")]
     public void CancelRestartTimer(IInvocationContext ctx)
     {
