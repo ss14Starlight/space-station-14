@@ -108,7 +108,9 @@ public sealed class TickerCommand : ToolshedCommand
         ctx.WriteLine($"The round restart timer will{(state ? " " : " NOT ")}start once round ends.");
     }
 
+    /// <summary>
     /// Delay round start by a specified number of seconds, or pause if 0 or unspecified.
+    /// </summary>
     [CommandImplementation("delaystart")]
     public void DelayStart(IInvocationContext ctx, [Optional] [DefaultParameterValue(0u)] uint seconds)
     {
