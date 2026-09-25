@@ -100,7 +100,9 @@ public sealed partial class ShuttleCommand : ToolshedCommand
         else _round.RequestRoundEnd(TimeSpan.FromSeconds(seconds), ctx.Session?.AttachedEntity, checkCooldown: false);
     }
 
+    /// <summary>
     /// Recall the emergency shuttle.
+    /// </summary>
     [CommandImplementation("recallemergencyshuttle")]
     public void RecallEmergencyShuttle(IInvocationContext ctx)
     {
