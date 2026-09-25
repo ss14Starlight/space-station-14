@@ -7,7 +7,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 
-namespace Content.Server._Starlight.Medical;
+namespace Content.Server._Starlight.Medical.HealthAnalyzer;
 
 public sealed partial class HealthSelfAnalyzerSystem : EntitySystem
 {
