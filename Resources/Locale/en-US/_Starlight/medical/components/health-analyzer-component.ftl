@@ -48,3 +48,8 @@ starlight-health-analyzer-window-time-in-minutes = in ~{ $minutes } mins
 starlight-health-analyzer-window-time-since-minutes = since ~{ $minutes } mins
 
 starlight-health-analyzer-window-entity-unrevivable-text = [bold]Defib Ineligible[/bold]
+starlight-health-analyzer-abnormality-open-incisions = Open incisions
+starlight-health-analyzer-abnormality-missing-organs = Missing organs
+starlight-health-analyzer-abnormality-catatonic = [bold]Catatonic[/bold]
+starlight-health-analyzer-abnormality-hollow = [bold]Hollow[/bold]
+starlight-health-analyzer-abnormality-extreme-bleeding = Extreme bleeding
