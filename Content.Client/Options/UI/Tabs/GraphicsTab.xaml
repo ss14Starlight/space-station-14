@@ -36,6 +36,10 @@
                     Name="SparksCheckBox"
                     Text="{Loc 'ui-options-sparks'}"
                     ToolTip="{Loc 'ui-options-sparks-tooltip'}" />
+                <CheckBox
+                    Name="HitscanPredictionCheckBox"
+                    Text="{Loc 'ui-options-hitscan-prediction'}"
+                    ToolTip="{Loc 'ui-options-hitscan-prediction-tooltip'}" />
                 <!--  Interface  -->
                 <Label StyleClasses="LabelKeyText" Text="{Loc 'ui-options-interface-label'}" />
                 <ui:OptionDropDown Name="DropDownUIScale" Title="{Loc 'ui-options-scale-label'}" />

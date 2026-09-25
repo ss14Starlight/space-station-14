@@ -52,6 +52,8 @@ public sealed partial class GunSpreadDefectSystem : EntitySystem
                 ent.Comp.MaxAngleDelta = sampled - gun.MaxAngle;
             }
 
+            Dirty(ent);
+
             // Trigger RefreshModifiers to apply the deltas immediately.
             // SharedGunSystem.OnMapInit may run before or after us, so we
             // always call it ourselves to ensure the modified values are set.
