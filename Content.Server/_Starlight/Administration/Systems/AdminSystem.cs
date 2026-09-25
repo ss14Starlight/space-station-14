@@ -1,8 +1,10 @@
 using System.Linq;
+using Content.Server.Administration.Logs;
 using Content.Server.StationEvents;
 using Content.Server.StationEvents.Components;
 using Content.Shared._Starlight.Administration.Events;
 using Content.Shared.Administration;
+using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -16,6 +18,7 @@ public sealed partial class AdminSystem
     [Dependency] private EventManagerSystem _eventManager = default!;
     [Dependency] private BasicStationEventSchedulerSystem _eventScheduler = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
 
     private static readonly TimeSpan StationEventsRequestInterval = TimeSpan.FromSeconds(0.75);
     private readonly Dictionary<NetUserId, TimeSpan> _lastStationEventsRequest = new();
@@ -54,12 +57,33 @@ public sealed partial class AdminSystem
                 _eventScheduler.TryRemoveScheduledEvent(ev.QueueId),
             StationEventQueueCommand.RunNow =>
                 _eventScheduler.TryRunScheduledEventNow(ev.QueueId),
+            StationEventQueueCommand.Force => _eventManager.RunEventById(ev.EventId),
             StationEventQueueCommand.EndActive => EndActiveStationEvent(ev.ActiveEvent),
             _ => false
         };
 
         if (changed)
+        {
+            LogStationEventCommand(ev, args.SenderSession);
             SendStationEvents(args.SenderSession);
+        }
+    }
+
+    private void LogStationEventCommand(StationEventQueueCommandEvent ev, ICommonSession session)
+    {
+        var action = ev.Command switch
+        {
+            StationEventQueueCommand.Schedule => $"scheduled station event {ev.EventId} in {ev.Seconds} seconds",
+            StationEventQueueCommand.Adjust => $"adjusted queued station event #{ev.QueueId} by {ev.Seconds} seconds",
+            StationEventQueueCommand.Remove => $"removed queued station event #{ev.QueueId}",
+            StationEventQueueCommand.RunNow => $"ran queued station event #{ev.QueueId} immediately",
+            StationEventQueueCommand.Force => $"forced station event {ev.EventId}",
+            StationEventQueueCommand.EndActive => $"ended active station event {ev.ActiveEvent}",
+            _ => throw new ArgumentOutOfRangeException()
+        };
+
+        _adminLog.Add(LogType.AdminCommands, LogImpact.Medium,
+            $"{session.Name} ({session.UserId}) {action}");
     }
 
     private bool EndActiveStationEvent(NetEntity netEntity)

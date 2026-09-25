@@ -50,14 +50,14 @@ public sealed partial class BasicStationEventSchedulerSystem
             if (component.PausedAt is not { } pausedAt)
                 return;
 
-            var frozen = _timing.CurTime - pausedAt;
             component.PausedAt = null;
 
-            if (frozen <= TimeSpan.Zero)
-                return;
-
             foreach (var entry in component.EventQueue)
-                entry.TriggerTime += frozen;
+            {
+                var frozen = _timing.CurTime - (entry.QueuedAt > pausedAt ? entry.QueuedAt : pausedAt);
+                if (frozen > TimeSpan.Zero)
+                    entry.TriggerTime += frozen;
+            }
         }
 
         /// <summary>Enumerates active basic event schedulers.</summary>

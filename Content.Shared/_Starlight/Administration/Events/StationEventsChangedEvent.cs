@@ -96,6 +96,7 @@ public enum StationEventQueueCommand
     Adjust,
     Remove,
     RunNow,
+    Force,
     EndActive
 }
 

@@ -422,9 +422,8 @@ public sealed partial class EventsTab : Control
         runButton.OnPressed += _ =>
         {
             _adminSystem.SendStationEventCommand(
-                StationEventQueueCommand.Schedule,
-                eventId: row.Info.Id,
-                seconds: 0f);
+                StationEventQueueCommand.Force,
+                eventId: row.Info.Id);
             RefreshSnapshot();
         };
         if (runButton.Disabled)
