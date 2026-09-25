@@ -2,6 +2,10 @@ pollen-shop-title = Pollen Shop
 pollen-perks-category-name = Pollen Perks
 pollen-absorbed = You absorbed {$plant} pollen. (+{$points} points)
 
+objective-issuer-pollen = Your Roots
+objective-condition-pollen-collection-title = Reconnect
+objective-condition-pollen-collection-desc = Collect pollen from: {$plants}
+
 pollen-tree-floral-name = Floral
 pollen-tree-bark-name = Bark
 pollen-tree-mushroom-name = Mushroom

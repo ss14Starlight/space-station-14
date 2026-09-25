@@ -22,6 +22,8 @@ using Content.Shared.Trigger.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
+using Content.Shared.Mind;
+using Content.Shared.Objectives.Components;
 
 namespace Content.Server._Starlight.Pollen.System;
 
@@ -46,6 +48,7 @@ public sealed partial class PollenShopSystem : EntitySystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
 
+    private static readonly EntProtoId<ObjectiveComponent> _pollenObjective = "PollenCollectionObjective";
     private static readonly EntProtoId _sporeCloudEmitter = "PollenSporeCloudEmitter";
     private static readonly EntProtoId _hardenStatusEffect = "PollenTreeBarkT2PassiveHardenEffect";
     private static readonly EntProtoId _pollenShopAction = "ActionOpenPollenShop";

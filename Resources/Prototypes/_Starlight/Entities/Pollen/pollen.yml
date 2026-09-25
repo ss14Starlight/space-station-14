@@ -1,4 +1,20 @@
 - type: entity
+  parent: BaseObjective
+  id: PollenCollectionObjective
+  components:
+  - type: Objective
+    difficulty: 1.5
+    issuer: objective-issuer-pollen
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_diona.rsi # TODO: dedicated objective icon
+      state: open_shop
+  - type: NumberObjective
+    min: 5
+    max: 5
+    title: objective-condition-pollen-collection-title
+  - type: PollenCollectionCondition
+
+- type: entity
   parent: TearGasSmokeWhite
   id: PollenSporeCloud
   categories: [ HideSpawnMenu ]

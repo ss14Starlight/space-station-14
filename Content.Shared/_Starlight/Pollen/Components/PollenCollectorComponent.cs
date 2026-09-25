@@ -31,4 +31,6 @@ public sealed partial class PollenCollectorComponent : Component
     public float InteractionChance = 1f;
 
     public TimeSpan NextCollection;
+
+    public bool ObjectiveGranted;
 }
