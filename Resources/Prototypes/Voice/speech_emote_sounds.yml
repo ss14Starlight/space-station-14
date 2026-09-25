@@ -150,36 +150,6 @@
     # Starlight-End
 
 - type: emoteSounds
-  id: UnisexReptilian
-  params:
-    variation: 0.125
-  sounds:
-    Scream:
-      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-    Honk:
-      collection: BikeHorn
-    Whistle:
-      collection: Whistles
-    Crying:
-      collection: FemaleCry
-    Weh:
-      collection: Weh
-    Hew:
-      collection: Hew
-    Gasp:
-      collection: FemaleGasp
-    DefaultDeathgasp:
-      collection: FemaleDeathGasp
-    # Starlight-Start
-    Liss:
-      collection: ReptilianHiss
-    Lurr:
-      path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
-    Rattle:
-      path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
-    # Starlight-End
-
-- type: emoteSounds
   id: MaleSlime
   sounds:
     Squish:
@@ -889,7 +859,3 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: WawaDeath
-    #region Starlight
-    ThavenGlub:
-      collection: ThavenGlub
-    #endregion Starlight

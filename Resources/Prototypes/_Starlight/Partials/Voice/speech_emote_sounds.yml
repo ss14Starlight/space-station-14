@@ -60,7 +60,31 @@
 
 - type: !PartialOnly emoteSounds
   id: UnisexReptilian
+  params:
+    variation: 0.125
   sounds:
+    Scream:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+    Honk:
+      collection: BikeHorn
+    Whistle:
+      collection: Whistles
+    Crying:
+      collection: FemaleCry
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
+    Liss:
+      collection: ReptilianHiss
+    Lurr:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_purr.ogg
+    Rattle:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
     ThavenGlub:
       path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
 
@@ -120,6 +144,12 @@
 
 - type: !PartialOnly emoteSounds
   id: FemaleVulpkanin
+  sounds:
+    ThavenGlub:
+      path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: !PartialOnly emoteSounds
+  id: Scurret
   sounds:
     ThavenGlub:
       path: /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
