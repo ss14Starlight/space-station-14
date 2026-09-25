@@ -46,6 +46,32 @@
         whitelist:
           tags:
             - CartridgeLightRifle
+  - type: GunToggleableAmmo
+    settings:
+    - damage: # HP
+        types:
+          Piercing: 25
+      armorPiercing: -1.00
+      ricochetChance: 0.15
+      pierceChance: 0.03
+      pierceDeviation: 0.05
+      pierceLevel: "Wood"
+      name: Hollow Point
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_borg.rsi
+        state: medtak-aid-module
+    - damage: # FMJ
+        types:
+          Piercing: 13
+      armorPiercing: 0.25
+      ricochetChance: 0.30
+      pierceChance: 0.69
+      pierceDeviation: 0.05
+      pierceLevel: "Metal"
+      name: Armour Piercing
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_borg.rsi
+        state: medtak-combat-module
   - type: HeldSpeedModifier
   - type: Gun
     soundGunshot:
