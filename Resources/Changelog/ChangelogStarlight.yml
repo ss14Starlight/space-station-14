@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Box) Added a k9 to security.
-    type: Add
-  id: 408470
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
   - message: (Box) Added solitary confinement to gen pop.
     type: Add
   id: 408471
@@ -2799,4 +2792,11 @@ Entries:
   id: 408869
   time: '2026-09-24T18:47:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6336
+- author: Johnny
+  changes:
+  - message: Changed the cost of the summon events spell to 2.
+    type: Tweak
+  id: 408870
+  time: '2026-09-25T05:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6324
 Order: -1
