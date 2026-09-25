@@ -73,7 +73,7 @@ public sealed partial class FlammableStainsSystem : EntitySystem
             return;
 
         // Non-linear scaling. lower flammability values are mild, high values ramp up BADLY
-        var extraStacks = args.Volume / 100f * (_stainTotalFlamabilityMultiplier * MathF.Pow(totalStainFlammability, 1.5f)) * _stainStackMultiplier;
+        var extraStacks = args.Volume / 100f * (_stainTotalFlamabilityMultiplier * MathF.Pow(totalStainFlammability, 1.5f)) * _stainStackMultiplier; // Starlight - Altered constant
         _flammable.AdjustFireStacks(ent.Owner, extraStacks, flammable);
     }
 
@@ -112,7 +112,7 @@ public sealed partial class FlammableStainsSystem : EntitySystem
             if (args.Temperature < ignitionTemp)
                 continue;
 
-            var fireStacks = (1f + (_stainTotalFlamabilityMultiplier * MathF.Pow(totalStainFlammability, 1.5f))) * _stainStackMultiplier;
+            var fireStacks = (1f + (_stainTotalFlamabilityMultiplier * MathF.Pow(totalStainFlammability, 1.5f))) * _stainStackMultiplier; // Starlight - Altered constant
             _flammable.AdjustFireStacks(wearer, fireStacks, flammable);
 
             var igniter = args.SparkSource ?? ent.Owner;
