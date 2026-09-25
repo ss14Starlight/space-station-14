@@ -94,7 +94,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
 
         DrawHeader(state, target.Value);
         DrawVitals(state, target.Value, damageable, deathValue);
-        DrawAbnormalities(state, target.Value);
+        DrawAbnormalities(state);
         DrawDamageBreakdown(sortedGroups, damagePerType, deathValue);
         DrawChemicals(state.Chemicals);
     }
@@ -349,7 +349,7 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
         return block;
     }
 
-    private void DrawAbnormalities(HealthAnalyzerUiState state, EntityUid target)
+    private void DrawAbnormalities(HealthAnalyzerUiState state)
     {
         var abnormalities = state.Extensions?.Abnormalities is { } supplied
             ? new List<HealthAnalyzerAbnormalityData>(supplied)

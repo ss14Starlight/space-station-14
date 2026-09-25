@@ -2,7 +2,6 @@ using Content.Shared._Starlight.Medical.HealthAnalyzer;
 
 namespace Content.Server._Starlight.Medical.HealthAnalyzer;
 
-
 /// <summary>
 /// Raised when the health analyzer collects additional information to display.
 /// </summary>

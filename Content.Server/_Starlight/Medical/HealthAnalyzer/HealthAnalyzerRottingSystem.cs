@@ -73,7 +73,6 @@ public sealed partial class RotHealthAnalyzerSystem : EntitySystem
             if (totalMinutes <= 1)
                 return Loc.GetString("starlight-health-analyzer-window-time-under-minute");
 
-
             return Loc.GetString("starlight-health-analyzer-window-time-in-minutes", ("minutes", totalMinutes));
         }
         else
