@@ -1,20 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Box) Added some more station radios and televisions.
-    type: Add
-  id: 408472
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
-  - message: (Box) Added a lot of toilet paper, hand sanitizer dispensers and hand dryer.
-    type: Add
-  id: 408473
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
   - message: (Box) Added mail access and mail lockers to the mailroom.
     type: Add
   id: 408474
@@ -2799,4 +2785,18 @@ Entries:
   id: 408871
   time: '2026-09-25T06:48:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6191
+- author: Light
+  changes:
+  - message: Polished the new health analyzer UI.
+    type: Fix
+  id: 408872
+  time: '2026-09-25T10:29:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6106
+- author: Light
+  changes:
+  - message: The health analyzer now displays open surgeries and incisions and catatonic / hollowed out state.
+    type: Add
+  id: 408873
+  time: '2026-09-25T10:29:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6106
 Order: -1
