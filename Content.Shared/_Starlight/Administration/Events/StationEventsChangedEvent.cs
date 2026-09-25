@@ -22,14 +22,6 @@ public sealed class StationEventData
     public float MinRemainingSeconds = -1f;
     public float MaxRemainingSeconds = -1f;
 
-    /// <summary>
-    ///     How many times this event has already run this round.
-    /// </summary>
-    /// <remarks>
-    ///     Shown alongside the weight because with repetition falloff enabled the weight is
-    ///     derived from this, and a decayed weight is otherwise unexplained.
-    /// </remarks>
-    public int Occurrences;
 }
 
 /// <summary>

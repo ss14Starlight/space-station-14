@@ -43,39 +43,12 @@ public sealed partial class EventsTab : Control
     private bool _hasScheduler;
     private EventSortMode _sortMode = EventSortMode.Weight;
 
-    /// <summary>
-    ///     Minutes typed by the admin, per event.
-    /// </summary>
-    /// <remarks>
-    ///     The ListContainer recycles its buttons and calls GenerateItem again on every
-    ///     refresh, so a row's LineEdit is rebuilt once per second. Without keeping the text
-    ///     here, whatever the admin typed was wiped back to the default before they could
-    ///     press Schedule.
-    /// </remarks>
     private readonly Dictionary<string, string> _delayInputs = new();
 
     private const string DefaultDelayMinutes = "5";
 
-    /// <summary>
-    ///     Trims a float down to something readable.
-    /// </summary>
-    /// <remarks>
-    ///     Round duration and weights are floats, and weights in particular come out of a
-    ///     power calculation, so printing them raw produced values like 1.2000000000476837.
-    ///     Two decimals is plenty for a panel and drops the floating point noise.
-    /// </remarks>
     private static string FormatNumber(float value) => value.ToString("0.##");
 
-    /// <summary>
-    ///     Wires a section header's toggle so the section can be folded away.
-    /// </summary>
-    /// <remarks>
-    ///     Collapsing clears VerticalExpand as well as hiding the body, otherwise a folded
-    ///     section would keep reserving its share of the height. The section's original expand
-    ///     setting is captured rather than assumed: only the catalogue stretches, while the
-    ///     active and queue lists size to their content, and forcing expand back on when
-    ///     reopening them would leave the empty grey gap this was meant to remove.
-    /// </remarks>
     private void SetUpSection(Control section, Control body, Button toggle)
     {
         var expandsWhenOpen = section.VerticalExpand;
@@ -96,9 +69,6 @@ public sealed partial class EventsTab : Control
         };
     }
 
-    /// <summary>
-    /// Constructs and initializes the administration events tab, setting up UI bindings and section controllers.
-    /// </summary>
     public EventsTab()
     {
         IoCManager.InjectDependencies(this);
@@ -134,7 +104,6 @@ public sealed partial class EventsTab : Control
             RefreshSnapshot();
     }
 
-    /// <inheritdoc/>
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
@@ -145,22 +114,15 @@ public sealed partial class EventsTab : Control
         _adminSystem.StationEventsChanged -= OnStationEventsChanged;
     }
 
-    /// <summary>
-    /// Handles station events snapshot updates received from the server.
-    /// </summary>
     private void OnStationEventsChanged(StationEventsChangedEvent snapshot)
     {
         Repopulate(snapshot);
     }
 
-    /// <inheritdoc/>
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
 
-        // The TabContainer keeps hidden tabs in the tree, so this keeps running even while
-        // the admin sits on another tab. Without this check, having the menu open on Players
-        // still requested the events snapshot once per second.
         if (!Visible)
             return;
 
@@ -171,9 +133,6 @@ public sealed partial class EventsTab : Control
         RefreshSnapshot();
     }
 
-    /// <summary>
-    /// Re-renders the event catalog, queue, active list, and status summary from the given snapshot.
-    /// </summary>
     private void Repopulate(StationEventsChangedEvent? snapshot)
     {
         if (snapshot == null)
@@ -184,8 +143,6 @@ public sealed partial class EventsTab : Control
         }
 
         _hasScheduler = snapshot.HasScheduler;
-        // Active first: what is happening right now is what an admin reacts to, and it is the
-        // shorter list. Upcoming is for planning and can sit below.
         PopulateActiveEvents(snapshot);
         PopulateQueue(snapshot);
 
@@ -215,18 +172,10 @@ public sealed partial class EventsTab : Control
         SearchList.PopulateList(rows);
     }
 
-    /// <summary>
-    /// Populates the upcoming queued events section.
-    /// </summary>
     private void PopulateQueue(StationEventsChangedEvent snapshot)
     {
         QueueList.RemoveAllChildren();
 
-        // Presets such as Survival use a ramping scheduler, which exposes no queue. Rather
-        // than implying everything is visible, say part of it is missing. This runs before the
-        // no-scheduler check on purpose: a round with only ramping schedulers has nothing this
-        // panel can queue into, and reporting that as "no scheduler" with no further comment
-        // would claim events are not running when they are.
         if (snapshot.UnreadableSchedulers > 0)
         {
             QueueList.AddChild(new Label
@@ -250,9 +199,6 @@ public sealed partial class EventsTab : Control
         foreach (var queued in snapshot.Queue)
         {
             var panel = CreatePanel(queued.Automatic ? Color.FromHex("#24384A") : Color.FromHex("#3D3523"));
-            // Text on top, controls underneath. Side by side, a long event name set the row's
-            // minimum width and the buttons were squeezed out of view one by one as the window
-            // narrowed, so the widest names lost their controls first.
             var row = new BoxContainer
             {
                 Orientation = BoxContainer.LayoutOrientation.Vertical,
@@ -273,7 +219,6 @@ public sealed partial class EventsTab : Control
                         : "administration-ui-events-tab-queue-manual",
                     ("event", HumanizeId(queued.EventId)),
                     ("id", queued.EventId)),
-                // Clipped rather than allowed to push the row wider than the tab.
                 ClipText = true
             });
             details.AddChild(new Label
@@ -282,8 +227,6 @@ public sealed partial class EventsTab : Control
                     ("time", FormatSeconds(queued.TriggerInSeconds))),
                 ModulateSelfOverride = Color.LightSteelBlue
             });
-            // Without this, a queue holding one event in 4 minutes and another in 43 reads
-            // as a bug.
             if (!string.IsNullOrEmpty(queued.Scheduler))
             {
                 details.AddChild(new Label
@@ -327,9 +270,6 @@ public sealed partial class EventsTab : Control
         }
     }
 
-    /// <summary>
-    /// Populates the list of currently running station events.
-    /// </summary>
     private void PopulateActiveEvents(StationEventsChangedEvent snapshot)
     {
         ActiveList.RemoveAllChildren();
@@ -405,9 +345,6 @@ public sealed partial class EventsTab : Control
         }
     }
 
-    /// <summary>
-    /// Helper to attach an action button targeting a queued event entry.
-    /// </summary>
     private void AddQueueButton(
         BoxContainer row,
         string text,
@@ -429,9 +366,6 @@ public sealed partial class EventsTab : Control
         row.AddChild(button);
     }
 
-    /// <summary>
-    /// Creates a styled flat panel container with the given background color.
-    /// </summary>
     private static PanelContainer CreatePanel(Color color)
     {
         return new PanelContainer
@@ -441,9 +375,6 @@ public sealed partial class EventsTab : Control
         };
     }
 
-    /// <summary>
-    /// Generates and binds the visual row for a station event catalog item.
-    /// </summary>
     private void GenerateItem(ListData data, ListContainerButton button)
     {
         if (data is not StationEventListData row)
@@ -488,8 +419,6 @@ public sealed partial class EventsTab : Control
             Text = Loc.GetString("administration-ui-events-tab-force"),
             Disabled = !_admin.CanCommand("addgamerule")
         };
-        // Same network path as Schedule, so the server applies the one AdminFlags.Fun check
-        // instead of this going out as a console command.
         runButton.OnPressed += _ =>
         {
             _adminSystem.SendStationEventCommand(
@@ -508,10 +437,8 @@ public sealed partial class EventsTab : Control
             ToolTip = Loc.GetString("administration-ui-events-tab-schedule-minutes-tooltip"),
             MinWidth = 52
         };
-        // Remembered per event so it survives the row being recycled.
         delayInput.OnTextChanged += changed => _delayInputs[row.Info.Id] = changed.Text;
 
-        // Nudging by a minute is the common case; typing is still there for anything else.
         void StepDelay(float delta)
         {
             if (!float.TryParse(delayInput.Text, out var current))
@@ -557,9 +484,6 @@ public sealed partial class EventsTab : Control
         if (!_hasScheduler)
             scheduleButton.ToolTip = Loc.GetString("administration-ui-events-tab-schedule-no-scheduler");
 
-        // The controls sit on their own row rather than beside the text: in a horizontal row
-        // they got squeezed to nothing as soon as the menu was narrow, leaving unusable
-        // slivers of button. Stacked, the layout holds at any width.
         var controls = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Horizontal,
@@ -582,9 +506,6 @@ public sealed partial class EventsTab : Control
         button.ToolTip = row.Info.Id;
     }
 
-    /// <summary>
-    /// Populates the sort options dropdown with all available sorting criteria.
-    /// </summary>
     private void PopulateSortOptions()
     {
         SortOptionButton.Clear();
@@ -599,17 +520,11 @@ public sealed partial class EventsTab : Control
         SortOptionButton.SelectId((int) _sortMode);
     }
 
-    /// <summary>
-    /// Adds an entry to the sort option dropdown.
-    /// </summary>
     private void AddSortOption(EventSortMode mode, string locId)
     {
         SortOptionButton.AddItem(Loc.GetString(locId), (int) mode);
     }
 
-    /// <summary>
-    /// Handles selecting a sort mode from the dropdown.
-    /// </summary>
     private void OnSortItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SortOptionButton.SelectId(args.Id);
@@ -617,9 +532,6 @@ public sealed partial class EventsTab : Control
         Repopulate(_adminSystem.StationEventsSnapshot);
     }
 
-    /// <summary>
-    /// Updates the text label on the sort direction toggle button.
-    /// </summary>
     private void UpdateSortDirectionText()
     {
         SortDirectionButton.Text = Loc.GetString(_sortAscending
@@ -627,9 +539,6 @@ public sealed partial class EventsTab : Control
             : "administration-ui-events-tab-sort-descending");
     }
 
-    /// <summary>
-    /// Sorts the list of station events according to the active sort mode and direction.
-    /// </summary>
     private List<StationEventData> SortEvents(List<StationEventData> events)
     {
         IOrderedEnumerable<StationEventData> ordered = _sortMode switch
@@ -649,9 +558,6 @@ public sealed partial class EventsTab : Control
             .ToList();
     }
 
-    /// <summary>
-    /// Orders a sequence by key taking into account the current ascending/descending setting.
-    /// </summary>
     private IOrderedEnumerable<StationEventData> Order<TKey>(
         IEnumerable<StationEventData> events,
         Func<StationEventData, TKey> selector)
@@ -662,9 +568,6 @@ public sealed partial class EventsTab : Control
             : events.OrderByDescending(selector);
     }
 
-    /// <summary>
-    /// Predicate for search bar filtering over event catalog rows.
-    /// </summary>
     private bool DataFilterCondition(string filter, ListData listData)
     {
         if (listData is not StationEventListData row)
@@ -679,18 +582,12 @@ public sealed partial class EventsTab : Control
         return row.FilteringString.Contains(filter, StringComparison.CurrentCultureIgnoreCase);
     }
 
-    /// <summary>
-    /// Manually requests an immediate station events snapshot update from the server.
-    /// </summary>
     private void RefreshSnapshot()
     {
         _refreshAccumulator = 0f;
         _adminSystem.RequestStationEvents();
     }
 
-    /// <summary>
-    /// Builds a searchable plain text representation of all event metadata for filtering.
-    /// </summary>
     private static string BuildFilterString(StationEventData ev)
     {
         return string.Join(" ", new[]
@@ -713,38 +610,20 @@ public sealed partial class EventsTab : Control
         });
     }
 
-    /// <summary>
-    /// Formats the scheduling requirements string (availability, players, start delay, cooldown, weight, occurrences).
-    /// </summary>
     private static string BuildSchedulingText(StationEventData info)
     {
-        var meta = new StringBuilder();
-        meta.Append(info.Available
-            ? Loc.GetString("administration-ui-events-tab-status-available")
-            : Loc.GetString("administration-ui-events-tab-status-unavailable"));
-        meta.Append(" | ");
-        meta.Append(Loc.GetString(
+        var status = Loc.GetString(info.Available
+            ? "administration-ui-events-tab-status-available"
+            : "administration-ui-events-tab-status-unavailable");
+        var details = Loc.GetString(
             "administration-ui-events-tab-meta",
             ("players", info.MinimumPlayers),
             ("start", info.EarliestStartMinutes),
             ("cooldown", info.ReoccurrenceDelayMinutes),
-            ("weight", FormatNumber(info.Weight))));
-
-        // Only worth showing once it has actually run: with repetition falloff the weight above
-        // is derived from this count, so a decayed weight would otherwise look arbitrary.
-        if (info.Occurrences > 0)
-        {
-            meta.Append(" | ");
-            meta.Append(Loc.GetString("administration-ui-events-tab-meta-occurrences",
-                ("count", info.Occurrences)));
-        }
-
-        return meta.ToString();
+            ("weight", FormatNumber(info.Weight)));
+        return $"{status} | {details}";
     }
 
-    /// <summary>
-    /// Formats the runtime state string (active, pending, remaining duration).
-    /// </summary>
     private static string BuildRuntimeText(StationEventData info)
     {
         var parts = new List<string>();
@@ -779,9 +658,6 @@ public sealed partial class EventsTab : Control
         return string.Join(" | ", parts);
     }
 
-    /// <summary>
-    /// Formats the duration string for an event prototype.
-    /// </summary>
     private static string BuildDurationValue(StationEventData info)
     {
         if (!HasValue(info.DurationSeconds))
@@ -797,9 +673,6 @@ public sealed partial class EventsTab : Control
         return FormatSeconds(info.MaxDurationSeconds);
     }
 
-    /// <summary>
-    /// Calculates a sort score based on event state (active > pending > available > unavailable).
-    /// </summary>
     private static int GetStateSortScore(StationEventData ev)
     {
         if (ev.ActiveCount > 0)
@@ -809,9 +682,6 @@ public sealed partial class EventsTab : Control
         return ev.Available ? 1 : 0;
     }
 
-    /// <summary>
-    /// Extracts the sortable duration in seconds for an event.
-    /// </summary>
     private static float GetDurationSortSeconds(StationEventData ev)
     {
         if (HasValue(ev.MaxDurationSeconds))
@@ -821,17 +691,11 @@ public sealed partial class EventsTab : Control
         return -1f;
     }
 
-    /// <summary>
-    /// Returns whether a duration or timestamp float contains a valid non-negative value.
-    /// </summary>
     private static bool HasValue(float seconds)
     {
         return seconds >= 0f;
     }
 
-    /// <summary>
-    /// Formats a seconds float into MM:SS or HH:MM:SS format.
-    /// </summary>
     private static string FormatSeconds(float seconds)
     {
         var clamped = Math.Max((int) Math.Ceiling(seconds), 0);
@@ -843,17 +707,11 @@ public sealed partial class EventsTab : Control
         return $"{(int) span.TotalMinutes}:{span.Seconds:D2}";
     }
 
-    /// <summary>
-    /// Formats seconds as an integer string for filter matching.
-    /// </summary>
     private static string FormatSecondsForFilter(float seconds)
     {
         return HasValue(seconds) ? seconds.ToString("F0") : string.Empty;
     }
 
-    /// <summary>
-    /// Converts a PascalCase or snake_case ID into a human-readable title string.
-    /// </summary>
     private static string HumanizeId(string id)
     {
         if (string.IsNullOrWhiteSpace(id))
@@ -873,7 +731,4 @@ public sealed partial class EventsTab : Control
     }
 }
 
-/// <summary>
-/// Data row representing a station event in the list container.
-/// </summary>
 public sealed record StationEventListData(StationEventData Info, Color BackgroundColor, string FilteringString) : ListData;

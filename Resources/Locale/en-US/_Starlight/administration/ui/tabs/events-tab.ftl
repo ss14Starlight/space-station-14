@@ -69,7 +69,3 @@ administration-ui-events-tab-schedule-minutes-tooltip = Delay in minutes before 
 administration-ui-events-tab-schedule-minus-tooltip = One minute sooner
 administration-ui-events-tab-schedule-plus-tooltip = One minute later
 administration-ui-events-tab-collapse-tooltip = Collapse or expand this section
-administration-ui-events-tab-meta-occurrences = { $count ->
-    [one] Ran { $count } time this round
-   *[other] Ran { $count } times this round
-}

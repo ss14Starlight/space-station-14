@@ -6,21 +6,16 @@ using Content.Server.Hands.Systems;
 using Content.Server.Mind;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Popups;
-// Starlight-start
-using Content.Server.StationEvents;
-using Content.Server.StationEvents.Components;
-// Starlight-end
 using Content.Server.StationRecords.Systems;
 // Cosmatic Drift Record System-start
 using Content.Server._CD.Records;
 // Cosmatic Drift Record System-end
 using Content.Shared.Administration;
 using Content.Shared.Administration.Events;
-using Content.Shared._Starlight.Administration.Events; // Starlight
+using Content.Shared._Starlight.Administration.Events;
 using Content.Shared.CCVar;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
-using Content.Shared.GameTicking.Components; // Starlight
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
@@ -42,7 +37,6 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing; // Starlight
 
 namespace Content.Server.Administration.Systems;
 
@@ -63,28 +57,9 @@ public sealed partial class AdminSystem : EntitySystem
     [Dependency] private SharedRoleSystem _role = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    // Starlight-start
-    [Dependency] private EventManagerSystem _eventManager = default!;
-    [Dependency] private BasicStationEventSchedulerSystem _eventScheduler = default!;
-    // Starlight-end
     [Dependency] private StationRecordsSystem _stationRecords = default!;
     [Dependency] private TransformSystem _transform = default!;
     [Dependency] private CharacterRecordsSystem _characterRecords = default!; // Cosmatic Drift Record System: erase-ban helper
-    [Dependency] private IGameTiming _timing = default!; // Starlight
-
-    // Starlight-start
-    /// <summary>
-    /// Shortest gap the server honours between snapshot requests from one admin.
-    /// </summary>
-    /// <remarks>
-    /// The client asks once a second and only while the tab is visible, but that is the
-    /// client restraining itself. Projecting every event prototype is not free, so a client
-    /// asking on every tick gets dropped here rather than trusted.
-    /// </remarks>
-    private static readonly TimeSpan StationEventsRequestInterval = TimeSpan.FromSeconds(0.75);
-
-    private readonly Dictionary<NetUserId, TimeSpan> _lastStationEventsRequest = new();
-    // Starlight-end
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -121,16 +96,14 @@ public sealed partial class AdminSystem : EntitySystem
 
         SubscribeLocalEvent<ActorComponent, EntityRenamedEvent>(OnPlayerRenamed);
         SubscribeLocalEvent<ActorComponent, IdentityChangedEvent>(OnIdentityChanged);
-        // Starlight-start
-        SubscribeNetworkEvent<RequestStationEventsEvent>(OnRequestStationEvents);
-        SubscribeNetworkEvent<StationEventQueueCommandEvent>(OnStationEventQueueCommand);
-        // Starlight-end
+        SubscribeNetworkEvent<RequestStationEventsEvent>(OnRequestStationEvents); // Starlight
+        SubscribeNetworkEvent<StationEventQueueCommandEvent>(OnStationEventQueueCommand); // Starlight
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
     {
         _roundActivePlayers.Clear();
-        _lastStationEventsRequest.Clear(); // Starlight
+        ClearStationEventsRequests(); // Starlight
 
         foreach (var (id, data) in _playerList)
         {
@@ -408,238 +381,6 @@ public sealed partial class AdminSystem : EntitySystem
         }
     }
 
-    // Starlight-start
-    /// <summary>
-    /// Handles requests from admins for a station events snapshot, rate-limited to avoid spam.
-    /// </summary>
-    private void OnRequestStationEvents(RequestStationEventsEvent ev, EntitySessionEventArgs args)
-    {
-        if (!_adminManager.HasAdminFlag(args.SenderSession, AdminFlags.Admin))
-            return;
-
-        var now = _timing.CurTime;
-        var user = args.SenderSession.UserId;
-        if (_lastStationEventsRequest.TryGetValue(user, out var last) &&
-            now - last < StationEventsRequestInterval)
-        {
-            return;
-        }
-
-        _lastStationEventsRequest[user] = now;
-        SendStationEvents(args.SenderSession);
-    }
-
-    /// <summary>
-    /// Handles admin queue commands such as scheduling, adjusting, removing, or running events.
-    /// </summary>
-    private void OnStationEventQueueCommand(StationEventQueueCommandEvent ev, EntitySessionEventArgs args)
-    {
-        if (!_adminManager.HasAdminFlag(args.SenderSession, AdminFlags.Fun))
-            return;
-
-        var changed = ev.Command switch
-        {
-            // A negative delay means the caller did not name one, and the scheduler picks its
-            // own. Clamping it to zero instead turned that into "run it now".
-            StationEventQueueCommand.Schedule =>
-                _eventScheduler.ScheduleEvent(ev.EventId, ev.Seconds < 0f ? null : ev.Seconds),
-            StationEventQueueCommand.Adjust =>
-                _eventScheduler.AdjustScheduledEvent(ev.QueueId, ev.Seconds),
-            StationEventQueueCommand.Remove =>
-                _eventScheduler.RemoveScheduledEvent(ev.QueueId),
-            StationEventQueueCommand.RunNow =>
-                _eventScheduler.RunScheduledEventNow(ev.QueueId),
-            StationEventQueueCommand.EndActive => EndActiveStationEvent(ev.ActiveEvent),
-            _ => false
-        };
-
-        if (changed)
-            SendStationEvents(args.SenderSession);
-    }
-
-    /// <summary>
-    /// Forcefully ends an active station event gamerule.
-    /// </summary>
-    private bool EndActiveStationEvent(NetEntity netEntity)
-    {
-        var uid = GetEntity(netEntity);
-        if (!Exists(uid) ||
-            !HasComp<StationEventComponent>(uid) ||
-            !_gameTicker.IsGameRuleActive(uid))
-        {
-            return false;
-        }
-
-        return _gameTicker.EndGameRule(uid);
-    }
-
-    /// <summary>
-    ///     Counts active schedulers the panel cannot read. Today that is the ramping one,
-    ///     which uses RampingStationEventSchedulerComponent instead of the basic one and so
-    ///     exposes no queue. Presets such as Survival and KesslerSyndrome use it, so in those
-    ///     rounds what is shown is not everything that will happen.
-    /// </summary>
-    private int CountUnreadableSchedulers()
-    {
-        var count = 0;
-        var query = EntityQueryEnumerator<RampingStationEventSchedulerComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out _, out var rule))
-        {
-            if (_gameTicker.IsGameRuleActive(uid, rule))
-                count++;
-        }
-
-        return count;
-    }
-
-    /// <summary>
-    /// Compiles and transmits a full station events state snapshot to the requesting admin session.
-    /// </summary>
-    private void SendStationEvents(ICommonSession session)
-    {
-        var available = _eventManager.AvailableEvents();
-        var occurrenceCounts = _eventManager.GetOccurrenceCounts();
-
-        var runtimeStates = new Dictionary<string, EventRuntimeState>();
-        var activeEvents = new List<ActiveStationEventData>();
-
-        foreach (var uid in _gameTicker.GetAddedGameRules())
-        {
-            if (MetaData(uid).EntityPrototype?.ID is not { } id ||
-                !TryComp(uid, out StationEventComponent? stationEvent) ||
-                HasComp<EndedGameRuleComponent>(uid))
-            {
-                continue;
-            }
-
-            if (!runtimeStates.TryGetValue(id, out var runtime))
-            {
-                runtime = new EventRuntimeState();
-                runtimeStates[id] = runtime;
-            }
-
-            if (_gameTicker.IsGameRuleActive(uid))
-            {
-                runtime.ActiveCount++;
-
-                var elapsed = 0f;
-                if (TryComp(uid, out GameRuleComponent? gameRule))
-                {
-                    elapsed = Math.Max((float) (_timing.CurTime - gameRule.ActivatedAt).TotalSeconds, 0f);
-                }
-
-                var duration = -1f;
-                var remaining = -1f;
-
-                if (stationEvent.EndTime is { } endTime)
-                {
-                    remaining = Math.Max((float) (endTime - _timing.CurTime).TotalSeconds, 0f);
-                    duration = elapsed + remaining;
-                    runtime.MinRemainingSeconds = runtime.MinRemainingSeconds < 0f
-                        ? remaining
-                        : Math.Min(runtime.MinRemainingSeconds, remaining);
-                    runtime.MaxRemainingSeconds = Math.Max(runtime.MaxRemainingSeconds, remaining);
-                }
-
-                activeEvents.Add(new ActiveStationEventData
-                {
-                    Entity = GetNetEntity(uid),
-                    EventId = id,
-                    ElapsedSeconds = elapsed,
-                    DurationSeconds = duration,
-                    RemainingSeconds = remaining
-                });
-
-                continue;
-            }
-
-            runtime.PendingCount++;
-
-            var nextStart = 0f;
-            DelayedStartRuleComponent? delayed = null;
-            if (TryComp(uid, out delayed) && delayed != null)
-                nextStart = Math.Max((float) (delayed.RuleStartTime - _timing.CurTime).TotalSeconds, 0f);
-
-            runtime.NextStartSeconds = runtime.NextStartSeconds < 0f
-                ? nextStart
-                : Math.Min(runtime.NextStartSeconds, nextStart);
-        }
-
-        var snapshot = new StationEventsChangedEvent
-        {
-            EventsEnabled = _eventManager.EventsEnabled,
-            PlayerCount = _playerManager.PlayerCount,
-            RoundDurationMinutes = (float) _gameTicker.RoundDuration().TotalMinutes,
-            HasScheduler = _eventScheduler.HasActiveScheduler(),
-            UnreadableSchedulers = CountUnreadableSchedulers(),
-            Queue = _eventScheduler.GetQueuedEvents()
-                .Select(queued => new ScheduledStationEventData
-                {
-                    Id = queued.Entry.Id,
-                    EventId = queued.Entry.EventId,
-                    TriggerInSeconds = Math.Max((float) (queued.Entry.TriggerTime - _timing.CurTime).TotalSeconds, 0f),
-                    TotalDelaySeconds = Math.Max((float) (queued.Entry.TriggerTime - queued.Entry.QueuedAt).TotalSeconds, 0f),
-                    Automatic = queued.Entry.Automatic,
-                    Scheduler = queued.Scheduler
-                })
-                .ToList(),
-            ActiveEvents = activeEvents
-                .OrderBy(active => active.RemainingSeconds < 0f ? float.MaxValue : active.RemainingSeconds)
-                .ThenBy(active => active.EventId)
-                .ToList(),
-            Events = _eventManager.AllEvents()
-                .OrderBy(pair => pair.Key.ID)
-                .Select(pair =>
-                {
-                    var runtime = runtimeStates.GetValueOrDefault(pair.Key.ID);
-                    var occurrences = occurrenceCounts.GetValueOrDefault(pair.Key.ID);
-
-                    return new StationEventData
-                    {
-                        Id = pair.Key.ID,
-                        Available = available.ContainsKey(pair.Key),
-                        MinimumPlayers = pair.Value.MinimumPlayers,
-                        EarliestStartMinutes = pair.Value.EarliestStart,
-                        ReoccurrenceDelayMinutes = pair.Value.ReoccurrenceDelay,
-                        // The effective weight, not the configured one: with repetition falloff
-                        // enabled these diverge, and the number that matters is the one selection
-                        // actually uses.
-                        Weight = _eventManager.GetEffectiveWeight(pair.Value, occurrences),
-                        Occurrences = occurrences,
-                        DurationSeconds = pair.Value.Duration is { } duration
-                            ? (float) duration.TotalSeconds
-                            : -1f,
-                        MaxDurationSeconds = pair.Value.MaxDuration is { } maxDuration
-                            ? (float) maxDuration.TotalSeconds
-                            : pair.Value.Duration is { } fixedDuration
-                                ? (float) fixedDuration.TotalSeconds
-                                : -1f,
-                        ActiveCount = runtime?.ActiveCount ?? 0,
-                        PendingCount = runtime?.PendingCount ?? 0,
-                        NextStartSeconds = runtime?.NextStartSeconds ?? -1f,
-                        MinRemainingSeconds = runtime?.MinRemainingSeconds ?? -1f,
-                        MaxRemainingSeconds = runtime?.MaxRemainingSeconds ?? -1f
-                    };
-                })
-                .ToList()
-        };
-
-        RaiseNetworkEvent(snapshot, session.Channel);
-    }
-
-    /// <summary>
-    /// Ephemeral runtime tracking metrics for an event prototype across active game rules.
-    /// </summary>
-    private sealed class EventRuntimeState
-    {
-        public int ActiveCount;
-        public int PendingCount;
-        public float NextStartSeconds = -1f;
-        public float MinRemainingSeconds = -1f;
-        public float MaxRemainingSeconds = -1f;
-    }
-
-    // Starlight-end
     /// <summary>
     ///     Erases a player from the round.
     ///     This removes them and any trace of them from the round, deleting their
