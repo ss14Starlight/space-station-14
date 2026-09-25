@@ -37,7 +37,9 @@ public sealed class TickerCommand : ToolshedCommand
         ctx.WriteLine("The round has been ended.");
     }
 
+    /// <summary>
     /// End round if it isn't ended already and start the restart timer. Will restart timer if already active.
+    /// </summary>
     [CommandImplementation("restartround")]
     public void RestartRound(IInvocationContext ctx, [Optional] [DefaultParameterValue(-1f)] float countdownTime)
     {
