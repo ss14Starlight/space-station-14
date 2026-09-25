@@ -13,7 +13,9 @@ public static class CommandHelpers
         return true;
     }
 
+    /// <summary>
     /// Get the player name associated with the context's session, or "Server" if null.
+    /// </summary>
     public static string PlayerNameOrServer(ICommonSession? session) =>
         session is null ? "Server" : session.Name;
 
