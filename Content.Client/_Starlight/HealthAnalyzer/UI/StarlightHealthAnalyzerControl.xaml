@@ -62,13 +62,14 @@
     </BoxContainer>
 
     <Label Name="AbnormalitiesHeader" Text="{Loc 'starlight-health-analyzer-window-section-abnormalities'}" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
-    <BoxContainer
+    <GridContainer
         Name="AbnormalitiesContainer"
         Visible="False"
         Margin="8"
-        Orientation="Vertical"
-        HorizontalExpand="True">
-    </BoxContainer>
+        Columns="2"
+        HSeparationOverride="4"
+        VSeparationOverride="16">
+    </GridContainer>
 
     <Label Name="ChemicalsHeader" Text="{Loc 'starlight-health-analyzer-window-section-chemicals'}" Align="Center" StyleClasses="LabelKeyText" Margin="0 8 0 0" />
     <BoxContainer

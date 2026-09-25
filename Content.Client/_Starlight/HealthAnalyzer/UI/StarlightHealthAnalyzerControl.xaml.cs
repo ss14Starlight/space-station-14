@@ -381,7 +381,6 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
                 Orientation = LayoutOrientation.Horizontal,
                 HorizontalExpand = true,
                 SeparationOverride = 6,
-                Margin = new Thickness(0, 2),
             };
 
             var accent = new PanelContainer
@@ -404,7 +403,6 @@ public sealed partial class StarlightHealthAnalyzerControl : BoxContainer
             row.AddChild(description);
             AbnormalitiesContainer.AddChild(row);
         }
-
     }
 
     private void DrawChemicals(List<(string ReagentId, FixedPoint2 Quantity, FixedPoint2 StomachQuantity)>? chemicals)
