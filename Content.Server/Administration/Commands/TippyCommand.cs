@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Administration.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Tips;
 using Robust.Server.Player;
@@ -13,11 +14,21 @@ public sealed partial class TippyCommand : LocalizedEntityCommands
     [Dependency] private SharedTipsSystem _tips = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IPlayerManager _player = default!;
+    #region Starlight
+    [Dependency] private IEntitySystemManager _entSysMan = default!;
+
+    private AutoDiscordLogSystem _autoLog = default!;
+    #endregion
 
     public override string Command => "tippy";
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        #region Starlight
+        if (_autoLog == null)
+            _entSysMan.TryGetEntitySystem(out _autoLog);
+        #endregion
+
         if (args.Length < 2)
         {
             shell.WriteLine(Loc.GetString("cmd-tippy-help"));
@@ -62,6 +73,8 @@ public sealed partial class TippyCommand : LocalizedEntityCommands
 
         if (args.Length > 5 && float.TryParse(args[5], out var parsedWaddleInterval))
             waddleInterval = parsedWaddleInterval;
+
+        _autoLog?.LogToDiscord(Loc.GetString("autolog-tippy", ("message", msg), ("prototype", prototype ?? "unknown")), shell.Player?.Name ?? "unknown"); //Starlight
 
         if (targetSession != null) // send to specified player
             _tips.SendTippy(targetSession, msg, prototype, speakTime, slideTime, waddleInterval);

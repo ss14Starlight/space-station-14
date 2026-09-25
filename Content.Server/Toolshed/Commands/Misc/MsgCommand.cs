@@ -78,7 +78,7 @@ public sealed partial class MsgCommand : ToolshedCommand
     }
 
     [CommandImplementation("tippy")]
-    public IEnumerable<EntityUid> Tippy([PipedArgument] IEnumerable<EntityUid> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval)
+    public IEnumerable<EntityUid> Tippy(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval)
     {
         _tips ??= GetSys<TipsSystem>();
         _autoLog ??= GetSys<AutoDiscordLogSystem>(); //Starlight
@@ -92,7 +92,7 @@ public sealed partial class MsgCommand : ToolshedCommand
 
             yield return ent;
         }
-        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype))); //Starlight
+        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype)), ctx.Session?.Name ?? "unknown"); //Starlight
     }
 
     [CommandImplementation("tippy")]
