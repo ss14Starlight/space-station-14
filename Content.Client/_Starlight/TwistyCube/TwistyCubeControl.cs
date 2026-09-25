@@ -102,7 +102,6 @@ public sealed partial class TwistyCubeControl : Control
         DrawPart(handle, "kbr-3", CubeState.BackBottomRight.Side3);
     }
 
-
     private Texture? TryGetRsiFrame(ResPath rsiPath, string stateName)
     {
         if (!_resourceCache.TryGetResource<RSIResource>(SpriteSpecifierSerializer.TextureRoot / rsiPath, out var rsiRes))
