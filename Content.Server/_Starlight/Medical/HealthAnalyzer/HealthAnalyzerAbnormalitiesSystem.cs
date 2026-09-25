@@ -12,7 +12,7 @@ using Content.Shared.Mind.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.Medical;
+namespace Content.Server._Starlight.Medical.HealthAnalyzer;
 
 /// <summary>
 /// Adds patient conditions to the analyzer UI state.

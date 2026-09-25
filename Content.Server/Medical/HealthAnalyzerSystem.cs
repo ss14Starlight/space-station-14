@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server._Starlight.Medical;
 using Content.Server.Chat.Systems;
 using Content.Server.Medical.Components;
 using Content.Shared.Body.Components;
@@ -34,6 +33,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Server._Starlight.Medical.HealthAnalyzer;
 using Content.Shared._Starlight.Medical.HealthAnalyzer;
 using Content.Shared.Chemistry.Reagent;
 

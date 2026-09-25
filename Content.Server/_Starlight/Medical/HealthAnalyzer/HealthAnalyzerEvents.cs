@@ -1,6 +1,6 @@
 using Content.Shared._Starlight.Medical.HealthAnalyzer;
 
-namespace Content.Server._Starlight.Medical;
+namespace Content.Server._Starlight.Medical.HealthAnalyzer;
 
 
 /// <summary>

@@ -2,7 +2,7 @@ using Content.Shared._Starlight.Medical.HealthAnalyzer;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Mobs.Systems;
 
-namespace Content.Server._Starlight.Medical;
+namespace Content.Server._Starlight.Medical.HealthAnalyzer;
 
 public sealed partial class RotHealthAnalyzerSystem : EntitySystem
 {
