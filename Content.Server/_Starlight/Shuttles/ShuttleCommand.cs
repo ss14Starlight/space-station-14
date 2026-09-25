@@ -75,7 +75,9 @@ public sealed partial class ShuttleCommand : ToolshedCommand
         ctx.WriteLine($"Delayed shuttle arrival by {seconds} seconds.");
     }
 
+    /// <summary>
     /// Instantly dock the emergency shuttle.
+    /// </summary>
     [AdminCommand(AdminFlags.Fun)]
     [CommandImplementation("dockemergencyshuttle")]
     public void DockEmergencyShuttle(IInvocationContext ctx)
