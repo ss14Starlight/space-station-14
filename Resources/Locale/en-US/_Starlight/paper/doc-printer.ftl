@@ -1031,7 +1031,8 @@ doc-text-printer-mech-authorization-form =
     I, [bolditalic][color=#0000ff] [signature] [/color][/bolditalic], hereby approve the creation of the following mech.
 
     Class of the Mech:[color=#0000ff] [form] [/color]
-    Authorized person:[color=#0000ff] [signature] [/color] [italic][color=#a9a9a9]
+    Authorized person:[color=#0000ff] [signature] [/color]
+    Reason for Authorization:[color=#0000ff] [form] [/color] [italic][color=#a9a9a9]
 
     Mech authorization forms require a stamp from the RD, or the Captain.
 
