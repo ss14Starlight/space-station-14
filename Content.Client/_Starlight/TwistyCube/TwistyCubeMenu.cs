@@ -18,63 +18,51 @@ public sealed class TwistyCubeMenu : DefaultWindow
         var grid = new GridContainer { Rows = 2 };
         var buttonGrid = new GridContainer { Columns = 6 };
 
-        var fcwButton = new Button { HorizontalExpand = true };
-        fcwButton.Text = Loc.GetString("twistycube-action-front-cw");
+        var fcwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-front-cw") };
         fcwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.FrontClockwise);
         buttonGrid.AddChild(fcwButton);
 
-        var fccwButton = new Button { HorizontalExpand = true };
-        fccwButton.Text = Loc.GetString("twistycube-action-front-ccw");
+        var fccwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-front-ccw") };
         fccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.FrontCounterClockwise);
         buttonGrid.AddChild(fccwButton);
 
-        var lcwButton = new Button { HorizontalExpand = true };
-        lcwButton.Text = Loc.GetString("twistycube-action-left-cw");
+        var lcwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-left-cw") };
         lcwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.LeftClockwise);
         buttonGrid.AddChild(lcwButton);
 
-        var lccwButton = new Button { HorizontalExpand = true };
-        lccwButton.Text = Loc.GetString("twistycube-action-left-ccw");
+        var lccwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-left-ccw") };
         lccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.LeftCounterClockwise);
         buttonGrid.AddChild(lccwButton);
 
-        var tcwButton = new Button { HorizontalExpand = true };
-        tcwButton.Text = Loc.GetString("twistycube-action-top-cw");
+        var tcwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-top-cw") };
         tcwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.TopClockwise);
         buttonGrid.AddChild(tcwButton);
 
-        var tccwButton = new Button { HorizontalExpand = true };
-        tccwButton.Text = Loc.GetString("twistycube-action-top-ccw");
+        var tccwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-top-ccw") };
         tccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.TopCounterClockwise);
         buttonGrid.AddChild(tccwButton);
 
-        var kcwButton = new Button { HorizontalExpand = true };
-        kcwButton.Text = Loc.GetString("twistycube-action-back-cw");
+        var kcwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-back-cw") };
         kcwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.BackClockwise);
         buttonGrid.AddChild(kcwButton);
 
-        var kccwButton = new Button { HorizontalExpand = true };
-        kccwButton.Text = Loc.GetString("twistycube-action-back-ccw");
+        var kccwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-back-ccw") };
         kccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.BackCounterClockwise);
         buttonGrid.AddChild(kccwButton);
 
-        var rcwButton = new Button { HorizontalExpand = true };
-        rcwButton.Text = Loc.GetString("twistycube-action-right-cw");
+        var rcwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-right-cw") };
         rcwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.RightClockwise);
         buttonGrid.AddChild(rcwButton);
 
-        var rccwButton = new Button { HorizontalExpand = true };
-        rccwButton.Text = Loc.GetString("twistycube-action-right-ccw");
+        var rccwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-right-ccw") };
         rccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.RightCounterClockwise);
         buttonGrid.AddChild(rccwButton);
 
-        var bcwButton = new Button { HorizontalExpand = true };
-        bcwButton.Text = Loc.GetString("twistycube-action-bottom-cw");
+        var bcwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-bottom-cw") };
         bcwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.BottomClockwise);
         buttonGrid.AddChild(bcwButton);
 
-        var bccwButton = new Button { HorizontalExpand = true };
-        bccwButton.Text = Loc.GetString("twistycube-action-bottom-ccw");
+        var bccwButton = new Button { HorizontalExpand = true, Text = Loc.GetString("twistycube-action-bottom-ccw") };
         bccwButton.OnPressed += _ => OnAction?.Invoke(TwistyCubeAction.BottomCounterClockwise);
         buttonGrid.AddChild(bccwButton);
 
@@ -89,8 +77,5 @@ public sealed class TwistyCubeMenu : DefaultWindow
     /// Updates the state of the menu to the given state.
     /// </summary>
     /// <param name="state">The state to update the menu with</param>
-    public void UpdateState(TwistyCubeState state)
-    {
-        _control?.CubeState = state;
-    }
+    public void UpdateState(TwistyCubeState state) => _control?.CubeState = state;
 }
