@@ -43,4 +43,8 @@ cryo-pod-window-eject-patient = Eject patient
 
 cryo-pod-window-health-no-damage = No damage detected
 
-
+# Starlight start
+cryo-pod-window-checklist-pressure-bad = Not pressurized
+cryo-pod-window-checklist-chemicals-bad = No chemicals are available
+cryo-pod-window-checklist-temperature-bad = Temperature too high
+# Starlight end
