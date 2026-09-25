@@ -1,10 +1,9 @@
-using Content.Shared._Starlight.TwistyCube;
-
-namespace Content.Client._Starlight.TwistyCube;
-
 using System.Numerics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using Content.Shared._Starlight.TwistyCube;
+
+namespace Content.Client._Starlight.TwistyCube;
 
 public sealed class TwistyCubeMenu : DefaultWindow
 {
