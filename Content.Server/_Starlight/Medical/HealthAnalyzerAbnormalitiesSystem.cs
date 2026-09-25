@@ -64,8 +64,7 @@ public sealed partial class HealthAnalyzerAbnormalitiesSystem : EntitySystem
 
     private bool HasMissingOrgan(EntityUid patient, BodyComponent body)
     {
-        if (body.Prototype is not { } prototypeId || !_prototypes.TryIndex(prototypeId, out var prototype)
-                                                  || _body.GetRootPartOrNull(patient, body) is not { } root)
+        if (body.Prototype is not { } prototypeId || !_prototypes.TryIndex(prototypeId, out var prototype) || _body.GetRootPartOrNull(patient, body) is not { } root)
             return false;
 
         return HasMissingOrgan(root.Entity, root.BodyPart, prototype, prototype.Root);

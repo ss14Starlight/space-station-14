@@ -28,7 +28,7 @@ public sealed partial class CryoPodWindow : FancyWindow
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
-        HealthAnalyzer.TemperatureInKelvins = true;
+        HealthAnalyzer.TemperatureInKelvins = true;  // Starlight
         EjectPatientButton.OnPressed += _ => OnEjectPatientPressed?.Invoke();
         EjectBeakerButton.OnPressed += _ => OnEjectBeakerPressed?.Invoke();
         Inject1.OnPressed += _ => OnInjectPressed?.Invoke(1);
