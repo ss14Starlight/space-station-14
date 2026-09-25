@@ -14,9 +14,7 @@
   - MedicalDoctorBackpack
   - MedicalDoctorSatchel
   - MedicalDoctorDuffel
-  - LeatherSatchel # starlight start
-  - StarBackpack
-  - StarSatchel # starlight end
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: MedicalShoes
@@ -225,9 +223,7 @@
   - SeniorChemistBackpack # Starlight
   - SeniorChemistSatchel # Starlight
   - SeniorChemistDuffel # Starlight
-  - LeatherSatchel # starlight start
-  - StarBackpack
-  - StarSatchel # starlight end
+  - LeatherSatchel # starlight
 
 #- type: loadoutGroup
 #  id: ChemistJobTrinkets
