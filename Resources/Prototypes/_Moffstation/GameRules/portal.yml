@@ -9,7 +9,7 @@
     weight: 5
     duration: 30
     earliestStart: 20
-    reoccurrenceDelay: 20
+    maxOccurrences: 1 # Rare treat, not reoccurance
     minimumPlayers: 30
   - type: RandomSpawnRule
     prototype: HellPortal
