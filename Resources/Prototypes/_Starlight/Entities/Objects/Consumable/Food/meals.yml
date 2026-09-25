@@ -2,8 +2,9 @@
   name: Volcanic explosion
   parent: [ FoodMealBase, BaseMajorContraband ]
   id: FoodCookedLizardPlate
-  description: An art piece showing the demise of a forest
+  description: An art piece showing the demise of a forest.
   components:
+    - type: Citrus
     - type: FlavorProfile
       flavors:
         - meaty
@@ -35,7 +36,7 @@
   name: Kentucky fried felionoid
   parent: [ FoodMealBase, BaseMajorContraband ]
   id: FoodFriedfelionoid
-  description: An old dish modernized to fit new trends
+  description: An old dish modernized to fit new trends.
   components:
     - type: FlavorProfile
       flavors:
@@ -210,7 +211,7 @@
   parent: [FoodNoodlesBase, BaseMajorContraband]
   id: FoodCookedShadekinCore
   name: core spaghetti
-  description: An edible representation of your victory
+  description: An edible representation of your victory.
   components:
   - type: Item
     storedOffset: 0,-4
@@ -244,7 +245,7 @@
   name: pelmeni
   parent: FoodMealBase
   id: FoodPelmeni
-  description: A delicious Russian Dumpling, made with love
+  description: A delicious Russian Dumpling, made with love.
   components:
     - type: FlavorProfile
       flavors:
@@ -274,7 +275,7 @@
   name: empanadas
   parent: FoodMealBase
   id: FoodEmpanadas
-  description: Just like mama used to make
+  description: Just like mama used to make.
   components:
     - type: FlavorProfile
       flavors:
@@ -335,7 +336,7 @@
   name: karelian pastries
   parent: FoodMealBase
   id: FoodKarelianPastries
-  description: Actually named karjalanpiirakka, a traditional food from old world Finland. Kind of odd, but filling and delicious
+  description: Actually named karjalanpiirakka, a traditional food from old world Finland. Kind of odd, but filling and delicious.
   components:
     - type: FlavorProfile
       flavors:
