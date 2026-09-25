@@ -187,9 +187,9 @@ public sealed partial class CryoPodWindow : FancyWindow
                 && (lowestTempRequirement != null || msg.GasMix.Temperature < fallbackTemperatureRequirement));
         var hasChemicals = (hasBeaker && !isBeakerEmpty);
 
-        UpdateChecklistItem(PressureCheck, Loc.GetString("cryo-pod-window-checklist-pressure"), hasCorrectPressure);
-        UpdateChecklistItem(ChemicalsCheck, Loc.GetString("cryo-pod-window-checklist-chemicals"), hasChemicals);
-        UpdateChecklistItem(TemperatureCheck, Loc.GetString("cryo-pod-window-checklist-temperature"), hasTemperatureCheck);
+        UpdateChecklistItem(PressureCheck, "cryo-pod-window-checklist-pressure", hasCorrectPressure);        // Starlight
+        UpdateChecklistItem(ChemicalsCheck, "cryo-pod-window-checklist-chemicals", hasChemicals);            // Starlight
+        UpdateChecklistItem(TemperatureCheck, "cryo-pod-window-checklist-temperature", hasTemperatureCheck); // Starlight
 
         var isReady = (hasCorrectPressure && hasChemicals && hasTemperatureCheck);
         var isCooling = (lowestTempRequirement != null && hasPatient
@@ -205,7 +205,7 @@ public sealed partial class CryoPodWindow : FancyWindow
 
     private void UpdateChecklistItem(Label label, string text, bool isOkay)
     {
-        label.Text = (isOkay ? text : Loc.GetString("cryo-pod-window-checklist-fail", ("item", text)));
+        label.Text = (isOkay ? Loc.GetString(text) : Loc.GetString($"{text}-bad")); // Starlight: nuke emdash
         label.FontColorOverride = (isOkay ? null : Color.Orange);
     }
 
