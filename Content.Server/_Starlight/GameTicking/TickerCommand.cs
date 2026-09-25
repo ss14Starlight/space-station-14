@@ -65,7 +65,9 @@ public sealed class TickerCommand : ToolshedCommand
         ctx.WriteLine("The timer has been started.");
     }
 
+    /// <summary>
     /// Instantly end and restart the round, returning to lobby.
+    /// </summary>
     [CommandImplementation("restartroundnow")]
     public void RestartRoundNow(IInvocationContext ctx)
     {
