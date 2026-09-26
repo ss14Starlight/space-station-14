@@ -87,19 +87,19 @@ spellbook-annihilation-name = Great rune of annihilation
 spellbook-annihilation-desc = Materialise your bottomless malice in a rune that will annihilate anything within it, you are immune to it.
 
 spellbook-fogcloud-name = Fog Cloud
-spellbook-fogcloud-desc = Summon a fog cloud, obstructing vision and slowly spreading by itself.
+spellbook-fogcloud-desc = Summon a fog cloud that obstructs vision and slowly spreads on its own.
 
 spellbook-harmcurse-name = Curse of Harm
-spellbook-harmcurse-desc = Summon an hex totem that will shoot anyone within range.
+spellbook-harmcurse-desc = Summon a hex totem that shoots anyone within range.
 
 spellbook-gravityrune-name = Rune of gravity
-spellbook-gravityrune-desc = Summon a rune that will pull anything nearby towards it, dont stand close!
+spellbook-gravityrune-desc = Summon a rune that will pull anything nearby towards it, do not stand close!
 
 spellbook-slowcurse-name = Curse of slow
-spellbook-slowcurse-desc = Summon an hex totem that will continuously spawns soul webs around it, soulmancer such as yourself are immune to it.
+spellbook-slowcurse-desc = Summon a hex totem that continuously spawns soul webs around it. Soulmancers such as yourself are immune to them.
 
 spellbook-shadowjaunt-name = Shadow jaunt
-spellbook-shadowjaunt-desc = Take on an incorporal shadow form and pass through walls!
+spellbook-shadowjaunt-desc = Take on an incorporeal shadow form and pass through walls!
 
 spellbook-shadowboon-name = Shadow boon
 spellbook-shadowboon-desc = A set of enchantments for a soulmancer to use before battle.

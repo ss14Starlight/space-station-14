@@ -118,7 +118,7 @@
   parent: BaseRuneAction
   id: ActionFogCloud
   name: Summon Fog
-  description: Summons a qmall cloud of shadow fog (10 seconds cooldown).
+  description: Summons a small cloud of shadow fog (10 seconds cooldown).
   components:
   - type: Action
     useDelay: 10
@@ -140,7 +140,7 @@
   parent: BaseRuneAction
   id: ActionSummonHarmCurse
   name: Summon curse of harming
-  description: Summons an hex that will shoot anyone it sees with deadly poison (100 seconds cooldown).
+  description: Summons a hex that will shoot anyone it sees with deadly poison (100 seconds cooldown).
   components:
   - type: Action
     useDelay: 100
@@ -184,7 +184,7 @@
   parent: BaseRuneAction
   id: ActionSummonSlowCurse
   name: Summon curse of slowness
-  description: Summon an hex totem that will continuously spawns soul webs around it, soulmancers are immune to it (45 seconds cooldown).
+  description: Summon a hex totem that continuously spawns soul webs around it. Soulmancers are immune to them (45 seconds cooldown).
   components:
   - type: Action
     useDelay: 45

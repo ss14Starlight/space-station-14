@@ -201,7 +201,7 @@
 - type: entity
   parent:  ClothingHeadHelmetsoftsuitWizardFrost
   id: ClothingHeadHelmetsoftsuitWizardDark
-  name: wizard cryomancer hood
+  name: wizard dark hood
   description: A hood of ancient cloth, the shadow within seems bottomless.
   components:
   - type: Sprite

@@ -2,7 +2,7 @@
   parent: BaseWeaponBallisticTurret
   id: TurretHarmCurse
   name: Hex of harming
-  description: A hatefull magic fetish, it's only purpose is to maim those it sees.
+  description: A hateful magic fetish, its only purpose is to maim those it sees.
   components:
   - type: NpcFactionMember
     factions:
