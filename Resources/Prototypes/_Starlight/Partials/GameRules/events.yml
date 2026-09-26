@@ -1,0 +1,47 @@
+- type: !PartialOnly entity
+  id: ClosetSkeleton
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false
+
+- type: !PartialOnly entity
+  id: DragonSpawn
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false
+
+- type: !PartialOnly entity
+  id: NinjaSpawn
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false
+
+- type: !PartialOnly entity
+  id: ParadoxCloneSpawn
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false
+
+- type: !PartialOnly entity
+  id: RevenantSpawn
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false
+
+- type: !PartialOnly entity
+  id: WizardSpawn
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false
+
+- type: !PartialOnly entity
+  id: LoneOpsSpawn
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false
+
+- type: !PartialOnly entity
+  id: BaseDerelictCyborgSpawn
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false

@@ -1,3 +1,4 @@
+using Robust.Shared.Console;
 using Robust.Shared.Toolshed;
 
 namespace Content.Shared._Starlight.Commands;
@@ -8,10 +9,16 @@ public static class CommandMarkup
     public static void Error(IInvocationContext ctx, string message) =>
         ctx.WriteMarkup($"[color=red]{message}[/color]");
 
+    public static void Error(IConsoleShell ctx, string message) =>
+        ctx.WriteMarkup($"[color=red]{message}[/color]");
+
     public static void Warn(IInvocationContext ctx, string message) =>
         ctx.WriteMarkup($"[color=gold]{message}[/color]");
 
+    public static void Warn(IConsoleShell ctx, string message) =>
+        ctx.WriteMarkup($"[color=gold]{message}[/color]");
+
     /// Highlight section of text
-    public static string Highlight(IInvocationContext ctx, string text, Color? color = null, bool spaced = false) =>
+    public static string Highlight(string text, Color? color = null, bool spaced = false) =>
         $"{(spaced ? " " : "")}[color={color?.ToHex() ?? Color.Magenta.ToHex()}]{text}[/color]{(spaced ? " " : "")}";
 }

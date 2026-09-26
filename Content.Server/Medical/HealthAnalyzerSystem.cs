@@ -33,7 +33,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server._Starlight.Medical.Body.Systems;
-using Content.Shared._Starlight.Medical;
+using Content.Server._Starlight.Medical.HealthAnalyzer;
+using Content.Shared._Starlight.Medical.HealthAnalyzer;
 using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Medical;
@@ -388,6 +389,16 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             foreach (var (reagentId, amounts) in chemicalsDict)
                 chemicals.Add((reagentId, amounts.Blood, amounts.Stomach));
         }
+
+        // Analyzer extensions
+        var extensionsEv = new CollectHealthAnalyzerExtensionsEvent();
+        RaiseLocalEvent(entity, ref extensionsEv);
+
+        var extensions = new HealthAnalyzerExtensions
+        {
+            Vitals = extensionsEv.Vitals, Abnormalities = extensionsEv.Abnormalities
+        };
+
         // Starlight end
 
         return new HealthAnalyzerUiState(
@@ -399,7 +410,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             null,
             bleeding,
             unrevivable,
-            chemicals // Starlight - merged bloodstream and stomach chemicals
+            chemicals, // Starlight - merged bloodstream and stomach chemicals
+            extensions // Starlight-edit - health analyzer extensions
         );
     }
 
@@ -443,7 +455,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             status = HealthAnalyzerFormatting.GetStatusText(mobStateComponent.CurrentState);
 
         var damageable = Comp<DamageableComponent>(patient);
-        IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
         var groupedInjuries = damageable.DamagePerGroup
             .OrderBy(group => HealthAnalyzerFormatting.GetDamageGroupSortKey(group.Key))
             .ThenBy(group => group.Key)
@@ -481,7 +493,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
     private HealthAnalyzerDamageGroupSnapshot? BuildDamageGroupSnapshot(
         string damageGroupId,
         FixedPoint2 damageAmount,
-        IReadOnlyDictionary<string, FixedPoint2> damagePerType)
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damagePerType)
     {
         if (!_prototypeManager.TryIndex<DamageGroupPrototype>(damageGroupId, out var groupPrototype))
             return null;
@@ -492,7 +504,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             if (!damagePerType.TryGetValue(typeId, out var typeAmount) || typeAmount <= 0)
                 continue;
 
-            string localizedType = _prototypeManager.TryIndex<DamageTypePrototype>(typeId, out var typePrototype)
+            string localizedType = _prototypeManager.TryIndex(typeId, out var typePrototype)
                 ? typePrototype.LocalizedName
                 : typeId.ToString();
 
