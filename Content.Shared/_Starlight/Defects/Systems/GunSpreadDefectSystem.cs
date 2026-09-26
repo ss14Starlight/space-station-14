@@ -18,17 +18,7 @@ public sealed partial class GunSpreadDefectSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedGunSystem _gunSystem = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<GunSpreadDefectComponent, MapInitEvent>(OnMapInit,
-            after: new[] { typeof(DefectSystem) });
-        // The sampled angles replace the unwielded spread, so they must be applied before the wield dividers.
-        SubscribeLocalEvent<GunSpreadDefectComponent, GunRefreshModifiersEvent>(OnRefreshModifiers,
-            before: new[] { typeof(SharedWieldableSystem) });
-    }
-
+    [SubscribeLocalEvent(after: new[] { typeof(DefectSystem) })]
     private void OnMapInit(Entity<GunSpreadDefectComponent> ent, ref MapInitEvent args)
     {
         var def = ent.Comp;
@@ -68,6 +58,7 @@ public sealed partial class GunSpreadDefectSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent(after: new[] { typeof(SharedWieldableSystem) })]
     private void OnRefreshModifiers(Entity<GunSpreadDefectComponent> ent, ref GunRefreshModifiersEvent args)
     {
         args.MinAngle += ent.Comp.MinAngleDelta;
