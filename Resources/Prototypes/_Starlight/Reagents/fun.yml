@@ -46,13 +46,12 @@
           reagent: ConcentratedCorgiJuice
           amount: 0.1
         # Medicine
-        - !type:HealthChange
+        - !type:EvenHealthChange
           damage:
-            groups:
-              Airloss: -2
-              Brute: -2
-              Burn: -2
-              Toxin: -2
+            Airloss: -2
+            Brute: -2
+            Burn: -2
+            Toxin: -2
         - !type:SatiateThirst
           factor: 2
         - !type:SatiateHunger

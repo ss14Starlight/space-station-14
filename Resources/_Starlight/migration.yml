@@ -408,8 +408,9 @@ WeaponRifleLecterXL8: WeaponRifleLecter
 WeaponRifleARG: WeaponRifleAk
 WeaponPDW9TaserBorg: WeaponPistolPDW9TaserBorg
 
-#2026-09-19 - Replace NTR airlocks with more the general NT ones
+#2026-09-19 - Replace NTR airlocks with more the general NT ones + upstream merge
 AirlockNrepLocked: AirlockNTLocked
 AirlockNtrepGlassLocked: AirlockNTGlassLocked
 AirlockMaintNtrepLocked: AirlockMaintNTLocked
 DoorElectronicsNtrep: null
+MothershipCircuitBoard: null

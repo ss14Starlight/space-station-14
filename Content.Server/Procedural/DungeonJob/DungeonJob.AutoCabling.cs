@@ -47,6 +47,9 @@ public sealed partial class DungeonJob
         if (!ValidateResume())
             return;
 
+        if (cableTiles.Count < 2) // Starlight: Zero nodes can run an unbounded planet search, one node doesn't perform routing anyway
+            return;
+
         var startNodes = new List<Vector2i>(cableTiles);
         random.Shuffle(startNodes);
         var start = startNodes[0];
@@ -61,6 +64,12 @@ public sealed partial class DungeonJob
 
         while (remaining.Count > 0)
         {
+            // Starlight - Begin
+            await SuspendDungeon();
+            if (!ValidateResume())
+                return;
+            // Starlight - End
+
             if (frontier.Count == 0)
             {
                 var newStart = remaining.First();
@@ -155,6 +164,11 @@ public sealed partial class DungeonJob
                 continue;
 
             _entManager.SpawnEntity(gen.Entity, _maps.GridTileToLocal(_gridUid, _grid, tile));
+            // Starlight - Begin
+            await SuspendDungeon();
+            if (!ValidateResume())
+                return;
+            // Starlight - End
         }
     }
 }
