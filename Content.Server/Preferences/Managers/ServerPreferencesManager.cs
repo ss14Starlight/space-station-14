@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
+using Content.Shared._Starlight.Preferences;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Construction.Prototypes;
@@ -44,10 +45,15 @@ namespace Content.Server.Preferences.Managers
         public void Init()
         {
             _netManager.RegisterNetMessage<MsgPreferencesAndSettings>();
+            _netManager.RegisterNetMessage<MsgOpenPlayerCharacterSetup>(); // Starlight
             _netManager.RegisterNetMessage<MsgUpdateCharacter>(HandleUpdateCharacterMessage);
             _netManager.RegisterNetMessage<MsgDeleteCharacter>(HandleDeleteCharacterMessage);
             _netManager.RegisterNetMessage<MsgSetCharacterEnable>(HandleSetCharacterEnableMessage);
             _netManager.RegisterNetMessage<MsgUpdateJobPriorities>(HandleUpdateJobPrioritiesMessage);
+            _netManager.RegisterNetMessage<MsgForceUpdatePlayerCharacter>(HandleForceUpdatePlayerCharacter); // Starlight
+            _netManager.RegisterNetMessage<MsgForceDeletePlayerCharacter>(HandleForceDeletePlayerCharacter); // Starlight
+            _netManager.RegisterNetMessage<MsgForcePlayerCharacterEnable>(HandleForcePlayerCharacterEnable); // Starlight
+            _netManager.RegisterNetMessage<MsgForceUpdatePlayerJobPriorities>(HandleForceUpdatePlayerJobPriorities); // Starlight
             _netManager.RegisterNetMessage<MsgUpdateConstructionFavorites>(HandleUpdateConstructionFavoritesMessage);
             _sawmill = _log.GetSawmill("prefs");
         }

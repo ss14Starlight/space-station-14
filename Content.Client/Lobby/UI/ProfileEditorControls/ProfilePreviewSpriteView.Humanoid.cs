@@ -235,7 +235,7 @@ public sealed partial class ProfilePreviewSpriteView
         }
         else
         {
-            var priorities = _preferencesManager.Preferences?.JobPriorities ?? [];
+            var priorities = _playerPrefsOverride?.JobPriorities ?? _preferencesManager.Preferences?.JobPriorities ?? []; // Starlight edit
             foreach (var priority in new List<JobPriority> { JobPriority.High, JobPriority.Medium, JobPriority.Low })
             {
                 highPriorityJob = profile.JobPreferences.FirstOrDefault(p => priorities.GetValueOrDefault(p) == priority);
