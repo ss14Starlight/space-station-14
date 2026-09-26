@@ -36,6 +36,10 @@ public sealed partial class SecureCommandTerminalStationComponent : Component
     /// <summary>When the current alert level was last set (CurTime). Used for RequiresAlertActiveMinutes checks.</summary>
     [ViewVariables]
     public TimeSpan AlertLevelSetAt;
+
+    /// <summary>Next time consoles on this station will be automatically refreshed.</summary>
+    [ViewVariables]
+    public TimeSpan NextUIUpdate;
 }
 
 /// <summary>Server-only live data for one pending/activating proposal.</summary>
@@ -53,15 +57,16 @@ public sealed class SecureTerminalProposalData
     public string Reason = string.Empty;
 
     public bool AdminApproved = false;
+    public bool AwaitingAdminApproval = false;
 
     /// <summary>
     /// Each entry: PlayerUid, display name, job name, terminal, scheme index, and auth-group index.
     /// </summary>
     public readonly List<(EntityUid PlayerUid, string Name, string Job, EntityUid TerminalUid, int SchemeIndex, int GroupIndex)> Authorizers = new();
-    public readonly List<(EntityUid PlayerUid, string Name, string Job, EntityUid TerminalUid, int SchemeIndex, int GroupIndex)> Vetoers = new();
+    public readonly List<(EntityUid PlayerUid, string Name, string Job, EntityUid TerminalUid, int SchemeIndex, int GroupIndex)> Rescinders = new();
 
     public readonly List<EntityUid> UsedTerminals = new();
-    public readonly List<EntityUid> UsedVetoTerminals = new();
+    public readonly List<EntityUid> UsedRescindTerminals = new();
 
     /// <summary>CurTime when the proposal was created.</summary>
     public TimeSpan CreatedAt;
