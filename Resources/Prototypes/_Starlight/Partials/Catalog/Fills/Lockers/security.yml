@@ -15,9 +15,3 @@
       amount: 1
     - id: MagazineLightRifleHP
       amount: 1
-
-- type: !PartialOnly entityTable
-  id: FillGunSafeLaserCarbine
-  table: !type:AllSelector
-    children:
-    - !CombineIndex:2 id: WeaponRifleLr30

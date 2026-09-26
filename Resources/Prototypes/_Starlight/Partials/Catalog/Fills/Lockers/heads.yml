@@ -1,5 +1,0 @@
-- type: !PartialOnly entityTable
-  id: LockerFillHeadOfSecurityNoHardsuit
-  table: !type:AllSelector
-    children:
-    - !CombineIndex:1 id: WeaponSubMachineGunEnergy
