@@ -125,6 +125,7 @@
       path: /Audio/Items/wirecutter_drop.ogg
   - type: Tag
     tags:
+    - PlantSampleTaker
     - Wirecutter
     - CyberHandItem
   - type: Sprite
@@ -145,7 +146,6 @@
     useSound:
       path: /Audio/Items/wirecutter.ogg
   - type: ToolTileCompatible
-  - type: BotanySampleTaker
   - type: SurgeryTool
   - type: Scalpel
     successRate: 0.35
@@ -817,6 +817,8 @@
     - type: Tag
       tags:
         - CyberHandItem
+        - BotanyHoe
+        - Hoe
 
 - type: entity
   name: plant clippers cybernetic arm attachment
@@ -827,10 +829,10 @@
     - type: Sprite
       sprite: _Starlight/Objects/Tools/cyberling.rsi
       state: clippers
-    - type: BotanySampleTaker
     - type: Tag
       tags:
         - CyberHandItem
+        - PlantSampleTaker
 
 - type: entity
   name: scythe cybernetic arm attachment

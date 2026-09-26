@@ -1,5 +1,4 @@
-using Content.Shared.Botany.Components;
-using Content.Shared.Botany.Systems;
+using Content.Server.Botany.Components;
 using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
 using Robust.Shared.Random;
@@ -7,93 +6,117 @@ using Robust.Shared.Random;
 namespace Content.Server.EntityEffects.Effects.Botany.PlantAttributes;
 
 /// <summary>
-/// Entity effect that changes a plant's stat by a random amount between a minimum and maximum value.
+/// This system mutates an inputted stat for a PlantHolder, only works for floats, integers, and bools.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed partial class PlantChangeStatEntityEffectSystem : EntityEffectSystem<PlantComponent, PlantChangeStat>
+public sealed partial class PlantChangeStatEntityEffectSystem : EntityEffectSystem<PlantHolderComponent, PlantChangeStat>
 {
-    [Dependency] private IComponentFactory _componentFactory = default!;
+    // TODO: This is awful. I do not have the strength to refactor this. I want it gone.
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private PlantHolderSystem _plantHolder = default!;
-    [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
 
-    protected override void Effect(Entity<PlantComponent> entity, ref EntityEffectEvent<PlantChangeStat> args)
+    protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEffectEvent<PlantChangeStat> args)
     {
-        if (_plantHolder.IsDead(entity.Owner))
+        if (entity.Comp.Seed == null || entity.Comp.Dead)
             return;
 
-        var targetDataField = args.Effect.TargetDataField;
-        var targetComponent = args.Effect.TargetComponent;
+        var effect = args.Effect;
+        var member = entity.Comp.Seed.GetType().GetField(args.Effect.TargetValue);
 
-        if (!_componentFactory.TryGetRegistration(targetComponent, out var registration))
+        if (member == null)
         {
-            Log.Error($"{nameof(PlantChangeStat)} Error: Component '{targetComponent}' is not a valid component name.");
-            return;
-        }
-
-        if (!TryComp(entity.Owner, registration.Type, out var plantComp))
-            return;
-
-        var field = registration.Type.GetField(targetDataField);
-        if (field == null)
-        {
-            Log.Error(
-                $"{nameof(PlantChangeStat)} Error: Field '{targetDataField}' not found on component '{targetComponent}'. Did you misspell it?");
+            Log.Error($"{ effect.GetType().Name } Error: Member { args.Effect.TargetValue} not found on { entity.Comp.Seed.GetType().Name }. Did you misspell it?");
             return;
         }
 
-        var currentValue = field.GetValue(plantComp);
-        if (currentValue == null)
+        var currentValObj = member.GetValue(entity.Comp.Seed);
+        if (currentValObj == null)
             return;
 
-        float current;
-        switch (currentValue)
+        if (member.FieldType == typeof(float))
         {
-            case float f:
-                current = f;
-                break;
-            case int i:
-                current = i;
-                break;
-            default:
-                Log.Error(
-                    $"{nameof(PlantChangeStat)} Error: Field '{targetDataField}' on component '{targetComponent}' has unsupported type '{currentValue.GetType().Name}'.");
-                return;
+            var floatVal = (float)currentValObj;
+            MutateFloat(ref floatVal, args.Effect.MinValue, args.Effect.MaxValue, args.Effect.Steps);
+            member.SetValue(entity.Comp.Seed, floatVal);
         }
-
-        var min = args.Effect.ApplyRange.Min;
-        var max = args.Effect.ApplyRange.Max;
-
-        // If the range is degenerate, only move toward that value.
-        if (MathHelper.CloseTo(min, max))
+        else if (member.FieldType == typeof(int))
         {
-            if (MathHelper.CloseTo(current, min))
-                return;
+            var intVal = (int)currentValObj;
+            MutateInt(ref intVal, (int)args.Effect.MinValue, (int)args.Effect.MaxValue, args.Effect.Steps);
+            member.SetValue(entity.Comp.Seed, intVal);
+        }
+        else if (member.FieldType == typeof(bool))
+        {
+            var boolVal = (bool)currentValObj;
+            boolVal = !boolVal;
+            member.SetValue(entity.Comp.Seed, boolVal);
+        }
+    }
 
-            _entityEffects.TryApplyEffect(entity.Owner,
-                current < min ? args.Effect.Up : args.Effect.Down,
-                args.Scale,
-                args.User);
+    // Mutate reference 'val' between 'min' and 'max' by pretending the value
+    // is representable by a thermometer code with 'bits' number of bits and
+    // randomly flipping some of them.
+    private void MutateFloat(ref float val, float min, float max, int bits)
+    {
+        if (min == max)
+        {
+            val = min;
             return;
         }
 
-        bool goUp;
-        if (current <= min)
+        // Starting number of bits that are high, between 0 and bits.
+        // In other words, it's val mapped linearly from range [min, max] to range [0, bits], and then rounded.
+        int valInt = (int)MathF.Round((val - min) / (max - min) * bits);
+        // val may be outside the range of min/max due to starting prototype values, so clamp.
+        valInt = Math.Clamp(valInt, 0, bits);
+
+        // Probability that the bit flip increases n.
+        // The higher the current value is, the lower the probability of increasing value is, and the higher the probability of decreasive it it.
+        // In other words, it tends to go to the middle.
+        float probIncrease = 1 - (float)valInt / bits;
+        int valIntMutated;
+        if (_random.Prob(probIncrease))
         {
-            goUp = true;
-        }
-        else if (current >= max)
-        {
-            goUp = false;
+            valIntMutated = valInt + 1;
         }
         else
         {
-            var thermometer = (current - min) / (max - min);
-            thermometer = Math.Clamp(thermometer, 0f, 1f);
-            var probUp = 1f - thermometer;
-            goUp = _random.Prob(probUp);
+            valIntMutated = valInt - 1;
         }
 
-        _entityEffects.TryApplyEffect(entity.Owner, goUp ? args.Effect.Up : args.Effect.Down, args.Scale, args.User);
+        // Set value based on mutated thermometer code.
+        float valMutated = Math.Clamp((float)valIntMutated / bits * (max - min) + min, min, max);
+        val = valMutated;
+    }
+
+    private void MutateInt(ref int val, int min, int max, int bits)
+    {
+        if (min == max)
+        {
+            val = min;
+            return;
+        }
+
+        // Starting number of bits that are high, between 0 and bits.
+        // In other words, it's val mapped linearly from range [min, max] to range [0, bits], and then rounded.
+        int valInt = (int)MathF.Round((val - min) / (max - min) * bits);
+        // val may be outside the range of min/max due to starting prototype values, so clamp.
+        valInt = Math.Clamp(valInt, 0, bits);
+
+        // Probability that the bit flip increases n.
+        // The higher the current value is, the lower the probability of increasing value is, and the higher the probability of decreasing it.
+        // In other words, it tends to go to the middle.
+        float probIncrease = 1 - (float)valInt / bits;
+        int valMutated;
+        if (_random.Prob(probIncrease))
+        {
+            valMutated = val + 1;
+        }
+        else
+        {
+            valMutated = val - 1;
+        }
+
+        valMutated = Math.Clamp(valMutated, min, max);
+        val = valMutated;
     }
 }
