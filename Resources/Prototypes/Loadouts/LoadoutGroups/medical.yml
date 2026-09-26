@@ -14,19 +14,13 @@
   - MedicalDoctorBackpack
   - MedicalDoctorSatchel
   - MedicalDoctorDuffel
-  - LeatherSatchel # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: MedicalShoes
   name: loadout-group-medical-doctor-shoes
-  minLimit: 0 # 🌟Starlight🌟
-  defaultSelected: 1 # 🌟Starlight🌟
   loadouts:
   - WhiteShoes
   - MedicalWinterBoots
-  - Heels # 🌟Starlight🌟
-  - LaceupShoes # 🌟Starlight🌟
-  - LeatherShoes # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SurvivalMedical
@@ -37,14 +31,9 @@
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
   - LoadoutSpeciesVoxNitrogen
-  - EmergencyElfOxygenMedical # 🌟Starlight🌟
-  - EmergencyNonBreatherMedical # 🌟Starlight🌟
-  - EmergencyIPC # 🌟Starlight🌟
-  - EmergencyCheeseMedical # Starlight
-  - EmergencyOxygenMedicalBlood # Starlight
-  - EmergencyDwarfOxygenMedical # Starlight
 
 # Chief Medical Officer
+
 - type: loadoutGroup
   id: ChiefMedicalOfficerHead
   name: loadout-group-chief-medical-officer-head
@@ -61,11 +50,6 @@
   - ChiefMedicalOfficerJumpskirt
   - ChiefMedicalOfficerTurtleneckJumpsuit
   - ChiefMedicalOfficerTurtleneckJumpskirt
-  - ChiefMedicalOfficerFormalSuit # DeltaV
-  - ChiefMedicalOfficerFormalSkirt # DeltaV
-  - ChiefMedicalOfficerVestSuit # DeltaV
-  - ChiefMedicalOfficerVestSkirt # DeltaV
-  - ChiefMedicalOfficerSummerSuit # DeltaV
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerOuterClothing
@@ -73,7 +57,6 @@
   minLimit: 0
   loadouts:
   - ChiefMedicalOfficerLabCoat
-  - ChiefMedicalOfficerLabCoatLong # DeltaV
   - ChiefMedicalOfficerWintercoat
 
 - type: loadoutGroup
@@ -83,21 +66,13 @@
   loadouts:
   - ChiefMedicalOfficerCloak
   - ChiefMedicalOfficerMantle
-  - ChiefMedicalOfficerShawl # DeltaV
-  - ChiefMedicalOfficerOverShoulder # DeltaV
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerShoes
   name: loadout-group-chief-medical-officer-shoes
-  minLimit: 0 # 🌟Starlight🌟
-  defaultSelected: 1 # 🌟Starlight🌟
   loadouts:
   - BrownShoes
-  - WhiteShoes # 🌟Starlight🌟
   - MedicalWinterBoots
-  - Heels # 🌟Starlight🌟
-  - LaceupShoes # 🌟Starlight🌟
-  - LeatherShoes # 🌟Starlight🌟
 
 #- type: loadoutGroup
 #  id: ChiefMedicalOfficerJobTrinkets
@@ -118,11 +93,6 @@
   - BlueSurgeryCap
   - GreenSurgeryCap
   - PurpleSurgeryCap
-  - BlackSurgeryCap # Delta V
-  - CyanSurgeryCap # Delta V
-  - PinkSurgeryCap # Delta V
-  - RainbowSurgeryCap # Delta V
-  - WhiteSurgeryCap # Delta V
   - NurseHat
 
 - type: loadoutGroup
@@ -136,17 +106,6 @@
   - MedicalBlueScrubs
   - MedicalGreenScrubs
   - MedicalPurpleScrubs
-  - MedicalBlackScrubs # DeltaV
-  - MedicalCyanScrubs # DeltaV
-  - MedicalPinkScrubs # DeltaV
-  - MedicalRainbowScrubs # DeltaV
-  - MedicalWhiteScrubs # DeltaV
-  # afterlight start
-  - NurseJumpskirt
-  - CoronerJumpskirt
-  - CoronerJumpsuit
-  - CoronerJumpsuitAlt
-  # afterlight end
 
 - type: loadoutGroup
   id: MedicalDoctorOuterClothing
@@ -156,9 +115,6 @@
   - RegularLabCoat
   - MedicalDoctorWintercoat
   - SeniorPhysicianLabCoat
-  - WindbreakerMedical # 🌟Starlight🌟
-  - RegularLabCoatLong # DeltaV
-  - CoronerLabCoatLong # Starlight
 
 - type: loadoutGroup
   id: MedicalDoctorPDA
@@ -196,8 +152,6 @@
   loadouts:
   - ChemistJumpsuit
   - ChemistJumpskirt
-  - SeniorChemistJumpsuit # Starlight
-  - SeniorChemistJumpskirt # starlight
 
 - type: loadoutGroup
   id: ChemistOuterClothing
@@ -207,11 +161,6 @@
   - RegularLabCoat
   - ChemistLabCoat
   - ChemistWintercoat
-  - SeniorChemistLabCoat # Starlight
-  - SeniorChemistWintercoat # Starlight
-  - RegularLabCoatLong # DeltaV
-  - ChemistLabCoatLong # DeltaV
-  - SeniorChemistLabCoatLong # Starlight
 
 - type: loadoutGroup
   id: ChemistBackpack
@@ -220,10 +169,6 @@
   - ChemistBackpack
   - ChemistSatchel
   - ChemistDuffel
-  - SeniorChemistBackpack # Starlight
-  - SeniorChemistSatchel # Starlight
-  - SeniorChemistDuffel # Starlight
-  - LeatherSatchel # starlight
 
 #- type: loadoutGroup
 #  id: ChemistJobTrinkets
@@ -246,8 +191,6 @@
   loadouts:
   - ParamedicJumpsuit
   - ParamedicJumpskirt
-  - SeniorParamedicJumpsuit # Starlight start
-  - SeniorParamedicJumpskirt # starlight end
 
 - type: loadoutGroup
   id: ParamedicOuterClothing
@@ -256,19 +199,14 @@
   loadouts:
   - ParamedicWindbreaker
   - ParamedicWintercoat
-  - ParamedicJacket # DeltaV
 
 - type: loadoutGroup
   id: ParamedicShoes
   name: loadout-group-paramedic-shoes
-  minLimit: 0 # Starlight
-  defaultSelected: 1 # Starlight
   loadouts:
   - BlueShoes
   - WhiteShoes
   - MedicalWinterBoots
-  - Heels # Starlight
-  - HighHeelBoots # Starlight
 
 #- type: loadoutGroup
 #  id: ParamedicJobTrinkets
