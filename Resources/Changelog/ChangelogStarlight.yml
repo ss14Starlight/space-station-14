@@ -1,95 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Changed most of the evac shuttles to have reinforced walls around the power areas.
-    type: Tweak
-  id: 408492
-  time: '2026-09-12T07:01:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6056
-- author: Johnny
-  changes:
-  - message: Fixed some small issues within most evac shuttles.
-    type: Fix
-  id: 408493
-  time: '2026-09-12T07:01:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6056
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Added 2 Assistant Manager Job Slots.'
-    type: Add
-  id: 408494
-  time: '2026-09-12T07:01:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6099
-- author: Forrestgod
-  changes:
-  - message: "[Serpentcrest] A laundry room has now been added in the NCT's office replacement."
-    type: Add
-  id: 408495
-  time: '2026-09-12T07:01:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6099
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Mining now has a fax.'
-    type: Add
-  id: 408496
-  time: '2026-09-12T07:01:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6099
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Added some more NCT Dispatch Terminals.'
-    type: Add
-  id: 408497
-  time: '2026-09-12T07:01:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6099
-- author: Forrestgod
-  changes:
-  - message: '[Syndicate Cargo Shuttle] Added buying/selling pipes and a subfloor tank.'
-    type: Add
-  id: 408498
-  time: '2026-09-12T07:01:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6099
-- author: Forrestgod
-  changes:
-  - message: '[Syndicate Cargo Shuttle] Changed generator from 15kW to 20kW.'
-    type: Tweak
-  id: 408499
-  time: '2026-09-12T07:01:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6099
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] NCT Spawns relocated to bridge.'
-    type: Tweak
-  id: 408500
-  time: '2026-09-12T07:01:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6099
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] NCT office has been deleted.'
-    type: Remove
-  id: 408501
-  time: '2026-09-12T07:01:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6099
-- author: Forrestgod
-  changes:
-  - message: '[Serpentcrest] Salvage has been kicked off.'
-    type: Remove
-  id: 408502
-  time: '2026-09-12T07:01:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6099
-- author: OJG
-  changes:
-  - message: (Refinery) Re-did solars with extra supplies and less disconnections to clean up the power monitoring console.
-    type: Tweak
-  id: 408503
-  time: '2026-09-12T07:31:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6114
-- author: OJG
-  changes:
-  - message: (Refinery) Moved the fuel dispensers in chem to more accessible spots.
-    type: Tweak
-  id: 408504
-  time: '2026-09-12T07:31:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6114
 - author: OJG
   changes:
   - message: (Refinery) Fixed the box for vox draining all of distro.
@@ -2799,4 +2708,95 @@ Entries:
   id: 408891
   time: '2026-09-26T11:11:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6259
+- author: Wizden Team
+  changes:
+  - message: Starlight is now 6 months behind Wizden instead of 7.
+    type: Add
+  id: 408892
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: 'EXPERIMENTAL: Added the xenoborg crystal!'
+    type: Add
+  id: 408893
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: 'EXPERIMENTAL: Added the xenoborg extractor which can produce the xenoborg crystal.'
+    type: Add
+  id: 408894
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: Techfabs now play an animation while building something.
+    type: Add
+  id: 408895
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: The xenoborg gun now has a unique sprite.
+    type: Add
+  id: 408896
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: Internal code changes to damage handling may result in slightly different numbers for some medicines and/or some attacks.
+    type: Tweak
+  id: 408897
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: 'EXPERIMENTAL: The recipes to make xenoborg chassis and xenoborg modules now uses xenoborg crystals instead of normal materials.'
+    type: Tweak
+  id: 408898
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: The uplink now properly states the capacity of the hypodart.
+    type: Fix
+  id: 408899
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: Holosign projectors and dragon rifts no longer place signs at strange angles.
+    type: Fix
+  id: 408900
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: Fixed bar sign UI not closing correctly.
+    type: Fix
+  id: 408901
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: Makeshift Juicers now correctly craft in your hands instead of being a construction ghost.
+    type: Fix
+  id: 408902
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: Fixed door remotes working on fences, curtains and other entities they shouldn't work on.
+    type: Fix
+  id: 408903
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
+- author: Wizden Team
+  changes:
+  - message: Admin door remote once again works through walls.
+    type: Fix
+  id: 408904
+  time: '2026-09-26T11:23:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6239
 Order: -1
