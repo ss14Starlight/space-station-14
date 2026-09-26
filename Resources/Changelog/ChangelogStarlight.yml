@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Box) Removed some cameras that peered deep into maints.
-    type: Remove
-  id: 408478
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
   - message: (Box) Changed old salvage room to be dilapidated.
     type: Tweak
   id: 408479
@@ -2799,4 +2792,11 @@ Entries:
   id: 408877
   time: '2026-09-26T00:04:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6349
+- author: Yosif
+  changes:
+  - message: Botany refactor from a wizards now is ported to a starlight (will port more stuff when it will be on a stable branch).
+    type: Add
+  id: 408878
+  time: '2026-09-26T02:03:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6355
 Order: -1
