@@ -43,6 +43,7 @@
   - EmergencyCheeseMedical # Starlight
   - EmergencyOxygenMedicalBlood # Starlight
 
+
 # Chief Medical Officer
 - type: loadoutGroup
   id: ChiefMedicalOfficerHead
