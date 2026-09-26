@@ -1,3 +1,5 @@
+# Starlight: Emote order priority is at Resources\Prototypes\_Starlight\Partials\Voice\disease_emotes.yml
+
 - type: emote
   id: Sneeze
   name: chat-emote-name-sneeze
