@@ -68,7 +68,7 @@ public sealed partial class ModernChemMasterWindow : FancyWindow
         IoCManager.Resolve<IEntityManager>().EventBus.SubscribeEvent<RoundRestartCleanupEvent>(
             EventSource.Local,
             RoundRestartSubscriber.Instance,
-            static (RoundRestartCleanupEvent _) => _customPerChemMaster.Clear());
+            static (ref RoundRestartCleanupEvent _) => _customPerChemMaster.Clear());
     }
 
     private readonly Vector2 _modernMinSize; // Window size referenced from MinSize attribute
