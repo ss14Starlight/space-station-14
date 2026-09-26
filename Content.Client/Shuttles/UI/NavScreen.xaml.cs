@@ -19,6 +19,8 @@ public sealed partial class NavScreen : BoxContainer
     private EntityUid? _consoleEntity; // Entity of controlling console
     private EntityUid? _shuttleEntity;
 
+    partial void InitializeStarlight(); // Starlight
+
     public NavScreen()
     {
         RobustXamlLoader.Load(this);
@@ -30,6 +32,9 @@ public sealed partial class NavScreen : BoxContainer
 
         DockToggle.OnToggled += OnDockTogglePressed;
         DockToggle.Pressed = NavRadar.ShowDocks;
+
+        InitializeStarlight();  // Starlight
+
     }
 
     public void SetShuttle(EntityUid? shuttle)
