@@ -96,7 +96,7 @@ public sealed partial class MsgCommand : ToolshedCommand
     }
 
     [CommandImplementation("tippy")]
-    public IEnumerable<ICommonSession> Tippy(IInvocationContext ctx, [PipedArgument] IEnumerable<ICommonSession> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval)
+    public IEnumerable<ICommonSession> Tippy(IInvocationContext ctx, [PipedArgument] IEnumerable<ICommonSession> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval) //Starlight: include IInvocationCtx
     {
         _tips ??= GetSys<TipsSystem>();
         _autoLog ??= GetSys<AutoDiscordLogSystem>(); //Starlight

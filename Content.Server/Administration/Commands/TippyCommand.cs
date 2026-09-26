@@ -1,3 +1,4 @@
+using System.Net;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Tips;
@@ -26,7 +27,8 @@ public sealed partial class TippyCommand : LocalizedEntityCommands
     {
         #region Starlight
         if (_autoLog == null)
-            _entSysMan.TryGetEntitySystem(out _autoLog);
+            if (_entSysMan.TryGetEntitySystem(out AutoDiscordLogSystem? _sys))
+                _autoLog = _sys;
         #endregion
 
         if (args.Length < 2)
