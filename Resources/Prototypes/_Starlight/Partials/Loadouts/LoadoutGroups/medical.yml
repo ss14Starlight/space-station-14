@@ -1,0 +1,5 @@
+# Prototypes/Loadouts/LoadoutGroups/medical.yml
+- type: !PartialOnly loadoutGroup
+  id: SurvivalMedical
+  loadouts:
+  - EmergencyDwarfOxygenMedical
