@@ -84,7 +84,7 @@ public sealed partial class HealthChange : EntityEffectBase<HealthChange>
         }
 
         #region Starlight
-        if (damageSpec.MixMax != null && damageSpec.MixMax.Value > FixedPoint2.Zero)
+        if (damageSpec.MixMax != null && damageSpec.MixMax.Value < FixedPoint2.Zero)
         {
             heals = true;
             var targets = new List<string>();
@@ -100,7 +100,7 @@ public sealed partial class HealthChange : EntityEffectBase<HealthChange>
             }
 
             damages.Add(loc.GetString("health-change-mixmax-display",
-                ("amount", damageSpec.MixMax.Value.Float() * universalReagentHealModifier),
+                ("amount", -damageSpec.MixMax.Value.Float() * universalReagentHealModifier),
                 ("targets", ContentLocalizationManager.FormatList(targets))));
         }
         #endregion

@@ -49,7 +49,7 @@ namespace Content.Shared.Damage
             }
 
             if (MixMax != null)
-                total -= MixMax.Value;
+                total += MixMax.Value;
             #endregion
 
             return total;
@@ -303,7 +303,7 @@ namespace Content.Shared.Damage
                     newDamage.DamageGroupDict[key] = value;
             }
 
-            if (damageSpec.MixMax != null && damageSpec.MixMax.Value > 0)
+            if (damageSpec.MixMax != null && damageSpec.MixMax.Value < 0)
                 newDamage.MixMax = damageSpec.MixMax.Clone();
             #endregion
 

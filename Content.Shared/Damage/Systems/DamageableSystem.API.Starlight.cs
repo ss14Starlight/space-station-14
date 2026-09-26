@@ -44,7 +44,7 @@ public sealed partial class DamageableSystem
             MixMax = null,
         };
 
-        if (mixMax.Value <= FixedPoint2.Zero)
+        if (mixMax.Value >= FixedPoint2.Zero)
             return resolved;
 
         var candidateTypes = new HashSet<ProtoId<DamageTypePrototype>>();
@@ -77,7 +77,7 @@ public sealed partial class DamageableSystem
                 candidates.Add((type, available));
         }
 
-        var remaining = mixMax.Value;
+        var remaining = -mixMax.Value;
         foreach (var (type, available) in candidates
                      .OrderByDescending(candidate => candidate.Damage)
                      .ThenBy(candidate => candidate.Type.Id, StringComparer.Ordinal))

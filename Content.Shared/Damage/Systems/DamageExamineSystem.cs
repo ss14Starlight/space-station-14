@@ -83,7 +83,7 @@ public sealed partial class DamageExamineSystem : EntitySystem
         }
 
         #region Starlight
-        if (damageSpecifier.MixMax != null && damageSpecifier.MixMax.Value > FixedPoint2.Zero)
+        if (damageSpecifier.MixMax != null && damageSpecifier.MixMax.Value < FixedPoint2.Zero)
         {
             var targets = new List<string>();
             foreach (var group in damageSpecifier.MixMax.Groups)
@@ -98,7 +98,7 @@ public sealed partial class DamageExamineSystem : EntitySystem
 
             msg.PushNewline();
             msg.AddMarkupOrThrow(Loc.GetString("damage-mixmax-value",
-                ("amount", damageSpecifier.MixMax.Value),
+                ("amount", -damageSpecifier.MixMax.Value),
                 ("types", ContentLocalizationManager.FormatList(targets))));
         }
         #endregion
