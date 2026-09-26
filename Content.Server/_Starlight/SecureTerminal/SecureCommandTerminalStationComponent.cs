@@ -17,12 +17,9 @@ public sealed partial class SecureCommandTerminalStationComponent : Component
     [ViewVariables]
     public readonly Dictionary<string, TimeSpan> Cooldowns = new();
 
-    /// <summary>
-    /// Accumulated salary penalty for this station this round (0–0.8).
-    /// Each activated proposal adds its SalaryPenalty value.
-    /// </summary>
+    /// <summary>Active request-specific salary changes keyed by salary source.</summary>
     [ViewVariables]
-    public float SalaryPenalty;
+    public readonly Dictionary<string, float> SalaryModifiers = new(StringComparer.Ordinal);
 
     /// <summary>One-time-use request IDs permanently consumed this round.</summary>
     [ViewVariables]
@@ -49,22 +46,28 @@ public sealed class SecureTerminalProposalData
     /// <summary>The player who created the request.</summary>
     public EntityUid Requester = EntityUid.Invalid;
 
+    /// <summary>The terminal used by the requester while creating the proposal.</summary>
+    public EntityUid RequesterTerminal = EntityUid.Invalid;
+
     /// <summary>The reason of the Request.</summary>
     public string Reason = string.Empty;
 
     public bool AdminApproved = false;
 
     /// <summary>
-    /// Each entry: PlayerUid, display name, job name, which auth-group index they satisfy.
+    /// Each entry: PlayerUid, display name, job name, terminal, scheme index, and auth-group index.
     /// </summary>
-    public readonly List<(EntityUid PlayerUid, string Name, string Job, int GroupIndex)> Authorizers = new();
+    public readonly List<(EntityUid PlayerUid, string Name, string Job, EntityUid TerminalUid, int SchemeIndex, int GroupIndex)> Authorizers = new();
+    public readonly List<(EntityUid PlayerUid, string Name, string Job, EntityUid TerminalUid, int SchemeIndex, int GroupIndex)> Vetoers = new();
 
     public readonly List<EntityUid> UsedTerminals = new();
+    public readonly List<EntityUid> UsedVetoTerminals = new();
+
+    /// <summary>CurTime when the proposal was created.</summary>
+    public TimeSpan CreatedAt;
 
     /// <summary>CurTime when the action fires. Null while still collecting signatures.</summary>
     public TimeSpan? ActivateAt;
-
-    public TimeSpan? AuthTimer;
 
     public SecureTerminalProposalStatus Status = SecureTerminalProposalStatus.Pending;
 }

@@ -1,0 +1,21 @@
+{
+  "copyright" : "Taken from https://github.com/vgstation-coders/vgstation13/blob/HEAD/icons/mecha/mecha.dmi, Modified by Johnny",
+  "license" : "CC-BY-SA-3.0",
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states" : [
+    {
+      "name": "base",
+      "directions": 4
+    },
+    {
+      "name": "base-broken"
+    },
+    {
+      "name": "base-open"
+    }
+  ]
+}

@@ -24,7 +24,7 @@ public abstract partial class SharedDarkBreacherSystem : EntitySystem
                 var position = _transform.GetWorldPosition(target) + location;
                 var coords = new MapCoordinates(position, Transform(target).MapID);
                 // Spawn it!
-                return EntityManager.PredictedSpawn(component.Portal, coords);
+                return PredictedSpawn(component.Portal, coords);
             }
 
         return null;

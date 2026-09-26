@@ -28,7 +28,7 @@ public sealed partial class MeteorSwarmSystem : StationEventSystem<MeteorSwarmCo
         //Starlight begin
         if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
         if (component.Announcement is { } locId)
-            Announce(stationEvent, locId, false, colorOverride: Color.Gold);
+            Announce(stationEvent, locId, false, colorOverride: Color.Gold, soundOverride: component.AnnouncementSound);
         //Starlight end
     }
 
@@ -55,14 +55,23 @@ public sealed partial class MeteorSwarmSystem : StationEventSystem<MeteorSwarmCo
 
         var center = playableArea.Center;
 
+        IRobustRandom random;
+        if (component.NonDirectional)
+        {
+            random = RobustRandom;
+        }
+        else
+        {
+            random = new RobustRandom();
+            random.SetSeed(uid.Id);
+        }
+
         var meteorsToSpawn = component.MeteorsPerWave.Next(RobustRandom);
         for (var i = 0; i < meteorsToSpawn; i++)
         {
             var spawnProto = RobustRandom.Pick(component.Meteors);
 
-            var angle = component.NonDirectional
-                ? RobustRandom.NextAngle()
-                : new Random(uid.Id).NextAngle();
+            var angle = random.NextAngle();
 
             var offset = angle.RotateVec(new Vector2((maximumDistance - minimumDistance) * RobustRandom.NextFloat() + minimumDistance, 0));
 
