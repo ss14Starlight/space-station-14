@@ -2,8 +2,8 @@ using System.Linq;
 using Content.Server._Starlight.Pollen.Components;
 using Content.Shared._Starlight.Pollen.Components;
 using Content.Shared.Localizations;
-using Content.Shared.Objectives.Components;
 using Content.Shared.Mind;
+using Content.Shared.Objectives.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Pollen.Systems;
@@ -25,26 +25,6 @@ public sealed partial class PollenObjectiveSystem : EntitySystem
         SubscribeLocalEvent<PollenCollectionConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
     }
 
-        public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<PollenCollectorComponent>();
-        while (query.MoveNext(out var uid, out var collector))
-        {
-            if (collector.ObjectiveGranted)
-                continue;
-
-            if (!_mind.TryGetMind(uid, out var mindId, out var mind))
-                continue; // Mind not attached yet - try again next tick.
-
-            collector.ObjectiveGranted = true;
-            _mind.TryAddObjective(mindId, mind, _pollenObjective.Id);
-        }
-    }
-
-    // Only Dionas with a PollenCollectorComponent can receive this objective,
-    // and this is where we remember which Diona it belongs to.
     private void OnRequirementCheck(EntityUid uid, PollenCollectionConditionComponent comp, ref RequirementCheckEvent args)
     {
         if (args.Cancelled)
@@ -60,8 +40,6 @@ public sealed partial class PollenObjectiveSystem : EntitySystem
         comp.Diona = currentEntity;
     }
 
-    // Bake the specific plant list into the objective's description now that
-    // we know which Diona (and therefore which random plants) it's for.
     private void OnAfterAssign(EntityUid uid, PollenCollectionConditionComponent comp, ref ObjectiveAfterAssignEvent args)
     {
         if (comp.Diona is not { } diona || !TryComp<PollenCollectorComponent>(diona, out var collector))
@@ -80,6 +58,32 @@ public sealed partial class PollenObjectiveSystem : EntitySystem
             return;
 
         args.Progress = Progress(collector.Collected, collector.Pollen.Count);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<PollenCollectorComponent>();
+        while (query.MoveNext(out var uid, out var collector))
+        {
+            if (collector.ObjectiveGranted)
+                continue;
+
+            if (!_mind.TryGetMind(uid, out var mindId, out var mind))
+                continue;
+
+            collector.ObjectiveGranted = true;
+
+            // Diona died and reformed: discard any stale objective still
+            // pointing at the old (now-dead) body. Dying means losing your
+            // collected pollen progress, so this is a clean slate, not a
+            // repoint.
+            if (_mind.TryFindObjective((mindId, mind), _pollenObjective.Id, out var stale))
+                _mind.TryRemoveObjective(mindId, mind, stale.Value);
+
+            _mind.TryAddObjective(mindId, mind, _pollenObjective.Id);
+        }
     }
 
     private static float Progress(int collected, int total)

@@ -16,6 +16,7 @@
   description: pollen-bark-t1-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: make_wood }
   productAction: PollenTreeBarkT1ActionMakeWood
+  applyToMob: true
   cost:
     PollenPoints: 1
   categories:
@@ -65,6 +66,7 @@
   description: pollen-mushroom-t1-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: mush_injection_phytovitalin }
   productAction: ActionInjectPhytovitalin
+  applyToMob: true
   cost:
     PollenPoints: 2
   categories:
@@ -96,6 +98,7 @@
   description: pollen-mushroom-t3-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_diona.rsi, state: mush_spore_bomb }
   productAction: ActionSporeCloud
+  applyToMob: true
   cost:
     PollenPoints: 4
   categories:
