@@ -15,3 +15,9 @@
       amount: 1
     - id: MagazineLightRifleHP
       amount: 1
+
+- type: !PartialOnly entityTable  
+  id: FillLockerWarden
+  table:
+    children:
+    - id: MaterialSandbag12

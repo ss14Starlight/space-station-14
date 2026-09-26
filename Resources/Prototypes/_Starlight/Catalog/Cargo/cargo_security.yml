@@ -7,3 +7,13 @@
   cost: 6000
   category: cargoproduct-category-name-security
   group: market
+
+- type: cargoProduct
+  id: SecuritySandbags
+  icon:
+    sprite: _Starlight/Objects/Materials/sandbag.rsi
+    state: sandbag_3
+  product: CrateSecuritySandbags
+  cost: 1000
+  category: cargoproduct-category-name-security
+  group: market

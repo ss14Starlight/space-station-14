@@ -1,0 +1,292 @@
+- type: entity
+  id: BaseBarricadeCover
+  parent: BaseStructure
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    noRot: false
+    drawdepth: Mobs
+    layers:
+    - state: full_0
+  - type: Icon
+    state: full_0
+  - type: IconSmooth
+    mode: Linear
+    base: full_
+  - type: Appearance
+  - type: ProjectileCover
+  - type: InteractionOutline
+  - type: Climbable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,-0.25"
+        density: 60
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+        - BulletImpassable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Tag
+    tags:
+    - ForceNoFixRotations
+
+- type: entity
+  id: BarricadeSteel
+  parent: BaseBarricadeCover
+  name: steel barricade
+  description: Steel plates welded into a waist-high barrier. Stops a good share of the shots crossing it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Barricades/steel.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Barricades/steel.rsi
+  - type: IconSmooth
+    key: BarricadeSteel
+  - type: SmoothDamageStages
+    thresholds: [ 50, 100, 150 ]
+  - type: ProjectileCover
+    blockChance: 0.75
+  - type: Damageable
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Repairable
+    qualityNeeded: Welding
+    fuelCost: 5
+    damageValue: -50
+    doAfterDelay: 2
+  - type: Construction
+    graph: BarricadeCover
+    node: steel
+
+- type: entity
+  id: BarricadeWood
+  parent: BaseBarricadeCover
+  name: wooden barricade
+  description: Planks nailed into a waist-high barrier. Better than nothing.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Barricades/wooden.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Barricades/wooden.rsi
+  - type: IconSmooth
+    key: BarricadeWood
+  - type: SmoothDamageStages
+    thresholds: [ 25, 50, 75 ]
+  - type: ProjectileCover
+    blockChance: 0.6
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Flammable
+    fireSpread: true
+    damage:
+      types:
+        Heat: 3
+  - type: FireVisuals
+    sprite: Effects/fire.rsi
+    normalState: 1
+  - type: Construction
+    graph: BarricadeCover
+    node: wood
+  - type: Tag
+    tags:
+    - ForceNoFixRotations
+    - Wooden
+
+- type: entity
+  id: BarricadeGlass
+  parent: BaseBarricadeCover
+  name: glass barricade
+  description: Glass panes set in a wooden frame. You can see through it, and so can bullets, often enough.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Barricades/glass.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Barricades/glass.rsi
+  - type: IconSmooth
+    key: BarricadeGlass
+  - type: SmoothDamageStages
+    thresholds: [ 15, 30, 45 ]
+  - type: ProjectileCover
+    blockChance: 0.45
+  - type: Damageable
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: BarricadeCover
+    node: glass
+
+- type: entity
+  id: BarricadeSandbags
+  parent: BaseBarricadeCover
+  name: sandbag barricade
+  description: A wall of sandbags. Few things you could carry soak up gunfire better.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Barricades/sandbags.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Barricades/sandbags.rsi
+  - type: IconSmooth
+    key: BarricadeSandbags
+  - type: SmoothDamageStages
+    thresholds: [ 35, 70, 105 ]
+  - type: ProjectileCover
+    blockChance: 0.85
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialSandbag1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: BarricadeSandbags
+    node: sandbags
+
+- type: entity
+  id: BarricadeSandbagsFrame
+  parent: BaseStructure
+  name: unfinished sandbag barricade
+  description: A few sandbags on top of each other. Some cover already, and a few more bags would finish it.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/Barricades/sandbags.rsi
+    noRot: false
+    layers:
+    - state: building_1
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/Barricades/sandbags.rsi
+    state: building_1
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          bags1: { state: building_1 }
+          bags2: { state: building_2 }
+          bags3: { state: building_3 }
+          bags4: { state: building_4 }
+          bags5: { state: building_5 }
+  - type: ProjectileCover
+    blockChance: 0.4
+  - type: InteractionOutline
+  - type: Climbable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+        - BulletImpassable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialSandbag1:
+            min: 0
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: BarricadeSandbags
+    node: bags1
+  - type: Tag
+    tags:
+    - ForceNoFixRotations
