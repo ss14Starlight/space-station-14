@@ -1,116 +1,4 @@
 Entries:
-- author: Forrestgod
-  changes:
-  - message: Quartermaster now starts with a cargo key in it.
-    type: Fix
-  id: 408515
-  time: '2026-09-13T08:01:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6141
-- author: Citrea
-  changes:
-  - message: Jet injectors can be refilled at smart dispensers again.
-    type: Fix
-  id: 408516
-  time: '2026-09-13T08:30:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6108
-- author: Trosling
-  changes:
-  - message: Security now has explicit knowledge of the syndicate number station via the metashield.
-    type: Add
-  id: 408517
-  time: '2026-09-13T08:56:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5922
-- author: Johnny
-  changes:
-  - message: The AI has been removed from NT Personnel area in join menu, because it is not NT personnel.
-    type: Tweak
-  id: 408518
-  time: '2026-09-13T14:30:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6146
-- author: neomoth
-  changes:
-  - message: Fix a bug regarding the insertion of entities into Cryo Pods where depending on the method of insertion, the inserted entity would be unaffected by the Cryo Pod.
-    type: Fix
-  id: 408519
-  time: '2026-09-13T17:17:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6130
-- author: Terkala
-  changes:
-  - message: Changed the "A wreck is approaching" event to use space station debris.
-    type: Tweak
-  id: 408520
-  time: '2026-09-13T17:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/5700
-- author: SirLutz
-  changes:
-  - message: Colossus and Malign Minion passive regeneration on tiles has been halved.
-    type: Tweak
-  id: 408521
-  time: '2026-09-13T18:03:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6127
-- author: SirLutz
-  changes:
-  - message: 'Colossus and minions gain less maxhealth per occupied rift, C: 25->20, M: 5->2.'
-    type: Tweak
-  id: 408522
-  time: '2026-09-13T18:03:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6127
-- author: SirLutz
-  changes:
-  - message: LoneColossus now spawns after 45 minutes and an population above 40.
-    type: Tweak
-  id: 408523
-  time: '2026-09-13T18:03:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6127
-- author: SirLutz
-  changes:
-  - message: Colossus now only gets 25% Maxhp boost from antagscaling instead of 50%.
-    type: Tweak
-  id: 408524
-  time: '2026-09-13T18:03:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6127
-- author: SirLutz
-  changes:
-  - message: Dragon Shark limit is now crewcount/8 instead of crewcount/2.
-    type: Tweak
-  id: 408525
-  time: '2026-09-13T18:03:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6127
-- author: SirLutz
-  changes:
-  - message: Shotgun Slugshots reduced from 0.3 to 0.2.
-    type: Tweak
-  id: 408526
-  time: '2026-09-13T18:03:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6127
-- author: SirLutz
-  changes:
-  - message: Dragon Sharkminnows and Holocarps can now pry doors.
-    type: Add
-  id: 408527
-  time: '2026-09-13T18:03:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6127
-- author: Rhapsody (Pepta Vismahl)
-  changes:
-  - message: Ethylredoxrazine now removes ethanol from the metabolites container, making it actually effective at stopping drunkenness and ethanol poisoning.
-    type: Tweak
-  id: 408528
-  time: '2026-09-13T18:03:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6039
-- author: Drakobird
-  changes:
-  - message: The ability to use quick menu for all glass type.
-    type: Fix
-  id: 408529
-  time: '2026-09-13T18:35:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6095
-- author: Drakobird
-  changes:
-  - message: The ability to use all glass types as floors again.
-    type: Fix
-  id: 408530
-  time: '2026-09-13T18:35:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6095
 - author: wonderfulnewworld, mkanke, Tea, Frogoo, TheSecondLord, ratsmageddon, Miish, G, Sparlight, gaesnek, ItsMaitake
   changes:
   - message: Added over 40 new Arti Sci nodes as well as mobs and objects to populate them.
@@ -2799,4 +2687,116 @@ Entries:
   id: 408914
   time: '2026-09-26T16:17:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6276
+- author: Rinary
+  changes:
+  - message: Added bullet holes visual effect when shooting in objects like walls.
+    type: Add
+  id: 408915
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Added sparks visual effect when shooting in metal piercable objects.
+    type: Add
+  id: 408916
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: 'Added new options tab: "User Interface".'
+    type: Add
+  id: 408917
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Added a lot of options for sights.
+    type: Add
+  id: 408918
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Added ability to change crosshair at options.
+    type: Add
+  id: 408919
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Changed wielding bonus on all weapons, now when you're wielding weapon it wouldn't be 100% accurate.
+    type: Tweak
+  id: 408920
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Changed spread, now when you're moving your spread will be bigger.
+    type: Tweak
+  id: 408921
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Changed spread stats of large amount of weapons.
+    type: Tweak
+  id: 408922
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Now all pistols are wieldable.
+    type: Tweak
+  id: 408923
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Now all smgs are wieldable.
+    type: Tweak
+  id: 408924
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Added heat system, now if you're shooting too long your weapon may overheat(it's more then 1 magazine) which leads to jamming and if you're shooting after jamming - firing pin melting(you can replace it).
+    type: Add
+  id: 408925
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Added shotgun bullets deviation, now you won't get same bullets pattern every time you shoot.
+    type: Add
+  id: 408926
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Removed cursor visibility when entering at combat for some crosshairs.
+    type: Remove
+  id: 408927
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Difference between 1st shooting 3.0 and 2nd shooting 3.0 - more balanced weapons, they're more accurate then before.
+    type: Tweak
+  id: 408928
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Changed wield order, now you bolt/rack first and then wield.
+    type: Tweak
+  id: 408929
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
+- author: Rinary
+  changes:
+  - message: Added "wield before racking" option which returns old bolt/rack order.
+    type: Add
+  id: 408930
+  time: '2026-09-26T18:04:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6251
 Order: -1
