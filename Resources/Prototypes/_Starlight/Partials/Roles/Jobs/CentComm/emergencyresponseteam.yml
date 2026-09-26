@@ -22,6 +22,7 @@
     shoes: ClothingShoesBootsJackFilled
     head: ClothingHeadHelmetERTLeader
     outerClothing: ClothingOuterVestWebEliteCentcomm
+    pocket2: WeaponPDW9
 
 - type: !PartialOnly startingGear
   id: ERTLeaderGearEVA
@@ -70,6 +71,7 @@
   id: ERTLeaderGearArmed
   equipment:
     suitstorage: WeaponRifleM52
+    pocket2: WeaponPDW9
   storage: !Clear
     back:
     - MedkitCombatFilled
@@ -100,6 +102,7 @@
   id: ERTChaplainGear
   equipment:
     outerClothing: ClothingOuterVestWebEliteCentcomm
+    pocket2: WeaponPistolColdCase
 
 - type: !PartialOnly startingGear
   id: ERTChaplainGearEVA
@@ -147,6 +150,7 @@
   equipment:
     shoes: ClothingShoesBootsJackFilled
     outerClothing: ClothingOuterVestWebEliteCentcomm
+    pocket2: WeaponPDW9
 
 - type: !PartialOnly startingGear
   id: ERTEngineerGearEVA
@@ -219,6 +223,7 @@
   id: ERTSecurityGear
   equipment:
     outerClothing: ClothingOuterVestWebEliteCentcomm
+    pocket2: WeaponPDW9
 
 - type: !PartialOnly startingGear
   id: ERTSecurityGearEVA
@@ -377,6 +382,7 @@
   id: ERTMedicalGear
   equipment:
     outerClothing: ClothingOuterArmorPlate
+    pocket2: WeaponPDW9
 
 - type: !PartialOnly startingGear
   id: ERTMedicalGearEVA
@@ -451,6 +457,7 @@
   id: ERTJanitorGear
   equipment:
     outerClothing: ClothingOuterVestWebEliteCentcomm
+    pocket2: WeaponPDW9
 
 - type: !PartialOnly startingGear
   id: ERTJanitorGearEVA
