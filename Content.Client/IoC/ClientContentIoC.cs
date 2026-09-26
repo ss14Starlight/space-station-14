@@ -37,6 +37,7 @@ using Content.Client._NullLink;
 using Content.Client._Starlight.Achievement;
 using Content.Client._Starlight.Shaders;
 using Content.Shared._Starlight.DocumentManager;
+using Content.Client._Starlight.RedundantMovement;
 
 namespace Content.Client.IoC
 {
@@ -91,6 +92,7 @@ namespace Content.Client.IoC
             collection.Register<IAchievementRewardManager, ClientAchievementManager>(); // Starlight
             collection.Register<PreWrittenDocumentManager>(); // Starlight
             collection.Register<IStarlightShaderManager, StarlightShaderManager>(); // Starlight
+            collection.Register<IClientRedundantMovementManager, ClientRedundantMovementManager>(); // Starlight
         }
     }
 }
