@@ -1,0 +1,494 @@
+# Leader
+- type: !PartialOnly job
+  id: ERTLeader
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 96h # Realistically, if you have the CC time, you'll have met this anyways... But, in case that CC time is removed later.
+  - !type:DepartmentTimeRequirement
+    department: CentralCommand
+    time: 10h
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 20h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 15h # If theyre not an admin, they NEED to be good in combat. You're the last hope, after all.
+  bypassEorPacification: true
+
+- type: !PartialOnly startingGear
+  parent: ERTLeaderGearEVA
+  id: ERTLeaderGear
+  equipment:
+    shoes: ClothingShoesBootsJackFilled
+    head: ClothingHeadHelmetERTLeader
+    outerClothing: ClothingOuterVestWebEliteCentcomm
+    pocket2: WeaponPDW9
+
+- type: !PartialOnly startingGear
+  id: ERTLeaderGearEVA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTLeader
+    shoes: ClothingShoesBootsMagERTFilled
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesCentComm
+    neck: CommanderWhistle
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTLeader
+    id: ERTLeaderPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: ClothingBeltMilitaryWebbingERT
+    pocket2: WeaponPDW9
+    suitstorage: WeaponDisablerSMG
+  storage: !Clear
+    back:
+    - Binoculars
+    - HoloprojectorField
+    - HoloprojectorSecurity
+    - PowerCellHigh
+    - PowerCellHigh
+    - TelescopicShield
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - BoxFolderCentComThreePapers
+    - PowerDrill
+    - DefibrillatorCompact
+    belt:
+    - WeaponPistolM1911
+    - MagazineMagnum
+    - Truncheon
+    - Handcuffs
+    - ToolDebug
+    - HoloprojectorField
+    - CCEmag
+    - PinpointerNuclear
+    - EmergencyMedipen
+    - CombatMedipen
+    - CrisisButton
+
+- type: !PartialOnly startingGear
+  parent: ERTLeaderGearEVA
+  id: ERTLeaderGearArmed
+  equipment:
+    suitstorage: WeaponRifleM52
+    pocket2: WeaponPDW9
+  storage: !Clear
+    back:
+    - MedkitCombatFilled
+    - MagazineRifleM52FMJ
+    - MagazineRifleM52FMJ
+    - MagazineRifleM52Incendiary
+    - MagazineRifleM52HP
+    - GrenadeShrapnel
+    - EmpGrenade
+    - MedkitCombatFilled
+    - Binoculars
+    - TelescopicShield
+    - SmokeGrenade
+
+# Chaplain
+- type: !PartialOnly job
+  id: ERTChaplain
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 48h # While you technically are a last resort against the "paranormal", there's no threats that actually warrant you having more time than this unless Cluwne Beasts get properly implemented.
+  - !type:RoleTimeRequirement
+    role: JobChaplain
+    time: 5h
+  bypassEorPacification: true
+
+- type: !PartialOnly startingGear
+  parent: ERTChaplainGearEVA
+  id: ERTChaplainGear
+  equipment:
+    outerClothing: ClothingOuterVestWebEliteCentcomm
+    pocket2: WeaponPistolColdCase
+
+- type: !PartialOnly startingGear
+  id: ERTChaplainGearEVA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTChaplain
+    back: ClothingBackpackERTChaplain
+    shoes: ClothingShoesBootsMagERTFilled
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTChaplain
+    id: ERTChaplainPDA
+    ears: ClothingHeadsetCentCom
+    belt: ChainsawSword
+    neck: ClothingNeckStoleChaplain
+    pocket2: WeaponPistolColdCase
+  storage: !Clear
+    back:
+    - JugWater
+    - JugWater
+    - CosmicCenser
+    - WeaponDisablerSMG
+    - Handcuffs
+    - Handcuffs
+    - BibleNanoTrasen
+    - BodyBagFolded
+    - MagazineBoxPistol40FMJ
+    - DeviceDesynchronizer
+    - MedkitCombatFilled
+
+# Engineer
+- type: !PartialOnly job
+  id: ERTEngineer
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72h # You should know the game's controls if you're going to be building stuff.
+  - !type:RoleTimeRequirement
+    role: JobStationEngineer
+    time: 15h # You should know how to construct things with and without the RCD.
+  bypassEorPacification: true
+
+- type: !PartialOnly startingGear
+  parent: ERTEngineerGearEVA
+  id: ERTEngineerGear
+  equipment:
+    shoes: ClothingShoesBootsJackFilled
+    outerClothing: ClothingOuterVestWebEliteCentcomm
+    pocket2: WeaponPDW9
+
+- type: !PartialOnly startingGear
+  id: ERTEngineerGearEVA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTEngineer
+    back: ClothingBackpackERTEngineer
+    shoes: ClothingShoesBootsMagERTFilled
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesHudDiagnostic
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTEngineer
+    id: ERTEngineerPDA
+    ears: ClothingHeadsetCentCom
+    belt: ClothingBeltMilitaryWebbingERT
+    pocket2: WeaponPDW9
+    suitstorage: PortableRecharger
+  storage: !Clear
+    back:
+    - RPD
+    - trayScanner
+    - WelderIndustrialAdvanced
+    - CableApcStack
+    - CableMVStack
+    - CableHVStack
+    - MetalFoamGrenade
+    - AirGrenade
+    - RCDAmmo
+    - RCDAmmo
+    - MatBagFilled
+    belt:
+    - HoloprojectorEngineering
+    - SpaceMedipen
+    - JawsOfLife
+    - PowerDrill
+    - Multitool
+    - GasAnalyzer
+    - RCD
+    - RadiationBlockingProjector
+    - HolofanProjector
+    - Flare
+
+- type: !PartialOnly startingGear
+  parent: ERTEngineerGearEVA
+  id: ERTEngineerGearArmed
+  equipment:
+    suitstorage: PortableRecharger
+  storage:
+    back: !Clear
+    - RPD
+    - WelderIndustrialAdvanced
+    - WeaponLaserCarbine
+    - trayScanner
+    - RCDAmmo
+    - RCDAmmo
+    - MatBagFilled
+
+# Security
+- type: !PartialOnly job
+  id: ERTSecurity
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 15h # your whole job here is fighting and following orders.
+  bypassEorPacification: true
+
+- type: !PartialOnly startingGear
+  parent: ERTSecurityGearEVA
+  id: ERTSecurityGear
+  equipment:
+    outerClothing: ClothingOuterVestWebEliteCentcomm
+    pocket2: WeaponPDW9
+
+- type: !PartialOnly startingGear
+  id: ERTSecurityGearEVA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTSecurity
+    back: ClothingBackpackERTSecurity
+    shoes: ClothingShoesBootsMagERTFilled
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    neck: SecurityWhistle
+    outerClothing: ClothingOuterHardsuitERTSecurity
+    id: ERTSecurityPDA
+    ears: ClothingHeadsetCentCom
+    belt: ClothingBeltMilitaryWebbingERT
+    pocket2: WeaponPDW9
+    suitstorage: WeaponDisablerSMG
+  storage: !Clear
+    back:
+    - WeaponPistolMk58Nonlethal
+    - MagazinePistolRubber
+    - TearGasGrenade
+    - GrenadeStinger
+    - Flash
+    - Bola
+    - Zipties
+    - Truncheon
+    - TelescopicShield
+    - PowerCellHigh
+    - PowerCellHigh
+    belt:
+    - WeaponPistolEnforcer
+    - MagazinePistolSP
+    - Stunbaton
+    - Handcuffs
+    - Handcuffs
+    - HoloprojectorSecurity
+    - MedkitCombatFilled
+    - CrowbarRed
+    - EmergencyMedipen
+
+- type: !PartialOnly startingGear
+  parent: ERTSecurityGearEVA
+  id: ERTSecurityGearArmedRifle
+  equipment:
+    suitstorage: WeaponRiflePeacemaker
+  inhand: !Clear
+  storage: !Clear
+    back:
+    - MedicatedSuture
+    - GrenadeShrapnel
+    - GrenadeIncendiary
+    - EmpGrenade
+    - MagazineRifleFMJ
+    - MagazineRifleFMJ
+    - MagazineRifleSP
+    - MagazineRifleIncendiary
+    - MedicatedSuture
+    - TelescopicShield
+    - HoloprojectorSecurity
+
+- type: !PartialOnly startingGear
+  parent: ERTSecurityGearEVA
+  id: ERTSecurityGearArmedGrenade
+  equipment:
+    suitstorage: WeaponLauncherHydraLethal
+  storage: !Clear
+    back:
+    - GrenadeBlast
+    - GrenadeBlast
+    - GrenadeBlast
+    - GrenadeFrag
+    - GrenadeFrag
+    - GrenadeFrag
+    - MagazinePistolSP
+    - EmpGrenade
+    - GrenadeEMP
+    - GrenadeEMP
+    - GrenadeEMP
+    - GrenadeFlash
+    - GrenadeFlash
+    - GrenadeFlash
+    - MagazinePistolSP
+    - GrenadeShrapnel
+
+- type: !PartialOnly startingGear
+  parent: ERTSecurityGearEVA
+  id: ERTSecurityGearArmedVanguard
+  equipment:
+    suitstorage: WeaponSubMachineGunWt550r
+  storage: !Clear
+    back:
+    - ClothingShoesBootsJump
+    - TelescopicShield
+    - TelescopicShield
+    - HoloprojectorField
+    - PowerCellHyper
+    - MedkitCombatFilled
+    - MagazinePistolSubMachineGunTopMounted
+    - MagazinePistolSubMachineGunTopMounted
+    - MagazinePistolSubMachineGunTopMounted
+    - MagazinePistolSubMachineGunTopMounted
+    - MagazinePistolSubMachineGunTopMounted
+    - PillDesoxyephedrine
+    - PillDesoxyephedrine
+    - ChemistryBottleDesoxyephedrine
+    - Syringe
+    - AntiPoisonMedipen
+    - AntiPoisonMedipen
+
+- type: !PartialOnly startingGear
+  parent: ERTSecurityGearEVA
+  id: ERTSecurityGearArmedShotgun
+  equipment:
+    suitstorage: WeaponShotgunCombat
+  storage: !Clear
+    back:
+    - BoxLethalshot
+    - BoxDetonator
+    - BoxShotgunSlug
+    - MagazineShotgunBreach
+    - MagazineShotgunBreach
+    - HammerBreachingNT
+    belt:
+    - WeaponPistolEnforcer
+    - MagazinePistolSP
+    - RemoteSignallerAdvanced
+    - CableDetStack
+    - CableDetStack
+    - CableDetStack
+    - C4
+    - MedkitCombatFilled
+    - HoloprojectorSecurity
+    - AdvancedMedipen
+
+# Medical
+- type: !PartialOnly job
+  id: ERTMedical
+  icon: "JobIconERTMedical"
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72h
+  - !type:RoleTimeRequirement
+    role: JobMedicalDoctor
+    time: 10h
+  - !type:RoleTimeRequirement
+    role: JobChemist
+    time: 10h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 5h # youre a medic but you WILL be fighting at some point
+  bypassEorPacification: true
+
+- type: !PartialOnly startingGear
+  parent: ERTMedicalGearEVA
+  id: ERTMedicalGear
+  equipment:
+    outerClothing: ClothingOuterArmorPlate
+    pocket2: WeaponPDW9
+
+- type: !PartialOnly startingGear
+  id: ERTMedicalGearEVA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+    back: ClothingBackpackERTMedical
+    shoes: ClothingShoesBootsMagERTFilled
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTMedical
+    id: ERTMedicPDA
+    ears: ClothingHeadsetCentCom
+    belt: ClothingBeltMilitaryWebbingERT
+    pocket2: WeaponPDW9
+  storage: !Clear
+    back:
+    - JugGoldenBicaridine
+    - AutoMenderBruteFilled
+    - JugPunctTranex
+    - JugDexPlusSaline
+    - JugGoldenDermaline
+    - AutoMenderBurnFilled
+    - ChemistryBottleAmoxla
+    - ChemistryBottleDiphenhydramine
+    - ChemistryBottleOmnizine
+    - ChemistryBottleOmnizine
+    - Hypospray
+    - BodyBagLockableFolded
+    belt:
+    - CombatMedipen
+    - CombatMedipen
+    - DefibrillatorCompact
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - BodyBagLockableFolded
+    - WeaponPistolSP8AR
+    - MagazinePistol40SP
+    - CombatMedipen
+
+- type: !PartialOnly startingGear
+  parent: ERTMedicalGearEVA
+  id: ERTMedicalGearArmed
+  equipment:
+    suitstorage: WeaponIK60
+  storage: !Clear
+    back:
+    - JugGoldenBicaridine
+    - AutoMenderBruteFilled
+    - JugPunctTranex
+    - JugDexPlusSaline
+    - JugGoldenDermaline
+    - AutoMenderBurnFilled
+    - Hypospray
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+
+# Janitor
+- type: !PartialOnly job
+  id: ERTJanitor
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 48h
+  - !type:RoleTimeRequirement
+    role: JobJanitor
+    time: 5h
+  bypassEorPacification: true
+
+- type: !PartialOnly startingGear
+  parent: ERTJanitorGearEVA
+  id: ERTJanitorGear
+  equipment:
+    outerClothing: ClothingOuterVestWebEliteCentcomm
+    pocket2: WeaponPDW9
+
+- type: !PartialOnly startingGear
+  id: ERTJanitorGearEVA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTJanitor
+    back: ClothingBackpackERTJanitor
+    shoes: ClothingShoesBootsMagERTFilled
+    mask: ClothingMaskGasERT
+    eyes: ClothingEyesGlassesChemical
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitERTJanitor
+    id: ERTJanitorPDA
+    ears: ClothingHeadsetCentCom
+    belt: ClothingBeltMilitaryWebbingERT
+    pocket2: WeaponPDW9
+    suitstorage: WeaponLauncherHydra
+  storage: !Clear
+    back:
+    - TrashBag
+    - SoapNT
+    - AdvMopItem # End of first line
+    - MagazineGrenadeCleanade
+    - MagazineGrenadeCleanade
+    belt:
+    - WeaponPistolMk58Nonlethal
+    - MagazinePistolRubber
+    - MegaSprayBottleSpaceCleaner
+    - WireBrush
+    - LightReplacer
+    - Holoprojector
+    - Plunger
+    - ToolDebug
+    - SprayBottleWater
+    - CCMoproachCubeWrapped
