@@ -4,7 +4,6 @@
   id: FoodCookedLizardPlate
   description: An art piece showing the demise of a forest.
   components:
-    - type: Citrus
     - type: FlavorProfile
       flavors:
         - meaty
@@ -31,6 +30,7 @@
     - type: Tag
       tags:
         - Meat
+        - Citrus
 
 - type: entity
   name: Kentucky fried felionoid

@@ -124,7 +124,8 @@
   tip: artifact-trigger-hint-citrus
   components:
   - type: XATCompNearby # Starlight: Citrus items  by proximity
-    requireComponentWithName: Citrus
+    requireComponentWithName: Tag
+    requireTag: Citrus
     radius: 2
   - type: XATReactive
     reagents:
@@ -193,9 +194,9 @@
   id: TriggerTechnologyDisk
   tip: artifact-trigger-hint-tech-disc
   components:
-  - type: XATCompNearby
-    #requireComponentWithName: TechnologyDisk
-    requireComponentWithName: FloppyDisk # Starlight: more broad match than just technology disks
+  - type: XATCompNearby # Starlight: more broad match than just technology disks
+    requireComponentWithName: Tag
+    requireTag: FloppyDisk
     radius: 2
 
 - type: xenoArchTrigger
