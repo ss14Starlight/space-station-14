@@ -32,6 +32,8 @@ public sealed class CryoTeleportationTest : GameTest
     // Long enough to cover the auto-cryo refresh cooldown (5s) plus a margin.
     private const float WaitForCryo = 8f;
 
+    // YAML indentation, not C#.
+    // editorconfig-checker-disable
     [TestPrototypes]
     private static readonly string _prototypes = $@"
 - type: gameMap
@@ -51,6 +53,7 @@ public sealed class CryoTeleportationTest : GameTest
             {_mime}: [ 1, 1 ]
             K9: [ 1, 1 ]
 ";
+    // editorconfig-checker-enable
 
     // Dirty: tests die, revive, and disconnect the test client.
     public override PoolSettings PoolSettings => new()
