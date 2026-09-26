@@ -317,30 +317,11 @@ public sealed partial class StationJobsSystem : EntitySystem
         if (!Resolve(station, ref stationJobs))
             throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
 
-        if (!stationJobs.JobList.TryGetValue(jobPrototypeId, out var job))
+        if(!stationJobs.JobList.TryGetValue(jobPrototypeId, out var job))
             throw new ArgumentException("Job prototype was not present in the job list.");
 
         if (job is not null) stationJobs.TotalJobs -= job.Value;
         stationJobs.JobList.Remove(jobPrototypeId);
-    }
-
-    /// <summary>
-    /// Removes one job from a player on this station, keeping their other jobs.
-    /// </summary>
-    public bool TryRemovePlayerJob(Entity<StationJobsComponent?> station,
-        NetUserId userId,
-        ProtoId<JobPrototype> job)
-    {
-        if (!Resolve(station, ref station.Comp, false))
-            return false;
-
-        if (!station.Comp.PlayerJobs.TryGetValue(userId, out var jobs) || !jobs.Remove(job))
-            return false;
-
-        if (jobs.Count == 0)
-            station.Comp.PlayerJobs.Remove(userId);
-
-        return true;
     }
 
     #endregion

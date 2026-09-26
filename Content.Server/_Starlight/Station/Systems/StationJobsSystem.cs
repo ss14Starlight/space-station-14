@@ -1,4 +1,5 @@
 using Content.Server._Starlight.Statistics;
+using Content.Server.Station.Components;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.Network;
@@ -44,5 +45,24 @@ public sealed partial class StationJobsSystem
         }
 
         _roundStatistics.RecordJobPreferences(preferences);
+    }
+
+    /// <summary>
+    /// Removes one job from a player on this station, keeping their other jobs.
+    /// </summary>
+    public bool TryRemovePlayerJob(Entity<StationJobsComponent?> station,
+        NetUserId userId,
+        ProtoId<JobPrototype> job)
+    {
+        if (!Resolve(station, ref station.Comp, false))
+            return false;
+
+        if (!station.Comp.PlayerJobs.TryGetValue(userId, out var jobs) || !jobs.Remove(job))
+            return false;
+
+        if (jobs.Count == 0)
+            station.Comp.PlayerJobs.Remove(userId);
+
+        return true;
     }
 }
