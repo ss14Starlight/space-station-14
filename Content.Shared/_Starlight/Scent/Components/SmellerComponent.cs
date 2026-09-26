@@ -2,7 +2,6 @@ using Content.Shared._Starlight.Scent.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared._Starlight.Scent.Components;
 
@@ -19,6 +18,19 @@ public sealed partial class SmellerComponent : Component
     // If set, scent-vision only shows markers matching this ScentId.
     [DataField, AutoNetworkedField]
     public string? TrackedScentId;
+
+    /// <summary>
+    /// Status effect granted while a tracked scent is active; drives the tracking alert and
+    /// clears itself after <see cref="TrackDuration"/>.
+    /// </summary>
+    [DataField]
+    public EntProtoId TrackStatusEffect = "StatusEffectTrackingScent";
+
+    /// <summary>
+    /// How long SetTrackedScent lasts before ClearTrackedScent fires automatically.
+    /// </summary>
+    [DataField]
+    public TimeSpan TrackDuration = TimeSpan.FromMinutes(5);
 
     [DataField("toggleAction")]
     public EntProtoId ToggleAction = "ActionToggleSniff";

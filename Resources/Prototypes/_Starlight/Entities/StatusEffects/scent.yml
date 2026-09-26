@@ -1,0 +1,12 @@
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectTrackingScent
+  name: tracking scent
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - Smeller
+  - type: StatusEffectAlert
+    alert: TrackingScent
+  - type: TrackingScentStatusEffect
