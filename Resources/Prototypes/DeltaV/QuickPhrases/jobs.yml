@@ -131,7 +131,7 @@
   text: job-name-cargotech
 
 - type: quickPhrase
-  parent: BaseLogisticsJobPhrase
+  parent: BaseInterstellarTradeGuildJobPhrase # Starlight Salv is ITG now, not Logistics
   id: SalvageSpecialistPhrase
   text: job-name-salvagespec
 

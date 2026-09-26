@@ -1,0 +1,1 @@
+phrase-safety-softcritical = soft critical
