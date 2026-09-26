@@ -54,7 +54,6 @@ public sealed partial class PryingSystem : EntitySystem
         _alerts.ClearAlert(ent.Owner, ent.Comp.PryingAlertProtoId.Value);
     }
 
-
     private void TryPryDoor(EntityUid uid, DoorComponent comp, InteractUsingEvent args)
     {
         if (args.Handled)
