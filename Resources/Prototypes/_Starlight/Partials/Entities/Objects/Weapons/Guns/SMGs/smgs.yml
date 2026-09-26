@@ -15,8 +15,7 @@
 
 - type: !PartialOnly entity
   id: WeaponSubMachineGunAtreides
-  parent:
-  - !Index:1 BaseGunWieldable
+  parent: !Clear [ BaseWeaponSubMachineGun, BaseGunWieldable, BaseMajorContraband ]
   components:
   - type: Gun
     minAngle: 8
@@ -67,8 +66,7 @@
 
 - type: !PartialOnly entity
   id: WeaponSubMachineGunWt550
-  parent:
-  - !Index:1 BaseGunWieldable
+  parent: !Clear [ BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband ]
   components:
   - type: Gun
     minAngle: 5
