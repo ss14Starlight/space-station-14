@@ -577,7 +577,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
                 conversionValue = store.Balance.GetValueOrDefault("Conversion", FixedPoint2.New(1));
             }
 
-            _popup.PopupEntity(Loc.GetString($"+1 Conversion (Total: {conversionValue})"), headRevOwner, headRevOwner, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("rev-conversion-gained", ("total", conversionValue.ToString())), headRevOwner, headRevOwner, PopupType.Medium);
         }
 
         // Also show popup to all revolutionaries with implants
