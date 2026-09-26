@@ -1,13 +1,6 @@
 Entries:
 - author: Johnny
   changes:
-  - message: Changed most of the evacuation shuttles to use the cooler chairs.
-    type: Tweak
-  id: 408491
-  time: '2026-09-12T07:01:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6056
-- author: Johnny
-  changes:
   - message: Changed most of the evac shuttles to have reinforced walls around the power areas.
     type: Tweak
   id: 408492
@@ -2799,4 +2792,11 @@ Entries:
   id: 408890
   time: '2026-09-26T10:42:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6352
+- author: Terkala
+  changes:
+  - message: Reduced some sources of Dungeon generation lag.
+    type: Fix
+  id: 408891
+  time: '2026-09-26T11:11:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6259
 Order: -1
