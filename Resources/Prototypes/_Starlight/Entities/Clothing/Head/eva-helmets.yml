@@ -197,3 +197,18 @@
     tags:
     - WhitelistChameleon
   - type: FlashImmunity
+
+- type: entity
+  parent:  ClothingHeadHelmetsoftsuitWizardFrost
+  id: ClothingHeadHelmetsoftsuitWizardDark
+  name: wizard cryomancer hood
+  description: A hood of ancient cloth, the shadow within seems bottomless.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hoods/wizarddark.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hoods/wizarddark.rsi
+    equipSound:
+      collection: storageRustle
+    unequipSound:
+      collection: storageRustle

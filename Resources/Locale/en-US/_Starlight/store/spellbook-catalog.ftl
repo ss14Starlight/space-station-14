@@ -64,3 +64,42 @@ spellbook-icepillars-desc = Summon a row of somewhat sturdy ice pillars in front
 
 spellbook-eruption-name = Eruption
 spellbook-eruption-desc = Summon a rune that after 2 seconds will start sending fiery shrapnels in a wide area.
+
+spellbook-soulmancer-name = The Soulmancer path
+spellbook-soulmancer-desc = A set of armor and spells fit for the most cruel students of the soul. Pain and death are your vows and you will partake in both.
+
+spellbook-summoncursedskull-name = Summon cursed skull
+spellbook-summoncursedskull-desc = Summon a cursed skull that will seek out a nearby target and explode on contact, stunning them.
+
+spellbook-soulknives-name = Rune of cutting
+spellbook-soulknives-desc = Summon several orbs that, once charged, become spinning ethereal knives.
+
+spellbook-scythe-name = Reaper's Scythe
+spellbook-scythe-desc = A gigantic scythe, sharpened by the souls of the tormented it only asks to grow sharper still.
+
+spellbook-impale-name = Impale
+spellbook-impale-desc = Summon several spears in a cross shape area that will impale anyone standing there.
+
+spellbook-shadowpassage-name = Shadow passage
+spellbook-shadowpassage-desc = Glare at the walls in front of you, collapsing them to nothingness.
+
+spellbook-annihilation-name = Great rune of annihilation
+spellbook-annihilation-desc = Materialise your bottomless malice in a rune that will annihilate anything within it, you are immune to it.
+
+spellbook-fogcloud-name = Fog Cloud
+spellbook-fogcloud-desc = Summon a fog cloud, obstructing vision and slowly spreading by itself.
+
+spellbook-harmcurse-name = Curse of Harm
+spellbook-harmcurse-desc = Summon an hex totem that will shoot anyone within range.
+
+spellbook-gravityrune-name = Rune of gravity
+spellbook-gravityrune-desc = Summon a rune that will pull anything nearby towards it, dont stand close!
+
+spellbook-slowcurse-name = Curse of slow
+spellbook-slowcurse-desc = Summon an hex totem that will continuously spawns soul webs around it, soulmancer such as yourself are immune to it.
+
+spellbook-shadowjaunt-name = Shadow jaunt
+spellbook-shadowjaunt-desc = Take on an incorporal shadow form and pass through walls!
+
+spellbook-shadowboon-name = Shadow boon
+spellbook-shadowboon-desc = A set of enchantments for a soulmancer to use before battle.

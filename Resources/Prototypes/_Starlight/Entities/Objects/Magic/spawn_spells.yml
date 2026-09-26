@@ -65,3 +65,277 @@
     tts: action-speech-spell-icepillars-tts
     modifier: Spell
   - type: EorgPreventAction
+
+
+- type: entity
+  parent: BaseRuneAction
+  id: ActionSummonCursedSkull
+  name: Summon cursed skull
+  description: Summons a skull that will attack the first enemy it sees by exploding and stunning them (15 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 15
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi # TO DO
+        state: cursedskullicon
+  - type: TargetAction
+    range: 10
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: SummoningSkull
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-summoncursedskull
+    tts: action-speech-spell-summoncursedskull-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  id: SummoningSkull
+  parent: BaseRune
+  name: cursed skull
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Magic/summoning.rsi
+      layers:
+        - state: summonskull
+    - type: TriggerOnSpawn
+    - type: TimerTrigger
+      delay: 1.4
+    - type: TimedDespawn
+      lifetime: 1.5
+    - type: SpawnOnTrigger
+      keysIn:
+      - timer
+      proto: SummonCursedSkull
+    - type: EmitSoundOnSpawn
+      sound:
+        path: /Audio/_Starlight/CosmicCult/colossus_spawn.ogg
+
+- type: entity
+  parent: BaseRuneAction
+  id: ActionFogCloud
+  name: Summon Fog
+  description: Summons a qmall cloud of shadow fog (10 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 10
+    itemIconStyle: BigAction
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: fog
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: ShadowKudzuWiz
+      posData: !type:TargetInFront
+  - type: SpeakOnAction
+    sentence: action-speech-spell-fogcloud
+    tts: action-speech-spell-fogcloud-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  parent: BaseRuneAction
+  id: ActionSummonHarmCurse
+  name: Summon curse of harming
+  description: Summons an hex that will shoot anyone it sees with deadly poison (100 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 100
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: summonharm
+  - type: TargetAction
+    range: 10
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: RuneSummonHarmCurse
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-summonharm
+    tts: action-speech-spell-summonharm-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  id: RuneSummonHarmCurse
+  parent: BaseRune
+  name: summoning pentagram
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Magic/summoning.rsi
+      layers:
+        - state: summoncurse
+    - type: TriggerOnSpawn
+    - type: TimerTrigger
+      delay: 2
+    - type: TimedDespawn
+      lifetime: 2.2
+    - type: SpawnOnTrigger
+      keysIn:
+      - timer
+      proto: TurretHarmCurse
+
+- type: entity
+  parent: BaseRuneAction
+  id: ActionSummonSlowCurse
+  name: Summon curse of slowness
+  description: Summon an hex totem that will continuously spawns soul webs around it, soulmancers are immune to it (45 seconds cooldown).
+  components:
+  - type: Action
+    useDelay: 45
+    itemIconStyle: BigAction
+    icon:
+        sprite: _Starlight/Objects/Magic/magicactions.rsi
+        state: summonslow
+  - type: TargetAction
+    range: 10
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:WorldSpawnSpellEvent
+      prototypes:
+      - id: RuneSummonSlowCurse
+        amount: 1
+  - type: SpeakOnAction
+    sentence: action-speech-spell-summonslow
+    tts: action-speech-spell-summonslow-tts
+    modifier: Spell
+  - type: EorgPreventAction
+
+- type: entity
+  id: RuneSummonSlowCurse
+  parent: BaseRune
+  name: summoning pentagram
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Magic/summoning.rsi
+      layers:
+        - state: summoncurse
+    - type: TriggerOnSpawn
+    - type: TimerTrigger
+      delay: 2
+    - type: TimedDespawn
+      lifetime: 2.2
+    - type: SpawnOnTrigger
+      keysIn:
+      - timer
+      proto: TotemSlowCurse
+
+- type: entity
+  parent: BaseStructure
+  id: TotemSlowCurse
+  name: Hex of slowness
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/magicactions.rsi
+    state: totemweb
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts:
+        - Destruction
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/gib1.ogg
+  - type: CustomSpawner
+    enabled: true
+    spawnOnInterval: true
+    spawnInterval: 5
+    oneShot: false
+    strategy: All
+    spawnData:
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 0, 2
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - -1, 1
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 0, 1
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 1, 1
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - -2, 0
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - -1, 0
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 1, 0
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 2, 0
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - -1, -1
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 0, -1
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 1, -1
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 0, -2
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - -2, 2
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - -1, 2
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 1, 2
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 2, 2
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - -2, 1
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 2, 1
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - -2, -1
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 2, -1
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - -2, -2
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - -1, -2
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 1, -2
+    - protoId: SpiderWebSoul
+      spawnOffsets:
+      - 2, -2

@@ -105,3 +105,33 @@
     entity: MobBat
     revertOnDeath: true
     revertOnCrit: true
+
+
+- type: polymorph
+  id: Shadow
+  configuration:
+    entity: ShadowKudzuWiz
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: false
+    revertOnCrit: false
+    revertOnDeath: false
+    polymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+    exitPolymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+
+- type: polymorph
+  id: ShadowJaunt
+  configuration:
+    entity: ShadowJaunt
+    transferName: true
+    inventory: None
+    forced: true
+    revertOnDeath: true
+    revertOnCrit: true
+    allowRepeatedMorphs: false
+    polymorphSound: /Audio/Magic/ethereal_enter.ogg
+    exitPolymorphSound: /Audio/Magic/ethereal_exit.ogg
+    duration: 3
