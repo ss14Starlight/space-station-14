@@ -35,94 +35,94 @@ namespace Content.IntegrationTests.Tests.Damageable
         private const string TestDamage3c = "TestDamage3c";
 
         [TestPrototypes]
-        private const string Prototypes = $@"
-# Define some damage groups
-- type: damageType
-  id: {TestDamage1}
-  name: damage-type-blunt
+        private const string Prototypes = $"""
+        # Define some damage groups
+        -   type: damageType
+            id: {TestDamage1}
+            name: damage-type-blunt
 
-- type: damageType
-  id: {TestDamage2a}
-  name: damage-type-blunt
+        -   type: damageType
+            id: {TestDamage2a}
+            name: damage-type-blunt
 
-- type: damageType
-  id: {TestDamage2b}
-  name: damage-type-blunt
+        -   type: damageType
+            id: {TestDamage2b}
+            name: damage-type-blunt
 
-- type: damageType
-  id: {TestDamage3a}
-  name: damage-type-blunt
+        -   type: damageType
+            id: {TestDamage3a}
+            name: damage-type-blunt
 
-- type: damageType
-  id: {TestDamage3b}
-  name: damage-type-blunt
+        -   type: damageType
+            id: {TestDamage3b}
+            name: damage-type-blunt
 
-- type: damageType
-  id: {TestDamage3c}
-  name: damage-type-blunt
+        -   type: damageType
+            id: {TestDamage3c}
+            name: damage-type-blunt
 
-# Define damage Groups with 1,2,3 damage types
-- type: damageGroup
-  id: {TestGroup1}
-  name: damage-group-brute
-  damageTypes:
-    - {TestDamage1}
+        # Define damage Groups with 1,2,3 damage types
+        -   type: damageGroup
+            id: {TestGroup1}
+            name: damage-group-brute
+            damageTypes:
+            - {TestDamage1}
 
-- type: damageGroup
-  id: {TestGroup2}
-  name: damage-group-brute
-  damageTypes:
-    - {TestDamage2a}
-    - {TestDamage2b}
+        -   type: damageGroup
+            id: {TestGroup2}
+            name: damage-group-brute
+            damageTypes:
+            - {TestDamage2a}
+            - {TestDamage2b}
 
-- type: damageGroup
-  id: {TestGroup3}
-  name: damage-group-brute
-  damageTypes:
-    - {TestDamage3a}
-    - {TestDamage3b}
-    - {TestDamage3c}
+        -   type: damageGroup
+            id: {TestGroup3}
+            name: damage-group-brute
+            damageTypes:
+            - {TestDamage3a}
+            - {TestDamage3b}
+            - {TestDamage3c}
 
-# This container should not support TestDamage1 or TestDamage2b
-- type: damageContainer
-  id: testDamageContainer
-  supportedGroups:
-    - {TestGroup3}
-  supportedTypes:
-    - {TestDamage2a}
+        # This container should not support TestDamage1 or TestDamage2b
+        -   type: damageContainer
+            id: testDamageContainer
+            supportedGroups:
+            - {TestGroup3}
+            supportedTypes:
+            - {TestDamage2a}
 
-- type: entity
-  id: {TestDamageableEntityId}
-  name: {TestDamageableEntityId}
-  components:
-  - type: Damageable
-    damageContainer: testDamageContainer
+        -   type: entity
+            id: {TestDamageableEntityId}
+            name: {TestDamageableEntityId}
+            components:
+            -   type: Damageable
+                damageContainer: testDamageContainer
 
-- type: entity
-    id: {TestGroupedDamageEntityId}
-    name: {TestGroupedDamageEntityId}
-    components:
-    - type: Damageable
-        damageContainer: testDamageContainer
-        damage:
-            groups:
-                {TestGroup3}: 14
+        -   type: entity
+            id: {TestGroupedDamageEntityId}
+            name: {TestGroupedDamageEntityId}
+            components:
+            -   type: Damageable
+                damageContainer: testDamageContainer
+                damage:
+                    groups:
+                        {TestGroup3}: 14
 
-- type: entity
-    id: {TestMixMaxDamageEntityId}
-    name: {TestMixMaxDamageEntityId}
-    components:
-    - type: Damageable
-        damageContainer: testDamageContainer
-    - type: PassiveDamage
-        damage:
-            mixmax:
-                value: 1
-                groups:
-                - {TestGroup3}
-                types:
-                - {TestDamage2a}
-";
+        -   type: entity
+            id: {TestMixMaxDamageEntityId}
+            name: {TestMixMaxDamageEntityId}
+            components:
+            -   type: Damageable
+                damageContainer: testDamageContainer
+            -   type: PassiveDamage
+                damage:
+                    mixmax:
+                        value: -1
+                        groups:
+                        - {TestGroup3}
+                        types:
+                        - {TestDamage2a}
+        """;
 
         #region Starlight
         [Test]
