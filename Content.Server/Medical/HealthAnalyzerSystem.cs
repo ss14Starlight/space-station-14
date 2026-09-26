@@ -33,7 +33,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server._Starlight.Medical.Body.Systems;
-using Content.Shared._Starlight.Medical;
+using Content.Server._Starlight.Medical.HealthAnalyzer;
+using Content.Shared._Starlight.Medical.HealthAnalyzer;
 using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Medical;
@@ -276,6 +277,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         uiState.CanPrint = TryComp<HealthAnalyzerComponent>(healthAnalyzer, out var analyzerComp)
             && analyzerComp.ScannedEntity == target
             && _timing.CurTime >= analyzerComp.PrintReadyAt;
+        uiState.EnablePrint = analyzerComp?.EnablePrint;
         // Starlight-end
         uiState.ScanMode = scanMode;
 
@@ -387,6 +389,16 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             foreach (var (reagentId, amounts) in chemicalsDict)
                 chemicals.Add((reagentId, amounts.Blood, amounts.Stomach));
         }
+
+        // Analyzer extensions
+        var extensionsEv = new CollectHealthAnalyzerExtensionsEvent();
+        RaiseLocalEvent(entity, ref extensionsEv);
+
+        var extensions = new HealthAnalyzerExtensions
+        {
+            Vitals = extensionsEv.Vitals, Abnormalities = extensionsEv.Abnormalities
+        };
+
         // Starlight end
 
         return new HealthAnalyzerUiState(
@@ -394,10 +406,12 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             bodyTemperature,
             bloodAmount,
             null, // Starlight-edit: Printable health reports.
+            null, // Starlight-edit: Printable health reports.
             null,
             bleeding,
             unrevivable,
-            chemicals // Starlight - merged bloodstream and stomach chemicals
+            chemicals, // Starlight - merged bloodstream and stomach chemicals
+            extensions // Starlight-edit - health analyzer extensions
         );
     }
 
