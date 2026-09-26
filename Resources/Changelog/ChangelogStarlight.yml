@@ -1,11 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Changed the portable recharger, you may now see when its in the suit storage slot.
-    type: Tweak
-  id: 408483
-  time: '2026-09-11T06:59:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6093
 - author: STARLIGHT TEAM
   changes:
   - message: Orwell Citadel Station - Replaced NCT's Office with a Lawyer's Office, moved NCT spawns to bridge, and moved NCT dispatcher to IAA's office.
@@ -2799,4 +2792,11 @@ Entries:
   id: 408882
   time: '2026-09-26T09:27:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6331
+- author: Caws
+  changes:
+  - message: After reviewing hiring guidelines, Central Command has determined Blueshield Officers may no longer be pacifists.
+    type: Tweak
+  id: 408883
+  time: '2026-09-26T09:54:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6341
 Order: -1
