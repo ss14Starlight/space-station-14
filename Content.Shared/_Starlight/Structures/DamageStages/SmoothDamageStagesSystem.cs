@@ -6,6 +6,7 @@ namespace Content.Shared._Starlight.Structures.DamageStages;
 public sealed partial class SmoothDamageStagesSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     [SubscribeLocalEvent]
     private void OnMapInit(Entity<SmoothDamageStagesComponent> ent, ref MapInitEvent args)
@@ -20,10 +21,14 @@ public sealed partial class SmoothDamageStagesSystem : EntitySystem
         if (!TryComp<DamageableComponent>(ent, out var damageable))
             return;
 
+#pragma warning disable CS0618 // Blame wizdens, they make all numeric damage getters as obsolote, I don't care on "don't rely on abilty to determine numbers"
+        var totalDamage = _damageable.GetTotalDamage((ent.Owner, damageable));
+#pragma warning restore CS0618
+
         var stage = 0;
         foreach (var threshold in ent.Comp.Thresholds)
         {
-            if (damageable.TotalDamage < threshold)
+            if (totalDamage < threshold)
                 break;
 
             stage++;

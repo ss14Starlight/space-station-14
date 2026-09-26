@@ -130,8 +130,10 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
         var wasAnchored = xform.Anchored;
 
         DamageSpecifier? damage = null;
-        if (TryComp<DamageableComponent>(target, out var oldDamage))
-            damage = new DamageSpecifier(oldDamage.Damage);
+#pragma warning disable CS0618 // Blame wizdens, they make all numeric damage getters as obsolote, I don't care on "don't rely on abilty to determine numbers"
+        if (TryComp<DamageableComponent>(target, out var damageComp) && _damageable.GetAllDamage((target, damageComp)) is { } oldDamage)
+            damage = new DamageSpecifier(oldDamage);
+#pragma warning restore CS0618
 
         var rotation = faceUser
             ? GetRotationTowards(target, user, xform)
@@ -177,7 +179,6 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
     {
         var flipped = EnsureComp<FlippedStructureComponent>(ent);
         flipped.UprightPrototype = null;
-        Dirty(ent, flipped);
 
         if (TryComp<FixturesComponent>(ent, out var fixtures))
         {
@@ -211,6 +212,8 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
             flipped.WasPowerDisabled = receiver.PowerDisabled;
             _power.SetPowerDisabled(ent, true, receiver);
         }
+
+        Dirty(ent, flipped);
 
         var tilt = GetTiltAwayFrom(ent, pivot);
         _appearance.SetData(ent, FlippedStructureVisuals.Tilt, fallTowards ? -tilt : tilt);
@@ -269,9 +272,7 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
             || !args.OurFixture.Hard
             || !args.OtherFixture.Hard
             || HasComp<FlippedStructureComponent>(ent))
-        {
             return;
-        }
 
         var victim = args.OtherEntity;
 
@@ -292,15 +293,21 @@ public sealed partial class SharedStructureFlipSystem : EntitySystem
         if (chance <= 0f || !_random.Prob(chance))
             return;
 
-        ToppleOnto(ent, victim);
+        ToppleOnto(ent.AsNullable(), victim);
     }
 
-    public void ToppleOnto(Entity<FlippableStructureComponent> ent, EntityUid victim)
+    /// <summary>
+    /// Topples flippable structure on entity, damages victim and knock it down
+    /// </summary>
+    public void ToppleOnto(Entity<FlippableStructureComponent?> ent, EntityUid victim)
     {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return;
+
         if (ent.Comp.CrushDamage is not { } damage || HasComp<FlippedStructureComponent>(ent))
             return;
 
-        FlipInPlace(ent, victim, fallTowards: true, predictedBy: null);
+        FlipInPlace((ent.Owner, ent.Comp), victim, fallTowards: true, predictedBy: null);
 
         _damageable.TryChangeDamage(victim, damage, origin: ent);
         _stun.TryKnockdown(victim, ent.Comp.CrushKnockdown, refresh: true);

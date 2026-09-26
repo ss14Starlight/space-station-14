@@ -89,9 +89,11 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
                     continue;
                 if(!(collide.Distance >= ent.Comp.MinDistance || _tag.HasAnyTag(collide.HitEntity, ent.Comp.NotArmedCollideWith)))
                     continue;
+                // Starlight-start
                 // Low cover (flipped tables, sandbags) only catches a share of the shots crossing it.
                 if (_cover.PassesOverCover(collide.HitEntity, ent.Owner, shooter, collide.Distance, args.Target, args.ShotDirection))
                     continue;
+                // Starlight-end
                 if (collide.Distance < pointer - 2f && HasComp<MobMoverComponent>(collide.HitEntity))
                 {
                     if (pointer - collide.Distance > 4f) continue;

@@ -262,7 +262,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
+          bounds: "-0.45,-0.45,0.45,0.25"
         density: 60
         mask:
         - TableMask
@@ -281,7 +281,7 @@
         spawn:
           MaterialSandbag1:
             min: 0
-            max: 2
+            max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction

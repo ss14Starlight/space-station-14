@@ -16,7 +16,7 @@
     - id: MagazineLightRifleHP
       amount: 1
 
-- type: !PartialOnly entityTable  
+- type: !PartialOnly entityTable
   id: FillLockerWarden
   table:
     children:
