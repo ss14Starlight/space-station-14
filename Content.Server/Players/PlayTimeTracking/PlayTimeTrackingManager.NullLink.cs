@@ -1,32 +1,47 @@
+using Robust.Shared.Enums;
 using Robust.Shared.Network;
 
 namespace Content.Server.Players.PlayTimeTracking;
 
 public sealed partial class PlayTimeTrackingManager
 {
+    private readonly Dictionary<NetUserId, Dictionary<string, TimeSpan>> _nullLinkPlayTime = [];
+
     public void EnrichWithNullLink(Dictionary<string, TimeSpan> playtime, Guid userId, Action? onApplied = null)
         => _task.RunOnMainThread(() =>
         {
-            ApplyNullLinkPlayTime(playtime, userId);
+            ApplyNullLinkPlayTime(playtime, new NetUserId(userId));
             onApplied?.Invoke();
         });
 
-    private void ApplyNullLinkPlayTime(Dictionary<string, TimeSpan> playtime, Guid userId)
+    public void ClearNullLinkPlayTime(Guid userId)
+        => _task.RunOnMainThread(() => _nullLinkPlayTime.Remove(new NetUserId(userId)));
+
+    private void ApplyNullLinkPlayTime(Dictionary<string, TimeSpan> playtime, NetUserId userId)
     {
-        if (!_player.TryGetSessionById(new NetUserId(userId), out var session))
+        if (!_player.TryGetSessionById(userId, out var session) || session.Status == SessionStatus.Disconnected)
             return;
 
-        if (!_playTimeData.TryGetValue(session, out var data))
-            return;
+        _nullLinkPlayTime[userId] = playtime;
 
-        var merged = new Dictionary<string, TimeSpan>(playtime);
+        if (_playTimeData.TryGetValue(session, out var data))
+            RebuildMergedTrackerTimes(userId, data);
+    }
+
+    private void RebuildMergedTrackerTimes(NetUserId userId, PlayTimeData data)
+    {
+        var merged = _nullLinkPlayTime.TryGetValue(userId, out var nullLinked)
+            ? new Dictionary<string, TimeSpan>(nullLinked)
+            : [];
+
         foreach (var (tracker, time) in data.TrackerTimes)
         {
-            if (merged.TryGetValue(tracker, out var nullinked))
-                merged[tracker] = time + nullinked;
+            if (merged.TryGetValue(tracker, out var nullLinkedTime))
+                merged[tracker] = time + nullLinkedTime;
             else
                 merged[tracker] = time;
         }
+
         data.MergedTrackerTimes = merged;
     }
 }
