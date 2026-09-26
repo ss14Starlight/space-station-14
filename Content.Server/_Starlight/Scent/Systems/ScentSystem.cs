@@ -202,13 +202,24 @@ public sealed partial class ScentSystem : SharedScentSystem
             return;
 
         var isOwnScent = TryComp<ScentComponent>(target, out var targetScent) && targetScent.ScentId == args.ScentId;
-        var isTracedScent = TryComp<ScentTraceComponent>(target, out var trace) && trace.Scents.ContainsKey(args.ScentId);
+
+        var isTracedScent = false;
+        if (TryComp<ScentTraceComponent>(target, out var trace))
+        {
+            PruneExpiredTraces(trace);
+            isTracedScent = trace.Scents.ContainsKey(args.ScentId);
+        }
 
         if (!isOwnScent && !isTracedScent)
             return;
 
+        var isNewTrack = component.TrackedScentId != args.ScentId;
+
         SetTrackedScent((uid, component), args.ScentId, target);
         _popup.PopupEntity(Loc.GetString("scent-sniff-window-tracking-popup"), uid, uid);
+
+        if (isNewTrack)
+            SendScentSourcePing((uid, component), args.ScentId);
     }
 
     private void OnCleanAfterInteract(Entity<CleansScentComponent> ent, ref AfterInteractEvent args)
