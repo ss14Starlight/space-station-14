@@ -493,6 +493,8 @@
   obeysTo: laws-owner-xenoborgs
 
 # ITG lawsets
+
+## NT-CC Aligned
 - type: siliconLaw
   id: salvage0
   order: 0
@@ -523,6 +525,38 @@
   - salvage2
   - salvage3
   obeysTo: laws-owner-salvage
+
+## Guild Aligned
+- type: siliconLaw
+  id: itg0
+  order: 0
+  lawString: law-itg-0
+
+- type: siliconLaw
+  id: itg1
+  order: 1
+  lawString: law-itg-1
+
+- type: siliconLaw
+  id: itg2
+  order: 2
+  lawString: law-itg-2
+
+- type: siliconLaw
+  id: itg3
+  order: 3
+  lawString: law-itg-3
+
+- type: siliconLawset
+  id: itgLawset
+  name: law-itg-name
+  startAtZero: true
+  laws:
+  - itg0
+  - itg1
+  - itg2
+  - itg3
+  obeysTo: laws-owner-itg
 
 # Janivmov lawset
 - type: siliconLaw
