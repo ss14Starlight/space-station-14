@@ -83,7 +83,6 @@
   blacklist:
     tags:
     - SiliconEmotes
-    - DogEmotes # Starlight
   chatMessages: ["chat-emote-msg-yawn"]
   chatTriggers:
     - yawn
