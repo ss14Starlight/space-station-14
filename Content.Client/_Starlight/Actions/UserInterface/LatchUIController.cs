@@ -8,13 +8,14 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Actions.UserInterface;
 
 /// <summary>
-/// Latch progress banner that floats above the local player, tracked via
-/// world-to-screen the same way speech bubbles are.
+/// Latch progress banner, positioned each frame to stay clear of both the
+/// latcher and the target.
 /// </summary>
 [UsedImplicitly]
 public sealed partial class LatchUIController : UIController
@@ -24,9 +25,20 @@ public sealed partial class LatchUIController : UIController
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IGameTiming _timing = default!;
 
-    private const float VerticalOffset = 1.0f;
+    /// <summary>
+    /// Gap in tiles between a body's origin and the panel's nearest edge.
+    /// </summary>
+    private const float BodyClearance = 0.75f;
+
+    /// <summary>
+    /// Room in tiles needed above before the panel moves back up from below.
+    /// Prevents flickering at the top of the viewport.
+    /// </summary>
+    private const float FlipBackHysteresis = 1.0f;
 
     private LatchStatusControl? _control;
+    private LayoutContainer? _viewport;
+    private bool _placedBelow;
     private SharedTransformSystem? _transform;
     private ActionsSystem? _actions;
 
@@ -48,6 +60,7 @@ public sealed partial class LatchUIController : UIController
         _transform ??= _entities.System<SharedTransformSystem>();
         _actions ??= _entities.System<ActionsSystem>();
 
+        _viewport = viewport;
         _control = new LatchStatusControl();
         _control.BiteHarderPressed += OnBiteHarderPressed;
         viewport.AddChild(_control);
@@ -55,11 +68,11 @@ public sealed partial class LatchUIController : UIController
 
     private void OnScreenUnload()
     {
-        if (_control is not null)
-            _control.BiteHarderPressed -= OnBiteHarderPressed;
+        _control?.BiteHarderPressed -= OnBiteHarderPressed;
 
         _control?.Orphan();
         _control = null;
+        _viewport = null;
     }
 
     private void OnBiteHarderPressed()
@@ -96,7 +109,8 @@ public sealed partial class LatchUIController : UIController
 
         string instruction;
         TimeSpan endTime, maxEndTime, maxDuration;
-        bool isLatcher, below;
+        bool isLatcher;
+        EntityUid? partner;
 
         // As the latcher.
         if (_entities.TryGetComponent<LatchComponent>(local, out var latchComp) && latchComp.Active)
@@ -106,7 +120,7 @@ public sealed partial class LatchUIController : UIController
             maxEndTime = latchComp.MaxEndTime;
             maxDuration = latchComp.MaxDuration;
             isLatcher = true;
-            below = latchComp.LatcherUiBelow;
+            partner = latchComp.Target;
         }
         // As the target.
         else if (_entities.TryGetComponent<LatchedComponent>(local, out var latchedComp) &&
@@ -118,18 +132,21 @@ public sealed partial class LatchUIController : UIController
             maxEndTime = latcherComp.MaxEndTime;
             maxDuration = latcherComp.MaxDuration;
             isLatcher = false;
-            below = latcherComp.TargetUiBelow;
+            partner = latchedComp.Latcher;
         }
         else
         {
             _control.Hide();
+            _placedBelow = false;
             return;
         }
 
+        var eyeMap = _eyeManager.CurrentEye.Position.MapId;
         if (!_entities.TryGetComponent<TransformComponent>(local, out var xform) ||
-            xform.MapID != _eyeManager.CurrentEye.Position.MapId)
+            xform.MapID != eyeMap)
         {
             _control.Hide();
+            _placedBelow = false;
             return;
         }
 
@@ -137,17 +154,64 @@ public sealed partial class LatchUIController : UIController
         var maxFraction = GetFraction(maxEndTime, maxDuration);
         _control.UpdateState(fraction, maxFraction, instruction, isLatcher);
 
-        // Normally anchored to the panel's bottom edge, VerticalOffset above
-        // the target. If the K9 started behind that spot, anchor to the top
-        // edge instead, offset below, so the K9 stays visible and clickable.
-        var offset = below ? -VerticalOffset : VerticalOffset;
-        var worldPos = _transform.GetWorldPosition(xform) + new Vector2(0, offset);
+        PlaceControl(xform, partner, eyeMap);
+    }
+
+    /// <summary>
+    /// Places the panel above both bodies, or below them if there's no room above.
+    /// </summary>
+    private void PlaceControl(TransformComponent xform, EntityUid? partner, MapId eyeMap)
+    {
+        if (_control is null || _transform is null)
+            return;
+
         var uiScale = UIManager.RootControl.UIScale;
-        var anchor = _eyeManager.WorldToScreen(worldPos) / uiScale;
-        var screenPos = below
-            ? anchor - new Vector2(_control.Width / 2f, 0f)
-            : anchor - new Vector2(_control.Width / 2f, _control.Height);
-        LayoutContainer.SetPosition(_control, screenPos);
+        var viewportOffset = _viewport?.GlobalPosition ?? Vector2.Zero;
+        var localWorld = _transform.GetWorldPosition(xform);
+        var localScreen = (_eyeManager.WorldToScreen(localWorld) / uiScale) - viewportOffset;
+
+        // Screen pixels per tile. Uses length so eye rotation doesn't affect it.
+        var tilePixels = ((_eyeManager.WorldToScreen(localWorld + Vector2.UnitX) / uiScale) - viewportOffset - localScreen).Length();
+
+        var top = localScreen.Y;
+        var bottom = localScreen.Y;
+
+        if (partner is { } other
+            && _entities.TryGetComponent<TransformComponent>(other, out var partnerXform)
+            && partnerXform.MapID == eyeMap)
+        {
+            var partnerScreen = (_eyeManager.WorldToScreen(_transform.GetWorldPosition(partnerXform)) / uiScale) - viewportOffset;
+            top = MathF.Min(top, partnerScreen.Y);
+            bottom = MathF.Max(bottom, partnerScreen.Y);
+        }
+
+        var clearance = BodyClearance * tilePixels;
+        var aboveY = top - clearance - _control.Height;
+        var belowY = bottom + clearance;
+
+        var fitsBelow = _viewport is null || belowY + _control.Height <= _viewport.Height;
+
+        if (_placedBelow)
+        {
+            if (aboveY >= FlipBackHysteresis * tilePixels || !fitsBelow)
+                _placedBelow = false;
+        }
+        else if (aboveY < 0f && fitsBelow)
+        {
+            _placedBelow = true;
+        }
+
+        var x = localScreen.X - (_control.Width / 2f);
+        var y = _placedBelow ? belowY : aboveY;
+
+        // Keeps the banner on screen, overlapping the bodies only if neither side fits.
+        if (_viewport is not null)
+        {
+            x = Math.Clamp(x, 0f, MathF.Max(0f, _viewport.Width - _control.Width));
+            y = Math.Clamp(y, 0f, MathF.Max(0f, _viewport.Height - _control.Height));
+        }
+
+        LayoutContainer.SetPosition(_control, new Vector2(x, y));
     }
 
     private float GetFraction(TimeSpan endTime, TimeSpan maxDuration)
