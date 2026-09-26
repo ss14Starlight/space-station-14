@@ -1904,16 +1904,12 @@
         amount: 0.06
       - !type:EvenHealthChange
         conditions:
-        - !type:TotalDamageCondition
-          max: 50
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         damage:
           Brute: -1
       - !type:HealthChange
         conditions:
-        - !type:TotalDamageCondition
-          max: 50
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
         damage:
