@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Box) Changed mining dock a little.
-    type: Tweak
-  id: 408480
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
   - message: (Box) Fixed mining recycler.
     type: Fix
   id: 408481
@@ -2799,4 +2792,11 @@ Entries:
   id: 408879
   time: '2026-09-26T08:57:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6338
+- author: Musiklie
+  changes:
+  - message: Science Techfab now gains the experimental welder when advanced tools is unlocked.
+    type: Add
+  id: 408880
+  time: '2026-09-26T09:27:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6337
 Order: -1
