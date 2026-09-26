@@ -33,7 +33,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: NTS "Honeybee" Mini-Flores
+      name: ISM "Honeybee" Mini-Flores
     - type: Transform
       parent: invalid
       pos: -0.6,5
