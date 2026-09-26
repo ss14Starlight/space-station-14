@@ -68,8 +68,7 @@ public sealed partial class LatchUIController : UIController
 
     private void OnScreenUnload()
     {
-        if (_control is not null)
-            _control.BiteHarderPressed -= OnBiteHarderPressed;
+        _control?.BiteHarderPressed -= OnBiteHarderPressed;
 
         _control?.Orphan();
         _control = null;
@@ -171,7 +170,7 @@ public sealed partial class LatchUIController : UIController
         var localScreen = _eyeManager.WorldToScreen(localWorld) / uiScale;
 
         // Screen pixels per tile. Uses length so eye rotation doesn't affect it.
-        var tilePixels = (_eyeManager.WorldToScreen(localWorld + Vector2.UnitX) / uiScale - localScreen).Length();
+        var tilePixels = ((_eyeManager.WorldToScreen(localWorld + Vector2.UnitX) / uiScale) - localScreen).Length();
 
         var top = localScreen.Y;
         var bottom = localScreen.Y;
@@ -189,21 +188,27 @@ public sealed partial class LatchUIController : UIController
         var aboveY = top - clearance - _control.Height;
         var belowY = bottom + clearance;
 
+        var fitsBelow = _viewport is null || belowY + _control.Height <= _viewport.Height;
+
         if (_placedBelow)
         {
-            if (aboveY >= FlipBackHysteresis * tilePixels)
+            if (aboveY >= FlipBackHysteresis * tilePixels || !fitsBelow)
                 _placedBelow = false;
         }
-        else if (aboveY < 0f)
+        else if (aboveY < 0f && fitsBelow)
         {
             _placedBelow = true;
         }
 
-        var x = localScreen.X - _control.Width / 2f;
+        var x = localScreen.X - (_control.Width / 2f);
         var y = _placedBelow ? belowY : aboveY;
 
+        // Keeps the banner on screen, overlapping the bodies only if neither side fits.
         if (_viewport is not null)
+        {
             x = Math.Clamp(x, 0f, MathF.Max(0f, _viewport.Width - _control.Width));
+            y = Math.Clamp(y, 0f, MathF.Max(0f, _viewport.Height - _control.Height));
+        }
 
         LayoutContainer.SetPosition(_control, new Vector2(x, y));
     }
