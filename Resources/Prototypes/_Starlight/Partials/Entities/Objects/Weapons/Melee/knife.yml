@@ -1,0 +1,20 @@
+- type: !PartialOnly entity
+  id: Shiv
+  components:
+  - type: Tool
+    qualities:
+    - Slicing
+    - Sawing
+    speedModifier: 1
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: [ Slicing ]
+        useSound: /Audio/Items/Culinary/chop.ogg
+        SpeedModifier: 1
+      - behavior: [ Sawing ]
+        useSound: /Audio/Effects/chop.ogg
+        SpeedModifier: 0.75
+      - behavior: [ Screwing ]
+        useSound: /Audio/Items/screwdriver.ogg
+        SpeedModifier: 0.05
