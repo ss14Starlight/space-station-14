@@ -30,23 +30,17 @@ public sealed partial class DamageSpecifierMixMax : IEquatable<DamageSpecifierMi
     [DataField]
     public List<ProtoId<DamageTypePrototype>> Types = new();
 
-    public DamageSpecifierMixMax Clone()
+    public DamageSpecifierMixMax Clone() => new DamageSpecifierMixMax
     {
-        return new DamageSpecifierMixMax
-        {
-            Value = Value,
-            Groups = new List<ProtoId<DamageGroupPrototype>>(Groups),
-            Types = new List<ProtoId<DamageTypePrototype>>(Types),
-        };
-    }
+        Value = Value,
+        Groups = new List<ProtoId<DamageGroupPrototype>>(Groups),
+        Types = new List<ProtoId<DamageTypePrototype>>(Types),
+    };
 
-    public bool Equals(DamageSpecifierMixMax? other)
-    {
-        return other != null &&
-               Value == other.Value &&
-               Groups.SequenceEqual(other.Groups) &&
-               Types.SequenceEqual(other.Types);
-    }
+    public bool Equals(DamageSpecifierMixMax? other) => other != null &&
+                Value == other.Value &&
+                Groups.SequenceEqual(other.Groups) &&
+                Types.SequenceEqual(other.Types);
 
     public override bool Equals(object? obj)
     {

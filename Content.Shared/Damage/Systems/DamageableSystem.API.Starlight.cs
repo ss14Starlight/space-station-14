@@ -79,8 +79,8 @@ public sealed partial class DamageableSystem
 
         var remaining = -mixMax.Value;
         foreach (var (type, available) in candidates
-                     .OrderByDescending(candidate => candidate.Damage)
-                     .ThenBy(candidate => candidate.Type.Id, StringComparer.Ordinal))
+                    .OrderByDescending(candidate => candidate.Damage)
+                    .ThenBy(candidate => candidate.Type.Id, StringComparer.Ordinal))
         {
             var healing = FixedPoint2.Min(available, remaining);
             if (!resolved.DamageDict.TryAdd(type, -healing))
