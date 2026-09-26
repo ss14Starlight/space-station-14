@@ -16,8 +16,16 @@ public sealed partial class DamageSpecifier : IEquatable<DamageSpecifier>, IRobu
     /// <summary>
     ///     Damage specified by group. Each value is divided evenly between the types in that group when applied.
     /// </summary>
+    [JsonPropertyName("groups")]
     [DataField("groups")]
-    public Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> DamageGroupDict { get; set; } = new();
+    private Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2>? _damageGroupDict = new();
+
+    [JsonIgnore]
+    public Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> DamageGroupDict
+    {
+        get => _damageGroupDict ??= new();
+        set => _damageGroupDict = value;
+    }
 
     /// <summary>
     ///     A healing pool spent on the most damaged matching type first when this specifier is applied.

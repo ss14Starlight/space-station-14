@@ -22,6 +22,7 @@ namespace Content.IntegrationTests.Tests.Damageable
         private const string TestDamageableEntityId = "TestDamageableEntityId";
         private const string TestGroupedDamageEntityId = "TestGroupedDamageEntityId"; // Starlight
         private const string TestMixMaxDamageEntityId = "TestMixMaxDamageEntityId"; // Starlight
+        private const string TestNullGroupDamageEntityId = "TestNullGroupDamageEntityId"; // Starlight
         private const string TestGroup1 = "TestGroup1";
         private const string TestGroup2 = "TestGroup2";
         private const string TestGroup3 = "TestGroup3";
@@ -122,6 +123,17 @@ namespace Content.IntegrationTests.Tests.Damageable
                         - {TestGroup3}
                         types:
                         - {TestDamage2a}
+
+        -   type: entity
+            id: {TestNullGroupDamageEntityId}
+            name: {TestNullGroupDamageEntityId}
+            components:
+            -   type: Damageable
+                damageContainer: testDamageContainer
+                damage:
+                    groups: null
+                    types:
+                        {TestDamage2a}: 1
         """;
 
         #region Starlight
@@ -138,6 +150,7 @@ namespace Content.IntegrationTests.Tests.Damageable
 
             EntityUid groupedEntity = default;
             EntityUid mixMaxEntity = default;
+            EntityUid nullGroupEntity = default;
             DamageableSystem damageable = null!;
             SharedEntityEffectsSystem entityEffects = null!;
             DamageSpecifier mixMax = null!;
@@ -150,6 +163,7 @@ namespace Content.IntegrationTests.Tests.Damageable
             {
                 groupedEntity = entityManager.SpawnEntity(TestGroupedDamageEntityId, map.MapCoords);
                 mixMaxEntity = entityManager.SpawnEntity(TestMixMaxDamageEntityId, map.MapCoords);
+                nullGroupEntity = entityManager.SpawnEntity(TestNullGroupDamageEntityId, map.MapCoords);
                 damageable = entitySystemManager.GetEntitySystem<DamageableSystem>();
                 entityEffects = entitySystemManager.GetEntitySystem<SharedEntityEffectsSystem>();
                 mixMax = entityManager.GetComponent<PassiveDamageComponent>(mixMaxEntity).Damage;
@@ -163,6 +177,13 @@ namespace Content.IntegrationTests.Tests.Damageable
 
             await server.WaitAssertion(() =>
             {
+                var nullGroupDamage = damageable.GetAllDamage(nullGroupEntity);
+                Assert.Multiple(() =>
+                {
+                    Assert.That(nullGroupDamage.DamageGroupDict, Is.Empty);
+                    Assert.That(nullGroupDamage.DamageDict[type2a.ID], Is.EqualTo(FixedPoint2.New(1)));
+                });
+
                 var groupedDamage = damageable.GetAllDamage(groupedEntity).DamageDict;
                 Assert.Multiple(() =>
                 {
