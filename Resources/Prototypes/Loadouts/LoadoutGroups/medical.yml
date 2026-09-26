@@ -14,7 +14,7 @@
   - MedicalDoctorBackpack
   - MedicalDoctorSatchel
   - MedicalDoctorDuffel
-  - LeatherSatchel # 🌟Starlight🌟
+  - LeatherSatchel # starlight
 
 - type: loadoutGroup
   id: MedicalShoes

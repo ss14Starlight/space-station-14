@@ -1122,6 +1122,94 @@
         - WhitelistChameleon
 
 - type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatPastelFrill
+  name: pastel frill headpiece # Alternative Clothing Catalog
+  description: A pretty pink headpiece with frills and lace.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/pastel_frill_headpiece.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/pastel_frill_headpiece.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatGothicFrill
+  name: gothic frill headpiece # Alternative Clothing Catalog
+  description: A pretty black headpiece with frills and lace.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/gothic_frill_headpiece.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/gothic_frill_headpiece.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFloppyBunny
+  name: floppy bunny ears # Alternative Clothing Catalog
+  description: A pair of floppy bunny ears with piercings.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/floppy_bunny_ears_black.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/floppy_bunny_ears_black.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFloppyBunnyWhite
+  name: white floppy bunny ears # Alternative Clothing Catalog
+  description: A pair of floppy bunny ears with piercings.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/floppy_bunny_ears_white.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/floppy_bunny_ears_white.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFroggyHat
+  name: froggy hat # Alternative Clothing Catalog
+  description: A froggy hat - is froggy, is hat. What more is there to say?
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/froggy_hat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/froggy_hat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatKittyHat
+  name: kitty hat # Alternative Clothing Catalog
+  description: A black cat hat, with dangly pom poms.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/kitty_hat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/kitty_hat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadLittleAngelEars
+  name: little angel feathered ears # Alternative Clothing Catalog
+  description: A pair of angelic feathered ears, matches with the rest of the set!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/little_angel_ears.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/little_angel_ears.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadLittleDevilHorns
+  name: little devil horns # Alternative Clothing Catalog
+  description: A pair of devilish horns, matches with the rest of the set!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/little_devil_horns.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/little_devil_horns.rsi
+
+- type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatBeretRD
   name: research director's beret

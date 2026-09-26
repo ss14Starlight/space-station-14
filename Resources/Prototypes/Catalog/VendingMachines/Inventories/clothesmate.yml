@@ -75,6 +75,7 @@
     ClothingOuterRoughSweater: 1
     ClothingOuterSoftSweater: 1
     ClothingOuterLargeShirt: 3
+    ClothingOuterCoatLeatherJacket: 3 #Starlight # Alternative Clothing Catalog
     # DO NOT ADD MORE, USE UNIFORM DYING
     ClothingShoesColorBlack: 8
     ClothingShoesColorBrown: 4
@@ -128,9 +129,12 @@
     ClothingHeadHatSolidHeadband: 2
     ClothingUniformJumpsuitTrackSuit: 2 #Starlight
     DarkTurtleneckSuit: 2 # Starlight
-    TatteredClothesUniformSuit: 1 #starlight
-    ClothingHeadHatTVHead: 1 #starlight
-    ClothingNeckTatteredHood: 1 #starlight
-    CuteTurtleNeckBlack: 2 #starlight
-    CuteTurtleNeck: 2 #starlight
+    TatteredClothesUniformSuit: 1 #Starlight
+    ClothingHeadHatTVHead: 1 #Starlight
+    ClothingNeckTatteredHood: 1 #Starlight
+    CuteTurtleNeckBlack: 2 #Starlight
+    CuteTurtleNeck: 2 #Starlight
+    ClothingOuterCoatLeatherJacketFiery: 2 #Starlight # Alternative Clothing Catalog
+    ClothingOuterCoatLeatherJacketHellfire: 1 #Starlight # Alternative Clothing Catalog
+    ClothingHeadLittleDevilHorns: 1 #Starlight # Alternative Clothing Catalog
   # DO NOT ADD MORE, USE UNIFORM DYING
