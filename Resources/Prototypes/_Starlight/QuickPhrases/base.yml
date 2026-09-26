@@ -15,3 +15,4 @@
   group: InterstellarTradeGuild
   styleClass: InterstellarTradeGuildButton #Coloring seems missing for all buttons, someone else needs to add them.
   abstract: true
+  
