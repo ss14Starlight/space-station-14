@@ -1,5 +1,7 @@
 {
   "version": 1,
+  "copyright": "state based",
+  "license": "CC0-1.0",
   "size": {
     "x": 32,
     "y": 32
