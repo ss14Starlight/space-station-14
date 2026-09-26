@@ -1,76 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (Box) Added all departmental mailboxes.
-    type: Add
-  id: 408469
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
-  - message: (Box) Added a k9 to security.
-    type: Add
-  id: 408470
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
-  - message: (Box) Added solitary confinement to gen pop.
-    type: Add
-  id: 408471
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
-  - message: (Box) Added some more station radios and televisions.
-    type: Add
-  id: 408472
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
-  - message: (Box) Added a lot of toilet paper, hand sanitizer dispensers and hand dryer.
-    type: Add
-  id: 408473
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
-  - message: (Box) Added mail access and mail lockers to the mailroom.
-    type: Add
-  id: 408474
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
-  - message: (Box) Added extra meteor protection around science substation.
-    type: Add
-  id: 408475
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
-  - message: (Box) Added ai cameras to main engine containment.
-    type: Add
-  id: 408476
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
-  - message: (Box) Removed ai cams in captains bathroom.
-    type: Remove
-  id: 408477
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
-  - message: (Box) Removed some cameras that peered deep into maints.
-    type: Remove
-  id: 408478
-  time: '2026-09-11T06:40:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/6080
-- author: Cvlancer
-  changes:
   - message: (Box) Changed old salvage room to be dilapidated.
     type: Tweak
   id: 408479
@@ -2641,7 +2571,7 @@ Entries:
 - author: qbrx
   changes:
   - message: Fixed abductor's welding tool.
-    type: Unknown
+    type: Fix
   id: 408846
   time: '2026-09-24T11:27:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6287
@@ -2799,4 +2729,74 @@ Entries:
   id: 408868
   time: '2026-09-24T11:27:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/6274
+- author: Pickra
+  changes:
+  - message: Changelogs now know what "unknown" type means.
+    type: Tweak
+  id: 408869
+  time: '2026-09-24T18:47:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6336
+- author: Johnny
+  changes:
+  - message: Changed the cost of the summon events spell to 2.
+    type: Tweak
+  id: 408870
+  time: '2026-09-25T05:34:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6324
+- author: neomoth
+  changes:
+  - message: "Removed my own shitcode \U0001F5E3️\U0001F525\U0001F525\U0001F525."
+    type: Remove
+  id: 408871
+  time: '2026-09-25T06:48:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6191
+- author: Light
+  changes:
+  - message: Polished the new health analyzer UI.
+    type: Fix
+  id: 408872
+  time: '2026-09-25T10:29:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6106
+- author: Light
+  changes:
+  - message: The health analyzer now displays open surgeries and incisions and catatonic / hollowed out state.
+    type: Add
+  id: 408873
+  time: '2026-09-25T10:29:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6106
+- author: Pickra
+  changes:
+  - message: Added ToolshedMarker component for scripting use.
+    type: Add
+  id: 408874
+  time: '2026-09-25T21:41:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6315
+- author: Kirb
+  changes:
+  - message: tweaked the ID section on sawian guidebooks.
+    type: Tweak
+  id: 408875
+  time: '2026-09-25T23:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6300
+- author: wonderfulnewworld
+  changes:
+  - message: You can now disable viewing stains.
+    type: Tweak
+  id: 408876
+  time: '2026-09-26T00:04:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6349
+- author: wonderfulnewworld
+  changes:
+  - message: Stains will no longer appear on masks that are toggled off.
+    type: Fix
+  id: 408877
+  time: '2026-09-26T00:04:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6349
+- author: Yosif
+  changes:
+  - message: Botany refactor from a wizards now is ported to a starlight (will port more stuff when it will be on a stable branch).
+    type: Add
+  id: 408878
+  time: '2026-09-26T02:03:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/6355
 Order: -1
