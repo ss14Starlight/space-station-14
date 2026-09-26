@@ -615,6 +615,10 @@
       collection: Hew
     Honk:
       collection: BikeHorn
+    Blink:
+      collection: Blinks
+    Sneeze:
+      collection: VulpkaninSneeze
 
 # cat + moth sounds because *yes*
 - type: emoteSounds
