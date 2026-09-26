@@ -1,0 +1,13 @@
+﻿- type: !PartialOnly entity
+  id: ClothingEyesGlassesSecurity
+  components:
+  - type: Tag
+    tags:
+    - SecBeltEquip
+
+- type: !PartialOnly entity
+  id: ClothingEyesGlassesNoir
+  components:
+  - type: Tag
+    tags:
+    - SecBeltEquip

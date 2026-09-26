@@ -9,6 +9,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 4
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -35,6 +36,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 4
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -59,6 +61,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -83,6 +86,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -107,6 +111,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -131,6 +136,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -155,6 +161,7 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
     duration: null
+    occursDuringRoundEnd: false
   - type: SpaceSpawnRule
     spawnDistance: 0
   - type: AntagSpawner
@@ -220,6 +227,7 @@
   - type: StationEvent
     weight: 2
     duration: null
+    occursDuringRoundEnd: false
     earliestStart: 35
     reoccurrenceDelay: 20
     minimumPlayers: 15

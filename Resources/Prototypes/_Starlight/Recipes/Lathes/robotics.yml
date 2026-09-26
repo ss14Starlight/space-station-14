@@ -1,5 +1,3 @@
-## Syndicate
-
 - type: latheRecipe
   id: BorgModuleMartyr
   result: BorgModuleMartyr
@@ -112,6 +110,13 @@
     Plastic: 250
     Gold: 50
     Silver: 50
+
+- type: latheRecipe
+  parent: BaseRoboticsRecipe
+  id: DroneShell
+  result: DroneShell
+  materials:
+    Steel: 200
 
 # Custom Generic Borg Modules
 - type: latheRecipe
